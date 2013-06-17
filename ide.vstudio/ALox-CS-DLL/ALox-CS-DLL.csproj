@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E4FF710A-4E99-4DCF-9BBD-EFD0FAB1E46D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Util_CS___DLL</RootNamespace>
+    <AssemblyName>AWorx-Util-CS</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;ALOX_DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;ALOX_DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\src\cs.alox\ConsoleLogger.cs">
+      <Link>src\ConsoleLogger.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.alox\core\CallerInfo.cs">
+      <Link>src\core\CallerInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.alox\core\LogDomain.cs">
+      <Link>src\core\LogDomain.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.alox\core\Logger.cs">
+      <Link>src\core\Logger.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.alox\core\Lox.cs">
+      <Link>src\core\Lox.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.alox\Log.cs">
+      <Link>src\Log.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.alox\LogTools.cs">
+      <Link>src\LogTools.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.alox\MemoryLogger.cs">
+      <Link>src\MemoryLogger.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.alox\TextLogger.cs">
+      <Link>src\TextLogger.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.aworx.util\AWXU.cs">
+      <Link>src.util\AWXU.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.aworx.util\MString.cs">
+      <Link>src.util\MString.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.aworx.util\ThreadLock.cs">
+      <Link>src.util\ThreadLock.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.aworx.util\Ticker.cs">
+      <Link>src.util\Ticker.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.unittests.alox\Tests_Log.cs">
+      <Link>tests.src\Tests_Log.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.unittests.alox\Tests_Tutorial.cs">
+      <Link>tests.src\Tests_Tutorial.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.unittests.aworx.util\Test_MString.cs">
+      <Link>tests.src.util\Test_MString.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.unittests.aworx.util\Test_ThreadLock.cs">
+      <Link>tests.src.util\Test_ThreadLock.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.unittests.aworx.util\Test_TickerAndTickTime.cs">
+      <Link>tests.src.util\Test_TickerAndTickTime.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\doxygen.alox\doxygen.res\Doxyfile">
+      <Link>docs.src\doxygen.res\Doxyfile</Link>
+    </None>
+    <None Include="..\..\src\doxygen.alox\Etc\Changelog.md">
+      <Link>docs.src\Etc\Changelog.md</Link>
+    </None>
+    <None Include="..\..\src\doxygen.alox\Etc\FAQ.md">
+      <Link>docs.src\Etc\FAQ.md</Link>
+    </None>
+    <None Include="..\..\src\doxygen.alox\Manual\01.Manual.md">
+      <Link>docs.src\Manual\01.Manual.md</Link>
+    </None>
+    <None Include="..\..\src\doxygen.alox\Manual\02.1.Man.Introduction.md">
+      <Link>docs.src\Manual\02.1.Man.Introduction.md</Link>
+    </None>
+    <None Include="..\..\src\doxygen.alox\Manual\02.2.Man.Features and Limitations.md">
+      <Link>docs.src\Manual\02.2.Man.Features and Limitations.md</Link>
+    </None>
+    <None Include="..\..\src\doxygen.alox\Manual\03.1.Man.Setup Projects CS.md">
+      <Link>docs.src\Manual\03.1.Man.Setup Projects CS.md</Link>
+    </None>
+    <None Include="..\..\src\doxygen.alox\Manual\04.Man.ALox architecture.md">
+      <Link>docs.src\Manual\04.Man.ALox architecture.md</Link>
+    </None>
+    <None Include="..\..\src\doxygen.alox\Manual\05.Man.Filtering Loggers.md">
+      <Link>docs.src\Manual\05.Man.Filtering Loggers.md</Link>
+    </None>
+    <None Include="..\..\src\doxygen.alox\Manual\06.Man.LevelsAndDomains.md">
+      <Link>docs.src\Manual\06.Man.LevelsAndDomains.md</Link>
+    </None>
+    <None Include="..\..\src\doxygen.alox\Manual\07.Man.Source Code Prefix Fields.md">
+      <Link>docs.src\Manual\07.Man.Source Code Prefix Fields.md</Link>
+    </None>
+    <None Include="..\..\src\doxygen.alox\Manual\08.Man.Custom Loggers.md">
+      <Link>docs.src\Manual\08.Man.Custom Loggers.md</Link>
+    </None>
+    <None Include="..\..\src\doxygen.alox\Manual\09.Man.Release Logging.md">
+      <Link>docs.src\Manual\09.Man.Release Logging.md</Link>
+    </None>
+    <None Include="..\..\src\doxygen.alox\Manual\10.Man.TextLogger.md">
+      <Link>docs.src\Manual\10.Man.TextLogger.md</Link>
+    </None>
+    <None Include="..\..\src\doxygen.alox\Tutorials\Tutorial.CS.md">
+      <Link>docs.src\Tutorials\Tutorial.CS.md</Link>
+    </None>
+    <None Include="docs.src\MainPage.md" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="..\..\src\doxygen.alox\images\A-Worx-Logo.png">
+      <Link>docs.src\images\A-Worx-Logo.png</Link>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>cd $(SolutionDir)
+cd src\doxygen.alox\doxygen.res
+C:\usr\Dev\Tools\doxygen\bin\doxygen.exe Doxyfile</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <!-- Manually added for ALox: Remove doxygen outputs -->
+  <Target Name="AfterClean">
+    <Message Text="Removing Doxygen generated files..." />
+    <RemoveDir Directories="$(ProjectDir)doc\html;$(ProjectDir)doc\latex" />
+  </Target>
+</Project>

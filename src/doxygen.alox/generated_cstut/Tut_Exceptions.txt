@@ -1,0 +1,12 @@
+src\cs.unittests.alox\Tests_Tutorial.cs(245):.Log_Tutorial_Exception()     [00:00.000  +046 µs] [T:(10)] [WRN] [MYDOM]: >> Logging an exception: 
+src\cs.unittests.alox\Tests_Tutorial.cs(245):.Log_Tutorial_Exception()                                                  >>   Type:       System.Exception
+src\cs.unittests.alox\Tests_Tutorial.cs(245):.Log_Tutorial_Exception()                                                  >>   Message:    TestException Message
+src\cs.unittests.alox\Tests_Tutorial.cs(245):.Log_Tutorial_Exception()                                                  >>   HResult:    0x80131500
+src\cs.unittests.alox\Tests_Tutorial.cs(245):.Log_Tutorial_Exception()                                                  >>   Inner:   
+src\cs.unittests.alox\Tests_Tutorial.cs(245):.Log_Tutorial_Exception()                                                  >>     Type:       System.Exception
+src\cs.unittests.alox\Tests_Tutorial.cs(245):.Log_Tutorial_Exception()                                                  >>     Message:    InnerException Message
+src\cs.unittests.alox\Tests_Tutorial.cs(245):.Log_Tutorial_Exception()                                                  >>     HResult:    0x80131500
+src\cs.unittests.alox\Tests_Tutorial.cs(245):.Log_Tutorial_Exception()                                                  >>     Inner:   
+src\cs.unittests.alox\Tests_Tutorial.cs(245):.Log_Tutorial_Exception()                                                  >>       Type:       System.Exception
+src\cs.unittests.alox\Tests_Tutorial.cs(245):.Log_Tutorial_Exception()                                                  >>       Message:    Inner, inner Exception
+src\cs.unittests.alox\Tests_Tutorial.cs(245):.Log_Tutorial_Exception()                                                  >>       HResult:    0x80131500

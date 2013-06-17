@@ -1,0 +1,128 @@
+﻿\page changelog  Change Log
+
+# Change Log
+
+Historically, there existed a kind of predecessor of this library for C++ and JAVA and was
+more or less maintained since the the year 1999. However this is a complete rewrite with C# 
+as the originating language. 
+
+The first released version was Version 1.0.1 in **May 2013**. 
+
+This change log is sorted reversely in respect to chronology. 
+
+## Version 1.0.4, not released yet ##
+- JAVA Version (including Android LogCat support) is **on its way**. It is almost "feature complete", but not in a 
+  state of beeing released, yet. Stay tuned!
+- Various internal improvements of speed and code consistence.
+- Changed the type of parameter "msg" in all logging methods of classes Log, Lox and Logger from String (or MString) 
+  to Object. Only TextLogger will then identify different string-types (e.g. String, StringBuilder, StringBuffer, 
+  MString, CharSequence, etc.) and handle them efficiently. Unknown types are converted using their ToString() function. 
+  Other Loggers might treat them differently. This should not affect your code base in respect to using the standard logging
+  interface.
+- Introduced the new enumeration [Log.Scope](@ref #com::aworx::lox::Log::Scope). The scope is used by different
+  methods as a parameter to define the applicable scope of a command. Scopes differ in different platform/languages
+  supported by ALox. In C# the scope can be "Method" or "SourceFile" while in the upcoming JAVA version of ALox
+  the scope "Package", "Class" and "Method" are defined. 
+  The difference is due to different mechanisms to automatically collect caller information.   
+
+  Attn C# users: If within one source file two or more classes with equal same method names exist, then such 
+  method names share the same scope and hence are ambiguous. This is due to technical restrictions
+  of how caller information is collected in C#/.Net.
+
+  The methods affected in this release are: 
+  - [Log.GetMarker](@ref #com::aworx::lox::Log::GetMarker), 
+  - [Log.SetMarker](@ref #com::aworx::lox::Log::SetMarker), and
+  - [Log.RegDomain](@ref #com::aworx::lox::Log::RegDomain). 
+
+  For the latter, the optional parameter "setAsDefault" was replaced by the scope and is not optional, but explicit now. 
+  For registering a Domain without setting it as the default domain, the Scope value  
+  [Log.Scope.None](@ref #com::aworx::lox::Log::Scope) has to be given. 
+
+- Parameter list of abstract function [TextLogger](@ref #com::aworx::lox::TextLogger::doTextLog) got extended. 
+  Needs adaption if you derived your own TextLogger class.
+- Removed one and renamed two of the output control flags in [Logger](@ref #com::aworx::lox::core::Logger). If you 
+  used them, you will have to make small code changes.
+- Small changes in [TextLogger](@ref #com::aworx::lox::TextLogger) format strings for date and time of day. 
+- Renamed com.aworx.util.MutableString to [MString](@ref #com::aworx::util::MString). Several new methods
+  added. (No impact on API)
+
+
+## Version 1.0.3, released May 27th, 2013 ##
+- added Windows Phone 7.1 compatibility (Windows Phone 8, was already supported)
+- minor bug fixes in code and documentation 
+- renamed methods *Log.LOG()*, *Lox.log()* and *Logger.Log()* to
+   [Log.Line()]   (@ref #com::aworx::lox::Log::Line), 
+   [Lox.Line()]   (@ref #com::aworx::lox::core::Lox::Line) and
+   [Logger.Line()](@ref #com::aworx::lox::core::Logger::Line). The reason may be obvious. The reasons
+  why they had been named as they were before, is maybe not too obvious. Some name conflicts where 
+  confusing. Now, all confusion should be gone!
+
+  Note: If you had used these methods, you have to rename them in your code accordingly.
+
+- Enums *Level* and *DomainLevel* stop existing several times in different namespaces. Their place
+  is now in class Log, hence [Log.Level]  (@ref #com::aworx::lox::Log::Level) and [Log.DomainLevel]  (@ref #com::aworx::lox::Log::DomainLevel)
+
+  *Note for those who are interested:*  This was OK before and supported separation and avoided cyclic 
+  package references. However, with implementing the JAVA version, having multiple versions caused problems
+  (JAVA does not support casting enum to int or enum A to enum B). While we are aware that *class Log* is not the
+  right place in terms of code design (Logger and Lox should not *know* Log but now they use its enums heavily), but the 
+  alternatives to that would have led to either ugly calls in the *user code* or expensive enum conversion operations in 
+  the JAVA version of ALox. And both is what we wanted less than as it is now. 
+
+  For all standard use of ALox (through static Log interface *Log*) this change has no impact on your code.
+
+- Added further AWorx util classes, to support code compatibility between JAVA and C# (JAVA version of ALox development is
+  ongoing but not part of this release
+  
+
+
+
+## Version 1.0.2, released May 21st, 2013 ##
+
+- Fixed list of minor bugs
+
+- Some improvements in formatted output of class [LogTools](@ref #com::aworx::lox::LogTools)
+
+- Improvements in formatted output of method [Log.LogConfig()](@ref #com::aworx::lox::Log::LogConfig)
+
+- Added more options to manipulate multi line message logging with [TextLogger](@ref #com::aworx::lox::TextLogger)
+
+- Added more unit tests
+
+- Completed the tutorial section of the user manual (if such thing can ever be complete)
+
+- Started first "in depth" sections of the user manual
+
+
+ **The following are changes that need modifications in your code:**
+
+- Renamed conditional compiler symbol **AWORX_LOG** to **ALOX_DEBUG**
+
+- Renamed the namespaces from having prefix "com.aworx.util.log" to "com.aworx.lox" 
+
+- Renamed all symbols in enum 
+  [Log.DomainLevel](@ref #com::aworx::lox::Log::DomainLevel) and enum 
+  [Log.Level](@ref #com::aworx::lox::Log::Level) from *"upper case with underscores"*  to *"upper camel case"*, for 
+  consistency with C# standards.
+
+- Renamed 
+  - **Log.CreateDomain()** to [Log.RegDomain()](@ref #com::aworx::lox::Log::RegDomain ) and 
+    on the same token renamed:
+  - **Log.SetDomainLogLevel()** to [Log.SetDomain()](@ref #com::aworx::lox::Log::SetDomain )
+
+  This was done to emphasize the fact that both functions create a domain if it does not exist
+  yet and it is not important in which order they are called.
+
+- Removed method **Log.SetDefaultDomain()**. Use [Log.RegDomain()](@ref #com::aworx::lox::Log::RegDomain )
+
+- Added new Parameter **internalDomainLevel** added to method [Log.AddLogger()](@ref #com::aworx::lox::Log::AddLogger )
+
+  *Note: You do not need to change your source code, because the new parameter has a default value. However, you might
+  want to look at the documentation to understand the concept and use this parameter rightfully.*
+
+## Version 1.0.1, released May 17th, 2013 ##
+
+First stable release deployed to brave volunteers.
+
+*/
+

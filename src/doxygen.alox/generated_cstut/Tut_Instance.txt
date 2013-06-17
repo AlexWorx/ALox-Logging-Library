@@ -1,0 +1,35 @@
+src\cs.unittests.alox\Tests_Tutorial.cs(210):.Log_Tutorial_Instance()     [00:00.015  +015 ms] [T:(10)]       [MYDOM]:   ALox: Multi line message follows: 
+>> Actual Thread:  
+>> <01>    {System.Threading.Thread}:
+>> <02>    ManagedThreadId:              10                            {Int32}
+>> <03>    ExecutionContextBelongsToCurrentScope:                      True                          {Boolean}
+>> <04>    ExecutionContext:             
+>> <05>      {System.Threading.ExecutionContext}:
+>> <06>      isNewCapture:                 False                         {Boolean}
+>> <07>      isFlowSuppressed:             False                         {Boolean}
+>> <08>      IsPreAllocatedDefault:        False                         {Boolean}
+>> <09>      LogicalCallContext:           
+>> <10>        {System.Runtime.Remoting.Messaging.LogicalCallContext}:
+>> <11>        HasInfo:                      True                          {Boolean}
+>> <12>        HasUserData:                  False                         {Boolean}
+>> <13>        RemotingData:                 (max rec.)                    {System.Runtime.Remoting.Messaging.CallContextRemotingData}
+>> <14>        SecurityData:                 (max rec.)                    {System.Runtime.Remoting.Messaging.CallContextSecurityData}
+>> <15>        HostContext:                  <null>                        {Object}
+>> <16>        Datastore:                    (max rec.)                    {System.Collections.Hashtable}
+>> <17>        Principal:                    (max rec.)                    {System.Security.Principal.WindowsPrincipal}
+>> <18>        m_Datastore:                  (max rec.)                    {System.Collections.Hashtable}
+>> <19>        m_RemotingData:               (max rec.)                    {System.Runtime.Remoting.Messaging.CallContextRemotingData}
+>> <20>        m_SecurityData:               (max rec.)                    {System.Runtime.Remoting.Messaging.CallContextSecurityData}
+>> <21>        m_HostContext:                <null>                        {Object}
+>> <22>        m_IsCorrelationMgr:           False                         {Boolean}
+>> <23>        _sendHeaders:                 <null>                        {Header[]}
+>> <24>        _recvHeaders:                 <null>                        {Header[]}
+>> <25>      IllogicalCallContext:         
+>> <26>        {System.Runtime.Remoting.Messaging.IllogicalCallContext}:
+>> <27>        Datastore:                    (max rec.)                    {System.Collections.Hashtable}
+>> <28>        HostContext:                  <null>                        {Object}
+>> <29>        HasUserData:                  False                         {Boolean}
+>> <30>        m_Datastore:                  (max rec.)                    {System.Collections.Hashtable}
+...
+...
+...
