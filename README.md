@@ -1,9 +1,10 @@
-###ALox Homepage
+##ALox Homepage ##
 Please find all about the ALox Logging library, including tutorials, manual, reference documentation,
-FAQ and the change log at the ALox Homepage << Link not inserted yet, stay tuned one or two days... >> 
+FAQ and the change log at the [ALox Homepage](http://alexworx.github.io/ALox-Logging-Library) 
+hosted on GitHub.
 
 
-###Quick Overview
+##Quick Overview ##
 
 ALox is a small and efficient software library that provides an ecosystem to support structured and organized 
 log output.

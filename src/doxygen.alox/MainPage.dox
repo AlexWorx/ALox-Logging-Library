@@ -50,5 +50,9 @@ To get an overview about what ALox offers, read \ref man_features_and_limitation
   - \subpage alox_faq are answered here
   - \subpage changelog and version history 
     
+\section mainpage_download       Download
+
+You can [download](http://github.com/AlexWorx/ALox-Logging-Library) ALox at GitHub
+
 
 */
