@@ -1,0 +1,6 @@
+src\cs.unittests.alox\Tests_Tutorial.cs(332):.Log_Tutorial_SeparatedLogLevels()     [00:00.000  +142 µs] [T:(10)]       [DOM]: Domain= DOM      -> This goes to all loggers
+src\cs.unittests.alox\Tests_Tutorial.cs(333):.Log_Tutorial_SeparatedLogLevels()     [00:00.000  +083 µs] [T:(10)]       [DOM/CON]: Domain= DOM/CON  -> This goes to ConsoleLogger exclusively
+src\cs.unittests.alox\Tests_Tutorial.cs(337):.Log_Tutorial_SeparatedLogLevels()     [00:00.000  +033 µs] [T:(10)]       [DOM/CON]: Here comes the contents of MemoryLogger:
+src\cs.unittests.alox\Tests_Tutorial.cs(338):.Log_Tutorial_SeparatedLogLevels()     [00:00.000  +022 µs] [T:(10)]       [DOM/CON]:   ALox: Multi line message follows: 
+>>  [DOM]: Domain= DOM      -> This goes to all loggers
+>>  [DOM/MEM]: Domain= DOM/MEM  -> This goes to MemoryLogger exclusively
