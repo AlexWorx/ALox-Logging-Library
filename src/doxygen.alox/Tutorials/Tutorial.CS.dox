@@ -1,4 +1,15 @@
-﻿\page tutorial_cs  C# Tutorial
+﻿// #################################################################################################
+//  ALox - Logging in Bauhaus Style!
+//
+//  (c) 2013 A-Worx GmbH, Published under the The MIT License (Open Source License, see LICENSE.txt)
+//  
+//  File:	Tutorial.CS.dox 	                                                  ALox Documentation
+// #################################################################################################
+
+/**
+\page tutorial_cs       C# Tutorial
+
+
 
 ## 1. Create a tutorial project or equip your current project with ALox ##
 
@@ -8,6 +19,7 @@ either create a tutorial project or right away equip your current project with A
 For information about how you do that see: \ref man_setup_projects_CS.
 
 You can easily skip this step and just continue reading the tutorial without setting up ALox now.
+
 
 
 ## 2. Create an instance of class "ConsoleLogger" ##
@@ -21,8 +33,6 @@ Once you have identified the right place, add the following statement to the "us
 file:
 
 \snippet cs.unittests.alox/Tests_Tutorial.cs        Tut_using_statement
-
-    using com.aworx.lox;
 
 Now return to the place you identified where the initialization of the *logger* should take place and 
 add the following:
@@ -61,7 +71,7 @@ should look like this:
 Run your application in "Debug" mode. In the output window of visual studio you should see
 a line of output similar to this:
 
-\verbinclude  doxygen.alox/generated_cstut/Tut_Hello_ALox.txt 
+\verbinclude  doxygen.alox/generated_cstut/CS_Tut_Hello_ALox.txt 
 
 Now, close your source file window in Visual Studio. Then double click the log line in the output
 Window. Visual Studio opens the source and selects the line of code where the log call was invoked.
@@ -151,7 +161,7 @@ different log calls and let your code look like this:
 
 If you run your application now (in "Debug" mode), the following output should appear:
 
-\verbinclude  doxygen.alox/generated_cstut/Tut_LogLevels.txt
+\verbinclude  doxygen.alox/generated_cstut/CS_Tut_LogLevels.txt
 
 As you see, the last line of our code, containing the [Verbose()](@ref #com::aworx::lox::Log::Verbose ) log statement was not logged!
 This is because in line two of the code of we set the *log domain level* to [WarningsAndErrors](@ref #com::aworx::lox::Log::DomainLevel ). 
@@ -200,7 +210,7 @@ code you added to your project so far by this one:
 
 The output now is:
 
-\verbinclude  doxygen.alox/generated_cstut/Tut_DefaultDomains.txt
+\verbinclude  doxygen.alox/generated_cstut/CS_Tut_DefaultDomains.txt
 
 
 OK, you might argue, the code became longer: We added line 2, which invokes [Log.RegDomain](@ref #com::aworx::lox::Log::RegDomain).
@@ -232,7 +242,7 @@ are not needed, so the shortest code to do ALox logging in your code could be:
 
 Which produces the output:
 
-\verbinclude doxygen.alox/generated_cstut/Tut_DefaultDomains_part2.txt 
+\verbinclude doxygen.alox/generated_cstut/CS_Tut_DefaultDomains_part2.txt 
 
 From this example we learn that *log domains* which are neither registered with [Log.RegDomain](@ref #com::aworx::lox::Log::RegDomain) nor
 set with [Log.SetDomain](@ref #com::aworx::lox::Log::SetDomain) do not cause any problem. ALox just creates them on the fly
@@ -425,7 +435,7 @@ line of code, which would be logging the headline explicitly.
 
 Here are the first lines of output of the above sample:
                              
-\verbinclude  doxygen.alox/generated_cstut/Tut_Instance.txt 
+\verbinclude  doxygen.alox/generated_cstut/CS_Tut_Instance.txt 
 
 Note: This uses the inspection features of C#/.Net. Unfortunately under Windows Phone development
 inspection is not a feature. Therefore, this method is not available for Windows Phone projects.
@@ -449,7 +459,7 @@ This allows you to save another line of code, which would be logging the headlin
 
 The following log output will be generated:
 
-\verbinclude  doxygen.alox/generated_cstut/Tut_Exceptions.txt 
+\verbinclude  doxygen.alox/generated_cstut/CS_Tut_Exceptions.txt 
 
 
 ### c) XML(): Log out an XML document or element
@@ -461,7 +471,7 @@ logging objects of type XMLDocument or XMLElement. Here is a quick sample code:
 
 The output will look similar to this:
 
-\verbinclude  doxygen.alox/generated_cstut/Tut_XML.txt 
+\verbinclude  doxygen.alox/generated_cstut/CS_Tut_XML.txt 
 
 ## 13. Indentation ##
 
@@ -504,7 +514,7 @@ Let's have a look at the code first:
 
 Running the sample, we get the following log on the console:
 
-\verbinclude  doxygen.alox/generated_cstut/Tut_SeparatedLogLevels.txt 
+\verbinclude  doxygen.alox/generated_cstut/CS_Tut_SeparatedLogLevels.txt 
 
 The way we achieved the goal is that we use the method [Log.SetDomain()](@ref #com::aworx::lox::Log::SetDomain ) twice
 on each of the *sub domains*. And in contrast to previous samples, we are passing two more parameters to it (and overwrite
@@ -568,7 +578,7 @@ new line at the end instead:
 We are invoking [Log.LogConfig()](@ref #com::aworx::lox::Log::LogConfig)  which logs the current
 configuration of class Log. The output is quite self explanatory:
 
-\verbinclude  doxygen.alox/generated_cstut/Tut_LogConfig.txt 
+\verbinclude  doxygen.alox/generated_cstut/CS_Tut_LogConfig.txt 
 
 
 At any location where we would be able to insert a standard log statement into our code,
@@ -594,7 +604,7 @@ With the modification in the code above, we are passing a *log domain level* as 
 [DomainLevel.All]                (@ref #com::aworx::lox::Log::DomainLevel). Now looking at the *ConsoleLogger*
 output, we see what is going on inside ALox while running the application:
 
-\verbinclude  doxygen.alox/generated_cstut/Tut_LogConfig2.txt 
+\verbinclude  doxygen.alox/generated_cstut/CS_Tut_LogConfig2.txt 
 
 To summarize: We have to ways to look into ALox: 
 
@@ -627,6 +637,5 @@ Probably the most important thing that this tutorial does **not** cover is relea
 For further information, you can read into the \ref manual and of-course, also read through
 the AWorx class reference pages.
  
-
-
-   
+*/
+  

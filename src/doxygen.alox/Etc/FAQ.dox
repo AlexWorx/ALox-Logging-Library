@@ -1,5 +1,14 @@
-﻿\page alox_faq  FAQ - Frequently asked Questions for ALox
+﻿// #################################################################################################
+//  ALox - Logging in Bauhaus Style!
+//
+//  (c) 2013 A-Worx GmbH, Published under the The MIT License (Open Source License, see LICENSE.txt)
+//  
+//  File:	FAQ.dox     	                                                      ALox Documentation
+// #################################################################################################
 
+/**
+\page alox_faq              FAQ - Frequently asked Questions for ALox
+==========================================================
 
 \section alox_faq_the_name_alex       Why the name "ALox" and how is it pronounced?
 
@@ -44,13 +53,4 @@ At least we love Bauhaus and we love to do efficient libraries and that's why we
 PS: If you can tell us a way how to get the current system time in C# without the allocation
 of a *DateTime*  object (what *DateTime.Now* does), then please send us an Email!
 
-
-
-
-
-
-
-
-
-
-
+*/

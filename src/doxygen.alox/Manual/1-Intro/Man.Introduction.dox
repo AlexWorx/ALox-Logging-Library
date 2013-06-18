@@ -1,5 +1,17 @@
-﻿\page man_intro	About ALox
+﻿\~Comment
+// #################################################################################################
+//  ALox - Logging in Bauhaus Style!
+//
+//  (c) 2013 A-Worx GmbH, Published under the The MIT License (Open Source License, see LICENSE.txt)
+//  
+//  File:	02.1.Man.Introduction.dox                                             ALox Documentation
+// #################################################################################################
+\~
 
+/**
+\page man_intro         About ALox
+
+## Introduction ##
 
 ALox is a small and efficient software library that provides an ecosystem to support structured and organized 
 log output.
@@ -21,6 +33,9 @@ Stay tuned. If you do not want to wait, take the source and do  it yourself: We 
 architecture and code style  of the library allows users to easily extend it with features they 
 need today.
 
+## Features and Limitations ##
+Read through the list of \subpage man_features_and_limitations to learn what you will get and what not.
 
+*/
 
 

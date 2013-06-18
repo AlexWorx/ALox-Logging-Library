@@ -1,4 +1,13 @@
-﻿\mainpage	ALox Main Page
+﻿// #################################################################################################
+//  ALox - Logging in Bauhaus Style!
+//
+//  (c) 2013 A-Worx GmbH, Published under the The MIT License (Open Source License, see LICENSE.txt)
+//  
+//  File:	MainPage.dox 	    										          ALox Documentation
+// #################################################################################################
+
+/**
+\mainpage	ALox Main Page
 
 
 \section mainpage_overview        Overview
@@ -33,24 +42,13 @@ To get an overview about what ALox offers, read \ref man_features_and_limitation
 
 \section mainpage_documentation   Documentation
 
-\subsection mainpage_docs_tut         Tutorials
+  - \ref tutorials provide first steps for using ALox logging in a language/platform of your choice
   
-  - \ref tutorial_cs provides first steps for using ALox logging in C# Language
-  
-\subsection mainpage_docs_man         A-Lox User Manual
-  
-  \ref manual describes ALox concepts and use in depth and covers all platforms
+  - \ref manual describes ALox concepts and use in depth and covers all platforms
   and programming languages 
-  
-  
-\subsection mainpage_docs_faq         FAQ
-  
-  - \ref alox_faq are answered here
 
-  	
-\subsection mainpage_docs_chglg       Change Log
-  
-  - \ref changelog : Information about the version history
-	
+  - \subpage alox_faq are answered here
+  - \subpage changelog and version history 
+    
 
-
+*/

@@ -1,4 +1,13 @@
-﻿\page man_features_and_limitations	Features and Limitations
+﻿// #################################################################################################
+//  ALox - Logging in Bauhaus Style!
+//
+//  (c) 2013 A-Worx GmbH, Published under the The MIT License (Open Source License, see LICENSE.txt)
+//  
+//  File:	02.2.Man.Features and Limitations.dox                                 ALox Documentation
+// #################################################################################################
+
+/**
+\page man_features_and_limitations      Features and Limitations
 
 
 - Very simple to use.
@@ -59,3 +68,5 @@
 - *Log domain* substitution to modify domains in foreign code to suit your needs needs
 
 - More on performance logging
+
+*/

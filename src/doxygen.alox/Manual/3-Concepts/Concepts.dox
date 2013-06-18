@@ -1,0 +1,18 @@
+﻿// #################################################################################################
+//  ALox - Logging in Bauhaus Style!
+//
+//  (c) 2013 A-Worx GmbH, Published under the The MIT License (Open Source License, see LICENSE.txt)
+//  
+//  File:	03.1.Man.Setup Projects CS.dox                                        ALox Documentation
+// #################################################################################################
+
+/**
+\page man_concepts        Concepts of ALox Logging
+
+Within this chapter an in-depth view into several concepts of ALox logging is provided.
+This is for people who want to maximize the benefits of ALox, apart from standard debug log output.
+
+- \subpage man_alox_architecture
+- \subpage man_levelsanddomains
+
+*/

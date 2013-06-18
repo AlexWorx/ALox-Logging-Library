@@ -101,49 +101,61 @@
     <None Include="..\..\src\doxygen.alox\doxygen.res\Doxyfile">
       <Link>docs.src\doxygen.res\Doxyfile</Link>
     </None>
-    <None Include="..\..\src\doxygen.alox\Etc\Changelog.md">
-      <Link>docs.src\Etc\Changelog.md</Link>
+    <None Include="..\..\src\doxygen.alox\Etc\Changelog.dox">
+      <Link>docs.src\Etc\Changelog.dox</Link>
     </None>
-    <None Include="..\..\src\doxygen.alox\Etc\FAQ.md">
-      <Link>docs.src\Etc\FAQ.md</Link>
+    <None Include="..\..\src\doxygen.alox\Etc\FAQ.dox">
+      <Link>docs.src\Etc\FAQ.dox</Link>
     </None>
-    <None Include="..\..\src\doxygen.alox\Manual\01.Manual.md">
-      <Link>docs.src\Manual\01.Manual.md</Link>
+    <None Include="..\..\src\doxygen.alox\MainPage.dox" />
+    <None Include="..\..\src\doxygen.alox\Manual\1-Intro\Man.Features and Limitations.dox">
+      <Link>docs.src\Manual\1-Intro\Man.Features and Limitations.dox</Link>
     </None>
-    <None Include="..\..\src\doxygen.alox\Manual\02.1.Man.Introduction.md">
-      <Link>docs.src\Manual\02.1.Man.Introduction.md</Link>
+    <None Include="..\..\src\doxygen.alox\Manual\1-Intro\Man.Introduction.dox">
+      <Link>docs.src\Manual\1-Intro\Man.Introduction.dox</Link>
     </None>
-    <None Include="..\..\src\doxygen.alox\Manual\02.2.Man.Features and Limitations.md">
-      <Link>docs.src\Manual\02.2.Man.Features and Limitations.md</Link>
+    <None Include="..\..\src\doxygen.alox\Manual\2-Project setup\Man.Setup Projects CS.dox">
+      <Link>docs.src\Manual\2-Project setup\Man.Setup Projects CS.dox</Link>
     </None>
-    <None Include="..\..\src\doxygen.alox\Manual\03.1.Man.Setup Projects CS.md">
-      <Link>docs.src\Manual\03.1.Man.Setup Projects CS.md</Link>
+    <None Include="..\..\src\doxygen.alox\Manual\2-Project setup\Man.Setup Projects.dox">
+      <Link>docs.src\Manual\2-Project setup\Man.Setup Projects.dox</Link>
     </None>
-    <None Include="..\..\src\doxygen.alox\Manual\04.Man.ALox architecture.md">
-      <Link>docs.src\Manual\04.Man.ALox architecture.md</Link>
+    <None Include="..\..\src\doxygen.alox\Manual\3-Concepts\Concepts.dox">
+      <Link>docs.src\Manual\3-Concepts\Concepts.dox</Link>
     </None>
-    <None Include="..\..\src\doxygen.alox\Manual\05.Man.Filtering Loggers.md">
-      <Link>docs.src\Manual\05.Man.Filtering Loggers.md</Link>
+    <None Include="..\..\src\doxygen.alox\Manual\3-Concepts\Man.ALox architecture.dox">
+      <Link>docs.src\Manual\3-Concepts\Man.ALox architecture.dox</Link>
     </None>
-    <None Include="..\..\src\doxygen.alox\Manual\06.Man.LevelsAndDomains.md">
-      <Link>docs.src\Manual\06.Man.LevelsAndDomains.md</Link>
+    <None Include="..\..\src\doxygen.alox\Manual\3-Concepts\Man.LevelsAndDomains.dox">
+      <Link>docs.src\Manual\3-Concepts\Man.LevelsAndDomains.dox</Link>
     </None>
-    <None Include="..\..\src\doxygen.alox\Manual\07.Man.Source Code Prefix Fields.md">
-      <Link>docs.src\Manual\07.Man.Source Code Prefix Fields.md</Link>
+    <None Include="..\..\src\doxygen.alox\Manual\4-Achieving goals\Achieving goals.dox">
+      <Link>docs.src\Manual\4-Achieving goals\Achieving goals.dox</Link>
     </None>
-    <None Include="..\..\src\doxygen.alox\Manual\08.Man.Custom Loggers.md">
-      <Link>docs.src\Manual\08.Man.Custom Loggers.md</Link>
+    <None Include="..\..\src\doxygen.alox\Manual\4-Achieving goals\Man.Custom Loggers.dox">
+      <Link>docs.src\Manual\4-Achieving goals\Man.Custom Loggers.dox</Link>
     </None>
-    <None Include="..\..\src\doxygen.alox\Manual\09.Man.Release Logging.md">
-      <Link>docs.src\Manual\09.Man.Release Logging.md</Link>
+    <None Include="..\..\src\doxygen.alox\Manual\4-Achieving goals\Man.Filtering Loggers.dox">
+      <Link>docs.src\Manual\4-Achieving goals\Man.Filtering Loggers.dox</Link>
     </None>
-    <None Include="..\..\src\doxygen.alox\Manual\10.Man.TextLogger.md">
-      <Link>docs.src\Manual\10.Man.TextLogger.md</Link>
+    <None Include="..\..\src\doxygen.alox\Manual\4-Achieving goals\Man.Release Logging.dox">
+      <Link>docs.src\Manual\4-Achieving goals\Man.Release Logging.dox</Link>
     </None>
-    <None Include="..\..\src\doxygen.alox\Tutorials\Tutorial.CS.md">
-      <Link>docs.src\Tutorials\Tutorial.CS.md</Link>
+    <None Include="..\..\src\doxygen.alox\Manual\4-Achieving goals\Man.Source Code Prefix Fields.dox">
+      <Link>docs.src\Manual\4-Achieving goals\Man.Source Code Prefix Fields.dox</Link>
     </None>
-    <None Include="docs.src\MainPage.md" />
+    <None Include="..\..\src\doxygen.alox\Manual\4-Achieving goals\Man.TextLogger.dox">
+      <Link>docs.src\Manual\4-Achieving goals\Man.TextLogger.dox</Link>
+    </None>
+    <None Include="..\..\src\doxygen.alox\Manual\Manual.dox">
+      <Link>docs.src\Manual\Manual.dox</Link>
+    </None>
+    <None Include="..\..\src\doxygen.alox\Tutorials\Tutorial.CS.dox">
+      <Link>docs.src\Tutorials\Tutorial.CS.dox</Link>
+    </None>
+    <None Include="..\..\src\doxygen.alox\Tutorials\Tutorials.dox">
+      <Link>docs.src\Tutorials\Tutorials.dox</Link>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

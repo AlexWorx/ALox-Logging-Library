@@ -1,6 +1,14 @@
-﻿\page changelog  Change Log
+﻿// #################################################################################################
+//  ALox - Logging in Bauhaus Style!
+//
+//  (c) 2013 A-Worx GmbH, Published under the The MIT License (Open Source License, see LICENSE.txt)
+//  
+//  File:	Changelog.dox  	                                                      ALox Documentation
+// #################################################################################################
 
-# Change Log
+/**
+\page changelog         Change Log
+==========================================================
 
 Historically, there existed a kind of predecessor of this library for C++ and JAVA and was
 more or less maintained since the the year 1999. However this is a complete rewrite with C# 
@@ -125,4 +133,3 @@ This change log is sorted reversely in respect to chronology.
 First stable release deployed to brave volunteers.
 
 */
-

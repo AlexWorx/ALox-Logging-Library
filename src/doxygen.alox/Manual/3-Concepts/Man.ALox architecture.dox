@@ -1,5 +1,13 @@
-﻿\page  man_alox_architecture        Overview of the ALox architecture 
+﻿// #################################################################################################
+//  ALox - Logging in Bauhaus Style!
+//
+//  (c) 2013 A-Worx GmbH, Published under the The MIT License (Open Source License, see LICENSE.txt)
+//  
+//  File:	04.Man.ALox architecture.dox                                          ALox Documentation
+// #################################################################################################
 
+/**
+\page man_alox_architecture         Overview of the ALox architecture
 
 \section man_alox_architecture_class_hierarchy      class hierarchy Log, Lox, Loggers etc
 
@@ -33,4 +41,4 @@ Receiver->Sender [label="Ack()", URL="\ref man_levelsanddomains", ID="1"];
 
 
 
-\~
+*/

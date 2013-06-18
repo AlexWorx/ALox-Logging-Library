@@ -1,0 +1,17 @@
+﻿// #################################################################################################
+//  ALox - Logging in Bauhaus Style!
+//
+//  (c) 2013 A-Worx GmbH, Published under the The MIT License (Open Source License, see LICENSE.txt)
+//  
+//  File:	03.1.Man.Setup Projects CS.dox                                        ALox Documentation
+// #################################################################################################
+
+/**
+\page man_setup_projects         Setup your IDE to support ALox
+
+To set up your IDE project configuration, follow the guide appropriate for you:
+
+
+- \subpage man_setup_projects_CS
+
+*/

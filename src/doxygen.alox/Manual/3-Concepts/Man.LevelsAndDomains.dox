@@ -1,4 +1,13 @@
-﻿\page man_levelsanddomains Log Domains, Log Domain Levels and Log Levels
+﻿// #################################################################################################
+//  ALox - Logging in Bauhaus Style!
+//
+//  (c) 2013 A-Worx GmbH, Published under the The MIT License (Open Source License, see LICENSE.txt)
+//  
+//  File:	06.Man.LevelsAndDomains.dox                                           ALox Documentation
+// #################################################################################################
+
+/**
+\page man_levelsanddomains          Log Domains, Log Domain Levels and Log Levels
 
 
 This chapter is not written, yet  :-(
@@ -28,3 +37,5 @@ This chapter is not written, yet  :-(
     Logger die später erzeugt werden...
 
 \~
+
+*/

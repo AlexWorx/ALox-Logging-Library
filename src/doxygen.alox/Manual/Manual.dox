@@ -1,0 +1,49 @@
+﻿\~Comment
+// #################################################################################################
+//  ALox - Logging in Bauhaus Style!
+//
+//  (c) 2013 A-Worx GmbH, Published under the The MIT License (Open Source License, see LICENSE.txt)
+//  
+//  File:	01.Manual.dox   	                                                  ALox Documentation
+// #################################################################################################
+\~
+/**
+\page manual	User Manual
+
+
+This is the manual of the ALox Logging Ecosystem. This manual applies to all platforms and programming languages
+that ALox supports and give hints to platform specific differences if necessary.
+
+If you have not worked with ALox, yet, and have not read the Tutorial, we recommend to walk through one of the
+[language specific tutorials](\subpage mainpage_documentation) first.  
+
+
+# Contents
+
+- \subpage man_intro
+  - \ref man_features_and_limitations
+<BR>
+<BR>
+
+- \subpage man_setup_projects
+  - \ref man_setup_projects_CS
+<BR>
+<BR>
+
+- \subpage man_concepts
+  - \ref man_alox_architecture  (not written yet)
+  - \ref man_levelsanddomains  (not written yet)
+<BR>
+<BR>
+
+- \subpage man_achieving_goals
+  - \ref man_filtering_loggers  (not written yet)
+  - \ref man_textlogger (not written yet)
+  - \ref man_source_code_prefix (not written yet)
+  - \ref man_custom_loggers (not written yet)
+  - \ref man_release_logging (not written yet)
+<BR>
+<BR>
+
+
+*/

@@ -1,4 +1,13 @@
-﻿\page  man_setup_projects_CS        Setup Visual Studio for C# Projects
+﻿// #################################################################################################
+//  ALox - Logging in Bauhaus Style!
+//
+//  (c) 2013 A-Worx GmbH, Published under the The MIT License (Open Source License, see LICENSE.txt)
+//  
+//  File:	03.1.Man.Setup Projects CS.dox                                        ALox Documentation
+// #################################################################################################
+
+/**
+\page man_setup_projects_CS         Setup Visual Studio for C# Projects
 
 
 To use ALox logging in your C# project using Visual Studio, some few preparational steps have to be
@@ -92,3 +101,4 @@ Now, as ALox is a part of your Visual Studio solution, go ahead as follows:
 
 
 You are set and your solution should compile without an error.
+*/
