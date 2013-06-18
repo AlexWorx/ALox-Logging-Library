@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.4"/>
-<title>ALox: ALox Main Page</title>
+<title>ALox: Class Members</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -46,10 +46,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
-      <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Packages</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -69,6 +69,48 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       </li>
     </ul>
   </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li class="current"><a href="functions.html"><span>Class&#160;Members</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow3" class="tabs2">
+    <ul class="tablist">
+      <li class="current"><a href="functions.html"><span>All</span></a></li>
+      <li><a href="functions_func.html"><span>Functions</span></a></li>
+      <li><a href="functions_vars.html"><span>Variables</span></a></li>
+      <li><a href="functions_enum.html"><span>Enumerations</span></a></li>
+      <li><a href="functions_eval.html"><span>Enumerator</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow4" class="tabs3">
+    <ul class="tablist">
+      <li><a href="functions.html#index_a"><span>a</span></a></li>
+      <li><a href="functions_0x62.html#index_b"><span>b</span></a></li>
+      <li><a href="functions_0x63.html#index_c"><span>c</span></a></li>
+      <li><a href="functions_0x64.html#index_d"><span>d</span></a></li>
+      <li><a href="functions_0x65.html#index_e"><span>e</span></a></li>
+      <li><a href="functions_0x66.html#index_f"><span>f</span></a></li>
+      <li><a href="functions_0x67.html#index_g"><span>g</span></a></li>
+      <li><a href="functions_0x68.html#index_h"><span>h</span></a></li>
+      <li><a href="functions_0x69.html#index_i"><span>i</span></a></li>
+      <li><a href="functions_0x6c.html#index_l"><span>l</span></a></li>
+      <li><a href="functions_0x6d.html#index_m"><span>m</span></a></li>
+      <li><a href="functions_0x6e.html#index_n"><span>n</span></a></li>
+      <li><a href="functions_0x6f.html#index_o"><span>o</span></a></li>
+      <li class="current"><a href="functions_0x70.html#index_p"><span>p</span></a></li>
+      <li><a href="functions_0x72.html#index_r"><span>r</span></a></li>
+      <li><a href="functions_0x73.html#index_s"><span>s</span></a></li>
+      <li><a href="functions_0x74.html#index_t"><span>t</span></a></li>
+      <li><a href="functions_0x75.html#index_u"><span>u</span></a></li>
+      <li><a href="functions_0x76.html#index_v"><span>v</span></a></li>
+      <li><a href="functions_0x77.html#index_w"><span>w</span></a></li>
+      <li><a href="functions_0x78.html#index_x"><span>x</span></a></li>
+    </ul>
+  </div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -81,7 +123,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('index.html','');});
+$(document).ready(function(){initNavTree('functions_0x70.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -98,30 +140,15 @@ $(document).ready(function(){initNavTree('index.html','');});
 </iframe>
 </div>
 
-<div class="header">
-  <div class="headertitle">
-<div class="title">ALox Main Page </div>  </div>
-</div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="mainpage_overview"></a>
-Overview</h1>
-<p>ALox is a small and efficient software library that provides an ecosystem to support structured and organized log output.</p>
-<p>The library attempts to make logging as easy and lightweight as possible. One of the goals we want to achieve is that developers, once making use of the library, just stop to put any temporary debug output statements into their code, but do it all with nice, readable, configurable, reusable logging statements that can be switched off and that are furthermore automatically pruned out of release versions of the application.</p>
-<p>On the other end of the list, we want to enable release logging for productive applications to collect mission critical metrics and data from <em>the field</em>. Basic support for release logging is here today already. The introduction of new features and concepts in the area of release logging will also support debug logging aspects of ALox. Therefore the natural path of evolution for the ALox project is "debug features first, release features next".</p>
-<p>This is Version 1.0.3, a really early release but considered stable. A lot of future improvements are to come. Stay tuned. If you do not want to wait, take the source and extend ALox yourself: We hope, the simple <a class="el" href="alox_faq.html">Bauhaus Style</a> architecture and code style of the library allows users to easily extend it with features they need today.</p>
-<p>We would be happy to receive your feedback or feature requests.</p>
-<h1><a class="anchor" id="mainpage_features"></a>
-Features and Limitations</h1>
-<p>To get an overview about what ALox offers, read <a class="el" href="man_features_and_limitations.html">Features and Limitations</a>.</p>
-<h1><a class="anchor" id="mainpage_documentation"></a>
-Documentation</h1>
-<ul>
-<li><a class="el" href="tutorials.html">Tutorials</a> provide first steps for using ALox logging in a language/platform of your choice</li>
-<li><a class="el" href="manual.html">User Manual</a> describes ALox concepts and use in depth and covers all platforms and programming languages</li>
-<li><a class="el" href="alox_faq.html">FAQ - Frequently asked Questions for ALox</a> are answered here</li>
-<li><a class="el" href="changelog.html">Change Log</a> and version history </li>
+<div class="textblock">Here is a list of all class members with links to the classes they belong to:</div>
+
+<h3><a class="anchor" id="index_p"></a>- p -</h3><ul>
+<li>Parent
+: <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1_log_domain.html#a718ea9fd915bd16ebd7c70d62c710c52">com.aworx.lox.core.LogDomain</a>
+</li>
 </ul>
-</div></div><!-- contents -->
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
