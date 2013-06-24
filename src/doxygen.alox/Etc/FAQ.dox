@@ -8,7 +8,6 @@
 
 /**
 \page alox_faq              FAQ - Frequently asked Questions for ALox
-==========================================================
 
 \section alox_faq_the_name_alex       Why the name "ALox" and how is it pronounced?
 
@@ -45,7 +44,7 @@ never have gone into a core library called *System*!).
 As a consequence, you will sometimes see code pieces where you might think: "Hmmm, they missed to use
 this great language feature XYZ here". Well, send us a note, but the answer will probably be: "This is not
 available in that other platform and we want to keep similar simple code bases.", or "Well, this would look
-nice in code, but would increase down execution time."
+nice in code, but would increase execution time."
 
 Mean people (e.g. that bright fellow from Berlin) might say: You just do Bauhaus, because you can't do Pop Art. Maybe they are right.
 At least we love Bauhaus and we love to do efficient libraries and that's why we do!

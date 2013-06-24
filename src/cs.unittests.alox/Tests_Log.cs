@@ -58,7 +58,7 @@ namespace com.aworx.unittests.lox
 	protected class T : TextLogger
 	{
 			#if ALOX_DEBUG || ALOX_REL_LOG
-					public 		T()		: base( "TLTest","",0,"" )					{ }
+					public 		T()		: base( "TLTest" )							{ }
 		override 	protected void 	doTextLog(MString d, Log.Level l, MString m,
 											  int i,CallerInfo c, int lineNumber) 	{}
 					public 	  void 	t(MString buf, long diff) 					{ logBuf= buf; logTimeDiff( diff ); }
@@ -216,9 +216,7 @@ namespace com.aworx.unittests.lox
 		public void Log_TestDefaultDomain()
 		{
 			uint cntLL;
-
 			clearCreateAndAddLoggers( true );
-
 			Log.Error("No domain and nothing set");
 
 			Log.RegDomain( "DFLT", Log.Scope.Method );

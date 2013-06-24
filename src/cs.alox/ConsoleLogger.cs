@@ -48,10 +48,10 @@ public class ConsoleLogger : TextLogger
 	// fields
 	// #################################################################################################
 	/// <summary>The prefix for the caller method name </summary>
-	public		String			FormatMemberPrefix				=".";
+	public		String			FMT_MemberPrefix				=".";
 
 	/// <summary>The postfix for the caller method name  </summary>
-	public		String			FormatMemberPostfix				="()";
+	public		String			FMT_MemberPostfix				="()";
 
 	/// <summary>Tab position after caller info. This auto adjusts (increases) when 
 	/// longer source info occurs. To avoid increases in the beginning, this value
@@ -86,13 +86,9 @@ public class ConsoleLogger : TextLogger
 	 *  Creates a ConsoleLogger. 
 	 * </summary>
 	 * <param name="name">	(Optional) The name of the logger, defaults to "CONSOLE" </param>
-	 * <param name="csf"> 	(Optional) Caller info, compiler generated. Please omit. </param>
-	 * <param name="cln"> 	(Optional) Caller info, compiler generated. Please omit. </param>
-	 * <param name="cmn"> 	(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
-	public ConsoleLogger(	String	name= "CONSOLE",
-							[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
-	: base( name, csf, cln, cmn )
+	public ConsoleLogger(	String	name= "CONSOLE" )
+	: base( name )
 	{
 		// set default domain level to all: As a app console logger/IDE logger we want to fetch all we can
 		RootDomain.SetLevel( Log.DomainLevel.All, false );
@@ -160,9 +156,9 @@ public class ConsoleLogger : TextLogger
 			consoleBuffer.Append( strPrefixLineNumber ).Append( caller.LineNumber ).Append( strPostfixLineNumber );
 
 			// append method name
-			consoleBuffer.Append( FormatMemberPrefix );
+			consoleBuffer.Append( FMT_MemberPrefix );
 			consoleBuffer.Append( caller.MethodName );
-			consoleBuffer.Append( FormatMemberPostfix );
+			consoleBuffer.Append( FMT_MemberPostfix );
 
 			// jump to next tab level
 			if ( TabAfterSourceInfo < consoleBuffer.Length )

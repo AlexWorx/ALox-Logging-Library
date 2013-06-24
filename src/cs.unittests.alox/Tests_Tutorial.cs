@@ -161,7 +161,7 @@ class MyClass
 }
 //! [Tut_Placing_Part2]
 		
-public void Log_Tutorial_Code4()
+public void Tut_ConditionalLogging()
 {
 	String[] array= new string[5];
 	int len= 5;
@@ -173,8 +173,8 @@ public void Log_Tutorial_Code4()
 	{ 
 		if ( array[i] == search )
 		{ 
-				process( i );
-				break;
+			process( i );
+			break;
 		}
 		i++;
 	}
@@ -192,7 +192,7 @@ private void process(int i) {}
 #if !WINDOWS_PHONE
 	[TestCategory("Tutorial")]
 #endif
-public void Log_Tutorial_Instance()
+public void Tut_Instance()
 {
 #if ALOX_DEBUG || ALOX_REL_LOG
 	Log.Reset(); 
@@ -231,7 +231,7 @@ public void Log_Tutorial_Instance()
 #if !WINDOWS_PHONE
 	[TestCategory("Tutorial")]
 #endif
-public void Log_Tutorial_Exception()
+public void Tut_Exception()
 {
 #if ALOX_DEBUG || ALOX_REL_LOG
 	Log.Reset(); 
@@ -254,7 +254,7 @@ public void Log_Tutorial_Exception()
 #if !WINDOWS_PHONE
 	[TestCategory("Tutorial")]
 #endif
-public void Log_Tutorial_XML()
+public void Tut_XML()
 {
 #if ALOX_DEBUG || ALOX_REL_LOG
 	Log.Reset(); 
@@ -283,7 +283,7 @@ public void Log_Tutorial_XML()
 #if !WINDOWS_PHONE
 	[TestCategory("Tutorial")]
 #endif
-public void Log_Tutorial_SeparatedLogLevels()
+public void Tut_SeparatedLogLevels()
 {
 #if ALOX_DEBUG || ALOX_REL_LOG
 	Log.Reset(); 
@@ -348,7 +348,7 @@ public void Log_Tutorial_SeparatedLogLevels()
 #if !WINDOWS_PHONE
 	[TestCategory("Tutorial")]
 #endif
-public void Log_Tutorial_LogConfig()
+public void Tut_LogConfig()
 {
 #if ALOX_DEBUG || ALOX_REL_LOG
 	Log.Reset(); 
@@ -389,7 +389,7 @@ public void Log_Tutorial_LogConfig()
 #if !WINDOWS_PHONE
 	[TestCategory("Tutorial")]
 #endif
-public void Log_Tutorial_LogConfig2()
+public void Tut_LogConfig2()
 {
 #if ALOX_DEBUG || ALOX_REL_LOG
 	Log.Reset(); 

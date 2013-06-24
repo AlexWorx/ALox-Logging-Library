@@ -140,7 +140,6 @@ public class LogDomain
 	 *  Determines if the domain is active in respect to the given Log.DomainLevel and the current
 	 *  domain level.
 	 * </summary>
-	 * <remarks>	A, 5/20/2013. </remarks>
 	 * <param name="level">	The log level to check . </param>
 	 * <returns>	True if domain is active (log should be performed) </returns>
 	 **************************************************************************************************/

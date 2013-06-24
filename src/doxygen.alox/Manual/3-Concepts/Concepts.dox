@@ -10,7 +10,8 @@
 \page man_concepts        Concepts of ALox Logging
 
 Within this chapter an in-depth view into several concepts of ALox logging is provided.
-This is for people who want to maximize the benefits of ALox, apart from standard debug log output.
+This chapter is of interest for ALox users who want to maximize the benefits of ALox, apart from 
+standard debug log output.
 
 - \subpage man_alox_architecture
 - \subpage man_levelsanddomains

@@ -61,7 +61,7 @@ public class MString
 	}
 
 	/** ************************************************************************************************
-	 * <summary> Constructor using a substring of another MString. </summary>
+	 * <summary> Constructor copying a substring of another MString. </summary>
 	 *
 	 * <param name="ms">	  	The source MString to copy from. </param>
 	 * <param name="startIdx">	The start index in ms to append. Defaults to 0. </param>
@@ -99,7 +99,7 @@ public class MString
 	}
 
 	/** ************************************************************************************************
-	 * <summary> Constructor using with a substring of a String. </summary>
+	 * <summary> Constructor copying a substring of a String. </summary>
 	 *
 	 * <param name="s">			The source String to copy from. </param>
 	 * <param name="startIdx">	The start index in s to append. Defaults to 0. </param>
@@ -137,7 +137,7 @@ public class MString
 	}
 
 	/** ************************************************************************************************
-	 * <summary> Constructor using a substring of a StringBuilder. </summary>
+	 * <summary> Constructor copying a substring of a StringBuilder. </summary>
 	 *
 	 * <param name="sb">	  	The source Mutable StringBuilder to copy. </param>
 	 * <param name="startIdx">	The start index in ms to append. Defaults to 0. </param>
@@ -1064,7 +1064,6 @@ public class MString
 	 *  substring start indices and lengths parameters are out of bounds, they are corrected. This
 	 *  could lead to unwanted results in some cases.
 	 * </summary>
-	 * <remarks>	A, 5/22/2013. </remarks>
 	 * <param name="cmp">			An object of type String, StringBuilder or MString that is
 	 * 								compared to this. </param>
 	 * <param name="ignoreCase">	(Optional) If true, the compare is case insensitive. Optional and
@@ -1193,7 +1192,7 @@ public class MString
 	}
 
 	/** ************************************************************************************************
-	 * <summary>	Converts the MString into a String. </summary>
+	 * <summary>	Converts the MString into a this String. </summary>
 	 *
 	 * <returns> A string that represents this object. </returns>
 	 **************************************************************************************************/
@@ -1203,7 +1202,7 @@ public class MString
 	}
 
 	/** ************************************************************************************************
-	 * <summary>	Creates a String from a region within MString. </summary>
+	 * <summary>	Creates a String from a region within this MString. </summary>
 	 *
 	 * <param name="startIdx">	The start index of the region in this to create the string from. </param>
 	 * <param name="length">  	(Optional) The maximum length of the region to create the string from.
@@ -1230,24 +1229,24 @@ public class MString
 	 **************************************************************************************************/
 	public override int GetHashCode() 
 	{
- 		int h;
- 		if ((h= Hash) == 0 && Length > 0) 
- 		{
-     		char[] buf=	Buffer;
-     		int  len=	Length;
+		int h;
+		if ((h= Hash) == 0 && Length > 0) 
+		{
+			char[] buf=	Buffer;
+			int  len=	Length;
  
-     		for (int i = 0; i < len; i++) 
-         		h = 31*h + buf[i++];
+			for (int i = 0; i < len; i++) 
+				h = 31*h + buf[i++];
 
-     		Hash = h;
- 		}
- 		return h;
+			Hash = h;
+		}
+		return h;
 	}
  
 
 	/** ************************************************************************************************
 	 * <summary> 
-	 *  Compares this to given object. Given object can be MString or String.
+	 *  Compares this to the given object. Given object can be MString or String.
 	 * </summary>
 	 *
 	 * <returns> True if given object equals this. </returns>
@@ -1301,7 +1300,7 @@ public class MString
 	}
 
 	/** ***********************************************************************************************
-	 * <summary>	Ensures that capacity. </summary>
+	 * <summary> Ensures that the capacity of the internal buffer meets or exceeds the given value. </summary>
 	 * <param name="minLen">	The minimum length. </param>
 	 **************************************************************************************************/
 	public void EnsureCapacity( int minLen )
@@ -1346,20 +1345,20 @@ public class MString
 	// internals
 	// ################################################################################################
 
- 	/** ***********************************************************************************************
- 	 * <summary> 
- 	 * 	 Adjust a given range within an array to the array bounds and tests if range is empty. 
- 	 * </summary>
- 	 * <param name="referenceLen">	Length of the zero indexed reference array.  </param>
- 	 * <param name="startIdx">	  	[in,out] The start index of the range. Negative values are adjusted
- 	 * 								to 0 and length shortened accordingly. Values higher than referenceLen
- 	 * 								are not adjusted, but function returns true in this case. </param>
- 	 * <param name="len">		  	[in,out] The length of the range to be adjusted to the array 
- 	 * 								bounds. A length of int.MaxValue is considered 'infinite' and cut
- 	 * 								to maximum length beginning from adjusted startIdx.</param>
- 	 * <returns> True if adjusted range is out of bounds or empty </returns>
- 	 **************************************************************************************************/
- 	protected bool adjustRangeAndTestIfEmpty(int referenceLen, ref int startIdx, ref int len )
+	/** ***********************************************************************************************
+	 * <summary> 
+	 * 	 Adjust a given range within an array to the array bounds and tests if range is empty. 
+	 * </summary>
+	 * <param name="referenceLen">	Length of the zero indexed reference array.  </param>
+	 * <param name="startIdx">	  	[in,out] The start index of the range. Negative values are adjusted
+	 * 								to 0 and length shortened accordingly. Values higher than referenceLen
+	 * 								are not adjusted, but function returns true in this case. </param>
+	 * <param name="len">		  	[in,out] The length of the range to be adjusted to the array 
+	 * 								bounds. A length of int.MaxValue is considered 'infinite' and cut
+	 * 								to maximum length beginning from adjusted startIdx.</param>
+	 * <returns> True if adjusted range is out of bounds or empty </returns>
+	 **************************************************************************************************/
+	protected bool adjustRangeAndTestIfEmpty(int referenceLen, ref int startIdx, ref int len )
 	{
 		// infinite length given?
 		if ( len == int.MaxValue )			

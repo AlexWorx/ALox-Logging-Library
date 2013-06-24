@@ -9,9 +9,12 @@
 /**
 \page tutorial_cs       C# Tutorial
 
+\tableofcontents
+   
+# 1. Hello ALox # {#tutcs_hello_alox}
 
-
-## 1. Create a tutorial project or equip your current project with ALox ##
+<BR>
+## 1.1 Create a tutorial project or equip your current project with ALox ##   {#tutcs_createproject}
 
 If you want to follow the tutorial samples and play around with it a little, you should
 either create a tutorial project or right away equip your current project with ALox.
@@ -21,8 +24,8 @@ For information about how you do that see: \ref man_setup_projects_CS.
 You can easily skip this step and just continue reading the tutorial without setting up ALox now.
 
 
-
-## 2. Create an instance of class "ConsoleLogger" ##
+<BR>
+## 1.2. Create an instance of class "ConsoleLogger" ##  {#tutcs_ha1}
 
 First our project needs to create an instance of class [ConsoleLogger](@ref #com::aworx::lox::ConsoleLogger) 
 that enables log output to the application console as well as to the Visual Studio Console.
@@ -44,7 +47,8 @@ static interface class [Log](@ref #com::aworx::lox::Log). For now, we can forget
 After it was created, we do not touch it directly for the rest of this introductory tutorial. All you 
 need to know is that a [ConsoleLogger](@ref #com::aworx::lox::ConsoleLogger) writes log messages to the VisualStudio output window (and/or to the application console).
 
-## 3. Add code to create and set a *log domain* ##
+<BR>
+## 1.3. Add code to create and set a *log domain* ##     {#tutcs_ha_3}
 
 Just after the line we just inserted, add a second line of code:
 
@@ -55,7 +59,8 @@ This tells ALox about a *log domain* called "APP" and assigns the *log domain le
 If you did not understand too much of the last sentence, don't worry, the concepts of *log domains* and *log levels* will get 
 very obvious to you in 5 minutes. 
 
-## 4. Add logging code ##
+<BR>
+## 1.4. Add logging code ##                             {#tutcs_ha_4}
 
 Just after the line we just inserted, add a third line of code:
 
@@ -67,7 +72,8 @@ should look like this:
 \snippet cs.unittests.alox/Tests_Tutorial.cs        Tut_Hello_ALox
 
 
-## 5. Run your application within visual studio ##
+<BR>
+## 1.5. Run your application within visual studio ##        {#tutcs_ha_5}
 Run your application in "Debug" mode. In the output window of visual studio you should see
 a line of output similar to this:
 
@@ -110,7 +116,8 @@ width of the Studio window. Also, depending on your screen size, you might decre
 the output window a little. The output gets wide, because a lot of valuable information is logged 
 besides the log message. In addition, the output is organized in columns that auto adjust their size.*
 
-## 6. Release Version ##
+<BR>
+## 1.6. Build Release Version ##                              {#tutcs_ha_6}
 
 Switch your project configuration to "Release" and run the application. The output should not appear!
                                                                                                      
@@ -128,7 +135,11 @@ This has a lot of benefits:
 - you are not delivering your debug language to the end user (not even if your executable is reverse engineered)
 
 
-## 7. Log code with different log levels ##
+<BR>
+# 2. Log levels and log domains #                                          {#tutcs_llld} 
+
+<BR>
+## 2.1. Log code with different log levels ##   {#tutcs_llld_1}
 
 Switch back to the Debug configuration. The code above uses the method [Log.Info()](@ref #com::aworx::lox::Log::Info) to create the 
 log output. There are three other Versions of that method, together constituting the four "log levels":
@@ -200,7 +211,8 @@ Fairly easy, right? To summarize, the above paragraph introduced you to the conc
 Now, you should understand how the comparison of the *log domain level* and the *log level* decides about weather a log is executed or not.
 
 
-## 8. Default domains ##
+<BR>
+## 2.2. Default domains ##          {#tutcs_llld_2}
 
 If you already liked the tiny code that is necessary to implement ALox Logging, then you 
 will appreciate this section, because we want to make it even smaller. Replace the 
@@ -246,7 +258,7 @@ Which produces the output:
 
 From this example we learn that *log domains* which are neither registered with [Log.RegDomain](@ref #com::aworx::lox::Log::RegDomain) nor
 set with [Log.SetDomain](@ref #com::aworx::lox::Log::SetDomain) do not cause any problem. ALox just creates them on the fly
-and continues his job. 
+and continues its job. 
 
 The *domain level* that such *unknown* domains receive is inherited through the domain chain up to the root domain. The root domain
 is a field existing in each *logger*. By default the root domain of a [ConsoleLogger](@ref #com::aworx::lox::ConsoleLogger) has
@@ -256,7 +268,8 @@ you create for specific purposes that are supposed to log messages of certain do
 *unknown* domains as a default. Therefore, these special purpose loggers stay clean and log only what you explicitly ask them to log.
 
 
-## 9. Where to place ALox log code ##
+<BR>
+## 2.3. Where to place ALox log code ##               {#tutcs_llld_3}
 
 As we now know a bit about *log domains*, we can briefly talk about where to 
 add ALox statements in your code. In the standard application setup, there are three
@@ -361,7 +374,10 @@ If you have populated your code with a reasonable amount of log entries, you wil
 right place automatically! It also might be a good idea to restart your app with all domains set
 to verbose level and then look for the first appearances of unknown threads.
 
-## 10. Stop reading here? ##
+<BR>
+# 3. Some more Details {#tutcs_more}
+<BR>
+## 3.1 Stop reading here? ##        {#tutcs_more_1}
 
 Developers are often in a hurry and reading tutorials is time consuming.
 If you are only using the part of ALox the tutorial has covered up to this point you should
@@ -382,7 +398,8 @@ If you want and have the time to continue reading, you are invited to learn more
 pretty neat features. Here we go!
 
 
-## 11. Conditional logging ##
+<BR>
+## 3.2 Conditional logging ##        {#tutcs_more_2}
 
 Often log lines should only be displayed if a certain condition is met. Here is a
 sample:
@@ -409,7 +426,8 @@ similar to the other log methods (namely
 log method [Line()]	(@ref #com::aworx::lox::Log::Line), setting some default parameters.
 
 
-## 11. LogTools: Log complex things easily ##
+<BR>
+## 3.3 LogTools: Log complex things easily ##       {#tutcs_more_3}
 
 ALox also provides some log functions that log more complex stuff. The design decision was made to not
 put this into the class [Log](@ref #com::aworx::lox::Log) but into a separated class [LogTools](@ref #com::aworx::lox::LogTools).
@@ -473,7 +491,8 @@ The output will look similar to this:
 
 \verbinclude  doxygen.alox/generated_cstut/CS_Tut_XML.txt 
 
-## 13. Indentation ##
+<BR>
+## 3.4 Indentation ##                    {#tutcs_more_4}
 
 The outputs of the above samples which make use of the [LogTools](@ref #com::aworx::lox::LogTools) class look nice because 
 they use indentation when they recursively walk through a complex object.
@@ -490,7 +509,8 @@ The default is 0. The reasult of increasing it depends on the Logger you are usi
 for example (the base class of [ConsoleLogger](@ref #com::aworx::lox::ConsoleLogger) ) adds two spaces per indent number. 
 
 
-## 14. Separating domains levels in different loggers ##
+<BR>
+## 3.5 Separating domains levels in different loggers ##        {#tutcs_more_5}
 Until now, we have only demonstrated how 
 - ALox manages a set of parallel loggers for you and how
 - *log domain levels* are applied to *log domains* 
@@ -560,7 +580,8 @@ Some further quick remarks on the code:
 
 
 
-## 15. ALox configuration and internal log messages ##
+<BR>
+## 3.6 ALox configuration and internal log messages ##               {#tutcs_more_6}
 
 In complex projects it might get a little confusing to keep track about the 
 loggers and their domains. Also, when you use 3rd party components supporting ALox, 
@@ -626,7 +647,8 @@ Or even better, because the internal domain name is not "hard coded":
 
 
 
-## 16. Further reading ##
+<BR>
+# Further reading #     {#tutcs_end}
 
 This is the end of the C# Tutorial of ALox. You should be able to use most of the features
 of the ALox Logging Ecosystem and have nice, formatted, configurable log output in your software

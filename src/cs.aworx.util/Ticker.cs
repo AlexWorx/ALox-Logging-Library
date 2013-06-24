@@ -36,7 +36,6 @@ namespace com.aworx.util  {
  *  The resolution and accuracy of the values is platform dependent. Especially nanoseconds are
  *  deemed to be not accurate and above 100 ns (this was written and fact in 2013).
  * </summary>
- * <remarks>	A, 5/26/2013. </remarks>
  **************************************************************************************************/
 public static class Ticker
 {
@@ -49,7 +48,7 @@ public static class Ticker
 	 *  Now method.
 	 * </summary>
 	 **************************************************************************************************/
-	public	static readonly		long		InternalFrequency;
+	public	static readonly		long	InternalFrequency;
 
 	// #################################################################################################
 	// Private fields and static constructor
@@ -95,7 +94,7 @@ public static class Ticker
 	 * <summary>
 	 * 	Gets the actual system dependent time in ticks. 
 	 * 	</summary>
-	 * <returns>	The now. </returns>
+	 * <returns> The time now in ticks. </returns>
 	 **************************************************************************************************/
 	public static	long	Now()							
 	{ 
@@ -384,7 +383,7 @@ public struct TickTime
 	 *  time this instance represents, the result is positive.
 	 * </summary>
 	 * <param name="newerTime">	The value to compare this instance with. </param>
-	 * <returns>	. </returns>
+	 * <returns> The time difference in ticks.</returns>
 	 **************************************************************************************************/
 	public 	long	Span( TickTime newerTime )			{ return				 newerTime.ticks - ticks;	}
 
@@ -395,6 +394,7 @@ public struct TickTime
 	 *  time this instance represents, the result is positive.
 	 * </summary>
 	 * <param name="newerTime">	The value to compare this instance with. </param>
+	 * <returns> The time difference in milliseconds.</returns>
 	 **************************************************************************************************/
 	public 	long	SpanInMillis ( TickTime newerTime )	{ return Ticker.ToMillis( newerTime.ticks - ticks );	}
 
@@ -405,6 +405,7 @@ public struct TickTime
 	 *  time this instance represents, the result is positive.
 	 * </summary>
 	 * <param name="newerTime">	The value to compare this instance with. </param>
+	 * <returns> The time difference in microseconds.</returns>
 	 **************************************************************************************************/
 	public 	long	SpanInMicros ( TickTime newerTime )	{ return  Ticker.ToMicros( newerTime.ticks - ticks );	}
 
@@ -435,8 +436,8 @@ public struct TickTime
 	}
 
 	/** ***********************************************************************************************
-	 * <summary>Returns the number of calls to Measure since object was created or #Clear 'ed. </summary>
-	 * <returns>Returns the number of calls to Measure since object was created or #Clear 'ed.</returns>
+	 * <summary>Returns the number of calls to Measure since object was created or Clear() was invoked. </summary>
+	 * <returns>The number of calls to Measure since object was created or or Clear() was invoked.</returns>
 	 **************************************************************************************************/
 	public		 int	GetMeasureCnt()			{ return cntMeasures; }
 
@@ -445,7 +446,7 @@ public struct TickTime
 	 *  Returns the cumulated time of all measurements since object was created or cleared in
 	 *  (system dependent) ticks. 
 	 * </summary>
-	 * <returns>  Returns the cumulated measured ticks. </returns>
+	 * <returns>  The cumulated measured ticks. </returns>
 	 **************************************************************************************************/
 	public		long	GetCumulatedTicks()		{ return sum; }
 
@@ -454,7 +455,7 @@ public struct TickTime
 	 *  Returns the average time of all measurements since object was created or cleared in
 	 *  (system dependent) ticks. If no measurement was performed, this method returns 0.
 	 * </summary>
-	 * <returns>	Returns the average measured ticks. </returns>
+	 * <returns>	The average measured ticks. </returns>
 	 **************************************************************************************************/
 	public		long	GetAverageTicks()		{ return  cntMeasures== 0 ? 0L	 :	(sum / cntMeasures); }
 
@@ -463,7 +464,7 @@ public struct TickTime
 	 *  Returns the average time of all measurements since object was created or cleared in
 	 *  milliseconds. If no measurement was performed, this method returns 0.
 	 * </summary>
-	 * <returns>	Returns the average measured milliseconds. </returns>
+	 * <returns>	The average measured milliseconds. </returns>
 	 **************************************************************************************************/
 	public		long	GetAverageMillis()		{ return  Ticker.ToMillis( GetAverageTicks() ); }
 
@@ -472,7 +473,7 @@ public struct TickTime
 	 *  Returns  one divided by the average time, hence the number of Hertz that correspond to
 	 *  the average measured time.
 	 * </summary>
-	 * <returns>	Returns the Hertz value corresponding to the average measured time. </returns>
+	 * <returns>	The Hertz value corresponding to the average measured time. </returns>
 	 **************************************************************************************************/
 	public		double	GetAverageHertz()		{ return  cntMeasures== 0 ? 0d	 :	(1000000000d * cntMeasures / sum); }
 	

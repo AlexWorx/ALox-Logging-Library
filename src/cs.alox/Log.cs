@@ -84,7 +84,7 @@ public static class Log
 		Warning,
 
 		/** <summary>A log level for (severe) error messages
-			* It is not logged only if the domains log level is set to DomainLevel.Off</summary>*/
+			* It is suppressed only if the domains log level is set to DomainLevel.Off</summary>*/
 		Error,
 	}
 
@@ -100,7 +100,6 @@ public static class Log
 	 *  exist, then such method names share the same scope and hence are ambiguous. This is due to
 	 *  technical restrictions of how caller information is collected in C#/.Net.
 	 * </summary>
-	 * <remarks>	A, 6/12/2013. </remarks>
 	 **************************************************************************************************/
 	public enum Scope
 	{
@@ -164,9 +163,8 @@ public static class Log
 
 	/** ***********************************************************************************************
 	 * <summary>
-	 *  This method should not be used in normal applications. It was added to support clean unit testing.
 	 *  This method disposes the internal static Lox and with it all loggers, preferences and stuff
-	 *  and replaces it with a fresh one
+	 *  and replaces it with a fresh one. The method was added to support clean unit testing.
 	 * </summary>
 	 **************************************************************************************************/
 	[Conditional("ALOX_DEBUG")]	
@@ -210,7 +208,7 @@ public static class Log
 	 * 								string compare without case sensitivity is performed. An asterisk
 	 * 								('*') at the beginning or end of the string is used as a
 	 * 								wildcard. Defaults to null which causes all loggers to be
-	 * 								affected. </param>
+	 * 								removed. </param>
 	 **************************************************************************************************/
 	[Conditional("ALOX_DEBUG")]	
 	public static void RemoveLoggers( String loggerFilter= null )
@@ -232,7 +230,6 @@ public static class Log
 	 *  other problem than that the path is not shortened and the log output might get a little wide.
 	 *  If the output of the full path is intended, the parameter can be set to 'String.Empty'.  
 	 * </summary>
-	 * <remarks>	A, 5/17/2013. </remarks>
 	 * <param name="cspp">	The prefix to cut from the source file name in log outputs.</param>
 	 * <param name="csf"> 	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cln"> 	(Optional) Caller info, compiler generated. Please omit. </param>
@@ -249,15 +246,17 @@ public static class Log
 
 	/** ***********************************************************************************************
 	 * <summary>
-	 *  This method is used to create a domain for the logger. Domains control the activation of log
-	 *  calls. Usually a series of calls to this function is placed in a static constructor of a
-	 *  central/needed class of your source file. This way, the creation and usage of log domains are
-	 *  encapsulated in the same code entities.
+	 *  This method is used to define a log domain. The method is usually invoked within the same 
+	 *  source "context" (aka, class, namespace, package, etc.) that later on uses the domain to perform
+	 *  log statements. Often, calls to this functions are placed in static constructors or similar
+	 *  code that is executed only once and very early in the lifecycle of a process.
 	 *  
-	 *  Each log statement refers to such a domain which can be defined specifically for different
+	 *  Each log statement refers to such a domain which can be used specifically for different
 	 *  parts of your application like assemblies, libraries, namespaces, specific code files or even
-	 *  for a single log call. Domains can be created with path separators '/', for example
-	 *  'COMM/SOCK' could be the domain in a socket class, residing within a communication library.
+	 *  for a single method. The domain name should be short, pregnant and self explaining.
+	 *  
+	 *  Domains can be created with path separators '/', for example 'COMM/SOCK' could be the domain in 
+	 *  a socket class, residing within a communication library.
 	 *  The advantage of creating paths and this way "sub domains", is that a whole bunch of logging
 	 *  domains can be altered (on/off) by just altering the root domain.
 	 *  
@@ -270,13 +269,10 @@ public static class Log
 	 *  log calls specify a domain name with a leading '~' character, then such domain is
 	 *  concatenated to the default domain to build a complete domain path.
 	 *  
-	 *  If an external library sets (and uses) a default domain name, such default names can be
-	 *  overwritten by explicitly invoking this function from outside and setting the parameter 'csf'
-	 *  (and 'cmn' if method scope applies) to whatever the library reports as file names. This has
-	 *  to be done for each file name, of course. Otherwise, never provide the parameters csf, cln
-	 *  and cmn as they are compiler generated.
 	 * </summary>
-	 * <param name="domain">	If this is starting	with a swung dash ('~') this is interpreted a sub
+	 * 
+	 * <param name="domain">	The domain name (and path) to register. 
+	 * 							If this is starting	with a swung dash ('~') this is interpreted a sub
 	 * 							domain to a (potentially already set!) default domain of the source file.
 	 * 							For other values, the default	domain is ignored (regardless if this is
 	 * 							starting with a slash or	not). </param>
@@ -300,10 +296,11 @@ public static class Log
 
 	/** ***********************************************************************************************
 	 * <summary>
-	 *  If needed, this creates the given domain. Sets the domain log level and (by default) all it's
-	 *  sub domains recursively. In the case that sub domains should be set to a different log level,
-	 *  then this function has to be called for such sub domains after the call to the parent domain
-	 *  (or recursion has to be switched off, using the parameter 'recursive').
+     *  Sets the domain log level and (by default) all it's sub domains recursively. In the case that
+     *  sub domains should be set to a different log level, then this function has to be called for
+     *  such sub domains after the call to the parent domain (or recursion has to be switched off,
+     *  using the parameter 'recursive'). It is not necessary to register a domain before setting its
+     *  log level and log levels can be set and modified any time.
 	 * </summary>
 	 * <param name="domain">	  	If this is null, the default domain is used. If this is starting
 	 * 								with a swung dash ('~') this is interpreted a sub domain to the
@@ -361,7 +358,7 @@ public static class Log
 
 	/** ***********************************************************************************************
 	 * <summary>
-	 *  This method is used reset (or to explicitly set) the start time of the logger.
+	 *  This method is used reset (or to explicitly set) the start time of the logger(s).
 	 *  The only impact is the output of time differences in the log lines. Hence, it is useful to
 	 *  see some absolute time values when doing basic performance tests using the logger. Note:
 	 *  Calls to this method are automatically removed from release code.
@@ -467,7 +464,7 @@ public static class Log
 
 	/** ***********************************************************************************************
 	 * <summary>
-	 *  This method logs the configuration the ALox Logging System. 
+	 *  This method logs the configuration the Lox encapsulated in this static Log interface.
 	 * </summary>
 	 * <param name="domain">	  	If this is null, the default domain is used. If this is starting
 	 * 								with a swung dash ('~') this is interpreted a sub domain to the
@@ -500,13 +497,12 @@ public static class Log
 
 	/** ***********************************************************************************************
 	 * <summary>
-	 *  Log a String  with log level equal to Log.Level.Verbose. This is the highest (most verbose)
+	 *  Log an Object with log level equal to Log.Level.Verbose. This is the highest (most verbose)
 	 *  log level, which is only actually logged if the log domains log level is set to "All". This
 	 *  overloaded version does not offer a domain parameter but relies on a default domain set for
 	 *  the source file this function is used in.
 	 * </summary>
-	 * <param name="msg">   	An Object to be logged. If this has not the type of String,
-	 * 							StringBuilder or MString, then it is converted using ToString() </param>
+	 * <param name="msg">   	An Object to be logged. </param>
 	 * <param name="indent">	(Optional) The indentation in the output. Defaults to 0. </param>
 	 * <param name="csf">   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cln">   	(Optional) Caller info, compiler generated. Please omit. </param>
@@ -523,17 +519,15 @@ public static class Log
 
 	/** ***********************************************************************************************
 	 * <summary>
-	 *  Log a String with log level equal to Log.Level.Verbose. This is the highest (most verbose)
+	 *  Log an Object with log level equal to Log.Level.Verbose. This is the highest (most verbose)
 	 *  log level, which is only actually logged if the log domains log level is set to "All". Note:
 	 *  Calls to this method are automatically removed from release code.
 	 * </summary>
-	 * <remarks>	A, 6/13/2013. </remarks>
 	 * <param name="domain">	If this is null, the default domain is used. If this is starting with
 	 * 							a swung dash ('~') this is interpreted a sub domain to the default domain
 	 * 							of the source file. For other values, the default domain is ignored
 	 * 							(regardless if this is starting with a slash or not). </param>
-	 * <param name="msg">   	An Object to be logged. If this has not the type of String,
-	 * 							StringBuilder or MString, then it is converted using ToString() </param>
+	 * <param name="msg">   	An Object to be logged. </param>
 	 * <param name="indent">	(Optional) The indentation in the output. Defaults to 0. </param>
 	 * <param name="csf">   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cln">   	(Optional) Caller info, compiler generated. Please omit. </param>
@@ -550,13 +544,12 @@ public static class Log
 
 	/** ***********************************************************************************************
 	 * <summary>
-	 *  Log a String  with log level equal to Log.Level.Info. This is the second highest (after
+	 *  Log an Object with log level equal to Log.Level.Info. This is the second highest (after
 	 *  Verbose) log level, which is only actually logged if the log domains log level is set to
 	 *  "Info" or "Verbose". This overloaded version does not offer a domain parameter but relies on
 	 *  a default domain set for the source file this function is used in.
 	 * </summary>
-	 * <param name="msg">   	An Object to be logged. If this has not the type of String,
-	 * 							StringBuilder or MString, then it is converted using ToString() </param>
+	 * <param name="msg">   	An Object to be logged. </param>
 	 * <param name="indent">	(Optional) The indentation in the output. Defaults to 0. </param>
 	 * <param name="csf">   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cln">   	(Optional) Caller info, compiler generated. Please omit. </param>
@@ -573,7 +566,7 @@ public static class Log
 
 	/** ***********************************************************************************************
 	 * <summary>
-	 *  Log a String  with log level equal to Log.Level.Info. This is the second highest (after
+	 *  Log an Object with log level equal to Log.Level.Info. This is the second highest (after
 	 *  Verbose) log level, which is only actually logged if the log domains log level is set to
 	 *  "Info" or "Verbose".
 	 * </summary>
@@ -581,8 +574,7 @@ public static class Log
 	 * 							a swung dash ('~') this is interpreted a sub domain to the default domain
 	 * 							of the source file. For other values, the default domain is ignored
 	 * 							(regardless if this is starting with a slash or not). </param>
-	 * <param name="msg">   	An Object to be logged. If this has not the type of String,
-	 * 							StringBuilder or MString, then it is converted using ToString() </param>
+	 * <param name="msg">   	An Object to be logged. </param>
 	 * <param name="indent">	(Optional) The indentation in the output. Defaults to 0. </param>
 	 * <param name="csf">   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cln">   	(Optional) Caller info, compiler generated. Please omit. </param>
@@ -599,13 +591,12 @@ public static class Log
 
 	/** ***********************************************************************************************
 	 * <summary>
-	 *  Log a String  with log level equal to Log.Level.Warning. Log messages of this log level
+	 *  Log an Object with log level equal to Log.Level.Warning. Log messages of this log level
 	 *  are are logged if the log domains log level is set to "Warning", "Info" or "All".
 	 *  This overloaded version does not offer a domain parameter but relies on a default domain set
 	 *  for the source file this function is used in. 
 	 * </summary>
-	 * <param name="msg">   	An Object to be logged. If this has not the type of String,
-	 * 							StringBuilder or MString, then it is converted using ToString() </param>
+	 * <param name="msg">   	An Object to be logged. </param>
 	 * <param name="indent">	(Optional) The indentation in the output. Defaults to 0. </param>
 	 * <param name="csf">   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cln">   	(Optional) Caller info, compiler generated. Please omit. </param>
@@ -622,15 +613,14 @@ public static class Log
 
 	/** ***********************************************************************************************
 	 * <summary>
-	 *  Log a String  with log level equal to Log.Level.Warning. Log messages of this log level are
+	 *  Log an Object with log level equal to Log.Level.Warning. Log messages of this log level are
 	 *  are logged if the log domains log level is set to "Warning", "Info" or "All". 
 	 * </summary>
 	 * <param name="domain">	If this is null, the default domain is used. If this is starting with
 	 * 							a swung dash ('~') this is interpreted a sub domain to the default domain
 	 * 							of the source file. For other values, the default domain is ignored
 	 * 							(regardless if this is starting with a slash or not). </param>
-	 * <param name="msg">   	An Object to be logged. If this has not the type of String,
-	 * 							StringBuilder or MString, then it is converted using ToString() </param>
+	 * <param name="msg">   	An Object to be logged. </param>
 	 * <param name="indent">	(Optional) The indentation in the output. Defaults to 0. </param>
 	 * <param name="csf">   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cln">   	(Optional) Caller info, compiler generated. Please omit. </param>
@@ -647,13 +637,12 @@ public static class Log
 
 	/** ***********************************************************************************************
 	 * <summary>
-	 *  Log a String with log level equal to Level.Error. Log messages of this log level are
+	 *  Log an Object with log level equal to Log.Level.Error. Log messages of this log level are
 	 *  are always logged unless domains log level is set to "Off". This overloaded version does not
 	 *  offer a domain parameter but relies on a default domain set for the source file this function
 	 *  is used in. 
 	 * </summary>
-	 * <param name="msg">   	An Object to be logged. If this has not the type of String,
-	 * 							StringBuilder or MString, then it is converted using ToString() </param>
+	 * <param name="msg">   	An Object to be logged. </param>
 	 * <param name="indent">	(Optional) The indentation in the output. Defaults to 0. </param>
 	 * <param name="csf">   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cln">   	(Optional) Caller info, compiler generated. Please omit. </param>
@@ -670,16 +659,14 @@ public static class Log
 
 	/** ***********************************************************************************************
 	 * <summary>
-	 *  Log a String with log level equal to #Level Error. Log messages of this log level are are
+	 *  Log an Object with log level equal to Log.Level Error. Log messages of this log level are are
 	 *  always logged unless domains log level is set to "Off". 
 	 * </summary>
-	 * <remarks>	A, 5/19/2013. </remarks>
 	 * <param name="domain">	If this is null, the default domain is used. If this is starting with
 	 * 							a swung dash ('~') this is interpreted a sub domain to the default domain
 	 * 							of the source file. For other values, the default domain is ignored
 	 * 							(regardless if this is starting with a slash or not). </param>
-	 * <param name="msg">   	An Object to be logged. If this has not the type of String,
-	 * 							StringBuilder or MString, then it is converted using ToString() </param>
+	 * <param name="msg">   	An Object to be logged. </param>
 	 * <param name="indent">	(Optional) The indentation in the output. Defaults to 0. </param>
 	 * <param name="csf">   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cln">   	(Optional) Caller info, compiler generated. Please omit. </param>
@@ -701,8 +688,7 @@ public static class Log
 	 *  on a default domain set for the source file this function is used in. 
 	 * </summary>
 	 * <param name="trueOrLog"> The log is only performed if condition is not true. </param>
-	 * <param name="msg">   	An Object to be logged. If this has not the type of String,
-	 * 							StringBuilder or MString, then it is converted using ToString() </param>
+	 * <param name="msg">   	An Object to be logged. </param>
 	 * <param name="indent">   	(Optional) the indentation in the output. Defaults to 0. </param>
 	 * <param name="csf">	   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cln">	   	(Optional) Caller info, compiler generated. Please omit. </param>
@@ -722,14 +708,12 @@ public static class Log
 	 *  Log a string only if the given condition is not true. Log level will be highest, namely
 	 *  Log.Level.Error. 
 	 * </summary>
-	 * <remarks>	A, 5/19/2013. </remarks>
 	 * <param name="trueOrLog"> The log is only performed if condition is not true. </param>
 	 * <param name="domain">   	If this is null, the default domain is used. If this is starting with
 	 * 							a swung dash ('~') this is interpreted a sub domain to the default
 	 * 							domain of the source file. For other values, the default domain is
 	 * 							ignored (regardless if this is starting with a slash or not). </param>
-	 * <param name="msg">   	An Object to be logged. If this has not the type of String,
-	 * 							StringBuilder or MString, then it is converted using ToString() </param>
+	 * <param name="msg">   	An Object to be logged. </param>
 	 * <param name="indent">   	(Optional) the indentation in the output. Defaults to 0. </param>
 	 * <param name="csf">	   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cln">	   	(Optional) Caller info, compiler generated. Please omit. </param>
@@ -746,14 +730,13 @@ public static class Log
 
 	/** ***********************************************************************************************
 	 * <summary>
-	 *  Provides a the most flexible but complex way to log a message. The methods #Verbose(),
+	 *  Provides a more flexible but complex way to log a message. The methods #Verbose(),
 	 *  #Info(), #Warning(), #Error() and #Assert() are using this function internally and should
 	 *  be used in standard cases. Use this function only in the rare cases, e.g. when a log level is
 	 *  decided only at runtime or when you want to use a logger filter, etc.
 	 * </summary>
-	 * <remarks>	A, 5/19/2013. </remarks>
-	 * <param name="doLog">		  	Conditional logging. If false, the log is not performed.
-	 * 								CntLogCalls is still increased by one. </param>
+	 * <param name="doLog">		  	Conditional logging. If false, the log is not performed. CntLogCalls
+	 * 								is still increased by one. </param>
 	 * <param name="domain">	  	If this is null, the default domain is used. If this is starting
 	 * 								with a swung dash ('~') this is interpreted a sub domain to the
 	 * 								default domain of the source file. For other values, the default
@@ -783,9 +766,8 @@ public static class Log
 
 	/** ***********************************************************************************************
 	 * <summary>
-	 *  Logs an MString using the given log level, log domain and indentation and logger filter.
+	 *  Logs an Object using the given log level, log domain and indentation and logger filter.
 	 * </summary>
-	 * <remarks>	A, 6/13/2013. </remarks>
 	 * <param name="domain">	  	If this is null, the default domain is used. If this is starting
 	 * 								with a swung dash ('~') this is interpreted a sub domain to the
 	 * 								default domain of the source file. For other values, the default
@@ -815,10 +797,9 @@ public static class Log
 
 	/** ***********************************************************************************************
 	 * <summary>
-	 *  Logs an MString using the given log level, indentation and logger filter and the default
+	 *  Logs an Object using the given log level, indentation and logger filter and the default
 	 *  domain set for the scope.
 	 * </summary>
-	 * <remarks>	A, 6/13/2013. </remarks>
 	 * <param name="level">		  	The log level. </param>
 	 * <param name="msgObject">	  	An Object to be logged. </param>
 	 * <param name="indent">	  	(Optional) The indentation in the output. Defaults to 0. </param>

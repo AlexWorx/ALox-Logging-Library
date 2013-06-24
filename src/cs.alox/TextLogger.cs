@@ -20,10 +20,9 @@ namespace com.aworx.lox
 
 /** ***********************************************************************************************
  * <summary>
- *  This is central class of the ALox logging implementation. However, for the simple use of A-
- *  Worx logging, use the static interface implemented with class Log. The class is abstract. To
- *  implement an own log stream, derive a new Logger class and implement the abstract method
- *  doLog(). A series of fields can be found to manipulate the logging level and output formats.
+ *  This class is a still abstract implementation of class Logger. All message objects passed to 
+ *  doLog are translated to MStrings and passed to the abstract function doTextLog().
+ *  Furthermore, various textual representations of other log attributes are generated.
  * </summary>
  **************************************************************************************************/
 public abstract class TextLogger : Logger
@@ -224,12 +223,9 @@ public abstract class TextLogger : Logger
 	/** ***********************************************************************************************
 	 * <summary>	Constructs a logger. </summary>
 	 * <param name="name"> The name of the logger. </param>
-	 * <param name="csf">	(Optional) the caller source file. </param>
-	 * <param name="cln">	(Optional) the caller line number. </param>
-	 * <param name="cmn">	(Optional) name of the caller member. </param>
 	 **************************************************************************************************/
-	protected TextLogger(String	name, String csf, int cln, String cmn )	
-		: base ( name, csf, cln, cmn )
+	protected TextLogger(String	name )	
+		: base ( name )
 	{
 	}
 
@@ -261,7 +257,8 @@ public abstract class TextLogger : Logger
 
 	/** ***********************************************************************************************
 	 * <summary>
-	 *  Creates all the textual information that is logged in a line before the message itself.
+	 *  Implementation of Logger.doLog(). Creates all the textual information that is logged in a line 
+     *  before the message itself.
 	 * </summary>
 	 * <param name="domain">	The log domain name. If not starting with a slash ('/')
 	 * 							this is appended to any default domain name that might have been

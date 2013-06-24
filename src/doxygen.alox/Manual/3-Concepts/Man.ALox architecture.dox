@@ -9,36 +9,136 @@
 /**
 \page man_alox_architecture         Overview of the ALox architecture
 
-\section man_alox_architecture_class_hierarchy      class hierarchy Log, Lox, Loggers etc
+\tableofcontents
 
-This chapter is not written, yet  :-(
+\section man_alox_architecture_logger     class Logger: Where the log information is streamed to
 
-\~Comment
+ALox is designed to support different log streams. A log stream is a destination of log messages
+and can be the IDE console, the terminal console, a file, a web service or anything that accepts
+data streams. The abstract class [Logger] (@ref #com::aworx::lox::core::Logger) represents
+such log stream. While some implementations of class Logger are provided with the ALox package,
+the system allows custom implementations of Loggers that log information to any 'data drain' in
+any format you like. (See \ref man_custom_loggers.)
 
 \dot
-digraph example {
-node [shape=record, fontname=Helvetica, fontsize=10];
-b [ label="class B" URL="\ref man_levelsanddomains"];
-c [ label="class C" URL="\ref man_levelsanddomains"];
-b -> c [ arrowhead="open", style="dashed" ];
+digraph example 
+{
+    node [shape=record, fontname=Helvetica, fontsize=15];
+    edge [shape=record, fontname=Helvetica, fontsize=10];
+    logger  [ label="Logger"       URL="\ref com::aworx::lox::core::Lox"];
+    cl      [ label="ConsoleLogger"    URL="\ref com::aworx::lox::core::Logger"];
+    ml      [ label="Memory Logger"    URL="\ref com::aworx::lox::core::Logger"];
+    my      [ label="My Custom Logger"    URL="\ref com::aworx::lox::core::Logger"];
+    cl -> logger  [ label= "extends" arrowhead="open", style="dashed", URL="\ref com::aworx::lox::core::Lox::AddLogger" ];
+    ml -> logger  [ label= "extends" arrowhead="open", style="dashed", URL="\ref com::aworx::lox::core::Lox::AddLogger" ];
+    my -> logger  [ label= "extends" arrowhead="open", style="dashed", URL="\ref com::aworx::lox::core::Lox::AddLogger" ];
 }
 \enddot
 
 
-The receiver will acknowledge the command by calling Ack().
-\msc
-Sender,Receiver;
-Sender->Receiver [label="Command()", URL="\ref man_levelsanddomains"];
-Sender<-Receiver [label="Ack()", URL="\ref man_levelsanddomains", ID="1"];
-\endmsc
+An application that supports different loggers at once, might decide to log only a subset
+of the log messages to each of the loggers. To achieve this, each Logger allows to configure
+log domain levels separately. The same log domain can be enabled in one Logger, but disabled
+in another Logger. 
 
- After execution of a command, the receiver will send an acknowledgement
-\msc
-Receiver,Sender;
-Receiver<-Sender [label="Command()", URL="\ref man_levelsanddomains"];
-Receiver->Sender [label="Ack()", URL="\ref man_levelsanddomains", ID="1"];
-\endmsc
+<br>
+\section man_alox_architecture_lox     class Lox: The interface into the loggers
 
+The interface of class Logger is very basic and not intended to be used directly to perform any
+logging. Furthermore, if one log message should go to more than one Logger, then each logger has
+to be invoked. 
+
+To achieve both (have a convenient interface and dispatch log messages to more than one Logger), ALox
+provides class [Lox] (@ref #com::aworx::lox::core::Lox). It acts as a container for all Loggers that
+are created during the lifecycle of an application. In rare cases of complex logging scenarios, even
+multiple instances of that class might be created with different Loggers contained. 
+
+\dot
+digraph example 
+{
+    node [shape=record, fontname=Helvetica, fontsize=15];
+    edge [shape=record, fontname=Helvetica, fontsize=10];
+    lox [ label="Lox"       URL="\ref com::aworx::lox::core::Lox"];
+    cl [ label="ConsoleLogger"    URL="\ref com::aworx::lox::core::Logger"];
+    ml [ label="Memory Logger"    URL="\ref com::aworx::lox::core::Logger"];
+    lox -> cl  [ label= "contains" arrowhead="open",  URL="\ref com::aworx::lox::core::Lox::AddLogger" ];
+    lox -> ml  [ label= "contains" arrowhead="open",  URL="\ref com::aworx::lox::core::Lox::AddLogger" ];
+}
+\enddot
+
+Various methods of class Lox provide an optional parameter to filter the command to certain Loggers
+only. The standard use of such filters is to apply different log domain settings to different Loggers
+contained in the Lox instance. Once the domain levels are properly set, log messages are automatically
+appearing in the right loggers (none, some or all) depending on the log domain and log level specified in 
+the log statement. However, there is also the possibility to filter log statements directly against Logger
+names. For standard scenarios this is not recommended, because the flexibility to add new Loggers
+(for new log formats or log message data drains) might be lost. 
+
+
+<br>
+\section man_alox_architecture_log     static class Log: Debug logging made very easy
+
+There are two fundamental logging scenarios that we call **debug logging** and **release logging**.
+Debug logging is exclusively to support the software developer during the development process. By 
+definition, debug log statements are unavailable in the release version of an application 
+(in the best case completely pruned). Release log statements are not. 
+
+Debug logging should be included in any software development process, similar to code documentation, 
+unit testing, etc. Instead of the inclusion of temporary debug print statements, well phrased debug
+messages should be included into the code and never removed. 
+
+One of the design goals of ALox is to support both debug logging as well as release logging and both 
+at the same time. This means, that the logging ecosystem needs to "know" which log statements are
+to be executed in which scenario. 
+
+For various reasons (performance, code size, security, etc), debug log statements should be disabled
+and removed (pruned) from the release version of a software.
+
+To achieve all goals and provide a very simple interface into debug logging, the ALox ecosystem
+provides class [Log] (@ref #com::aworx::lox::Log). This class is a 100% static interface into
+class Lox. In other words, class Log creates and holds exaclty one static instance of class Lox and
+mimics the complete interface of that instance into corresponding static methods.
+
+\dot
+digraph example 
+{
+    node [shape=record, fontname=Helvetica, fontsize=15];
+    edge [shape=record, fontname=Helvetica, fontsize=10];
+    log [ label="Log"       URL="\ref com::aworx::lox::core::Lox"];
+    lox [ label="Lox"       URL="\ref com::aworx::lox::core::Lox"];
+    cl [ label="ConsoleLogger"    URL="\ref com::aworx::lox::core::Logger"];
+    ml [ label="Memory Logger"    URL="\ref com::aworx::lox::core::Logger"];
+    log -> lox [ label= "1:1 static interface" arrowhead="open", style="solid", URL="\ref com::aworx::lox::core::Lox::AddLogger" ];
+    lox -> cl  [ label= "contains" arrowhead="open",  URL="\ref com::aworx::lox::core::Lox::AddLogger" ];
+    lox -> ml  [ label= "contains" arrowhead="open",  URL="\ref com::aworx::lox::core::Lox::AddLogger" ];
+}
+\enddot
+
+The assumption (restriction) that is taken here, is that debug logging is implemented by using
+only one Lox. This should be sufficient for most scenarios, because, as described above, within that Lox 
+instance various Loggers with own log domain settings will provide a lot of flexibility to log different 
+types of messages within a complex software into different streams and manipulate the verbosity for
+each stream accordingly.
+
+Depending on the platform and language, ALox provides a feature to automatically prune all statements 
+that are deemed to be debug logging. 
+
+
+<br>
+\section man_alox_architecture_summary     Summary
+
+The following summarizes the takeaways of this chapter:
+- To implement own log data drains (streams to log into, like databases, web services, etc.) 
+  and own log formats, custom implementations of class [Logger](@ref #com::aworx::lox::core::Logger) can be
+  created.
+
+- For debug logging, class [Log](@ref #com::aworx::lox::Log) is the right interface in ALox (and an extremely 
+  simple way as well). All invocations related to class Log get easily pruned from your code.
+
+- To implement release logging (e.g. to send error states or usage info of a mobile app to a server)
+  an instance of class [Lox](@ref #com::aworx::lox::core::Lox) has to be created. The interface
+  into the Lox is almost 100% the same as the interface of [Log](@ref #com::aworx::lox::Log) which is used
+  for debug logging.
 
 
 */

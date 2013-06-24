@@ -16,10 +16,9 @@ namespace com.aworx.lox.core {
  * <summary>
  *  This is central class of the ALox logging implementation. It is **not** recommended to use this 
  *  class directly for logging. Instead, use the simple and convenient static interface class 
- *  Log. 
+ *  Log or, for release logging and other more complex operations use a Lox instance.  
  *  The class is abstract. To implement an own log stream, derive a new Logger class and implement the
  *  abstract method #doLog().>
- * 
  * </summary>
  **************************************************************************************************/
 public abstract class Logger
@@ -108,11 +107,8 @@ public abstract class Logger
 	/** ***********************************************************************************************
 	 * <summary>	Constructs a logger. </summary>
 	 * <param name="name">	The name of the logger. </param>
-	 * <param name="csf">	(Optional) the caller source file. </param>
-	 * <param name="cln">	(Optional) the caller line number. </param>
-	 * <param name="cmn">	(Optional) name of the caller member. </param>
 	 **************************************************************************************************/
-	protected Logger( String name, String csf, int cln, String cmn )
+	protected Logger( String name )
 
 	{
 		// save parameters

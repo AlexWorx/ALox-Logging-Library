@@ -32,7 +32,7 @@ public class MemoryLogger : TextLogger
 	 *  The logging Buffer. This can be accessed publicly and hence used as you prefer. Especially,
 	 *  the whole log can easily be cleared using the MString.Clear(). However, in
 	 *  multithreaded environments, locking to the Log interface's mutex should be performed before
-	 *  accessing this Buffer.
+	 *  accessing this Buffer. The initial size of the buffer is 8kb.
 	 * </summary>
 	 */
 	public		MString			Buffer							= new MString( 8192 );
@@ -63,15 +63,11 @@ public class MemoryLogger : TextLogger
 	// #################################################################################################
 
 	/** ***********************************************************************************************
-	 * <summary>	Simple constructor. Initializes the internal Buffer to 8kb. </summary>
+	 * <summary>	Creates a MemoryLogger with the given name. </summary>
 	 * <param name="name">	(Optional) The name of the logger. Defaults to "MEMORY". </param>
-	 * <param name="csf"> 	(Optional) Caller info, compiler generated. Please omit. </param>
-	 * <param name="cln"> 	(Optional) Caller info, compiler generated. Please omit. </param>
-	 * <param name="cmn"> 	(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
-	public MemoryLogger( String	name= "MEMORY",
-						 [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
-	: base( name, csf, cln, cmn )
+	public MemoryLogger( String	name= "MEMORY" )
+	: base( name )
 	{
 	}
 

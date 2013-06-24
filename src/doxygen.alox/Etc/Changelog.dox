@@ -8,7 +8,6 @@
 
 /**
 \page changelog         Change Log
-==========================================================
 
 Historically, there existed a kind of predecessor of this library for C++ and JAVA and was
 more or less maintained since the the year 1999. However this is a complete rewrite with C# 
@@ -18,9 +17,10 @@ The first released version was Version 1.0.1 in **May 2013**.
 
 This change log is sorted reversely in respect to chronology. 
 
-## Version 1.0.4, not released yet ##
+## Version 1.0.4, released June 24th, 2013 ##
 - JAVA Version (including Android LogCat support) is **on its way**. It is almost "feature complete", but not in a 
-  state of beeing released, yet. Stay tuned!
+  state of being released, yet. Stay tuned!
+- Two manual chapters written.
 - Various internal improvements of speed and code consistence.
 - Changed the type of parameter "msg" in all logging methods of classes Log, Lox and Logger from String (or MString) 
   to Object. Only TextLogger will then identify different string-types (e.g. String, StringBuilder, StringBuffer, 
