@@ -1,0 +1,6 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html" title="This is central class of the ALox logging implementation. It is not recommended to use this class dir..." alt="" coords="5,31,184,57"/>
+<area shape="rect" id="node2" href="$classcom_1_1aworx_1_1lox_1_1_text_logger.html" title="This class is a still abstract implementation of class Logger. All message objects passed to doLog ar..." alt="" coords="233,31,407,57"/>
+<area shape="rect" id="node3" href="$classcom_1_1aworx_1_1lox_1_1_console_logger.html" title="A logger that logs all messages to the VStudio IDE output window (using System.Diagnostics.Debug.WriteLine()) and/or to the application console (using Console.WriteLine()). " alt="" coords="457,5,653,32"/>
+<area shape="rect" id="node4" href="$classcom_1_1aworx_1_1lox_1_1_memory_logger.html" title="A logger that logs all messages to a in&#45;memory buffer of type MString. The name of the logger default..." alt="" coords="457,56,653,83"/>
+</map>

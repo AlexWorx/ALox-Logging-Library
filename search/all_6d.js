@@ -17,7 +17,7 @@ var searchData=
   ['mapthreadname',['MapThreadName',['../classcom_1_1aworx_1_1lox_1_1core_1_1_lox.html#a2a258e359adab6e70370ba48328c30a3',1,'com.aworx.lox.core.Lox.MapThreadName()'],['../classcom_1_1aworx_1_1lox_1_1_log.html#a948072fed8b6219fac157d13a47f5451',1,'com.aworx.lox.Log.MapThreadName()']]],
   ['markers',['markers',['../classcom_1_1aworx_1_1lox_1_1core_1_1_lox.html#a41c5f4acf0ca123b32d16bb0451f8145',1,'com::aworx::lox::core::Lox']]],
   ['measure',['Measure',['../structcom_1_1aworx_1_1util_1_1_tick_time.html#afe38bfc9e0f7eece35dbc2015a662a8c',1,'com::aworx::util::TickTime']]],
-  ['memorylogger',['MemoryLogger',['../classcom_1_1aworx_1_1lox_1_1_memory_logger.html#a3f12a4f9ccf42e19716a6d17dbb955a3',1,'com::aworx::lox::MemoryLogger']]],
+  ['memorylogger',['MemoryLogger',['../classcom_1_1aworx_1_1lox_1_1_memory_logger.html#aee528eb495e52533394ac539650a70ac',1,'com::aworx::lox::MemoryLogger']]],
   ['memorylogger',['MemoryLogger',['../classcom_1_1aworx_1_1lox_1_1_memory_logger.html',1,'com::aworx::lox']]],
   ['memorylogger_2ecs',['MemoryLogger.cs',['../_memory_logger_8cs.html',1,'']]],
   ['method',['Method',['../classcom_1_1aworx_1_1lox_1_1_log.html#acdd233c7217fd72c6d2cbcc8513925f3a4c3880bb027f159e801041b1021e88e8',1,'com::aworx::lox::Log']]],

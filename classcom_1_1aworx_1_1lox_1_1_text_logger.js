@@ -1,6 +1,6 @@
 var classcom_1_1aworx_1_1lox_1_1_text_logger =
 [
-    [ "TextLogger", "classcom_1_1aworx_1_1lox_1_1_text_logger.html#a796d82742fcbc47aa00113e0c64fa9ee", null ],
+    [ "TextLogger", "classcom_1_1aworx_1_1lox_1_1_text_logger.html#a1630aaffb5d8a9b6c71bcbbdafb94927", null ],
     [ "doLog", "classcom_1_1aworx_1_1lox_1_1_text_logger.html#a7aeea8104fc12d46eb36d2b16dba35b3", null ],
     [ "doTextLog", "classcom_1_1aworx_1_1lox_1_1_text_logger.html#aebefbc84fb2dd9cc5e1abb38f8815e2b", null ],
     [ "logTimeDiff", "classcom_1_1aworx_1_1lox_1_1_text_logger.html#ae38c0ec59b362e0fa2f33bbe191a1d0e", null ],

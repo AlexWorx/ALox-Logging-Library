@@ -1,6 +1,6 @@
 var classcom_1_1aworx_1_1lox_1_1_memory_logger =
 [
-    [ "MemoryLogger", "classcom_1_1aworx_1_1lox_1_1_memory_logger.html#a3f12a4f9ccf42e19716a6d17dbb955a3", null ],
+    [ "MemoryLogger", "classcom_1_1aworx_1_1lox_1_1_memory_logger.html#aee528eb495e52533394ac539650a70ac", null ],
     [ "doTextLog", "classcom_1_1aworx_1_1lox_1_1_memory_logger.html#a424ea1249d5adff011d69f2dccf2ff1f", null ],
     [ "Buffer", "classcom_1_1aworx_1_1lox_1_1_memory_logger.html#a78e8be065402cebb73a9436466ec321c", null ],
     [ "FormatMemberPostfix", "classcom_1_1aworx_1_1lox_1_1_memory_logger.html#a68043aaaf7833c20c6f8584b40185220", null ],

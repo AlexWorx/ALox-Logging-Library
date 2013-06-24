@@ -103,16 +103,64 @@ $(document).ready(function(){initNavTree('man_alox_architecture.html','');});
 <div class="title">Overview of the ALox architecture </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="man_alox_architecture_class_hierarchy"></a>
-class hierarchy Log, Lox, Loggers etc</h1>
-<p>This chapter is not written, yet :-( </p>
+<div class="toc"><h3>Table of Contents</h3>
+<ul><li class="level1"><a href="#man_alox_architecture_logger">class Logger: Where the log information is streamed to</a></li>
+<li class="level1"><a href="#man_alox_architecture_lox">class Lox: The interface into the loggers</a></li>
+<li class="level1"><a href="#man_alox_architecture_log">static class Log: Debug logging made very easy</a></li>
+<li class="level1"><a href="#man_alox_architecture_summary">Summary</a></li>
+</ul>
+</div>
+<div class="textblock"><h1><a class="anchor" id="man_alox_architecture_logger"></a>
+class Logger: Where the log information is streamed to</h1>
+<p>ALox is designed to support different log streams. A log stream is a destination of log messages and can be the IDE console, the terminal console, a file, a web service or anything that accepts data streams. The abstract class <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html">Logger</a> represents such log stream. While some implementations of class Logger are provided with the ALox package, the system allows custom implementations of Loggers that log information to any 'data drain' in any format you like. (See <a class="el" href="man_custom_loggers.html">Creating a custom Logger class</a>.)</p>
+<div align="center">
+<img src="dot_inline_dotgraph_1.png" alt="dot_inline_dotgraph_1.png" border="0" usemap="#dot_inline_dotgraph_1.map"/>
+<map name="dot_inline_dotgraph_1.map" id="dot_inline_dotgraph_1.map"><area shape="rect" id="node1" href="classcom_1_1aworx_1_1lox_1_1core_1_1_lox.html" title="Logger" alt="" coords="223,121,307,170"/><area shape="rect" id="node2" href="classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html" title="ConsoleLogger" alt="" coords="5,6,160,55"/><area shape="poly" id="edge1" href="classcom_1_1aworx_1_1lox_1_1core_1_1_lox.html#a7a1b842eec5e838b9186cf1efe45a662" title="extends" alt="" coords="121,53,218,112,215,116,119,57"/><area shape="rect" id="edge1-label" href="classcom_1_1aworx_1_1lox_1_1core_1_1_lox.html#a7a1b842eec5e838b9186cf1efe45a662" title="extends" alt="" coords="185,81,232,95"/><area shape="rect" id="node3" href="classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html" title="Memory Logger" alt="" coords="184,6,347,55"/><area shape="poly" id="edge2" href="classcom_1_1aworx_1_1lox_1_1core_1_1_lox.html#a7a1b842eec5e838b9186cf1efe45a662" title="extends" alt="" coords="268,55,268,108,263,108,263,55"/><area shape="rect" id="edge2-label" href="classcom_1_1aworx_1_1lox_1_1core_1_1_lox.html#a7a1b842eec5e838b9186cf1efe45a662" title="extends" alt="" coords="265,81,312,95"/><area shape="rect" id="node4" href="classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html" title="My Custom Logger" alt="" coords="371,6,561,55"/><area shape="poly" id="edge3" href="classcom_1_1aworx_1_1lox_1_1core_1_1_lox.html#a7a1b842eec5e838b9186cf1efe45a662" title="extends" alt="" coords="427,57,319,117,317,112,424,53"/><area shape="rect" id="edge3-label" href="classcom_1_1aworx_1_1lox_1_1core_1_1_lox.html#a7a1b842eec5e838b9186cf1efe45a662" title="extends" alt="" coords="379,81,425,95"/></map>
+</div>
+<p>An application that supports different loggers at once, might decide to log only a subset of the log messages to each of the loggers. To achieve this, each Logger allows to configure log domain levels separately. The same log domain can be enabled in one Logger, but disabled in another Logger.</p>
+<p><br/>
+ </p>
+<h1><a class="anchor" id="man_alox_architecture_lox"></a>
+class Lox: The interface into the loggers</h1>
+<p>The interface of class Logger is very basic and not intended to be used directly to perform any logging. Furthermore, if one log message should go to more than one Logger, then each logger has to be invoked.</p>
+<p>To achieve both (have a convenient interface and dispatch log messages to more than one Logger), ALox provides class <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1_lox.html">Lox</a>. It acts as a container for all Loggers that are created during the lifecycle of an application. In rare cases of complex logging scenarios, even multiple instances of that class might be created with different Loggers contained.</p>
+<div align="center">
+<img src="dot_inline_dotgraph_2.png" alt="dot_inline_dotgraph_2.png" border="0" usemap="#dot_inline_dotgraph_2.map"/>
+<map name="dot_inline_dotgraph_2.map" id="dot_inline_dotgraph_2.map"><area shape="rect" id="node1" href="classcom_1_1aworx_1_1lox_1_1core_1_1_lox.html" title="Lox" alt="" coords="137,6,209,55"/><area shape="rect" id="node2" href="classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html" title="ConsoleLogger" alt="" coords="5,121,160,170"/><area shape="poly" id="edge1" href="classcom_1_1aworx_1_1lox_1_1core_1_1_lox.html#a7a1b842eec5e838b9186cf1efe45a662" title="contains" alt="" coords="157,57,112,112,108,109,152,54"/><area shape="rect" id="edge1-label" href="classcom_1_1aworx_1_1lox_1_1core_1_1_lox.html#a7a1b842eec5e838b9186cf1efe45a662" title="contains" alt="" coords="135,81,184,95"/><area shape="rect" id="node3" href="classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html" title="Memory Logger" alt="" coords="184,121,347,170"/><area shape="poly" id="edge2" href="classcom_1_1aworx_1_1lox_1_1core_1_1_lox.html#a7a1b842eec5e838b9186cf1efe45a662" title="contains" alt="" coords="194,54,240,109,236,112,190,57"/><area shape="rect" id="edge2-label" href="classcom_1_1aworx_1_1lox_1_1core_1_1_lox.html#a7a1b842eec5e838b9186cf1efe45a662" title="contains" alt="" coords="224,81,273,95"/></map>
+</div>
+<p>Various methods of class Lox provide an optional parameter to filter the command to certain Loggers only. The standard use of such filters is to apply different log domain settings to different Loggers contained in the Lox instance. Once the domain levels are properly set, log messages are automatically appearing in the right loggers (none, some or all) depending on the log domain and log level specified in the log statement. However, there is also the possibility to filter log statements directly against Logger names. For standard scenarios this is not recommended, because the flexibility to add new Loggers (for new log formats or log message data drains) might be lost.</p>
+<p><br/>
+ </p>
+<h1><a class="anchor" id="man_alox_architecture_log"></a>
+static class Log: Debug logging made very easy</h1>
+<p>There are two fundamental logging scenarios that we call <b>debug logging</b> and <b>release logging</b>. Debug logging is exclusively to support the software developer during the development process. By definition, debug log statements are unavailable in the release version of an application (in the best case completely pruned). Release log statements are not.</p>
+<p>Debug logging should be included in any software development process, similar to code documentation, unit testing, etc. Instead of the inclusion of temporary debug print statements, well phrased debug messages should be included into the code and never removed.</p>
+<p>One of the design goals of ALox is to support both debug logging as well as release logging and both at the same time. This means, that the logging ecosystem needs to "know" which log statements are to be executed in which scenario.</p>
+<p>For various reasons (performance, code size, security, etc), debug log statements should be disabled and removed (pruned) from the release version of a software.</p>
+<p>To achieve all goals and provide a very simple interface into debug logging, the ALox ecosystem provides class <a class="el" href="classcom_1_1aworx_1_1lox_1_1_log.html">Log</a>. This class is a 100% static interface into class Lox. In other words, class Log creates and holds exaclty one static instance of class Lox and mimics the complete interface of that instance into corresponding static methods.</p>
+<div align="center">
+<img src="dot_inline_dotgraph_3.png" alt="dot_inline_dotgraph_3.png" border="0" usemap="#dot_inline_dotgraph_3.map"/>
+<map name="dot_inline_dotgraph_3.map" id="dot_inline_dotgraph_3.map"><area shape="rect" id="node1" href="classcom_1_1aworx_1_1lox_1_1core_1_1_lox.html" title="Log" alt="" coords="137,6,209,55"/><area shape="rect" id="node2" href="classcom_1_1aworx_1_1lox_1_1core_1_1_lox.html" title="Lox" alt="" coords="137,121,209,170"/><area shape="poly" id="edge1" href="classcom_1_1aworx_1_1lox_1_1core_1_1_lox.html#a7a1b842eec5e838b9186cf1efe45a662" title="1:1 static interface" alt="" coords="176,55,176,108,171,108,171,55"/><area shape="rect" id="edge1-label" href="classcom_1_1aworx_1_1lox_1_1core_1_1_lox.html#a7a1b842eec5e838b9186cf1efe45a662" title="1:1 static interface" alt="" coords="173,81,281,95"/><area shape="rect" id="node3" href="classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html" title="ConsoleLogger" alt="" coords="5,235,160,285"/><area shape="poly" id="edge2" href="classcom_1_1aworx_1_1lox_1_1core_1_1_lox.html#a7a1b842eec5e838b9186cf1efe45a662" title="contains" alt="" coords="157,172,112,227,108,224,152,168"/><area shape="rect" id="edge2-label" href="classcom_1_1aworx_1_1lox_1_1core_1_1_lox.html#a7a1b842eec5e838b9186cf1efe45a662" title="contains" alt="" coords="135,195,184,210"/><area shape="rect" id="node4" href="classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html" title="Memory Logger" alt="" coords="184,235,347,285"/><area shape="poly" id="edge3" href="classcom_1_1aworx_1_1lox_1_1core_1_1_lox.html#a7a1b842eec5e838b9186cf1efe45a662" title="contains" alt="" coords="194,168,240,224,236,227,190,172"/><area shape="rect" id="edge3-label" href="classcom_1_1aworx_1_1lox_1_1core_1_1_lox.html#a7a1b842eec5e838b9186cf1efe45a662" title="contains" alt="" coords="224,195,273,210"/></map>
+</div>
+<p>The assumption (restriction) that is taken here, is that debug logging is implemented by using only one Lox. This should be sufficient for most scenarios, because, as described above, within that Lox instance various Loggers with own log domain settings will provide a lot of flexibility to log different types of messages within a complex software into different streams and manipulate the verbosity for each stream accordingly.</p>
+<p>Depending on the platform and language, ALox provides a feature to automatically prune all statements that are deemed to be debug logging.</p>
+<p><br/>
+ </p>
+<h1><a class="anchor" id="man_alox_architecture_summary"></a>
+Summary</h1>
+<p>The following summarizes the takeaways of this chapter:</p>
+<ul>
+<li>To implement own log data drains (streams to log into, like databases, web services, etc.) and own log formats, custom implementations of class <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html">Logger</a> can be created.</li>
+<li>For debug logging, class <a class="el" href="classcom_1_1aworx_1_1lox_1_1_log.html">Log</a> is the right interface in ALox (and an extremely simple way as well). All invocations related to class Log get easily pruned from your code.</li>
+<li>To implement release logging (e.g. to send error states or usage info of a mobile app to a server) an instance of class <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1_lox.html">Lox</a> has to be created. The interface into the Lox is almost 100% the same as the interface of <a class="el" href="classcom_1_1aworx_1_1lox_1_1_log.html">Log</a> which is used for debug logging. </li>
+</ul>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="manual.html">User Manual</a></li><li class="navelem"><a class="el" href="man_concepts.html">Concepts of ALox Logging</a></li>
-    <li class="footer">Generated on Tue Jun 18 2013 20:57:09 for ALox by
+    <li class="footer">Generated on Mon Jun 24 2013 20:01:01 for ALox by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

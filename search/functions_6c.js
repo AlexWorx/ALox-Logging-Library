@@ -4,6 +4,6 @@ var searchData=
   ['logconfig',['LogConfig',['../classcom_1_1aworx_1_1lox_1_1core_1_1_lox.html#a470982b7f02f05f3b20694582b734f2b',1,'com.aworx.lox.core.Lox.LogConfig()'],['../classcom_1_1aworx_1_1lox_1_1_log.html#a9238fe538184f3f6b150dc371e8d2a6a',1,'com.aworx.lox.Log.LogConfig()']]],
   ['logconfigdomainrecursive',['logConfigDomainRecursive',['../classcom_1_1aworx_1_1lox_1_1core_1_1_lox.html#a67c5123cb83e8157e32530be5d9bceb5',1,'com::aworx::lox::core::Lox']]],
   ['logdomain',['LogDomain',['../classcom_1_1aworx_1_1lox_1_1core_1_1_log_domain.html#a668c9e324601987923cb8572451a83d8',1,'com::aworx::lox::core::LogDomain']]],
-  ['logger',['Logger',['../classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html#a8ceca71c3009b93ba7943d873d625311',1,'com::aworx::lox::core::Logger']]],
+  ['logger',['Logger',['../classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html#a36a7cc26ec652a027d154dfd5a41ff4c',1,'com::aworx::lox::core::Logger']]],
   ['logtimediff',['logTimeDiff',['../classcom_1_1aworx_1_1lox_1_1_text_logger.html#ae38c0ec59b362e0fa2f33bbe191a1d0e',1,'com::aworx::lox::TextLogger']]]
 ];

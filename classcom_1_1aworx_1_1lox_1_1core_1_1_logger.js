@@ -1,6 +1,6 @@
 var classcom_1_1aworx_1_1lox_1_1core_1_1_logger =
 [
-    [ "Logger", "classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html#a8ceca71c3009b93ba7943d873d625311", null ],
+    [ "Logger", "classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html#a36a7cc26ec652a027d154dfd5a41ff4c", null ],
     [ "checkDomain", "classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html#a97083a6f8e6a30e7942b293e6af9a83e", null ],
     [ "CreateDomain", "classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html#ae20ab4f70ad57d4428908a703a148f4b", null ],
     [ "doLog", "classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html#af49d951c50f39de578a359e76d348d78", null ],

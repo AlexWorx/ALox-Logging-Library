@@ -1,7 +1,7 @@
 var searchData=
 [
   ['tab',['Tab',['../classcom_1_1aworx_1_1util_1_1_m_string.html#ae260c41953530aaf27bd1496de9eac3d',1,'com::aworx::util::MString']]],
-  ['textlogger',['TextLogger',['../classcom_1_1aworx_1_1lox_1_1_text_logger.html#a796d82742fcbc47aa00113e0c64fa9ee',1,'com::aworx::lox::TextLogger']]],
+  ['textlogger',['TextLogger',['../classcom_1_1aworx_1_1lox_1_1_text_logger.html#a1630aaffb5d8a9b6c71bcbbdafb94927',1,'com::aworx::lox::TextLogger']]],
   ['threadlock',['ThreadLock',['../classcom_1_1aworx_1_1util_1_1_thread_lock.html#a19b8f32575ef82ebf31d83f0b9c7481d',1,'com::aworx::util::ThreadLock']]],
   ['ticktime',['TickTime',['../structcom_1_1aworx_1_1util_1_1_tick_time.html#acbf0e8ddd2c1361d29d2c0fed8d37bc5',1,'com.aworx.util.TickTime.TickTime(long otherTicks)'],['../structcom_1_1aworx_1_1util_1_1_tick_time.html#a6e4d216ba2241a0d9b88ce1c94574fe8',1,'com.aworx.util.TickTime.TickTime(TickTime copy)']]],
   ['todotnetdatetime',['ToDotNetDateTime',['../classcom_1_1aworx_1_1util_1_1_ticker.html#a2a3476d565c87be52cd7c26e9795832d',1,'com.aworx.util.Ticker.ToDotNetDateTime()'],['../structcom_1_1aworx_1_1util_1_1_tick_time.html#a94a04f648acd3a853226f3acab054a56',1,'com.aworx.util.TickTime.ToDotNetDateTime()']]],

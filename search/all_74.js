@@ -7,7 +7,7 @@ var searchData=
   ['tempdomainpath',['tempDomainPath',['../classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html#a27a0ef4dd6508dd84d2f4a16723c592d',1,'com::aworx::lox::core::Logger']]],
   ['tempms',['tempMS',['../classcom_1_1aworx_1_1lox_1_1core_1_1_lox.html#a0b661e30ec6d3fbade5b2975f4efde2f',1,'com::aworx::lox::core::Lox']]],
   ['textlogger',['TextLogger',['../classcom_1_1aworx_1_1lox_1_1_text_logger.html',1,'com::aworx::lox']]],
-  ['textlogger',['TextLogger',['../classcom_1_1aworx_1_1lox_1_1_text_logger.html#a796d82742fcbc47aa00113e0c64fa9ee',1,'com::aworx::lox::TextLogger']]],
+  ['textlogger',['TextLogger',['../classcom_1_1aworx_1_1lox_1_1_text_logger.html#a1630aaffb5d8a9b6c71bcbbdafb94927',1,'com::aworx::lox::TextLogger']]],
   ['textlogger_2ecs',['TextLogger.cs',['../_text_logger_8cs.html',1,'']]],
   ['threaddictionary',['ThreadDictionary',['../classcom_1_1aworx_1_1lox_1_1core_1_1_lox.html#a5fb133e2e68957f16388c2c876706965',1,'com::aworx::lox::core::Lox']]],
   ['threadid',['ThreadID',['../classcom_1_1aworx_1_1lox_1_1core_1_1_caller_info.html#a9bc2ed0bd7de2744315c063251a02dbc',1,'com::aworx::lox::core::CallerInfo']]],

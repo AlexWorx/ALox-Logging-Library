@@ -103,13 +103,13 @@ $(document).ready(function(){initNavTree('changelog.html','');});
 <div class="title">Change Log </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>==========================================================</p>
-<p>Historically, there existed a kind of predecessor of this library for C++ and JAVA and was more or less maintained since the the year 1999. However this is a complete rewrite with C# as the originating language.</p>
+<div class="textblock"><p>Historically, there existed a kind of predecessor of this library for C++ and JAVA and was more or less maintained since the the year 1999. However this is a complete rewrite with C# as the originating language.</p>
 <p>The first released version was Version 1.0.1 in <b>May 2013</b>.</p>
 <p>This change log is sorted reversely in respect to chronology.</p>
-<h2>Version 1.0.4, not released yet</h2>
+<h2>Version 1.0.4, released June 24th, 2013</h2>
 <ul>
-<li>JAVA Version (including Android LogCat support) is <b>on its way</b>. It is almost "feature complete", but not in a state of beeing released, yet. Stay tuned!</li>
+<li>JAVA Version (including Android LogCat support) is <b>on its way</b>. It is almost "feature complete", but not in a state of being released, yet. Stay tuned!</li>
+<li>Two manual chapters written.</li>
 <li>Various internal improvements of speed and code consistence.</li>
 <li>Changed the type of parameter "msg" in all logging methods of classes Log, Lox and Logger from String (or MString) to Object. Only TextLogger will then identify different string-types (e.g. String, StringBuilder, StringBuffer, MString, CharSequence, etc.) and handle them efficiently. Unknown types are converted using their ToString() function. Other Loggers might treat them differently. This should not affect your code base in respect to using the standard logging interface.</li>
 <li><p class="startli">Introduced the new enumeration <a class="el" href="classcom_1_1aworx_1_1lox_1_1_log.html#acdd233c7217fd72c6d2cbcc8513925f3">Log.Scope</a>. The scope is used by different methods as a parameter to define the applicable scope of a command. Scopes differ in different platform/languages supported by ALox. In C# the scope can be "Method" or "SourceFile" while in the upcoming JAVA version of ALox the scope "Package", "Class" and "Method" are defined. The difference is due to different mechanisms to automatically collect caller information.</p>
@@ -174,7 +174,7 @@ $(document).ready(function(){initNavTree('changelog.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="index.html">ALox Main Page</a></li>
-    <li class="footer">Generated on Tue Jun 18 2013 20:57:09 for ALox by
+    <li class="footer">Generated on Mon Jun 24 2013 20:00:59 for ALox by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

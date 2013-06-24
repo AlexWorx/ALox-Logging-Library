@@ -1,0 +1,10 @@
+<map id="com.aworx.lox.TextLogger" name="com.aworx.lox.TextLogger">
+<area shape="rect" id="node2" href="$classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html" title="This is central class of the ALox logging implementation. It is not recommended to use this class dir..." alt="" coords="527,493,588,520"/>
+<area shape="rect" id="node3" href="$classcom_1_1aworx_1_1lox_1_1core_1_1_log_domain.html" title="Class LogDomain represents a logging Domain. Each log statement refers to such a domain which can be ..." alt="" coords="293,403,496,429"/>
+<area shape="rect" id="node4" href="$classcom_1_1aworx_1_1lox_1_1_log.html" title="This is a simple, 100% static wrapper of class Lox. In other words, this class incorporates one stati..." alt="" coords="329,311,460,337"/>
+<area shape="rect" id="node5" href="$classcom_1_1aworx_1_1lox_1_1core_1_1_lox.html" title="This class acts as a container for Loggers and provides a convenient interface into them..." alt="" coords="315,205,475,232"/>
+<area shape="rect" id="node6" href="$classcom_1_1aworx_1_1util_1_1_m_string.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen..." alt="" coords="317,5,472,32"/>
+<area shape="rect" id="node8" href="$classcom_1_1aworx_1_1lox_1_1core_1_1_caller_info.html" title="Encapsulates information of the caller that can be collected. This is platform specific, in this case, .NET 4.5. What we currently can get from the .NET compiler, is the source file name of the calling code, the line number within the source file name and the name of the method the call is placed. We do not get the class name of the object or even its instance. " alt="" coords="496,105,688,132"/>
+<area shape="rect" id="node7" href="$classcom_1_1aworx_1_1util_1_1_thread_lock.html" title="This class allows mutal exclusive access to resources that the using software agrees on to protect wi..." alt="" coords="169,105,345,132"/>
+<area shape="rect" id="node9" href="$structcom_1_1aworx_1_1util_1_1_tick_time.html" title="This class encapsulates a system dependent time value (ticks) and uses the static class Ticker to get..." alt="" coords="636,5,799,32"/>
+</map>

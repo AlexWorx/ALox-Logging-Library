@@ -73,7 +73,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -123,24 +123,21 @@ $(document).ready(function(){initNavTree('classcom_1_1aworx_1_1lox_1_1_memory_lo
 <div class="dynheader">
 Inheritance diagram for com.aworx.lox.MemoryLogger:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="classcom_1_1aworx_1_1lox_1_1_memory_logger.png" usemap="#com.aworx.lox.MemoryLogger_map" alt=""/>
-  <map id="com.aworx.lox.MemoryLogger_map" name="com.aworx.lox.MemoryLogger_map">
-<area href="classcom_1_1aworx_1_1lox_1_1_text_logger.html" title="This is central class of the ALox logging implementation. However, for the simple use of A- Worx logg..." alt="com.aworx.lox.TextLogger" shape="rect" coords="0,56,183,80"/>
-<area href="classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html" title="This is central class of the ALox logging implementation. It is not recommended to use this class dir..." alt="com.aworx.lox.core.Logger" shape="rect" coords="0,0,183,24"/>
-</map>
- </div></div>
+<div class="center"><img src="classcom_1_1aworx_1_1lox_1_1_memory_logger__inherit__graph.png" border="0" usemap="#com_8aworx_8lox_8_memory_logger_inherit__map" alt="Inheritance graph"/></div>
+<map name="com_8aworx_8lox_8_memory_logger_inherit__map" id="com_8aworx_8lox_8_memory_logger_inherit__map">
+<area shape="rect" id="node2" href="classcom_1_1aworx_1_1lox_1_1_text_logger.html" title="This class is a still abstract implementation of class Logger. All message objects passed to doLog ar..." alt="" coords="59,80,145,107"/><area shape="rect" id="node3" href="classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html" title="This is central class of the ALox logging implementation. It is not recommended to use this class dir..." alt="" coords="72,5,133,32"/></map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3f12a4f9ccf42e19716a6d17dbb955a3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1_memory_logger.html#a3f12a4f9ccf42e19716a6d17dbb955a3">MemoryLogger</a> (String name=&quot;MEMORY&quot;,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
-<tr class="memdesc:a3f12a4f9ccf42e19716a6d17dbb955a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple constructor. Initializes the internal Buffer to 8kb.  <a href="#a3f12a4f9ccf42e19716a6d17dbb955a3">More...</a><br/></td></tr>
-<tr class="separator:a3f12a4f9ccf42e19716a6d17dbb955a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee528eb495e52533394ac539650a70ac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1_memory_logger.html#aee528eb495e52533394ac539650a70ac">MemoryLogger</a> (String name=&quot;MEMORY&quot;)</td></tr>
+<tr class="memdesc:aee528eb495e52533394ac539650a70ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <a class="el" href="classcom_1_1aworx_1_1lox_1_1_memory_logger.html" title="A logger that logs all messages to a in-memory buffer of type MString. The name of the logger default...">MemoryLogger</a> with the given name.  <a href="#aee528eb495e52533394ac539650a70ac">More...</a><br/></td></tr>
+<tr class="separator:aee528eb495e52533394ac539650a70ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a78e8be065402cebb73a9436466ec321c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1_memory_logger.html#a78e8be065402cebb73a9436466ec321c">Buffer</a> = new <a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html">MString</a>( 8192 )</td></tr>
-<tr class="memdesc:a78e8be065402cebb73a9436466ec321c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The logging Buffer. This can be accessed publicly and hence used as you prefer. Especially, the whole log can easily be cleared using the MString.Clear(). However, in multithreaded environments, locking to the <a class="el" href="classcom_1_1aworx_1_1lox_1_1_log.html" title="This is a simple, 100% static wrapper of class Lox. In other words, this class incorporates one stati...">Log</a> interface's mutex should be performed before accessing this Buffer.  <a href="#a78e8be065402cebb73a9436466ec321c">More...</a><br/></td></tr>
+<tr class="memdesc:a78e8be065402cebb73a9436466ec321c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The logging Buffer. This can be accessed publicly and hence used as you prefer. Especially, the whole log can easily be cleared using the MString.Clear(). However, in multithreaded environments, locking to the <a class="el" href="classcom_1_1aworx_1_1lox_1_1_log.html" title="This is a simple, 100% static wrapper of class Lox. In other words, this class incorporates one stati...">Log</a> interface's mutex should be performed before accessing this Buffer. The initial size of the buffer is 8kb.  <a href="#a78e8be065402cebb73a9436466ec321c">More...</a><br/></td></tr>
 <tr class="separator:a78e8be065402cebb73a9436466ec321c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adfedf2e3f70907beb65563a5c3d3ad11"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1_memory_logger.html#adfedf2e3f70907beb65563a5c3d3ad11">FormatMemberPrefix</a> =&quot;.&quot;</td></tr>
 <tr class="memdesc:adfedf2e3f70907beb65563a5c3d3ad11"><td class="mdescLeft">&#160;</td><td class="mdescRight">The prefix for the caller method name  <a href="#adfedf2e3f70907beb65563a5c3d3ad11">More...</a><br/></td></tr>
@@ -159,7 +156,7 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a827a6e8c89a47014d1f1291af877b493 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1_text_logger"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if multi line messages should be split into different log lines. Possible values are: 0: No line split is performed, delimiters can be replaced by readable delimiters (depending on setting of <a class="el" href="classcom_1_1aworx_1_1lox_1_1_text_logger.html#ac6c951035330e56f3551061253b0ca6a" title="This is the string interpreted as line delimiter within log messages. If null, CR, LF or CRLF are used. Important: Set to empty string, to stop multi line processing of TextLogger ">MultiLineDelimiter</a> and # MultiLineDelimiterRepl).  <a href="#a827a6e8c89a47014d1f1291af877b493">More...</a><br/></td></tr>
 <tr class="separator:a827a6e8c89a47014d1f1291af877b493 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1_text_logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6c951035330e56f3551061253b0ca6a inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1_text_logger"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1_text_logger.html#ac6c951035330e56f3551061253b0ca6a">MultiLineDelimiter</a> = null</td></tr>
-<tr class="memdesc:ac6c951035330e56f3551061253b0ca6a inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1_text_logger"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the string interpreted as line delimiter within log messages. If null, CR, LF or CRLF are used. Important: Set to empty string, to stop multi line processing of <a class="el" href="classcom_1_1aworx_1_1lox_1_1_text_logger.html" title="This is central class of the ALox logging implementation. However, for the simple use of A- Worx logg...">TextLogger</a>  <a href="#ac6c951035330e56f3551061253b0ca6a">More...</a><br/></td></tr>
+<tr class="memdesc:ac6c951035330e56f3551061253b0ca6a inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1_text_logger"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the string interpreted as line delimiter within log messages. If null, CR, LF or CRLF are used. Important: Set to empty string, to stop multi line processing of <a class="el" href="classcom_1_1aworx_1_1lox_1_1_text_logger.html" title="This class is a still abstract implementation of class Logger. All message objects passed to doLog ar...">TextLogger</a>  <a href="#ac6c951035330e56f3551061253b0ca6a">More...</a><br/></td></tr>
 <tr class="separator:ac6c951035330e56f3551061253b0ca6a inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1_text_logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17d31a293e767885def01e3ef422f468 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1_text_logger"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1_text_logger.html#a17d31a293e767885def01e3ef422f468">MultiLineDelimiterRepl</a> = &quot;\\r&quot;</td></tr>
 <tr class="memdesc:a17d31a293e767885def01e3ef422f468 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1_text_logger"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the readable (!) separator string, for logging out multi line messages into a single line (<a class="el" href="classcom_1_1aworx_1_1lox_1_1_text_logger.html#a827a6e8c89a47014d1f1291af877b493" title="Determines if multi line messages should be split into different log lines. Possible values are: 0: N...">MultiLineMsgMode</a>==0).  <a href="#a17d31a293e767885def01e3ef422f468">More...</a><br/></td></tr>
@@ -322,22 +319,22 @@ Public Attributes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a424ea1249d5adff011d69f2dccf2ff1f"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1_memory_logger.html#a424ea1249d5adff011d69f2dccf2ff1f">doTextLog</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html">MString</a> domain, <a class="el" href="classcom_1_1aworx_1_1lox_1_1_log.html#ae5ddc74446d839b8f705736fecd11271">Log.Level</a> level, <a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html">MString</a> msg, int indent, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1_caller_info.html">CallerInfo</a> caller, int lineNumber)</td></tr>
-<tr class="memdesc:a424ea1249d5adff011d69f2dccf2ff1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The implementation of the abstract method of parent class <a class="el" href="classcom_1_1aworx_1_1lox_1_1_text_logger.html" title="This is central class of the ALox logging implementation. However, for the simple use of A- Worx logg...">TextLogger</a>. Logs messages to the Buffer field.  <a href="#a424ea1249d5adff011d69f2dccf2ff1f">More...</a><br/></td></tr>
+<tr class="memdesc:a424ea1249d5adff011d69f2dccf2ff1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The implementation of the abstract method of parent class <a class="el" href="classcom_1_1aworx_1_1lox_1_1_text_logger.html" title="This class is a still abstract implementation of class Logger. All message objects passed to doLog ar...">TextLogger</a>. Logs messages to the Buffer field.  <a href="#a424ea1249d5adff011d69f2dccf2ff1f">More...</a><br/></td></tr>
 <tr class="separator:a424ea1249d5adff011d69f2dccf2ff1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classcom_1_1aworx_1_1lox_1_1_text_logger"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classcom_1_1aworx_1_1lox_1_1_text_logger')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classcom_1_1aworx_1_1lox_1_1_text_logger.html">com.aworx.lox.TextLogger</a></td></tr>
-<tr class="memitem:a796d82742fcbc47aa00113e0c64fa9ee inherit pro_methods_classcom_1_1aworx_1_1lox_1_1_text_logger"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1_text_logger.html#a796d82742fcbc47aa00113e0c64fa9ee">TextLogger</a> (String name, String csf, int cln, String cmn)</td></tr>
-<tr class="memdesc:a796d82742fcbc47aa00113e0c64fa9ee inherit pro_methods_classcom_1_1aworx_1_1lox_1_1_text_logger"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a logger.  <a href="#a796d82742fcbc47aa00113e0c64fa9ee">More...</a><br/></td></tr>
-<tr class="separator:a796d82742fcbc47aa00113e0c64fa9ee inherit pro_methods_classcom_1_1aworx_1_1lox_1_1_text_logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1630aaffb5d8a9b6c71bcbbdafb94927 inherit pro_methods_classcom_1_1aworx_1_1lox_1_1_text_logger"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1_text_logger.html#a1630aaffb5d8a9b6c71bcbbdafb94927">TextLogger</a> (String name)</td></tr>
+<tr class="memdesc:a1630aaffb5d8a9b6c71bcbbdafb94927 inherit pro_methods_classcom_1_1aworx_1_1lox_1_1_text_logger"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a logger.  <a href="#a1630aaffb5d8a9b6c71bcbbdafb94927">More...</a><br/></td></tr>
+<tr class="separator:a1630aaffb5d8a9b6c71bcbbdafb94927 inherit pro_methods_classcom_1_1aworx_1_1lox_1_1_text_logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7aeea8104fc12d46eb36d2b16dba35b3 inherit pro_methods_classcom_1_1aworx_1_1lox_1_1_text_logger"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1_text_logger.html#a7aeea8104fc12d46eb36d2b16dba35b3">doLog</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html">MString</a> domain, <a class="el" href="classcom_1_1aworx_1_1lox_1_1_log.html#ae5ddc74446d839b8f705736fecd11271">Log.Level</a> level, Object msgObject, int indent, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1_caller_info.html">CallerInfo</a> caller)</td></tr>
-<tr class="memdesc:a7aeea8104fc12d46eb36d2b16dba35b3 inherit pro_methods_classcom_1_1aworx_1_1lox_1_1_text_logger"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates all the textual information that is logged in a line before the message itself.  <a href="#a7aeea8104fc12d46eb36d2b16dba35b3">More...</a><br/></td></tr>
+<tr class="memdesc:a7aeea8104fc12d46eb36d2b16dba35b3 inherit pro_methods_classcom_1_1aworx_1_1lox_1_1_text_logger"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementation of Logger.doLog(). Creates all the textual information that is logged in a line before the message itself.  <a href="#a7aeea8104fc12d46eb36d2b16dba35b3">More...</a><br/></td></tr>
 <tr class="separator:a7aeea8104fc12d46eb36d2b16dba35b3 inherit pro_methods_classcom_1_1aworx_1_1lox_1_1_text_logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae38c0ec59b362e0fa2f33bbe191a1d0e inherit pro_methods_classcom_1_1aworx_1_1lox_1_1_text_logger"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1_text_logger.html#ae38c0ec59b362e0fa2f33bbe191a1d0e">logTimeDiff</a> (long diffMicros)</td></tr>
 <tr class="memdesc:ae38c0ec59b362e0fa2f33bbe191a1d0e inherit pro_methods_classcom_1_1aworx_1_1lox_1_1_text_logger"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs time difference into the log buffer, from micro seconds to days.  <a href="#ae38c0ec59b362e0fa2f33bbe191a1d0e">More...</a><br/></td></tr>
 <tr class="separator:ae38c0ec59b362e0fa2f33bbe191a1d0e inherit pro_methods_classcom_1_1aworx_1_1lox_1_1_text_logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classcom_1_1aworx_1_1lox_1_1core_1_1_logger"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classcom_1_1aworx_1_1lox_1_1core_1_1_logger')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html">com.aworx.lox.core.Logger</a></td></tr>
-<tr class="memitem:a8ceca71c3009b93ba7943d873d625311 inherit pro_methods_classcom_1_1aworx_1_1lox_1_1core_1_1_logger"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html#a8ceca71c3009b93ba7943d873d625311">Logger</a> (String name, String csf, int cln, String cmn)</td></tr>
-<tr class="memdesc:a8ceca71c3009b93ba7943d873d625311 inherit pro_methods_classcom_1_1aworx_1_1lox_1_1core_1_1_logger"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a logger.  <a href="#a8ceca71c3009b93ba7943d873d625311">More...</a><br/></td></tr>
-<tr class="separator:a8ceca71c3009b93ba7943d873d625311 inherit pro_methods_classcom_1_1aworx_1_1lox_1_1core_1_1_logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36a7cc26ec652a027d154dfd5a41ff4c inherit pro_methods_classcom_1_1aworx_1_1lox_1_1core_1_1_logger"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html#a36a7cc26ec652a027d154dfd5a41ff4c">Logger</a> (String name)</td></tr>
+<tr class="memdesc:a36a7cc26ec652a027d154dfd5a41ff4c inherit pro_methods_classcom_1_1aworx_1_1lox_1_1core_1_1_logger"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a logger.  <a href="#a36a7cc26ec652a027d154dfd5a41ff4c">More...</a><br/></td></tr>
+<tr class="separator:a36a7cc26ec652a027d154dfd5a41ff4c inherit pro_methods_classcom_1_1aworx_1_1lox_1_1core_1_1_logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97083a6f8e6a30e7942b293e6af9a83e inherit pro_methods_classcom_1_1aworx_1_1lox_1_1core_1_1_logger"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html#a97083a6f8e6a30e7942b293e6af9a83e">checkDomain</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html">MString</a> domain, <a class="el" href="classcom_1_1aworx_1_1lox_1_1_log.html#ae5ddc74446d839b8f705736fecd11271">Log.Level</a> level, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1_caller_info.html">CallerInfo</a> caller)</td></tr>
 <tr class="memdesc:a97083a6f8e6a30e7942b293e6af9a83e inherit pro_methods_classcom_1_1aworx_1_1lox_1_1core_1_1_logger"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a given domain is active in respect to the given <a class="el" href="classcom_1_1aworx_1_1lox_1_1_log.html#ae5ddc74446d839b8f705736fecd11271" title="These are the levels of log verbosity used in a log call. ">Log.Level</a>.  <a href="#a97083a6f8e6a30e7942b293e6af9a83e">More...</a><br/></td></tr>
 <tr class="separator:a97083a6f8e6a30e7942b293e6af9a83e inherit pro_methods_classcom_1_1aworx_1_1lox_1_1core_1_1_logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -379,7 +376,7 @@ Protected Attributes</h2></td></tr>
 <div class="textblock"><p>A logger that logs all messages to a in-memory buffer of type MString. The name of the logger defaults to "MEMORY". </p>
 <hr/>
  </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a3f12a4f9ccf42e19716a6d17dbb955a3"></a>
+<a class="anchor" id="aee528eb495e52533394ac539650a70ac"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -387,42 +384,17 @@ Protected Attributes</h2></td></tr>
           <td class="memname">com.aworx.lox.MemoryLogger.MemoryLogger </td>
           <td>(</td>
           <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>name</em> = <code>&quot;MEMORY&quot;</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>name</em> = <code>&quot;MEMORY&quot;</code>)</td><td></td>
           <td></td>
-          <td class="paramtype">[CallerFilePath] String&#160;</td>
-          <td class="paramname"><em>csf</em> = <code>&quot;&quot;</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">[CallerLineNumber] int&#160;</td>
-          <td class="paramname"><em>cln</em> = <code>0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">[CallerMemberName] String&#160;</td>
-          <td class="paramname"><em>cmn</em> = <code>&quot;&quot;</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Simple constructor. Initializes the internal Buffer to 8kb. </p>
+<p>Creates a <a class="el" href="classcom_1_1aworx_1_1lox_1_1_memory_logger.html" title="A logger that logs all messages to a in-memory buffer of type MString. The name of the logger default...">MemoryLogger</a> with the given name. </p>
 <hr/>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>(Optional) The name of the logger. Defaults to "MEMORY". </td></tr>
-    <tr><td class="paramname">csf</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
-    <tr><td class="paramname">cln</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
-    <tr><td class="paramname">cmn</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
   </table>
   </dd>
 </dl>
@@ -486,7 +458,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The implementation of the abstract method of parent class <a class="el" href="classcom_1_1aworx_1_1lox_1_1_text_logger.html" title="This is central class of the ALox logging implementation. However, for the simple use of A- Worx logg...">TextLogger</a>. Logs messages to the Buffer field. </p>
+<p>The implementation of the abstract method of parent class <a class="el" href="classcom_1_1aworx_1_1lox_1_1_text_logger.html" title="This class is a still abstract implementation of class Logger. All message objects passed to doLog ar...">TextLogger</a>. Logs messages to the Buffer field. </p>
 <hr/>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -515,7 +487,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>The logging Buffer. This can be accessed publicly and hence used as you prefer. Especially, the whole log can easily be cleared using the MString.Clear(). However, in multithreaded environments, locking to the <a class="el" href="classcom_1_1aworx_1_1lox_1_1_log.html" title="This is a simple, 100% static wrapper of class Lox. In other words, this class incorporates one stati...">Log</a> interface's mutex should be performed before accessing this Buffer. </p>
+<p>The logging Buffer. This can be accessed publicly and hence used as you prefer. Especially, the whole log can easily be cleared using the MString.Clear(). However, in multithreaded environments, locking to the <a class="el" href="classcom_1_1aworx_1_1lox_1_1_log.html" title="This is a simple, 100% static wrapper of class Lox. In other words, this class incorporates one stati...">Log</a> interface's mutex should be performed before accessing this Buffer. The initial size of the buffer is 8kb. </p>
 
 </div>
 </div>
@@ -610,7 +582,7 @@ Protected Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacecom.html">com</a></li><li class="navelem"><a class="el" href="namespacecom_1_1aworx.html">aworx</a></li><li class="navelem"><a class="el" href="namespacecom_1_1aworx_1_1lox.html">lox</a></li><li class="navelem"><a class="el" href="classcom_1_1aworx_1_1lox_1_1_memory_logger.html">MemoryLogger</a></li>
-    <li class="footer">Generated on Tue Jun 18 2013 20:57:09 for ALox by
+    <li class="footer">Generated on Mon Jun 24 2013 20:01:02 for ALox by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

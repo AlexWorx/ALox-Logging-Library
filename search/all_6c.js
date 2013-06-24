@@ -18,13 +18,13 @@ var searchData=
   ['logdomain_2ecs',['LogDomain.cs',['../_log_domain_8cs.html',1,'']]],
   ['logdomainname',['LogDomainName',['../classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html#a6659be4d7f20734d66a812fdd3d27445',1,'com::aworx::lox::core::Logger']]],
   ['logger',['Logger',['../classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html',1,'com::aworx::lox::core']]],
-  ['logger',['Logger',['../classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html#a8ceca71c3009b93ba7943d873d625311',1,'com::aworx::lox::core::Logger']]],
+  ['logger',['Logger',['../classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html#a36a7cc26ec652a027d154dfd5a41ff4c',1,'com::aworx::lox::core::Logger']]],
   ['logger_2ecs',['Logger.cs',['../_logger_8cs.html',1,'']]],
   ['loggers',['loggers',['../classcom_1_1aworx_1_1lox_1_1core_1_1_lox.html#ad9f4273ca4b0a9a3c41c25b4aadd1d60',1,'com::aworx::lox::core::Lox']]],
   ['loglogcounter',['LogLogCounter',['../classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html#a58e498a343495037ed68306fd2b7cecf',1,'com::aworx::lox::core::Logger']]],
   ['logloglevel',['LogLogLevel',['../classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html#aea137a8dc45384f518c899d8eeeb7664',1,'com::aworx::lox::core::Logger']]],
   ['logthreadinfo',['LogThreadInfo',['../classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html#aed53050502e6ba42206d9da27a34ad78',1,'com::aworx::lox::core::Logger']]],
-  ['logtimediff',['LogTimeDiff',['../classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html#adef09e4ec8e266b37906a5865856b431',1,'com.aworx.lox.core.Logger.LogTimeDiff()'],['../classcom_1_1aworx_1_1lox_1_1_text_logger.html#ae38c0ec59b362e0fa2f33bbe191a1d0e',1,'com.aworx.lox.TextLogger.logTimeDiff()']]],
+  ['logtimediff',['logTimeDiff',['../classcom_1_1aworx_1_1lox_1_1_text_logger.html#ae38c0ec59b362e0fa2f33bbe191a1d0e',1,'com.aworx.lox.TextLogger.logTimeDiff()'],['../classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html#adef09e4ec8e266b37906a5865856b431',1,'com.aworx.lox.core.Logger.LogTimeDiff()']]],
   ['logtimeelapsed',['LogTimeElapsed',['../classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html#a90c76c708c0107bced600364ebfa2f14',1,'com::aworx::lox::core::Logger']]],
   ['logtimeofday',['LogTimeOfDay',['../classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html#a12a3260aa563583b796e825fa2b75c1b',1,'com::aworx::lox::core::Logger']]],
   ['logtools',['LogTools',['../classcom_1_1aworx_1_1lox_1_1_log_tools.html',1,'com::aworx::lox']]],
@@ -32,6 +32,6 @@ var searchData=
   ['lox',['Lox',['../classcom_1_1aworx_1_1lox_1_1core_1_1_lox.html',1,'com::aworx::lox::core']]],
   ['lox',['LOX',['../classcom_1_1aworx_1_1lox_1_1_log.html#adcb0be72fc0d7696505353dbeeb2ae64',1,'com::aworx::lox::Log']]],
   ['lox_2ecs',['Lox.cs',['../_lox_8cs.html',1,'']]],
-  ['log_20domains_2c_20log_20domain_20levels_20and_20log_20levels',['Log Domains, Log Domain Levels and Log Levels',['../man_levelsanddomains.html',1,'man_concepts']]],
+  ['log_20levels_2c_20log_20domains_20and_20log_20domain_20levels',['Log Levels, Log Domains and Log Domain Levels',['../man_levelsanddomains.html',1,'man_concepts']]],
   ['logging_20in_20release_20versions_20of_20your_20application',['Logging in release versions of your application',['../man_release_logging.html',1,'man_achieving_goals']]]
 ];

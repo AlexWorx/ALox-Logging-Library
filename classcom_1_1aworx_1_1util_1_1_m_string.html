@@ -73,7 +73,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -126,13 +126,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a77d17b49304ec89cfd28402a44d955fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with specific Buffer size .  <a href="#a77d17b49304ec89cfd28402a44d955fb">More...</a><br/></td></tr>
 <tr class="separator:a77d17b49304ec89cfd28402a44d955fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abebb1b8bcc9a089dae4e863e82ec3187"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html#abebb1b8bcc9a089dae4e863e82ec3187">MString</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html">MString</a> ms, int startIdx=0, int length=int.MaxValue)</td></tr>
-<tr class="memdesc:abebb1b8bcc9a089dae4e863e82ec3187"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor using a substring of another <a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a>.  <a href="#abebb1b8bcc9a089dae4e863e82ec3187">More...</a><br/></td></tr>
+<tr class="memdesc:abebb1b8bcc9a089dae4e863e82ec3187"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor copying a substring of another <a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a>.  <a href="#abebb1b8bcc9a089dae4e863e82ec3187">More...</a><br/></td></tr>
 <tr class="separator:abebb1b8bcc9a089dae4e863e82ec3187"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a51e701df9c9c79faa6c8e04bb106c01e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html#a51e701df9c9c79faa6c8e04bb106c01e">MString</a> (String s, int startIdx=0, int length=int.MaxValue)</td></tr>
-<tr class="memdesc:a51e701df9c9c79faa6c8e04bb106c01e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor using with a substring of a String.  <a href="#a51e701df9c9c79faa6c8e04bb106c01e">More...</a><br/></td></tr>
+<tr class="memdesc:a51e701df9c9c79faa6c8e04bb106c01e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor copying a substring of a String.  <a href="#a51e701df9c9c79faa6c8e04bb106c01e">More...</a><br/></td></tr>
 <tr class="separator:a51e701df9c9c79faa6c8e04bb106c01e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8e431086231d1ab167cf6217c096223"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html#ae8e431086231d1ab167cf6217c096223">MString</a> (StringBuilder sb, int startIdx=0, int length=int.MaxValue)</td></tr>
-<tr class="memdesc:ae8e431086231d1ab167cf6217c096223"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor using a substring of a StringBuilder.  <a href="#ae8e431086231d1ab167cf6217c096223">More...</a><br/></td></tr>
+<tr class="memdesc:ae8e431086231d1ab167cf6217c096223"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor copying a substring of a StringBuilder.  <a href="#ae8e431086231d1ab167cf6217c096223">More...</a><br/></td></tr>
 <tr class="separator:ae8e431086231d1ab167cf6217c096223"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c2e6224c2be9a776e7d375a2758c100"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html#a2c2e6224c2be9a776e7d375a2758c100">Clear</a> ()</td></tr>
 <tr class="memdesc:a2c2e6224c2be9a776e7d375a2758c100"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear the Buffer (just sets Length to 0)  <a href="#a2c2e6224c2be9a776e7d375a2758c100">More...</a><br/></td></tr>
@@ -225,19 +225,19 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a7e5ca8029b7a3ededd7729b40a7ae47f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts all or a region of characters in the Buffer to upper or to lower case.  <a href="#a7e5ca8029b7a3ededd7729b40a7ae47f">More...</a><br/></td></tr>
 <tr class="separator:a7e5ca8029b7a3ededd7729b40a7ae47f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39033721794d6611b1a0797a32e1e1d0"><td class="memItemLeft" align="right" valign="top">override String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html#a39033721794d6611b1a0797a32e1e1d0">ToString</a> ()</td></tr>
-<tr class="memdesc:a39033721794d6611b1a0797a32e1e1d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the <a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> into a String.  <a href="#a39033721794d6611b1a0797a32e1e1d0">More...</a><br/></td></tr>
+<tr class="memdesc:a39033721794d6611b1a0797a32e1e1d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the <a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> into a this String.  <a href="#a39033721794d6611b1a0797a32e1e1d0">More...</a><br/></td></tr>
 <tr class="separator:a39033721794d6611b1a0797a32e1e1d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3cd5e60147637c766a18657bf92838fb"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html#a3cd5e60147637c766a18657bf92838fb">ToString</a> (int startIdx, int length=int.MaxValue)</td></tr>
-<tr class="memdesc:a3cd5e60147637c766a18657bf92838fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a String from a region within <a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a>.  <a href="#a3cd5e60147637c766a18657bf92838fb">More...</a><br/></td></tr>
+<tr class="memdesc:a3cd5e60147637c766a18657bf92838fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a String from a region within this <a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a>.  <a href="#a3cd5e60147637c766a18657bf92838fb">More...</a><br/></td></tr>
 <tr class="separator:a3cd5e60147637c766a18657bf92838fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:accb537397c92ace7baf9baed06b3fd16"><td class="memItemLeft" align="right" valign="top">override int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html#accb537397c92ace7baf9baed06b3fd16">GetHashCode</a> ()</td></tr>
 <tr class="memdesc:accb537397c92ace7baf9baed06b3fd16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the hash value using the same formula as java.lang.String.  <a href="#accb537397c92ace7baf9baed06b3fd16">More...</a><br/></td></tr>
 <tr class="separator:accb537397c92ace7baf9baed06b3fd16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48a36db074155e2a0ab305fec4f7c94b"><td class="memItemLeft" align="right" valign="top">override bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html#a48a36db074155e2a0ab305fec4f7c94b">Equals</a> (Object o)</td></tr>
-<tr class="memdesc:a48a36db074155e2a0ab305fec4f7c94b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares this to given object. Given object can be <a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> or String.  <a href="#a48a36db074155e2a0ab305fec4f7c94b">More...</a><br/></td></tr>
+<tr class="memdesc:a48a36db074155e2a0ab305fec4f7c94b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares this to the given object. Given object can be <a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> or String.  <a href="#a48a36db074155e2a0ab305fec4f7c94b">More...</a><br/></td></tr>
 <tr class="separator:a48a36db074155e2a0ab305fec4f7c94b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae890ff86dc62d65c7f258c6b613671b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html#ae890ff86dc62d65c7f258c6b613671b1">EnsureCapacity</a> (int minLen)</td></tr>
-<tr class="memdesc:ae890ff86dc62d65c7f258c6b613671b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ensures that capacity.  <a href="#ae890ff86dc62d65c7f258c6b613671b1">More...</a><br/></td></tr>
+<tr class="memdesc:ae890ff86dc62d65c7f258c6b613671b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ensures that the capacity of the internal buffer meets or exceeds the given value.  <a href="#ae890ff86dc62d65c7f258c6b613671b1">More...</a><br/></td></tr>
 <tr class="separator:ae890ff86dc62d65c7f258c6b613671b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -317,7 +317,7 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructor using a substring of another <a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a>. </p>
+<p>Constructor copying a substring of another <a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a>. </p>
 <hr/>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -360,7 +360,7 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructor using with a substring of a String. </p>
+<p>Constructor copying a substring of a String. </p>
 <hr/>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -403,7 +403,7 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructor using a substring of a StringBuilder. </p>
+<p>Constructor copying a substring of a StringBuilder. </p>
 <hr/>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1325,7 +1325,6 @@ Protected Member Functions</h2></td></tr>
 
 <p>Compares a given string (or part of it) with the contents of this. If the optionally given substring start indices and lengths parameters are out of bounds, they are corrected. This could lead to unwanted results in some cases. </p>
 <hr/>
-<p>A, 5/22/2013. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">cmp</td><td>An object of type String, StringBuilder or <a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> that is compared to this. </td></tr>
@@ -1469,7 +1468,7 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Ensures that capacity. </p>
+<p>Ensures that the capacity of the internal buffer meets or exceeds the given value. </p>
 <hr/>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1494,7 +1493,7 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Compares this to given object. Given object can be <a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> or String. </p>
+<p>Compares this to the given object. Given object can be <a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> or String. </p>
 <hr/>
 <dl class="section return"><dt>Returns</dt><dd>True if given object equals this. </dd></dl>
 
@@ -1716,7 +1715,7 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Converts the <a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> into a String. </p>
+<p>Converts the <a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> into a this String. </p>
 <hr/>
 <dl class="section return"><dt>Returns</dt><dd>A string that represents this object. </dd></dl>
 
@@ -1746,7 +1745,7 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Creates a String from a region within <a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a>. </p>
+<p>Creates a String from a region within this <a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a>. </p>
 <hr/>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1811,7 +1810,7 @@ Protected Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacecom.html">com</a></li><li class="navelem"><a class="el" href="namespacecom_1_1aworx.html">aworx</a></li><li class="navelem"><a class="el" href="namespacecom_1_1aworx_1_1util.html">util</a></li><li class="navelem"><a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html">MString</a></li>
-    <li class="footer">Generated on Tue Jun 18 2013 20:57:09 for ALox by
+    <li class="footer">Generated on Mon Jun 24 2013 20:01:02 for ALox by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

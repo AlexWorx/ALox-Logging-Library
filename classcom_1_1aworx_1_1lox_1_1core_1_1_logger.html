@@ -73,7 +73,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -118,19 +118,15 @@ $(document).ready(function(){initNavTree('classcom_1_1aworx_1_1lox_1_1core_1_1_l
 </div><!--header-->
 <div class="contents">
 
-<p>This is central class of the ALox logging implementation. It is <b>not</b> recommended to use this class directly for logging. Instead, use the simple and convenient static interface class <a class="el" href="classcom_1_1aworx_1_1lox_1_1_log.html" title="This is a simple, 100% static wrapper of class Lox. In other words, this class incorporates one stati...">Log</a>. The class is abstract. To implement an own log stream, derive a new <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html" title="This is central class of the ALox logging implementation. It is not recommended to use this class dir...">Logger</a> class and implement the abstract method <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html#af49d951c50f39de578a359e76d348d78" title="This is the central method that derived logger classes have to implement to log a message...">doLog()</a>.&gt;  
+<p>This is central class of the ALox logging implementation. It is <b>not</b> recommended to use this class directly for logging. Instead, use the simple and convenient static interface class <a class="el" href="classcom_1_1aworx_1_1lox_1_1_log.html" title="This is a simple, 100% static wrapper of class Lox. In other words, this class incorporates one stati...">Log</a> or, for release logging and other more complex operations use a <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1_lox.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Lox</a> instance. The class is abstract. To implement an own log stream, derive a new <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html" title="This is central class of the ALox logging implementation. It is not recommended to use this class dir...">Logger</a> class and implement the abstract method <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html#af49d951c50f39de578a359e76d348d78" title="This is the central method that derived logger classes have to implement to log a message...">doLog()</a>.&gt;  
  <a href="classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for com.aworx.lox.core.Logger:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="classcom_1_1aworx_1_1lox_1_1core_1_1_logger.png" usemap="#com.aworx.lox.core.Logger_map" alt=""/>
-  <map id="com.aworx.lox.core.Logger_map" name="com.aworx.lox.core.Logger_map">
-<area href="classcom_1_1aworx_1_1lox_1_1_text_logger.html" title="This is central class of the ALox logging implementation. However, for the simple use of A- Worx logg..." alt="com.aworx.lox.TextLogger" shape="rect" coords="96,56,279,80"/>
-<area href="classcom_1_1aworx_1_1lox_1_1_console_logger.html" title="A logger that logs all messages to the VStudio IDE output window (using System.Diagnostics.Debug.WriteLine()) and/or to the application console (using Console.WriteLine()). " alt="com.aworx.lox.ConsoleLogger" shape="rect" coords="0,112,183,136"/>
-<area href="classcom_1_1aworx_1_1lox_1_1_memory_logger.html" title="A logger that logs all messages to a in-memory buffer of type MString. The name of the logger default..." alt="com.aworx.lox.MemoryLogger" shape="rect" coords="193,112,376,136"/>
-</map>
- </div></div>
+<div class="center"><img src="classcom_1_1aworx_1_1lox_1_1core_1_1_logger__inherit__graph.png" border="0" usemap="#com_8aworx_8lox_8core_8_logger_inherit__map" alt="Inheritance graph"/></div>
+<map name="com_8aworx_8lox_8core_8_logger_inherit__map" id="com_8aworx_8lox_8core_8_logger_inherit__map">
+<area shape="rect" id="node2" href="classcom_1_1aworx_1_1lox_1_1_text_logger.html" title="This class is a still abstract implementation of class Logger. All message objects passed to doLog ar..." alt="" coords="125,80,299,107"/><area shape="rect" id="node3" href="classcom_1_1aworx_1_1lox_1_1_console_logger.html" title="A logger that logs all messages to the VStudio IDE output window (using System.Diagnostics.Debug.WriteLine()) and/or to the application console (using Console.WriteLine()). " alt="" coords="5,155,200,181"/><area shape="rect" id="node4" href="classcom_1_1aworx_1_1lox_1_1_memory_logger.html" title="A logger that logs all messages to a in&#45;memory buffer of type MString. The name of the logger default..." alt="" coords="225,155,420,181"/></map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -192,9 +188,9 @@ Public Attributes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a8ceca71c3009b93ba7943d873d625311"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html#a8ceca71c3009b93ba7943d873d625311">Logger</a> (String name, String csf, int cln, String cmn)</td></tr>
-<tr class="memdesc:a8ceca71c3009b93ba7943d873d625311"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a logger.  <a href="#a8ceca71c3009b93ba7943d873d625311">More...</a><br/></td></tr>
-<tr class="separator:a8ceca71c3009b93ba7943d873d625311"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36a7cc26ec652a027d154dfd5a41ff4c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html#a36a7cc26ec652a027d154dfd5a41ff4c">Logger</a> (String name)</td></tr>
+<tr class="memdesc:a36a7cc26ec652a027d154dfd5a41ff4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a logger.  <a href="#a36a7cc26ec652a027d154dfd5a41ff4c">More...</a><br/></td></tr>
+<tr class="separator:a36a7cc26ec652a027d154dfd5a41ff4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af49d951c50f39de578a359e76d348d78"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html#af49d951c50f39de578a359e76d348d78">doLog</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1_m_string.html">MString</a> domain, <a class="el" href="classcom_1_1aworx_1_1lox_1_1_log.html#ae5ddc74446d839b8f705736fecd11271">Log.Level</a> level, Object msgObject, int indent, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1_caller_info.html">CallerInfo</a> caller)</td></tr>
 <tr class="memdesc:af49d951c50f39de578a359e76d348d78"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the central method that derived logger classes have to implement to log a message.  <a href="#af49d951c50f39de578a359e76d348d78">More...</a><br/></td></tr>
 <tr class="separator:af49d951c50f39de578a359e76d348d78"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -209,10 +205,10 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a27a0ef4dd6508dd84d2f4a16723c592d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This is central class of the ALox logging implementation. It is <b>not</b> recommended to use this class directly for logging. Instead, use the simple and convenient static interface class <a class="el" href="classcom_1_1aworx_1_1lox_1_1_log.html" title="This is a simple, 100% static wrapper of class Lox. In other words, this class incorporates one stati...">Log</a>. The class is abstract. To implement an own log stream, derive a new <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html" title="This is central class of the ALox logging implementation. It is not recommended to use this class dir...">Logger</a> class and implement the abstract method <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html#af49d951c50f39de578a359e76d348d78" title="This is the central method that derived logger classes have to implement to log a message...">doLog()</a>.&gt; </p>
+<div class="textblock"><p>This is central class of the ALox logging implementation. It is <b>not</b> recommended to use this class directly for logging. Instead, use the simple and convenient static interface class <a class="el" href="classcom_1_1aworx_1_1lox_1_1_log.html" title="This is a simple, 100% static wrapper of class Lox. In other words, this class incorporates one stati...">Log</a> or, for release logging and other more complex operations use a <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1_lox.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Lox</a> instance. The class is abstract. To implement an own log stream, derive a new <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html" title="This is central class of the ALox logging implementation. It is not recommended to use this class dir...">Logger</a> class and implement the abstract method <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html#af49d951c50f39de578a359e76d348d78" title="This is the central method that derived logger classes have to implement to log a message...">doLog()</a>.&gt; </p>
 <hr/>
  </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a8ceca71c3009b93ba7943d873d625311"></a>
+<a class="anchor" id="a36a7cc26ec652a027d154dfd5a41ff4c"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -223,30 +219,8 @@ Protected Attributes</h2></td></tr>
           <td class="memname">com.aworx.lox.core.Logger.Logger </td>
           <td>(</td>
           <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>name</em>)</td><td></td>
           <td></td>
-          <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>csf</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>cln</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>cmn</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -261,9 +235,6 @@ Protected Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>The name of the logger. </td></tr>
-    <tr><td class="paramname">csf</td><td>(Optional) the caller source file. </td></tr>
-    <tr><td class="paramname">cln</td><td>(Optional) the caller line number. </td></tr>
-    <tr><td class="paramname">cmn</td><td>(Optional) name of the caller member. </td></tr>
   </table>
   </dd>
 </dl>
@@ -739,7 +710,7 @@ Protected Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacecom.html">com</a></li><li class="navelem"><a class="el" href="namespacecom_1_1aworx.html">aworx</a></li><li class="navelem"><a class="el" href="namespacecom_1_1aworx_1_1lox.html">lox</a></li><li class="navelem"><a class="el" href="namespacecom_1_1aworx_1_1lox_1_1core.html">core</a></li><li class="navelem"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html">Logger</a></li>
-    <li class="footer">Generated on Tue Jun 18 2013 20:57:09 for ALox by
+    <li class="footer">Generated on Mon Jun 24 2013 20:01:02 for ALox by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>
