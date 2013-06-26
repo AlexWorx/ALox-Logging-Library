@@ -1248,6 +1248,7 @@ public class MString
 	 * <summary> 
 	 *  Compares this to the given object. Given object can be MString or String.
 	 * </summary>
+	 * <param name="o">	The Object that this instance is compared with. </param>
 	 *
 	 * <returns> True if given object equals this. </returns>
 	 **************************************************************************************************/

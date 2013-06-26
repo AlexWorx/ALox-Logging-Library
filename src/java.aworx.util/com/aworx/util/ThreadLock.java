@@ -1,8 +1,7 @@
 package com.aworx.util;
 
-import java.security.acl.Owner;
 
-/**************************************************************************************************
+/**********************************************************************************************//**
  * This class allows *mutal exclusive access* to resources that the using software agrees on to
  * protect with a certain instance hereof. In other words, access to certain resources of a
  * software that has to be thread safe, can be protected if each thread (aka critical section
@@ -72,7 +71,7 @@ public class ThreadLock
 	// Constructors 
 	// #################################################################################################
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Create a ThreadLock that allows recursion.
      **************************************************************************************************/
 	public ThreadLock()
@@ -80,7 +79,7 @@ public class ThreadLock
 		constructor( true, false);	
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Create a ThreadLock that allows recursion. A warning will be given (ALox Error) when the
      * given recursion level is reached (and each multiple of it).
      *
@@ -91,7 +90,7 @@ public class ThreadLock
 		constructor( recursiveMode, false);	
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Create a ThreadLock that allows recursion. A warning will be given (ALox Error) when the
      * given recursion level is reached (and each multiple of it). In addition the lock can be
      * initialized to be unsafe, which means the locking critical sections is disabled.
@@ -104,7 +103,7 @@ public class ThreadLock
 		constructor( recursiveMode, setUnsafeMode);	
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Used by the Constructors to create an instance.
      *
      * @param recursiveMode Flag if recursion support is on. If not, nested locks are not counted.
@@ -124,7 +123,7 @@ public class ThreadLock
 	// Interface 
 	// #################################################################################################
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Thread which invokes this method gets registered  as the current owner of this object, until
      * the same thread releases the ownership invoking unlock(). In the case that this object is
      * already owned by another thread, the invoking thread is suspended until ownership can be
@@ -214,7 +213,7 @@ public class ThreadLock
 		
 	}	
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Releases ownership of this object. If lock() was called multiple times before, the same
      * number of calls to this method have to be performed to release ownership.
      **************************************************************************************************/
@@ -263,7 +262,7 @@ public class ThreadLock
 		} // synchronized
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Returns the current owner of the thread. This method should not be used to check if a lock is
      * used or not. However, it can. But software should be designed in a way that ownership does
      * not need to be tested. This method is build in for debugging purposes only.
@@ -278,7 +277,7 @@ public class ThreadLock
 				 +	", recursive=" +recursiveMode;
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * If parameter is true, the whole locking system is disabled. The only objective here is to to
      * gain execution speed, as thread synchronization causes relatively expensive system calls. Use
      * this method only if you are 100% sure that your (otherwise) critical section are executed in
@@ -327,7 +326,7 @@ public class ThreadLock
 	
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Query if this instance was set to unsafe mode.
      *
      * @return  True if unsafe, false if not.

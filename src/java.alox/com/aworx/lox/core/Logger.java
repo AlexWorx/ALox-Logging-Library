@@ -1,11 +1,10 @@
 package com.aworx.lox.core;
 
 import com.aworx.lox.Log;
-import java.util.ArrayList;
+import com.aworx.util.MString;
+import com.aworx.util.TickTime;
 
-import com.aworx.util.*;
-
-/**************************************************************************************************
+/**********************************************************************************************//**
  * This is central class of the ALox logging implementation. It is **not** recommended to use
  * this class directly for logging. Instead, use the simple and convenient static interface
  * class Log or, for release logging and other more complex operations use a Lox instance. The
@@ -90,7 +89,7 @@ public abstract class Logger
 	// Internal fields
 	// #################################################################################################
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Constructs a logger.
      *
      * @param name  The name of the logger.
@@ -116,7 +115,7 @@ public abstract class Logger
 	// Abstract methods to be overwritten
 	// #################################################################################################
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * This is the central method that derived logger classes have to implement to log a message.
      *
      * @param domain    The log domain name. The domain is already checked on this stage and is
@@ -136,7 +135,7 @@ public abstract class Logger
 	// interface
 	// #################################################################################################
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * This method is used to create a domain for the logger. Domains control the activation of log
      * lines. If there are more than one unknown domains on the path, all domains are created.
      *
@@ -153,7 +152,7 @@ public abstract class Logger
 		return domain;
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * This method is used to find a domain of the logger.
      *
      * @param domainPath    The log domain name with path.
@@ -169,7 +168,7 @@ public abstract class Logger
 		return domain;
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * This is the method to log a message. Internally it calls the abstract method doLog() to let
      * derived classes perform the log. Note: this method (in fact the whole class) should not be
      * used from outside. Instead, the static interface Log should be the right choice for most use
@@ -206,7 +205,7 @@ public abstract class Logger
 	// Privates/Protecteds 
 	// #################################################################################################
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Check if a given domain is active in respect to the given Logger.Level.
      *
      * @param domain    The log domain name. If not starting with a slash ('/') this is appended to

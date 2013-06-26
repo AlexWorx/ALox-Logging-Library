@@ -17,7 +17,7 @@ namespace com.aworx.util  {
 
 /** ***********************************************************************************************
  * <summary>
- *  This class allows *mutal exclusive access* to resources that the using software agrees on
+ *  This class allows *mutual exclusive access* to resources that the using software agrees on
  *  to protect with a certain instance hereof.
  *  In other words, access to certain resources of a software that has to be thread safe, can 
  *  be protected if each thread (aka critical section code) uses the same ThreadLock to control the 
@@ -94,7 +94,7 @@ public class ThreadLock
 	 *  given recursion level is reached (and each multiple of it). In addition the lock can be
 	 *  initialized to be unsafe, which means the locking critical sections is disabled.
 	 * </summary>
-	 * <param name="recursiveMode">	(Optional) Flag if recursion support is on. If not, nested locks
+	 * <param name="recursiveMode">	(Optional) Flag if recursion support is on. If not, nested locks 
 	 * 								are not counted. </param>
 	 * <param name="setUnsafeMode">	(Optional) True to set this unsafe. Please don't! </param>
 	 **************************************************************************************************/
@@ -265,7 +265,7 @@ public class ThreadLock
 	}
 	
 	/** ***********************************************************************************************
-	 *  If parameter is true, the whole locking system is disabled. The only objective here is to
+	 *  If parameter is true, th whole locking system is disabled. The only objective here is to
 	 *  to gain execution speed, as thread synchronization causes relatively expensive system calls.
 	 *  Use this method only if you are 100% sure that your (otherwise) critical section are executed
 	 *  in a single threaded environment. And: "relative expensive" means: they are not really expensive.

@@ -1,11 +1,9 @@
 package com.aworx.lox;
 
-import java.util.*;
+import com.aworx.lox.core.CallerInfo;
+import com.aworx.util.MString;
 
-import com.aworx.lox.core.*;
-import com.aworx.util.*;
-
-/**************************************************************************************************
+/**********************************************************************************************//**
  * A logger that logs all messages to a in-memory buffer of type MString. The name of the logger
  * defaults to "MEMORY".
  **************************************************************************************************/
@@ -36,24 +34,19 @@ public class MemoryLogger extends TextLogger
 	 */
 	public		int				tabAfterSourceInfo				=0;
 
-	// #################################################################################################
-	// internal fields
-	// #################################################################################################
-	protected	String			strPrefixLineNumber				="(";	// not changeable due to
-	protected	String			strPostfixLineNumber			="):";	// VStudio format requirements
 
 	// #################################################################################################
 	// Constructors
 	// #################################################################################################
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Creates a MemoryLogger with the given name.
      *
      * @param name  The name of the logger. Defaults to "MEMORY".
      **************************************************************************************************/
 	public MemoryLogger( String	name )	{ super(name);		}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Creates a MemoryLogger with the name "MEMORY".
      **************************************************************************************************/
 	public MemoryLogger( )				{ super("MEMORY");	}
@@ -62,7 +55,7 @@ public class MemoryLogger extends TextLogger
 	// Abstract interface implementation
 	// #################################################################################################
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * The implementation of the abstract method of parent class TextLogger. Logs messages to the
      * Buffer field.
      *
@@ -103,7 +96,7 @@ public class MemoryLogger extends TextLogger
 
 			// jump to next tab level
 			if ( tabAfterSourceInfo < buffer.length - oldLength )
-				tabAfterSourceInfo= buffer.length - oldLength + 5; // add some extra space to avoid to many increases
+				tabAfterSourceInfo= buffer.length - oldLength + 5; // add some extra space too avoid to many increases
 			for ( int i= buffer.length - oldLength ; i < tabAfterSourceInfo ; i++ )
 				buffer.append( ' ' );
 		}

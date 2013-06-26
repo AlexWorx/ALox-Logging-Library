@@ -1,13 +1,13 @@
 package com.aworx.lox.core;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.util.*;
 
-import com.aworx.util.*;
+import java.util.HashMap;
+
+import com.aworx.util.MString;
+import com.aworx.util.TickTime;
 
 
-/**************************************************************************************************
+/**********************************************************************************************//**
  * Encapsulates information of the caller that can be collected. This is platform specific, in
  * this case, .NET 4.5. What we currently can get from the .NET compiler, is the source file
  * name of the calling code, the line number within the source file name and the name of the
@@ -47,7 +47,7 @@ public class CallerInfo
 	// public interface
 	// #################################################################################################
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Stores parameters and sets actual time stamp.
      *
      * @param threadDictionary      Name of the method the log call is placed in.

@@ -55,8 +55,11 @@ public class MemoryLogger : TextLogger
 	// #################################################################################################
 	// internal fields
 	// #################################################################################################
-	protected	String			strPrefixLineNumber				="(";	// not changeable due to
-	protected	String			strPostfixLineNumber			="):";	// VStudio format requirements
+	/// <summary>Prefix printed before line number.</summary>
+	protected	String			strPrefixLineNumber				="(";
+
+	/// <summary>Prefix printed before line number.</summary>
+	protected	String			strPostfixLineNumber			="):";
 
 	// #################################################################################################
 	// Constructors
@@ -114,7 +117,9 @@ public class MemoryLogger : TextLogger
 				Buffer.Append( sfn );
 
 			// add line number
-			Buffer.Append( strPrefixLineNumber ).Append( caller.LineNumber ).Append( strPostfixLineNumber );
+			Buffer.Append( strPrefixLineNumber )
+					.Append( caller.LineNumber )
+				  .Append( strPostfixLineNumber );
 
 			// append method name
 			Buffer.Append( FormatMemberPrefix );
@@ -123,7 +128,7 @@ public class MemoryLogger : TextLogger
 
 			// jump to next tab level
 			if ( TabAfterSourceInfo < Buffer.Length - oldLength )
-				TabAfterSourceInfo= Buffer.Length - oldLength + 5; // add some extra space to avoid to many increases
+				TabAfterSourceInfo= Buffer.Length - oldLength + 5; // add some extra space to avoid too many increases
 			for ( int i= Buffer.Length - oldLength ; i < TabAfterSourceInfo ; i++ )
 				Buffer.Append( ' ' );
 		}

@@ -125,6 +125,8 @@ public static class Log
 		// #################################################################################################
 		// Implement and set A-Worx Util Error Handler 
 		// #################################################################################################
+		/// <summary>The error handler for the util package. An instance of this class will be created
+		/// statically and added to field AWXU.errorHandler. </summary>
 		public class	ALoxAWXUErrorHandler : AWXUErrorHandler
 		{
 			public void error  ( Object msg )	{ Log.Error	 ( "AWXU", msg ); }

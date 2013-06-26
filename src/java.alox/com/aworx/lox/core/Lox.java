@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-import com.aworx.lox.*;
-import com.aworx.lox.Log.Scope;
-import com.aworx.util.*;
+import com.aworx.lox.ConsoleLogger;
+import com.aworx.lox.Log;
+import com.aworx.util.MString;
+import com.aworx.util.ThreadLock;
+import com.aworx.util.Ticker;
 
-/**************************************************************************************************
+/**********************************************************************************************//**
  * This class acts as a container for Loggers and provides a convenient interface into them.
  * Features are:
  * 
@@ -42,7 +44,7 @@ public class Lox
      * A counter for the quantity of calls. The count includes logs that were suppressed by disabled
      * log rootDomain and those suppressed by the optional log condition parameter. Hence, it can
      * also be used as a condition to log only every n-th time by calling using the conditional
-     * parameter of #Line(), e.g.: *Lox.Line( (Log.qtyLogCalls % n) == 0, ...*.
+     * parameter of #line(), e.g.: *Lox.Line( (Log.qtyLogCalls % n) == 0, ...*.
      */
 	public 				int				cntLogCalls				=0;
 
@@ -57,7 +59,7 @@ public class Lox
 	/**
 	 *  This is the log domain name used by this class. By manipulating this Domains log level, the
 	 *  verbosity of this interface class can be controlled. For example, in 'Info' level, calls to
-	 *  #RegDomain and #SetDomain are logged which can be helpful to determine the log
+	 *  #regDomain and #setDomain are logged which can be helpful to determine the log
 	 *  domains that are created by libraries and larger projects.
 	 */
 	public 				String			internalDomain			="ALOX";
@@ -110,7 +112,7 @@ public class Lox
 		// Interface (not auto removed)
 		// #################################################################################################
 
-        /**************************************************************************************************
+        /**********************************************************************************************//**
          * Retrieve an instance of a Logger by its name. Note: This function is not automatically
          * removed from the release code because of technical restrictions. It has to be conditionally
          * compiled by enclosing calls to it with "//#if ... //#endif" statements.
@@ -141,7 +143,7 @@ public class Lox
 	// Interface (auto removed)
 	// #################################################################################################
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Adds a logger to the Log interface. Each log call that is performed through this Lox will be
      * forwarded to this logger, unless filtered out with optional filter parameter. The logger will
      * then check it's domain level against the given log level to decide weather a log should
@@ -151,14 +153,14 @@ public class Lox
      **************************************************************************************************/
 	public  void addLogger( Logger logger )	{ addLogger( logger, Log.DomainLevel.WarningsAndErrors ); }
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Adds a logger to the Log interface. Each log call that is performed through this Lox will be
      * forwarded to this logger, unless filtered out with optional filter parameter. The logger will
      * then check it's domain level against the given log level to decide weather a log should
      * performed.
      *
      * @param logger                The logger to be added.
-     * @param internalDomainLevel   The desired domain level for the  #InternalDomain which is used
+     * @param internalDomainLevel   The desired domain level for the  #internalDomain which is used
      *                              for logging code of class Lox itself. For console loggers this
      *                              can be set to **All**, for log streams dedicated to a certain
      *                              domain, this should be set to **Off**.
@@ -199,7 +201,7 @@ public class Lox
 		//#endif
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Removes all loggers that match the filter name from this container.
      *
      * @param loggerFilter  A filter for the loggers to be affected. A simple string compare without
@@ -227,7 +229,7 @@ public class Lox
 	public void removeLoggers(  ) { removeLoggers( null ); } 
 
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * This method is used to define a log domain. The method is usually invoked within the same
      * source "context" (aka, class, namespace, package, etc.) that later on uses the domain to
      * perform log statements. Often, calls to this functions are placed in static constructors or
@@ -319,7 +321,7 @@ public class Lox
 		//#endif
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Sets the domain log level and (by default) all it's sub domains recursively. In the case that
      * sub domains should be set to a different log level, then this function has to be called for
      * such sub domains after the call to the parent domain (or recursion has to be switched off,
@@ -370,7 +372,7 @@ public class Lox
 		//#endif
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Sets the domain log level and (by default) all it's sub domains recursively. In the case that
      * sub domains should be set to a different log level, then this function has to be called for
      * such sub domains after the call to the parent domain (or recursion has to be switched off,
@@ -386,7 +388,7 @@ public class Lox
      **************************************************************************************************/
 	public  void setDomain(	String	domain,	Log.DomainLevel	domainLevel, boolean recursive )	{ setDomain( domain, domainLevel, recursive, null ); } 
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Sets the domain log level and all it's sub domains recursively. In the case that sub domains
      * should be set to a different log level, then this function has to be called for such sub
      * domains after the call to the parent domain (or recursion has to be switched off, using the
@@ -402,7 +404,7 @@ public class Lox
 	public  void setDomain(	String	domain,	Log.DomainLevel	domainLevel )						{ setDomain( domain, domainLevel, true,		 null ); } 
 
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * This method is used disable one or more loggers completely without touching the log levels of
      * the domains and hence without the need to restore such log levels later.
      *
@@ -435,7 +437,7 @@ public class Lox
 		//#endif
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * This method is used disable one or more loggers completely without touching the log levels of
      * the domains and hence without the need to restore such log levels later.
      *
@@ -444,7 +446,7 @@ public class Lox
      **************************************************************************************************/
 	public  void setDisabled(	boolean disabled ) { setDisabled( disabled, null ); }
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * This method is used reset (or to explicitly set) the start time of the logger(s). The only
      * impact is the output of time differences in the log lines. Hence, it is useful to see some
      * absolute time values when doing basic performance tests using the logger. Note: Calls to this
@@ -488,7 +490,7 @@ public class Lox
 		//#endif
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * This method is used reset (or to explicitly set) the start time of the logger(s). The only
      * impact is the output of time differences in the log lines. Hence, it is useful to see some
      * absolute time values when doing basic performance tests using the logger. Note: Calls to this
@@ -499,7 +501,7 @@ public class Lox
      **************************************************************************************************/
 	public  void setStartTime( Date startTime ) { setStartTime( startTime,	null ); }
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * This method is used reset the start time of the logger(s) to now. The only impact is the
      * output of time differences in the log lines. Hence, it is useful to see some absolute time
      * values when doing basic performance tests using the logger. Note: Calls to this method are
@@ -507,7 +509,7 @@ public class Lox
      **************************************************************************************************/
 	public  void setStartTime() 				{ setStartTime( null,		null ); }
    
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * This method sets a human readable name to the given thread ID (or current thread) which is
      * optionally included in each log line.
      *
@@ -544,7 +546,7 @@ public class Lox
 		//#endif
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * This method sets a human readable name to the current thread which is optionally included in
      * each log line.
      *
@@ -552,7 +554,7 @@ public class Lox
      **************************************************************************************************/
 	public  void mapThreadName(	String threadName ) { mapThreadName( threadName, -1 ); }
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * This method is used store a marker object in the logging system. Markers are stored and
      * retrieved relative to a given Log.Scope. In combination with Log.GetMarker, this method
      * provides an easy way to trace the last marked position, e.g. in the case of an exception.
@@ -597,7 +599,7 @@ public class Lox
 		//#endif
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Retrieves the most recently marker object stored using Log.SetMarker. Markers are stored and
      * retrieved relative to a given Log.Scope. In combination with Log.SetMarker, this method
      * provides an easy way to trace the last marked position, e.g. in the case of an exception.
@@ -649,7 +651,7 @@ public class Lox
 		//#endif
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * This method logs the configuration this Lox and its encapsulated objects.
      *
      * @param domain        If this is null, the default domain is used. If this is starting with a
@@ -736,7 +738,7 @@ public class Lox
 		//#endif
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * This method logs the configuration the Lox encapsulated in this static Log interface.
      *
      * @param domain    If this is null, the default domain is used. If this is starting with a swung
@@ -749,7 +751,7 @@ public class Lox
 	public  void logConfig( String domain, Log.Level level, String headLine) { logConfig( domain, level, headLine, null ); }
 	
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Log an Object with log level equal to Log.Log.Level.Verbose. This is the highest (most
      * verbose) log level, which is only actually logged if the log domains log level is set to
      * "All". This overloaded version does not offer a domain parameter but relies on a default
@@ -760,7 +762,7 @@ public class Lox
      **************************************************************************************************/
 	public  void verbose( Object msg, int indent )						{	line( true, null, Log.Level.Verbose, msg, indent,	null );	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Log an Object with log level equal to Log.Level.Verbose. This is the highest (most verbose)
      * log level, which is only actually logged if the log domains log level is set to "All". This
      * overloaded version does not offer a domain parameter but relies on a default domain set for
@@ -770,7 +772,7 @@ public class Lox
      **************************************************************************************************/
 	public  void verbose( Object msg )									{	line( true, null, Log.Level.Verbose, msg, 0,		null );	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Log an Object with log level equal to Log.Level.Verbose. This is the highest (most verbose)
      * log level, which is only actually logged if the log domains log level is set to "All".
      *
@@ -783,7 +785,7 @@ public class Lox
      **************************************************************************************************/
 	public  void verbose( String domain, Object msg, int indent )		{	line( true, domain, Log.Level.Verbose, msg, indent,	null );	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Log an Object with log level equal to Log.Level.Verbose. This is the highest (most verbose)
      * log level, which is only actually logged if the log domains log level is set to "All".
      *
@@ -796,7 +798,7 @@ public class Lox
 	public  void verbose( String domain, Object msg )					{	line( true, domain, Log.Level.Verbose, msg, 0,		null );	}
 
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Log an Object with log level equal to Log.Level.Info. This is the second highest (after
      * Verbose) log level, which is only actually logged if the log domains log level is set to
      * "Info" or "Verbose". This overloaded version does not offer a domain parameter but relies on
@@ -807,7 +809,7 @@ public class Lox
      **************************************************************************************************/
 	public  void info( Object msg, int indent )							{	line( true, null, Log.Level.Info, msg, indent,	null );	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Log an Object with log level equal to Log.Level.Info. This is the second highest (after
      * Verbose) log level, which is only actually logged if the log domains log level is set to
      * "Info" or "Verbose". This overloaded version does not offer a domain parameter but relies on
@@ -817,7 +819,7 @@ public class Lox
      **************************************************************************************************/
 	public  void info( Object msg )										{	line( true, null, Log.Level.Info, msg, 0,		null );	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Log an Object with log level equal to Log.Level.Info. This is the second highest (after
      * Verbose) log level, which is only actually logged if the log domains log level is set to
      * "Info" or "Verbose".
@@ -831,7 +833,7 @@ public class Lox
      **************************************************************************************************/
 	public  void info( String domain, Object msg, int indent )			{	line( true, domain, Log.Level.Info, msg, indent,	null );	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Log an Object with log level equal to Log.Level.Info. This is the second highest (after
      * Verbose) log level, which is only actually logged if the log domains log level is set to
      * "Info" or "Verbose".
@@ -844,7 +846,7 @@ public class Lox
      **************************************************************************************************/
 	public  void info( String domain, Object msg )						{	line( true, domain, Log.Level.Info, msg, 0,		null );	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Log an Object with log level equal to Log.Level.Warning. Log messages of this log level are
      * are logged if the log domains log level is set to "Warning", "Info" or "All". This overloaded
      * version does not offer a domain parameter but relies on a default domain set for the source
@@ -855,7 +857,7 @@ public class Lox
      **************************************************************************************************/
 	public  void warning( Object msg, int indent )						{	line( true, null, Log.Level.Warning, msg, indent,	null );	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Log an Object with log level equal to Log.Level.Warning. Log messages of this log level are
      * are logged if the log domains log level is set to "Warning", "Info" or "All". This overloaded
      * version does not offer a domain parameter but relies on a default domain set for the source
@@ -865,7 +867,7 @@ public class Lox
      **************************************************************************************************/
 	public  void warning( Object msg )									{	line( true, null, Log.Level.Warning, msg, 0,		null );	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Log an Object with log level equal to Log.Level.Warning. Log messages of this log level are
      * are logged if the log domains log level is set to "Warning", "Info" or "All".
      *
@@ -878,7 +880,7 @@ public class Lox
      **************************************************************************************************/
 	public  void warning( String domain, Object msg, int indent )		{	line( true, domain, Log.Level.Warning, msg, indent,	null );	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Log an Object with log level equal to Log.Level.Warning. Log messages of this log level are
      * are logged if the log domains log level is set to "Warning", "Info" or "All".
      *
@@ -890,7 +892,7 @@ public class Lox
      **************************************************************************************************/
 	public  void warning( String domain, Object msg )					{	line( true, domain, Log.Level.Warning, msg, 0,		null );	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Log an Object with log level equal to Log.Level.Error. Log messages of this log level are are
      * always logged unless domains log level is set to "Off". This overloaded version does not
      * offer a domain parameter but relies on a default domain set for the source file this function
@@ -901,7 +903,7 @@ public class Lox
      **************************************************************************************************/
 	public  void error( Object msg, int indent )					{	line( true, null, Log.Level.Error, msg, indent,	null );	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Log an Object with log level equal to Log.Level.Error. Log messages of this log level are are
      * always logged unless domains log level is set to "Off". This overloaded version does not
      * offer a domain parameter but relies on a default domain set for the source file this function
@@ -911,7 +913,7 @@ public class Lox
      **************************************************************************************************/
 	public  void error( Object msg )								{	line( true, null, Log.Level.Error, msg, 0,		null );	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Log an Object with log level equal to Log.Level.Error. Log messages of this log level are are
      * always logged unless domains log level is set to "Off".
      *
@@ -924,7 +926,7 @@ public class Lox
      **************************************************************************************************/
 	public  void error( String domain, Object msg, int indent )		{	line( true, domain, Log.Level.Error, msg, indent,	null );	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Log an Object with log level equal to Log.Level.Error. Log messages of this log level are are
      * always logged unless domains log level is set to "Off".
      *
@@ -936,7 +938,7 @@ public class Lox
      **************************************************************************************************/
 	public  void error( String domain, Object msg )					{	line( true, domain, Log.Level.Error, msg, 0,		null );	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Log a string only if the given condition is not true. Log level will be highest, namely Error
      * if condition is false. This overloaded version does not offer a domain parameter but relies
      * on a default domain set for the source file this function is used in.
@@ -947,7 +949,7 @@ public class Lox
      **************************************************************************************************/
 	public  void Assert( boolean trueOrLog, Object msg, int indent )	{	line( !trueOrLog, null, Log.Level.Error, msg, indent,	null );	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Log a string only if the given condition is not true. Log level will be highest, namely Error
      * if condition is false. This overloaded version does not offer a domain parameter but relies
      * on a default domain set for the source file this function is used in.
@@ -957,7 +959,7 @@ public class Lox
      **************************************************************************************************/
 	public  void Assert( boolean trueOrLog, Object msg )				{	line( !trueOrLog, null, Log.Level.Error, msg, 0,		null );	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Log a string only if the given condition is not true. Log level will be highest, namely
      * Log.Level.Error.
      *
@@ -971,7 +973,7 @@ public class Lox
      **************************************************************************************************/
 	public  void Assert( boolean trueOrLog, String domain, Object msg, int indent )	{ line( !trueOrLog, domain, Log.Level.Error, msg, indent,	null );	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Log a string only if the given condition is not true. Log level will be highest, namely
      * Log.Level.Error.
      *
@@ -984,9 +986,9 @@ public class Lox
      **************************************************************************************************/
 	public  void Assert( boolean trueOrLog, String domain, Object msg )				{ line( !trueOrLog, domain, Log.Level.Error, msg, 0,		null );	}
 
-    /**************************************************************************************************
-     * Provides a the a more flexible but complex way to log a message. The methods #Verbose(),
-     * #Info(), #Warning(), #Error() and #Assert() are using this function internally and should
+    /**********************************************************************************************//**
+     * Provides a the a more flexible but complex way to log a message. The methods #verbose(),
+     * #info(), #warning(), #error() and #Assert() are using this function internally and should
      * be used in standard cases. Use this function only in the rare cases, e.g. when a log level is
      * decided only at runtime or when you want to use a logger filter, etc.
      *
@@ -1029,7 +1031,7 @@ public class Lox
 		// #endif
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Conditionally logs an Object using the given log level, log domain and indentation.
      *
      * @param doLog     Conditional logging. If false, the log is not performed. CntLogCalls is still
@@ -1044,7 +1046,7 @@ public class Lox
      **************************************************************************************************/
 	public  void line(boolean doLog, String domain, Log.Level level, Object	msgObject, int indent )	{ line( doLog, domain, level, msgObject, indent,null); }
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Conditionally logs an Object using the given log level and log domain.
      *
      * @param doLog     Conditional logging. If false, the log is not performed. CntLogCalls is still
@@ -1058,7 +1060,7 @@ public class Lox
      **************************************************************************************************/
 	public  void line(boolean doLog, String domain, Log.Level level, Object	msgObject ) 			{ line( doLog, domain, level, msgObject, 0,		null); }
 	
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Logs an Object using the given log level and log domain.
      *
      * @param domain    If this is null, the default domain is used. If this is starting with a swung
@@ -1070,7 +1072,7 @@ public class Lox
      **************************************************************************************************/
 	public void line(				String domain,	Log.Level level, Object msgObject ) 			{ line( true,  domain,	level, msgObject, 0,		null); 			}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Logs an Object using the given log level and the default domain for this scope.
      *
      * @param level     The log level.
@@ -1078,7 +1080,7 @@ public class Lox
      **************************************************************************************************/
 	public void line(			   					Log.Level level, Object msgObject ) 			{ line( true,  null,	level, msgObject, 0,		null); 			}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Logs an Object using the given log level and indentation using the default domain for this scope.
      *
      * @param level     The log level.
@@ -1087,7 +1089,7 @@ public class Lox
      **************************************************************************************************/
 	public void line(			   				  	Log.Level level, Object msgObject, int indent ) { line( true,  null,	level, msgObject, indent,	null); 			}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Logs an Object using the given log level, indentation and logger filter using the default domain 
      * for this scope.
      *
@@ -1111,7 +1113,7 @@ public class Lox
 	//*****************************************************************************
 	//#if ALOX_DEBUG || ALOX_REL_LOG
 
-        /**************************************************************************************************
+        /**********************************************************************************************//**
          * This method performs the following things:
          * 
          * a) retrieves the caller info within the singleton field of this class for further reference
@@ -1225,7 +1227,7 @@ public class Lox
 			}
 		}
 
-        /**************************************************************************************************
+        /**********************************************************************************************//**
          * Logs an internal error message to the domain given by field InternalDomain. Attn: must only
          * be called after saveAndSet() was performed.
          *
@@ -1244,7 +1246,7 @@ public class Lox
 			caller.timeStamp.setToNow();
 		}
 
-        /**************************************************************************************************
+        /**********************************************************************************************//**
          * Compares a loggers name with a filter string with simplest wildcard support ('*') at the
          * beginning or end of the string. If loggerFilter is null, a match is indicated.
          *
@@ -1296,7 +1298,7 @@ public class Lox
 			return logger.name.equalsIgnoreCase( loggerFilter );		// 
 		}
 
-        /**************************************************************************************************
+        /**********************************************************************************************//**
          * Internal method used by LogConfig() to recursively log LogDomain instances. 
          *
          * @param domain    The LogDomain instance to log out.

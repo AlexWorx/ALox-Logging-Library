@@ -25,10 +25,10 @@ digraph example
 {
     node [shape=record, fontname=Helvetica, fontsize=15];
     edge [shape=record, fontname=Helvetica, fontsize=10];
-    logger  [ label="Logger"       URL="\ref com::aworx::lox::core::Lox"];
-    cl      [ label="ConsoleLogger"    URL="\ref com::aworx::lox::core::Logger"];
-    ml      [ label="Memory Logger"    URL="\ref com::aworx::lox::core::Logger"];
-    my      [ label="My Custom Logger"    URL="\ref com::aworx::lox::core::Logger"];
+    logger  [ label="Logger"            URL="\ref com::aworx::lox::core::Logger"];
+    cl      [ label="ConsoleLogger"     URL="\ref com::aworx::lox::ConsoleLogger"];
+    ml      [ label="Memory Logger"     URL="\ref com::aworx::lox::MemoryLogger"];
+    my      [ label="My Custom Logger"  ];
     cl -> logger  [ label= "extends" arrowhead="open", style="dashed", URL="\ref com::aworx::lox::core::Lox::AddLogger" ];
     ml -> logger  [ label= "extends" arrowhead="open", style="dashed", URL="\ref com::aworx::lox::core::Lox::AddLogger" ];
     my -> logger  [ label= "extends" arrowhead="open", style="dashed", URL="\ref com::aworx::lox::core::Lox::AddLogger" ];

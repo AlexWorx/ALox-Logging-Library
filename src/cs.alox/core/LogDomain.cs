@@ -72,6 +72,8 @@ public class LogDomain
 	 **************************************************************************************************/
 	public LogDomain( LogDomain parent,  MString name )
 	{
+
+
 		// store parameters
 		this.Name=		name; 
 		this.Parent=	parent;
@@ -137,8 +139,8 @@ public class LogDomain
 
 	/** ***********************************************************************************************
 	 * <summary>
-	 *  Determines if the domain is active in respect to the given Log.DomainLevel and the current
-	 *  domain level.
+	 *  Determines if the domain is active in respect to the given Log.Level and the current domain 
+	 *  level.
 	 * </summary>
 	 * <param name="level">	The log level to check . </param>
 	 * <returns>	True if domain is active (log should be performed) </returns>

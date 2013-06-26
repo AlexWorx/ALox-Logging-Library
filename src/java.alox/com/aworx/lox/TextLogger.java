@@ -2,12 +2,18 @@ package com.aworx.lox;
 
 import java.text.FieldPosition;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 
-import com.aworx.lox.core.*;
-import com.aworx.util.*;
+import com.aworx.lox.core.CallerInfo;
+import com.aworx.lox.core.Logger;
+import com.aworx.util.MString;
+import com.aworx.util.Ticker;
 
-/**************************************************************************************************
+/**********************************************************************************************//**
  * This class is a still abstract implementation of class Logger. All message objects passed to
  * doLog are translated to MStrings and passed to the abstract function doTextLog().
  * Furthermore, various textual representations of other log attributes are generated.
@@ -34,7 +40,7 @@ public abstract class TextLogger extends Logger
 	/**
 	 * Determines if multi line messages should be split into different log lines. Possible values are: 
 	 * 0: No line split is performed, delimiters can be replaced by readable delimiters (depending on 
-	 * setting of #MultiLineDelimiter and # MultiLineDelimiterRepl). 
+	 * setting of #multiLineDelimiter and #multiLineDelimiterRepl). 
 	 * 
 	 * 1: Each log line contains all meta information  
 	 * 
@@ -55,7 +61,7 @@ public abstract class TextLogger extends Logger
 
 	/** 
 	 * This is the readable (!) separator string, for logging out multi line messages into a 
-	 * single line (#MultiLineMsgMode==0).
+	 * single line (#multiLineMsgMode==0).
 	 */
 	public			String			multiLineDelimiterRepl		= "\\r";
 	
@@ -86,7 +92,7 @@ public abstract class TextLogger extends Logger
 	/** The output for the log level "Verbose". */
 	public			String			FMT_LogLevelVerbose			= " [***]";
 
-	/** Headline for multi line messages (depending on #MultiLineMsgMode)  . */
+	/** Headline for multi line messages (depending on #multiLineMsgMode)  . */
 	public			String			FMT_MultiLineMsgHeadline	= "ALox: Multi line message follows: ";
 
 	/** 
@@ -211,11 +217,11 @@ public abstract class TextLogger extends Logger
 	// Constructor
 	// #################################################################################################
 
-    /**************************************************************************************************
-     * Constructs a TextLogger.
-     *
-     * @param name  The name of the logger.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Constructs a TextLogger.
+	 *
+	 * @param name  The name of the logger.
+	 **************************************************************************************************/
 	protected TextLogger( String	name )	
 	{
 		super( name );
@@ -225,20 +231,20 @@ public abstract class TextLogger extends Logger
 	// Abstract methods to be overwritten
 	// #################################################################################################
 
-    /**************************************************************************************************
-     * The abstract function that logs a message.
-     *
-     * @param domain        The log domain name. If not starting with a slash ('/')
-     *                      this is appended to any default domain name that might have been specified
-     *                      for the source file.
-     * @param level         The log level. This has been checked to be active already on this stage
-     *                      and is provided to be able to be logged out only.
-     * @param msg           The log message.
-     * @param indent        the indentation in the output. Defaults to 0.
-     * @param caller        Once compiler generated and passed forward to here.
-     * @param lineNumber    The line number of a multi-line message, starting with 0. For single line
-     *                      messages this is -1.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * The abstract function that logs a message.
+	 *
+	 * @param domain        The log domain name. If not starting with a slash ('/')
+	 *                      this is appended to any default domain name that might have been specified
+	 *                      for the source file.
+	 * @param level         The log level. This has been checked to be active already on this stage
+	 *                      and is provided to be able to be logged out only.
+	 * @param msg           The log message.
+	 * @param indent        the indentation in the output. Defaults to 0.
+	 * @param caller        Once compiler generated and passed forward to here.
+	 * @param lineNumber    The line number of a multi-line message, starting with 0. For single line
+	 *                      messages this is -1.
+	 **************************************************************************************************/
 	abstract protected void doTextLog( 	MString		domain,		Log.Level	level, 
 										MString		msg,		int			indent,
 										CallerInfo	caller, 	int			lineNumber);
@@ -247,20 +253,20 @@ public abstract class TextLogger extends Logger
 	// Abstract inherited method implementations
 	// #################################################################################################
 
-    /**************************************************************************************************
-     * Implementation of Logger.doLog(). Creates all the textual information that is logged in a
-     * line before the message itself.
-     *
-     * @param domain    The log domain name. If not starting with a slash ('/')
-     *                  this is appended to any default domain name that might have been specified
-     *                  for the source file.
-     * @param level     The log level. This has been checked to be active already on this stage and
-     *                  is provided to be able to be logged out only.
-     * @param msgObject The log message. If this is not a String (StringBuilder, MString, etc.)
-     *                  type, then is converted to a text using 'toString()'.
-     * @param indent    the indentation in the output. Defaults to 0.
-     * @param caller    Once compiler generated and passed forward to here.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Implementation of Logger.doLog(). Creates all the textual information that is logged in a
+	 * line before the message itself.
+	 *
+	 * @param domain    The log domain name. If not starting with a slash ('/')
+	 *                  this is appended to any default domain name that might have been specified
+	 *                  for the source file.
+	 * @param level     The log level. This has been checked to be active already on this stage and
+	 *                  is provided to be able to be logged out only.
+	 * @param msgObject The log message. If this is not a String (StringBuilder, MString, etc.)
+	 *                  type, then is converted to a text using 'toString()'.
+	 * @param indent    the indentation in the output. Defaults to 0.
+	 * @param caller    Once compiler generated and passed forward to here.
+	 **************************************************************************************************/
 	@Override protected void doLog(	MString		domain,		Log.Level	level, 
 									Object		msgObject,	int			indent,
 									CallerInfo	caller )
@@ -601,11 +607,11 @@ public abstract class TextLogger extends Logger
 
 	}
 
-    /**************************************************************************************************
-     * Logs time difference into the log buffer, from micro seconds to days.
-     *
-     * @param diffMicros    The difference micros.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Logs time difference into the log buffer, from micro seconds to days.
+	 *
+	 * @param diffMicros    The difference micros.
+	 **************************************************************************************************/
 	protected void logTimeDiff( long diffMicros )
 	{
 		logBuf.append( FMT_TimeDiffPrefix );

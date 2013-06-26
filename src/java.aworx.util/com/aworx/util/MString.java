@@ -9,7 +9,7 @@
 
 package com.aworx.util;
 
-/**************************************************************************************************
+/**********************************************************************************************//**
  * A mutable string, that provides public access to its internal buffer and fields and does not
  * implement thread synchronization. Unfortunately, the given C#/JAVA StringBuilder/Buffer
  * classes are "sealed" and do not provide direct access to the internal buffer. Hence, to avoid
@@ -58,7 +58,7 @@ public class MString implements CharSequence
 	//  Constructors
 	// #################################################################################################
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Constructor without specific Buffer size, default buffer size to 1 kb.
      **************************************************************************************************/
 	public MString( )
@@ -68,7 +68,7 @@ public class MString implements CharSequence
 		clear();
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Constructor with specific Buffer size .
      *
      * @param size  The initial size of the internal buffer
@@ -84,7 +84,7 @@ public class MString implements CharSequence
 		clear();
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Constructor copying a MString.
      *
      * @param ms    The source MString to copy from.
@@ -109,7 +109,7 @@ public class MString implements CharSequence
 		append( ms );
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Constructor copying a substring of a MString.
      *
      * @param ms        The source MString to copy from.
@@ -144,7 +144,7 @@ public class MString implements CharSequence
 		append( ms, startIdx, len );
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Constructor copying a substring of a MString.
      *
      * @param ms        The source MString to copy from.
@@ -182,7 +182,7 @@ public class MString implements CharSequence
 		append( ms, startIdx, len );
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Constructor copying String.
      *
      * @param s The source String to copy from.
@@ -206,7 +206,7 @@ public class MString implements CharSequence
 		append( s );
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Constructor copying a substring of a String.
      *
      * @param s         The source String to copy from.
@@ -241,7 +241,7 @@ public class MString implements CharSequence
 		append( s, startIdx, len );
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Constructor copying a substring of a String.
      *
      * @param s   		The source String to copy from.
@@ -279,7 +279,7 @@ public class MString implements CharSequence
 		append( s, startIdx, len );
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Constructor copying a StringBuffer.
      *
      * @param s The source StringBuffer to copy from.
@@ -303,7 +303,7 @@ public class MString implements CharSequence
 		append( s, 0, s.length() );
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Constructor copying a substring of a StringBuffer.
      *
      * @param s         The source StringBuffer to copy from.
@@ -337,7 +337,7 @@ public class MString implements CharSequence
 		append( s, startIdx, len );
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Constructor copying a substring of a StringBuffer.
      *
      * @param s         The source StringBuffer to copy from.
@@ -379,7 +379,7 @@ public class MString implements CharSequence
 	// Public interface
 	// #################################################################################################
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Clear the Buffer (just sets Length to 0)
      *
      * @return  'this' to allow concatenated calls.
@@ -393,7 +393,7 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append another MString.
      *
      * @param ms    The MString to append.
@@ -428,7 +428,7 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append a substring of another MString.
      *
      * @param ms        The MString to append.
@@ -441,7 +441,7 @@ public class MString implements CharSequence
 		return append( ms, startIdx, Integer.MAX_VALUE);	
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append a substring of another MString.
      *
      * @param ms        The MString to append.
@@ -484,7 +484,7 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append a String.
      *
      * @param s The String to append.
@@ -512,7 +512,7 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append a substring of a String.
      *
      * @param s         The String to append.
@@ -525,7 +525,7 @@ public class MString implements CharSequence
 		return append( s, startIdx, Integer.MAX_VALUE );	
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append a substring of a String.
      *
      * @param s         The String to append.
@@ -558,7 +558,7 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append a StringBuffer.
      *
      * @param sb    The StringBuffer to append.
@@ -585,7 +585,7 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append a substring of a StringBuffer.
      *
      * @param sb        The StringBuffer to append.
@@ -598,7 +598,7 @@ public class MString implements CharSequence
 		return append( sb, startIdx, Integer.MAX_VALUE ); 
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append a substring of a StringBuffer.
      *
      * @param sb        The StringBuffer to append.
@@ -631,7 +631,7 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append a StringBuilder.
      *
      * @param sb    The StringBuilder to append.
@@ -658,7 +658,7 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append a substring of a StringBuilder.
      *
      * @param sb        The StringBuilder to append.
@@ -671,7 +671,7 @@ public class MString implements CharSequence
 		return append( sb, startIdx, Integer.MAX_VALUE ); 
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append a substring of a StringBuilder.
      *
      * @param sb        The StringBuilder to append.
@@ -704,7 +704,7 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append a CharSequence.
      *
      * @param sb    The CharSequence to append.
@@ -733,7 +733,7 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append a substring of a CharSequence.
      *
      * @param sb        The CharSequence to append.
@@ -746,7 +746,7 @@ public class MString implements CharSequence
 		return append( sb, startIdx, Integer.MAX_VALUE ); 
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append a substring of a CharSequence.
      *
      * @param sb        The CharSequence to append.
@@ -782,7 +782,7 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append the given character.
      *
      * @param c The character to append.
@@ -798,7 +798,7 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append the given character repeatedly.
      *
      * @param c     The character to append.
@@ -816,7 +816,7 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append padding spaces and append the given MString.
      *
      * @param ms        The MString to append.
@@ -826,7 +826,7 @@ public class MString implements CharSequence
      **************************************************************************************************/
 	public MString appendPadRight( MString ms, int fieldSize ) { return appendPadRight( ms, fieldSize, ' ' ); }
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append padding characters and append the given MString.
      *
      * @param ms        The MString to append.
@@ -860,7 +860,7 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append padding spaces and append the given String.
      *
      * @param s         The String to append.
@@ -870,7 +870,7 @@ public class MString implements CharSequence
      **************************************************************************************************/
 	public MString appendPadRight( String s, int fieldSize ) { return appendPadRight( s, fieldSize, ' ' ); }
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append padding characters and append the given String.
      *
      * @param s         The String to append.
@@ -905,7 +905,7 @@ public class MString implements CharSequence
 
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append padding spaces and append the given StringBuffer.
      *
      * @param sb        The StringBuffer to append.
@@ -915,7 +915,7 @@ public class MString implements CharSequence
      **************************************************************************************************/
 	public MString appendPadRight( StringBuffer sb, int fieldSize ) { return appendPadRight( sb, fieldSize, ' ' ); }
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append padding characters and append the given StringBuffer.
      *
      * @param sb        The StringBuffer to append.
@@ -949,7 +949,7 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append the given MString and add padding spaces behind the string.
      *
      * @param ms        The string to append.
@@ -960,7 +960,7 @@ public class MString implements CharSequence
 	public MString appendPadLeft( MString ms, int fieldSize ) { return appendPadLeft( ms, fieldSize, ' ' ); }
 	@SuppressWarnings ("null") 
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append the given MString and add padding characters behind the string.
      *
      * @param ms        The string to append.
@@ -993,7 +993,7 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append the given String and add padding spaces behind the string.
      *
      * @param s         The string to append.
@@ -1003,7 +1003,7 @@ public class MString implements CharSequence
      **************************************************************************************************/
 	public MString appendPadLeft( String s, int fieldSize ) 	{ return appendPadLeft( s, fieldSize, ' ' ); }
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append the given String and add padding characters behind the string.
      *
      * @param s         The String to append.
@@ -1037,7 +1037,7 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append the given StringBuffer and add padding spaces behind the string.
      *
      * @param sb        The StringBuffer to append.
@@ -1047,7 +1047,7 @@ public class MString implements CharSequence
      **************************************************************************************************/
 	public MString appendPadLeft( StringBuffer sb, int fieldSize ) 	{ return appendPadLeft( sb, fieldSize, ' ' ); }
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append the given StringBuffer and add padding characters behind the string.
      *
      * @param sb        The StringBuffer to append.
@@ -1081,7 +1081,7 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append the given MString and add surrounding padding spaces.
      *
      * @param ms        The MString to append.
@@ -1091,7 +1091,7 @@ public class MString implements CharSequence
      **************************************************************************************************/
 	public MString appendPadCenter( MString ms, int fieldSize ) { return appendPadCenter( ms, fieldSize, ' '); }
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append the given MString and add surrounding padding characters.
      *
      * @param ms        The MString to append.
@@ -1120,7 +1120,7 @@ public class MString implements CharSequence
 		return appendPadRight( ms, fieldSize - leftPad, padChar );
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append the given String and add surrounding padding spaces.
      *
      * @param s         the string to append.
@@ -1130,7 +1130,7 @@ public class MString implements CharSequence
      **************************************************************************************************/
 	public MString appendPadCenter( String s, int fieldSize ) { return appendPadCenter( s, fieldSize, ' ' ); }
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append the given String and add surrounding padding characters.
      *
      * @param s         the string to append.
@@ -1159,7 +1159,7 @@ public class MString implements CharSequence
 		return appendPadRight( s, fieldSize - leftPad, padChar );
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append the given StringBuffer and add surrounding padding spaces.
      *
      * @param sb        the StringBuffer to append.
@@ -1169,7 +1169,7 @@ public class MString implements CharSequence
      **************************************************************************************************/
 	public MString appendPadCenter( StringBuffer sb, int fieldSize ) { return appendPadCenter( sb, fieldSize, ' ' ); }
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append the given StringBuffer and add surrounding padding characters.
      *
      * @param sb        the StringBuffer to append.
@@ -1198,7 +1198,7 @@ public class MString implements CharSequence
 		return appendPadRight( sb, fieldSize - leftPad, padChar );
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append the given unsigned 32-Bit integer value.
      *
      * @param i         the integer value to append.
@@ -1254,7 +1254,7 @@ public class MString implements CharSequence
 	}
 	public MString append( int i ) { return append( i, 1 ); }
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Append the given double value using the minimum digits before and after the given number of
      * digits after dot.
      *
@@ -1310,7 +1310,7 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Go to the next tab stop by filling in pad characters repeatedly.
      *
      * @param tabSize   The tab positions are multiples of this parameter.
@@ -1320,7 +1320,7 @@ public class MString implements CharSequence
      **************************************************************************************************/
 	public MString tab( int tabSize ) 									{ return tab( tabSize, 0, 			 1,		 ' ' ); }
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Go to the next tab stop by filling in pad characters repeatedly.
      *
      * @param tabSize       The tab positions are multiples of this parameter.
@@ -1332,7 +1332,7 @@ public class MString implements CharSequence
      **************************************************************************************************/
 	public MString tab( int tabSize, int tabReference)					{ return tab( tabSize, tabReference, 1, 	 ' ' ); }
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Go to the next tab stop by filling in pad characters repeatedly.
      *
      * @param tabSize       The tab positions are multiples of this parameter.
@@ -1345,7 +1345,7 @@ public class MString implements CharSequence
      **************************************************************************************************/
 	public MString tab( int tabSize, int tabReference, int minPad)		{ return tab( tabSize, tabReference, minPad, ' ' ); }
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Go to the next tab stop by filling in pad characters repeatedly.
      *
      * @param tabSize       The tab positions are multiples of this parameter.
@@ -1370,7 +1370,7 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Appends platform specific new line character(s). ( "\\r\\n", "\\r", etc.) 
      *
      * @return  'this' to allow concatenated calls.
@@ -1381,7 +1381,7 @@ public class MString implements CharSequence
 		return append( NEWLINE ); 
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Checks if the given String is located at the given position.
      *
      * @param s             The string to search.
@@ -1423,7 +1423,7 @@ public class MString implements CharSequence
 	}
 	public boolean containsAt( CharSequence s, int pos )		{ return containsAt( s, pos, false ); }
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Checks if this MString starts with the given sequence.
      *
      * @param s The String to search. If s is null or empty, false is returned.
@@ -1435,7 +1435,7 @@ public class MString implements CharSequence
 		return containsAt( s, 0, false );
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Checks if this MString ends with the given sequence.
      *
      * @param s The String to search. If s is null or empty, false is returned.
@@ -1450,7 +1450,7 @@ public class MString implements CharSequence
 		return containsAt( s, length - s.length(), false );
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Search the given String in the Buffer.
      *
      * @param s         The string to search.
@@ -1487,7 +1487,7 @@ public class MString implements CharSequence
 	}
 	public int indexOf( CharSequence s )				{ return indexOf( s, 0 ); }
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Replace one more more occurrences of a string by another string.
      *
      * @param searchStr         The string to be replaced.
@@ -1554,7 +1554,7 @@ public class MString implements CharSequence
 		}
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Replace one more more occurrences of a string by another string.
      *
      * @param searchStr The string to be replaced.
@@ -1565,7 +1565,7 @@ public class MString implements CharSequence
      **************************************************************************************************/
 	public int replace( CharSequence searchStr, CharSequence newStr, int startIdx ) { return replace( searchStr, newStr, startIdx, Integer.MAX_VALUE); }
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Replace one more more occurrences of a string by another string.
      *
      * @param searchStr The string to be replaced.
@@ -1575,7 +1575,7 @@ public class MString implements CharSequence
      **************************************************************************************************/
 	public int replace( CharSequence searchStr, CharSequence newStr) 				{ return replace( searchStr, newStr, 0, 	   Integer.MAX_VALUE); }
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Compares a given string (or part of it) with the contents of this. If the optionally given
      * substring start indices and lengths parameters are out of bounds, they are corrected. This
      * could lead to unwanted results in some cases.
@@ -1590,7 +1590,7 @@ public class MString implements CharSequence
 		return compareTo( cmp, false, 	 0, 		Integer.MAX_VALUE, 	0, 			Integer.MAX_VALUE ); 
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Compares a given string (or part of it) with the contents of this. If the optionally given
      * substring start indices and lengths parameters are out of bounds, they are corrected. This
      * could lead to unwanted results in some cases.
@@ -1607,7 +1607,7 @@ public class MString implements CharSequence
 		return compareTo( cmp, ignoreCase, 0, 		Integer.MAX_VALUE, 	0, 			Integer.MAX_VALUE ); 
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Compares a given string (or part of it) with the contents of this. If the optionally given
      * substring start indices and lengths parameters are out of bounds, they are corrected. This
      * could lead to unwanted results in some cases.
@@ -1626,7 +1626,7 @@ public class MString implements CharSequence
 	 	return compareTo( cmp, ignoreCase, sStartIdx, Integer.MAX_VALUE, 	0,			Integer.MAX_VALUE ); 
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Compares a given string (or part of it) with the contents of this. If the optionally given
      * substring start indices and lengths parameters are out of bounds, they are corrected. This
      * could lead to unwanted results in some cases.
@@ -1647,7 +1647,7 @@ public class MString implements CharSequence
 		return compareTo( cmp, ignoreCase, sStartIdx, sLen, 				0,			Integer.MAX_VALUE ); 
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Compares a given string (or part of it) with the contents of this. If the optionally given
      * substring start indices and lengths parameters are out of bounds, they are corrected. This
      * could lead to unwanted results in some cases.
@@ -1670,7 +1670,7 @@ public class MString implements CharSequence
 		return compareTo( cmp, ignoreCase, sStartIdx, sLen, 				startIdx,	Integer.MAX_VALUE ); 
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Compares a given string (or part of it) with the contents of this. If the optionally given
      * substring start indices and lengths parameters are out of bounds, they are corrected. This
      * could lead to unwanted results in some cases.
@@ -1741,7 +1741,7 @@ public class MString implements CharSequence
 		}
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Converts all or a region of characters in the Buffer to upper or to lower case.
      *
      * @param toUpper   If true, conversion to upper case is performed, to lower else.
@@ -1750,7 +1750,7 @@ public class MString implements CharSequence
      **************************************************************************************************/
 	public MString convertCase( boolean toUpper )									{ return convertCase( toUpper, 0,			Integer.MAX_VALUE ); }
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Converts all or a region of characters in the Buffer to upper or to lower case.
      *
      * @param toUpper       If true, conversion to upper case is performed, to lower else.
@@ -1760,7 +1760,7 @@ public class MString implements CharSequence
      **************************************************************************************************/
 	public MString convertCase( boolean toUpper, int substrStart  )					{ return convertCase( toUpper, substrStart,	Integer.MAX_VALUE ); }
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Converts all or a region of characters in the Buffer to upper or to lower case.
      *
      * @param toUpper       If true, conversion to upper case is performed, to lower else.
@@ -1801,7 +1801,7 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Converts the MString into a String.
      *
      * @return  A string that represents this object.
@@ -1811,7 +1811,7 @@ public class MString implements CharSequence
 		return new String( buffer, 0, length );
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Creates a String from a region within this MString.
      *
      * @param startIdx  The start index of the region in this to create the string from.
@@ -1820,7 +1820,7 @@ public class MString implements CharSequence
      **************************************************************************************************/
 	public String toString( int startIdx )	{ return toString( startIdx, Integer.MAX_VALUE ); }
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Creates a String from a region within this MString.
      *
      * @param startIdx	The start index of the region in this to create the string from.
@@ -1839,7 +1839,7 @@ public class MString implements CharSequence
 		return new String( buffer, adjStartIdx, adjLength);
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Calculates the hash value using the same formula as java.lang.String.
      *
      * @return  A hash value for this object.
@@ -1860,7 +1860,7 @@ public class MString implements CharSequence
  		return h;
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Compares this to the given object. Given object can be MString or CharSequence (e.g. String).
      *
      * @param o The object to compare to this instance.
@@ -1915,7 +1915,7 @@ public class MString implements CharSequence
 		return false; 
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Ensures that the capacity of the internal buffer meets or exceeds the given value.
      *
      * @param minLen    The minimum length.
@@ -1949,7 +1949,7 @@ public class MString implements CharSequence
 	protected int adjStartIdx;
 	protected int adjLength;
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Adjust a given range within an array to the array bounds and tests if range is empty.
      *
      * @param referenceLen  Length of the zero indexed reference array.
@@ -2007,7 +2007,7 @@ public class MString implements CharSequence
  	/**   An empty String singleton */
 	public static final String empty=					"";
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Checks if a given CharSequence is empty or has a length of zero.
      *
      * @param jString   The java String to check.
@@ -2016,7 +2016,7 @@ public class MString implements CharSequence
      **************************************************************************************************/
 	public static boolean isNullOrEmpty( CharSequence jString )	{ return jString == null || jString.length() == 0; }
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Search the given String in the Buffer starting at the given position.
      *
      * @param sIn       The string to search in.
@@ -2062,7 +2062,7 @@ public class MString implements CharSequence
 		return -1;
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Search the given String in the Buffer.
      *
      * @param sIn   The string to search in.
@@ -2072,7 +2072,7 @@ public class MString implements CharSequence
      **************************************************************************************************/
 	public static int indexOfIgnoreCase( CharSequence sIn, CharSequence sFor )		{ return indexOfIgnoreCase( sIn, sFor, 0); }
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Static utility function that to check if a string starts with another string with case
      * insensitive compare. Using this function avoids to create two converted (lowered)
      * temporary strings.
@@ -2108,7 +2108,7 @@ public class MString implements CharSequence
 		return true;
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Static utility function that to check if a string ends with another string with case
      * insensitive compare. Using this function avoids to create two converted (lowered) temporary
      * strings.

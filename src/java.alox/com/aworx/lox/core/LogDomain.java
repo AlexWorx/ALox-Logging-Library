@@ -1,11 +1,11 @@
 package com.aworx.lox.core;
 
-import java.util.*;
+import java.util.ArrayList;
 
 import com.aworx.lox.Log;
-import com.aworx.util.*;
+import com.aworx.util.MString;
 
-/**************************************************************************************************
+/**********************************************************************************************//**
  * Class LogDomain represents a logging domain. Each log statement refers to such a
  * domain which can be defined specifically for different parts of your application like
  * assemblies, libraries, namespaces, specific code files or even for a single log call. Domains
@@ -51,12 +51,12 @@ public class LogDomain
 	// Public interface
 	// #################################################################################################
 
-    /**************************************************************************************************
-     * Constructor for domain.
-     *
-     * @param parent    The parent domain. For root domains, this is null.
-     * @param name      The name of the domain. For root domains, this is null.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Constructor for domain.
+	 *
+	 * @param parent    The parent domain. For root domains, this is null.
+	 * @param name      The name of the domain. For root domains, this is null.
+	 **************************************************************************************************/
 	public LogDomain( LogDomain parent,  MString name )
 	{
 		// store parameters
@@ -71,11 +71,11 @@ public class LogDomain
 									:  Log.DomainLevel.Inherit;
 	}
 
-    /**************************************************************************************************
-     * String representation of LogDomain, needed for debugger.
-     *
-     * @return  A string that represents this instance.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * String representation of LogDomain, needed for debugger.
+	 *
+	 * @return  A string that represents this instance.
+	 **************************************************************************************************/
 	@Override public String toString()
 	{
 		return (  name != null  ? name.toString() : "ROOT" )
@@ -83,11 +83,11 @@ public class LogDomain
 				+ ", #sub domains: "	+ subDomains.size();
 	}
 
-    /**************************************************************************************************
-     * Returns the domain log level. If set to _INHERIT, recursion with parent domain is performed.
-     *
-     * @return  The found/defined domain log level.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Returns the domain log level. If set to _INHERIT, recursion with parent domain is performed.
+	 *
+	 * @return  The found/defined domain log level.
+	 **************************************************************************************************/
 	public Log.DomainLevel getLevel()
 	{
 		// recursively find a defined level
@@ -103,13 +103,13 @@ public class LogDomain
 		return level;
 	}
 
-    /**************************************************************************************************
-     * Sets the level of the this domain and optionally for all sub domains to the specified value.
-     * The root domain's level is always set to All and can not be changed.
-     *
-     * @param domainLevel   The domain level value to set.
-     * @param recursive     true to process recursively, false to process locally only.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Sets the level of the this domain and optionally for all sub domains to the specified value.
+	 * The root domain's level is always set to All and can not be changed.
+	 *
+	 * @param domainLevel   The domain level value to set.
+	 * @param recursive     true to process recursively, false to process locally only.
+	 **************************************************************************************************/
 	public void setLevel( Log.DomainLevel domainLevel, boolean recursive )
 	{
 		// set it for myself (only if I am not root domain)
@@ -123,14 +123,14 @@ public class LogDomain
 		}
 	}
 
-    /**************************************************************************************************
-     * Determines if the domain is active in respect to the given Log.Log.DomainLevel and the
-     * current domain level.
-     *
-     * @param ("hiding" The "hiding".
-     *
-     * @return  True if domain is active (log should be performed)
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Determines if the domain is active in respect to the given Log.Level and the current domain
+	 * level.
+	 *
+	 * @param level     The log level to check.
+	 *
+	 * @return  True if domain is active (log should be performed)
+	 **************************************************************************************************/
 	public	boolean isActive( @SuppressWarnings ("hiding") Log.Level level )
 	{
 		Log.DomainLevel domainLevel= getLevel();
@@ -150,17 +150,17 @@ public class LogDomain
 				||	  domainLevel == Log.DomainLevel.All;
 	}
 
-    /**************************************************************************************************
-     * Searches a domain. If the flag createIfNotExistant is set, then one or more sub domains are
-     * created as needed. If the path String starts with a domain separator character, then the
-     * search (and creation) is done starting from the root domain of this domain and not from this
-     * domain.
-     *
-     * @param domainPath            Path and domain to search.
-     * @param createIfNotExistant   If set true, domains in the path that are not found are created.
-     *
-     * @return  The domain found or created.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Searches a domain. If the flag createIfNotExistant is set, then one or more sub domains are
+	 * created as needed. If the path String starts with a domain separator character, then the
+	 * search (and creation) is done starting from the root domain of this domain and not from this
+	 * domain.
+	 *
+	 * @param domainPath            Path and domain to search.
+	 * @param createIfNotExistant   If set true, domains in the path that are not found are created.
+	 *
+	 * @return  The domain found or created.
+	 **************************************************************************************************/
 	public LogDomain findOrCreate( MString domainPath, boolean createIfNotExistant)
 	{
 		// check if given domain path starts with domain separators
@@ -185,15 +185,15 @@ public class LogDomain
 		return ld.findOrCreateInternal( domainPath, startIdx, createIfNotExistant );
 	}
 
-    /**************************************************************************************************
-     * The internal recursive helper to implement the FindOrCreate() interface.
-     *
-     * @param domainPath            Path to search.
-     * @param dpStartIdx            The current scan position in the domain string.
-     * @param createIfNotExistant   Create domain if not found on the path.
-     *
-     * @return  The found domain.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * The internal recursive helper to implement the FindOrCreate() interface.
+	 *
+	 * @param domainPath            Path to search.
+	 * @param dpStartIdx            The current scan position in the domain string.
+	 * @param createIfNotExistant   Create domain if not found on the path.
+	 *
+	 * @return  The found domain.
+	 **************************************************************************************************/
 	@SuppressWarnings ("null") 
 	protected LogDomain findOrCreateInternal( MString	domainPath,	int dpStartIdx, boolean createIfNotExistant)
 	{

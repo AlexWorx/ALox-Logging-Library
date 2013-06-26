@@ -1,11 +1,9 @@
 package com.aworx.lox;
 
-import java.util.*;
+import com.aworx.lox.core.CallerInfo;
+import com.aworx.util.MString;
 
-import com.aworx.lox.core.*;
-import com.aworx.util.*;
-
-/**************************************************************************************************
+/**********************************************************************************************//**
  * A logger that logs all messages to the VStudio IDE output window (**using
  * System.Diagnostics.Debug.WriteLine()**) and/or to the application console (using
  * **Console.WriteLine()**).
@@ -51,7 +49,7 @@ public class ConsoleLogger extends TextLogger
 	// Constructors
 	// #################################################################################################
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Creates a ConsoleLogger with the given name.
      *
      * @param name  The name of the logger, defaults to "CONSOLE".
@@ -64,7 +62,7 @@ public class ConsoleLogger extends TextLogger
 		rootDomain.setLevel( Log.DomainLevel.All, false );
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Creates a ConsoleLogger with the name "CONSOLE".
      **************************************************************************************************/
 	public ConsoleLogger( )
@@ -80,7 +78,7 @@ public class ConsoleLogger extends TextLogger
 	// Abstract interface implementation
 	// #################################################################################################
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * The implementation of the abstract method of parent class TextLogger. Logs messages to the
      * application console and/or the VStudio output window.
      *

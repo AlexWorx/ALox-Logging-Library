@@ -5,7 +5,7 @@ import java.util.Date;
 
 
 
-/**************************************************************************************************
+/**********************************************************************************************//**
  * <summary>	
  * 	This class encapsulates a system dependent time value (ticks) and uses the static class Ticker to
  * 	get and manipulate it.  See class Ticker to learn about system dependent time values (ticks)
@@ -39,7 +39,7 @@ public class TickTime
 	// Constructors
 	// #################################################################################################
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Creates a TickTime with internal tick time of 0.
      **************************************************************************************************/
 	public 		 		TickTime	( )			
@@ -49,7 +49,7 @@ public class TickTime
 		cntMeasures=	0;	
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Creates a TickTime from a given time value in ticks.
      *
      * @param otherTicks    The value to copy into this.
@@ -61,7 +61,7 @@ public class TickTime
 		cntMeasures=	0;	
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Creates a TickTime as a copy of another TickTime.
      *
      * @param copy  The instance to copy value from.
@@ -77,7 +77,7 @@ public class TickTime
 	// Conversion to platform specific objects
 	// #################################################################################################
 	
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Convert this instance into a string representation.
      *
      * @return  A String that represents this instance.
@@ -91,27 +91,27 @@ public class TickTime
 	// Interface Get/Set/Clear
 	// #################################################################################################
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Returns the internally stored value (in ticks).
      *
      * @return  the internally stored value (in ticks).
      **************************************************************************************************/
 	public	long	get()						{ return ticks;					}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Sets the internal value to the given value in ticks.
      *
      * @param value The value.
      **************************************************************************************************/
 	public	void	setTo( long value )			{ this.ticks= value;			}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Sets the internal value to current system time. This affects reference value for the
      * subsequent measurements.
      **************************************************************************************************/
 	public	void	setToNow()					{ ticks= Ticker.now();		}
 
-	/**************************************************************************************************
+	/**********************************************************************************************//**
 	 * <summary>
 	 *  Sets the internal value to current system time and clears existing sum and quantity of
 	 *  measurements.
@@ -124,7 +124,7 @@ public class TickTime
 	// Interface Since
 	// #################################################################################################
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Returns the time difference between the current system time and the time value represented by
      * this instance in (system dependent) ticks. If internal value represents a historic point in
      * time, the result is positive.
@@ -133,7 +133,7 @@ public class TickTime
      **************************************************************************************************/
 	public 	long	age()						{ return Ticker.now() - ticks;	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Returns the time difference between the current system time and the time value represented by
      * this instance in milliseconds. If internal value represents a historic point in time, the
      * result is positive.
@@ -142,7 +142,7 @@ public class TickTime
      **************************************************************************************************/
 	public 	int		ageInMillis()				{ return (int) Ticker.toMillis  ( Ticker.now() - ticks );	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Returns the time difference between the current system time and the time value represented by
      * this instance in microseconds. If internal value represents a historic point in time, the
      * result is positive.
@@ -151,7 +151,7 @@ public class TickTime
      **************************************************************************************************/
 	public 	long	ageInMicros()				{ return Ticker.toMicros( Ticker.now() - ticks );	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Returns the time span between the given TickTime and this instances value in (system
      * dependent) ticks. If the given TickTime represents a later point in time than the point in
      * time this instance represents, the result is positive.
@@ -159,11 +159,10 @@ public class TickTime
      * @param newerTime The value to compare this instance with.
      *
      * @return The time difference in ticks.
-.
      **************************************************************************************************/
 	public 	long	span( TickTime newerTime )			{ return						newerTime.ticks - ticks;	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Returns the time span between the given TickTime and this instances value in milliseconds. If
      * the given TickTime represents a later point in time than the point in time this instance
      * represents, the result is positive.
@@ -174,7 +173,7 @@ public class TickTime
      **************************************************************************************************/
 	public 	int		spanInMillis ( TickTime newerTime )	{ return (int) Ticker.toMillis( newerTime.ticks - ticks );	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Returns the time span between the given TickTime and this instances value in microseconds. If
      * the given TickTime represents a later point in time than the point in time this instance
      * represents, the result is positive.
@@ -190,7 +189,7 @@ public class TickTime
 	// Interface to Measurement
 	// #################################################################################################
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Returns a (system dependent) time difference between the current system time and the internal
      * reference value. In addition this value is added to the sum of measurement time and the
      * measurement counter is increased by one. Lastly the internal reference value is set to now.
@@ -208,14 +207,14 @@ public class TickTime
 		return diff;
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Returns the number of calls to Measure since object was created or clear() was invoked.
      *
      * @return  Returns the number of calls to Measure since object was created or clear() was invoked.
      **************************************************************************************************/
 	public		 int	getMeasureCnt()			{ return cntMeasures; }
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Returns the cumulated time of all measurements since object was created or cleared in (system
      * dependent) ticks.
      *
@@ -223,7 +222,7 @@ public class TickTime
      **************************************************************************************************/
 	public		long	getCumulatedTicks()		{ return sum; }
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Returns the average time of all measurements since object was created or cleared in (system
      * dependent) ticks. If no measurement was performed, this method returns 0.
      *
@@ -231,7 +230,7 @@ public class TickTime
      **************************************************************************************************/
 	public		long	getAverageTicks()		{ return  cntMeasures== 0 ? 0L	 :	(sum / cntMeasures); }
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Returns the average time of all measurements since object was created or cleared in
      * milliseconds. If no measurement was performed, this method returns 0.
      *
@@ -239,7 +238,7 @@ public class TickTime
      **************************************************************************************************/
 	public		long	getAverageMillis()		{ return  Ticker.toMillis( getAverageTicks() ); }
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Returns  one divided by the average time, hence the number of Hertz that correspond to the
      * average measured time.
      *
@@ -251,7 +250,7 @@ public class TickTime
 	// Conversion to time platform/language specific objects
 	// #################################################################################################
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Sets the given java.util.Calendar object to correspond to this instance.
      *
      * @param result    The java.util.Calendar object to set. If null, this is created.
@@ -263,7 +262,7 @@ public class TickTime
 		return Ticker.toJavaCalendar( ticks, result ); 
 	}	
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Sets this instance to the time represented by the given java.util.Calendar.
      *
      * @param javaCalendar  The java.util.Calendar object to read the time from.
@@ -273,7 +272,7 @@ public class TickTime
 		ticks=	Ticker.fromJavaCalendar( javaCalendar );
 	}
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Sets the given java.util.Date object to correspond to this instance.
      *
      * @param result    The java.util.Date object to set. If null, this is created.
@@ -285,7 +284,7 @@ public class TickTime
 		return Ticker.toJavaDate( ticks, result ); 
 	}	
 
-    /**************************************************************************************************
+    /**********************************************************************************************//**
      * Sets this instance to the time represented by the given java.util.Date.
      *
      * @param javaDate  The java.util.Date object object to read the time from.

@@ -162,7 +162,7 @@ public class ConsoleLogger : TextLogger
 
 			// jump to next tab level
 			if ( TabAfterSourceInfo < consoleBuffer.Length )
-				TabAfterSourceInfo= consoleBuffer.Length + 5; // add some extra space to avoid to many increases
+				TabAfterSourceInfo= consoleBuffer.Length + 5; // add some extra space to avoid too many increases
 			for ( int i= consoleBuffer.Length ; i < TabAfterSourceInfo ; i++ )
 				consoleBuffer.Append( ' ' );
 		}
