@@ -1,1 +1,1 @@
-src\cs.unittests.alox\Tests_Tutorial.cs(54):.Tut_Hello_ALox()     [00:00.000  +044 µs] [T:(16)]       [APP]: Hello ALox
+src\cs.unittests.alox\Tests_Tutorial.cs(54):.Tut_Hello_ALox()     [00:00.000  +040 µs] [T:(10)]       [APP]: Hello ALox

@@ -113,12 +113,14 @@ public class ThreadLock
 
 	
 	/** ***********************************************************************************************
+	 * <summary>
 	 * Thread which invokes this method gets registered  as the current owner of this object, until the 
 	 * same thread releases the ownership invoking unlock(). 
 	 * In the case that this object is already owned by another thread, the invoking thread is suspended
 	 * until ownership can be gained.
 	 * Multiple (nested) calls to this method are counted and the object is only released when the same
 	 * number of unlock() calls have been made. 
+	 * </summary>
 	 **************************************************************************************************/
 	public void aquire()		
 	{
@@ -203,8 +205,10 @@ public class ThreadLock
 	}	
 	
 	/** ***********************************************************************************************
+	 * <summary>
 	 * Releases ownership of this object. If lock() was called multiple times before, the same number
 	 * of calls to this method have to be performed to release ownership.
+	 * <summary>
 	 **************************************************************************************************/
 	public void release()		
 	{
@@ -250,12 +254,11 @@ public class ThreadLock
 			}
 		} // synchronized
 	}
-	
+
 	/** ***********************************************************************************************
-	 *  Returns the current owner of the thread. This method should not be used to check if a lock
-	 *  is used or not. However, it can. But software should be designed in a way that ownership does
-	 *  not need to be tested. This method is build in for debugging purposes only.
-	 *************************************************************************************************/
+	 * <summary>	Returns a  String that represents this object. </summary>
+	 * <returns>	A String that represents this object. </returns>
+	 **************************************************************************************************/
 	public override String ToString()		
 	{
 		return 		( owner != null ? owner.ToString() : "null") 
@@ -265,11 +268,14 @@ public class ThreadLock
 	}
 	
 	/** ***********************************************************************************************
-	 *  If parameter is true, th whole locking system is disabled. The only objective here is to
+	 * <summary>
+	 *  If parameter is true, the whole locking system is disabled. The only objective here is to
 	 *  to gain execution speed, as thread synchronization causes relatively expensive system calls.
 	 *  Use this method only if you are 100% sure that your (otherwise) critical section are executed
 	 *  in a single threaded environment. And: "relative expensive" means: they are not really expensive.
 	 *  This only for the rare case that your critical section is very, very frequently executed.
+	 * </summary>
+	 * <param name="setUnsafe">	If true, ThreadLock is set unsafe, safe otherwise.</param>
 	 *************************************************************************************************/
 	public void setUnsafe( bool setUnsafe )		
 	{

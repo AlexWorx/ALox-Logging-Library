@@ -28,37 +28,42 @@ import java.util.GregorianCalendar;
  **************************************************************************************************/
 public class Ticker
 {
-    /**********************************************************************************************//**
-     * The Frequency of the internal tick timer. The Frequency gives you an indication of the
-     * accuracy of the time (At least if the underlying system library is reasonably well working in
-     * this respect). And this is the reason why it is published with this field. This value does
-     * not necessarily correspond to the number of ticks per second that you get from this classes
-     * Now method.
-     **************************************************************************************************/
-	public static long				internalFrequency;
-
 	// #################################################################################################
 	// Private fields and static constructor
 	// #################################################################################################
+
+	/**********************************************************************************************//**
+	 * The Frequency of the internal tick timer. The Frequency gives you an indication of the
+	 * accuracy of the time (At least if the underlying system library is reasonably well working in
+	 * this respect). And this is the reason why it is published with this field. This value does
+	 * not necessarily correspond to the number of ticks per second that you get from this classes
+	 * now() method. (Well, in the JAVA implementation it does.)
+	 **************************************************************************************************/
+	public static long				internalFrequency;
+
+	/** The system milliseconds at creation time. */
 	private static long				creationTimeDateMillis;
+
+	/** The system nanoseconds at creation time. */
 	private static long				creationTimeSystemNanos;
+
+	/**********************************************************************************************//**
+	 * Static constructor.
+	 * 
+	 * This static constructor is called once at the beginning of the lifecycle of this library. We
+	 * use it to get
+	 * 
+	 * a) the milliseconds in the epoch in the moment this class was statically initialized
+	 * b) the system nanoseconds in the moment this class was statically initialized
+	 * 
+	 * These values are used later to avoid creating a new Date() object (speed optimization).
+	 **************************************************************************************************/
 	static 
 	{
-		// This static constructor is called once at the beginning of the lifecycle of this library.
-		// We use it to create  
-		//  a) a reference counter in DateTime ticks initialized to now and
-		//  b) a Stopwatch object that we are starting.
-		// Within the Now() function of this class, we are then converting the Stopwatch measurement
-		// and add it to the initial timer. 
-		// So, why are we doing this instead of just using DateTime.Now in method Now()?
-		// The answer is: DateTime.Now is very inefficient, because it creates a heap object that is
-		// then disposed right away. This version of Now() is around 15 times faster on the compiling platform.
 		creationTimeDateMillis=		( new Date() ).getTime();
 		creationTimeSystemNanos=	System.nanoTime();
 
-//TODO: freqency not set
-// 		InternalFrequency=		Stopwatch.Frequency;
-
+ 		internalFrequency=			1000000000L;
 	}
 
 
@@ -66,32 +71,32 @@ public class Ticker
 	// Creation and modification of ticker values
 	// #################################################################################################
 
-    /**********************************************************************************************//**
-     * Gets the actual system dependent time in ticks.
-     *
-     * @return  The time now in ticks
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Gets the actual system dependent time in ticks.
+	 *
+	 * @return  The time now in ticks
+	 **************************************************************************************************/
 	public static	long	now()							
 	{ 
 		// same as DateTime.Now.Ticks, but much faster
 		return	 System.nanoTime(); 
 	}
 
-    /**********************************************************************************************//**
-     * Adds the given time interval to the given ticker time (or span value in ticks) and returns
-     * the result. Parameters are allowed to be negative to subtract such time intervals.
-     * 
-     * For adding milliseconds or microseconds, use "yourTicks+= Ticker.FromMills()" respectively "
-     * yourTicks+= Ticker.FromMicros()".
-     *
-     * @param ticks     Ticker time (or time spans in ticks) to add to.
-     * @param days      The days to add (subtract if negative).
-     * @param hours     The hours to add (subtract if negative).
-     * @param minutes   The minutes to add (subtract if negative).
-     * @param seconds   The seconds to add (subtract if negative).
-     *
-     * @return  The modified ticker time.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Adds the given time interval to the given ticker time (or span value in ticks) and returns
+	 * the result. Parameters are allowed to be negative to subtract such time intervals.
+	 * 
+	 * For adding milliseconds or microseconds, use "yourTicks+= Ticker.FromMills()" respectively "
+	 * yourTicks+= Ticker.FromMicros()".
+	 *
+	 * @param ticks     Ticker time (or time spans in ticks) to add to.
+	 * @param days      The days to add (subtract if negative).
+	 * @param hours     The hours to add (subtract if negative).
+	 * @param minutes   The minutes to add (subtract if negative).
+	 * @param seconds   The seconds to add (subtract if negative).
+	 *
+	 * @return  The modified ticker time.
+	 **************************************************************************************************/
 	public static	long	add( long ticks, int days, int hours, int minutes, int seconds )							
 	{ 
 		long secsToAdd= seconds;
@@ -107,13 +112,13 @@ public class Ticker
 	// Conversion to/from time values (milliseconds, microseconds, seconds)
 	// #################################################################################################
 
-    /**********************************************************************************************//**
-     * Converts the given system dependent ticks (or time spans in ticks) to milliseconds.
-     *
-     * @param ticks Ticker time (or time spans in ticks) to convert.
-     *
-     * @return  Given ticks (span) value in milliseconds.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Converts the given system dependent ticks (or time spans in ticks) to milliseconds.
+	 *
+	 * @param ticks Ticker time (or time spans in ticks) to convert.
+	 *
+	 * @return  Given ticks (span) value in milliseconds.
+	 **************************************************************************************************/
 	public static	long		toMillis	( long ticks )	{ return	ticks / 1000000L;	}
 
 	/**********************************************************************************************//**
@@ -125,80 +130,80 @@ public class Ticker
 	 **************************************************************************************************/
 	public static	long		toMicros	( long ticks )	{ return	ticks /    1000L;	}
 
-    /**********************************************************************************************//**
-     * Converts the given system dependent ticks (or time spans in ticks) to nanoseconds.
-     *
-     * @param ticks Ticker time (or time spans in ticks) to convert.
-     *
-     * @return  Given ticks (span) value in nanoseconds.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Converts the given system dependent ticks (or time spans in ticks) to nanoseconds.
+	 *
+	 * @param ticks Ticker time (or time spans in ticks) to convert.
+	 *
+	 * @return  Given ticks (span) value in nanoseconds.
+	 **************************************************************************************************/
 	public static	long		toNanos		 ( long ticks )	{ return	ticks;	}
 
-    /**********************************************************************************************//**
-     * Converts the given millisecond value to a system dependent time span in ticks.
-     *
-     * @param millis    Ticker time (or time spans in ticks) to convert.
-     *
-     * @return  Given ticks (span) value in milliseconds.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Converts the given millisecond value to a system dependent time span in ticks.
+	 *
+	 * @param millis    Ticker time (or time spans in ticks) to convert.
+	 *
+	 * @return  Given ticks (span) value in milliseconds.
+	 **************************************************************************************************/
 	public static	long		fromMillis	( long millis )	{ return	millis * 1000000L;	}
 
-    /**********************************************************************************************//**
-     * Converts the given microsecond value to a system dependent time span in ticks.
-     *
-     * @param micros    Ticker time (or time spans in ticks) to convert.
-     *
-     * @return  Given ticks (span) value in microseconds.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Converts the given microsecond value to a system dependent time span in ticks.
+	 *
+	 * @param micros    Ticker time (or time spans in ticks) to convert.
+	 *
+	 * @return  Given ticks (span) value in microseconds.
+	 **************************************************************************************************/
 	public static	long		fromMicros	( long micros )	{ return	micros *    1000L;	}
 
-    /**********************************************************************************************//**
-     * Converts the given nanosecond value to a system dependent time span in ticks.
-     *
-     * @param nanos Ticker time (or time spans in ticks) to convert.
-     *
-     * @return  Given ticks (span) value in nanoseconds.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Converts the given nanosecond value to a system dependent time span in ticks.
+	 *
+	 * @param nanos Ticker time (or time spans in ticks) to convert.
+	 *
+	 * @return  Given ticks (span) value in nanoseconds.
+	 **************************************************************************************************/
 	public static	long		fromNanos	( long nanos )	{ return	nanos; 	}
 
 	// #################################################################################################
 	// Conversion to time platform/language specific objects
 	// #################################################################################################
 
-    /**********************************************************************************************//**
-     * Converts the given given system dependent ticker time into milliseconds since January 1, 1970,
-     * 00:00:00 GMT.
-     *
-     * @param ticks Ticker time to convert.
-     *
-     * @return  Milliseconds in the epoch.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Converts the given given system dependent ticker time into milliseconds since January 1, 1970,
+	 * 00:00:00 GMT.
+	 *
+	 * @param ticks Ticker time to convert.
+	 *
+	 * @return  Milliseconds in the epoch.
+	 **************************************************************************************************/
 	public static 	long	toEpochMillis	 ( long ticks )	
 	{
 		return   creationTimeDateMillis  + Ticker.toMillis( ticks - creationTimeSystemNanos);
 	}
 
-    /**********************************************************************************************//**
-     * Converts the given milliseconds since January 1, 1970, 00:00:00 GMT into ticker time.
-     *
-     * @param epochMillis   The milliseconds in the epoch to convert.
-     *
-     * @return  Ticker time.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Converts the given milliseconds since January 1, 1970, 00:00:00 GMT into ticker time.
+	 *
+	 * @param epochMillis   The milliseconds in the epoch to convert.
+	 *
+	 * @return  Ticker time.
+	 **************************************************************************************************/
 	public static 	long	fromEpochMillis ( long epochMillis )	
 	{
 		return	creationTimeSystemNanos - Ticker.fromMillis( creationTimeDateMillis -  epochMillis );
 	}
 
-    /**********************************************************************************************//**
-     * Sets the given java.util.Calendar object to correspond to the given system dependent ticker
-     * time.
-     *
-     * @param ticks     Ticker time to convert.
-     * @param result    The java.util.Calendar object to set. If null, this is created.
-     *
-     * @return  The date object given or created.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Sets the given java.util.Calendar object to correspond to the given system dependent ticker
+	 * time.
+	 *
+	 * @param ticks     Ticker time to convert.
+	 * @param result    The java.util.Calendar object to set. If null, this is created.
+	 *
+	 * @return  The date object given or created.
+	 **************************************************************************************************/
 	public static 	Calendar	toJavaCalendar	 ( long ticks, Calendar result )	
 	{
 		// set in given result date?
@@ -215,27 +220,27 @@ public class Ticker
 		return result;
 	}
 
-    /**********************************************************************************************//**
-     * Converts the time represented by the given java.util.Date object to system dependent ticker
-     * time.
-     *
-     * @param javaCalendar  The java.util.Date object to convert.
-     *
-     * @return  Ticker time of given javaDate.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Converts the time represented by the given java.util.Date object to system dependent ticker
+	 * time.
+	 *
+	 * @param javaCalendar  The java.util.Date object to convert.
+	 *
+	 * @return  Ticker time of given javaDate.
+	 **************************************************************************************************/
 	public static 	long	fromJavaCalendar	 ( Calendar javaCalendar )	
 	{
 		return	Ticker.fromEpochMillis( javaCalendar.getTimeInMillis() );
 	}
 
-    /**********************************************************************************************//**
-     * Sets the given java.util.Date object to correspond to the given system dependent ticker time.
-     *
-     * @param ticks     Ticker time to convert.
-     * @param result    The java.util.Date object to set. If null, this is created.
-     *
-     * @return  The date object given or created.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Sets the given java.util.Date object to correspond to the given system dependent ticker time.
+	 *
+	 * @param ticks     Ticker time to convert.
+	 * @param result    The java.util.Date object to set. If null, this is created.
+	 *
+	 * @return  The date object given or created.
+	 **************************************************************************************************/
 	public static 	Date	toJavaDate	 ( long ticks, Date result )	
 	{
 		// calc millis since 1970	
@@ -252,14 +257,14 @@ public class Ticker
 		return new Date( millisSince1970 );
 	}
 
-    /**********************************************************************************************//**
-     * Converts the time represented by the given java.util.Date object to system dependent ticker
-     * time.
-     *
-     * @param javaDate  The java.util.Date object to convert.
-     *
-     * @return  Ticker time of given javaDate.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Converts the time represented by the given java.util.Date object to system dependent ticker
+	 * time.
+	 *
+	 * @param javaDate  The java.util.Date object to convert.
+	 *
+	 * @return  Ticker time of given javaDate.
+	 **************************************************************************************************/
 	public static 	long	fromJavaDate	 ( Date javaDate )	
 	{
 		return	Ticker.fromEpochMillis( javaDate.getTime() );

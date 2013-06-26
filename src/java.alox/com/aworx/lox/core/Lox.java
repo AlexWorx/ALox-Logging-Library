@@ -226,6 +226,10 @@ public class Lox
 			} finally { lock.release(); } 
 		//#endif
 	}
+
+    /**********************************************************************************************//**
+     * Removes all loggers from this Lox.
+     **************************************************************************************************/
 	public void removeLoggers(  ) { removeLoggers( null ); } 
 
 

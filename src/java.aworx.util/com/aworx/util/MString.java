@@ -19,13 +19,34 @@ package com.aworx.util;
  **************************************************************************************************/
 public class MString implements CharSequence
 {
-
 	// #################################################################################################
 	// Java CharSequence implementation
 	// #################################################################################################
-	@Override public char 	charAt(int p) 							{	return buffer[p];	}
+
+	/**********************************************************************************************//**
+	 * Returns a character of the sequence.
+	 * @param index     The index of the character to return.
+	 * @return          The character at the given index.
+	 **************************************************************************************************/
+	@Override public char 	charAt(int index)						{	return buffer[ index ];	}
+
+	/**********************************************************************************************//**
+	 * Gets the length of the sequence.
+	 * @return  The length of the sequence.
+	 **************************************************************************************************/
 	@Override public int 	length()								{	return length;		}
-	@Override public CharSequence subSequence(int arg0, int arg1)
+
+	/**********************************************************************************************//**
+	 * Throws an AWXU error (using the AWXU.errorHandler) and returns null. The reason for this 
+	 * behavior is to disallow the usage of MString within (system) methods that create sub sequences.
+	 * This would be in contrast to the design goal of MString.
+	 *
+	 * @param beginIndex    The start of the sequence (not used)
+	 * @param endIndex      The length of the sequence (not used)
+	 *
+	 * @return  null (!).
+	 **************************************************************************************************/
+	@Override public CharSequence subSequence(int beginIndex, int endIndex)
 	{
 		// this function should never be used
 		AWXU.errorHandler.error( "MString.subSequence() called. This is not supported" );
@@ -36,6 +57,8 @@ public class MString implements CharSequence
 	// Public static fields
 	// #################################################################################################
 
+	/** The system depended new line character codes retrieved statically (once) using
+		"System.getProperty("line.separator");" */
 	public static		String				NEWLINE					= System.getProperty("line.separator");
 	
 	// #################################################################################################
@@ -47,7 +70,7 @@ public class MString implements CharSequence
 	public				char[]				buffer;
 
 	/** The actual length of the string stored in the Buffer. In case of external 
-	/// modifications the field hash has to be set to dirty (0). */
+		modifications the field hash has to be set to dirty (0). */
 	public				int					length;
 
 	/** The hashvalue. Has to be set dirty (0) whenever String is changed from outside!. */
@@ -58,9 +81,9 @@ public class MString implements CharSequence
 	//  Constructors
 	// #################################################################################################
 
-    /**********************************************************************************************//**
-     * Constructor without specific Buffer size, default buffer size to 1 kb.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Constructor without specific Buffer size, default buffer size to 1 kb.
+	 **************************************************************************************************/
 	public MString( )
 	{
 		// create Buffer
@@ -68,11 +91,11 @@ public class MString implements CharSequence
 		clear();
 	}
 
-    /**********************************************************************************************//**
-     * Constructor with specific Buffer size .
-     *
-     * @param size  The initial size of the internal buffer
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Constructor with specific Buffer size .
+	 *
+	 * @param size  The initial size of the internal buffer
+	 **************************************************************************************************/
 	public MString( int size  )
 	{
 		// check
@@ -84,12 +107,12 @@ public class MString implements CharSequence
 		clear();
 	}
 
-    /**********************************************************************************************//**
-     * Constructor copying a MString.
-     *
-     * @param ms    The source MString to copy from.
-     *
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Constructor copying a MString.
+	 *
+	 * @param ms    The source MString to copy from.
+	 *
+	 **************************************************************************************************/
 	public MString( MString ms ) 
 	{
 		// check null argument
@@ -109,12 +132,12 @@ public class MString implements CharSequence
 		append( ms );
 	}
 
-    /**********************************************************************************************//**
-     * Constructor copying a substring of a MString.
-     *
-     * @param ms        The source MString to copy from.
-     * @param startIdx  The start index in s to append. Defaults to 0.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Constructor copying a substring of a MString.
+	 *
+	 * @param ms        The source MString to copy from.
+	 * @param startIdx  The start index in s to append. Defaults to 0.
+	 **************************************************************************************************/
 	public MString( MString ms, int startIdx) 
 	{
 		// check null argument
@@ -144,14 +167,14 @@ public class MString implements CharSequence
 		append( ms, startIdx, len );
 	}
 
-    /**********************************************************************************************//**
-     * Constructor copying a substring of a MString.
-     *
-     * @param ms        The source MString to copy from.
-     * @param startIdx  The start index in s to append. Defaults to 0.
-     * @param len		The maximum length of the substring in s to append. Defaults to
-     *                  Integer.MAX_VALUE.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Constructor copying a substring of a MString.
+	 *
+	 * @param ms        The source MString to copy from.
+	 * @param startIdx  The start index in s to append. Defaults to 0.
+	 * @param len		The maximum length of the substring in s to append. Defaults to
+	 *                  Integer.MAX_VALUE.
+	 **************************************************************************************************/
 	public MString( MString ms, int startIdx, int len) 
 	{
 		// check null argument
@@ -182,11 +205,11 @@ public class MString implements CharSequence
 		append( ms, startIdx, len );
 	}
 
-    /**********************************************************************************************//**
-     * Constructor copying String.
-     *
-     * @param s The source String to copy from.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Constructor copying String.
+	 *
+	 * @param s The source String to copy from.
+	 **************************************************************************************************/
 	public MString( String s) 
 	{
 		// check null argument
@@ -206,12 +229,12 @@ public class MString implements CharSequence
 		append( s );
 	}
 
-    /**********************************************************************************************//**
-     * Constructor copying a substring of a String.
-     *
-     * @param s         The source String to copy from.
-     * @param startIdx  The start index in s to append. Defaults to 0.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Constructor copying a substring of a String.
+	 *
+	 * @param s         The source String to copy from.
+	 * @param startIdx  The start index in s to append. Defaults to 0.
+	 **************************************************************************************************/
 	public MString( String s, int startIdx) 
 	{
 		// check null argument
@@ -241,14 +264,14 @@ public class MString implements CharSequence
 		append( s, startIdx, len );
 	}
 
-    /**********************************************************************************************//**
-     * Constructor copying a substring of a String.
-     *
-     * @param s   		The source String to copy from.
-     * @param startIdx  The start index in s to append. Defaults to 0.
-     * @param len		The maximum length of the substring in s to append. Defaults to
-     *                  Integer.MAX_VALUE.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Constructor copying a substring of a String.
+	 *
+	 * @param s   		The source String to copy from.
+	 * @param startIdx  The start index in s to append. Defaults to 0.
+	 * @param len		The maximum length of the substring in s to append. Defaults to
+	 *                  Integer.MAX_VALUE.
+	 **************************************************************************************************/
 	public MString( String s, int startIdx, int len) 
 	{
 		// check null argument
@@ -279,11 +302,11 @@ public class MString implements CharSequence
 		append( s, startIdx, len );
 	}
 
-    /**********************************************************************************************//**
-     * Constructor copying a StringBuffer.
-     *
-     * @param s The source StringBuffer to copy from.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Constructor copying a StringBuffer.
+	 *
+	 * @param s The source StringBuffer to copy from.
+	 **************************************************************************************************/
 	public MString( StringBuffer s ) 
 	{
 		// check null argument
@@ -303,12 +326,12 @@ public class MString implements CharSequence
 		append( s, 0, s.length() );
 	}
 
-    /**********************************************************************************************//**
-     * Constructor copying a substring of a StringBuffer.
-     *
-     * @param s         The source StringBuffer to copy from.
-     * @param startIdx  The start index in s to append. Defaults to 0.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Constructor copying a substring of a StringBuffer.
+	 *
+	 * @param s         The source StringBuffer to copy from.
+	 * @param startIdx  The start index in s to append. Defaults to 0.
+	 **************************************************************************************************/
 	public MString( StringBuffer s, int startIdx) 
 	{
 		// check null argument
@@ -337,14 +360,14 @@ public class MString implements CharSequence
 		append( s, startIdx, len );
 	}
 
-    /**********************************************************************************************//**
-     * Constructor copying a substring of a StringBuffer.
-     *
-     * @param s         The source StringBuffer to copy from.
-     * @param startIdx  The start index in s to append. Defaults to 0.
-     * @param len    The maximum length of the substring in s to append. Defaults to
-     *                  Integer.MAX_VALUE.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Constructor copying a substring of a StringBuffer.
+	 *
+	 * @param s         The source StringBuffer to copy from.
+	 * @param startIdx  The start index in s to append. Defaults to 0.
+	 * @param len    The maximum length of the substring in s to append. Defaults to
+	 *                  Integer.MAX_VALUE.
+	 **************************************************************************************************/
 	public MString( StringBuffer s, int startIdx, int len) 
 	{
 		// check null argument
@@ -379,11 +402,11 @@ public class MString implements CharSequence
 	// Public interface
 	// #################################################################################################
 
-    /**********************************************************************************************//**
-     * Clear the Buffer (just sets Length to 0)
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Clear the Buffer (just sets Length to 0)
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString clear()
 	{
 		// just set length to 0
@@ -393,13 +416,13 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**********************************************************************************************//**
-     * Append another MString.
-     *
-     * @param ms    The MString to append.
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append another MString.
+	 *
+	 * @param ms    The MString to append.
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString append( MString ms )				
 	{
 		// check null argument
@@ -428,29 +451,29 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**********************************************************************************************//**
-     * Append a substring of another MString.
-     *
-     * @param ms        The MString to append.
-     * @param startIdx  The index in ms to start from.
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append a substring of another MString.
+	 *
+	 * @param ms        The MString to append.
+	 * @param startIdx  The index in ms to start from.
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString append( MString ms, int startIdx)
 	{
 		return append( ms, startIdx, Integer.MAX_VALUE);	
 	}
 
-    /**********************************************************************************************//**
-     * Append a substring of another MString.
-     *
-     * @param ms        The MString to append.
-     * @param startIdx  The index in ms to start from.
-     * @param len		The maximum length of the substring in ms to append. Defaults to
-     *                  Integer.MAX_VALUE.
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append a substring of another MString.
+	 *
+	 * @param ms        The MString to append.
+	 * @param startIdx  The index in ms to start from.
+	 * @param len		The maximum length of the substring in ms to append. Defaults to
+	 *                  Integer.MAX_VALUE.
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString append( MString ms, int startIdx, int len )
 	{
 		// check null argument
@@ -484,13 +507,13 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**********************************************************************************************//**
-     * Append a String.
-     *
-     * @param s The String to append.
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append a String.
+	 *
+	 * @param s The String to append.
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString append( String s )
 	{
 		// check null argument
@@ -512,28 +535,28 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**********************************************************************************************//**
-     * Append a substring of a String.
-     *
-     * @param s         The String to append.
-     * @param startIdx  The start index in s to append.
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append a substring of a String.
+	 *
+	 * @param s         The String to append.
+	 * @param startIdx  The start index in s to append.
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString append( String s, int startIdx)				
 	{
 		return append( s, startIdx, Integer.MAX_VALUE );	
 	}
 
-    /**********************************************************************************************//**
-     * Append a substring of a String.
-     *
-     * @param s         The String to append.
-     * @param startIdx  The index in s to start with.
-     * @param len	    The maximum length of the substring in s to append..
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append a substring of a String.
+	 *
+	 * @param s         The String to append.
+	 * @param startIdx  The index in s to start with.
+	 * @param len	    The maximum length of the substring in s to append..
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString append( String s, int startIdx, int len )
 	{
 		// check null argument
@@ -558,13 +581,13 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**********************************************************************************************//**
-     * Append a StringBuffer.
-     *
-     * @param sb    The StringBuffer to append.
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append a StringBuffer.
+	 *
+	 * @param sb    The StringBuffer to append.
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString append( StringBuffer sb )
 	{
 		// check null argument
@@ -585,28 +608,28 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**********************************************************************************************//**
-     * Append a substring of a StringBuffer.
-     *
-     * @param sb        The StringBuffer to append.
-     * @param startIdx  The index in sb to start from.
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append a substring of a StringBuffer.
+	 *
+	 * @param sb        The StringBuffer to append.
+	 * @param startIdx  The index in sb to start from.
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString append( StringBuffer sb, int startIdx )
 	{
 		return append( sb, startIdx, Integer.MAX_VALUE ); 
 	}
 
-    /**********************************************************************************************//**
-     * Append a substring of a StringBuffer.
-     *
-     * @param sb        The StringBuffer to append.
-     * @param startIdx  The start index in sb start from.
-     * @param len		The maximum length of the substring in sb to append.
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append a substring of a StringBuffer.
+	 *
+	 * @param sb        The StringBuffer to append.
+	 * @param startIdx  The start index in sb start from.
+	 * @param len		The maximum length of the substring in sb to append.
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString append( StringBuffer sb, int startIdx, int len )
 	{
 		// check null argument
@@ -631,13 +654,13 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**********************************************************************************************//**
-     * Append a StringBuilder.
-     *
-     * @param sb    The StringBuilder to append.
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append a StringBuilder.
+	 *
+	 * @param sb    The StringBuilder to append.
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString append( StringBuilder sb )
 	{
 		// check null argument
@@ -658,28 +681,28 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**********************************************************************************************//**
-     * Append a substring of a StringBuilder.
-     *
-     * @param sb        The StringBuilder to append.
-     * @param startIdx  The index in sb to start from.
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append a substring of a StringBuilder.
+	 *
+	 * @param sb        The StringBuilder to append.
+	 * @param startIdx  The index in sb to start from.
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString append( StringBuilder sb, int startIdx )
 	{
 		return append( sb, startIdx, Integer.MAX_VALUE ); 
 	}
 
-    /**********************************************************************************************//**
-     * Append a substring of a StringBuilder.
-     *
-     * @param sb        The StringBuilder to append.
-     * @param startIdx  The start index in sb start from.
-     * @param len		The maximum length of the substring in sb to append.
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append a substring of a StringBuilder.
+	 *
+	 * @param sb        The StringBuilder to append.
+	 * @param startIdx  The start index in sb start from.
+	 * @param len		The maximum length of the substring in sb to append.
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString append( StringBuilder sb, int startIdx, int len )
 	{
 		// check null argument
@@ -704,13 +727,13 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**********************************************************************************************//**
-     * Append a CharSequence.
-     *
-     * @param sb    The CharSequence to append.
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append a CharSequence.
+	 *
+	 * @param sb    The CharSequence to append.
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString append( CharSequence sb )
 	{
 		// check null argument
@@ -733,28 +756,28 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**********************************************************************************************//**
-     * Append a substring of a CharSequence.
-     *
-     * @param sb        The CharSequence to append.
-     * @param startIdx  The index in sb to start from.
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append a substring of a CharSequence.
+	 *
+	 * @param sb        The CharSequence to append.
+	 * @param startIdx  The index in sb to start from.
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString append( CharSequence sb, int startIdx )
 	{
 		return append( sb, startIdx, Integer.MAX_VALUE ); 
 	}
 
-    /**********************************************************************************************//**
-     * Append a substring of a CharSequence.
-     *
-     * @param sb        The CharSequence to append.
-     * @param startIdx  The start index in sb start from.
-     * @param len    The maximum length of the substring in sb to append.
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append a substring of a CharSequence.
+	 *
+	 * @param sb        The CharSequence to append.
+	 * @param startIdx  The start index in sb start from.
+	 * @param len    The maximum length of the substring in sb to append.
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString append( CharSequence sb, int startIdx, int len )
 	{
 		// check null argument
@@ -782,13 +805,13 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**********************************************************************************************//**
-     * Append the given character.
-     *
-     * @param c The character to append.
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append the given character.
+	 *
+	 * @param c The character to append.
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString append( char c )
 	{
 		ensureCapacity( length + 1 );
@@ -798,14 +821,14 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**********************************************************************************************//**
-     * Append the given character repeatedly.
-     *
-     * @param c     The character to append.
-     * @param qty   The quantity of characters to append.
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append the given character repeatedly.
+	 *
+	 * @param c     The character to append.
+	 * @param qty   The quantity of characters to append.
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString append( char c, int qty )
 	{
 		ensureCapacity( length + qty );
@@ -816,26 +839,26 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**********************************************************************************************//**
-     * Append padding spaces and append the given MString.
-     *
-     * @param ms        The MString to append.
-     * @param fieldSize The minimum number of characters to append.
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append padding spaces and append the given MString.
+	 *
+	 * @param ms        The MString to append.
+	 * @param fieldSize The minimum number of characters to append.
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString appendPadRight( MString ms, int fieldSize ) { return appendPadRight( ms, fieldSize, ' ' ); }
 
-    /**********************************************************************************************//**
-     * Append padding characters and append the given MString.
-     *
-     * @param ms        The MString to append.
-     * @param fieldSize The minimum number of characters to append.
-     * @param padChar   The character to add to the right of the given string src. Defaults to ' '
-     *                  (space).
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append padding characters and append the given MString.
+	 *
+	 * @param ms        The MString to append.
+	 * @param fieldSize The minimum number of characters to append.
+	 * @param padChar   The character to add to the right of the given string src. Defaults to ' '
+	 *                  (space).
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString appendPadRight( MString ms, int fieldSize, char padChar )
 	{
 		// check for null parameter
@@ -860,26 +883,26 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**********************************************************************************************//**
-     * Append padding spaces and append the given String.
-     *
-     * @param s         The String to append.
-     * @param fieldSize The minimum number of characters to append.
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append padding spaces and append the given String.
+	 *
+	 * @param s         The String to append.
+	 * @param fieldSize The minimum number of characters to append.
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString appendPadRight( String s, int fieldSize ) { return appendPadRight( s, fieldSize, ' ' ); }
 
-    /**********************************************************************************************//**
-     * Append padding characters and append the given String.
-     *
-     * @param s         The String to append.
-     * @param fieldSize The minimum number of characters to append.
-     * @param padChar   The character to add to the right of the given string src. Defaults to ' '
-     *                  (space).
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append padding characters and append the given String.
+	 *
+	 * @param s         The String to append.
+	 * @param fieldSize The minimum number of characters to append.
+	 * @param padChar   The character to add to the right of the given string src. Defaults to ' '
+	 *                  (space).
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString appendPadRight( String s, int fieldSize, char padChar )
 	{
 		// check for null parameter
@@ -905,26 +928,26 @@ public class MString implements CharSequence
 
 	}
 
-    /**********************************************************************************************//**
-     * Append padding spaces and append the given StringBuffer.
-     *
-     * @param sb        The StringBuffer to append.
-     * @param fieldSize The minimum number of characters to append.
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append padding spaces and append the given StringBuffer.
+	 *
+	 * @param sb        The StringBuffer to append.
+	 * @param fieldSize The minimum number of characters to append.
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString appendPadRight( StringBuffer sb, int fieldSize ) { return appendPadRight( sb, fieldSize, ' ' ); }
 
-    /**********************************************************************************************//**
-     * Append padding characters and append the given StringBuffer.
-     *
-     * @param sb        The StringBuffer to append.
-     * @param fieldSize The minimum number of characters to append.
-     * @param padChar   The character to add to the right of the given string src. Defaults to ' '
-     *                  (space).
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append padding characters and append the given StringBuffer.
+	 *
+	 * @param sb        The StringBuffer to append.
+	 * @param fieldSize The minimum number of characters to append.
+	 * @param padChar   The character to add to the right of the given string src. Defaults to ' '
+	 *                  (space).
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString appendPadRight( StringBuffer sb, int fieldSize, char padChar )
 	{
 		// check for null parameter
@@ -949,27 +972,27 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**********************************************************************************************//**
-     * Append the given MString and add padding spaces behind the string.
-     *
-     * @param ms        The string to append.
-     * @param fieldSize The minimum number of characters to append.
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append the given MString and add padding spaces behind the string.
+	 *
+	 * @param ms        The string to append.
+	 * @param fieldSize The minimum number of characters to append.
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString appendPadLeft( MString ms, int fieldSize ) { return appendPadLeft( ms, fieldSize, ' ' ); }
 	@SuppressWarnings ("null") 
 
-    /**********************************************************************************************//**
-     * Append the given MString and add padding characters behind the string.
-     *
-     * @param ms        The string to append.
-     * @param fieldSize The minimum number of characters to append.
-     * @param padChar   The character to add to the right of the given string src. Defaults to ' '
-     *                  (space).
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append the given MString and add padding characters behind the string.
+	 *
+	 * @param ms        The string to append.
+	 * @param fieldSize The minimum number of characters to append.
+	 * @param padChar   The character to add to the right of the given string src. Defaults to ' '
+	 *                  (space).
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString appendPadLeft( MString ms, int fieldSize, char padChar )
 	{
 		// ensure capacity
@@ -993,26 +1016,26 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**********************************************************************************************//**
-     * Append the given String and add padding spaces behind the string.
-     *
-     * @param s         The string to append.
-     * @param fieldSize The minimum number of characters to append.
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append the given String and add padding spaces behind the string.
+	 *
+	 * @param s         The string to append.
+	 * @param fieldSize The minimum number of characters to append.
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString appendPadLeft( String s, int fieldSize ) 	{ return appendPadLeft( s, fieldSize, ' ' ); }
 
-    /**********************************************************************************************//**
-     * Append the given String and add padding characters behind the string.
-     *
-     * @param s         The String to append.
-     * @param fieldSize The minimum number of characters to append.
-     * @param padChar   The character to add to the right of the given string src. Defaults to ' '
-     *                  (space).
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append the given String and add padding characters behind the string.
+	 *
+	 * @param s         The String to append.
+	 * @param fieldSize The minimum number of characters to append.
+	 * @param padChar   The character to add to the right of the given string src. Defaults to ' '
+	 *                  (space).
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	@SuppressWarnings ("null") 
 	public MString appendPadLeft( String s, int fieldSize, char padChar )
 	{
@@ -1037,26 +1060,26 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**********************************************************************************************//**
-     * Append the given StringBuffer and add padding spaces behind the string.
-     *
-     * @param sb        The StringBuffer to append.
-     * @param fieldSize The minimum number of characters to append.
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append the given StringBuffer and add padding spaces behind the string.
+	 *
+	 * @param sb        The StringBuffer to append.
+	 * @param fieldSize The minimum number of characters to append.
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString appendPadLeft( StringBuffer sb, int fieldSize ) 	{ return appendPadLeft( sb, fieldSize, ' ' ); }
 
-    /**********************************************************************************************//**
-     * Append the given StringBuffer and add padding characters behind the string.
-     *
-     * @param sb        The StringBuffer to append.
-     * @param fieldSize The minimum number of characters to append.
-     * @param padChar   The character to add to the right of the given string src. Defaults to ' '
-     *                  (space).
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append the given StringBuffer and add padding characters behind the string.
+	 *
+	 * @param sb        The StringBuffer to append.
+	 * @param fieldSize The minimum number of characters to append.
+	 * @param padChar   The character to add to the right of the given string src. Defaults to ' '
+	 *                  (space).
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	@SuppressWarnings ("null") 
 	public MString appendPadLeft( StringBuffer sb, int fieldSize, char padChar )
 	{
@@ -1081,25 +1104,25 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**********************************************************************************************//**
-     * Append the given MString and add surrounding padding spaces.
-     *
-     * @param ms        The MString to append.
-     * @param fieldSize The minimum number of characters to append.
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append the given MString and add surrounding padding spaces.
+	 *
+	 * @param ms        The MString to append.
+	 * @param fieldSize The minimum number of characters to append.
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString appendPadCenter( MString ms, int fieldSize ) { return appendPadCenter( ms, fieldSize, ' '); }
 
-    /**********************************************************************************************//**
-     * Append the given MString and add surrounding padding characters.
-     *
-     * @param ms        The MString to append.
-     * @param fieldSize The minimum number of characters to append.
-     * @param padChar   The character to surround the Mutable string with. Defaults to ' ' (space).
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append the given MString and add surrounding padding characters.
+	 *
+	 * @param ms        The MString to append.
+	 * @param fieldSize The minimum number of characters to append.
+	 * @param padChar   The character to surround the Mutable string with. Defaults to ' ' (space).
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString appendPadCenter( MString ms, int fieldSize, char padChar )
 	{
 		// check for null parameter
@@ -1120,25 +1143,25 @@ public class MString implements CharSequence
 		return appendPadRight( ms, fieldSize - leftPad, padChar );
 	}
 
-    /**********************************************************************************************//**
-     * Append the given String and add surrounding padding spaces.
-     *
-     * @param s         the string to append.
-     * @param fieldSize The minimum number of characters to append.
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append the given String and add surrounding padding spaces.
+	 *
+	 * @param s         the string to append.
+	 * @param fieldSize The minimum number of characters to append.
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString appendPadCenter( String s, int fieldSize ) { return appendPadCenter( s, fieldSize, ' ' ); }
 
-    /**********************************************************************************************//**
-     * Append the given String and add surrounding padding characters.
-     *
-     * @param s         the string to append.
-     * @param fieldSize The minimum number of characters to append.
-     * @param padChar   The character to surround the Mutable string with. Defaults to ' ' (space).
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append the given String and add surrounding padding characters.
+	 *
+	 * @param s         the string to append.
+	 * @param fieldSize The minimum number of characters to append.
+	 * @param padChar   The character to surround the Mutable string with. Defaults to ' ' (space).
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString appendPadCenter( String s, int fieldSize, char padChar )
 	{
 		// check for null parameter
@@ -1159,25 +1182,25 @@ public class MString implements CharSequence
 		return appendPadRight( s, fieldSize - leftPad, padChar );
 	}
 
-    /**********************************************************************************************//**
-     * Append the given StringBuffer and add surrounding padding spaces.
-     *
-     * @param sb        the StringBuffer to append.
-     * @param fieldSize The minimum number of characters to append.
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append the given StringBuffer and add surrounding padding spaces.
+	 *
+	 * @param sb        the StringBuffer to append.
+	 * @param fieldSize The minimum number of characters to append.
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString appendPadCenter( StringBuffer sb, int fieldSize ) { return appendPadCenter( sb, fieldSize, ' ' ); }
 
-    /**********************************************************************************************//**
-     * Append the given StringBuffer and add surrounding padding characters.
-     *
-     * @param sb        the StringBuffer to append.
-     * @param fieldSize The minimum number of characters to append.
-     * @param padChar   The character to surround the Mutable string with. Defaults to ' ' (space).
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append the given StringBuffer and add surrounding padding characters.
+	 *
+	 * @param sb        the StringBuffer to append.
+	 * @param fieldSize The minimum number of characters to append.
+	 * @param padChar   The character to surround the Mutable string with. Defaults to ' ' (space).
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString appendPadCenter( StringBuffer sb, int fieldSize, char padChar )
 	{
 		// check for null parameter
@@ -1198,15 +1221,15 @@ public class MString implements CharSequence
 		return appendPadRight( sb, fieldSize - leftPad, padChar );
 	}
 
-    /**********************************************************************************************//**
-     * Append the given unsigned 32-Bit integer value.
-     *
-     * @param i         the integer value to append.
-     * @param minDigits The minimum number of digits to append. If the number has less digits than
-     *                  minDigits, then trailing '0's are added. Optional and defaults to 0.
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append the given unsigned 32-Bit integer value using a minimum number of digits.
+	 *
+	 * @param i         The integer value to append.
+	 * @param minDigits The minimum number of digits to append. If the number has less digits than
+	 *                  minDigits, then trailing '0's are added. Optional and defaults to 0.
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString append( int i, int minDigits )
 	{
 		// Max Value: 4294967296
@@ -1252,20 +1275,28 @@ public class MString implements CharSequence
 		// return me for concatenated operations	
 		return this;
 	}
+
+	/**********************************************************************************************//**
+	 * Append the given unsigned 32-Bit integer value.
+	 *
+	 * @param i     The integer value to append.
+	 * @return      'this' to allow concatenated calls.
+	 **************************************************************************************************/
+
 	public MString append( int i ) { return append( i, 1 ); }
 
-    /**********************************************************************************************//**
-     * Append the given double value using the minimum digits before and after the given number of
-     * digits after dot.
-     *
-     * @param d                     the integer value to append.
-     * @param minDigitsBeforeDot    The minimum number of digits write before the dot. If the number
-     *                              has less digits than minDigits, then trailing '0's  
-     *                              are added.
-     * @param digitsAfterDot        The exact number of digits written after the dot.
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Append the given double value using the minimum digits before and after the given number of
+	 * digits after dot.
+	 *
+	 * @param d                     the integer value to append.
+	 * @param minDigitsBeforeDot    The minimum number of digits write before the dot. If the number
+	 *                              has less digits than minDigits, then trailing '0's  
+	 *                              are added.
+	 * @param digitsAfterDot        The exact number of digits written after the dot.
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString append( double d, int minDigitsBeforeDot, int digitsAfterDot )
 	{
 		// negative? -> turn positive
@@ -1310,54 +1341,54 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**********************************************************************************************//**
-     * Go to the next tab stop by filling in pad characters repeatedly.
-     *
-     * @param tabSize   The tab positions are multiples of this parameter.
-     *
-     * @return  'this' to allow concatenated calls.
-     *
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Go to the next tab stop by filling in pad characters repeatedly.
+	 *
+	 * @param tabSize   The tab positions are multiples of this parameter.
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 *
+	 **************************************************************************************************/
 	public MString tab( int tabSize ) 									{ return tab( tabSize, 0, 			 1,		 ' ' ); }
 
-    /**********************************************************************************************//**
-     * Go to the next tab stop by filling in pad characters repeatedly.
-     *
-     * @param tabSize       The tab positions are multiples of this parameter.
-     * @param tabReference  The tab reference position. has to be smaller than Length. Defaults to 0
-     *                      (beginning of Buffer). For buffers with multiple lines, this parameter
-     *                      has to be set.
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Go to the next tab stop by filling in pad characters repeatedly.
+	 *
+	 * @param tabSize       The tab positions are multiples of this parameter.
+	 * @param tabReference  The tab reference position. has to be smaller than Length. Defaults to 0
+	 *                      (beginning of Buffer). For buffers with multiple lines, this parameter
+	 *                      has to be set.
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString tab( int tabSize, int tabReference)					{ return tab( tabSize, tabReference, 1, 	 ' ' ); }
 
-    /**********************************************************************************************//**
-     * Go to the next tab stop by filling in pad characters repeatedly.
-     *
-     * @param tabSize       The tab positions are multiples of this parameter.
-     * @param tabReference  The tab reference position. has to be smaller than Length. Defaults to 0
-     *                      (beginning of Buffer). For buffers with multiple lines, this parameter
-     *                      has to be set.
-     * @param minPad        The minimum pad characters to add.
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Go to the next tab stop by filling in pad characters repeatedly.
+	 *
+	 * @param tabSize       The tab positions are multiples of this parameter.
+	 * @param tabReference  The tab reference position. has to be smaller than Length. Defaults to 0
+	 *                      (beginning of Buffer). For buffers with multiple lines, this parameter
+	 *                      has to be set.
+	 * @param minPad        The minimum pad characters to add.
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString tab( int tabSize, int tabReference, int minPad)		{ return tab( tabSize, tabReference, minPad, ' ' ); }
 
-    /**********************************************************************************************//**
-     * Go to the next tab stop by filling in pad characters repeatedly.
-     *
-     * @param tabSize       The tab positions are multiples of this parameter.
-     * @param tabReference  The tab reference position. has to be smaller than Length. Defaults to 0
-     *                      (beginning of Buffer). For buffers with multiple lines, this parameter
-     *                      has to be set.
-     * @param minPad        The minimum pad characters to add.
-     * @param padChar       The character to add to the right of the given string src. Defaults to '
-     *                      ' (space).
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Go to the next tab stop by filling in pad characters repeatedly.
+	 *
+	 * @param tabSize       The tab positions are multiples of this parameter.
+	 * @param tabReference  The tab reference position. has to be smaller than Length. Defaults to 0
+	 *                      (beginning of Buffer). For buffers with multiple lines, this parameter
+	 *                      has to be set.
+	 * @param minPad        The minimum pad characters to add.
+	 * @param padChar       The character to add to the right of the given string src. Defaults to '
+	 *                      ' (space).
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString tab( int tabSize, int tabReference, int minPad, char padChar)
 	{
 		// append minimum padding
@@ -1370,26 +1401,26 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**********************************************************************************************//**
-     * Appends platform specific new line character(s). ( "\\r\\n", "\\r", etc.) 
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Appends platform specific new line character(s). ( "\\r\\n", "\\r", etc.) 
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString newLine()
 	{
 		// append new line characters. 
 		return append( NEWLINE ); 
 	}
 
-    /**********************************************************************************************//**
-     * Checks if the given String is located at the given position.
-     *
-     * @param s             The string to search.
-     * @param pos           The to look at.
-     * @param ignoreCase    If true, the compare is case insensitive. Optional and defaults to false.
-     *
-     * @return  True if the given sequence is found at the given position. False otherwise .
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Checks if the given String is located at the given position.
+	 *
+	 * @param s             The string to search.
+	 * @param pos           The to look at.
+	 * @param ignoreCase    If true, the compare is case insensitive. Optional and defaults to false.
+	 *
+	 * @return  True if the given sequence is found at the given position. False otherwise .
+	 **************************************************************************************************/
 	@SuppressWarnings ("null") 
 	public boolean containsAt( CharSequence s, int pos, boolean ignoreCase )
 	{
@@ -1421,27 +1452,36 @@ public class MString implements CharSequence
 		
 		return true;
 	}
+
+	/**********************************************************************************************//**
+	 * Checks if the given String is located at the given position.
+	 *
+	 * @param s             The string to search.
+	 * @param pos           The to look at.
+	 *
+	 * @return  True if the given sequence is found at the given position. False otherwise .
+	 **************************************************************************************************/
 	public boolean containsAt( CharSequence s, int pos )		{ return containsAt( s, pos, false ); }
 
-    /**********************************************************************************************//**
-     * Checks if this MString starts with the given sequence.
-     *
-     * @param s The String to search. If s is null or empty, false is returned.
-     *
-     * @return  true if this starts with the given sequence, false if not.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Checks if this MString starts with the given sequence.
+	 *
+	 * @param s The String to search. If s is null or empty, false is returned.
+	 *
+	 * @return  true if this starts with the given sequence, false if not.
+	 **************************************************************************************************/
 	public boolean startsWith( CharSequence s )
 	{
 		return containsAt( s, 0, false );
 	}
 
-    /**********************************************************************************************//**
-     * Checks if this MString ends with the given sequence.
-     *
-     * @param s The String to search. If s is null or empty, false is returned.
-     *
-     * @return  true if this starts with the given sequence, false if not.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Checks if this MString ends with the given sequence.
+	 *
+	 * @param s The String to search. If s is null or empty, false is returned.
+	 *
+	 * @return  true if this starts with the given sequence, false if not.
+	 **************************************************************************************************/
 	public boolean endsWith  ( CharSequence s )
 	{
 		if ( s == null ) 
@@ -1450,14 +1490,14 @@ public class MString implements CharSequence
 		return containsAt( s, length - s.length(), false );
 	}
 
-    /**********************************************************************************************//**
-     * Search the given String in the Buffer.
-     *
-     * @param s         The string to search.
-     * @param startIdx  The index to start the search at. Optional and defaults to 0.
-     *
-     * @return  -1 if the String is not found. Otherwise the index of first occurence.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Search the given String in the Buffer starting at a given position.
+	 *
+	 * @param s         The string to search.
+	 * @param startIdx  The index to start the search at. Optional and defaults to 0.
+	 *
+	 * @return  -1 if the String is not found. Otherwise the index of first occurrence.
+	 **************************************************************************************************/
 	public int indexOf( CharSequence s, int startIdx )
 	{
 		// check null argument or length 0
@@ -1485,19 +1525,26 @@ public class MString implements CharSequence
 		// not found
 		return -1;
 	}
+
+	/**********************************************************************************************//**
+	 * Search the given String in the Buffer.
+	 *
+	 * @param s         The string to search.
+	 * @return  -1 if the String is not found. Otherwise the index of first occurrence.
+	 **************************************************************************************************/
 	public int indexOf( CharSequence s )				{ return indexOf( s, 0 ); }
 
-    /**********************************************************************************************//**
-     * Replace one more more occurrences of a string by another string.
-     *
-     * @param searchStr         The string to be replaced.
-     * @param newStr            The replacement string.
-     * @param startIdx          The index where the search starts. Optional and defaults to 0.
-     * @param maxReplacements   The maximum number of replacements to perform. Optional and  
-     *                          defaults to Integer.MAX_VALUE .
-     *
-     * @return  The number of replacements that where performed.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Replace one more more occurrences of a string by another string.
+	 *
+	 * @param searchStr         The string to be replaced.
+	 * @param newStr            The replacement string.
+	 * @param startIdx          The index where the search starts. Optional and defaults to 0.
+	 * @param maxReplacements   The maximum number of replacements to perform. Optional and  
+	 *                          defaults to Integer.MAX_VALUE .
+	 *
+	 * @return  The number of replacements that where performed.
+	 **************************************************************************************************/
 	public int replace( CharSequence searchStr, CharSequence newStr, int startIdx, int maxReplacements )
 	{
 		// check null arguments
@@ -1554,142 +1601,142 @@ public class MString implements CharSequence
 		}
 	}
 
-    /**********************************************************************************************//**
-     * Replace one more more occurrences of a string by another string.
-     *
-     * @param searchStr The string to be replaced.
-     * @param newStr    The replacement string.
-     * @param startIdx  The index where the search starts. Optional and defaults to 0.
-     *
-     * @return  The number of replacements that where performed.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Replace one more more occurrences of a string by another string.
+	 *
+	 * @param searchStr The string to be replaced.
+	 * @param newStr    The replacement string.
+	 * @param startIdx  The index where the search starts. Optional and defaults to 0.
+	 *
+	 * @return  The number of replacements that where performed.
+	 **************************************************************************************************/
 	public int replace( CharSequence searchStr, CharSequence newStr, int startIdx ) { return replace( searchStr, newStr, startIdx, Integer.MAX_VALUE); }
 
-    /**********************************************************************************************//**
-     * Replace one more more occurrences of a string by another string.
-     *
-     * @param searchStr The string to be replaced.
-     * @param newStr    The replacement string.
-     *
-     * @return  The number of replacements that where performed.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Replace one more more occurrences of a string by another string.
+	 *
+	 * @param searchStr The string to be replaced.
+	 * @param newStr    The replacement string.
+	 *
+	 * @return  The number of replacements that where performed.
+	 **************************************************************************************************/
 	public int replace( CharSequence searchStr, CharSequence newStr) 				{ return replace( searchStr, newStr, 0, 	   Integer.MAX_VALUE); }
 
-    /**********************************************************************************************//**
-     * Compares a given string (or part of it) with the contents of this. If the optionally given
-     * substring start indices and lengths parameters are out of bounds, they are corrected. This
-     * could lead to unwanted results in some cases.
-     *
-     * @param cmp   An object of type String, StringBuffer or MString that is compared to this.
-     *
-     * @return 0 if string are equal. -1 if the instance precedes given string, 1 the instance
-     *         follows the given string (same as String.CompareTo), or if given string in null.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Compares a given string (or part of it) with the contents of this. If the optionally given
+	 * substring start indices and lengths parameters are out of bounds, they are corrected. This
+	 * could lead to unwanted results in some cases.
+	 *
+	 * @param cmp   An object of type String, StringBuffer or MString that is compared to this.
+	 *
+	 * @return 0 if string are equal. -1 if the instance precedes given string, 1 the instance
+	 *         follows the given string (same as String.CompareTo), or if given string in null.
+	 **************************************************************************************************/
 	public int compareTo(	CharSequence cmp )																
 	{
 		return compareTo( cmp, false, 	 0, 		Integer.MAX_VALUE, 	0, 			Integer.MAX_VALUE ); 
 	}
 
-    /**********************************************************************************************//**
-     * Compares a given string (or part of it) with the contents of this. If the optionally given
-     * substring start indices and lengths parameters are out of bounds, they are corrected. This
-     * could lead to unwanted results in some cases.
-     *
-     * @param cmp           An object of type String, StringBuffer or MString that is compared to
-     *                      this.
-     * @param ignoreCase    If true, the compare is case insensitive. Optional and defaults to false.
-     *
-     * @return 0 if string are equal. -1 if the instance precedes given string, 1 the instance
-     *         follows the given string (same as String.CompareTo), or if given string in null.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Compares a given string (or part of it) with the contents of this. If the optionally given
+	 * substring start indices and lengths parameters are out of bounds, they are corrected. This
+	 * could lead to unwanted results in some cases.
+	 *
+	 * @param cmp           An object of type String, StringBuffer or MString that is compared to
+	 *                      this.
+	 * @param ignoreCase    If true, the compare is case insensitive. Optional and defaults to false.
+	 *
+	 * @return 0 if string are equal. -1 if the instance precedes given string, 1 the instance
+	 *         follows the given string (same as String.CompareTo), or if given string in null.
+	 **************************************************************************************************/
 	public int compareTo(	CharSequence cmp, boolean ignoreCase )											
 	{
 		return compareTo( cmp, ignoreCase, 0, 		Integer.MAX_VALUE, 	0, 			Integer.MAX_VALUE ); 
 	}
 
-    /**********************************************************************************************//**
-     * Compares a given string (or part of it) with the contents of this. If the optionally given
-     * substring start indices and lengths parameters are out of bounds, they are corrected. This
-     * could lead to unwanted results in some cases.
-     *
-     * @param cmp           An object of type String, StringBuffer or MString that is compared to
-     *                      this.
-     * @param ignoreCase    If true, the compare is case insensitive. Optional and defaults to false.
-     * @param sStartIdx     The start of the substring within the given string that is to be compared
-     *                      to this. Defaults to 0.
-     *
-     * @return 0 if string are equal. -1 if the instance precedes given string, 1 the instance
-     *         follows the given string (same as String.CompareTo), or if given string in null.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Compares a given string (or part of it) with the contents of this. If the optionally given
+	 * substring start indices and lengths parameters are out of bounds, they are corrected. This
+	 * could lead to unwanted results in some cases.
+	 *
+	 * @param cmp           An object of type String, StringBuffer or MString that is compared to
+	 *                      this.
+	 * @param ignoreCase    If true, the compare is case insensitive. Optional and defaults to false.
+	 * @param sStartIdx     The start of the substring within the given string that is to be compared
+	 *                      to this. Defaults to 0.
+	 *
+	 * @return 0 if string are equal. -1 if the instance precedes given string, 1 the instance
+	 *         follows the given string (same as String.CompareTo), or if given string in null.
+	 **************************************************************************************************/
 	public int compareTo(	CharSequence cmp, boolean ignoreCase, int sStartIdx )								
 	{
-	 	return compareTo( cmp, ignoreCase, sStartIdx, Integer.MAX_VALUE, 	0,			Integer.MAX_VALUE ); 
+		return compareTo( cmp, ignoreCase, sStartIdx, Integer.MAX_VALUE, 	0,			Integer.MAX_VALUE ); 
 	}
 
-    /**********************************************************************************************//**
-     * Compares a given string (or part of it) with the contents of this. If the optionally given
-     * substring start indices and lengths parameters are out of bounds, they are corrected. This
-     * could lead to unwanted results in some cases.
-     *
-     * @param cmp           An object of type String, StringBuffer or MString that is compared to
-     *                      this.
-     * @param ignoreCase    If true, the compare is case insensitive. Optional and defaults to false.
-     * @param sStartIdx     The start of the substring within the given string that is to be compared
-     *                      to this. Defaults to 0.
-     * @param sLen          The length of the substring within the given string that is to be
-     *                      compared to this. Defaults to Integer.MAX_VALUE.
-     *
-     * @return 0 if string are equal. -1 if the instance precedes given string, 1 the instance
-     *         follows the given string (same as String.CompareTo), or if given string in null.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Compares a given string (or part of it) with the contents of this. If the optionally given
+	 * substring start indices and lengths parameters are out of bounds, they are corrected. This
+	 * could lead to unwanted results in some cases.
+	 *
+	 * @param cmp           An object of type String, StringBuffer or MString that is compared to
+	 *                      this.
+	 * @param ignoreCase    If true, the compare is case insensitive. Optional and defaults to false.
+	 * @param sStartIdx     The start of the substring within the given string that is to be compared
+	 *                      to this. Defaults to 0.
+	 * @param sLen          The length of the substring within the given string that is to be
+	 *                      compared to this. Defaults to Integer.MAX_VALUE.
+	 *
+	 * @return 0 if string are equal. -1 if the instance precedes given string, 1 the instance
+	 *         follows the given string (same as String.CompareTo), or if given string in null.
+	 **************************************************************************************************/
 	public int compareTo(	CharSequence cmp, boolean ignoreCase, int sStartIdx, int sLen )					
 	{
 		return compareTo( cmp, ignoreCase, sStartIdx, sLen, 				0,			Integer.MAX_VALUE ); 
 	}
 
-    /**********************************************************************************************//**
-     * Compares a given string (or part of it) with the contents of this. If the optionally given
-     * substring start indices and lengths parameters are out of bounds, they are corrected. This
-     * could lead to unwanted results in some cases.
-     *
-     * @param cmp           An object of type String, StringBuffer or MString that is compared to
-     *                      this.
-     * @param ignoreCase    If true, the compare is case insensitive. Optional and defaults to false.
-     * @param sStartIdx     The start of the substring within the given string that is to be compared
-     *                      to this. Defaults to 0.
-     * @param sLen          The length of the substring within the given string that is to be
-     *                      compared to this. Defaults to Integer.MAX_VALUE.
-     * @param startIdx      The start of the substring within this that is to be compared. Defaults
-     *                      to 0.
-     *
-     * @return 0 if string are equal. -1 if the instance precedes given string, 1 the instance
-     *         follows the given string (same as String.CompareTo), or if given string in null.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Compares a given string (or part of it) with the contents of this. If the optionally given
+	 * substring start indices and lengths parameters are out of bounds, they are corrected. This
+	 * could lead to unwanted results in some cases.
+	 *
+	 * @param cmp           An object of type String, StringBuffer or MString that is compared to
+	 *                      this.
+	 * @param ignoreCase    If true, the compare is case insensitive. Optional and defaults to false.
+	 * @param sStartIdx     The start of the substring within the given string that is to be compared
+	 *                      to this. Defaults to 0.
+	 * @param sLen          The length of the substring within the given string that is to be
+	 *                      compared to this. Defaults to Integer.MAX_VALUE.
+	 * @param startIdx      The start of the substring within this that is to be compared. Defaults
+	 *                      to 0.
+	 *
+	 * @return 0 if string are equal. -1 if the instance precedes given string, 1 the instance
+	 *         follows the given string (same as String.CompareTo), or if given string in null.
+	 **************************************************************************************************/
 	public int compareTo(	CharSequence cmp, boolean ignoreCase, int sStartIdx, int sLen, int startIdx )		
 	{
 		return compareTo( cmp, ignoreCase, sStartIdx, sLen, 				startIdx,	Integer.MAX_VALUE ); 
 	}
 
-    /**********************************************************************************************//**
-     * Compares a given string (or part of it) with the contents of this. If the optionally given
-     * substring start indices and lengths parameters are out of bounds, they are corrected. This
-     * could lead to unwanted results in some cases.
-     *
-     * @param cmp           An object of type String, StringBuffer or MString that is compared to
-     *                      this.
-     * @param ignoreCase    If true, the compare is case insensitive. Optional and defaults to false.
-     * @param sStartIdx     The start of the substring within the given string that is to be compared
-     *                      to this. Defaults to 0.
-     * @param sLen          The length of the substring within the given string that is to be
-     *                      compared to this. Defaults to Integer.MAX_VALUE.
-     * @param startIdx      The start of the substring within this that is to be compared. Defaults
-     *                      to 0.
-     * @param len           The length of the substring within this that is to be compared.
-     *                       Defaults to Integer.MAX_VALUE.
-     *
-     * @return 0 if string are equal. -1 if the instance precedes given string, 1 the instance
-     *         follows the given string (same as String.CompareTo), or if given string in null.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Compares a given string (or part of it) with the contents of this. If the optionally given
+	 * substring start indices and lengths parameters are out of bounds, they are corrected. This
+	 * could lead to unwanted results in some cases.
+	 *
+	 * @param cmp           An object of type String, StringBuffer or MString that is compared to
+	 *                      this.
+	 * @param ignoreCase    If true, the compare is case insensitive. Optional and defaults to false.
+	 * @param sStartIdx     The start of the substring within the given string that is to be compared
+	 *                      to this. Defaults to 0.
+	 * @param sLen          The length of the substring within the given string that is to be
+	 *                      compared to this. Defaults to Integer.MAX_VALUE.
+	 * @param startIdx      The start of the substring within this that is to be compared. Defaults
+	 *                      to 0.
+	 * @param len           The length of the substring within this that is to be compared.
+	 *                       Defaults to Integer.MAX_VALUE.
+	 *
+	 * @return 0 if string are equal. -1 if the instance precedes given string, 1 the instance
+	 *         follows the given string (same as String.CompareTo), or if given string in null.
+	 **************************************************************************************************/
 	public int compareTo(	CharSequence cmp, boolean ignoreCase, int sStartIdx, int sLen, int startIdx, int len )
 	{
 		// check null argument
@@ -1741,34 +1788,34 @@ public class MString implements CharSequence
 		}
 	}
 
-    /**********************************************************************************************//**
-     * Converts all or a region of characters in the Buffer to upper or to lower case.
-     *
-     * @param toUpper   If true, conversion to upper case is performed, to lower else.
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Converts all or a region of characters in the Buffer to upper or to lower case.
+	 *
+	 * @param toUpper   If true, conversion to upper case is performed, to lower else.
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString convertCase( boolean toUpper )									{ return convertCase( toUpper, 0,			Integer.MAX_VALUE ); }
 
-    /**********************************************************************************************//**
-     * Converts all or a region of characters in the Buffer to upper or to lower case.
-     *
-     * @param toUpper       If true, conversion to upper case is performed, to lower else.
-     * @param substrStart   Start of the substring to be converted. Defaults to 0.
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Converts all or a region of characters in the Buffer to upper or to lower case.
+	 *
+	 * @param toUpper       If true, conversion to upper case is performed, to lower else.
+	 * @param substrStart   Start of the substring to be converted. Defaults to 0.
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString convertCase( boolean toUpper, int substrStart  )					{ return convertCase( toUpper, substrStart,	Integer.MAX_VALUE ); }
 
-    /**********************************************************************************************//**
-     * Converts all or a region of characters in the Buffer to upper or to lower case.
-     *
-     * @param toUpper       If true, conversion to upper case is performed, to lower else.
-     * @param substrStart   Start of the substring to be converted. Defaults to 0.
-     * @param substrLength  Length of the substring to be converted. Defaults to Integer.MAX_VALUE.
-     *
-     * @return  'this' to allow concatenated calls.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Converts all or a region of characters in the Buffer to upper or to lower case.
+	 *
+	 * @param toUpper       If true, conversion to upper case is performed, to lower else.
+	 * @param substrStart   Start of the substring to be converted. Defaults to 0.
+	 * @param substrLength  Length of the substring to be converted. Defaults to Integer.MAX_VALUE.
+	 *
+	 * @return  'this' to allow concatenated calls.
+	 **************************************************************************************************/
 	public MString convertCase( boolean toUpper, int substrStart, int substrLength )
 	{
 		// mark has value as dirty
@@ -1801,34 +1848,34 @@ public class MString implements CharSequence
 		return this;
 	}
 
-    /**********************************************************************************************//**
-     * Converts the MString into a String.
-     *
-     * @return  A string that represents this object.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Converts the MString into a String.
+	 *
+	 * @return  A string that represents this object.
+	 **************************************************************************************************/
 	@Override public String toString()
 	{
 		return new String( buffer, 0, length );
 	}
 
-    /**********************************************************************************************//**
-     * Creates a String from a region within this MString.
-     *
-     * @param startIdx  The start index of the region in this to create the string from.
-     *
-     * @return  A string that represents the specified sub region of this object.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Creates a String from a region within this MString.
+	 *
+	 * @param startIdx  The start index of the region in this to create the string from.
+	 *
+	 * @return  A string that represents the specified sub region of this object.
+	 **************************************************************************************************/
 	public String toString( int startIdx )	{ return toString( startIdx, Integer.MAX_VALUE ); }
 
-    /**********************************************************************************************//**
-     * Creates a String from a region within this MString.
-     *
-     * @param startIdx	The start index of the region in this to create the string from.
-     * @param len		The maximum length of the region to create the string from. Defaults to
-     *                  Integer.MAX_VALUE.
-     *
-     * @return  A string that represents the specified sub region of this object.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Creates a String from a region within this MString.
+	 *
+	 * @param startIdx	The start index of the region in this to create the string from.
+	 * @param len		The maximum length of the region to create the string from. Defaults to
+	 *                  Integer.MAX_VALUE.
+	 *
+	 * @return  A string that represents the specified sub region of this object.
+	 **************************************************************************************************/
 	public String toString( int startIdx, int len )
 	{
 		// adjust range, if empty return empty string
@@ -1839,34 +1886,34 @@ public class MString implements CharSequence
 		return new String( buffer, adjStartIdx, adjLength);
 	}
 
-    /**********************************************************************************************//**
-     * Calculates the hash value using the same formula as java.lang.String.
-     *
-     * @return  A hash value for this object.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Calculates the hash value using the same formula as java.lang.String.
+	 *
+	 * @return  A hash value for this object.
+	 **************************************************************************************************/
 	@Override  public int hashCode() 
 	{
- 		int h;
- 		if ((h= hash) == 0 && length > 0) 
- 		{
-     		char buf[]=	buffer;
-     		int  len=	length;
+		int h;
+		if ((h= hash) == 0 && length > 0) 
+		{
+			char buf[]=	buffer;
+			int  len=	length;
  
-     		for (int i = 0; i < len; i++) 
-         		h = 31*h + buf[i++];
+			for (int i = 0; i < len; i++) 
+				h = 31*h + buf[i++];
 
-     		hash = h;
- 		}
- 		return h;
+			hash = h;
+		}
+		return h;
 	}
 
-    /**********************************************************************************************//**
-     * Compares this to the given object. Given object can be MString or CharSequence (e.g. String).
-     *
-     * @param o The object to compare to this instance.
-     *
-     * @return  True if given object equals this.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Compares this to the given object. Given object can be MString or CharSequence (e.g. String).
+	 *
+	 * @param o The object to compare to this instance.
+	 *
+	 * @return  True if given object equals this.
+	 **************************************************************************************************/
 	@Override public boolean equals( Object o )
 	{
 		// null? -> false
@@ -1915,11 +1962,11 @@ public class MString implements CharSequence
 		return false; 
 	}
 
-    /**********************************************************************************************//**
-     * Ensures that the capacity of the internal buffer meets or exceeds the given value.
-     *
-     * @param minLen    The minimum length.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Ensures that the capacity of the internal buffer meets or exceeds the given value.
+	 *
+	 * @param minLen    The minimum length.
+	 **************************************************************************************************/
 	public void ensureCapacity( int minLen )
 	{
 		// As a side effect, flag has value as dirty
@@ -1946,23 +1993,28 @@ public class MString implements CharSequence
 	// internals
 	// ################################################################################################
 
+   	/** Used as a return value of method adjustRangeAndTestIfEmpty() as Java does not allow to pass
+        parameters by reference */
 	protected int adjStartIdx;
+
+   	/** Used as a return value of method adjustRangeAndTestIfEmpty() as Java does not allow to pass
+        parameters by reference */
 	protected int adjLength;
 
-    /**********************************************************************************************//**
-     * Adjust a given range within an array to the array bounds and tests if range is empty.
-     *
-     * @param referenceLen  Length of the zero indexed reference array.
-     * @param startIdx      The start index of the range. Negative values are adjusted to 0 and
-     *                      length shortened accordingly. Values higher than referenceLen are not
-     *                      adjusted, but function returns true in this case.
-     * @param len        The length of the range to be adjusted to the array bounds. A length of
-     *                      Integer.MAX_VALUE is considered 'infinite' and cut to maximum length
-     *                      beginning from adjusted startIdx.
-     *
-     * @return  True if adjusted range is out of bounds or empty.
-     **************************************************************************************************/
- 	protected boolean adjustRangeAndTestIfEmpty(int referenceLen, int startIdx, int len )
+	/**********************************************************************************************//**
+	 * Adjust a given range within an array to the array bounds and tests if range is empty.
+	 *
+	 * @param referenceLen  Length of the zero indexed reference array.
+	 * @param startIdx      The start index of the range. Negative values are adjusted to 0 and
+	 *                      length shortened accordingly. Values higher than referenceLen are not
+	 *                      adjusted, but function returns true in this case.
+	 * @param len        The length of the range to be adjusted to the array bounds. A length of
+	 *                      Integer.MAX_VALUE is considered 'infinite' and cut to maximum length
+	 *                      beginning from adjusted startIdx.
+	 *
+	 * @return  True if adjusted range is out of bounds or empty.
+	 **************************************************************************************************/
+	protected boolean adjustRangeAndTestIfEmpty(int referenceLen, int startIdx, int len )
 	{
 		// infinite lenght given?
 		if ( len == Integer.MAX_VALUE )			
@@ -2004,27 +2056,27 @@ public class MString implements CharSequence
 	//  Static String Utilities
 	// #################################################################################################
 	
- 	/**   An empty String singleton */
+	/**   An empty String singleton */
 	public static final String empty=					"";
 
-    /**********************************************************************************************//**
-     * Checks if a given CharSequence is empty or has a length of zero.
-     *
-     * @param jString   The java String to check.
-     *
-     * @return  Returns true if given String is empty or 0.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Checks if a given CharSequence is empty or has a length of zero.
+	 *
+	 * @param jString   The java String to check.
+	 *
+	 * @return  Returns true if given String is empty or 0.
+	 **************************************************************************************************/
 	public static boolean isNullOrEmpty( CharSequence jString )	{ return jString == null || jString.length() == 0; }
 
-    /**********************************************************************************************//**
-     * Search the given String in the Buffer starting at the given position.
-     *
-     * @param sIn       The string to search in.
-     * @param sFor      The string to search for.
-     * @param startIdx  The index to start the search at. Optional and defaults to 0.
-     *
-     * @return  -1 if the String is not found. Otherwise the index of first occurrence.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Search the given String in the Buffer starting at the given position.
+	 *
+	 * @param sIn       The string to search in.
+	 * @param sFor      The string to search for.
+	 * @param startIdx  The index to start the search at. Optional and defaults to 0.
+	 *
+	 * @return  -1 if the String is not found. Otherwise the index of first occurrence.
+	 **************************************************************************************************/
 	public static int indexOfIgnoreCase( CharSequence sIn, CharSequence sFor, int startIdx )
 	{
 		// check s1
@@ -2062,26 +2114,26 @@ public class MString implements CharSequence
 		return -1;
 	}
 
-    /**********************************************************************************************//**
-     * Search the given String in the Buffer.
-     *
-     * @param sIn   The string to search in.
-     * @param sFor  The string to search for.
-     *
-     * @return  -1 if the String is not found. Otherwise the index of first occurrence.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Search the given String in the Buffer.
+	 *
+	 * @param sIn   The string to search in.
+	 * @param sFor  The string to search for.
+	 *
+	 * @return  -1 if the String is not found. Otherwise the index of first occurrence.
+	 **************************************************************************************************/
 	public static int indexOfIgnoreCase( CharSequence sIn, CharSequence sFor )		{ return indexOfIgnoreCase( sIn, sFor, 0); }
 
-    /**********************************************************************************************//**
-     * Static utility function that to check if a string starts with another string with case
-     * insensitive compare. Using this function avoids to create two converted (lowered)
-     * temporary strings.
-     *
-     * @param s         The string to search in.
-     * @param prefix    The string to search for.
-     *
-     * @return  true, if given string s starts with given string prefix, false otherwise.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Static utility function that to check if a string starts with another string with case
+	 * insensitive compare. Using this function avoids to create two converted (lowered)
+	 * temporary strings.
+	 *
+	 * @param s         The string to search in.
+	 * @param prefix    The string to search for.
+	 *
+	 * @return  true, if given string s starts with given string prefix, false otherwise.
+	 **************************************************************************************************/
 	@SuppressWarnings ("null") 
 	public static boolean startsWithIgnoreCase( CharSequence s, CharSequence prefix )
 	{
@@ -2108,16 +2160,16 @@ public class MString implements CharSequence
 		return true;
 	}
 
-    /**********************************************************************************************//**
-     * Static utility function that to check if a string ends with another string with case
-     * insensitive compare. Using this function avoids to create two converted (lowered) temporary
-     * strings.
-     *
-     * @param s         The string to search in.
-     * @param postfix   The string to search for.
-     *
-     * @return  true, if given string s ends with given string prefix, false otherwise.
-     **************************************************************************************************/
+	/**********************************************************************************************//**
+	 * Static utility function that to check if a string ends with another string with case
+	 * insensitive compare. Using this function avoids to create two converted (lowered) temporary
+	 * strings.
+	 *
+	 * @param s         The string to search in.
+	 * @param postfix   The string to search for.
+	 *
+	 * @return  true, if given string s ends with given string prefix, false otherwise.
+	 **************************************************************************************************/
 	@SuppressWarnings ("null") 
 	public static boolean endsWithIgnoreCase( CharSequence s, CharSequence postfix )
 	{

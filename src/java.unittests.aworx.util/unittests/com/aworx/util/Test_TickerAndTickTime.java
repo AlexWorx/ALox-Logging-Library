@@ -31,7 +31,15 @@ public class Test_TickerAndTickTime
 		//Log.AddLogger( new ConsoleLogger( "Console" ) );
 		//Log.RegDomain( "Ticker", true );
 
+		// first let's test if the static ticker frequency value is properly set
+		double tNow= Ticker.now();
+		AWXU.sleep( 100 );
+		tNow= Ticker.now() - tNow;
+		double oneTenth= tNow / Ticker.internalFrequency;
+		assertTrue ( Math.abs(oneTenth - 0.1d) <= 0.05 );
+		
 
+		// now to the speed test
 		long tkSum= Ticker.now();
 		long dtSum= System.nanoTime();
 

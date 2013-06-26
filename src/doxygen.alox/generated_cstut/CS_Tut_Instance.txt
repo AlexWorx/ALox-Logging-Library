@@ -1,7 +1,7 @@
-src\cs.unittests.alox\Tests_Tutorial.cs(210):.Tut_Instance()     [00:00.012  +012 ms] [T:(16)]       [MYDOM]:   ALox: Multi line message follows: 
+src\cs.unittests.alox\Tests_Tutorial.cs(210):.Tut_Instance()     [00:00.014  +014 ms] [T:(10)]       [MYDOM]:   ALox: Multi line message follows: 
 >> Actual Thread:  
 >> <01>    {System.Threading.Thread}:
->> <02>    ManagedThreadId:              16                            {Int32}
+>> <02>    ManagedThreadId:              10                            {Int32}
 >> <03>    ExecutionContextBelongsToCurrentScope:                      True                          {Boolean}
 >> <04>    ExecutionContext:             
 >> <05>      {System.Threading.ExecutionContext}:

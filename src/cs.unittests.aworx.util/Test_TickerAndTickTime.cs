@@ -35,7 +35,7 @@ namespace com.aworx.lox.unittests
 			Log.MapThreadName( "UnitTest" );
 			Log.RegDomain( "Ticker", Log.Scope.Method );
 
-
+			// now to the speed test
 			long tkSum= Ticker.Now();
 			long dtSum= DateTime.Now.Ticks;
 

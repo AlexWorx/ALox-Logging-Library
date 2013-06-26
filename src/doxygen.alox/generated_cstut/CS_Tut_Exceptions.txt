@@ -1,4 +1,4 @@
-src\cs.unittests.alox\Tests_Tutorial.cs(245):.Tut_Exception()     [00:00.000  +041 µs] [T:(16)] [WRN] [MYDOM]: >> Logging an exception: 
+src\cs.unittests.alox\Tests_Tutorial.cs(245):.Tut_Exception()     [00:00.000  +047 µs] [T:(10)] [WRN] [MYDOM]: >> Logging an exception: 
 src\cs.unittests.alox\Tests_Tutorial.cs(245):.Tut_Exception()                                                  >>   Type:       System.Exception
 src\cs.unittests.alox\Tests_Tutorial.cs(245):.Tut_Exception()                                                  >>   Message:    TestException Message
 src\cs.unittests.alox\Tests_Tutorial.cs(245):.Tut_Exception()                                                  >>   HResult:    0x80131500

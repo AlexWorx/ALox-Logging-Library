@@ -1,5 +1,5 @@
-src\cs.unittests.alox\Tests_Tutorial.cs(273):.Tut_XML()     [00:00.000  +054 µs] [T:(16)] [***] [MYDOM]: Logger 'Console': log domain 'MYDOM' not found. Created. Inherited domain level is: All 
-src\cs.unittests.alox\Tests_Tutorial.cs(273):.Tut_XML()     [00:00.000  +054 µs] [T:(16)]       [MYDOM]: >> Logging an xml document: 
+src\cs.unittests.alox\Tests_Tutorial.cs(273):.Tut_XML()     [00:00.000  +083 µs] [T:(10)] [***] [MYDOM]: Logger 'Console': log domain 'MYDOM' not found. Created. Inherited domain level is: All 
+src\cs.unittests.alox\Tests_Tutorial.cs(273):.Tut_XML()     [00:00.000  +083 µs] [T:(10)]       [MYDOM]: >> Logging an xml document: 
 src\cs.unittests.alox\Tests_Tutorial.cs(273):.Tut_XML()                                                  >>   MainTag
 src\cs.unittests.alox\Tests_Tutorial.cs(273):.Tut_XML()                                                  >>     SubTag="Hallo ALox XML"
 src\cs.unittests.alox\Tests_Tutorial.cs(273):.Tut_XML()                                                  >>     SubTag2

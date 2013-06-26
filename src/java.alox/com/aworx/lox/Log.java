@@ -118,6 +118,11 @@ public abstract class Log
 	// #################################################################################################
 	// Implement and set A-Worx Util Error Handler 
 	// #################################################################################################
+
+    /**********************************************************************************************//**
+     * Static constructor that declares a local class that implements the AWXUErrorHandler interface
+     * and assigns an instance of this class to the error handler singleton on AWXU.
+     **************************************************************************************************/
 	static
 	{
 		class	ALoxAWXUErrorHandler implements AWXUErrorHandler

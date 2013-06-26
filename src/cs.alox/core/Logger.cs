@@ -41,16 +41,16 @@ public abstract class Logger
 	 * </summary> */
 	public	uint			CntLogs;
 
-	///<summary> The creation time of the logger </summary>
+	/// <summary> The creation time of the logger </summary>
 	public	TickTime		TimeOfCreation;
 
-	///<summary> Timestamp of  the last log operation </summary>
+	/// <summary> Timestamp of  the last log operation </summary>
 	public	TickTime		TimeOfLastLog;
 
-	///<summary> A flag to disable the logger.</summary>
+	/// <summary> A flag to disable the logger.</summary>
 	public	bool			IsDisabled				= false;
 
-	///<summary> The root domain "/"</summary>
+	/// <summary> The root domain "/". </summary> 
 	public	LogDomain		RootDomain;
 
 	#endif // ALOX_DEBUG || ALOX_REL_LOG
@@ -61,31 +61,31 @@ public abstract class Logger
 	// #################################################################################################
 	#region  __Flags__
 	// #################################################################################################
-	///<summary>Enable the logging of source file names. Default is true (enabled) </summary>
+	/// <summary>Enable the logging of source file names. Default is true (enabled) </summary>
 	public			bool			LogCallerInfo				= true;
 	
-	///<summary>Enable the logging of the date. Default is false (disabled) </summary>
+	/// <summary>Enable the logging of the date. Default is false (disabled) </summary>
 	public			bool			LogDate						= false;
 	
-	///<summary>Enable the logging of the (absolute) time. Default is false (disabled) </summary>
+	/// <summary>Enable the logging of the (absolute) time. Default is false (disabled) </summary>
 	public			bool			LogTimeOfDay				= false; 
 	
-	///<summary>Enable the logging of the elapsed time since the logger was started (or reset). Default is true (enabled) </summary>
+	/// <summary>Enable the logging of the elapsed time since the logger was started (or reset). Default is true (enabled) </summary>
 	public			bool			LogTimeElapsed				= true;
 	
-	///<summary>Enable the logging of time difference in milliseconds since last log. Default is true (enabled) </summary>
+	/// <summary>Enable the logging of time difference in milliseconds since last log. Default is true (enabled) </summary>
 	public			bool			LogTimeDiff					= true;
 	
-	///<summary>Enable the logging of the domain name. Default is true (enabled) </summary>
+	/// <summary>Enable the logging of the domain name. Default is true (enabled) </summary>
 	public			bool			LogDomainName				= true;
 
-	///<summary>Enable the logging of the level of a log call. Default is true (enabled) </summary>
+	/// <summary>Enable the logging of the level of a log call. Default is true (enabled) </summary>
 	public			bool			LogLogLevel					= true;
 
-	///<summary>Enable the logging of information about the current thread name. Default is true (enabled)  </summary>
+	/// <summary>Enable the logging of information about the current thread name. Default is true (enabled)  </summary>
 	public			bool			LogThreadInfo				= true;
 
-	///<summary>Enable the logging of the current log call counter. Default is false (disabled) </summary>
+	/// <summary>Enable the logging of the current log call counter. Default is false (disabled) </summary>
 	public			bool			LogLogCounter				= false;
 	
 

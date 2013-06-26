@@ -53,10 +53,14 @@ public static class Ticker
 	// #################################################################################################
 	// Private fields and static constructor
 	// #################################################################################################
+	/// <summary> The DateTime.Now.Ticks when static constructor is invoked. </summary> */
 	private static readonly long		creationTimeTicks;
+	/// <summary> The DateTime.Now.Ticks at 1/1/1970 0:00:00. </summary> */
 	private static readonly long		dateTimeTicks19700101;
 
+	/// <summary> A stopwatch started when static constructor is invoked. </summary> */
 	private static readonly Stopwatch	creationTimeStopWatch;
+	/// <summary> A conversion factor between stopwatch ticks and DateTimeTicks. </summary> */
 	private static readonly double		convSWToDT;
 
 	static Ticker()
@@ -88,8 +92,8 @@ public static class Ticker
 
 	// #################################################################################################
 	// Creation and modification of ticker values
- 	// #################################################################################################
- 	
+	// #################################################################################################
+	
 	/** ***********************************************************************************************
 	 * <summary>
 	 * 	Gets the actual system dependent time in ticks. 
@@ -309,6 +313,10 @@ public struct TickTime
 	// #################################################################################################
 	// Conversion to platform specific objects
 	// #################################################################################################
+	/** ***********************************************************************************************
+	 * <summary>	Returns a  String that represents this object. </summary>
+	 * <returns>	A String that represents this object. </returns>
+	 **************************************************************************************************/
 	public override String		ToString()
 	{
 		return ( new DateTime( Ticker.ToDotNetDateTimeTicks( ticks ) ) ).ToString( CultureInfo.InvariantCulture );
@@ -319,12 +327,14 @@ public struct TickTime
 	// #################################################################################################
 
 	/** ***********************************************************************************************
-	 * <summary> Returns the internally stored value (in ticks). </summary>
+	 * <summary> Returns the internally stored value in ticks. </summary>
+	 * <returns>	The internally stored value in ticks.. </returns>
 	 **************************************************************************************************/
 	public	long	Get()						{ return ticks;					}
 
 	/** ***********************************************************************************************
-	 * <summary> Sets the internal value to the given value in ticks. </summary>
+	 * <summary>	Sets the internal value to the given value in ticks. </summary>
+	 * <param name="value">	The ticks value to set. </param>
 	 **************************************************************************************************/
 	public	void	SetTo( long value )			{ this.ticks= value;			}
 
@@ -351,10 +361,11 @@ public struct TickTime
 
 	/** ***********************************************************************************************
 	 * <summary>
-	 *  Returns the time difference between the current system time and the time value represented
-	 *  by this instance in (system dependent) ticks.
-	 *  If internal value represents a historic point in time, the result is positive.
+	 *  Returns the time difference between the current system time and the time value represented by
+	 *  this instance in (system dependent) ticks. If internal value represents a historic point in
+	 *  time, the result is positive.
 	 * </summary>
+	 * <returns>	The age of this TickTime in ticks. </returns>
 	 **************************************************************************************************/
 	public 	long	Age()						{ return Ticker.Now() - ticks;	}
 
@@ -364,6 +375,7 @@ public struct TickTime
 	 *  by this instance in milliseconds.
 	 *  If internal value represents a historic point in time, the result is positive.
 	 * </summary>
+	 * <returns>	The age of this TickTime in milliseconds. </returns>
 	 **************************************************************************************************/
 	public 	long	AgeInMillis()				{ return Ticker.ToMillis  ( Ticker.Now() - ticks );	}
 
@@ -373,6 +385,7 @@ public struct TickTime
 	 *  by this instance in microseconds.
 	 *  If internal value represents a historic point in time, the result is positive.
 	 * </summary>
+	 * <returns>	The age of this TickTime in microseconds. </returns>
 	 **************************************************************************************************/
 	public 	long	AgeInMicros()				{ return Ticker.ToMicros( Ticker.Now() - ticks );	}
 

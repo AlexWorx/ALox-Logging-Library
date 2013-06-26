@@ -961,7 +961,7 @@ public class MString
 	 * <param name="s">		   	The string to search. </param>
 	 * <param name="startIdx">	The index to start the search at. Optional and defaults to 0. </param>
 	 *
-	 * <returns>	-1 if the String is not found. Otherwise the index of first occurence. </returns>
+	 * <returns>	-1 if the String is not found. Otherwise the index of first occurrence. </returns>
 	 **************************************************************************************************/
 	public int IndexOf( String s, int startIdx= 0 )
 	{
