@@ -104,7 +104,9 @@
     <None Include="..\..\src\doxygen.alox\doxygen.res\Doxyfile.forCS">
       <Link>docs.src\doxygen.res\Doxyfile.forCS</Link>
     </None>
-    <None Include="..\..\src\doxygen.alox\doxygen.res\Doxyfile.forJAVA" />
+    <None Include="..\..\src\doxygen.alox\doxygen.res\Doxyfile.forJAVA">
+      <Link>docs.src\doxygen.res\Doxyfile.forJAVA</Link>
+    </None>
     <None Include="..\..\src\doxygen.alox\doxygen.res\makedox.bat">
       <Link>docs.src\doxygen.res\makedox.bat</Link>
     </None>

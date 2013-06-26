@@ -19,14 +19,14 @@ namespace com.aworx.util  {
 public interface AWXUErrorHandler
 {
 	/** ***********************************************************************************************
-	 * <summary> Report an AWXU Error. </summary>
+	 * <summary> Report an AWXU error. </summary>
 	 * <param name="msg">	The error message. </param>
 	 **************************************************************************************************/
 	void error  ( Object msg );
 	
 	/** ***********************************************************************************************
-	 * <summary> Report an AWXU Error. </summary>
-	 * <param name="msg">	The error message. </param>
+	 * <summary> Report an AWXU warning. </summary>
+	 * <param name="msg">	The warning message. </param>
 	 **************************************************************************************************/
 	void warning( Object msg );
 }

@@ -129,7 +129,15 @@ public static class Log
 		/// statically and added to field AWXU.errorHandler. </summary>
 		public class	ALoxAWXUErrorHandler : AWXUErrorHandler
 		{
+			/** ***********************************************************************************************
+			 * <summary> Report an AWXU error using ALox. </summary>
+			 * <param name="msg">	The error message. </param>
+			 **************************************************************************************************/
 			public void error  ( Object msg )	{ Log.Error	 ( "AWXU", msg ); }
+			/** ***********************************************************************************************
+			 * <summary> Report an AWXU warning using ALox. </summary>
+			 * <param name="msg">	The warning message. </param>
+			 **************************************************************************************************/
 			public void warning( Object msg )	{ Log.Warning( "AWXU", msg ); }
 		}
 
