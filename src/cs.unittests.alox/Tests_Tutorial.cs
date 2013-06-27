@@ -8,6 +8,7 @@ using com.aworx.util;
 
 //! [Tut_using_statement]
 using com.aworx.lox;
+using com.aworx.lox.loggers;
 //! [Tut_using_statement]
 
 namespace com.aworx.unittests.lox

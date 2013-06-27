@@ -1,5 +1,7 @@
-package com.aworx.lox;
+package com.aworx.lox.loggers;
 
+import com.aworx.lox.Log;
+import com.aworx.lox.Log.Level;
 import com.aworx.lox.core.CallerInfo;
 import com.aworx.util.MString;
 

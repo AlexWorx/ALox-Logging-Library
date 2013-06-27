@@ -13,7 +13,7 @@ using com.aworx.lox.core;
 using com.aworx.util;
 	
 
-namespace com.aworx.lox  {
+namespace com.aworx.lox.loggers  {
 /** ***********************************************************************************************
  * <summary>
  *  A logger that logs all messages to the VStudio IDE output window (*using

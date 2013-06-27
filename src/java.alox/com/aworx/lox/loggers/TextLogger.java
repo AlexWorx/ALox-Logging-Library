@@ -1,4 +1,4 @@
-package com.aworx.lox;
+package com.aworx.lox.loggers;
 
 import java.text.FieldPosition;
 import java.text.SimpleDateFormat;
@@ -8,8 +8,9 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
+import com.aworx.lox.Log;
+import com.aworx.lox.Log.Level;
 import com.aworx.lox.core.CallerInfo;
-import com.aworx.lox.core.Logger;
 import com.aworx.util.MString;
 import com.aworx.util.Ticker;
 

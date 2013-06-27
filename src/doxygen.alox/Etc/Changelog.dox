@@ -46,11 +46,11 @@ This change log is sorted reversely in respect to chronology.
   For registering a Domain without setting it as the default domain, the Scope value  
   [Log.Scope.None](@ref #com::aworx::lox::Log::Scope) has to be given. 
 
-- Parameter list of abstract function [TextLogger](@ref #com::aworx::lox::TextLogger::doTextLog) got extended. 
+- Parameter list of abstract function [TextLogger](@ref #com::aworx::lox::loggers::TextLogger::doTextLog) got extended. 
   Needs adaption if you derived your own TextLogger class.
-- Removed one and renamed two of the output control flags in [Logger](@ref #com::aworx::lox::core::Logger). If you 
+- Removed one and renamed two of the output control flags in [Logger](@ref #com::aworx::lox::loggers::Logger). If you 
   used them, you will have to make small code changes.
-- Small changes in [TextLogger](@ref #com::aworx::lox::TextLogger) format strings for date and time of day. 
+- Small changes in [TextLogger](@ref #com::aworx::lox::loggers::TextLogger) format strings for date and time of day. 
 - Renamed com.aworx.util.MutableString to [MString](@ref #com::aworx::util::MString). Several new methods
   added. (No impact on API)
 
@@ -61,7 +61,7 @@ This change log is sorted reversely in respect to chronology.
 - renamed methods *Log.LOG()*, *Lox.log()* and *Logger.Log()* to
    [Log.Line()]   (@ref #com::aworx::lox::Log::Line), 
    [Lox.Line()]   (@ref #com::aworx::lox::core::Lox::Line) and
-   [Logger.Line()](@ref #com::aworx::lox::core::Logger::Line). The reason may be obvious. The reasons
+   [Logger.Line()](@ref #com::aworx::lox::loggers::Logger::Line). The reason may be obvious. The reasons
   why they had been named as they were before, is maybe not too obvious. Some name conflicts where 
   confusing. Now, all confusion should be gone!
 
@@ -93,7 +93,7 @@ This change log is sorted reversely in respect to chronology.
 
 - Improvements in formatted output of method [Log.LogConfig()](@ref #com::aworx::lox::Log::LogConfig)
 
-- Added more options to manipulate multi line message logging with [TextLogger](@ref #com::aworx::lox::TextLogger)
+- Added more options to manipulate multi line message logging with [TextLogger](@ref #com::aworx::lox::loggers::TextLogger)
 
 - Added more unit tests
 

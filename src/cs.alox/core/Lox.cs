@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using com.aworx.util;
+using com.aworx.lox.loggers;
 
 #if (!ALOX_NO_THREADS) 
 	using System.Threading;

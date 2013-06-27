@@ -2,8 +2,8 @@ package com.aworx.lox;
 
 import java.util.Date;
 
-import com.aworx.lox.core.Logger;
 import com.aworx.lox.core.Lox;
+import com.aworx.lox.loggers.Logger;
 import com.aworx.util.AWXU;
 import com.aworx.util.AWXUErrorHandler;
 

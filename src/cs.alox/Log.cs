@@ -11,8 +11,9 @@
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System;
-using com.aworx.lox.core;
 using com.aworx.util;
+using com.aworx.lox.core;
+using com.aworx.lox.loggers;
 
 namespace com.aworx.lox {
 

@@ -15,7 +15,7 @@ This is the manual of the ALox Logging Ecosystem. This manual applies to all pla
 that ALox supports and give hints to platform specific differences if necessary.
 
 If you have not worked with ALox, yet, and have not read the Tutorial, we recommend to walk through one of the
-[language specific tutorials](\subpage mainpage_documentation) first.  
+[language specific tutorials](\ref tutorials) first.  
 
 
 # Contents

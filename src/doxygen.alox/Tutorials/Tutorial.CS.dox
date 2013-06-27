@@ -9,6 +9,13 @@
 /**
 \page tutorial_cs       C# Tutorial
 
+
+\~Comment
+  Due to a doxygen bug, currently we can not reference fields in  com::aworx::lox::loggers::Logger  
+  We are referencing the class instead of the field.
+\~
+
+
 \tableofcontents
    
 # 1. Hello ALox # {#tutcs_hello_alox}
@@ -27,7 +34,7 @@ You can easily skip this step and just continue reading the tutorial without set
 <BR>
 ## 1.2. Create an instance of class "ConsoleLogger" ##  {#tutcs_ha1}
 
-First our project needs to create an instance of class [ConsoleLogger](@ref #com::aworx::lox::ConsoleLogger) 
+First our project needs to create an instance of class [ConsoleLogger](@ref #com::aworx::lox::loggers::ConsoleLogger) 
 that enables log output to the application console as well as to the Visual Studio Console.
 You need to identify the right place in your application. This could be the "main()" method or any
 other place where some "bootstrapping" of your application takes place.
@@ -42,10 +49,10 @@ add the following:
 
 \snippet cs.unittests.alox/Tests_Tutorial.cs        Tut_Hello_ALox_Line1
 
-A *logger* of type [ConsoleLogger](@ref #com::aworx::lox::ConsoleLogger) is created and added to the
+A *logger* of type [ConsoleLogger](@ref #com::aworx::lox::loggers::ConsoleLogger) is created and added to the
 static interface class [Log](@ref #com::aworx::lox::Log). For now, we can forget about the class ConsoleLogger.
 After it was created, we do not touch it directly for the rest of this introductory tutorial. All you 
-need to know is that a [ConsoleLogger](@ref #com::aworx::lox::ConsoleLogger) writes log messages to the VisualStudio output window (and/or to the application console).
+need to know is that a [ConsoleLogger](@ref #com::aworx::lox::loggers::ConsoleLogger) writes log messages to the VisualStudio output window (and/or to the application console).
 
 <BR>
 ## 1.3. Add code to create and set a *log domain* ##     {#tutcs_ha_3}
@@ -261,7 +268,7 @@ set with [Log.SetDomain](@ref #com::aworx::lox::Log::SetDomain) do not cause any
 and continues its job. 
 
 The *domain level* that such *unknown* domains receive is inherited through the domain chain up to the root domain. The root domain
-is a field existing in each *logger*. By default the root domain of a [ConsoleLogger](@ref #com::aworx::lox::ConsoleLogger) has
+is a field existing in each *logger*. By default the root domain of a [ConsoleLogger](@ref #com::aworx::lox::loggers::ConsoleLogger) has
 its *domain level* set to *All*. This is extremely useful, because whenever you are using 3rd party code that defines its custom 
 domain names, you can easily identify those domains in your Visual Studios output window log stream. In contrast, other loggers that
 you create for specific purposes that are supposed to log messages of certain domains for example into a file, do not enable
@@ -325,7 +332,7 @@ is invoked. A typical use of ALox would look like this:
 In the log output of the second line you automatically get the absolute value of elapsed
 time displayed. There is no need to do your own math with the timestamps. In fact, the value
 is displayed in a human readable way, depending on the size of the time span. (This is
-true as long as your *logger* has the field [Logger.LogTimeDiff](@ref #com::aworx::lox::core::Logger::LogTimeDiff)
+true as long as your *logger* has the field [Logger.LogTimeDiff](@ref #com::aworx::lox::loggers::Logger)
 set to true, which is the default for most loggers)
 
 *Note: In above code sample, of-course, there is no need to indent heavyCalculation() between 
@@ -339,14 +346,14 @@ The code then looks like this:
 
 Advantages of this approach are:
 - less typing
-- you can copy/paste the code into a different class (with a different parent domain) without changeing it.
+- you can copy/paste the code into a different class (with a different parent domain) without changing it.
 
 
 ### 4) Name your threads  ###
 The fourth and really optional one is about multi threaded applications. ALox optionally
 logs information about the thread id or name that executed the code containing your log
 statements. This is an automatic process and can be switched on or off using the boolean flag
-[Logger.LogThreadInfo](@ref #com::aworx::lox::core::Logger::LogThreadInfo).
+[Logger.LogThreadInfo](@ref #com::aworx::lox::loggers::Logger).
 
 However often threads do not have a name, but just an ID. It would be much nicer to see a 
 nice name instead of that id. ALox provides a simple mechanism to map thread IDs to variable
@@ -411,8 +418,8 @@ The last two lines can be replaced by one follows:
 \snippet cs.unittests.alox/Tests_Tutorial.cs        Tut_ConditionalLogging2
 
 Advantages are again less typing and better readability of the code. Furthermore, the C# compiler
-would probably not prune the *if statment* if it was a more complex evaluation. 
-As with using *Assert()* the evaluation of the expression is definitly pruned from your code. (Be
+would probably not prune the *if statement* if it was a more complex evaluation. 
+As with using *Assert()* the evaluation of the expression is definitely pruned from your code. (Be
 sure you do not put side effects into expressions of *Assert()* invocations.
 
 *Note: In accordance with the concept of assertions, the condition has to be 'false' to have ALox perform the log.*
@@ -505,8 +512,8 @@ See the documentation of the log methods
 [Warning()]	(@ref #com::aworx::lox::Log::Error),
 [Info()]	(@ref #com::aworx::lox::Log::Error) and
 [Verbose()]	(@ref #com::aworx::lox::Log::Error) ) to identify where to add the indentation parameter.
-The default is 0. The reasult of increasing it depends on the Logger you are using. The [TextLogger](@ref #com::aworx::lox::TextLogger)
-for example (the base class of [ConsoleLogger](@ref #com::aworx::lox::ConsoleLogger) ) adds two spaces per indent number. 
+The default is 0. The result of increasing it depends on the Logger you are using. The [TextLogger](@ref #com::aworx::lox::loggers::TextLogger)
+for example (the base class of [ConsoleLogger](@ref #com::aworx::lox::loggers::ConsoleLogger) ) adds two spaces per indent number. 
 
 
 <BR>
@@ -520,8 +527,8 @@ need to fill in a default parameter in [Log.SetDomain()](@ref #com::aworx::lox::
 provide different *loggers* different domain levels. 
 
 In the following sample code we are creating two different *loggers*, one 
-[ConsoleLogger](@ref #com::aworx::lox::ConsoleLogger) and one of type 
-[MemoryLogger](@ref #com::aworx::lox::MemoryLogger). The latter just logs into an internal
+[ConsoleLogger](@ref #com::aworx::lox::loggers::ConsoleLogger) and one of type 
+[MemoryLogger](@ref #com::aworx::lox::loggers::MemoryLogger). The latter just logs into an internal
 buffer.
 Then we add three different *log domains*:
 - "DOM" that should log to both loggers
@@ -544,32 +551,32 @@ their default values):
   to the Log.DomainLevel provided. We set this to false, we do not have further sub domains either way.
 - *String loggerFilter*
   This parameter now is what helps us: It defaults to null and in this case does not filter any *logger*. So, when omitted
-  all *loggers* are affected. If given, however, only those *loggers* who's field [Logger.Name](@ref #com::aworx::lox::core::Logger::Name) 
+  all *loggers* are affected. If given, however, only those *loggers* who's field [Logger.Name](@ref #com::aworx::lox::loggers::Logger) 
   match the given filter string are affected. 
 
 So, if you look back at the code, you will understand what is going on: For each *logger* we enable, respectively, disable
 all log output using [Log.SetDomain()](@ref #com::aworx::lox::Log::SetDomain ) and passing the appropriate filter!
 
 *Notes:*
-- String comparison on [Logger.Name](@ref #com::aworx::lox::core::Logger::Name)  and parameter *loggerFilter* is case insensitive.
+- String comparison on [Logger.Name](@ref #com::aworx::lox::loggers::Logger) and parameter *loggerFilter* is case insensitive.
 - ALox provides a minimum 'wildcard' feature here: *loggerFilter* can start or end with an '*' character to fetch
   more than one logger at once.
 
 Some further quick remarks on the code:
 
-- [MemoryLogger.Buffer](@ref #com::aworx::lox::MemoryLogger::Buffer) provides a public field to access whatever
+- [MemoryLogger.Buffer](@ref #com::aworx::lox::loggers::MemoryLogger::Buffer) provides a public field to access whatever
   was written into the Buffer. This is also handy for clearing the Buffer. See class 
   [MString](@ref #com::aworx::util::MString) for more information
 
 - As you can see from the output, the two log lines contained in the MemoryLogger are output in two separated
-  lines by the *ConsoleLogger*. This is a feature of [TextLogger](@ref #com::aworx::lox::TextLogger), the 
+  lines by the *ConsoleLogger*. This is a feature of [TextLogger](@ref #com::aworx::lox::loggers::TextLogger), the 
   super class of both, *ConsoleLogger* and MemoryLogger. If new line characters CR, LF, CRLF or any other
   definable delimiter string is detected in the log message, this message. Logging all kinds of text documents
   results in a readable output. The multiple line output can be modified in some ways and also can be 
   turned off. TODO: See in depth section TextLogger
 
 - As you can see in the beginning of the sample, we are tweaking the output in the MemoryLogger a bit.
-  The flags we are setting here are available to all Loggers as they are defined in the abstract class [Logger](@ref #com::aworx::lox::core::Logger)
+  The flags we are setting here are available to all Loggers as they are defined in the abstract class [Logger](@ref #com::aworx::lox::loggers::Logger)
   already but might be differently handled by  different *Logger* implementations. What we are achieving here, 
   is that the log output does not get too wide.
 

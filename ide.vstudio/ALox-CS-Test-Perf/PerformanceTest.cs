@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using com.aworx.lox;
 using com.aworx.util;
+using com.aworx.lox.loggers;
 
 namespace ALox_CS_Test_Perf	 {
 

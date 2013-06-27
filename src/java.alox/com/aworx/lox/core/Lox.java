@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-import com.aworx.lox.ConsoleLogger;
 import com.aworx.lox.Log;
+import com.aworx.lox.loggers.ConsoleLogger;
+import com.aworx.lox.loggers.Logger;
 import com.aworx.util.MString;
 import com.aworx.util.ThreadLock;
 import com.aworx.util.Ticker;

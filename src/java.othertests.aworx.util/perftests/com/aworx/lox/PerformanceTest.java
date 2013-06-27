@@ -2,6 +2,8 @@ package perftests.com.aworx.lox;
 
 import com.aworx.util.*;
 import com.aworx.lox.*;
+import com.aworx.lox.loggers.ConsoleLogger;
+import com.aworx.lox.loggers.MemoryLogger;
 
 public class PerformanceTest
 {

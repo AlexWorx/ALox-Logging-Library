@@ -6,6 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using com.aworx.lox;
 using com.aworx.lox.core;
 using com.aworx.util;
+using com.aworx.lox.loggers;
 
 namespace com.aworx.unittests.lox
 {

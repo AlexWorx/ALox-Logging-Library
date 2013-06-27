@@ -11,7 +11,7 @@ using System.Runtime.CompilerServices;
 using com.aworx.lox.core;
 using com.aworx.util;
 
-namespace com.aworx.lox {
+namespace com.aworx.lox.loggers {
 
 #if ALOX_DEBUG || ALOX_REL_LOG
 

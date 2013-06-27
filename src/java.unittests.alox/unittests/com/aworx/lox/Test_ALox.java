@@ -10,6 +10,9 @@ import org.junit.Test;
 
 import com.aworx.lox.*;
 import com.aworx.lox.core.CallerInfo;
+import com.aworx.lox.loggers.ConsoleLogger;
+import com.aworx.lox.loggers.MemoryLogger;
+import com.aworx.lox.loggers.TextLogger;
 import com.aworx.util.*;
 
 

@@ -13,9 +13,10 @@ using System.Globalization;
 using System.Text;
 
 using com.aworx.util;
+using com.aworx.lox;
 using com.aworx.lox.core;
 
-namespace com.aworx.lox
+namespace com.aworx.lox.loggers
 {
 
 /** ***********************************************************************************************

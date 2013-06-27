@@ -164,7 +164,7 @@ look at the root domain of a Logger.
 
 As we have learned about the hierarchical organizations of domains, the next
 concept is easy to understand. Each instance of class 
-[Logger](@ref #com::aworx::lox::core::Logger) contains a public field of
+[Logger](@ref #com::aworx::lox::loggers::Logger) contains a public field of
 type  [LogDomain](@ref #com::aworx::lox::core::LogDomain) which represents 
 the *root domain*. Whenever a new domain is registered with a Lox, each logger
 contained in this Lox gets this domain added as a sub domain of its root domain.
@@ -177,14 +177,14 @@ of the root domain. Therefore, the level setting of a Loggers root domain
 determine the "default" domain level for "unknown" (respectively "unset") domains. 
 
 Different derivates of class Logger might have different preferences here. For
-example the class [ConsoleLogger](@ref #com::aworx::lox::ConsoleLogger) in its
+example the class [ConsoleLogger](@ref #com::aworx::lox::loggers::ConsoleLogger) in its
 constructor, sets the domain level to [Log.DomainLevel.All](@ref #com::aworx::lox::Log.DomainLevel).
 This way, messages that get logged on domains that have not been explicitly set
 in the boot section of an application (or somewhere else) are displayed in the 
 console. This makes sense, as the console is mainly for debug purposes. As soon as
 a log statement appears under a domain that is not set properly, the programmer can
 insert a corresponding statement to set the domain as wanted. In contrast to this,
-the root domain in class [MemoryLogger](@ref #com::aworx::lox::MemoryLogger) is
+the root domain in class [MemoryLogger](@ref #com::aworx::lox::loggers::MemoryLogger) is
 set to [Log.DomainLevel.Off](@ref #com::aworx::lox::Log.DomainLevel). This way,
 all log messages are suppressed unless explicitly set active. 
 

@@ -41,17 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\src\cs.alox\ConsoleLogger.cs">
-      <Link>src\ConsoleLogger.cs</Link>
-    </Compile>
     <Compile Include="..\..\src\cs.alox\core\CallerInfo.cs">
       <Link>src\core\CallerInfo.cs</Link>
     </Compile>
     <Compile Include="..\..\src\cs.alox\core\LogDomain.cs">
       <Link>src\core\LogDomain.cs</Link>
-    </Compile>
-    <Compile Include="..\..\src\cs.alox\core\Logger.cs">
-      <Link>src\core\Logger.cs</Link>
     </Compile>
     <Compile Include="..\..\src\cs.alox\core\Lox.cs">
       <Link>src\core\Lox.cs</Link>
@@ -59,14 +53,20 @@
     <Compile Include="..\..\src\cs.alox\Log.cs">
       <Link>src\Log.cs</Link>
     </Compile>
+    <Compile Include="..\..\src\cs.alox\loggers\ConsoleLogger.cs">
+      <Link>src\loggers\ConsoleLogger.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.alox\loggers\Logger.cs">
+      <Link>src\loggers\Logger.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.alox\loggers\MemoryLogger.cs">
+      <Link>src\loggers\MemoryLogger.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.alox\loggers\TextLogger.cs">
+      <Link>src\loggers\TextLogger.cs</Link>
+    </Compile>
     <Compile Include="..\..\src\cs.alox\LogTools.cs">
       <Link>src\LogTools.cs</Link>
-    </Compile>
-    <Compile Include="..\..\src\cs.alox\MemoryLogger.cs">
-      <Link>src\MemoryLogger.cs</Link>
-    </Compile>
-    <Compile Include="..\..\src\cs.alox\TextLogger.cs">
-      <Link>src\TextLogger.cs</Link>
     </Compile>
     <Compile Include="..\..\src\cs.aworx.util\AWXU.cs">
       <Link>src.util\AWXU.cs</Link>
@@ -172,6 +172,45 @@
   <ItemGroup>
     <Content Include="..\..\src\doxygen.alox\doxygen.res\replaceDoxygenJavaTagBug.vbs">
       <Link>docs.src\doxygen.res\replaceDoxygenJavaTagBug.vbs</Link>
+    </Content>
+    <Content Include="..\..\src\doxygen.alox\doxygen.res\styles\cs_DoxygenLayout.xml">
+      <Link>docs.src\doxygen.res\Styles\cs_DoxygenLayout.xml</Link>
+    </Content>
+    <Content Include="..\..\src\doxygen.alox\doxygen.res\styles\cs_footer.html">
+      <Link>docs.src\doxygen.res\Styles\cs_footer.html</Link>
+    </Content>
+    <Content Include="..\..\src\doxygen.alox\doxygen.res\styles\cs_header.html">
+      <Link>docs.src\doxygen.res\Styles\cs_header.html</Link>
+    </Content>
+    <Content Include="..\..\src\doxygen.alox\doxygen.res\styles\cs_stylesheet.css">
+      <Link>docs.src\doxygen.res\Styles\cs_stylesheet.css</Link>
+    </Content>
+    <Content Include="..\..\src\doxygen.alox\doxygen.res\styles\DoxygenLayout.xml">
+      <Link>docs.src\doxygen.res\Styles\DoxygenLayout.xml</Link>
+    </Content>
+    <Content Include="..\..\src\doxygen.alox\doxygen.res\styles\java_DoxygenLayout.xml">
+      <Link>docs.src\doxygen.res\Styles\java_DoxygenLayout.xml</Link>
+    </Content>
+    <Content Include="..\..\src\doxygen.alox\doxygen.res\styles\java_footer.html">
+      <Link>docs.src\doxygen.res\Styles\java_footer.html</Link>
+    </Content>
+    <Content Include="..\..\src\doxygen.alox\doxygen.res\styles\java_header.html">
+      <Link>docs.src\doxygen.res\Styles\java_header.html</Link>
+    </Content>
+    <Content Include="..\..\src\doxygen.alox\doxygen.res\styles\java_stylesheet.css">
+      <Link>docs.src\doxygen.res\Styles\java_stylesheet.css</Link>
+    </Content>
+    <Content Include="..\..\src\doxygen.alox\doxygen.res\styles\main_DoxygenLayout.xml">
+      <Link>docs.src\doxygen.res\Styles\main_DoxygenLayout.xml</Link>
+    </Content>
+    <Content Include="..\..\src\doxygen.alox\doxygen.res\styles\main_footer.html">
+      <Link>docs.src\doxygen.res\Styles\main_footer.html</Link>
+    </Content>
+    <Content Include="..\..\src\doxygen.alox\doxygen.res\styles\main_header.html">
+      <Link>docs.src\doxygen.res\Styles\main_header.html</Link>
+    </Content>
+    <Content Include="..\..\src\doxygen.alox\doxygen.res\styles\main_stylesheet.css">
+      <Link>docs.src\doxygen.res\Styles\main_stylesheet.css</Link>
     </Content>
     <Content Include="..\..\src\doxygen.alox\images\A-Worx-Logo.png">
       <Link>docs.src\images\A-Worx-Logo.png</Link>

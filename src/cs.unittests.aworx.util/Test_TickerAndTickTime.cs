@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using System.Text;
 using com.aworx.util;
+using com.aworx.lox.loggers;
 
 namespace com.aworx.lox.unittests
 {
