@@ -97,129 +97,129 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\src\doxygen.alox\doxygen.res\Doxyfile">
-      <Link>docs.src\doxygen.res\Doxyfile</Link>
-    </None>
-    <None Include="..\..\src\doxygen.alox\doxygen.res\Doxyfile.forCS">
-      <Link>docs.src\doxygen.res\Doxyfile.forCS</Link>
-    </None>
-    <None Include="..\..\src\doxygen.alox\doxygen.res\Doxyfile.forJAVA">
-      <Link>docs.src\doxygen.res\Doxyfile.forJAVA</Link>
-    </None>
-    <None Include="..\..\src\doxygen.alox\doxygen.res\makedox.bat">
-      <Link>docs.src\doxygen.res\makedox.bat</Link>
-    </None>
-    <None Include="..\..\src\doxygen.alox\Etc\Changelog.dox">
-      <Link>docs.src\Etc\Changelog.dox</Link>
-    </None>
-    <None Include="..\..\src\doxygen.alox\Etc\FAQ.dox">
-      <Link>docs.src\Etc\FAQ.dox</Link>
-    </None>
-    <None Include="..\..\src\doxygen.alox\MainPage.dox">
-      <Link>docs.src\MainPage.dox</Link>
-    </None>
-    <None Include="..\..\src\doxygen.alox\Manual\1-Intro\Man.Features and Limitations.dox">
-      <Link>docs.src\Manual\1-Intro\Man.Features and Limitations.dox</Link>
-    </None>
-    <None Include="..\..\src\doxygen.alox\Manual\1-Intro\Man.Introduction.dox">
-      <Link>docs.src\Manual\1-Intro\Man.Introduction.dox</Link>
-    </None>
-    <None Include="..\..\src\doxygen.alox\Manual\2-Project setup\Man.Setup Projects CS.dox">
-      <Link>docs.src\Manual\2-Project setup\Man.Setup Projects CS.dox</Link>
-    </None>
-    <None Include="..\..\src\doxygen.alox\Manual\2-Project setup\Man.Setup Projects.dox">
-      <Link>docs.src\Manual\2-Project setup\Man.Setup Projects.dox</Link>
-    </None>
-    <None Include="..\..\src\doxygen.alox\Manual\3-Concepts\Concepts.dox">
-      <Link>docs.src\Manual\3-Concepts\Concepts.dox</Link>
-    </None>
-    <None Include="..\..\src\doxygen.alox\Manual\3-Concepts\Man.ALox architecture.dox">
-      <Link>docs.src\Manual\3-Concepts\Man.ALox architecture.dox</Link>
-    </None>
-    <None Include="..\..\src\doxygen.alox\Manual\3-Concepts\Man.LevelsAndDomains.dox">
-      <Link>docs.src\Manual\3-Concepts\Man.LevelsAndDomains.dox</Link>
-    </None>
-    <None Include="..\..\src\doxygen.alox\Manual\4-Achieving goals\Achieving goals.dox">
-      <Link>docs.src\Manual\4-Achieving goals\Achieving goals.dox</Link>
-    </None>
-    <None Include="..\..\src\doxygen.alox\Manual\4-Achieving goals\Man.Custom Loggers.dox">
-      <Link>docs.src\Manual\4-Achieving goals\Man.Custom Loggers.dox</Link>
-    </None>
-    <None Include="..\..\src\doxygen.alox\Manual\4-Achieving goals\Man.Filtering Loggers.dox">
-      <Link>docs.src\Manual\4-Achieving goals\Man.Filtering Loggers.dox</Link>
-    </None>
-    <None Include="..\..\src\doxygen.alox\Manual\4-Achieving goals\Man.Release Logging.dox">
-      <Link>docs.src\Manual\4-Achieving goals\Man.Release Logging.dox</Link>
-    </None>
-    <None Include="..\..\src\doxygen.alox\Manual\4-Achieving goals\Man.Source Code Prefix Fields.dox">
-      <Link>docs.src\Manual\4-Achieving goals\Man.Source Code Prefix Fields.dox</Link>
-    </None>
-    <None Include="..\..\src\doxygen.alox\Manual\4-Achieving goals\Man.TextLogger.dox">
-      <Link>docs.src\Manual\4-Achieving goals\Man.TextLogger.dox</Link>
-    </None>
-    <None Include="..\..\src\doxygen.alox\Manual\Manual.dox">
-      <Link>docs.src\Manual\Manual.dox</Link>
-    </None>
-    <None Include="..\..\src\doxygen.alox\Tutorials\Tutorial.CS.dox">
-      <Link>docs.src\Tutorials\Tutorial.CS.dox</Link>
-    </None>
-    <None Include="..\..\src\doxygen.alox\Tutorials\Tutorials.dox">
-      <Link>docs.src\Tutorials\Tutorials.dox</Link>
-    </None>
-  </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="..\..\src\doxygen.alox\doxygen.res\replaceDoxygenJavaTagBug.vbs">
-      <Link>docs.src\doxygen.res\replaceDoxygenJavaTagBug.vbs</Link>
+    <Content Include="..\..\src\docs\doxygen.res\replaceDoxygenJavaTagBug.vbs">
+      <Link>docs\doxygen.res\replaceDoxygenJavaTagBug.vbs</Link>
     </Content>
-    <Content Include="..\..\src\doxygen.alox\doxygen.res\styles\cs_DoxygenLayout.xml">
-      <Link>docs.src\doxygen.res\Styles\cs_DoxygenLayout.xml</Link>
+    <Content Include="..\..\src\docs\doxygen.res\styles\cs_DoxygenLayout.xml">
+      <Link>docs\doxygen.res\Styles\cs_DoxygenLayout.xml</Link>
     </Content>
-    <Content Include="..\..\src\doxygen.alox\doxygen.res\styles\cs_footer.html">
-      <Link>docs.src\doxygen.res\Styles\cs_footer.html</Link>
+    <Content Include="..\..\src\docs\doxygen.res\styles\cs_footer.html">
+      <Link>docs\doxygen.res\Styles\cs_footer.html</Link>
     </Content>
-    <Content Include="..\..\src\doxygen.alox\doxygen.res\styles\cs_header.html">
-      <Link>docs.src\doxygen.res\Styles\cs_header.html</Link>
+    <Content Include="..\..\src\docs\doxygen.res\styles\cs_header.html">
+      <Link>docs\doxygen.res\Styles\cs_header.html</Link>
     </Content>
-    <Content Include="..\..\src\doxygen.alox\doxygen.res\styles\cs_stylesheet.css">
-      <Link>docs.src\doxygen.res\Styles\cs_stylesheet.css</Link>
+    <Content Include="..\..\src\docs\doxygen.res\styles\cs_stylesheet.css">
+      <Link>docs\doxygen.res\Styles\cs_stylesheet.css</Link>
     </Content>
-    <Content Include="..\..\src\doxygen.alox\doxygen.res\styles\DoxygenLayout.xml">
-      <Link>docs.src\doxygen.res\Styles\DoxygenLayout.xml</Link>
+    <Content Include="..\..\src\docs\doxygen.res\styles\java_DoxygenLayout.xml">
+      <Link>docs\doxygen.res\Styles\java_DoxygenLayout.xml</Link>
     </Content>
-    <Content Include="..\..\src\doxygen.alox\doxygen.res\styles\java_DoxygenLayout.xml">
-      <Link>docs.src\doxygen.res\Styles\java_DoxygenLayout.xml</Link>
+    <Content Include="..\..\src\docs\doxygen.res\styles\java_footer.html">
+      <Link>docs\doxygen.res\Styles\java_footer.html</Link>
     </Content>
-    <Content Include="..\..\src\doxygen.alox\doxygen.res\styles\java_footer.html">
-      <Link>docs.src\doxygen.res\Styles\java_footer.html</Link>
+    <Content Include="..\..\src\docs\doxygen.res\styles\java_header.html">
+      <Link>docs\doxygen.res\Styles\java_header.html</Link>
     </Content>
-    <Content Include="..\..\src\doxygen.alox\doxygen.res\styles\java_header.html">
-      <Link>docs.src\doxygen.res\Styles\java_header.html</Link>
+    <Content Include="..\..\src\docs\doxygen.res\styles\java_stylesheet.css">
+      <Link>docs\doxygen.res\Styles\java_stylesheet.css</Link>
     </Content>
-    <Content Include="..\..\src\doxygen.alox\doxygen.res\styles\java_stylesheet.css">
-      <Link>docs.src\doxygen.res\Styles\java_stylesheet.css</Link>
+    <Content Include="..\..\src\docs\doxygen.res\styles\main_DoxygenLayout.xml">
+      <Link>docs\doxygen.res\Styles\main_DoxygenLayout.xml</Link>
     </Content>
-    <Content Include="..\..\src\doxygen.alox\doxygen.res\styles\main_DoxygenLayout.xml">
-      <Link>docs.src\doxygen.res\Styles\main_DoxygenLayout.xml</Link>
+    <Content Include="..\..\src\docs\doxygen.res\styles\main_footer.html">
+      <Link>docs\doxygen.res\Styles\main_footer.html</Link>
     </Content>
-    <Content Include="..\..\src\doxygen.alox\doxygen.res\styles\main_footer.html">
-      <Link>docs.src\doxygen.res\Styles\main_footer.html</Link>
+    <Content Include="..\..\src\docs\doxygen.res\styles\main_header.html">
+      <Link>docs\doxygen.res\Styles\main_header.html</Link>
     </Content>
-    <Content Include="..\..\src\doxygen.alox\doxygen.res\styles\main_header.html">
-      <Link>docs.src\doxygen.res\Styles\main_header.html</Link>
+    <Content Include="..\..\src\docs\doxygen.res\styles\main_stylesheet.css">
+      <Link>docs\doxygen.res\Styles\main_stylesheet.css</Link>
     </Content>
-    <Content Include="..\..\src\doxygen.alox\doxygen.res\styles\main_stylesheet.css">
-      <Link>docs.src\doxygen.res\Styles\main_stylesheet.css</Link>
+    <Content Include="..\..\src\docs\images\A-Worx-Logo.png">
+      <Link>docs\images\A-Worx-Logo.png</Link>
     </Content>
-    <Content Include="..\..\src\doxygen.alox\images\A-Worx-Logo.png">
-      <Link>docs.src\images\A-Worx-Logo.png</Link>
-    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\docs\ALox.CS\MainPage_CS.dox">
+      <Link>docs\ALox.CS\MainPage_CS.dox</Link>
+    </None>
+    <None Include="..\..\src\docs\ALox.CS\Tutorial.CS.dox">
+      <Link>docs\ALox.CS\Tutorial.CS.dox</Link>
+    </None>
+    <None Include="..\..\src\docs\ALox.CS\VStudioSetup_CS.dox">
+      <Link>docs\ALox.CS\VStudioSetup_CS.dox</Link>
+    </None>
+    <None Include="..\..\src\docs\ALox.Java\MainPage_Java.dox">
+      <Link>docs\ALox.Java\MainPage_Java.dox</Link>
+    </None>
+    <None Include="..\..\src\docs\ALox\Changelog.dox">
+      <Link>docs\ALox\Changelog.dox</Link>
+    </None>
+    <None Include="..\..\src\docs\ALox\FAQ.dox">
+      <Link>docs\ALox\FAQ.dox</Link>
+    </None>
+    <None Include="..\..\src\docs\ALox\MainPage.dox">
+      <Link>docs\ALox\MainPage.dox</Link>
+    </None>
+    <None Include="..\..\src\docs\ALox\Manual\1-Intro\Man.Features and Limitations.dox">
+      <Link>docs\ALox\Manual\1-Intro\Man.Features and Limitations.dox</Link>
+    </None>
+    <None Include="..\..\src\docs\ALox\Manual\1-Intro\Man.Introduction.dox">
+      <Link>docs\ALox\Manual\1-Intro\Man.Introduction.dox</Link>
+    </None>
+    <None Include="..\..\src\docs\ALox\Manual\2-Concepts\Concepts.dox">
+      <Link>docs\ALox\Manual\2-Concepts\Concepts.dox</Link>
+    </None>
+    <None Include="..\..\src\docs\ALox\Manual\2-Concepts\Man.ALox architecture.dox">
+      <Link>docs\ALox\Manual\2-Concepts\Man.ALox architecture.dox</Link>
+    </None>
+    <None Include="..\..\src\docs\ALox\Manual\2-Concepts\Man.LevelsAndDomains.dox">
+      <Link>docs\ALox\Manual\2-Concepts\Man.LevelsAndDomains.dox</Link>
+    </None>
+    <None Include="..\..\src\docs\ALox\Manual\3-Achieving goals\Achieving goals.dox">
+      <Link>docs\ALox\Manual\3-Achieving goals\Achieving goals.dox</Link>
+    </None>
+    <None Include="..\..\src\docs\ALox\Manual\3-Achieving goals\Man.Custom Loggers.dox">
+      <Link>docs\ALox\Manual\3-Achieving goals\Man.Custom Loggers.dox</Link>
+    </None>
+    <None Include="..\..\src\docs\ALox\Manual\3-Achieving goals\Man.Filtering Loggers.dox">
+      <Link>docs\ALox\Manual\3-Achieving goals\Man.Filtering Loggers.dox</Link>
+    </None>
+    <None Include="..\..\src\docs\ALox\Manual\3-Achieving goals\Man.Release Logging.dox">
+      <Link>docs\ALox\Manual\3-Achieving goals\Man.Release Logging.dox</Link>
+    </None>
+    <None Include="..\..\src\docs\ALox\Manual\3-Achieving goals\Man.Source Code Prefix Fields.dox">
+      <Link>docs\ALox\Manual\3-Achieving goals\Man.Source Code Prefix Fields.dox</Link>
+    </None>
+    <None Include="..\..\src\docs\ALox\Manual\3-Achieving goals\Man.TextLogger.dox">
+      <Link>docs\ALox\Manual\3-Achieving goals\Man.TextLogger.dox</Link>
+    </None>
+    <None Include="..\..\src\docs\ALox\Manual\Manual.dox">
+      <Link>docs\ALox\Manual\Manual.dox</Link>
+    </None>
+    <None Include="..\..\src\docs\doxygen.res\Doxyfile">
+      <Link>docs\doxygen.res\Doxyfile</Link>
+    </None>
+    <None Include="..\..\src\docs\doxygen.res\Doxyfile.forCS">
+      <Link>docs\doxygen.res\Doxyfile.forCS</Link>
+    </None>
+    <None Include="..\..\src\docs\doxygen.res\Doxyfile.forJAVA">
+      <Link>docs\doxygen.res\Doxyfile.forJAVA</Link>
+    </None>
+    <None Include="..\..\src\docs\doxygen.res\makedox.bat">
+      <Link>docs\doxygen.res\makedox.bat</Link>
+    </None>
+    <None Include="..\..\src\docs\doxygen.res\makeDoxyTemplates.bat">
+      <Link>docs\doxygen.res\makeDoxyTemplates.bat</Link>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>cd $(SolutionDir)
-cd src\doxygen.alox\doxygen.res
+cd src\docs\doxygen.res
 makedox.bat
 </PostBuildEvent>
   </PropertyGroup>

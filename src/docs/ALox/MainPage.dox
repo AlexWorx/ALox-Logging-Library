@@ -1,0 +1,99 @@
+﻿// #################################################################################################
+//  ALox - Logging in Bauhaus Style!
+//
+//  (c) 2013 A-Worx GmbH, Published under the The MIT License (Open Source License, see LICENSE.txt)
+//  
+//  File:	MainPage.dox 	    										          ALox Documentation
+// #################################################################################################
+
+/**
+\mainpage	ALox Main Page
+
+
+\section mainpage_overview        Overview
+
+ALox is a small and efficient software library that provides an ecosystem to support structured and organized 
+log output.
+
+The library attempts to make logging as easy and lightweight as possible. One of the goals
+we want to achieve is that developers, once making use of the library, just stop to put any temporary debug output
+statements into their code, but do it all with nice, readable, configurable, reusable logging statements
+that can be switched off and that are furthermore automatically pruned out of release versions of
+the application.
+
+On the other end of the list, we want to enable release logging for productive applications to collect
+mission critical metrics and data from *the field*.
+Basic support for release logging is here today already. The introduction of new features and concepts
+in the area of release logging will also support debug logging aspects of ALox. Therefore the natural path
+of evolution for the ALox project is "debug features first, release features next".
+
+This is Version 1.0.4, a really early release but considered stable. A lot of future improvements are to come. 
+Stay tuned. If you do not want to wait, take the source and extend ALox yourself: We hope, the simple [Bauhaus Style](\ref alox_faq)
+architecture and code style  of the library allows users to easily extend it with features they 
+need today.
+
+We would be happy to receive your feedback or feature requests.
+
+
+\section mainpage_features        Features and Limitations
+
+To get an overview about what ALox offers, read \ref man_features_and_limitations.
+
+
+\section mainpage_documentation   Documentation
+
+In the main menu of this site (see top of the page) you will find a general manual that introduces
+into the concepts and architecture of ALox. In addition, there are platform (programming language) 
+specific tutorials and class references available.
+
+\section mainpage_other           Other Information
+
+  - \subpage alox_faq are answered here
+  - \subpage changelog and version history 
+    
+
+\section mainpage_contribution    How to contribute
+
+If you want to contribute by adding functionality or repairing bugs, please use
+Github standard procedures.
+For other types of contribution or questions, please contact alox at a-worx dotcom. 
+
+
+
+\section mainpage_thanks        Thanks
+
+Our thanks go to all supporters to that helped realizing this project, especially:
+
+- To the great team of [Anfema](http://anfe.ma) (a great company dedicated to mobile app development) for giving ideas, motivation
+  and for being brave enough to test early releases.
+- To the [Eclipse Foundation](http://eclipse.org/donate/) - yes, we donated :-)
+- To Mr. van Heesch for providing [Doxygen](http://www.stack.nl/~dimitri/doxygen/) software - yes, we donated :-) and on the same token
+  the commercial but affordable documentation tool [Atomineer Pro Documentation for Visual Studio](http://www.atomineerutils.com/)
+
+\section mainpage_copyright        Copyright
+
+
+ALox is open source software, can be [downloaded at Github](http://github.com/AlexWorx/ALox-Logging-Library) 
+and sources are published under the MIT License:
+
+    The MIT License (MIT)
+    Copyright (c) 2013 A-Worx GmbH
+ 
+    Permission is hereby granted, free of charge, to any person obtaining a copy of 
+    this software and associated documentation files (the "Software"), to deal in the 
+    Software without restriction, including without limitation the rights to use, copy, 
+    modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, 
+    and to permit persons to whom the Software is furnished to do so, subject to the 
+    following conditions:
+ 
+    The above copyright notice and this permission notice shall be included in all 
+    copies or substantial portions of the Software.
+ 
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A 
+    PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT 
+    HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION 
+    OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
+    SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+*/

@@ -1,0 +1,31 @@
+﻿// #################################################################################################
+//  ALox - Logging in Bauhaus Style!
+//
+//  (c) 2013 A-Worx GmbH, Published under the The MIT License (Open Source License, see LICENSE.txt)
+//  
+//  File:	MainPage.dox 	    										          ALox Documentation
+// #################################################################################################
+
+/**
+\mainpage	C# Reference
+
+
+# This is the ALox for C# reference documentation! #
+
+
+## Tutorial ##
+If you are new to ALox, the easiest way to get familiar with it, is to walk yourself
+through the \ref tutorial_cs. 
+
+The C# Version got not tested on other platforms than Windows/Visual Studio. For details
+of setting up ALox for this environment, check out "\ref setup_projects_vs_cs".
+
+## Class Reference ##
+
+To browse the class reference, please use the page menu above.
+
+## Organization of code ##
+
+
+
+*/

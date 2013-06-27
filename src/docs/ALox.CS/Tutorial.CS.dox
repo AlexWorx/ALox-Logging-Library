@@ -7,13 +7,7 @@
 // #################################################################################################
 
 /**
-\page tutorial_cs       C# Tutorial
-
-
-\~Comment
-  Due to a doxygen bug, currently we can not reference fields in  com::aworx::lox::loggers::Logger  
-  We are referencing the class instead of the field.
-\~
+\page tutorial_cs       ALox for C# Tutorial
 
 
 \tableofcontents
@@ -26,7 +20,7 @@
 If you want to follow the tutorial samples and play around with it a little, you should
 either create a tutorial project or right away equip your current project with ALox.
 
-For information about how you do that see: \ref man_setup_projects_CS.
+For information about how you do that see: \ref setup_projects_vs_cs.
 
 You can easily skip this step and just continue reading the tutorial without setting up ALox now.
 
@@ -84,7 +78,7 @@ should look like this:
 Run your application in "Debug" mode. In the output window of visual studio you should see
 a line of output similar to this:
 
-\verbinclude  doxygen.alox/generated_cstut/CS_Tut_Hello_ALox.txt 
+\verbinclude  docs/generated_cstut/CS_Tut_Hello_ALox.txt 
 
 Now, close your source file window in Visual Studio. Then double click the log line in the output
 Window. Visual Studio opens the source and selects the line of code where the log call was invoked.
@@ -179,7 +173,7 @@ different log calls and let your code look like this:
 
 If you run your application now (in "Debug" mode), the following output should appear:
 
-\verbinclude  doxygen.alox/generated_cstut/CS_Tut_LogLevels.txt
+\verbinclude  docs/generated_cstut/CS_Tut_LogLevels.txt
 
 As you see, the last line of our code, containing the [Verbose()](@ref #com::aworx::lox::Log::Verbose ) log statement was not logged!
 This is because in line two of the code of we set the *log domain level* to [WarningsAndErrors](@ref #com::aworx::lox::Log::DomainLevel ). 
@@ -229,7 +223,7 @@ code you added to your project so far by this one:
 
 The output now is:
 
-\verbinclude  doxygen.alox/generated_cstut/CS_Tut_DefaultDomains.txt
+\verbinclude  docs/generated_cstut/CS_Tut_DefaultDomains.txt
 
 
 OK, you might argue, the code became longer: We added line 2, which invokes [Log.RegDomain](@ref #com::aworx::lox::Log::RegDomain).
@@ -261,7 +255,7 @@ are not needed, so the shortest code to do ALox logging in your code could be:
 
 Which produces the output:
 
-\verbinclude doxygen.alox/generated_cstut/CS_Tut_DefaultDomains_part2.txt 
+\verbinclude docs/generated_cstut/CS_Tut_DefaultDomains_part2.txt 
 
 From this example we learn that *log domains* which are neither registered with [Log.RegDomain](@ref #com::aworx::lox::Log::RegDomain) nor
 set with [Log.SetDomain](@ref #com::aworx::lox::Log::SetDomain) do not cause any problem. ALox just creates them on the fly
@@ -332,7 +326,7 @@ is invoked. A typical use of ALox would look like this:
 In the log output of the second line you automatically get the absolute value of elapsed
 time displayed. There is no need to do your own math with the timestamps. In fact, the value
 is displayed in a human readable way, depending on the size of the time span. (This is
-true as long as your *logger* has the field [Logger.LogTimeDiff](@ref #com::aworx::lox::loggers::Logger)
+true as long as your *logger* has the field [Logger.LogTimeDiff](@ref #com::aworx::lox::loggers::Logger.LogTimeDiff)
 set to true, which is the default for most loggers)
 
 *Note: In above code sample, of-course, there is no need to indent heavyCalculation() between 
@@ -353,7 +347,7 @@ Advantages of this approach are:
 The fourth and really optional one is about multi threaded applications. ALox optionally
 logs information about the thread id or name that executed the code containing your log
 statements. This is an automatic process and can be switched on or off using the boolean flag
-[Logger.LogThreadInfo](@ref #com::aworx::lox::loggers::Logger).
+[Logger.LogThreadInfo](@ref #com::aworx::lox::loggers::Logger.LogThreadInfo).
 
 However often threads do not have a name, but just an ID. It would be much nicer to see a 
 nice name instead of that id. ALox provides a simple mechanism to map thread IDs to variable
@@ -460,7 +454,7 @@ line of code, which would be logging the headline explicitly.
 
 Here are the first lines of output of the above sample:
                              
-\verbinclude  doxygen.alox/generated_cstut/CS_Tut_Instance.txt 
+\verbinclude  docs/generated_cstut/CS_Tut_Instance.txt 
 
 Note: This uses the inspection features of C#/.Net. Unfortunately under Windows Phone development
 inspection is not a feature. Therefore, this method is not available for Windows Phone projects.
@@ -484,7 +478,7 @@ This allows you to save another line of code, which would be logging the headlin
 
 The following log output will be generated:
 
-\verbinclude  doxygen.alox/generated_cstut/CS_Tut_Exceptions.txt 
+\verbinclude  docs/generated_cstut/CS_Tut_Exceptions.txt 
 
 
 ### c) XML(): Log out an XML document or element
@@ -496,7 +490,7 @@ logging objects of type XMLDocument or XMLElement. Here is a quick sample code:
 
 The output will look similar to this:
 
-\verbinclude  doxygen.alox/generated_cstut/CS_Tut_XML.txt 
+\verbinclude  docs/generated_cstut/CS_Tut_XML.txt 
 
 <BR>
 ## 3.4 Indentation ##                    {#tutcs_more_4}
@@ -541,7 +535,7 @@ Let's have a look at the code first:
 
 Running the sample, we get the following log on the console:
 
-\verbinclude  doxygen.alox/generated_cstut/CS_Tut_SeparatedLogLevels.txt 
+\verbinclude  docs/generated_cstut/CS_Tut_SeparatedLogLevels.txt 
 
 The way we achieved the goal is that we use the method [Log.SetDomain()](@ref #com::aworx::lox::Log::SetDomain ) twice
 on each of the *sub domains*. And in contrast to previous samples, we are passing two more parameters to it (and overwrite
@@ -551,14 +545,14 @@ their default values):
   to the Log.DomainLevel provided. We set this to false, we do not have further sub domains either way.
 - *String loggerFilter*
   This parameter now is what helps us: It defaults to null and in this case does not filter any *logger*. So, when omitted
-  all *loggers* are affected. If given, however, only those *loggers* who's field [Logger.Name](@ref #com::aworx::lox::loggers::Logger) 
+  all *loggers* are affected. If given, however, only those *loggers* who's field [Logger.Name](@ref #com::aworx::lox::loggers::Logger.Name) 
   match the given filter string are affected. 
 
 So, if you look back at the code, you will understand what is going on: For each *logger* we enable, respectively, disable
 all log output using [Log.SetDomain()](@ref #com::aworx::lox::Log::SetDomain ) and passing the appropriate filter!
 
 *Notes:*
-- String comparison on [Logger.Name](@ref #com::aworx::lox::loggers::Logger) and parameter *loggerFilter* is case insensitive.
+- String comparison on [Logger.Name](@ref #com::aworx::lox::loggers::Logger.Name) and parameter *loggerFilter* is case insensitive.
 - ALox provides a minimum 'wildcard' feature here: *loggerFilter* can start or end with an '*' character to fetch
   more than one logger at once.
 
@@ -606,7 +600,7 @@ new line at the end instead:
 We are invoking [Log.LogConfig()](@ref #com::aworx::lox::Log::LogConfig)  which logs the current
 configuration of class Log. The output is quite self explanatory:
 
-\verbinclude  doxygen.alox/generated_cstut/CS_Tut_LogConfig.txt 
+\verbinclude  docs/generated_cstut/CS_Tut_LogConfig.txt 
 
 
 At any location where we would be able to insert a standard log statement into our code,
@@ -632,7 +626,7 @@ With the modification in the code above, we are passing a *log domain level* as 
 [DomainLevel.All]                (@ref #com::aworx::lox::Log::DomainLevel). Now looking at the *ConsoleLogger*
 output, we see what is going on inside ALox while running the application:
 
-\verbinclude  doxygen.alox/generated_cstut/CS_Tut_LogConfig2.txt 
+\verbinclude  docs/generated_cstut/CS_Tut_LogConfig2.txt 
 
 To summarize: We have to ways to look into ALox: 
 
@@ -663,7 +657,7 @@ projects.
 
 Probably the most important thing that this tutorial does **not** cover is release logging.
 
-For further information, you can read into the \ref manual and of-course, also read through
+For further information, you can read into the [ALox User Manual](../manual.html) and of-course, also read through
 the AWorx class reference pages.
  
 */

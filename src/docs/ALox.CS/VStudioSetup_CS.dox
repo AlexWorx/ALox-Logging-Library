@@ -7,7 +7,7 @@
 // #################################################################################################
 
 /**
-\page man_setup_projects_CS         Setup Visual Studio for C# Projects
+\page setup_projects_vs_cs         Setup Visual Studio for C# Projects
 
 
 To use ALox logging in your C# project using Visual Studio, some few preparational steps have to be
