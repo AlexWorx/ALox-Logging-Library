@@ -1,29 +1,29 @@
-src\cs.unittests.alox\Tests_Tutorial.cs(378):.Tut_LogConfig()     [00:00.000  +175 µs] [T:(10)] [***] [DOM]: >> Here comes the current Log configuration:
-src\cs.unittests.alox\Tests_Tutorial.cs(378):.Tut_LogConfig()                                                >> Version:      1.0.4
-src\cs.unittests.alox\Tests_Tutorial.cs(378):.Tut_LogConfig()                                                >> Intern. dom.: ALOX
-src\cs.unittests.alox\Tests_Tutorial.cs(378):.Tut_LogConfig()                                                >> Thread safe:  Yes
-src\cs.unittests.alox\Tests_Tutorial.cs(378):.Tut_LogConfig()                                                >> No. of calls: 1
-src\cs.unittests.alox\Tests_Tutorial.cs(378):.Tut_LogConfig()                                                >> Code markers: 0
-src\cs.unittests.alox\Tests_Tutorial.cs(378):.Tut_LogConfig()                                                >> 
-src\cs.unittests.alox\Tests_Tutorial.cs(378):.Tut_LogConfig()                                                >> Def. domains: 1
-src\cs.unittests.alox\Tests_Tutorial.cs(378):.Tut_LogConfig()                                                >>   Domain:   DOM          Scope: "i:\Dev\A-Worx\ALox\src\cs.unittests.alox\Tests_Tutorial.cs#Tut_LogConfig"
-src\cs.unittests.alox\Tests_Tutorial.cs(378):.Tut_LogConfig()                                                >> 
-src\cs.unittests.alox\Tests_Tutorial.cs(378):.Tut_LogConfig()                                                >> Loggers:      2
-src\cs.unittests.alox\Tests_Tutorial.cs(378):.Tut_LogConfig()                                                >> 
-src\cs.unittests.alox\Tests_Tutorial.cs(378):.Tut_LogConfig()                                                >>   Logger: "Console"
-src\cs.unittests.alox\Tests_Tutorial.cs(378):.Tut_LogConfig()                                                >>     Creation time: 06/26/2013 14:26:26
-src\cs.unittests.alox\Tests_Tutorial.cs(378):.Tut_LogConfig()                                                >>     Lines logged:  0
-src\cs.unittests.alox\Tests_Tutorial.cs(378):.Tut_LogConfig()                                                >>     Domains:
-src\cs.unittests.alox\Tests_Tutorial.cs(378):.Tut_LogConfig()                                                >>       /ALOX              WarningsAndErrors
-src\cs.unittests.alox\Tests_Tutorial.cs(378):.Tut_LogConfig()                                                >>       /DOM               All
-src\cs.unittests.alox\Tests_Tutorial.cs(378):.Tut_LogConfig()                                                >>       /DOM/CON           All
-src\cs.unittests.alox\Tests_Tutorial.cs(378):.Tut_LogConfig()                                                >>       /DOM/MEM           Off
-src\cs.unittests.alox\Tests_Tutorial.cs(378):.Tut_LogConfig()                                                >> 
-src\cs.unittests.alox\Tests_Tutorial.cs(378):.Tut_LogConfig()                                                >>   Logger: "Memory"
-src\cs.unittests.alox\Tests_Tutorial.cs(378):.Tut_LogConfig()                                                >>     Creation time: 06/26/2013 14:26:26
-src\cs.unittests.alox\Tests_Tutorial.cs(378):.Tut_LogConfig()                                                >>     Lines logged:  0
-src\cs.unittests.alox\Tests_Tutorial.cs(378):.Tut_LogConfig()                                                >>     Domains:
-src\cs.unittests.alox\Tests_Tutorial.cs(378):.Tut_LogConfig()                                                >>       /ALOX              WarningsAndErrors
-src\cs.unittests.alox\Tests_Tutorial.cs(378):.Tut_LogConfig()                                                >>       /DOM               All
-src\cs.unittests.alox\Tests_Tutorial.cs(378):.Tut_LogConfig()                                                >>       /DOM/CON           Off
-src\cs.unittests.alox\Tests_Tutorial.cs(378):.Tut_LogConfig()                                                >>       /DOM/MEM           All
+src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()     [00:00.000  +067 µs] [T:(7)] [***] [DOM]: >> Here comes the current Log configuration:
+src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                               >> Version:      1.1.0
+src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                               >> Intern. dom.: ALOX
+src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                               >> Thread safe:  Yes
+src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                               >> No. of calls: 1
+src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                               >> Code markers: 0
+src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                               >> 
+src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                               >> Def. domains: 1
+src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                               >>   Domain:   DOM          Scope: "i:\Dev\A-Worx\ALox\src\cs.unittests.alox\Tests_Tutorial.cs#Tut_LogConfig"
+src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                               >> 
+src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                               >> Loggers:      2
+src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                               >> 
+src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                               >>   Logger: "Console"
+src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                               >>     Creation time: 06/28/2013 10:10:10
+src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                               >>     Lines logged:  0
+src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                               >>     Domains:
+src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                               >>       /ALOX              WarningsAndErrors
+src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                               >>       /DOM               All
+src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                               >>       /DOM/CON           All
+src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                               >>       /DOM/MEM           Off
+src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                               >> 
+src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                               >>   Logger: "Memory"
+src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                               >>     Creation time: 06/28/2013 10:10:10
+src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                               >>     Lines logged:  0
+src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                               >>     Domains:
+src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                               >>       /ALOX              WarningsAndErrors
+src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                               >>       /DOM               All
+src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                               >>       /DOM/CON           Off
+src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                               >>       /DOM/MEM           All

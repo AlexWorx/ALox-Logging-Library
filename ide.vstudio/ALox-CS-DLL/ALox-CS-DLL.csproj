@@ -47,8 +47,11 @@
     <Compile Include="..\..\src\cs.alox\core\LogDomain.cs">
       <Link>src\core\LogDomain.cs</Link>
     </Compile>
-    <Compile Include="..\..\src\cs.alox\core\Lox.cs">
-      <Link>src\core\Lox.cs</Link>
+    <Compile Include="..\..\src\cs.alox\core\Logger.cs">
+      <Link>src\core\Logger.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.alox\core\TextLogger.cs">
+      <Link>src\core\TextLogger.cs</Link>
     </Compile>
     <Compile Include="..\..\src\cs.alox\Log.cs">
       <Link>src\Log.cs</Link>
@@ -56,17 +59,14 @@
     <Compile Include="..\..\src\cs.alox\loggers\ConsoleLogger.cs">
       <Link>src\loggers\ConsoleLogger.cs</Link>
     </Compile>
-    <Compile Include="..\..\src\cs.alox\loggers\Logger.cs">
-      <Link>src\loggers\Logger.cs</Link>
-    </Compile>
     <Compile Include="..\..\src\cs.alox\loggers\MemoryLogger.cs">
       <Link>src\loggers\MemoryLogger.cs</Link>
     </Compile>
-    <Compile Include="..\..\src\cs.alox\loggers\TextLogger.cs">
-      <Link>src\loggers\TextLogger.cs</Link>
-    </Compile>
     <Compile Include="..\..\src\cs.alox\LogTools.cs">
       <Link>src\LogTools.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.alox\Lox.cs">
+      <Link>src\Lox.cs</Link>
     </Compile>
     <Compile Include="..\..\src\cs.aworx.util\AWXU.cs">
       <Link>src.util\AWXU.cs</Link>

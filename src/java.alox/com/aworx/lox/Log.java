@@ -2,8 +2,7 @@ package com.aworx.lox;
 
 import java.util.Date;
 
-import com.aworx.lox.core.Lox;
-import com.aworx.lox.loggers.Logger;
+import com.aworx.lox.core.Logger;
 import com.aworx.util.AWXU;
 import com.aworx.util.AWXUErrorHandler;
 
@@ -183,9 +182,9 @@ public abstract class Log
 	 * should performed.
 	 *
 	 * @param logger                The logger to be added.
-	 * @param internalDomainLevel   The desired domain level for the #com.aworx.lox.core.Lox.internalDomain which is used
-	 *                              for logging code of class Lox itself. For console loggers this
-	 *                              can be set to **All**, for log streams dedicated to a certain
+	 * @param internalDomainLevel   The desired domain level for the #com.aworx.lox.Lox.internalDomain 
+	 *                              which is used for logging code of class Lox itself. For console loggers 
+	 *                              this can be set to **All**, for log streams dedicated to a certain
 	 *                              domain, this should be set to **Off**.
 	 **************************************************************************************************/
 	public static void addLogger( Logger logger, Log.DomainLevel internalDomainLevel )	{ LOX.addLogger( logger, internalDomainLevel ); }

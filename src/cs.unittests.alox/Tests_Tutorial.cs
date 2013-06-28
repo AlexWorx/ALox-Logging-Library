@@ -23,7 +23,7 @@ namespace com.aworx.unittests.lox
 public class TestsTutorial
 {
 MemoryLogger	tutLog;
-String			outputPath=		"../../../../src/doxygen.alox/generated_cstut/";
+String			outputPath=		"../../../../src/docs/generated_cstut/";
 
 void SaveTutorialOuput( string fileName, MString log )
 {

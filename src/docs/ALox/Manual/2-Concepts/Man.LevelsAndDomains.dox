@@ -23,7 +23,7 @@ you have read and understood the chapter \ref man_alox_architecture.
 It is very common for logging ecosystems to provide the concept of *log levels*. Such log level
 is provided either as a parameter to the log call or is provided by offering different log methods, like
 *error()*, *warning()* or *verbose()*. (Alox provides both mechanisms.)
-ALox is no exclamation to this. The four levels offered are enumerated in [Log.Level](@ref #com::aworx::lox::Log::Level)
+ALox is no exclamation to this. The four levels offered are enumerated in [Log.Level](@ref #com.aworx.lox.Log.Level)
 and are named and sorted like this:
  - *Error*
  - *Warning*
@@ -54,7 +54,7 @@ Now, ALox administers a setting for the log level per *log domain*. Such setting
 At runtime, for each log statement, the *log level* is evaluated against the *log domain level* and the log
 message is either suppressed or not.
 
-The *log domain levels* are enumerated in [Log.DomainLevel](@ref #com::aworx::lox::Log::DomainLevel) and are:
+The *log domain levels* are enumerated in [Log.DomainLevel](@ref #com.aworx.lox.Log.DomainLevel) and are:
 
 - *Off*
 - *Errors*
@@ -95,7 +95,7 @@ Log.RegDomain( "UI/MENU",   Log.Scope.None );
 Log.RegDomain( "UI/DLG",    Log.Scope.None );
 \endcode
 
-*(See  [Log.RegDomain()](@ref #com::aworx::lox::Log::RegDomain) for further reference.)*
+*(See  [Log.RegDomain()](@ref #com.aworx.lox.Log.RegDomain) for further reference.)*
 
 <br>
 Now, without using the feature of hierarchical domains, the user code that controls
@@ -107,10 +107,10 @@ Log.SetDomain( "UI/MENU",	Log.DomainLevel.InfoWarningsAndErrors );
 Log.SetDomain( "UI/DLG",	Log.DomainLevel.InfoWarningsAndErrors );
 \endcode
 
-*(See  [Log.SetDomain()](@ref #com::aworx::lox::Log::SetDomain) for further reference.)*
+*(See  [Log.SetDomain()](@ref #com.aworx.lox.Log.SetDomain) for further reference.)*
 
 Due to the fact that the default value for the level setting of a domain is 
-[Log.DomainLevel.Inherit](@ref #com::aworx::lox::Log::DomainLevel), the two sub domains
+[Log.DomainLevel.Inherit](@ref #com.aworx.lox.Log.DomainLevel), the two sub domains
 of "UI" do not need to be set. They inherit the setting from their parent. It is
 sufficient to set just the parent domain:
 
@@ -151,7 +151,7 @@ The advantages of hierarchical domains so far are:
 - You can control a whole set of domains with one statement
 - If new versions of libraries provide new sub domains, their level setting is
   automatically controlled without explicitly adding a corresponding call to
-  [Log.SetDomain()](@ref #com::aworx::lox::Log::SetDomain).
+  [Log.SetDomain()](@ref #com.aworx.lox.Log.SetDomain).
 
 But there is one more point on it, described later in this chapter. First let us
 look at the root domain of a Logger.
@@ -164,33 +164,33 @@ look at the root domain of a Logger.
 
 As we have learned about the hierarchical organizations of domains, the next
 concept is easy to understand. Each instance of class 
-[Logger](@ref #com::aworx::lox::loggers::Logger) contains a public field of
-type  [LogDomain](@ref #com::aworx::lox::core::LogDomain) which represents 
+[Logger](@ref #com.aworx.lox.core.Logger) contains a public field of
+type  [LogDomain](@ref #com.aworx.lox.core.LogDomain) which represents 
 the *root domain*. Whenever a new domain is registered with a Lox, each logger
 contained in this Lox gets this domain added as a sub domain of its root domain.
 
 Now, if the *domain level* of such sub domain is not specified (using
-[Lox.SetDomain](@ref #com::aworx::lox::core::Lox::SetDomain) or
-[Log.SetDomain](@ref #com::aworx::lox::Log::SetDomain) the setting
+[Lox.SetDomain](@ref #com.aworx.lox.Lox.SetDomain) or
+[Log.SetDomain](@ref #com.aworx.lox.Log.SetDomain) the setting
 defaults to "inherit" and hence these sub domains inherit the setting
 of the root domain. Therefore, the level setting of a Loggers root domain
 determine the "default" domain level for "unknown" (respectively "unset") domains. 
 
 Different derivates of class Logger might have different preferences here. For
-example the class [ConsoleLogger](@ref #com::aworx::lox::loggers::ConsoleLogger) in its
-constructor, sets the domain level to [Log.DomainLevel.All](@ref #com::aworx::lox::Log.DomainLevel).
+example the class [ConsoleLogger](@ref #com.aworx.lox.loggers.ConsoleLogger) in its
+constructor, sets the domain level to [Log.DomainLevel.All](@ref #com.aworx.lox.Log.DomainLevel).
 This way, messages that get logged on domains that have not been explicitly set
 in the boot section of an application (or somewhere else) are displayed in the 
 console. This makes sense, as the console is mainly for debug purposes. As soon as
 a log statement appears under a domain that is not set properly, the programmer can
 insert a corresponding statement to set the domain as wanted. In contrast to this,
-the root domain in class [MemoryLogger](@ref #com::aworx::lox::loggers::MemoryLogger) is
-set to [Log.DomainLevel.Off](@ref #com::aworx::lox::Log.DomainLevel). This way,
+the root domain in class [MemoryLogger](@ref #com.aworx.lox.loggers.MemoryLogger) is
+set to [Log.DomainLevel.Off](@ref #com.aworx.lox.Log.DomainLevel). This way,
 all log messages are suppressed unless explicitly set active. 
 
 To change this behavior, use method 
-[Lox.SetDomain](@ref #com::aworx::lox::core::Lox::SetDomain) or
-[Log.SetDomain](@ref #com::aworx::lox::Log::SetDomain) on domain name "/"
+[Lox.SetDomain](@ref #com.aworx.lox.Lox.SetDomain) or
+[Log.SetDomain](@ref #com.aworx.lox.Log.SetDomain) on domain name "/"
 and provide the right logger name in the filter parameter. For example, if you
 want to see only *warning* and *error* messages for domains that are not explicitly
 set, insert the following code right after a logger is added:
@@ -211,7 +211,7 @@ typing. That is true. For this reason - and to get even more benefits - ALox pro
 of *default domains*. 
 
 Domains, when registered, can be set as the default domain for a given 
-[Log.Scope](@ref #com::aworx::lox::Log::Scope). 
+[Log.Scope](@ref #com.aworx.lox.Log.Scope). 
 Unfortunately but naturally, the possible values for the scope are platform/language dependent.
 For example, in JAVA, the scope can be the whole package a class resides in, the class only or 
 just a single method of a class. In C#, the scope can be the actual source file or the
@@ -219,8 +219,8 @@ actual method within a source file. Namespaces can not be the scope in C#, due t
 in the way that *caller information* is collected.
 
 Now, setting a domain as default is done by specifying a scope value other than 
-[Log.Scope.None](@ref #com::aworx::lox::Log::Scope) to
-[Log.RegDomain](@ref #com::aworx::lox::Log::RegDomain): 
+[Log.Scope.None](@ref #com.aworx.lox.Log.Scope) to
+[Log.RegDomain](@ref #com.aworx.lox.Log.RegDomain): 
 
 \code{.cs}
 Log.RegDomain( "UI",        Log.Scope.SourceFile );
@@ -307,8 +307,8 @@ ecosystem itself and how their level can be controlled. This is quite easy
 and straightforward. 
 
 ALox uses a domain called "ALOX" to log internal. This name is not hard coded, but represented
-in a field in class [Lox](@ref #com::aworx::lox::core::Lox). E.g. in C#, this field
-is called [Lox.InternalDomain](@ref #com::aworx::lox::core::Lox.InternalDomain).
+in a field in class [Lox](@ref #com.aworx.lox.Lox). E.g. in C#, this field
+is called [Lox.InternalDomain](@ref #com.aworx.lox.Lox.InternalDomain).
 If you want to change that (which should only be needed if you operate with different Lox instances
 that share one or more Logger instances and you want to distinguish which Lox instance caused
 a message), you go ahead as follows:
@@ -332,10 +332,10 @@ distinct derivates of loggers, especially release loggers, might not.
 
 The API request this internal domain's log level to be specified in the moment a logger
 is added to the log. See parameter 'internalDomainLevel' in 
-[Log.AddLogger()](@ref #com::aworx::lox::Log::AddLogger)  respectively [Lox.AddLogger()](@ref #com::aworx::lox::core::Lox::AddLogger).
+[Log.AddLogger()](@ref #com.aworx.lox.Log.AddLogger)  respectively [Lox.AddLogger()](@ref #com.aworx.lox.Lox.AddLogger).
 
 Of course, the domain level of the internal domain can be manipulated any time later, like any other domains' log level using
-[Log.SetDomain()](@ref #com::aworx::lox::Log::SetDomain)  respectively [Lox.SetDomain()](@ref #com::aworx::lox::core::Lox::SetDomain).
+[Log.SetDomain()](@ref #com.aworx.lox.Log.SetDomain)  respectively [Lox.SetDomain()](@ref #com.aworx.lox.Lox.SetDomain).
 The code would look like this:
 
 \code{.cs}

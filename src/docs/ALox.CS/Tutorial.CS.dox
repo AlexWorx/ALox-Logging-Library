@@ -33,7 +33,7 @@ that enables log output to the application console as well as to the Visual Stud
 You need to identify the right place in your application. This could be the "main()" method or any
 other place where some "bootstrapping" of your application takes place.
 
-Once you have identified the right place, add the following statement to the "using section* of your source
+Once you have identified the right place, add the following statements to the "using section* of your source
 file:
 
 \snippet cs.unittests.alox/Tests_Tutorial.cs        Tut_using_statement
@@ -209,7 +209,7 @@ Fairly easy, right? To summarize, the above paragraph introduced you to the conc
    using the method [Log.SetDomain()](@ref #com::aworx::lox::Log::SetDomain )
 3. *Log levels* that are assigned to each log statement in your code by choosing the right log method.
 
-Now, you should understand how the comparison of the *log domain level* and the *log level* decides about weather a log is executed or not.
+Now, you should understand how the comparison of the *log domain level* and the *log level* decides about whether a log is executed or not.
 
 
 <BR>
@@ -326,7 +326,7 @@ is invoked. A typical use of ALox would look like this:
 In the log output of the second line you automatically get the absolute value of elapsed
 time displayed. There is no need to do your own math with the timestamps. In fact, the value
 is displayed in a human readable way, depending on the size of the time span. (This is
-true as long as your *logger* has the field [Logger.LogTimeDiff](@ref #com::aworx::lox::loggers::Logger.LogTimeDiff)
+true as long as your *logger* has the field [Logger.LogTimeDiff](@ref #com::aworx::lox::core::Logger.LogTimeDiff)
 set to true, which is the default for most loggers)
 
 *Note: In above code sample, of-course, there is no need to indent heavyCalculation() between 
@@ -347,7 +347,7 @@ Advantages of this approach are:
 The fourth and really optional one is about multi threaded applications. ALox optionally
 logs information about the thread id or name that executed the code containing your log
 statements. This is an automatic process and can be switched on or off using the boolean flag
-[Logger.LogThreadInfo](@ref #com::aworx::lox::loggers::Logger.LogThreadInfo).
+[Logger.LogThreadInfo](@ref #com::aworx::lox::core::Logger.LogThreadInfo).
 
 However often threads do not have a name, but just an ID. It would be much nicer to see a 
 nice name instead of that id. ALox provides a simple mechanism to map thread IDs to variable
@@ -506,7 +506,7 @@ See the documentation of the log methods
 [Warning()]	(@ref #com::aworx::lox::Log::Error),
 [Info()]	(@ref #com::aworx::lox::Log::Error) and
 [Verbose()]	(@ref #com::aworx::lox::Log::Error) ) to identify where to add the indentation parameter.
-The default is 0. The result of increasing it depends on the Logger you are using. The [TextLogger](@ref #com::aworx::lox::loggers::TextLogger)
+The default is 0. The result of increasing it depends on the Logger you are using. The [TextLogger](@ref #com::aworx::lox::core::TextLogger)
 for example (the base class of [ConsoleLogger](@ref #com::aworx::lox::loggers::ConsoleLogger) ) adds two spaces per indent number. 
 
 
@@ -545,14 +545,14 @@ their default values):
   to the Log.DomainLevel provided. We set this to false, we do not have further sub domains either way.
 - *String loggerFilter*
   This parameter now is what helps us: It defaults to null and in this case does not filter any *logger*. So, when omitted
-  all *loggers* are affected. If given, however, only those *loggers* who's field [Logger.Name](@ref #com::aworx::lox::loggers::Logger.Name) 
+  all *loggers* are affected. If given, however, only those *loggers* who's field [Logger.Name](@ref #com::aworx::lox::core::Logger.Name) 
   match the given filter string are affected. 
 
 So, if you look back at the code, you will understand what is going on: For each *logger* we enable, respectively, disable
 all log output using [Log.SetDomain()](@ref #com::aworx::lox::Log::SetDomain ) and passing the appropriate filter!
 
 *Notes:*
-- String comparison on [Logger.Name](@ref #com::aworx::lox::loggers::Logger.Name) and parameter *loggerFilter* is case insensitive.
+- String comparison on [Logger.Name](@ref #com::aworx::lox::core::Logger.Name) and parameter *loggerFilter* is case insensitive.
 - ALox provides a minimum 'wildcard' feature here: *loggerFilter* can start or end with an '*' character to fetch
   more than one logger at once.
 
@@ -563,14 +563,14 @@ Some further quick remarks on the code:
   [MString](@ref #com::aworx::util::MString) for more information
 
 - As you can see from the output, the two log lines contained in the MemoryLogger are output in two separated
-  lines by the *ConsoleLogger*. This is a feature of [TextLogger](@ref #com::aworx::lox::loggers::TextLogger), the 
+  lines by the *ConsoleLogger*. This is a feature of [TextLogger](@ref #com::aworx::lox::core::TextLogger), the 
   super class of both, *ConsoleLogger* and MemoryLogger. If new line characters CR, LF, CRLF or any other
   definable delimiter string is detected in the log message, this message. Logging all kinds of text documents
   results in a readable output. The multiple line output can be modified in some ways and also can be 
   turned off. TODO: See in depth section TextLogger
 
 - As you can see in the beginning of the sample, we are tweaking the output in the MemoryLogger a bit.
-  The flags we are setting here are available to all Loggers as they are defined in the abstract class [Logger](@ref #com::aworx::lox::loggers::Logger)
+  The flags we are setting here are available to all Loggers as they are defined in the abstract class [Logger](@ref #com::aworx::lox::core::Logger)
   already but might be differently handled by  different *Logger* implementations. What we are achieving here, 
   is that the log output does not get too wide.
 

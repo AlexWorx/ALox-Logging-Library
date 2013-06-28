@@ -35,7 +35,6 @@ public class PerformanceTest
 	{
 		cl=	new ConsoleLogger( "Console" ); cl.tabAfterSourceInfo = 60;
 		cl.enableAppConsole= true;
-		cl.enableVSDebugConsole= false;
 		ml= new MemoryLogger( "Memory");
 
 		Log.addLogger( cl, Log.DomainLevel.WarningsAndErrors );

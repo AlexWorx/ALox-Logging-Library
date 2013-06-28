@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using com.aworx.util;
+using com.aworx.lox.core;
 using com.aworx.lox.loggers;
 
 #if (!ALOX_NO_THREADS) 
@@ -19,7 +20,7 @@ using com.aworx.lox.loggers;
 using System.Globalization;
 #endif
 
-namespace com.aworx.lox.core {
+namespace com.aworx.lox {
 
 
 /** ***********************************************************************************************
@@ -52,7 +53,7 @@ public class Lox
 	// #################################################################################################
 
 	/** <summary>	The version of ALox. </summary> */
-	public  readonly	String			Version					="1.0.4";
+	public  static readonly	String		Version					="1.1.0";
 
 	/** 
 	 * <summary>
@@ -137,7 +138,7 @@ public class Lox
 		 **************************************************************************************************/
 		public  Logger GetLogger( String loggerName )
 		{
-			try { Lock.aquire();
+			try { Lock.Aquire();
 
 				// search logger
 				foreach ( Logger logger in loggers )
@@ -147,7 +148,7 @@ public class Lox
 				// not found
 				return null;
 
-			} finally { Lock.release(); } 
+			} finally { Lock.Release(); } 
 		}
 
 	#endif
@@ -161,7 +162,7 @@ public class Lox
 	 * <summary>
 	 *  Adds a logger to the Log interface. Each log call that is performed through this interface
 	 *  will be forwarded to this logger, unless filtered out with optional filter parameter. The
-	 *  logger will then check it's domain level against the given log level to decide weather a log
+	 *  logger will then check it's domain level against the given log level to decide whether a log
 	 *  should performed.
 	 * </summary>
 	 * <param name="logger">			 	The logger to be added. </param>
@@ -178,7 +179,7 @@ public class Lox
 							[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
-			try { Lock.aquire();
+			try { Lock.Aquire();
 
 				// Find or Create the internal domain (LOX) for logger  and set level 
 				resDomain.Clear().Append( InternalDomain );
@@ -205,7 +206,7 @@ public class Lox
 				saveAndSet( csf, cln, cmn, false, null );
 				internalLog( Log.Level.Info,	tempMS.Clear().Append("Lox.AddLogger(): Logger \"").Append(logger.Name).Append("\" added. Internal Domain Level set to: ").Append(internalDomainLevel.ToString()) );
 
-			} finally { Lock.release(); } 
+			} finally { Lock.Release(); } 
 		#endif
 	}
 
@@ -220,7 +221,7 @@ public class Lox
 	public void RemoveLoggers( String loggerFilter= null )
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
-			try { Lock.aquire();
+			try { Lock.Aquire();
 
 				// check logger list
 				if ( loggers == null )
@@ -231,7 +232,7 @@ public class Lox
 					if ( simpleWildcardFilter( loggers[ i ], loggerFilter ) )
 						loggers.RemoveAt( i );
 
-			} finally { Lock.release(); } 
+			} finally { Lock.Release(); } 
 		#endif
 	}
 
@@ -256,7 +257,7 @@ public class Lox
 												[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
-			try { Lock.aquire();
+			try { Lock.Aquire();
 
 				// save caller info
 				saveAndSet( csf, cln, cmn, false, null );
@@ -267,7 +268,7 @@ public class Lox
 				// log info on this
 				internalLog( Log.Level.Info, tempMS.Clear().Append("Lox: Consumable source path prefix set to:  \"").Append(cspp).Append("\"") );
 
-			} finally { Lock.release(); } 
+			} finally { Lock.Release(); } 
 		#endif
 	}
 
@@ -316,7 +317,7 @@ public class Lox
 							[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
-			try { Lock.aquire();
+			try { Lock.Aquire();
 
 				// save caller info and get resulting domain
 				saveAndSet( csf, cln, cmn, true, domain);
@@ -366,7 +367,7 @@ public class Lox
 																	  .Append("\" by \"").Append(domainToRegister).Append("\" as default for scope \"").Append(scope.ToString()).Append('\"') );
 				}
 
-			} finally { Lock.release(); } 
+			} finally { Lock.Release(); } 
 		#endif
 	}
 
@@ -401,7 +402,7 @@ public class Lox
 							[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
-			try { Lock.aquire();
+			try { Lock.Aquire();
 
 				// save caller info and get resulting domain
 				saveAndSet( csf, cln, cmn, true, domain);
@@ -424,7 +425,7 @@ public class Lox
 				}
 
 
-			} finally { Lock.release(); } 
+			} finally { Lock.Release(); } 
 		#endif
 	}
 
@@ -449,7 +450,7 @@ public class Lox
 									[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
-			try { Lock.aquire();
+			try { Lock.Aquire();
 			
 				saveAndSet( csf, cln, cmn, false, null );
 				foreach ( Logger logger in loggers )
@@ -463,7 +464,7 @@ public class Lox
 					}
 				}
 			
-			} finally { Lock.release(); } 
+			} finally { Lock.Release(); } 
 		#endif
 	}
 
@@ -488,7 +489,7 @@ public class Lox
 									 [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
-			try { Lock.aquire();
+			try { Lock.Aquire();
 
 				// check if logger was initialized
 				saveAndSet( csf, cln, cmn, false, null );
@@ -512,7 +513,7 @@ public class Lox
 					internalLog( Log.Level.Info,	tempMS.Clear().Append("Lox.SetStartTime(): Start time of \"").Append(logger.Name).Append("\" set to: ").Append(startTime.HasValue? startTime.Value.ToString() : "\"now\"")  );
 				}
 
-			} finally { Lock.release(); } 
+			} finally { Lock.Release(); } 
 		#endif
 	}
 
@@ -533,7 +534,7 @@ public class Lox
 
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
-			try { Lock.aquire();
+			try { Lock.Aquire();
 
 				// get current thread id
 				String origThreadName= null;
@@ -554,7 +555,7 @@ public class Lox
 					tempMS.Append(" Original thread name was \"").Append(origThreadName).Append("\".");
 				internalLog( Log.Level.Info, tempMS );
 
-			} finally { Lock.release(); } 
+			} finally { Lock.Release(); } 
 		#endif
 	}
 
@@ -581,7 +582,7 @@ public class Lox
 									[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
-			try { Lock.aquire();
+			try { Lock.Aquire();
 
 				// build key string
 				MString key= new MString(64);
@@ -601,7 +602,7 @@ public class Lox
 				saveAndSet( csf, cln, cmn, false, null );
 				internalLog( Log.Level.Verbose, tempMS.Clear().Append("Lox: Marker set (").Append(( marker != null ? marker.ToString() : "null")).Append(')')  );
 	
-			} finally { Lock.release(); }
+			} finally { Lock.Release(); }
 		#endif
 	}
 
@@ -631,7 +632,7 @@ public class Lox
 								  [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
-			try { Lock.aquire();
+			try { Lock.Aquire();
 
 				// build key string
 				tempMS.Clear();
@@ -652,7 +653,7 @@ public class Lox
 				// log info on this
 				saveAndSet( csf, cln, cmn, false, null );
 				internalLog( Log.Level.Verbose, tempMS.Clear().Append("Lox: Marker retrieved (").Append(( marker != null ? marker.ToString() : "null")).Append(')') );
-			} finally { Lock.release(); } 
+			} finally { Lock.Release(); } 
 		#endif
 	}
 
@@ -684,7 +685,7 @@ public class Lox
 							[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
-			try { Lock.aquire();
+			try { Lock.Aquire();
 		
 				// count overall calls 
 				CntLogCalls++;
@@ -749,7 +750,7 @@ public class Lox
 					if ( simpleWildcardFilter( logger, loggerFilter ) )
 						logger.Line( resDomain, level, buf, 0, caller ); 
 
-			} finally { Lock.release(); } 
+			} finally { Lock.Release(); } 
 		#endif
 	}
 
@@ -1007,7 +1008,7 @@ public class Lox
 					   [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
-			try { Lock.aquire();
+			try { Lock.Aquire();
 
 				// count overall calls 
 				CntLogCalls++;
@@ -1024,7 +1025,7 @@ public class Lox
 					if ( simpleWildcardFilter( logger, loggerFilter ) )
 						logger.Line( resDomain, level, msgObject, indent, caller );
 	
-			} finally { Lock.release(); }
+			} finally { Lock.Release(); }
 		#endif
 	}
 

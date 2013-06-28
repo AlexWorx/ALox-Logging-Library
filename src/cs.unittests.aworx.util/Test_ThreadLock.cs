@@ -25,60 +25,60 @@ namespace com.aworx.lox.unittests
 
 			// lock a recursive lock 
 			ThreadLock aLock= new ThreadLock();
-			aLock.useAssertions= false;
+			aLock.UseAssertions= false;
 
-			aLock.aquire();
-			aLock.release();
+			aLock.Aquire();
+			aLock.Release();
 
-			aLock.aquire(); 								Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
-			aLock.aquire();									Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
-			aLock.release();								Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
+			aLock.Aquire(); 								Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
+			aLock.Aquire();									Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
+			aLock.Release();								Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
 															                      
-			aLock.aquire();									Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
-			aLock.release();								Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
-			aLock.release();								Assert.IsTrue (  aLock.ToString().StartsWith("null") );
+			aLock.Aquire();									Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
+			aLock.Release();								Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
+			aLock.Release();								Assert.IsTrue (  aLock.ToString().StartsWith("null") );
 
 			// set unsafe
-			aLock.setUnsafe( true );						Assert.IsTrue ( aLock.ToString().StartsWith("null") );
-			aLock.setUnsafe( false );						Assert.IsTrue ( aLock.ToString().StartsWith("null") );
+			aLock.SetUnsafe( true );						Assert.IsTrue ( aLock.ToString().StartsWith("null") );
+			aLock.SetUnsafe( false );						Assert.IsTrue ( aLock.ToString().StartsWith("null") );
 
-			aLock.setUnsafe( true );						Assert.IsTrue ( aLock.ToString().StartsWith("null") );
-			aLock.aquire();									Assert.IsTrue ( aLock.ToString().StartsWith("null") );
-			aLock.release();								Assert.IsTrue ( aLock.ToString().StartsWith("null") );
+			aLock.SetUnsafe( true );						Assert.IsTrue ( aLock.ToString().StartsWith("null") );
+			aLock.Aquire();									Assert.IsTrue ( aLock.ToString().StartsWith("null") );
+			aLock.Release();								Assert.IsTrue ( aLock.ToString().StartsWith("null") );
 
 			// unsafe
-			aLock.aquire();									Assert.IsTrue ( aLock.ToString().StartsWith("null") );
+			aLock.Aquire();									Assert.IsTrue ( aLock.ToString().StartsWith("null") );
 			Log.Info("One warning should come now: ");
-			aLock.setUnsafe( false );						Assert.IsTrue ( aLock.ToString().StartsWith("null") );
+			aLock.SetUnsafe( false );						Assert.IsTrue ( aLock.ToString().StartsWith("null") );
 		
 			// safe (new lock)
 			aLock= new ThreadLock();
-			aLock.useAssertions= false;
-			aLock.aquire();									Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
+			aLock.UseAssertions= false;
+			aLock.Aquire();									Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
 			Log.Info("One warning should come now: ");
-			aLock.setUnsafe( true );						Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
+			aLock.SetUnsafe( true );						Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
 
 		
 			// test warnings (10) locks:
 			aLock= new ThreadLock();
-			aLock.useAssertions= false;
+			aLock.UseAssertions= false;
 			Log.Info("Two warnings should come now: ");
 			for (int i= 0; i<20; i++)	
-				aLock.aquire();
+				aLock.Aquire();
 			Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
 			for (int i= 0; i<20; i++)	
-				aLock.release();
+				aLock.Release();
 			Assert.IsTrue ( aLock.ToString().StartsWith("null") );
 
 			// test a non-recursive lock 
 			aLock= new ThreadLock( false );
-			aLock.useAssertions= false;
-			aLock.aquire();				Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
-			aLock.aquire();				Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
-			aLock.release();				Assert.IsTrue ( aLock.ToString().StartsWith("null") );
+			aLock.UseAssertions= false;
+			aLock.Aquire();				Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
+			aLock.Aquire();				Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
+			aLock.Release();				Assert.IsTrue ( aLock.ToString().StartsWith("null") );
 		
 			Log.Info("One warning should come now: ");
-			aLock.release();				Assert.IsTrue ( aLock.ToString().StartsWith("null") );
+			aLock.Release();				Assert.IsTrue ( aLock.ToString().StartsWith("null") );
 
 		}
 
@@ -100,7 +100,7 @@ namespace com.aworx.lox.unittests
 			Test_ThreadLock_SharedInt shared= new Test_ThreadLock_SharedInt();
 
 			Log.Info("starting thread locked");
-			aLock.aquire();		
+			aLock.Aquire();		
 			Test_ThreadLock_TestThreadParams tParam= new Test_ThreadLock_TestThreadParams( aLock, 10, 1, true, shared );
 
 			Thread thread = new Thread( new ParameterizedThreadStart( Test_ThreadLock_Test_run ) );
@@ -109,21 +109,21 @@ namespace com.aworx.lox.unittests
 
 			Log.Info("We wait 1100 ms. This should give a warning! ");
 			AWXU.Sleep( 1100 );
-			aLock.release();	
+			aLock.Release();	
 		
 			// wait until t ended
 			while (thread.IsAlive)
 				AWXU.Sleep( 1 );
 			
 			// now we do the same with a higher wait limit, no erro should come
-			aLock.waitALoxWarningLimit= Ticker.FromMillis( 1200 );
-			aLock.aquire();		
+			aLock.WaitALoxWarningLimit= Ticker.FromMillis( 1200 );
+			aLock.Aquire();		
 			tParam= new Test_ThreadLock_TestThreadParams( aLock, 10, 1, true, shared );
 			thread = new Thread( new ParameterizedThreadStart( Test_ThreadLock_Test_run ) );
 			thread.Start( tParam );
 			Log.Info("We wait 900 ms. This should NOT give a warning! ");
 			AWXU.Sleep( 900 );
-			aLock.release();	
+			aLock.Release();	
 		
 			// wait until t ended
 			while (thread.IsAlive)
@@ -198,17 +198,17 @@ namespace com.aworx.lox.unittests
 			{
 				Log.Info("Run " + rrepeats );
 			
-				aLock.setUnsafe( false );
+				aLock.SetUnsafe( false );
 				stopwatch.SetToNow();
 				for ( int i= 0; i < repeats; i++ )
 				{
-					aLock.aquire();
-					aLock.release();
+					aLock.Aquire();
+					aLock.Release();
 				}
 				long time= stopwatch.AgeInMillis();
 				Log.Info("Safe mode, " + repeats + " lock/unlock ops: " + time + " ms" );
 			
-				aLock.setUnsafe( true );
+				aLock.SetUnsafe( true );
 				stopwatch.SetToNow();
 				for ( int i= 0; i < repeats; i++ )
 				{
@@ -256,7 +256,7 @@ namespace com.aworx.lox.unittests
 			for ( int i= 0; i < p.repeats ; i++ )
 			{
 				if (p.verbose) { Log.Info("Thread: "+ Thread.CurrentThread.Name +" acuiring lock..."); }
-				p.aLock.aquire();
+				p.aLock.Aquire();
 				if (p.verbose) { Log.Info("Thread: "+ Thread.CurrentThread.Name +" has lock."); }
 				
 					int sVal= ++p.shared.val;
@@ -266,7 +266,7 @@ namespace com.aworx.lox.unittests
 					p.shared.val= sVal -1;
 				
 				if (p.verbose) { Log.Info("Thread: "+ Thread.CurrentThread.Name +" releasing lock."); }
-				p.aLock.release();
+				p.aLock.Release();
 				if (p.verbose) { Log.Info("Thread: "+ Thread.CurrentThread.Name +" released lock."); }
 			}
 		

@@ -190,7 +190,7 @@ public static class Log
 	 * <summary>
 	 *  Adds a logger to the Log interface. Each log call that is performed through this interface
 	 *  will be forwarded to this logger, unless filtered out with optional filter parameter. The
-	 *  logger will then check it's domain level against the given log level to decide weather a log
+	 *  logger will then check it's domain level against the given log level to decide whether a log
 	 *  should performed.
 	 * </summary>
 	 * <param name="logger">			 	The logger to be added. </param>

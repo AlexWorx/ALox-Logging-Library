@@ -209,8 +209,8 @@ ALIASES                =
 
 # This tag can be used to specify a number of word-keyword mappings (TCL only). 
 # A mapping has the form "name=value". For example adding 
-# "class=itcl::class" will allow you to use the command class in the 
-# itcl::class meaning.
+# "class=itcl.class" will allow you to use the command class in the 
+# itcl.class meaning.
 
 TCL_SUBST              = 
 
@@ -269,11 +269,11 @@ MARKDOWN_SUPPORT       = YES
 
 AUTOLINK_SUPPORT       = YES
 
-# If you use STL classes (i.e. std::string, std::vector, etc.) but do not want 
+# If you use STL classes (i.e. std.string, std.vector, etc.) but do not want 
 # to include (a tag file for) the STL sources as input, then you should 
 # set this tag to YES in order to let doxygen match functions declarations and 
-# definitions whose arguments contain STL classes (e.g. func(std::string); v.s. 
-# func(std::string) {}). This also makes the inheritance and collaboration 
+# definitions whose arguments contain STL classes (e.g. func(std.string); v.s. 
+# func(std.string) {}). This also makes the inheritance and collaboration 
 # diagrams that involve STL classes more complete and accurate.
 
 BUILTIN_STL_SUPPORT    = NO
@@ -747,7 +747,7 @@ EXCLUDE_PATTERNS       =
 # (namespaces, classes, functions, etc.) that should be excluded from the 
 # output. The symbol name can be a fully qualified name, a word, or if the 
 # wildcard * is used, a substring. Examples: ANamespace, AClass, 
-# AClass::ANamespace, ANamespace::*Test
+# AClass.ANamespace, ANamespace.*Test
 
 EXCLUDE_SYMBOLS        = 
 
@@ -1615,7 +1615,7 @@ EXPAND_AS_DEFINED      =
 SKIP_FUNCTION_MACROS   = YES
 
 #---------------------------------------------------------------------------
-# Configuration::additions related to external references
+# Configuration.additions related to external references
 #---------------------------------------------------------------------------
 
 # The TAGFILES option can be used to specify one or more tagfiles. For each 

@@ -23,9 +23,9 @@ namespace com.aworx.lox.loggers  {
  *  The name of the logger defaults to "CONSOLE".
  *  
  *  The constructor sets the level of the root domain, and as such the level of all 'unknown'
- *  domains that inherit from root domain to 'All' This is because this class represents a logger
+ *  domains that inherit from root domain to 'All'. This is because this class represents a logger
  *  that logs into the developer's IDE, and hence just wants to fetch all log domains that the
- *  app and its library uses unless explicitly set differently in the bootstrap code.  By default,
+ *  app and its library uses - unless explicitly set differently in the bootstrap code.  By default,
  *  root domains of loggers have domain level 'Off'.
  * </summary>
  **************************************************************************************************/
@@ -122,61 +122,64 @@ public class ConsoleLogger : TextLogger
 		if ( !(EnableVSDebugConsole || EnableAppConsole ) )
 			return;
 
+		MString output= null;
+		
 		// no caller info given? Just log msg out (used e.g. by TextLogger for multiline messages )
-		if ( caller == null)
+		if ( caller == null || !LogCallerInfo  )
 		{
-			#if !ALOX_NO_CONSOLE
-				#if !( ALOX_WP71 || ALOX_WP8 )
-					if ( EnableAppConsole )		{	Console.WriteLine( msg.Buffer, 0, msg.Length );			}
-				#else
-					if ( EnableAppConsole )		{	Console.WriteLine( msg.ToString() );					}
-				#endif
-			#endif
-			if ( EnableVSDebugConsole )			{	System.Diagnostics.Debug.WriteLine( msg.ToString() );	}
-
-			// that's it then!
-			return;
+			// set output straight to given msg
+			output= msg;
 		}
 
-		// clear temp Buffer
-		consoleBuffer.Clear();
-
-		// build filename/line number in a VStudio clickable format 
-		if ( LogCallerInfo )
+		// we cat caller info and the message to our internal buffer 
+		else
 		{
-			// add source file: can we cut the source file name by a prefix?
-			String sfn=		caller.SourceFileName;
-			String cspp=	caller.GetConsumableSourcePathPrefix();
-			if ( sfn.StartsWith( cspp, StringComparison.OrdinalIgnoreCase ) )
-				consoleBuffer.Append( sfn, cspp.Length, caller.SourceFileName.Length - cspp.Length);
-			else
-				consoleBuffer.Append( sfn );
+			// set output to internal buffer
+			output= consoleBuffer;
 
-			// add line number
-			consoleBuffer.Append( strPrefixLineNumber ).Append( caller.LineNumber ).Append( strPostfixLineNumber );
+			// clear temp buffer
+			consoleBuffer.Clear();
 
-			// append method name
-			consoleBuffer.Append( FMT_MemberPrefix );
-			consoleBuffer.Append( caller.MethodName );
-			consoleBuffer.Append( FMT_MemberPostfix );
+			// build filename/line number in a VStudio clickable format 
+			if ( LogCallerInfo )
+			{
+				// add source file: can we cut the source file name by a prefix?
+				String sfn=		caller.SourceFileName;
+				String cspp=	caller.GetConsumableSourcePathPrefix();
+				if ( sfn.StartsWith( cspp, StringComparison.OrdinalIgnoreCase ) )
+					consoleBuffer.Append( sfn, cspp.Length, caller.SourceFileName.Length - cspp.Length);
+				else
+					consoleBuffer.Append( sfn );
 
-			// jump to next tab level
-			if ( TabAfterSourceInfo < consoleBuffer.Length )
-				TabAfterSourceInfo= consoleBuffer.Length + 5; // add some extra space to avoid too many increases
-			for ( int i= consoleBuffer.Length ; i < TabAfterSourceInfo ; i++ )
-				consoleBuffer.Append( ' ' );
+				// add line number
+				consoleBuffer.Append( strPrefixLineNumber ).Append( caller.LineNumber ).Append( strPostfixLineNumber );
+
+				// append method name
+				consoleBuffer.Append( FMT_MemberPrefix );
+				consoleBuffer.Append( caller.MethodName );
+				consoleBuffer.Append( FMT_MemberPostfix );
+
+				// jump to next tab level
+				if ( TabAfterSourceInfo < consoleBuffer.Length )
+					TabAfterSourceInfo= consoleBuffer.Length + 5; // add some extra space to avoid too many increases
+				for ( int i= consoleBuffer.Length ; i < TabAfterSourceInfo ; i++ )
+					consoleBuffer.Append( ' ' );
+			}
+
+			// append message
+			consoleBuffer.Append( msg );
 		}
 
-		// write to consoles
-		consoleBuffer.Append( msg );
+		// write to console(s)
 		#if !ALOX_NO_CONSOLE
 			#if !(ALOX_WP71 || ALOX_WP8)
-				if ( EnableAppConsole )		{	Console.WriteLine( consoleBuffer.Buffer, 0, consoleBuffer.Length );	}
+				if ( EnableAppConsole )		{	Console.WriteLine( output.Buffer, 0, output.Length );	}
 			#else
-				if ( EnableAppConsole )		{	Console.WriteLine( consoleBuffer.ToString() );						}
+				if ( EnableAppConsole )		{	Console.WriteLine( output.ToString() );						}
 			#endif
 		#endif
-		if ( EnableVSDebugConsole )			{	System.Diagnostics.Debug.WriteLine( consoleBuffer.ToString() );		}
+		if ( EnableVSDebugConsole )			{	System.Diagnostics.Debug.WriteLine( output.ToString() );		}
+
 	}
 
 #endif // ALOX_DEBUG || ALOX_REL_LOG

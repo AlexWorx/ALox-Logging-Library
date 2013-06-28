@@ -12,7 +12,7 @@ using com.aworx.util;
 using com.aworx.lox.core;
 
 
-namespace com.aworx.lox.loggers {
+namespace com.aworx.lox.core {
 /** ***********************************************************************************************
  * <summary>
  *  This is central class of the ALox logging implementation. It is **not** recommended to use this 

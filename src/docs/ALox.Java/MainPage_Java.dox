@@ -10,9 +10,69 @@
 \mainpage	Java Reference
 
 
-\section mainpage_overview        Overview
+# This is the ALox for Java reference documentation! #
 
-This is the ALox for Java reference documentation!
+## Tutorial ##
+If you are new to ALox, the easiest way to get familiar with it, is to walk yourself
+through the tutorial. Unfortunately, the Java tutorial is not written, yet.   :-( 
+
+But, as C# and JAVA are so much alike, you should easily be able to walk through the
+[ALox for C# Tutorial](../cs_ref/tutorial_cs.html) instead. 
+Mind the different camel caseing of the member names (Java is non-capital), that's maybe all! :-)
+
+## Project Setup ##
+So far, the Java Version got not tested on other platforms than Windows/Eclipse. An eclipse
+project is available in the download package. 
+Detailed information on how to setup Java projects to support ALox are to come. Here his the
+short version:
+
+- Within any IDE
+  - incorporate all sources that you find in the ALox folders:
+    - *src/java.aworx.util*
+    - *src/java.alox*
+
+    into your project. For Android, in addition add folder:
+
+    - *src/java.android.alox*
+
+
+- For Eclipse, there is an alternative: 
+  - Add the project provided in the ALox distribution
+    package (found in folder "ide.eclipse") to your workspace
+  - Reference this project from all your projects in your workspace that should be
+    ALox logging enabled
+
+
+## Android ##
+
+The Java Version is compatible with Android development and supports logging into LogCat.
+To stream ALox into LogCat create a logger of type [AndroidLogCatLogger](com.aworx.lox.android.AndroidLogCatLogger)
+instead of type [ConsoleLogger](com.aworx.lox.loggers.ConsoleLogger)
+
+    Log.addLogger( new AndroidLogCatLogger("LogCat") );
+
+Attn: The normal [ConsoleLogger](com.aworx.lox.loggers.ConsoleLogger) would not produce any 
+visible output.
+
+## Class Reference ##
+
+To browse the class reference, please use the page menu above.
+
+## Organization of code ##
+
+In the class lists of this documentation, besides ALox you will find a bunch of classes that we call the "A-Worx Util" classes. 
+They reside in the namespace:
+    *com.aworx.util*
+Next to the provision of basic functionality, the motivation for creating util classes is to provide a 
+similar interface to basic functionality across languages and platforms. In other word, the utility
+functions help ALox code to be very much alike across different languages and platforms.
+
+ALox itself consist of three namespaces. While the main classes that the user of ALox interfaces with reside in 
+    *com.aworx.lox*
+some specific loggers are found in 
+    *com.aworx.lox.loggers*. Internal classes are located in
+    *com.aworx.lox.core*
+
 
 
 */

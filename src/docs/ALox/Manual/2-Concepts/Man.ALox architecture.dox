@@ -15,7 +15,7 @@
 
 ALox is designed to support different log streams. A log stream is a destination of log messages
 and can be the IDE console, the terminal console, a file, a web service or anything that accepts
-data streams. The abstract class [Logger] (@ref #com::aworx::lox::loggers::Logger) represents
+data streams. The abstract class [Logger] (@ref #com.aworx.lox.core.Logger) represents
 such log stream. While some implementations of class Logger are provided with the ALox package,
 the system allows custom implementations of Loggers that log information to any 'data drain' in
 any format you like. (See \ref man_custom_loggers.)
@@ -25,13 +25,13 @@ digraph example
 {
     node [shape=record, fontname=Helvetica, fontsize=15];
     edge [shape=record, fontname=Helvetica, fontsize=10];
-    logger  [ label="Logger"            URL="\ref com::aworx::lox::loggers::Logger"];
-    cl      [ label="ConsoleLogger"     URL="\ref com::aworx::lox::loggers::ConsoleLogger"];
-    ml      [ label="Memory Logger"     URL="\ref com::aworx::lox::loggers::MemoryLogger"];
+    logger  [ label="Logger"            URL="\ref com.aworx.lox.core.Logger"];
+    cl      [ label="ConsoleLogger"     URL="\ref com.aworx.lox.loggers.ConsoleLogger"];
+    ml      [ label="Memory Logger"     URL="\ref com.aworx.lox.loggers.MemoryLogger"];
     my      [ label="My Custom Logger"  ];
-    cl -> logger  [ label= "extends" arrowhead="open", style="dashed", URL="\ref com::aworx::lox::core::Lox::AddLogger" ];
-    ml -> logger  [ label= "extends" arrowhead="open", style="dashed", URL="\ref com::aworx::lox::core::Lox::AddLogger" ];
-    my -> logger  [ label= "extends" arrowhead="open", style="dashed", URL="\ref com::aworx::lox::core::Lox::AddLogger" ];
+    cl -> logger  [ label= "extends" arrowhead="open", style="dashed", URL="\ref com.aworx.lox.Lox.AddLogger" ];
+    ml -> logger  [ label= "extends" arrowhead="open", style="dashed", URL="\ref com.aworx.lox.Lox.AddLogger" ];
+    my -> logger  [ label= "extends" arrowhead="open", style="dashed", URL="\ref com.aworx.lox.Lox.AddLogger" ];
 }
 \enddot
 
@@ -49,7 +49,7 @@ logging. Furthermore, if one log message should go to more than one Logger, then
 to be invoked. 
 
 To achieve both (have a convenient interface and dispatch log messages to more than one Logger), ALox
-provides class [Lox] (@ref #com::aworx::lox::core::Lox). It acts as a container for all Loggers that
+provides class [Lox] (@ref #com.aworx.lox.Lox). It acts as a container for all Loggers that
 are created during the lifecycle of an application. In rare cases of complex logging scenarios, even
 multiple instances of that class might be created with different Loggers contained. 
 
@@ -58,11 +58,11 @@ digraph example
 {
     node [shape=record, fontname=Helvetica, fontsize=15];
     edge [shape=record, fontname=Helvetica, fontsize=10];
-    lox [ label="Lox"       URL="\ref com::aworx::lox::core::Lox"];
-    cl [ label="ConsoleLogger"    URL="\ref com::aworx::lox::loggers::Logger"];
-    ml [ label="Memory Logger"    URL="\ref com::aworx::lox::loggers::Logger"];
-    lox -> cl  [ label= "contains" arrowhead="open",  URL="\ref com::aworx::lox::core::Lox::AddLogger" ];
-    lox -> ml  [ label= "contains" arrowhead="open",  URL="\ref com::aworx::lox::core::Lox::AddLogger" ];
+    lox [ label="Lox"       URL="\ref com.aworx.lox.Lox"];
+    cl [ label="ConsoleLogger"    URL="\ref com.aworx.lox.core.Logger"];
+    ml [ label="Memory Logger"    URL="\ref com.aworx.lox.core.Logger"];
+    lox -> cl  [ label= "contains" arrowhead="open",  URL="\ref com.aworx.lox.Lox.AddLogger" ];
+    lox -> ml  [ label= "contains" arrowhead="open",  URL="\ref com.aworx.lox.Lox.AddLogger" ];
 }
 \enddot
 
@@ -95,7 +95,7 @@ For various reasons (performance, code size, security, etc), debug log statement
 and removed (pruned) from the release version of a software.
 
 To achieve all goals and provide a very simple interface into debug logging, the ALox ecosystem
-provides class [Log] (@ref #com::aworx::lox::Log). This class is a 100% static interface into
+provides class [Log] (@ref #com.aworx.lox.Log). This class is a 100% static interface into
 class Lox. In other words, class Log creates and holds exaclty one static instance of class Lox and
 mimics the complete interface of that instance into corresponding static methods.
 
@@ -104,13 +104,13 @@ digraph example
 {
     node [shape=record, fontname=Helvetica, fontsize=15];
     edge [shape=record, fontname=Helvetica, fontsize=10];
-    log [ label="Log"       URL="\ref com::aworx::lox::core::Lox"];
-    lox [ label="Lox"       URL="\ref com::aworx::lox::core::Lox"];
-    cl [ label="ConsoleLogger"    URL="\ref com::aworx::lox::loggers::Logger"];
-    ml [ label="Memory Logger"    URL="\ref com::aworx::lox::loggers::Logger"];
-    log -> lox [ label= "1:1 static interface" arrowhead="open", style="solid", URL="\ref com::aworx::lox::core::Lox::AddLogger" ];
-    lox -> cl  [ label= "contains" arrowhead="open",  URL="\ref com::aworx::lox::core::Lox::AddLogger" ];
-    lox -> ml  [ label= "contains" arrowhead="open",  URL="\ref com::aworx::lox::core::Lox::AddLogger" ];
+    log [ label="Log"       URL="\ref com.aworx.lox.Lox"];
+    lox [ label="Lox"       URL="\ref com.aworx.lox.Lox"];
+    cl [ label="ConsoleLogger"    URL="\ref com.aworx.lox.core.Logger"];
+    ml [ label="Memory Logger"    URL="\ref com.aworx.lox.core.Logger"];
+    log -> lox [ label= "1:1 static interface" arrowhead="open", style="solid", URL="\ref com.aworx.lox.Lox.AddLogger" ];
+    lox -> cl  [ label= "contains" arrowhead="open",  URL="\ref com.aworx.lox.Lox.AddLogger" ];
+    lox -> ml  [ label= "contains" arrowhead="open",  URL="\ref com.aworx.lox.Lox.AddLogger" ];
 }
 \enddot
 
@@ -129,15 +129,15 @@ that are deemed to be debug logging.
 
 The following summarizes the takeaways of this chapter:
 - To implement own log data drains (streams to log into, like databases, web services, etc.) 
-  and own log formats, custom implementations of class [Logger](@ref #com::aworx::lox::loggers::Logger) can be
+  and own log formats, custom implementations of class [Logger](@ref #com.aworx.lox.core.Logger) can be
   created.
 
-- For debug logging, class [Log](@ref #com::aworx::lox::Log) is the right interface in ALox (and an extremely 
+- For debug logging, class [Log](@ref #com.aworx.lox.Log) is the right interface in ALox (and an extremely 
   simple way as well). All invocations related to class Log get easily pruned from your code.
 
 - To implement release logging (e.g. to send error states or usage info of a mobile app to a server)
-  an instance of class [Lox](@ref #com::aworx::lox::core::Lox) has to be created. The interface
-  into the Lox is almost 100% the same as the interface of [Log](@ref #com::aworx::lox::Log) which is used
+  an instance of class [Lox](@ref #com.aworx.lox.Lox) has to be created. The interface
+  into the Lox is almost 100% the same as the interface of [Log](@ref #com.aworx.lox.Log) which is used
   for debug logging.
 
 

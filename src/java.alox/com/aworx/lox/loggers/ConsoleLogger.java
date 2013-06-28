@@ -1,9 +1,12 @@
 package com.aworx.lox.loggers;
 
+import java.io.Console;
+
 import com.aworx.lox.Log;
 import com.aworx.lox.Log.DomainLevel;
 import com.aworx.lox.Log.Level;
 import com.aworx.lox.core.CallerInfo;
+import com.aworx.lox.core.TextLogger;
 import com.aworx.util.MString;
 
 /**********************************************************************************************//**
@@ -11,23 +14,17 @@ import com.aworx.util.MString;
  * System.Diagnostics.Debug.WriteLine()**) and/or to the application console (using
  * **Console.WriteLine()**).
  * 
- * The name of the logger defaults to "CONSOLE".
+ * The name of the logger defaults to "CONSOLE". In the Eclipse IDE, log lines are double-clickable
+ * to jump directly to the source code that generated the log.
  * 
  * The constructor sets the level of the root domain, and as such the level of all 'unknown'
- * domains that inherit from root domain to 'All' This is because this class represents a logger
+ * domains that inherit from root domain to 'All'. This is because this class represents a logger
  * that logs into the developer's IDE, and hence just wants to fetch all log domains that the
- * app and its library uses unless explicitly set differently in the bootstrap code.  By default,
+ * app and its library uses - unless explicitly set differently in the bootstrap code.  By default,
  * root domains of loggers have domain level 'Off'.
  **************************************************************************************************/
 public class ConsoleLogger extends TextLogger
 {
-	// #################################################################################################
-	// Empty method stubs for release version (with no release logging)
-	// #################################################################################################
-	//#if !(ALOX_DEBUG || ALOX_REL_LOG)
-
-	//#else
-
 	// #################################################################################################
 	// fields
 	// #################################################################################################
@@ -35,11 +32,13 @@ public class ConsoleLogger extends TextLogger
 	*   avoid increases in the beginning, this value can be set upfront (after the logger was created) */
 	public		int				tabAfterSourceInfo				=0;
 
-	/** Enables logging to the debug window of Visual Studio. Defaults to false. */
-	public		boolean			enableVSDebugConsole			=false;
-
-	/** Enables logging to the application console (System.out). Defaults to true. */
+	/** Enables logging to the application console (System.out respectively System.console(), see
+	 * useJAVA6ConsoleIfAvailable). Defaults to true. */
 	public		boolean			enableAppConsole				=true;
+
+	/** Enables logging to *System.console()* if such console is available. This might result in a 
+	 * different character encoding (typically on Windows machines). */
+	public		boolean			useJAVA6ConsoleIfAvailable		=true;
 
 	// #################################################################################################
 	// internal fields
@@ -83,7 +82,7 @@ public class ConsoleLogger extends TextLogger
 
     /**********************************************************************************************//**
      * The implementation of the abstract method of parent class TextLogger. Logs messages to the
-     * application console and/or the VStudio output window.
+     * application console.
      *
      * @param domain        The log domain name. If not starting with a slash ('/')
      *                      this is appended to any default domain name that might have been specified
@@ -101,28 +100,28 @@ public class ConsoleLogger extends TextLogger
 										CallerInfo	caller, 	int			lineNumber )
 	{
 		// check
-		if ( !(enableVSDebugConsole || enableAppConsole ) )
+		if ( !( enableAppConsole ) )
 			return;
 
+		MString output= null;
+		
 		// no caller info given? Just log msg out (used e.g. by TextLogger for multiline messages )
-		if ( caller == null )
+		if ( caller == null || !logCallerInfo  )
 		{
-			//#if !ALOX_NO_CONSOLE
-				if ( enableAppConsole )		{	System.out.println( msg.toString() );	}
-			//#endif
-			if ( enableVSDebugConsole )		{		} //NIY
-
-			// that's it then!
-			return;
+			// set output straight to given msg
+			output= msg;
 		}
-
-
-		// clear temp Buffer
-		consoleBuffer.clear();
-
-		// build filename/line number in a VStudio clickable format 
-		if ( logCallerInfo )
+		
+		// we cat caller info and the message to our internal buffer 
+		else
 		{
+			// set output to internal buffer
+			output= consoleBuffer;
+			
+			// clear temp buffer
+			consoleBuffer.clear();
+	
+			// build filename/line number in a VStudio clickable format 
 			consoleBuffer.append( caller.packageName );
 			consoleBuffer.append( '.' );
 			consoleBuffer.append( caller.className );
@@ -137,16 +136,23 @@ public class ConsoleLogger extends TextLogger
 				tabAfterSourceInfo= consoleBuffer.length + 5; // add some extra space to avoid to many increases
 			for ( int i= consoleBuffer.length ; i < tabAfterSourceInfo ; i++ )
 				consoleBuffer.append( ' ' );
+		
+			// append message
+			consoleBuffer.append( msg );
 		}
-	
-		// write to consoles
-		consoleBuffer.append( msg );
 		
-		//#if !ALOX_NO_CONSOLE
-			if ( enableAppConsole )		{	System.out.println( consoleBuffer.toString() );	} 
-		//#endif
-		if ( enableVSDebugConsole )		{		} //NIY
-		
+		// write to console(s)
+		if ( enableAppConsole )		
+		{
+			Console con= null;
+			if ( useJAVA6ConsoleIfAvailable && (con= System.console()) != null )
+{			
+				con.writer().println( output.toString() );
+System.out.println("Using Console");				
+}				
+			else
+				System.out  .println( output.toString() );
+		}
 	}
 
 //#endif // ALOX_DEBUG || ALOX_REL_LOG

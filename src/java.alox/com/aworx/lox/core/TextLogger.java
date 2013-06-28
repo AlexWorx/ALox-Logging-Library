@@ -1,4 +1,4 @@
-package com.aworx.lox.loggers;
+package com.aworx.lox.core;
 
 import java.text.FieldPosition;
 import java.text.SimpleDateFormat;
@@ -10,7 +10,6 @@ import java.util.Locale;
 
 import com.aworx.lox.Log;
 import com.aworx.lox.Log.Level;
-import com.aworx.lox.core.CallerInfo;
 import com.aworx.util.MString;
 import com.aworx.util.Ticker;
 

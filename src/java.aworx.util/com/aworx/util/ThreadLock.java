@@ -42,7 +42,7 @@ public class ThreadLock
 	/**
 	 * This is a threshold that causes lock() to log a warning if acquiring the access using method lock()
 	 * takes longer than the given number of milliseconds. To disable such messages, set this value to 0.
-	 * Default is 1 second. 
+	 * Default is 1 second. Measured in ticks, see class Ticker.
 	 */
 	public	long	 		waitALoxWarningLimit								= Ticker.fromMillis( 1000 );
 				

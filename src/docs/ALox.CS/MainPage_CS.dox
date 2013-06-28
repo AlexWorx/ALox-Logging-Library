@@ -26,6 +26,19 @@ To browse the class reference, please use the page menu above.
 
 ## Organization of code ##
 
+In the class lists of this documentation, besides ALox you will find a bunch of classes that we call the "A-Worx Util" classes. 
+They reside in the namespace:
+    *com.aworx.util*
+Next to the provision of basic functionality, the motivation for creating util classes is to provide a 
+similar interface to basic functionality across languages and platforms. In other word, the utility
+functions help ALox code to be very much alike across different languages and platforms.
+
+ALox itself consist of three namespaces. While the main classes that the user of ALox interfaces with reside in 
+    *com.aworx.lox*
+some specific loggers are found in 
+    *com.aworx.lox.loggers*. Internal classes are located in
+    *com.aworx.lox.core*
+
 
 
 */

@@ -1,8 +1,6 @@
-package com.aworx.lox.loggers;
+package com.aworx.lox.core;
 
 import com.aworx.lox.Log;
-import com.aworx.lox.core.CallerInfo;
-import com.aworx.lox.core.LogDomain;
 import com.aworx.util.MString;
 import com.aworx.util.TickTime;
 

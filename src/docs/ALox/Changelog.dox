@@ -17,8 +17,33 @@ The first released version was Version 1.0.1 in **May 2013**.
 
 This change log is sorted reversely in respect to chronology. 
 
+## Version 1.1.0, not released, yet (alpha state) ##
+- First ALox for Java Release!!!
+
+  100% Feature complete (as compared to actual C# Version). 
+  (In this alpha release the LogTools class is still missing)
+
+- ALox for JAVA includes an LogCat logger for Android. This enables LogCat filtering and double-click
+  support (jump to code line)
+
+- Doygygen documentation now builds three different sites: Main, C# and JAVA. With a little doxygen 
+  manipulation, these three sites nicely integrate into each other, without much of a "media break".
+
+- Slightly different namespace (C#), respectively package (Java) structure:
+  - class [Lox](com::aworx::lox::Lox) moved one package "up" from *com.aworx.lox.core* to *com.aworx.lox*
+  - classes 
+    [MemoryLogger](com::aworx::lox::loggers::MemoryLogger) and
+    [ConsoleLogger](com::aworx::lox::loggers::ConsoleLogger) 
+    moved to a new package from *com.aworx.lox.loggers* 
+    This new packages is to be filled over time with new Logger types. Class
+    [TextLogger](com::aworx::lox::loggers::TextLogger) however, was kept in package *com.aworx.lox.core*
+    as this class is an abstract foundation class for current and future text based loggers.
+
+- C# class [ThreadLock](com::aworx::util::ThreadLock) corrected method names to follow "upper camel case".
+
+
 ## Version 1.0.4, released June 24th, 2013 ##
-- JAVA Version (including Android LogCat support) is **on its way**. It is almost "feature complete", but not in a 
+- Java Version (including Android LogCat support) is **on its way**. It is almost "feature complete", but not in a 
   state of being released, yet. Stay tuned!
 - Two manual chapters written.
 - Various internal improvements of speed and code consistence.
@@ -46,11 +71,11 @@ This change log is sorted reversely in respect to chronology.
   For registering a Domain without setting it as the default domain, the Scope value  
   [Log.Scope.None](@ref #com::aworx::lox::Log::Scope) has to be given. 
 
-- Parameter list of abstract function [TextLogger](@ref #com::aworx::lox::loggers::TextLogger::doTextLog) got extended. 
+- Parameter list of abstract function [TextLogger](@ref #com::aworx::lox::core::TextLogger::doTextLog) got extended. 
   Needs adaption if you derived your own TextLogger class.
-- Removed one and renamed two of the output control flags in [Logger](@ref #com::aworx::lox::loggers::Logger). If you 
+- Removed one and renamed two of the output control flags in [Logger](@ref #com::aworx::lox::core::Logger). If you 
   used them, you will have to make small code changes.
-- Small changes in [TextLogger](@ref #com::aworx::lox::loggers::TextLogger) format strings for date and time of day. 
+- Small changes in [TextLogger](@ref #com::aworx::lox::core::TextLogger) format strings for date and time of day. 
 - Renamed com.aworx.util.MutableString to [MString](@ref #com::aworx::util::MString). Several new methods
   added. (No impact on API)
 
@@ -60,8 +85,8 @@ This change log is sorted reversely in respect to chronology.
 - minor bug fixes in code and documentation 
 - renamed methods *Log.LOG()*, *Lox.log()* and *Logger.Log()* to
    [Log.Line()]   (@ref #com::aworx::lox::Log::Line), 
-   [Lox.Line()]   (@ref #com::aworx::lox::core::Lox::Line) and
-   [Logger.Line()](@ref #com::aworx::lox::loggers::Logger::Line). The reason may be obvious. The reasons
+   [Lox.Line()]   (@ref #com::aworx::lox::Lox::Line) and
+   [Logger.Line()](@ref #com::aworx::lox::core::Logger::Line). The reason may be obvious. The reasons
   why they had been named as they were before, is maybe not too obvious. Some name conflicts where 
   confusing. Now, all confusion should be gone!
 
@@ -93,7 +118,7 @@ This change log is sorted reversely in respect to chronology.
 
 - Improvements in formatted output of method [Log.LogConfig()](@ref #com::aworx::lox::Log::LogConfig)
 
-- Added more options to manipulate multi line message logging with [TextLogger](@ref #com::aworx::lox::loggers::TextLogger)
+- Added more options to manipulate multi line message logging with [TextLogger](@ref #com::aworx::lox::core::TextLogger)
 
 - Added more unit tests
 

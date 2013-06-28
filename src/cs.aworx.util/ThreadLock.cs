@@ -54,19 +54,19 @@ public class ThreadLock
 	 * Flag to use assert() to detected misuse in debug mode. Default is on, and you should 
 	 * keep it on! 
 	 * </summary> */
-	public	bool 			useAssertions										= true;
+	public	bool 			UseAssertions										= true;
 				
 	/** <summary> 
 	 * This is a threshold that causes lock() to log a warning if acquiring the access using method lock()
 	 * takes longer than the given number of milliseconds. To disable such messages, set this value to 0.
-	 * Default is 1 sec. 
+	 * Default is 1 sec. Measured in ticks, see class Ticker.
 	 * </summary> */
-	public	long	 		waitALoxWarningLimit								= Ticker.FromMillis( 1000 );
+	public	long	 		WaitALoxWarningLimit								= Ticker.FromMillis( 1000 );
 				
 	/** <summary> 
 	 * Limit of recursions. If limit is reached or a multiple of it, an error logged using ALox.  
 	 * </summary> */
-	public	int	 			recursionWarningThreshold							= 10;			
+	public	int	 			RecursionWarningThreshold							= 10;			
 
 	// #################################################################################################
 	// Protected fields 
@@ -104,7 +104,7 @@ public class ThreadLock
 		this.recursiveMode= 			recursiveMode;
 		
 		// set safeness
-		setUnsafe( setUnsafeMode );
+		SetUnsafe( setUnsafeMode );
 	}
 
 	// #################################################################################################
@@ -122,7 +122,7 @@ public class ThreadLock
 	 * number of unlock() calls have been made. 
 	 * </summary>
 	 **************************************************************************************************/
-	public void aquire()		
+	public void Aquire()		
 	{
 		// are we in unsafe mode?
 		if ( mutex == null )
@@ -136,10 +136,10 @@ public class ThreadLock
 			{
 				String errmsg= "ThreadLock.lock() unsafe mode: Counter invalid (<= 0): This should never happen. Set lock to safe mode!";
 				if ( AWXU.errorHandler != null ) AWXU.errorHandler.error( errmsg );
-				System.Diagnostics.Debug.Assert( !useAssertions, errmsg );
+				System.Diagnostics.Debug.Assert( !UseAssertions, errmsg );
 			}
 		
-			else if ( lockCount % recursionWarningThreshold == 0  )
+			else if ( lockCount % RecursionWarningThreshold == 0  )
 			{
 				if ( AWXU.errorHandler != null ) 
 					AWXU.errorHandler.warning( "ThreadLock.lock() Warning: Recursion depth " + lockCount + " To prevent this, change ThreadSafe.recursionWarningThreshold." );
@@ -150,7 +150,7 @@ public class ThreadLock
 		}
 
 		// get start time		
-		long time=  ( waitALoxWarningLimit > 0)	?	( Ticker.Now() )
+		long time=  ( WaitALoxWarningLimit > 0)	?	( Ticker.Now() )
 												:	0L;
 
 		// get current thread		
@@ -166,7 +166,7 @@ public class ThreadLock
 				lockCount=  recursiveMode 	? lockCount + 1 
 											: 1;
 				// reached warning limit
-				if ( lockCount % recursionWarningThreshold == 0  )
+				if ( lockCount % RecursionWarningThreshold == 0  )
 				{
 					if ( AWXU.errorHandler != null ) 
 						AWXU.errorHandler.warning( "ThreadLock.lock() Warning: Recursion depth " + lockCount + " To prevent this, change ThreadSafe.recursionWarningThreshold.");
@@ -195,10 +195,10 @@ public class ThreadLock
 		} // synchronized
 		
 		time=	Ticker.Now() - time;
-		if ( waitALoxWarningLimit > 0 &&  waitALoxWarningLimit <  time ) 
+		if ( WaitALoxWarningLimit > 0 &&  WaitALoxWarningLimit <  time ) 
 		{
 			if ( AWXU.errorHandler != null ) 
-				AWXU.errorHandler.warning( "ThreadLock.lock() took " + time +  "ms, which exceeds given limit of " + waitALoxWarningLimit 
+				AWXU.errorHandler.warning( "ThreadLock.lock() took " + time +  "ms, which exceeds given limit of " + WaitALoxWarningLimit 
 											+ " ms. Change your codes critical section length if possible. Thread ID/Name: " + thisThread.ManagedThreadId + "/" + thisThread.Name );
 		}
 		
@@ -210,7 +210,7 @@ public class ThreadLock
 	 * of calls to this method have to be performed to release ownership.
 	 * <summary>
 	 **************************************************************************************************/
-	public void release()		
+	public void Release()		
 	{
 		// are we in unsafe mode?
 		if ( mutex == null )
@@ -220,7 +220,7 @@ public class ThreadLock
 			{
 				String errmsg= "ThreadLock.unlock() without having the lock (in unsafe mode). This must never happen, check your code, set lock to safe mode!";
 				if ( AWXU.errorHandler != null ) AWXU.errorHandler.error( errmsg );
-				System.Diagnostics.Debug.Assert( !useAssertions, errmsg );
+				System.Diagnostics.Debug.Assert( !UseAssertions, errmsg );
 			}
 		
 			// we are still decreasing the lockCount
@@ -239,7 +239,7 @@ public class ThreadLock
 			{
 				String errmsg= "ThreadLock.unlock() without having the lock. This must never happen, check your code!";
 				if ( AWXU.errorHandler != null ) AWXU.errorHandler.error( errmsg );
-				System.Diagnostics.Debug.Assert( !useAssertions, errmsg );
+				System.Diagnostics.Debug.Assert( !UseAssertions, errmsg );
 			}
 		
 			// decreasing the lockCount
@@ -277,7 +277,7 @@ public class ThreadLock
 	 * </summary>
 	 * <param name="setUnsafe">	If true, ThreadLock is set unsafe, safe otherwise.</param>
 	 *************************************************************************************************/
-	public void setUnsafe( bool setUnsafe )		
+	public void SetUnsafe( bool setUnsafe )		
 	{
 		// are we in unsafe mode?
 		if ( mutex == null )
@@ -287,7 +287,7 @@ public class ThreadLock
 			{
 				String errmsg= "ThreadLock.setUnsafe() while already (unsafely) locked. This must never happen, check your code!";
 				if ( AWXU.errorHandler != null ) AWXU.errorHandler.error( errmsg );
-				System.Diagnostics.Debug.Assert( !useAssertions, errmsg );
+				System.Diagnostics.Debug.Assert( !UseAssertions, errmsg );
 			}
 		
 			//  switch on?
@@ -306,7 +306,7 @@ public class ThreadLock
 			{
 				String errmsg= "ThreadLock.setUnsafe() while already locked. This must never happen, check your code!";
 				if ( AWXU.errorHandler != null ) AWXU.errorHandler.error( errmsg );
-				System.Diagnostics.Debug.Assert( !useAssertions, errmsg );
+				System.Diagnostics.Debug.Assert( !UseAssertions, errmsg );
 			}
 		
 			//  switch off?

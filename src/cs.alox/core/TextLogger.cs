@@ -16,7 +16,7 @@ using com.aworx.util;
 using com.aworx.lox;
 using com.aworx.lox.core;
 
-namespace com.aworx.lox.loggers
+namespace com.aworx.lox.core
 {
 
 /** ***********************************************************************************************
@@ -259,7 +259,7 @@ public abstract class TextLogger : Logger
 	/** ***********************************************************************************************
 	 * <summary>
 	 *  Implementation of Logger.doLog(). Creates all the textual information that is logged in a line 
-     *  before the message itself.
+	 *  before the message itself.
 	 * </summary>
 	 * <param name="domain">	The log domain name. If not starting with a slash ('/')
 	 * 							this is appended to any default domain name that might have been

@@ -664,6 +664,7 @@ WARN_LOGFILE           =
 
 INPUT                  = ../ALox.Java               \
                          ../../java.alox            \
+                         ../../java.android.alox    \
                          ../../java.aworx.util      \
                          
 # This tag can be used to specify the character encoding of the source files 
