@@ -1,3 +1,4 @@
+<!-- HTML header for doxygen 1.8.4-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -8,19 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-  $(document).ready(initResizable);
-  $(window).load(resizeHeight);
-</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="main_stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -31,9 +26,8 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1.0.4</span>
+   &#160;<span id="projectnumber">V. 1.1.0   -   Logging in Bauhaus Style!</span>
    </div>
-   <div id="projectbrief">Logging in Bauhaus Style!</div>
   </td>
  </tr>
  </tbody>
@@ -46,11 +40,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
-      <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
-      <li><a href="namespaces.html"><span>Packages</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
-      <li><a href="files.html"><span>Files</span></a></li>
+      <li class="current"><a href="index.html"><span>ALox&#160;Home</span></a></li>
+      <li><a href="manual.html"><span>Manual</span></a></li>
+      <li><a href="cs_ref/index.html"><span>C#&#160;Reference</span></a></li>
+      <li><a href="java_ref/index.html"><span>Java&#160;Reference</span></a></li>
+      <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -70,26 +64,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     </ul>
   </div>
 </div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-$(document).ready(function(){initNavTree('index.html','');});
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -108,31 +88,59 @@ Overview</h1>
 <p>ALox is a small and efficient software library that provides an ecosystem to support structured and organized log output.</p>
 <p>The library attempts to make logging as easy and lightweight as possible. One of the goals we want to achieve is that developers, once making use of the library, just stop to put any temporary debug output statements into their code, but do it all with nice, readable, configurable, reusable logging statements that can be switched off and that are furthermore automatically pruned out of release versions of the application.</p>
 <p>On the other end of the list, we want to enable release logging for productive applications to collect mission critical metrics and data from <em>the field</em>. Basic support for release logging is here today already. The introduction of new features and concepts in the area of release logging will also support debug logging aspects of ALox. Therefore the natural path of evolution for the ALox project is "debug features first, release features next".</p>
-<p>This is Version 1.0.4, a really early release but considered stable. A lot of future improvements are to come. Stay tuned. If you do not want to wait, take the source and extend ALox yourself: We hope, the simple <a class="el" href="alox_faq.html">Bauhaus Style</a> architecture and code style of the library allows users to easily extend it with features they need today.</p>
+<p>This is Version 1.1.0, a really early release but considered stable. A lot of future improvements are to come. Stay tuned. If you do not want to wait, take the source and extend ALox yourself: We hope, the simple <a class="el" href="alox_faq.html">Bauhaus Style</a> architecture and code style of the library allows users to easily extend it with features they need today.</p>
 <p>We would be happy to receive your feedback or feature requests.</p>
 <h1><a class="anchor" id="mainpage_features"></a>
 Features and Limitations</h1>
 <p>To get an overview about what ALox offers, read <a class="el" href="man_features_and_limitations.html">Features and Limitations</a>.</p>
 <h1><a class="anchor" id="mainpage_documentation"></a>
 Documentation</h1>
+<p>In the main menu of this site (see top of the page) you will find a general manual that introduces into the concepts and architecture of ALox. In addition, there are platform (programming language) specific tutorials and class references available.</p>
+<h1><a class="anchor" id="mainpage_other"></a>
+Other Information</h1>
 <ul>
-<li><a class="el" href="tutorials.html">Tutorials</a> provide first steps for using ALox logging in a language/platform of your choice</li>
-<li><a class="el" href="manual.html">User Manual</a> describes ALox concepts and use in depth and covers all platforms and programming languages</li>
 <li><a class="el" href="alox_faq.html">FAQ - Frequently asked Questions for ALox</a> are answered here</li>
 <li><a class="el" href="changelog.html">Change Log</a> and version history</li>
 </ul>
-<h1><a class="anchor" id="mainpage_download"></a>
-Download</h1>
-<p>You can <a href="http://github.com/AlexWorx/ALox-Logging-Library">download</a> ALox at GitHub </p>
-</div></div><!-- contents -->
-</div><!-- doc-content -->
+<h1><a class="anchor" id="mainpage_contribution"></a>
+How to contribute</h1>
+<p>If you want to contribute by adding functionality or repairing bugs, please use Github standard procedures. For other types of contribution or questions, please contact alox at a-worx dotcom.</p>
+<h1><a class="anchor" id="mainpage_thanks"></a>
+Thanks</h1>
+<p>Our thanks go to all supporters to that helped realizing this project, especially:</p>
+<ul>
+<li>To the great team of <a href="http://anfe.ma">Anfema</a> (a great company dedicated to mobile app development) for giving ideas, motivation and for being brave enough to test early releases.</li>
+<li>To the <a href="http://eclipse.org/donate/">Eclipse Foundation</a> - yes, we donated :-)</li>
+<li>To Mr. van Heesch for providing <a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a> software - yes, we donated :-) and on the same token the commercial but affordable documentation tool <a href="http://www.atomineerutils.com/">Atomineer Pro Documentation for Visual Studio</a></li>
+</ul>
+<h1><a class="anchor" id="mainpage_copyright"></a>
+Copyright</h1>
+<p>ALox is open source software, can be <a href="http://github.com/AlexWorx/ALox-Logging-Library">downloaded at Github</a> and sources are published under the MIT License: </p>
+<pre class="fragment">The MIT License (MIT)
+Copyright (c) 2013 A-Worx GmbH
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of 
+this software and associated documentation files (the "Software"), to deal in the 
+Software without restriction, including without limitation the rights to use, copy, 
+modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, 
+and to permit persons to whom the Software is furnished to do so, subject to the 
+following conditions:
+
+The above copyright notice and this permission notice shall be included in all 
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A 
+PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT 
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION 
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</pre> </div></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.4-->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="footer">Generated on Mon Jun 24 2013 20:01:02 for ALox by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated on Fri Jun 28 2013 12:16:30 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.4
+</small></address>
 </body>
 </html>

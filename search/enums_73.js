@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['scope',['Scope',['../classcom_1_1aworx_1_1lox_1_1_log.html#acdd233c7217fd72c6d2cbcc8513925f3',1,'com::aworx::lox::Log']]]
+  ['scope',['Scope',['../../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Log.html#aaecc53892786f2fa11e682f633af84c6',1,'com::aworx::lox::Log']]]
 ];

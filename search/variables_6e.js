@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['name',['Name',['../classcom_1_1aworx_1_1lox_1_1core_1_1_log_domain.html#a4454cb610d9ea0d18edfe40db4dc4b90',1,'com.aworx.lox.core.LogDomain.Name()'],['../classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html#a674964e0deaea13fbf492bf9494dfb67',1,'com.aworx.lox.core.Logger.Name()']]]
+  ['name',['Name',['../../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a3328db10c8e026e2171ea6061e020bc8',1,'com::aworx::lox::core::LogDomain::Name()'],['../../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a934fa09ba291a97f43720640e4d83f25',1,'com::aworx::lox::core::Logger::Name()'],['../../html/java_ref/classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a9a2326f35466e54c36c070829245c557',1,'AndroidLogCatLogger::name()'],['../../html/java_ref/classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a58b6f98bcc8eee5d75f0285a6356056f',1,'com::aworx::lox::core::LogDomain::name()']]],
+  ['newline',['NEWLINE',['../../html/java_ref/classcom_1_1aworx_1_1util_1_1MString.html#a48d5ec6061d7631c1714c0973519c1ba',1,'com::aworx::util::MString']]],
+  ['none',['None',['../../html/java_ref/enumcom_1_1aworx_1_1lox_1_1Log_1_1Scope.html#ac7485dcc8d256a6f197ed7802687f252',1,'com::aworx::lox::Log::Scope']]]
 ];
