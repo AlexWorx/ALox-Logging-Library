@@ -76,8 +76,8 @@ namespace com.aworx.unittests.lox
 		T t= new T();
 		MString ms= new MString();
 		long diff;
-		int lenFMT_TimeDiffPrefix= 	t.FMT_TimeDiffPrefix .Length;
-		int lenFMT_TimeDiffPostfix= t.FMT_TimeDiffPostfix.Length;
+		int lenFmtTimeDiffPrefix= 	t.FmtTimeDiffPrefix .Length;
+		int lenFmtTimeDiffPostfix=	t.FmtTimeDiffPostfix.Length;
 		long millis= 	1000L;
 		long secs=		1000L * millis;
 		long mins=		60 * secs;
@@ -85,72 +85,72 @@ namespace com.aworx.unittests.lox
 		long days=		24 * hours;
 		
 		
-		diff= 0; 							ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "000" + t.FMT_TimeDiffMicros,	ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 15; 							ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "015" + t.FMT_TimeDiffMicros,	ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 99; 							ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "099" + t.FMT_TimeDiffMicros,	ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 600; 							ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "600" + t.FMT_TimeDiffMicros,	ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 999; 							ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "999" + t.FMT_TimeDiffMicros,	ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 1   * millis;					ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "001" + t.FMT_TimeDiffMillis,	ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 999 * millis;					ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "999" + t.FMT_TimeDiffMillis,	ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 1   * secs;					ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "1.00" + t.FMT_TimeDiffSecs,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 2   * secs + 344 * millis;	ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "2.34" + t.FMT_TimeDiffSecs,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 3   * secs + 345 * millis;	ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "3.35" + t.FMT_TimeDiffSecs,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9   * secs + 994 * millis;	ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "9.99" + t.FMT_TimeDiffSecs,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9   * secs + 995 * millis;	ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "10.0" + t.FMT_TimeDiffSecs,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9   * secs + 999 * millis;	ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "10.0" + t.FMT_TimeDiffSecs,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 10  * secs + 940 * millis;	ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "10.9" + t.FMT_TimeDiffSecs,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 10  * secs + 950 * millis;	ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "11.0" + t.FMT_TimeDiffSecs,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
+		diff= 0; 							ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "000" + t.FmtTimeDiffMicros,	ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 15; 							ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "015" + t.FmtTimeDiffMicros,	ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 99; 							ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "099" + t.FmtTimeDiffMicros,	ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 600; 							ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "600" + t.FmtTimeDiffMicros,	ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 999; 							ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "999" + t.FmtTimeDiffMicros,	ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 1   * millis;					ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "001" + t.FmtTimeDiffMillis,	ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 999 * millis;					ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "999" + t.FmtTimeDiffMillis,	ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 1   * secs;					ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "1.00" + t.FmtTimeDiffSecs,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 2   * secs + 344 * millis;	ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "2.34" + t.FmtTimeDiffSecs,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 3   * secs + 345 * millis;	ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "3.35" + t.FmtTimeDiffSecs,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 9   * secs + 994 * millis;	ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "9.99" + t.FmtTimeDiffSecs,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 9   * secs + 995 * millis;	ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "10.0" + t.FmtTimeDiffSecs,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 9   * secs + 999 * millis;	ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "10.0" + t.FmtTimeDiffSecs,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 10  * secs + 940 * millis;	ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "10.9" + t.FmtTimeDiffSecs,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 10  * secs + 950 * millis;	ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "11.0" + t.FmtTimeDiffSecs,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
 		
-		diff= 99  * secs + 900 * millis;	ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "99.9" + t.FMT_TimeDiffSecs,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 99  * secs + 949 * millis;	ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "99.9" + t.FMT_TimeDiffSecs,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
+		diff= 99  * secs + 900 * millis;	ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "99.9" + t.FmtTimeDiffSecs,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 99  * secs + 949 * millis;	ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "99.9" + t.FmtTimeDiffSecs,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
 
 
-		diff= 2  * mins + 0 * secs;			ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "2.00" + t.FMT_TimeDiffMins,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 2  * mins + 30 * secs;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "2.50" + t.FMT_TimeDiffMins,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9  * mins + 45 * secs;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "9.75" + t.FMT_TimeDiffMins,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9  * mins + 59 * secs;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "9.98" + t.FMT_TimeDiffMins,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9  * mins + 59500 * millis;	ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "9.99" + t.FMT_TimeDiffMins,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9  * mins + 59999 * millis;	ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "10.0" + t.FMT_TimeDiffMins,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
+		diff= 2  * mins + 0 * secs;			ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "2.00" + t.FmtTimeDiffMins,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 2  * mins + 30 * secs;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "2.50" + t.FmtTimeDiffMins,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 9  * mins + 45 * secs;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "9.75" + t.FmtTimeDiffMins,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 9  * mins + 59 * secs;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "9.98" + t.FmtTimeDiffMins,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 9  * mins + 59500 * millis;	ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "9.99" + t.FmtTimeDiffMins,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 9  * mins + 59999 * millis;	ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "10.0" + t.FmtTimeDiffMins,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
 
-		diff= 99 * mins + 0 * secs;			ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "99.0" + t.FMT_TimeDiffMins,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 99 * mins + 30* secs;			ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "99.5" + t.FMT_TimeDiffMins,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 99 * mins + 59* secs;			ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "99.9" + t.FMT_TimeDiffMins,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 99 * mins + 59500* millis;	ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "99.9" + t.FMT_TimeDiffMins,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 99 * mins + 59999* millis;	ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "1.66" + t.FMT_TimeDiffHours,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 1 * hours + 30* mins;			ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "90.0" + t.FMT_TimeDiffMins,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
+		diff= 99 * mins + 0 * secs;			ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "99.0" + t.FmtTimeDiffMins,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 99 * mins + 30* secs;			ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "99.5" + t.FmtTimeDiffMins,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 99 * mins + 59* secs;			ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "99.9" + t.FmtTimeDiffMins,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 99 * mins + 59500* millis;	ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "99.9" + t.FmtTimeDiffMins,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 99 * mins + 59999* millis;	ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "1.66" + t.FmtTimeDiffHours,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 1 * hours + 30* mins;			ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "90.0" + t.FmtTimeDiffMins,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
 
-		diff= 5 * hours + 30* mins;			ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "5.50" + t.FMT_TimeDiffHours,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
+		diff= 5 * hours + 30* mins;			ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "5.50" + t.FmtTimeDiffHours,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
 	
-		diff= 9 * hours + 45* mins;			ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "9.75" + t.FMT_TimeDiffHours,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9 * hours + 59* mins;			ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "9.98" + t.FMT_TimeDiffHours,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9 * hours + 3540* secs;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "9.98" + t.FMT_TimeDiffHours,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9 * hours + 3580* secs;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "9.99" + t.FMT_TimeDiffHours,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9 * hours + 3599* secs;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "9.99" + t.FMT_TimeDiffHours,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9 * hours + 3600* secs;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "10.0" + t.FMT_TimeDiffHours,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
+		diff= 9 * hours + 45* mins;			ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "9.75" + t.FmtTimeDiffHours,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 9 * hours + 59* mins;			ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "9.98" + t.FmtTimeDiffHours,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 9 * hours + 3540* secs;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "9.98" + t.FmtTimeDiffHours,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 9 * hours + 3580* secs;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "9.99" + t.FmtTimeDiffHours,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 9 * hours + 3599* secs;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "9.99" + t.FmtTimeDiffHours,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 9 * hours + 3600* secs;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "10.0" + t.FmtTimeDiffHours,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
 		
-		diff= 50 * hours + 15 *mins;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "50.2" + t.FMT_TimeDiffHours,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 99 * hours + 45 *mins;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "99.7" + t.FMT_TimeDiffHours,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 99 * hours + 48 *mins;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "99.8" + t.FMT_TimeDiffHours,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 99 * hours + 59 *mins;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "99.9" + t.FMT_TimeDiffHours,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 99 * hours + 3540* secs;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "99.9" + t.FMT_TimeDiffHours,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 99 * hours + 3580* secs;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "99.9" + t.FMT_TimeDiffHours,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 99 * hours + 3599* secs;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "99.9" + t.FMT_TimeDiffHours,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 99 * hours + 3600* secs;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "4.16" + t.FMT_TimeDiffDays,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
+		diff= 50 * hours + 15 *mins;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "50.2" + t.FmtTimeDiffHours,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 99 * hours + 45 *mins;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "99.7" + t.FmtTimeDiffHours,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 99 * hours + 48 *mins;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "99.8" + t.FmtTimeDiffHours,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 99 * hours + 59 *mins;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "99.9" + t.FmtTimeDiffHours,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 99 * hours + 3540* secs;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "99.9" + t.FmtTimeDiffHours,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 99 * hours + 3580* secs;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "99.9" + t.FmtTimeDiffHours,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 99 * hours + 3599* secs;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "99.9" + t.FmtTimeDiffHours,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 99 * hours + 3600* secs;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "4.16" + t.FmtTimeDiffDays,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
 
-		diff= 1 * days + 12* hours;			ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "36.0" + t.FMT_TimeDiffHours,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
+		diff= 1 * days + 12* hours;			ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "36.0" + t.FmtTimeDiffHours,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
 
-		diff= 5 * days + 18* hours;			ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "5.75" + t.FMT_TimeDiffDays,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9 * days + 23* hours;			ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "9.95" + t.FMT_TimeDiffDays,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9 * days + 1380 * mins;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "9.95" + t.FMT_TimeDiffDays,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9 * days + 1400 * mins;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "9.97" + t.FMT_TimeDiffDays,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9 * days + 1439 * mins;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "9.99" + t.FMT_TimeDiffDays,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9 * days + 1440 * mins;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "10.0" + t.FMT_TimeDiffDays,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 15 * days + 6 * hours;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "15.2" + t.FMT_TimeDiffDays,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 99 * days + 18 * hours;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "99.7" + t.FMT_TimeDiffDays,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 99 * days + 1439 * mins;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "99.9" + t.FMT_TimeDiffDays,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 99 * days + 1440 * mins;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "100.0" + t.FMT_TimeDiffDays,			ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
+		diff= 5 * days + 18* hours;			ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "5.75" + t.FmtTimeDiffDays,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 9 * days + 23* hours;			ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "9.95" + t.FmtTimeDiffDays,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 9 * days + 1380 * mins;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "9.95" + t.FmtTimeDiffDays,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 9 * days + 1400 * mins;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "9.97" + t.FmtTimeDiffDays,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 9 * days + 1439 * mins;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "9.99" + t.FmtTimeDiffDays,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 9 * days + 1440 * mins;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "10.0" + t.FmtTimeDiffDays,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 15 * days + 6 * hours;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "15.2" + t.FmtTimeDiffDays,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 99 * days + 18 * hours;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "99.7" + t.FmtTimeDiffDays,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 99 * days + 1439 * mins;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "99.9" + t.FmtTimeDiffDays,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
+		diff= 99 * days + 1440 * mins;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "100.0" + t.FmtTimeDiffDays,			ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
 
-		diff= 13452 * days+ 12* hours;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "13452.5" + t.FMT_TimeDiffDays,		ms.ToString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
+		diff= 13452 * days+ 12* hours;		ms.Clear(); t.t( ms, diff ); Assert.AreEqual(  "13452.5" + t.FmtTimeDiffDays,		ms.ToString(lenFmtTimeDiffPrefix, ms.Length - lenFmtTimeDiffPrefix - lenFmtTimeDiffPostfix) );
 		//System.out.println(ms.ToString());		
 		#endif
 	}
@@ -369,7 +369,7 @@ namespace com.aworx.unittests.lox
 			cl.LogTimeOfDay=	false;  	Log.Info( "LogTimeOfDay= false" );
 			cl.LogLogCounter=	false;		Log.Info( "LogLogCounter= false" ); Log.Info( "LogLogCounter= false" ); Log.Info( "LogLogCounter= false" );
 
-			cl.FMT_MessagePrefix="";		Log.Info( "cl.FMT_MessagePrefix=\"\""); Log.Info( "cl.FMT_MessagePrefix=\"\""); Log.Info( "cl.FMT_MessagePrefix=\"\"");
+			cl.FmtMessagePrefix="";		Log.Info( "cl.FmtMessagePrefix=\"\""); Log.Info( "cl.FmtMessagePrefix=\"\""); Log.Info( "cl.FmtMessagePrefix=\"\"");
 			#endif
 		}
 
@@ -576,6 +576,28 @@ namespace com.aworx.unittests.lox
 				LogTools.Instance( Log.Level.Info, o, 2, "Logging an object of type 'byte[]':", 1 );
 			}
 
+			// 2 dimensional char[] 
+			{
+				char[,] o= new char[3, 7];
+				int val= 0;
+				for ( int x= 0; x < o.GetLength( 0 ) ; x++ )
+					for ( int y= 0; y < o.GetLength( 1 ) ; y++ )
+						o[x, y]= (char) ( ((int)'a') + val++ );
+				LogTools.Instance( Log.Level.Info, o, 2, "Logging a 2 dimensional char[]:", 1 );
+			}
+
+			// 4 dimensional int[] 
+			{
+				int[,,,] o= new int[2, 3, 4,5];
+				int val= 0;
+				for ( int i1= 0; i1 < o.GetLength( 0 ) ; i1++ )
+					for ( int i2= 0; i2 < o.GetLength( 1 ) ; i2++ )
+						for ( int i3= 0; i3 < o.GetLength( 2 ) ; i3++ )
+							for ( int i4= 0; i4 < o.GetLength( 3 ) ; i4++ )
+								o[i1, i2, i3, i4]=  val++;
+				LogTools.Instance( Log.Level.Info, o, 2, "Logging a 4 dimensional int[]:", 1 );
+			}
+
 
 			// simple type String
 			{
@@ -584,7 +606,7 @@ namespace com.aworx.unittests.lox
 			}
 
 
-			// String array
+			//// String array
 			{
 				String[] o= new String[3];
 				o[0]= "Entry 0";
@@ -609,6 +631,11 @@ namespace com.aworx.unittests.lox
 				o[i++]= "last filled object";
 
 				LogTools.Instance( Log.Level.Info, o, 2, "Logging an object of type 'Object[]':", 1 );
+			}
+
+			// Lox 
+			{
+				LogTools.Instance( Log.Level.Info, Log.LOX, 2, "The lox of Log:", 1 );
 			}
 
 			// This thread

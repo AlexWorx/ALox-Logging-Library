@@ -3,8 +3,6 @@ package com.aworx.lox.loggers;
 import java.io.Console;
 
 import com.aworx.lox.Log;
-import com.aworx.lox.Log.DomainLevel;
-import com.aworx.lox.Log.Level;
 import com.aworx.lox.core.CallerInfo;
 import com.aworx.lox.core.TextLogger;
 import com.aworx.util.MString;
@@ -61,7 +59,7 @@ public class ConsoleLogger extends TextLogger
 		super( name );
 
 		// set default domain level to all: As a app console logger/IDE logger we want to fetch all we can
-		rootDomain.setLevel( Log.DomainLevel.All, false );
+		rootDomain.setLevel( Log.DomainLevel.ALL, false );
 	}
 
     /**********************************************************************************************//**
@@ -72,7 +70,7 @@ public class ConsoleLogger extends TextLogger
 		super( "CONSOLE" );
 
 		// set default domain level to all: As a app console logger/IDE logger we want to fetch all we can
-		rootDomain.setLevel( Log.DomainLevel.All, false );
+		rootDomain.setLevel( Log.DomainLevel.ALL, false );
 	}
 
 

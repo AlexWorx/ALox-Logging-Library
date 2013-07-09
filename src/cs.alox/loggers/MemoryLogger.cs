@@ -83,9 +83,7 @@ public class MemoryLogger : TextLogger
 	 *  The implementation of the abstract method of parent class TextLogger. Logs messages to the
 	 *  Buffer field.
 	 * </summary>
-	 * <param name="domain">		The log domain name. If not starting with a slash ('/')
-	 * 								this is appended to any default domain name that might have been
-	 * 								specified for the source file. </param>
+	 * <param name="domain">		The log domain name. </param>
 	 * <param name="level">			The log level. This has been checked to be active already on this
 	 * 								stage and is provided to be able to be logged out only. </param>
 	 * <param name="msg">			The log message. </param>

@@ -67,8 +67,8 @@ public class LogDomain
 		subDomains=		new ArrayList<LogDomain>();
 
 		// set log level to All, if we have no parent, else we inherit from parent
-		level= ( parent == null )	?  Log.DomainLevel.Off
-									:  Log.DomainLevel.Inherit;
+		level= ( parent == null )	?  Log.DomainLevel.OFF
+									:  Log.DomainLevel.INHERIT;
 	}
 
 	/**********************************************************************************************//**
@@ -91,9 +91,9 @@ public class LogDomain
 	public Log.DomainLevel getLevel()
 	{
 		// recursively find a defined level
-		@SuppressWarnings ("hiding")	LogDomain			parent=		this.parent;
-		@SuppressWarnings ("hiding")	Log.DomainLevel		level=		this.level;
-		while (level == Log.DomainLevel.Inherit && parent != null )
+		LogDomain			parent=		this.parent;
+		Log.DomainLevel		level=		this.level;
+		while (level == Log.DomainLevel.INHERIT && parent != null )
 		{
 			level=		parent.level;
 			parent=		parent.parent;
@@ -131,11 +131,11 @@ public class LogDomain
 	 *
 	 * @return  True if domain is active (log should be performed)
 	 **************************************************************************************************/
-	public	boolean isActive( @SuppressWarnings ("hiding") Log.Level level )
+	public	boolean isActive( Log.Level level )
 	{
 		Log.DomainLevel domainLevel= getLevel();
 
-		assert ( domainLevel != Log.DomainLevel.Inherit );
+		assert ( domainLevel != Log.DomainLevel.INHERIT );
 
 		//	Log/Domain Level	Log.DomainLevelVerbose  Info     Warning     Error
 		//  -----------------------------------------------------------------
@@ -144,10 +144,10 @@ public class LogDomain
 		//	WarningsAndErrors		|     -        -        Y           Y
 		//	InfoWarningsAndErrors	|     -        Y        Y           Y
 		//	All						|     Y        Y        Y           Y
-		return		( domainLevel == Log.DomainLevel.Errors					&&		level == Log.Level.Error )
-				||	( domainLevel == Log.DomainLevel.WarningsAndErrors		&&    (	level == Log.Level.Warning || level == Log.Level.Error ) )
-				||	( domainLevel == Log.DomainLevel.InfoWarningsAndErrors	&&		level != Log.Level.Verbose )
-				||	  domainLevel == Log.DomainLevel.All;
+		return		( domainLevel == Log.DomainLevel.ERRORS					&&		level == Log.Level.ERROR )
+				||	( domainLevel == Log.DomainLevel.WARNINGS_AND_ERRORS		&&    (	level == Log.Level.WARNING || level == Log.Level.ERROR ) )
+				||	( domainLevel == Log.DomainLevel.INFO_WARNINGS_AND_ERRORS	&&		level != Log.Level.VERBOSE )
+				||	  domainLevel == Log.DomainLevel.ALL;
 	}
 
 	/**********************************************************************************************//**
@@ -194,7 +194,6 @@ public class LogDomain
 	 *
 	 * @return  The found domain.
 	 **************************************************************************************************/
-	@SuppressWarnings ("null") 
 	protected LogDomain findOrCreateInternal( MString	domainPath,	int dpStartIdx, boolean createIfNotExistant)
 	{
 		//--- get act sub-name and rest of path

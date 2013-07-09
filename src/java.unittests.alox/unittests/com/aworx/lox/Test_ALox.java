@@ -1,11 +1,9 @@
 package unittests.com.aworx.lox;
 
 import static org.junit.Assert.*;
-import java.util.Locale;
 
-import javax.xml.ws.handler.MessageContext.Scope;
+import java.util.LinkedList;
 
-import junit.framework.Assert;
 import org.junit.Test;
 
 import com.aworx.lox.*;
@@ -21,8 +19,8 @@ public class Test_ALox
 	/** ***********************************************************************************************
 	 * <summary>	The loggers. </summary>
 	 **************************************************************************************************/
-	public static ConsoleLogger		cl;
-	public static MemoryLogger		ml;
+	public ConsoleLogger	cl;
+	public MemoryLogger		ml;
 
 	/** ***********************************************************************************************
 	 * <summary>	Creates loggers. </summary>
@@ -37,7 +35,7 @@ public class Test_ALox
 		{
 			cl=		new ConsoleLogger( "Console" );
 			cl.tabAfterSourceInfo = 60;
-			Log.addLogger( cl, Log.DomainLevel.All );
+			Log.addLogger( cl, Log.DomainLevel.ALL );
 
 			//cl.EnableAppConsole=		true;
 			//cl.EnableVSDebugConsole=	true;
@@ -47,7 +45,7 @@ public class Test_ALox
 		{
 			ml=		new MemoryLogger( "Memory" );
 			ml.tabAfterSourceInfo = 60;
-			Log.addLogger( ml, Log.DomainLevel.Off );
+			Log.addLogger( ml, Log.DomainLevel.OFF );
 		}
 
 		Log.mapThreadName( "UnitTest" );
@@ -59,6 +57,7 @@ public class Test_ALox
 	/** ***********************************************************************************************
 	 * <summary>	Log_TestLogLevelSetting </summary>
 	 **************************************************************************************************/
+	@SuppressWarnings("static-method")
 	@Test 
 	public void Log_TestTextLoggerTimeDiff()
 	{
@@ -74,8 +73,8 @@ public class Test_ALox
 		T t= new T();
 		MString ms= new MString();
 		long diff;
-		int lenFMT_TimeDiffPrefix= 	t.FMT_TimeDiffPrefix .length();
-		int lenFMT_TimeDiffPostfix= t.FMT_TimeDiffPostfix.length();
+		int lenfmtTimeDiffPrefix= 	t.fmtTimeDiffPrefix .length();
+		int lenfmtTimeDiffPostfix= t.fmtTimeDiffPostfix.length();
 		long millis= 	1000L;
 		long secs=		1000L * millis;
 		long mins=		60 * secs;
@@ -83,73 +82,73 @@ public class Test_ALox
 		long days=		24 * hours;
 		
 		
-		diff= 0; 							ms.clear(); t.t( ms, diff ); assertEquals(  "000" + t.FMT_TimeDiffMicros,	ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 15; 							ms.clear(); t.t( ms, diff ); assertEquals(  "015" + t.FMT_TimeDiffMicros,	ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 99; 							ms.clear(); t.t( ms, diff ); assertEquals(  "099" + t.FMT_TimeDiffMicros,	ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 600; 							ms.clear(); t.t( ms, diff ); assertEquals(  "600" + t.FMT_TimeDiffMicros,	ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 999; 							ms.clear(); t.t( ms, diff ); assertEquals(  "999" + t.FMT_TimeDiffMicros,	ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 1   * millis;					ms.clear(); t.t( ms, diff ); assertEquals(  "001" + t.FMT_TimeDiffMillis,	ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 999 * millis;					ms.clear(); t.t( ms, diff ); assertEquals(  "999" + t.FMT_TimeDiffMillis,	ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 1   * secs;					ms.clear(); t.t( ms, diff ); assertEquals(  "1.00" + t.FMT_TimeDiffSecs,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 2   * secs + 344 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "2.34" + t.FMT_TimeDiffSecs,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 3   * secs + 345 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "3.35" + t.FMT_TimeDiffSecs,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9   * secs + 994 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "9.99" + t.FMT_TimeDiffSecs,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9   * secs + 995 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "10.0" + t.FMT_TimeDiffSecs,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9   * secs + 999 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "10.0" + t.FMT_TimeDiffSecs,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 10  * secs + 940 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "10.9" + t.FMT_TimeDiffSecs,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 10  * secs + 950 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "11.0" + t.FMT_TimeDiffSecs,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
+		diff= 0; 							ms.clear(); t.t( ms, diff ); assertEquals(  "000" + t.fmtTimeDiffMicros,	ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 15; 							ms.clear(); t.t( ms, diff ); assertEquals(  "015" + t.fmtTimeDiffMicros,	ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 99; 							ms.clear(); t.t( ms, diff ); assertEquals(  "099" + t.fmtTimeDiffMicros,	ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 600; 							ms.clear(); t.t( ms, diff ); assertEquals(  "600" + t.fmtTimeDiffMicros,	ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 999; 							ms.clear(); t.t( ms, diff ); assertEquals(  "999" + t.fmtTimeDiffMicros,	ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 1   * millis;					ms.clear(); t.t( ms, diff ); assertEquals(  "001" + t.fmtTimeDiffMillis,	ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 999 * millis;					ms.clear(); t.t( ms, diff ); assertEquals(  "999" + t.fmtTimeDiffMillis,	ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 1   * secs;					ms.clear(); t.t( ms, diff ); assertEquals(  "1.00" + t.fmtTimeDiffSecs,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 2   * secs + 344 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "2.34" + t.fmtTimeDiffSecs,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 3   * secs + 345 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "3.35" + t.fmtTimeDiffSecs,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 9   * secs + 994 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "9.99" + t.fmtTimeDiffSecs,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 9   * secs + 995 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "10.0" + t.fmtTimeDiffSecs,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 9   * secs + 999 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "10.0" + t.fmtTimeDiffSecs,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 10  * secs + 940 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "10.9" + t.fmtTimeDiffSecs,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 10  * secs + 950 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "11.0" + t.fmtTimeDiffSecs,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
 		
-		diff= 99  * secs + 900 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.FMT_TimeDiffSecs,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 99  * secs + 949 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.FMT_TimeDiffSecs,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
+		diff= 99  * secs + 900 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.fmtTimeDiffSecs,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 99  * secs + 949 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.fmtTimeDiffSecs,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
 
-//		diff= 99  * secs + 950 * millis;	ms.Clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.FMT_TimeDiffSecs,		ms.toString(lenFMT_TimeDiffPrefix, ms.Length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
+//		diff= 99  * secs + 950 * millis;	ms.Clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.fmtTimeDiffSecs,		ms.toString(lenfmtTimeDiffPrefix, ms.Length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
 
-		diff= 2  * mins + 0 * secs;			ms.clear(); t.t( ms, diff ); assertEquals(  "2.00" + t.FMT_TimeDiffMins,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 2  * mins + 30 * secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "2.50" + t.FMT_TimeDiffMins,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9  * mins + 45 * secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "9.75" + t.FMT_TimeDiffMins,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9  * mins + 59 * secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "9.98" + t.FMT_TimeDiffMins,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9  * mins + 59500 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "9.99" + t.FMT_TimeDiffMins,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9  * mins + 59999 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "10.0" + t.FMT_TimeDiffMins,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
+		diff= 2  * mins + 0 * secs;			ms.clear(); t.t( ms, diff ); assertEquals(  "2.00" + t.fmtTimeDiffMins,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 2  * mins + 30 * secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "2.50" + t.fmtTimeDiffMins,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 9  * mins + 45 * secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "9.75" + t.fmtTimeDiffMins,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 9  * mins + 59 * secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "9.98" + t.fmtTimeDiffMins,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 9  * mins + 59500 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "9.99" + t.fmtTimeDiffMins,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 9  * mins + 59999 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "10.0" + t.fmtTimeDiffMins,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
 
-		diff= 99 * mins + 0 * secs;			ms.clear(); t.t( ms, diff ); assertEquals(  "99.0" + t.FMT_TimeDiffMins,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 99 * mins + 30* secs;			ms.clear(); t.t( ms, diff ); assertEquals(  "99.5" + t.FMT_TimeDiffMins,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 99 * mins + 59* secs;			ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.FMT_TimeDiffMins,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 99 * mins + 59500* millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.FMT_TimeDiffMins,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 99 * mins + 59999* millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "1.66" + t.FMT_TimeDiffHours,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 1 * hours + 30* mins;			ms.clear(); t.t( ms, diff ); assertEquals(  "90.0" + t.FMT_TimeDiffMins,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
+		diff= 99 * mins + 0 * secs;			ms.clear(); t.t( ms, diff ); assertEquals(  "99.0" + t.fmtTimeDiffMins,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 99 * mins + 30* secs;			ms.clear(); t.t( ms, diff ); assertEquals(  "99.5" + t.fmtTimeDiffMins,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 99 * mins + 59* secs;			ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.fmtTimeDiffMins,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 99 * mins + 59500* millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.fmtTimeDiffMins,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 99 * mins + 59999* millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "1.66" + t.fmtTimeDiffHours,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 1 * hours + 30* mins;			ms.clear(); t.t( ms, diff ); assertEquals(  "90.0" + t.fmtTimeDiffMins,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
 
-		diff= 5 * hours + 30* mins;			ms.clear(); t.t( ms, diff ); assertEquals(  "5.50" + t.FMT_TimeDiffHours,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
+		diff= 5 * hours + 30* mins;			ms.clear(); t.t( ms, diff ); assertEquals(  "5.50" + t.fmtTimeDiffHours,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
 	
-		diff= 9 * hours + 45* mins;			ms.clear(); t.t( ms, diff ); assertEquals(  "9.75" + t.FMT_TimeDiffHours,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9 * hours + 59* mins;			ms.clear(); t.t( ms, diff ); assertEquals(  "9.98" + t.FMT_TimeDiffHours,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9 * hours + 3540* secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "9.98" + t.FMT_TimeDiffHours,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9 * hours + 3580* secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "9.99" + t.FMT_TimeDiffHours,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9 * hours + 3599* secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "9.99" + t.FMT_TimeDiffHours,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9 * hours + 3600* secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "10.0" + t.FMT_TimeDiffHours,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
+		diff= 9 * hours + 45* mins;			ms.clear(); t.t( ms, diff ); assertEquals(  "9.75" + t.fmtTimeDiffHours,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 9 * hours + 59* mins;			ms.clear(); t.t( ms, diff ); assertEquals(  "9.98" + t.fmtTimeDiffHours,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 9 * hours + 3540* secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "9.98" + t.fmtTimeDiffHours,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 9 * hours + 3580* secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "9.99" + t.fmtTimeDiffHours,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 9 * hours + 3599* secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "9.99" + t.fmtTimeDiffHours,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 9 * hours + 3600* secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "10.0" + t.fmtTimeDiffHours,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
 		
-		diff= 50 * hours + 15 *mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "50.2" + t.FMT_TimeDiffHours,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 99 * hours + 45 *mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "99.7" + t.FMT_TimeDiffHours,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 99 * hours + 48 *mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "99.8" + t.FMT_TimeDiffHours,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 99 * hours + 59 *mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.FMT_TimeDiffHours,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 99 * hours + 3540* secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.FMT_TimeDiffHours,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 99 * hours + 3580* secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.FMT_TimeDiffHours,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 99 * hours + 3599* secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.FMT_TimeDiffHours,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 99 * hours + 3600* secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "4.16" + t.FMT_TimeDiffDays,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
+		diff= 50 * hours + 15 *mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "50.2" + t.fmtTimeDiffHours,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 99 * hours + 45 *mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "99.7" + t.fmtTimeDiffHours,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 99 * hours + 48 *mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "99.8" + t.fmtTimeDiffHours,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 99 * hours + 59 *mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.fmtTimeDiffHours,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 99 * hours + 3540* secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.fmtTimeDiffHours,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 99 * hours + 3580* secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.fmtTimeDiffHours,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 99 * hours + 3599* secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.fmtTimeDiffHours,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 99 * hours + 3600* secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "4.16" + t.fmtTimeDiffDays,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
 
-		diff= 1 * days + 12* hours;			ms.clear(); t.t( ms, diff ); assertEquals(  "36.0" + t.FMT_TimeDiffHours,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
+		diff= 1 * days + 12* hours;			ms.clear(); t.t( ms, diff ); assertEquals(  "36.0" + t.fmtTimeDiffHours,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
 
-		diff= 5 * days + 18* hours;			ms.clear(); t.t( ms, diff ); assertEquals(  "5.75" + t.FMT_TimeDiffDays,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9 * days + 23* hours;			ms.clear(); t.t( ms, diff ); assertEquals(  "9.95" + t.FMT_TimeDiffDays,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9 * days + 1380 * mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "9.95" + t.FMT_TimeDiffDays,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9 * days + 1400 * mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "9.97" + t.FMT_TimeDiffDays,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9 * days + 1439 * mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "9.99" + t.FMT_TimeDiffDays,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 9 * days + 1440 * mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "10.0" + t.FMT_TimeDiffDays,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 15 * days + 6 * hours;		ms.clear(); t.t( ms, diff ); assertEquals(  "15.2" + t.FMT_TimeDiffDays,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 99 * days + 18 * hours;		ms.clear(); t.t( ms, diff ); assertEquals(  "99.7" + t.FMT_TimeDiffDays,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 99 * days + 1439 * mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.FMT_TimeDiffDays,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
-		diff= 99 * days + 1440 * mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "100.0" + t.FMT_TimeDiffDays,			ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
+		diff= 5 * days + 18* hours;			ms.clear(); t.t( ms, diff ); assertEquals(  "5.75" + t.fmtTimeDiffDays,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 9 * days + 23* hours;			ms.clear(); t.t( ms, diff ); assertEquals(  "9.95" + t.fmtTimeDiffDays,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 9 * days + 1380 * mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "9.95" + t.fmtTimeDiffDays,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 9 * days + 1400 * mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "9.97" + t.fmtTimeDiffDays,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 9 * days + 1439 * mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "9.99" + t.fmtTimeDiffDays,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 9 * days + 1440 * mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "10.0" + t.fmtTimeDiffDays,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 15 * days + 6 * hours;		ms.clear(); t.t( ms, diff ); assertEquals(  "15.2" + t.fmtTimeDiffDays,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 99 * days + 18 * hours;		ms.clear(); t.t( ms, diff ); assertEquals(  "99.7" + t.fmtTimeDiffDays,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 99 * days + 1439 * mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.fmtTimeDiffDays,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 99 * days + 1440 * mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "100.0" + t.fmtTimeDiffDays,			ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
 
-		diff= 13452 * days + 12* hours;		ms.clear(); t.t( ms, diff ); assertEquals(  "13452.5" + t.FMT_TimeDiffDays,		ms.toString(lenFMT_TimeDiffPrefix, ms.length - lenFMT_TimeDiffPrefix - lenFMT_TimeDiffPostfix) );
+		diff= 13452 * days + 12* hours;		ms.clear(); t.t( ms, diff ); assertEquals(  "13452.5" + t.fmtTimeDiffDays,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
 		//System.out.println(ms.toString());		
 	}
 	
@@ -161,37 +160,37 @@ public class Test_ALox
 	{
 			clearCreateAndAddLoggers();
 
-			Log.regDomain( "TLLS", Log.Scope.Method );
-			Log.setDomain( Log.LOX.internalDomain, Log.DomainLevel.Off );
+			Log.regDomain( "TLLS", Log.Scope.METHOD );
+			Log.setDomain( Log.LOX.internalDomain, Log.DomainLevel.OFF );
 
 			// Test log level setting
 			int logLinesBefore= cl.cntLogs;
-			Log.setDomain( "TLLS", Log.DomainLevel.All );
+			Log.setDomain( "TLLS", Log.DomainLevel.ALL );
 			Log.verbose	   ( "TLLS", "This Verbose line should be logged" );
 			Log.info	   ( "TLLS", "This Info    line should be logged" );
 			Log.warning	   ( "TLLS", "This WARN    line should be logged" );
 			Log.error	   ( "TLLS", "This Error   line should be logged" );
 
-			Log.setDomain( "TLLS", Log.DomainLevel.InfoWarningsAndErrors );
+			Log.setDomain( "TLLS", Log.DomainLevel.INFO_WARNINGS_AND_ERRORS );
 			Log.verbose	   ( "TLLS", "This Verbose line should NOT be logged. !!!!!Test Error!!!!!" );
 			Log.info	   ( "TLLS", "This Info    line should be logged" );
 			Log.warning	   ( "TLLS", "This Warning line should be logged" );
 			Log.error	   ( "TLLS", "This Error   line should be logged" );
 
 
-			Log.setDomain( "TLLS", Log.DomainLevel.WarningsAndErrors );
+			Log.setDomain( "TLLS", Log.DomainLevel.WARNINGS_AND_ERRORS );
 			Log.verbose	   ( "TLLS", "This Verbose line should NOT be logged. !!!!!Test Error!!!!!" );
 			Log.info	   ( "TLLS", "This Info    line should NOT be logged. !!!!!Test Error!!!!!" );
 			Log.warning	   ( "TLLS", "This Warning line should be logged" );
 			Log.error	   ( "TLLS", "This Error   line should be logged" );
 
-			Log.setDomain( "TLLS", Log.DomainLevel.Errors );
+			Log.setDomain( "TLLS", Log.DomainLevel.ERRORS );
 			Log.verbose	   ( "TLLS", "This Verbose line should NOT be logged. !!!!!Test Error!!!!!" );
 			Log.info	   ( "TLLS", "This Info    line should NOT be logged. !!!!!Test Error!!!!!" );
 			Log.warning	   ( "TLLS", "This Warning line should NOT be logged. !!!!!Test Error!!!!!" );
 			Log.error	   ( "TLLS", "This Error   line should be logged" );
 			
-			Log.setDomain( "TLLS", Log.DomainLevel.Off );
+			Log.setDomain( "TLLS", Log.DomainLevel.OFF );
 			Log.verbose	   ( "TLLS", "This Verbose line should NOT be logged. !!!!!Test Error!!!!!" );
 			Log.info	   ( "TLLS", "This Info    line should NOT be logged. !!!!!Test Error!!!!!" );
 			Log.warning	   ( "TLLS", "This Warning line should NOT be logged. !!!!!Test Error!!!!!" );
@@ -211,8 +210,8 @@ public class Test_ALox
 			clearCreateAndAddLoggers( true );
 			Log.error("No domain and nothing set");
 
-			Log.regDomain( "DFLT", Log.Scope.Method );
-			Log.setDomain( "DFLT", Log.DomainLevel.InfoWarningsAndErrors );
+			Log.regDomain( "DFLT", Log.Scope.METHOD );
+			Log.setDomain( "DFLT", Log.DomainLevel.INFO_WARNINGS_AND_ERRORS );
 			Log.info( "***Log_TestDefaultDomain***" );
 			
 			
@@ -221,29 +220,29 @@ public class Test_ALox
 
 			// Test log level setting
 			cntLL= cl.cntLogs;
-			Log.setDomain( "DFLT", Log.DomainLevel.InfoWarningsAndErrors );
+			Log.setDomain( "DFLT", Log.DomainLevel.INFO_WARNINGS_AND_ERRORS );
 			cntLL= cl.cntLogs;	Log.verbose	   ( testERR );	assertEquals ( 0, cl.cntLogs - cntLL );
 			cntLL= cl.cntLogs;	Log.info	   ( testOK  );	assertEquals ( 1, cl.cntLogs - cntLL );
 
-			Log.setDomain( "~", Log.DomainLevel.WarningsAndErrors );
+			Log.setDomain( "~", Log.DomainLevel.WARNINGS_AND_ERRORS );
 			cntLL= cl.cntLogs;	Log.info	   ( testERR );	assertEquals ( 0, cl.cntLogs - cntLL );
 			cntLL= cl.cntLogs;	Log.warning	   ( testOK  );	assertEquals ( 1, cl.cntLogs - cntLL );
 
-			Log.setDomain( "~/",Log.DomainLevel.Errors );
+			Log.setDomain( "~/",Log.DomainLevel.ERRORS );
 			cntLL= cl.cntLogs;	Log.warning	   ( testERR );	assertEquals ( 0, cl.cntLogs - cntLL );
 			cntLL= cl.cntLogs;	Log.error	   ( testOK  );	assertEquals ( 1, cl.cntLogs - cntLL );
 
 
 			// test sub domains
-			Log.regDomain( "DFLT/WARN",	Log.Scope.None );
-			Log.regDomain(    "~/ERR",	Log.Scope.None );
-			Log.logConfig( "TEST", Log.Level.Info, "Dumping Log Configuration:", cl.name );
+			Log.regDomain( "DFLT/WARN",	Log.Scope.NONE );
+			Log.regDomain(    "~/ERR",	Log.Scope.NONE );
+			Log.logConfig( "TEST", Log.Level.INFO, "Dumping Log Configuration:", cl.name );
 
-			Log.setDomain( "DFLT",		Log.DomainLevel.InfoWarningsAndErrors,	true );
-			Log.setDomain( "DFLT/WARN",	Log.DomainLevel.WarningsAndErrors,		true );
-			Log.setDomain(    "~/ERR",	Log.DomainLevel.Errors,						true );
+			Log.setDomain( "DFLT",		Log.DomainLevel.INFO_WARNINGS_AND_ERRORS,	true );
+			Log.setDomain( "DFLT/WARN",	Log.DomainLevel.WARNINGS_AND_ERRORS,		true );
+			Log.setDomain(    "~/ERR",	Log.DomainLevel.ERRORS,						true );
 
-			Log.logConfig( "TEST",	Log.Level.Info, "Dumping Log Configuration:", cl.name );
+			Log.logConfig( "TEST",	Log.Level.INFO, "Dumping Log Configuration:", cl.name );
 	
 			// log with leading "/" on domain
 			cntLL= ml.cntLogs;	Log.verbose	   ( "/DFLT",		testERR );	assertEquals ( 0, ml.cntLogs - cntLL );
@@ -311,19 +310,19 @@ public class Test_ALox
 			//#if ALOX_DEBUG || ALOX_REL_LOG
 			clearCreateAndAddLoggers( true );
 
-			Log.regDomain( "ASSERT", Log.Scope.Method );
+			Log.regDomain( "ASSERT", Log.Scope.METHOD );
 
 			String testOK=  "OK";
 			String testERR= "Error";
 
 			// Test log level setting
 			int cntLL= cl.cntLogs;
-			Log.setDomain( "ASSERT", Log.DomainLevel.InfoWarningsAndErrors);
+			Log.setDomain( "ASSERT", Log.DomainLevel.INFO_WARNINGS_AND_ERRORS);
 
 				cntLL= cl.cntLogs;	Log.Assert( true,  testERR );							assertEquals(  0, cl.cntLogs - cntLL );
 				cntLL= cl.cntLogs;	Log.Assert( false, testOK  );							assertEquals(  1, cl.cntLogs - cntLL );
-				cntLL= cl.cntLogs;	Log.line   ( false, null, Log.Level.Info, testERR );	assertEquals(  0, cl.cntLogs - cntLL );
-				cntLL= cl.cntLogs;	Log.line   ( true,  null, Log.Level.Info, testOK  );	assertEquals(  1, cl.cntLogs - cntLL );
+				cntLL= cl.cntLogs;	Log.line   ( false, null, Log.Level.INFO, testERR );	assertEquals(  0, cl.cntLogs - cntLL );
+				cntLL= cl.cntLogs;	Log.line   ( true,  null, Log.Level.INFO, testOK  );	assertEquals(  1, cl.cntLogs - cntLL );
 			//#endif
 		}
 
@@ -336,8 +335,8 @@ public class Test_ALox
 			//#if ALOX_DEBUG || ALOX_REL_LOG
 			clearCreateAndAddLoggers();
 
-			Log.regDomain( "FMT", Log.Scope.Method );
-			Log.setDomain( "FMT", Log.DomainLevel.All);
+			Log.regDomain( "FMT", Log.Scope.METHOD );
+			Log.setDomain( "FMT", Log.DomainLevel.ALL);
 			
 			Log.info( "This is the default ConsoleLogger log line" );
 
@@ -354,7 +353,7 @@ public class Test_ALox
 			cl.logTimeOfDay=	false;  	Log.info( "LogTimeOfDay= false" );
 			cl.logLogCounter=	false;		Log.info( "LogLogCounter= false" ); Log.info( "LogLogCounter= false" ); Log.info( "LogLogCounter= false" );
 
-			cl.FMT_MessagePrefix=MString.empty;	Log.info( "cl.FMT_MessagePrefix=\"\""); Log.info( "cl.FMT_MessagePrefix=\"\""); Log.info( "cl.FMT_MessagePrefix=\"\"");
+			cl.fmtMessagePrefix=MString.empty;	Log.info( "cl.fmtMessagePrefix=\"\""); Log.info( "cl.fmtMessagePrefix=\"\""); Log.info( "cl.fmtMessagePrefix=\"\"");
 			//#endif
 		}
 
@@ -367,8 +366,8 @@ public class Test_ALox
 		{
 			clearCreateAndAddLoggers();
 
-			Log.regDomain( "MARKER", Log.Scope.Method );
-			Log.setDomain( "MARKER", Log.DomainLevel.All );
+			Log.regDomain( "MARKER", Log.Scope.METHOD );
+			Log.setDomain( "MARKER", Log.DomainLevel.ALL );
 
 
 			Log.info( "*** Testing markers ***" );
@@ -383,21 +382,21 @@ public class Test_ALox
 
 
 			/*#/AWX_LOG// Log.setMarker( markerDisposedSrc,	true );		//#/AWX_LOG*/
-			Log.setMarker( markerDisposedGlobal,Log.Scope.None );
-			Log.setMarker( markerGlobal,		Log.Scope.None );
-			Log.setMarker( markerDisposedPkg,	Log.Scope.Package );
-			Log.setMarker( markerPkg,			Log.Scope.Package );
-			Log.setMarker( markerDisposedClass,	Log.Scope.Class );
-			Log.setMarker( markerClass,			Log.Scope.Class );
-			Log.setMarker( markerDisposedMethod,Log.Scope.Method );
-			Log.setMarker( markerMethod,		Log.Scope.Method );
+			Log.setMarker( markerDisposedGlobal,Log.Scope.NONE );
+			Log.setMarker( markerGlobal,		Log.Scope.NONE );
+			Log.setMarker( markerDisposedPkg,	Log.Scope.PACKAGE );
+			Log.setMarker( markerPkg,			Log.Scope.PACKAGE );
+			Log.setMarker( markerDisposedClass,	Log.Scope.CLASS );
+			Log.setMarker( markerClass,			Log.Scope.CLASS );
+			Log.setMarker( markerDisposedMethod,Log.Scope.METHOD );
+			Log.setMarker( markerMethod,		Log.Scope.METHOD );
 
 			Object[] markerpointer= new Object[1];
 
-			Log.getMarker( markerpointer, Log.Scope.None );			Log.info( "The current global        marker is: " + markerpointer[0] );	 assertTrue( (String) markerpointer[0] == markerGlobal	);
-			Log.getMarker( markerpointer, Log.Scope.Package );		Log.info( "The current package level marker is: " + markerpointer[0] );	 assertTrue( (String) markerpointer[0] == markerPkg		);
-			Log.getMarker( markerpointer, Log.Scope.Class );		Log.info( "The current class   level marker is: " + markerpointer[0] );	 assertTrue( (String) markerpointer[0] == markerClass	);
-			Log.getMarker( markerpointer, Log.Scope.Method );		Log.info( "The current method  level marker is: " + markerpointer[0] );	 assertTrue( (String) markerpointer[0] == markerMethod	);
+			Log.getMarker( markerpointer, Log.Scope.NONE );			Log.info( "The current global        marker is: " + markerpointer[0] );	 assertTrue( (String) markerpointer[0] == markerGlobal	);
+			Log.getMarker( markerpointer, Log.Scope.PACKAGE );		Log.info( "The current package level marker is: " + markerpointer[0] );	 assertTrue( (String) markerpointer[0] == markerPkg		);
+			Log.getMarker( markerpointer, Log.Scope.CLASS );		Log.info( "The current class   level marker is: " + markerpointer[0] );	 assertTrue( (String) markerpointer[0] == markerClass	);
+			Log.getMarker( markerpointer, Log.Scope.METHOD );		Log.info( "The current method  level marker is: " + markerpointer[0] );	 assertTrue( (String) markerpointer[0] == markerMethod	);
 		}
 
 
@@ -409,8 +408,8 @@ public class Test_ALox
 		{
 			clearCreateAndAddLoggers();
 
-			Log.regDomain ( "TEST/THREAD1", Log.Scope.Method );
-			Log.setDomain( "TEST/THREAD1", Log.DomainLevel.All );
+			Log.regDomain ( "TEST/THREAD1", Log.Scope.METHOD );
+			Log.setDomain( "TEST/THREAD1", Log.DomainLevel.ALL );
 
 			//#if ALOX_DEBUG || ALOX_REL_LOG
 				cl.logThreadInfo=	true;
@@ -436,8 +435,8 @@ public class Test_ALox
 		{
 			@Override public void run()
 			{
-				Log.regDomain ( "TEST/THREAD2", Log.Scope.Method );
-				Log.setDomain( "TEST/THREAD2", Log.DomainLevel.All );
+				Log.regDomain ( "TEST/THREAD2", Log.Scope.METHOD );
+				Log.setDomain( "TEST/THREAD2", Log.DomainLevel.ALL );
 	
 				for ( int i= 0 ; i < 20 ; i++ )
 				{ 
@@ -451,21 +450,162 @@ public class Test_ALox
 		/** ***********************************************************************************************
 		 * <summary>	Log_TestException. </summary>
 		 **************************************************************************************************/
-/* NIY		 
 		@Test 
 		public void Log_TestException()
 		{
 			clearCreateAndAddLoggers();
 
-			Log.regDomain( "EXCEPT", Log.Scope.Method );
-			Log.setDomain( "EXCEPT", Log.DomainLevel.All );
+			Log.regDomain( "EXCEPT", Log.Scope.METHOD );
+			Log.setDomain( "EXCEPT", Log.DomainLevel.ALL );
 
-
+			Log.info("*** Test LogTools.exception() ***" );
 			Exception testException=  new Exception( "TestException Message", new Exception ("InnerException Message", new Exception("Inner, inner Exception") ) );
 
-			LogTools.Exception( null, Log.Level.Warning, testException, "Logging an exception: " );
+			LogTools.exception( Log.Level.WARNING, testException, "Logging an exception: " );
 		}
-*/
+
+		/** ***********************************************************************************************
+		 * <summary>	Log_TestException. </summary>
+		 **************************************************************************************************/
+		@Test 
+		public void Log_TestStackTrace()
+		{
+			clearCreateAndAddLoggers();
+
+			Log.regDomain( "STTR", Log.Scope.METHOD );
+			Log.setDomain( "STTR", Log.DomainLevel.ALL );
+
+			Log.info("*** Test LogTools.stackTrace() ***" );
+
+			LogTools.stackTrace( Log.Level.ERROR, "The current stacktrace is: " );
+		}
+
+		/** ***********************************************************************************************
+		 * <summary>	Log_TestXML </summary>
+		 **************************************************************************************************/
+		@Test
+		public void Log_TestInstance()
+		{
+			clearCreateAndAddLoggers();
+
+			Log.regDomain( "INST", Log.Scope.METHOD );
+			Log.setDomain( "INST", Log.DomainLevel.ALL );
+
+			// simple type double
+			{
+				double o= 3.14;
+				
+				LogTools.instance( Log.Level.INFO, o, 2, "Logging an object of type 'Double':", 1 );
+			}
+
+			// Double array
+			{
+				double[] o= new double[3];
+				o[0]= 12.5;
+				o[1]= 123456789.987654321;
+				o[2]= 100;
+
+				LogTools.instance( Log.Level.INFO, o, 2, "Logging an object of type 'Double[]':", 1 );
+			}
+
+			// byte array
+			{
+				byte[] o= new byte[3];
+				o[0]= 2;
+				o[1]= 8;
+				o[2]= 16;
+
+				LogTools.instance( Log.Level.INFO, o, 2, "Logging an object of type 'byte[]':", 1 );
+			}
+
+
+			// 2 dimensional char[] 
+			{
+				char[][] o= new char[2][3];
+				for ( int x= 0; x < 2 ; x++ )
+					for ( int y= 0; y < 3 ; y++ )
+						o[x][y]= (char) ( ((int)'a') + y*2 + x);
+				LogTools.instance( Log.Level.INFO, o, 2, "Logging a 2 dimensional char[]:", 1 );
+			}
+
+			// 2 dimensional int[] 
+			{
+				int[][] o= new int[2][3];
+				for ( int x= 0; x < 2 ; x++ )
+					for ( int y= 0; y < 3 ; y++ )
+						o[x][y]=  y*2 + x;
+				LogTools.instance( Log.Level.INFO, o, 2, "Logging a 2 dimensional int[]:", 1 );
+			}
+
+			// 4 dimensional int[] 
+			{
+				int[][][][] o= new int[2][3][4][5];
+				int val= 0;
+				for ( int i1= 0; i1 < 2; i1++ )
+					for ( int i2= 0; i2 < 3 ; i2++ )
+						for ( int i3= 0; i3 < 4 ; i3++ )
+							for ( int i4= 0; i4 < 5 ; i4++ )
+								o[i1][i2][i3][i4]=  val++;
+				LogTools.instance( Log.Level.INFO, o, 2, "Logging a 4 dimensional int[]:", 1 );
+			}
+
+
+			// simple type String
+			{
+				String o= "Hello reflection";
+				LogTools.instance( Log.Level.INFO, o, 2, "Logging an object of type 'String':", 1 );
+			}
+
+
+			// String array
+			{
+				String[] o= new String[3];
+				o[0]= "Entry 0";
+				o[1]= "Entry 1";
+				o[2]= "Entry 2";
+
+				LogTools.instance( Log.Level.INFO, o, 2, "Logging an object of type 'String[]':", 1 );
+			}
+
+			// List
+			{
+				LinkedList<String> o= new LinkedList<String>();
+				o.add( "Linked entry 0" );
+				o.add( "Linked entry 1" );
+				o.add( "Linked entry 2" );
+
+				LogTools.instance( Log.Level.INFO, o, 2, "Logging an object of type 'LinkedList<String>':", 1 );
+			}
+
+			// Object array
+			{
+				Object[] o= new Object[10];
+				int i= 0;
+				o[i++]= "Entry 0";
+				o[i++]= 3.14;
+				o[i++]= "next is array itself!";
+				o[i++]= o;
+				o[i++]= "next is console logger";
+				o[i++]= cl;
+				o[i++]= "last filled object";
+
+				LogTools.instance( Log.Level.INFO, o, 3, "Logging an object of type 'Object[]':", 1 );
+			}
+
+			// Lox 
+			{
+				LogTools.instance( Log.Level.INFO, Log.LOX, 5, "The lox of Log:", 1 );
+			}
+
+			// This thread
+			{
+				Thread o= Thread.currentThread();
+				LogTools.instance( Log.Level.INFO, o, 5, ("Actual Thread: " + o.getName()), 1 );
+			}
+
+		}
+
+
 		/** ***********************************************************************************************
 		 * <summary>	Log_TestException. </summary>
 		 **************************************************************************************************/
@@ -475,47 +615,47 @@ public class Test_ALox
 			clearCreateAndAddLoggers();
 
 			//#if ALOX_DEBUG || ALOX_REL_LOG
-				Log.regDomain( "MLine", Log.Scope.Method );
-				Log.setDomain( "MLine", Log.DomainLevel.All );
+				Log.regDomain( "MLine", Log.Scope.METHOD );
+				Log.setDomain( "MLine", Log.DomainLevel.ALL );
 
 
 				cl.multiLineMsgMode= 0;
 				Log.info( "" );
 				Log.info( "-------- ML Mode = 0 (single line) --------" );
-				Log.logConfig( "MLine", Log.Level.Info, "Our Log configuration is:" );
+				Log.logConfig( "MLine", Log.Level.INFO, "Our Log configuration is:" );
 
 				cl.multiLineMsgMode= 0;
 				cl.multiLineDelimiterRepl= "~|~";
 				Log.info( "" );
 				Log.info( "-------- ML Mode = 0 (single line) with delimiter replacement set to ~|~ --------" );
-				Log.logConfig( "MLine", Log.Level.Info, "Our Log configuration is:" );
+				Log.logConfig( "MLine", Log.Level.INFO, "Our Log configuration is:" );
 
 				cl.multiLineMsgMode= 0;
 				cl.multiLineDelimiter= "";
 				Log.info( "" );
 				Log.info( "-------- ML Mode = 0 (single line) with delimiter set to \"\" (stops multi line processing) --------" );
-				Log.logConfig( "MLine", Log.Level.Info, "Our Log configuration is:" );
+				Log.logConfig( "MLine", Log.Level.INFO, "Our Log configuration is:" );
 				cl.multiLineDelimiter= null; // reset
 
 				cl.multiLineMsgMode= 1;
 				Log.info( "" );
 				Log.info( "-------- ML Mode = 1 (multi line, all meta info per line) --------" );
-				Log.logConfig( "MLine", Log.Level.Info, "Our Log configuration is:" );
+				Log.logConfig( "MLine", Log.Level.INFO, "Our Log configuration is:" );
 			
 				cl.multiLineMsgMode= 2;
 				Log.info( "" );
 				Log.info( "-------- ML Mode = 2 (multi line, meta info blanked) --------" );
-				Log.logConfig( "MLine", Log.Level.Info, "Our Log configuration is:" );
+				Log.logConfig( "MLine", Log.Level.INFO, "Our Log configuration is:" );
 
 				cl.multiLineMsgMode= 3;
 				Log.info( "" );
 				Log.info( "-------- ML Mode = 3 (multi line, just caller info) --------" );
-				Log.logConfig( "MLine", Log.Level.Info, "Our Log configuration is:" );
+				Log.logConfig( "MLine", Log.Level.INFO, "Our Log configuration is:" );
 
 				cl.multiLineMsgMode= 4;
 				Log.info( "" );
 				Log.info( "-------- ML Mode = 4 (multi line, no meta, no caller, starts at pos 0)) --------" );
-				Log.logConfig( "MLine", Log.Level.Info, "Our Log configuration is:" );
+				Log.logConfig( "MLine", Log.Level.INFO, "Our Log configuration is:" );
 			//#endif
 		}
 

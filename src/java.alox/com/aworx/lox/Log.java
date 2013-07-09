@@ -42,22 +42,22 @@ public abstract class Log
 	public enum DomainLevel
 	{
 		/** Do not log anything. */
-		Off,	
+		OFF,	
 
 		/** Log only level Error. */
-		Errors,
+		ERRORS,
 
 		/** Log only levels Warning or Error. */
-		WarningsAndErrors,
+		WARNINGS_AND_ERRORS,
 
 		/** Log all  levels but Verbose. */
-		InfoWarningsAndErrors,
+		INFO_WARNINGS_AND_ERRORS,
 
 		/** Log all. */								
-		All,	
+		ALL,	
 
 		/** Inherit level from parent domain. */
-		Inherit,	
+		INHERIT,	
 	}
 
 
@@ -68,20 +68,20 @@ public abstract class Log
 	{
 		/** The most verbose log level to be used for debug output statements. Logged only if
 			the domains log level is set to DomainLevel.All. */
-		Verbose,
+		VERBOSE,
 
 		/** The standard log level for normal log output statements. Logged if the domains
 			level is either DomainLevel.All or DomainLevel.InfoWarningsAndErrors. */
-		Info,
+		INFO,
 
 		/** A log level for warning messages, hence things that might lead to errors or are not
 			welcome for other reasons, but maybe are not errors. 
 			It is not logged only if the domains log level is DomainLevel.Errors orLogDomain.Level.Off. */
-		Warning,
+		WARNING,
 
 		/** A log level for (severe) error messages.
 			It is suppressed only if the domains log level is set to DomainLevel.Off. */
-		Error,
+		ERROR,
 	}
 
 	/**********************************************************************************************//**
@@ -94,16 +94,16 @@ public abstract class Log
 	public enum Scope
 	{
 		/** No scope should be applied/affected. */
-		None,
+		NONE,
 
 		/** Defines the actual package as the scope. */
-		Package,
+		PACKAGE,
 
 		/** Defines the actual class as the scope. */
-		Class,
+		CLASS,
 
 		/** Defines the actual method as the scope. */
-		Method,
+		METHOD,
 	}
 
 
@@ -173,7 +173,7 @@ public abstract class Log
 	 *
 	 * @param logger                The logger to be added.
 	 **************************************************************************************************/
-	public static void addLogger( Logger logger )										{ LOX.addLogger( logger, Log.DomainLevel.WarningsAndErrors ); }
+	public static void addLogger( Logger logger )										{ LOX.addLogger( logger, Log.DomainLevel.WARNINGS_AND_ERRORS ); }
 
 	/**********************************************************************************************//**
 	 * Adds a logger to the Log interface. Each log call that is performed through this interface
@@ -409,7 +409,7 @@ public abstract class Log
 	 *                      swung dash ('~') this is interpreted a sub domain to the default domain
 	 *                      of the source file. For other values, the default domain is ignored
 	 *                      (regardless if this is starting with a slash or not).
-	 * @param level         The logging level.
+	 * @param level         The log level.
 	 * @param headLine      If given, a separated headline will be logged at first place.
 	 * @param loggerFilter  A filter for the loggers to be affected. This parameter enables different
 	 *                      loggers to have different domains. A simple string compare without case
@@ -426,7 +426,7 @@ public abstract class Log
 	 *                  dash ('~') this is interpreted a sub domain to the default domain of the
 	 *                  source file. For other values, the default domain is ignored (regardless if
 	 *                  this is starting with a slash or not).
-	 * @param level     The logging level.
+	 * @param level     The log level.
 	 * @param headLine  If given, a separated headline will be logged at first place.
 	 **************************************************************************************************/
 	public static void logConfig( String domain, Log.Level level, String headLine) 						{ LOX.logConfig( domain, level, headLine, null ); }
@@ -440,7 +440,7 @@ public abstract class Log
 	 * @param msg       The message to log out.
 	 * @param indent    The indentation in the output.
 	 **************************************************************************************************/
-	public static void verbose( Object msg, int indent )						{	LOX.line( true, null, Log.Level.Verbose, msg, indent,	null );	}
+	public static void verbose( Object msg, int indent )						{	LOX.line( true, null, Log.Level.VERBOSE, msg, indent,	null );	}
 
 	/**********************************************************************************************//**
 	 * Log an Object with log level equal to Log.Level.Verbose. This is the highest (most verbose)
@@ -450,7 +450,7 @@ public abstract class Log
 	 *
 	 * @param msg   The message to log out.
 	 **************************************************************************************************/
-	public static void verbose( Object msg )									{	LOX.line( true, null, Log.Level.Verbose, msg, 0,		null );	}
+	public static void verbose( Object msg )									{	LOX.line( true, null, Log.Level.VERBOSE, msg, 0,		null );	}
 
 	/**********************************************************************************************//**
 	 * Log an Object with log level equal to Log.Level.Verbose. This is the highest (most verbose)
@@ -463,7 +463,7 @@ public abstract class Log
 	 * @param msg       The message to log out.
 	 * @param indent    The indentation in the output.
 	 **************************************************************************************************/
-	public static void verbose( String domain, Object msg, int indent )		{	LOX.line( true, domain, Log.Level.Verbose, msg, indent,	null );	}
+	public static void verbose( String domain, Object msg, int indent )		{	LOX.line( true, domain, Log.Level.VERBOSE, msg, indent,	null );	}
 
 	/**********************************************************************************************//**
 	 * Log an Object with log level equal to Log.Level.Verbose. This is the highest (most verbose)
@@ -475,7 +475,7 @@ public abstract class Log
 	 *                  starting with a slash or not).
 	 * @param msg       The message to log out.
 	 **************************************************************************************************/
-	public static void verbose( String domain, Object msg )					{	LOX.line( true, domain, Log.Level.Verbose, msg, 0,		null );	}
+	public static void verbose( String domain, Object msg )					{	LOX.line( true, domain, Log.Level.VERBOSE, msg, 0,		null );	}
 
 	/**********************************************************************************************//**
 	 * Log an Object with log level equal to Log.Level.Info. This is the second highest (after
@@ -486,7 +486,7 @@ public abstract class Log
 	 * @param msg       The message to log out.
 	 * @param indent    The indentation in the output.
 	 **************************************************************************************************/
-	public static void info( Object msg, int indent )							{	LOX.line( true, null, Log.Level.Info, msg, indent,	null );	}
+	public static void info( Object msg, int indent )							{	LOX.line( true, null, Log.Level.INFO, msg, indent,	null );	}
 
 	/**********************************************************************************************//**
 	 * Log an Object with log level equal to Log.Level.Info. This is the second highest (after
@@ -496,7 +496,7 @@ public abstract class Log
 	 *
 	 * @param msg       The message to log out.
 	 **************************************************************************************************/
-	public static void info( Object msg )										{	LOX.line( true, null, Log.Level.Info, msg, 0,		null );	}
+	public static void info( Object msg )										{	LOX.line( true, null, Log.Level.INFO, msg, 0,		null );	}
 
 	/**********************************************************************************************//**
 	 * Log an Object with log level equal to Log.Level.Info. This is the second highest (after
@@ -510,7 +510,7 @@ public abstract class Log
 	 * @param msg       The message to log.
 	 * @param indent    The indentation in the output.
 	 **************************************************************************************************/
-	public static void info( String domain, Object msg, int indent )			{	LOX.line( true, domain, Log.Level.Info, msg, indent,	null );	}
+	public static void info( String domain, Object msg, int indent )			{	LOX.line( true, domain, Log.Level.INFO, msg, indent,	null );	}
 
 	/**********************************************************************************************//**
 	 * Log an Object with log level equal to Log.Level.Info. This is the second highest (after
@@ -523,7 +523,7 @@ public abstract class Log
 	 *                  starting with a slash or not).
 	 * @param msg       The message to log.
 	 **************************************************************************************************/
-	public static void info( String domain, Object msg )						{	LOX.line( true, domain, Log.Level.Info, msg, 0,		null );	}
+	public static void info( String domain, Object msg )						{	LOX.line( true, domain, Log.Level.INFO, msg, 0,		null );	}
 
 	/**********************************************************************************************//**
 	 * Log an Object with log level equal to Log.Level.Warning. Log messages of this log level are
@@ -534,7 +534,7 @@ public abstract class Log
 	 * @param msg       The message to log out.
 	 * @param indent    The indentation in the output.
 	 **************************************************************************************************/
-	public static void warning( Object msg, int indent )						{	LOX.line( true, null, Log.Level.Warning, msg, indent,	null );	}
+	public static void warning( Object msg, int indent )						{	LOX.line( true, null, Log.Level.WARNING, msg, indent,	null );	}
 
 	/**********************************************************************************************//**
 	 * Log an Object with log level equal to Log.Level.Warning. Log messages of this log level are
@@ -544,7 +544,7 @@ public abstract class Log
 	 *
 	 * @param msg   The message to log out.
 	 **************************************************************************************************/
-	public static void warning( Object msg )									{	LOX.line( true, null, Log.Level.Warning, msg, 0,		null );	}
+	public static void warning( Object msg )									{	LOX.line( true, null, Log.Level.WARNING, msg, 0,		null );	}
 
 	/**********************************************************************************************//**
 	 * Log an Object with log level equal to Log.Level.Warning. Log messages of this log level are
@@ -557,7 +557,7 @@ public abstract class Log
 	 * @param msg       The message to log.
 	 * @param indent    The indentation in the output.
 	 **************************************************************************************************/
-	public static void warning( String domain, Object msg, int indent )		{	LOX.line( true, domain, Log.Level.Warning, msg, indent,	null );	}
+	public static void warning( String domain, Object msg, int indent )		{	LOX.line( true, domain, Log.Level.WARNING, msg, indent,	null );	}
 
 	/**********************************************************************************************//**
 	 * Log an Object with log level equal to Log.Level.Warning. Log messages of this log level are
@@ -569,7 +569,7 @@ public abstract class Log
 	 *                  starting with a slash or not).
 	 * @param msg       The message to log.
 	 **************************************************************************************************/
-	public static void warning( String domain, Object msg )					{	LOX.line( true, domain, Log.Level.Warning, msg, 0,		null );	}
+	public static void warning( String domain, Object msg )					{	LOX.line( true, domain, Log.Level.WARNING, msg, 0,		null );	}
 
 	/**********************************************************************************************//**
 	 * Log an Object with log level equal to Log.Level.Error. Log messages of this log level are are
@@ -580,7 +580,7 @@ public abstract class Log
 	 * @param msg       The message to log out.
 	 * @param indent    The indentation in the output.
 	 **************************************************************************************************/
-	public static void error( Object msg, int indent )						{	LOX.line( true, null, Log.Level.Error, msg, indent,	null );	}
+	public static void error( Object msg, int indent )						{	LOX.line( true, null, Log.Level.ERROR, msg, indent,	null );	}
 
 	/**********************************************************************************************//**
 	 * Log an Object with log level equal to Log.Level.Error. Log messages of this log level are are
@@ -590,7 +590,7 @@ public abstract class Log
 	 *
 	 * @param msg       The message to log out.
 	 **************************************************************************************************/
-	public static void error( Object msg )									{	LOX.line( true, null, Log.Level.Error, msg, 0,		null );	}
+	public static void error( Object msg )									{	LOX.line( true, null, Log.Level.ERROR, msg, 0,		null );	}
 
 	/**********************************************************************************************//**
 	 * Log an Object with log level equal to Log.Level.Error. Log messages of this log level are are
@@ -603,7 +603,7 @@ public abstract class Log
 	 * @param msg       The message to log out.
 	 * @param indent    The indentation in the output.
 	 **************************************************************************************************/
-	public static void error( String domain, Object msg, int indent )			{	LOX.line( true, domain, Log.Level.Error, msg, indent,	null );	}
+	public static void error( String domain, Object msg, int indent )			{	LOX.line( true, domain, Log.Level.ERROR, msg, indent,	null );	}
 
 	/**********************************************************************************************//**
 	 * Log an Object with log level equal to Log.Level.Error. Log messages of this log level are are
@@ -615,7 +615,7 @@ public abstract class Log
 	 *                  starting with a slash or not).
 	 * @param msg       The message to log out.
 	 **************************************************************************************************/
-	public static void error( String domain, Object msg )						{	LOX.line( true, domain, Log.Level.Error, msg, 0,		null );	}
+	public static void error( String domain, Object msg )						{	LOX.line( true, domain, Log.Level.ERROR, msg, 0,		null );	}
 
 	/**********************************************************************************************//**
 	 * Log a string only if the given condition is not true. Log level will be highest, namely Error
@@ -626,7 +626,7 @@ public abstract class Log
 	 * @param msg       The message to log out.
 	 * @param indent    the indentation in the output.
 	 **************************************************************************************************/
-	public static void Assert( boolean trueOrLog, Object msg, int indent )	{	LOX.line( !trueOrLog, null, Log.Level.Error, msg, indent,	null );	}
+	public static void Assert( boolean trueOrLog, Object msg, int indent )	{	LOX.line( !trueOrLog, null, Log.Level.ERROR, msg, indent,	null );	}
 
 	/**********************************************************************************************//**
 	 * Log a string only if the given condition is not true. Log level will be highest, namely Error
@@ -636,7 +636,7 @@ public abstract class Log
 	 * @param trueOrLog The log is only performed if condition is not true.
 	 * @param msg       The message to log out.
 	 **************************************************************************************************/
-	public static void Assert( boolean trueOrLog, Object msg )				{	LOX.line( !trueOrLog, null, Log.Level.Error, msg, 0,		null );	}
+	public static void Assert( boolean trueOrLog, Object msg )				{	LOX.line( !trueOrLog, null, Log.Level.ERROR, msg, 0,		null );	}
 
 	/**********************************************************************************************//**
 	 * Log a string only if the given condition is not true. Log level will be highest, namely
@@ -650,7 +650,7 @@ public abstract class Log
 	 * @param msg       The message to log out.
 	 * @param indent    the indentation in the output.
 	 **************************************************************************************************/
-	public static void Assert( boolean trueOrLog, String domain, Object msg, int indent )	{ LOX.line( !trueOrLog, domain, Log.Level.Error, msg, indent,	null );	}
+	public static void Assert( boolean trueOrLog, String domain, Object msg, int indent )	{ LOX.line( !trueOrLog, domain, Log.Level.ERROR, msg, indent,	null );	}
 
 	/**********************************************************************************************//**
 	 * Log a string only if the given condition is not true. Log level will be highest, namely
@@ -663,7 +663,7 @@ public abstract class Log
 	 *                  this is starting with a slash or not).
 	 * @param msg       The message to log out.
 	 **************************************************************************************************/
-	public static void Assert( boolean trueOrLog, String domain, Object msg )				{ LOX.line( !trueOrLog, domain, Log.Level.Error, msg, 0,		null );	}
+	public static void Assert( boolean trueOrLog, String domain, Object msg )				{ LOX.line( !trueOrLog, domain, Log.Level.ERROR, msg, 0,		null );	}
 
 	/**********************************************************************************************//**
 	 * Provides a the a more flexible but complex way to log a message. The methods #verbose(),

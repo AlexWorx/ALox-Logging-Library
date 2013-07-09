@@ -48,10 +48,10 @@ public class ConsoleLogger : TextLogger
 	// fields
 	// #################################################################################################
 	/// <summary>The prefix for the caller method name </summary>
-	public		String			FMT_MemberPrefix				=".";
+	public		String			FmtMemberPrefix				=".";
 
 	/// <summary>The postfix for the caller method name  </summary>
-	public		String			FMT_MemberPostfix				="()";
+	public		String			FmtMemberPostfix				="()";
 
 	/// <summary>Tab position after caller info. This auto adjusts (increases) when 
 	/// longer source info occurs. To avoid increases in the beginning, this value
@@ -103,9 +103,7 @@ public class ConsoleLogger : TextLogger
 	 *  The implementation of the abstract method of parent class TextLogger. Logs messages to the
 	 *  application console and/or the VStudio output window.
 	 * </summary>
-	 * <param name="domain">		The log domain name. If not starting with a slash ('/')
-	 * 								this is appended to any default domain name that might have been
-	 * 								specified for the source file. </param>
+	 * <param name="domain">	The log domain name. </param>
 	 * <param name="level">			The log level. This has been checked to be active already on this
 	 * 								stage and is provided to be able to be logged out only. </param>
 	 * <param name="msg">			The log message. </param>
@@ -155,9 +153,9 @@ public class ConsoleLogger : TextLogger
 				consoleBuffer.Append( strPrefixLineNumber ).Append( caller.LineNumber ).Append( strPostfixLineNumber );
 
 				// append method name
-				consoleBuffer.Append( FMT_MemberPrefix );
+				consoleBuffer.Append( FmtMemberPrefix );
 				consoleBuffer.Append( caller.MethodName );
-				consoleBuffer.Append( FMT_MemberPostfix );
+				consoleBuffer.Append( FmtMemberPostfix );
 
 				// jump to next tab level
 				if ( TabAfterSourceInfo < consoleBuffer.Length )

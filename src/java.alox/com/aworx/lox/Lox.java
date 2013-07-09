@@ -153,7 +153,7 @@ public class Lox
      *
      * @param logger    The logger to be added.
      **************************************************************************************************/
-	public  void addLogger( Logger logger )	{ addLogger( logger, Log.DomainLevel.WarningsAndErrors ); }
+	public  void addLogger( Logger logger )	{ addLogger( logger, Log.DomainLevel.WARNINGS_AND_ERRORS ); }
 
     /**********************************************************************************************//**
      * Adds a logger to the Log interface. Each log call that is performed through this Lox will be
@@ -188,7 +188,7 @@ public class Lox
 				{
 					// log info on this
 					saveAndSet( false, null );
-					internalLog( Log.Level.Warning,	tempMS.clear().append("Lox.AddLogger(): Logger \"").append( logger.name ).append("\" already exists. Not added.") );
+					internalLog( Log.Level.WARNING,	tempMS.clear().append("Lox.AddLogger(): Logger \"").append( logger.name ).append("\" already exists. Not added.") );
 					return;
 				}
 
@@ -197,7 +197,7 @@ public class Lox
 
 				// log info on this
 				saveAndSet( false, null );
-				internalLog( Log.Level.Info,	tempMS.clear().append("Lox.AddLogger(): Logger \"").append(logger.name).append("\" added") );
+				internalLog( Log.Level.INFO,	tempMS.clear().append("Lox.AddLogger(): Logger \"").append(logger.name).append("\" added") );
 
 			} finally { lock.release(); } 
 		//#endif
@@ -280,7 +280,7 @@ public class Lox
 				// check parameter
 				if ( MString.isNullOrEmpty( domain ) )
 				{
-					internalLog( Log.Level.Error,	tempMS.clear().append("Lox.RegDomain(): Empty domain given. Not registered.") );
+					internalLog( Log.Level.ERROR,	tempMS.clear().append("Lox.RegDomain(): Empty domain given. Not registered.") );
 					return;
 				}
 
@@ -297,18 +297,18 @@ public class Lox
 						logger.createDomain( domainToRegister );
 
 						// log info on this
-						internalLog( Log.Level.Info, tempMS.clear().append("Lox.RegDomain(): Domain \"").append(domainToRegister).append("\" created in logger: ").append(logger.name) );
+						internalLog( Log.Level.INFO, tempMS.clear().append("Lox.RegDomain(): Domain \"").append(domainToRegister).append("\" created in logger: ").append(logger.name) );
 					}
 				}
 
 				// set domain as default for calling source file's log calls
-				if ( scope != Log.Scope.None )
+				if ( scope != Log.Scope.NONE )
 				{
 					MString key= new MString( caller.packageName.length + caller.className.length + caller.methodName.length + 2);
 					key.append( caller.packageName );
-					if ( scope != Log.Scope.Package )
+					if ( scope != Log.Scope.PACKAGE )
 						key.append( '#' ).append( caller.className );
-					if ( scope == Log.Scope.Method )
+					if ( scope == Log.Scope.METHOD )
 						key.append( '#' ).append( caller.methodName );
 
 					// store domain in hash table
@@ -317,9 +317,9 @@ public class Lox
 
 					// log info on this
 					if ( previous == null )
-						internalLog( Log.Level.Info,	tempMS.clear().append("Lox.RegDomain(): Domain \"").append(domainToRegister).append("\" set as default for scope \"").append(scope.toString()).append('\"') );
+						internalLog( Log.Level.INFO,	tempMS.clear().append("Lox.RegDomain(): Domain \"").append(domainToRegister).append("\" set as default for scope \"").append(scope.toString()).append('\"') );
 					else
-						internalLog( Log.Level.Warning,	tempMS.clear().append("Lox.RegDomain(): Replacing default Domain \"").append(previous)
+						internalLog( Log.Level.WARNING,	tempMS.clear().append("Lox.RegDomain(): Replacing default Domain \"").append(previous)
 																	  .append("\" by \"").append(domainToRegister).append("\" as default for scope \"").append(scope.toString()).append('\"') );
 				}
 
@@ -369,7 +369,7 @@ public class Lox
 					logDomain.setLevel( domainLevel, recursive ) ;
 
 					// log info on this (has to be done last, for the case that domain is the internal domain!)
-					internalLog( Log.Level.Info,	tempMS.clear().append("Lox.SetDomain(): Domain \"").append(domainToSet).append("\" log level set to \"").append(domainLevel.toString())
+					internalLog( Log.Level.INFO,	tempMS.clear().append("Lox.SetDomain(): Domain \"").append(domainToSet).append("\" log level set to \"").append(domainLevel.toString())
 																  .append("\" for logger \"").append(logger.name).append('\"') );
 				}
 
@@ -435,7 +435,7 @@ public class Lox
 						logger.isDisabled= disabled;
 
 						// log info on this
-						internalLog( Log.Level.Info,	tempMS.clear().append("Lox.SetDisabled(): Logger \"").append(logger.name).append("\" ").append((disabled ? "disabled" : "enabled"))  );
+						internalLog( Log.Level.INFO,	tempMS.clear().append("Lox.SetDisabled(): Logger \"").append(logger.name).append("\" ").append((disabled ? "disabled" : "enabled"))  );
 					}
 				}
 			
@@ -489,7 +489,7 @@ public class Lox
 					logger.timeOfLastLog .setTo( tickTime );
 
 					// log info on this
-					internalLog( Log.Level.Info,	tempMS.clear().append("Lox.SetStartTime(): Start time of \"").append(logger.name).append("\" set to: ").append(startTime!=null ? startTime.toString() : "\"now\"")  );
+					internalLog( Log.Level.INFO,	tempMS.clear().append("Lox.SetStartTime(): Start time of \"").append(logger.name).append("\" set to: ").append(startTime!=null ? startTime.toString() : "\"now\"")  );
 				}
 
 			} finally { lock.release(); } 
@@ -546,7 +546,7 @@ public class Lox
 				tempMS.clear().append("Lox: Mapped thread ID ").append((int) id).append(" to \"").append(threadName).append("\".");
 				if ( !MString.isNullOrEmpty( origThreadName )  )
 					tempMS.append(" Original thread name was \"").append(origThreadName).append("\".");
-				internalLog( Log.Level.Info, tempMS );
+				internalLog( Log.Level.INFO, tempMS );
 
 			} finally { lock.release(); } 
 		//#endif
@@ -584,14 +584,14 @@ public class Lox
 				
 				// build key string
 				MString key= new MString(64);
-				if ( scope == Log.Scope.None )
+				if ( scope == Log.Scope.NONE )
 					key.append( "$GLOBAL" );
 				else
 				{		
 					key.append( caller.packageName );
-					if ( scope != Log.Scope.Package )
+					if ( scope != Log.Scope.PACKAGE )
 						key.append( '#' ).append( caller.className );
-					if ( scope == Log.Scope.Method )
+					if ( scope == Log.Scope.METHOD )
 						key.append( '#' ).append( caller.methodName );
 				}
 	
@@ -599,7 +599,7 @@ public class Lox
 				markers.put( key, marker );
 	
 				// log info on this
-				internalLog( Log.Level.Verbose, tempMS.clear().append("Lox: Marker set (").append(( marker != null ? marker.toString() : "null")).append(')') );
+				internalLog( Log.Level.VERBOSE, tempMS.clear().append("Lox: Marker set (").append(( marker != null ? marker.toString() : "null")).append(')') );
 	
 			} finally { lock.release(); }
 		//#endif
@@ -632,14 +632,14 @@ public class Lox
 				
 				// build key string
 				tempMS.clear();
-				if ( scope == Log.Scope.None )
+				if ( scope == Log.Scope.NONE )
 					tempMS.append( "$GLOBAL" );
 				else
 				{		
 					tempMS.append( caller.packageName );
-					if ( scope != Log.Scope.Package )
+					if ( scope != Log.Scope.PACKAGE )
 						tempMS.append( '#' ).append( caller.className );
-					if ( scope == Log.Scope.Method )
+					if ( scope == Log.Scope.METHOD )
 						tempMS.append( '#' ).append( caller.methodName );
 				}
 	
@@ -650,7 +650,7 @@ public class Lox
 
 				// log info on this
 				saveAndSet( false, null );
-				internalLog( Log.Level.Verbose, tempMS.clear().append("Lox: Marker retrieved (").append(( marker != null ? marker.toString() : "null")).append(')') );
+				internalLog( Log.Level.VERBOSE, tempMS.clear().append("Lox: Marker retrieved (").append(( marker != null ? marker.toString() : "null")).append(')') );
 
 	
 			} finally { lock.release(); } 
@@ -766,7 +766,7 @@ public class Lox
      * @param msg       The message to log out.
      * @param indent    The indentation in the output.
      **************************************************************************************************/
-	public  void verbose( Object msg, int indent )						{	line( true, null, Log.Level.Verbose, msg, indent,	null );	}
+	public  void verbose( Object msg, int indent )						{	line( true, null, Log.Level.VERBOSE, msg, indent,	null );	}
 
     /**********************************************************************************************//**
      * Log an Object with log level equal to Log.Level.Verbose. This is the highest (most verbose)
@@ -776,7 +776,7 @@ public class Lox
      *
      * @param msg   The message to log out.
      **************************************************************************************************/
-	public  void verbose( Object msg )									{	line( true, null, Log.Level.Verbose, msg, 0,		null );	}
+	public  void verbose( Object msg )									{	line( true, null, Log.Level.VERBOSE, msg, 0,		null );	}
 
     /**********************************************************************************************//**
      * Log an Object with log level equal to Log.Level.Verbose. This is the highest (most verbose)
@@ -789,7 +789,7 @@ public class Lox
      * @param msg       The message to log out.
      * @param indent    The indentation in the output.
      **************************************************************************************************/
-	public  void verbose( String domain, Object msg, int indent )		{	line( true, domain, Log.Level.Verbose, msg, indent,	null );	}
+	public  void verbose( String domain, Object msg, int indent )		{	line( true, domain, Log.Level.VERBOSE, msg, indent,	null );	}
 
     /**********************************************************************************************//**
      * Log an Object with log level equal to Log.Level.Verbose. This is the highest (most verbose)
@@ -801,7 +801,7 @@ public class Lox
      *                  starting with a slash or not).
      * @param msg       The message to log out.
      **************************************************************************************************/
-	public  void verbose( String domain, Object msg )					{	line( true, domain, Log.Level.Verbose, msg, 0,		null );	}
+	public  void verbose( String domain, Object msg )					{	line( true, domain, Log.Level.VERBOSE, msg, 0,		null );	}
 
 
     /**********************************************************************************************//**
@@ -813,7 +813,7 @@ public class Lox
      * @param msg       The message to log out.
      * @param indent    The indentation in the output.
      **************************************************************************************************/
-	public  void info( Object msg, int indent )							{	line( true, null, Log.Level.Info, msg, indent,	null );	}
+	public  void info( Object msg, int indent )							{	line( true, null, Log.Level.INFO, msg, indent,	null );	}
 
     /**********************************************************************************************//**
      * Log an Object with log level equal to Log.Level.Info. This is the second highest (after
@@ -823,7 +823,7 @@ public class Lox
      *
      * @param msg       The message to log out.
      **************************************************************************************************/
-	public  void info( Object msg )										{	line( true, null, Log.Level.Info, msg, 0,		null );	}
+	public  void info( Object msg )										{	line( true, null, Log.Level.INFO, msg, 0,		null );	}
 
     /**********************************************************************************************//**
      * Log an Object with log level equal to Log.Level.Info. This is the second highest (after
@@ -837,7 +837,7 @@ public class Lox
      * @param msg       The message to log.
      * @param indent    The indentation in the output.
      **************************************************************************************************/
-	public  void info( String domain, Object msg, int indent )			{	line( true, domain, Log.Level.Info, msg, indent,	null );	}
+	public  void info( String domain, Object msg, int indent )			{	line( true, domain, Log.Level.INFO, msg, indent,	null );	}
 
     /**********************************************************************************************//**
      * Log an Object with log level equal to Log.Level.Info. This is the second highest (after
@@ -850,7 +850,7 @@ public class Lox
      *                  starting with a slash or not).
      * @param msg       The message to log.
      **************************************************************************************************/
-	public  void info( String domain, Object msg )						{	line( true, domain, Log.Level.Info, msg, 0,		null );	}
+	public  void info( String domain, Object msg )						{	line( true, domain, Log.Level.INFO, msg, 0,		null );	}
 
     /**********************************************************************************************//**
      * Log an Object with log level equal to Log.Level.Warning. Log messages of this log level are
@@ -861,7 +861,7 @@ public class Lox
      * @param msg       The message to log out.
      * @param indent    The indentation in the output.
      **************************************************************************************************/
-	public  void warning( Object msg, int indent )						{	line( true, null, Log.Level.Warning, msg, indent,	null );	}
+	public  void warning( Object msg, int indent )						{	line( true, null, Log.Level.WARNING, msg, indent,	null );	}
 
     /**********************************************************************************************//**
      * Log an Object with log level equal to Log.Level.Warning. Log messages of this log level are
@@ -871,7 +871,7 @@ public class Lox
      *
      * @param msg   The message to log out.
      **************************************************************************************************/
-	public  void warning( Object msg )									{	line( true, null, Log.Level.Warning, msg, 0,		null );	}
+	public  void warning( Object msg )									{	line( true, null, Log.Level.WARNING, msg, 0,		null );	}
 
     /**********************************************************************************************//**
      * Log an Object with log level equal to Log.Level.Warning. Log messages of this log level are
@@ -884,7 +884,7 @@ public class Lox
      * @param msg       The message to log.
      * @param indent    The indentation in the output.
      **************************************************************************************************/
-	public  void warning( String domain, Object msg, int indent )		{	line( true, domain, Log.Level.Warning, msg, indent,	null );	}
+	public  void warning( String domain, Object msg, int indent )		{	line( true, domain, Log.Level.WARNING, msg, indent,	null );	}
 
     /**********************************************************************************************//**
      * Log an Object with log level equal to Log.Level.Warning. Log messages of this log level are
@@ -896,7 +896,7 @@ public class Lox
      *                  starting with a slash or not).
      * @param msg       The message to log.
      **************************************************************************************************/
-	public  void warning( String domain, Object msg )					{	line( true, domain, Log.Level.Warning, msg, 0,		null );	}
+	public  void warning( String domain, Object msg )					{	line( true, domain, Log.Level.WARNING, msg, 0,		null );	}
 
     /**********************************************************************************************//**
      * Log an Object with log level equal to Log.Level.Error. Log messages of this log level are are
@@ -907,7 +907,7 @@ public class Lox
      * @param msg       The message to log out.
      * @param indent    The indentation in the output.
      **************************************************************************************************/
-	public  void error( Object msg, int indent )					{	line( true, null, Log.Level.Error, msg, indent,	null );	}
+	public  void error( Object msg, int indent )					{	line( true, null, Log.Level.ERROR, msg, indent,	null );	}
 
     /**********************************************************************************************//**
      * Log an Object with log level equal to Log.Level.Error. Log messages of this log level are are
@@ -917,7 +917,7 @@ public class Lox
      *
      * @param msg       The message to log out.
      **************************************************************************************************/
-	public  void error( Object msg )								{	line( true, null, Log.Level.Error, msg, 0,		null );	}
+	public  void error( Object msg )								{	line( true, null, Log.Level.ERROR, msg, 0,		null );	}
 
     /**********************************************************************************************//**
      * Log an Object with log level equal to Log.Level.Error. Log messages of this log level are are
@@ -930,7 +930,7 @@ public class Lox
      * @param msg       The message to log out.
      * @param indent    The indentation in the output.
      **************************************************************************************************/
-	public  void error( String domain, Object msg, int indent )		{	line( true, domain, Log.Level.Error, msg, indent,	null );	}
+	public  void error( String domain, Object msg, int indent )		{	line( true, domain, Log.Level.ERROR, msg, indent,	null );	}
 
     /**********************************************************************************************//**
      * Log an Object with log level equal to Log.Level.Error. Log messages of this log level are are
@@ -942,7 +942,7 @@ public class Lox
      *                  starting with a slash or not).
      * @param msg       The message to log out.
      **************************************************************************************************/
-	public  void error( String domain, Object msg )					{	line( true, domain, Log.Level.Error, msg, 0,		null );	}
+	public  void error( String domain, Object msg )					{	line( true, domain, Log.Level.ERROR, msg, 0,		null );	}
 
     /**********************************************************************************************//**
      * Log a string only if the given condition is not true. Log level will be highest, namely Error
@@ -953,7 +953,7 @@ public class Lox
      * @param msg       The message to log out.
      * @param indent    the indentation in the output.
      **************************************************************************************************/
-	public  void Assert( boolean trueOrLog, Object msg, int indent )	{	line( !trueOrLog, null, Log.Level.Error, msg, indent,	null );	}
+	public  void Assert( boolean trueOrLog, Object msg, int indent )	{	line( !trueOrLog, null, Log.Level.ERROR, msg, indent,	null );	}
 
     /**********************************************************************************************//**
      * Log a string only if the given condition is not true. Log level will be highest, namely Error
@@ -963,7 +963,7 @@ public class Lox
      * @param trueOrLog The log is only performed if condition is not true.
      * @param msg       The message to log out.
      **************************************************************************************************/
-	public  void Assert( boolean trueOrLog, Object msg )				{	line( !trueOrLog, null, Log.Level.Error, msg, 0,		null );	}
+	public  void Assert( boolean trueOrLog, Object msg )				{	line( !trueOrLog, null, Log.Level.ERROR, msg, 0,		null );	}
 
     /**********************************************************************************************//**
      * Log a string only if the given condition is not true. Log level will be highest, namely
@@ -977,7 +977,7 @@ public class Lox
      * @param msg       The message to log out.
      * @param indent    the indentation in the output.
      **************************************************************************************************/
-	public  void Assert( boolean trueOrLog, String domain, Object msg, int indent )	{ line( !trueOrLog, domain, Log.Level.Error, msg, indent,	null );	}
+	public  void Assert( boolean trueOrLog, String domain, Object msg, int indent )	{ line( !trueOrLog, domain, Log.Level.ERROR, msg, indent,	null );	}
 
     /**********************************************************************************************//**
      * Log a string only if the given condition is not true. Log level will be highest, namely
@@ -990,7 +990,7 @@ public class Lox
      *                  this is starting with a slash or not).
      * @param msg       The message to log out.
      **************************************************************************************************/
-	public  void Assert( boolean trueOrLog, String domain, Object msg )				{ line( !trueOrLog, domain, Log.Level.Error, msg, 0,		null );	}
+	public  void Assert( boolean trueOrLog, String domain, Object msg )				{ line( !trueOrLog, domain, Log.Level.ERROR, msg, 0,		null );	}
 
     /**********************************************************************************************//**
      * Provides a the a more flexible but complex way to log a message. The methods #verbose(),
@@ -1146,7 +1146,7 @@ public class Lox
 			if ( loggers == null || loggers.size() == 0 )
 			{
 				addLogger( new ConsoleLogger( "CONSOLE" ) );
-				internalLog( Log.Level.Warning,	tempMS.clear().append("Lox: Class 'Log' was used without prior creation of a Log instance. ConsoleLogger Logger created as default.") );
+				internalLog( Log.Level.WARNING,	tempMS.clear().append("Lox: Class 'Log' was used without prior creation of a Log instance. ConsoleLogger Logger created as default.") );
 			}
 
 			// c) merge domain name with default domain
@@ -1187,7 +1187,7 @@ public class Lox
 					// Warning: neither domain nor default domain given
 					if ( MString.isNullOrEmpty( defaultDomain ) )
 					{
-						internalLog( Log.Level.Warning, 
+						internalLog( Log.Level.WARNING, 
 									 tempMS.clear() .append("Lox: No log domain given and default domain not set for scope \"") 
 													.append(caller.packageName).append('.').append(caller.className).append('.').append(caller.methodName).append('\"')
 									);
@@ -1212,7 +1212,7 @@ public class Lox
 					else
 					{
 						// not set? -> remove the ~ symbol and go ahead
-						internalLog( Log.Level.Warning,	 tempMS.clear() .append("Lox: Relative domain path given: \"").append(domain) 
+						internalLog( Log.Level.WARNING,	 tempMS.clear() .append("Lox: Relative domain path given: \"").append(domain) 
 									 									.append("\", but default domain is not set for scope \"") 
 									 									.append(caller.packageName).append('.').append(caller.className).append('.').append(caller.methodName).append('\"')	);
 					}

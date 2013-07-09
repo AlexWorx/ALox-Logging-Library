@@ -228,13 +228,13 @@ public abstract class Logger
 			logDomain= createDomain( domain );
 
 			// inform the if default is All
-			if ( logDomain.getLevel() == Log.DomainLevel.All )
+			if ( logDomain.getLevel() == Log.DomainLevel.ALL )
 			{
 				MString	msg= new MString( 128 );
 				msg .append( "Logger '").append( name )
 					.append( "': log domain '" ).append( domain )
 					.append( "' not found. Created. Inherited domain level is: All ");
-				doLog( domain, Log.Level.Verbose, msg, 0, caller);
+				doLog( domain, Log.Level.VERBOSE, msg, 0, caller);
 			}
 		}
 

@@ -981,7 +981,6 @@ public class MString implements CharSequence
 	 * @return  'this' to allow concatenated calls.
 	 **************************************************************************************************/
 	public MString appendPadLeft( MString ms, int fieldSize ) { return appendPadLeft( ms, fieldSize, ' ' ); }
-	@SuppressWarnings ("null") 
 
 	/**********************************************************************************************//**
 	 * Append the given MString and add padding characters behind the string.
@@ -1036,7 +1035,6 @@ public class MString implements CharSequence
 	 *
 	 * @return  'this' to allow concatenated calls.
 	 **************************************************************************************************/
-	@SuppressWarnings ("null") 
 	public MString appendPadLeft( String s, int fieldSize, char padChar )
 	{
 		// ensure capacity
@@ -1080,7 +1078,6 @@ public class MString implements CharSequence
 	 *
 	 * @return  'this' to allow concatenated calls.
 	 **************************************************************************************************/
-	@SuppressWarnings ("null") 
 	public MString appendPadLeft( StringBuffer sb, int fieldSize, char padChar )
 	{
 		// ensure capacity
@@ -1421,7 +1418,6 @@ public class MString implements CharSequence
 	 *
 	 * @return  True if the given sequence is found at the given position. False otherwise .
 	 **************************************************************************************************/
-	@SuppressWarnings ("null") 
 	public boolean containsAt( CharSequence s, int pos, boolean ignoreCase )
 	{
 		// check null argument or length 0
@@ -1506,7 +1502,6 @@ public class MString implements CharSequence
 			return -1;
 
 		// search
-		@SuppressWarnings ("null") 			// why doesn't Eclipse analyzer get it? 
 		char firstChar= s.charAt( 0 );		// get first char once, as [] operation is expensive
 		while ( startIdx < length )
 		{
@@ -2094,7 +2089,6 @@ public class MString implements CharSequence
 			startIdx= 0;
 
 		// search
-		@SuppressWarnings ("null") 			// why doesn't Eclipse analyzer get it? 
 		char firstChar= Character.toLowerCase( sFor.charAt( 0 ) );		// get first char once, as [] operation is expensive
 		while ( startIdx < sInLen )
 		{
@@ -2134,7 +2128,6 @@ public class MString implements CharSequence
 	 *
 	 * @return  true, if given string s starts with given string prefix, false otherwise.
 	 **************************************************************************************************/
-	@SuppressWarnings ("null") 
 	public static boolean startsWithIgnoreCase( CharSequence s, CharSequence prefix )
 	{
 		// check s
@@ -2170,7 +2163,6 @@ public class MString implements CharSequence
 	 *
 	 * @return  true, if given string s ends with given string prefix, false otherwise.
 	 **************************************************************************************************/
-	@SuppressWarnings ("null") 
 	public static boolean endsWithIgnoreCase( CharSequence s, CharSequence postfix )
 	{
 		// check s

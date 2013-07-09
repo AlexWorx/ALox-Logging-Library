@@ -666,7 +666,7 @@ public class Lox
 	 * 								default domain of the source file. For other values, the default
 	 * 								domain is ignored (regardless if this is starting with a slash or
 	 * 								not). </param>
-	 * <param name="level">		  	The logging level. </param>
+	 * <param name="level">		  	The log level. </param>
 	 * <param name="headLine">	  	If given, a separated headline will be logged at first place. </param>
 	 * <param name="loggerFilter">	(Optional) A filter for the loggers to be affected. This
 	 * 								parameter enables different loggers to have different domains. A
@@ -1217,7 +1217,7 @@ public class Lox
 		 *  Logs an internal error message to the domain given by field InternalDomain. Attn: must only
 		 *  be called after saveAndSet() was performed.
 		 * </summary>
-		 * <param name="level">	The logging level. </param>
+		 * <param name="level">	The log level. </param>
 		 * <param name="msg">  	The message. </param>
 		 **************************************************************************************************/
 		protected  void internalLog( Log.Level level, MString msg )

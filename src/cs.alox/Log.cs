@@ -298,7 +298,7 @@ public static class Log
 	 **************************************************************************************************/
 	[Conditional("ALOX_DEBUG")]	
 	public static void RegDomain( String	domain,	 Log.Scope scope,
-							    [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
+								[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
 			LOX.RegDomain( domain, scope, csf,cln,cmn );
@@ -307,11 +307,11 @@ public static class Log
 
 	/** ***********************************************************************************************
 	 * <summary>
-     *  Sets the domain log level and (by default) all it's sub domains recursively. In the case that
-     *  sub domains should be set to a different log level, then this function has to be called for
-     *  such sub domains after the call to the parent domain (or recursion has to be switched off,
-     *  using the parameter 'recursive'). It is not necessary to register a domain before setting its
-     *  log level and log levels can be set and modified any time.
+	 *  Sets the domain log level and (by default) all it's sub domains recursively. In the case that
+	 *  sub domains should be set to a different log level, then this function has to be called for
+	 *  such sub domains after the call to the parent domain (or recursion has to be switched off,
+	 *  using the parameter 'recursive'). It is not necessary to register a domain before setting its
+	 *  log level and log levels can be set and modified any time.
 	 * </summary>
 	 * <param name="domain">	  	If this is null, the default domain is used. If this is starting
 	 * 								with a swung dash ('~') this is interpreted a sub domain to the
@@ -482,7 +482,7 @@ public static class Log
 	 * 								default domain of the source file. For other values, the default
 	 * 								domain is ignored (regardless if this is starting with a slash or
 	 * 								not). </param>
-	 * <param name="level">		  	The logging level. </param>
+	 * <param name="level">		  	The log level. </param>
 	 * <param name="headLine">	  	If given, a separated headline will be logged at first place. </param>
 	 * <param name="loggerFilter">	(Optional) A filter for the loggers to be affected. This
 	 * 								parameter enables different loggers to have different domains. A
@@ -639,7 +639,7 @@ public static class Log
 	 **************************************************************************************************/
 	[Conditional("ALOX_DEBUG")]
 	public static void Warning( String domain, Object msg, int indent = 0,
-							    [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
+								[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
 			LOX.Line( true, domain, Log.Level.Warning, msg, indent, null, csf, cln, cmn );

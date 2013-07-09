@@ -189,9 +189,7 @@ public abstract class Logger
 	 *  used from outside. Instead, the static interface Log should be the right choice for most use
 	 *  cases.
 	 * </summary>
-	 * <param name="domain">	The log domain name. If not starting with a slash ('/')
-	 * 							is is appended to any default domain name that might have been specified
-	 * 							for the source file. </param>
+	 * <param name="domain">	The log domain name. </param>
 	 * <param name="level"> 	The log level. This is checked against the level setting of the given
 	 * 							domain. </param>
 	 * <param name="msgObject"> The log message object (mostly a String or MString). </param>
@@ -223,9 +221,7 @@ public abstract class Logger
 
 	/** ***********************************************************************************************
 	 * <summary>	Check if a given domain is active in respect to the given Log.Level. </summary>
-	 * <param name="domain">	The log domain name. If not starting with a slash ('/') this is
-	 * 							appended to any default domain name that might have been specified for
-	 * 							the source file. </param>
+	 * <param name="domain">	The log domain name. </param>
 	 * <param name="level"> 	The log level that is checked against given the domains' setting. </param>
 	 * <param name="caller">	Once compiler generated and passed forward to here. </param>
 	 * <returns>	True if domain is active in respect to the given Log.Level. </returns>

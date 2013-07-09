@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>ALox-Java</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>java.othertests</name>
+			<type>2</type>
+			<locationURI>$%7BPARENT-2-PROJECT_LOC%7D/src/java.othertests.aworx.util</locationURI>
+		</link>
+		<link>
+			<name>java.aworx.lox</name>
+			<type>2</type>
+			<locationURI>$%7BPARENT-2-PROJECT_LOC%7D/src/java.alox</locationURI>
+		</link>
+		<link>
+			<name>java.aworx.util</name>
+			<type>2</type>
+			<locationURI>$%7BPARENT-2-PROJECT_LOC%7D/src/java.aworx.util</locationURI>
+		</link>
+		<link>
+			<name>java.unittests.aworx.lox</name>
+			<type>2</type>
+			<locationURI>$%7BPARENT-2-PROJECT_LOC%7D/src/java.unittests.alox</locationURI>
+		</link>
+		<link>
+			<name>java.unittests.aworx.util</name>
+			<type>2</type>
+			<locationURI>$%7BPARENT-2-PROJECT_LOC%7D/src/java.unittests.aworx.util</locationURI>
+		</link>
+	</linkedResources>
+</projectDescription>

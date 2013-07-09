@@ -3,7 +3,7 @@ package unittests.com.aworx.util;
 import static org.junit.Assert.*;
 
 import java.util.*;
-import junit.framework.Assert;
+
 import org.junit.Test;
 
 import com.aworx.util.*;
@@ -24,6 +24,7 @@ public class Test_TickerAndTickTime
 		nanosPerYear=	nanosPerDay * 365;	
 	}
 
+	@SuppressWarnings("static-method")
 	@Test 
 	public void TickerSpeedTest()
 	{
@@ -73,6 +74,7 @@ public class Test_TickerAndTickTime
 
 
 
+	@SuppressWarnings("static-method")
 	@Test 
 	public void TickerDateTimeConversion()
 	{
@@ -141,6 +143,7 @@ public class Test_TickerAndTickTime
 
 
 
+	@SuppressWarnings("static-method")
 	@Test 
 	public void TickerMicroSecsOutput()
 	{
@@ -182,6 +185,7 @@ public class Test_TickerAndTickTime
 	}
 
 
+	@SuppressWarnings("static-method")
 	@Test 
 	public void Ticktime()
 	{

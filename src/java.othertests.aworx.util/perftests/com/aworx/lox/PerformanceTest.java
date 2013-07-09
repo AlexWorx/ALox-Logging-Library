@@ -37,18 +37,18 @@ public class PerformanceTest
 		cl.enableAppConsole= true;
 		ml= new MemoryLogger( "Memory");
 
-		Log.addLogger( cl, Log.DomainLevel.WarningsAndErrors );
-		Log.addLogger( ml, Log.DomainLevel.Off );
+		Log.addLogger( cl, Log.DomainLevel.WARNINGS_AND_ERRORS );
+		Log.addLogger( ml, Log.DomainLevel.OFF );
 
-		Log.regDomain( "CON", Log.Scope.Method );
-		Log.regDomain( "MEM", Log.Scope.None  );
-		Log.regDomain( "BOTH",Log.Scope.None );
+		Log.regDomain( "CON", Log.Scope.METHOD );
+		Log.regDomain( "MEM", Log.Scope.NONE  );
+		Log.regDomain( "BOTH",Log.Scope.NONE );
 
-		Log.setDomain( "CON", Log.DomainLevel.All, true, "Console" );
-		Log.setDomain( "MEM", Log.DomainLevel.Off, true, "Console" );
-		Log.setDomain( "MEM", Log.DomainLevel.All, true, "Memory" );
-		Log.setDomain( "CON", Log.DomainLevel.Off, true, "Memory" );
-		Log.setDomain( "BOTH",Log.DomainLevel.All, true  );
+		Log.setDomain( "CON", Log.DomainLevel.ALL, true, "Console" );
+		Log.setDomain( "MEM", Log.DomainLevel.OFF, true, "Console" );
+		Log.setDomain( "MEM", Log.DomainLevel.ALL, true, "Memory" );
+		Log.setDomain( "CON", Log.DomainLevel.OFF, true, "Memory" );
+		Log.setDomain( "BOTH",Log.DomainLevel.ALL, true  );
 
 		//Log.LogConfig( "CON", Log.Level.Info, "Log Config follows..." );
 		
@@ -65,13 +65,13 @@ public class PerformanceTest
 			if ( fastest > t )
  				fastest= t;
 
-			Log.line( Log.Level.Info, msgBuf.clear().append( "Pass " ).append( i, 3).append( " finished") );
+			Log.line( Log.Level.INFO, msgBuf.clear().append( "Pass " ).append( i, 3).append( " finished") );
 		}
 
-		Log.line( Log.Level.Info, msgBuf.clear().append( "Fastest " ).append( (int) Ticker.toMillis( fastest ), 0).append( " millis (").append( (int) fastest ).append( " ticks)  per 1000 logs.") );
+		Log.line( Log.Level.INFO, msgBuf.clear().append( "Fastest " ).append( (int) Ticker.toMillis( fastest ), 0).append( " millis (").append( (int) fastest ).append( " ticks)  per 1000 logs.") );
 	}
 
-	void simpleInfoLines( int qty )
+	static void simpleInfoLines( int qty )
 	{
 		for ( int i= 0 ; i < qty ; i++ )
 			Log.info( "MEM", "Test Line" );

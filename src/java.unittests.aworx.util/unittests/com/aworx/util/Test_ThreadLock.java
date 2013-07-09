@@ -1,8 +1,7 @@
 package unittests.com.aworx.util;
 
 import static org.junit.Assert.*;
-import java.util.Locale;
-import junit.framework.Assert;
+
 import org.junit.Test;
 
 import com.aworx.util.*;
@@ -11,6 +10,7 @@ import com.aworx.util.*;
 public class Test_ThreadLock
 {
 
+	@SuppressWarnings("static-method")
 	@Test 
 	public void ThreadLock_SimpleTests()
 	{
@@ -129,6 +129,7 @@ public class Test_ThreadLock
 	}
 	
 	
+	@SuppressWarnings("static-method")
 	@Test 
 	public void ThreadLock_SpeedTest()
 	{

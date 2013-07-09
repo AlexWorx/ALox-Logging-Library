@@ -9,7 +9,6 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 
 import com.aworx.lox.Log;
-import com.aworx.lox.Log.Level;
 import com.aworx.util.MString;
 import com.aworx.util.Ticker;
 
@@ -47,9 +46,9 @@ public abstract class TextLogger extends Logger
 	 * 2: Starting with second log line, meta information is replaced by blanks  (default)  
 	 *  
 	 * 
-	 * 3: The headline #FMT_MultiLineMsgHeadline is logged and all lines are logged right after the caller info (no meta information)  
+	 * 3: The headline #fmtMultiLineMsgHeadline is logged and all lines are logged right after the caller info (no meta information)  
 	 * 
-	 * 4: The headline #FMT_MultiLineMsgHeadline is logged and all lines get tabbed to zero (no caller info and no meta information)
+	 * 4: The headline #fmtMultiLineMsgHeadline is logged and all lines get tabbed to zero (no caller info and no meta information)
 	 */
 	public			int				multiLineMsgMode			= 2;
 
@@ -72,111 +71,111 @@ public abstract class TextLogger extends Logger
 	// #################################################################################################
 
 	/** Logged when parameter msg of dLog() is null. */
-	public 			String			FMT_NullObject			="<null>";
+	public 			String			fmtNullObject			="<null>";
 
 	/** Prefix for the log message. */
-	public			String			FMT_MessagePrefix			= ": ";
+	public			String			fmtMessagePrefix			= ": ";
 
 	/** <summary>The character(s) used for indentation. */ 
-	public			String			FMT_IndentString			= "  ";
+	public			String			fmtIndentString			= "  ";
 
 	/** The output for the log level "Error". */
-	public			String			FMT_LogLevelError			= " [ERR]";
+	public			String			fmtLogLevelError			= " [ERR]";
 
 	/** The output for the log level "Warning". */
-	public			String			FMT_LogLevelWarning			= " [WRN]";
+	public			String			fmtLogLevelWarning			= " [WRN]";
 
 	/** The output for the log level "Info". */
-	public			String			FMT_LogLevelInfo			= "      ";
+	public			String			fmtLogLevelInfo			= "      ";
 
 	/** The output for the log level "Verbose". */
-	public			String			FMT_LogLevelVerbose			= " [***]";
+	public			String			fmtLogLevelVerbose			= " [***]";
 
 	/** Headline for multi line messages (depending on #multiLineMsgMode)  . */
-	public			String			FMT_MultiLineMsgHeadline	= "ALox: Multi line message follows: ";
+	public			String			fmtMultiLineMsgHeadline	= "ALox: Multi line message follows: ";
 
 	/** 
 	 *  Prefix for multi line messages. This is also used if multi line messages logging is switched off
 	 *  (MultiLineMsgMode == 0) but replacing of a set MultiLineDelimiter takes place.
 	 */
-	public			String			FMT_MultiLinePrefix			= ">> ";
+	public			String			fmtMultiLinePrefix			= ">> ";
 
 	/**
 	 *  Postfix for multi line messages. This is also used if multi line messages logging is switched off
 	 *  (MultiLineMsgMode == 0) but replacing of a set MultiLineDelimiter takes place.
 	 */
-	public			String			FMT_MultiLinePostfix		= null;
+	public			String			fmtMultiLinePostfix		= null;
 
 	/** Prefix for log date outputs. */
-	public			String			FMT_DatePrefix				= "[";
+	public			String			fmtDatePrefix				= "[";
 	/** Format string for the output of the log date. For more information, see 
 	///  "Standard Date and Time Format Strings" in .NET StringBuilder.AppendFormat() */
-	public			String			FMT_Date					= "yyyy-MM-dd";
+	public			String			fmtDate					= "yyyy-MM-dd";
 	/** Postfix for log date outputs. */
-	public			String			FMT_DatePostfix				= "] ";
+	public			String			fmtDatePostfix				= "] ";
 
 	/** Prefix for time of day outputs. */
-	public			String			FMT_TimeOfDayPrefix			= "[";
+	public			String			fmtTimeOfDayPrefix			= "[";
 	/** Format string for the output of the time of day. For more information, see 
 	///  "Standard Date and Time Format Strings" in .NET StringBuilder.AppendFormat() */
-	public			String			FMT_TimeOfDay				= "HH:mm:ss";
+	public			String			fmtTimeOfDay				= "HH:mm:ss";
 	/** Postfix for time of day outputs. */
-	public			String			FMT_TimeOfDayPostfix		= "] ";
+	public			String			fmtTimeOfDayPostfix		= "] ";
 
 
 	/** Prefix for time elapsed since logging start (or reset) outputs. */
-	public			String			FMT_TimeElapsedPrefix		= "[";
+	public			String			fmtTimeElapsedPrefix		= "[";
 	/** Postfix for time elapsed since logging start (or reset) outputs. */
-	public			String			FMT_TimeElapsedPostfix		= " ";
+	public			String			fmtTimeElapsedPostfix		= " ";
 	/** The word "Days" the out put of time elapsed (if longer than a day). */
-	public			String			FMT_TimeElapsedDays			= " Days ";
+	public			String			fmtTimeElapsedDays			= " Days ";
 
 	/** Prefix for time difference outputs. */
-	public			String			FMT_TimeDiffPrefix			= " +";
+	public			String			fmtTimeDiffPrefix			= " +";
 	/** Postfix for time difference outputs. */
-	public			String			FMT_TimeDiffPostfix			= "]";
+	public			String			fmtTimeDiffPostfix			= "]";
 	/** Entity microseconds for time difference outputs below 1000 microseconds. */
-	public			String			FMT_TimeDiffMicros			= " \u00B5s"; //" µs";
+	public			String			fmtTimeDiffMicros			= " \u00B5s"; //" µs";
 	/** Entity milliseconds for time difference outputs below 1000 milliseconds. */
-	public			String			FMT_TimeDiffMillis			= " ms";
+	public			String			fmtTimeDiffMillis			= " ms";
 	/** Format for time difference outputs between 10s and 99.9s. */
-	public			String			FMT_TimeDiffSecs			= " s";
+	public			String			fmtTimeDiffSecs			= " s";
 	/** Format for time difference outputs between 100s and 60 min. */
-	public			String			FMT_TimeDiffMins			= " m";
+	public			String			fmtTimeDiffMins			= " m";
 	/** Format for time difference outputs between 1h and 24h. */
-	public			String			FMT_TimeDiffHours			= " h";
+	public			String			fmtTimeDiffHours			= " h";
 	/** Format for time difference outputs of more than a day. */
-	public			String			FMT_TimeDiffDays			= " days";
+	public			String			fmtTimeDiffDays			= " days";
 
 	/** Prefix for the domain. */
-	public			String			FMT_DomainPrefix			= " [";
+	public			String			fmtDomainPrefix			= " [";
 
 	/** Postfix for the domain. */
-	public			String			FMT_DomainPostfix			= "]";
+	public			String			fmtDomainPostfix			= "]";
 
 	/** Prefix for the thread name. */
-	public			String			FMT_ThreadPrefix			= " [T:";
+	public			String			fmtThreadPrefix			= " [T:";
 
 	/** Postfix for the domain. */
-	public			String			FMT_ThreadPostfix			= "]";
+	public			String			fmtThreadPostfix			= "]";
 	
 	/** Prefix for the log number. */
-	public			String			FMT_LogNumberPrefix			= " ";
+	public			String			fmtLogNumberPrefix			= " ";
 
 	/** Postfix for the log number. */
-	public			String			FMT_LogNumberPostfix		= "";
+	public			String			fmtLogNumberPostfix		= "";
 	
 	/** Prefix for the domain. */
-	public			int				FMT_LogNumberMinDigits		= 3;
+	public			int				fmtLogNumberMinDigits		= 3;
 
 
 	/** The maximum length of a thread name logged so far. This 'auto growing' 
 	/// field assures to keep output in nice column format.  */
-	public			int				FMT_AutoGrowThreadNameLength= 0;
+	public			int				fmtAutoGrowThreadNameLength= 0;
 
 	/** The maximum length of a domain name logged so far. This 'auto growing' 
 	/// field assures to keep output in nice column format.  */
-	public			int				FMT_AutoGrowDomainNameLength= 0;
+	public			int				fmtAutoGrowDomainNameLength= 0;
 
 
 	// #################################################################################################
@@ -208,10 +207,10 @@ public abstract class TextLogger extends Logger
 	protected		FieldPosition		fieldPositionZero			= new FieldPosition( 0 );
 
 	/**  Internal default string to detect default format for optimized format generation */
-	protected 		String				defaultFMT_Date				= "yyyy-MM-dd";
+	protected 		String				defaultfmtDate				= "yyyy-MM-dd";
 	
 	/**  Internal default string to detect default format for optimized format generation */
-	protected 		String				defaultFMT_TimeOfDay		= "HH:mm:ss";
+	protected 		String				defaultfmtTimeOfDay		= "HH:mm:ss";
 
 	// #################################################################################################
 	// Constructor
@@ -275,7 +274,7 @@ public abstract class TextLogger extends Logger
 		MString msg= 	msgBuffer;
 		msg.clear();
 
-			 if ( msgObject == null )					msg.append( FMT_NullObject );
+			 if ( msgObject == null )					msg.append( fmtNullObject );
 		else if ( msgObject instanceof String ) 		msg.append( (String) 		msgObject );
 		else if ( msgObject instanceof MString )		msg= 	   (MString) 		msgObject;			// reassign
 		else if ( msgObject instanceof StringBuilder )	msg.append( (StringBuilder)	msgObject );
@@ -296,11 +295,11 @@ public abstract class TextLogger extends Logger
 			if ( logDate )
 			{
 			
-				logBuf.append( FMT_DatePrefix );
+				logBuf.append( fmtDatePrefix );
 
 					// avoid the allocation of a) a StringBuilder (yes, a string builder is allocated inside StringBuilder.AppendFormat!) 
 					// and b) a DateTime object, if the format is the unchanged standard. And it is faster anyhow.
-					if ( FMT_Date.equals( defaultFMT_Date ) )
+					if ( fmtDate.equals( defaultfmtDate ) )
 					{
 						// set time in calendar object
 						caller.timeStamp.toJavaCalendar( callerDateTimeCal );
@@ -321,7 +320,7 @@ public abstract class TextLogger extends Logger
 						
 						// create date formatter once
 						if ( dateFormat == null )
-							dateFormat= new SimpleDateFormat( FMT_Date, Locale.US );
+							dateFormat= new SimpleDateFormat( fmtDate, Locale.US );
 						
 						// get date string from system and append to log buffer
 						tempSBuf.setLength( 0 );
@@ -330,17 +329,17 @@ public abstract class TextLogger extends Logger
 						
 					}
 
-				logBuf.append( FMT_DatePostfix );
+				logBuf.append( fmtDatePostfix );
 			}
 
 			// log time	of day (default off)
 			if ( logTimeOfDay )
 			{
-				logBuf.append( FMT_TimeOfDayPrefix);
+				logBuf.append( fmtTimeOfDayPrefix);
 
 					// avoid the allocation of a) a StringBuilder (yes, a string builder is allocated inside StringBuilder.AppendFormat!) 
 					// and b) a DateTime object, if the format is the unchanged standard. And it is faster anyhow.
-					if ( FMT_TimeOfDay.equals( defaultFMT_TimeOfDay ) )
+					if ( fmtTimeOfDay.equals( defaultfmtTimeOfDay ) )
 					{
 						// set time in calendar object
 						if ( ! calInstanceSet )
@@ -359,7 +358,7 @@ public abstract class TextLogger extends Logger
 							caller.timeStamp.toJavaDate( callerDateTimeDate );
 						
 						if ( timeOfDayFormat == null )
-							timeOfDayFormat= new SimpleDateFormat( FMT_TimeOfDay, Locale.US );
+							timeOfDayFormat= new SimpleDateFormat( fmtTimeOfDay, Locale.US );
 						
 						tempSBuf.setLength( 0 );
 						timeOfDayFormat.format( callerDateTimeDate, tempSBuf, fieldPositionZero );
@@ -367,7 +366,7 @@ public abstract class TextLogger extends Logger
 						logBuf.append( tempSBuf );
 					}
 
-				logBuf.append( FMT_TimeOfDayPostfix);
+				logBuf.append( fmtTimeOfDayPostfix);
 			}
 		}
 		
@@ -380,13 +379,13 @@ public abstract class TextLogger extends Logger
 			elapsedMillis=			elapsedMillis   % 1000;
 			
 			
-			logBuf.append( FMT_TimeElapsedPrefix );
+			logBuf.append( fmtTimeElapsedPrefix );
 			
 				// days?
 				int	elapsedDays= 	(int) (elapsedSecs 	/ (60 * 60 * 24 ) );
 				if ( elapsedDays > 0 )
 				{
-					logBuf	.append( elapsedDays ).append( FMT_TimeElapsedDays );
+					logBuf	.append( elapsedDays ).append( fmtTimeElapsedDays );
 					elapsedSecs-= 	((long)elapsedDays) * (60 * 60 * 24);
 				}
 				
@@ -405,7 +404,7 @@ public abstract class TextLogger extends Logger
 						.append( (int) 	elapsedSecs, 	2).append( '.' )
 						.append( (int)	elapsedMillis, 	3);
 
-			logBuf.append( FMT_TimeElapsedPostfix );
+			logBuf.append( fmtTimeElapsedPostfix );
 
 		}
 
@@ -419,26 +418,26 @@ public abstract class TextLogger extends Logger
 		//#if !ALOX_NO_THREADS
 			if ( logThreadInfo )
 			{
-				logBuf.append( FMT_ThreadPrefix );
+				logBuf.append( fmtThreadPrefix );
 
 					// get name length and store max value
-					if ( FMT_AutoGrowThreadNameLength < caller.threadName.length )
-						FMT_AutoGrowThreadNameLength = caller.threadName.length;
+					if ( fmtAutoGrowThreadNameLength < caller.threadName.length )
+						fmtAutoGrowThreadNameLength = caller.threadName.length;
 
 					// append thread name
-					logBuf.appendPadCenter( caller.threadName, FMT_AutoGrowThreadNameLength );
+					logBuf.appendPadCenter( caller.threadName, fmtAutoGrowThreadNameLength );
 
-				logBuf.append( FMT_ThreadPostfix );
+				logBuf.append( fmtThreadPostfix );
 			}
 		//#endif
 
 		// append log level
 		if ( logLogLevel )
 		{
-			logBuf	.append(	level == Log.Level.Error	? FMT_LogLevelError
-							 :  level == Log.Level.Warning	? FMT_LogLevelWarning
-							 :  level == Log.Level.Info		? FMT_LogLevelInfo
-							 :							  FMT_LogLevelVerbose
+			logBuf	.append(	level == Log.Level.ERROR	? fmtLogLevelError
+							 :  level == Log.Level.WARNING	? fmtLogLevelWarning
+							 :  level == Log.Level.INFO		? fmtLogLevelInfo
+							 :							  fmtLogLevelVerbose
 							);
 		}
 
@@ -447,33 +446,33 @@ public abstract class TextLogger extends Logger
 		{
 
 			// save the maximum length of any domain name
-			if ( FMT_AutoGrowDomainNameLength < domain.length() )
-				FMT_AutoGrowDomainNameLength= domain.length();
+			if ( fmtAutoGrowDomainNameLength < domain.length() )
+				fmtAutoGrowDomainNameLength= domain.length();
 
 
 			// If no domain logged yet and domain name is empty, we omit it 
-			if ( FMT_AutoGrowDomainNameLength != 0 || ! MString.isNullOrEmpty( domain ) )
+			if ( fmtAutoGrowDomainNameLength != 0 || ! MString.isNullOrEmpty( domain ) )
 			{
-				logBuf	.append( FMT_DomainPrefix )
-						.appendPadCenter( domain, FMT_AutoGrowDomainNameLength )
-						.append( FMT_DomainPostfix );
+				logBuf	.append( fmtDomainPrefix )
+						.appendPadCenter( domain, fmtAutoGrowDomainNameLength )
+						.append( fmtDomainPostfix );
 			}
 		}
 
 		// log line number 
 		if ( logLogCounter )
 		{
-			logBuf	.append( FMT_LogNumberPrefix )
-					.append( cntLogs, FMT_LogNumberMinDigits )
-					.append( FMT_LogNumberPostfix );
+			logBuf	.append( fmtLogNumberPrefix )
+					.append( cntLogs, fmtLogNumberMinDigits )
+					.append( fmtLogNumberPostfix );
 		}
 
 		// append message prefix
-		logBuf.append( FMT_MessagePrefix );
+		logBuf.append( fmtMessagePrefix );
 
 		// add indent spaces
 		for (int i= indent; i > 0 ; i--) 
-			logBuf.append( FMT_IndentString );
+			logBuf.append( fmtIndentString );
 
 		// replace strings in message
 		for ( int i= 0 ; i < replacements.size() -1 ; i+= 2 )
@@ -506,9 +505,9 @@ public abstract class TextLogger extends Logger
 				logBuf.append( msg );
 			else
 			{
-				logBuf.append( FMT_MultiLinePrefix );
+				logBuf.append( fmtMultiLinePrefix );
 				  logBuf.append( msg );
-				logBuf.append( FMT_MultiLinePostfix );
+				logBuf.append( fmtMultiLinePostfix );
 			}
 
 			// now do the logging by calling our derived classes' doLog
@@ -576,7 +575,7 @@ public abstract class TextLogger extends Logger
 			if ( lineNo == 0 && (multiLineMsgMode == 3 || multiLineMsgMode == 4) )
 			{
 				// log headline
-				logBuf.append( FMT_MultiLineMsgHeadline );
+				logBuf.append( fmtMultiLineMsgHeadline );
 				doTextLog( domain, level, logBuf, indent, caller, 0 );  
 
 				// remember zero as offset 
@@ -593,9 +592,9 @@ public abstract class TextLogger extends Logger
 			logBuf.length= lbLenBeforeMsgPart;
 
 			// append message
-			logBuf.append( FMT_MultiLinePrefix );
+			logBuf.append( fmtMultiLinePrefix );
 			  logBuf.append( msg, actStart, actEnd - actStart  );
-			logBuf.append( FMT_MultiLinePostfix );
+			logBuf.append( fmtMultiLinePostfix );
 			
 			// now do the logging by calling our derived classes' doLog
 			doTextLog( domain, level, logBuf, indent, multiLineMsgMode != 4 ? caller : null, lineNo );
@@ -614,16 +613,16 @@ public abstract class TextLogger extends Logger
 	 **************************************************************************************************/
 	protected void logTimeDiff( long diffMicros )
 	{
-		logBuf.append( FMT_TimeDiffPrefix );
+		logBuf.append( fmtTimeDiffPrefix );
 
 		// below 1000 microseconds?
 		if ( diffMicros < 1000 )
-			logBuf.append( (int) diffMicros, 3 ).append( FMT_TimeDiffMicros );
+			logBuf.append( (int) diffMicros, 3 ).append( fmtTimeDiffMicros );
 		else
 		{
 			// below 1000 ms?
 			if ( diffMicros < 1000000 )
-				logBuf.append( (int) (diffMicros / 1000), 3 ).append( FMT_TimeDiffMillis );
+				logBuf.append( (int) (diffMicros / 1000), 3 ).append( fmtTimeDiffMillis );
 				
 				
 			// below 10 secs (rounded) ? 
@@ -636,7 +635,7 @@ public abstract class TextLogger extends Logger
 				logBuf.append( (int) (hundredthSecs / 100), 1 )
 					  .append( '.' )
 					  .append( (int) (hundredthSecs % 100), 2 )
-					  .append( FMT_TimeDiffSecs );
+					  .append( fmtTimeDiffSecs );
 				}
 
 			else
@@ -651,7 +650,7 @@ public abstract class TextLogger extends Logger
 					logBuf.append( (int) ( tenthSecs / 10 ), 2 )
 						  .append( '.' )
 						  .append( (int) ( tenthSecs % 10 ), 1 )
-						  .append( FMT_TimeDiffSecs );
+						  .append( fmtTimeDiffSecs );
 				}
 
 				// 	below 10 mins ?
@@ -664,7 +663,7 @@ public abstract class TextLogger extends Logger
 					logBuf.append( (int) (hundredthMins / 100), 1 )
 						  .append( '.' )
 						  .append( (int) (hundredthMins % 100), 2 )
-						  .append( FMT_TimeDiffMins );
+						  .append( fmtTimeDiffMins );
 							  
 				}
 				else 
@@ -679,7 +678,7 @@ public abstract class TextLogger extends Logger
 						logBuf.append( (int) (tenthMins / 10), 2 )
 							  .append( '.' )
 							  .append( (int) (tenthMins % 10), 1 )
-							  .append( FMT_TimeDiffMins );
+							  .append( fmtTimeDiffMins );
 					}
 					
 					// below ten hours?
@@ -692,7 +691,7 @@ public abstract class TextLogger extends Logger
 						logBuf.append( (int) (hundredthHours / 100), 1 )
 							  .append( '.' )
 							  .append( (int) (hundredthHours % 100), 2 )
-							  .append( FMT_TimeDiffHours );
+							  .append( fmtTimeDiffHours );
 							  
 					}
 					else
@@ -707,7 +706,7 @@ public abstract class TextLogger extends Logger
 							logBuf.append( (int) (tenthHours / 10), 2 )
 								  .append( '.' )
 								  .append( (int) (tenthHours % 10), 1 )
-								  .append( FMT_TimeDiffHours );
+								  .append( fmtTimeDiffHours );
 								  
 						}
 	
@@ -718,7 +717,7 @@ public abstract class TextLogger extends Logger
 							logBuf.append( (int) (tenthHours / 10), 2 )
 								  .append( '.' )
 								  .append( (int) ((tenthHours / 10) % 10), 1 )
-								  .append( FMT_TimeDiffHours );
+								  .append( fmtTimeDiffHours );
 						}
 						
 						else
@@ -733,7 +732,7 @@ public abstract class TextLogger extends Logger
 								logBuf.append( (int) (hundredthDays / 100), 1 )
 									  .append( '.' )
 									  .append( (int) (hundredthDays % 100), 2 )
-									  .append( FMT_TimeDiffDays );
+									  .append( fmtTimeDiffDays );
 									  
 							}
 		
@@ -744,7 +743,7 @@ public abstract class TextLogger extends Logger
 								logBuf.append( (int) (hundredthDays / 100), 2 )
 									  .append( '.' )
 									  .append( (int) ((hundredthDays / 10) % 10), 1 )
-									  .append( FMT_TimeDiffDays );
+									  .append( fmtTimeDiffDays );
 							}
 						}
 					}
@@ -752,7 +751,7 @@ public abstract class TextLogger extends Logger
 			}
 		}
 
-		logBuf.append( FMT_TimeDiffPostfix );
+		logBuf.append( fmtTimeDiffPostfix );
 	}
 	
 	//#endif // ALOX_DEBUG || ALOX_REL_LOG

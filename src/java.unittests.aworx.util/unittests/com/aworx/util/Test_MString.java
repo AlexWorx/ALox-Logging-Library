@@ -1,15 +1,16 @@
 package unittests.com.aworx.util;
 
 import static org.junit.Assert.*;
-import java.util.Locale;
-import junit.framework.Assert;
+
 import org.junit.Test;
+
 import com.aworx.util.MString;
 
 
 public class Test_MString
 {
 
+	@SuppressWarnings("static-method")
 	@Test 
 	public void MString_Constructors()
 	{
@@ -86,6 +87,7 @@ public class Test_MString
 	}
 
 
+	@SuppressWarnings("static-method")
 	@Test 
 	public void MString_Conversion()
 	{
@@ -112,6 +114,7 @@ public class Test_MString
 		s= ms.toString( 20, 100);			assertTrue ( s.equals("") ); 
 	}
 
+	@SuppressWarnings("static-method")
 	@Test 
 	public void MString_Append()
 	{
@@ -321,6 +324,7 @@ public class Test_MString
 
 	}
 
+	@SuppressWarnings("static-method")
 	@Test 
 	public void MString_Capacity()
 	{
@@ -337,6 +341,7 @@ public class Test_MString
 		ms.ensureCapacity( 2000 ); assertTrue ( ms.buffer.length >= 2000 );
 	}
 
+	@SuppressWarnings("static-method")
 	@Test 
 	public void MString_AppendWithPadding()
 	{
@@ -456,6 +461,7 @@ public class Test_MString
 
 
 
+	@SuppressWarnings("static-method")
 	@Test 
 	public void MString_Tabs()
 	{
@@ -482,6 +488,7 @@ public class Test_MString
 	}
 
 
+	@SuppressWarnings("static-method")
 	@Test 
 	public void MString_SearchAndReplace()
 	{
@@ -533,6 +540,7 @@ public class Test_MString
 		assertTrue( MString.endsWithIgnoreCase  ( s, "utIl") == true  );
 	}
 
+	@SuppressWarnings("static-method")
 	@Test 
 	public void MString_Compare()
 	{
@@ -618,6 +626,7 @@ public class Test_MString
 									bRes= ms.containsAt( sub2, 0, true );	assertEquals( false,	bRes );
 	}
 
+	@SuppressWarnings("static-method")
 	@Test 
 	public void MString_ConvertCase()
 	{

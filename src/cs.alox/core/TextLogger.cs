@@ -58,9 +58,9 @@ public abstract class TextLogger : Logger
 	 * 2: Starting with second log line, meta information is replaced by blanks  (default)  
 	 *  
 	 * 
-	 * 3: The headline #FMT_MultiLineMsgHeadline is logged and all lines are logged right after the caller info (no meta information)  
+	 * 3: The headline #FmtMultiLineMsgHeadline is logged and all lines are logged right after the caller info (no meta information)  
 	 * 
-	 * 4: The headline #FMT_MultiLineMsgHeadline is logged and all lines get tabbed to zero (no caller info and no meta information)
+	 * 4: The headline #FmtMultiLineMsgHeadline is logged and all lines get tabbed to zero (no caller info and no meta information)
 	 * </summary>*/
 	public			int				MultiLineMsgMode			= 2;
 
@@ -83,110 +83,110 @@ public abstract class TextLogger : Logger
 	// #################################################################################################
 
 	///---<summary>Logged when parameter msg of dLog() is null.</summary>
-	public 			String			FMT_NullObject			="<null>";
+	public 			String			FmtNullObject				="<null>";
 
 	///---<summary>Prefix for the log message.</summary>
-	public			String			FMT_MessagePrefix			= ": ";
+	public			String			FmtMessagePrefix			= ": ";
 
 	/** <summary>The character(s) used for indentation.</summary> */
-	public			String			FMT_IndentString			= "  ";
+	public			String			FmtIndentString				= "  ";
 
 	/// <summary>The output for the log level "Error".</summary>
-	public			String			FMT_LogLevelError			= " [ERR]";
+	public			String			FmtLogLevelError			= " [ERR]";
 
 	/// <summary>The output for the log level "Warning".</summary>
-	public			String			FMT_LogLevelWarning			= " [WRN]";
+	public			String			FmtLogLevelWarning			= " [WRN]";
 
 	/// <summary>The output for the log level "Info".</summary>
-	public			String			FMT_LogLevelInfo			= "      ";
+	public			String			FmtLogLevelInfo				= "      ";
 
 	/// <summary>The output for the log level "Verbose".</summary>
-	public			String			FMT_LogLevelVerbose			= " [***]";
+	public			String			FmtLogLevelVerbose			= " [***]";
 
 	/// <summary>Headline for multi line messages (depending on #MultiLineMsgMode)  .</summary>
-	public			String			FMT_MultiLineMsgHeadline	= "ALox: Multi line message follows: ";
+	public			String			FmtMultiLineMsgHeadline		= "ALox: Multi line message follows: ";
 
 	/** <summary>
 	 *  Prefix for multi line messages. This is also used if multi line messages logging is switched off
 	 *  (MultiLineMsgMode == 0) but replacing of a set MultiLineDelimiter takes place.
 	 * </summary>*/
-	public			String			FMT_MultiLinePrefix			= ">> ";
+	public			String			FmtMultiLinePrefix			= ">> ";
 
 	/** <summary>
 	 *  Postfix for multi line messages. This is also used if multi line messages logging is switched off
 	 *  (MultiLineMsgMode == 0) but replacing of a set MultiLineDelimiter takes place.
 	 * </summary>*/
-	public			String			FMT_MultiLinePostfix		= null;
+	public			String			FmtMultiLinePostfix			= null;
 
 	/// <summary>Prefix for log date outputs.</summary>
-	public			String			FMT_DatePrefix				= "[";
+	public			String			FmtDatePrefix				= "[";
 	/// <summary>Format string for the output of the log date. For more information, see 
 	///  "Standard Date and Time Format Strings" in .NET StringBuilder.AppendFormat()</summary>
-	public			String			FMT_Date					= "yyyy-MM-dd";
+	public			String			FmtDate						= "yyyy-MM-dd";
 	/// <summary>Postfix for log date outputs.</summary>
-	public			String			FMT_DatePostfix				= "] ";
+	public			String			FmtDatePostfix				= "] ";
 
 	/// <summary>Prefix for time of day outputs.</summary>
-	public			String			FMT_TimeOfDayPrefix			= "[";
+	public			String			FmtTimeOfDayPrefix			= "[";
 	/// <summary>Format string for the output of the time of day. For more information, see 
 	///  "Standard Date and Time Format Strings" in .NET StringBuilder.AppendFormat()</summary>
-	public			String			FMT_TimeOfDay				= "HH:mm:ss";
+	public			String			FmtTimeOfDay				= "HH:mm:ss";
 	/// <summary>Postfix for time of day outputs.</summary>
-	public			String			FMT_TimeOfDayPostfix		= "] ";
+	public			String			FmtTimeOfDayPostfix			= "] ";
 
 	/// <summary>Prefix for time elapsed since logging start (or reset) outputs.</summary>
-	public			String			FMT_TimeElapsedPrefix		= "[";
+	public			String			FmtTimeElapsedPrefix		= "[";
 	/// <summary>Postfix for time elapsed since logging start (or reset) outputs.</summary>
-	public			String			FMT_TimeElapsedPostfix		= " ";
+	public			String			FmtTimeElapsedPostfix		= " ";
 	/// <summary>The word "Days" the out put of time elapsed (if longer than a day).</summary>
-	public			String			FMT_TimeElapsedDays			= " Days ";
+	public			String			FmtTimeElapsedDays			= " Days ";
 
 	/// <summary>Prefix for time difference outputs.</summary>
-	public			String			FMT_TimeDiffPrefix			= " +";
+	public			String			FmtTimeDiffPrefix			= " +";
 	/// <summary>Postfix for time difference outputs.</summary>
-	public			String			FMT_TimeDiffPostfix			= "]";
+	public			String			FmtTimeDiffPostfix			= "]";
 	/// <summary>Entity microseconds for time difference outputs below 1000 microseconds.</summary>
-	public			String			FMT_TimeDiffMicros			= " \u00B5s"; //" µs";
+	public			String			FmtTimeDiffMicros			= " \u00B5s"; //" µs";
 	/// <summary>Entity milliseconds for time difference outputs below 1000 milliseconds.</summary>
-	public			String			FMT_TimeDiffMillis			= " ms";
+	public			String			FmtTimeDiffMillis			= " ms";
 	/// <summary>Format for time difference outputs between 10s and 99.9s.</summary>
-	public			String			FMT_TimeDiffSecs			= " s";
+	public			String			FmtTimeDiffSecs				= " s";
 	/// <summary>Format for time difference outputs between 100s and 60 min.</summary>
-	public			String			FMT_TimeDiffMins			= " m";
+	public			String			FmtTimeDiffMins				= " m";
 	/// <summary>Format for time difference outputs between 1h and 24h.</summary>
-	public			String			FMT_TimeDiffHours			= " h";
+	public			String			FmtTimeDiffHours			= " h";
 	/// <summary>Format for time difference outputs of more than a day.</summary>
-	public			String			FMT_TimeDiffDays			= " days";
+	public			String			FmtTimeDiffDays				= " days";
 
 	/// <summary>Prefix for the domain.</summary>
-	public			String			FMT_DomainPrefix			= " [";
+	public			String			FmtDomainPrefix				= " [";
 
 	/// <summary>Postfix for the domain.</summary>
-	public			String			FMT_DomainPostfix			= "]";
+	public			String			FmtDomainPostfix			= "]";
 
 	/// <summary>Prefix for the thread name.</summary>
-	public			String			FMT_ThreadPrefix			= " [T:";
+	public			String			FmtThreadPrefix				= " [T:";
 
 	/// <summary>Postfix for the domain.</summary>
-	public			String			FMT_ThreadPostfix			= "]";
+	public			String			FmtThreadPostfix			= "]";
 	
 	/// <summary>Prefix for the log number.</summary>
-	public			String			FMT_LogNumberPrefix			= " ";
+	public			String			FmtLogNumberPrefix			= " ";
 
 	/// <summary>Postfix for the log number.</summary>
-	public			String			FMT_LogNumberPostfix		= "";
+	public			String			FmtLogNumberPostfix			= "";
 	
 	/// <summary>Prefix for the domain.</summary>
-	public			int				FMT_LogNumberMinDigits		= 3;
+	public			int				FmtLogNumberMinDigits		= 3;
 
 
 	/// <summary>The maximum length of a thread name logged so far. This 'auto growing' 
 	/// field assures to keep output in nice column format. </summary>
-	public			int				FMT_AutoGrowThreadNameLength= 0;
+	public			int				FmtAutoGrowThreadNameLength= 0;
 
 	/// <summary>The maximum length of a domain name logged so far. This 'auto growing' 
 	/// field assures to keep output in nice column format. </summary>
-	public			int				FMT_AutoGrowDomainNameLength= 0;
+	public			int				FmtAutoGrowDomainNameLength= 0;
 
 
 
@@ -208,13 +208,13 @@ public abstract class TextLogger : Logger
 	/// <summary> Reference to last date format string to detect changes at runtime.</summary>
 	protected		String			detectDateFormatChanges;
 
-	/// <summary> The .Net format string built at runtime to {0:FMT_Date}.</summary>
+	/// <summary> The .Net format string built at runtime to {0:FmtDate}.</summary>
 	protected		String			dateFormatString;
 
 	/// <summary> Reference to last time of day format string to detect changes at runtime.</summary>
 	protected		String			detectTimeOfDayFormatChanges;
 
-	/// <summary> The .Net format string built at runtime to {0:FMT_TimeOfDay}.</summary>
+	/// <summary> The .Net format string built at runtime to {0:FmtTimeOfDay}.</summary>
 	protected		String			timeOfDayFormatString;
 
 
@@ -236,9 +236,7 @@ public abstract class TextLogger : Logger
 
 	/** ***********************************************************************************************
 	 * <summary>	The abstract function that logs a message. </summary>
-	 * <param name="domain">	The log domain name. If not starting with a slash ('/')
-	 * 							this is appended to any default domain name that might have been
-	 * 							specified for the source file. </param>
+	 * <param name="domain">	The log domain name. </param>
 	 * <param name="level"> 	The log level. This has been checked to be active already on this
 	 * 							stage and is provided to be able to be logged out only. </param>
 	 * <param name="msg">   	The log message. </param>
@@ -261,9 +259,7 @@ public abstract class TextLogger : Logger
 	 *  Implementation of Logger.doLog(). Creates all the textual information that is logged in a line 
 	 *  before the message itself.
 	 * </summary>
-	 * <param name="domain">	The log domain name. If not starting with a slash ('/')
-	 * 							this is appended to any default domain name that might have been
-	 * 							specified for the source file. </param>
+	 * <param name="domain">	The log domain name. </param>
 	 * <param name="level"> 	The log level. This has been checked to be active already on this
 	 * 							stage and is provided to be able to be logged out only. </param>
 	 * <param name="msgObject"> The log message object (mostly a String or MString). </param>
@@ -278,7 +274,7 @@ public abstract class TextLogger : Logger
 		// copy the string into our internal Buffer
 		MString msg= 	msgBuffer;
 		msg.Clear();
-			 if ( msgObject == null )			msg.Append( FMT_NullObject );
+			 if ( msgObject == null )			msg.Append( FmtNullObject );
 		else if ( msgObject is String ) 		msg.Append( (String) 		msgObject );
 		else if ( msgObject is MString )		msg= 	   (MString) 		msgObject;		// reassign
 		else if ( msgObject is StringBuilder )	msg.Append( (StringBuilder)	msgObject );
@@ -296,11 +292,11 @@ public abstract class TextLogger : Logger
 			// log date (default off)
 			if ( LogDate )
 			{
-				logBuf.Append( FMT_DatePrefix );
+				logBuf.Append( FmtDatePrefix );
 
 					// avoid the allocation of a) a StringBuilder (yes, a string builder is allocated inside StringBuilder.AppendFormat!) 
 					// and b) a DateTime object, if the format is the unchanged standard. And it is faster anyhow.
-					if ( FMT_Date.Equals( "yyyy-MM-dd" ) )
+					if ( FmtDate.Equals( "yyyy-MM-dd" ) )
 					{
 						logBuf	.Append( callerDateTime.Year,  4 ).Append( '-' )
 								.Append( callerDateTime.Month, 2 ).Append( '-' )
@@ -311,10 +307,10 @@ public abstract class TextLogger : Logger
 					else
 					{
 						// detect changes of format string since last log
-						if ( detectDateFormatChanges != FMT_Date )
+						if ( detectDateFormatChanges != FmtDate )
 						{
-							detectDateFormatChanges= FMT_Date;
-							dateFormatString= "{0:" + FMT_Date + "}";
+							detectDateFormatChanges= FmtDate;
+							dateFormatString= "{0:" + FmtDate + "}";
 						}
 
 						// get date string from system and append to log buffer
@@ -323,17 +319,17 @@ public abstract class TextLogger : Logger
 						logBuf.Append( formatSB );
 					}
 
-				logBuf.Append( FMT_DatePostfix );
+				logBuf.Append( FmtDatePostfix );
 			}
 
 			// log time	of day (default off)
 			if ( LogTimeOfDay )
 			{
-				logBuf.Append( FMT_TimeOfDayPrefix);
+				logBuf.Append( FmtTimeOfDayPrefix);
 
 					// avoid the allocation of a) a StringBuilder (yes, a string builder is allocated inside StringBuilder.AppendFormat!) 
 					// and b) a DateTime object, if the format is the unchanged standard. And it is faster anyhow.
-					if ( FMT_TimeOfDay.Equals( "HH:mm:ss" ) )
+					if ( FmtTimeOfDay.Equals( "HH:mm:ss" ) )
 					{
 						logBuf	.Append( callerDateTime.Hour,   2 ).Append( ':' )
 								.Append( callerDateTime.Minute, 2 ).Append( ':' )
@@ -344,10 +340,10 @@ public abstract class TextLogger : Logger
 					else
 					{
 						// detect changes of format string since last log
-						if ( detectTimeOfDayFormatChanges != FMT_TimeOfDay )
+						if ( detectTimeOfDayFormatChanges != FmtTimeOfDay )
 						{
-							detectTimeOfDayFormatChanges= FMT_TimeOfDay;
-							timeOfDayFormatString= "{0:" + FMT_TimeOfDay + "}";
+							detectTimeOfDayFormatChanges= FmtTimeOfDay;
+							timeOfDayFormatString= "{0:" + FmtTimeOfDay + "}";
 						}
 
 						// get time string from system and append to log buffer
@@ -356,7 +352,7 @@ public abstract class TextLogger : Logger
 						logBuf	.Append( formatSB );
 					}
 
-				logBuf.Append( FMT_TimeOfDayPostfix);
+				logBuf.Append( FmtTimeOfDayPostfix);
 			}
 
 
@@ -368,10 +364,10 @@ public abstract class TextLogger : Logger
 			// create TimeSpan object (on the stack by using new! :)
 			TimeSpan elapsed= new TimeSpan( caller.TimeStamp.Get() - TimeOfCreation.Get() );
 
-			logBuf.Append( FMT_TimeElapsedPrefix );
+			logBuf.Append( FmtTimeElapsedPrefix );
 
 				if ( elapsed.Days > 0 )
-					logBuf	.Append( elapsed.Days ).Append( FMT_TimeElapsedDays );
+					logBuf	.Append( elapsed.Days ).Append( FmtTimeElapsedDays );
 
 				if ( elapsed.Hours > 0 )
 					logBuf	.Append( elapsed.Hours )	.Append( ':' );
@@ -380,7 +376,7 @@ public abstract class TextLogger : Logger
 						.Append( elapsed.Seconds, 2).Append( '.' )
 						.Append( elapsed.Milliseconds, 3);
 
-			logBuf.Append( FMT_TimeElapsedPostfix );
+			logBuf.Append( FmtTimeElapsedPostfix );
 		}
 
 		// log time difference to last log
@@ -393,26 +389,26 @@ public abstract class TextLogger : Logger
 		#if !ALOX_NO_THREADS
 			if ( LogThreadInfo )
 			{
-				logBuf.Append( FMT_ThreadPrefix );
+				logBuf.Append( FmtThreadPrefix );
 
 					// get name length and store max value
-					if ( FMT_AutoGrowThreadNameLength < caller.ThreadName.Length )
-						FMT_AutoGrowThreadNameLength = caller.ThreadName.Length;
+					if ( FmtAutoGrowThreadNameLength < caller.ThreadName.Length )
+						FmtAutoGrowThreadNameLength = caller.ThreadName.Length;
 
 					// append thread name
-					logBuf.AppendPadCenter( caller.ThreadName, FMT_AutoGrowThreadNameLength );
+					logBuf.AppendPadCenter( caller.ThreadName, FmtAutoGrowThreadNameLength );
 
-				logBuf.Append( FMT_ThreadPostfix );
+				logBuf.Append( FmtThreadPostfix );
 			}
 		#endif
 
 		// append log level
 		if ( LogLogLevel )
 		{
-			logBuf	.Append(	level == Log.Level.Error	? FMT_LogLevelError
-							 :  level == Log.Level.Warning	? FMT_LogLevelWarning
-							 :  level == Log.Level.Info		? FMT_LogLevelInfo
-							 :							  FMT_LogLevelVerbose
+			logBuf	.Append(	level == Log.Level.Error	? FmtLogLevelError
+							 :  level == Log.Level.Warning	? FmtLogLevelWarning
+							 :  level == Log.Level.Info		? FmtLogLevelInfo
+							 :							  FmtLogLevelVerbose
 							);
 		}
 
@@ -420,32 +416,32 @@ public abstract class TextLogger : Logger
 		if ( LogDomainName )
 		{
 			// save the maximum length of any domain name
-			if ( FMT_AutoGrowDomainNameLength < domain.Length )
-				FMT_AutoGrowDomainNameLength= domain.Length;
+			if ( FmtAutoGrowDomainNameLength < domain.Length )
+				FmtAutoGrowDomainNameLength= domain.Length;
 
 			// If no domain logged yet and domain name is empty, we omit it 
-			if ( FMT_AutoGrowDomainNameLength != 0 || ( domain != null && domain.Length > 0 ) )
+			if ( FmtAutoGrowDomainNameLength != 0 || ( domain != null && domain.Length > 0 ) )
 			{
-				logBuf	.Append( FMT_DomainPrefix )
-						.AppendPadCenter( domain, FMT_AutoGrowDomainNameLength )
-						.Append( FMT_DomainPostfix );
+				logBuf	.Append( FmtDomainPrefix )
+						.AppendPadCenter( domain, FmtAutoGrowDomainNameLength )
+						.Append( FmtDomainPostfix );
 			}
 		}
 
 		// log line number 
 		if ( LogLogCounter )
 		{
-			logBuf	.Append( FMT_LogNumberPrefix )
-					.Append( CntLogs, FMT_LogNumberMinDigits )
-					.Append( FMT_LogNumberPostfix );
+			logBuf	.Append( FmtLogNumberPrefix )
+					.Append( CntLogs, FmtLogNumberMinDigits )
+					.Append( FmtLogNumberPostfix );
 		}
 
 		// append message prefix
-		logBuf.Append( FMT_MessagePrefix );
+		logBuf.Append( FmtMessagePrefix );
 
 		// add indent spaces
 		for (int i= indent; i > 0 ; i--) 
-			logBuf.Append( FMT_IndentString );
+			logBuf.Append( FmtIndentString );
 
 		// replace strings in message
 		for ( int i= 0 ; i < Replacements.Count -1 ; i+= 2 )
@@ -478,9 +474,9 @@ public abstract class TextLogger : Logger
 				logBuf.Append( msg );
 			else
 			{
-				logBuf.Append( FMT_MultiLinePrefix );
+				logBuf.Append( FmtMultiLinePrefix );
 				  logBuf.Append( msg );
-				logBuf.Append( FMT_MultiLinePostfix );
+				logBuf.Append( FmtMultiLinePostfix );
 			}
 
 			// now do the logging by calling our derived classes' doLog
@@ -548,13 +544,12 @@ public abstract class TextLogger : Logger
 			if ( lineNo == 0 && (MultiLineMsgMode == 3 || MultiLineMsgMode == 4) )
 			{
 				// log headline
-				logBuf.Append( FMT_MultiLineMsgHeadline );
+				logBuf.Append( FmtMultiLineMsgHeadline );
 				doTextLog( domain, level, logBuf, indent, caller, 0 );
 
 				// remember zero as offset 
 				lbLenBeforeMsgPart= 0;
 			}
-
 			 
 			// blank out meta information? (do this exactly in 2nd line once)
 			if ( lineNo == 1 && MultiLineMsgMode == 2)
@@ -565,9 +560,9 @@ public abstract class TextLogger : Logger
 			logBuf.Length= lbLenBeforeMsgPart;
 
 			// append message
-			logBuf.Append( FMT_MultiLinePrefix );
+			logBuf.Append( FmtMultiLinePrefix );
 			  logBuf.Append( msg, actStart, actEnd - actStart  );
-			logBuf.Append( FMT_MultiLinePostfix );
+			logBuf.Append( FmtMultiLinePostfix );
 
 			// now do the logging by calling our derived classes' doLog
 			doTextLog( domain, level, logBuf, indent, MultiLineMsgMode != 4 ? caller : null, lineNo );
@@ -587,16 +582,16 @@ public abstract class TextLogger : Logger
 	 **************************************************************************************************/
 	protected void logTimeDiff( long diffMicros )
 	{
-		logBuf.Append( FMT_TimeDiffPrefix );
+		logBuf.Append( FmtTimeDiffPrefix );
 
 		// below 1000 microseconds?
 		if ( diffMicros < 1000 )
-			logBuf.Append( (int) diffMicros, 3 ).Append( FMT_TimeDiffMicros );
+			logBuf.Append( (int) diffMicros, 3 ).Append( FmtTimeDiffMicros );
 		else
 		{
 			// below 1000 ms?
 			if ( diffMicros < 1000000 )
-				logBuf.Append( (int) (diffMicros / 1000), 3 ).Append( FMT_TimeDiffMillis );
+				logBuf.Append( (int) (diffMicros / 1000), 3 ).Append( FmtTimeDiffMillis );
 				
 				
 			// below 10 secs (rounded) ? 
@@ -609,7 +604,7 @@ public abstract class TextLogger : Logger
 				logBuf.Append( (int) (hundredthSecs / 100), 1 )
 					  .Append( '.' )
 					  .Append( (int) (hundredthSecs % 100), 2 )
-					  .Append( FMT_TimeDiffSecs );
+					  .Append( FmtTimeDiffSecs );
 				}
 
 			else
@@ -624,7 +619,7 @@ public abstract class TextLogger : Logger
 					logBuf.Append( (int) ( tenthSecs / 10 ), 2 )
 						  .Append( '.' )
 						  .Append( (int) ( tenthSecs % 10 ), 1 )
-						  .Append( FMT_TimeDiffSecs );
+						  .Append( FmtTimeDiffSecs );
 				}
 
 				// 	below 10 mins ?
@@ -637,7 +632,7 @@ public abstract class TextLogger : Logger
 					logBuf.Append( (int) (hundredthMins / 100), 1 )
 						  .Append( '.' )
 						  .Append( (int) (hundredthMins % 100), 2 )
-						  .Append( FMT_TimeDiffMins );
+						  .Append( FmtTimeDiffMins );
 							  
 				}
 				else 
@@ -652,7 +647,7 @@ public abstract class TextLogger : Logger
 						logBuf.Append( (int) (tenthMins / 10), 2 )
 							  .Append( '.' )
 							  .Append( (int) (tenthMins % 10), 1 )
-							  .Append( FMT_TimeDiffMins );
+							  .Append( FmtTimeDiffMins );
 					}
 					
 					// below ten hours?
@@ -665,7 +660,7 @@ public abstract class TextLogger : Logger
 						logBuf.Append( (int) (hundredthHours / 100), 1 )
 							  .Append( '.' )
 							  .Append( (int) (hundredthHours % 100), 2 )
-							  .Append( FMT_TimeDiffHours );
+							  .Append( FmtTimeDiffHours );
 							  
 					}
 					else
@@ -680,7 +675,7 @@ public abstract class TextLogger : Logger
 							logBuf.Append( (int) (tenthHours / 10), 2 )
 								  .Append( '.' )
 								  .Append( (int) (tenthHours % 10), 1 )
-								  .Append( FMT_TimeDiffHours );
+								  .Append( FmtTimeDiffHours );
 								  
 						}
 	
@@ -691,7 +686,7 @@ public abstract class TextLogger : Logger
 							logBuf.Append( (int) (tenthHours / 10), 2 )
 								  .Append( '.' )
 								  .Append( (int) ((tenthHours / 10) % 10), 1 )
-								  .Append( FMT_TimeDiffHours );
+								  .Append( FmtTimeDiffHours );
 						}
 						
 						else
@@ -706,7 +701,7 @@ public abstract class TextLogger : Logger
 								logBuf.Append( (int) (hundredthDays / 100), 1 )
 									  .Append( '.' )
 									  .Append( (int) (hundredthDays % 100), 2 )
-									  .Append( FMT_TimeDiffDays );
+									  .Append( FmtTimeDiffDays );
 									  
 							}
 		
@@ -717,7 +712,7 @@ public abstract class TextLogger : Logger
 								logBuf.Append( (int) (hundredthDays / 100), 2 )
 									  .Append( '.' )
 									  .Append( (int) ((hundredthDays / 10) % 10), 1 )
-									  .Append( FMT_TimeDiffDays );
+									  .Append( FmtTimeDiffDays );
 							}
 						}
 					}
@@ -725,7 +720,7 @@ public abstract class TextLogger : Logger
 			}
 		}
 
-		logBuf.Append( FMT_TimeDiffPostfix );
+		logBuf.Append( FmtTimeDiffPostfix );
 	}
 
 
