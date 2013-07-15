@@ -81,7 +81,11 @@ public class CallerInfo
 	 * <param name="threadDictionary">	  	Dictionary for translationg thread IDs into more readable 
 	 * 										thread names. </param>
 	 **************************************************************************************************/
-	public void Set (String callerSourceFileName, int callerLineNumber, String callerMemberName, Dictionary<int, String> threadDictionary )
+	public void Set (String callerSourceFileName, int callerLineNumber, String callerMemberName
+#if !ALOX_NO_THREADS
+		, Dictionary<int, String> threadDictionary 
+#endif
+		)
 	{
 		// 1) set the actual timestamp as early as possible
 		TimeStamp.SetToNow();

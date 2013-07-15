@@ -73,7 +73,12 @@ public class Lox
 	 *  really a very seldom case, and it is better to be kept in safe mode.
 	 * </summary>
 	 */
-	public 				ThreadLock		Lock					=new ThreadLock();
+	public 				ThreadLock		Lock
+					#if ALOX_NO_THREADS
+																=new ThreadLock( true, true ); // set unsafe
+					#else
+																=new ThreadLock();
+					#endif
 
 	/**
 	 * <summary>
@@ -534,28 +539,31 @@ public class Lox
 
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
-			try { Lock.Aquire();
+			#if ALOX_NO_THREADS
+			#else
+				try { Lock.Aquire();
 
-				// get current thread id
-				String origThreadName= null;
-				if ( id < 0 )
-				{
-					Thread t=		Thread.CurrentThread;
-					id=				t.ManagedThreadId;
-					origThreadName= t.Name;
-				}
+					// get current thread id
+					String origThreadName= null;
+					if ( id < 0 )
+					{
+						Thread t=		Thread.CurrentThread;
+						id=				t.ManagedThreadId;
+						origThreadName= t.Name;
+					}
 
-				// add entry
-				ThreadDictionary[id]= threadName;
+					// add entry
+					ThreadDictionary[id]= threadName;
 	
-				// log info on this
-				saveAndSet( csf, cln, cmn, false, null );
-				tempMS.Clear().Append("Lox: Mapped thread ID ").Append(id).Append(" to \"").Append(threadName).Append("\".");
-				if ( !String.IsNullOrEmpty( origThreadName )  )
-					tempMS.Append(" Original thread name was \"").Append(origThreadName).Append("\".");
-				internalLog( Log.Level.Info, tempMS );
+					// log info on this
+					saveAndSet( csf, cln, cmn, false, null );
+					tempMS.Clear().Append("Lox: Mapped thread ID ").Append(id).Append(" to \"").Append(threadName).Append("\".");
+					if ( !String.IsNullOrEmpty( origThreadName )  )
+						tempMS.Append(" Original thread name was \"").Append(origThreadName).Append("\".");
+					internalLog( Log.Level.Info, tempMS );
 
-			} finally { Lock.Release(); } 
+				} finally { Lock.Release(); } 
+			#endif
 		#endif
 	}
 
@@ -1125,7 +1133,11 @@ public class Lox
 		protected  void saveAndSet( String csf, int cln, String cmn, bool getResDomain, String domain  )
 		{
 			// a) store caller info
-			caller.Set( csf, cln, cmn, ThreadDictionary );
+			caller.Set( csf, cln, cmn 
+							#if !ALOX_NO_THREADS
+										, ThreadDictionary 
+							#endif
+				);
 
 			// b) check if we got any logger
 			if ( loggers == null || loggers.Count == 0 )

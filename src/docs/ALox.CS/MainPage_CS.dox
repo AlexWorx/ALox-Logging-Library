@@ -21,7 +21,7 @@ through the \ref tutorial_cs.
 
 ## Visual Studio Setup ##
 The C# Version got not tested on other platforms than Windows/Visual Studio. For details
-of how to configure this environment to support ALox, check out "\ref setup_projects_vs_cs".
+of how to configure this environment to support ALox, check out \ref setup_projects_vs_cs.
 
 ## Class Reference ##
 

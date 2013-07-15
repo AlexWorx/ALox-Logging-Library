@@ -9,6 +9,10 @@
 /**
 \page setup_projects_vs_cs         Setup Visual Studio for C# Projects
 
+\tableofcontents
+
+
+# 1. Setting Up Visual Studio # {#setup_projects_vs_cs_1}
 
 To use ALox logging in your C# project using Visual Studio, some few preparatory steps have to be
 taken.
@@ -24,13 +28,13 @@ If you do not actually have a C# project (or do not want to touch it now) and yo
 have a first look into ALox, then create a new project using the Visual Studio Project Wizard. 
 Be sure to create an executable and that the typical "hello world" sample prints to the Visual Studio console.
 
-## Download ##
+## 1.1. Download ##      {#setup_projects_vs_cs_1_1}
 Unpack the ALox distribution (e.g. as zip) from [Alox at GitHub](https://github.com/AlexWorx/ALox-Logging-Library)
 and move all its contents to a place where you safely store 3rd party libraries.  
 
 We call this folder the *ALOX_LIB_PATH*.
 
-## Link one of the following projects into your solution ##
+## 1.2. Add one of the following projects into your solution ##    {#setup_projects_vs_cs_1_2}
 
 To incorporate ALox into your Visual Studio solution, you have to follow three steps:
 
@@ -44,7 +48,7 @@ a) Choose the right class library project that fits well to your own project tar
 
 \note
 If there is no appropriate predefined project available for you, skip b) and c) and continue reading
-below at **adding source**!
+below at \ref setup_projects_vs_cs_1_3!
 
    Add the Visual Studio project that you find in the corresponding sub folder of the *ALOX_LIB_PATH*
    to your solution.
@@ -62,7 +66,8 @@ c) Add the ALox-CS-DLL project as a reference to your project. Steps are:
    - on the left side choose "Solution" and "Projects"
    - tick the checkbox for the *ALox-CS-DLL* project.
 
-**Adding source**: Alternatively, if there is no appropriate predefined project for your target and 
+## 1.3 Alternatively: Adding source code to your project ## {#setup_projects_vs_cs_1_3}
+Alternatively, if there is no appropriate predefined project for your target and 
 platform, you might want to add the ALox source code directly to your project. This can be
 done as follows:
 
@@ -80,7 +85,7 @@ done as follows:
  - Note: You do not need to include the *.cs files from folders **tests.src** and  **tests.src.util**.
 
 
-## Adjust your project properties ##
+## 1.4 Configure your project properties ## {#setup_projects_vs_cs_1_4}
 
 Now, as ALox is a part of your Visual Studio solution, go ahead as follows:
 
@@ -106,5 +111,61 @@ Now, as ALox is a part of your Visual Studio solution, go ahead as follows:
   Using the NuGet package manager as described on the libraries page, this is a matter of just a minute.
 
 
-You are set and your solution should compile without an error.
+__You are set and your solution should compile without an error!__
+
+# 2. Conditional Compilation Symbols #  {#setup_projects_vs_cs_2}
+
+In section \ref setup_projects_vs_cs_1_4 we have learned about some conditional 
+compilation symbols already. The following lists all symbols available:
+
+- **ALOX_DEBUG**
+  Enable debug logging. This should be set in the *Debug configuration* of your projects. Otherwise,
+  not log output is generated if using the static interface of class [Log](@ref #com::aworx::lox::Log).  
+ 
+- **ALOX_REL_LOG**
+  To enable release logging. This should only be set in the *Release configuration* of your projects
+  if you are using release logging with class [Lox](@ref #com::aworx::lox::Log).  If you do not
+  use release logging features of ALox, this symbol should not be set to minimize the code that
+  the ALox classes add to your executables.
+
+- **ALOX_WP71**
+  To compile ALox for Windows Phone 7.1 projects. This should be set in the Debug and Release 
+  configuration of your projects Windows Phone 7.1 projects.
+  In addition to some compatibility changes in the code, this symbol also activates **ALOX_NO_REFLECTION**,
+  hence the LogTools.Instance method is not available in Windows Phone projects. (This is due to security
+  restrictions in the Windows Phone system architecture).
+
+- **ALOX_WP8**
+  To compile ALox for Windows Phone 8 projects. This should be set in the Debug and Release 
+  configuration of your projects Windows Phone 8.x projects.
+  In addition to some compatibility changes in the code, this symbol also activates **ALOX_NO_REFLECTION**,
+  hence the LogTools.Instance method is not available in Windows Phone projects. (This is due to security
+  restrictions in the Windows Phone system architecture).
+
+- **ALOX_NO_REFLECTION**
+  This symbol deactivates the use of reflection in class [LogTools](@ref #com::aworx::lox::LogTools). 
+  This is useful for target platforms that do not allow instance inspection using reflection techniques.
+  The method [LogTools.Instance](@ref #com::aworx::lox::LogTools::Instance) will not be available 
+  however.
+
+- **ALOX_NO_XML**
+  This symbol deactivates the use of *System.Xml.Linq* library in class [LogTools](@ref #com::aworx::lox::LogTools). 
+  This is useful for target platforms that do not support this library. 
+  The method [LogTools.XML](@ref #com::aworx::lox::LogTools::XML) will not be available however.
+
+- **ALOX_NO_CONSOLE**
+  This symbol deactivates the use of *Console.WriteLine" calls in class [ConsoleLogger](@ref #com::aworx::lox::loggers::ConsoleLogger). 
+  If this is set, the flag [ConsoleLogger.EnableAppConsole](@ref #com::aworx::lox::loggers::ConsoleLogger::EnableAppConsole)
+  becomes unavailable. The output of [ConsoleLogger](@ref #com::aworx::lox::loggers::ConsoleLogger) which is controlled
+  by the second flag [ConsoleLogger.EnableAppConsole](@ref #com::aworx::lox::loggers::ConsoleLogger::EnableVSDebugConsole)
+  will go exclusively to System.Diagnostics.Debug.WriteLine().
+
+- **ALOX_NO_THREADS**
+  This symbol deactivates any mechanisms to protect ALox logging in multi-threaded environments. Use this 
+  symbol only if you are sure to operate single threaded. (Even if your application does not create a new thread
+  directly, e.g. UI driven applications are generally multi threaded. The advantage of using this 
+  compile symbol is to increase ALox performance by around 8% (when logging in-memory). For console logging the
+  performance gain is much less. So, only in very critical situations this symbol should be used.
+
+
 */

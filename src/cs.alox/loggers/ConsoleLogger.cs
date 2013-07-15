@@ -62,7 +62,9 @@ public class ConsoleLogger : TextLogger
 	public		bool			EnableVSDebugConsole			=true;
 
 	/// <summary>Enables logging to the application console (std. out). Defaults to false.</summary>
-	public		bool			EnableAppConsole				=false;
+	#if !ALOX_NO_CONSOLE	
+	  public		bool			EnableAppConsole				=false;
+	#endif
 
 	// #################################################################################################
 	// internal fields
