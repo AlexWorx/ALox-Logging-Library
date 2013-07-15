@@ -1,9 +1,13 @@
 var searchData=
 [
   ['tab',['tab',['../classcom_1_1aworx_1_1util_1_1MString.html#a9cc68303640d37c682c3ab798633764d',1,'com.aworx.util.MString.tab(int tabSize)'],['../classcom_1_1aworx_1_1util_1_1MString.html#abd3a46e407fd78e345735e4eed25ebfe',1,'com.aworx.util.MString.tab(int tabSize, int tabReference)'],['../classcom_1_1aworx_1_1util_1_1MString.html#a252867e4b920b7eb8463351abf48e25c',1,'com.aworx.util.MString.tab(int tabSize, int tabReference, int minPad)'],['../classcom_1_1aworx_1_1util_1_1MString.html#aca40b491a66d09efc3d897325da417d2',1,'com.aworx.util.MString.tab(int tabSize, int tabReference, int minPad, char padChar)']]],
-  ['tabaftersourceinfo',['tabAfterSourceInfo',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html#a46478288e5b87451c0dcfab3b736f44f',1,'com.aworx.lox.loggers.ConsoleLogger.tabAfterSourceInfo()'],['../classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html#a46478288e5b87451c0dcfab3b736f44f',1,'com.aworx.lox.loggers.MemoryLogger.tabAfterSourceInfo()']]],
+  ['tabaftercallerinfo',['tabAfterCallerInfo',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html#ab567b166bd89d2152a85fc93d91808f4',1,'com.aworx.lox.loggers.ConsoleLogger.tabAfterCallerInfo()'],['../classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html#ab567b166bd89d2152a85fc93d91808f4',1,'com.aworx.lox.loggers.MemoryLogger.tabAfterCallerInfo()'],['../classcom_1_1aworx_1_1lox_1_1android_1_1AndroidLogCatLogger.html#ab567b166bd89d2152a85fc93d91808f4',1,'com.aworx.lox.android.AndroidLogCatLogger.tabAfterCallerInfo()']]],
+  ['tabbeforecallername',['tabBeforeCallerName',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html#aa5a11f0f87e30d2b8256baaf1d86e9a6',1,'com.aworx.lox.loggers.ConsoleLogger.tabBeforeCallerName()'],['../classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html#aa5a11f0f87e30d2b8256baaf1d86e9a6',1,'com.aworx.lox.loggers.MemoryLogger.tabBeforeCallerName()'],['../classcom_1_1aworx_1_1lox_1_1android_1_1AndroidLogCatLogger.html#aa5a11f0f87e30d2b8256baaf1d86e9a6',1,'com.aworx.lox.android.AndroidLogCatLogger.tabBeforeCallerName()']]],
+  ['tempbuf',['tempBuf',['../classcom_1_1aworx_1_1lox_1_1LogTools.html#a570982a6045c2e2c409321b2e1a01898',1,'com::aworx::lox::LogTools']]],
   ['tempdomain',['tempDomain',['../classcom_1_1aworx_1_1lox_1_1Lox.html#ab1e2c7dee8db47cd16ca92fb3a7ae904',1,'com::aworx::lox::Lox']]],
   ['tempdomainpath',['tempDomainPath',['../classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#af717d7b13f31ce14d19c3b24707f20f6',1,'com::aworx::lox::core::Logger']]],
+  ['templineendidx',['tempLineEndIdx',['../classcom_1_1aworx_1_1lox_1_1LogTools.html#a3e071e391087b62155ccd1f5b3e3ab46',1,'com::aworx::lox::LogTools']]],
+  ['templinestartidx',['tempLineStartIdx',['../classcom_1_1aworx_1_1lox_1_1LogTools.html#a93c641104eda6fb4550ce017b73430bf',1,'com::aworx::lox::LogTools']]],
   ['tempms',['tempMS',['../classcom_1_1aworx_1_1lox_1_1Lox.html#a0d99bb961369853273a8f67384b2c3c1',1,'com::aworx::lox::Lox']]],
   ['tempsbuf',['tempSBuf',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#afe17394f84cf5bdb4891727e32f49300',1,'com::aworx::lox::core::TextLogger']]],
   ['textlogger',['TextLogger',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html',1,'com::aworx::lox::core']]],
@@ -11,8 +15,8 @@ var searchData=
   ['thread',['thread',['../classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#ac99b75d10f465c1160242dea4544069a',1,'com::aworx::lox::core::CallerInfo']]],
   ['threaddictionary',['threadDictionary',['../classcom_1_1aworx_1_1lox_1_1Lox.html#a28aec8792ccd6e67dd49f06d57c8a8bd',1,'com::aworx::lox::Lox']]],
   ['threadid',['threadID',['../classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#a60a653746c2fc588e8da8d1a4b444bb5',1,'com::aworx::lox::core::CallerInfo']]],
-  ['threadlock',['ThreadLock',['../classcom_1_1aworx_1_1util_1_1ThreadLock.html',1,'com::aworx::util']]],
   ['threadlock',['ThreadLock',['../classcom_1_1aworx_1_1util_1_1ThreadLock.html#ad866d94468fb30b56fc5cf53211eb2ab',1,'com.aworx.util.ThreadLock.ThreadLock()'],['../classcom_1_1aworx_1_1util_1_1ThreadLock.html#a6ad194bfa7eb71de47a06d7b79bf6031',1,'com.aworx.util.ThreadLock.ThreadLock(boolean recursiveMode)'],['../classcom_1_1aworx_1_1util_1_1ThreadLock.html#a6ccccd6435086e88a76c1000b26255dd',1,'com.aworx.util.ThreadLock.ThreadLock(boolean recursiveMode, boolean setUnsafeMode)']]],
+  ['threadlock',['ThreadLock',['../classcom_1_1aworx_1_1util_1_1ThreadLock.html',1,'com::aworx::util']]],
   ['threadname',['threadName',['../classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#ae056441640c10bc77840301b2bd36142',1,'com::aworx::lox::core::CallerInfo']]],
   ['ticker',['Ticker',['../classcom_1_1aworx_1_1util_1_1Ticker.html',1,'com::aworx::util']]],
   ['ticks',['ticks',['../classcom_1_1aworx_1_1util_1_1TickTime.html#af0b811e653c51fb98ab202e920af2afe',1,'com::aworx::util::TickTime']]],
@@ -28,5 +32,6 @@ var searchData=
   ['tomicros',['toMicros',['../classcom_1_1aworx_1_1util_1_1Ticker.html#a3c5f77b7a3b2479ea95a51559b6bd83f',1,'com::aworx::util::Ticker']]],
   ['tomillis',['toMillis',['../classcom_1_1aworx_1_1util_1_1Ticker.html#a40bc3e2129b61393b98cac6c59e48a07',1,'com::aworx::util::Ticker']]],
   ['tonanos',['toNanos',['../classcom_1_1aworx_1_1util_1_1Ticker.html#a3d2548f74dc7a245e0b29b54cf343144',1,'com::aworx::util::Ticker']]],
+  ['toolbuf',['toolBuf',['../classcom_1_1aworx_1_1lox_1_1LogTools.html#ab2b7fd952d42f838905b7ce560f1e68e',1,'com::aworx::lox::LogTools']]],
   ['tostring',['toString',['../classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#ad146fa8579a5f8a876c4688cc5a68520',1,'com.aworx.lox.core.LogDomain.toString()'],['../classcom_1_1aworx_1_1util_1_1MString.html#ad146fa8579a5f8a876c4688cc5a68520',1,'com.aworx.util.MString.toString()'],['../classcom_1_1aworx_1_1util_1_1MString.html#ad6f084f891f7f8edebc1980b3b7c854d',1,'com.aworx.util.MString.toString(int startIdx)'],['../classcom_1_1aworx_1_1util_1_1MString.html#ae9b5b93abce1d30a3daddb12c1c81cff',1,'com.aworx.util.MString.toString(int startIdx, int len)'],['../classcom_1_1aworx_1_1util_1_1ThreadLock.html#ad146fa8579a5f8a876c4688cc5a68520',1,'com.aworx.util.ThreadLock.toString()'],['../classcom_1_1aworx_1_1util_1_1TickTime.html#ad146fa8579a5f8a876c4688cc5a68520',1,'com.aworx.util.TickTime.toString()']]]
 ];

@@ -5,7 +5,7 @@ var searchData=
   ['measure',['measure',['../classcom_1_1aworx_1_1util_1_1TickTime.html#abf9fd74569722791feb30e8753fac913',1,'com::aworx::util::TickTime']]],
   ['memorylogger',['MemoryLogger',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html',1,'com::aworx::lox::loggers']]],
   ['memorylogger',['MemoryLogger',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html#a24187e71fb1f31390f1fb25186940dd2',1,'com.aworx.lox.loggers.MemoryLogger.MemoryLogger(String name)'],['../classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html#a4199daf6e37271a11e2d47633768701a',1,'com.aworx.lox.loggers.MemoryLogger.MemoryLogger()']]],
-  ['method',['Method',['../enumcom_1_1aworx_1_1lox_1_1Log_1_1Scope.html#a2a3c0067e44c5ef3210a256d06c16b0f',1,'com::aworx::lox::Log::Scope']]],
+  ['method',['METHOD',['../enumcom_1_1aworx_1_1lox_1_1Log_1_1Scope.html#a980085812d120b3761817608d332fecd',1,'com::aworx::lox::Log::Scope']]],
   ['methodname',['methodName',['../classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#aed1d7183742d9041a94ac83312720f4d',1,'com::aworx::lox::core::CallerInfo']]],
   ['msgbuffer',['msgBuffer',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a2eac8cf99106d95f5a0a8b4cc0c12716',1,'com::aworx::lox::core::TextLogger']]],
   ['mstring',['MString',['../classcom_1_1aworx_1_1util_1_1MString.html',1,'com::aworx::util']]],

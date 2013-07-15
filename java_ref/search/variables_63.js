@@ -3,7 +3,7 @@ var searchData=
   ['caller',['caller',['../classcom_1_1aworx_1_1lox_1_1Lox.html#a661374595beb4ef6cdcd0417c8c47f0d',1,'com::aworx::lox::Lox']]],
   ['callerdatetimecal',['callerDateTimeCal',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a7f3fbbf494fb72f94da86e9e541d0151',1,'com::aworx::lox::core::TextLogger']]],
   ['callerdatetimedate',['callerDateTimeDate',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a15c370a8d52b71bdf21b1fe8869a06fd',1,'com::aworx::lox::core::TextLogger']]],
-  ['class',['Class',['../enumcom_1_1aworx_1_1lox_1_1Log_1_1Scope.html#af0c181dac34da376a1aa0b98624a2b58',1,'com::aworx::lox::Log::Scope']]],
+  ['class',['CLASS',['../enumcom_1_1aworx_1_1lox_1_1Log_1_1Scope.html#ad5946acbc78d91b2bd0621fbf6a3c9a9',1,'com::aworx::lox::Log::Scope']]],
   ['classname',['className',['../classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#afc4f959391fb840db1b65ba194052bbd',1,'com::aworx::lox::core::CallerInfo']]],
   ['cntlogcalls',['cntLogCalls',['../classcom_1_1aworx_1_1lox_1_1Lox.html#a898aebb032f3bceb8d879e7695f197d0',1,'com::aworx::lox::Lox']]],
   ['cntlogs',['cntLogs',['../classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a875cc7d46740caba1725c2f6580804e2',1,'com::aworx::lox::core::Logger']]],

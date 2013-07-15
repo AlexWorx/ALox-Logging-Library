@@ -42,8 +42,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="../index.html"><span>ALox&#160;Home</span></a></li>
       <li class="current"><a href="index.html"><span>ALox&#160;for&#160;Java</span></a></li>
-      <li><a href="@ref setup_projects_java"><span>IDE&#160;Setup</span></a></li>
-      <li><a href="@ref tutorial_java"><span>Tutorial</span></a></li>
+      <li><a href="setup_projects_java.html"><span>IDE&#160;Setup</span></a></li>
+      <li><a href="tutorial_java.html"><span>Tutorial</span></a></li>
       <li><a href="annotated.html"><span>Class&#160;Reference</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
@@ -84,46 +84,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Java Reference </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1>This is the ALox for Java reference documentation!</h1>
+<div class="textblock"><h1>Welcome to ALox for Java!</h1>
+<p>This is a sub site of the ALox documentation specific to Java programming. The following information is found here:</p>
 <h2>Tutorial</h2>
-<p>If you are new to ALox, the easiest way to get familiar with it, is to walk yourself through the tutorial. Unfortunately, the Java tutorial is not written, yet. :-(</p>
-<p>But, as C# and JAVA are so much alike, you should easily be able to walk through the <a href="../cs_ref/tutorial_cs.html">ALox for C# Tutorial</a> instead. Mind the different camel caseing of the member names (Java is non-capital), that's maybe all! :-)</p>
+<p>If you are new to ALox, the easiest way to get familiar with it, is to walk yourself through the <a class="el" href="tutorial_java.html">ALox for Java Tutorial</a>.</p>
 <h2>Project Setup</h2>
-<p>So far, the Java Version got not tested on other platforms than Windows/Eclipse. An eclipse project is available in the download package. Detailed information on how to setup Java projects to support ALox are to come. Here his the short version:</p>
-<ul>
-<li>Within any IDE<ul>
-<li><p class="startli">incorporate all sources that you find in the ALox folders:</p>
-<ul>
-<li><em>src/java.aworx.util</em></li>
-<li><em>src/java.alox</em></li>
-</ul>
-<p class="startli">into your project. For Android, in addition add folder:</p>
-<ul>
-<li><em>src/java.android.alox</em></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>For Eclipse, there is an alternative:<ul>
-<li>Add the project provided in the ALox distribution package (found in folder "ide.eclipse") to your workspace</li>
-<li>Reference this project from all your projects in your workspace that should be ALox logging enabled</li>
-</ul>
-</li>
-</ul>
-<h2>Android</h2>
+<p>The steps to configure Eclipse or any other JAVA IDE to support ALox is described here: <a class="el" href="setup_projects_java.html">Setup Eclipse for Java Projects</a>".</p>
+<h2>ALox for Android</h2>
 <p>The Java Version is compatible with Android development and supports logging into LogCat. To stream ALox into LogCat create a logger of type <a href="com.aworx.lox.android.AndroidLogCatLogger">AndroidLogCatLogger</a> instead of type <a href="com.aworx.lox.loggers.ConsoleLogger">ConsoleLogger</a> </p>
 <pre class="fragment">Log.addLogger( new AndroidLogCatLogger("LogCat") );
-</pre><p>Attn: The normal <a href="com.aworx.lox.loggers.ConsoleLogger">ConsoleLogger</a> would not produce any visible output.</p>
+</pre><p>Attention: The normal <a href="com.aworx.lox.loggers.ConsoleLogger">ConsoleLogger</a> would not produce any visible output using the Android Emulator or a debugging device.</p>
+<h2>Pruning ALox from your release code</h2>
+<p>Unlike C# (beginning in Version 5.0), JAVA does not provide a built-in mechanism to "prune" the debug log messages from the code. There are a range of tools available on the java tools market, that provide such feature (most commonly along with so called "obfuscation"). Samples of such tools will be given here in the future. (We are very thankful to receive your experience and tool description to incorporate into this documentation).</p>
 <h2>Class Reference</h2>
-<p>To browse the class reference, please use the page menu above.</p>
+<p>To browse the Java class reference, please use the page menu above.</p>
 <h2>Organization of code</h2>
-<p>In the class lists of this documentation, besides ALox you will find a bunch of classes that we call the "A-Worx Util" classes. They reside in the namespace: com.aworx.util* Next to the provision of basic functionality, the motivation for creating util classes is to provide a similar interface to basic functionality across languages and platforms. In other word, the utility functions help ALox code to be very much alike across different languages and platforms.</p>
-<p>ALox itself consist of three namespaces. While the main classes that the user of ALox interfaces with reside in com.aworx.lox* some specific loggers are found in com.aworx.lox.loggers*. Internal classes are located in com.aworx.lox.core* </p>
+<p>In the class lists of this documentation, besides ALox you will find a bunch of classes that we call the "A-Worx Util" classes. They reside in the namespace <b>com.aworx.util</b>. Next to the provision of basic functionality, the motivation for creating util classes is to provide a similar interface to basic functionality of ALox across languages and platforms. In other word, the utility functions help ALox code to be very much alike across different languages and platforms.</p>
+<p>ALox itself consist of three namespaces. While the main classes that the user of ALox interfaces with reside in <b>com.aworx.lox</b>. Some specific loggers are found in <b>com.aworx.lox.loggers</b>. Internal classes are located in <b>com.aworx.lox.core</b>. </p>
 </div></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.4-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 28 2013 12:16:29 for ALox Java Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 15 2013 09:26:49 for ALox Java Reference by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

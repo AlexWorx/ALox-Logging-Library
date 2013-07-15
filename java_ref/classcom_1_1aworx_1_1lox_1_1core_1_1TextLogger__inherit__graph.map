@@ -1,6 +1,6 @@
 <map id="TextLogger" name="TextLogger">
-<area shape="rect" id="node3" href="$classcom_1_1aworx_1_1lox_1_1android_1_1AndroidLogCatLogger.html" title="A logger that logs all messages to the Android LogCat (using * android.util.Log.e()/w()...) " alt="" coords="5,155,152,181"/>
-<area shape="rect" id="node4" href="$classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html" title="A logger that logs all messages to the VStudio IDE output window (using System.Diagnostics.Debug.WriteLine()) and/or to the application console (using Console.WriteLine()). " alt="" coords="177,155,284,181"/>
-<area shape="rect" id="node5" href="$classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html" title="A logger that logs all messages to a in&#45;memory buffer of type MString. " alt="" coords="309,155,416,181"/>
-<area shape="rect" id="node2" href="$classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="This is central class of the ALox logging implementation. " alt="" coords="200,5,261,32"/>
+<area shape="rect" id="node3" href="$classcom_1_1aworx_1_1lox_1_1android_1_1AndroidLogCatLogger.html" title="AndroidLogCatLogger" alt="" coords="5,155,152,181"/>
+<area shape="rect" id="node4" href="$classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html" title="ConsoleLogger" alt="" coords="177,155,284,181"/>
+<area shape="rect" id="node5" href="$classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html" title="MemoryLogger" alt="" coords="309,155,416,181"/>
+<area shape="rect" id="node2" href="$classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="200,5,261,32"/>
 </map>

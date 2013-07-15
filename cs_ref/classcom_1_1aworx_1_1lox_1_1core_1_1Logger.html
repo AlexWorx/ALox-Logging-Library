@@ -143,9 +143,12 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a46ee964173efe1f2b01121d11d91f597"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a46ee964173efe1f2b01121d11d91f597">RootDomain</a></td></tr>
 <tr class="memdesc:a46ee964173efe1f2b01121d11d91f597"><td class="mdescLeft">&#160;</td><td class="mdescRight">The root domain "/".  <a href="#a46ee964173efe1f2b01121d11d91f597">More...</a><br/></td></tr>
 <tr class="separator:a46ee964173efe1f2b01121d11d91f597"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf4174e465b199c8ec5a9fe1d05f58b1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#aaf4174e465b199c8ec5a9fe1d05f58b1">LogCallerInfo</a> = true</td></tr>
-<tr class="memdesc:aaf4174e465b199c8ec5a9fe1d05f58b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the logging of source file names. Default is true (enabled)  <a href="#aaf4174e465b199c8ec5a9fe1d05f58b1">More...</a><br/></td></tr>
-<tr class="separator:aaf4174e465b199c8ec5a9fe1d05f58b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09e0af5a92465ab2d6f66f722b6b4676"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a09e0af5a92465ab2d6f66f722b6b4676">LogCallerSource</a> = true</td></tr>
+<tr class="memdesc:a09e0af5a92465ab2d6f66f722b6b4676"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the logging of source file name of the caller. Default is true (enabled)  <a href="#a09e0af5a92465ab2d6f66f722b6b4676">More...</a><br/></td></tr>
+<tr class="separator:a09e0af5a92465ab2d6f66f722b6b4676"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5d02b0b07b9176e5cb7dad8754d0c3c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#aa5d02b0b07b9176e5cb7dad8754d0c3c">LogCallerMethod</a> = true</td></tr>
+<tr class="memdesc:aa5d02b0b07b9176e5cb7dad8754d0c3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the logging of method name of the caller. Default is true (enabled)  <a href="#aa5d02b0b07b9176e5cb7dad8754d0c3c">More...</a><br/></td></tr>
+<tr class="separator:aa5d02b0b07b9176e5cb7dad8754d0c3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac0fefe80e767093ffe74485203deb599"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#ac0fefe80e767093ffe74485203deb599">LogDate</a> = false</td></tr>
 <tr class="memdesc:ac0fefe80e767093ffe74485203deb599"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the logging of the date. Default is false (disabled)  <a href="#ac0fefe80e767093ffe74485203deb599">More...</a><br/></td></tr>
 <tr class="separator:ac0fefe80e767093ffe74485203deb599"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -269,7 +272,7 @@ Protected Attributes</h2></td></tr>
 <hr/>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">domain</td><td>The log domain name. If not starting with a slash ('/') this is appended to any default domain name that might have been specified for the source file. </td></tr>
+    <tr><td class="paramname">domain</td><td>The log domain name. </td></tr>
     <tr><td class="paramname">level</td><td>The log level that is checked against given the domains' setting. </td></tr>
     <tr><td class="paramname">caller</td><td>Once compiler generated and passed forward to here. </td></tr>
   </table>
@@ -444,7 +447,7 @@ Protected Attributes</h2></td></tr>
 <hr/>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">domain</td><td>The log domain name. If not starting with a slash ('/') is is appended to any default domain name that might have been specified for the source file. </td></tr>
+    <tr><td class="paramname">domain</td><td>The log domain name. </td></tr>
     <tr><td class="paramname">level</td><td>The log level. This is checked against the level setting of the given domain. </td></tr>
     <tr><td class="paramname">msgObject</td><td>The log message object (mostly a String or MString). </td></tr>
     <tr><td class="paramname">indent</td><td>The desired indentation in the output. </td></tr>
@@ -484,17 +487,31 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aaf4174e465b199c8ec5a9fe1d05f58b1"></a>
+<a class="anchor" id="aa5d02b0b07b9176e5cb7dad8754d0c3c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool LogCallerInfo = true</td>
+          <td class="memname">bool LogCallerMethod = true</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Enable the logging of source file names. Default is true (enabled) </p>
+<p>Enable the logging of method name of the caller. Default is true (enabled) </p>
+
+</div>
+</div>
+<a class="anchor" id="a09e0af5a92465ab2d6f66f722b6b4676"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool LogCallerSource = true</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable the logging of source file name of the caller. Default is true (enabled) </p>
 
 </div>
 </div>
@@ -695,7 +712,7 @@ Protected Attributes</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.4-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 28 2013 12:16:28 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 15 2013 09:26:46 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

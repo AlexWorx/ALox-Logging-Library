@@ -8,7 +8,7 @@
     <docanchor file="tutorial_cs" title="1.1 Create a tutorial project or equip your current project with ALox">tutcs_createproject</docanchor>
     <docanchor file="tutorial_cs" title="1.2. Create an instance of class &quot;ConsoleLogger&quot;">tutcs_ha1</docanchor>
     <docanchor file="tutorial_cs" title="1.3. Add code to create and set a *log domain*">tutcs_ha_3</docanchor>
-    <docanchor file="tutorial_cs" title="1.4. Add logging code">tutcs_ha_4</docanchor>
+    <docanchor file="tutorial_cs" title="1.4. Add log code">tutcs_ha_4</docanchor>
     <docanchor file="tutorial_cs" title="1.5. Run your application within visual studio">tutcs_ha_5</docanchor>
     <docanchor file="tutorial_cs" title="1.6. Build Release Version">tutcs_ha_6</docanchor>
     <docanchor file="tutorial_cs" title="2. Log levels and log domains">tutcs_llld</docanchor>
@@ -435,37 +435,107 @@
     </member>
     <member kind="variable" static="yes">
       <type>static String</type>
-      <name>FormatNullException</name>
+      <name>FmtExcNull</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>ae4c72f693e147a221c89ae47c2452c91</anchor>
+      <anchor>aa8eaf49e43df1021c2d606be3fa2a105</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static String</type>
-      <name>FormatNullInstance</name>
+      <name>FmtInstLineNoPrefix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>a1345a8ce3553d709ba8ef916e2a81ed2</anchor>
+      <anchor>a2e36df8103a33a2a906ee197a2dea443</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static String</type>
-      <name>FormatInstanceLineNoPrefix</name>
+      <name>FmtInstLineNoPostfix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>a74e6bcaa1ca443d644fc449a2dbd9443</anchor>
+      <anchor>a965ccdf58230d74195cceaed3fe40539</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static String</type>
-      <name>FormatInstanceLineNoPostfix</name>
+      <name>FmtInstNull</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>a62911c7d239e60d19e9396260df78ac0</anchor>
+      <anchor>adb9f89054eac0cbc3a6baf24c662f464</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static String</type>
-      <name>FormatInstanceIndent</name>
+      <name>FmtInstRecursionLimit</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>ae83099811cf3585424b534b506941932</anchor>
+      <anchor>a4fae788c8c8cd1749d55f7336eae2abf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static String</type>
+      <name>FmtInstCycRefPrefix</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
+      <anchor>ad56bd642c748ee1addec1188df481eae</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static String</type>
+      <name>FmtInstIEnumerablePrefix</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
+      <anchor>aed0d6d14c822f1c1955ef11ae01fb9fe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static String</type>
+      <name>FmtInstIEnumerablePostfix</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
+      <anchor>ab8b8bddb1a3fa62c73e753171cd49dcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static String</type>
+      <name>FmtInstArrayPrefix</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
+      <anchor>aff77a89c541f9f77d08d78b65b9f775b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static String</type>
+      <name>FmtInstArrayPostfix</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
+      <anchor>a589175368d4447e9e299a6772c2de1d0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static String</type>
+      <name>FmtInstCycRefPostfix</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
+      <anchor>ab09e0f17b2e136eab6dd0b8bebb2900a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static String</type>
+      <name>FmtInstNoAccessToValue</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
+      <anchor>aa4ce00beb85593e9964f9036a2a57933</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static String</type>
+      <name>FmtInstTypePrefix</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
+      <anchor>a961fca96721ab094e840bd62fd81a30b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static String</type>
+      <name>FmtInstTypePostfix</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
+      <anchor>acfe76f019ad1076ce73f8d67f292e228</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static String</type>
+      <name>FmtInstIndent</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
+      <anchor>a45adaa09fbb02529d24d98b541412995</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" protection="protected" static="yes">
@@ -477,24 +547,45 @@
     </member>
     <member kind="function" protection="protected" static="yes">
       <type>static void</type>
-      <name>instance</name>
+      <name>instMain</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>af41be16a7e1cf4097b9065c7e4e9dd5a</anchor>
+      <anchor>a670b8642fe3a9f4737c9e398c2050006</anchor>
       <arglist>(Object o, int maxRecursion, String headLine)</arglist>
     </member>
     <member kind="function" protection="protected" static="yes">
       <type>static void</type>
-      <name>instanceNewLine</name>
+      <name>instRecursive</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>ac49d59b8bea84e578ee290853d1b56d6</anchor>
+      <anchor>ac03b6467ac0863a99a0b52afa782fe8f</anchor>
+      <arglist>(Object inst, int maxRecursion, int indent)</arglist>
+    </member>
+    <member kind="function" protection="protected" static="yes">
+      <type>static void</type>
+      <name>instNewLine</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
+      <anchor>a7f90bc448f889a4afd2a0d051508a8e7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected" static="yes">
+      <type>static void</type>
+      <name>instBeginLine</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
+      <anchor>a1a60fd445cafbf21819717c2b817af7f</anchor>
       <arglist>(int indent)</arglist>
     </member>
     <member kind="function" protection="protected" static="yes">
       <type>static void</type>
-      <name>instanceRecursive</name>
+      <name>instTabStop</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>aa6fce6f33d6876547738ba79e48a976b</anchor>
-      <arglist>(Object element, int maxRecursion, int indent)</arglist>
+      <anchor>a7ea8777191d09d2b9e64f2c3384ebaf8</anchor>
+      <arglist>(int tabStop)</arglist>
+    </member>
+    <member kind="function" protection="protected" static="yes">
+      <type>static void</type>
+      <name>instTabTypeAndNewLine</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
+      <anchor>aa64ceea3ae9af0dc33366784f0dfe0e0</anchor>
+      <arglist>(Type type)</arglist>
     </member>
     <member kind="function" protection="protected" static="yes">
       <type>static void</type>
@@ -512,9 +603,16 @@
     </member>
     <member kind="variable" protection="protected" static="yes">
       <type>static int</type>
-      <name>InstanceLogTabStop</name>
+      <name>instValueTabStop</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>afb9428c11842c78a85aae86a3de407a8</anchor>
+      <anchor>ac586537acea9202be95f5cf793324550</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static int</type>
+      <name>instTypeTabStop</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
+      <anchor>a1cfe4bbb4fae0ca0db99d3fe768ffa64</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected" static="yes">
@@ -526,16 +624,23 @@
     </member>
     <member kind="variable" protection="protected" static="yes">
       <type>static uint</type>
-      <name>instanceLineNumber</name>
+      <name>instLineNumber</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>a1addd0eb70e34f5aef4ba166a6938da3</anchor>
+      <anchor>a4ef97f200cc58b6c0e22c895ddf7c76b</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected" static="yes">
       <type>static Dictionary&lt; Object, UInt32 &gt;</type>
-      <name>instanceObject2LineNumber</name>
+      <name>instObject2LineNumber</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>a1c2b5f1f74dcb507f1595eddf4fb52db</anchor>
+      <anchor>a6e81430abaff658ea6e14fbbf242c1d2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static int</type>
+      <name>instLineBeginIdx</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
+      <anchor>aaa958e582bb109b5cf63121eb10a194a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected" static="yes">
@@ -1068,9 +1173,16 @@
     </member>
     <member kind="variable">
       <type>bool</type>
-      <name>LogCallerInfo</name>
+      <name>LogCallerSource</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>aaf4174e465b199c8ec5a9fe1d05f58b1</anchor>
+      <anchor>a09e0af5a92465ab2d6f66f722b6b4676</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>LogCallerMethod</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
+      <anchor>aa5d02b0b07b9176e5cb7dad8754d0c3c</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -1192,254 +1304,254 @@
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_NullObject</name>
+      <name>FmtNullObject</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>ae2d5fdc1e91d70a3d8113f4394f69cf2</anchor>
+      <anchor>ac281d117b6e931783195f52f70bfa5b3</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_MessagePrefix</name>
+      <name>FmtMessagePrefix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a3b771c004388bff9fd16aad7e4572d8b</anchor>
+      <anchor>aba9c3b1abea028b66463f3b6262bed9c</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_IndentString</name>
+      <name>FmtIndentString</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a64174c22950a01fd727828d8d4a88763</anchor>
+      <anchor>a84b11e4ba9304e158d4f091d2c6e9d7e</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_LogLevelError</name>
+      <name>FmtLogLevelError</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a9cf75ea0cd87bd4e8ea44a620b7898cc</anchor>
+      <anchor>abd28b851f3f7d45b21d07257565fb33f</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_LogLevelWarning</name>
+      <name>FmtLogLevelWarning</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>ac2e3de6c4fe29471a1f69662c7e08d5a</anchor>
+      <anchor>a7a1002aa61ba0a9e16560d3079ee8e36</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_LogLevelInfo</name>
+      <name>FmtLogLevelInfo</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>ac354e9b6c2482844de70f4c7cbea8a2f</anchor>
+      <anchor>ab07a3465306dfb9b6dbf98adb27e254a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_LogLevelVerbose</name>
+      <name>FmtLogLevelVerbose</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a60445b35e7a1a582d641d13890688004</anchor>
+      <anchor>a0d0f7da992728e1139d24702691d87f7</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_MultiLineMsgHeadline</name>
+      <name>FmtMultiLineMsgHeadline</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>ad5b29ca887aabd4bc71cb1573827898e</anchor>
+      <anchor>ab3423baaf4b67d0e7cfa757203aaf872</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_MultiLinePrefix</name>
+      <name>FmtMultiLinePrefix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a8c51f52972bc0d70da9f226b0b907552</anchor>
+      <anchor>a74da3f13d354d7b4b31aa8fefa7e7115</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_MultiLinePostfix</name>
+      <name>FmtMultiLinePostfix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>aad660cab63d0fa45bcb80d955896ed7d</anchor>
+      <anchor>ae0ab1101cb40bf899cb8fb9ef26fb29f</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_DatePrefix</name>
+      <name>FmtDatePrefix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a9978a53f627ff0fbeae5e9e6d2059db8</anchor>
+      <anchor>afb7d960c40340d3fe4663c5484a42c72</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_Date</name>
+      <name>FmtDate</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a005a8b2543390188a590ab00e7c0b08b</anchor>
+      <anchor>a18a9da8d7e7ba66ac3dcbda832ab886c</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_DatePostfix</name>
+      <name>FmtDatePostfix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a05c11f56e86dfc3c85931d94ff16cd48</anchor>
+      <anchor>a5fe44f8189b8474bfc4c08cf5a42a032</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_TimeOfDayPrefix</name>
+      <name>FmtTimeOfDayPrefix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>aeb9fb2ec4644c203da7b2fed3d611a3f</anchor>
+      <anchor>abce08eb76ed2fdd90ee39d233220f405</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_TimeOfDay</name>
+      <name>FmtTimeOfDay</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>aeefbff8e882f3ae7af327ad814fc2ff7</anchor>
+      <anchor>a2e463fc020959aa031da2e572861e8a8</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_TimeOfDayPostfix</name>
+      <name>FmtTimeOfDayPostfix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a697d764a9236efe9c09aa2e54e1bcf34</anchor>
+      <anchor>a68bc151b0a508bdc0f5c7f5609223a27</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_TimeElapsedPrefix</name>
+      <name>FmtTimeElapsedPrefix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a5798ba144f79473674c8f972f3ec8bcf</anchor>
+      <anchor>af07bbbd455910027da8239a12743b8ed</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_TimeElapsedPostfix</name>
+      <name>FmtTimeElapsedPostfix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a3ae07a47d0be863decbde11b338845b7</anchor>
+      <anchor>ad0f9af6e7d61cd6df4855662d404d151</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_TimeElapsedDays</name>
+      <name>FmtTimeElapsedDays</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a3dbd8e7b8f95291223ecb67afd47c4d5</anchor>
+      <anchor>a1846aa54e2d3b4eef3d0083248e7e6d9</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_TimeDiffPrefix</name>
+      <name>FmtTimeDiffPrefix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>afccde0b9a520b4152aac6ea08813b377</anchor>
+      <anchor>af31ad34c738ea8c36156833c4f5d4065</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_TimeDiffPostfix</name>
+      <name>FmtTimeDiffPostfix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>aa6bee7fe8e7bafa6639ad65e96c3c278</anchor>
+      <anchor>a7f19bf5e36f16ca209afd5fb5921d249</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_TimeDiffMicros</name>
+      <name>FmtTimeDiffMicros</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a10a9814563f529b2ff379d01aef51785</anchor>
+      <anchor>a313ca36b03e4d26bde5f500dd22ab00d</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_TimeDiffMillis</name>
+      <name>FmtTimeDiffMillis</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a4c46af9b5312658a77029b7242e8b583</anchor>
+      <anchor>ae488263fb8e4746d2de4a96f814051f0</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_TimeDiffSecs</name>
+      <name>FmtTimeDiffSecs</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>ad0896edd0eef040488b9d212137ff5f0</anchor>
+      <anchor>a1b5018fded561de142dc9bc84d1632a0</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_TimeDiffMins</name>
+      <name>FmtTimeDiffMins</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a7cb3a6acf53797b090b33ae5fff5b797</anchor>
+      <anchor>a595e3ae9fa0a2451029b8d390e7c75f0</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_TimeDiffHours</name>
+      <name>FmtTimeDiffHours</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>ac8603ea28f7b72f3f5e27e3c849a0bee</anchor>
+      <anchor>a2f8688b35164557c1a7645dc3cd745ef</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_TimeDiffDays</name>
+      <name>FmtTimeDiffDays</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a0cc5d7669b1a4264cac461dc6807d00d</anchor>
+      <anchor>aa3bd7b4539cdb1595d9cdf488cd44697</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_DomainPrefix</name>
+      <name>FmtDomainPrefix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>aa5bd85a0c51fbea12a6a42ec5998d534</anchor>
+      <anchor>a3fbc9856016d2fe081b4644e44263ad5</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_DomainPostfix</name>
+      <name>FmtDomainPostfix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a08647634db3c21eb41e92e43d69c55f4</anchor>
+      <anchor>a8284978677264be2d62149308088617b</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_ThreadPrefix</name>
+      <name>FmtThreadPrefix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>aa45008a192ad28c1eb9db3300942a400</anchor>
+      <anchor>a767c0f28055f56668359fcd1678b25d5</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_ThreadPostfix</name>
+      <name>FmtThreadPostfix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>acb590b1b5666c114c00057808494fdef</anchor>
+      <anchor>a928e64174a85a34b77b97eaf25956f3c</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_LogNumberPrefix</name>
+      <name>FmtLogNumberPrefix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a25c0ddd003160ee231e1f1f5dc2d2e0a</anchor>
+      <anchor>a5a831eed0fe63ab71b26d5bc8c70b4d5</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_LogNumberPostfix</name>
+      <name>FmtLogNumberPostfix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a4080309b1e6ecc3af1c7980977ea8526</anchor>
+      <anchor>a26a0361291a4e0253e9af11912b45b31</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>int</type>
-      <name>FMT_LogNumberMinDigits</name>
+      <name>FmtLogNumberMinDigits</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>ae378b722304328dd3f68e0899d2aa68f</anchor>
+      <anchor>a087f3222db7d7b243c9383b1a8f49797</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>int</type>
-      <name>FMT_AutoGrowThreadNameLength</name>
+      <name>FmtAutoGrowThreadNameLength</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a437fc4a26d0b058fa32af80456867f27</anchor>
+      <anchor>aca310d2432cc9445a4e65cc5e28d3783</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>int</type>
-      <name>FMT_AutoGrowDomainNameLength</name>
+      <name>FmtAutoGrowDomainNameLength</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>acc72da9590eeec2005ce1d03e9ed0a9c</anchor>
+      <anchor>a405175cde17a010e915704f16b904b8f</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" protection="protected">
@@ -1539,16 +1651,16 @@
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_MemberPrefix</name>
+      <name>FmtMemberPrefix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html</anchorfile>
-      <anchor>a4e0aad1a0ce74546927c7201ba338201</anchor>
+      <anchor>a52e5206c92067f6c6c3a3991ffcf91d0</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FMT_MemberPostfix</name>
+      <name>FmtMemberPostfix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html</anchorfile>
-      <anchor>ad8200a21a83bdfd5ac72793812d7956e</anchor>
+      <anchor>a5ef328df8cbaac516c2ab52a117f3591</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">

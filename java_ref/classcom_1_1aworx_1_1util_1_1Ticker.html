@@ -42,8 +42,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="../index.html"><span>ALox&#160;Home</span></a></li>
       <li><a href="index.html"><span>ALox&#160;for&#160;Java</span></a></li>
-      <li><a href="@ref setup_projects_java"><span>IDE&#160;Setup</span></a></li>
-      <li><a href="@ref tutorial_java"><span>Tutorial</span></a></li>
+      <li><a href="setup_projects_java.html"><span>IDE&#160;Setup</span></a></li>
+      <li><a href="tutorial_java.html"><span>Tutorial</span></a></li>
       <li class="current"><a href="annotated.html"><span>Class&#160;Reference</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
@@ -100,79 +100,58 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Ticker Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>This class provides a pure static interface into system dependent time values (usually 64 bit tick counters) that we call <em>ticks</em>.  
- <a href="classcom_1_1aworx_1_1util_1_1Ticker.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ac7a1ddfbc7d217670be03dc0722a5adc"><td class="memItemLeft" align="right" valign="top">static long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html#ac7a1ddfbc7d217670be03dc0722a5adc">now</a> ()</td></tr>
-<tr class="memdesc:ac7a1ddfbc7d217670be03dc0722a5adc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the actual system dependent time in ticks.  <a href="#ac7a1ddfbc7d217670be03dc0722a5adc">More...</a><br/></td></tr>
 <tr class="separator:ac7a1ddfbc7d217670be03dc0722a5adc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33236e3a6c290f0e035d5f9ac2a327d2"><td class="memItemLeft" align="right" valign="top">static long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html#a33236e3a6c290f0e035d5f9ac2a327d2">add</a> (long ticks, int days, int hours, int minutes, int seconds)</td></tr>
-<tr class="memdesc:a33236e3a6c290f0e035d5f9ac2a327d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the given time interval to the given ticker time (or span value in ticks) and returns the result.  <a href="#a33236e3a6c290f0e035d5f9ac2a327d2">More...</a><br/></td></tr>
 <tr class="separator:a33236e3a6c290f0e035d5f9ac2a327d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40bc3e2129b61393b98cac6c59e48a07"><td class="memItemLeft" align="right" valign="top">static long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html#a40bc3e2129b61393b98cac6c59e48a07">toMillis</a> (long ticks)</td></tr>
-<tr class="memdesc:a40bc3e2129b61393b98cac6c59e48a07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the given system dependent ticks (or time spans in ticks) to milliseconds.  <a href="#a40bc3e2129b61393b98cac6c59e48a07">More...</a><br/></td></tr>
 <tr class="separator:a40bc3e2129b61393b98cac6c59e48a07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c5f77b7a3b2479ea95a51559b6bd83f"><td class="memItemLeft" align="right" valign="top">static long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html#a3c5f77b7a3b2479ea95a51559b6bd83f">toMicros</a> (long ticks)</td></tr>
 <tr class="memdesc:a3c5f77b7a3b2479ea95a51559b6bd83f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the given system dependent ticks (or time spans in ticks) to microseconds.  <a href="#a3c5f77b7a3b2479ea95a51559b6bd83f">More...</a><br/></td></tr>
 <tr class="separator:a3c5f77b7a3b2479ea95a51559b6bd83f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d2548f74dc7a245e0b29b54cf343144"><td class="memItemLeft" align="right" valign="top">static long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html#a3d2548f74dc7a245e0b29b54cf343144">toNanos</a> (long ticks)</td></tr>
-<tr class="memdesc:a3d2548f74dc7a245e0b29b54cf343144"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the given system dependent ticks (or time spans in ticks) to nanoseconds.  <a href="#a3d2548f74dc7a245e0b29b54cf343144">More...</a><br/></td></tr>
 <tr class="separator:a3d2548f74dc7a245e0b29b54cf343144"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa6730c03c7b584a3a9a33be81ed125c"><td class="memItemLeft" align="right" valign="top">static long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html#afa6730c03c7b584a3a9a33be81ed125c">fromMillis</a> (long millis)</td></tr>
-<tr class="memdesc:afa6730c03c7b584a3a9a33be81ed125c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the given millisecond value to a system dependent time span in ticks.  <a href="#afa6730c03c7b584a3a9a33be81ed125c">More...</a><br/></td></tr>
 <tr class="separator:afa6730c03c7b584a3a9a33be81ed125c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef62101f449515145c8d4385dcc05dba"><td class="memItemLeft" align="right" valign="top">static long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html#aef62101f449515145c8d4385dcc05dba">fromMicros</a> (long micros)</td></tr>
-<tr class="memdesc:aef62101f449515145c8d4385dcc05dba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the given microsecond value to a system dependent time span in ticks.  <a href="#aef62101f449515145c8d4385dcc05dba">More...</a><br/></td></tr>
 <tr class="separator:aef62101f449515145c8d4385dcc05dba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6b08512aeb2693b992a65b5cf5024f9"><td class="memItemLeft" align="right" valign="top">static long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html#ae6b08512aeb2693b992a65b5cf5024f9">fromNanos</a> (long nanos)</td></tr>
-<tr class="memdesc:ae6b08512aeb2693b992a65b5cf5024f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the given nanosecond value to a system dependent time span in ticks.  <a href="#ae6b08512aeb2693b992a65b5cf5024f9">More...</a><br/></td></tr>
 <tr class="separator:ae6b08512aeb2693b992a65b5cf5024f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeaf55f47d939a3f22bb5a9504ad4e9ee"><td class="memItemLeft" align="right" valign="top">static long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html#aeaf55f47d939a3f22bb5a9504ad4e9ee">toEpochMillis</a> (long ticks)</td></tr>
-<tr class="memdesc:aeaf55f47d939a3f22bb5a9504ad4e9ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the given given system dependent ticker time into milliseconds since January 1, 1970, 00:00:00 GMT.  <a href="#aeaf55f47d939a3f22bb5a9504ad4e9ee">More...</a><br/></td></tr>
 <tr class="separator:aeaf55f47d939a3f22bb5a9504ad4e9ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b13194fceedc227d1c20fb9d8a6cdf2"><td class="memItemLeft" align="right" valign="top">static long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html#a1b13194fceedc227d1c20fb9d8a6cdf2">fromEpochMillis</a> (long epochMillis)</td></tr>
-<tr class="memdesc:a1b13194fceedc227d1c20fb9d8a6cdf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the given milliseconds since January 1, 1970, 00:00:00 GMT into ticker time.  <a href="#a1b13194fceedc227d1c20fb9d8a6cdf2">More...</a><br/></td></tr>
 <tr class="separator:a1b13194fceedc227d1c20fb9d8a6cdf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad02fa2a665aa5a1dc5bde3c031b1c6ec"><td class="memItemLeft" align="right" valign="top">static Calendar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html#ad02fa2a665aa5a1dc5bde3c031b1c6ec">toJavaCalendar</a> (long ticks, Calendar result)</td></tr>
-<tr class="memdesc:ad02fa2a665aa5a1dc5bde3c031b1c6ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the given java.util.Calendar object to correspond to the given system dependent ticker time.  <a href="#ad02fa2a665aa5a1dc5bde3c031b1c6ec">More...</a><br/></td></tr>
 <tr class="separator:ad02fa2a665aa5a1dc5bde3c031b1c6ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d734b8327d43ad654119dbbfb1e6000"><td class="memItemLeft" align="right" valign="top">static long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html#a8d734b8327d43ad654119dbbfb1e6000">fromJavaCalendar</a> (Calendar javaCalendar)</td></tr>
-<tr class="memdesc:a8d734b8327d43ad654119dbbfb1e6000"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the time represented by the given java.util.Date object to system dependent ticker time.  <a href="#a8d734b8327d43ad654119dbbfb1e6000">More...</a><br/></td></tr>
 <tr class="separator:a8d734b8327d43ad654119dbbfb1e6000"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afcec0f9a935c72f45d091bbfc584da00"><td class="memItemLeft" align="right" valign="top">static Date&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html#afcec0f9a935c72f45d091bbfc584da00">toJavaDate</a> (long ticks, Date result)</td></tr>
-<tr class="memdesc:afcec0f9a935c72f45d091bbfc584da00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the given java.util.Date object to correspond to the given system dependent ticker time.  <a href="#afcec0f9a935c72f45d091bbfc584da00">More...</a><br/></td></tr>
 <tr class="separator:afcec0f9a935c72f45d091bbfc584da00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1769d8785b2654e8d67700c4d498a664"><td class="memItemLeft" align="right" valign="top">static long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html#a1769d8785b2654e8d67700c4d498a664">fromJavaDate</a> (Date javaDate)</td></tr>
-<tr class="memdesc:a1769d8785b2654e8d67700c4d498a664"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the time represented by the given java.util.Date object to system dependent ticker time.  <a href="#a1769d8785b2654e8d67700c4d498a664">More...</a><br/></td></tr>
 <tr class="separator:a1769d8785b2654e8d67700c4d498a664"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr class="memitem:a2a566616ba261c3beb9433771cace0d1"><td class="memItemLeft" align="right" valign="top">static long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html#a2a566616ba261c3beb9433771cace0d1">internalFrequency</a></td></tr>
-<tr class="memdesc:a2a566616ba261c3beb9433771cace0d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Frequency of the internal tick timer.  <a href="#a2a566616ba261c3beb9433771cace0d1">More...</a><br/></td></tr>
 <tr class="separator:a2a566616ba261c3beb9433771cace0d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pac-static-methods"></a>
 Static Package Functions</h2></td></tr>
 <tr class="memitem:a2e87c5ede6b7235170d287cd2e254454"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html#a2e87c5ede6b7235170d287cd2e254454">[static initializer]</a></td></tr>
-<tr class="memdesc:a2e87c5ede6b7235170d287cd2e254454"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static constructor.  <a href="#a2e87c5ede6b7235170d287cd2e254454">More...</a><br/></td></tr>
 <tr class="separator:a2e87c5ede6b7235170d287cd2e254454"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
 <tr class="memitem:a8843ea79744d6cae8884ad2c81737d8c"><td class="memItemLeft" align="right" valign="top">static long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html#a8843ea79744d6cae8884ad2c81737d8c">creationTimeDateMillis</a></td></tr>
-<tr class="memdesc:a8843ea79744d6cae8884ad2c81737d8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The system milliseconds at creation time.  <a href="#a8843ea79744d6cae8884ad2c81737d8c">More...</a><br/></td></tr>
 <tr class="separator:a8843ea79744d6cae8884ad2c81737d8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17c2298e03748d9bff95cdf0fb8bcc6c"><td class="memItemLeft" align="right" valign="top">static long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html#a17c2298e03748d9bff95cdf0fb8bcc6c">creationTimeSystemNanos</a></td></tr>
-<tr class="memdesc:a17c2298e03748d9bff95cdf0fb8bcc6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The system nanoseconds at creation time.  <a href="#a17c2298e03748d9bff95cdf0fb8bcc6c">More...</a><br/></td></tr>
 <tr class="separator:a17c2298e03748d9bff95cdf0fb8bcc6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This class provides a pure static interface into system dependent time values (usually 64 bit tick counters) that we call <em>ticks</em>. </p>
-<p>Ticks and this class allow to store and calculate time values in an efficient and highly accurate way.</p>
+<div class="textblock"><p>This class provides a pure static interface into system dependent time values (usually 64 bit tick counters) that we call <em>ticks</em>. Ticks and this class allow to store and calculate time values in an efficient and highly accurate way.</p>
 <p>Ticks generated by this class can be added and subtracted:</p>
 <ul>
 <li>Subtraction generates a <em>span value in ticks</em></li>
@@ -203,8 +182,7 @@ Static Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Static constructor. </p>
+<p>Static constructor.</p>
 <p>This static constructor is called once at the beginning of the lifecycle of this library. We use it to get</p>
 <p>a) the milliseconds in the epoch in the moment this class was statically initialized b) the system nanoseconds in the moment this class was statically initialized</p>
 <p>These values are used later to avoid creating a new Date() object (speed optimization). </p>
@@ -260,14 +238,12 @@ Static Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Adds the given time interval to the given ticker time (or span value in ticks) and returns the result. </p>
-<p>Parameters are allowed to be negative to subtract such time intervals.</p>
+<p>Adds the given time interval to the given ticker time (or span value in ticks) and returns the result. Parameters are allowed to be negative to subtract such time intervals.</p>
 <p>For adding milliseconds or microseconds, use "yourTicks+= Ticker.FromMills()" respectively "
 yourTicks+= Ticker.FromMicros()".</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ticks</td><td><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html" title="This class provides a pure static interface into system dependent time values (usually 64 bit tick co...">Ticker</a> time (or time spans in ticks) to add to. </td></tr>
+    <tr><td class="paramname">ticks</td><td><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html">Ticker</a> time (or time spans in ticks) to add to. </td></tr>
     <tr><td class="paramname">days</td><td>The days to add (subtract if negative). </td></tr>
     <tr><td class="paramname">hours</td><td>The hours to add (subtract if negative). </td></tr>
     <tr><td class="paramname">minutes</td><td>The minutes to add (subtract if negative). </td></tr>
@@ -300,15 +276,14 @@ yourTicks+= Ticker.FromMicros()".</p>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Converts the given milliseconds since January 1, 1970, 00:00:00 GMT into ticker time. </p>
+<p>Converts the given milliseconds since January 1, 1970, 00:00:00 GMT into ticker time.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">epochMillis</td><td>The milliseconds in the epoch to convert.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html" title="This class provides a pure static interface into system dependent time values (usually 64 bit tick co...">Ticker</a> time. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html">Ticker</a> time. </dd></dl>
 
 </div>
 </div>
@@ -333,15 +308,14 @@ yourTicks+= Ticker.FromMicros()".</p>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Converts the time represented by the given java.util.Date object to system dependent ticker time. </p>
+<p>Converts the time represented by the given java.util.Date object to system dependent ticker time.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">javaCalendar</td><td>The java.util.Date object to convert.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html" title="This class provides a pure static interface into system dependent time values (usually 64 bit tick co...">Ticker</a> time of given javaDate. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html">Ticker</a> time of given javaDate. </dd></dl>
 
 </div>
 </div>
@@ -366,15 +340,14 @@ yourTicks+= Ticker.FromMicros()".</p>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Converts the time represented by the given java.util.Date object to system dependent ticker time. </p>
+<p>Converts the time represented by the given java.util.Date object to system dependent ticker time.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">javaDate</td><td>The java.util.Date object to convert.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html" title="This class provides a pure static interface into system dependent time values (usually 64 bit tick co...">Ticker</a> time of given javaDate. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html">Ticker</a> time of given javaDate. </dd></dl>
 
 </div>
 </div>
@@ -399,11 +372,10 @@ yourTicks+= Ticker.FromMicros()".</p>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Converts the given microsecond value to a system dependent time span in ticks. </p>
+<p>Converts the given microsecond value to a system dependent time span in ticks.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">micros</td><td><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html" title="This class provides a pure static interface into system dependent time values (usually 64 bit tick co...">Ticker</a> time (or time spans in ticks) to convert.</td></tr>
+    <tr><td class="paramname">micros</td><td><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html">Ticker</a> time (or time spans in ticks) to convert.</td></tr>
   </table>
   </dd>
 </dl>
@@ -432,11 +404,10 @@ yourTicks+= Ticker.FromMicros()".</p>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Converts the given millisecond value to a system dependent time span in ticks. </p>
+<p>Converts the given millisecond value to a system dependent time span in ticks.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">millis</td><td><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html" title="This class provides a pure static interface into system dependent time values (usually 64 bit tick co...">Ticker</a> time (or time spans in ticks) to convert.</td></tr>
+    <tr><td class="paramname">millis</td><td><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html">Ticker</a> time (or time spans in ticks) to convert.</td></tr>
   </table>
   </dd>
 </dl>
@@ -465,11 +436,10 @@ yourTicks+= Ticker.FromMicros()".</p>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Converts the given nanosecond value to a system dependent time span in ticks. </p>
+<p>Converts the given nanosecond value to a system dependent time span in ticks.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">nanos</td><td><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html" title="This class provides a pure static interface into system dependent time values (usually 64 bit tick co...">Ticker</a> time (or time spans in ticks) to convert.</td></tr>
+    <tr><td class="paramname">nanos</td><td><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html">Ticker</a> time (or time spans in ticks) to convert.</td></tr>
   </table>
   </dd>
 </dl>
@@ -497,8 +467,7 @@ yourTicks+= Ticker.FromMicros()".</p>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Gets the actual system dependent time in ticks. </p>
+<p>Gets the actual system dependent time in ticks.</p>
 <dl class="section return"><dt>Returns</dt><dd>The time now in ticks </dd></dl>
 
 </div>
@@ -524,11 +493,10 @@ yourTicks+= Ticker.FromMicros()".</p>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Converts the given given system dependent ticker time into milliseconds since January 1, 1970, 00:00:00 GMT. </p>
+<p>Converts the given given system dependent ticker time into milliseconds since January 1, 1970, 00:00:00 GMT.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ticks</td><td><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html" title="This class provides a pure static interface into system dependent time values (usually 64 bit tick co...">Ticker</a> time to convert.</td></tr>
+    <tr><td class="paramname">ticks</td><td><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html">Ticker</a> time to convert.</td></tr>
   </table>
   </dd>
 </dl>
@@ -567,11 +535,10 @@ yourTicks+= Ticker.FromMicros()".</p>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Sets the given java.util.Calendar object to correspond to the given system dependent ticker time. </p>
+<p>Sets the given java.util.Calendar object to correspond to the given system dependent ticker time.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ticks</td><td><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html" title="This class provides a pure static interface into system dependent time values (usually 64 bit tick co...">Ticker</a> time to convert. </td></tr>
+    <tr><td class="paramname">ticks</td><td><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html">Ticker</a> time to convert. </td></tr>
     <tr><td class="paramname">result</td><td>The java.util.Calendar object to set. If null, this is created.</td></tr>
   </table>
   </dd>
@@ -611,11 +578,10 @@ yourTicks+= Ticker.FromMicros()".</p>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Sets the given java.util.Date object to correspond to the given system dependent ticker time. </p>
+<p>Sets the given java.util.Date object to correspond to the given system dependent ticker time.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ticks</td><td><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html" title="This class provides a pure static interface into system dependent time values (usually 64 bit tick co...">Ticker</a> time to convert. </td></tr>
+    <tr><td class="paramname">ticks</td><td><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html">Ticker</a> time to convert. </td></tr>
     <tr><td class="paramname">result</td><td>The java.util.Date object to set. If null, this is created.</td></tr>
   </table>
   </dd>
@@ -649,7 +615,7 @@ yourTicks+= Ticker.FromMicros()".</p>
 <p>Converts the given system dependent ticks (or time spans in ticks) to microseconds. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ticks</td><td><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html" title="This class provides a pure static interface into system dependent time values (usually 64 bit tick co...">Ticker</a> time (or time spans in ticks) to convert. </td></tr>
+    <tr><td class="paramname">ticks</td><td><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html">Ticker</a> time (or time spans in ticks) to convert. </td></tr>
   </table>
   </dd>
 </dl>
@@ -678,11 +644,10 @@ yourTicks+= Ticker.FromMicros()".</p>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Converts the given system dependent ticks (or time spans in ticks) to milliseconds. </p>
+<p>Converts the given system dependent ticks (or time spans in ticks) to milliseconds.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ticks</td><td><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html" title="This class provides a pure static interface into system dependent time values (usually 64 bit tick co...">Ticker</a> time (or time spans in ticks) to convert.</td></tr>
+    <tr><td class="paramname">ticks</td><td><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html">Ticker</a> time (or time spans in ticks) to convert.</td></tr>
   </table>
   </dd>
 </dl>
@@ -711,11 +676,10 @@ yourTicks+= Ticker.FromMicros()".</p>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Converts the given system dependent ticks (or time spans in ticks) to nanoseconds. </p>
+<p>Converts the given system dependent ticks (or time spans in ticks) to nanoseconds.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ticks</td><td><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html" title="This class provides a pure static interface into system dependent time values (usually 64 bit tick co...">Ticker</a> time (or time spans in ticks) to convert.</td></tr>
+    <tr><td class="paramname">ticks</td><td><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html">Ticker</a> time (or time spans in ticks) to convert.</td></tr>
   </table>
   </dd>
 </dl>
@@ -741,7 +705,6 @@ yourTicks+= Ticker.FromMicros()".</p>
   </tr>
 </table>
 </div><div class="memdoc">
-
 <p>The system milliseconds at creation time. </p>
 
 </div>
@@ -763,7 +726,6 @@ yourTicks+= Ticker.FromMicros()".</p>
   </tr>
 </table>
 </div><div class="memdoc">
-
 <p>The system nanoseconds at creation time. </p>
 
 </div>
@@ -785,9 +747,7 @@ yourTicks+= Ticker.FromMicros()".</p>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>The Frequency of the internal tick timer. </p>
-<p>The Frequency gives you an indication of the accuracy of the time (At least if the underlying system library is reasonably well working in this respect). And this is the reason why it is published with this field. This value does not necessarily correspond to the number of ticks per second that you get from this classes <a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html#ac7a1ddfbc7d217670be03dc0722a5adc" title="Gets the actual system dependent time in ticks. ">now()</a> method. (Well, in the JAVA implementation it does.) </p>
+<p>The Frequency of the internal tick timer. The Frequency gives you an indication of the accuracy of the time (At least if the underlying system library is reasonably well working in this respect). And this is the reason why it is published with this field. This value does not necessarily correspond to the number of ticks per second that you get from this classes <a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html#ac7a1ddfbc7d217670be03dc0722a5adc">now()</a> method. (Well, in the JAVA implementation it does.) </p>
 
 </div>
 </div>
@@ -798,7 +758,7 @@ yourTicks+= Ticker.FromMicros()".</p>
 <!-- HTML footer for doxygen 1.8.4-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 28 2013 12:16:29 for ALox Java Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 15 2013 09:26:49 for ALox Java Reference by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

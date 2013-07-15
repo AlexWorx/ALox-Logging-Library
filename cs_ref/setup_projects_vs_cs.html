@@ -84,15 +84,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Setup Visual Studio for C# Projects </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>To use ALox logging in your C# project using Visual Studio, some few preparational steps have to be taken.</p>
-<p>Currently, there is no other way to <em>install</em> the library, than to either</p>
+<div class="textblock"><p>To use ALox logging in your C# project using Visual Studio, some few preparatory steps have to be taken.</p>
+<p>Currently, there is no binary distribution of ALox for C# available. Therefore, the way to incorporate ALox into your project is to include the sources. There are two options:</p>
 <ul>
 <li>add one of the existing ALox class library projects to your solution or to</li>
-<li><p class="startli">add ALox sources directly to your project.</p>
-<p class="startli">Note: If you do not actually have a C# project (or do not want to touch it now) and you just want to have a first look into ALox, then create a new project using the Visual Studio Project Wizard. Be sure to create an executable and that the typical "hello world" sample prints to the Visual Studio console.*</p>
-</li>
+<li>add ALox sources directly to your project.</li>
 </ul>
-<p>Unpack the ALox distribution zip and move all its contents to a place where you safely store 3rd party libraries. We call this the <em>ALox Library folder</em>.</p>
+<dl class="section note"><dt>Note</dt><dd>If you do not actually have a C# project (or do not want to touch it now) and you just want to have a first look into ALox, then create a new project using the Visual Studio Project Wizard. Be sure to create an executable and that the typical "hello world" sample prints to the Visual Studio console.</dd></dl>
+<h2>Download</h2>
+<p>Unpack the ALox distribution (e.g. as zip) from <a href="https://github.com/AlexWorx/ALox-Logging-Library">Alox at GitHub</a> and move all its contents to a place where you safely store 3rd party libraries.</p>
+<p>We call this folder the <em>ALOX_LIB_PATH</em>.</p>
 <h2>Link one of the following projects into your solution</h2>
 <p>To incorporate ALox into your Visual Studio solution, you have to follow three steps:</p>
 <p>a) Choose the right class library project that fits well to your own project target and platform. Currently, choices are:</p>
@@ -101,15 +102,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li><em>ALox-CS-WP71-DLL</em>: For windows Phone 7.1 projects</li>
 <li><em>ALox-CS-WP80-DLL</em>: For windows Phone 8 projects</li>
 </ul>
-<p>Note: If there is no appropriate predefined project available for you, skip b) and c) and continue reading below at <b>adding source</b>!*</p>
-<p>Add the Visual Studio project that you find in the corresponding sub folder of the <em>ALox Library folder</em> to your solution.</p>
+<dl class="section note"><dt>Note</dt><dd>If there is no appropriate predefined project available for you, skip b) and c) and continue reading below at <b>adding source</b>!</dd></dl>
+<p>Add the Visual Studio project that you find in the corresponding sub folder of the <em>ALOX_LIB_PATH</em> to your solution.</p>
 <p>b) Set a build dependency from your project to the just added <em>ALox-CS-DLL</em> project. Steps are:</p>
 <ul>
 <li>right click your project in solution explorer</li>
 <li>choose context menu <b>Project dependencies...</b></li>
 <li>tick the checkbox for the <em>ALox-CS-DLL</em> project.</li>
 </ul>
-<p>c) Add the ALox-CS-DL project as a reference to your project. Steps are:</p>
+<p>c) Add the ALox-CS-DLL project as a reference to your project. Steps are:</p>
 <ul>
 <li>right click your project in solution explorer</li>
 <li>choose context menu <b>Add reference...</b></li>
@@ -159,7 +160,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <!-- HTML footer for doxygen 1.8.4-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 28 2013 12:16:28 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 15 2013 09:26:45 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

@@ -1,8 +1,12 @@
 var searchData=
 [
-  ['tabaftersourceinfo',['tabAfterSourceInfo',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html#a46478288e5b87451c0dcfab3b736f44f',1,'com.aworx.lox.loggers.ConsoleLogger.tabAfterSourceInfo()'],['../classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html#a46478288e5b87451c0dcfab3b736f44f',1,'com.aworx.lox.loggers.MemoryLogger.tabAfterSourceInfo()']]],
+  ['tabaftercallerinfo',['tabAfterCallerInfo',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html#ab567b166bd89d2152a85fc93d91808f4',1,'com.aworx.lox.loggers.ConsoleLogger.tabAfterCallerInfo()'],['../classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html#ab567b166bd89d2152a85fc93d91808f4',1,'com.aworx.lox.loggers.MemoryLogger.tabAfterCallerInfo()'],['../classcom_1_1aworx_1_1lox_1_1android_1_1AndroidLogCatLogger.html#ab567b166bd89d2152a85fc93d91808f4',1,'com.aworx.lox.android.AndroidLogCatLogger.tabAfterCallerInfo()']]],
+  ['tabbeforecallername',['tabBeforeCallerName',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html#aa5a11f0f87e30d2b8256baaf1d86e9a6',1,'com.aworx.lox.loggers.ConsoleLogger.tabBeforeCallerName()'],['../classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html#aa5a11f0f87e30d2b8256baaf1d86e9a6',1,'com.aworx.lox.loggers.MemoryLogger.tabBeforeCallerName()'],['../classcom_1_1aworx_1_1lox_1_1android_1_1AndroidLogCatLogger.html#aa5a11f0f87e30d2b8256baaf1d86e9a6',1,'com.aworx.lox.android.AndroidLogCatLogger.tabBeforeCallerName()']]],
+  ['tempbuf',['tempBuf',['../classcom_1_1aworx_1_1lox_1_1LogTools.html#a570982a6045c2e2c409321b2e1a01898',1,'com::aworx::lox::LogTools']]],
   ['tempdomain',['tempDomain',['../classcom_1_1aworx_1_1lox_1_1Lox.html#ab1e2c7dee8db47cd16ca92fb3a7ae904',1,'com::aworx::lox::Lox']]],
   ['tempdomainpath',['tempDomainPath',['../classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#af717d7b13f31ce14d19c3b24707f20f6',1,'com::aworx::lox::core::Logger']]],
+  ['templineendidx',['tempLineEndIdx',['../classcom_1_1aworx_1_1lox_1_1LogTools.html#a3e071e391087b62155ccd1f5b3e3ab46',1,'com::aworx::lox::LogTools']]],
+  ['templinestartidx',['tempLineStartIdx',['../classcom_1_1aworx_1_1lox_1_1LogTools.html#a93c641104eda6fb4550ce017b73430bf',1,'com::aworx::lox::LogTools']]],
   ['tempms',['tempMS',['../classcom_1_1aworx_1_1lox_1_1Lox.html#a0d99bb961369853273a8f67384b2c3c1',1,'com::aworx::lox::Lox']]],
   ['tempsbuf',['tempSBuf',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#afe17394f84cf5bdb4891727e32f49300',1,'com::aworx::lox::core::TextLogger']]],
   ['thread',['thread',['../classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#ac99b75d10f465c1160242dea4544069a',1,'com::aworx::lox::core::CallerInfo']]],
@@ -13,5 +17,6 @@ var searchData=
   ['timeofcreation',['timeOfCreation',['../classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a0216d25a6442fb3b0ec187632a00a7c7',1,'com::aworx::lox::core::Logger']]],
   ['timeofdayformat',['timeOfDayFormat',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a3d291fa01ff5b1248df6612dfdad1c24',1,'com::aworx::lox::core::TextLogger']]],
   ['timeoflastlog',['timeOfLastLog',['../classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a101380ea5d8e738d844f5562a39b5174',1,'com::aworx::lox::core::Logger']]],
-  ['timestamp',['timeStamp',['../classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#af11689f2da47b3d6082a1afd0a7a20ae',1,'com::aworx::lox::core::CallerInfo']]]
+  ['timestamp',['timeStamp',['../classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#af11689f2da47b3d6082a1afd0a7a20ae',1,'com::aworx::lox::core::CallerInfo']]],
+  ['toolbuf',['toolBuf',['../classcom_1_1aworx_1_1lox_1_1LogTools.html#ab2b7fd952d42f838905b7ce560f1e68e',1,'com::aworx::lox::LogTools']]]
 ];

@@ -6,7 +6,7 @@ var searchData=
   ['callerinfo',['CallerInfo',['../classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html',1,'com::aworx::lox::core']]],
   ['charat',['charAt',['../classcom_1_1aworx_1_1util_1_1MString.html#a0df4313245971ee814410a5206d228ae',1,'com::aworx::util::MString']]],
   ['checkdomain',['checkDomain',['../classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a8fcd714a3f08b4941f8834fd84cfeab5',1,'com::aworx::lox::core::Logger']]],
-  ['class',['Class',['../enumcom_1_1aworx_1_1lox_1_1Log_1_1Scope.html#af0c181dac34da376a1aa0b98624a2b58',1,'com::aworx::lox::Log::Scope']]],
+  ['class',['CLASS',['../enumcom_1_1aworx_1_1lox_1_1Log_1_1Scope.html#ad5946acbc78d91b2bd0621fbf6a3c9a9',1,'com::aworx::lox::Log::Scope']]],
   ['classname',['className',['../classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#afc4f959391fb840db1b65ba194052bbd',1,'com::aworx::lox::core::CallerInfo']]],
   ['clear',['clear',['../classcom_1_1aworx_1_1util_1_1MString.html#a9cc2838997e7d0381c645b2b9d7760e6',1,'com.aworx.util.MString.clear()'],['../classcom_1_1aworx_1_1util_1_1TickTime.html#ac8bb3912a3ce86b15842e79d0b421204',1,'com.aworx.util.TickTime.clear()']]],
   ['cntlogcalls',['cntLogCalls',['../classcom_1_1aworx_1_1lox_1_1Lox.html#a898aebb032f3bceb8d879e7695f197d0',1,'com::aworx::lox::Lox']]],

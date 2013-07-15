@@ -42,8 +42,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="../index.html"><span>ALox&#160;Home</span></a></li>
       <li><a href="index.html"><span>ALox&#160;for&#160;Java</span></a></li>
-      <li><a href="@ref setup_projects_java"><span>IDE&#160;Setup</span></a></li>
-      <li><a href="@ref tutorial_java"><span>Tutorial</span></a></li>
+      <li><a href="setup_projects_java.html"><span>IDE&#160;Setup</span></a></li>
+      <li><a href="tutorial_java.html"><span>Tutorial</span></a></li>
       <li class="current"><a href="annotated.html"><span>Class&#160;Reference</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
@@ -102,9 +102,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">MString Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>A mutable string, that provides public access to its internal buffer and fields and does not implement thread synchronization.  
- <a href="classcom_1_1aworx_1_1util_1_1MString.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for MString:</div>
 <div class="dyncontent">
@@ -114,315 +111,230 @@ Inheritance diagram for MString:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a0df4313245971ee814410a5206d228ae"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a0df4313245971ee814410a5206d228ae">charAt</a> (int index)</td></tr>
-<tr class="memdesc:a0df4313245971ee814410a5206d228ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a character of the sequence.  <a href="#a0df4313245971ee814410a5206d228ae">More...</a><br/></td></tr>
 <tr class="separator:a0df4313245971ee814410a5206d228ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d0f4ae571310c6ed081daa3985ecb47"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a3d0f4ae571310c6ed081daa3985ecb47">length</a> ()</td></tr>
-<tr class="memdesc:a3d0f4ae571310c6ed081daa3985ecb47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the length of the sequence.  <a href="#a3d0f4ae571310c6ed081daa3985ecb47">More...</a><br/></td></tr>
 <tr class="separator:a3d0f4ae571310c6ed081daa3985ecb47"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49ac9531628120dc6c0c6d29f25c2cb6"><td class="memItemLeft" align="right" valign="top">CharSequence&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a49ac9531628120dc6c0c6d29f25c2cb6">subSequence</a> (int beginIndex, int endIndex)</td></tr>
-<tr class="memdesc:a49ac9531628120dc6c0c6d29f25c2cb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Throws an <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html" title="Static methods and fields A-Worx Utility library. ">AWXU</a> error (using the <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#a310f9753e567021a3074e649210d8c18" title="The error handler singleton. ">AWXU.errorHandler</a>) and returns null.  <a href="#a49ac9531628120dc6c0c6d29f25c2cb6">More...</a><br/></td></tr>
 <tr class="separator:a49ac9531628120dc6c0c6d29f25c2cb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6189a24ff8c9875071a28e74cdb98320"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6189a24ff8c9875071a28e74cdb98320"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a6189a24ff8c9875071a28e74cdb98320">MString</a> ()</td></tr>
-<tr class="memdesc:a6189a24ff8c9875071a28e74cdb98320"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor without specific Buffer size, default buffer size to 1 kb. <br/></td></tr>
+<tr class="memitem:a6189a24ff8c9875071a28e74cdb98320"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a6189a24ff8c9875071a28e74cdb98320">MString</a> ()</td></tr>
 <tr class="separator:a6189a24ff8c9875071a28e74cdb98320"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a824015d5ca0548b90d383047023b02c2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a824015d5ca0548b90d383047023b02c2">MString</a> (int size)</td></tr>
-<tr class="memdesc:a824015d5ca0548b90d383047023b02c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with specific Buffer size .  <a href="#a824015d5ca0548b90d383047023b02c2">More...</a><br/></td></tr>
 <tr class="separator:a824015d5ca0548b90d383047023b02c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2939e50fa2dacabe46eb325824756205"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a2939e50fa2dacabe46eb325824756205">MString</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> ms)</td></tr>
-<tr class="memdesc:a2939e50fa2dacabe46eb325824756205"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor copying a <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a>.  <a href="#a2939e50fa2dacabe46eb325824756205">More...</a><br/></td></tr>
 <tr class="separator:a2939e50fa2dacabe46eb325824756205"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4e33036b8bb5e8c59db12f72c53f6ad"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#af4e33036b8bb5e8c59db12f72c53f6ad">MString</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> ms, int startIdx)</td></tr>
-<tr class="memdesc:af4e33036b8bb5e8c59db12f72c53f6ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor copying a substring of a <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a>.  <a href="#af4e33036b8bb5e8c59db12f72c53f6ad">More...</a><br/></td></tr>
 <tr class="separator:af4e33036b8bb5e8c59db12f72c53f6ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8017ebd5348b33938aef1ab4754e0b9b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a8017ebd5348b33938aef1ab4754e0b9b">MString</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> ms, int startIdx, int len)</td></tr>
-<tr class="memdesc:a8017ebd5348b33938aef1ab4754e0b9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor copying a substring of a <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a>.  <a href="#a8017ebd5348b33938aef1ab4754e0b9b">More...</a><br/></td></tr>
 <tr class="separator:a8017ebd5348b33938aef1ab4754e0b9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0e2e1624b7884cae91d5b20cc8ba1e4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#aa0e2e1624b7884cae91d5b20cc8ba1e4">MString</a> (String s)</td></tr>
-<tr class="memdesc:aa0e2e1624b7884cae91d5b20cc8ba1e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor copying String.  <a href="#aa0e2e1624b7884cae91d5b20cc8ba1e4">More...</a><br/></td></tr>
 <tr class="separator:aa0e2e1624b7884cae91d5b20cc8ba1e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:accaf73ff43ddf55bb8544cdcd96e5bcc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#accaf73ff43ddf55bb8544cdcd96e5bcc">MString</a> (String s, int startIdx)</td></tr>
-<tr class="memdesc:accaf73ff43ddf55bb8544cdcd96e5bcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor copying a substring of a String.  <a href="#accaf73ff43ddf55bb8544cdcd96e5bcc">More...</a><br/></td></tr>
 <tr class="separator:accaf73ff43ddf55bb8544cdcd96e5bcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18282ad5ba34ce013c40f8d606af0e3b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a18282ad5ba34ce013c40f8d606af0e3b">MString</a> (String s, int startIdx, int len)</td></tr>
-<tr class="memdesc:a18282ad5ba34ce013c40f8d606af0e3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor copying a substring of a String.  <a href="#a18282ad5ba34ce013c40f8d606af0e3b">More...</a><br/></td></tr>
 <tr class="separator:a18282ad5ba34ce013c40f8d606af0e3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49d52b558c4598159fbc936435f82197"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a49d52b558c4598159fbc936435f82197">MString</a> (StringBuffer s)</td></tr>
-<tr class="memdesc:a49d52b558c4598159fbc936435f82197"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor copying a StringBuffer.  <a href="#a49d52b558c4598159fbc936435f82197">More...</a><br/></td></tr>
 <tr class="separator:a49d52b558c4598159fbc936435f82197"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a09aa1b552f3d84b6db1550514431a4ea"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a09aa1b552f3d84b6db1550514431a4ea">MString</a> (StringBuffer s, int startIdx)</td></tr>
-<tr class="memdesc:a09aa1b552f3d84b6db1550514431a4ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor copying a substring of a StringBuffer.  <a href="#a09aa1b552f3d84b6db1550514431a4ea">More...</a><br/></td></tr>
 <tr class="separator:a09aa1b552f3d84b6db1550514431a4ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a42289c2ad141f485edbca998f8651e71"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a42289c2ad141f485edbca998f8651e71">MString</a> (StringBuffer s, int startIdx, int len)</td></tr>
-<tr class="memdesc:a42289c2ad141f485edbca998f8651e71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor copying a substring of a StringBuffer.  <a href="#a42289c2ad141f485edbca998f8651e71">More...</a><br/></td></tr>
 <tr class="separator:a42289c2ad141f485edbca998f8651e71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9cc2838997e7d0381c645b2b9d7760e6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a9cc2838997e7d0381c645b2b9d7760e6">clear</a> ()</td></tr>
-<tr class="memdesc:a9cc2838997e7d0381c645b2b9d7760e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear the Buffer (just sets Length to 0)  <a href="#a9cc2838997e7d0381c645b2b9d7760e6">More...</a><br/></td></tr>
 <tr class="separator:a9cc2838997e7d0381c645b2b9d7760e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aacf44a32afa22f36637e373a2ec1c052"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#aacf44a32afa22f36637e373a2ec1c052">append</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> ms)</td></tr>
-<tr class="memdesc:aacf44a32afa22f36637e373a2ec1c052"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append another <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a>.  <a href="#aacf44a32afa22f36637e373a2ec1c052">More...</a><br/></td></tr>
 <tr class="separator:aacf44a32afa22f36637e373a2ec1c052"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6baa4dd839d4ff0e3409afa4a64b6f0e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a6baa4dd839d4ff0e3409afa4a64b6f0e">append</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> ms, int startIdx)</td></tr>
-<tr class="memdesc:a6baa4dd839d4ff0e3409afa4a64b6f0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append a substring of another <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a>.  <a href="#a6baa4dd839d4ff0e3409afa4a64b6f0e">More...</a><br/></td></tr>
 <tr class="separator:a6baa4dd839d4ff0e3409afa4a64b6f0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6bb037ccf57a2504517bfd9049addcb1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a6bb037ccf57a2504517bfd9049addcb1">append</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> ms, int startIdx, int len)</td></tr>
-<tr class="memdesc:a6bb037ccf57a2504517bfd9049addcb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append a substring of another <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a>.  <a href="#a6bb037ccf57a2504517bfd9049addcb1">More...</a><br/></td></tr>
 <tr class="separator:a6bb037ccf57a2504517bfd9049addcb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7de4550007dfdb646489e32a60033e94"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a7de4550007dfdb646489e32a60033e94">append</a> (String s)</td></tr>
-<tr class="memdesc:a7de4550007dfdb646489e32a60033e94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append a String.  <a href="#a7de4550007dfdb646489e32a60033e94">More...</a><br/></td></tr>
 <tr class="separator:a7de4550007dfdb646489e32a60033e94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac4af74d0cddf80a2417045a3c74763d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#aac4af74d0cddf80a2417045a3c74763d">append</a> (String s, int startIdx)</td></tr>
-<tr class="memdesc:aac4af74d0cddf80a2417045a3c74763d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append a substring of a String.  <a href="#aac4af74d0cddf80a2417045a3c74763d">More...</a><br/></td></tr>
 <tr class="separator:aac4af74d0cddf80a2417045a3c74763d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b198d360de502abeaf32866648d9913"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a5b198d360de502abeaf32866648d9913">append</a> (String s, int startIdx, int len)</td></tr>
-<tr class="memdesc:a5b198d360de502abeaf32866648d9913"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append a substring of a String.  <a href="#a5b198d360de502abeaf32866648d9913">More...</a><br/></td></tr>
 <tr class="separator:a5b198d360de502abeaf32866648d9913"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a16b8eb64822dffbebeb1618a0b7a0978"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a16b8eb64822dffbebeb1618a0b7a0978">append</a> (StringBuffer sb)</td></tr>
-<tr class="memdesc:a16b8eb64822dffbebeb1618a0b7a0978"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append a StringBuffer.  <a href="#a16b8eb64822dffbebeb1618a0b7a0978">More...</a><br/></td></tr>
 <tr class="separator:a16b8eb64822dffbebeb1618a0b7a0978"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2daf4d134d5e73b1ac8e0904ec0321b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#ab2daf4d134d5e73b1ac8e0904ec0321b">append</a> (StringBuffer sb, int startIdx)</td></tr>
-<tr class="memdesc:ab2daf4d134d5e73b1ac8e0904ec0321b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append a substring of a StringBuffer.  <a href="#ab2daf4d134d5e73b1ac8e0904ec0321b">More...</a><br/></td></tr>
 <tr class="separator:ab2daf4d134d5e73b1ac8e0904ec0321b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf57a5bde2bec79a7bf19ef0eec48a51"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#acf57a5bde2bec79a7bf19ef0eec48a51">append</a> (StringBuffer sb, int startIdx, int len)</td></tr>
-<tr class="memdesc:acf57a5bde2bec79a7bf19ef0eec48a51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append a substring of a StringBuffer.  <a href="#acf57a5bde2bec79a7bf19ef0eec48a51">More...</a><br/></td></tr>
 <tr class="separator:acf57a5bde2bec79a7bf19ef0eec48a51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11ad3dc1422aaddb5ddc2ae77110b05d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a11ad3dc1422aaddb5ddc2ae77110b05d">append</a> (StringBuilder sb)</td></tr>
-<tr class="memdesc:a11ad3dc1422aaddb5ddc2ae77110b05d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append a StringBuilder.  <a href="#a11ad3dc1422aaddb5ddc2ae77110b05d">More...</a><br/></td></tr>
 <tr class="separator:a11ad3dc1422aaddb5ddc2ae77110b05d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a44b24f4e86bf78993ed792beed07e62d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a44b24f4e86bf78993ed792beed07e62d">append</a> (StringBuilder sb, int startIdx)</td></tr>
-<tr class="memdesc:a44b24f4e86bf78993ed792beed07e62d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append a substring of a StringBuilder.  <a href="#a44b24f4e86bf78993ed792beed07e62d">More...</a><br/></td></tr>
 <tr class="separator:a44b24f4e86bf78993ed792beed07e62d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7578302ba1dd58026d0fa6b5ea74ab48"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a7578302ba1dd58026d0fa6b5ea74ab48">append</a> (StringBuilder sb, int startIdx, int len)</td></tr>
-<tr class="memdesc:a7578302ba1dd58026d0fa6b5ea74ab48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append a substring of a StringBuilder.  <a href="#a7578302ba1dd58026d0fa6b5ea74ab48">More...</a><br/></td></tr>
 <tr class="separator:a7578302ba1dd58026d0fa6b5ea74ab48"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b26d77b79b8d8909ac4bebd22c7fff7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a2b26d77b79b8d8909ac4bebd22c7fff7">append</a> (CharSequence sb)</td></tr>
-<tr class="memdesc:a2b26d77b79b8d8909ac4bebd22c7fff7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append a CharSequence.  <a href="#a2b26d77b79b8d8909ac4bebd22c7fff7">More...</a><br/></td></tr>
 <tr class="separator:a2b26d77b79b8d8909ac4bebd22c7fff7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd43e5c6fb471e50a9350927a08d8fc5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#afd43e5c6fb471e50a9350927a08d8fc5">append</a> (CharSequence sb, int startIdx)</td></tr>
-<tr class="memdesc:afd43e5c6fb471e50a9350927a08d8fc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append a substring of a CharSequence.  <a href="#afd43e5c6fb471e50a9350927a08d8fc5">More...</a><br/></td></tr>
 <tr class="separator:afd43e5c6fb471e50a9350927a08d8fc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c87965c50c3d5c25e6a8b57058202ec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a0c87965c50c3d5c25e6a8b57058202ec">append</a> (CharSequence sb, int startIdx, int len)</td></tr>
-<tr class="memdesc:a0c87965c50c3d5c25e6a8b57058202ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append a substring of a CharSequence.  <a href="#a0c87965c50c3d5c25e6a8b57058202ec">More...</a><br/></td></tr>
 <tr class="separator:a0c87965c50c3d5c25e6a8b57058202ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab6ba1126cb39496f762bd1ed83d89d84"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#ab6ba1126cb39496f762bd1ed83d89d84">append</a> (char c)</td></tr>
-<tr class="memdesc:ab6ba1126cb39496f762bd1ed83d89d84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append the given character.  <a href="#ab6ba1126cb39496f762bd1ed83d89d84">More...</a><br/></td></tr>
 <tr class="separator:ab6ba1126cb39496f762bd1ed83d89d84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaa7b239d517854be44927c23ea61c082"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#aaa7b239d517854be44927c23ea61c082">append</a> (char c, int qty)</td></tr>
-<tr class="memdesc:aaa7b239d517854be44927c23ea61c082"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append the given character repeatedly.  <a href="#aaa7b239d517854be44927c23ea61c082">More...</a><br/></td></tr>
 <tr class="separator:aaa7b239d517854be44927c23ea61c082"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d5a364eda5a79373b9291247b7a9531"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a5d5a364eda5a79373b9291247b7a9531">appendPadRight</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> ms, int fieldSize)</td></tr>
-<tr class="memdesc:a5d5a364eda5a79373b9291247b7a9531"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append padding spaces and append the given <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a>.  <a href="#a5d5a364eda5a79373b9291247b7a9531">More...</a><br/></td></tr>
 <tr class="separator:a5d5a364eda5a79373b9291247b7a9531"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc8f8c5e394b5c0b36696b6868195ea3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#abc8f8c5e394b5c0b36696b6868195ea3">appendPadRight</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> ms, int fieldSize, char padChar)</td></tr>
-<tr class="memdesc:abc8f8c5e394b5c0b36696b6868195ea3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append padding characters and append the given <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a>.  <a href="#abc8f8c5e394b5c0b36696b6868195ea3">More...</a><br/></td></tr>
 <tr class="separator:abc8f8c5e394b5c0b36696b6868195ea3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5fe05bf22273dcdf8e0da0bd117edd9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#ae5fe05bf22273dcdf8e0da0bd117edd9">appendPadRight</a> (String s, int fieldSize)</td></tr>
-<tr class="memdesc:ae5fe05bf22273dcdf8e0da0bd117edd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append padding spaces and append the given String.  <a href="#ae5fe05bf22273dcdf8e0da0bd117edd9">More...</a><br/></td></tr>
 <tr class="separator:ae5fe05bf22273dcdf8e0da0bd117edd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a75b6ef69b0e03f878deb5571398db350"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a75b6ef69b0e03f878deb5571398db350">appendPadRight</a> (String s, int fieldSize, char padChar)</td></tr>
-<tr class="memdesc:a75b6ef69b0e03f878deb5571398db350"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append padding characters and append the given String.  <a href="#a75b6ef69b0e03f878deb5571398db350">More...</a><br/></td></tr>
 <tr class="separator:a75b6ef69b0e03f878deb5571398db350"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98c496ea25d513d7a92907e5cc42b745"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a98c496ea25d513d7a92907e5cc42b745">appendPadRight</a> (StringBuffer sb, int fieldSize)</td></tr>
-<tr class="memdesc:a98c496ea25d513d7a92907e5cc42b745"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append padding spaces and append the given StringBuffer.  <a href="#a98c496ea25d513d7a92907e5cc42b745">More...</a><br/></td></tr>
 <tr class="separator:a98c496ea25d513d7a92907e5cc42b745"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1c74967306b231ce49ff8114c0bd9ec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#aa1c74967306b231ce49ff8114c0bd9ec">appendPadRight</a> (StringBuffer sb, int fieldSize, char padChar)</td></tr>
-<tr class="memdesc:aa1c74967306b231ce49ff8114c0bd9ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append padding characters and append the given StringBuffer.  <a href="#aa1c74967306b231ce49ff8114c0bd9ec">More...</a><br/></td></tr>
 <tr class="separator:aa1c74967306b231ce49ff8114c0bd9ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d3297275126428712ff230d9f7b4c2d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a3d3297275126428712ff230d9f7b4c2d">appendPadLeft</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> ms, int fieldSize)</td></tr>
-<tr class="memdesc:a3d3297275126428712ff230d9f7b4c2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append the given <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> and add padding spaces behind the string.  <a href="#a3d3297275126428712ff230d9f7b4c2d">More...</a><br/></td></tr>
 <tr class="separator:a3d3297275126428712ff230d9f7b4c2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6c67a891632c9863f61c27983a7b3627"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a6c67a891632c9863f61c27983a7b3627">appendPadLeft</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> ms, int fieldSize, char padChar)</td></tr>
-<tr class="memdesc:a6c67a891632c9863f61c27983a7b3627"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append the given <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> and add padding characters behind the string.  <a href="#a6c67a891632c9863f61c27983a7b3627">More...</a><br/></td></tr>
 <tr class="separator:a6c67a891632c9863f61c27983a7b3627"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8715fd3fda610fce505e42c1936617b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a8715fd3fda610fce505e42c1936617b8">appendPadLeft</a> (String s, int fieldSize)</td></tr>
-<tr class="memdesc:a8715fd3fda610fce505e42c1936617b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append the given String and add padding spaces behind the string.  <a href="#a8715fd3fda610fce505e42c1936617b8">More...</a><br/></td></tr>
 <tr class="separator:a8715fd3fda610fce505e42c1936617b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af73cea11a457365a0ec6155ec050d979"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#af73cea11a457365a0ec6155ec050d979">appendPadLeft</a> (String s, int fieldSize, char padChar)</td></tr>
-<tr class="memdesc:af73cea11a457365a0ec6155ec050d979"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append the given String and add padding characters behind the string.  <a href="#af73cea11a457365a0ec6155ec050d979">More...</a><br/></td></tr>
 <tr class="separator:af73cea11a457365a0ec6155ec050d979"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac0b2f43d4caa34bfb7ffd1b357946671"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#ac0b2f43d4caa34bfb7ffd1b357946671">appendPadLeft</a> (StringBuffer sb, int fieldSize)</td></tr>
-<tr class="memdesc:ac0b2f43d4caa34bfb7ffd1b357946671"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append the given StringBuffer and add padding spaces behind the string.  <a href="#ac0b2f43d4caa34bfb7ffd1b357946671">More...</a><br/></td></tr>
 <tr class="separator:ac0b2f43d4caa34bfb7ffd1b357946671"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60b18a3076efb2f2987d594d8de49f9b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a60b18a3076efb2f2987d594d8de49f9b">appendPadLeft</a> (StringBuffer sb, int fieldSize, char padChar)</td></tr>
-<tr class="memdesc:a60b18a3076efb2f2987d594d8de49f9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append the given StringBuffer and add padding characters behind the string.  <a href="#a60b18a3076efb2f2987d594d8de49f9b">More...</a><br/></td></tr>
 <tr class="separator:a60b18a3076efb2f2987d594d8de49f9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f34efe0efe2b52c3f7f36697c75e193"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a2f34efe0efe2b52c3f7f36697c75e193">appendPadCenter</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> ms, int fieldSize)</td></tr>
-<tr class="memdesc:a2f34efe0efe2b52c3f7f36697c75e193"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append the given <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> and add surrounding padding spaces.  <a href="#a2f34efe0efe2b52c3f7f36697c75e193">More...</a><br/></td></tr>
 <tr class="separator:a2f34efe0efe2b52c3f7f36697c75e193"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a79d2b8405c4a1b8b4e944a5a75bb6e13"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a79d2b8405c4a1b8b4e944a5a75bb6e13">appendPadCenter</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> ms, int fieldSize, char padChar)</td></tr>
-<tr class="memdesc:a79d2b8405c4a1b8b4e944a5a75bb6e13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append the given <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> and add surrounding padding characters.  <a href="#a79d2b8405c4a1b8b4e944a5a75bb6e13">More...</a><br/></td></tr>
 <tr class="separator:a79d2b8405c4a1b8b4e944a5a75bb6e13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a787696ffcf229d0700577414d39b75a4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a787696ffcf229d0700577414d39b75a4">appendPadCenter</a> (String s, int fieldSize)</td></tr>
-<tr class="memdesc:a787696ffcf229d0700577414d39b75a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append the given String and add surrounding padding spaces.  <a href="#a787696ffcf229d0700577414d39b75a4">More...</a><br/></td></tr>
 <tr class="separator:a787696ffcf229d0700577414d39b75a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70b48774dc0a416fb347e642b4d0bd1d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a70b48774dc0a416fb347e642b4d0bd1d">appendPadCenter</a> (String s, int fieldSize, char padChar)</td></tr>
-<tr class="memdesc:a70b48774dc0a416fb347e642b4d0bd1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append the given String and add surrounding padding characters.  <a href="#a70b48774dc0a416fb347e642b4d0bd1d">More...</a><br/></td></tr>
 <tr class="separator:a70b48774dc0a416fb347e642b4d0bd1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a142c74d88ed00e607c7cf09b98e7f761"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a142c74d88ed00e607c7cf09b98e7f761">appendPadCenter</a> (StringBuffer sb, int fieldSize)</td></tr>
-<tr class="memdesc:a142c74d88ed00e607c7cf09b98e7f761"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append the given StringBuffer and add surrounding padding spaces.  <a href="#a142c74d88ed00e607c7cf09b98e7f761">More...</a><br/></td></tr>
 <tr class="separator:a142c74d88ed00e607c7cf09b98e7f761"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af13aa96e6f99d6e491521efdc345d812"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#af13aa96e6f99d6e491521efdc345d812">appendPadCenter</a> (StringBuffer sb, int fieldSize, char padChar)</td></tr>
-<tr class="memdesc:af13aa96e6f99d6e491521efdc345d812"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append the given StringBuffer and add surrounding padding characters.  <a href="#af13aa96e6f99d6e491521efdc345d812">More...</a><br/></td></tr>
 <tr class="separator:af13aa96e6f99d6e491521efdc345d812"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad87f0def7fc0813ad63710e29e153b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#aad87f0def7fc0813ad63710e29e153b8">append</a> (int i, int minDigits)</td></tr>
-<tr class="memdesc:aad87f0def7fc0813ad63710e29e153b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append the given unsigned 32-Bit integer value using a minimum number of digits.  <a href="#aad87f0def7fc0813ad63710e29e153b8">More...</a><br/></td></tr>
 <tr class="separator:aad87f0def7fc0813ad63710e29e153b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7857c70d8dc6cdb88d6862e7c706a527"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a7857c70d8dc6cdb88d6862e7c706a527">append</a> (int i)</td></tr>
-<tr class="memdesc:a7857c70d8dc6cdb88d6862e7c706a527"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append the given unsigned 32-Bit integer value.  <a href="#a7857c70d8dc6cdb88d6862e7c706a527">More...</a><br/></td></tr>
 <tr class="separator:a7857c70d8dc6cdb88d6862e7c706a527"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b887bde0726c7e56caa12d4bf58da6f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a1b887bde0726c7e56caa12d4bf58da6f">append</a> (double d, int minDigitsBeforeDot, int digitsAfterDot)</td></tr>
-<tr class="memdesc:a1b887bde0726c7e56caa12d4bf58da6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append the given double value using the minimum digits before and after the given number of digits after dot.  <a href="#a1b887bde0726c7e56caa12d4bf58da6f">More...</a><br/></td></tr>
 <tr class="separator:a1b887bde0726c7e56caa12d4bf58da6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9cc68303640d37c682c3ab798633764d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a9cc68303640d37c682c3ab798633764d">tab</a> (int tabSize)</td></tr>
-<tr class="memdesc:a9cc68303640d37c682c3ab798633764d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Go to the next tab stop by filling in pad characters repeatedly.  <a href="#a9cc68303640d37c682c3ab798633764d">More...</a><br/></td></tr>
 <tr class="separator:a9cc68303640d37c682c3ab798633764d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd3a46e407fd78e345735e4eed25ebfe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#abd3a46e407fd78e345735e4eed25ebfe">tab</a> (int tabSize, int tabReference)</td></tr>
-<tr class="memdesc:abd3a46e407fd78e345735e4eed25ebfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Go to the next tab stop by filling in pad characters repeatedly.  <a href="#abd3a46e407fd78e345735e4eed25ebfe">More...</a><br/></td></tr>
 <tr class="separator:abd3a46e407fd78e345735e4eed25ebfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a252867e4b920b7eb8463351abf48e25c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a252867e4b920b7eb8463351abf48e25c">tab</a> (int tabSize, int tabReference, int minPad)</td></tr>
-<tr class="memdesc:a252867e4b920b7eb8463351abf48e25c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Go to the next tab stop by filling in pad characters repeatedly.  <a href="#a252867e4b920b7eb8463351abf48e25c">More...</a><br/></td></tr>
 <tr class="separator:a252867e4b920b7eb8463351abf48e25c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca40b491a66d09efc3d897325da417d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#aca40b491a66d09efc3d897325da417d2">tab</a> (int tabSize, int tabReference, int minPad, char padChar)</td></tr>
-<tr class="memdesc:aca40b491a66d09efc3d897325da417d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Go to the next tab stop by filling in pad characters repeatedly.  <a href="#aca40b491a66d09efc3d897325da417d2">More...</a><br/></td></tr>
 <tr class="separator:aca40b491a66d09efc3d897325da417d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1e2422c154635464aee9c16c0493506"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#ab1e2422c154635464aee9c16c0493506">newLine</a> ()</td></tr>
-<tr class="memdesc:ab1e2422c154635464aee9c16c0493506"><td class="mdescLeft">&#160;</td><td class="mdescRight">Appends platform specific new line character(s).  <a href="#ab1e2422c154635464aee9c16c0493506">More...</a><br/></td></tr>
 <tr class="separator:ab1e2422c154635464aee9c16c0493506"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5cfe24fea5a9f07bc3b411a5d5cf1222"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a5cfe24fea5a9f07bc3b411a5d5cf1222">containsAt</a> (CharSequence s, int pos, boolean ignoreCase)</td></tr>
-<tr class="memdesc:a5cfe24fea5a9f07bc3b411a5d5cf1222"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the given String is located at the given position.  <a href="#a5cfe24fea5a9f07bc3b411a5d5cf1222">More...</a><br/></td></tr>
 <tr class="separator:a5cfe24fea5a9f07bc3b411a5d5cf1222"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4fe1e46da5df87fefcacb81b6330bdc9"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a4fe1e46da5df87fefcacb81b6330bdc9">containsAt</a> (CharSequence s, int pos)</td></tr>
-<tr class="memdesc:a4fe1e46da5df87fefcacb81b6330bdc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the given String is located at the given position.  <a href="#a4fe1e46da5df87fefcacb81b6330bdc9">More...</a><br/></td></tr>
 <tr class="separator:a4fe1e46da5df87fefcacb81b6330bdc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab316fed7f0f6497158869355aba96fbe"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#ab316fed7f0f6497158869355aba96fbe">startsWith</a> (CharSequence s)</td></tr>
-<tr class="memdesc:ab316fed7f0f6497158869355aba96fbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> starts with the given sequence.  <a href="#ab316fed7f0f6497158869355aba96fbe">More...</a><br/></td></tr>
 <tr class="separator:ab316fed7f0f6497158869355aba96fbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0f4b2881454b063c7bb9fee6d58ded2"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#ab0f4b2881454b063c7bb9fee6d58ded2">endsWith</a> (CharSequence s)</td></tr>
-<tr class="memdesc:ab0f4b2881454b063c7bb9fee6d58ded2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> ends with the given sequence.  <a href="#ab0f4b2881454b063c7bb9fee6d58ded2">More...</a><br/></td></tr>
 <tr class="separator:ab0f4b2881454b063c7bb9fee6d58ded2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c43dcbb767f10f9a625ec20694999f6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a1c43dcbb767f10f9a625ec20694999f6">indexOf</a> (CharSequence s, int startIdx)</td></tr>
-<tr class="memdesc:a1c43dcbb767f10f9a625ec20694999f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Search the given String in the Buffer starting at a given position.  <a href="#a1c43dcbb767f10f9a625ec20694999f6">More...</a><br/></td></tr>
 <tr class="separator:a1c43dcbb767f10f9a625ec20694999f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3aaa0641d23c63ae7c0b45f4b14d5016"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a3aaa0641d23c63ae7c0b45f4b14d5016">indexOf</a> (CharSequence s)</td></tr>
-<tr class="memdesc:a3aaa0641d23c63ae7c0b45f4b14d5016"><td class="mdescLeft">&#160;</td><td class="mdescRight">Search the given String in the Buffer.  <a href="#a3aaa0641d23c63ae7c0b45f4b14d5016">More...</a><br/></td></tr>
 <tr class="separator:a3aaa0641d23c63ae7c0b45f4b14d5016"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af8542d4003ef95ad4e15f33c14e8b86b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#af8542d4003ef95ad4e15f33c14e8b86b">replace</a> (CharSequence searchStr, CharSequence newStr, int startIdx, int maxReplacements)</td></tr>
-<tr class="memdesc:af8542d4003ef95ad4e15f33c14e8b86b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replace one more more occurrences of a string by another string.  <a href="#af8542d4003ef95ad4e15f33c14e8b86b">More...</a><br/></td></tr>
 <tr class="separator:af8542d4003ef95ad4e15f33c14e8b86b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaa8b790884ca485b8698cc624c7abdd7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#aaa8b790884ca485b8698cc624c7abdd7">replace</a> (CharSequence searchStr, CharSequence newStr, int startIdx)</td></tr>
-<tr class="memdesc:aaa8b790884ca485b8698cc624c7abdd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replace one more more occurrences of a string by another string.  <a href="#aaa8b790884ca485b8698cc624c7abdd7">More...</a><br/></td></tr>
 <tr class="separator:aaa8b790884ca485b8698cc624c7abdd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac22fce57adf0f8170f2343c9d0a2901e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#ac22fce57adf0f8170f2343c9d0a2901e">replace</a> (CharSequence searchStr, CharSequence newStr)</td></tr>
-<tr class="memdesc:ac22fce57adf0f8170f2343c9d0a2901e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replace one more more occurrences of a string by another string.  <a href="#ac22fce57adf0f8170f2343c9d0a2901e">More...</a><br/></td></tr>
 <tr class="separator:ac22fce57adf0f8170f2343c9d0a2901e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af214887db1ff5c940a796209e4687231"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#af214887db1ff5c940a796209e4687231">compareTo</a> (CharSequence cmp)</td></tr>
-<tr class="memdesc:af214887db1ff5c940a796209e4687231"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares a given string (or part of it) with the contents of this.  <a href="#af214887db1ff5c940a796209e4687231">More...</a><br/></td></tr>
 <tr class="separator:af214887db1ff5c940a796209e4687231"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad95fecd8c81767b0cd6a1eab72388372"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#ad95fecd8c81767b0cd6a1eab72388372">compareTo</a> (CharSequence cmp, boolean ignoreCase)</td></tr>
-<tr class="memdesc:ad95fecd8c81767b0cd6a1eab72388372"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares a given string (or part of it) with the contents of this.  <a href="#ad95fecd8c81767b0cd6a1eab72388372">More...</a><br/></td></tr>
 <tr class="separator:ad95fecd8c81767b0cd6a1eab72388372"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15a4cc63cefdd926a2f7c0358b8f3ede"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a15a4cc63cefdd926a2f7c0358b8f3ede">compareTo</a> (CharSequence cmp, boolean ignoreCase, int sStartIdx)</td></tr>
-<tr class="memdesc:a15a4cc63cefdd926a2f7c0358b8f3ede"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares a given string (or part of it) with the contents of this.  <a href="#a15a4cc63cefdd926a2f7c0358b8f3ede">More...</a><br/></td></tr>
 <tr class="separator:a15a4cc63cefdd926a2f7c0358b8f3ede"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae80efe75fdcb033dc6d8fdbf7306f2a5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#ae80efe75fdcb033dc6d8fdbf7306f2a5">compareTo</a> (CharSequence cmp, boolean ignoreCase, int sStartIdx, int sLen)</td></tr>
-<tr class="memdesc:ae80efe75fdcb033dc6d8fdbf7306f2a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares a given string (or part of it) with the contents of this.  <a href="#ae80efe75fdcb033dc6d8fdbf7306f2a5">More...</a><br/></td></tr>
 <tr class="separator:ae80efe75fdcb033dc6d8fdbf7306f2a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeab16cc30f29931695223b601ae1682d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#aeab16cc30f29931695223b601ae1682d">compareTo</a> (CharSequence cmp, boolean ignoreCase, int sStartIdx, int sLen, int startIdx)</td></tr>
-<tr class="memdesc:aeab16cc30f29931695223b601ae1682d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares a given string (or part of it) with the contents of this.  <a href="#aeab16cc30f29931695223b601ae1682d">More...</a><br/></td></tr>
 <tr class="separator:aeab16cc30f29931695223b601ae1682d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af95a0dea99badea2ab30e30c3c05ce09"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#af95a0dea99badea2ab30e30c3c05ce09">compareTo</a> (CharSequence cmp, boolean ignoreCase, int sStartIdx, int sLen, int startIdx, int len)</td></tr>
-<tr class="memdesc:af95a0dea99badea2ab30e30c3c05ce09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares a given string (or part of it) with the contents of this.  <a href="#af95a0dea99badea2ab30e30c3c05ce09">More...</a><br/></td></tr>
 <tr class="separator:af95a0dea99badea2ab30e30c3c05ce09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a115c0fb7598d93ba9805c274fb6a5af1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a115c0fb7598d93ba9805c274fb6a5af1">convertCase</a> (boolean toUpper)</td></tr>
-<tr class="memdesc:a115c0fb7598d93ba9805c274fb6a5af1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts all or a region of characters in the Buffer to upper or to lower case.  <a href="#a115c0fb7598d93ba9805c274fb6a5af1">More...</a><br/></td></tr>
 <tr class="separator:a115c0fb7598d93ba9805c274fb6a5af1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e3cd5d434237e0cb37bc75f3f1dd1b5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a3e3cd5d434237e0cb37bc75f3f1dd1b5">convertCase</a> (boolean toUpper, int substrStart)</td></tr>
-<tr class="memdesc:a3e3cd5d434237e0cb37bc75f3f1dd1b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts all or a region of characters in the Buffer to upper or to lower case.  <a href="#a3e3cd5d434237e0cb37bc75f3f1dd1b5">More...</a><br/></td></tr>
 <tr class="separator:a3e3cd5d434237e0cb37bc75f3f1dd1b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a010a0b31f3d17d30a320311817035372"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a010a0b31f3d17d30a320311817035372">convertCase</a> (boolean toUpper, int substrStart, int substrLength)</td></tr>
-<tr class="memdesc:a010a0b31f3d17d30a320311817035372"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts all or a region of characters in the Buffer to upper or to lower case.  <a href="#a010a0b31f3d17d30a320311817035372">More...</a><br/></td></tr>
 <tr class="separator:a010a0b31f3d17d30a320311817035372"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad146fa8579a5f8a876c4688cc5a68520"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#ad146fa8579a5f8a876c4688cc5a68520">toString</a> ()</td></tr>
-<tr class="memdesc:ad146fa8579a5f8a876c4688cc5a68520"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> into a String.  <a href="#ad146fa8579a5f8a876c4688cc5a68520">More...</a><br/></td></tr>
 <tr class="separator:ad146fa8579a5f8a876c4688cc5a68520"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad6f084f891f7f8edebc1980b3b7c854d"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#ad6f084f891f7f8edebc1980b3b7c854d">toString</a> (int startIdx)</td></tr>
-<tr class="memdesc:ad6f084f891f7f8edebc1980b3b7c854d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a String from a region within this <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a>.  <a href="#ad6f084f891f7f8edebc1980b3b7c854d">More...</a><br/></td></tr>
 <tr class="separator:ad6f084f891f7f8edebc1980b3b7c854d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9b5b93abce1d30a3daddb12c1c81cff"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#ae9b5b93abce1d30a3daddb12c1c81cff">toString</a> (int startIdx, int len)</td></tr>
-<tr class="memdesc:ae9b5b93abce1d30a3daddb12c1c81cff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a String from a region within this <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a>.  <a href="#ae9b5b93abce1d30a3daddb12c1c81cff">More...</a><br/></td></tr>
 <tr class="separator:ae9b5b93abce1d30a3daddb12c1c81cff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a077e18fe97323c7194e2665ffc766399"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a077e18fe97323c7194e2665ffc766399">hashCode</a> ()</td></tr>
-<tr class="memdesc:a077e18fe97323c7194e2665ffc766399"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the hash value using the same formula as java.lang.String.  <a href="#a077e18fe97323c7194e2665ffc766399">More...</a><br/></td></tr>
 <tr class="separator:a077e18fe97323c7194e2665ffc766399"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39e5bc339e3b5924ec96de42fbb8f33f"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a39e5bc339e3b5924ec96de42fbb8f33f">equals</a> (Object o)</td></tr>
-<tr class="memdesc:a39e5bc339e3b5924ec96de42fbb8f33f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares this to the given object.  <a href="#a39e5bc339e3b5924ec96de42fbb8f33f">More...</a><br/></td></tr>
 <tr class="separator:a39e5bc339e3b5924ec96de42fbb8f33f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc900259936e34e93cbbce4935566d59"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#adc900259936e34e93cbbce4935566d59">ensureCapacity</a> (int minLen)</td></tr>
-<tr class="memdesc:adc900259936e34e93cbbce4935566d59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ensures that the capacity of the internal buffer meets or exceeds the given value.  <a href="#adc900259936e34e93cbbce4935566d59">More...</a><br/></td></tr>
 <tr class="separator:adc900259936e34e93cbbce4935566d59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ad1bf539360860f3eeeb2f769f8e31294"><td class="memItemLeft" align="right" valign="top">static boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#ad1bf539360860f3eeeb2f769f8e31294">isNullOrEmpty</a> (CharSequence jString)</td></tr>
-<tr class="memdesc:ad1bf539360860f3eeeb2f769f8e31294"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a given CharSequence is empty or has a length of zero.  <a href="#ad1bf539360860f3eeeb2f769f8e31294">More...</a><br/></td></tr>
 <tr class="separator:ad1bf539360860f3eeeb2f769f8e31294"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f74b4b0a6c644cd3996a9fb9d2e2eed"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a8f74b4b0a6c644cd3996a9fb9d2e2eed">indexOfIgnoreCase</a> (CharSequence sIn, CharSequence sFor, int startIdx)</td></tr>
-<tr class="memdesc:a8f74b4b0a6c644cd3996a9fb9d2e2eed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Search the given String in the Buffer starting at the given position.  <a href="#a8f74b4b0a6c644cd3996a9fb9d2e2eed">More...</a><br/></td></tr>
 <tr class="separator:a8f74b4b0a6c644cd3996a9fb9d2e2eed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab98838cbc0c190bd2596cbe2cdbb20f4"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#ab98838cbc0c190bd2596cbe2cdbb20f4">indexOfIgnoreCase</a> (CharSequence sIn, CharSequence sFor)</td></tr>
-<tr class="memdesc:ab98838cbc0c190bd2596cbe2cdbb20f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Search the given String in the Buffer.  <a href="#ab98838cbc0c190bd2596cbe2cdbb20f4">More...</a><br/></td></tr>
 <tr class="separator:ab98838cbc0c190bd2596cbe2cdbb20f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f52faec3b749bc61c275bc9343da6b6"><td class="memItemLeft" align="right" valign="top">static boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a2f52faec3b749bc61c275bc9343da6b6">startsWithIgnoreCase</a> (CharSequence s, CharSequence prefix)</td></tr>
-<tr class="memdesc:a2f52faec3b749bc61c275bc9343da6b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static utility function that to check if a string starts with another string with case insensitive compare.  <a href="#a2f52faec3b749bc61c275bc9343da6b6">More...</a><br/></td></tr>
 <tr class="separator:a2f52faec3b749bc61c275bc9343da6b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9725bfa39e4a751d10ee54f63a15173c"><td class="memItemLeft" align="right" valign="top">static boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a9725bfa39e4a751d10ee54f63a15173c">endsWithIgnoreCase</a> (CharSequence s, CharSequence postfix)</td></tr>
-<tr class="memdesc:a9725bfa39e4a751d10ee54f63a15173c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static utility function that to check if a string ends with another string with case insensitive compare.  <a href="#a9725bfa39e4a751d10ee54f63a15173c">More...</a><br/></td></tr>
 <tr class="separator:a9725bfa39e4a751d10ee54f63a15173c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a8317b33b8c004741d95935199d964be9"><td class="memItemLeft" align="right" valign="top">char[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a8317b33b8c004741d95935199d964be9">buffer</a></td></tr>
-<tr class="memdesc:a8317b33b8c004741d95935199d964be9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Buffer array.  <a href="#a8317b33b8c004741d95935199d964be9">More...</a><br/></td></tr>
 <tr class="separator:a8317b33b8c004741d95935199d964be9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9f59b34b1f25fe00023291b678246bcc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a9f59b34b1f25fe00023291b678246bcc">length</a></td></tr>
-<tr class="memdesc:a9f59b34b1f25fe00023291b678246bcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">The actual length of the string stored in the Buffer.  <a href="#a9f59b34b1f25fe00023291b678246bcc">More...</a><br/></td></tr>
 <tr class="separator:a9f59b34b1f25fe00023291b678246bcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6656561117ec1ab686401179004f53ba"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a6656561117ec1ab686401179004f53ba">hash</a></td></tr>
-<tr class="memdesc:a6656561117ec1ab686401179004f53ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">The hashvalue.  <a href="#a6656561117ec1ab686401179004f53ba">More...</a><br/></td></tr>
 <tr class="separator:a6656561117ec1ab686401179004f53ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:a48d5ec6061d7631c1714c0973519c1ba"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a48d5ec6061d7631c1714c0973519c1ba"></a>
-static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a48d5ec6061d7631c1714c0973519c1ba">NEWLINE</a> = System.getProperty(&quot;line.separator&quot;)</td></tr>
-<tr class="memdesc:a48d5ec6061d7631c1714c0973519c1ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">The system depended new line character codes retrieved statically (once) using "System.getProperty("line.separator");". <br/></td></tr>
+<tr class="memitem:a48d5ec6061d7631c1714c0973519c1ba"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a48d5ec6061d7631c1714c0973519c1ba">NEWLINE</a> = System.getProperty(&quot;line.separator&quot;)</td></tr>
 <tr class="separator:a48d5ec6061d7631c1714c0973519c1ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4161fdf6dff38fd6cd122809e65cd1f3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4161fdf6dff38fd6cd122809e65cd1f3"></a>
-static final String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a4161fdf6dff38fd6cd122809e65cd1f3">empty</a> = &quot;&quot;</td></tr>
-<tr class="memdesc:a4161fdf6dff38fd6cd122809e65cd1f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">An empty String singleton. <br/></td></tr>
+<tr class="memitem:a4161fdf6dff38fd6cd122809e65cd1f3"><td class="memItemLeft" align="right" valign="top">static final String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a4161fdf6dff38fd6cd122809e65cd1f3">empty</a> = &quot;&quot;</td></tr>
 <tr class="separator:a4161fdf6dff38fd6cd122809e65cd1f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a1918368be065312346393ae26ecfcf29"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a1918368be065312346393ae26ecfcf29">adjustRangeAndTestIfEmpty</a> (int referenceLen, int startIdx, int len)</td></tr>
-<tr class="memdesc:a1918368be065312346393ae26ecfcf29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adjust a given range within an array to the array bounds and tests if range is empty.  <a href="#a1918368be065312346393ae26ecfcf29">More...</a><br/></td></tr>
 <tr class="separator:a1918368be065312346393ae26ecfcf29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a667d47162b84e73a69f708245d7b41a2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a667d47162b84e73a69f708245d7b41a2"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a667d47162b84e73a69f708245d7b41a2">adjStartIdx</a></td></tr>
-<tr class="memdesc:a667d47162b84e73a69f708245d7b41a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used as a return value of method <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a1918368be065312346393ae26ecfcf29" title="Adjust a given range within an array to the array bounds and tests if range is empty. ">adjustRangeAndTestIfEmpty()</a> as Java does not allow to pass parameters by reference. <br/></td></tr>
+<tr class="memitem:a667d47162b84e73a69f708245d7b41a2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a667d47162b84e73a69f708245d7b41a2">adjStartIdx</a></td></tr>
 <tr class="separator:a667d47162b84e73a69f708245d7b41a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab07f0e55b22a488c76165d3935ce794b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab07f0e55b22a488c76165d3935ce794b"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#ab07f0e55b22a488c76165d3935ce794b">adjLength</a></td></tr>
-<tr class="memdesc:ab07f0e55b22a488c76165d3935ce794b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used as a return value of method <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a1918368be065312346393ae26ecfcf29" title="Adjust a given range within an array to the array bounds and tests if range is empty. ">adjustRangeAndTestIfEmpty()</a> as Java does not allow to pass parameters by reference. <br/></td></tr>
+<tr class="memitem:ab07f0e55b22a488c76165d3935ce794b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#ab07f0e55b22a488c76165d3935ce794b">adjLength</a></td></tr>
 <tr class="separator:ab07f0e55b22a488c76165d3935ce794b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A mutable string, that provides public access to its internal buffer and fields and does not implement thread synchronization. </p>
-<p>Unfortunately, the given C#/JAVA StringBuilder/Buffer classes are "sealed" and do not provide direct access to the internal buffer. Hence, to avoid conversion to new immutable strings in certain situations, we rebuild a portion of the StringBuilder functionality here. More complex functions, like C# Format() operations are not supported and remain the domain of String and StringBuffer classes. </p>
+<div class="textblock"><p>A mutable string, that provides public access to its internal buffer and fields and does not implement thread synchronization. Unfortunately, the given C#/JAVA StringBuilder/Buffer classes are "sealed" and do not provide direct access to the internal buffer. Hence, to avoid conversion to new immutable strings in certain situations, we rebuild a portion of the StringBuilder functionality here. More complex functions, like C# Format() operations are not supported and remain the domain of String and StringBuffer classes. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a6189a24ff8c9875071a28e74cdb98320"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> </td>
+          <td>(</td>
+          <td class="paramname">)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Constructor without specific Buffer size, default buffer size to 1 kb. </p>
+
+</div>
+</div>
 <a class="anchor" id="a824015d5ca0548b90d383047023b02c2"></a>
 <div class="memitem">
 <div class="memproto">
@@ -436,8 +348,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Constructor with specific Buffer size . </p>
+<p>Constructor with specific Buffer size .</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">size</td><td>The initial size of the internal buffer </td></tr>
@@ -460,11 +371,10 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Constructor copying a <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a>. </p>
+<p>Constructor copying a <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ms</td><td>The source <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> to copy from. </td></tr>
+    <tr><td class="paramname">ms</td><td>The source <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> to copy from. </td></tr>
   </table>
   </dd>
 </dl>
@@ -494,11 +404,10 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Constructor copying a substring of a <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a>. </p>
+<p>Constructor copying a substring of a <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ms</td><td>The source <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> to copy from. </td></tr>
+    <tr><td class="paramname">ms</td><td>The source <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> to copy from. </td></tr>
     <tr><td class="paramname">startIdx</td><td>The start index in s to append. Defaults to 0. </td></tr>
   </table>
   </dd>
@@ -535,11 +444,10 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Constructor copying a substring of a <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a>. </p>
+<p>Constructor copying a substring of a <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ms</td><td>The source <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> to copy from. </td></tr>
+    <tr><td class="paramname">ms</td><td>The source <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> to copy from. </td></tr>
     <tr><td class="paramname">startIdx</td><td>The start index in s to append. Defaults to 0. </td></tr>
     <tr><td class="paramname">len</td><td>The maximum length of the substring in s to append. Defaults to Integer.MAX_VALUE. </td></tr>
   </table>
@@ -561,8 +469,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Constructor copying String. </p>
+<p>Constructor copying String.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>The source String to copy from. </td></tr>
@@ -595,8 +502,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Constructor copying a substring of a String. </p>
+<p>Constructor copying a substring of a String.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>The source String to copy from. </td></tr>
@@ -636,8 +542,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Constructor copying a substring of a String. </p>
+<p>Constructor copying a substring of a String.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>The source String to copy from. </td></tr>
@@ -662,8 +567,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Constructor copying a StringBuffer. </p>
+<p>Constructor copying a StringBuffer.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>The source StringBuffer to copy from. </td></tr>
@@ -696,8 +600,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Constructor copying a substring of a StringBuffer. </p>
+<p>Constructor copying a substring of a StringBuffer.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>The source StringBuffer to copy from. </td></tr>
@@ -737,8 +640,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Constructor copying a substring of a StringBuffer. </p>
+<p>Constructor copying a substring of a StringBuffer.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>The source StringBuffer to copy from. </td></tr>
@@ -788,8 +690,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Adjust a given range within an array to the array bounds and tests if range is empty. </p>
+<p>Adjust a given range within an array to the array bounds and tests if range is empty.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">referenceLen</td><td>Length of the zero indexed reference array. </td></tr>
@@ -815,11 +716,10 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append another <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a>. </p>
+<p>Append another <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ms</td><td>The <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> to append.</td></tr>
+    <tr><td class="paramname">ms</td><td>The <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> to append.</td></tr>
   </table>
   </dd>
 </dl>
@@ -850,11 +750,10 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append a substring of another <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a>. </p>
+<p>Append a substring of another <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ms</td><td>The <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> to append. </td></tr>
+    <tr><td class="paramname">ms</td><td>The <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> to append. </td></tr>
     <tr><td class="paramname">startIdx</td><td>The index in ms to start from.</td></tr>
   </table>
   </dd>
@@ -892,11 +791,10 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append a substring of another <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a>. </p>
+<p>Append a substring of another <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ms</td><td>The <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> to append. </td></tr>
+    <tr><td class="paramname">ms</td><td>The <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> to append. </td></tr>
     <tr><td class="paramname">startIdx</td><td>The index in ms to start from. </td></tr>
     <tr><td class="paramname">len</td><td>The maximum length of the substring in ms to append. Defaults to Integer.MAX_VALUE.</td></tr>
   </table>
@@ -919,8 +817,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append a String. </p>
+<p>Append a String.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>The String to append.</td></tr>
@@ -954,8 +851,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append a substring of a String. </p>
+<p>Append a substring of a String.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>The String to append. </td></tr>
@@ -996,8 +892,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append a substring of a String. </p>
+<p>Append a substring of a String.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>The String to append. </td></tr>
@@ -1023,8 +918,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append a StringBuffer. </p>
+<p>Append a StringBuffer.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sb</td><td>The StringBuffer to append.</td></tr>
@@ -1058,8 +952,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append a substring of a StringBuffer. </p>
+<p>Append a substring of a StringBuffer.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sb</td><td>The StringBuffer to append. </td></tr>
@@ -1100,8 +993,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append a substring of a StringBuffer. </p>
+<p>Append a substring of a StringBuffer.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sb</td><td>The StringBuffer to append. </td></tr>
@@ -1127,8 +1019,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append a StringBuilder. </p>
+<p>Append a StringBuilder.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sb</td><td>The StringBuilder to append.</td></tr>
@@ -1162,8 +1053,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append a substring of a StringBuilder. </p>
+<p>Append a substring of a StringBuilder.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sb</td><td>The StringBuilder to append. </td></tr>
@@ -1204,8 +1094,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append a substring of a StringBuilder. </p>
+<p>Append a substring of a StringBuilder.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sb</td><td>The StringBuilder to append. </td></tr>
@@ -1231,8 +1120,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append a CharSequence. </p>
+<p>Append a CharSequence.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sb</td><td>The CharSequence to append.</td></tr>
@@ -1266,8 +1154,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append a substring of a CharSequence. </p>
+<p>Append a substring of a CharSequence.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sb</td><td>The CharSequence to append. </td></tr>
@@ -1308,8 +1195,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append a substring of a CharSequence. </p>
+<p>Append a substring of a CharSequence.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sb</td><td>The CharSequence to append. </td></tr>
@@ -1335,8 +1221,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append the given character. </p>
+<p>Append the given character.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">c</td><td>The character to append.</td></tr>
@@ -1370,8 +1255,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append the given character repeatedly. </p>
+<p>Append the given character repeatedly.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">c</td><td>The character to append. </td></tr>
@@ -1406,8 +1290,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append the given unsigned 32-Bit integer value using a minimum number of digits. </p>
+<p>Append the given unsigned 32-Bit integer value using a minimum number of digits.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">i</td><td>The integer value to append. </td></tr>
@@ -1432,8 +1315,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append the given unsigned 32-Bit integer value. </p>
+<p>Append the given unsigned 32-Bit integer value.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">i</td><td>The integer value to append. </td></tr>
@@ -1473,8 +1355,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append the given double value using the minimum digits before and after the given number of digits after dot. </p>
+<p>Append the given double value using the minimum digits before and after the given number of digits after dot.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">d</td><td>the integer value to append. </td></tr>
@@ -1510,11 +1391,10 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append the given <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> and add surrounding padding spaces. </p>
+<p>Append the given <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> and add surrounding padding spaces.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ms</td><td>The <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> to append. </td></tr>
+    <tr><td class="paramname">ms</td><td>The <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> to append. </td></tr>
     <tr><td class="paramname">fieldSize</td><td>The minimum number of characters to append.</td></tr>
   </table>
   </dd>
@@ -1552,11 +1432,10 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append the given <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> and add surrounding padding characters. </p>
+<p>Append the given <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> and add surrounding padding characters.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ms</td><td>The <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> to append. </td></tr>
+    <tr><td class="paramname">ms</td><td>The <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> to append. </td></tr>
     <tr><td class="paramname">fieldSize</td><td>The minimum number of characters to append. </td></tr>
     <tr><td class="paramname">padChar</td><td>The character to surround the Mutable string with. Defaults to ' ' (space).</td></tr>
   </table>
@@ -1589,8 +1468,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append the given String and add surrounding padding spaces. </p>
+<p>Append the given String and add surrounding padding spaces.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>the string to append. </td></tr>
@@ -1631,8 +1509,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append the given String and add surrounding padding characters. </p>
+<p>Append the given String and add surrounding padding characters.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>the string to append. </td></tr>
@@ -1668,8 +1545,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append the given StringBuffer and add surrounding padding spaces. </p>
+<p>Append the given StringBuffer and add surrounding padding spaces.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sb</td><td>the StringBuffer to append. </td></tr>
@@ -1710,8 +1586,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append the given StringBuffer and add surrounding padding characters. </p>
+<p>Append the given StringBuffer and add surrounding padding characters.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sb</td><td>the StringBuffer to append. </td></tr>
@@ -1747,8 +1622,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append the given <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> and add padding spaces behind the string. </p>
+<p>Append the given <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> and add padding spaces behind the string.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ms</td><td>The string to append. </td></tr>
@@ -1789,8 +1663,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append the given <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> and add padding characters behind the string. </p>
+<p>Append the given <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> and add padding characters behind the string.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ms</td><td>The string to append. </td></tr>
@@ -1826,8 +1699,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append the given String and add padding spaces behind the string. </p>
+<p>Append the given String and add padding spaces behind the string.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>The string to append. </td></tr>
@@ -1868,8 +1740,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append the given String and add padding characters behind the string. </p>
+<p>Append the given String and add padding characters behind the string.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>The String to append. </td></tr>
@@ -1905,8 +1776,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append the given StringBuffer and add padding spaces behind the string. </p>
+<p>Append the given StringBuffer and add padding spaces behind the string.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sb</td><td>The StringBuffer to append. </td></tr>
@@ -1947,8 +1817,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append the given StringBuffer and add padding characters behind the string. </p>
+<p>Append the given StringBuffer and add padding characters behind the string.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sb</td><td>The StringBuffer to append. </td></tr>
@@ -1984,11 +1853,10 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append padding spaces and append the given <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a>. </p>
+<p>Append padding spaces and append the given <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ms</td><td>The <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> to append. </td></tr>
+    <tr><td class="paramname">ms</td><td>The <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> to append. </td></tr>
     <tr><td class="paramname">fieldSize</td><td>The minimum number of characters to append.</td></tr>
   </table>
   </dd>
@@ -2026,11 +1894,10 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append padding characters and append the given <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a>. </p>
+<p>Append padding characters and append the given <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ms</td><td>The <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> to append. </td></tr>
+    <tr><td class="paramname">ms</td><td>The <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> to append. </td></tr>
     <tr><td class="paramname">fieldSize</td><td>The minimum number of characters to append. </td></tr>
     <tr><td class="paramname">padChar</td><td>The character to add to the right of the given string src. Defaults to ' ' (space).</td></tr>
   </table>
@@ -2063,8 +1930,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append padding spaces and append the given String. </p>
+<p>Append padding spaces and append the given String.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>The String to append. </td></tr>
@@ -2105,8 +1971,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append padding characters and append the given String. </p>
+<p>Append padding characters and append the given String.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>The String to append. </td></tr>
@@ -2142,8 +2007,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append padding spaces and append the given StringBuffer. </p>
+<p>Append padding spaces and append the given StringBuffer.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sb</td><td>The StringBuffer to append. </td></tr>
@@ -2184,8 +2048,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Append padding characters and append the given StringBuffer. </p>
+<p>Append padding characters and append the given StringBuffer.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sb</td><td>The StringBuffer to append. </td></tr>
@@ -2211,7 +2074,6 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
 <p>Returns a character of the sequence. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2235,8 +2097,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Clear the Buffer (just sets Length to 0) </p>
+<p>Clear the Buffer (just sets Length to 0)</p>
 <dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
 
 </div>
@@ -2254,12 +2115,10 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Compares a given string (or part of it) with the contents of this. </p>
-<p>If the optionally given substring start indices and lengths parameters are out of bounds, they are corrected. This could lead to unwanted results in some cases.</p>
+<p>Compares a given string (or part of it) with the contents of this. If the optionally given substring start indices and lengths parameters are out of bounds, they are corrected. This could lead to unwanted results in some cases.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">cmp</td><td>An object of type String, StringBuffer or <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> that is compared to this.</td></tr>
+    <tr><td class="paramname">cmp</td><td>An object of type String, StringBuffer or <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> that is compared to this.</td></tr>
   </table>
   </dd>
 </dl>
@@ -2290,12 +2149,10 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Compares a given string (or part of it) with the contents of this. </p>
-<p>If the optionally given substring start indices and lengths parameters are out of bounds, they are corrected. This could lead to unwanted results in some cases.</p>
+<p>Compares a given string (or part of it) with the contents of this. If the optionally given substring start indices and lengths parameters are out of bounds, they are corrected. This could lead to unwanted results in some cases.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">cmp</td><td>An object of type String, StringBuffer or <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> that is compared to this. </td></tr>
+    <tr><td class="paramname">cmp</td><td>An object of type String, StringBuffer or <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> that is compared to this. </td></tr>
     <tr><td class="paramname">ignoreCase</td><td>If true, the compare is case insensitive. Optional and defaults to false.</td></tr>
   </table>
   </dd>
@@ -2333,12 +2190,10 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Compares a given string (or part of it) with the contents of this. </p>
-<p>If the optionally given substring start indices and lengths parameters are out of bounds, they are corrected. This could lead to unwanted results in some cases.</p>
+<p>Compares a given string (or part of it) with the contents of this. If the optionally given substring start indices and lengths parameters are out of bounds, they are corrected. This could lead to unwanted results in some cases.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">cmp</td><td>An object of type String, StringBuffer or <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> that is compared to this. </td></tr>
+    <tr><td class="paramname">cmp</td><td>An object of type String, StringBuffer or <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> that is compared to this. </td></tr>
     <tr><td class="paramname">ignoreCase</td><td>If true, the compare is case insensitive. Optional and defaults to false. </td></tr>
     <tr><td class="paramname">sStartIdx</td><td>The start of the substring within the given string that is to be compared to this. Defaults to 0.</td></tr>
   </table>
@@ -2383,12 +2238,10 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Compares a given string (or part of it) with the contents of this. </p>
-<p>If the optionally given substring start indices and lengths parameters are out of bounds, they are corrected. This could lead to unwanted results in some cases.</p>
+<p>Compares a given string (or part of it) with the contents of this. If the optionally given substring start indices and lengths parameters are out of bounds, they are corrected. This could lead to unwanted results in some cases.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">cmp</td><td>An object of type String, StringBuffer or <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> that is compared to this. </td></tr>
+    <tr><td class="paramname">cmp</td><td>An object of type String, StringBuffer or <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> that is compared to this. </td></tr>
     <tr><td class="paramname">ignoreCase</td><td>If true, the compare is case insensitive. Optional and defaults to false. </td></tr>
     <tr><td class="paramname">sStartIdx</td><td>The start of the substring within the given string that is to be compared to this. Defaults to 0. </td></tr>
     <tr><td class="paramname">sLen</td><td>The length of the substring within the given string that is to be compared to this. Defaults to Integer.MAX_VALUE.</td></tr>
@@ -2440,12 +2293,10 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Compares a given string (or part of it) with the contents of this. </p>
-<p>If the optionally given substring start indices and lengths parameters are out of bounds, they are corrected. This could lead to unwanted results in some cases.</p>
+<p>Compares a given string (or part of it) with the contents of this. If the optionally given substring start indices and lengths parameters are out of bounds, they are corrected. This could lead to unwanted results in some cases.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">cmp</td><td>An object of type String, StringBuffer or <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> that is compared to this. </td></tr>
+    <tr><td class="paramname">cmp</td><td>An object of type String, StringBuffer or <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> that is compared to this. </td></tr>
     <tr><td class="paramname">ignoreCase</td><td>If true, the compare is case insensitive. Optional and defaults to false. </td></tr>
     <tr><td class="paramname">sStartIdx</td><td>The start of the substring within the given string that is to be compared to this. Defaults to 0. </td></tr>
     <tr><td class="paramname">sLen</td><td>The length of the substring within the given string that is to be compared to this. Defaults to Integer.MAX_VALUE. </td></tr>
@@ -2504,12 +2355,10 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Compares a given string (or part of it) with the contents of this. </p>
-<p>If the optionally given substring start indices and lengths parameters are out of bounds, they are corrected. This could lead to unwanted results in some cases.</p>
+<p>Compares a given string (or part of it) with the contents of this. If the optionally given substring start indices and lengths parameters are out of bounds, they are corrected. This could lead to unwanted results in some cases.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">cmp</td><td>An object of type String, StringBuffer or <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> that is compared to this. </td></tr>
+    <tr><td class="paramname">cmp</td><td>An object of type String, StringBuffer or <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> that is compared to this. </td></tr>
     <tr><td class="paramname">ignoreCase</td><td>If true, the compare is case insensitive. Optional and defaults to false. </td></tr>
     <tr><td class="paramname">sStartIdx</td><td>The start of the substring within the given string that is to be compared to this. Defaults to 0. </td></tr>
     <tr><td class="paramname">sLen</td><td>The length of the substring within the given string that is to be compared to this. Defaults to Integer.MAX_VALUE. </td></tr>
@@ -2551,8 +2400,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Checks if the given String is located at the given position. </p>
+<p>Checks if the given String is located at the given position.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>The string to search. </td></tr>
@@ -2588,8 +2436,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Checks if the given String is located at the given position. </p>
+<p>Checks if the given String is located at the given position.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>The string to search. </td></tr>
@@ -2614,8 +2461,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Converts all or a region of characters in the Buffer to upper or to lower case. </p>
+<p>Converts all or a region of characters in the Buffer to upper or to lower case.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">toUpper</td><td>If true, conversion to upper case is performed, to lower else.</td></tr>
@@ -2649,8 +2495,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Converts all or a region of characters in the Buffer to upper or to lower case. </p>
+<p>Converts all or a region of characters in the Buffer to upper or to lower case.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">toUpper</td><td>If true, conversion to upper case is performed, to lower else. </td></tr>
@@ -2691,8 +2536,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Converts all or a region of characters in the Buffer to upper or to lower case. </p>
+<p>Converts all or a region of characters in the Buffer to upper or to lower case.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">toUpper</td><td>If true, conversion to upper case is performed, to lower else. </td></tr>
@@ -2718,8 +2562,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Checks if this <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> ends with the given sequence. </p>
+<p>Checks if this <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> ends with the given sequence.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>The String to search. If s is null or empty, false is returned.</td></tr>
@@ -2761,9 +2604,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Static utility function that to check if a string ends with another string with case insensitive compare. </p>
-<p>Using this function avoids to create two converted (lowered) temporary strings.</p>
+<p>Static utility function that to check if a string ends with another string with case insensitive compare. Using this function avoids to create two converted (lowered) temporary strings.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>The string to search in. </td></tr>
@@ -2788,8 +2629,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Ensures that the capacity of the internal buffer meets or exceeds the given value. </p>
+<p>Ensures that the capacity of the internal buffer meets or exceeds the given value.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">minLen</td><td>The minimum length. </td></tr>
@@ -2812,9 +2652,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Compares this to the given object. </p>
-<p>Given object can be <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> or CharSequence (e.g. String).</p>
+<p>Compares this to the given object. Given object can be <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> or CharSequence (e.g. String).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">o</td><td>The object to compare to this instance.</td></tr>
@@ -2837,8 +2675,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Calculates the hash value using the same formula as java.lang.String. </p>
+<p>Calculates the hash value using the same formula as java.lang.String.</p>
 <dl class="section return"><dt>Returns</dt><dd>A hash value for this object. </dd></dl>
 
 </div>
@@ -2866,8 +2703,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Search the given String in the Buffer starting at a given position. </p>
+<p>Search the given String in the Buffer starting at a given position.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>The string to search. </td></tr>
@@ -2892,8 +2728,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Search the given String in the Buffer. </p>
+<p>Search the given String in the Buffer.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>The string to search. </td></tr>
@@ -2941,8 +2776,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Search the given String in the Buffer starting at the given position. </p>
+<p>Search the given String in the Buffer starting at the given position.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sIn</td><td>The string to search in. </td></tr>
@@ -2986,8 +2820,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Search the given String in the Buffer. </p>
+<p>Search the given String in the Buffer.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sIn</td><td>The string to search in. </td></tr>
@@ -3020,8 +2853,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Checks if a given CharSequence is empty or has a length of zero. </p>
+<p>Checks if a given CharSequence is empty or has a length of zero.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">jString</td><td>The java String to check.</td></tr>
@@ -3044,7 +2876,6 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
 <p>Gets the length of the sequence. </p>
 <dl class="section return"><dt>Returns</dt><dd>The length of the sequence. </dd></dl>
 
@@ -3062,9 +2893,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Appends platform specific new line character(s). </p>
-<p>( "\\r\\n", "\\r", etc.)</p>
+<p>Appends platform specific new line character(s). ( "\\r\\n", "\\r", etc.)</p>
 <dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
 
 </div>
@@ -3104,8 +2933,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Replace one more more occurrences of a string by another string. </p>
+<p>Replace one more more occurrences of a string by another string.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">searchStr</td><td>The string to be replaced. </td></tr>
@@ -3148,8 +2976,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Replace one more more occurrences of a string by another string. </p>
+<p>Replace one more more occurrences of a string by another string.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">searchStr</td><td>The string to be replaced. </td></tr>
@@ -3185,8 +3012,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Replace one more more occurrences of a string by another string. </p>
+<p>Replace one more more occurrences of a string by another string.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">searchStr</td><td>The string to be replaced. </td></tr>
@@ -3211,8 +3037,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Checks if this <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> starts with the given sequence. </p>
+<p>Checks if this <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> starts with the given sequence.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>The String to search. If s is null or empty, false is returned.</td></tr>
@@ -3254,9 +3079,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Static utility function that to check if a string starts with another string with case insensitive compare. </p>
-<p>Using this function avoids to create two converted (lowered) temporary strings.</p>
+<p>Static utility function that to check if a string starts with another string with case insensitive compare. Using this function avoids to create two converted (lowered) temporary strings.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>The string to search in. </td></tr>
@@ -3291,9 +3114,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Throws an <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html" title="Static methods and fields A-Worx Utility library. ">AWXU</a> error (using the <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#a310f9753e567021a3074e649210d8c18" title="The error handler singleton. ">AWXU.errorHandler</a>) and returns null. </p>
-<p>The reason for this behavior is to disallow the usage of <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> within (system) methods that create sub sequences. This would be in contrast to the design goal of <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a>.</p>
+<p>Throws an <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html">AWXU</a> error (using the <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#a310f9753e567021a3074e649210d8c18">AWXU.errorHandler</a>) and returns null. The reason for this behavior is to disallow the usage of <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> within (system) methods that create sub sequences. This would be in contrast to the design goal of <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">beginIndex</td><td>The start of the sequence (not used) </td></tr>
@@ -3318,8 +3139,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Go to the next tab stop by filling in pad characters repeatedly. </p>
+<p>Go to the next tab stop by filling in pad characters repeatedly.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tabSize</td><td>The tab positions are multiples of this parameter.</td></tr>
@@ -3353,8 +3173,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Go to the next tab stop by filling in pad characters repeatedly. </p>
+<p>Go to the next tab stop by filling in pad characters repeatedly.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tabSize</td><td>The tab positions are multiples of this parameter. </td></tr>
@@ -3395,8 +3214,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Go to the next tab stop by filling in pad characters repeatedly. </p>
+<p>Go to the next tab stop by filling in pad characters repeatedly.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tabSize</td><td>The tab positions are multiples of this parameter. </td></tr>
@@ -3444,8 +3262,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Go to the next tab stop by filling in pad characters repeatedly. </p>
+<p>Go to the next tab stop by filling in pad characters repeatedly.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tabSize</td><td>The tab positions are multiples of this parameter. </td></tr>
@@ -3471,8 +3288,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Converts the <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a> into a String. </p>
+<p>Converts the <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> into a String.</p>
 <dl class="section return"><dt>Returns</dt><dd>A string that represents this object. </dd></dl>
 
 </div>
@@ -3490,8 +3306,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Creates a String from a region within this <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a>. </p>
+<p>Creates a String from a region within this <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">startIdx</td><td>The start index of the region in this to create the string from.</td></tr>
@@ -3525,8 +3340,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Creates a String from a region within this <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen...">MString</a>. </p>
+<p>Creates a String from a region within this <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">startIdx</td><td>The start index of the region in this to create the string from. </td></tr>
@@ -3539,6 +3353,48 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="ab07f0e55b22a488c76165d3935ce794b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int adjLength</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Used as a return value of method <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a1918368be065312346393ae26ecfcf29">adjustRangeAndTestIfEmpty()</a> as Java does not allow to pass parameters by reference </p>
+
+</div>
+</div>
+<a class="anchor" id="a667d47162b84e73a69f708245d7b41a2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int adjStartIdx</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Used as a return value of method <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a1918368be065312346393ae26ecfcf29">adjustRangeAndTestIfEmpty()</a> as Java does not allow to pass parameters by reference </p>
+
+</div>
+</div>
 <a class="anchor" id="a8317b33b8c004741d95935199d964be9"></a>
 <div class="memitem">
 <div class="memproto">
@@ -3548,9 +3404,28 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
+<p>The Buffer array. This may but should not be accessed directly. In case of external modifications the field hash has to be set to dirty (0). </p>
 
-<p>The Buffer array. </p>
-<p>This may but should not be accessed directly. In case of external modifications the field hash has to be set to dirty (0). </p>
+</div>
+</div>
+<a class="anchor" id="a4161fdf6dff38fd6cd122809e65cd1f3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">final String empty = &quot;&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>An empty String singleton </p>
 
 </div>
 </div>
@@ -3563,9 +3438,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>The hashvalue. </p>
-<p>Has to be set dirty (0) whenever String is changed from outside!. </p>
+<p>The hashvalue. Has to be set dirty (0) whenever String is changed from outside!. </p>
 
 </div>
 </div>
@@ -3578,9 +3451,28 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
+<p>The actual length of the string stored in the Buffer. In case of external modifications the field hash has to be set to dirty (0). </p>
 
-<p>The actual length of the string stored in the Buffer. </p>
-<p>In case of external modifications the field hash has to be set to dirty (0). </p>
+</div>
+</div>
+<a class="anchor" id="a48d5ec6061d7631c1714c0973519c1ba"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">String NEWLINE = System.getProperty(&quot;line.separator&quot;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The system depended new line character codes retrieved statically (once) using "System.getProperty("line.separator");" </p>
 
 </div>
 </div>
@@ -3591,7 +3483,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
 <!-- HTML footer for doxygen 1.8.4-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 28 2013 12:16:29 for ALox Java Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 15 2013 09:26:48 for ALox Java Reference by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>
