@@ -1,29 +1,29 @@
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()   [00:00.002  +002 ms] [T:main(1)] [***] [DOM]: >> Here comes the current Log configuration:
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 >> Version:      1.1.0
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 >> Intern. dom.: ALOX
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 >> Thread safe:  Yes
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 >> No. of calls: 1
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 >> Code markers: 0
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 >> 
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 >> Def. domains: 1
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 >>   Domain:   DOM          Scope: "unittests.com.aworx.lox#Tests_Tutorial#Tut_LogConfig"
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 >> 
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 >> Loggers:      2
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 >> 
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 >>   Logger: "Console"
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 >>     Creation time: java.util.GregorianCalendar[time=1373815369150,areFieldsSet=true,areAllFieldsSet=true,lenient=true,zone=sun.util.calendar.ZoneInfo[id="Europe/Berlin",offset=3600000,dstSavings=3600000,useDaylight=true,transitions=143,lastRule=java.util.SimpleTimeZone[id=Europe/Berlin,offset=3600000,dstSavings=3600000,useDaylight=true,startYear=0,startMode=2,startMonth=2,startDay=-1,startDayOfWeek=1,startTime=3600000,startTimeMode=2,endMode=2,endMonth=9,endDay=-1,endDayOfWeek=1,endTime=3600000,endTimeMode=2]],firstDayOfWeek=2,minimalDaysInFirstWeek=4,ERA=1,YEAR=2013,MONTH=6,WEEK_OF_YEAR=28,WEEK_OF_MONTH=2,DAY_OF_MONTH=14,DAY_OF_YEAR=195,DAY_OF_WEEK=1,DAY_OF_WEEK_IN_MONTH=2,AM_PM=1,HOUR=5,HOUR_OF_DAY=17,MINUTE=22,SECOND=49,MILLISECOND=150,ZONE_OFFSET=3600000,DST_OFFSET=3600000]
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 >>     Lines logged:  0
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 >>     Domains:
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 >>       /ALOX              WARNINGS_AND_ERRORS
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 >>       /DOM               ALL
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 >>       /DOM/CON           ALL
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 >>       /DOM/MEM           OFF
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 >> 
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 >>   Logger: "Memory"
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 >>     Creation time: java.util.GregorianCalendar[time=1373815369151,areFieldsSet=true,areAllFieldsSet=true,lenient=true,zone=sun.util.calendar.ZoneInfo[id="Europe/Berlin",offset=3600000,dstSavings=3600000,useDaylight=true,transitions=143,lastRule=java.util.SimpleTimeZone[id=Europe/Berlin,offset=3600000,dstSavings=3600000,useDaylight=true,startYear=0,startMode=2,startMonth=2,startDay=-1,startDayOfWeek=1,startTime=3600000,startTimeMode=2,endMode=2,endMonth=9,endDay=-1,endDayOfWeek=1,endTime=3600000,endTimeMode=2]],firstDayOfWeek=2,minimalDaysInFirstWeek=4,ERA=1,YEAR=2013,MONTH=6,WEEK_OF_YEAR=28,WEEK_OF_MONTH=2,DAY_OF_MONTH=14,DAY_OF_YEAR=195,DAY_OF_WEEK=1,DAY_OF_WEEK_IN_MONTH=2,AM_PM=1,HOUR=5,HOUR_OF_DAY=17,MINUTE=22,SECOND=49,MILLISECOND=151,ZONE_OFFSET=3600000,DST_OFFSET=3600000]
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 >>     Lines logged:  0
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 >>     Domains:
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 >>       /ALOX              WARNINGS_AND_ERRORS
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 >>       /DOM               ALL
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 >>       /DOM/CON           OFF
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 >>       /DOM/MEM           ALL
+(Tests_Tutorial.java:363)                           .Tut_LogConfig()   [00:00.003  +003 ms] [T:main(1)] [***] [DOM]: >> Here comes the current Log configuration:
+(Tests_Tutorial.java:363)                           .Tut_LogConfig()                                                 >> Version:      1.1.0
+(Tests_Tutorial.java:363)                           .Tut_LogConfig()                                                 >> Intern. dom.: ALOX
+(Tests_Tutorial.java:363)                           .Tut_LogConfig()                                                 >> Thread safe:  Yes
+(Tests_Tutorial.java:363)                           .Tut_LogConfig()                                                 >> No. of calls: 1
+(Tests_Tutorial.java:363)                           .Tut_LogConfig()                                                 >> Code markers: 0
+(Tests_Tutorial.java:363)                           .Tut_LogConfig()                                                 >> 
+(Tests_Tutorial.java:363)                           .Tut_LogConfig()                                                 >> Def. domains: 1
+(Tests_Tutorial.java:363)                           .Tut_LogConfig()                                                 >>   Domain:   DOM          Scope: "unittests.com.aworx.lox#Tests_Tutorial#Tut_LogConfig"
+(Tests_Tutorial.java:363)                           .Tut_LogConfig()                                                 >> 
+(Tests_Tutorial.java:363)                           .Tut_LogConfig()                                                 >> Loggers:      2
+(Tests_Tutorial.java:363)                           .Tut_LogConfig()                                                 >> 
+(Tests_Tutorial.java:363)                           .Tut_LogConfig()                                                 >>   Logger: "Console"
+(Tests_Tutorial.java:363)                           .Tut_LogConfig()                                                 >>     Creation time: java.util.GregorianCalendar[time=1373893343096,areFieldsSet=true,areAllFieldsSet=true,lenient=true,zone=sun.util.calendar.ZoneInfo[id="Europe/Berlin",offset=3600000,dstSavings=3600000,useDaylight=true,transitions=143,lastRule=java.util.SimpleTimeZone[id=Europe/Berlin,offset=3600000,dstSavings=3600000,useDaylight=true,startYear=0,startMode=2,startMonth=2,startDay=-1,startDayOfWeek=1,startTime=3600000,startTimeMode=2,endMode=2,endMonth=9,endDay=-1,endDayOfWeek=1,endTime=3600000,endTimeMode=2]],firstDayOfWeek=2,minimalDaysInFirstWeek=4,ERA=1,YEAR=2013,MONTH=6,WEEK_OF_YEAR=29,WEEK_OF_MONTH=3,DAY_OF_MONTH=15,DAY_OF_YEAR=196,DAY_OF_WEEK=2,DAY_OF_WEEK_IN_MONTH=3,AM_PM=1,HOUR=3,HOUR_OF_DAY=15,MINUTE=2,SECOND=23,MILLISECOND=96,ZONE_OFFSET=3600000,DST_OFFSET=3600000]
+(Tests_Tutorial.java:363)                           .Tut_LogConfig()                                                 >>     Lines logged:  0
+(Tests_Tutorial.java:363)                           .Tut_LogConfig()                                                 >>     Domains:
+(Tests_Tutorial.java:363)                           .Tut_LogConfig()                                                 >>       /ALOX              WARNINGS_AND_ERRORS
+(Tests_Tutorial.java:363)                           .Tut_LogConfig()                                                 >>       /DOM               ALL
+(Tests_Tutorial.java:363)                           .Tut_LogConfig()                                                 >>       /DOM/CON           ALL
+(Tests_Tutorial.java:363)                           .Tut_LogConfig()                                                 >>       /DOM/MEM           OFF
+(Tests_Tutorial.java:363)                           .Tut_LogConfig()                                                 >> 
+(Tests_Tutorial.java:363)                           .Tut_LogConfig()                                                 >>   Logger: "Memory"
+(Tests_Tutorial.java:363)                           .Tut_LogConfig()                                                 >>     Creation time: java.util.GregorianCalendar[time=1373893343096,areFieldsSet=true,areAllFieldsSet=true,lenient=true,zone=sun.util.calendar.ZoneInfo[id="Europe/Berlin",offset=3600000,dstSavings=3600000,useDaylight=true,transitions=143,lastRule=java.util.SimpleTimeZone[id=Europe/Berlin,offset=3600000,dstSavings=3600000,useDaylight=true,startYear=0,startMode=2,startMonth=2,startDay=-1,startDayOfWeek=1,startTime=3600000,startTimeMode=2,endMode=2,endMonth=9,endDay=-1,endDayOfWeek=1,endTime=3600000,endTimeMode=2]],firstDayOfWeek=2,minimalDaysInFirstWeek=4,ERA=1,YEAR=2013,MONTH=6,WEEK_OF_YEAR=29,WEEK_OF_MONTH=3,DAY_OF_MONTH=15,DAY_OF_YEAR=196,DAY_OF_WEEK=2,DAY_OF_WEEK_IN_MONTH=3,AM_PM=1,HOUR=3,HOUR_OF_DAY=15,MINUTE=2,SECOND=23,MILLISECOND=96,ZONE_OFFSET=3600000,DST_OFFSET=3600000]
+(Tests_Tutorial.java:363)                           .Tut_LogConfig()                                                 >>     Lines logged:  0
+(Tests_Tutorial.java:363)                           .Tut_LogConfig()                                                 >>     Domains:
+(Tests_Tutorial.java:363)                           .Tut_LogConfig()                                                 >>       /ALOX              WARNINGS_AND_ERRORS
+(Tests_Tutorial.java:363)                           .Tut_LogConfig()                                                 >>       /DOM               ALL
+(Tests_Tutorial.java:363)                           .Tut_LogConfig()                                                 >>       /DOM/CON           OFF
+(Tests_Tutorial.java:363)                           .Tut_LogConfig()                                                 >>       /DOM/MEM           ALL

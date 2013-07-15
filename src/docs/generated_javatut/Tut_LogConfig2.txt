@@ -1,15 +1,15 @@
-(Tests_Tutorial.java:407) Tests_Tutorial.Tut_LogConfig2()   [00:00.000  +195 µs] [T:main(1)]       [ALOX]: Lox.addLogger(): Logger "Console" added
-(Tests_Tutorial.java:408) Tests_Tutorial.Tut_LogConfig2()   [00:00.000  +109 µs] [T:main(1)]       [ALOX]: Lox.addLogger(): Logger "Memory" added
-(Tests_Tutorial.java:411) Tests_Tutorial.Tut_LogConfig2()   [00:00.000  +074 µs] [T:main(1)]       [ALOX]: Lox.regDomain(): Domain "DOM" created in logger: Console
-(Tests_Tutorial.java:411) Tests_Tutorial.Tut_LogConfig2()   [00:00.000  +020 µs] [T:main(1)]       [ALOX]: Lox.regDomain(): Domain "DOM" created in logger: Memory
-(Tests_Tutorial.java:411) Tests_Tutorial.Tut_LogConfig2()   [00:00.000  +019 µs] [T:main(1)]       [ALOX]: Lox.regDomain(): Domain "DOM" set as default for scope "METHOD"
-(Tests_Tutorial.java:412) Tests_Tutorial.Tut_LogConfig2()   [00:00.000  +070 µs] [T:main(1)]       [ALOX]: Lox.regDomain(): Domain "DOM/CON" created in logger: Console
-(Tests_Tutorial.java:412) Tests_Tutorial.Tut_LogConfig2()   [00:00.000  +033 µs] [T:main(1)]       [ALOX]: Lox.regDomain(): Domain "DOM/CON" created in logger: Memory
-(Tests_Tutorial.java:413) Tests_Tutorial.Tut_LogConfig2()   [00:00.001  +104 µs] [T:main(1)]       [ALOX]: Lox.regDomain(): Domain "DOM/MEM" created in logger: Console
-(Tests_Tutorial.java:413) Tests_Tutorial.Tut_LogConfig2()   [00:00.001  +028 µs] [T:main(1)]       [ALOX]: Lox.regDomain(): Domain "DOM/MEM" created in logger: Memory
-(Tests_Tutorial.java:416) Tests_Tutorial.Tut_LogConfig2()   [00:00.001  +065 µs] [T:main(1)]       [ALOX]: Lox.setDomain(): Domain "DOM" log level set to "ALL" for logger "Console"
-(Tests_Tutorial.java:416) Tests_Tutorial.Tut_LogConfig2()   [00:00.001  +019 µs] [T:main(1)]       [ALOX]: Lox.setDomain(): Domain "DOM" log level set to "ALL" for logger "Memory"
-(Tests_Tutorial.java:419) Tests_Tutorial.Tut_LogConfig2()   [00:00.001  +071 µs] [T:main(1)]       [ALOX]: Lox.setDomain(): Domain "DOM/CON" log level set to "ALL" for logger "Console"
-(Tests_Tutorial.java:420) Tests_Tutorial.Tut_LogConfig2()   [00:00.001  +084 µs] [T:main(1)]       [ALOX]: Lox.setDomain(): Domain "DOM/CON" log level set to "OFF" for logger "Memory"
-(Tests_Tutorial.java:423) Tests_Tutorial.Tut_LogConfig2()   [00:00.001  +077 µs] [T:main(1)]       [ALOX]: Lox.setDomain(): Domain "DOM/MEM" log level set to "OFF" for logger "Console"
-(Tests_Tutorial.java:424) Tests_Tutorial.Tut_LogConfig2()   [00:00.002  +073 µs] [T:main(1)]       [ALOX]: Lox.setDomain(): Domain "DOM/MEM" log level set to "ALL" for logger "Memory"
+(Tests_Tutorial.java:407)                           .Tut_LogConfig2()   [00:00.000  +173 µs] [T:main(1)]       [ALOX]: Lox.addLogger(): Logger "Console" added
+(Tests_Tutorial.java:408)                           .Tut_LogConfig2()   [00:00.000  +143 µs] [T:main(1)]       [ALOX]: Lox.addLogger(): Logger "Memory" added
+(Tests_Tutorial.java:411)                           .Tut_LogConfig2()   [00:00.000  +115 µs] [T:main(1)]       [ALOX]: Lox.regDomain(): Domain "DOM" created in logger: Console
+(Tests_Tutorial.java:411)                           .Tut_LogConfig2()   [00:00.000  +030 µs] [T:main(1)]       [ALOX]: Lox.regDomain(): Domain "DOM" created in logger: Memory
+(Tests_Tutorial.java:411)                           .Tut_LogConfig2()   [00:00.000  +026 µs] [T:main(1)]       [ALOX]: Lox.regDomain(): Domain "DOM" set as default for scope "METHOD"
+(Tests_Tutorial.java:412)                           .Tut_LogConfig2()   [00:00.001  +131 µs] [T:main(1)]       [ALOX]: Lox.regDomain(): Domain "DOM/CON" created in logger: Console
+(Tests_Tutorial.java:412)                           .Tut_LogConfig2()   [00:00.001  +041 µs] [T:main(1)]       [ALOX]: Lox.regDomain(): Domain "DOM/CON" created in logger: Memory
+(Tests_Tutorial.java:413)                           .Tut_LogConfig2()   [00:00.001  +119 µs] [T:main(1)]       [ALOX]: Lox.regDomain(): Domain "DOM/MEM" created in logger: Console
+(Tests_Tutorial.java:413)                           .Tut_LogConfig2()   [00:00.001  +042 µs] [T:main(1)]       [ALOX]: Lox.regDomain(): Domain "DOM/MEM" created in logger: Memory
+(Tests_Tutorial.java:416)                           .Tut_LogConfig2()   [00:00.001  +109 µs] [T:main(1)]       [ALOX]: Lox.setDomain(): Domain "DOM" log level set to "ALL" for logger "Console"
+(Tests_Tutorial.java:416)                           .Tut_LogConfig2()   [00:00.002  +030 µs] [T:main(1)]       [ALOX]: Lox.setDomain(): Domain "DOM" log level set to "ALL" for logger "Memory"
+(Tests_Tutorial.java:419)                           .Tut_LogConfig2()   [00:00.002  +143 µs] [T:main(1)]       [ALOX]: Lox.setDomain(): Domain "DOM/CON" log level set to "ALL" for logger "Console"
+(Tests_Tutorial.java:420)                           .Tut_LogConfig2()   [00:00.002  +149 µs] [T:main(1)]       [ALOX]: Lox.setDomain(): Domain "DOM/CON" log level set to "OFF" for logger "Memory"
+(Tests_Tutorial.java:423)                           .Tut_LogConfig2()   [00:00.003  +126 µs] [T:main(1)]       [ALOX]: Lox.setDomain(): Domain "DOM/MEM" log level set to "OFF" for logger "Console"
+(Tests_Tutorial.java:424)                           .Tut_LogConfig2()   [00:00.003  +170 µs] [T:main(1)]       [ALOX]: Lox.setDomain(): Domain "DOM/MEM" log level set to "ALL" for logger "Memory"

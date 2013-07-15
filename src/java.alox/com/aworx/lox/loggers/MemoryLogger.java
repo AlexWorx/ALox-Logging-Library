@@ -93,9 +93,10 @@ public class MemoryLogger extends TextLogger
 			{
 				// jump to next tab level
 				buffer.append( ' ' );
-				if ( tabBeforeCallerName < buffer.length )
-					tabBeforeCallerName= buffer.length; // add some extra space to avoid to many increases
-				buffer.append( ' ', tabBeforeCallerName - buffer.length  );
+				int bLength= buffer.length - oldLength;
+				if ( tabBeforeCallerName < bLength )
+					tabBeforeCallerName= bLength; 
+				buffer.append( ' ', tabBeforeCallerName - bLength);
 
 				if ( logCallerPackage )	buffer				.append( caller.packageName ).append( '.' );
 				if ( logCallerClass   )	buffer				.append( caller.className   );	
