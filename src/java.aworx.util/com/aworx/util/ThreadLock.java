@@ -109,6 +109,7 @@ public class ThreadLock
      * @param recursiveMode Flag if recursion support is on. If not, nested locks are not counted.
      * @param setUnsafeMode True to set this unsafe. Please don't!
      **************************************************************************************************/
+	@SuppressWarnings ("hiding") 
 	void constructor( boolean recursiveMode, boolean setUnsafeMode )
 	{
 		// save parameters

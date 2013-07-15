@@ -28,7 +28,7 @@ String			outputPath=		"../../../../src/docs/generated_cstut/";
 void SaveTutorialOuput( string fileName, MString log )
 {
 #if !WINDOWS_PHONE
-	System.IO.File.WriteAllText( outputPath + "CS_" + fileName,  log.ToString() );
+	System.IO.File.WriteAllText( outputPath + fileName,  log.ToString() );
 #endif
 }
 
@@ -56,7 +56,7 @@ public void Tut_Hello_ALox()
 	//! [Tut_Hello_ALox_Line3]
 	//! [Tut_Hello_ALox]
 			
- 	SaveTutorialOuput( "Tut_Hello_ALox.txt", tutLog.Buffer );
+	SaveTutorialOuput( "Tut_Hello_ALox.txt", tutLog.Buffer );
 }
 
 [TestMethod]
@@ -81,7 +81,7 @@ public void Tut_LogLevels()
 	Log.Verbose( "APP",	"Today, I am in the mood to talk..." );
 	//! [Tut_LogLevels]
 
- 	SaveTutorialOuput( "Tut_LogLevels.txt", tutLog.Buffer );
+	SaveTutorialOuput( "Tut_LogLevels.txt", tutLog.Buffer );
 }
 
 [TestMethod]
@@ -105,7 +105,7 @@ public void Tut_DefaultDomains()
 	Log.Verbose( "Today, I am in the mood to talk..." );
 	//! [Tut_DefaultDomains]
 
- 	SaveTutorialOuput( "Tut_DefaultDomains.txt", tutLog.Buffer );
+	SaveTutorialOuput( "Tut_DefaultDomains.txt", tutLog.Buffer );
 
 	Log.Reset(); 
 	Log.AddLogger( tutLog= new MemoryLogger( "Tutlog" ));
@@ -117,7 +117,7 @@ public void Tut_DefaultDomains()
 	//! [Tut_DefaultDomains_part2]
 
 	tutLog.Buffer.Replace( "Tutlog", "Console" );
- 	SaveTutorialOuput( "Tut_DefaultDomains_part2.txt", tutLog.Buffer );
+	SaveTutorialOuput( "Tut_DefaultDomains_part2.txt", tutLog.Buffer );
 }
 
 public void Tut_Placing()
@@ -224,7 +224,7 @@ public void Tut_Instance()
 	tutLog.Buffer.Append( "..." ).Append( Environment.NewLine );
 	tutLog.Buffer.Append( "..." ).Append( Environment.NewLine );
 	tutLog.Buffer.Append( "..." ).Append( Environment.NewLine );
- 	SaveTutorialOuput( "Tut_Instance.txt", tutLog.Buffer );
+	SaveTutorialOuput( "Tut_Instance.txt", tutLog.Buffer );
 #endif
 }
 
@@ -247,7 +247,7 @@ public void Tut_Exception()
 	//! [Tut_Exceptions]
 
 	tutLog.Buffer.Replace( "Tutlog", "Console" );
- 	SaveTutorialOuput( "Tut_Exceptions.txt", tutLog.Buffer );
+	SaveTutorialOuput( "Tut_Exceptions.txt", tutLog.Buffer );
 #endif
 }
 
@@ -270,12 +270,12 @@ public void Tut_XML()
 						+"</SubTag2>"
 					+"</MainTag>";
 	XDocument xdoc= XDocument.Parse( xmltext );
-    
+	
 	LogTools.XML("MYDOM", Log.Level.Info, xdoc, "Logging an xml document: " );
 	//! [Tut_XML]
 
 	tutLog.Buffer.Replace( "Tutlog", "Console" );
- 	SaveTutorialOuput( "Tut_XML.txt", tutLog.Buffer );
+	SaveTutorialOuput( "Tut_XML.txt", tutLog.Buffer );
 #endif
 }
 
@@ -301,39 +301,39 @@ public void Tut_SeparatedLogLevels()
 	// create two different loggers
 	Log.AddLogger( new ConsoleLogger( "Console" ) );
 	Log.AddLogger( new MemoryLogger ( "Memory" ) );
-    
+	
 	// switch some log information off with memory logger
 	#if ALOX_DEBUG
-		(Log.GetLogger("Console")).LogCallerInfo= false;
+		(Log.GetLogger("Console")).LogCallerMethod= false;
 		MemoryLogger memLogger= (MemoryLogger) Log.GetLogger("Memory");
-		memLogger.LogCallerInfo= 
+		memLogger.LogCallerMethod= 
 		memLogger.LogTimeElapsed= 
 		memLogger.LogTimeDiff= 
 		memLogger.LogLogLevel= 
 		memLogger.LogThreadInfo= false;
 	#endif
-    
+	
 	// register domains, set DOM as default
 	Log.RegDomain( "DOM",     Log.Scope.Method );
 	Log.RegDomain( "DOM/CON", Log.Scope.None );
 	Log.RegDomain( "DOM/MEM", Log.Scope.None );
-    
+	
 	// set level of DOM for all loggers
 	Log.SetDomain( "DOM",  Log.DomainLevel.All, false );
-    
+	
 	// set level of DOM/CON separately for console and memory logger
 	Log.SetDomain( "~CON", Log.DomainLevel.All, false, "Console" );
 	Log.SetDomain( "~CON", Log.DomainLevel.Off, false, "Memory"  );
-    
+	
 	// set level of DOM/MEM separately for console and memory logger
 	Log.SetDomain( "~MEM", Log.DomainLevel.Off, false, "Console" );
 	Log.SetDomain( "~MEM", Log.DomainLevel.All, false, "Memory"  );
-    
+	
 	// Log info to each of the domains
 	Log.Info(         "Domain= DOM      -> This goes to all loggers");
 	Log.Info( "~CON", "Domain= DOM/CON  -> This goes to ConsoleLogger exclusively");
 	Log.Info( "~MEM", "Domain= DOM/MEM  -> This goes to MemoryLogger exclusively");
-    
+	
 	// To verify the result, we log the contents of the MemoryLogger to the console logger
 	Log.Info( "~CON", "Here comes the contents of MemoryLogger:");
 	Log.Info( "~CON", memLogger.Buffer.ToString(), 1);
@@ -358,23 +358,23 @@ public void Tut_LogConfig()
 	// create two different loggers
 	Log.AddLogger( new ConsoleLogger( "Console" ) );
 	Log.AddLogger( new MemoryLogger ( "Memory" ) );
-    
+	
 	// register domains, set DOM as default
 	Log.RegDomain( "DOM",     Log.Scope.Method );
 	Log.RegDomain( "DOM/CON", Log.Scope.None );
 	Log.RegDomain( "DOM/MEM", Log.Scope.None );
-    
+	
 	// set level of DOM for all loggers
 	Log.SetDomain( "DOM", Log.DomainLevel.All );
-    
+	
 	// set level of DOM/CON separately for console and memory logger
 	Log.SetDomain( "~CON", Log.DomainLevel.All, false, "Console" );
 	Log.SetDomain( "~CON", Log.DomainLevel.Off, false, "Memory"  );
-    
+	
 	// set level of DOM/MEM separately for console and memory logger
 	Log.SetDomain( "~MEM", Log.DomainLevel.Off, false, "Console" );
 	Log.SetDomain( "~MEM", Log.DomainLevel.All, false, "Memory"  );
-    
+	
 	// Log current Log configuration 
 	Log.LogConfig( "DOM", Log.Level.Verbose, "Here comes the current Log configuration:" );
 	//! [Tut_LogConfig]
@@ -400,19 +400,19 @@ public void Tut_LogConfig2()
 	// create two different loggers, add console Logger verbosely
 	Log.AddLogger( new ConsoleLogger( "Console" ), Log.DomainLevel.All );
 	Log.AddLogger( new MemoryLogger ( "Memory" )  );
-    
+	
 	// register domains, set DOM as default
 	Log.RegDomain( "DOM",     Log.Scope.Method );
 	Log.RegDomain( "DOM/CON", Log.Scope.None );
 	Log.RegDomain( "DOM/MEM", Log.Scope.None );
-    
+	
 	// set level of DOM for all loggers
 	Log.SetDomain( "DOM", Log.DomainLevel.All );
-    
+	
 	// set level of DOM/CON separately for console and memory logger
 	Log.SetDomain( "~CON", Log.DomainLevel.All, false, "Console" );
 	Log.SetDomain( "~CON", Log.DomainLevel.Off, false, "Memory"  );
-    
+	
 	// set level of DOM/MEM separately for console and memory logger
 	Log.SetDomain( "~MEM", Log.DomainLevel.Off, false, "Console" );
 	Log.SetDomain( "~MEM", Log.DomainLevel.All, false, "Memory"  );
@@ -427,19 +427,19 @@ public void Tut_LogConfig2()
 	tutLog.RootDomain.SetLevel( Log.DomainLevel.All, false );
 	Log.AddLogger( tutLog, Log.DomainLevel.All ); 
 	Log.AddLogger( new ConsoleLogger( "Memory" ) );
-    
+	
 	// register domains, set DOM as default
 	Log.RegDomain( "DOM",     Log.Scope.Method );
 	Log.RegDomain( "DOM/CON", Log.Scope.None );
 	Log.RegDomain( "DOM/MEM", Log.Scope.None );
-    
+	
 	// set level of DOM for all loggers
 	Log.SetDomain( "DOM", Log.DomainLevel.All );
-    
+	
 	// set level of DOM/CON separately for console and memory logger
 	Log.SetDomain( "~CON", Log.DomainLevel.All, false, "Console" );
 	Log.SetDomain( "~CON", Log.DomainLevel.Off, false, "Memory"  );
-    
+	
 	// set level of DOM/MEM separately for console and memory logger
 	Log.SetDomain( "~MEM", Log.DomainLevel.Off, false, "Console" );
 	Log.SetDomain( "~MEM", Log.DomainLevel.All, false, "Memory"  );

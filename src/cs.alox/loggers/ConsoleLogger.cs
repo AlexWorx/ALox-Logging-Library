@@ -123,7 +123,7 @@ public class ConsoleLogger : TextLogger
 		MString output= null;
 		
 		// no caller info given? Just log msg out (used e.g. by TextLogger for multiline messages )
-		if ( caller == null || !LogCallerInfo  )
+		if ( caller == null || !(LogCallerSource || LogCallerMethod)  )
 		{
 			// set output straight to given msg
 			output= msg;
@@ -139,7 +139,7 @@ public class ConsoleLogger : TextLogger
 			consoleBuffer.Clear();
 
 			// build filename/line number in a VStudio clickable format 
-			if ( LogCallerInfo )
+			if ( LogCallerSource)
 			{
 				// add source file: can we cut the source file name by a prefix?
 				String sfn=		caller.SourceFileName;
@@ -151,18 +151,21 @@ public class ConsoleLogger : TextLogger
 
 				// add line number
 				consoleBuffer.Append( strPrefixLineNumber ).Append( caller.LineNumber ).Append( strPostfixLineNumber );
+			}
 
-				// append method name
+			// append method name
+			if ( LogCallerMethod )
+			{
 				consoleBuffer.Append( FmtMemberPrefix );
 				consoleBuffer.Append( caller.MethodName );
 				consoleBuffer.Append( FmtMemberPostfix );
-
-				// jump to next tab level
-				if ( TabAfterSourceInfo < consoleBuffer.Length )
-					TabAfterSourceInfo= consoleBuffer.Length + 5; // add some extra space to avoid too many increases
-				for ( int i= consoleBuffer.Length ; i < TabAfterSourceInfo ; i++ )
-					consoleBuffer.Append( ' ' );
 			}
+
+			// jump to next tab level
+			if ( TabAfterSourceInfo < consoleBuffer.Length )
+				TabAfterSourceInfo= consoleBuffer.Length + 5; // add some extra space to avoid too many increases
+			for ( int i= consoleBuffer.Length ; i < TabAfterSourceInfo ; i++ )
+				consoleBuffer.Append( ' ' );
 
 			// append message
 			consoleBuffer.Append( msg );

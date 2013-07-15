@@ -33,8 +33,7 @@ public class PerformanceTest
 	
 	void test()
 	{
-		cl=	new ConsoleLogger( "Console" ); cl.tabAfterSourceInfo = 60;
-		cl.enableAppConsole= true;
+		cl=	new ConsoleLogger( "Console" ); 
 		ml= new MemoryLogger( "Memory");
 
 		Log.addLogger( cl, Log.DomainLevel.WARNINGS_AND_ERRORS );

@@ -163,7 +163,7 @@ SHORT_NAMES            = NO
 # comments will behave just like regular Qt-style comments 
 # (thus requiring an explicit @brief command for a brief description.)
 
-JAVADOC_AUTOBRIEF      = YES
+JAVADOC_AUTOBRIEF      = NO
 
 # If the QT_AUTOBRIEF tag is set to YES then Doxygen will 
 # interpret the first line (until the first dot) of a Qt-style 
@@ -934,12 +934,13 @@ HTML_FILE_EXTENSION    = .html
 # each generated HTML page. If it is left blank doxygen will generate a 
 # standard footer.
 
-# The HTML_STYLESHEET tag can be used to specify a user-defined cascading 
-# style sheet that is used by each HTML page. It can be used to 
-# fine-tune the look of the HTML output. If left blank doxygen will 
-# generate a default style sheet. Note that it is recommended to use 
-# HTML_EXTRA_STYLESHEET instead of this one, as it is more robust and this 
-# tag will in the future become obsolete.
+# The HTML_EXTRA_STYLESHEET tag can be used to specify an additional 
+# user-defined cascading style sheet that is included after the standard 
+# style sheets created by doxygen. Using this option one can overrule 
+# certain style aspects. This is preferred over using HTML_STYLESHEET 
+# since it does not replace the standard style sheet and is therefor more 
+# robust against future updates. Doxygen will copy the style sheet file to 
+# the output directory.
 
 # The HTML_EXTRA_FILES tag can be used to specify one or more extra images or 
 # other source files which should be copied to the HTML output directory. Note 
@@ -951,6 +952,7 @@ HTML_FILE_EXTENSION    = .html
 HTML_HEADER            =  styles/java_header.html
 HTML_FOOTER            =  styles/java_footer.html
 HTML_EXTRA_STYLESHEET  =  styles/java_stylesheet.css
+HTML_EXTRA_FILES       = 
 
 # The HTML_COLORSTYLE_HUE tag controls the color of the HTML output. 
 # Doxygen will adjust the colors in the style sheet and background images 
@@ -1633,7 +1635,6 @@ TAGFILES               =
 # a tag file that is based on the input files it reads.
 
 GENERATE_TAGFILE       =    ../../../html/java_ref/java_ref.tag
-
 
 # If the ALLEXTERNALS tag is set to YES all external classes will be listed 
 # in the class index. If set to NO only the inherited external classes 

@@ -364,12 +364,13 @@ namespace com.aworx.unittests.lox
 			cl.LogLogLevel=		false;  	Log.Info( "LogLogLevel= false" );
 			cl.LogTimeDiff=		false;  	Log.Info( "LogTimeDiff= false" );
 			cl.LogTimeElapsed=	false;  	Log.Info( "LogTimeElapsed= false" );
-			cl.LogCallerInfo=	false;  	Log.Info( "LogCallerInfo= false" );
+			cl.LogCallerSource=	false;  	Log.Info( "LogCallerSource= false" );
+			cl.LogCallerMethod=	false;  	Log.Info( "LogCallerMethod= false" );
 			cl.LogDate=			false;		Log.Info( "LogDate= false" );
 			cl.LogTimeOfDay=	false;  	Log.Info( "LogTimeOfDay= false" );
 			cl.LogLogCounter=	false;		Log.Info( "LogLogCounter= false" ); Log.Info( "LogLogCounter= false" ); Log.Info( "LogLogCounter= false" );
 
-			cl.FmtMessagePrefix="";		Log.Info( "cl.FmtMessagePrefix=\"\""); Log.Info( "cl.FmtMessagePrefix=\"\""); Log.Info( "cl.FmtMessagePrefix=\"\"");
+			cl.FmtMessagePrefix="";		Log.Info( "cl.FmtMessagePrefix=\"\""); 
 			#endif
 		}
 
@@ -635,7 +636,9 @@ namespace com.aworx.unittests.lox
 
 			// Lox 
 			{
-				LogTools.Instance( Log.Level.Info, Log.LOX, 2, "The lox of Log:", 1 );
+				#if ALOX_DEBUG || ALOX_REL_LOG
+					LogTools.Instance( Log.Level.Info, Log.LOX, 2, "The lox of Log:", 1 );
+				#endif  // ALOX_DEBUG || ALOX_REL_LOG
 			}
 
 			// This thread

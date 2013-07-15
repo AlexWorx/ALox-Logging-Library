@@ -27,10 +27,8 @@ Basic support for release logging is here today already. The introduction of new
 in the area of release logging will also support debug logging aspects of ALox. Therefore the natural path
 of evolution for the ALox project is "debug features first, release features next".
 
-This is Version 1.1.0, a really early release but considered stable. A lot of future improvements are to come. 
-Stay tuned. If you do not want to wait, take the source and extend ALox yourself: We hope, the simple [Bauhaus Style](\ref alox_faq)
-architecture and code style  of the library allows users to easily extend it with features they 
-need today.
+This is Version 1.1.0, including the first Java release. We are optimistic that the simple [Bauhaus Style](\ref alox_faq)
+architecture of the library allows you to easily use it and event to extend it with logging features you need.
 
 We would be happy to receive your feedback or feature requests.
 

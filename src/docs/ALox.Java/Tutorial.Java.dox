@@ -3,60 +3,58 @@
 //
 //  (c) 2013 A-Worx GmbH, Published under the The MIT License (Open Source License, see LICENSE.txt)
 //  
-//  File:	Tutorial.CS.dox 	                                                  ALox Documentation
+//  File:	Tutorial.Java.dox 	                                                  ALox Documentation
 // #################################################################################################
 
 /**
-\page tutorial_cs       ALox for C# Tutorial
+\page tutorial_java       ALox for Java Tutorial
 
 
 \tableofcontents
    
-# 1. Hello ALox # {#tutcs_hello_alox}
+# 1. Hello ALox # {#tutjava_hello_alox}
 
 <BR>
-## 1.1 Create a tutorial project or equip your current project with ALox ##   {#tutcs_createproject}
+## 1.1 Create a tutorial project or equip your current project with ALox ##   {#tutjava_createproject}
 
 If you want to follow the tutorial samples and play around with it a little, you should
 either create a tutorial project or right away equip your current project with ALox.
 
-For information about how you do that see: \ref setup_projects_vs_cs.
+For information about how you do that see: \ref setup_projects_java.
 
 \note
 You can easily skip this step and just continue reading the tutorial without setting up ALox now.
 
 
 <BR>
-## 1.2. Create an instance of class "ConsoleLogger" ##  {#tutcs_ha1}
+## 1.2. Create an instance of class "ConsoleLogger" ##  {#tutjava_ha1}
 
 First our project needs to create an instance of class [ConsoleLogger](@ref #com::aworx::lox::loggers::ConsoleLogger) 
-that enables log output to the application console as well as to the Visual Studio Console.
+that enables log output to the application console as well as to the "console" or "output" window of your preferred IDE.
 You need to identify the right place in your application. This could be the "main()" method or any
 other place where some "bootstrapping" of your application takes place.
 
 Once you have identified the right place, add the following statements to the "using section* of your source
 file:
 
-\snippet cs.unittests.alox/Tests_Tutorial.cs        Tut_using_statement
+\snippet java.unittests.alox/unittests/com/aworx/lox/Tests_Tutorial.java        Tut_using_statement
 
 Now return to the place you identified where the initialization of the *logger* should take place and 
 add the following:
 
-\snippet cs.unittests.alox/Tests_Tutorial.cs        Tut_Hello_ALox_Line1
+\snippet java.unittests.alox/unittests/com/aworx/lox/Tests_Tutorial.java        Tut_Hello_ALox_Line1
 
 A *logger* of type [ConsoleLogger](@ref #com::aworx::lox::loggers::ConsoleLogger) is created and added to the
 static interface class [Log](@ref #com::aworx::lox::Log). For now, we can forget about the class ConsoleLogger.
-After it was created, we do not touch it directly for the rest of this introductory tutorial. All you 
-need to know is that a [ConsoleLogger](@ref #com::aworx::lox::loggers::ConsoleLogger) writes log messages to the 
-VisualStudio output window (and/or to the application console). As you might
+After it was created, we do not touch it directly for the rest of this introductory tutorial. As you might
 guess, other Loggers could be added in parallel that write the output to other "drains", e.g. log files.
 
 <BR>
-## 1.3. Add code to create and set a *log domain* ##     {#tutcs_ha_3}
+## 1.3. Add code to create and set a *log domain* ##     {#tutjava_ha_3}
 
 Just after the line we just inserted, add a second line of code:
 
-\snippet cs.unittests.alox/Tests_Tutorial.cs        Tut_Hello_ALox_Line2
+\snippet java.unittests.alox/unittests/com/aworx/lox/Tests_Tutorial.java        Tut_Hello_ALox_Line2
 
 
 This tells ALox about a *log domain* called "APP" and assigns the *log domain level* InfoWarningsAndErrors to it.
@@ -64,28 +62,28 @@ If you did not understand too much of the last sentence, don't worry, the concep
 very obvious to you in 5 minutes. 
 
 <BR>
-## 1.4. Add log code ##                             {#tutcs_ha_4}
+## 1.4. Add log code ##                             {#tutjava_ha_4}
 
 Just after the line we just inserted, add a third line of code:
 
-\snippet cs.unittests.alox/Tests_Tutorial.cs Tut_Hello_ALox_Line3
+\snippet java.unittests.alox/unittests/com/aworx/lox/Tests_Tutorial.java Tut_Hello_ALox_Line3
 
 This is now your first log output! The whole three lines you inserted into your application (besides the using statement)
 should look like this:
 
-\snippet cs.unittests.alox/Tests_Tutorial.cs        Tut_Hello_ALox
+\snippet java.unittests.alox/unittests/com/aworx/lox/Tests_Tutorial.java        Tut_Hello_ALox
 
 
 <BR>
-## 1.5. Run your application within visual studio ##        {#tutcs_ha_5}
-Run your application in "Debug" mode. In the output window of visual studio you should see
+## 1.5. Run your application ##        {#tutjava_ha_5}
+Run your application in "Debug" mode. In the console window of your IDE (or on your JAVA console window) you should see
 a line of output similar to this:
 
-\verbinclude  docs/generated_cstut/Tut_Hello_ALox.txt 
+\verbinclude  docs/generated_javatut/Tut_Hello_ALox.txt 
 
-Now, close your source file window in Visual Studio. Then double click the log line in the output
-Window. Visual Studio opens the source and selects the line of code where the log call was invoked.
-This means, each log statement is "clickable" in your IDE and links to its source code line in the
+If using Eclipse, close your source file window. In the console window a portion of the output line
+should be blue and clickable. When you click it, Eclipse opens the source and selects the line of code where 
+the log call was invoked! This means, each log statement is "clickable" in your IDE and links to its source code line in the
 editor. This is a tremendous help for developers when debugging their code. 
 
 Besides the fact that you can click it, users of ALox are saving even more time. Developers, when
@@ -94,12 +92,12 @@ using standard "debug print lines", often phrase textual info like
         "attn: dbman.savedata(): oops could not store data....ERROR!"
 
 putting some info about the place in the code, where they have put the debug statements. As you see from the 
-ALox output above, information about the *caller* of the log statement is all included automatically.
+ALox output above, information about the *caller* of the log statement is all included automatically. 
 Advantages are:
 
-- lines are clickable and link to the editor (as mentioned above)
+- lines are clickable and link to the editor (because ALox formats the caller information accordingly)
 - less to type when adding debug print lines
-- no change when you copy/paste a debug print line to a different class/method
+- no change needed when you copy/paste a debug print line to a different class/method
   or when you rename your class/method
 
 As we will see later, the log message type (which seems to be "ERROR!" in the phrase above) is standardized 
@@ -117,14 +115,15 @@ the default. Details you see can be removed or other details can be added (e.g. 
 date / time instead of only the relative). 
 
 \note
-You should adjust your Visual Studio in a way that the output window spans over the complete 
+You should adjust your Java IDE in a way that the console window spans over the complete 
 width of the main window. Also, depending on your screen size, you might decrease the font size of 
 the output window a little. The output gets wide, because a lot of valuable information is logged 
 besides the log message. In addition, the output is organized in columns that auto adjust their size
 taking a wider output into account.*
 
+\~Comment TODO: Pruning
 <BR>
-## 1.6. Build Release Version ##                              {#tutcs_ha_6}
+## 1.6. Build Release Version ##                              {#tutjava_ha_6}
 
 Switch your project configuration to "Release" and run the application. The output should not appear!
                                                                                                      
@@ -140,50 +139,50 @@ This has a lot of benefits:
 - your release code executes faster
 - your release executable gets a smaller footprint
 - you are not delivering your debug language to the end user (not even if your executable is reverse engineered)
-
-
-<BR>
-# 2. Log levels and log domains #                                          {#tutcs_llld} 
+\~
 
 <BR>
-## 2.1. Log code with different log levels ##   {#tutcs_llld_1}
+# 2. Log levels and log domains #                                          {#tutjava_llld} 
 
-Switch back to the Debug configuration. The code above uses the method [Log.Info()](@ref #com::aworx::lox::Log::Info) to create the 
+<BR>
+## 2.1. Log code with different log levels ##   {#tutjava_llld_1}
+
+Switch back to the Debug configuration. The code above uses the method [Log.info()](@ref #com::aworx::lox::Log::info) to create the 
 log output. There are three other Versions of that method, together constituting the four "log levels":
 
--  [Error()]	(@ref #com::aworx::lox::Log::Error)
--  [Warning()]	(@ref #com::aworx::lox::Log::Warning)
--  [Info()]		(@ref #com::aworx::lox::Log::Info)
--  [Verbose()]	(@ref #com::aworx::lox::Log::Verbose)
+-  [error()]	(@ref #com::aworx::lox::Log::error)
+-  [warning()]	(@ref #com::aworx::lox::Log::warning)
+-  [info()]		(@ref #com::aworx::lox::Log::info)
+-  [verbose()]	(@ref #com::aworx::lox::Log::verbose)
 
 Each of the methods accepts the *log domain* ( in our sample "App") and the log message as input parameters.
 Internally all four methods differ only by using a different *log level*. The tricky thing that needs to be understood is that 
 such *log level* is compared with the *log domain level* that the domain currently is assigned to. In our sample
 code, with the second line of code:
 
-\snippet cs.unittests.alox/Tests_Tutorial.cs        Tut_LogLevels_SetDomain
+\snippet java.unittests.alox/unittests/com/aworx/lox/Tests_Tutorial.java        Tut_LogLevels_SetDomain
 
 we have assigned [InfoWarningsAndErrors](@ref #com::aworx::lox::Log::DomainLevel ) to the domain "APP".
 The possible domain log levels are:
 
--  [Off						](@ref #com::aworx::lox::Log::DomainLevel)
--  [Errors					](@ref #com::aworx::lox::Log::DomainLevel	)
--  [WarningsAndErrors		](@ref #com::aworx::lox::Log::DomainLevel )
--  [InfoWarningsAndErrors](@ref #com::aworx::lox::Log::DomainLevel )
--  [All						](@ref #com::aworx::lox::Log::DomainLevel )
+-  [OFF						](@ref #com::aworx::lox::Log::DomainLevel)
+-  [ERRORS					](@ref #com::aworx::lox::Log::DomainLevel	)
+-  [WARNINGS_AND_ERRORS		](@ref #com::aworx::lox::Log::DomainLevel )
+-  [INFO_WARNINGS_AND_ERRORS](@ref #com::aworx::lox::Log::DomainLevel )
+-  [ALL						](@ref #com::aworx::lox::Log::DomainLevel )
 
 Let us extend our sample code and see what happens. Replace the last line (the log call) by four
 different log calls and let your code look like this:
 
-\snippet cs.unittests.alox/Tests_Tutorial.cs        Tut_LogLevels
+\snippet java.unittests.alox/unittests/com/aworx/lox/Tests_Tutorial.java        Tut_LogLevels
 
 If you run your application now (in "Debug" mode), the following output should appear:
 
-\verbinclude  docs/generated_cstut/Tut_LogLevels.txt
+\verbinclude  docs/generated_javatut/Tut_LogLevels.txt
 
-As you see, the last line of our code, containing the [Verbose()](@ref #com::aworx::lox::Log::Verbose ) log statement was not logged!
-This is because in line two of the code of we set the *log domain level* to [WarningsAndErrors](@ref #com::aworx::lox::Log::DomainLevel ). 
-This tells the logging system that logs implemented with the method [Verbose()](@ref #com::aworx::lox::Log::Verbose) are not to be logged.
+As you see, the last line of our code, containing the [verbose()](@ref #com::aworx::lox::Log::verbose ) log statement was not logged!
+This is because in line two of the code of we set the *log domain level* to [WARNINGS_AND_ERRORS](@ref #com::aworx::lox::Log::DomainLevel ). 
+This tells the logging system that logs implemented with the method [verbose()](@ref #com::aworx::lox::Log::verbose) are not to be logged.
 
 The following table lists the domain log levels in the columns and the *log level* in the rows and shows which log levels are
 activated when a certain *log domain level* is set:
@@ -191,62 +190,63 @@ activated when a certain *log domain level* is set:
 
 <table border="1" >
     <tr> <td> <center>Domain Level / Log Level</center></td>
-      <th width="100">Verbose</th> <th width="100">Info</th> <th width="100">Warning</th> <th width="100">Error</th>   </tr>
-    <tr><td><b><center>Off</center></b></td>
+      <th width="100">VERBOSE</th> <th width="100">INFO</th> <th width="100">WARNING</th> <th width="100">ERROR</th>   </tr>
+    <tr><td><b><center>OFF</center></b></td>
       <td><center>No</center></td> <td><center>No</center></td> <td><center>No</center></td> <td><center>No</center></td></tr>
-    <tr><td><b><center>Errors</center></b></td>
+    <tr><td><b><center>ERRORS</center></b></td>
       <td><center>No</center></td> <td><center>No</center></td> <td><center>No</center></td> <td><center>Yes</center></td> </tr>
-    <tr><td><b><center>WarningsAndErrors</center></b></td>
+    <tr><td><b><center>WARNINGS_AND_ERRORS</center></b></td>
       <td><center>No</center></td> <td><center>No</center></td> <td><center>Yes</center></td> <td><center>Yes</center></td> </tr>
-    <tr><td><b><center>InfoWarningsAndErrors</center></b></td>
+    <tr><td><b><center>INFO_WARNINGS_AND_ERRORS</center></b></td>
       <td><center>No</center></td> <td><center>Yes</center></td> <td><center>Yes</center></td> <td><center>Yes</center></td> </tr>
-    <tr><td><b><center>All</center></b></td>
+    <tr><td><b><center>ALL</center></b></td>
       <td><center>Yes</center></td> <td><center>Yes</center></td> <td><center>Yes</center></td> <td><center>Yes</center></td></tr>
 </table>
 
 
 Fairly easy, right? To summarize, the above paragraph introduced you to the concepts of:
 1. *Log domains* as a parameter of the four log methods 
-   [Error()]		(@ref #com::aworx::lox::Log::Error), 
-   [Warning()]		(@ref #com::aworx::lox::Log::Error),
-   [Info()]			(@ref #com::aworx::lox::Log::Error) and
-   [Verbose()]		(@ref #com::aworx::lox::Log::Error)
+   [error()]		(@ref #com::aworx::lox::Log::error), 
+   [warning()]		(@ref #com::aworx::lox::Log::error),
+   [info()]			(@ref #com::aworx::lox::Log::error) and
+   [verbose()]		(@ref #com::aworx::lox::Log::error)
 2. *Log domain levels* that are assigned to *log domains*  as values of [Log.DomainLevel](@ref #com::aworx::lox::Log::DomainLevel ) at runtime 
-   using the method [Log.SetDomain()](@ref #com::aworx::lox::Log::SetDomain )
+   using the method [Log.setDomain()](@ref #com::aworx::lox::Log::setDomain )
 3. *Log levels* that are assigned to each log statement in your code by choosing the right log method.
 
 Now, you should understand how the comparison of the *log domain level* and the *log level* decides about whether a log is executed or not.
 
 
 <BR>
-## 2.2. Default domains ##          {#tutcs_llld_2}
+## 2.2. Default domains ##          {#tutjava_llld_2}
 
 If you already liked the tiny code that is necessary to implement ALox Logging, then you 
 will appreciate this section, because we want to make it even smaller. Replace the 
 code you added to your project so far by this one:
 
-\snippet cs.unittests.alox/Tests_Tutorial.cs        Tut_DefaultDomains
+\snippet java.unittests.alox/unittests/com/aworx/lox/Tests_Tutorial.java        Tut_DefaultDomains
 
 The output now is:
 
-\verbinclude  docs/generated_cstut/Tut_DefaultDomains.txt
+\verbinclude  docs/generated_javatut/Tut_DefaultDomains.txt
 
 
-OK, you might argue, the code became longer: We added line 2, which invokes [Log.RegDomain](@ref #com::aworx::lox::Log::RegDomain).
-This method registers the domain with ALox (the same as [Log.SetDomain](@ref #com::aworx::lox::Log::SetDomain) obviously does implicitly) and
+OK, you might argue, the code became longer: We added line 2, which invokes [Log.regDomain](@ref #com::aworx::lox::Log::regDomain).
+This method registers the domain with ALox (the same as [Log.setDomain](@ref #com::aworx::lox::Log::setDomain) obviously does implicitly) and
 offers the possibility to set the given domain name as the default domain for the actual 
-[Scope]	(@ref #com::aworx::lox::Log::Scope) (source file or method).
+[Scope]	(@ref #com::aworx::lox::Log::Scope) (package, class or method).
 
 What becomes less code however are the log statements 
-[Error()]	(@ref #com::aworx::lox::Log::Error), 
-[Warning()]	(@ref #com::aworx::lox::Log::Error),
-[Info()]	(@ref #com::aworx::lox::Log::Error) and
-[Verbose()]	(@ref #com::aworx::lox::Log::Error). They do not need to have the domain as a parameter any more! This provides the 
+[error()]	(@ref #com::aworx::lox::Log::error), 
+[warning()]	(@ref #com::aworx::lox::Log::error),
+[info()]	(@ref #com::aworx::lox::Log::error) and
+[verbose()]	(@ref #com::aworx::lox::Log::error). They do not need to have the domain as a parameter any more! This provides the 
 following advantages:
 - less typing
 - easier reading
 - you can just copy/paste your log lines to different sources, without adjusting the *log domain* (done automatically)
 - you can change the name of the domain by changing it in a single place.
+
 
 \note
 - *You can still use the log methods including the parameter to overwrite the default domain*
@@ -256,29 +256,29 @@ following advantages:
 For further reading on domains and *sub domains*, see [corresponding chapter](../man_levelsanddomains.html) 
 in the ALox user Manual.
 
-To be honest, both functions, [Log.RegDomain](@ref #com::aworx::lox::Log::RegDomain) and  [Log.SetDomain](@ref #com::aworx::lox::Log::SetDomain)
+To be honest, both functions, [Log.regDomain](@ref #com::aworx::lox::Log::regDomain) and  [Log.setDomain](@ref #com::aworx::lox::Log::setDomain)
 are not needed, so the shortest code to do ALox logging in your code could be:
 
-\snippet cs.unittests.alox/Tests_Tutorial.cs        Tut_DefaultDomains_part2
+\snippet java.unittests.alox/unittests/com/aworx/lox/Tests_Tutorial.java        Tut_DefaultDomains_part2
 
 Which produces the output:
 
-\verbinclude docs/generated_cstut/Tut_DefaultDomains_part2.txt 
+\verbinclude docs/generated_javatut/Tut_DefaultDomains_part2.txt 
 
-From this example we learn that *log domains* which are neither registered with [Log.RegDomain](@ref #com::aworx::lox::Log::RegDomain) nor
-set with [Log.SetDomain](@ref #com::aworx::lox::Log::SetDomain) do not cause any problem. ALox just creates them on the fly
+From this example we learn that *log domains* which are neither registered with [Log.regDomain](@ref #com::aworx::lox::Log::regDomain) nor
+set with [Log.setDomain](@ref #com::aworx::lox::Log::setDomain) do not cause any problem. ALox just creates them on the fly
 and continues its job. 
 
 The *domain level* that such *unknown* domains receive is inherited through the domain chain up to the root domain. The root domain
 is a field existing in each *logger*. By default the root domain of a [ConsoleLogger](@ref #com::aworx::lox::loggers::ConsoleLogger) has
 its *domain level* set to *All*. This is extremely useful, because whenever you are using 3rd party code that defines its custom 
-domain names, you can easily identify those domains in your Visual Studios output window log stream. In contrast, other loggers that
+domain names, you can easily identify those domains in your console window log stream. In contrast, other loggers that
 you create for specific purposes (e.g. log only messages of certain domains into a file), do not enable
 *unknown* domains as a default. Therefore, these special purpose loggers stay clean and log only what you explicitly ask them to log.
 
 
 <BR>
-## 2.3. Where to place ALox log code ##               {#tutcs_llld_3}
+## 2.3. Where to place ALox log code ##               {#tutjava_llld_3}
 
 As we now know a bit about *log domains*, we can briefly talk about where to 
 add ALox statements in your code. In the standard application setup, there are three
@@ -292,33 +292,32 @@ A good place is the **main()** method or whatever the earliest entry point to yo
 
 Code for this section would look like this:
 
-\snippet cs.unittests.alox/Tests_Tutorial.cs        Tut_Placing_Part1
+\snippet java.unittests.alox/unittests/com/aworx/lox/Tests_Tutorial.java        Tut_Placing_Part1
 
 Of course, you can add and remove loggers anywhere in your code. Also, you can 
 modify *domain log levels* later at runtime as you please. 
 
-### 2) Register Domains in static constructors of your classes  ###
-C# allows classes to have static constructors that are executed exactly once 
-(the moment when either the first object of that class type is created or a static
+### 2) Register Domains in static initializers of your classes  ###
+Java allows classes to have static initializers that are executed exactly once 
+(in the moment when either the first object of that class type is created or a static
 member of that class is accessed). It is a good practice to add code that registers 
 exactly those *log domains* that a class is using by adding a static constructor and  
-using [Log.RegDomain](@ref #com::aworx::lox::Log::RegDomain) to perform the registrations.
+using [Log.regDomain](@ref #com::aworx::lox::Log::regDomain) to perform the registrations.
 
 Here is an example:
 
-\snippet cs.unittests.alox/Tests_Tutorial.cs        Tut_Placing_Part2
+\snippet java.unittests.alox/unittests/com/aworx/lox/Tests_Tutorial.java        Tut_Placing_Part2
 
 \note
 - While a domain needs to be registered only once, it does not 'hurt' to register domains 
   multiple times.
-- If you want to set a domain as default for several source files, you have to choose at 
-  least one class of each source file and add such static constructor.
-- If you add different default domains to different static constructors of classes
-  that reside in the same source file, then it becomes quite random which domain is 
-  chosen (the one whose static constructor is invoked latest). 
-  The good new is: if a file gets doubly registered, ALox provides a warning log message.
-- If you want to use two different default domains for two different classes, the best 
-  practice is to separate the classes into two different source files.
+- If you want to set a domain as default for several packages, you have to choose at 
+  least one class of each package and add a static initializer to it as described above.
+- If you set different default domains with [Scope.PACKAGE]	(@ref #com::aworx::lox::Log::Scope) 
+  within different static initializers of classes that reside in the same package, then it 
+  becomes quite random which domain is chosen (the one whose static initializer is invoked latest). 
+  The good new is: if a different domain for a package gets registered, ALox provides a 
+  warning log message.
 
 
 ### 3) Add log messages anywhere in your code  ###
@@ -328,23 +327,23 @@ Looking at the above sample class, we register two domains "MYDOM" and its
 performance log statements Somewhere in the class a method **heavyCalculation()** 
 is invoked. A typical use of ALox would look like this:
 
-\snippet cs.unittests.alox/Tests_Tutorial.cs        Tut_Placing_Part3
+\snippet java.unittests.alox/unittests/com/aworx/lox/Tests_Tutorial.java        Tut_Placing_Part3
 
 In the log output of the second line you automatically get the absolute value of elapsed
 time displayed. There is no need to do your own math with the timestamps. In fact, the value
 is displayed in a human readable way, depending on the size of the time span. (This is
-true as long as your *logger* has the field [Logger.LogTimeDiff](@ref #com::aworx::lox::core::Logger.LogTimeDiff)
+true as long as your *logger* has the field [Logger.logTimeDiff](@ref #com::aworx::lox::core::Logger.logTimeDiff)
 set to true, which is the default for most loggers)
 
 \note
 In above code sample, of-course, there is no need to indent heavyCalculation() between 
-the two log statements, but doesn't this look nice and intuitive? 
+the two log statements, but doesn't this look nice and intuitive?*
 
 As "PERF" is a *sub domain* of "MYDOM" and "MYDOM" got set as the *default domain*
 for the source file, the domain "MYDOM/PERF" could be also referenced using "~PERF". 
 The code then looks like this:
 
-\snippet cs.unittests.alox/Tests_Tutorial.cs        Tut_Placing_Part3b
+\snippet java.unittests.alox/unittests/com/aworx/lox/Tests_Tutorial.java        Tut_Placing_Part3b
 
 Advantages of this approach are:
 - less typing
@@ -353,13 +352,13 @@ Advantages of this approach are:
 
 ### 4) Name your threads  ###
 The fourth and really optional one is about multi threaded applications. ALox optionally
-logs information about the thread id or name that executed the code containing your log
+logs information about the id and name of the thread that executed the code containing your log
 statements. This is an automatic process and can be switched on or off using the boolean flag
-[Logger.LogThreadInfo](@ref #com::aworx::lox::core::Logger.LogThreadInfo).
+[Logger.logThreadInfo](@ref #com::aworx::lox::core::Logger.logThreadInfo).
 
-However often threads do not have a name, but just an ID. It would be much nicer to see a 
-nice name instead of that id. ALox provides a simple mechanism to map thread IDs to variable
-thread names using the [Log.MapThreadName](@ref #com::aworx::lox::Log::MapThreadName) interface.
+However often threads do not have a nice name. It would be much nicer to see a readable
+name instead. ALox provides a simple mechanism to overwrite thread names using 
+[Log.mapThreadName](@ref #com::aworx::lox::Log::mapThreadName) interface.
 
 The mechanism is simple, however it might not be simple to identify the right place in
 the code to put it! Some code can be executed from different threads, and sometimes 
@@ -371,7 +370,7 @@ the lifecycle of the program, but may be mapped multiple times. Therefore, the g
 - Make sure that this code is not executed frequently to avoid the mapping overhead.
 - Make sure that this code is executed early in the lifecycle of your application.
 
-For the sample of UI Frameworks, a good place to invoke [Log.MapThreadName](@ref #com::aworx::lox::Log::MapThreadName)
+For the sample of UI Frameworks, a good place to invoke [Log.mapThreadName](@ref #com::aworx::lox::Log::mapThreadName)
 is the initial creation callback of your main application UI component. Normally, it is 
 enough to put this statement only in one component (the main one), because all other components
 will be initialized by the same Framework thread. 
@@ -379,15 +378,15 @@ will be initialized by the same Framework thread.
 But as this is a convenience concept anyhow, it is good practice to not care too much
 about it at first. Later, when your application grows, you can check your log files periodically for new, unmapped
 thread IDs. When you see one, scroll up in the log file and try to identify the very first appearance
-of a this new ID. A double click on the log line will open the code that invoked the log.
+of this new ID. A double click in the log line will open the code that invoked the log.
 If you have populated your code with a reasonable amount of log entries, you will end up at the 
 right place automatically! It also might be a good idea to restart your app with all domains set
 to verbose level and then look for the first appearances of unknown threads.
 
 <BR>
-# 3. Some more Details {#tutcs_more}
+# 3. Some more Details {#tutjava_more}
 <BR>
-## 3.1 Stop reading here? ##        {#tutcs_more_1}
+## 3.1 Stop reading here? ##        {#tutjava_more_1}
 
 Developers are often in a hurry and reading tutorials is time consuming.
 If you are only using the part of ALox the tutorial has covered up to this point you should
@@ -409,51 +408,52 @@ pretty neat features. Here we go!
 
 
 <BR>
-## 3.2 Conditional logging ##        {#tutcs_more_2}
+## 3.2 Conditional logging ##        {#tutjava_more_2}
 
 Often log lines should only be displayed if a certain condition is met. Here is a
 sample:
 
-\snippet cs.unittests.alox/Tests_Tutorial.cs        Tut_ConditionalLogging
+\snippet java.unittests.alox/unittests/com/aworx/lox/Tests_Tutorial.java        Tut_ConditionalLogging
 
 The last two lines can be replaced by one follows: 
     
-\snippet cs.unittests.alox/Tests_Tutorial.cs        Tut_ConditionalLogging2
+\snippet java.unittests.alox/unittests/com/aworx/lox/Tests_Tutorial.java        Tut_ConditionalLogging2
 
-Advantages are again less typing and better readability of the code. Furthermore, the C# compiler
+Advantages are again less typing and better readability of the code. Furthermore, the Java compiler
 would probably not prune the *if statement* if it was a more complex evaluation. 
 As with using *Assert()* the evaluation of the expression is definitely pruned from your code. (Be
 sure you do not put side effects into expressions of *Assert()* invocations.
 
 \note
-- In accordance with the concept of assertions, the condition has to be 'false' to have ALox perform the log.
-- The *log level* of *Assert()* is *Log.Level.Eror*
+- In accordance with the concept of assertions, the condition has to be 'false' to have ALox perform the log.*
+- The *log level* of *Assert()* is *Log.Level.ERROR*
+- The method Assert() starts with capitalized "A" because "assert" is a key word in Java.
 
-The method [Assert()] (@ref #com::aworx::lox::Log::Error) in class [Log]	(@ref #com::aworx::lox::Log) is
+The method [Assert()] (@ref #com::aworx::lox::Log::error) in class [Log]	(@ref #com::aworx::lox::Log) is
 similar to the other log methods (namely 
-[Error()]	(@ref #com::aworx::lox::Log::Error), 
-[Warning()]	(@ref #com::aworx::lox::Log::Error),
-[Info()]	(@ref #com::aworx::lox::Log::Error) and
-[Verbose()]	(@ref #com::aworx::lox::Log::Error) ) just a shortcut into the full featured
-log method [Line()]	(@ref #com::aworx::lox::Log::Line), setting some default parameters.
+[error()]	(@ref #com::aworx::lox::Log::error), 
+[warning()]	(@ref #com::aworx::lox::Log::error),
+[info()]	(@ref #com::aworx::lox::Log::error) and
+[verbose()]	(@ref #com::aworx::lox::Log::error) ) just a shortcut into the full featured
+log method [Line()]	(@ref #com::aworx::lox::Log::line), setting some default parameters.
 
 
 <BR>
-## 3.3 LogTools: Log complex things easily ##       {#tutcs_more_3}
+## 3.3 LogTools: Log complex things easily ##       {#tutjava_more_3}
 
 ALox also provides some log functions that log more complex stuff. The design decision was made to not
 put this into the class [Log](@ref #com::aworx::lox::Log) but into a separated class [LogTools](@ref #com::aworx::lox::LogTools).
 However, LogTools is used in the same simple fashion as class Log itself. Consider it just an extension or
 another word for Log. 
 
-On the C# language platform three methods are currently available which are briefly covered in the following:
+On the Java language platform two methods are currently available which are briefly covered in the following:
 
 ### 3.3.1 Instance(): Log any object recursively
 
-The method [LogTools.Instance()] (@ref #com::aworx::lox::LogTools::Instance) allows you to log just any object 
+The method [LogTools.instance()] (@ref #com::aworx::lox::LogTools::instance) allows you to log just any object 
 recursively in a well formatted way. You can try this out quickly by adding the following code to your sample:
 
-\snippet cs.unittests.alox/Tests_Tutorial.cs        Tut_Instance
+\snippet java.unittests.alox/unittests/com/aworx/lox/Tests_Tutorial.java        Tut_Instance
 
 As you can see, we are just passing a quite complex object, the current thread, to the method. The parameter
 that follows the object which is to be logged (the current thread) determines the level of objects which are recursively logged,
@@ -465,47 +465,49 @@ line of code, which would be logging the headline explicitly.
 
 Here are the first lines of output of the above sample:
                              
-\verbinclude  docs/generated_cstut/Tut_Instance.txt 
+\verbinclude  docs/generated_javatut/Tut_Instance.txt 
 
-\note
-This uses the inspection features of C#/.Net. Unfortunately under Windows Phone development
-inspection is not a feature. Therefore, this method is not available for Windows Phone projects.
-
+\~Comment 
+\note 
+This uses the inspection features of Java. Unfortunately under Windows Phone development
+inspection is not a feature. Therefore, this method is not available for Windows Phone projects. TODO: HOW IS THIS IN ANDROID?
+\~
 
 ### 3.3.2 Exception(): Log an exception recursively (with inner exceptions) 
 
-Just like Instance(), the method [LogTools.Exception()] (@ref #com::aworx::lox::LogTools::Exception) uses the multi
-line feature of ALox to log out the contents of a C# Exception well formatted and recursively (following inner exceptions).
+Just like Instance(), the method [LogTools.exception()] (@ref #com::aworx::lox::LogTools::exception) uses the multi
+line feature of ALox to log out the contents of a Java Exception well formatted and recursively (following inner exceptions).
  
-Of-course a perfect place in your code to add [LogTools.Exception()] (@ref #com::aworx::lox::LogTools::Exception) is
+Of-course a perfect place in your code to add [LogTools.exception()] (@ref #com::aworx::lox::LogTools::exception) is
 the first line within a *catch() block*. 
 
 To try it out, add the following code into your project:
 
-\snippet cs.unittests.alox/Tests_Tutorial.cs        Tut_Exceptions
+\snippet java.unittests.alox/unittests/com/aworx/lox/Tests_Tutorial.java        Tut_Exceptions
 
 
-Like the method [LogTools.Instance()] (@ref #com::aworx::lox::LogTools::Instance), a headline for the Exception log output can be specified.
+Like the method [LogTools.instance()] (@ref #com::aworx::lox::LogTools::instance), a headline for the Exception log output can be specified.
 This allows you to save another line of code, which would be logging the headline explicitly.
 
 The following log output will be generated:
 
-\verbinclude  docs/generated_cstut/Tut_Exceptions.txt 
+\verbinclude  docs/generated_javatut/Tut_Exceptions.txt 
 
+\~Comment  NIY in Java (when adding, change number some paragraphs above
+### c) XML(): Log out an XML document or element
 
-### 3.3.3 XML(): Log out an XML document or element
-
-The third method in LogTools that logs a complex object is [LogTools.Exception()] (@ref #com::aworx::lox::LogTools::Exception) for
+The third method in LogTools that logs a complex object is [LogTools.exception()] (@ref #com::aworx::lox::LogTools::exception) for
 logging objects of type XMLDocument or XMLElement. Here is a quick sample code:
 
-\snippet cs.unittests.alox/Tests_Tutorial.cs        Tut_XML
+\snippet java.unittests.alox/unittests/com/aworx/lox/Tests_Tutorial.java        Tut_XML
 
 The output will look similar to this:
 
-\verbinclude  docs/generated_cstut/Tut_XML.txt 
+\verbinclude  docs/generated_javatut/Tut_XML.txt 
+\~
 
 <BR>
-## 3.4 Indentation ##                    {#tutcs_more_4}
+## 3.4 Indentation ##                    {#tutjava_more_4}
 
 The outputs of the above samples which make use of the [LogTools](@ref #com::aworx::lox::LogTools) class look nice because 
 they use indentation when they recursively walk through a complex object.
@@ -514,18 +516,18 @@ Indentation is a core feature of every single log method. We just did not use it
 it is hidden as a default parameter.
 
 See the documentation of the log methods
-[Error()]	(@ref #com::aworx::lox::Log::Error), 
-[Warning()]	(@ref #com::aworx::lox::Log::Error),
-[Info()]	(@ref #com::aworx::lox::Log::Error) and
-[Verbose()]	(@ref #com::aworx::lox::Log::Error) to identify where to add the indentation parameter.
+[error()]	(@ref #com::aworx::lox::Log::error), 
+[warning()]	(@ref #com::aworx::lox::Log::error),
+[info()]	(@ref #com::aworx::lox::Log::error) and
+[verbose()]	(@ref #com::aworx::lox::Log::error) to identify where to add the indentation parameter.
 The default is 0. The result of increasing it depends on the Logger you are using. The [TextLogger](@ref #com::aworx::lox::core::TextLogger)
 for example (the base class of [ConsoleLogger](@ref #com::aworx::lox::loggers::ConsoleLogger) ) adds two spaces per indent number. 
 
 
 <BR>
-## 3.5 Separating domains levels in different loggers ##        {#tutcs_more_5}
-Because ALox stores the *log domain level* not only per *domain* but also 'per *logger*', we just 
-need to fill in a default parameter in [Log.SetDomain()](@ref #com::aworx::lox::Log::SetDomain ) to
+## 3.5 Separating domains levels in different loggers ##        {#tutjava_more_5}
+Because  ALox stores the *log domain level* not only per *domain* but also 'per *logger*', we just 
+need to fill in a default parameter in [Log.setDomain()](@ref #com::aworx::lox::Log::setDomain ) to
 provide different *loggers* different domain levels. 
 
 In the following sample code we are creating two different *loggers*, one 
@@ -539,37 +541,35 @@ Then we add three different *log domains*:
 
 Let's have a look at the code first:
 
-\snippet cs.unittests.alox/Tests_Tutorial.cs        Tut_SeparatedLogLevels
+\snippet java.unittests.alox/unittests/com/aworx/lox/Tests_Tutorial.java        Tut_SeparatedLogLevels
 
 Running the sample, we get the following log on the console:
 
-\verbinclude  docs/generated_cstut/Tut_SeparatedLogLevels.txt 
+\verbinclude  docs/generated_javatut/Tut_SeparatedLogLevels.txt 
 
-The way we achieved the goal is that we use the method [Log.SetDomain()](@ref #com::aworx::lox::Log::SetDomain ) twice
-on each of the *sub domains*. And in contrast to previous samples, we are passing two more parameters to it (and overwrite
-their default values):
+The way we achieved the goal is that we use the method [Log.setDomain()](@ref #com::aworx::lox::Log::setDomain ) twice
+on each of the *sub domains*. And in contrast to previous samples, we are passing two more parameters to it:
 - *bool recursive*
   This parameter defaults to true and tells ALox to not only set the given *log domain* but all its *sub domains*
   to the Log.DomainLevel provided. We set this to false, we do not have further sub domains either way.
 - *String loggerFilter*
   This parameter now is what helps us: It defaults to null and in this case does not filter any *logger*. So, when omitted,
-  all *loggers* are affected. If given, however, only those *loggers* who's field [Logger.Name](@ref #com::aworx::lox::core::Logger.Name) 
+  all *loggers* are affected. If given, however, only those *loggers* who's field [Logger.name](@ref #com::aworx::lox::core::Logger.name) 
   match the given filter string are affected. 
 
 Looking back at the code, you will understand what is going on: For each *logger* we enable, respectively, disable
-the output of messages for the corresponding domains using [Log.SetDomain()](@ref #com::aworx::lox::Log::SetDomain )
+the output of messages for the corresponding domains using [Log.setDomain()](@ref #com::aworx::lox::Log::setDomain ) 
 and passing the appropriate filter!
 
-\note 
-- String comparison between [Logger.Name](@ref #com::aworx::lox::core::Logger.Name) and parameter *loggerFilter* is case insensitive.
+\note
+- String comparison on [Logger.name](@ref #com::aworx::lox::core::Logger.name) and parameter *loggerFilter* is case insensitive.
 - ALox provides a minimum 'wildcard' feature here: *loggerFilter* can start or end with an '*' character to fetch
-  more than one logger at once. 
+  more than one logger at once.
 
 Some further quick remarks on the code:
 
-- [MemoryLogger.Buffer](@ref #com::aworx::lox::loggers::MemoryLogger::Buffer) provides public access to its data.
-  See class 
-  [MString](@ref #com::aworx::util::MString) for more information.
+- [MemoryLogger.buffer](@ref #com::aworx::lox::loggers::MemoryLogger::buffer) provides public access to its data.
+  See class [MString](@ref #com::aworx::util::MString) for more information.
 
 - As you can see from the output, the two log lines contained in the MemoryLogger are in two separated
   lines by the *ConsoleLogger*. This is a feature of [TextLogger](@ref #com::aworx::lox::core::TextLogger), the 
@@ -583,15 +583,17 @@ Some further quick remarks on the code:
   [Logger](@ref #com::aworx::lox::core::Logger) already, but might be differently handled by  different 
   *Logger* implementations. What we are achieving in this sample, is that the log output does not get too wide.
 
+\~Comment TODO: pruning
+
 - The tweaks we do on the *MemoryLogger* are surrounded by "#if ALOX_DEBUG ... #endif". This is necessary as
   these lines of code are not automatically removed in the release version of the project. 
   Remember, the good news is that all methods invocations of class [Log](@ref #com::aworx::lox::Log) are automatically
   pruned!
 
-
+ \~
 
 <BR>
-## 3.6 ALox configuration and internal log messages ##               {#tutcs_more_6}
+## 3.6 ALox configuration and internal log messages ##               {#tutjava_more_6}
 
 In complex projects it might get a little confusing to keep track about the 
 loggers and their domains. Also, when you use 3rd party components supporting ALox, 
@@ -603,36 +605,35 @@ great to demonstrate two different ways to have ALox log about itself.
 From the previous sample we take the setup section, remove the log output and add a
 new line at the end instead:     
 
-\snippet cs.unittests.alox/Tests_Tutorial.cs        Tut_LogConfig
+\snippet java.unittests.alox/unittests/com/aworx/lox/Tests_Tutorial.java        Tut_LogConfig
 
-We are invoking [Log.LogConfig()](@ref #com::aworx::lox::Log::LogConfig) which logs the current
-configuration of of ALox. The output is quite self explanatory:
+We are invoking [Log.logConfig()](@ref #com::aworx::lox::Log::logConfig)  which logs the current
+configuration of ALox. The output is quite self explanatory:
 
-\verbinclude  docs/generated_cstut/Tut_LogConfig.txt 
+\verbinclude  docs/generated_javatut/Tut_LogConfig.txt 
 
 Besides this, there is a second option to inspect what happens internally in class *Log*.
 Again, from the previous sample we take the setup section, remove the log output and add a
 parameter in the first line of code, where the *ConsoleLogger* is added to *LOG*:
 
-
-\snippet cs.unittests.alox/Tests_Tutorial.cs        Tut_LogConfig2
+\snippet java.unittests.alox/unittests/com/aworx/lox/Tests_Tutorial.java        Tut_LogConfig2
 
 ALox is equipped with an *internal log domain* named "ALOX". This domain is used by ALox to log messages, 
-from Error() to Verbose(). Now, when you add a *logger* to class *Log*, this *internal log domain* is 
+from error() to verbose(). Now, when you add a *logger* to class *Log*, this *internal log domain* is 
 registered with this *logger*.
 
 With the modification in the code above, we are passing a *log domain level* as a second parameter to 
-[Log.AddLogger()](@ref #com::aworx::lox::Log::AddLogger).  This *log domain level* specifies how the
+[Log.addLogger()](@ref #com::aworx::lox::Log::addLogger).  This *log domain level* specifies how the
 internal *log domain* of ALox should be set. While the default value was  
-[DomainLevel.WarningsAndErrors](@ref #com::aworx::lox::Log::DomainLevel) we overwrite this to 
-[DomainLevel.All]                (@ref #com::aworx::lox::Log::DomainLevel). Now looking at the *ConsoleLogger*
+[DomainLevel.INFO_WARNINGS_AND_ERRORS](@ref #com::aworx::lox::Log::DomainLevel) we overwrite this to 
+[DomainLevel.ALL]                (@ref #com::aworx::lox::Log::DomainLevel). Now looking at the *ConsoleLogger*
 output, we see what is going on inside ALox while running the application:
 
-\verbinclude  docs/generated_cstut/Tut_LogConfig2.txt 
+\verbinclude  docs/generated_javatut/Tut_LogConfig2.txt 
 
 To summarize: We have to ways to look into ALox: 
 
-1. Method [Log.LogConfig()](@ref #com::aworx::lox::Log::LogConfig) creates a log with a "snapshot" of the current states. The advantage of this is,
+1. Method [Log.logConfig()](@ref #com::aworx::lox::Log::logConfig) creates a log with a "snapshot" of the current states. The advantage of this is,
    that it is all logged sequentially in one place and does not clutter your log output.
 2. By setting the *log domain level* of the internal log domain "ALOX" to a more verbose level. While this clutters your log output and you 
    might have to search the pieces in your overall log stream, the advantage here is that you see the caller information and therefore
@@ -641,16 +642,17 @@ To summarize: We have to ways to look into ALox:
 
 There is also the possibility to enable the internal domain **after** a logger was already added. The code looks like this:
 
-\snippet cs.unittests.alox/Tests_Tutorial.cs        Tut_LogConfig3
+\snippet java.unittests.alox/unittests/com/aworx/lox/Tests_Tutorial.java        Tut_LogConfig3
 
 Or even better, because the internal domain name is not "hard coded":
 
-\snippet cs.unittests.alox/Tests_Tutorial.cs        Tut_LogConfig4
+\snippet java.unittests.alox/unittests/com/aworx/lox/Tests_Tutorial.java        Tut_LogConfig4
+
 
 <BR>
-# Further reading #     {#tutcs_end}
+# Further reading #     {#tutjava_end}
 
-This is the end of the C# Tutorial of ALox. You should be able to use most of the features
+This is the end of the Java Tutorial of ALox. You should be able to use most of the features
 of the ALox Logging Ecosystem and have nice, formatted, configurable log output in your software
 projects.
 

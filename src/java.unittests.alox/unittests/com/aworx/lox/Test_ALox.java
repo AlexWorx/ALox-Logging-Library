@@ -34,7 +34,6 @@ public class Test_ALox
 		if ( consoleLogger )
 		{
 			cl=		new ConsoleLogger( "Console" );
-			cl.tabAfterSourceInfo = 60;
 			Log.addLogger( cl, Log.DomainLevel.ALL );
 
 			//cl.EnableAppConsole=		true;
@@ -44,7 +43,6 @@ public class Test_ALox
 		if ( memoryLogger )
 		{
 			ml=		new MemoryLogger( "Memory" );
-			ml.tabAfterSourceInfo = 60;
 			Log.addLogger( ml, Log.DomainLevel.OFF );
 		}
 
@@ -341,19 +339,24 @@ public class Test_ALox
 			Log.info( "This is the default ConsoleLogger log line" );
 
 			cl.logDate=			true;  
-			cl.logTimeOfDay=	true;		Log.info( "LogDate= on, LogTimeOfDay= on" );
-			cl.logLogCounter=	true;		Log.info( "LogLogCounter= true" ); Log.info( "LogLogCounter= true" ); Log.info( "LogLogCounter= true" );
-			cl.logThreadInfo=	false;  	Log.info( "LogThreadInfo= false" );
-			cl.logDomainName=	false;  	Log.info( "LogDomainName= false" );
-			cl.logLogLevel=		false;  	Log.info( "LogLogLevel= false" );
-			cl.logTimeDiff=		false;  	Log.info( "LogTimeDiff= false" );
-			cl.logTimeElapsed=	false;  	Log.info( "LogTimeElapsed= false" );
-			cl.logCallerInfo=	false;  	Log.info( "LogCallerInfo= false" );
-			cl.logDate=			false;		Log.info( "LogDate= false" );
-			cl.logTimeOfDay=	false;  	Log.info( "LogTimeOfDay= false" );
-			cl.logLogCounter=	false;		Log.info( "LogLogCounter= false" ); Log.info( "LogLogCounter= false" ); Log.info( "LogLogCounter= false" );
+			cl.logTimeOfDay=	true;		Log.info( "logDate= on, LogTimeOfDay= on" );
+			cl.logLogCounter=	true;		Log.info( "logLogCounter= true" ); Log.info( "LogLogCounter= true" ); Log.info( "LogLogCounter= true" );
+			cl.logThreadInfo=	false;  	Log.info( "logThreadInfo= false" );
+			cl.logDomainName=	false;  	Log.info( "logDomainName= false" );
+			cl.logLogLevel=		false;  	Log.info( "logLogLevel= false" );
+			cl.logTimeDiff=		false;  	Log.info( "logTimeDiff= false" );
+			cl.logTimeElapsed=	false;  	Log.info( "logTimeElapsed= false" );
+			cl.logCallerClass=	true;	  	Log.info( "logCallerClass= true" );
+			cl.logCallerPackage=true;	  	Log.info( "logCallerPackage= true" );
+			cl.logCallerMethod=	false;		Log.info( "logCallerMethod= false" );
+			cl.logCallerPackage=false;		Log.info( "logCallerPackage= false" );
+			cl.logCallerClass=	false;		Log.info( "logCallerClass= = false" );
+			cl.logCallerSource=	false;		Log.info( "logCallerSource= false" );
+			cl.logDate=			false;		Log.info( "logDate= false" );
+			cl.logTimeOfDay=	false;  	Log.info( "logTimeOfDay= false" );
+			cl.logLogCounter=	false;		Log.info( "logLogCounter= false" ); Log.info( "LogLogCounter= false" ); Log.info( "LogLogCounter= false" );
 
-			cl.fmtMessagePrefix=MString.empty;	Log.info( "cl.fmtMessagePrefix=\"\""); Log.info( "cl.fmtMessagePrefix=\"\""); Log.info( "cl.fmtMessagePrefix=\"\"");
+			cl.fmtMessagePrefix=MString.empty;	Log.info( "cl.fmtMessagePrefix=\"\""); 
 			//#endif
 		}
 
@@ -524,7 +527,7 @@ public class Test_ALox
 				char[][] o= new char[2][3];
 				for ( int x= 0; x < 2 ; x++ )
 					for ( int y= 0; y < 3 ; y++ )
-						o[x][y]= (char) ( ((int)'a') + y*2 + x);
+						o[x][y]= (char) ( 'a' + y*2 + x);
 				LogTools.instance( Log.Level.INFO, o, 2, "Logging a 2 dimensional char[]:", 1 );
 			}
 

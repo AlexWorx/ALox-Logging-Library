@@ -47,8 +47,17 @@ public abstract class Logger
 	// #################################################################################################
 	// #region  __Flags__
 	// #################################################################################################
-	/**Enable the logging of source file names. Default is true (enabled) */
-	public			boolean			logCallerInfo				= true;
+	/** Enable the logging of source file name of the caller. Default is true (enabled) */
+	public			boolean			logCallerSource				= true;
+	
+	/** Enable the logging of the method name of the caller. Default is true (enabled) */
+	public			boolean			logCallerMethod				= true;
+	
+	/** Enable the logging of the class name of the caller. Default is false (disabled) */
+	public			boolean			logCallerClass				= false;
+	
+	/** Enable the logging of the package name of the caller. Default is false (disabled) */
+	public			boolean			logCallerPackage			= false;
 	
 	/**Enable the logging of the date. Default is false (disabled) */
 	public			boolean			logDate						= false;

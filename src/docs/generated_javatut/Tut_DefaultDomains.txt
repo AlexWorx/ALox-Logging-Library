@@ -1,0 +1,3 @@
+(Tests_Tutorial.java:130) Tests_Tutorial.Tut_DefaultDomains()   [00:00.019  +019 ms] [T:main(1)] [ERR] [APP]: A severe error happened :-(
+(Tests_Tutorial.java:131) Tests_Tutorial.Tut_DefaultDomains()   [00:00.020  +001 ms] [T:main(1)] [WRN] [APP]: This is a warning :-/ Maybe an error follows?
+(Tests_Tutorial.java:132) Tests_Tutorial.Tut_DefaultDomains()   [00:00.021  +155 µs] [T:main(1)]       [APP]: Just for your further information!

@@ -17,12 +17,10 @@ The first released version was Version 1.0.1 in **May 2013**.
 
 This change log is sorted reversely in respect to chronology. 
 
-## Version 1.1.0, not released, yet (alpha state) ##
+## Version 1.1.0, not released, (but considered stable) ##
 - First ALox for Java Release!!!
-
   100% Feature complete (as compared to actual C# Version). 
-  (In this alpha release the LogTools class is still missing)
-
+  
 - ALox for JAVA includes an LogCat logger for Android. This enables LogCat filtering and double-click
   support (jump to code line)
 

@@ -71,13 +71,13 @@ public abstract class TextLogger extends Logger
 	// #################################################################################################
 
 	/** Logged when parameter msg of dLog() is null. */
-	public 			String			fmtNullObject			="<null>";
+	public 			String			fmtNullObject				="<null>";
 
 	/** Prefix for the log message. */
 	public			String			fmtMessagePrefix			= ": ";
 
 	/** <summary>The character(s) used for indentation. */ 
-	public			String			fmtIndentString			= "  ";
+	public			String			fmtIndentString				= "  ";
 
 	/** The output for the log level "Error". */
 	public			String			fmtLogLevelError			= " [ERR]";
@@ -86,13 +86,13 @@ public abstract class TextLogger extends Logger
 	public			String			fmtLogLevelWarning			= " [WRN]";
 
 	/** The output for the log level "Info". */
-	public			String			fmtLogLevelInfo			= "      ";
+	public			String			fmtLogLevelInfo				= "      ";
 
 	/** The output for the log level "Verbose". */
 	public			String			fmtLogLevelVerbose			= " [***]";
 
 	/** Headline for multi line messages (depending on #multiLineMsgMode)  . */
-	public			String			fmtMultiLineMsgHeadline	= "ALox: Multi line message follows: ";
+	public			String			fmtMultiLineMsgHeadline		= "ALox: Multi line message follows: ";
 
 	/** 
 	 *  Prefix for multi line messages. This is also used if multi line messages logging is switched off
@@ -104,13 +104,13 @@ public abstract class TextLogger extends Logger
 	 *  Postfix for multi line messages. This is also used if multi line messages logging is switched off
 	 *  (MultiLineMsgMode == 0) but replacing of a set MultiLineDelimiter takes place.
 	 */
-	public			String			fmtMultiLinePostfix		= null;
+	public			String			fmtMultiLinePostfix			= null;
 
 	/** Prefix for log date outputs. */
 	public			String			fmtDatePrefix				= "[";
 	/** Format string for the output of the log date. For more information, see 
 	///  "Standard Date and Time Format Strings" in .NET StringBuilder.AppendFormat() */
-	public			String			fmtDate					= "yyyy-MM-dd";
+	public			String			fmtDate						= "yyyy-MM-dd";
 	/** Postfix for log date outputs. */
 	public			String			fmtDatePostfix				= "] ";
 
@@ -120,7 +120,7 @@ public abstract class TextLogger extends Logger
 	///  "Standard Date and Time Format Strings" in .NET StringBuilder.AppendFormat() */
 	public			String			fmtTimeOfDay				= "HH:mm:ss";
 	/** Postfix for time of day outputs. */
-	public			String			fmtTimeOfDayPostfix		= "] ";
+	public			String			fmtTimeOfDayPostfix			= "] ";
 
 
 	/** Prefix for time elapsed since logging start (or reset) outputs. */
@@ -139,22 +139,22 @@ public abstract class TextLogger extends Logger
 	/** Entity milliseconds for time difference outputs below 1000 milliseconds. */
 	public			String			fmtTimeDiffMillis			= " ms";
 	/** Format for time difference outputs between 10s and 99.9s. */
-	public			String			fmtTimeDiffSecs			= " s";
+	public			String			fmtTimeDiffSecs				= " s";
 	/** Format for time difference outputs between 100s and 60 min. */
-	public			String			fmtTimeDiffMins			= " m";
+	public			String			fmtTimeDiffMins				= " m";
 	/** Format for time difference outputs between 1h and 24h. */
 	public			String			fmtTimeDiffHours			= " h";
 	/** Format for time difference outputs of more than a day. */
-	public			String			fmtTimeDiffDays			= " days";
+	public			String			fmtTimeDiffDays				= " days";
 
 	/** Prefix for the domain. */
-	public			String			fmtDomainPrefix			= " [";
+	public			String			fmtDomainPrefix				= " [";
 
 	/** Postfix for the domain. */
 	public			String			fmtDomainPostfix			= "]";
 
 	/** Prefix for the thread name. */
-	public			String			fmtThreadPrefix			= " [T:";
+	public			String			fmtThreadPrefix				= " [T:";
 
 	/** Postfix for the domain. */
 	public			String			fmtThreadPostfix			= "]";
@@ -163,7 +163,7 @@ public abstract class TextLogger extends Logger
 	public			String			fmtLogNumberPrefix			= " ";
 
 	/** Postfix for the log number. */
-	public			String			fmtLogNumberPostfix		= "";
+	public			String			fmtLogNumberPostfix			= "";
 	
 	/** Prefix for the domain. */
 	public			int				fmtLogNumberMinDigits		= 3;

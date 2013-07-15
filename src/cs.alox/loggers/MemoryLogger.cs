@@ -101,28 +101,34 @@ public class MemoryLogger : TextLogger
 			Buffer.NewLine();
 
 		// build filename/line number in a VStudio clickable format 
-		if ( caller != null && LogCallerInfo )
+		if ( caller != null && ( LogCallerSource || LogCallerMethod ) )
 		{
 			// get actual length once
 			int oldLength= Buffer.Length;
 
 			// add source file: can we cut the source file name by a prefix?
-			String sfn=		caller.SourceFileName;
-			String cspp=	caller.GetConsumableSourcePathPrefix();
-			if ( sfn.StartsWith( cspp, StringComparison.OrdinalIgnoreCase ) )
-				Buffer.Append( sfn, cspp.Length, caller.SourceFileName.Length - cspp.Length);
-			else
-				Buffer.Append( sfn );
+			if ( LogCallerSource)
+			{
+				String sfn=		caller.SourceFileName;
+				String cspp=	caller.GetConsumableSourcePathPrefix();
+				if ( sfn.StartsWith( cspp, StringComparison.OrdinalIgnoreCase ) )
+					Buffer.Append( sfn, cspp.Length, caller.SourceFileName.Length - cspp.Length);
+				else
+					Buffer.Append( sfn );
 
-			// add line number
-			Buffer.Append( strPrefixLineNumber )
-					.Append( caller.LineNumber )
-				  .Append( strPostfixLineNumber );
+				// add line number
+				Buffer.Append( strPrefixLineNumber )
+						.Append( caller.LineNumber )
+					  .Append( strPostfixLineNumber );
+			}
 
 			// append method name
-			Buffer.Append( FormatMemberPrefix );
-			Buffer.Append( caller.MethodName );
-			Buffer.Append( FormatMemberPostfix );
+			if ( LogCallerMethod )
+			{
+				Buffer.Append( FormatMemberPrefix );
+				Buffer.Append( caller.MethodName );
+				Buffer.Append( FormatMemberPostfix );
+			}
 
 			// jump to next tab level
 			if ( TabAfterSourceInfo < Buffer.Length - oldLength )

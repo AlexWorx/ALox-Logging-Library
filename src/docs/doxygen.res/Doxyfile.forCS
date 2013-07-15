@@ -209,8 +209,8 @@ ALIASES                =
 
 # This tag can be used to specify a number of word-keyword mappings (TCL only). 
 # A mapping has the form "name=value". For example adding 
-# "class=itcl.class" will allow you to use the command class in the 
-# itcl.class meaning.
+# "class=itcl::class" will allow you to use the command class in the 
+# itcl::class meaning.
 
 TCL_SUBST              = 
 
@@ -269,11 +269,11 @@ MARKDOWN_SUPPORT       = YES
 
 AUTOLINK_SUPPORT       = YES
 
-# If you use STL classes (i.e. std.string, std.vector, etc.) but do not want 
+# If you use STL classes (i.e. std::string, std::vector, etc.) but do not want 
 # to include (a tag file for) the STL sources as input, then you should 
 # set this tag to YES in order to let doxygen match functions declarations and 
-# definitions whose arguments contain STL classes (e.g. func(std.string); v.s. 
-# func(std.string) {}). This also makes the inheritance and collaboration 
+# definitions whose arguments contain STL classes (e.g. func(std::string); v.s. 
+# func(std::string) {}). This also makes the inheritance and collaboration 
 # diagrams that involve STL classes more complete and accurate.
 
 BUILTIN_STL_SUPPORT    = NO
@@ -724,7 +724,7 @@ FILE_PATTERNS          = *.c \
 # should be searched for input files as well. Possible values are YES and NO. 
 # If left blank NO is used.
 
-RECURSIVE              = NO
+RECURSIVE              = YES
 
 # The EXCLUDE tag can be used to specify files and/or directories that should be 
 # excluded from the INPUT source files. This way you can easily exclude a 
@@ -752,7 +752,7 @@ EXCLUDE_PATTERNS       =
 # (namespaces, classes, functions, etc.) that should be excluded from the 
 # output. The symbol name can be a fully qualified name, a word, or if the 
 # wildcard * is used, a substring. Examples: ANamespace, AClass, 
-# AClass.ANamespace, ANamespace.*Test
+# AClass::ANamespace, ANamespace::*Test
 
 EXCLUDE_SYMBOLS        = 
 
@@ -820,7 +820,7 @@ FILTER_SOURCE_PATTERNS =
 # This can be useful if you have a project on for instance GitHub and want reuse 
 # the introduction page also for the doxygen output.
 
-USE_MDFILE_AS_MAINPAGE =   
+USE_MDFILE_AS_MAINPAGE = 
 
 #---------------------------------------------------------------------------
 # configuration options related to source browsing
@@ -944,10 +944,6 @@ HTML_FILE_EXTENSION    = .html
 # robust against future updates. Doxygen will copy the style sheet file to 
 # the output directory.
 
-HTML_HEADER            =  styles/cs_header.html
-HTML_FOOTER            =  styles/cs_footer.html
-HTML_EXTRA_STYLESHEET  =  styles/cs_stylesheet.css
-
 # The HTML_EXTRA_FILES tag can be used to specify one or more extra images or 
 # other source files which should be copied to the HTML output directory. Note 
 # that these files will be copied to the base HTML output directory. Use the 
@@ -955,6 +951,9 @@ HTML_EXTRA_STYLESHEET  =  styles/cs_stylesheet.css
 # files. In the HTML_STYLESHEET file, use the file name only. Also note that 
 # the files will be copied as-is; there are no commands or markers available.
 
+HTML_HEADER            =  styles/cs_header.html
+HTML_FOOTER            =  styles/cs_footer.html
+HTML_EXTRA_STYLESHEET  =  styles/cs_stylesheet.css
 HTML_EXTRA_FILES       = 
 
 # The HTML_COLORSTYLE_HUE tag controls the color of the HTML output. 
@@ -1618,7 +1617,7 @@ EXPAND_AS_DEFINED      =
 SKIP_FUNCTION_MACROS   = YES
 
 #---------------------------------------------------------------------------
-# Configuration.additions related to external references
+# Configuration::additions related to external references
 #---------------------------------------------------------------------------
 
 # The TAGFILES option can be used to specify one or more tagfiles. For each 
@@ -1654,7 +1653,7 @@ EXTERNAL_GROUPS        = YES
 # The PERL_PATH should be the absolute path and name of the perl script 
 # interpreter (i.e. the result of `which perl').
 
-PERL_PATH              = #/usr/bin/perl
+PERL_PATH              = /usr/bin/perl
 
 #---------------------------------------------------------------------------
 # Configuration options related to the dot tool

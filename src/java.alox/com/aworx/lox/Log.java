@@ -392,12 +392,11 @@ public abstract class Log
 	 *
 	 * @param markerPointer This is array is used to return the marker object. The array must be at
 	 *                      least of size 1. The object is stored in position 0. (Note: due to
-	 *                      compiler restrictions of C# V. 5.0, this laborious approach for returning
-	 *                      the object has been chosen. The function can not return a value because
-	 *                      it is conditionally compiled using the ALOX_DEBUG compiler flag.
+	 *                      compatibility with other platform versions of ALox, this laborious approach 
+	 *                      for returning the object has been chosen.)
 	 * @param scope         The scope in which the marker should be stored. Markers and scopes work
 	 *                      independently from each other. Different markers can be stored within
-	 *                      different scopes and no fallback to "outer scopes" is made. A scope of
+	 *                      different scopes and no fall back to "outer scopes" is made. A scope of
 	 *                      'None' retrieves the global marker singleton.
 	 **************************************************************************************************/
 	public static void getMarker( Object[] markerPointer, Log.Scope scope )		{ LOX.getMarker( markerPointer, scope ); }

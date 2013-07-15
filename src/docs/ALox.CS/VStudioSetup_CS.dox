@@ -10,20 +10,25 @@
 \page setup_projects_vs_cs         Setup Visual Studio for C# Projects
 
 
-To use ALox logging in your C# project using Visual Studio, some few preparational steps have to be
+To use ALox logging in your C# project using Visual Studio, some few preparatory steps have to be
 taken.
 
-Currently, there is no other way to *install* the library, than to either 
-
+Currently, there is no binary distribution of ALox for C# available. Therefore, the way to incorporate
+ALox into your project is to include the sources. There are two options:
+                                                                        
 - add one of the existing ALox class library projects to your solution or to 
 - add ALox sources directly to your project. 
 
-*Note: If you do not actually have a C# project (or do not want to touch it now) and you just want to
+\note
+If you do not actually have a C# project (or do not want to touch it now) and you just want to
 have a first look into ALox, then create a new project using the Visual Studio Project Wizard. 
-Be sure to create an executable and that the typical "hello world" sample prints to the Visual Studio console.*
+Be sure to create an executable and that the typical "hello world" sample prints to the Visual Studio console.
 
-Unpack the ALox distribution zip and move all its contents to a place where you safely store 3rd party libraries.  
-We call this the *ALox Library folder*.
+## Download ##
+Unpack the ALox distribution (e.g. as zip) from [Alox at GitHub](https://github.com/AlexWorx/ALox-Logging-Library)
+and move all its contents to a place where you safely store 3rd party libraries.  
+
+We call this folder the *ALOX_LIB_PATH*.
 
 ## Link one of the following projects into your solution ##
 
@@ -37,10 +42,11 @@ a) Choose the right class library project that fits well to your own project tar
    - *ALox-CS-WP71-DLL*: For windows Phone 7.1 projects 
    - *ALox-CS-WP80-DLL*: For windows Phone 8 projects 
 
-*Note: If there is no appropriate predefined project available for you, skip b) and c) and continue reading
-below at **adding source**!*
+\note
+If there is no appropriate predefined project available for you, skip b) and c) and continue reading
+below at **adding source**!
 
-   Add the Visual Studio project that you find in the corresponding sub folder of the *ALox Library folder*
+   Add the Visual Studio project that you find in the corresponding sub folder of the *ALOX_LIB_PATH*
    to your solution.
 
 b) Set a build dependency from your project to the just added *ALox-CS-DLL* project. Steps are:
@@ -49,7 +55,7 @@ b) Set a build dependency from your project to the just added *ALox-CS-DLL* proj
    - choose context menu **Project dependencies...**
    - tick the checkbox for the *ALox-CS-DLL* project.
 
-c) Add the ALox-CS-DL project as a reference to your project. Steps are:
+c) Add the ALox-CS-DLL project as a reference to your project. Steps are:
 
    - right click your project in solution explorer
    - choose context menu **Add reference...**

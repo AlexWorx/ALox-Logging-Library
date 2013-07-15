@@ -549,7 +549,7 @@ public abstract class LogTools
 		// recursion
 		if ( e.getCause() != null )
 		{
-			toolBuf.append( ' ',  indent * 2 ).append( "Inner:   " ).newLine();
+			toolBuf.append( ' ',  indent * 2 ).append( "Cause:   " ).newLine();
 			exception( e.getCause() , null, indent );
 		}
 		
@@ -646,7 +646,7 @@ public abstract class LogTools
 	 * @param maxRecursion  	The maximum depth of recursion for logging nested object.
 	 * @param indent			The indentation in the output (recursively increased).
 	 **************************************************************************************************/
-	protected static void instRecursive( Object inst, int maxRecursion, int indent )
+	@SuppressWarnings ("null") protected static void instRecursive( Object inst, int maxRecursion, int indent )
 	{
 		// get type
 		@SuppressWarnings ("rawtypes") 
@@ -714,8 +714,8 @@ public abstract class LogTools
 		// ### maximum recursion? ###
 		if ( maxRecursion == 0 )
 		{
-			String vString=	inst.toString();
-			String tString=	type.getName();
+			@SuppressWarnings ("null") String vString=	inst.toString();
+			@SuppressWarnings ("null") String tString=	type.getName();
 			
 			// often, toString() just returns the type or prepends the type
 			if ( vString.startsWith( tString) )

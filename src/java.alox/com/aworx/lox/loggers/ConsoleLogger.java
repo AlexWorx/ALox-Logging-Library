@@ -8,9 +8,9 @@ import com.aworx.lox.core.TextLogger;
 import com.aworx.util.MString;
 
 /**********************************************************************************************//**
- * A logger that logs all messages to the VStudio IDE output window (**using
- * System.Diagnostics.Debug.WriteLine()**) and/or to the application console (using
- * **Console.WriteLine()**).
+ * A logger that logs all messages to the JAVA console using System.out or alternatively 
+ * System.console(). The latter is used if a) the flag #useJAVA6ConsoleIfAvailable is set to
+ * true (defaults to true) and b) the system console is available. 
  * 
  * The name of the logger defaults to "CONSOLE". In the Eclipse IDE, log lines are double-clickable
  * to jump directly to the source code that generated the log.
@@ -28,11 +28,12 @@ public class ConsoleLogger extends TextLogger
 	// #################################################################################################
 	/** Tab position after caller info. This auto adjusts (increases) when longer source info occurs. To
 	*   avoid increases in the beginning, this value can be set upfront (after the logger was created) */
-	public		int				tabAfterSourceInfo				=0;
+	public		int				tabAfterCallerInfo				=0;
 
-	/** Enables logging to the application console (System.out respectively System.console(), see
-	 * useJAVA6ConsoleIfAvailable). Defaults to true. */
-	public		boolean			enableAppConsole				=true;
+	/** Tab position before the caller package/class/method info. This auto adjusts (increases) when longer 
+	 * source info occurs. To avoid increases in the beginning, this value can be set upfront (after the 
+	 * logger was created) */
+	public		int				tabBeforeCallerName				=0;
 
 	/** Enables logging to *System.console()* if such console is available. This might result in a 
 	 * different character encoding (typically on Windows machines). */
@@ -97,14 +98,10 @@ public class ConsoleLogger extends TextLogger
 										MString		msg,		int			indent,
 										CallerInfo	caller, 	int			lineNumber )
 	{
-		// check
-		if ( !( enableAppConsole ) )
-			return;
-
-		MString output= null;
+		MString output;
 		
-		// no caller info given? Just log msg out (used e.g. by TextLogger for multiline messages )
-		if ( caller == null || !logCallerInfo  )
+		// no caller info given? Just log msg out (used e.g. by TextLogger for multi line messages )
+		if ( caller == null || !( logCallerSource || logCallerMethod || logCallerClass || logCallerPackage ) )
 		{
 			// set output straight to given msg
 			output= msg;
@@ -117,40 +114,40 @@ public class ConsoleLogger extends TextLogger
 			output= consoleBuffer;
 			
 			// clear temp buffer
-			consoleBuffer.clear();
-	
-			// build filename/line number in a VStudio clickable format 
-			consoleBuffer.append( caller.packageName );
-			consoleBuffer.append( '.' );
-			consoleBuffer.append( caller.className );
-			consoleBuffer.append( '.' );
-			consoleBuffer.append( caller.methodName );
-			consoleBuffer.append( '(' );
-			consoleBuffer.append( caller.fileNameAndLineNumber);
-			consoleBuffer.append( ')' );
-	
-			// jump to next tab level
-			if ( tabAfterSourceInfo < consoleBuffer.length )
-				tabAfterSourceInfo= consoleBuffer.length + 5; // add some extra space to avoid to many increases
-			for ( int i= consoleBuffer.length ; i < tabAfterSourceInfo ; i++ )
-				consoleBuffer.append( ' ' );
+			output.clear();
+
+			// append clickable source info
+			if ( logCallerSource )	
+				output.append( '(' ).append( caller.fileNameAndLineNumber).append( ')' );
+
+			// append package/class/method info
+			if( logCallerMethod || logCallerClass || logCallerPackage )
+			{
+				// jump to next tab level
+				output.append( ' ' );
+				if ( tabBeforeCallerName < output.length )
+					tabBeforeCallerName= output.length; // add some extra space to avoid to many increases
+				output.append( ' ', tabBeforeCallerName - output.length  );
+
+				if ( logCallerPackage )	output				.append( caller.packageName ).append( '.' );
+				if ( logCallerClass   )	output				.append( caller.className   );	
+				if ( logCallerMethod  )	output.append( '.' ).append( caller.methodName  ).append( '(' ).append( ')' );
+			}
+			
+			if ( tabAfterCallerInfo <= output.length )
+				tabAfterCallerInfo= output.length + 3; // add some extra space to avoid to many increases
+			output.append( ' ', tabAfterCallerInfo - output.length  );
 		
 			// append message
-			consoleBuffer.append( msg );
+			output.append( msg );
 		}
 		
-		// write to console(s)
-		if ( enableAppConsole )		
-		{
-			Console con= null;
-			if ( useJAVA6ConsoleIfAvailable && (con= System.console()) != null )
-{			
-				con.writer().println( output.toString() );
-System.out.println("Using Console");				
-}				
-			else
-				System.out  .println( output.toString() );
-		}
+		// write to console or System.out
+		Console con= null;
+		if ( useJAVA6ConsoleIfAvailable && (con= System.console()) != null )
+			con.writer().println( output.toString() );
+		else
+			System.out  .println( output.toString() );
 	}
 
 //#endif // ALOX_DEBUG || ALOX_REL_LOG

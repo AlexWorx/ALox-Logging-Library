@@ -43,7 +43,7 @@ is, the more log messages will appear in the log.
 But the ALox logging ecosystem differs from most others in the respect that log levels are not evaluated
 against a global setting. Log levels are always evaluated in consideration of a specific *log domain*.
 
-*Log domains* are simple names (strings) that a developer specifies with a log statement. 
+_Log domains_ are simple names (strings) that a developer specifies with a log statement. 
 In a kind, *log domains* specify a "topic" or "theme" to which that certain log statement 
 belongs to.
 For example, those parts of a software that implement the user interface, could perform all 
@@ -174,7 +174,8 @@ Now, if the *domain level* of such sub domain is not specified (using
 [Log.SetDomain](@ref #com.aworx.lox.Log.SetDomain) the setting
 defaults to "inherit" and hence these sub domains inherit the setting
 of the root domain. Therefore, the level setting of a Loggers root domain
-determine the "default" domain level for "unknown" (respectively "unset") domains. 
+determine the "default" domain level for domains "unknown" to the current ALox
+state.
 
 Different derivates of class Logger might have different preferences here. For
 example the class [ConsoleLogger](@ref #com.aworx.lox.loggers.ConsoleLogger) in its
@@ -363,12 +364,6 @@ In this chapter we covered the following things:
 
 
 \~Comment
-- final section: the internal domain
-- section: More on log domains
-    - hierarchy
-    - reference to: where to put log code
--  Root Domain und ihr Wert der vom ConsoleLogger überschrieben wird
--    Logger die später erzeugt werden...
 \~
 
 */

@@ -1,0 +1,6 @@
+(Tests_Tutorial.java:322) Tests_Tutorial.Tut_SeparatedLogLevels()   [00:00.002  +002 ms] [T:main(1)]       [DOM/CON]: Domain= DOM/CON  -> This goes to ConsoleLogger exclusively
+(Tests_Tutorial.java:324) Tests_Tutorial.Tut_SeparatedLogLevels()   [00:00.003  +262 µs] [T:main(1)]       [  DOM  ]: Domain= DOM      -> This goes to all loggers
+(Tests_Tutorial.java:327) Tests_Tutorial.Tut_SeparatedLogLevels()   [00:00.003  +114 µs] [T:main(1)]       [DOM/CON]: Here comes the contents of MemoryLogger:
+(Tests_Tutorial.java:328) Tests_Tutorial.Tut_SeparatedLogLevels()   [00:00.003  +099 µs] [T:main(1)]       [DOM/CON]:   ALox: Multi line message follows: 
+>> (Tests_Tutorial.java:323) Tests_Tutorial.Tut_SeparatedLogLevels()    [DOM/MEM]: Domain= DOM/MEM  -> This goes to MemoryLogger exclusively
+>> (Tests_Tutorial.java:324) Tests_Tutorial.Tut_SeparatedLogLevels()    [  DOM  ]: Domain= DOM      -> This goes to all loggers

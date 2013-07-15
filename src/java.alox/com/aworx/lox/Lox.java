@@ -188,7 +188,7 @@ public class Lox
 				{
 					// log info on this
 					saveAndSet( false, null );
-					internalLog( Log.Level.WARNING,	tempMS.clear().append("Lox.AddLogger(): Logger \"").append( logger.name ).append("\" already exists. Not added.") );
+					internalLog( Log.Level.WARNING,	tempMS.clear().append("Lox.addLogger(): Logger \"").append( logger.name ).append("\" already exists. Not added.") );
 					return;
 				}
 
@@ -197,7 +197,7 @@ public class Lox
 
 				// log info on this
 				saveAndSet( false, null );
-				internalLog( Log.Level.INFO,	tempMS.clear().append("Lox.AddLogger(): Logger \"").append(logger.name).append("\" added") );
+				internalLog( Log.Level.INFO,	tempMS.clear().append("Lox.addLogger(): Logger \"").append(logger.name).append("\" added") );
 
 			} finally { lock.release(); } 
 		//#endif
@@ -280,7 +280,7 @@ public class Lox
 				// check parameter
 				if ( MString.isNullOrEmpty( domain ) )
 				{
-					internalLog( Log.Level.ERROR,	tempMS.clear().append("Lox.RegDomain(): Empty domain given. Not registered.") );
+					internalLog( Log.Level.ERROR,	tempMS.clear().append("Lox.regDomain(): Empty domain given. Not registered.") );
 					return;
 				}
 
@@ -297,7 +297,7 @@ public class Lox
 						logger.createDomain( domainToRegister );
 
 						// log info on this
-						internalLog( Log.Level.INFO, tempMS.clear().append("Lox.RegDomain(): Domain \"").append(domainToRegister).append("\" created in logger: ").append(logger.name) );
+						internalLog( Log.Level.INFO, tempMS.clear().append("Lox.regDomain(): Domain \"").append(domainToRegister).append("\" created in logger: ").append(logger.name) );
 					}
 				}
 
@@ -317,9 +317,9 @@ public class Lox
 
 					// log info on this
 					if ( previous == null )
-						internalLog( Log.Level.INFO,	tempMS.clear().append("Lox.RegDomain(): Domain \"").append(domainToRegister).append("\" set as default for scope \"").append(scope.toString()).append('\"') );
+						internalLog( Log.Level.INFO,	tempMS.clear().append("Lox.regDomain(): Domain \"").append(domainToRegister).append("\" set as default for scope \"").append(scope.toString()).append('\"') );
 					else
-						internalLog( Log.Level.WARNING,	tempMS.clear().append("Lox.RegDomain(): Replacing default Domain \"").append(previous)
+						internalLog( Log.Level.WARNING,	tempMS.clear().append("Lox.regDomain(): Replacing default Domain \"").append(previous)
 																	  .append("\" by \"").append(domainToRegister).append("\" as default for scope \"").append(scope.toString()).append('\"') );
 				}
 
@@ -369,7 +369,7 @@ public class Lox
 					logDomain.setLevel( domainLevel, recursive ) ;
 
 					// log info on this (has to be done last, for the case that domain is the internal domain!)
-					internalLog( Log.Level.INFO,	tempMS.clear().append("Lox.SetDomain(): Domain \"").append(domainToSet).append("\" log level set to \"").append(domainLevel.toString())
+					internalLog( Log.Level.INFO,	tempMS.clear().append("Lox.setDomain(): Domain \"").append(domainToSet).append("\" log level set to \"").append(domainLevel.toString())
 																  .append("\" for logger \"").append(logger.name).append('\"') );
 				}
 
@@ -435,7 +435,7 @@ public class Lox
 						logger.isDisabled= disabled;
 
 						// log info on this
-						internalLog( Log.Level.INFO,	tempMS.clear().append("Lox.SetDisabled(): Logger \"").append(logger.name).append("\" ").append((disabled ? "disabled" : "enabled"))  );
+						internalLog( Log.Level.INFO,	tempMS.clear().append("Lox.setDisabled(): Logger \"").append(logger.name).append("\" ").append((disabled ? "disabled" : "enabled"))  );
 					}
 				}
 			
@@ -489,7 +489,7 @@ public class Lox
 					logger.timeOfLastLog .setTo( tickTime );
 
 					// log info on this
-					internalLog( Log.Level.INFO,	tempMS.clear().append("Lox.SetStartTime(): Start time of \"").append(logger.name).append("\" set to: ").append(startTime!=null ? startTime.toString() : "\"now\"")  );
+					internalLog( Log.Level.INFO,	tempMS.clear().append("Lox.setStartTime(): Start time of \"").append(logger.name).append("\" set to: ").append(startTime!=null ? startTime.toString() : "\"now\"")  );
 				}
 
 			} finally { lock.release(); } 
@@ -543,7 +543,7 @@ public class Lox
 	
 				// log info on this
 				saveAndSet( false, null );
-				tempMS.clear().append("Lox: Mapped thread ID ").append((int) id).append(" to \"").append(threadName).append("\".");
+				tempMS.clear().append("Lox.mapThreadName(): Mapped thread ID ").append((int) id).append(" to \"").append(threadName).append("\".");
 				if ( !MString.isNullOrEmpty( origThreadName )  )
 					tempMS.append(" Original thread name was \"").append(origThreadName).append("\".");
 				internalLog( Log.Level.INFO, tempMS );
@@ -599,7 +599,7 @@ public class Lox
 				markers.put( key, marker );
 	
 				// log info on this
-				internalLog( Log.Level.VERBOSE, tempMS.clear().append("Lox: Marker set (").append(( marker != null ? marker.toString() : "null")).append(')') );
+				internalLog( Log.Level.VERBOSE, tempMS.clear().append("Lox.setMarker(): Marker set (").append(( marker != null ? marker.toString() : "null")).append(')') );
 	
 			} finally { lock.release(); }
 		//#endif
@@ -613,10 +613,9 @@ public class Lox
      * before the exception was thrown.
      *
      * @param markerPointer This is array is used to return the marker object. The array must be at
-     *                      least of size 1. The object is stored in position 0. (Note: due to
-     *                      compiler restrictions of C# V. 5.0, this laborious approach for returning
-     *                      the object has been chosen. The function can not return a value because
-     *                      it is conditionally compiled using the ALOX_DEBUG compiler flag.
+	 *                      least of size 1. The object is stored in position 0. (Note: due to
+	 *                      compatibility with other platform versions of ALox, this laborious approach 
+	 *                      for returning the object has been chosen.) 
      * @param scope         The scope in which the marker should be stored. Markers and scopes work
      *                      independently from each other. Different markers can be stored within
      *                      different scopes and no fallback to "outer scopes" is made. A scope of
@@ -650,7 +649,7 @@ public class Lox
 
 				// log info on this
 				saveAndSet( false, null );
-				internalLog( Log.Level.VERBOSE, tempMS.clear().append("Lox: Marker retrieved (").append(( marker != null ? marker.toString() : "null")).append(')') );
+				internalLog( Log.Level.VERBOSE, tempMS.clear().append("Lox.getMarker(): Marker retrieved (").append(( marker != null ? marker.toString() : "null")).append(')') );
 
 	
 			} finally { lock.release(); } 

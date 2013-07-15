@@ -23,18 +23,16 @@ public class MemoryLogger extends TextLogger
 	 */
 	public		MString			buffer							= new MString( 8192 );
 
-	/** The prefix for the caller method name */
-	public		String			formatMemberPrefix				=".";
-
-	/** The postfix for the caller method name */
-	public		String			formatMemberPostfix				="()";
-
 	/**
 	 *  Tab position after caller info. This auto adjusts (increases) when longer source info occurs.
 	 *  To avoid increases in the beginning, this value can be set upfront (after the logger was
 	 *  created)
 	 */
-	public		int				tabAfterSourceInfo				=0;
+	public		int				tabAfterCallerInfo				=0;
+
+	/** Tab position before the caller name. This auto adjusts (increases) when longer source info occurs. To
+	*   avoid increases in the beginning, this value can be set upfront (after the logger was created) */
+	public		int				tabBeforeCallerName				=0;
 
 
 	// #################################################################################################
@@ -80,27 +78,35 @@ public class MemoryLogger extends TextLogger
 		if ( buffer.length > 0 )
 			buffer.newLine();
 
-		// build filename/line number in a VStudio clickable format 
-		if ( caller != null && logCallerInfo  )
+		// build filename/line number in a clickable format 
+		if ( caller != null && ( logCallerSource || logCallerMethod || logCallerClass || logCallerPackage )  )
 		{
 			// get actual length once
 			int oldLength= buffer.length;
 
-			buffer.append( caller.packageName );
-			buffer.append( '.' );
-			buffer.append( caller.className );
-			buffer.append( '.' );
-			buffer.append( caller.methodName );
-			buffer.append( '(' );
-			buffer.append( caller.fileNameAndLineNumber);
-			buffer.append( ')' );
+			// append clickable source info
+			if ( logCallerSource )	
+				buffer.append( '(' ).append( caller.fileNameAndLineNumber).append( ')' );
 
-
-			// jump to next tab level
-			if ( tabAfterSourceInfo < buffer.length - oldLength )
-				tabAfterSourceInfo= buffer.length - oldLength + 5; // add some extra space too avoid to many increases
-			for ( int i= buffer.length - oldLength ; i < tabAfterSourceInfo ; i++ )
+			// append package/class/method info
+			if( logCallerMethod || logCallerClass || logCallerPackage )
+			{
+				// jump to next tab level
 				buffer.append( ' ' );
+				if ( tabBeforeCallerName < buffer.length )
+					tabBeforeCallerName= buffer.length; // add some extra space to avoid to many increases
+				buffer.append( ' ', tabBeforeCallerName - buffer.length  );
+
+				if ( logCallerPackage )	buffer				.append( caller.packageName ).append( '.' );
+				if ( logCallerClass   )	buffer				.append( caller.className   );	
+				if ( logCallerMethod  )	buffer.append( '.' ).append( caller.methodName  ).append( '(' ).append( ')' );
+			}
+			
+			// jump to next tab level
+			int bLength= buffer.length - oldLength;
+			if ( tabAfterCallerInfo <= bLength )
+				tabAfterCallerInfo= bLength+ 3; // add some extra space too avoid to many increases
+			buffer.append( ' ', tabAfterCallerInfo - bLength  );
 		}
 
 		// append message 

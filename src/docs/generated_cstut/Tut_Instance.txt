@@ -1,0 +1,35 @@
+src\cs.unittests.alox\Tests_Tutorial.cs(211):.Tut_Instance()     [00:00.002  +002 ms] [T:(10)]       [MYDOM]:   ALox: Multi line message follows: 
+>> Actual Thread:                                                    {Thread}
+>> <01>  ManagedThreadId:              10                            {Int32}
+>> <02>  ExecutionContextBelongsToCurrentScope: True                 {Boolean}
+>> <03>  ExecutionContext:                                           {ExecutionContext}
+>> <04>    isNewCapture:               False                         {Boolean}
+>> <05>    isFlowSuppressed:           False                         {Boolean}
+>> <06>    IsPreAllocatedDefault:      False                         {Boolean}
+>> <07>    LogicalCallContext:         (MAX REC)                     {LogicalCallContext}
+>> <08>    IllogicalCallContext:       (MAX REC)                     {IllogicalCallContext}
+>> <09>    SynchronizationContext:     <null>
+>> <10>    SynchronizationContextNoFlow: <null>
+>> <11>    HostExecutionContext:       <null>
+>> <12>    SecurityContext:            <null>
+>> <13>    _hostExecutionContext:      <null>
+>> <14>    _syncContext:               <null>
+>> <15>    _syncContextNoFlow:         <null>
+>> <16>    _securityContext:           <null>
+>> <17>    _logicalCallContext:        (MAX REC)                     {LogicalCallContext}
+>> <18>    _illogicalCallContext:      (MAX REC)                     {IllogicalCallContext}
+>> <19>    _flags:                     None                          {Flags}
+>> <20>  Priority:                     Normal                        {ThreadPriority}
+>> <21>  IsAlive:                      True                          {Boolean}
+>> <22>  IsThreadPoolThread:           False                         {Boolean}
+>> <23>  IsBackground:                 True                          {Boolean}
+>> <24>  ThreadState:                  Background                    {ThreadState}
+>> <25>  ApartmentState:               STA                           {ApartmentState}
+>> <26>  CurrentUICulture:                                           {CultureInfo}
+>> <27>    IsSafeCrossDomain:          False                         {Boolean}
+>> <28>    CreatedDomainID:            0                             {Int32}
+>> <29>    Parent:                     (MAX REC) de                  {CultureInfo}
+>> <30>    LCID:                       1031                          {Int32}
+...
+...
+...

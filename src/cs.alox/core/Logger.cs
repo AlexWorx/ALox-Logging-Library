@@ -62,8 +62,11 @@ public abstract class Logger
 	// #################################################################################################
 	#region  __Flags__
 	// #################################################################################################
-	/// <summary>Enable the logging of source file names. Default is true (enabled) </summary>
-	public			bool			LogCallerInfo				= true;
+	/// <summary>Enable the logging of source file name of the caller. Default is true (enabled) </summary>
+	public			bool			LogCallerSource				= true;
+	
+	/// <summary>Enable the logging of method name of the caller. Default is true (enabled) </summary>
+	public			bool			LogCallerMethod				= true;
 	
 	/// <summary>Enable the logging of the date. Default is false (disabled) </summary>
 	public			bool			LogDate						= false;

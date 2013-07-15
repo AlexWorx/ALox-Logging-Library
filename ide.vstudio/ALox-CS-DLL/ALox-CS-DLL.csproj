@@ -152,8 +152,14 @@
     <None Include="..\..\src\docs\ALox.CS\VStudioSetup_CS.dox">
       <Link>docs\ALox.CS\VStudioSetup_CS.dox</Link>
     </None>
+    <None Include="..\..\src\docs\ALox.Java\IDE_Setup_Java.dox">
+      <Link>docs\ALox.Java\IDE_Setup_Java.dox</Link>
+    </None>
     <None Include="..\..\src\docs\ALox.Java\MainPage_Java.dox">
       <Link>docs\ALox.Java\MainPage_Java.dox</Link>
+    </None>
+    <None Include="..\..\src\docs\ALox.Java\Tutorial.Java.dox">
+      <Link>docs\ALox.Java\Tutorial.Java.dox</Link>
     </None>
     <None Include="..\..\src\docs\ALox\Changelog.dox">
       <Link>docs\ALox\Changelog.dox</Link>
@@ -219,7 +225,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
-</PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

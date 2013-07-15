@@ -992,6 +992,7 @@ public class MString implements CharSequence
 	 *
 	 * @return  'this' to allow concatenated calls.
 	 **************************************************************************************************/
+	@SuppressWarnings ("null")
 	public MString appendPadLeft( MString ms, int fieldSize, char padChar )
 	{
 		// ensure capacity
@@ -1035,6 +1036,7 @@ public class MString implements CharSequence
 	 *
 	 * @return  'this' to allow concatenated calls.
 	 **************************************************************************************************/
+	@SuppressWarnings ("null") 
 	public MString appendPadLeft( String s, int fieldSize, char padChar )
 	{
 		// ensure capacity
@@ -1078,6 +1080,7 @@ public class MString implements CharSequence
 	 *
 	 * @return  'this' to allow concatenated calls.
 	 **************************************************************************************************/
+	@SuppressWarnings ("null") 
 	public MString appendPadLeft( StringBuffer sb, int fieldSize, char padChar )
 	{
 		// ensure capacity
@@ -1431,6 +1434,7 @@ public class MString implements CharSequence
 		int sPos= 0;
 		while ( pos < cmpEnd )
 		{
+			@SuppressWarnings ("null") 
 			char c1=	s.charAt( sPos );
 			char c2=	buffer[ pos ];
 			if ( ignoreCase )
@@ -1502,6 +1506,7 @@ public class MString implements CharSequence
 			return -1;
 
 		// search
+		@SuppressWarnings ("null") 
 		char firstChar= s.charAt( 0 );		// get first char once, as [] operation is expensive
 		while ( startIdx < length )
 		{
@@ -2089,6 +2094,7 @@ public class MString implements CharSequence
 			startIdx= 0;
 
 		// search
+		@SuppressWarnings ("null") 
 		char firstChar= Character.toLowerCase( sFor.charAt( 0 ) );		// get first char once, as [] operation is expensive
 		while ( startIdx < sInLen )
 		{
@@ -2128,6 +2134,7 @@ public class MString implements CharSequence
 	 *
 	 * @return  true, if given string s starts with given string prefix, false otherwise.
 	 **************************************************************************************************/
+	@SuppressWarnings ("null") 
 	public static boolean startsWithIgnoreCase( CharSequence s, CharSequence prefix )
 	{
 		// check s
@@ -2163,6 +2170,7 @@ public class MString implements CharSequence
 	 *
 	 * @return  true, if given string s ends with given string prefix, false otherwise.
 	 **************************************************************************************************/
+	@SuppressWarnings ("null") 
 	public static boolean endsWithIgnoreCase( CharSequence s, CharSequence postfix )
 	{
 		// check s
