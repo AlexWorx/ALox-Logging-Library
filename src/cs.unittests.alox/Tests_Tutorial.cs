@@ -40,7 +40,9 @@ public void Tut_Hello_ALox()
 {
 	Log.Reset(); 
 	Log.AddLogger( tutLog= new MemoryLogger( "Tutlog" ) );
-	tutLog.RootDomain.SetLevel( Log.DomainLevel.All, false );
+	#if (ALOX_DEBUG || ALOX_REL_LOG)
+		tutLog.RootDomain.SetLevel( Log.DomainLevel.All, false );
+	#endif
 
 
 	//! [Tut_Hello_ALox]
@@ -56,7 +58,9 @@ public void Tut_Hello_ALox()
 	//! [Tut_Hello_ALox_Line3]
 	//! [Tut_Hello_ALox]
 			
-	SaveTutorialOuput( "Tut_Hello_ALox.txt", tutLog.Buffer );
+	#if (ALOX_DEBUG || ALOX_REL_LOG)
+		SaveTutorialOuput( "Tut_Hello_ALox.txt", tutLog.Buffer );
+	#endif
 }
 
 [TestMethod]
@@ -67,7 +71,9 @@ public void Tut_LogLevels()
 {
 	Log.Reset(); 
 	Log.AddLogger( tutLog= new MemoryLogger( "Tutlog"  ) );
-	tutLog.RootDomain.SetLevel( Log.DomainLevel.All, false );
+	#if (ALOX_DEBUG || ALOX_REL_LOG)
+		tutLog.RootDomain.SetLevel( Log.DomainLevel.All, false );
+	#endif
 
 	//! [Tut_LogLevels]
 	Log.AddLogger( new ConsoleLogger( "Console" ) );
@@ -81,7 +87,9 @@ public void Tut_LogLevels()
 	Log.Verbose( "APP",	"Today, I am in the mood to talk..." );
 	//! [Tut_LogLevels]
 
-	SaveTutorialOuput( "Tut_LogLevels.txt", tutLog.Buffer );
+	#if (ALOX_DEBUG || ALOX_REL_LOG)
+		SaveTutorialOuput( "Tut_LogLevels.txt", tutLog.Buffer );
+	#endif
 }
 
 [TestMethod]
@@ -92,7 +100,9 @@ public void Tut_DefaultDomains()
 {
 	Log.Reset(); 
 	Log.AddLogger( tutLog= new MemoryLogger( "Tutlog"  ) );
-	tutLog.RootDomain.SetLevel( Log.DomainLevel.All, false );
+	#if (ALOX_DEBUG || ALOX_REL_LOG)
+		tutLog.RootDomain.SetLevel( Log.DomainLevel.All, false );
+	#endif
 
 	//! [Tut_DefaultDomains]
 	Log.AddLogger( new ConsoleLogger( "Console" ) );
@@ -105,19 +115,25 @@ public void Tut_DefaultDomains()
 	Log.Verbose( "Today, I am in the mood to talk..." );
 	//! [Tut_DefaultDomains]
 
-	SaveTutorialOuput( "Tut_DefaultDomains.txt", tutLog.Buffer );
+	#if (ALOX_DEBUG || ALOX_REL_LOG)
+		SaveTutorialOuput( "Tut_DefaultDomains.txt", tutLog.Buffer );
+	#endif
 
 	Log.Reset(); 
 	Log.AddLogger( tutLog= new MemoryLogger( "Tutlog" ));
-	tutLog.RootDomain.SetLevel( Log.DomainLevel.All, false );
+	#if (ALOX_DEBUG || ALOX_REL_LOG)
+		tutLog.RootDomain.SetLevel( Log.DomainLevel.All, false );
+	#endif
 
 	//! [Tut_DefaultDomains_part2]
 	Log.AddLogger( new ConsoleLogger( "Console" ) );
 	Log.Info  ( "APP", "Hallo ALox" );
 	//! [Tut_DefaultDomains_part2]
 
-	tutLog.Buffer.Replace( "Tutlog", "Console" );
-	SaveTutorialOuput( "Tut_DefaultDomains_part2.txt", tutLog.Buffer );
+	#if (ALOX_DEBUG || ALOX_REL_LOG)
+		tutLog.Buffer.Replace( "Tutlog", "Console" );
+		SaveTutorialOuput( "Tut_DefaultDomains_part2.txt", tutLog.Buffer );
+	#endif
 }
 
 public void Tut_Placing()
@@ -205,7 +221,9 @@ public void Tut_Instance()
 
 	//! [Tut_Instance]
 	// Log multi-lines without indent 
-	((TextLogger) Log.GetLogger( "Console" )).MultiLineMsgMode= 4; 
+	#if ALOX_DEBUG
+		((TextLogger) Log.GetLogger( "Console" )).MultiLineMsgMode= 4; 
+	#endif
 
 	// Log current thread instance
 	LogTools.Instance( "MYDOM", Log.Level.Info, Thread.CurrentThread, 2, "Actual Thread: ", 1 );
@@ -304,13 +322,7 @@ public void Tut_SeparatedLogLevels()
 	
 	// switch some log information off with memory logger
 	#if ALOX_DEBUG
-		(Log.GetLogger("Console")).LogCallerMethod= false;
-		MemoryLogger memLogger= (MemoryLogger) Log.GetLogger("Memory");
-		memLogger.LogCallerMethod= 
-		memLogger.LogTimeElapsed= 
-		memLogger.LogTimeDiff= 
-		memLogger.LogLogLevel= 
-		memLogger.LogThreadInfo= false;
+		((MemoryLogger) Log.GetLogger("Memory")).LineFormatter.Format= new MString( "%CF(%CL): %L [%O]: ");
 	#endif
 	
 	// register domains, set DOM as default
@@ -336,7 +348,9 @@ public void Tut_SeparatedLogLevels()
 	
 	// To verify the result, we log the contents of the MemoryLogger to the console logger
 	Log.Info( "~CON", "Here comes the contents of MemoryLogger:");
-	Log.Info( "~CON", memLogger.Buffer.ToString(), 1);
+	#if ALOX_DEBUG
+		Log.Info( "~CON", ((MemoryLogger) Log.GetLogger("Memory")).Buffer.ToString(), 1);
+	#endif
 	//! [Tut_SeparatedLogLevels]
 
 	tutLog.Buffer.Replace( "Tutlog", "Console" );
@@ -380,7 +394,9 @@ public void Tut_LogConfig()
 	//! [Tut_LogConfig]
 
 	//tutLog.Buffer.Replace( "Tutlog", "Console" );
-	SaveTutorialOuput( "Tut_LogConfig.txt", ((MemoryLogger) Log.GetLogger( "Memory" )).Buffer );
+	#if ALOX_DEBUG
+		SaveTutorialOuput( "Tut_LogConfig.txt", ((MemoryLogger) Log.GetLogger( "Memory" )).Buffer );
+	#endif
 #endif
 }
 
@@ -445,16 +461,19 @@ public void Tut_LogConfig2()
 	Log.SetDomain( "~MEM", Log.DomainLevel.All, false, "Memory"  );
 
 	//tutLog.Buffer.Replace( "Tutlog", "Console" );
-	SaveTutorialOuput( "Tut_LogConfig2.txt", ((MemoryLogger) Log.GetLogger( "Console" )).Buffer );
-
+	#if ALOX_DEBUG
+		SaveTutorialOuput( "Tut_LogConfig2.txt", ((MemoryLogger) Log.GetLogger( "Console" )).Buffer );
+	#endif
 
 	//! [Tut_LogConfig3]
 	Log.SetDomain( "ALOX", Log.DomainLevel.All, true, "Console");
 	//! [Tut_LogConfig3]
 
+	#if ALOX_DEBUG
 	//! [Tut_LogConfig4]
 	Log.SetDomain( Log.LOX.InternalDomain, Log.DomainLevel.All, true, "Console");
 	//! [Tut_LogConfig4]
+	#endif
 #endif
 }
 	}

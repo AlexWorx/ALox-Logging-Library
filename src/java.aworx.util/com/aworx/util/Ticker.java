@@ -122,11 +122,10 @@ public class Ticker
 	public static	long		toMillis	( long ticks )	{ return	ticks / 1000000L;	}
 
 	/**********************************************************************************************//**
-	 * <summary>
 	 *  Converts the given system dependent ticks (or time spans in ticks) to microseconds.
-	 * </summary>
-	 * <param name="ticks">	Ticker time (or time spans in ticks) to convert. </param>
-	 * <returns>	Given ticks (span) value in microseconds. </returns>
+	 * 
+	 * @param ticks	Ticker time (or time spans in ticks) to convert.
+	 * @return	Given ticks (span) value in microseconds. </returns>
 	 **************************************************************************************************/
 	public static	long		toMicros	( long ticks )	{ return	ticks /    1000L;	}
 

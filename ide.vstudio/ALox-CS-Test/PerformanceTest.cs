@@ -37,7 +37,7 @@ class PerformanceTest
 	void test()
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
-			cl=	new ConsoleLogger( "Console" ) { TabAfterSourceInfo = 60 };
+			cl=	new ConsoleLogger( "Console" );
 			cl.EnableAppConsole=		true;
 			cl.EnableVSDebugConsole=	false;
 			ml= new MemoryLogger( "Memory");
@@ -61,7 +61,7 @@ class PerformanceTest
 
 		MString	msgBuf=		new MString( );
 		long	fastest=	long.MaxValue;
-		for ( int i= 0 ; i < 200 ; i++ )
+		for ( int i= 0 ; i < 100000 ; i++ )
 		{
 			#if ALOX_DEBUG || ALOX_REL_LOG
 				ml.Buffer.Clear();
@@ -72,9 +72,11 @@ class PerformanceTest
 			t= Ticker.Now() - t;
 
 			if ( fastest > t )
+			{
 				fastest= t;
-
-			Log.Line( Log.Level.Info, msgBuf.Clear().Append( "Pass " ).Append( i, 3).Append( " finished") );
+				Log.Line( Log.Level.Info, msgBuf.Clear().Append( "Pass " ).Append( i, 3).Append( " is new fastest:  ")
+														.Append( (int) Ticker.ToMillis( fastest ), 0).Append( " millis (").Append( (int) fastest ).Append( " ticks) per 1000 logs.") );
+			}
 		}
 
 		Log.Line( Log.Level.Info, msgBuf.Clear().Append( "Fastest " ).Append( (int) Ticker.ToMillis( fastest ), 0).Append( " millis (").Append( (int) fastest ).Append( " ticks) per 1000 logs.") );

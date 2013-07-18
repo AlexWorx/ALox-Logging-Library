@@ -55,6 +55,8 @@ public class Lox
 	/** <summary>	The version of ALox. </summary> */
 	public  static readonly	String		Version					="1.1.0";
 
+	#if ALOX_DEBUG || ALOX_REL_LOG
+
 	/** 
 	 * <summary>
 	 *  A counter for the quantity of calls. The count includes logs that were suppressed by disabled
@@ -100,9 +102,6 @@ public class Lox
 		 */
 		public 	Dictionary<int, String>	ThreadDictionary	=new Dictionary<int, String>();
 	#endif
-
-
-	#if ALOX_DEBUG || ALOX_REL_LOG
 
 		// #################################################################################################
 		// Private/protected fields
@@ -156,7 +155,8 @@ public class Lox
 			} finally { Lock.Release(); } 
 		}
 
-	#endif
+	#endif //ALOX_DEBUG || ALOX_REL_LOG
+
 
 
 	// #################################################################################################
@@ -539,8 +539,7 @@ public class Lox
 
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
-			#if ALOX_NO_THREADS
-			#else
+			#if !ALOX_NO_THREADS
 				try { Lock.Aquire();
 
 					// get current thread id

@@ -22,69 +22,50 @@ import com.aworx.lox.Log;
  **************************************************************************************************/
 public class AndroidLogCatLogger extends TextLogger
 {
-	// #################################################################################################
-	// fields
-	// #################################################################################################
-	
 	/** The log tag that is passed to LogCat. If this is set to null, the ALox domain name
-		is passed instead. The advantage of having one fixed LogCat tag value for all ALox messages is that 
-		you can filter that tag within your IDE's LogCat view to see exclusively ALox messages. 
+		is passed instead. The advantage of having one fixed LogCat tag value for all ALox messages is 
+		that you can filter that tag within your IDE's LogCat view to see exclusively ALox messages. 
 		On the other hand, if the ALox domain name is used as the LogCat category, than you can use the 
 		LogCat view to filter ALox messages.
-		Default value is "ALox". If you set this to null to switch to the other mode, be sure to set 
-		field LogDomainName to false, to disable duplicate domain name output. */
+		Default value is "ALox". If you set this to null to switch to the other mode, you might want 
+		to also change the format string to NOT redundantly include the domain name, which then is 
+		presented by LogCat (e.g. "at (%CF) %CM():%A3[%TE +%TI]: ".
+	*/  
 	public		String			logTag								= "ALox";
 	
-	/** Tab position after caller info. This auto adjusts (increases) when longer source info occurs. To
-	*   avoid increases in the beginning, this value can be set upfront (after the logger was created) */
-	public		int				tabAfterCallerInfo					= 0;
-
-	/** Tab position before the caller name. This auto adjusts (increases) when longer source info occurs. To
-	*   avoid increases in the beginning, this value can be set upfront (after the logger was created) */
-	public		int				tabBeforeCallerName				=0;
-
 	/** Flag to indicate whether ALox Log.Level.Verbose should be logged using android.util.Log.d
 		or android.util.Log.v. Defaults to true, hence LogCat debug messages are used.   */
 	public		boolean			verboseIsDebug						= true;
 
-	// #################################################################################################
-	// internal fields
-	// #################################################################################################
-
 	/** A temporary buffer for assembling the caller info string*/
 	protected	MString			consoleBuffer					=new MString(256);
 
-	// #################################################################################################
+
+	// ################################################################################################
 	// Constructors
-	// #################################################################################################
+	// ################################################################################################
+		
+	/**
+	 *  Creates an AndroidLogCatLogger with the given name.
+	 * 	@param name		The name of the logger.
+	 */
+	public AndroidLogCatLogger(	String	name )	{	super( name );		constructor(); }
 
+	/** Creates an AndroidLogCatLogger with name "LOGCAT".*/
+	public AndroidLogCatLogger()				{	super( "LOGCAT" );	constructor(); }
 
-	/**********************************************************************************************//**
-	 *  Creates an AndroidLogCatLogger with the given name. 
-     * @param name  The name of the logger, defaults to "LOGCAT".
-	 **************************************************************************************************/
-	public AndroidLogCatLogger(	String	name )
+	/** Sets the format string to be right for LogCat. Also sets the root domain level (the default level)
+	 *  for unknown domains) to ALL */
+	public void constructor()
 	{
-		super( name );
-		
-		//LogDomainName=
-		logDate=
-		logLogLevel=
-		logThreadInfo=		 false;
-		
+		// disable redundant info (LogCat logs this already) and have an "at " before the file name
+		// to enable "clickable" LogCat lines
+		lineFormatter.format	= new MString( "at (%CF) %CM():%A3[%TE +%TI][%O]: ");
+	
 		// set default domain level to all: As a app console logger/IDE logger we want to fetch all we can
 		rootDomain.setLevel( Log.DomainLevel.ALL, false );
 	}
 	
-	/**********************************************************************************************//**
-	 *  Creates an AndroidLogCatLogger with name "LOGCAT". 
-	 **************************************************************************************************/
-	public AndroidLogCatLogger( )	{	super( "LOGCAT" );	}
-
-
-	// #################################################################################################
-	// Abstract interface implementation
-	// #################################################################################################
 
 	/**********************************************************************************************//**
 	 *  The implementation of the abstract method of parent class TextLogger. Logs messages to 
@@ -105,55 +86,9 @@ public class AndroidLogCatLogger extends TextLogger
 										MString		msg,		int			indent,
 										CallerInfo	caller, 	int			lineNumber )
 	{
-		MString output;
-		
-		// no caller info given? Just log msg out (used e.g. by TextLogger for multi line messages )
-		if ( caller == null || !( logCallerSource || logCallerMethod || logCallerClass || logCallerPackage ) )
-		{
-			// set output straight to given msg
-			output= msg;
-		}
-		
-		// we cat caller info and the message to our internal buffer 
-		else
-		{
-			// set output to internal buffer
-			output= consoleBuffer;
-			
-			// clear temp buffer
-			output.clear();
-	
-			// append clickable source info
-			if ( logCallerSource )	
-				output.append( "at " ).append( '(' ).append( caller.fileNameAndLineNumber).append( ')' );
-
-			// append package/class/method info
-			if( logCallerMethod || logCallerClass || logCallerPackage )
-			{
-				// jump to next tab level
-				output.append( ' ' );
-				if ( tabBeforeCallerName < output.length )
-					tabBeforeCallerName= output.length; // add some extra space to avoid to many increases
-				output.append( ' ', tabBeforeCallerName - output.length  );
-
-				if ( logCallerPackage )	output				.append( caller.packageName ).append( '.' );
-				if ( logCallerClass   )	output				.append( caller.className   );	
-				if ( logCallerMethod  )	output.append( '.' ).append( caller.methodName  ).append( '(' ).append( ')' );
-			}
-			
-			if ( tabAfterCallerInfo <= output.length )
-				tabAfterCallerInfo= output.length + 3; // add some extra space to avoid to many increases
-			output.append( ' ', tabAfterCallerInfo - output.length  );
-		
-		
-			// append message
-			consoleBuffer.append( msg );
-		}
-		
-
 		// log it out
 		String logCat=		logTag == null ? domain.toString() : logTag;
-		String logCatMsg=	output.toString();
+		String logCatMsg=	msg.toString();
 			 if ( level == Log.Level.ERROR )		{	android.util.Log.e( logCat, logCatMsg );	} 
 		else if ( level == Log.Level.WARNING )		{	android.util.Log.w( logCat, logCatMsg );	} 
 		else if ( level == Log.Level.INFO )			{	android.util.Log.i( logCat, logCatMsg );	} 

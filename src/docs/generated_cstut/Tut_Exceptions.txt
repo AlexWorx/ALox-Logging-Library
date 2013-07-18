@@ -1,12 +1,12 @@
-src\cs.unittests.alox\Tests_Tutorial.cs(246):.Tut_Exception()     [00:00.000  +048 µs] [T:(10)] [WRN] [MYDOM]: >> Logging an exception: 
-src\cs.unittests.alox\Tests_Tutorial.cs(246):.Tut_Exception()                                                  >>   Type:       System.Exception
-src\cs.unittests.alox\Tests_Tutorial.cs(246):.Tut_Exception()                                                  >>   Message:    TestException Message
-src\cs.unittests.alox\Tests_Tutorial.cs(246):.Tut_Exception()                                                  >>   HResult:    0x80131500
-src\cs.unittests.alox\Tests_Tutorial.cs(246):.Tut_Exception()                                                  >>   Inner:   
-src\cs.unittests.alox\Tests_Tutorial.cs(246):.Tut_Exception()                                                  >>     Type:       System.Exception
-src\cs.unittests.alox\Tests_Tutorial.cs(246):.Tut_Exception()                                                  >>     Message:    InnerException Message
-src\cs.unittests.alox\Tests_Tutorial.cs(246):.Tut_Exception()                                                  >>     HResult:    0x80131500
-src\cs.unittests.alox\Tests_Tutorial.cs(246):.Tut_Exception()                                                  >>     Inner:   
-src\cs.unittests.alox\Tests_Tutorial.cs(246):.Tut_Exception()                                                  >>       Type:       System.Exception
-src\cs.unittests.alox\Tests_Tutorial.cs(246):.Tut_Exception()                                                  >>       Message:    Inner, inner Exception
-src\cs.unittests.alox\Tests_Tutorial.cs(246):.Tut_Exception()                                                  >>       HResult:    0x80131500
+src\cs.unittests.alox\Tests_Tutorial.cs(246):Tut_Exception() [00:00.000 +040 µs] [10] [WRN] [MYDOM]: >> Logging an exception: 
+                                                                                                     >>   Type:       System.Exception
+                                                                                                     >>   Message:    TestException Message
+                                                                                                     >>   HResult:    0x80131500
+                                                                                                     >>   Inner:   
+                                                                                                     >>     Type:       System.Exception
+                                                                                                     >>     Message:    InnerException Message
+                                                                                                     >>     HResult:    0x80131500
+                                                                                                     >>     Inner:   
+                                                                                                     >>       Type:       System.Exception
+                                                                                                     >>       Message:    Inner, inner Exception
+                                                                                                     >>       HResult:    0x80131500

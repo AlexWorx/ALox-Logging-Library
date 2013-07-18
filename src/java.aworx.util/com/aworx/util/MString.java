@@ -213,10 +213,10 @@ public class MString implements CharSequence
 	public MString( String s) 
 	{
 		// check null argument
-		if ( s == null )
+		if ( MString.isNullOrEmpty( s )  )
 		{
 			// create Buffer
-			buffer=	new char[1024];
+			buffer=	new char[0];
 			clear();
 			return;
 		}
@@ -238,10 +238,10 @@ public class MString implements CharSequence
 	public MString( String s, int startIdx) 
 	{
 		// check null argument
-		if ( s == null )
+		if ( MString.isNullOrEmpty( s ) )
 		{
 			// create Buffer
-			buffer=	new char[1024];
+			buffer=	new char[0];
 			clear();
 			return;
 		}
@@ -251,7 +251,7 @@ public class MString implements CharSequence
 		if (len <= 0)
 		{
 			len= 0;
-			buffer=	new char[ 1024 ];
+			buffer=	new char[ 0 ];
 			clear();
 			return;
 		}
@@ -275,10 +275,10 @@ public class MString implements CharSequence
 	public MString( String s, int startIdx, int len) 
 	{
 		// check null argument
-		if ( s == null )
+		if ( MString.isNullOrEmpty( s ) )
 		{
 			// create Buffer
-			buffer=	new char[1024];
+			buffer=	new char[0];
 			clear();
 			return;
 		}
@@ -287,14 +287,15 @@ public class MString implements CharSequence
 		if (len <= 0)
 		{
 			len= 0;
-			buffer=	new char[ 1024 ];
+			buffer=	new char[ 0 ];
 		}
 		else
 		{
 			if ( len == Integer.MAX_VALUE )
 				len= s.length() - startIdx;
 
-			buffer=	new char[ (len > 0)  ? len : 1024  ];
+			buffer=	new char[ (len > 0)  ? len : 0  ]; // TODO: is it allowed to initialize wiht 0 lenght? Check also other constructors. add unit tests,
+// Then, change this in C#!			
 		}
 		clear();
 

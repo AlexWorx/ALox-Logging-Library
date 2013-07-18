@@ -12,9 +12,7 @@
 This chapter answers a list of questions in a "HowTO" documentation style.
 
 - \subpage man_filtering_loggers  (not written yet)
-- \subpage man_textlogger (not written yet)
 - \subpage man_source_code_prefix (not written yet)
-- \subpage man_custom_loggers (not written yet)
 - \subpage man_release_logging (not written yet)
 
 */

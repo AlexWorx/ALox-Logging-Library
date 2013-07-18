@@ -9,9 +9,6 @@ import org.junit.Test;
 
 
 
-
-
-
 //! [Tut_using_statement]
 import com.aworx.lox.*;
 import com.aworx.lox.loggers.*;
@@ -38,9 +35,7 @@ class MyClass
 		
 
 /** ***********************************************************************************************
-* <summary>
 *  Implements the tutorial code that with snippets markers for doxygen inclusion.
-* </summary>
 **************************************************************************************************/
 public class Tests_Tutorial
 {
@@ -296,11 +291,7 @@ public void Tut_SeparatedLogLevels()
 	Log.addLogger( new MemoryLogger ( "Memory" ) );
 	
 	// switch some log information off with memory logger
-	MemoryLogger memLogger= (MemoryLogger) Log.getLogger("Memory");
-	memLogger.logTimeElapsed= 
-	memLogger.logTimeDiff= 
-	memLogger.logLogLevel= 
-	memLogger.logThreadInfo=	false;
+	((MemoryLogger) Log.getLogger("Memory")).lineFormatter.format= new MString( "%CF(%CL): %L [%O]: ");
 	
 	// register domains, set DOM as default
 	Log.regDomain( "DOM",     Log.Scope.METHOD );
@@ -325,7 +316,7 @@ public void Tut_SeparatedLogLevels()
 	
 	// To verify the result, we log the contents of the MemoryLogger to the console logger
 	Log.info( "~CON", "Here comes the contents of MemoryLogger:");
-	Log.info( "~CON", memLogger.buffer.toString(), 1);
+	Log.info( "~CON", ((MemoryLogger) Log.getLogger("Memory")).buffer.toString(), 1);
 	//! [Tut_SeparatedLogLevels]
 
 	tutLog.buffer.replace( "Tutlog", "Console" );

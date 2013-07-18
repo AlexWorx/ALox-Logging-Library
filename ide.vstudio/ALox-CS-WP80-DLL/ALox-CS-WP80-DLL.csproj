@@ -95,6 +95,12 @@
     <Compile Include="..\..\src\cs.alox\core\TextLogger.cs">
       <Link>src\core\TextLogger.cs</Link>
     </Compile>
+    <Compile Include="..\..\src\cs.alox\core\TextLoggerLineFormatter.cs">
+      <Link>src\core\TextLoggerLineFormatter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.alox\core\TextLoggerObjectConverter.cs">
+      <Link>src\core\TextLoggerObjectConverter.cs</Link>
+    </Compile>
     <Compile Include="..\..\src\cs.alox\Log.cs">
       <Link>src\Log.cs</Link>
     </Compile>

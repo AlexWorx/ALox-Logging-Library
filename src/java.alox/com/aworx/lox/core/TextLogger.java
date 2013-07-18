@@ -1,21 +1,24 @@
 package com.aworx.lox.core;
 
-import java.text.FieldPosition;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Locale;
 
 import com.aworx.lox.Log;
 import com.aworx.util.MString;
-import com.aworx.util.Ticker;
 
 /**********************************************************************************************//**
- * This class is a still abstract implementation of class Logger. All message objects passed to
- * doLog are translated to MStrings and passed to the abstract function doTextLog().
- * Furthermore, various textual representations of other log attributes are generated.
+ * This class is a still abstract implementation of class Logger which is used as the super class
+ * for all textual Logger implementations within ALox, e.g. ConsoleLogger. 
+ * 
+ * The class uses two helper classes. One to convert the log message object into a string representation
+ * and a second to generate the textual representation of the meta information of a log call. 
+ * These helpers can be extended and replaced to modify the behavior of TextLogger. 
+ * 
+ * The final log message is then passed to the abstract method #doTextLog(). Hence, custom Logger classes
+ * that inherited from this class instead of directly from class #Logger, need to implement #doTextLog()
+ * instead of implementing #doLog()!
+ * 
+ * Class TextLogger supports multi line log outputs. Such multi line log outputs can be configured to
+ * be logged in different ways. See #multiLineMsgMode for more information.
  **************************************************************************************************/
 public abstract class TextLogger extends Logger
 {
@@ -31,186 +34,78 @@ public abstract class TextLogger extends Logger
 	//#else
 
 	/**
+	 * A helper object to convert log objects into textual representations. To extend TextLogger, this
+	 * object can be replaced by custom implementations. 
+	 */
+	public			TextLoggerObjectConverter	objectConverter		= new TextLoggerObjectConverter();
+
+	/**
+	 * A helper object to format log objects into textual representations. This class incorporates
+	 * a format string that defines the meta information in the log output. Furthermore, to extend 
+	 * TextLogger, this object can be replaced by custom implementations of it.  
+	 */
+	public			TextLoggerLineFormatter		lineFormatter		= new TextLoggerLineFormatter();
+
+
+	/**
 	 * A list of pairs of strings. Within each log message, the first string of a pair is 
 	 *  searched and replaced by the second string. Very simple, but useful in some cases.
 	 */
-	public			ArrayList<String>	replacements				= new ArrayList<String>();
+	public			ArrayList<String>			replacements		= new ArrayList<String>();
 
 	/**
 	 * Determines if multi line messages should be split into different log lines. Possible values are: 
-	 * 0: No line split is performed, delimiters can be replaced by readable delimiters (depending on 
-	 * setting of #multiLineDelimiter and #multiLineDelimiterRepl). 
 	 * 
-	 * 1: Each log line contains all meta information  
+	 * - 0: No line split is performed. Delimiters can be replaced by readable delimiters (depending on 
+	 *   setting of #multiLineDelimiter and #multiLineDelimiterRepl). 
 	 * 
-	 * 2: Starting with second log line, meta information is replaced by blanks  (default)  
-	 *  
+	 * - 1: Each log line contains all meta information  
 	 * 
-	 * 3: The headline #fmtMultiLineMsgHeadline is logged and all lines are logged right after the caller info (no meta information)  
+	 * - 2: Starting with second log line, meta information is replaced by blanks  (default)  
 	 * 
-	 * 4: The headline #fmtMultiLineMsgHeadline is logged and all lines get tabbed to zero (no caller info and no meta information)
+	 * - 3: The headline #fmtMultiLineMsgHeadline is logged and all lines of the multi line text are logged
+	 *      at postion zero (without further meta information)  
+	 * 
+	 * - 4: Just the multi line text is logged, starting at column zero (no meta information is logged)
 	 */
-	public			int				multiLineMsgMode			= 2;
+	public			int							multiLineMsgMode			= 2;
 
 	/**
 	 * This is the string interpreted as line delimiter within log messages. If null, CR, LF or CRLF
-	 * are used. Important: Set to empty string, to stop multi line processing of TextLogger
+	 * are used.  Important: Set to empty string, to stop any multi line processing of TextLogger, even the replacements.
 	 */
-	public			String			multiLineDelimiter			= null;
+	public			String						multiLineDelimiter			= null;
 
 	/** 
 	 * This is the readable (!) separator string, for logging out multi line messages into a 
 	 * single line (#multiLineMsgMode==0).
 	 */
-	public			String			multiLineDelimiterRepl		= "\\r";
+	public			String						multiLineDelimiterRepl		= "\\r";
 	
 
-
-	// #################################################################################################
-	// __FormatStrings__
-	// #################################################################################################
-
-	/** Logged when parameter msg of dLog() is null. */
-	public 			String			fmtNullObject				="<null>";
-
-	/** Prefix for the log message. */
-	public			String			fmtMessagePrefix			= ": ";
-
-	/** <summary>The character(s) used for indentation. */ 
-	public			String			fmtIndentString				= "  ";
-
-	/** The output for the log level "Error". */
-	public			String			fmtLogLevelError			= " [ERR]";
-
-	/** The output for the log level "Warning". */
-	public			String			fmtLogLevelWarning			= " [WRN]";
-
-	/** The output for the log level "Info". */
-	public			String			fmtLogLevelInfo				= "      ";
-
-	/** The output for the log level "Verbose". */
-	public			String			fmtLogLevelVerbose			= " [***]";
-
 	/** Headline for multi line messages (depending on #multiLineMsgMode)  . */
-	public			String			fmtMultiLineMsgHeadline		= "ALox: Multi line message follows: ";
+	public			String						fmtMultiLineMsgHeadline		= "ALox: Multi line message follows: ";
 
 	/** 
 	 *  Prefix for multi line messages. This is also used if multi line messages logging is switched off
 	 *  (MultiLineMsgMode == 0) but replacing of a set MultiLineDelimiter takes place.
 	 */
-	public			String			fmtMultiLinePrefix			= ">> ";
+	public			String						fmtMultiLinePrefix			= ">> ";
 
 	/**
 	 *  Postfix for multi line messages. This is also used if multi line messages logging is switched off
 	 *  (MultiLineMsgMode == 0) but replacing of a set MultiLineDelimiter takes place.
 	 */
-	public			String			fmtMultiLinePostfix			= null;
+	public			String						fmtMultiLinePostfix			= null;
 
-	/** Prefix for log date outputs. */
-	public			String			fmtDatePrefix				= "[";
-	/** Format string for the output of the log date. For more information, see 
-	///  "Standard Date and Time Format Strings" in .NET StringBuilder.AppendFormat() */
-	public			String			fmtDate						= "yyyy-MM-dd";
-	/** Postfix for log date outputs. */
-	public			String			fmtDatePostfix				= "] ";
-
-	/** Prefix for time of day outputs. */
-	public			String			fmtTimeOfDayPrefix			= "[";
-	/** Format string for the output of the time of day. For more information, see 
-	///  "Standard Date and Time Format Strings" in .NET StringBuilder.AppendFormat() */
-	public			String			fmtTimeOfDay				= "HH:mm:ss";
-	/** Postfix for time of day outputs. */
-	public			String			fmtTimeOfDayPostfix			= "] ";
-
-
-	/** Prefix for time elapsed since logging start (or reset) outputs. */
-	public			String			fmtTimeElapsedPrefix		= "[";
-	/** Postfix for time elapsed since logging start (or reset) outputs. */
-	public			String			fmtTimeElapsedPostfix		= " ";
-	/** The word "Days" the out put of time elapsed (if longer than a day). */
-	public			String			fmtTimeElapsedDays			= " Days ";
-
-	/** Prefix for time difference outputs. */
-	public			String			fmtTimeDiffPrefix			= " +";
-	/** Postfix for time difference outputs. */
-	public			String			fmtTimeDiffPostfix			= "]";
-	/** Entity microseconds for time difference outputs below 1000 microseconds. */
-	public			String			fmtTimeDiffMicros			= " \u00B5s"; //" µs";
-	/** Entity milliseconds for time difference outputs below 1000 milliseconds. */
-	public			String			fmtTimeDiffMillis			= " ms";
-	/** Format for time difference outputs between 10s and 99.9s. */
-	public			String			fmtTimeDiffSecs				= " s";
-	/** Format for time difference outputs between 100s and 60 min. */
-	public			String			fmtTimeDiffMins				= " m";
-	/** Format for time difference outputs between 1h and 24h. */
-	public			String			fmtTimeDiffHours			= " h";
-	/** Format for time difference outputs of more than a day. */
-	public			String			fmtTimeDiffDays				= " days";
-
-	/** Prefix for the domain. */
-	public			String			fmtDomainPrefix				= " [";
-
-	/** Postfix for the domain. */
-	public			String			fmtDomainPostfix			= "]";
-
-	/** Prefix for the thread name. */
-	public			String			fmtThreadPrefix				= " [T:";
-
-	/** Postfix for the domain. */
-	public			String			fmtThreadPostfix			= "]";
 	
-	/** Prefix for the log number. */
-	public			String			fmtLogNumberPrefix			= " ";
-
-	/** Postfix for the log number. */
-	public			String			fmtLogNumberPostfix			= "";
-	
-	/** Prefix for the domain. */
-	public			int				fmtLogNumberMinDigits		= 3;
-
-
-	/** The maximum length of a thread name logged so far. This 'auto growing' 
-	/// field assures to keep output in nice column format.  */
-	public			int				fmtAutoGrowThreadNameLength= 0;
-
-	/** The maximum length of a domain name logged so far. This 'auto growing' 
-	/// field assures to keep output in nice column format.  */
-	public			int				fmtAutoGrowDomainNameLength= 0;
-
-
 	// #################################################################################################
 	// Internal fields
 	// #################################################################################################
 
-	/**  Buffer to write the msgObject to.  */
-	protected 		MString				msgBuffer					= new MString( 128 );
-
 	/**  The internal log Buffer. */
 	protected		MString				logBuf						= new MString( 256 );
 
-	/**  Internal calendar object to get string representations of dates. */
-	protected		Date	 			callerDateTimeDate			= new Date();
-	
-	/**  Internal calendar object to get string representations of dates. */
-	protected		GregorianCalendar	callerDateTimeCal			= new GregorianCalendar();
-	
-	/**  Internal object to retrieve formatted time of day  */
-	protected		StringBuffer		tempSBuf					= new StringBuffer();
-	
-	/**  Internal object to retrieve formatted log date */
-	protected		SimpleDateFormat	dateFormat;
-
-	/**  Internal object to retrieve formatted time of day  */
-	protected		SimpleDateFormat	timeOfDayFormat;
-
-	/**  Internal singleton to specify a first field in formatted output */
-	protected		FieldPosition		fieldPositionZero			= new FieldPosition( 0 );
-
-	/**  Internal default string to detect default format for optimized format generation */
-	protected 		String				defaultfmtDate				= "yyyy-MM-dd";
-	
-	/**  Internal default string to detect default format for optimized format generation */
-	protected 		String				defaultfmtTimeOfDay		= "HH:mm:ss";
 
 	// #################################################################################################
 	// Constructor
@@ -270,209 +165,14 @@ public abstract class TextLogger extends Logger
 									Object		msgObject,	int			indent,
 									CallerInfo	caller )
 	{
-		// copy the string into our internal Buffer
-		MString msg= 	msgBuffer;
-		msg.clear();
-
-			 if ( msgObject == null )					msg.append( fmtNullObject );
-		else if ( msgObject instanceof String ) 		msg.append( (String) 		msgObject );
-		else if ( msgObject instanceof MString )		msg= 	   (MString) 		msgObject;			// reassign
-		else if ( msgObject instanceof StringBuilder )	msg.append( (StringBuilder)	msgObject );
-		else if ( msgObject instanceof StringBuffer )	msg.append( (StringBuffer)	msgObject );
-		else if ( msgObject instanceof CharSequence )	msg.append( (CharSequence)	msgObject );
-		else 											msg.append( msgObject.toString());
-
-		// clear Buffer
+		// clear Buffer and reset utility members
 		logBuf.clear();
 
-		// Log actual date or time of day?
-		if ( logDate || logTimeOfDay )
-		{
-			boolean calInstanceSet=  false;
-			boolean dateInstanceSet= false;
-			
-			// log date (default off)
-			if ( logDate )
-			{
-			
-				logBuf.append( fmtDatePrefix );
-
-					// avoid the allocation of a) a StringBuilder (yes, a string builder is allocated inside StringBuilder.AppendFormat!) 
-					// and b) a DateTime object, if the format is the unchanged standard. And it is faster anyhow.
-					if ( fmtDate.equals( defaultfmtDate ) )
-					{
-						// set time in calendar object
-						caller.timeStamp.toJavaCalendar( callerDateTimeCal );
-						calInstanceSet= true;
-						
-						// append date 'manually'
-						logBuf	.append( callerDateTimeCal.get( Calendar.YEAR  )		, 4 ).append( '-' )
-								.append( callerDateTimeCal.get( Calendar.MONTH )		, 2 ).append( '-' )
-								.append( callerDateTimeCal.get( Calendar.DAY_OF_MONTH ) , 2 );
-					}
-
-					// support user defined standards
-					else
-					{
-						// set time in date object
-						caller.timeStamp.toJavaDate( callerDateTimeDate );
-						dateInstanceSet= true;
-						
-						// create date formatter once
-						if ( dateFormat == null )
-							dateFormat= new SimpleDateFormat( fmtDate, Locale.US );
-						
-						// get date string from system and append to log buffer
-						tempSBuf.setLength( 0 );
-						dateFormat.format( callerDateTimeDate, tempSBuf, fieldPositionZero );
-						logBuf.append( tempSBuf );
-						
-					}
-
-				logBuf.append( fmtDatePostfix );
-			}
-
-			// log time	of day (default off)
-			if ( logTimeOfDay )
-			{
-				logBuf.append( fmtTimeOfDayPrefix);
-
-					// avoid the allocation of a) a StringBuilder (yes, a string builder is allocated inside StringBuilder.AppendFormat!) 
-					// and b) a DateTime object, if the format is the unchanged standard. And it is faster anyhow.
-					if ( fmtTimeOfDay.equals( defaultfmtTimeOfDay ) )
-					{
-						// set time in calendar object
-						if ( ! calInstanceSet )
-							caller.timeStamp.toJavaCalendar( callerDateTimeCal );
-						
-						logBuf	.append( callerDateTimeCal.get( Calendar.HOUR_OF_DAY ),	2 ).append( ':' )
-								.append( callerDateTimeCal.get( Calendar.MINUTE ),		2 ).append( ':' )
-								.append( callerDateTimeCal.get( Calendar.SECOND ),		2 );
-					}
-
-					// support user defined standards
-					else
-					{
-						// set time in date object
-						if ( ! dateInstanceSet )
-							caller.timeStamp.toJavaDate( callerDateTimeDate );
-						
-						if ( timeOfDayFormat == null )
-							timeOfDayFormat= new SimpleDateFormat( fmtTimeOfDay, Locale.US );
-						
-						tempSBuf.setLength( 0 );
-						timeOfDayFormat.format( callerDateTimeDate, tempSBuf, fieldPositionZero );
-					
-						logBuf.append( tempSBuf );
-					}
-
-				logBuf.append( fmtTimeOfDayPostfix);
-			}
-		}
+		// process log line format 
+		lineFormatter.writeMetaInfo( this, logBuf, domain, level, indent, caller );
 		
-		// log time	elapsed since logging started (or reset)
-		if ( logTimeElapsed )
-		{
-			// create TimeSpan object (on the stack by using new! :)
-			long elapsedMillis=		Ticker.toMillis( caller.timeStamp.get() - timeOfCreation.get() );
-			long elapsedSecs=		elapsedMillis	/ 1000;
-			elapsedMillis=			elapsedMillis   % 1000;
-			
-			
-			logBuf.append( fmtTimeElapsedPrefix );
-			
-				// days?
-				int	elapsedDays= 	(int) (elapsedSecs 	/ (60 * 60 * 24 ) );
-				if ( elapsedDays > 0 )
-				{
-					logBuf	.append( elapsedDays ).append( fmtTimeElapsedDays );
-					elapsedSecs-= 	((long)elapsedDays) * (60 * 60 * 24);
-				}
-				
-				// hours
-				int elapsedHours=	(int) (elapsedSecs 	/ (60 * 60) );  
-				if ( elapsedHours > 0 )
-				{
-					logBuf	.append( elapsedHours )	.append( ':' );
-					elapsedSecs-= 	((long)elapsedHours) * (60 * 60);
-				}
-	
-				// seconds
-				int eleapsedMins=  (int) (elapsedSecs / 60);
-				elapsedSecs-= 		 (eleapsedMins * 60);
-				logBuf	.append( 		eleapsedMins, 	2).append( ':' )
-						.append( (int) 	elapsedSecs, 	2).append( '.' )
-						.append( (int)	elapsedMillis, 	3);
-
-			logBuf.append( fmtTimeElapsedPostfix );
-
-		}
-
-		// log time difference to last log
-		if ( logTimeDiff )
-		{
-			logTimeDiff( Ticker.toMicros( caller.timeStamp.get() - timeOfLastLog.get() ) );
-		}
-
-		// append thread ID/Name
-		//#if !ALOX_NO_THREADS
-			if ( logThreadInfo )
-			{
-				logBuf.append( fmtThreadPrefix );
-
-					// get name length and store max value
-					if ( fmtAutoGrowThreadNameLength < caller.threadName.length )
-						fmtAutoGrowThreadNameLength = caller.threadName.length;
-
-					// append thread name
-					logBuf.appendPadCenter( caller.threadName, fmtAutoGrowThreadNameLength );
-
-				logBuf.append( fmtThreadPostfix );
-			}
-		//#endif
-
-		// append log level
-		if ( logLogLevel )
-		{
-			logBuf	.append(	level == Log.Level.ERROR	? fmtLogLevelError
-							 :  level == Log.Level.WARNING	? fmtLogLevelWarning
-							 :  level == Log.Level.INFO		? fmtLogLevelInfo
-							 :							  fmtLogLevelVerbose
-							);
-		}
-
-		// append log domain 
-		if ( logDomainName )
-		{
-
-			// save the maximum length of any domain name
-			if ( fmtAutoGrowDomainNameLength < domain.length() )
-				fmtAutoGrowDomainNameLength= domain.length();
-
-
-			// If no domain logged yet and domain name is empty, we omit it 
-			if ( fmtAutoGrowDomainNameLength != 0 || ! MString.isNullOrEmpty( domain ) )
-			{
-				logBuf	.append( fmtDomainPrefix )
-						.appendPadCenter( domain, fmtAutoGrowDomainNameLength )
-						.append( fmtDomainPostfix );
-			}
-		}
-
-		// log line number 
-		if ( logLogCounter )
-		{
-			logBuf	.append( fmtLogNumberPrefix )
-					.append( cntLogs, fmtLogNumberMinDigits )
-					.append( fmtLogNumberPostfix );
-		}
-
-		// append message prefix
-		logBuf.append( fmtMessagePrefix );
-
-		// add indent spaces
-		for (int i= indent; i > 0 ; i--) 
-			logBuf.append( fmtIndentString );
+		// convert msg object into a MString representation
+		MString msg=  objectConverter.convertObject( msgObject );
 
 		// replace strings in message
 		for ( int i= 0 ; i < replacements.size() -1 ; i+= 2 )
@@ -575,8 +275,11 @@ public abstract class TextLogger extends Logger
 			if ( lineNo == 0 && (multiLineMsgMode == 3 || multiLineMsgMode == 4) )
 			{
 				// log headline
-				logBuf.append( fmtMultiLineMsgHeadline );
-				doTextLog( domain, level, logBuf, indent, caller, 0 );  
+				if ( multiLineMsgMode == 3 )
+				{
+					logBuf.append( fmtMultiLineMsgHeadline );
+					doTextLog( domain, level, logBuf, indent, caller, 0 );
+				}  
 
 				// remember zero as offset 
 				lbLenBeforeMsgPart= 0;
@@ -604,154 +307,6 @@ public abstract class TextLogger extends Logger
 			lineNo++;
 		}
 
-	}
-
-	/**********************************************************************************************//**
-	 * Logs time difference into the log buffer, from micro seconds to days.
-	 *
-	 * @param diffMicros    The difference micros.
-	 **************************************************************************************************/
-	protected void logTimeDiff( long diffMicros )
-	{
-		logBuf.append( fmtTimeDiffPrefix );
-
-		// below 1000 microseconds?
-		if ( diffMicros < 1000 )
-			logBuf.append( (int) diffMicros, 3 ).append( fmtTimeDiffMicros );
-		else
-		{
-			// below 1000 ms?
-			if ( diffMicros < 1000000 )
-				logBuf.append( (int) (diffMicros / 1000), 3 ).append( fmtTimeDiffMillis );
-				
-				
-			// below 10 secs (rounded) ? 
-			else if ( diffMicros < 9995000 )
-			{
-				// convert to hundredth of secs
-				long hundredthSecs=  ((diffMicros / 1000) + 5) / 10;
-
-				// print two digits after dot x.xx 
-				logBuf.append( (int) (hundredthSecs / 100), 1 )
-					  .append( '.' )
-					  .append( (int) (hundredthSecs % 100), 2 )
-					  .append( fmtTimeDiffSecs );
-				}
-
-			else
-			{ 
-				// convert to tenth of secs
-				long tenthSecs=  ((diffMicros / 10000) + 5) / 10 ;
-
-				// below 100 secs ?
-				if ( tenthSecs < 1000 )
-				{
-					// print one digits after dot xx.x (round value by adding 5 hundredth)
-					logBuf.append( (int) ( tenthSecs / 10 ), 2 )
-						  .append( '.' )
-						  .append( (int) ( tenthSecs % 10 ), 1 )
-						  .append( fmtTimeDiffSecs );
-				}
-
-				// 	below 10 mins ?
-				else if ( tenthSecs < 6000 )
-				{
-					// convert to hundredth of minutes
-					long hundredthMins=  tenthSecs / 6;
-
-					// print two digits after dot x.xx 
-					logBuf.append( (int) (hundredthMins / 100), 1 )
-						  .append( '.' )
-						  .append( (int) (hundredthMins % 100), 2 )
-						  .append( fmtTimeDiffMins );
-							  
-				}
-				else 
-				{
-					// convert to tenth of minutes
-					long tenthMins=  tenthSecs / 60;
-				
-					// below 100 mins ?
-					if ( tenthMins < 1000 )
-					{
-						// print one digits after dot xx.x (round value by adding 5 hundredth)
-						logBuf.append( (int) (tenthMins / 10), 2 )
-							  .append( '.' )
-							  .append( (int) (tenthMins % 10), 1 )
-							  .append( fmtTimeDiffMins );
-					}
-					
-					// below ten hours?
-					else if ( tenthMins < 6000 )
-					{
-						// convert to hundredth of hours
-						long hundredthHours=  tenthMins / 6;
-
-						// print two digits after dot x.xx 
-						logBuf.append( (int) (hundredthHours / 100), 1 )
-							  .append( '.' )
-							  .append( (int) (hundredthHours % 100), 2 )
-							  .append( fmtTimeDiffHours );
-							  
-					}
-					else
-					{
-						// convert to tenth of minutes
-						long tenthHours=  tenthMins / 60;
-				
-						// below 10 hours ?
-						if ( tenthHours < 1000 )
-						{
-							// print two digits after dot x.xx 
-							logBuf.append( (int) (tenthHours / 10), 2 )
-								  .append( '.' )
-								  .append( (int) (tenthHours % 10), 1 )
-								  .append( fmtTimeDiffHours );
-								  
-						}
-	
-						// below 100 hours ?
-						else if ( tenthHours < 1000 )
-						{
-							// print one digits after dot xx.x (round value by adding 5 hundredth)
-							logBuf.append( (int) (tenthHours / 10), 2 )
-								  .append( '.' )
-								  .append( (int) ((tenthHours / 10) % 10), 1 )
-								  .append( fmtTimeDiffHours );
-						}
-						
-						else
-						{	
-							// convert to hundredth of days
-							long hundredthDays=  tenthHours * 10 / 24;
-	
-							// below 10 days ?
-							if ( hundredthDays < 1000 )
-							{
-								// print two digits after dot x.xx 
-								logBuf.append( (int) (hundredthDays / 100), 1 )
-									  .append( '.' )
-									  .append( (int) (hundredthDays % 100), 2 )
-									  .append( fmtTimeDiffDays );
-									  
-							}
-		
-							// 10 days or more (print days plus one digit after the comma)
-							else 
-							{
-								// print one digits after dot xx.x (round value by adding 5 hundredth)
-								logBuf.append( (int) (hundredthDays / 100), 2 )
-									  .append( '.' )
-									  .append( (int) ((hundredthDays / 10) % 10), 1 )
-									  .append( fmtTimeDiffDays );
-							}
-						}
-					}
-				}
-			}
-		}
-
-		logBuf.append( fmtTimeDiffPostfix );
 	}
 	
 	//#endif // ALOX_DEBUG || ALOX_REL_LOG

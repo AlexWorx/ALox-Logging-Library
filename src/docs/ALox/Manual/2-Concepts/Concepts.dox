@@ -15,5 +15,6 @@ standard debug log output.
 
 - \subpage man_alox_architecture
 - \subpage man_levelsanddomains
+- \subpage man_loggers
 
 */

@@ -27,20 +27,33 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;ALOX_DEBUG</DefineConstants>
+    <DefineConstants>TRACE;ALOX_REL_LOG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\src\cs.unittests.alox\Tests_Log.cs">
+      <Link>tests.alox\Tests_Log.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.unittests.alox\Tests_Tutorial.cs">
+      <Link>tests.alox\Tests_Tutorial.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.unittests.aworx.util\Test_MString.cs">
+      <Link>tests.aworx.util\Test_MString.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.unittests.aworx.util\Test_ThreadLock.cs">
+      <Link>tests.aworx.util\Test_ThreadLock.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.unittests.aworx.util\Test_TickerAndTickTime.cs">
+      <Link>tests.aworx.util\Test_TickerAndTickTime.cs</Link>
+    </Compile>
     <Compile Include="PerformanceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -52,6 +65,9 @@
       <Project>{e4ff710a-4e99-4dcf-9bbd-efd0fab1e46d}</Project>
       <Name>ALox-CS-DLL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -115,7 +115,7 @@ public static class Log
 	}
 
 
-	#if ALOX_DEBUG || ALOX_REL_LOG
+	#if ALOX_DEBUG
 
 		// #################################################################################################
 		// Public static fields
@@ -181,7 +181,7 @@ public static class Log
 	[Conditional("ALOX_DEBUG")]	
 	public static void Reset()
 	{
-		#if ALOX_DEBUG || ALOX_REL_LOG
+		#if ALOX_DEBUG
 			LOX= new Lox();
 		#endif
 	}
@@ -208,7 +208,7 @@ public static class Log
 								  [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 
 	{
-		#if ALOX_DEBUG || ALOX_REL_LOG
+		#if ALOX_DEBUG 
 			LOX.AddLogger( logger, internalDomainLevel, csf,cln,cmn );
 		#endif
 	}
@@ -224,7 +224,7 @@ public static class Log
 	[Conditional("ALOX_DEBUG")]	
 	public static void RemoveLoggers( String loggerFilter= null )
 	{
-		#if ALOX_DEBUG || ALOX_REL_LOG
+		#if ALOX_DEBUG
 			LOX.RemoveLoggers( loggerFilter );
 		#endif
 	}
@@ -250,7 +250,7 @@ public static class Log
 	public static void SetConsumableSourcePathPrefix( String cspp,	
 									 [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
-		#if ALOX_DEBUG || ALOX_REL_LOG
+		#if ALOX_DEBUG
 			LOX.SetConsumableSourcePathPrefix( cspp, csf,cln,cmn );
 		#endif
 	}
@@ -300,7 +300,7 @@ public static class Log
 	public static void RegDomain( String	domain,	 Log.Scope scope,
 								[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
-		#if ALOX_DEBUG || ALOX_REL_LOG
+		#if ALOX_DEBUG
 			LOX.RegDomain( domain, scope, csf,cln,cmn );
 		#endif
 	}
@@ -336,7 +336,7 @@ public static class Log
 									bool	recursive= true,	String		loggerFilter= null,
 									[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
-		#if ALOX_DEBUG || ALOX_REL_LOG
+		#if ALOX_DEBUG
 			LOX.SetDomain( domain, domainLevel, recursive, loggerFilter, csf,cln,cmn );
 		#endif
 	}
@@ -362,7 +362,7 @@ public static class Log
 	public static void SetDisabled(	bool disabled, String loggerFilter= null,
 									[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
-		#if ALOX_DEBUG || ALOX_REL_LOG
+		#if ALOX_DEBUG
 			LOX.SetDisabled( disabled, loggerFilter, csf,cln,cmn );
 		#endif
 	}
@@ -388,7 +388,7 @@ public static class Log
 	public static void SetStartTime( DateTime? startTime= null, String loggerFilter= null,
 									 [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
-		#if ALOX_DEBUG || ALOX_REL_LOG
+		#if ALOX_DEBUG
 			LOX.SetStartTime( startTime, loggerFilter, csf,cln,cmn );
 		#endif
 	}
@@ -409,7 +409,7 @@ public static class Log
 	public static void MapThreadName( String threadName, int id= -1,
 												 [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
-		#if ALOX_DEBUG || ALOX_REL_LOG
+		#if ALOX_DEBUG
 			LOX.MapThreadName( threadName, id, csf,cln,cmn );
 		#endif
 	}
@@ -437,7 +437,7 @@ public static class Log
 	public static void SetMarker(	Object marker, Log.Scope scope,
 									[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
-		#if ALOX_DEBUG || ALOX_REL_LOG
+		#if ALOX_DEBUG
 			LOX.SetMarker( marker, scope, csf,cln,cmn );
 		#endif
 	}
@@ -468,7 +468,7 @@ public static class Log
 	public static void GetMarker( Object[] markerPointer, Log.Scope scope,
 								  [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
-		#if ALOX_DEBUG || ALOX_REL_LOG
+		#if ALOX_DEBUG
 			LOX.GetMarker( markerPointer, scope, csf,cln,cmn );
 		#endif
 	}
@@ -501,7 +501,7 @@ public static class Log
 									String			loggerFilter= null,
 									[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
-		#if ALOX_DEBUG || ALOX_REL_LOG
+		#if ALOX_DEBUG
 			LOX.LogConfig( domain, level, headLine, loggerFilter, csf,cln,cmn );
 		#endif
 	}
@@ -523,7 +523,7 @@ public static class Log
 	public static void Verbose( Object msg, int indent = 0,
 								[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
-		#if ALOX_DEBUG || ALOX_REL_LOG
+		#if ALOX_DEBUG
 			LOX.Line( true, null, Log.Level.Verbose, msg, indent, null, csf, cln, cmn );
 		#endif
 	}
@@ -548,7 +548,7 @@ public static class Log
 	public static void Verbose( String domain, Object msg, int indent = 0,
 								[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
-		#if ALOX_DEBUG || ALOX_REL_LOG
+		#if ALOX_DEBUG
 			LOX.Line( true, domain, Log.Level.Verbose, msg, indent, null, csf, cln, cmn );
 		#endif
 	}
@@ -570,7 +570,7 @@ public static class Log
 	public static void Info( String msg, int indent = 0,
 							 [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
-		#if ALOX_DEBUG || ALOX_REL_LOG
+		#if ALOX_DEBUG
 			LOX.Line( true,  null, Log.Level.Info, msg, indent, null, csf, cln, cmn );
 		#endif
 	}
@@ -595,7 +595,7 @@ public static class Log
 	public static void Info( String domain, Object msg, int indent = 0,
 							 [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
-		#if ALOX_DEBUG || ALOX_REL_LOG
+		#if ALOX_DEBUG
 			LOX.Line( true, domain, Log.Level.Info, msg, indent, null, csf, cln, cmn );
 		#endif
 	}
@@ -617,7 +617,7 @@ public static class Log
 	public static void Warning( Object msg, int indent = 0,
 								[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
-		#if ALOX_DEBUG || ALOX_REL_LOG
+		#if ALOX_DEBUG
 			LOX.Line( true, null, Log.Level.Warning, msg, indent, null, csf, cln, cmn );
 		#endif
 	}
@@ -641,7 +641,7 @@ public static class Log
 	public static void Warning( String domain, Object msg, int indent = 0,
 								[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
-		#if ALOX_DEBUG || ALOX_REL_LOG
+		#if ALOX_DEBUG
 			LOX.Line( true, domain, Log.Level.Warning, msg, indent, null, csf, cln, cmn );
 		#endif
 	}
@@ -663,7 +663,7 @@ public static class Log
 	public static void Error( Object msg, int indent = 0,
 							  [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
-		#if ALOX_DEBUG || ALOX_REL_LOG
+		#if ALOX_DEBUG
 			LOX.Line( true, null, Log.Level.Error, msg, indent, null, csf, cln, cmn );
 		#endif
 	}
@@ -687,7 +687,7 @@ public static class Log
 	public static void Error( String domain, Object msg, int indent = 0,
 							  [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
-		#if ALOX_DEBUG || ALOX_REL_LOG
+		#if ALOX_DEBUG
 			LOX.Line( true, domain, Log.Level.Error, msg, indent, null, csf, cln, cmn );
 		#endif
 	}
@@ -709,7 +709,7 @@ public static class Log
 	public static void Assert( bool trueOrLog, Object msg, int indent = 0,
 							   [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
-		#if ALOX_DEBUG || ALOX_REL_LOG
+		#if ALOX_DEBUG
 			LOX.Line( !trueOrLog, null, Log.Level.Error, msg, indent, null, csf, cln, cmn );
 		#endif
 	}
@@ -734,7 +734,7 @@ public static class Log
 	public static void Assert( bool trueOrLog, String domain, Object msg, int indent = 0,
 							   [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
-		#if ALOX_DEBUG || ALOX_REL_LOG
+		#if ALOX_DEBUG
 			LOX.Line( !trueOrLog, domain, Log.Level.Error, msg, indent, null, csf, cln, cmn );
 		#endif
 	}
@@ -770,7 +770,7 @@ public static class Log
 	public static void Line( bool doLog, String domain, Level level, Object msgObject, int indent = 0, String loggerFilter = null,
 							[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
-		#if ALOX_DEBUG || ALOX_REL_LOG
+		#if ALOX_DEBUG
 			LOX.Line( doLog, domain, level, msgObject, indent, loggerFilter, csf,cln,cmn );
 		#endif
 	}
@@ -801,7 +801,7 @@ public static class Log
 	public static void Line( String domain, Level level, Object msgObject, int indent = 0, String loggerFilter = null,
 							[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
-		#if ALOX_DEBUG || ALOX_REL_LOG
+		#if ALOX_DEBUG
 			LOX.Line( true, domain, level, msgObject, indent, loggerFilter, csf,cln,cmn );
 		#endif
 	}
@@ -828,7 +828,7 @@ public static class Log
 	public static void Line( Level level, Object msgObject, int indent = 0, String loggerFilter = null,
 							[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
-		#if ALOX_DEBUG || ALOX_REL_LOG
+		#if ALOX_DEBUG
 			LOX.Line( true, null, level, msgObject, indent, loggerFilter, csf,cln,cmn );
 		#endif
 	}

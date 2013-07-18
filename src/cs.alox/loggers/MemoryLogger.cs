@@ -13,7 +13,6 @@ using com.aworx.util;
 
 namespace com.aworx.lox.loggers {
 
-#if ALOX_DEBUG || ALOX_REL_LOG
 
 /** ***********************************************************************************************
  * <summary>
@@ -24,9 +23,11 @@ namespace com.aworx.lox.loggers {
 public class MemoryLogger : TextLogger
 {
 	// #################################################################################################
-	// fields
+	// Empty method stubs for release version (with no release logging)
 	// #################################################################################################
-
+	#if !(ALOX_DEBUG || ALOX_REL_LOG)
+		public MemoryLogger( String name= "CONSOLE" ){}
+	#else
 	/**
 	 * <summary>
 	 *  The logging Buffer. This can be accessed publicly and hence used as you prefer. Especially,
@@ -37,33 +38,6 @@ public class MemoryLogger : TextLogger
 	 */
 	public		MString			Buffer							= new MString( 8192 );
 
-	/// <summary>The prefix for the caller method name </summary>
-	public		String			FormatMemberPrefix				=".";
-
-	/// <summary>The postfix for the caller method name  </summary>
-	public		String			FormatMemberPostfix				="()";
-
-	/**
-	 * <summary>
-	 *  Tab position after caller info. This auto adjusts (increases) when longer source info occurs.
-	 *  To avoid increases in the beginning, this value can be set upfront (after the logger was
-	 *  created)
-	 * </summary>
-	 */
-	public		int				TabAfterSourceInfo				=0;
-
-	// #################################################################################################
-	// internal fields
-	// #################################################################################################
-	/// <summary>Prefix printed before line number.</summary>
-	protected	String			strPrefixLineNumber				="(";
-
-	/// <summary>Prefix printed before line number.</summary>
-	protected	String			strPostfixLineNumber			="):";
-
-	// #################################################################################################
-	// Constructors
-	// #################################################################################################
 
 	/** ***********************************************************************************************
 	 * <summary>	Creates a MemoryLogger with the given name. </summary>
@@ -73,10 +47,6 @@ public class MemoryLogger : TextLogger
 	: base( name )
 	{
 	}
-
-	// #################################################################################################
-	// Abstract interface implementation
-	// #################################################################################################
 
 	/** ***********************************************************************************************
 	 * <summary>
@@ -100,49 +70,11 @@ public class MemoryLogger : TextLogger
 		if ( Buffer.Length > 0 )
 			Buffer.NewLine();
 
-		// build filename/line number in a VStudio clickable format 
-		if ( caller != null && ( LogCallerSource || LogCallerMethod ) )
-		{
-			// get actual length once
-			int oldLength= Buffer.Length;
-
-			// add source file: can we cut the source file name by a prefix?
-			if ( LogCallerSource)
-			{
-				String sfn=		caller.SourceFileName;
-				String cspp=	caller.GetConsumableSourcePathPrefix();
-				if ( sfn.StartsWith( cspp, StringComparison.OrdinalIgnoreCase ) )
-					Buffer.Append( sfn, cspp.Length, caller.SourceFileName.Length - cspp.Length);
-				else
-					Buffer.Append( sfn );
-
-				// add line number
-				Buffer.Append( strPrefixLineNumber )
-						.Append( caller.LineNumber )
-					  .Append( strPostfixLineNumber );
-			}
-
-			// append method name
-			if ( LogCallerMethod )
-			{
-				Buffer.Append( FormatMemberPrefix );
-				Buffer.Append( caller.MethodName );
-				Buffer.Append( FormatMemberPostfix );
-			}
-
-			// jump to next tab level
-			if ( TabAfterSourceInfo < Buffer.Length - oldLength )
-				TabAfterSourceInfo= Buffer.Length - oldLength + 5; // add some extra space to avoid too many increases
-			for ( int i= Buffer.Length - oldLength ; i < TabAfterSourceInfo ; i++ )
-				Buffer.Append( ' ' );
-		}
-
 		// append message 
 		Buffer.Append( msg );
 	}
 
+
+	#endif // ALOX_DEBUG || ALOX_REL_LOG
 }
-
-#endif // ALOX_DEBUG || ALOX_REL_LOG
-
 } // namespace

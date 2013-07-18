@@ -8,7 +8,6 @@ import com.aworx.util.AWXUErrorHandler;
 
 
 /**********************************************************************************************//**
- * <summary>
  *  This class acts as a container for Loggers and provides a convenient interface into them.
  *  Features are:
  *  
@@ -27,8 +26,7 @@ import com.aworx.util.AWXUErrorHandler;
  *  Furthermore, all invocations of methods of Log are pruned in release code, while invocations
  *  of methods of Lox not. Hence, this class and interface should be used in release log 
  *  scenarios. Of course, the use of class Log and Lox can be mixed, to enable debug log output
- *  in parallel to relase output.
- * </summary>
+ *  in parallel to release output.
  **************************************************************************************************/
 public abstract class Log
 {

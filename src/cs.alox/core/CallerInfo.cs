@@ -109,7 +109,12 @@ public class CallerInfo
 			if( threadDictionary.TryGetValue( ThreadID,  out threadName) )
 				ThreadName.Append( threadName );
 			else
-				ThreadName.Append( thread.Name ).Append( '(' ).Append( ThreadID ).Append( ')' );
+			{
+				if ( String.IsNullOrEmpty ( thread.Name ) )
+					ThreadName.Append( ThreadID );
+				else
+					ThreadName.Append( thread.Name ).Append( '(' ).Append( ThreadID ).Append( ')' );
+			}
 		}
 		#endif
 	}

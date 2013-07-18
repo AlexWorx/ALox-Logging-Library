@@ -37,9 +37,11 @@ namespace com.aworx.lox {
  **************************************************************************************************/
 public class LogTools 
 {
-	// #################################################################################################
-	#region  __String_Constants__
-	// #################################################################################################
+	#if ALOX_DEBUG || ALOX_REL_LOG
+	
+		// #################################################################################################
+		#region  __String_Constants__
+		// #################################################################################################
 
 		/// <summary> The String to log out if the exception parameter equals null</summary>
 		public static	String			FmtExcNull						= "<No exception given>";
@@ -87,7 +89,7 @@ public class LogTools
 		/// <summary> Indent String for instance lines</summary>
 		public static	String			FmtInstIndent					= "  ";
 
-	#endregion
+		#endregion
 
 
 		// #################################################################################################
@@ -100,7 +102,6 @@ public class LogTools
 		/// <summary>Tab stop for types when logging instances.</summary>
 		protected	static		int		instTypeTabStop					= 65;
 
-	#if ALOX_DEBUG || ALOX_REL_LOG
 
 		// #################################################################################################
 		// Private/protected fields
@@ -131,7 +132,8 @@ public class LogTools
 		// Public static interface (not accessible in release code)
 		// #################################################################################################
 
-	#endif
+	#endif // ALOX_DEBUG || ALOX_REL_LOG
+
 
 	/** ***********************************************************************************************
 	 * <summary>
@@ -168,9 +170,13 @@ public class LogTools
 				// dump exception to the Buffer
 				exception ( e, headline, -1 );
 
-				// if no lox given, use static Log.LOX
+				// if no lox given, use static Log.LOX or, if debug logging is not active, return
 				if ( lox == null )
-					lox= Log.LOX;
+					#if ALOX_DEBUG 
+						lox= Log.LOX;
+					#else
+						return;
+					#endif
 
 				// log it using the static Log interface
 				lox.Line ( true, domain, level, toolBuf, indent, null, csf, cln, cmn);
@@ -231,9 +237,13 @@ public class LogTools
 		#if ALOX_DEBUG || ALOX_REL_LOG
 			try { Lock.Aquire();
 
-				// if no lox given, use static Log.LOX
+				// if no lox given, use static Log.LOX or, if debug logging is not active, return
 				if ( lox == null )
-					lox= Log.LOX;
+					#if ALOX_DEBUG 
+						lox= Log.LOX;
+					#else
+						return;
+					#endif
 
 				#if !(ALOX_WP71 || ALOX_WP8 || ALOX_NO_REFLECTION)
 
@@ -249,7 +259,7 @@ public class LogTools
 				#endif // NO_REFLECTION
 
 			} finally { Lock.Release(); }
-#endif
+		#endif
 	}
 
 	/** ***********************************************************************************************
@@ -308,9 +318,13 @@ public class LogTools
 					// dump exception to the Buffer
 					xml( xDocument, headLine );
 
-					// if no lox given, use static Log.LOX
+					// if no lox given, use static Log.LOX or, if debug logging is not active, return
 					if ( lox == null )
-						lox= Log.LOX;
+						#if ALOX_DEBUG 
+							lox= Log.LOX;
+						#else
+							return;
+						#endif
 
 					// log it using the static Log interface
 					lox.Line ( true, domain, level, toolBuf, indent, null, csf, cln, cmn );
@@ -380,9 +394,13 @@ public class LogTools
 					// dump exception to the Buffer
 					xmlElement( xElement, headLine, 0 );
 
-					// if no lox given, use static Log.LOX
+					// if no lox given, use static Log.LOX or, if debug logging is not active, return
 					if ( lox == null )
-						lox= Log.LOX;
+						#if ALOX_DEBUG 
+							lox= Log.LOX;
+						#else
+							return;
+						#endif
 
 					// log it using the static Log interface
 					lox.Line ( true, domain, level, toolBuf, indent, null, csf, cln, cmn );
@@ -420,20 +438,20 @@ public class LogTools
 
 	#endif // ALOX_NO_XML
 
-	// #################################################################################################
-	// internals
-	// #################################################################################################
-
-	/** ***********************************************************************************************
-	 * <summary>	Logs an exception. </summary>
-	 * <param name="e">			The exception to log. </param>
-	 * <param name="headline">	An optional headline string preceding the exception. </param>
-	 * <param name="indent">  	The indentation in the output (recursively increased). If set to -1
-	 * 							the 'headline' is logged. </param>
-	 **************************************************************************************************/
 	#if ALOX_DEBUG || ALOX_REL_LOG
-	protected static void exception( Exception e, String headline, int indent )
-	{ 
+		// #################################################################################################
+		// internals
+		// #################################################################################################
+
+		/** ***********************************************************************************************
+		 * <summary>	Logs an exception. </summary>
+		 * <param name="e">			The exception to log. </param>
+		 * <param name="headline">	An optional headline string preceding the exception. </param>
+		 * <param name="indent">  	The indentation in the output (recursively increased). If set to -1
+		 * 							the 'headline' is logged. </param>
+		 **************************************************************************************************/
+		protected static void exception( Exception e, String headline, int indent )
+		{ 
 			// log headline if answer exception
 			if ( indent == -1 )
 			{
@@ -474,22 +492,20 @@ public class LogTools
 				toolBuf.Append( ' ',  indent * 2 ).Append( "Inner:   " ).NewLine();
 				exception( e.InnerException, null, indent );
 			}
-	}
-	#endif  // ALOX_DEBUG || ALOX_REL_LOG
+		}
 
-	#if !(ALOX_WP71 || ALOX_WP8 || ALOX_NO_REFLECTION)
+		#if !(ALOX_WP71 || ALOX_WP8 || ALOX_NO_REFLECTION)
 
-		/** ***********************************************************************************************
-		 * <summary>
-		 *  Logs the header and invokes instRecursive()
-		 * </summary>
-		 * <param name="o">			  	The object to be logged. </param>
-		 * <param name="maxRecursion">	The maximum depth of recursion for logging nested object. </param>
-		 * <param name="headLine">	  	The headline to log. </param>
-		 **************************************************************************************************/
-		protected static void instMain( Object o, int maxRecursion, String headLine) 
-		{ 
-			#if ALOX_DEBUG || ALOX_REL_LOG
+			/** ***********************************************************************************************
+			 * <summary>
+			 *  Logs the header and invokes instRecursive()
+			 * </summary>
+			 * <param name="o">			  	The object to be logged. </param>
+			 * <param name="maxRecursion">	The maximum depth of recursion for logging nested object. </param>
+			 * <param name="headLine">	  	The headline to log. </param>
+			 **************************************************************************************************/
+			protected static void instMain( Object o, int maxRecursion, String headLine) 
+			{ 
 				// prepare fields
 				if ( toolBuf == null )	  toolBuf= new MString( 1024 );
 				else					  toolBuf.Clear();
@@ -507,341 +523,333 @@ public class LogTools
 
 				// dispose the dictionary
 				instObject2LineNumber= null; 
+			}
 
-			#endif  // ALOX_DEBUG || ALOX_REL_LOG
-		}
-
-		#if ALOX_DEBUG || ALOX_REL_LOG
-
-		/** ***********************************************************************************************
-		 * <summary> Recursively log an instance using reflection. </summary>
-		 * <param name="inst">			The element. </param>
-		 * <param name="maxRecursion">  	The maximum depth of recursion for logging nested object. </param>
-		 * <param name="indent">			The indentation in the output (recursively increased). </param>
-		 **************************************************************************************************/
-		protected static void instRecursive( Object inst, int maxRecursion, int indent )
-		{
-			// get type
-			Type type=	inst != null	? inst.GetType()
-												: null;
-
-			//### 1.  Detect and log value types (or null or sting)
+			/** ***********************************************************************************************
+			 * <summary> Recursively log an instance using reflection. </summary>
+			 * <param name="inst">			The element. </param>
+			 * <param name="maxRecursion">  	The maximum depth of recursion for logging nested object. </param>
+			 * <param name="indent">			The indentation in the output (recursively increased). </param>
+			 **************************************************************************************************/
+			protected static void instRecursive( Object inst, int maxRecursion, int indent )
 			{
-				bool isValueType= false;
+				// get type
+				Type type=	inst != null	? inst.GetType()
+													: null;
 
-				// check for null
-				if ( inst == null )
+				//### 1.  Detect and log value types (or null or sting)
 				{
-					toolBuf.Append( FmtInstNull );
-					isValueType= true;
+					bool isValueType= false;
+
+					// check for null
+					if ( inst == null )
+					{
+						toolBuf.Append( FmtInstNull );
+						isValueType= true;
+					}
+
+					// string?
+					else if ( type == typeof(String) )
+					{
+						// add value and type, that's it
+						toolBuf	.Append( '\"' ).Append( (String) inst ).Append( '\"' );
+						isValueType= true;
+					}
+
+					// Char[]
+					else if ( type == typeof( Char[]) )
+					{
+						Char[] charArrayVal= (Char[]) inst;
+						String val;
+
+						val=	charArrayVal.Length > 100	?	new String ( charArrayVal, 0, 100) + "..."
+															:	new String (charArrayVal );
+						if ( val.Contains((char) 0) )
+							val= val.Replace((char) 0, ' ' );
+
+						// add value and type, that's it
+						toolBuf	.Append( '\"' ).Append( val ).Append( '\"' );
+
+						isValueType= true;
+					}
+
+					// value type?
+					else if ( type.IsValueType )
+					{
+						String val= inst.ToString();
+						if ( val.Length == 1 && val[0]==(char) 0 )
+							val= "\\0";
+						else if ( val.Contains((char) 0) )
+							val= val.Replace((char) 0, ' ' );
+
+						// add value and type, that's it
+						toolBuf	.Append( val );
+
+						isValueType= true;
+					}
+
+					// if it was a value type, log type, finish line and return true
+					if ( isValueType )
+					{
+						instTabTypeAndNewLine( type );
+						return;
+					}
 				}
 
-				// string?
-				else if ( type == typeof(String) )
+				// ### maximum recursion? ###
+				if ( maxRecursion == 0 )
 				{
-					// add value and type, that's it
-					toolBuf	.Append( '\"' ).Append( (String) inst ).Append( '\"' );
-					isValueType= true;
-				}
+					String vString=	inst.ToString();
+					String tString=	type.Namespace + "." + type.Name;
 
-				// Char[]
-				else if ( type == typeof( Char[]) )
-				{
-					Char[] charArrayVal= (Char[]) inst;
-					String val;
+					// often, ToString() just returns the type
+					if ( vString.Equals( tString) )
+						vString= String.Empty;
 
-					val=	charArrayVal.Length > 100	?	new String ( charArrayVal, 0, 100) + "..."
-														:	new String (charArrayVal );
-					if ( val.Contains((char) 0) )
-						val= val.Replace((char) 0, ' ' );
-
-					// add value and type, that's it
-					toolBuf	.Append( '\"' ).Append( val ).Append( '\"' );
-
-					isValueType= true;
-				}
-
-				// value type?
-				else if ( type.IsValueType )
-				{
-					String val= inst.ToString();
-					if ( val.Length == 1 && val[0]==(char) 0 )
-						val= "\\0";
-					else if ( val.Contains((char) 0) )
-						val= val.Replace((char) 0, ' ' );
-
-					// add value and type, that's it
-					toolBuf	.Append( val );
-
-					isValueType= true;
-				}
-
-				// if it was a value type, log type, finish line and return true
-				if ( isValueType )
-				{
+					// append "(max rec.)" + value
+					toolBuf.Append( FmtInstRecursionLimit ).Append( vString );
 					instTabTypeAndNewLine( type );
+
 					return;
 				}
-			}
 
-			// ### maximum recursion? ###
-			if ( maxRecursion == 0 )
-			{
-				String vString=	inst.ToString();
-				String tString=	type.Namespace + "." + type.Name;
-
-				// often, ToString() just returns the type
-				if ( vString.Equals( tString) )
-					vString= String.Empty;
-
-				// append "(max rec.)" + value
-				toolBuf.Append( FmtInstRecursionLimit ).Append( vString );
-				instTabTypeAndNewLine( type );
-
-				return;
-			}
-
-			// ### cyclic reference? ###
-			uint lineNumber;
-			if ( instObject2LineNumber.TryGetValue( inst, out lineNumber ) )
-			{
-				toolBuf.Append( FmtInstCycRefPrefix ) 
-						.Append( lineNumber, 2 )
-						.Append( FmtInstCycRefPostfix );
-				instTabTypeAndNewLine ( inst.GetType() );
-				return;
-			}
-			// mark object as being logged (in next line)
-			instObject2LineNumber.Add( inst, instLineNumber );
-
-			// cast to IEnumerable ( used in arrays and IEnumerables as well )
-			IEnumerable enumerableElement= inst as IEnumerable;
-
-			// ### Arrays ###
-			if ( type.IsArray )
-			{
-				// get array, its dimensions and their sizes
-				System.Array array= (System.Array) inst;
-				int qtyDim= type.GetArrayRank();
-				int[]	dimLength= new int[ qtyDim ];
-
-				toolBuf.Append( FmtInstArrayPrefix );  
-				for ( int i= 0; i < qtyDim ; i++ ) 
+				// ### cyclic reference? ###
+				uint lineNumber;
+				if ( instObject2LineNumber.TryGetValue( inst, out lineNumber ) )
 				{
-					toolBuf.Append(  dimLength[ i ]= array.GetLength( i ) );
-					if ( i != qtyDim - 1 )
-						toolBuf.Append( ',' ); 
+					toolBuf.Append( FmtInstCycRefPrefix ) 
+							.Append( lineNumber, 2 )
+							.Append( FmtInstCycRefPostfix );
+					instTabTypeAndNewLine ( inst.GetType() );
+					return;
 				}
-				toolBuf.Append( FmtInstArrayPostfix );  
-				instTabTypeAndNewLine( type );
+				// mark object as being logged (in next line)
+				instObject2LineNumber.Add( inst, instLineNumber );
 
-				// calc 'magnitudes' of dimensions
-				int[]	dimMagnitude= new int[ qtyDim ];
-				dimMagnitude[ qtyDim - 1 ]= 1;  
-				for ( int i= qtyDim - 2 ; i >= 0 ; i-- ) 
-					dimMagnitude[ i ]= dimLength[ i + 1 ] * dimMagnitude[ i + 1 ];  
+				// cast to IEnumerable ( used in arrays and IEnumerables as well )
+				IEnumerable enumerableElement= inst as IEnumerable;
 
-				// loop over all objects
-				int		itemNo= 0;
-				foreach (object item in enumerableElement)
+				// ### Arrays ###
+				if ( type.IsArray )
 				{
-					instBeginLine( indent );
+					// get array, its dimensions and their sizes
+					System.Array array= (System.Array) inst;
+					int qtyDim= type.GetArrayRank();
+					int[]	dimLength= new int[ qtyDim ];
 
-					// calc indices from itemNo
-					toolBuf.Append('[');  
-					int idx= itemNo++;
+					toolBuf.Append( FmtInstArrayPrefix );  
 					for ( int i= 0; i < qtyDim ; i++ ) 
 					{
-						toolBuf.Append( idx / dimMagnitude[ i ] );
-						idx=		idx % dimMagnitude[ i ];
-						toolBuf.Append( i != qtyDim - 1 ? ',' : ']'); 
+						toolBuf.Append(  dimLength[ i ]= array.GetLength( i ) );
+						if ( i != qtyDim - 1 )
+							toolBuf.Append( ',' ); 
 					}
-					toolBuf.Append(": ");
+					toolBuf.Append( FmtInstArrayPostfix );  
+					instTabTypeAndNewLine( type );
 
-					// log element
-					instRecursive( item, maxRecursion - 1, indent + 1 );
-				}
-			}
+					// calc 'magnitudes' of dimensions
+					int[]	dimMagnitude= new int[ qtyDim ];
+					dimMagnitude[ qtyDim - 1 ]= 1;  
+					for ( int i= qtyDim - 2 ; i >= 0 ; i-- ) 
+						dimMagnitude[ i ]= dimLength[ i + 1 ] * dimMagnitude[ i + 1 ];  
 
-			// ###  IEnumerables ###
-			else if (enumerableElement != null)
-			{
-				// get object count
-				int qtyObjects= enumerableElement.Cast<object>().Count();
-
-				// log headline and start new line
-				toolBuf.Append( FmtInstIEnumerablePrefix ).Append( qtyObjects ).Append( FmtInstIEnumerablePostfix );
-				instTabTypeAndNewLine( type );
-
-				// loop over all objects
-				int itemNo= 0;
-				foreach (object item in enumerableElement)
-				{
-					instBeginLine( indent );
-					toolBuf.Append( "  " ).Append( itemNo++, 1 ).Append(": ");
-					instRecursive( item, maxRecursion - 1, indent + 1 );
-				}
-			}
-
-			// ### classes ###
-			else
-			{
-				// finish line of object
-				instTabTypeAndNewLine( type );
-
-				// loop over fields
-				MemberInfo[] members= type.GetMembers( BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance );
-
-				foreach (var memberInfo in members)
-				{
-					// get type	and value
-					Type	fType;
-					object	fValue;
-
-					// get field/property info
-					FieldInfo		fInfo=	memberInfo as FieldInfo;
-					PropertyInfo	pInfo=	memberInfo as PropertyInfo;
-
-						 if ( fInfo != null )
+					// loop over all objects
+					int		itemNo= 0;
+					foreach (object item in enumerableElement)
 					{
-							  fType=		fInfo.FieldType; 
-						try { fValue=	fInfo.GetValue(inst); }  catch (Exception) {	fValue= FmtInstNoAccessToValue; }
-					}
-					else if ( pInfo != null )
-					{
-							  fType=		pInfo.PropertyType;
-						try { fValue=	pInfo.GetValue(inst); }  catch (Exception) {	fValue= FmtInstNoAccessToValue; }
-					}
+						instBeginLine( indent );
 
-					// not a field or property?
-					else
-						continue;
+						// calc indices from itemNo
+						toolBuf.Append('[');  
+						int idx= itemNo++;
+						for ( int i= 0; i < qtyDim ; i++ ) 
+						{
+							toolBuf.Append( idx / dimMagnitude[ i ] );
+							idx=		idx % dimMagnitude[ i ];
+							toolBuf.Append( i != qtyDim - 1 ? ',' : ']'); 
+						}
+						toolBuf.Append(": ");
+
+						// log element
+						instRecursive( item, maxRecursion - 1, indent + 1 );
+					}
+				}
+
+				// ###  IEnumerables ###
+				else if (enumerableElement != null)
+				{
+					// get object count
+					int qtyObjects= enumerableElement.Cast<object>().Count();
+
+					// log headline and start new line
+					toolBuf.Append( FmtInstIEnumerablePrefix ).Append( qtyObjects ).Append( FmtInstIEnumerablePostfix );
+					instTabTypeAndNewLine( type );
+
+					// loop over all objects
+					int itemNo= 0;
+					foreach (object item in enumerableElement)
+					{
+						instBeginLine( indent );
+						toolBuf.Append( "  " ).Append( itemNo++, 1 ).Append(": ");
+						instRecursive( item, maxRecursion - 1, indent + 1 );
+					}
+				}
+
+				// ### classes ###
+				else
+				{
+					// finish line of object
+					instTabTypeAndNewLine( type );
+
+					// loop over fields
+					MemberInfo[] members= type.GetMembers( BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance );
+
+					foreach (var memberInfo in members)
+					{
+						// get type	and value
+						Type	fType;
+						object	fValue;
+
+						// get field/property info
+						FieldInfo		fInfo=	memberInfo as FieldInfo;
+						PropertyInfo	pInfo=	memberInfo as PropertyInfo;
+
+							 if ( fInfo != null )
+						{
+								  fType=		fInfo.FieldType; 
+							try { fValue=	fInfo.GetValue(inst); }  catch (Exception) {	fValue= FmtInstNoAccessToValue; }
+						}
+						else if ( pInfo != null )
+						{
+								  fType=		pInfo.PropertyType;
+							try { fValue=	pInfo.GetValue(inst); }  catch (Exception) {	fValue= FmtInstNoAccessToValue; }
+						}
+
+						// not a field or property?
+						else
+							continue;
 				
-					// filter "__BackingField"s 
-					if ( memberInfo.Name.Contains( "__BackingField" ) )
-						continue;
+						// filter "__BackingField"s 
+						if ( memberInfo.Name.Contains( "__BackingField" ) )
+							continue;
 
-					// begin line and log name
-					instBeginLine( indent );
-					toolBuf.Append( memberInfo.Name ).Append(':');
-					instTabStop( instValueTabStop );
+						// begin line and log name
+						instBeginLine( indent );
+						toolBuf.Append( memberInfo.Name ).Append(':');
+						instTabStop( instValueTabStop );
 
-					// recursively log value
-					instRecursive( fValue, maxRecursion - 1, indent + 1 );
+						// recursively log value
+						instRecursive( fValue, maxRecursion - 1, indent + 1 );
+					}
 				}
+
 			}
 
-		}
-
-		/** ***********************************************************************************************
-		 * <summary> Adds a new line to the buffer and increases line number counter. </summary>
-		 **************************************************************************************************/
-		protected static void instNewLine()
-		{
-			instLineNumber++;
-			toolBuf.NewLine();
-		}
-
-		/** ***********************************************************************************************
-		 * <summary>
-		 *  Appends line number (format defined in fields #FmtInstLineNoPrefix and
-		 *  #FmtInstLineNoPostfix) and then adds indent characters (defined in field
-		 *  #FmtInstIndent).
-		 * </summary>
-		 * <param name="indent">	The indentation of the line. </param>
-		 **************************************************************************************************/
-		protected static void instBeginLine( int indent )
-		{
-			instLineBeginIdx=toolBuf.Length;
-			toolBuf.Append( FmtInstLineNoPrefix ).Append( instLineNumber, 2 ).Append( FmtInstLineNoPostfix );
-			for ( int i= indent; i > 0; i-- )
-				toolBuf.Append( FmtInstIndent ); 
-		}
-
-		/** ***********************************************************************************************
-		 * <summary> Appends spaces to move to the given tabStop (but at least one). </summary>
-		 * <param name="tabStop">	The tab stop position to go to </param>
-		 **************************************************************************************************/
-		protected static void instTabStop( int tabStop )
-		{
-			do	{ toolBuf.Append( ' ' ); } while ( toolBuf.Length <= instLineBeginIdx + tabStop  );
-		}
-	
-
-		/** ***********************************************************************************************
-		 * <summary> Appends type information at the end of the line and starts a new line. <summary> 
-		 * <param name="type">	The type to append in the log  </param>
-		 **************************************************************************************************/
-		protected static void instTabTypeAndNewLine( Type type )
-		{
-			if ( type != null )
+			/** ***********************************************************************************************
+			 * <summary> Adds a new line to the buffer and increases line number counter. </summary>
+			 **************************************************************************************************/
+			protected static void instNewLine()
 			{
-				do	{ toolBuf.Append( ' ' ); } while ( toolBuf.Length <= instLineBeginIdx + instTypeTabStop  );
-				toolBuf.Append( FmtInstTypePrefix ).Append( type.Name ).Append( FmtInstTypePostfix );
+				instLineNumber++;
+				toolBuf.NewLine();
 			}
-			instNewLine();
-		}
+
+			/** ***********************************************************************************************
+			 * <summary>
+			 *  Appends line number (format defined in fields #FmtInstLineNoPrefix and
+			 *  #FmtInstLineNoPostfix) and then adds indent characters (defined in field
+			 *  #FmtInstIndent).
+			 * </summary>
+			 * <param name="indent">	The indentation of the line. </param>
+			 **************************************************************************************************/
+			protected static void instBeginLine( int indent )
+			{
+				instLineBeginIdx=toolBuf.Length;
+				toolBuf.Append( FmtInstLineNoPrefix ).Append( instLineNumber, 2 ).Append( FmtInstLineNoPostfix );
+				for ( int i= indent; i > 0; i-- )
+					toolBuf.Append( FmtInstIndent ); 
+			}
+
+			/** ***********************************************************************************************
+			 * <summary> Appends spaces to move to the given tabStop (but at least one). </summary>
+			 * <param name="tabStop">	The tab stop position to go to </param>
+			 **************************************************************************************************/
+			protected static void instTabStop( int tabStop )
+			{
+				do	{ toolBuf.Append( ' ' ); } while ( toolBuf.Length <= instLineBeginIdx + tabStop  );
+			}
 	
 
+			/** ***********************************************************************************************
+			 * <summary> Appends type information at the end of the line and starts a new line. <summary> 
+			 * <param name="type">	The type to append in the log  </param>
+			 **************************************************************************************************/
+			protected static void instTabTypeAndNewLine( Type type )
+			{
+				if ( type != null )
+				{
+					do	{ toolBuf.Append( ' ' ); } while ( toolBuf.Length <= instLineBeginIdx + instTypeTabStop  );
+					toolBuf.Append( FmtInstTypePrefix ).Append( type.Name ).Append( FmtInstTypePostfix );
+				}
+				instNewLine();
+			}
+
+		#endif  // !(ALOX_WP71 || ALOX_WP8 || ALOX_NO_REFLECTION)
+
+
+		#if !ALOX_NO_XML
+
+			/** ***********************************************************************************************
+			 * <summary> Dump a xml document into our Buffer. </summary>
+			 * <param name="xDocument"> 	The XDocument to be logged. </param>
+			 * <param name="headLine">  	The headline to log. </param>
+			 **************************************************************************************************/
+			protected static void xml( XDocument xDocument, String headLine)
+			{ 
+				// create/clear toolBuf
+				if ( toolBuf == null )
+					toolBuf= new MString( 1024 );
+				else
+					toolBuf.Clear();
+
+				// print headline
+				if ( headLine != null )
+					toolBuf.Append( headLine ).NewLine();
+
+				// log elements
+				foreach ( XElement el in xDocument.Elements() )
+					xmlElement( el, null, headLine != null ? 1 : 0 );
+			}
+
+			/** ***********************************************************************************************
+			 * <summary>	Internal function for logging an XElement. </summary>
+			 * <param name="xe">	  	The XElement to log. </param>
+			 * <param name="headLine">	The headline to log. </param>
+			 * <param name="indent">  	The indentation to Log. </param>
+			 **************************************************************************************************/
+			protected static void xmlElement( XElement xe, String headLine, int indent )
+			{ 
+				// print headline
+				if ( headLine != null )
+					toolBuf.Append( headLine ).NewLine();
+
+				// print name
+				toolBuf.Append( ' ',  indent * 2 ).Append( xe.Name.ToString() );
+				if ( !xe.HasElements )
+					toolBuf.Append( '=' ).Append( '\"' ).Append(xe.Value).Append( '\"' );
+
+				// print attributes
+				if ( xe.HasAttributes )
+					foreach ( var attribute in xe.Attributes() )
+						toolBuf.Append( ' ' ).Append( attribute.Name.ToString() ).Append( '=' ).Append( '\"' ).Append( attribute.Value ).Append( '\"' );
+
+				toolBuf.NewLine();
+
+				// recursion
+				foreach ( var element in xe.Elements() )
+					xmlElement( element, null, indent + 1 );
+			}
+		#endif //(!ALOX_NO_XML)
 	#endif  // ALOX_DEBUG || ALOX_REL_LOG
-	#endif  // !(ALOX_WP71 || ALOX_WP8 || ALOX_NO_REFLECTION)
-
-
-	#if !ALOX_NO_XML
-	#if ALOX_DEBUG
-
-
-		/** ***********************************************************************************************
-		 * <summary> Dump a xml document into our Buffer. </summary>
-		 * <param name="xDocument"> 	The XDocument to be logged. </param>
-		 * <param name="headLine">  	The headline to log. </param>
-		 **************************************************************************************************/
-		protected static void xml( XDocument xDocument, String headLine)
-		{ 
-			// create/clear toolBuf
-			if ( toolBuf == null )
-				toolBuf= new MString( 1024 );
-			else
-				toolBuf.Clear();
-
-			// print headline
-			if ( headLine != null )
-				toolBuf.Append( headLine ).NewLine();
-
-			// log elements
-			foreach ( XElement el in xDocument.Elements() )
-				xmlElement( el, null, headLine != null ? 1 : 0 );
-		}
-
-		/** ***********************************************************************************************
-		 * <summary>	Internal function for logging an XElement. </summary>
-		 * <param name="xe">	  	The XElement to log. </param>
-		 * <param name="headLine">	The headline to log. </param>
-		 * <param name="indent">  	The indentation to Log. </param>
-		 **************************************************************************************************/
-		protected static void xmlElement( XElement xe, String headLine, int indent )
-		{ 
-			// print headline
-			if ( headLine != null )
-				toolBuf.Append( headLine ).NewLine();
-
-			// print name
-			toolBuf.Append( ' ',  indent * 2 ).Append( xe.Name.ToString() );
-			if ( !xe.HasElements )
-				toolBuf.Append( '=' ).Append( '\"' ).Append(xe.Value).Append( '\"' );
-
-			// print attributes
-			if ( xe.HasAttributes )
-				foreach ( var attribute in xe.Attributes() )
-					toolBuf.Append( ' ' ).Append( attribute.Name.ToString() ).Append( '=' ).Append( '\"' ).Append( attribute.Value ).Append( '\"' );
-
-			toolBuf.NewLine();
-
-			// recursion
-			foreach ( var element in xe.Elements() )
-				xmlElement( element, null, indent + 1 );
-		}
-	#endif  // ALOX_DEBUG || ALOX_REL_LOG
-	#endif //(!ALOX_NO_XML)
 } //class LogTools
 } // namespace

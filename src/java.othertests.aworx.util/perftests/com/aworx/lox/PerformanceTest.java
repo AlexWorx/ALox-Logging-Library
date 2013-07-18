@@ -55,16 +55,19 @@ public class PerformanceTest
 		Log.info( "Logging simple info lines" );
 		MString msgBuf=		new MString( );
 		long	fastest= 	Long.MAX_VALUE;
-		for ( int i= 0 ; i < 200 ; i++ )
+		for ( int i= 0 ; i < 100000 ; i++ )
 		{
 			ml.buffer.clear();
 			long t= Ticker.now();
 				simpleInfoLines( 1000 );
 			t= Ticker.now() - t;
 			if ( fastest > t )
- 				fastest= t;
+			{
+				fastest= t;
+				Log.line( Log.Level.INFO, msgBuf.clear().append( "Pass " ).append( i, 3).append( " is new fastest:  ")
+														.append( (int) Ticker.toMillis( fastest ), 0).append( " millis (").append( (int) fastest ).append( " ticks) per 1000 logs.") );
+			}
 
-			Log.line( Log.Level.INFO, msgBuf.clear().append( "Pass " ).append( i, 3).append( " finished") );
 		}
 
 		Log.line( Log.Level.INFO, msgBuf.clear().append( "Fastest " ).append( (int) Ticker.toMillis( fastest ), 0).append( " millis (").append( (int) fastest ).append( " ticks)  per 1000 logs.") );

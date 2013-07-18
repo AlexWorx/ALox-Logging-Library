@@ -332,9 +332,9 @@ is invoked. A typical use of ALox would look like this:
 
 In the log output of the second line you automatically get the absolute value of elapsed
 time displayed. There is no need to do your own math with the timestamps. In fact, the value
-is displayed in a human readable way, depending on the size of the time span. (This is
-true as long as your *logger* has the field [Logger.LogTimeDiff](@ref #com::aworx::lox::core::Logger.LogTimeDiff)
-set to true, which is the default for most loggers)
+is displayed in a human readable way, depending on the size of the time span.  (Other date and
+time outputs, like current date or absolute time can be configured to be logged as well, see
+class [TextLogger](@ref #com::aworx::lox::core::TextLogger) for more information).
 
 \note
 In above code sample, of-course, there is no need to indent heavyCalculation() between 
@@ -354,8 +354,7 @@ Advantages of this approach are:
 ### 4) Name your threads  ###
 The fourth and really optional one is about multi threaded applications. ALox optionally
 logs information about the thread id or name that executed the code containing your log
-statements. This is an automatic process and can be switched on or off using the boolean flag
-[Logger.LogThreadInfo](@ref #com::aworx::lox::core::Logger.LogThreadInfo).
+statements. 
 
 However often threads do not have a name, but just an ID. It would be much nicer to see a 
 nice name instead of that id. ALox provides a simple mechanism to map thread IDs to variable

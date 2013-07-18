@@ -36,62 +36,23 @@ public abstract class Logger
 	/** A flag to disable the logger.*/
 	public	boolean			isDisabled				= false;
 
-	/** The root domain "/" */
+	/** 
+	 *   The root domain "/". All registered or just used domains become a sub domain of this root.
+	 *   If a sub domains log level is not explicitly set, such sub domain inherits the level setting
+	 *   of the root domain. Therefore, the log level setting of the root domain determines how
+	 *   unknown domains got logged. The default level of the root domain is Log.DomainLevel.OFF.
+	 */
 	public	LogDomain		rootDomain;
 
 	//#endif // ALOX_DEBUG || ALOX_REL_LOG
 
 	//#if ALOX_DEBUG || ALOX_REL_LOG
-
-
-	// #################################################################################################
-	// #region  __Flags__
-	// #################################################################################################
-	/** Enable the logging of source file name of the caller. Default is true (enabled) */
-	public			boolean			logCallerSource				= true;
-	
-	/** Enable the logging of the method name of the caller. Default is true (enabled) */
-	public			boolean			logCallerMethod				= true;
-	
-	/** Enable the logging of the class name of the caller. Default is false (disabled) */
-	public			boolean			logCallerClass				= false;
-	
-	/** Enable the logging of the package name of the caller. Default is false (disabled) */
-	public			boolean			logCallerPackage			= false;
-	
-	/**Enable the logging of the date. Default is false (disabled) */
-	public			boolean			logDate						= false;
-	
-	/**Enable the logging of the (absolute) time. Default is false (disabled) */
-	public			boolean			logTimeOfDay				= false; 
-	
-	/**Enable the logging of the elapsed time since the logger was started (or reset). Default is true (enabled) */
-	public			boolean			logTimeElapsed				= true;
-	
-	/**Enable the logging of time difference in milliseconds since last log. Default is true (enabled) */
-	public			boolean			logTimeDiff					= true;
-	
-	/**Enable the logging of the domain name. Default is true (enabled) */
-	public			boolean			logDomainName				= true;
-
-	/**Enable the logging of the level of a log call. Default is true (enabled) */
-	public			boolean			logLogLevel					= true;
-
-	/**Enable the logging of the current thread name. Default is true (enabled)  */
-	public			boolean			logThreadInfo				= true;
-
-	/**Enable the logging of the current log call counter. Default is false (disabled) */
-	public			boolean			logLogCounter				= false;
-	
-	//#endregion
-
-
 	
 	// #################################################################################################
 	// Internal fields
 	// #################################################################################################
 	 
-	/// <summary> A temporary string used for testing domains */
+	/**  A temporary string used for testing domains */
 	protected		MString			tempDomainPath;
 
 	// #################################################################################################
@@ -195,42 +156,15 @@ public abstract class Logger
 						Object		msgObject,		int			indent, 
 						CallerInfo	caller)
 	{
-		// do nothing if we are disabled or domain is not active
-		if ( isDisabled || !checkDomain( domain, level, caller ) )
+		// do nothing if we are disabled
+		if ( isDisabled )
 			return;
 
-		// increase log line counter
-		cntLogs++;
-
-		// log the line
-		doLog( domain, level, msgObject, indent, caller);
-
-		// get current time
-		timeOfLastLog.setToNow();
-	}
-
-
-	// #################################################################################################
-	// Privates/Protecteds 
-	// #################################################################################################
-
-    /**********************************************************************************************//**
-     * Check if a given domain is active in respect to the given Logger.Level.
-     *
-     * @param domain    The log domain name. If not starting with a slash ('/') this is appended to
-     *                  any default domain name that might have been specified for the source file.
-     * @param level     The log level that is checked against given the domains' setting.
-     * @param caller    Once compiler generated and passed forward to here.
-     *
-     * @return  True if domain is active in respect to the given Log.Level.
-     **************************************************************************************************/
-	protected boolean checkDomain( MString domain, Log.Level level, CallerInfo caller )
-	{
-		// find domain
+		// search domain
 		tempDomainPath.clear().append( domain ).convertCase( true );
 		LogDomain logDomain= rootDomain.findOrCreate( tempDomainPath, false );
 
-		// check if existent
+		// not found?
 		if ( logDomain == null )
 		{
 			// add domain with default domain level
@@ -248,8 +182,19 @@ public abstract class Logger
 		}
 
 		// check if active
-		return logDomain.isActive( level );
+		if ( !logDomain.isActive( level ) )
+			return;
+
+		// increase log line counter
+		cntLogs++;
+
+		// log the line
+		doLog( domain, level, msgObject, indent, caller);
+
+		// get current time
+		timeOfLastLog.setToNow();
 	}
+
 
 	//#endif // ALOX_DEBUG || ALOX_REL_LOG
 

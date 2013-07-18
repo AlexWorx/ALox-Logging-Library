@@ -109,7 +109,7 @@ public class MString
 	public MString( String s, int startIdx= 0, int length= int.MaxValue) 
 	{
 		// check null argument
-		if ( s == null )
+		if ( s == null )	   //TODO smaller or no buffer! See Java
 		{
 			// create Buffer
 			Buffer=	new char[1024];

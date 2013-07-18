@@ -14,16 +14,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALox-CS-WP80-DLL", "ide.vst
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALox-CS-WP80-Test", "ide.vstudio\ALox-CS-WP80-Test\ALox-CS-WP80-Test.csproj", "{EFE771B8-C1CF-4D4A-8A83-B7391A6158B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALox-CS-Test-Perf", "ide.vstudio\ALox-CS-Test-Perf\ALox-CS-Test-Perf.csproj", "{49A54123-433C-4B65-9214-F69831D7A53E}"
-	ProjectSection(ProjectDependencies) = postProject
-		{E4FF710A-4E99-4DCF-9BBD-EFD0FAB1E46D} = {E4FF710A-4E99-4DCF-9BBD-EFD0FAB1E46D}
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AD564FDF-6E9A-4E6A-8E7F-AC05FC493904}"
 	ProjectSection(SolutionItems) = preProject
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALox-CS-Test", "ide.vstudio\ALox-CS-Test\ALox-CS-Test.csproj", "{49A54123-433C-4B65-9214-F69831D7A53E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

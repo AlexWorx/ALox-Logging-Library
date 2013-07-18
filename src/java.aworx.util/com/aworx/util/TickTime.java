@@ -6,7 +6,6 @@ import java.util.Date;
 
 
 /**********************************************************************************************//**
- * <summary>	
  * 	This class encapsulates a system dependent time value (ticks) and uses the static class Ticker to
  * 	get and manipulate it.  See class Ticker to learn about system dependent time values (ticks)
  * 	and their usage.
@@ -16,8 +15,7 @@ import java.util.Date;
  *  Ticker to convert to nanoseconds.
  * 	
  *  In addition this class provides an interface to do a series of time measurements, getting the sum 
- *  and average values (similar to stopwatch or time keeper).
- * </summary>
+ *  and average values (similar to a stop watch or time keeper).
  **************************************************************************************************/
 public class TickTime
 {
@@ -112,10 +110,8 @@ public class TickTime
 	public	void	setToNow()					{ ticks= Ticker.now();		}
 
 	/**********************************************************************************************//**
-	 * <summary>
 	 *  Sets the internal value to current system time and clears existing sum and quantity of
 	 *  measurements.
-	 * </summary>
 	 **************************************************************************************************/
 	public	 void	clear()						{ setToNow(); sum= 0L; cntMeasures= 0;  }
 		
@@ -129,7 +125,7 @@ public class TickTime
      * this instance in (system dependent) ticks. If internal value represents a historic point in
      * time, the result is positive.
      *
-     * @return  .
+     * @return  the age of this instance in ticks.
      **************************************************************************************************/
 	public 	long	age()						{ return Ticker.now() - ticks;	}
 
@@ -138,7 +134,7 @@ public class TickTime
      * this instance in milliseconds. If internal value represents a historic point in time, the
      * result is positive.
      *
-     * @return  .
+     * @return  the age of this instance in milliseconds.
      **************************************************************************************************/
 	public 	int		ageInMillis()				{ return (int) Ticker.toMillis  ( Ticker.now() - ticks );	}
 
@@ -147,7 +143,7 @@ public class TickTime
      * this instance in microseconds. If internal value represents a historic point in time, the
      * result is positive.
      *
-     * @return  .
+     * @return  the age of this instance in microseconds.
      **************************************************************************************************/
 	public 	long	ageInMicros()				{ return Ticker.toMicros( Ticker.now() - ticks );	}
 

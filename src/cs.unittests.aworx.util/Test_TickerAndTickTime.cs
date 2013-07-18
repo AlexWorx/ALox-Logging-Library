@@ -137,7 +137,7 @@ namespace com.aworx.lox.unittests
 			Log.MapThreadName( "UnitTest" );
 			Log.RegDomain( "Ticker", Log.Scope.Method );
 
-			#if ALOX_DEBUG || ALOX_REL_LOG
+			#if ALOX_DEBUG 
 				((ConsoleLogger) Log.GetLogger( "Console" )).EnableVSDebugConsole=
 				((ConsoleLogger) Log.GetLogger( "Console" )).EnableAppConsole=		false;
 			#endif
@@ -166,7 +166,7 @@ namespace com.aworx.lox.unittests
 
 				//Assert.IsTrue( tkMeasure >= dtMeasure );
 			}
-			#if ALOX_DEBUG || ALOX_REL_LOG
+			#if ALOX_DEBUG 
 				((ConsoleLogger) Log.GetLogger( "Console" )).EnableVSDebugConsole=
 				((ConsoleLogger) Log.GetLogger( "Console" )).EnableAppConsole=		true;
 			#endif

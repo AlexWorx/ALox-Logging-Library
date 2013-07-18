@@ -51,7 +51,14 @@ public abstract class Logger
 	/// <summary> A flag to disable the logger.</summary>
 	public	bool			IsDisabled				= false;
 
-	/// <summary> The root domain "/". </summary> 
+	/**
+	 * <summary>
+	 *   The root domain "/". All registered or just used domains become a sub domain of this root.
+	 *   If a sub domains log level is not explicitly set, such sub domain inherits the level setting
+	 *   of the root domain. Therefore, the log level setting of the root domain determines how
+	 *   unknown domains got logged. The default level of the root domain is Log.DomainLevel.Off.
+	 * </summary>
+	 */
 	public	LogDomain		RootDomain;
 
 	#endif // ALOX_DEBUG || ALOX_REL_LOG
@@ -59,44 +66,6 @@ public abstract class Logger
 	#if ALOX_DEBUG || ALOX_REL_LOG
 
 
-	// #################################################################################################
-	#region  __Flags__
-	// #################################################################################################
-	/// <summary>Enable the logging of source file name of the caller. Default is true (enabled) </summary>
-	public			bool			LogCallerSource				= true;
-	
-	/// <summary>Enable the logging of method name of the caller. Default is true (enabled) </summary>
-	public			bool			LogCallerMethod				= true;
-	
-	/// <summary>Enable the logging of the date. Default is false (disabled) </summary>
-	public			bool			LogDate						= false;
-	
-	/// <summary>Enable the logging of the (absolute) time. Default is false (disabled) </summary>
-	public			bool			LogTimeOfDay				= false; 
-	
-	/// <summary>Enable the logging of the elapsed time since the logger was started (or reset). Default is true (enabled) </summary>
-	public			bool			LogTimeElapsed				= true;
-	
-	/// <summary>Enable the logging of time difference in milliseconds since last log. Default is true (enabled) </summary>
-	public			bool			LogTimeDiff					= true;
-	
-	/// <summary>Enable the logging of the domain name. Default is true (enabled) </summary>
-	public			bool			LogDomainName				= true;
-
-	/// <summary>Enable the logging of the level of a log call. Default is true (enabled) </summary>
-	public			bool			LogLogLevel					= true;
-
-	/// <summary>Enable the logging of information about the current thread name. Default is true (enabled)  </summary>
-	public			bool			LogThreadInfo				= true;
-
-	/// <summary>Enable the logging of the current log call counter. Default is false (disabled) </summary>
-	public			bool			LogLogCounter				= false;
-	
-
-	#endregion
-
-
-	
 	// #################################################################################################
 	// Internal fields
 	// #################################################################################################
@@ -116,7 +85,7 @@ public abstract class Logger
 
 	{
 		// save parameters
-		this.Name=	name;
+		this.Name=			name;
 		
 		// create root domain 
 		RootDomain=			new LogDomain( null, null );
@@ -136,6 +105,9 @@ public abstract class Logger
 	/** ***********************************************************************************************
 	 * <summary>
 	 *  This is the central method that derived logger classes have to implement to log a message.
+	 *  This function is invoked by method Line(), only if this instance is not disabled and domain level 
+	 *  and given level match. Therefore, no checks need to be performed, the only action to take is
+	 *  to perform the log itself.
 	 * </summary>
 	 * <param name="domain">	The log domain name. The domain is already checked on this stage and
 	 * 							is provided to be able to be logged out only. </param>
@@ -146,7 +118,7 @@ public abstract class Logger
 	 * <param name="caller">	Once compiler generated and passed forward to here. </param>
 	 **************************************************************************************************/
 	abstract protected void doLog(	MString		domain,		Log.Level	level, 
-									Object		msgObject,		int			indent,
+									Object		msgObject,	int			indent,
 									CallerInfo	caller								);
 
 
@@ -199,43 +171,19 @@ public abstract class Logger
 	 * <param name="indent">	The desired indentation in the output. </param>
 	 * <param name="caller">	Once compiler generated and passed forward to here. </param>
 	 **************************************************************************************************/
-	public void Line(	MString		domain,			Log.Level	level,
-						Object		msgObject,			int			indent, 
-						CallerInfo	caller)
+	public virtual void Line(	MString		domain,			Log.Level	level,
+								Object		msgObject,		int			indent, 
+								CallerInfo	caller)
 	{
 		// do nothing if we are disabled or domain is not active
-		if ( IsDisabled || !checkDomain( domain, level, caller ) )
+		if ( IsDisabled )
 			return;
 
-		// increase log line counter
-		CntLogs++;
-
-		// log the line
-		doLog( domain, level, msgObject, indent, caller);
-
-		// get current time	as time of last log (we do this at the end of our log operation!)
-		TimeOfLastLog.SetToNow();
-	}
-
-
-	// #################################################################################################
-	// Privates/Protecteds 
-	// #################################################################################################
-
-	/** ***********************************************************************************************
-	 * <summary>	Check if a given domain is active in respect to the given Log.Level. </summary>
-	 * <param name="domain">	The log domain name. </param>
-	 * <param name="level"> 	The log level that is checked against given the domains' setting. </param>
-	 * <param name="caller">	Once compiler generated and passed forward to here. </param>
-	 * <returns>	True if domain is active in respect to the given Log.Level. </returns>
-	 **************************************************************************************************/
-	protected bool checkDomain( MString domain, Log.Level level, CallerInfo caller )
-	{
-		// find domain
+		// search domain
 		tempDomainPath.Clear().Append( domain ).ConvertCase( true );
 		LogDomain logDomain= RootDomain.FindOrCreate( tempDomainPath, false );
 
-		// check if existent
+		// not found?
 		if ( logDomain == null )
 		{
 			// add domain with default domain level
@@ -252,9 +200,20 @@ public abstract class Logger
 			}
 		}
 
-		// check if active
-		return logDomain.IsActive( level );
+		// not active?
+		if ( !logDomain.IsActive( level ) )
+			return;;
+
+		// increase log line counter
+		CntLogs++;
+
+		// log the line
+		doLog( domain, level, msgObject, indent, caller);
+
+		// get current time	as time of last log (we do this at the end of our log operation!)
+		TimeOfLastLog.SetToNow();
 	}
+
 
 	#endif // ALOX_DEBUG || ALOX_REL_LOG
 

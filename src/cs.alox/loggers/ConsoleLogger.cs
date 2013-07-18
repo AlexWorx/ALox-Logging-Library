@@ -14,6 +14,8 @@ using com.aworx.util;
 	
 
 namespace com.aworx.lox.loggers  {
+
+
 /** ***********************************************************************************************
  * <summary>
  *  A logger that logs all messages to the VStudio IDE output window (*using
@@ -35,53 +37,19 @@ public class ConsoleLogger : TextLogger
 	// Empty method stubs for release version (with no release logging)
 	// #################################################################################################
 	#if !(ALOX_DEBUG || ALOX_REL_LOG)
-
-		// Empty constructor
-		public ConsoleLogger(	String	name= "CONSOLE",
-								String csf="",int cln= 0,String cmn="" )
-		{
-		}
-
+		public ConsoleLogger( String name= "CONSOLE" ){}
 	#else
 
-	// #################################################################################################
-	// fields
-	// #################################################################################################
-	/// <summary>The prefix for the caller method name </summary>
-	public		String			FmtMemberPrefix				=".";
-
-	/// <summary>The postfix for the caller method name  </summary>
-	public		String			FmtMemberPostfix				="()";
-
-	/// <summary>Tab position after caller info. This auto adjusts (increases) when 
-	/// longer source info occurs. To avoid increases in the beginning, this value
-	/// can be set upfront (after the logger was created)</summary>
-	public		int				TabAfterSourceInfo				=0;
-
 	/// <summary>Enables logging to the debug window of Visual Studio. Defaults to true.</summary>
-	public		bool			EnableVSDebugConsole			=true;
+	public		bool			EnableVSDebugConsole			= true;
 
 	/// <summary>Enables logging to the application console (std. out). Defaults to false.</summary>
 	#if !ALOX_NO_CONSOLE	
-	  public		bool			EnableAppConsole				=false;
+	  public		bool		EnableAppConsole				= false;
 	#endif
 
-	// #################################################################################################
-	// internal fields
-	// #################################################################################################
-
-	/// <summary>VStudio line number format requirements.</summary>
-	protected	String			strPrefixLineNumber				="(";
-
-	/// <summary>VStudio line number format requirements.</summary>
-	protected	String			strPostfixLineNumber			="):";
-
 	/// <summary>A temporary buffer for assembling the caller info string</summary>
-	protected	MString			consoleBuffer					=new MString(256);
-
-	// #################################################################################################
-	// Constructors
-	// #################################################################################################
+	protected	MString			consoleBuffer					= new MString(256);
 
 	/** ***********************************************************************************************
 	 * <summary>
@@ -89,16 +57,12 @@ public class ConsoleLogger : TextLogger
 	 * </summary>
 	 * <param name="name">	(Optional) The name of the logger, defaults to "CONSOLE" </param>
 	 **************************************************************************************************/
-	public ConsoleLogger(	String	name= "CONSOLE" )
+	public ConsoleLogger( String name= "CONSOLE" )
 	: base( name )
 	{
 		// set default domain level to all: As a app console logger/IDE logger we want to fetch all we can
 		RootDomain.SetLevel( Log.DomainLevel.All, false );
 	}
-
-	// #################################################################################################
-	// Abstract interface implementation
-	// #################################################################################################
 
 	/** ***********************************************************************************************
 	 * <summary>
@@ -122,71 +86,20 @@ public class ConsoleLogger : TextLogger
 		if ( !(EnableVSDebugConsole || EnableAppConsole ) )
 			return;
 
-		MString output= null;
-		
-		// no caller info given? Just log msg out (used e.g. by TextLogger for multiline messages )
-		if ( caller == null || !(LogCallerSource || LogCallerMethod)  )
-		{
-			// set output straight to given msg
-			output= msg;
-		}
-
-		// we cat caller info and the message to our internal buffer 
-		else
-		{
-			// set output to internal buffer
-			output= consoleBuffer;
-
-			// clear temp buffer
-			consoleBuffer.Clear();
-
-			// build filename/line number in a VStudio clickable format 
-			if ( LogCallerSource)
-			{
-				// add source file: can we cut the source file name by a prefix?
-				String sfn=		caller.SourceFileName;
-				String cspp=	caller.GetConsumableSourcePathPrefix();
-				if ( sfn.StartsWith( cspp, StringComparison.OrdinalIgnoreCase ) )
-					consoleBuffer.Append( sfn, cspp.Length, caller.SourceFileName.Length - cspp.Length);
-				else
-					consoleBuffer.Append( sfn );
-
-				// add line number
-				consoleBuffer.Append( strPrefixLineNumber ).Append( caller.LineNumber ).Append( strPostfixLineNumber );
-			}
-
-			// append method name
-			if ( LogCallerMethod )
-			{
-				consoleBuffer.Append( FmtMemberPrefix );
-				consoleBuffer.Append( caller.MethodName );
-				consoleBuffer.Append( FmtMemberPostfix );
-			}
-
-			// jump to next tab level
-			if ( TabAfterSourceInfo < consoleBuffer.Length )
-				TabAfterSourceInfo= consoleBuffer.Length + 5; // add some extra space to avoid too many increases
-			for ( int i= consoleBuffer.Length ; i < TabAfterSourceInfo ; i++ )
-				consoleBuffer.Append( ' ' );
-
-			// append message
-			consoleBuffer.Append( msg );
-		}
 
 		// write to console(s)
 		#if !ALOX_NO_CONSOLE
 			#if !(ALOX_WP71 || ALOX_WP8)
-				if ( EnableAppConsole )		{	Console.WriteLine( output.Buffer, 0, output.Length );	}
+				if ( EnableAppConsole )		{	Console.WriteLine( msg.Buffer, 0, msg.Length );	}
 			#else
-				if ( EnableAppConsole )		{	Console.WriteLine( output.ToString() );						}
+				if ( EnableAppConsole )		{	Console.WriteLine( msg.ToString() );						}
 			#endif
 		#endif
-		if ( EnableVSDebugConsole )			{	System.Diagnostics.Debug.WriteLine( output.ToString() );		}
+		if ( EnableVSDebugConsole )			{	System.Diagnostics.Debug.WriteLine( msg.ToString() );		}
 
 	}
 
 #endif // ALOX_DEBUG || ALOX_REL_LOG
-
 } // class ConsoleLogger
 } // namespace
 

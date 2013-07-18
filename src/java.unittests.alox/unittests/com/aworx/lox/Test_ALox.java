@@ -7,8 +7,7 @@ import java.util.LinkedList;
 import org.junit.Test;
 
 import com.aworx.lox.*;
-import com.aworx.lox.core.CallerInfo;
-import com.aworx.lox.core.TextLogger;
+import com.aworx.lox.core.TextLoggerLineFormatter;
 import com.aworx.lox.loggers.ConsoleLogger;
 import com.aworx.lox.loggers.MemoryLogger;
 import com.aworx.util.*;
@@ -17,13 +16,13 @@ import com.aworx.util.*;
 public class Test_ALox
 {
 	/** ***********************************************************************************************
-	 * <summary>	The loggers. </summary>
+	 * 	The loggers.
 	 **************************************************************************************************/
 	public ConsoleLogger	cl;
 	public MemoryLogger		ml;
 
 	/** ***********************************************************************************************
-	 * <summary>	Creates loggers. </summary>
+	 * 	Creates loggers.
 	 **************************************************************************************************/
 	public void   clearCreateAndAddLoggers( boolean memoryLogger, boolean consoleLogger)
 	{
@@ -53,26 +52,20 @@ public class Test_ALox
 
 
 	/** ***********************************************************************************************
-	 * <summary>	Log_TestLogLevelSetting </summary>
+	 * 	Log_TestLogLevelSetting
 	 **************************************************************************************************/
 	@SuppressWarnings("static-method")
 	@Test 
 	public void Log_TestTextLoggerTimeDiff()
 	{
-		class T extends TextLogger
+		class T extends TextLoggerLineFormatter
 		{
-						protected 		T()												{ super( "TLTest" );}
-			@Override 	protected void 	doTextLog(MString domain, Log.Level level, 
-												  MString msg, int indent,
-												  CallerInfo caller, int lineNumber)	{}
-						public 	  void 	t(MString buf, long diff) 						{ logBuf= buf; logTimeDiff( diff ); }
+			public 	  void 	t( MString buf, long diff ) 		{ writeTimeDiff( buf, diff ); }
 		}
 		
 		T t= new T();
 		MString ms= new MString();
 		long diff;
-		int lenfmtTimeDiffPrefix= 	t.fmtTimeDiffPrefix .length();
-		int lenfmtTimeDiffPostfix= t.fmtTimeDiffPostfix.length();
 		long millis= 	1000L;
 		long secs=		1000L * millis;
 		long mins=		60 * secs;
@@ -80,78 +73,78 @@ public class Test_ALox
 		long days=		24 * hours;
 		
 		
-		diff= 0; 							ms.clear(); t.t( ms, diff ); assertEquals(  "000" + t.fmtTimeDiffMicros,	ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 15; 							ms.clear(); t.t( ms, diff ); assertEquals(  "015" + t.fmtTimeDiffMicros,	ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 99; 							ms.clear(); t.t( ms, diff ); assertEquals(  "099" + t.fmtTimeDiffMicros,	ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 600; 							ms.clear(); t.t( ms, diff ); assertEquals(  "600" + t.fmtTimeDiffMicros,	ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 999; 							ms.clear(); t.t( ms, diff ); assertEquals(  "999" + t.fmtTimeDiffMicros,	ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 1   * millis;					ms.clear(); t.t( ms, diff ); assertEquals(  "001" + t.fmtTimeDiffMillis,	ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 999 * millis;					ms.clear(); t.t( ms, diff ); assertEquals(  "999" + t.fmtTimeDiffMillis,	ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 1   * secs;					ms.clear(); t.t( ms, diff ); assertEquals(  "1.00" + t.fmtTimeDiffSecs,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 2   * secs + 344 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "2.34" + t.fmtTimeDiffSecs,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 3   * secs + 345 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "3.35" + t.fmtTimeDiffSecs,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 9   * secs + 994 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "9.99" + t.fmtTimeDiffSecs,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 9   * secs + 995 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "10.0" + t.fmtTimeDiffSecs,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 9   * secs + 999 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "10.0" + t.fmtTimeDiffSecs,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 10  * secs + 940 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "10.9" + t.fmtTimeDiffSecs,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 10  * secs + 950 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "11.0" + t.fmtTimeDiffSecs,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 0; 							ms.clear(); t.t( ms, diff ); assertEquals(  "000"  + t.timeDiffMicros,	ms.toString(0,  ms.length ) );
+		diff= 15; 							ms.clear(); t.t( ms, diff ); assertEquals(  "015"  + t.timeDiffMicros,	ms.toString(0,  ms.length ) );
+		diff= 99; 							ms.clear(); t.t( ms, diff ); assertEquals(  "099"  + t.timeDiffMicros,	ms.toString(0,  ms.length ) );
+		diff= 600; 							ms.clear(); t.t( ms, diff ); assertEquals(  "600"  + t.timeDiffMicros,	ms.toString(0,  ms.length ) );
+		diff= 999; 							ms.clear(); t.t( ms, diff ); assertEquals(  "999"  + t.timeDiffMicros,	ms.toString(0,  ms.length ) );
+		diff= 1   * millis;					ms.clear(); t.t( ms, diff ); assertEquals(  "001"  + t.timeDiffMillis,	ms.toString(0,  ms.length ) );
+		diff= 999 * millis;					ms.clear(); t.t( ms, diff ); assertEquals(  "999"  + t.timeDiffMillis,	ms.toString(0,  ms.length ) );
+		diff= 1   * secs;					ms.clear(); t.t( ms, diff ); assertEquals(  "1.00" + t.timeDiffSecs,		ms.toString(0,  ms.length ) );
+		diff= 2   * secs + 344 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "2.34" + t.timeDiffSecs,		ms.toString(0,  ms.length ) );
+		diff= 3   * secs + 345 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "3.35" + t.timeDiffSecs,		ms.toString(0,  ms.length ) );
+		diff= 9   * secs + 994 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "9.99" + t.timeDiffSecs,		ms.toString(0,  ms.length ) );
+		diff= 9   * secs + 995 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "10.0" + t.timeDiffSecs,		ms.toString(0,  ms.length ) );
+		diff= 9   * secs + 999 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "10.0" + t.timeDiffSecs,		ms.toString(0,  ms.length ) );
+		diff= 10  * secs + 940 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "10.9" + t.timeDiffSecs,		ms.toString(0,  ms.length ) );
+		diff= 10  * secs + 950 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "11.0" + t.timeDiffSecs,		ms.toString(0,  ms.length ) );
 		
-		diff= 99  * secs + 900 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.fmtTimeDiffSecs,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 99  * secs + 949 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.fmtTimeDiffSecs,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 99  * secs + 900 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.timeDiffSecs,		ms.toString(0,  ms.length ) );
+		diff= 99  * secs + 949 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.timeDiffSecs,		ms.toString(0,  ms.length ) );
 
-//		diff= 99  * secs + 950 * millis;	ms.Clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.fmtTimeDiffSecs,		ms.toString(lenfmtTimeDiffPrefix, ms.Length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+//		diff= 99  * secs + 950 * millis;	ms.Clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.fmtTimeDiffSecs,		ms.toString(0,  ms.Length ) );
 
-		diff= 2  * mins + 0 * secs;			ms.clear(); t.t( ms, diff ); assertEquals(  "2.00" + t.fmtTimeDiffMins,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 2  * mins + 30 * secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "2.50" + t.fmtTimeDiffMins,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 9  * mins + 45 * secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "9.75" + t.fmtTimeDiffMins,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 9  * mins + 59 * secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "9.98" + t.fmtTimeDiffMins,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 9  * mins + 59500 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "9.99" + t.fmtTimeDiffMins,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 9  * mins + 59999 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "10.0" + t.fmtTimeDiffMins,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 2  * mins + 0 * secs;			ms.clear(); t.t( ms, diff ); assertEquals(  "2.00" + t.timeDiffMins,		ms.toString(0,  ms.length ) );
+		diff= 2  * mins + 30 * secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "2.50" + t.timeDiffMins,		ms.toString(0,  ms.length ) );
+		diff= 9  * mins + 45 * secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "9.75" + t.timeDiffMins,		ms.toString(0,  ms.length ) );
+		diff= 9  * mins + 59 * secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "9.98" + t.timeDiffMins,		ms.toString(0,  ms.length ) );
+		diff= 9  * mins + 59500 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "9.99" + t.timeDiffMins,		ms.toString(0,  ms.length ) );
+		diff= 9  * mins + 59999 * millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "10.0" + t.timeDiffMins,		ms.toString(0,  ms.length ) );
 
-		diff= 99 * mins + 0 * secs;			ms.clear(); t.t( ms, diff ); assertEquals(  "99.0" + t.fmtTimeDiffMins,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 99 * mins + 30* secs;			ms.clear(); t.t( ms, diff ); assertEquals(  "99.5" + t.fmtTimeDiffMins,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 99 * mins + 59* secs;			ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.fmtTimeDiffMins,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 99 * mins + 59500* millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.fmtTimeDiffMins,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 99 * mins + 59999* millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "1.66" + t.fmtTimeDiffHours,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 1 * hours + 30* mins;			ms.clear(); t.t( ms, diff ); assertEquals(  "90.0" + t.fmtTimeDiffMins,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 99 * mins + 0 * secs;			ms.clear(); t.t( ms, diff ); assertEquals(  "99.0" + t.timeDiffMins,		ms.toString(0,  ms.length ) );
+		diff= 99 * mins + 30* secs;			ms.clear(); t.t( ms, diff ); assertEquals(  "99.5" + t.timeDiffMins,		ms.toString(0,  ms.length ) );
+		diff= 99 * mins + 59* secs;			ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.timeDiffMins,		ms.toString(0,  ms.length ) );
+		diff= 99 * mins + 59500* millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.timeDiffMins,		ms.toString(0,  ms.length ) );
+		diff= 99 * mins + 59999* millis;	ms.clear(); t.t( ms, diff ); assertEquals(  "1.66" + t.timeDiffHours,	ms.toString(0,  ms.length ) );
+		diff= 1 * hours + 30* mins;			ms.clear(); t.t( ms, diff ); assertEquals(  "90.0" + t.timeDiffMins,		ms.toString(0,  ms.length ) );
 
-		diff= 5 * hours + 30* mins;			ms.clear(); t.t( ms, diff ); assertEquals(  "5.50" + t.fmtTimeDiffHours,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 5 * hours + 30* mins;			ms.clear(); t.t( ms, diff ); assertEquals(  "5.50" + t.timeDiffHours,	ms.toString(0,  ms.length ) );
 	
-		diff= 9 * hours + 45* mins;			ms.clear(); t.t( ms, diff ); assertEquals(  "9.75" + t.fmtTimeDiffHours,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 9 * hours + 59* mins;			ms.clear(); t.t( ms, diff ); assertEquals(  "9.98" + t.fmtTimeDiffHours,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 9 * hours + 3540* secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "9.98" + t.fmtTimeDiffHours,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 9 * hours + 3580* secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "9.99" + t.fmtTimeDiffHours,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 9 * hours + 3599* secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "9.99" + t.fmtTimeDiffHours,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 9 * hours + 3600* secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "10.0" + t.fmtTimeDiffHours,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 9 * hours + 45* mins;			ms.clear(); t.t( ms, diff ); assertEquals(  "9.75" + t.timeDiffHours,	ms.toString(0,  ms.length ) );
+		diff= 9 * hours + 59* mins;			ms.clear(); t.t( ms, diff ); assertEquals(  "9.98" + t.timeDiffHours,	ms.toString(0,  ms.length ) );
+		diff= 9 * hours + 3540* secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "9.98" + t.timeDiffHours,	ms.toString(0,  ms.length ) );
+		diff= 9 * hours + 3580* secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "9.99" + t.timeDiffHours,	ms.toString(0,  ms.length ) );
+		diff= 9 * hours + 3599* secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "9.99" + t.timeDiffHours,	ms.toString(0,  ms.length ) );
+		diff= 9 * hours + 3600* secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "10.0" + t.timeDiffHours,	ms.toString(0,  ms.length ) );
 		
-		diff= 50 * hours + 15 *mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "50.2" + t.fmtTimeDiffHours,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 99 * hours + 45 *mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "99.7" + t.fmtTimeDiffHours,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 99 * hours + 48 *mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "99.8" + t.fmtTimeDiffHours,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 99 * hours + 59 *mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.fmtTimeDiffHours,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 99 * hours + 3540* secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.fmtTimeDiffHours,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 99 * hours + 3580* secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.fmtTimeDiffHours,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 99 * hours + 3599* secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.fmtTimeDiffHours,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 99 * hours + 3600* secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "4.16" + t.fmtTimeDiffDays,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 50 * hours + 15 *mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "50.2" + t.timeDiffHours,	ms.toString(0,  ms.length ) );
+		diff= 99 * hours + 45 *mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "99.7" + t.timeDiffHours,	ms.toString(0,  ms.length ) );
+		diff= 99 * hours + 48 *mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "99.8" + t.timeDiffHours,	ms.toString(0,  ms.length ) );
+		diff= 99 * hours + 59 *mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.timeDiffHours,	ms.toString(0,  ms.length ) );
+		diff= 99 * hours + 3540* secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.timeDiffHours,	ms.toString(0,  ms.length ) );
+		diff= 99 * hours + 3580* secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.timeDiffHours,	ms.toString(0,  ms.length ) );
+		diff= 99 * hours + 3599* secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.timeDiffHours,	ms.toString(0,  ms.length ) );
+		diff= 99 * hours + 3600* secs;		ms.clear(); t.t( ms, diff ); assertEquals(  "4.16" + t.timeDiffDays,		ms.toString(0,  ms.length ) );
 
-		diff= 1 * days + 12* hours;			ms.clear(); t.t( ms, diff ); assertEquals(  "36.0" + t.fmtTimeDiffHours,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 1 * days + 12* hours;			ms.clear(); t.t( ms, diff ); assertEquals(  "36.0" + t.timeDiffHours,	ms.toString(0,  ms.length ) );
 
-		diff= 5 * days + 18* hours;			ms.clear(); t.t( ms, diff ); assertEquals(  "5.75" + t.fmtTimeDiffDays,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 9 * days + 23* hours;			ms.clear(); t.t( ms, diff ); assertEquals(  "9.95" + t.fmtTimeDiffDays,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 9 * days + 1380 * mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "9.95" + t.fmtTimeDiffDays,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 9 * days + 1400 * mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "9.97" + t.fmtTimeDiffDays,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 9 * days + 1439 * mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "9.99" + t.fmtTimeDiffDays,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 9 * days + 1440 * mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "10.0" + t.fmtTimeDiffDays,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 15 * days + 6 * hours;		ms.clear(); t.t( ms, diff ); assertEquals(  "15.2" + t.fmtTimeDiffDays,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 99 * days + 18 * hours;		ms.clear(); t.t( ms, diff ); assertEquals(  "99.7" + t.fmtTimeDiffDays,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 99 * days + 1439 * mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.fmtTimeDiffDays,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
-		diff= 99 * days + 1440 * mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "100.0" + t.fmtTimeDiffDays,			ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 5 * days + 18* hours;			ms.clear(); t.t( ms, diff ); assertEquals(  "5.75" + t.timeDiffDays,		ms.toString(0,  ms.length ) );
+		diff= 9 * days + 23* hours;			ms.clear(); t.t( ms, diff ); assertEquals(  "9.95" + t.timeDiffDays,		ms.toString(0,  ms.length ) );
+		diff= 9 * days + 1380 * mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "9.95" + t.timeDiffDays,		ms.toString(0,  ms.length ) );
+		diff= 9 * days + 1400 * mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "9.97" + t.timeDiffDays,		ms.toString(0,  ms.length ) );
+		diff= 9 * days + 1439 * mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "9.99" + t.timeDiffDays,		ms.toString(0,  ms.length ) );
+		diff= 9 * days + 1440 * mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "10.0" + t.timeDiffDays,		ms.toString(0,  ms.length ) );
+		diff= 15 * days + 6 * hours;		ms.clear(); t.t( ms, diff ); assertEquals(  "15.2" + t.timeDiffDays,		ms.toString(0,  ms.length ) );
+		diff= 99 * days + 18 * hours;		ms.clear(); t.t( ms, diff ); assertEquals(  "99.7" + t.timeDiffDays,		ms.toString(0,  ms.length ) );
+		diff= 99 * days + 1439 * mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "99.9" + t.timeDiffDays,		ms.toString(0,  ms.length ) );
+		diff= 99 * days + 1440 * mins;		ms.clear(); t.t( ms, diff ); assertEquals(  "100.0"+ t.timeDiffDays,	ms.toString(0,  ms.length ) );
 
-		diff= 13452 * days + 12* hours;		ms.clear(); t.t( ms, diff ); assertEquals(  "13452.5" + t.fmtTimeDiffDays,		ms.toString(lenfmtTimeDiffPrefix, ms.length - lenfmtTimeDiffPrefix - lenfmtTimeDiffPostfix) );
+		diff= 13452 * days + 12* hours;		ms.clear(); t.t( ms, diff ); assertEquals("13452.5"+ t.timeDiffDays,	ms.toString(0,  ms.length ) );
 		//System.out.println(ms.toString());		
 	}
 	
 	/** ***********************************************************************************************
-	 * <summary>	Log_TestLogLevelSetting </summary>
+	 * 	Log_TestLogLevelSetting
 	 **************************************************************************************************/
 	@Test 
 	public void Log_TestLogLevelSetting()
@@ -198,7 +191,7 @@ public class Test_ALox
 	}
 	
 	/** ***********************************************************************************************
-	 * <summary>	Log_TestDefaultDomain </summary>
+	 * 	Log_TestDefaultDomain
 	 **************************************************************************************************/
 	@Test 
 	public void Log_TestDefaultDomain()
@@ -300,7 +293,7 @@ public class Test_ALox
 		}
 
 		/** ***********************************************************************************************
-		 * <summary>	Log_TestDefaultDomain </summary>
+		 * 	Log_TestDefaultDomain
 		 **************************************************************************************************/
 		@Test 
 		public void Log_TestAssertAndConditional()
@@ -325,10 +318,10 @@ public class Test_ALox
 		}
 
 		/** ***********************************************************************************************
-		 * <summary>	Log_TestDefaultDomain </summary>
+		 * 	Log_TestDefaultDomain
 		 **************************************************************************************************/
 		@Test 
-		public void Log_TestOutputFlags()
+		public void Log_TestLineFormat()
 		{
 			//#if ALOX_DEBUG || ALOX_REL_LOG
 			clearCreateAndAddLoggers();
@@ -338,31 +331,26 @@ public class Test_ALox
 			
 			Log.info( "This is the default ConsoleLogger log line" );
 
-			cl.logDate=			true;  
-			cl.logTimeOfDay=	true;		Log.info( "logDate= on, LogTimeOfDay= on" );
-			cl.logLogCounter=	true;		Log.info( "logLogCounter= true" ); Log.info( "LogLogCounter= true" ); Log.info( "LogLogCounter= true" );
-			cl.logThreadInfo=	false;  	Log.info( "logThreadInfo= false" );
-			cl.logDomainName=	false;  	Log.info( "logDomainName= false" );
-			cl.logLogLevel=		false;  	Log.info( "logLogLevel= false" );
-			cl.logTimeDiff=		false;  	Log.info( "logTimeDiff= false" );
-			cl.logTimeElapsed=	false;  	Log.info( "logTimeElapsed= false" );
-			cl.logCallerClass=	true;	  	Log.info( "logCallerClass= true" );
-			cl.logCallerPackage=true;	  	Log.info( "logCallerPackage= true" );
-			cl.logCallerMethod=	false;		Log.info( "logCallerMethod= false" );
-			cl.logCallerPackage=false;		Log.info( "logCallerPackage= false" );
-			cl.logCallerClass=	false;		Log.info( "logCallerClass= = false" );
-			cl.logCallerSource=	false;		Log.info( "logCallerSource= false" );
-			cl.logDate=			false;		Log.info( "logDate= false" );
-			cl.logTimeOfDay=	false;  	Log.info( "logTimeOfDay= false" );
-			cl.logLogCounter=	false;		Log.info( "logLogCounter= false" ); Log.info( "LogLogCounter= false" ); Log.info( "LogLogCounter= false" );
-
-			cl.fmtMessagePrefix=MString.empty;	Log.info( "cl.fmtMessagePrefix=\"\""); 
+			MString  lf;
+			lf= new MString( "(%CF) %CP.%CC.%CM():%A3[%DD][%TD][%TE +%TI] [%t] %L [%O] <%#>: ");	cl.lineFormatter.format= lf;	Log.info( "LineFormat set to= \"" + lf + "\"" );
+			lf= new MString(     "(%CF) %CC.%CM():%A3[%DD][%TD][%TE +%TI] [%t] %L [%O] <%#>: ");	cl.lineFormatter.format= lf;	Log.info( "LineFormat set to= \"" + lf + "\"" );
+			lf= new MString(         "(%CF) %CM():%A3[%DD][%TD][%TE +%TI] [%t] %L [%O] <%#>: ");	cl.lineFormatter.format= lf;	Log.info( "LineFormat set to= \"" + lf + "\"" );
+			lf= new MString(         "(%CF) %CM():%A3[%TD][%TE +%TI] [%t] %L [%O] <%#>: ");			cl.lineFormatter.format= lf;	Log.info( "LineFormat set to= \"" + lf + "\"" );
+			lf= new MString(         "(%CF) %CM():%A3[%TE +%TI] [%t] %L [%O] <%#>: ");				cl.lineFormatter.format= lf;	Log.info( "LineFormat set to= \"" + lf + "\"" );
+			lf= new MString(         "(%CF) %CM():%A3[+%TI] [%t] %L [%O] <%#>: ");					cl.lineFormatter.format= lf;	Log.info( "LineFormat set to= \"" + lf + "\"" );
+			lf= new MString(         "(%CF) %CM():%A3[%t] %L [%O] <%#>: ");							cl.lineFormatter.format= lf;	Log.info( "LineFormat set to= \"" + lf + "\"" );
+			lf= new MString(         "(%CF) %CM():%A3%L [%O] <%#>: ");								cl.lineFormatter.format= lf;	Log.info( "LineFormat set to= \"" + lf + "\"" );
+			lf= new MString(         "(%CF) %CM():%A3[%O] <%#>: ");									cl.lineFormatter.format= lf;	Log.info( "LineFormat set to= \"" + lf + "\"" );
+			lf= new MString(         "(%CF) %CM():%A3[%O]: ");										cl.lineFormatter.format= lf;	Log.info( "LineFormat set to= \"" + lf + "\"" );
+			lf= new MString(         "(%CF):%A3[%O]: ");											cl.lineFormatter.format= lf;	Log.info( "LineFormat set to= \"" + lf + "\"" );
+			lf= new MString( "[%O]: ");																cl.lineFormatter.format= lf;	Log.info( "LineFormat set to= \"" + lf + "\"" );
+			lf= new MString( "");																	cl.lineFormatter.format= lf;	Log.info( "LineFormat set to= \"" + lf + "\"" );
 			//#endif
 		}
 
 
 		/** ***********************************************************************************************
-		 * <summary>	Log_TestMarker </summary>
+		 * 	Log_TestMarker
 		 **************************************************************************************************/
 		@Test 
 		public void Log_TestMarker()
@@ -404,7 +392,7 @@ public class Test_ALox
 
 
 		/** ***********************************************************************************************
-		 * <summary>	Log_TestThreads </summary>
+		 * 	Log_TestThreads
 		 **************************************************************************************************/
 		@Test 
 		public void Log_TestThreads()
@@ -413,10 +401,6 @@ public class Test_ALox
 
 			Log.regDomain ( "TEST/THREAD1", Log.Scope.METHOD );
 			Log.setDomain( "TEST/THREAD1", Log.DomainLevel.ALL );
-
-			//#if ALOX_DEBUG || ALOX_REL_LOG
-				cl.logThreadInfo=	true;
-			//#endif  // ALOX_DEBUG || ALOX_REL_LOG
 
 			// if this gets commented out, the test might crash. At least the console will
 			// become scrambled!
@@ -451,7 +435,7 @@ public class Test_ALox
 
 
 		/** ***********************************************************************************************
-		 * <summary>	Log_TestException. </summary>
+		 * 	Log_TestException.
 		 **************************************************************************************************/
 		@Test 
 		public void Log_TestException()
@@ -468,7 +452,7 @@ public class Test_ALox
 		}
 
 		/** ***********************************************************************************************
-		 * <summary>	Log_TestException. </summary>
+		 * 	Log_TestException.
 		 **************************************************************************************************/
 		@Test 
 		public void Log_TestStackTrace()
@@ -484,7 +468,7 @@ public class Test_ALox
 		}
 
 		/** ***********************************************************************************************
-		 * <summary>	Log_TestXML </summary>
+		 * 	Log_TestXML
 		 **************************************************************************************************/
 		@Test
 		public void Log_TestInstance()
@@ -610,7 +594,7 @@ public class Test_ALox
 
 
 		/** ***********************************************************************************************
-		 * <summary>	Log_TestException. </summary>
+		 * 	Log_TestException.
 		 **************************************************************************************************/
 		@Test 
 		public void Log_TestMultiline()
@@ -652,18 +636,18 @@ public class Test_ALox
 
 				cl.multiLineMsgMode= 3;
 				Log.info( "" );
-				Log.info( "-------- ML Mode = 3 (multi line, just caller info) --------" );
+				Log.info( "-------- ML Mode = 3 (multi line, print headline with info, text starts at pos 0) --------\" );
 				Log.logConfig( "MLine", Log.Level.INFO, "Our Log configuration is:" );
 
 				cl.multiLineMsgMode= 4;
 				Log.info( "" );
-				Log.info( "-------- ML Mode = 4 (multi line, no meta, no caller, starts at pos 0)) --------" );
+				Log.info( "-------- ML Mode = 4 (pure multi line, no meta info, no headline, starts at pos 0)) --------\" );
 				Log.logConfig( "MLine", Log.Level.INFO, "Our Log configuration is:" );
 			//#endif
 		}
 
 		/** ***********************************************************************************************
-		 * <summary>	Log_TestXML </summary>
+		 * 	Log_TestXML
 		 **************************************************************************************************/
 /*	NIY	 
 		@Test 
@@ -745,7 +729,7 @@ public class Test_ALox
 */
 
 		/** ***********************************************************************************************
-		 * <summary>	Log_TestXML </summary>
+		 * 	Log_TestXML
 		 **************************************************************************************************/
 /* NIY		 
 		@Test 

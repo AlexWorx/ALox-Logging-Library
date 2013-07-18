@@ -11,10 +11,6 @@ import com.aworx.util.MString;
  **************************************************************************************************/
 public class MemoryLogger extends TextLogger
 {
-	// #################################################################################################
-	// fields
-	// #################################################################################################
-
 	/**
 	 *  The logging Buffer. This can be accessed publicly and hence used as you prefer. Especially,
 	 *  the whole log can easily be cleared using the MString.Clear(). However, in
@@ -22,22 +18,6 @@ public class MemoryLogger extends TextLogger
 	 *  accessing this Buffer. The initial size of the buffer is 8kb.
 	 */
 	public		MString			buffer							= new MString( 8192 );
-
-	/**
-	 *  Tab position after caller info. This auto adjusts (increases) when longer source info occurs.
-	 *  To avoid increases in the beginning, this value can be set upfront (after the logger was
-	 *  created)
-	 */
-	public		int				tabAfterCallerInfo				=0;
-
-	/** Tab position before the caller name. This auto adjusts (increases) when longer source info occurs. To
-	*   avoid increases in the beginning, this value can be set upfront (after the logger was created) */
-	public		int				tabBeforeCallerName				=0;
-
-
-	// #################################################################################################
-	// Constructors
-	// #################################################################################################
 
     /**********************************************************************************************//**
      * Creates a MemoryLogger with the given name.
@@ -50,10 +30,6 @@ public class MemoryLogger extends TextLogger
      * Creates a MemoryLogger with the name "MEMORY".
      **************************************************************************************************/
 	public MemoryLogger( )				{ super("MEMORY");	}
-
-	// #################################################################################################
-	// Abstract interface implementation
-	// #################################################################################################
 
     /**********************************************************************************************//**
      * The implementation of the abstract method of parent class TextLogger. Logs messages to the
@@ -77,38 +53,6 @@ public class MemoryLogger extends TextLogger
 		// append new line if buffer has already lines stored
 		if ( buffer.length > 0 )
 			buffer.newLine();
-
-		// build filename/line number in a clickable format 
-		if ( caller != null && ( logCallerSource || logCallerMethod || logCallerClass || logCallerPackage )  )
-		{
-			// get actual length once
-			int oldLength= buffer.length;
-
-			// append clickable source info
-			if ( logCallerSource )	
-				buffer.append( '(' ).append( caller.fileNameAndLineNumber).append( ')' );
-
-			// append package/class/method info
-			if( logCallerMethod || logCallerClass || logCallerPackage )
-			{
-				// jump to next tab level
-				buffer.append( ' ' );
-				int bLength= buffer.length - oldLength;
-				if ( tabBeforeCallerName < bLength )
-					tabBeforeCallerName= bLength; 
-				buffer.append( ' ', tabBeforeCallerName - bLength);
-
-				if ( logCallerPackage )	buffer				.append( caller.packageName ).append( '.' );
-				if ( logCallerClass   )	buffer				.append( caller.className   );	
-				if ( logCallerMethod  )	buffer.append( '.' ).append( caller.methodName  ).append( '(' ).append( ')' );
-			}
-			
-			// jump to next tab level
-			int bLength= buffer.length - oldLength;
-			if ( tabAfterCallerInfo <= bLength )
-				tabAfterCallerInfo= bLength+ 3; // add some extra space too avoid to many increases
-			buffer.append( ' ', tabAfterCallerInfo - bLength  );
-		}
 
 		// append message 
 		buffer.append( msg );

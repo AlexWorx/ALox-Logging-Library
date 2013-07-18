@@ -1,3 +1,3 @@
-src\cs.unittests.alox\Tests_Tutorial.cs(102):.Tut_DefaultDomains()     [00:00.000  +074 µs] [T:(10)] [ERR] [APP]: A severe error happened :-(
-src\cs.unittests.alox\Tests_Tutorial.cs(103):.Tut_DefaultDomains()     [00:00.000  +125 µs] [T:(10)] [WRN] [APP]: This is a warning :-/ Maybe an error follows?
-src\cs.unittests.alox\Tests_Tutorial.cs(104):.Tut_DefaultDomains()     [00:00.000  +049 µs] [T:(10)]       [APP]: Just for your further information!
+src\cs.unittests.alox\Tests_Tutorial.cs(102):Tut_DefaultDomains() [00:00.000 +061 µs] [10] [ERR] [APP]: A severe error happened :-(
+src\cs.unittests.alox\Tests_Tutorial.cs(103):Tut_DefaultDomains() [00:00.000 +100 µs] [10] [WRN] [APP]: This is a warning :-/ Maybe an error follows?
+src\cs.unittests.alox\Tests_Tutorial.cs(104):Tut_DefaultDomains() [00:00.000 +078 µs] [10]       [APP]: Just for your further information!
