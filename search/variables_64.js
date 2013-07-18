@@ -1,12 +1,14 @@
 var searchData=
 [
-  ['dateformat',['dateFormat',['../../html/java_ref/classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a4567788f210ddfe6aaa514dea9655dc3',1,'com::aworx::lox::android::AndroidLogCatLogger']]],
-  ['dateformatstring',['dateFormatString',['../../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a25d0a90e758eef351048c526b82ce060',1,'com::aworx::lox::core::TextLogger']]],
+  ['dateformat',['DateFormat',['../../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a73be91892f104afd96a32ab547e2cf45',1,'com::aworx::lox::core::TextLoggerLineFormatter::DateFormat()'],['../../html/java_ref/classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a6b15b781aa433d02829c8c74e71c795f',1,'com::aworx::lox::core::TextLoggerLineFormatter::dateFormat()']]],
+  ['dateformatstring',['dateFormatString',['../../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a25d0a90e758eef351048c526b82ce060',1,'com::aworx::lox::core::TextLoggerLineFormatter']]],
+  ['dateformatter',['dateFormatter',['../../html/java_ref/classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#ae00c40256e7c69ef39832f0a602f8fdd',1,'com::aworx::lox::core::TextLoggerLineFormatter']]],
+  ['dateinstanceset',['dateInstanceSet',['../../html/java_ref/classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a2799fc5b4b9bce013ac467ebad2d5dba',1,'com::aworx::lox::core::TextLoggerLineFormatter']]],
   ['datetimeticks19700101',['dateTimeTicks19700101',['../../html/cs_ref/classcom_1_1aworx_1_1util_1_1Ticker.html#a9fece05bed075816cf25a02b44f72b57',1,'com::aworx::util::Ticker']]],
   ['defaultdomains',['defaultDomains',['../../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Lox.html#ad8161c647b7b5d806611c07ad2357e75',1,'com::aworx::lox::Lox::defaultDomains()'],['../../html/java_ref/classcom_1_1aworx_1_1lox_1_1Lox.html#a1f8cd2c87e05902845318a8f345092e7',1,'com::aworx::lox::Lox::defaultDomains()']]],
-  ['defaultfmtdate',['defaultfmtDate',['../../html/java_ref/classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a917c9b55d2f0a57a7e467b01193f20f5',1,'com::aworx::lox::android::AndroidLogCatLogger']]],
-  ['defaultfmttimeofday',['defaultfmtTimeOfDay',['../../html/java_ref/classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a7fcc81983c7adc0ded7cf48f504fe001',1,'com::aworx::lox::android::AndroidLogCatLogger']]],
-  ['detectdateformatchanges',['detectDateFormatChanges',['../../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#ab621f55d7a1a3c04988089afeea88208',1,'com::aworx::lox::core::TextLogger']]],
-  ['detecttimeofdayformatchanges',['detectTimeOfDayFormatChanges',['../../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#ae2eb584a3f8074d9b14f56741ff2b628',1,'com::aworx::lox::core::TextLogger']]],
+  ['defaultfmtdate',['defaultfmtDate',['../../html/java_ref/classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a917c9b55d2f0a57a7e467b01193f20f5',1,'com::aworx::lox::core::TextLoggerLineFormatter']]],
+  ['defaultfmttimeofday',['defaultfmtTimeOfDay',['../../html/java_ref/classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a7fcc81983c7adc0ded7cf48f504fe001',1,'com::aworx::lox::core::TextLoggerLineFormatter']]],
+  ['detectdateformatchanges',['detectDateFormatChanges',['../../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#ab621f55d7a1a3c04988089afeea88208',1,'com::aworx::lox::core::TextLoggerLineFormatter']]],
+  ['detecttimeofdayformatchanges',['detectTimeOfDayFormatChanges',['../../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#ae2eb584a3f8074d9b14f56741ff2b628',1,'com::aworx::lox::core::TextLoggerLineFormatter']]],
   ['domainseparatorchars',['domainSeparatorChars',['../../html/java_ref/classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#aa25dea88ec319cb6f8954e150ec0c542',1,'com::aworx::lox::core::LogDomain::domainSeparatorChars()'],['../../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#afb75ecb5fef3bcf61597efd190ca0114',1,'com::aworx::lox::core::LogDomain::DomainSeparatorChars()']]]
 ];

@@ -1375,6 +1375,13 @@
       <anchor>a2a54b3dc4c3c94110f82f1c6a875f7ab</anchor>
       <arglist>()</arglist>
     </member>
+    <member kind="function">
+      <type>void</type>
+      <name>constructor</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1android_1_1AndroidLogCatLogger.html</anchorfile>
+      <anchor>a20d184ae62fb81a0f1edd89a5be76231</anchor>
+      <arglist>()</arglist>
+    </member>
     <member kind="variable">
       <type>String</type>
       <name>logTag</name>
@@ -1383,24 +1390,24 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>int</type>
-      <name>tabAfterCallerInfo</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1android_1_1AndroidLogCatLogger.html</anchorfile>
-      <anchor>ab567b166bd89d2152a85fc93d91808f4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>tabBeforeCallerName</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1android_1_1AndroidLogCatLogger.html</anchorfile>
-      <anchor>aa5a11f0f87e30d2b8256baaf1d86e9a6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
       <type>boolean</type>
       <name>verboseIsDebug</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1android_1_1AndroidLogCatLogger.html</anchorfile>
       <anchor>af4c546b140faad4e89c4ad7844c702f9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>TextLoggerObjectConverter</type>
+      <name>objectConverter</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
+      <anchor>aa9c3f8373c25b01fd386dc0ea32636db</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>TextLoggerLineFormatter</type>
+      <name>lineFormatter</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
+      <anchor>aa5e10d11120b3589e7b35e5ae709f9e5</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -1433,55 +1440,6 @@
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>fmtNullObject</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a5b4240f9d910de65e0f07e5775ab6eef</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>fmtMessagePrefix</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>abd3da561a0d9f52e0721c11d1d552977</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>fmtIndentString</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a608d11fc9207ee63d6c48388a1887ca5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>fmtLogLevelError</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a7b6576e60a3cb54530c9a81e467102d8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>fmtLogLevelWarning</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>ade0bba484570fa87699593225082ff1d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>fmtLogLevelInfo</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>ab5e8f36558d3698ba7d74c78a3538f15</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>fmtLogLevelVerbose</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a879778d0da5bff5abf5189e257c1a0ba</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
       <name>fmtMultiLineMsgHeadline</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
       <anchor>aeddddadb6299e40585333c787194c0fe</anchor>
@@ -1499,188 +1457,6 @@
       <name>fmtMultiLinePostfix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
       <anchor>a4a0d7c91d02a108e89817517dca908aa</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>fmtDatePrefix</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>aea65507980ee9830c9a4db0867a5de1b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>fmtDate</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>abfe0ee2b306cd14c89728ec5ba942892</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>fmtDatePostfix</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>ab298f7c03fd55b2a80f796578c266adc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>fmtTimeOfDayPrefix</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>ae0832e06041ccf39691b7a76305034a6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>fmtTimeOfDay</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>ac2f93e12e2fd23faa70d2e7f3b97fa62</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>fmtTimeOfDayPostfix</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a06397127e062f72ceff2bfd4c18133cc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>fmtTimeElapsedPrefix</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>ab65257309e81388c49a9d245795c081c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>fmtTimeElapsedPostfix</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>ae94d99f9ec3b5622185059d4e480d53b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>fmtTimeElapsedDays</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a003788e2ae61bf12c3f24bb72e9e1af1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>fmtTimeDiffPrefix</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a55a6d0c5958735318bc59d720c20204d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>fmtTimeDiffPostfix</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a8c0ba7fbcef3784c5569f2c638e380bd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>fmtTimeDiffMicros</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a519c2f49c20d825609ebae06857e32cd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>fmtTimeDiffMillis</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a46fcfb8ea2f7b37c5f854cd913aeb4e1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>fmtTimeDiffSecs</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>ab7e4a70f393f38eb4254e3a0d693d37a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>fmtTimeDiffMins</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>ab6e9f6e5e06e73507ce491ba7c622637</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>fmtTimeDiffHours</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a8e4cae73e9b4a27601d68033b577752f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>fmtTimeDiffDays</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a3f3dc82917ae4b3115b1d4566f4bc9de</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>fmtDomainPrefix</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a21f6ceb20e90837c8b6bc22589c76ba4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>fmtDomainPostfix</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>ac50dc81f31f1ca402920effe7283a112</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>fmtThreadPrefix</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a896add2a5c20c4263aead9911864484d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>fmtThreadPostfix</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a5d61c48dbae43a5cd135e7f1a74f4bf2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>fmtLogNumberPrefix</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>ae9c5aee3b3cae97b4fe91a2e14985ac9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>fmtLogNumberPostfix</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a4fa700638891a35e6faba9aac7e07ec3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>fmtLogNumberMinDigits</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a4e6cb3e8e6e4d9f011f015afb52fabac</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>fmtAutoGrowThreadNameLength</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a1c550360866fa38057c3cce1f7cf661f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>fmtAutoGrowDomainNameLength</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a274d8b748a5454c8ff6df1a0847a7a8b</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -1725,90 +1501,6 @@
       <anchor>a92d0810f0bd233179da253ce5fcc4624</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable">
-      <type>boolean</type>
-      <name>logCallerSource</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>a9bc656167aca42e8fc0fe9e96e051212</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>boolean</type>
-      <name>logCallerMethod</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>a17a092b544a34f38f2bc92964d0435a9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>boolean</type>
-      <name>logCallerClass</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>af1ed1f61682e73ed38019551ee0869fd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>boolean</type>
-      <name>logCallerPackage</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>a83bc7c364f2e0a5ebc7a821b867e3e78</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>boolean</type>
-      <name>logDate</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>a42f7939e7b6a64d5469729c1ce4c13ec</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>boolean</type>
-      <name>logTimeOfDay</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>aa21bed3ed50a0606c5c8202ce3b24a34</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>boolean</type>
-      <name>logTimeElapsed</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>aef636ca5527d89174c1ba26ec2600009</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>boolean</type>
-      <name>logTimeDiff</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>a5ab477e8428d728aeac95ebc76d61481</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>boolean</type>
-      <name>logDomainName</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>a9acc740a26701cd8f6ffbaa71ec1f137</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>boolean</type>
-      <name>logLogLevel</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>adb0a7f2965c2aec687370b471fd216ac</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>boolean</type>
-      <name>logThreadInfo</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>aca788c78c00fd4673ffdeb163f22b4c8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>boolean</type>
-      <name>logLogCounter</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>a5ce6ebb637a0be8c5ed79bdc204b1447</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>doTextLog</name>
@@ -1831,25 +1523,11 @@
       <arglist>(MString domain, Log.Level level, Object msgObject, int indent, CallerInfo caller)</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>void</type>
-      <name>logTimeDiff</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a992fff7225cbf662823cdcf45dfb42b6</anchor>
-      <arglist>(long diffMicros)</arglist>
-    </member>
-    <member kind="function" protection="protected">
       <type></type>
       <name>Logger</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
       <anchor>a42c27444187c8bea77c2b065a2ec183e</anchor>
       <arglist>(String name)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>boolean</type>
-      <name>checkDomain</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>a8fcd714a3f08b4941f8834fd84cfeab5</anchor>
-      <arglist>(MString domain, Log.Level level, CallerInfo caller)</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>MString</type>
@@ -1860,72 +1538,9 @@
     </member>
     <member kind="variable" protection="protected">
       <type>MString</type>
-      <name>msgBuffer</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a2eac8cf99106d95f5a0a8b4cc0c12716</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>MString</type>
       <name>logBuf</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
       <anchor>aaf37e693e36d895e18bcc1f6037f5d9e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>Date</type>
-      <name>callerDateTimeDate</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a15c370a8d52b71bdf21b1fe8869a06fd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>GregorianCalendar</type>
-      <name>callerDateTimeCal</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a7f3fbbf494fb72f94da86e9e541d0151</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>StringBuffer</type>
-      <name>tempSBuf</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>afe17394f84cf5bdb4891727e32f49300</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>SimpleDateFormat</type>
-      <name>dateFormat</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a4567788f210ddfe6aaa514dea9655dc3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>SimpleDateFormat</type>
-      <name>timeOfDayFormat</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a3d291fa01ff5b1248df6612dfdad1c24</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>FieldPosition</type>
-      <name>fieldPositionZero</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a80d3b9e454f65277d0245306d9abd668</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>String</type>
-      <name>defaultfmtDate</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a917c9b55d2f0a57a7e467b01193f20f5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>String</type>
-      <name>defaultfmtTimeOfDay</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a7fcc81983c7adc0ded7cf48f504fe001</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -2136,6 +1751,266 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>com::aworx::lox::core::TextLoggerLineFormatter</name>
+    <filename>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</filename>
+    <member kind="variable">
+      <type>MString</type>
+      <name>format</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>a192fd58992fe417f2e55725737fbb281</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int[]</type>
+      <name>autoTabs</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>a81a1aa55e14721a198990dfe3f11eb6f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>indentString</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>aa49de5c950d98088ddc25dbb15fe00b4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>logLevelError</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>ae8322b6ecc21496710ca2c4bb50d4cec</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>logLevelWarning</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>a6eacb25f7d4c74adb2ada7ccbcd36f3d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>logLevelInfo</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>a15ed110e8ee4220103779d9df1d1d31a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>logLevelVerbose</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>a43bbe77b119f7f752815048f0552d6ce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>dateFormat</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>a6b15b781aa433d02829c8c74e71c795f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>timeOfDayFormat</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>ab07f305b621e1b1dce257bd84dd113d2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>timeElapsedDays</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>ada00d3322cceb4f8029c90415bece6dc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>timeDiffMicros</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>ab09736328de999364378426c1815de02</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>timeDiffMillis</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>aed18be4469f8723bc9f5b2424de8f5ff</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>timeDiffSecs</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>aa0d82c55bc5841dbce908bbc7418e3a5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>timeDiffMins</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>a4e2226d8c28fb6cc3c0fee7ee568b890</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>timeDiffHours</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>a3a0833856bcad15fd363f3d85079af21</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>timeDiffDays</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>a1410aced7386eb84cc3da7ccbfdd2c96</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>logNumberMinDigits</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>ac083b4aac0faf389e3a70ef7f8212e54</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>autoGrowThreadNameLength</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>a084ad443a444da2d64d0d9fb45be458b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>autoGrowDomainNameLength</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>acfe088a5a7da895ae4ebe7c73d38299c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>SimpleDateFormat</type>
+      <name>dateFormatter</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>ae00c40256e7c69ef39832f0a602f8fdd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>SimpleDateFormat</type>
+      <name>timeOfDayFormatter</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>aeb350e099bc2a47cf6c85fa0db340748</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>writeMetaInfo</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>af4b23ead89f585c6aa6f53834d54cabd</anchor>
+      <arglist>(Logger logger, MString buf, MString domain, Log.Level level, int indent, CallerInfo caller)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>int</type>
+      <name>processVariable</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>a7d055940037fdff1e6b956f93a0bc69b</anchor>
+      <arglist>(Logger logger, MString domain, Log.Level level, CallerInfo caller, MString buf, char[] formatString, int formatStringIdx)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>writeTimeDiff</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>ab61a682d25d6320be877e7ae1c5252de</anchor>
+      <arglist>(MString buf, long diffMicros)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Date</type>
+      <name>callerDateTimeDate</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>a15c370a8d52b71bdf21b1fe8869a06fd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>GregorianCalendar</type>
+      <name>callerDateTimeCal</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>a7f3fbbf494fb72f94da86e9e541d0151</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>boolean</type>
+      <name>dateInstanceSet</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>a2799fc5b4b9bce013ac467ebad2d5dba</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>boolean</type>
+      <name>calInstanceSet</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>afd9a7b449b94e4b73ee04db72e27d384</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>StringBuffer</type>
+      <name>tempSBuf</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>afe17394f84cf5bdb4891727e32f49300</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>FieldPosition</type>
+      <name>fieldPositionZero</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>a80d3b9e454f65277d0245306d9abd668</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>String</type>
+      <name>defaultfmtDate</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>a917c9b55d2f0a57a7e467b01193f20f5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>String</type>
+      <name>defaultfmtTimeOfDay</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>a7fcc81983c7adc0ded7cf48f504fe001</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>autoTabNo</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>a6baac125a9d8081f25ff930d5d90edbe</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>com::aworx::lox::core::TextLoggerObjectConverter</name>
+    <filename>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html</filename>
+    <member kind="function">
+      <type>MString</type>
+      <name>convertObject</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html</anchorfile>
+      <anchor>a397c20bbd61197c1353f6a19c2b71403</anchor>
+      <arglist>(Object o)</arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>fmtNullObject</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html</anchorfile>
+      <anchor>a5b4240f9d910de65e0f07e5775ab6eef</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>MString</type>
+      <name>buffer</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html</anchorfile>
+      <anchor>abb05cbb40d212c431ab82b3718ccfa04</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>com::aworx::lox::loggers::ConsoleLogger</name>
     <filename>classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html</filename>
     <base>com::aworx::lox::core::TextLogger</base>
@@ -2154,20 +2029,6 @@
       <arglist>()</arglist>
     </member>
     <member kind="variable">
-      <type>int</type>
-      <name>tabAfterCallerInfo</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html</anchorfile>
-      <anchor>ab567b166bd89d2152a85fc93d91808f4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>tabBeforeCallerName</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html</anchorfile>
-      <anchor>aa5a11f0f87e30d2b8256baaf1d86e9a6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
       <type>boolean</type>
       <name>useJAVA6ConsoleIfAvailable</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html</anchorfile>
@@ -2180,13 +2041,6 @@
       <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html</anchorfile>
       <anchor>a7d0332030c6bce887e10e6156301da35</anchor>
       <arglist>(MString domain, Log.Level level, MString msg, int indent, CallerInfo caller, int lineNumber)</arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>MString</type>
-      <name>consoleBuffer</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html</anchorfile>
-      <anchor>a13297cc2c876d3e5667e2c567efbb377</anchor>
-      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -2212,20 +2066,6 @@
       <name>buffer</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html</anchorfile>
       <anchor>abb05cbb40d212c431ab82b3718ccfa04</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>tabAfterCallerInfo</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html</anchorfile>
-      <anchor>ab567b166bd89d2152a85fc93d91808f4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>tabBeforeCallerName</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html</anchorfile>
-      <anchor>aa5a11f0f87e30d2b8256baaf1d86e9a6</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" protection="protected">
@@ -3430,6 +3270,8 @@
     <file>LogDomain.java</file>
     <file>Logger.java</file>
     <file>TextLogger.java</file>
+    <file>TextLoggerLineFormatter.java</file>
+    <file>TextLoggerObjectConverter.java</file>
   </compound>
   <compound kind="dir">
     <name>java.alox</name>

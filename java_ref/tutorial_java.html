@@ -151,7 +151,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h2><a class="anchor" id="tutjava_ha_5"></a>
 1.5. Run your application</h2>
 <p>Run your application in "Debug" mode. In the console window of your IDE (or on your JAVA console window) you should see a line of output similar to this:</p>
-<pre class="fragment">(Tests_Tutorial.java:89) Tests_Tutorial.Tut_Hello_ALox()   [00:00.000  +671 µs] [T:main(1)]       [APP]: Hello ALox
+<pre class="fragment">(Tests_Tutorial.java:86) Tut_Hello_ALox(): [00:00.001 +001 ms] [main(1)]        [APP]: Hello ALox
 </pre><p>If using Eclipse, close your source file window. In the console window a portion of the output line should be blue and clickable. When you click it, Eclipse opens the source and selects the line of code where the log call was invoked! This means, each log statement is "clickable" in your IDE and links to its source code line in the editor. This is a tremendous help for developers when debugging their code.</p>
 <p>Besides the fact that you can click it, users of ALox are saving even more time. Developers, when using standard "debug print lines", often phrase textual info like </p>
 <pre class="fragment">    "attn: dbman.savedata(): oops could not store data....ERROR!"
@@ -205,9 +205,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">    Log.info   ( <span class="stringliteral">&quot;APP&quot;</span>, <span class="stringliteral">&quot;Just for your further information!&quot;</span> );</div>
 <div class="line">    Log.verbose( <span class="stringliteral">&quot;APP&quot;</span>, <span class="stringliteral">&quot;Today, I am in the mood to talk...&quot;</span> );</div>
 </div><!-- fragment --><p> If you run your application now (in "Debug" mode), the following output should appear:</p>
-<pre class="fragment">(Tests_Tutorial.java:109) Tests_Tutorial.Tut_LogLevels()   [00:00.000  +802 µs] [T:main(1)] [ERR] [APP]: A severe error happened :-(
-(Tests_Tutorial.java:110) Tests_Tutorial.Tut_LogLevels()   [00:00.000  +103 µs] [T:main(1)] [WRN] [APP]: This is a warning :-/ Maybe an error follows?
-(Tests_Tutorial.java:111) Tests_Tutorial.Tut_LogLevels()   [00:00.001  +070 µs] [T:main(1)]       [APP]: Just for your further information!
+<pre class="fragment">(Tests_Tutorial.java:106) Tut_LogLevels(): [00:00.000 +879 µs] [main(1)]  [ERR] [APP]: A severe error happened :-(
+(Tests_Tutorial.java:107) Tut_LogLevels(): [00:00.001 +125 µs] [main(1)]  [WRN] [APP]: This is a warning :-/ Maybe an error follows?
+(Tests_Tutorial.java:108) Tut_LogLevels(): [00:00.001 +079 µs] [main(1)]        [APP]: Just for your further information!
 </pre><p>As you see, the last line of our code, containing the <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#af3057efb28c59cca2a83abf0fc30c757">verbose()</a> log statement was not logged! This is because in line two of the code of we set the <em>log domain level</em> to <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Log_1_1DomainLevel.html">WARNINGS_AND_ERRORS</a>. This tells the logging system that logs implemented with the method <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#af3057efb28c59cca2a83abf0fc30c757">verbose()</a> are not to be logged.</p>
 <p>The following table lists the domain log levels in the columns and the <em>log level</em> in the rows and shows which log levels are activated when a certain <em>log domain level</em> is set:</p>
 <table  border="1">
@@ -245,9 +245,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">    Log.info   ( <span class="stringliteral">&quot;Just for your further information!&quot;</span> );</div>
 <div class="line">    Log.verbose( <span class="stringliteral">&quot;Today, I am in the mood to talk...&quot;</span> );</div>
 </div><!-- fragment --><p> The output now is:</p>
-<pre class="fragment">(Tests_Tutorial.java:130) Tests_Tutorial.Tut_DefaultDomains()   [00:00.019  +019 ms] [T:main(1)] [ERR] [APP]: A severe error happened :-(
-(Tests_Tutorial.java:131) Tests_Tutorial.Tut_DefaultDomains()   [00:00.020  +001 ms] [T:main(1)] [WRN] [APP]: This is a warning :-/ Maybe an error follows?
-(Tests_Tutorial.java:132) Tests_Tutorial.Tut_DefaultDomains()   [00:00.021  +155 µs] [T:main(1)]       [APP]: Just for your further information!
+<pre class="fragment">(Tests_Tutorial.java:127) Tut_DefaultDomains(): [00:00.027 +027 ms] [main(1)]  [ERR] [APP]: A severe error happened :-(
+(Tests_Tutorial.java:128) Tut_DefaultDomains(): [00:00.028 +001 ms] [main(1)]  [WRN] [APP]: This is a warning :-/ Maybe an error follows?
+(Tests_Tutorial.java:129) Tut_DefaultDomains(): [00:00.028 +101 µs] [main(1)]        [APP]: Just for your further information!
 </pre><p>OK, you might argue, the code became longer: We added line 2, which invokes <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a9e2d6bea9756b5764192c7be262633f1">Log.regDomain</a>. This method registers the domain with ALox (the same as <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a275bf5c822b593026a59279c2541a7cf">Log.setDomain</a> obviously does implicitly) and offers the possibility to set the given domain name as the default domain for the actual <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Log_1_1Scope.html">Scope</a> (package, class or method).</p>
 <p>What becomes less code however are the log statements <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#aa2e53c0784cea0a017e3338cd05836fe">error()</a>, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#aa2e53c0784cea0a017e3338cd05836fe">warning()</a>, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#aa2e53c0784cea0a017e3338cd05836fe">info()</a> and <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#aa2e53c0784cea0a017e3338cd05836fe">verbose()</a>. They do not need to have the domain as a parameter any more! This provides the following advantages:</p>
 <ul>
@@ -267,8 +267,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="fragment"><div class="line">    Log.addLogger( <span class="keyword">new</span> ConsoleLogger( <span class="stringliteral">&quot;Console&quot;</span> ) );</div>
 <div class="line">    Log.info  ( <span class="stringliteral">&quot;APP&quot;</span>, <span class="stringliteral">&quot;Hallo ALox&quot;</span> );</div>
 </div><!-- fragment --><p> Which produces the output:</p>
-<pre class="fragment">(Tests_Tutorial.java:144) Tests_Tutorial.Tut_DefaultDomains()   [00:00.000  +591 µs] [T:main(1)] [***] [APP]: Logger 'Console': log domain 'APP' not found. Created. Inherited domain level is: All 
-(Tests_Tutorial.java:144) Tests_Tutorial.Tut_DefaultDomains()   [00:00.000  +591 µs] [T:main(1)]       [APP]: Hallo ALox
+<pre class="fragment">(Tests_Tutorial.java:141) Tut_DefaultDomains(): [00:00.000 +574 µs] [main(1)]  [***] [APP]: Logger 'Console': log domain 'APP' not found. Created. Inherited domain level is: All 
+(Tests_Tutorial.java:141) Tut_DefaultDomains(): [00:00.000 +574 µs] [main(1)]        [APP]: Hallo ALox
 </pre><p>From this example we learn that <em>log domains</em> which are neither registered with <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a9e2d6bea9756b5764192c7be262633f1">Log.regDomain</a> nor set with <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a275bf5c822b593026a59279c2541a7cf">Log.setDomain</a> do not cause any problem. ALox just creates them on the fly and continues its job.</p>
 <p>The <em>domain level</em> that such <em>unknown</em> domains receive is inherited through the domain chain up to the root domain. The root domain is a field existing in each <em>logger</em>. By default the root domain of a <a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html">ConsoleLogger</a> has its <em>domain level</em> set to <em>All</em>. This is extremely useful, because whenever you are using 3rd party code that defines its custom domain names, you can easily identify those domains in your console window log stream. In contrast, other loggers that you create for specific purposes (e.g. log only messages of certain domains into a file), do not enable unknown* domains as a default. Therefore, these special purpose loggers stay clean and log only what you explicitly ask them to log.</p>
 <p><br/>
@@ -315,7 +315,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="fragment"><div class="line">    Log.info( <span class="stringliteral">&quot;MYDOM/PERF&quot;</span>, <span class="stringliteral">&quot;Heavy calculation started...&quot;</span> );       </div>
 <div class="line">        heavyCalculation();</div>
 <div class="line">    Log.info( <span class="stringliteral">&quot;MYDOM/PERF&quot;</span>, <span class="stringliteral">&quot;Heavy calculation finished!&quot;</span> );        </div>
-</div><!-- fragment --><p> In the log output of the second line you automatically get the absolute value of elapsed time displayed. There is no need to do your own math with the timestamps. In fact, the value is displayed in a human readable way, depending on the size of the time span. (This is true as long as your <em>logger</em> has the field <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a5ab477e8428d728aeac95ebc76d61481">Logger.logTimeDiff</a> set to true, which is the default for most loggers)</p>
+</div><!-- fragment --><p> In the log output of the second line you automatically get the absolute value of elapsed time displayed. There is no need to do your own math with the timestamps. In fact, the value is displayed in a human readable way, depending on the size of the time span. (Other date and time outputs, like current date or absolute time can be configured to be logged as well, see class <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html">TextLogger</a> for more information).</p>
 <dl class="section note"><dt>Note</dt><dd>In above code sample, of-course, there is no need to indent heavyCalculation() between the two log statements, but doesn't this look nice and intuitive?*</dd></dl>
 <p>As "PERF" is a <em>sub domain</em> of "MYDOM" and "MYDOM" got set as the <em>default domain</em> for the source file, the domain "MYDOM/PERF" could be also referenced using "~PERF". The code then looks like this:</p>
 <div class="fragment"><div class="line">    Log.info( <span class="stringliteral">&quot;~PERF&quot;</span>, <span class="stringliteral">&quot;Heavy calculation started...&quot;</span> );        </div>
@@ -327,7 +327,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>you can copy/paste the code into a different class (with a different parent domain) without changing it.</li>
 </ul>
 <h3>4) Name your threads</h3>
-<p>The fourth and really optional one is about multi threaded applications. ALox optionally logs information about the id and name of the thread that executed the code containing your log statements. This is an automatic process and can be switched on or off using the boolean flag <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#aca788c78c00fd4673ffdeb163f22b4c8">Logger.logThreadInfo</a>.</p>
+<p>The fourth and really optional one is about multi threaded applications. ALox optionally logs information about the id and name of the thread that executed the code containing your log statements.</p>
 <p>However often threads do not have a nice name. It would be much nicer to see a readable name instead. ALox provides a simple mechanism to overwrite thread names using <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a27ee41504fb6fa09f85be146153f63aa">Log.mapThreadName</a> interface.</p>
 <p>The mechanism is simple, however it might not be simple to identify the right place in the code to put it! Some code can be executed from different threads, and sometimes (for example when using an UI framework) you might not even know exactly which thread will invoke your code. However, the good news is that each thread ID has to be mapped only once during the lifecycle of the program, but may be mapped multiple times. Therefore, the guideline is:</p>
 <ul>
@@ -391,12 +391,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --><p> As you can see, we are just passing a quite complex object, the current thread, to the method. The parameter that follows the object which is to be logged (the current thread) determines the level of objects which are recursively logged, starting from the given one (composite objects). You can play around with it, and increase it from 2 to lets say 5. But be careful: this can lead to a quite long log message!</p>
 <p>The given parameter "Actual Thread: " provides a headline for the log output. This allows you to save another line of code, which would be logging the headline explicitly.</p>
 <p>Here are the first lines of output of the above sample:</p>
-<pre class="fragment">(Tests_Tutorial.java:219) Tests_Tutorial.Tut_Instance()   [00:00.003  +003 ms] [T:main(1)]       [MYDOM]:   ALox: Multi line message follows: 
+<pre class="fragment">(Tests_Tutorial.java:216) Tut_Instance(): [00:00.005 +005 ms] [main(1)]        [MYDOM]:   ALox: Multi line message follows: 
 &gt;&gt; Actual Thread:                                                    {Thread}
 &gt;&gt; &lt;01&gt;  name:                         "main"                        {[C}
 &gt;&gt; &lt;02&gt;  priority:                     5                             {Integer}
 &gt;&gt; &lt;03&gt;  threadQ:                      &lt;null&gt;
-&gt;&gt; &lt;04&gt;  eetop:                        49598464                      {Long}
+&gt;&gt; &lt;04&gt;  eetop:                        36032512                      {Long}
 &gt;&gt; &lt;05&gt;  single_step:                  false                         {Boolean}
 &gt;&gt; &lt;06&gt;  daemon:                       false                         {Boolean}
 &gt;&gt; &lt;07&gt;  stillborn:                    false                         {Boolean}
@@ -409,7 +409,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 &gt;&gt; &lt;14&gt;    vmAllowSuspension:          false                         {Boolean}
 &gt;&gt; &lt;15&gt;    nUnstartedThreads:          0                             {Integer}
 &gt;&gt; &lt;16&gt;    nthreads:                   2                             {Integer}
-&gt;&gt; &lt;17&gt;    threads:                    (MAX REC) @a5ab328            {[Ljava.lang.Thread;}
+&gt;&gt; &lt;17&gt;    threads:                    (MAX REC) @5318a0ac           {[Ljava.lang.Thread;}
 &gt;&gt; &lt;18&gt;    ngroups:                    0                             {Integer}
 &gt;&gt; &lt;19&gt;    groups:                     &lt;null&gt;
 &gt;&gt; &lt;20&gt;  contextClassLoader:                                         {sun.misc.Launcher$AppClassLoader}
@@ -419,7 +419,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 &gt;&gt; &lt;24&gt;    privilegedContext:          &lt;null&gt;
 &gt;&gt; &lt;25&gt;    combiner:                   &lt;null&gt;
 &gt;&gt; &lt;26&gt;  threadLocals:                                               {ThreadLocal$ThreadLocalMap}
-&gt;&gt; &lt;27&gt;    table:                      (MAX REC) @334f02fb           {[Ljava.lang.ThreadLocal$ThreadLocalMap$Entry;}
+&gt;&gt; &lt;27&gt;    table:                      (MAX REC) @14b1dbf            {[Ljava.lang.ThreadLocal$ThreadLocalMap$Entry;}
 &gt;&gt; &lt;28&gt;    size:                       4                             {Integer}
 &gt;&gt; &lt;29&gt;    threshold:                  10                            {Integer}
 &gt;&gt; &lt;30&gt;  inheritableThreadLocals:                                    {ThreadLocal$ThreadLocalMap}
@@ -436,42 +436,42 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">    LogTools.exception( <span class="stringliteral">&quot;MYDOM&quot;</span>, Log.Level.WARNING, testException, <span class="stringliteral">&quot;Logging an exception: &quot;</span> );</div>
 </div><!-- fragment --><p>Like the method <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogTools.html#a46eedcc7353667a139db8f4f70e6a20c">LogTools.instance()</a>, a headline for the Exception log output can be specified. This allows you to save another line of code, which would be logging the headline explicitly.</p>
 <p>The following log output will be generated:</p>
-<pre class="fragment">(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()   [00:00.004  +004 ms] [T:main(1)] [WRN] [MYDOM]: &gt;&gt; Logging an exception: 
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;   Type:       java.lang.Exception
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;   Message:    TestException Message
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;   Cause:   
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;     Type:       java.lang.Exception
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;     Message:    InnerException Message
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;     Cause:   
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;       Type:       java.lang.Exception
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;       Message:    Inner, inner Exception
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;   Exception stack trace:
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;     unittests.com.aworx.lox.Tests_Tutorial.Tut_Exception(Tests_Tutorial.java:246)
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;     sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;     sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;     sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;     java.lang.reflect.Method.invoke(Unknown Source)
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;     org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;     org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;     org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;     org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;     org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;     org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;     org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;     org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;     org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;     org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;     org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;     org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;     org.junit.runners.ParentRunner.run(ParentRunner.java:309)
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;     org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;     org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;     org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;     org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;     org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;     org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;     unittests.com.aworx.lox.Tests_Tutorial.Tut_Exception(Tests_Tutorial.java:247)
-(Tests_Tutorial.java:249) Tests_Tutorial.Tut_Exception()                                                   &gt;&gt;     unittests.com.aworx.lox.Tests_Tutorial.Tut_Exception(Tests_Tutorial.java:248)
+<pre class="fragment">(Tests_Tutorial.java:246) Tut_Exception(): [00:00.006 +006 ms] [main(1)]  [WRN] [MYDOM]: &gt;&gt; Logging an exception: 
+                                                                                         &gt;&gt;   Type:       java.lang.Exception
+                                                                                         &gt;&gt;   Message:    TestException Message
+                                                                                         &gt;&gt;   Cause:   
+                                                                                         &gt;&gt;     Type:       java.lang.Exception
+                                                                                         &gt;&gt;     Message:    InnerException Message
+                                                                                         &gt;&gt;     Cause:   
+                                                                                         &gt;&gt;       Type:       java.lang.Exception
+                                                                                         &gt;&gt;       Message:    Inner, inner Exception
+                                                                                         &gt;&gt;   Exception stack trace:
+                                                                                         &gt;&gt;     unittests.com.aworx.lox.Tests_Tutorial.Tut_Exception(Tests_Tutorial.java:243)
+                                                                                         &gt;&gt;     sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+                                                                                         &gt;&gt;     sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+                                                                                         &gt;&gt;     sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+                                                                                         &gt;&gt;     java.lang.reflect.Method.invoke(Unknown Source)
+                                                                                         &gt;&gt;     org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+                                                                                         &gt;&gt;     org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+                                                                                         &gt;&gt;     org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+                                                                                         &gt;&gt;     org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+                                                                                         &gt;&gt;     org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+                                                                                         &gt;&gt;     org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+                                                                                         &gt;&gt;     org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+                                                                                         &gt;&gt;     org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+                                                                                         &gt;&gt;     org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+                                                                                         &gt;&gt;     org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+                                                                                         &gt;&gt;     org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+                                                                                         &gt;&gt;     org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+                                                                                         &gt;&gt;     org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+                                                                                         &gt;&gt;     org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
+                                                                                         &gt;&gt;     org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+                                                                                         &gt;&gt;     org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
+                                                                                         &gt;&gt;     org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+                                                                                         &gt;&gt;     org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+                                                                                         &gt;&gt;     org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
+                                                                                         &gt;&gt;     unittests.com.aworx.lox.Tests_Tutorial.Tut_Exception(Tests_Tutorial.java:244)
+                                                                                         &gt;&gt;     unittests.com.aworx.lox.Tests_Tutorial.Tut_Exception(Tests_Tutorial.java:245)
 </pre><p><br/>
  </p>
 <h2><a class="anchor" id="tutjava_more_4"></a>
@@ -496,11 +496,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">    Log.addLogger( <span class="keyword">new</span> MemoryLogger ( <span class="stringliteral">&quot;Memory&quot;</span> ) );</div>
 <div class="line">    </div>
 <div class="line">    <span class="comment">// switch some log information off with memory logger</span></div>
-<div class="line">    MemoryLogger memLogger= (MemoryLogger) Log.getLogger(<span class="stringliteral">&quot;Memory&quot;</span>);</div>
-<div class="line">    memLogger.logTimeElapsed= </div>
-<div class="line">    memLogger.logTimeDiff= </div>
-<div class="line">    memLogger.logLogLevel= </div>
-<div class="line">    memLogger.logThreadInfo=    <span class="keyword">false</span>;</div>
+<div class="line">    ((MemoryLogger) Log.getLogger(<span class="stringliteral">&quot;Memory&quot;</span>)).lineFormatter.format= <span class="keyword">new</span> MString( <span class="stringliteral">&quot;%CF(%CL): %L [%O]: &quot;</span>);</div>
 <div class="line">    </div>
 <div class="line">    <span class="comment">// register domains, set DOM as default</span></div>
 <div class="line">    Log.regDomain( <span class="stringliteral">&quot;DOM&quot;</span>,     Log.Scope.METHOD );</div>
@@ -525,14 +521,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">    </div>
 <div class="line">    <span class="comment">// To verify the result, we log the contents of the MemoryLogger to the console logger</span></div>
 <div class="line">    Log.info( <span class="stringliteral">&quot;~CON&quot;</span>, <span class="stringliteral">&quot;Here comes the contents of MemoryLogger:&quot;</span>);</div>
-<div class="line">    Log.info( <span class="stringliteral">&quot;~CON&quot;</span>, memLogger.buffer.toString(), 1);</div>
+<div class="line">    Log.info( <span class="stringliteral">&quot;~CON&quot;</span>, ((MemoryLogger) Log.getLogger(<span class="stringliteral">&quot;Memory&quot;</span>)).buffer.toString(), 1);</div>
 </div><!-- fragment --><p> Running the sample, we get the following log on the console:</p>
-<pre class="fragment">(Tests_Tutorial.java:322) Tests_Tutorial.Tut_SeparatedLogLevels()   [00:00.002  +002 ms] [T:main(1)]       [DOM/CON]: Domain= DOM/CON  -&gt; This goes to ConsoleLogger exclusively
-(Tests_Tutorial.java:324) Tests_Tutorial.Tut_SeparatedLogLevels()   [00:00.003  +262 µs] [T:main(1)]       [  DOM  ]: Domain= DOM      -&gt; This goes to all loggers
-(Tests_Tutorial.java:327) Tests_Tutorial.Tut_SeparatedLogLevels()   [00:00.003  +114 µs] [T:main(1)]       [DOM/CON]: Here comes the contents of MemoryLogger:
-(Tests_Tutorial.java:328) Tests_Tutorial.Tut_SeparatedLogLevels()   [00:00.003  +099 µs] [T:main(1)]       [DOM/CON]:   ALox: Multi line message follows: 
-&gt;&gt; (Tests_Tutorial.java:323) Tests_Tutorial.Tut_SeparatedLogLevels()    [DOM/MEM]: Domain= DOM/MEM  -&gt; This goes to MemoryLogger exclusively
-&gt;&gt; (Tests_Tutorial.java:324) Tests_Tutorial.Tut_SeparatedLogLevels()    [  DOM  ]: Domain= DOM      -&gt; This goes to all loggers
+<pre class="fragment">(Tests_Tutorial.java:315) Tut_SeparatedLogLevels(): [00:00.004 +004 ms] [main(1)]        [DOM/CON]: Domain= DOM/CON  -&gt; This goes to ConsoleLogger exclusively
+(Tests_Tutorial.java:317) Tut_SeparatedLogLevels(): [00:00.004 +576 µs] [main(1)]        [  DOM  ]: Domain= DOM      -&gt; This goes to all loggers
+(Tests_Tutorial.java:320) Tut_SeparatedLogLevels(): [00:00.005 +242 µs] [main(1)]        [DOM/CON]: Here comes the contents of MemoryLogger:
+(Tests_Tutorial.java:321) Tut_SeparatedLogLevels(): [00:00.005 +240 µs] [main(1)]        [DOM/CON]:   ALox: Multi line message follows: 
+&gt;&gt; Tests_Tutorial.java:316(?):        [DOM/MEM]: Domain= DOM/MEM  -&gt; This goes to MemoryLogger exclusively
+&gt;&gt; Tests_Tutorial.java:317(?):        [  DOM  ]: Domain= DOM      -&gt; This goes to all loggers
 </pre><p>The way we achieved the goal is that we use the method <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a275bf5c822b593026a59279c2541a7cf">Log.setDomain()</a> twice on each of the <em>sub domains</em>. And in contrast to previous samples, we are passing two more parameters to it:</p>
 <ul>
 <li><em>bool recursive</em> This parameter defaults to true and tells ALox to not only set the given <em>log domain</em> but all its <em>sub domains</em> to the Log.DomainLevel provided. We set this to false, we do not have further sub domains either way.</li>
@@ -580,35 +576,35 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">    <span class="comment">// Log current Log configuration </span></div>
 <div class="line">    Log.logConfig( <span class="stringliteral">&quot;DOM&quot;</span>, Log.Level.VERBOSE, <span class="stringliteral">&quot;Here comes the current Log configuration:&quot;</span> );</div>
 </div><!-- fragment --><p> We are invoking <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a3d500fb540ea7d731003c91292a742cc">Log.logConfig()</a> which logs the current configuration of ALox. The output is quite self explanatory:</p>
-<pre class="fragment">(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()   [00:00.002  +002 ms] [T:main(1)] [***] [DOM]: &gt;&gt; Here comes the current Log configuration:
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 &gt;&gt; Version:      1.1.0
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 &gt;&gt; Intern. dom.: ALOX
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 &gt;&gt; Thread safe:  Yes
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 &gt;&gt; No. of calls: 1
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 &gt;&gt; Code markers: 0
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 &gt;&gt; 
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 &gt;&gt; Def. domains: 1
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 &gt;&gt;   Domain:   DOM          Scope: "unittests.com.aworx.lox#Tests_Tutorial#Tut_LogConfig"
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 &gt;&gt; 
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 &gt;&gt; Loggers:      2
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 &gt;&gt; 
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 &gt;&gt;   Logger: "Console"
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 &gt;&gt;     Creation time: java.util.GregorianCalendar[time=1373815369150,areFieldsSet=true,areAllFieldsSet=true,lenient=true,zone=sun.util.calendar.ZoneInfo[id="Europe/Berlin",offset=3600000,dstSavings=3600000,useDaylight=true,transitions=143,lastRule=java.util.SimpleTimeZone[id=Europe/Berlin,offset=3600000,dstSavings=3600000,useDaylight=true,startYear=0,startMode=2,startMonth=2,startDay=-1,startDayOfWeek=1,startTime=3600000,startTimeMode=2,endMode=2,endMonth=9,endDay=-1,endDayOfWeek=1,endTime=3600000,endTimeMode=2]],firstDayOfWeek=2,minimalDaysInFirstWeek=4,ERA=1,YEAR=2013,MONTH=6,WEEK_OF_YEAR=28,WEEK_OF_MONTH=2,DAY_OF_MONTH=14,DAY_OF_YEAR=195,DAY_OF_WEEK=1,DAY_OF_WEEK_IN_MONTH=2,AM_PM=1,HOUR=5,HOUR_OF_DAY=17,MINUTE=22,SECOND=49,MILLISECOND=150,ZONE_OFFSET=3600000,DST_OFFSET=3600000]
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 &gt;&gt;     Lines logged:  0
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 &gt;&gt;     Domains:
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 &gt;&gt;       /ALOX              WARNINGS_AND_ERRORS
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 &gt;&gt;       /DOM               ALL
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 &gt;&gt;       /DOM/CON           ALL
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 &gt;&gt;       /DOM/MEM           OFF
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 &gt;&gt; 
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 &gt;&gt;   Logger: "Memory"
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 &gt;&gt;     Creation time: java.util.GregorianCalendar[time=1373815369151,areFieldsSet=true,areAllFieldsSet=true,lenient=true,zone=sun.util.calendar.ZoneInfo[id="Europe/Berlin",offset=3600000,dstSavings=3600000,useDaylight=true,transitions=143,lastRule=java.util.SimpleTimeZone[id=Europe/Berlin,offset=3600000,dstSavings=3600000,useDaylight=true,startYear=0,startMode=2,startMonth=2,startDay=-1,startDayOfWeek=1,startTime=3600000,startTimeMode=2,endMode=2,endMonth=9,endDay=-1,endDayOfWeek=1,endTime=3600000,endTimeMode=2]],firstDayOfWeek=2,minimalDaysInFirstWeek=4,ERA=1,YEAR=2013,MONTH=6,WEEK_OF_YEAR=28,WEEK_OF_MONTH=2,DAY_OF_MONTH=14,DAY_OF_YEAR=195,DAY_OF_WEEK=1,DAY_OF_WEEK_IN_MONTH=2,AM_PM=1,HOUR=5,HOUR_OF_DAY=17,MINUTE=22,SECOND=49,MILLISECOND=151,ZONE_OFFSET=3600000,DST_OFFSET=3600000]
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 &gt;&gt;     Lines logged:  0
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 &gt;&gt;     Domains:
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 &gt;&gt;       /ALOX              WARNINGS_AND_ERRORS
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 &gt;&gt;       /DOM               ALL
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 &gt;&gt;       /DOM/CON           OFF
-(Tests_Tutorial.java:363) Tests_Tutorial.Tut_LogConfig()                                                 &gt;&gt;       /DOM/MEM           ALL
+<pre class="fragment">(Tests_Tutorial.java:356) Tut_LogConfig(): [00:00.002 +002 ms] [main(1)]  [***] [DOM]: &gt;&gt; Here comes the current Log configuration:
+                                                                                       &gt;&gt; Version:      1.1.0
+                                                                                       &gt;&gt; Intern. dom.: ALOX
+                                                                                       &gt;&gt; Thread safe:  Yes
+                                                                                       &gt;&gt; No. of calls: 1
+                                                                                       &gt;&gt; Code markers: 0
+                                                                                       &gt;&gt; 
+                                                                                       &gt;&gt; Def. domains: 1
+                                                                                       &gt;&gt;   Domain:   DOM          Scope: "unittests.com.aworx.lox#Tests_Tutorial#Tut_LogConfig"
+                                                                                       &gt;&gt; 
+                                                                                       &gt;&gt; Loggers:      2
+                                                                                       &gt;&gt; 
+                                                                                       &gt;&gt;   Logger: "Console"
+                                                                                       &gt;&gt;     Creation time: java.util.GregorianCalendar[time=1374060377350,areFieldsSet=true,areAllFieldsSet=true,lenient=true,zone=sun.util.calendar.ZoneInfo[id="Europe/Berlin",offset=3600000,dstSavings=3600000,useDaylight=true,transitions=143,lastRule=java.util.SimpleTimeZone[id=Europe/Berlin,offset=3600000,dstSavings=3600000,useDaylight=true,startYear=0,startMode=2,startMonth=2,startDay=-1,startDayOfWeek=1,startTime=3600000,startTimeMode=2,endMode=2,endMonth=9,endDay=-1,endDayOfWeek=1,endTime=3600000,endTimeMode=2]],firstDayOfWeek=2,minimalDaysInFirstWeek=4,ERA=1,YEAR=2013,MONTH=6,WEEK_OF_YEAR=29,WEEK_OF_MONTH=3,DAY_OF_MONTH=17,DAY_OF_YEAR=198,DAY_OF_WEEK=4,DAY_OF_WEEK_IN_MONTH=3,AM_PM=1,HOUR=1,HOUR_OF_DAY=13,MINUTE=26,SECOND=17,MILLISECOND=350,ZONE_OFFSET=3600000,DST_OFFSET=3600000]
+                                                                                       &gt;&gt;     Lines logged:  0
+                                                                                       &gt;&gt;     Domains:
+                                                                                       &gt;&gt;       /ALOX              WARNINGS_AND_ERRORS
+                                                                                       &gt;&gt;       /DOM               ALL
+                                                                                       &gt;&gt;       /DOM/CON           ALL
+                                                                                       &gt;&gt;       /DOM/MEM           OFF
+                                                                                       &gt;&gt; 
+                                                                                       &gt;&gt;   Logger: "Memory"
+                                                                                       &gt;&gt;     Creation time: java.util.GregorianCalendar[time=1374060377350,areFieldsSet=true,areAllFieldsSet=true,lenient=true,zone=sun.util.calendar.ZoneInfo[id="Europe/Berlin",offset=3600000,dstSavings=3600000,useDaylight=true,transitions=143,lastRule=java.util.SimpleTimeZone[id=Europe/Berlin,offset=3600000,dstSavings=3600000,useDaylight=true,startYear=0,startMode=2,startMonth=2,startDay=-1,startDayOfWeek=1,startTime=3600000,startTimeMode=2,endMode=2,endMonth=9,endDay=-1,endDayOfWeek=1,endTime=3600000,endTimeMode=2]],firstDayOfWeek=2,minimalDaysInFirstWeek=4,ERA=1,YEAR=2013,MONTH=6,WEEK_OF_YEAR=29,WEEK_OF_MONTH=3,DAY_OF_MONTH=17,DAY_OF_YEAR=198,DAY_OF_WEEK=4,DAY_OF_WEEK_IN_MONTH=3,AM_PM=1,HOUR=1,HOUR_OF_DAY=13,MINUTE=26,SECOND=17,MILLISECOND=350,ZONE_OFFSET=3600000,DST_OFFSET=3600000]
+                                                                                       &gt;&gt;     Lines logged:  0
+                                                                                       &gt;&gt;     Domains:
+                                                                                       &gt;&gt;       /ALOX              WARNINGS_AND_ERRORS
+                                                                                       &gt;&gt;       /DOM               ALL
+                                                                                       &gt;&gt;       /DOM/CON           OFF
+                                                                                       &gt;&gt;       /DOM/MEM           ALL
 </pre><p>Besides this, there is a second option to inspect what happens internally in class <em>Log</em>. Again, from the previous sample we take the setup section, remove the log output and add a parameter in the first line of code, where the <em>ConsoleLogger</em> is added to <em>LOG</em>:</p>
 <div class="fragment"><div class="line">    <span class="comment">// create two different loggers, add console Logger verbosely</span></div>
 <div class="line">    Log.addLogger( <span class="keyword">new</span> ConsoleLogger( <span class="stringliteral">&quot;Console&quot;</span> ), Log.DomainLevel.ALL );</div>
@@ -632,21 +628,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"></div>
 </div><!-- fragment --><p> ALox is equipped with an <em>internal log domain</em> named "ALOX". This domain is used by ALox to log messages, from error() to verbose(). Now, when you add a <em>logger</em> to class <em>Log</em>, this <em>internal log domain</em> is registered with this <em>logger</em>.</p>
 <p>With the modification in the code above, we are passing a <em>log domain level</em> as a second parameter to <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a3327fc90660ebcb1cd8fd586536f5075">Log.addLogger()</a>. This <em>log domain level</em> specifies how the internal <em>log domain</em> of ALox should be set. While the default value was <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Log_1_1DomainLevel.html">DomainLevel.INFO_WARNINGS_AND_ERRORS</a> we overwrite this to <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Log_1_1DomainLevel.html">DomainLevel.ALL</a>. Now looking at the <em>ConsoleLogger</em> output, we see what is going on inside ALox while running the application:</p>
-<pre class="fragment">(Tests_Tutorial.java:407) Tests_Tutorial.Tut_LogConfig2()   [00:00.000  +195 µs] [T:main(1)]       [ALOX]: Lox.addLogger(): Logger "Console" added
-(Tests_Tutorial.java:408) Tests_Tutorial.Tut_LogConfig2()   [00:00.000  +109 µs] [T:main(1)]       [ALOX]: Lox.addLogger(): Logger "Memory" added
-(Tests_Tutorial.java:411) Tests_Tutorial.Tut_LogConfig2()   [00:00.000  +074 µs] [T:main(1)]       [ALOX]: Lox.regDomain(): Domain "DOM" created in logger: Console
-(Tests_Tutorial.java:411) Tests_Tutorial.Tut_LogConfig2()   [00:00.000  +020 µs] [T:main(1)]       [ALOX]: Lox.regDomain(): Domain "DOM" created in logger: Memory
-(Tests_Tutorial.java:411) Tests_Tutorial.Tut_LogConfig2()   [00:00.000  +019 µs] [T:main(1)]       [ALOX]: Lox.regDomain(): Domain "DOM" set as default for scope "METHOD"
-(Tests_Tutorial.java:412) Tests_Tutorial.Tut_LogConfig2()   [00:00.000  +070 µs] [T:main(1)]       [ALOX]: Lox.regDomain(): Domain "DOM/CON" created in logger: Console
-(Tests_Tutorial.java:412) Tests_Tutorial.Tut_LogConfig2()   [00:00.000  +033 µs] [T:main(1)]       [ALOX]: Lox.regDomain(): Domain "DOM/CON" created in logger: Memory
-(Tests_Tutorial.java:413) Tests_Tutorial.Tut_LogConfig2()   [00:00.001  +104 µs] [T:main(1)]       [ALOX]: Lox.regDomain(): Domain "DOM/MEM" created in logger: Console
-(Tests_Tutorial.java:413) Tests_Tutorial.Tut_LogConfig2()   [00:00.001  +028 µs] [T:main(1)]       [ALOX]: Lox.regDomain(): Domain "DOM/MEM" created in logger: Memory
-(Tests_Tutorial.java:416) Tests_Tutorial.Tut_LogConfig2()   [00:00.001  +065 µs] [T:main(1)]       [ALOX]: Lox.setDomain(): Domain "DOM" log level set to "ALL" for logger "Console"
-(Tests_Tutorial.java:416) Tests_Tutorial.Tut_LogConfig2()   [00:00.001  +019 µs] [T:main(1)]       [ALOX]: Lox.setDomain(): Domain "DOM" log level set to "ALL" for logger "Memory"
-(Tests_Tutorial.java:419) Tests_Tutorial.Tut_LogConfig2()   [00:00.001  +071 µs] [T:main(1)]       [ALOX]: Lox.setDomain(): Domain "DOM/CON" log level set to "ALL" for logger "Console"
-(Tests_Tutorial.java:420) Tests_Tutorial.Tut_LogConfig2()   [00:00.001  +084 µs] [T:main(1)]       [ALOX]: Lox.setDomain(): Domain "DOM/CON" log level set to "OFF" for logger "Memory"
-(Tests_Tutorial.java:423) Tests_Tutorial.Tut_LogConfig2()   [00:00.001  +077 µs] [T:main(1)]       [ALOX]: Lox.setDomain(): Domain "DOM/MEM" log level set to "OFF" for logger "Console"
-(Tests_Tutorial.java:424) Tests_Tutorial.Tut_LogConfig2()   [00:00.002  +073 µs] [T:main(1)]       [ALOX]: Lox.setDomain(): Domain "DOM/MEM" log level set to "ALL" for logger "Memory"
+<pre class="fragment">(Tests_Tutorial.java:400) Tut_LogConfig2(): [00:00.000 +125 µs] [main(1)]        [ALOX]: Lox.addLogger(): Logger "Console" added
+(Tests_Tutorial.java:401) Tut_LogConfig2(): [00:00.000 +081 µs] [main(1)]        [ALOX]: Lox.addLogger(): Logger "Memory" added
+(Tests_Tutorial.java:404) Tut_LogConfig2(): [00:00.000 +067 µs] [main(1)]        [ALOX]: Lox.regDomain(): Domain "DOM" created in logger: Console
+(Tests_Tutorial.java:404) Tut_LogConfig2(): [00:00.000 +020 µs] [main(1)]        [ALOX]: Lox.regDomain(): Domain "DOM" created in logger: Memory
+(Tests_Tutorial.java:404) Tut_LogConfig2(): [00:00.000 +018 µs] [main(1)]        [ALOX]: Lox.regDomain(): Domain "DOM" set as default for scope "METHOD"
+(Tests_Tutorial.java:405) Tut_LogConfig2(): [00:00.001 +185 µs] [main(1)]        [ALOX]: Lox.regDomain(): Domain "DOM/CON" created in logger: Console
+(Tests_Tutorial.java:405) Tut_LogConfig2(): [00:00.001 +056 µs] [main(1)]        [ALOX]: Lox.regDomain(): Domain "DOM/CON" created in logger: Memory
+(Tests_Tutorial.java:406) Tut_LogConfig2(): [00:00.002 +192 µs] [main(1)]        [ALOX]: Lox.regDomain(): Domain "DOM/MEM" created in logger: Console
+(Tests_Tutorial.java:406) Tut_LogConfig2(): [00:00.002 +170 µs] [main(1)]        [ALOX]: Lox.regDomain(): Domain "DOM/MEM" created in logger: Memory
+(Tests_Tutorial.java:409) Tut_LogConfig2(): [00:00.002 +258 µs] [main(1)]        [ALOX]: Lox.setDomain(): Domain "DOM" log level set to "ALL" for logger "Console"
+(Tests_Tutorial.java:409) Tut_LogConfig2(): [00:00.003 +028 µs] [main(1)]        [ALOX]: Lox.setDomain(): Domain "DOM" log level set to "ALL" for logger "Memory"
+(Tests_Tutorial.java:412) Tut_LogConfig2(): [00:00.003 +120 µs] [main(1)]        [ALOX]: Lox.setDomain(): Domain "DOM/CON" log level set to "ALL" for logger "Console"
+(Tests_Tutorial.java:413) Tut_LogConfig2(): [00:00.003 +119 µs] [main(1)]        [ALOX]: Lox.setDomain(): Domain "DOM/CON" log level set to "OFF" for logger "Memory"
+(Tests_Tutorial.java:416) Tut_LogConfig2(): [00:00.003 +117 µs] [main(1)]        [ALOX]: Lox.setDomain(): Domain "DOM/MEM" log level set to "OFF" for logger "Console"
+(Tests_Tutorial.java:417) Tut_LogConfig2(): [00:00.003 +120 µs] [main(1)]        [ALOX]: Lox.setDomain(): Domain "DOM/MEM" log level set to "ALL" for logger "Memory"
 </pre><p>To summarize: We have to ways to look into ALox:</p>
 <ol type="1">
 <li>Method <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a3d500fb540ea7d731003c91292a742cc">Log.logConfig()</a> creates a log with a "snapshot" of the current states. The advantage of this is, that it is all logged sequentially in one place and does not clutter your log output.</li>
@@ -667,7 +663,7 @@ Further reading</h1>
 <!-- HTML footer for doxygen 1.8.4-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jul 15 2013 09:26:48 for ALox Java Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jul 19 2013 00:36:05 for ALox Java Reference by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

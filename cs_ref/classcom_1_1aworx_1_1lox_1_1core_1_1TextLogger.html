@@ -100,7 +100,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>This class is a still abstract implementation of class <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="This is central class of the ALox logging implementation. It is not recommended to use this class dir...">Logger</a>. All message objects passed to doLog are translated to MStrings and passed to the abstract function <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a1300bd920d9f44ebc751480932ed2585" title="The abstract function that logs a message. ">doTextLog()</a>. Furthermore, various textual representations of other log attributes are generated.  
+<p>This class is a still abstract implementation of class <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="This is central class of the ALox logging implementation. It is not recommended to use this class dir...">Logger</a> which is used as the super class for all textual <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="This is central class of the ALox logging implementation. It is not recommended to use this class dir...">Logger</a> implementations within ALox, e.g. ConsoleLogger.  
  <a href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for TextLogger:</div>
@@ -112,44 +112,25 @@ Inheritance diagram for TextLogger:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a26fadf1d9e7165180f210156799fdd22"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a26fadf1d9e7165180f210156799fdd22"></a>
-List&lt; String &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a26fadf1d9e7165180f210156799fdd22">Replacements</a> = new List&lt;String&gt;()</td></tr>
-<tr class="memdesc:a26fadf1d9e7165180f210156799fdd22"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of pairs of strings. Within each log message, the first string of a pair is searched and replaced by the second string. Very simple, but useful in some cases. <br/></td></tr>
+<tr class="memitem:a4659dec01dc35beaed57a1d13fb3a60c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html">TextLoggerObjectConverter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a4659dec01dc35beaed57a1d13fb3a60c">ObjectConverter</a> = new <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html">TextLoggerObjectConverter</a>()</td></tr>
+<tr class="separator:a4659dec01dc35beaed57a1d13fb3a60c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd6c2389bad25caa4a5b201ef86e4608"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#afd6c2389bad25caa4a5b201ef86e4608">LineFormatter</a> = new <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a>()</td></tr>
+<tr class="memdesc:afd6c2389bad25caa4a5b201ef86e4608"><td class="mdescLeft">&#160;</td><td class="mdescRight">A helper object to format log objects into textual representations. This class incorporates a format string that defines the meta information in the log output. Furthermore, to extend <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html" title="This class is a still abstract implementation of class Logger which is used as the super class for al...">TextLogger</a>, this object can be replaced by custom implementations of it.  <a href="#afd6c2389bad25caa4a5b201ef86e4608">More...</a><br/></td></tr>
+<tr class="separator:afd6c2389bad25caa4a5b201ef86e4608"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26fadf1d9e7165180f210156799fdd22"><td class="memItemLeft" align="right" valign="top">List&lt; String &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a26fadf1d9e7165180f210156799fdd22">Replacements</a> = new List&lt;String&gt;()</td></tr>
+<tr class="memdesc:a26fadf1d9e7165180f210156799fdd22"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of pairs of strings. Within each log message, the first string of a pair is searched and replaced by the second string. Very simple, but useful in some cases.  <a href="#a26fadf1d9e7165180f210156799fdd22">More...</a><br/></td></tr>
 <tr class="separator:a26fadf1d9e7165180f210156799fdd22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95ea94dee572eaac760d028ddcf3cf65"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a95ea94dee572eaac760d028ddcf3cf65">MultiLineMsgMode</a> = 2</td></tr>
-<tr class="memdesc:a95ea94dee572eaac760d028ddcf3cf65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if multi line messages should be split into different log lines. Possible values are: 0: No line split is performed, delimiters can be replaced by readable delimiters (depending on setting of <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#aba58580b1670dbfb1caf21f47d0d53de" title="This is the string interpreted as line delimiter within log messages. If null, CR, LF or CRLF are used. Important: Set to empty string, to stop multi line processing of TextLogger ">MultiLineDelimiter</a> and # MultiLineDelimiterRepl).  <a href="#a95ea94dee572eaac760d028ddcf3cf65">More...</a><br/></td></tr>
+<tr class="memdesc:a95ea94dee572eaac760d028ddcf3cf65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if multi line messages should be split into different log lines. Possible values are:  <a href="#a95ea94dee572eaac760d028ddcf3cf65">More...</a><br/></td></tr>
 <tr class="separator:a95ea94dee572eaac760d028ddcf3cf65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba58580b1670dbfb1caf21f47d0d53de"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#aba58580b1670dbfb1caf21f47d0d53de">MultiLineDelimiter</a> = null</td></tr>
-<tr class="memdesc:aba58580b1670dbfb1caf21f47d0d53de"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the string interpreted as line delimiter within log messages. If null, CR, LF or CRLF are used. Important: Set to empty string, to stop multi line processing of <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html" title="This class is a still abstract implementation of class Logger. All message objects passed to doLog ar...">TextLogger</a>  <a href="#aba58580b1670dbfb1caf21f47d0d53de">More...</a><br/></td></tr>
+<tr class="memdesc:aba58580b1670dbfb1caf21f47d0d53de"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the string interpreted as line delimiter within log messages. If null, CR, LF or CRLF are used. Important: Set to empty string, to stop any multi line processing of <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html" title="This class is a still abstract implementation of class Logger which is used as the super class for al...">TextLogger</a>, even the replacements.  <a href="#aba58580b1670dbfb1caf21f47d0d53de">More...</a><br/></td></tr>
 <tr class="separator:aba58580b1670dbfb1caf21f47d0d53de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a957ed4611b87bdf193ad2c3f848a451c"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a957ed4611b87bdf193ad2c3f848a451c">MultiLineDelimiterRepl</a> = &quot;\\r&quot;</td></tr>
-<tr class="memdesc:a957ed4611b87bdf193ad2c3f848a451c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the readable (!) separator string, for logging out multi line messages into a single line (<a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a95ea94dee572eaac760d028ddcf3cf65" title="Determines if multi line messages should be split into different log lines. Possible values are: 0: N...">MultiLineMsgMode</a>==0).  <a href="#a957ed4611b87bdf193ad2c3f848a451c">More...</a><br/></td></tr>
+<tr class="memdesc:a957ed4611b87bdf193ad2c3f848a451c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the readable (!) separator string, for logging out multi line messages into a single line (<a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a95ea94dee572eaac760d028ddcf3cf65" title="Determines if multi line messages should be split into different log lines. Possible values are: ...">MultiLineMsgMode</a>==0).  <a href="#a957ed4611b87bdf193ad2c3f848a451c">More...</a><br/></td></tr>
 <tr class="separator:a957ed4611b87bdf193ad2c3f848a451c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac281d117b6e931783195f52f70bfa5b3"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#ac281d117b6e931783195f52f70bfa5b3">FmtNullObject</a> =&quot;&lt;null&gt;&quot;</td></tr>
-<tr class="memdesc:ac281d117b6e931783195f52f70bfa5b3"><td class="mdescLeft">&#160;</td><td class="mdescRight"><hr/>
-  <a href="#ac281d117b6e931783195f52f70bfa5b3">More...</a><br/></td></tr>
-<tr class="separator:ac281d117b6e931783195f52f70bfa5b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba9c3b1abea028b66463f3b6262bed9c"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#aba9c3b1abea028b66463f3b6262bed9c">FmtMessagePrefix</a> = &quot;: &quot;</td></tr>
-<tr class="memdesc:aba9c3b1abea028b66463f3b6262bed9c"><td class="mdescLeft">&#160;</td><td class="mdescRight"><hr/>
-  <a href="#aba9c3b1abea028b66463f3b6262bed9c">More...</a><br/></td></tr>
-<tr class="separator:aba9c3b1abea028b66463f3b6262bed9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84b11e4ba9304e158d4f091d2c6e9d7e"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a84b11e4ba9304e158d4f091d2c6e9d7e">FmtIndentString</a> = &quot; &quot;</td></tr>
-<tr class="memdesc:a84b11e4ba9304e158d4f091d2c6e9d7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The character(s) used for indentation. <a href="#a84b11e4ba9304e158d4f091d2c6e9d7e">More...</a><br/></td></tr>
-<tr class="separator:a84b11e4ba9304e158d4f091d2c6e9d7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd28b851f3f7d45b21d07257565fb33f"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#abd28b851f3f7d45b21d07257565fb33f">FmtLogLevelError</a> = &quot; [ERR]&quot;</td></tr>
-<tr class="memdesc:abd28b851f3f7d45b21d07257565fb33f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The output for the log level "Error". <a href="#abd28b851f3f7d45b21d07257565fb33f">More...</a><br/></td></tr>
-<tr class="separator:abd28b851f3f7d45b21d07257565fb33f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a1002aa61ba0a9e16560d3079ee8e36"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a7a1002aa61ba0a9e16560d3079ee8e36">FmtLogLevelWarning</a> = &quot; [WRN]&quot;</td></tr>
-<tr class="memdesc:a7a1002aa61ba0a9e16560d3079ee8e36"><td class="mdescLeft">&#160;</td><td class="mdescRight">The output for the log level "Warning". <a href="#a7a1002aa61ba0a9e16560d3079ee8e36">More...</a><br/></td></tr>
-<tr class="separator:a7a1002aa61ba0a9e16560d3079ee8e36"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab07a3465306dfb9b6dbf98adb27e254a"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#ab07a3465306dfb9b6dbf98adb27e254a">FmtLogLevelInfo</a> = &quot; &quot;</td></tr>
-<tr class="memdesc:ab07a3465306dfb9b6dbf98adb27e254a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The output for the log level "Info". <a href="#ab07a3465306dfb9b6dbf98adb27e254a">More...</a><br/></td></tr>
-<tr class="separator:ab07a3465306dfb9b6dbf98adb27e254a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d0f7da992728e1139d24702691d87f7"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a0d0f7da992728e1139d24702691d87f7">FmtLogLevelVerbose</a> = &quot; [***]&quot;</td></tr>
-<tr class="memdesc:a0d0f7da992728e1139d24702691d87f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The output for the log level "Verbose". <a href="#a0d0f7da992728e1139d24702691d87f7">More...</a><br/></td></tr>
-<tr class="separator:a0d0f7da992728e1139d24702691d87f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab3423baaf4b67d0e7cfa757203aaf872"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#ab3423baaf4b67d0e7cfa757203aaf872">FmtMultiLineMsgHeadline</a> = &quot;ALox: Multi line message follows: &quot;</td></tr>
-<tr class="memdesc:ab3423baaf4b67d0e7cfa757203aaf872"><td class="mdescLeft">&#160;</td><td class="mdescRight">Headline for multi line messages (depending on <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a95ea94dee572eaac760d028ddcf3cf65" title="Determines if multi line messages should be split into different log lines. Possible values are: 0: N...">MultiLineMsgMode</a>) . <a href="#ab3423baaf4b67d0e7cfa757203aaf872">More...</a><br/></td></tr>
+<tr class="memdesc:ab3423baaf4b67d0e7cfa757203aaf872"><td class="mdescLeft">&#160;</td><td class="mdescRight">Headline for multi line messages (depending on <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a95ea94dee572eaac760d028ddcf3cf65" title="Determines if multi line messages should be split into different log lines. Possible values are: ...">MultiLineMsgMode</a>) . <a href="#ab3423baaf4b67d0e7cfa757203aaf872">More...</a><br/></td></tr>
 <tr class="separator:ab3423baaf4b67d0e7cfa757203aaf872"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74da3f13d354d7b4b31aa8fefa7e7115"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a74da3f13d354d7b4b31aa8fefa7e7115">FmtMultiLinePrefix</a> = &quot;&gt;&gt; &quot;</td></tr>
 <tr class="memdesc:a74da3f13d354d7b4b31aa8fefa7e7115"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prefix for multi line messages. This is also used if multi line messages logging is switched off (MultiLineMsgMode == 0) but replacing of a set MultiLineDelimiter takes place.  <a href="#a74da3f13d354d7b4b31aa8fefa7e7115">More...</a><br/></td></tr>
@@ -157,84 +138,6 @@ List&lt; String &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class
 <tr class="memitem:ae0ab1101cb40bf899cb8fb9ef26fb29f"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#ae0ab1101cb40bf899cb8fb9ef26fb29f">FmtMultiLinePostfix</a> = null</td></tr>
 <tr class="memdesc:ae0ab1101cb40bf899cb8fb9ef26fb29f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Postfix for multi line messages. This is also used if multi line messages logging is switched off (MultiLineMsgMode == 0) but replacing of a set MultiLineDelimiter takes place.  <a href="#ae0ab1101cb40bf899cb8fb9ef26fb29f">More...</a><br/></td></tr>
 <tr class="separator:ae0ab1101cb40bf899cb8fb9ef26fb29f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb7d960c40340d3fe4663c5484a42c72"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#afb7d960c40340d3fe4663c5484a42c72">FmtDatePrefix</a> = &quot;[&quot;</td></tr>
-<tr class="memdesc:afb7d960c40340d3fe4663c5484a42c72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prefix for log date outputs. <a href="#afb7d960c40340d3fe4663c5484a42c72">More...</a><br/></td></tr>
-<tr class="separator:afb7d960c40340d3fe4663c5484a42c72"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18a9da8d7e7ba66ac3dcbda832ab886c"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a18a9da8d7e7ba66ac3dcbda832ab886c">FmtDate</a> = &quot;yyyy-MM-dd&quot;</td></tr>
-<tr class="memdesc:a18a9da8d7e7ba66ac3dcbda832ab886c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format string for the output of the log date. For more information, see "Standard Date and Time Format Strings" in .NET StringBuilder.AppendFormat() <a href="#a18a9da8d7e7ba66ac3dcbda832ab886c">More...</a><br/></td></tr>
-<tr class="separator:a18a9da8d7e7ba66ac3dcbda832ab886c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5fe44f8189b8474bfc4c08cf5a42a032"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a5fe44f8189b8474bfc4c08cf5a42a032">FmtDatePostfix</a> = &quot;] &quot;</td></tr>
-<tr class="memdesc:a5fe44f8189b8474bfc4c08cf5a42a032"><td class="mdescLeft">&#160;</td><td class="mdescRight">Postfix for log date outputs. <a href="#a5fe44f8189b8474bfc4c08cf5a42a032">More...</a><br/></td></tr>
-<tr class="separator:a5fe44f8189b8474bfc4c08cf5a42a032"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abce08eb76ed2fdd90ee39d233220f405"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#abce08eb76ed2fdd90ee39d233220f405">FmtTimeOfDayPrefix</a> = &quot;[&quot;</td></tr>
-<tr class="memdesc:abce08eb76ed2fdd90ee39d233220f405"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prefix for time of day outputs. <a href="#abce08eb76ed2fdd90ee39d233220f405">More...</a><br/></td></tr>
-<tr class="separator:abce08eb76ed2fdd90ee39d233220f405"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e463fc020959aa031da2e572861e8a8"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a2e463fc020959aa031da2e572861e8a8">FmtTimeOfDay</a> = &quot;HH:mm:ss&quot;</td></tr>
-<tr class="memdesc:a2e463fc020959aa031da2e572861e8a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format string for the output of the time of day. For more information, see "Standard Date and Time Format Strings" in .NET StringBuilder.AppendFormat() <a href="#a2e463fc020959aa031da2e572861e8a8">More...</a><br/></td></tr>
-<tr class="separator:a2e463fc020959aa031da2e572861e8a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68bc151b0a508bdc0f5c7f5609223a27"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a68bc151b0a508bdc0f5c7f5609223a27">FmtTimeOfDayPostfix</a> = &quot;] &quot;</td></tr>
-<tr class="memdesc:a68bc151b0a508bdc0f5c7f5609223a27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Postfix for time of day outputs. <a href="#a68bc151b0a508bdc0f5c7f5609223a27">More...</a><br/></td></tr>
-<tr class="separator:a68bc151b0a508bdc0f5c7f5609223a27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af07bbbd455910027da8239a12743b8ed"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#af07bbbd455910027da8239a12743b8ed">FmtTimeElapsedPrefix</a> = &quot;[&quot;</td></tr>
-<tr class="memdesc:af07bbbd455910027da8239a12743b8ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prefix for time elapsed since logging start (or reset) outputs. <a href="#af07bbbd455910027da8239a12743b8ed">More...</a><br/></td></tr>
-<tr class="separator:af07bbbd455910027da8239a12743b8ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad0f9af6e7d61cd6df4855662d404d151"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#ad0f9af6e7d61cd6df4855662d404d151">FmtTimeElapsedPostfix</a> = &quot; &quot;</td></tr>
-<tr class="memdesc:ad0f9af6e7d61cd6df4855662d404d151"><td class="mdescLeft">&#160;</td><td class="mdescRight">Postfix for time elapsed since logging start (or reset) outputs. <a href="#ad0f9af6e7d61cd6df4855662d404d151">More...</a><br/></td></tr>
-<tr class="separator:ad0f9af6e7d61cd6df4855662d404d151"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1846aa54e2d3b4eef3d0083248e7e6d9"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a1846aa54e2d3b4eef3d0083248e7e6d9">FmtTimeElapsedDays</a> = &quot; Days &quot;</td></tr>
-<tr class="memdesc:a1846aa54e2d3b4eef3d0083248e7e6d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The word "Days" the out put of time elapsed (if longer than a day). <a href="#a1846aa54e2d3b4eef3d0083248e7e6d9">More...</a><br/></td></tr>
-<tr class="separator:a1846aa54e2d3b4eef3d0083248e7e6d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af31ad34c738ea8c36156833c4f5d4065"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#af31ad34c738ea8c36156833c4f5d4065">FmtTimeDiffPrefix</a> = &quot; +&quot;</td></tr>
-<tr class="memdesc:af31ad34c738ea8c36156833c4f5d4065"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prefix for time difference outputs. <a href="#af31ad34c738ea8c36156833c4f5d4065">More...</a><br/></td></tr>
-<tr class="separator:af31ad34c738ea8c36156833c4f5d4065"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f19bf5e36f16ca209afd5fb5921d249"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a7f19bf5e36f16ca209afd5fb5921d249">FmtTimeDiffPostfix</a> = &quot;]&quot;</td></tr>
-<tr class="memdesc:a7f19bf5e36f16ca209afd5fb5921d249"><td class="mdescLeft">&#160;</td><td class="mdescRight">Postfix for time difference outputs. <a href="#a7f19bf5e36f16ca209afd5fb5921d249">More...</a><br/></td></tr>
-<tr class="separator:a7f19bf5e36f16ca209afd5fb5921d249"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a313ca36b03e4d26bde5f500dd22ab00d"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a313ca36b03e4d26bde5f500dd22ab00d">FmtTimeDiffMicros</a> = &quot; \u00B5s&quot;</td></tr>
-<tr class="memdesc:a313ca36b03e4d26bde5f500dd22ab00d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Entity microseconds for time difference outputs below 1000 microseconds. <a href="#a313ca36b03e4d26bde5f500dd22ab00d">More...</a><br/></td></tr>
-<tr class="separator:a313ca36b03e4d26bde5f500dd22ab00d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae488263fb8e4746d2de4a96f814051f0"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#ae488263fb8e4746d2de4a96f814051f0">FmtTimeDiffMillis</a> = &quot; ms&quot;</td></tr>
-<tr class="memdesc:ae488263fb8e4746d2de4a96f814051f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Entity milliseconds for time difference outputs below 1000 milliseconds. <a href="#ae488263fb8e4746d2de4a96f814051f0">More...</a><br/></td></tr>
-<tr class="separator:ae488263fb8e4746d2de4a96f814051f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b5018fded561de142dc9bc84d1632a0"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a1b5018fded561de142dc9bc84d1632a0">FmtTimeDiffSecs</a> = &quot; s&quot;</td></tr>
-<tr class="memdesc:a1b5018fded561de142dc9bc84d1632a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format for time difference outputs between 10s and 99.9s. <a href="#a1b5018fded561de142dc9bc84d1632a0">More...</a><br/></td></tr>
-<tr class="separator:a1b5018fded561de142dc9bc84d1632a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a595e3ae9fa0a2451029b8d390e7c75f0"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a595e3ae9fa0a2451029b8d390e7c75f0">FmtTimeDiffMins</a> = &quot; m&quot;</td></tr>
-<tr class="memdesc:a595e3ae9fa0a2451029b8d390e7c75f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format for time difference outputs between 100s and 60 min. <a href="#a595e3ae9fa0a2451029b8d390e7c75f0">More...</a><br/></td></tr>
-<tr class="separator:a595e3ae9fa0a2451029b8d390e7c75f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f8688b35164557c1a7645dc3cd745ef"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a2f8688b35164557c1a7645dc3cd745ef">FmtTimeDiffHours</a> = &quot; h&quot;</td></tr>
-<tr class="memdesc:a2f8688b35164557c1a7645dc3cd745ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format for time difference outputs between 1h and 24h. <a href="#a2f8688b35164557c1a7645dc3cd745ef">More...</a><br/></td></tr>
-<tr class="separator:a2f8688b35164557c1a7645dc3cd745ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3bd7b4539cdb1595d9cdf488cd44697"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#aa3bd7b4539cdb1595d9cdf488cd44697">FmtTimeDiffDays</a> = &quot; days&quot;</td></tr>
-<tr class="memdesc:aa3bd7b4539cdb1595d9cdf488cd44697"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format for time difference outputs of more than a day. <a href="#aa3bd7b4539cdb1595d9cdf488cd44697">More...</a><br/></td></tr>
-<tr class="separator:aa3bd7b4539cdb1595d9cdf488cd44697"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3fbc9856016d2fe081b4644e44263ad5"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a3fbc9856016d2fe081b4644e44263ad5">FmtDomainPrefix</a> = &quot; [&quot;</td></tr>
-<tr class="memdesc:a3fbc9856016d2fe081b4644e44263ad5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prefix for the domain. <a href="#a3fbc9856016d2fe081b4644e44263ad5">More...</a><br/></td></tr>
-<tr class="separator:a3fbc9856016d2fe081b4644e44263ad5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8284978677264be2d62149308088617b"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a8284978677264be2d62149308088617b">FmtDomainPostfix</a> = &quot;]&quot;</td></tr>
-<tr class="memdesc:a8284978677264be2d62149308088617b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Postfix for the domain. <a href="#a8284978677264be2d62149308088617b">More...</a><br/></td></tr>
-<tr class="separator:a8284978677264be2d62149308088617b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a767c0f28055f56668359fcd1678b25d5"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a767c0f28055f56668359fcd1678b25d5">FmtThreadPrefix</a> = &quot; [T:&quot;</td></tr>
-<tr class="memdesc:a767c0f28055f56668359fcd1678b25d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prefix for the thread name. <a href="#a767c0f28055f56668359fcd1678b25d5">More...</a><br/></td></tr>
-<tr class="separator:a767c0f28055f56668359fcd1678b25d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a928e64174a85a34b77b97eaf25956f3c"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a928e64174a85a34b77b97eaf25956f3c">FmtThreadPostfix</a> = &quot;]&quot;</td></tr>
-<tr class="memdesc:a928e64174a85a34b77b97eaf25956f3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Postfix for the domain. <a href="#a928e64174a85a34b77b97eaf25956f3c">More...</a><br/></td></tr>
-<tr class="separator:a928e64174a85a34b77b97eaf25956f3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a831eed0fe63ab71b26d5bc8c70b4d5"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a5a831eed0fe63ab71b26d5bc8c70b4d5">FmtLogNumberPrefix</a> = &quot; &quot;</td></tr>
-<tr class="memdesc:a5a831eed0fe63ab71b26d5bc8c70b4d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prefix for the log number. <a href="#a5a831eed0fe63ab71b26d5bc8c70b4d5">More...</a><br/></td></tr>
-<tr class="separator:a5a831eed0fe63ab71b26d5bc8c70b4d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26a0361291a4e0253e9af11912b45b31"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a26a0361291a4e0253e9af11912b45b31">FmtLogNumberPostfix</a> = &quot;&quot;</td></tr>
-<tr class="memdesc:a26a0361291a4e0253e9af11912b45b31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Postfix for the log number. <a href="#a26a0361291a4e0253e9af11912b45b31">More...</a><br/></td></tr>
-<tr class="separator:a26a0361291a4e0253e9af11912b45b31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a087f3222db7d7b243c9383b1a8f49797"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a087f3222db7d7b243c9383b1a8f49797">FmtLogNumberMinDigits</a> = 3</td></tr>
-<tr class="memdesc:a087f3222db7d7b243c9383b1a8f49797"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prefix for the domain. <a href="#a087f3222db7d7b243c9383b1a8f49797">More...</a><br/></td></tr>
-<tr class="separator:a087f3222db7d7b243c9383b1a8f49797"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca310d2432cc9445a4e65cc5e28d3783"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#aca310d2432cc9445a4e65cc5e28d3783">FmtAutoGrowThreadNameLength</a> = 0</td></tr>
-<tr class="memdesc:aca310d2432cc9445a4e65cc5e28d3783"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum length of a thread name logged so far. This 'auto growing' field assures to keep output in nice column format.  <a href="#aca310d2432cc9445a4e65cc5e28d3783">More...</a><br/></td></tr>
-<tr class="separator:aca310d2432cc9445a4e65cc5e28d3783"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a405175cde17a010e915704f16b904b8f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a405175cde17a010e915704f16b904b8f">FmtAutoGrowDomainNameLength</a> = 0</td></tr>
-<tr class="memdesc:a405175cde17a010e915704f16b904b8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum length of a domain name logged so far. This 'auto growing' field assures to keep output in nice column format.  <a href="#a405175cde17a010e915704f16b904b8f">More...</a><br/></td></tr>
-<tr class="separator:a405175cde17a010e915704f16b904b8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></td></tr>
 <tr class="memitem:a934fa09ba291a97f43720640e4d83f25 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a934fa09ba291a97f43720640e4d83f25">Name</a></td></tr>
 <tr class="memdesc:a934fa09ba291a97f43720640e4d83f25 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the logger. Can be used to receive a reference to it. <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="This is central class of the ALox logging implementation. It is not recommended to use this class dir...">Logger</a> names are case insensitive.  <a href="#a934fa09ba291a97f43720640e4d83f25">More...</a><br/></td></tr>
@@ -251,39 +154,10 @@ List&lt; String &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class
 <tr class="memitem:abada4ef55f947626e50d53b5cb8a31cc inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#abada4ef55f947626e50d53b5cb8a31cc">IsDisabled</a> = false</td></tr>
 <tr class="memdesc:abada4ef55f947626e50d53b5cb8a31cc inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="mdescLeft">&#160;</td><td class="mdescRight">A flag to disable the logger. <a href="#abada4ef55f947626e50d53b5cb8a31cc">More...</a><br/></td></tr>
 <tr class="separator:abada4ef55f947626e50d53b5cb8a31cc inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46ee964173efe1f2b01121d11d91f597 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a46ee964173efe1f2b01121d11d91f597">RootDomain</a></td></tr>
-<tr class="memdesc:a46ee964173efe1f2b01121d11d91f597 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="mdescLeft">&#160;</td><td class="mdescRight">The root domain "/".  <a href="#a46ee964173efe1f2b01121d11d91f597">More...</a><br/></td></tr>
+<tr class="memitem:a46ee964173efe1f2b01121d11d91f597 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a46ee964173efe1f2b01121d11d91f597"></a>
+<a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a46ee964173efe1f2b01121d11d91f597">RootDomain</a></td></tr>
+<tr class="memdesc:a46ee964173efe1f2b01121d11d91f597 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="mdescLeft">&#160;</td><td class="mdescRight">The root domain "/". All registered or just used domains become a sub domain of this root. If a sub domains log level is not explicitly set, such sub domain inherits the level setting of the root domain. Therefore, the log level setting of the root domain determines how unknown domains got logged. The default level of the root domain is Log.DomainLevel.Off. <br/></td></tr>
 <tr class="separator:a46ee964173efe1f2b01121d11d91f597 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09e0af5a92465ab2d6f66f722b6b4676 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a09e0af5a92465ab2d6f66f722b6b4676">LogCallerSource</a> = true</td></tr>
-<tr class="memdesc:a09e0af5a92465ab2d6f66f722b6b4676 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the logging of source file name of the caller. Default is true (enabled)  <a href="#a09e0af5a92465ab2d6f66f722b6b4676">More...</a><br/></td></tr>
-<tr class="separator:a09e0af5a92465ab2d6f66f722b6b4676 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5d02b0b07b9176e5cb7dad8754d0c3c inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#aa5d02b0b07b9176e5cb7dad8754d0c3c">LogCallerMethod</a> = true</td></tr>
-<tr class="memdesc:aa5d02b0b07b9176e5cb7dad8754d0c3c inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the logging of method name of the caller. Default is true (enabled)  <a href="#aa5d02b0b07b9176e5cb7dad8754d0c3c">More...</a><br/></td></tr>
-<tr class="separator:aa5d02b0b07b9176e5cb7dad8754d0c3c inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0fefe80e767093ffe74485203deb599 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#ac0fefe80e767093ffe74485203deb599">LogDate</a> = false</td></tr>
-<tr class="memdesc:ac0fefe80e767093ffe74485203deb599 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the logging of the date. Default is false (disabled)  <a href="#ac0fefe80e767093ffe74485203deb599">More...</a><br/></td></tr>
-<tr class="separator:ac0fefe80e767093ffe74485203deb599 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af7179c0e1848e27bdff4c4b81acb1d3d inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#af7179c0e1848e27bdff4c4b81acb1d3d">LogTimeOfDay</a> = false</td></tr>
-<tr class="memdesc:af7179c0e1848e27bdff4c4b81acb1d3d inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the logging of the (absolute) time. Default is false (disabled)  <a href="#af7179c0e1848e27bdff4c4b81acb1d3d">More...</a><br/></td></tr>
-<tr class="separator:af7179c0e1848e27bdff4c4b81acb1d3d inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c8309c84a8f024ce49a4d8a0d7b3bf5 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a4c8309c84a8f024ce49a4d8a0d7b3bf5">LogTimeElapsed</a> = true</td></tr>
-<tr class="memdesc:a4c8309c84a8f024ce49a4d8a0d7b3bf5 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the logging of the elapsed time since the logger was started (or reset). Default is true (enabled)  <a href="#a4c8309c84a8f024ce49a4d8a0d7b3bf5">More...</a><br/></td></tr>
-<tr class="separator:a4c8309c84a8f024ce49a4d8a0d7b3bf5 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f35743a44a8640f5e27b158b7293d5c inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a7f35743a44a8640f5e27b158b7293d5c">LogTimeDiff</a> = true</td></tr>
-<tr class="memdesc:a7f35743a44a8640f5e27b158b7293d5c inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the logging of time difference in milliseconds since last log. Default is true (enabled)  <a href="#a7f35743a44a8640f5e27b158b7293d5c">More...</a><br/></td></tr>
-<tr class="separator:a7f35743a44a8640f5e27b158b7293d5c inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a498868fd1eabb93eb465e43448e64ab4 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a498868fd1eabb93eb465e43448e64ab4">LogDomainName</a> = true</td></tr>
-<tr class="memdesc:a498868fd1eabb93eb465e43448e64ab4 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the logging of the domain name. Default is true (enabled)  <a href="#a498868fd1eabb93eb465e43448e64ab4">More...</a><br/></td></tr>
-<tr class="separator:a498868fd1eabb93eb465e43448e64ab4 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7cf8d6ffaabf06eef3ae1b875d6e043 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#aa7cf8d6ffaabf06eef3ae1b875d6e043">LogLogLevel</a> = true</td></tr>
-<tr class="memdesc:aa7cf8d6ffaabf06eef3ae1b875d6e043 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the logging of the level of a log call. Default is true (enabled)  <a href="#aa7cf8d6ffaabf06eef3ae1b875d6e043">More...</a><br/></td></tr>
-<tr class="separator:aa7cf8d6ffaabf06eef3ae1b875d6e043 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56b014ec7388b47425aa15b0860610ba inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a56b014ec7388b47425aa15b0860610ba">LogThreadInfo</a> = true</td></tr>
-<tr class="memdesc:a56b014ec7388b47425aa15b0860610ba inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the logging of information about the current thread name. Default is true (enabled)  <a href="#a56b014ec7388b47425aa15b0860610ba">More...</a><br/></td></tr>
-<tr class="separator:a56b014ec7388b47425aa15b0860610ba inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a077abb316628dae754be0945c4ce0af8 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a077abb316628dae754be0945c4ce0af8">LogLogCounter</a> = false</td></tr>
-<tr class="memdesc:a077abb316628dae754be0945c4ce0af8 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the logging of the current log call counter. Default is false (disabled)  <a href="#a077abb316628dae754be0945c4ce0af8">More...</a><br/></td></tr>
-<tr class="separator:a077abb316628dae754be0945c4ce0af8 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -296,40 +170,16 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:af95411fc4b7545a2f5c660bc51159245"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#af95411fc4b7545a2f5c660bc51159245">doLog</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> domain, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log.Level</a> level, Object msgObject, int indent, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a> caller)</td></tr>
 <tr class="memdesc:af95411fc4b7545a2f5c660bc51159245"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementation of <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#aae6d2874b82786019b36b4ac8ca9c647" title="This is the central method that derived logger classes have to implement to log a message...">Logger.doLog()</a>. Creates all the textual information that is logged in a line before the message itself.  <a href="#af95411fc4b7545a2f5c660bc51159245">More...</a><br/></td></tr>
 <tr class="separator:af95411fc4b7545a2f5c660bc51159245"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a992fff7225cbf662823cdcf45dfb42b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a992fff7225cbf662823cdcf45dfb42b6">logTimeDiff</a> (long diffMicros)</td></tr>
-<tr class="memdesc:a992fff7225cbf662823cdcf45dfb42b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs time difference into the log buffer, from micro seconds to days.  <a href="#a992fff7225cbf662823cdcf45dfb42b6">More...</a><br/></td></tr>
-<tr class="separator:a992fff7225cbf662823cdcf45dfb42b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></td></tr>
 <tr class="memitem:a42c27444187c8bea77c2b065a2ec183e inherit pro_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a42c27444187c8bea77c2b065a2ec183e">Logger</a> (String name)</td></tr>
 <tr class="memdesc:a42c27444187c8bea77c2b065a2ec183e inherit pro_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a logger.  <a href="#a42c27444187c8bea77c2b065a2ec183e">More...</a><br/></td></tr>
 <tr class="separator:a42c27444187c8bea77c2b065a2ec183e inherit pro_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5561ad642e4d694a9de93fdd260ffcda inherit pro_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a5561ad642e4d694a9de93fdd260ffcda">checkDomain</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> domain, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log.Level</a> level, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a> caller)</td></tr>
-<tr class="memdesc:a5561ad642e4d694a9de93fdd260ffcda inherit pro_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a given domain is active in respect to the given <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5" title="These are the levels of log verbosity used in a log call. ">Log.Level</a>.  <a href="#a5561ad642e4d694a9de93fdd260ffcda">More...</a><br/></td></tr>
-<tr class="separator:a5561ad642e4d694a9de93fdd260ffcda inherit pro_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a2eac8cf99106d95f5a0a8b4cc0c12716"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a2eac8cf99106d95f5a0a8b4cc0c12716">msgBuffer</a> =new <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>( 128 )</td></tr>
-<tr class="memdesc:a2eac8cf99106d95f5a0a8b4cc0c12716"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buffer to write the msgObject to.  <a href="#a2eac8cf99106d95f5a0a8b4cc0c12716">More...</a><br/></td></tr>
-<tr class="separator:a2eac8cf99106d95f5a0a8b4cc0c12716"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf37e693e36d895e18bcc1f6037f5d9e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#aaf37e693e36d895e18bcc1f6037f5d9e">logBuf</a> = new <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>( 256 )</td></tr>
 <tr class="memdesc:aaf37e693e36d895e18bcc1f6037f5d9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The internal log Buffer. <a href="#aaf37e693e36d895e18bcc1f6037f5d9e">More...</a><br/></td></tr>
 <tr class="separator:aaf37e693e36d895e18bcc1f6037f5d9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85c8d54f584a622009048d0536f6160f"><td class="memItemLeft" align="right" valign="top">StringBuilder&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a85c8d54f584a622009048d0536f6160f">formatSB</a> = new StringBuilder( 64 )</td></tr>
-<tr class="memdesc:a85c8d54f584a622009048d0536f6160f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal string builder used for formatting operations. <a href="#a85c8d54f584a622009048d0536f6160f">More...</a><br/></td></tr>
-<tr class="separator:a85c8d54f584a622009048d0536f6160f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab621f55d7a1a3c04988089afeea88208"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#ab621f55d7a1a3c04988089afeea88208">detectDateFormatChanges</a></td></tr>
-<tr class="memdesc:ab621f55d7a1a3c04988089afeea88208"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to last date format string to detect changes at runtime. <a href="#ab621f55d7a1a3c04988089afeea88208">More...</a><br/></td></tr>
-<tr class="separator:ab621f55d7a1a3c04988089afeea88208"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25d0a90e758eef351048c526b82ce060"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a25d0a90e758eef351048c526b82ce060">dateFormatString</a></td></tr>
-<tr class="memdesc:a25d0a90e758eef351048c526b82ce060"><td class="mdescLeft">&#160;</td><td class="mdescRight">The .Net format string built at runtime to {0:FmtDate}. <a href="#a25d0a90e758eef351048c526b82ce060">More...</a><br/></td></tr>
-<tr class="separator:a25d0a90e758eef351048c526b82ce060"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2eb584a3f8074d9b14f56741ff2b628"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#ae2eb584a3f8074d9b14f56741ff2b628">detectTimeOfDayFormatChanges</a></td></tr>
-<tr class="memdesc:ae2eb584a3f8074d9b14f56741ff2b628"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to last time of day format string to detect changes at runtime. <a href="#ae2eb584a3f8074d9b14f56741ff2b628">More...</a><br/></td></tr>
-<tr class="separator:ae2eb584a3f8074d9b14f56741ff2b628"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad20e54054ee94793667818d16868ddcc"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#ad20e54054ee94793667818d16868ddcc">timeOfDayFormatString</a></td></tr>
-<tr class="memdesc:ad20e54054ee94793667818d16868ddcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">The .Net format string built at runtime to {0:FmtTimeOfDay}. <a href="#ad20e54054ee94793667818d16868ddcc">More...</a><br/></td></tr>
-<tr class="separator:ad20e54054ee94793667818d16868ddcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></td></tr>
 <tr class="memitem:af717d7b13f31ce14d19c3b24707f20f6 inherit pro_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#af717d7b13f31ce14d19c3b24707f20f6">tempDomainPath</a></td></tr>
 <tr class="memdesc:af717d7b13f31ce14d19c3b24707f20f6 inherit pro_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="mdescLeft">&#160;</td><td class="mdescRight">A temporary string used for testing domains <a href="#af717d7b13f31ce14d19c3b24707f20f6">More...</a><br/></td></tr>
@@ -344,14 +194,17 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a8ecd4ffbcef16d4aac7e29db3afa92b3 inherit pub_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a8ecd4ffbcef16d4aac7e29db3afa92b3">FindDomain</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> domainPath)</td></tr>
 <tr class="memdesc:a8ecd4ffbcef16d4aac7e29db3afa92b3 inherit pub_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method is used to find a domain of the logger.  <a href="#a8ecd4ffbcef16d4aac7e29db3afa92b3">More...</a><br/></td></tr>
 <tr class="separator:a8ecd4ffbcef16d4aac7e29db3afa92b3 inherit pub_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a965aae70f9bf348a2959db8fd65d702a inherit pub_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a965aae70f9bf348a2959db8fd65d702a">Line</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> domain, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log.Level</a> level, Object msgObject, int indent, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a> caller)</td></tr>
-<tr class="memdesc:a965aae70f9bf348a2959db8fd65d702a inherit pub_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the method to log a message. Internally it calls the abstract method <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#aae6d2874b82786019b36b4ac8ca9c647" title="This is the central method that derived logger classes have to implement to log a message...">doLog()</a> to let derived classes perform the log. Note: this method (in fact the whole class) should not be used from outside. Instead, the static interface <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This is a simple, 100% static wrapper of class Lox. In other words, this class incorporates one stati...">Log</a> should be the right choice for most use cases.  <a href="#a965aae70f9bf348a2959db8fd65d702a">More...</a><br/></td></tr>
-<tr class="separator:a965aae70f9bf348a2959db8fd65d702a inherit pub_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a131d672c77b9abb0fc4a5a3d23e66ccf inherit pub_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a131d672c77b9abb0fc4a5a3d23e66ccf">Line</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> domain, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log.Level</a> level, Object msgObject, int indent, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a> caller)</td></tr>
+<tr class="memdesc:a131d672c77b9abb0fc4a5a3d23e66ccf inherit pub_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the method to log a message. Internally it calls the abstract method <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#aae6d2874b82786019b36b4ac8ca9c647" title="This is the central method that derived logger classes have to implement to log a message...">doLog()</a> to let derived classes perform the log. Note: this method (in fact the whole class) should not be used from outside. Instead, the static interface <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This is a simple, 100% static wrapper of class Lox. In other words, this class incorporates one stati...">Log</a> should be the right choice for most use cases.  <a href="#a131d672c77b9abb0fc4a5a3d23e66ccf">More...</a><br/></td></tr>
+<tr class="separator:a131d672c77b9abb0fc4a5a3d23e66ccf inherit pub_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This class is a still abstract implementation of class <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="This is central class of the ALox logging implementation. It is not recommended to use this class dir...">Logger</a>. All message objects passed to doLog are translated to MStrings and passed to the abstract function <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a1300bd920d9f44ebc751480932ed2585" title="The abstract function that logs a message. ">doTextLog()</a>. Furthermore, various textual representations of other log attributes are generated. </p>
+<div class="textblock"><p>This class is a still abstract implementation of class <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="This is central class of the ALox logging implementation. It is not recommended to use this class dir...">Logger</a> which is used as the super class for all textual <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="This is central class of the ALox logging implementation. It is not recommended to use this class dir...">Logger</a> implementations within ALox, e.g. ConsoleLogger. </p>
 <hr/>
- </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<p> The class uses two helper classes. One to convert the log message object into a string representation and a second to generate the textual representation of the meta information of a log call. These helpers can be extended and replaced to modify the behavior of <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html" title="This class is a still abstract implementation of class Logger which is used as the super class for al...">TextLogger</a>.</p>
+<p>The final log message is then passed to the abstract method <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a1300bd920d9f44ebc751480932ed2585" title="The abstract function that logs a message. ">doTextLog()</a>. Hence, custom <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="This is central class of the ALox logging implementation. It is not recommended to use this class dir...">Logger</a> classes that inherited from this class instead of directly from class <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a42c27444187c8bea77c2b065a2ec183e" title="Constructs a logger. ">Logger</a>, need to implement <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a1300bd920d9f44ebc751480932ed2585" title="The abstract function that logs a message. ">doTextLog()</a> instead of implementing <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#af95411fc4b7545a2f5c660bc51159245" title="Implementation of Logger.doLog(). Creates all the textual information that is logged in a line before...">doLog()</a>!</p>
+<p>Class <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html" title="This class is a still abstract implementation of class Logger which is used as the super class for al...">TextLogger</a> supports multi line log outputs. Such multi line log outputs can be configured to be logged in different ways. See <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a95ea94dee572eaac760d028ddcf3cf65" title="Determines if multi line messages should be split into different log lines. Possible values are: ...">MultiLineMsgMode</a> for more information. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a922bc82585360a89568276c894e3631c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -527,332 +380,7 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a992fff7225cbf662823cdcf45dfb42b6"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void logTimeDiff </td>
-          <td>(</td>
-          <td class="paramtype">long&#160;</td>
-          <td class="paramname"><em>diffMicros</em>)</td><td></td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Logs time difference into the log buffer, from micro seconds to days. </p>
-<hr/>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">diffMicros</td><td>The difference micros. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a25d0a90e758eef351048c526b82ce060"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">String dateFormatString</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The .Net format string built at runtime to {0:FmtDate}.</p>
-
-</div>
-</div>
-<a class="anchor" id="ab621f55d7a1a3c04988089afeea88208"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">String detectDateFormatChanges</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Reference to last date format string to detect changes at runtime.</p>
-
-</div>
-</div>
-<a class="anchor" id="ae2eb584a3f8074d9b14f56741ff2b628"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">String detectTimeOfDayFormatChanges</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Reference to last time of day format string to detect changes at runtime.</p>
-
-</div>
-</div>
-<a class="anchor" id="a405175cde17a010e915704f16b904b8f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int FmtAutoGrowDomainNameLength = 0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The maximum length of a domain name logged so far. This 'auto growing' field assures to keep output in nice column format. </p>
-
-</div>
-</div>
-<a class="anchor" id="aca310d2432cc9445a4e65cc5e28d3783"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int FmtAutoGrowThreadNameLength = 0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The maximum length of a thread name logged so far. This 'auto growing' field assures to keep output in nice column format. </p>
-
-</div>
-</div>
-<a class="anchor" id="a18a9da8d7e7ba66ac3dcbda832ab886c"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String FmtDate = &quot;yyyy-MM-dd&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Format string for the output of the log date. For more information, see "Standard Date and Time Format Strings" in .NET StringBuilder.AppendFormat()</p>
-
-</div>
-</div>
-<a class="anchor" id="a5fe44f8189b8474bfc4c08cf5a42a032"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String FmtDatePostfix = &quot;] &quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Postfix for log date outputs.</p>
-
-</div>
-</div>
-<a class="anchor" id="afb7d960c40340d3fe4663c5484a42c72"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String FmtDatePrefix = &quot;[&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Prefix for log date outputs.</p>
-
-</div>
-</div>
-<a class="anchor" id="a8284978677264be2d62149308088617b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String FmtDomainPostfix = &quot;]&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Postfix for the domain.</p>
-
-</div>
-</div>
-<a class="anchor" id="a3fbc9856016d2fe081b4644e44263ad5"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String FmtDomainPrefix = &quot; [&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Prefix for the domain.</p>
-
-</div>
-</div>
-<a class="anchor" id="a84b11e4ba9304e158d4f091d2c6e9d7e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String FmtIndentString = &quot; &quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The character(s) used for indentation.</p>
-
-</div>
-</div>
-<a class="anchor" id="abd28b851f3f7d45b21d07257565fb33f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String FmtLogLevelError = &quot; [ERR]&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The output for the log level "Error".</p>
-
-</div>
-</div>
-<a class="anchor" id="ab07a3465306dfb9b6dbf98adb27e254a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String FmtLogLevelInfo = &quot; &quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The output for the log level "Info".</p>
-
-</div>
-</div>
-<a class="anchor" id="a0d0f7da992728e1139d24702691d87f7"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String FmtLogLevelVerbose = &quot; [***]&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The output for the log level "Verbose".</p>
-
-</div>
-</div>
-<a class="anchor" id="a7a1002aa61ba0a9e16560d3079ee8e36"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String FmtLogLevelWarning = &quot; [WRN]&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The output for the log level "Warning".</p>
-
-</div>
-</div>
-<a class="anchor" id="a087f3222db7d7b243c9383b1a8f49797"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int FmtLogNumberMinDigits = 3</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Prefix for the domain.</p>
-
-</div>
-</div>
-<a class="anchor" id="a26a0361291a4e0253e9af11912b45b31"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String FmtLogNumberPostfix = &quot;&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Postfix for the log number.</p>
-
-</div>
-</div>
-<a class="anchor" id="a5a831eed0fe63ab71b26d5bc8c70b4d5"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String FmtLogNumberPrefix = &quot; &quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Prefix for the log number.</p>
-
-</div>
-</div>
-<a class="anchor" id="aba9c3b1abea028b66463f3b6262bed9c"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String FmtMessagePrefix = &quot;: &quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p><hr/>
- </p>
-<p>Prefix for the log message.</p>
-
-</div>
-</div>
 <a class="anchor" id="ab3423baaf4b67d0e7cfa757203aaf872"></a>
 <div class="memitem">
 <div class="memproto">
@@ -863,7 +391,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Headline for multi line messages (depending on <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a95ea94dee572eaac760d028ddcf3cf65" title="Determines if multi line messages should be split into different log lines. Possible values are: 0: N...">MultiLineMsgMode</a>) .</p>
+<p>Headline for multi line messages (depending on <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a95ea94dee572eaac760d028ddcf3cf65" title="Determines if multi line messages should be split into different log lines. Possible values are: ...">MultiLineMsgMode</a>) .</p>
 
 </div>
 </div>
@@ -895,265 +423,17 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ac281d117b6e931783195f52f70bfa5b3"></a>
+<a class="anchor" id="afd6c2389bad25caa4a5b201ef86e4608"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">String FmtNullObject =&quot;&lt;null&gt;&quot;</td>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a> LineFormatter = new <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a>()</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p><hr/>
- </p>
-<p>Logged when parameter msg of dLog() is null.</p>
-
-</div>
-</div>
-<a class="anchor" id="a928e64174a85a34b77b97eaf25956f3c"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String FmtThreadPostfix = &quot;]&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Postfix for the domain.</p>
-
-</div>
-</div>
-<a class="anchor" id="a767c0f28055f56668359fcd1678b25d5"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String FmtThreadPrefix = &quot; [T:&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Prefix for the thread name.</p>
-
-</div>
-</div>
-<a class="anchor" id="aa3bd7b4539cdb1595d9cdf488cd44697"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String FmtTimeDiffDays = &quot; days&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Format for time difference outputs of more than a day.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2f8688b35164557c1a7645dc3cd745ef"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String FmtTimeDiffHours = &quot; h&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Format for time difference outputs between 1h and 24h.</p>
-
-</div>
-</div>
-<a class="anchor" id="a313ca36b03e4d26bde5f500dd22ab00d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String FmtTimeDiffMicros = &quot; \u00B5s&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Entity microseconds for time difference outputs below 1000 microseconds.</p>
-
-</div>
-</div>
-<a class="anchor" id="ae488263fb8e4746d2de4a96f814051f0"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String FmtTimeDiffMillis = &quot; ms&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Entity milliseconds for time difference outputs below 1000 milliseconds.</p>
-
-</div>
-</div>
-<a class="anchor" id="a595e3ae9fa0a2451029b8d390e7c75f0"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String FmtTimeDiffMins = &quot; m&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Format for time difference outputs between 100s and 60 min.</p>
-
-</div>
-</div>
-<a class="anchor" id="a7f19bf5e36f16ca209afd5fb5921d249"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String FmtTimeDiffPostfix = &quot;]&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Postfix for time difference outputs.</p>
-
-</div>
-</div>
-<a class="anchor" id="af31ad34c738ea8c36156833c4f5d4065"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String FmtTimeDiffPrefix = &quot; +&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Prefix for time difference outputs.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1b5018fded561de142dc9bc84d1632a0"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String FmtTimeDiffSecs = &quot; s&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Format for time difference outputs between 10s and 99.9s.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1846aa54e2d3b4eef3d0083248e7e6d9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String FmtTimeElapsedDays = &quot; Days &quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The word "Days" the out put of time elapsed (if longer than a day).</p>
-
-</div>
-</div>
-<a class="anchor" id="ad0f9af6e7d61cd6df4855662d404d151"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String FmtTimeElapsedPostfix = &quot; &quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Postfix for time elapsed since logging start (or reset) outputs.</p>
-
-</div>
-</div>
-<a class="anchor" id="af07bbbd455910027da8239a12743b8ed"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String FmtTimeElapsedPrefix = &quot;[&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Prefix for time elapsed since logging start (or reset) outputs.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2e463fc020959aa031da2e572861e8a8"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String FmtTimeOfDay = &quot;HH:mm:ss&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Format string for the output of the time of day. For more information, see "Standard Date and Time Format Strings" in .NET StringBuilder.AppendFormat()</p>
-
-</div>
-</div>
-<a class="anchor" id="a68bc151b0a508bdc0f5c7f5609223a27"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String FmtTimeOfDayPostfix = &quot;] &quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Postfix for time of day outputs.</p>
-
-</div>
-</div>
-<a class="anchor" id="abce08eb76ed2fdd90ee39d233220f405"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String FmtTimeOfDayPrefix = &quot;[&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Prefix for time of day outputs.</p>
-
-</div>
-</div>
-<a class="anchor" id="a85c8d54f584a622009048d0536f6160f"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">StringBuilder formatSB = new StringBuilder( 64 )</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Internal string builder used for formatting operations.</p>
+<p>A helper object to format log objects into textual representations. This class incorporates a format string that defines the meta information in the log output. Furthermore, to extend <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html" title="This class is a still abstract implementation of class Logger which is used as the super class for al...">TextLogger</a>, this object can be replaced by custom implementations of it. </p>
 
 </div>
 </div>
@@ -1179,28 +459,6 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a2eac8cf99106d95f5a0a8b4cc0c12716"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> msgBuffer =new <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>( 128 )</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Buffer to write the msgObject to. </p>
-
-</div>
-</div>
 <a class="anchor" id="aba58580b1670dbfb1caf21f47d0d53de"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1211,7 +469,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>This is the string interpreted as line delimiter within log messages. If null, CR, LF or CRLF are used. Important: Set to empty string, to stop multi line processing of <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html" title="This class is a still abstract implementation of class Logger. All message objects passed to doLog ar...">TextLogger</a> </p>
+<p>This is the string interpreted as line delimiter within log messages. If null, CR, LF or CRLF are used. Important: Set to empty string, to stop any multi line processing of <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html" title="This class is a still abstract implementation of class Logger which is used as the super class for al...">TextLogger</a>, even the replacements. </p>
 
 </div>
 </div>
@@ -1225,7 +483,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>This is the readable (!) separator string, for logging out multi line messages into a single line (<a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a95ea94dee572eaac760d028ddcf3cf65" title="Determines if multi line messages should be split into different log lines. Possible values are: 0: N...">MultiLineMsgMode</a>==0). </p>
+<p>This is the readable (!) separator string, for logging out multi line messages into a single line (<a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a95ea94dee572eaac760d028ddcf3cf65" title="Determines if multi line messages should be split into different log lines. Possible values are: ...">MultiLineMsgMode</a>==0). </p>
 
 </div>
 </div>
@@ -1239,33 +497,41 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Determines if multi line messages should be split into different log lines. Possible values are: 0: No line split is performed, delimiters can be replaced by readable delimiters (depending on setting of <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#aba58580b1670dbfb1caf21f47d0d53de" title="This is the string interpreted as line delimiter within log messages. If null, CR, LF or CRLF are used. Important: Set to empty string, to stop multi line processing of TextLogger ">MultiLineDelimiter</a> and # MultiLineDelimiterRepl). </p>
-<p>1: Each log line contains all meta information</p>
-<p>2: Starting with second log line, meta information is replaced by blanks (default)</p>
-<p>3: The headline <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#ab3423baaf4b67d0e7cfa757203aaf872" title="Headline for multi line messages (depending on MultiLineMsgMode) .">FmtMultiLineMsgHeadline</a> is logged and all lines are logged right after the caller info (no meta information)</p>
-<p>4: The headline <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#ab3423baaf4b67d0e7cfa757203aaf872" title="Headline for multi line messages (depending on MultiLineMsgMode) .">FmtMultiLineMsgHeadline</a> is logged and all lines get tabbed to zero (no caller info and no meta information) </p>
+<p>Determines if multi line messages should be split into different log lines. Possible values are: </p>
+<ul>
+<li>0: No line split is performed, delimiters can be replaced by readable delimiters (depending on setting of <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#aba58580b1670dbfb1caf21f47d0d53de" title="This is the string interpreted as line delimiter within log messages. If null, CR, LF or CRLF are used. Important: Set to empty string, to stop any multi line processing of TextLogger, even the replacements. ">MultiLineDelimiter</a> and # MultiLineDelimiterRepl).</li>
+<li>1: Each log line contains all meta information</li>
+<li>2: Starting with second log line, meta information is replaced by blanks (default)</li>
+<li>3: The headline <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#ab3423baaf4b67d0e7cfa757203aaf872" title="Headline for multi line messages (depending on MultiLineMsgMode) .">FmtMultiLineMsgHeadline</a> is logged and all lines of the multi line text are logged at postion zero (without further meta information)</li>
+<li>4: Just the multi line text is logged, starting at column zero (no meta information is logged) </li>
+</ul>
 
 </div>
 </div>
-<a class="anchor" id="ad20e54054ee94793667818d16868ddcc"></a>
+<a class="anchor" id="a4659dec01dc35beaed57a1d13fb3a60c"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">String timeOfDayFormatString</td>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html">TextLoggerObjectConverter</a> ObjectConverter = new <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html">TextLoggerObjectConverter</a>()</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
+</div><div class="memdoc">
+<p>A helper object to convert log objects into textual representations. To extend <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html" title="This class is a still abstract implementation of class Logger which is used as the super class for al...">TextLogger</a>, this object can be replaced by custom implementations. </p>
+
+</div>
+</div>
+<a class="anchor" id="a26fadf1d9e7165180f210156799fdd22"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;String&gt; Replacements = new List&lt;String&gt;()</td>
+        </tr>
+      </table>
 </div><div class="memdoc">
 
-<p>The .Net format string built at runtime to {0:FmtTimeOfDay}.</p>
+<p>A list of pairs of strings. Within each log message, the first string of a pair is searched and replaced by the second string. Very simple, but useful in some cases. </p>
 
 </div>
 </div>
@@ -1276,7 +542,7 @@ Additional Inherited Members</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.4-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jul 15 2013 09:26:46 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jul 19 2013 00:35:51 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

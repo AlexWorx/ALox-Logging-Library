@@ -1,4 +1,4 @@
 <map id="MemoryLogger" name="MemoryLogger">
-<area shape="rect" id="node2" href="$classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html" title="This class is a still abstract implementation of class Logger. All message objects passed to doLog ar..." alt="" coords="15,80,101,107"/>
+<area shape="rect" id="node2" href="$classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html" title="This class is a still abstract implementation of class Logger which is used as the super class for al..." alt="" coords="15,80,101,107"/>
 <area shape="rect" id="node3" href="$classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="This is central class of the ALox logging implementation. It is not recommended to use this class dir..." alt="" coords="28,5,89,32"/>
 </map>

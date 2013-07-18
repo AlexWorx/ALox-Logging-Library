@@ -152,7 +152,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h2><a class="anchor" id="tutcs_ha_5"></a>
 1.5. Run your application within visual studio</h2>
 <p>Run your application in "Debug" mode. In the output window of visual studio you should see a line of output similar to this:</p>
-<pre class="fragment">src\cs.unittests.alox\Tests_Tutorial.cs(55):.Tut_Hello_ALox()     [00:00.000  +048 µs] [T:(10)]       [APP]: Hello ALox
+<pre class="fragment">src\cs.unittests.alox\Tests_Tutorial.cs(55):Tut_Hello_ALox() [00:00.007 +007 ms] [10]       [APP]: Hello ALox
 </pre><p>Now, close your source file window in Visual Studio. Then double click the log line in the output Window. Visual Studio opens the source and selects the line of code where the log call was invoked. This means, each log statement is "clickable" in your IDE and links to its source code line in the editor. This is a tremendous help for developers when debugging their code.</p>
 <p>Besides the fact that you can click it, users of ALox are saving even more time. Developers, when using standard "debug print lines", often phrase textual info like </p>
 <pre class="fragment">    "attn: dbman.savedata(): oops could not store data....ERROR!"
@@ -219,9 +219,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">    Log.Info   ( <span class="stringliteral">&quot;APP&quot;</span>, <span class="stringliteral">&quot;Just for your further information!&quot;</span> );</div>
 <div class="line">    Log.Verbose( <span class="stringliteral">&quot;APP&quot;</span>, <span class="stringliteral">&quot;Today, I am in the mood to talk...&quot;</span> );</div>
 </div><!-- fragment --><p> If you run your application now (in "Debug" mode), the following output should appear:</p>
-<pre class="fragment">src\cs.unittests.alox\Tests_Tutorial.cs(78):.Tut_LogLevels()     [00:00.000  +084 µs] [T:(10)] [ERR] [APP]: A severe error happened :-(
-src\cs.unittests.alox\Tests_Tutorial.cs(79):.Tut_LogLevels()     [00:00.000  +135 µs] [T:(10)] [WRN] [APP]: This is a warning :-/ Maybe an error follows?
-src\cs.unittests.alox\Tests_Tutorial.cs(80):.Tut_LogLevels()     [00:00.000  +100 µs] [T:(10)]       [APP]: Just for your further information!
+<pre class="fragment">src\cs.unittests.alox\Tests_Tutorial.cs(78):Tut_LogLevels() [00:00.000 +054 µs] [10] [ERR] [APP]: A severe error happened :-(
+src\cs.unittests.alox\Tests_Tutorial.cs(79):Tut_LogLevels() [00:00.000 +139 µs] [10] [WRN] [APP]: This is a warning :-/ Maybe an error follows?
+src\cs.unittests.alox\Tests_Tutorial.cs(80):Tut_LogLevels() [00:00.000 +043 µs] [10]       [APP]: Just for your further information!
 </pre><p>As you see, the last line of our code, containing the <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a8646e072715a76d18a5a581a7a031ca7">Verbose()</a> log statement was not logged! This is because in line two of the code of we set the <em>log domain level</em> to <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a10ac165398697ce1d642d739cc3b170f">WarningsAndErrors</a>. This tells the logging system that logs implemented with the method <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a8646e072715a76d18a5a581a7a031ca7">Verbose()</a> are not to be logged.</p>
 <p>The following table lists the domain log levels in the columns and the <em>log level</em> in the rows and shows which log levels are activated when a certain <em>log domain level</em> is set:</p>
 <table  border="1">
@@ -259,9 +259,9 @@ src\cs.unittests.alox\Tests_Tutorial.cs(80):.Tut_LogLevels()     [00:00.000  +10
 <div class="line">    Log.Info   ( <span class="stringliteral">&quot;Just for your further information!&quot;</span> );</div>
 <div class="line">    Log.Verbose( <span class="stringliteral">&quot;Today, I am in the mood to talk...&quot;</span> );</div>
 </div><!-- fragment --><p> The output now is:</p>
-<pre class="fragment">src\cs.unittests.alox\Tests_Tutorial.cs(102):.Tut_DefaultDomains()     [00:00.000  +074 µs] [T:(10)] [ERR] [APP]: A severe error happened :-(
-src\cs.unittests.alox\Tests_Tutorial.cs(103):.Tut_DefaultDomains()     [00:00.000  +125 µs] [T:(10)] [WRN] [APP]: This is a warning :-/ Maybe an error follows?
-src\cs.unittests.alox\Tests_Tutorial.cs(104):.Tut_DefaultDomains()     [00:00.000  +049 µs] [T:(10)]       [APP]: Just for your further information!
+<pre class="fragment">src\cs.unittests.alox\Tests_Tutorial.cs(102):Tut_DefaultDomains() [00:00.000 +061 µs] [10] [ERR] [APP]: A severe error happened :-(
+src\cs.unittests.alox\Tests_Tutorial.cs(103):Tut_DefaultDomains() [00:00.000 +100 µs] [10] [WRN] [APP]: This is a warning :-/ Maybe an error follows?
+src\cs.unittests.alox\Tests_Tutorial.cs(104):Tut_DefaultDomains() [00:00.000 +078 µs] [10]       [APP]: Just for your further information!
 </pre><p>OK, you might argue, the code became longer: We added line 2, which invokes <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#ad82a9166e7179f88e1c66c76afc32d35">Log.RegDomain</a>. This method registers the domain with ALox (the same as <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#aa581535137279580a7e3236132275700">Log.SetDomain</a> obviously does implicitly) and offers the possibility to set the given domain name as the default domain for the actual <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#aaecc53892786f2fa11e682f633af84c6">Scope</a> (source file or method).</p>
 <p>What becomes less code however are the log statements <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a3a18674e47f0eb74c55eb7f8c44508dd">Error()</a>, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a3a18674e47f0eb74c55eb7f8c44508dd">Warning()</a>, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a3a18674e47f0eb74c55eb7f8c44508dd">Info()</a> and <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a3a18674e47f0eb74c55eb7f8c44508dd">Verbose()</a>. They do not need to have the domain as a parameter any more! This provides the following advantages:</p>
 <ul>
@@ -281,8 +281,8 @@ src\cs.unittests.alox\Tests_Tutorial.cs(104):.Tut_DefaultDomains()     [00:00.00
 <div class="fragment"><div class="line">    Log.AddLogger( <span class="keyword">new</span> ConsoleLogger( <span class="stringliteral">&quot;Console&quot;</span> ) );</div>
 <div class="line">    Log.Info  ( <span class="stringliteral">&quot;APP&quot;</span>, <span class="stringliteral">&quot;Hallo ALox&quot;</span> );</div>
 </div><!-- fragment --><p> Which produces the output:</p>
-<pre class="fragment">src\cs.unittests.alox\Tests_Tutorial.cs(116):.Tut_DefaultDomains()     [00:00.000  +052 µs] [T:(10)] [***] [APP]: Logger 'Console': log domain 'APP' not found. Created. Inherited domain level is: All 
-src\cs.unittests.alox\Tests_Tutorial.cs(116):.Tut_DefaultDomains()     [00:00.000  +052 µs] [T:(10)]       [APP]: Hallo ALox
+<pre class="fragment">src\cs.unittests.alox\Tests_Tutorial.cs(116):Tut_DefaultDomains() [00:00.000 +047 µs] [10] [***] [APP]: Logger 'Console': log domain 'APP' not found. Created. Inherited domain level is: All 
+src\cs.unittests.alox\Tests_Tutorial.cs(116):Tut_DefaultDomains() [00:00.000 +047 µs] [10]       [APP]: Hallo ALox
 </pre><p>From this example we learn that <em>log domains</em> which are neither registered with <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#ad82a9166e7179f88e1c66c76afc32d35">Log.RegDomain</a> nor set with <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#aa581535137279580a7e3236132275700">Log.SetDomain</a> do not cause any problem. ALox just creates them on the fly and continues its job.</p>
 <p>The <em>domain level</em> that such <em>unknown</em> domains receive is inherited through the domain chain up to the root domain. The root domain is a field existing in each <em>logger</em>. By default the root domain of a <a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html">ConsoleLogger</a> has its <em>domain level</em> set to <em>All</em>. This is extremely useful, because whenever you are using 3rd party code that defines its custom domain names, you can easily identify those domains in your Visual Studios output window log stream. In contrast, other loggers that you create for specific purposes (e.g. log only messages of certain domains into a file), do not enable unknown* domains as a default. Therefore, these special purpose loggers stay clean and log only what you explicitly ask them to log.</p>
 <p><br/>
@@ -330,7 +330,7 @@ src\cs.unittests.alox\Tests_Tutorial.cs(116):.Tut_DefaultDomains()     [00:00.00
 <div class="fragment"><div class="line">    Log.Info( <span class="stringliteral">&quot;MYDOM/PERF&quot;</span>, <span class="stringliteral">&quot;Heavy calculation started...&quot;</span> );       </div>
 <div class="line">        heavyCalculation();</div>
 <div class="line">    Log.Info( <span class="stringliteral">&quot;MYDOM/PERF&quot;</span>, <span class="stringliteral">&quot;Heavy calculation finished!&quot;</span> );        </div>
-</div><!-- fragment --><p> In the log output of the second line you automatically get the absolute value of elapsed time displayed. There is no need to do your own math with the timestamps. In fact, the value is displayed in a human readable way, depending on the size of the time span. (This is true as long as your <em>logger</em> has the field <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a7f35743a44a8640f5e27b158b7293d5c">Logger.LogTimeDiff</a> set to true, which is the default for most loggers)</p>
+</div><!-- fragment --><p> In the log output of the second line you automatically get the absolute value of elapsed time displayed. There is no need to do your own math with the timestamps. In fact, the value is displayed in a human readable way, depending on the size of the time span. (Other date and time outputs, like current date or absolute time can be configured to be logged as well, see class <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html">TextLogger</a> for more information).</p>
 <dl class="section note"><dt>Note</dt><dd>In above code sample, of-course, there is no need to indent heavyCalculation() between the two log statements, but doesn't this look nice and intuitive?</dd></dl>
 <p>As "PERF" is a <em>sub domain</em> of "MYDOM" and "MYDOM" got set as the <em>default domain</em> for the source file, the domain "MYDOM/PERF" could be also referenced using "~PERF". The code then looks like this:</p>
 <div class="fragment"><div class="line">    Log.Info( <span class="stringliteral">&quot;~PERF&quot;</span>, <span class="stringliteral">&quot;Heavy calculation started...&quot;</span> );        </div>
@@ -342,7 +342,7 @@ src\cs.unittests.alox\Tests_Tutorial.cs(116):.Tut_DefaultDomains()     [00:00.00
 <li>you can copy/paste the code into a different class (with a different parent domain) without changing it.</li>
 </ul>
 <h3>4) Name your threads</h3>
-<p>The fourth and really optional one is about multi threaded applications. ALox optionally logs information about the thread id or name that executed the code containing your log statements. This is an automatic process and can be switched on or off using the boolean flag <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a56b014ec7388b47425aa15b0860610ba">Logger.LogThreadInfo</a>.</p>
+<p>The fourth and really optional one is about multi threaded applications. ALox optionally logs information about the thread id or name that executed the code containing your log statements.</p>
 <p>However often threads do not have a name, but just an ID. It would be much nicer to see a nice name instead of that id. ALox provides a simple mechanism to map thread IDs to variable thread names using the <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#ac412e05b0ef291166764d99bf255e550">Log.MapThreadName</a> interface.</p>
 <p>The mechanism is simple, however it might not be simple to identify the right place in the code to put it! Some code can be executed from different threads, and sometimes (for example when using an UI framework) you might not even know exactly which thread will invoke your code. However, the good news is that each thread ID has to be mapped only once during the lifecycle of the program, but may be mapped multiple times. Therefore, the guideline is:</p>
 <ul>
@@ -398,14 +398,16 @@ src\cs.unittests.alox\Tests_Tutorial.cs(116):.Tut_DefaultDomains()     [00:00.00
 <h3>3.3.1 Instance(): Log any object recursively</h3>
 <p>The method <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogTools.html#a8c29adc9ba464af7c76dc25fd65f46a1">LogTools.Instance()</a> allows you to log just any object recursively in a well formatted way. You can try this out quickly by adding the following code to your sample:</p>
 <div class="fragment"><div class="line">    <span class="comment">// Log multi-lines without indent </span></div>
-<div class="line">    ((TextLogger) Log.GetLogger( <span class="stringliteral">&quot;Console&quot;</span> )).MultiLineMsgMode= 4; </div>
-<div class="line"></div>
+<div class="line"><span class="preprocessor">    #if ALOX_DEBUG</span></div>
+<div class="line"><span class="preprocessor"></span>        ((TextLogger) Log.GetLogger( <span class="stringliteral">&quot;Console&quot;</span> )).MultiLineMsgMode= 4; </div>
+<div class="line"><span class="preprocessor">    #endif</span></div>
+<div class="line"><span class="preprocessor"></span></div>
 <div class="line">    <span class="comment">// Log current thread instance</span></div>
 <div class="line">    LogTools.Instance( <span class="stringliteral">&quot;MYDOM&quot;</span>, Log.Level.Info, Thread.CurrentThread, 2, <span class="stringliteral">&quot;Actual Thread: &quot;</span>, 1 );</div>
 </div><!-- fragment --><p> As you can see, we are just passing a quite complex object, the current thread, to the method. The parameter that follows the object which is to be logged (the current thread) determines the level of objects which are recursively logged, starting from the given one (composite objects). You can play around with it, and increase it from 2 to lets say 5. But be careful: this can lead to a quite long log message!</p>
 <p>The given parameter "Actual Thread: " provides a headline for the log output. This allows you to save another line of code, which would be logging the headline explicitly.</p>
 <p>Here are the first lines of output of the above sample:</p>
-<pre class="fragment">src\cs.unittests.alox\Tests_Tutorial.cs(211):.Tut_Instance()     [00:00.002  +002 ms] [T:(10)]       [MYDOM]:   ALox: Multi line message follows: 
+<pre class="fragment">src\cs.unittests.alox\Tests_Tutorial.cs(211):Tut_Instance() [00:00.002 +002 ms] [10]       [MYDOM]:   ALox: Multi line message follows: 
 &gt;&gt; Actual Thread:                                                    {Thread}
 &gt;&gt; &lt;01&gt;  ManagedThreadId:              10                            {Int32}
 &gt;&gt; &lt;02&gt;  ExecutionContextBelongsToCurrentScope: True                 {Boolean}
@@ -451,18 +453,18 @@ src\cs.unittests.alox\Tests_Tutorial.cs(116):.Tut_DefaultDomains()     [00:00.00
 <div class="line">    LogTools.Exception( <span class="stringliteral">&quot;MYDOM&quot;</span>, Log.Level.Warning, testException, <span class="stringliteral">&quot;Logging an exception: &quot;</span> );</div>
 </div><!-- fragment --><p>Like the method <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogTools.html#a8c29adc9ba464af7c76dc25fd65f46a1">LogTools.Instance()</a>, a headline for the Exception log output can be specified. This allows you to save another line of code, which would be logging the headline explicitly.</p>
 <p>The following log output will be generated:</p>
-<pre class="fragment">src\cs.unittests.alox\Tests_Tutorial.cs(246):.Tut_Exception()     [00:00.000  +048 µs] [T:(10)] [WRN] [MYDOM]: &gt;&gt; Logging an exception: 
-src\cs.unittests.alox\Tests_Tutorial.cs(246):.Tut_Exception()                                                  &gt;&gt;   Type:       System.Exception
-src\cs.unittests.alox\Tests_Tutorial.cs(246):.Tut_Exception()                                                  &gt;&gt;   Message:    TestException Message
-src\cs.unittests.alox\Tests_Tutorial.cs(246):.Tut_Exception()                                                  &gt;&gt;   HResult:    0x80131500
-src\cs.unittests.alox\Tests_Tutorial.cs(246):.Tut_Exception()                                                  &gt;&gt;   Inner:   
-src\cs.unittests.alox\Tests_Tutorial.cs(246):.Tut_Exception()                                                  &gt;&gt;     Type:       System.Exception
-src\cs.unittests.alox\Tests_Tutorial.cs(246):.Tut_Exception()                                                  &gt;&gt;     Message:    InnerException Message
-src\cs.unittests.alox\Tests_Tutorial.cs(246):.Tut_Exception()                                                  &gt;&gt;     HResult:    0x80131500
-src\cs.unittests.alox\Tests_Tutorial.cs(246):.Tut_Exception()                                                  &gt;&gt;     Inner:   
-src\cs.unittests.alox\Tests_Tutorial.cs(246):.Tut_Exception()                                                  &gt;&gt;       Type:       System.Exception
-src\cs.unittests.alox\Tests_Tutorial.cs(246):.Tut_Exception()                                                  &gt;&gt;       Message:    Inner, inner Exception
-src\cs.unittests.alox\Tests_Tutorial.cs(246):.Tut_Exception()                                                  &gt;&gt;       HResult:    0x80131500
+<pre class="fragment">src\cs.unittests.alox\Tests_Tutorial.cs(246):Tut_Exception() [00:00.000 +040 µs] [10] [WRN] [MYDOM]: &gt;&gt; Logging an exception: 
+                                                                                                     &gt;&gt;   Type:       System.Exception
+                                                                                                     &gt;&gt;   Message:    TestException Message
+                                                                                                     &gt;&gt;   HResult:    0x80131500
+                                                                                                     &gt;&gt;   Inner:   
+                                                                                                     &gt;&gt;     Type:       System.Exception
+                                                                                                     &gt;&gt;     Message:    InnerException Message
+                                                                                                     &gt;&gt;     HResult:    0x80131500
+                                                                                                     &gt;&gt;     Inner:   
+                                                                                                     &gt;&gt;       Type:       System.Exception
+                                                                                                     &gt;&gt;       Message:    Inner, inner Exception
+                                                                                                     &gt;&gt;       HResult:    0x80131500
 </pre><h3>3.3.3 XML(): Log out an XML document or element</h3>
 <p>The third method in LogTools that logs a complex object is <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogTools.html#a3a172ec6285dc3cdd47f147801dbbc32">LogTools.Exception()</a> for logging objects of type XMLDocument or XMLElement. Here is a quick sample code:</p>
 <div class="fragment"><div class="line">    String xmltext= <span class="stringliteral">&quot;&lt;MainTag&gt;&quot;</span> </div>
@@ -475,12 +477,12 @@ src\cs.unittests.alox\Tests_Tutorial.cs(246):.Tut_Exception()                   
 <div class="line">    </div>
 <div class="line">    LogTools.XML(<span class="stringliteral">&quot;MYDOM&quot;</span>, Log.Level.Info, xdoc, <span class="stringliteral">&quot;Logging an xml document: &quot;</span> );</div>
 </div><!-- fragment --><p> The output will look similar to this:</p>
-<pre class="fragment">src\cs.unittests.alox\Tests_Tutorial.cs(274):.Tut_XML()     [00:00.000  +079 µs] [T:(10)] [***] [MYDOM]: Logger 'Console': log domain 'MYDOM' not found. Created. Inherited domain level is: All 
-src\cs.unittests.alox\Tests_Tutorial.cs(274):.Tut_XML()     [00:00.000  +079 µs] [T:(10)]       [MYDOM]: &gt;&gt; Logging an xml document: 
-src\cs.unittests.alox\Tests_Tutorial.cs(274):.Tut_XML()                                                  &gt;&gt;   MainTag
-src\cs.unittests.alox\Tests_Tutorial.cs(274):.Tut_XML()                                                  &gt;&gt;     SubTag="Hallo ALox XML"
-src\cs.unittests.alox\Tests_Tutorial.cs(274):.Tut_XML()                                                  &gt;&gt;     SubTag2
-src\cs.unittests.alox\Tests_Tutorial.cs(274):.Tut_XML()                                                  &gt;&gt;       SubsubTag="A sub tags' string"
+<pre class="fragment">src\cs.unittests.alox\Tests_Tutorial.cs(274):Tut_XML() [00:00.000 +071 µs] [10] [***] [MYDOM]: Logger 'Console': log domain 'MYDOM' not found. Created. Inherited domain level is: All 
+src\cs.unittests.alox\Tests_Tutorial.cs(274):Tut_XML() [00:00.000 +071 µs] [10]       [MYDOM]: &gt;&gt; Logging an xml document: 
+                                                                                               &gt;&gt;   MainTag
+                                                                                               &gt;&gt;     SubTag="Hallo ALox XML"
+                                                                                               &gt;&gt;     SubTag2
+                                                                                               &gt;&gt;       SubsubTag="A sub tags' string"
 </pre><p><br/>
  </p>
 <h2><a class="anchor" id="tutcs_more_4"></a>
@@ -506,13 +508,7 @@ src\cs.unittests.alox\Tests_Tutorial.cs(274):.Tut_XML()                         
 <div class="line">    </div>
 <div class="line">    <span class="comment">// switch some log information off with memory logger</span></div>
 <div class="line"><span class="preprocessor">    #if ALOX_DEBUG</span></div>
-<div class="line"><span class="preprocessor"></span>        (Log.GetLogger(<span class="stringliteral">&quot;Console&quot;</span>)).LogCallerMethod= <span class="keyword">false</span>;</div>
-<div class="line">        MemoryLogger memLogger= (MemoryLogger) Log.GetLogger(<span class="stringliteral">&quot;Memory&quot;</span>);</div>
-<div class="line">        memLogger.LogCallerMethod= </div>
-<div class="line">        memLogger.LogTimeElapsed= </div>
-<div class="line">        memLogger.LogTimeDiff= </div>
-<div class="line">        memLogger.LogLogLevel= </div>
-<div class="line">        memLogger.LogThreadInfo= <span class="keyword">false</span>;</div>
+<div class="line"><span class="preprocessor"></span>        ((MemoryLogger) Log.GetLogger(<span class="stringliteral">&quot;Memory&quot;</span>)).LineFormatter.Format= <span class="keyword">new</span> MString( <span class="stringliteral">&quot;%CF(%CL): %L [%O]: &quot;</span>);</div>
 <div class="line"><span class="preprocessor">    #endif</span></div>
 <div class="line"><span class="preprocessor"></span>    </div>
 <div class="line">    <span class="comment">// register domains, set DOM as default</span></div>
@@ -538,14 +534,16 @@ src\cs.unittests.alox\Tests_Tutorial.cs(274):.Tut_XML()                         
 <div class="line">    </div>
 <div class="line">    <span class="comment">// To verify the result, we log the contents of the MemoryLogger to the console logger</span></div>
 <div class="line">    Log.Info( <span class="stringliteral">&quot;~CON&quot;</span>, <span class="stringliteral">&quot;Here comes the contents of MemoryLogger:&quot;</span>);</div>
-<div class="line">    Log.Info( <span class="stringliteral">&quot;~CON&quot;</span>, memLogger.Buffer.ToString(), 1);</div>
+<div class="line"><span class="preprocessor">    #if ALOX_DEBUG</span></div>
+<div class="line"><span class="preprocessor"></span>        Log.Info( <span class="stringliteral">&quot;~CON&quot;</span>, ((MemoryLogger) Log.GetLogger(<span class="stringliteral">&quot;Memory&quot;</span>)).Buffer.ToString(), 1);</div>
+<div class="line"><span class="preprocessor">    #endif</span></div>
 </div><!-- fragment --><p> Running the sample, we get the following log on the console:</p>
-<pre class="fragment">src\cs.unittests.alox\Tests_Tutorial.cs(333):.Tut_SeparatedLogLevels()     [00:00.000  +414 µs] [T:(10)]       [DOM]: Domain= DOM      -&gt; This goes to all loggers
-src\cs.unittests.alox\Tests_Tutorial.cs(334):.Tut_SeparatedLogLevels()     [00:00.000  +174 µs] [T:(10)]       [DOM/CON]: Domain= DOM/CON  -&gt; This goes to ConsoleLogger exclusively
-src\cs.unittests.alox\Tests_Tutorial.cs(338):.Tut_SeparatedLogLevels()     [00:00.000  +103 µs] [T:(10)]       [DOM/CON]: Here comes the contents of MemoryLogger:
-src\cs.unittests.alox\Tests_Tutorial.cs(339):.Tut_SeparatedLogLevels()     [00:00.000  +076 µs] [T:(10)]       [DOM/CON]:   ALox: Multi line message follows: 
-&gt;&gt; src\cs.unittests.alox\Tests_Tutorial.cs(333):      [DOM]: Domain= DOM      -&gt; This goes to all loggers
-&gt;&gt; src\cs.unittests.alox\Tests_Tutorial.cs(335):      [DOM/MEM]: Domain= DOM/MEM  -&gt; This goes to MemoryLogger exclusively
+<pre class="fragment">src\cs.unittests.alox\Tests_Tutorial.cs(327):Tut_SeparatedLogLevels() [00:00.000 +191 µs] [10]       [DOM]: Domain= DOM      -&gt; This goes to all loggers
+src\cs.unittests.alox\Tests_Tutorial.cs(328):Tut_SeparatedLogLevels() [00:00.000 +136 µs] [10]       [DOM/CON]: Domain= DOM/CON  -&gt; This goes to ConsoleLogger exclusively
+src\cs.unittests.alox\Tests_Tutorial.cs(332):Tut_SeparatedLogLevels() [00:00.000 +057 µs] [10]       [DOM/CON]: Here comes the contents of MemoryLogger:
+src\cs.unittests.alox\Tests_Tutorial.cs(333):Tut_SeparatedLogLevels() [00:00.000 +044 µs] [10]       [DOM/CON]:   ALox: Multi line message follows: 
+&gt;&gt; src\cs.unittests.alox\Tests_Tutorial.cs(327):       [DOM]: Domain= DOM      -&gt; This goes to all loggers
+&gt;&gt; src\cs.unittests.alox\Tests_Tutorial.cs(329):       [DOM/MEM]: Domain= DOM/MEM  -&gt; This goes to MemoryLogger exclusively
 </pre><p>The way we achieved the goal is that we use the method <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#aa581535137279580a7e3236132275700">Log.SetDomain()</a> twice on each of the <em>sub domains</em>. And in contrast to previous samples, we are passing two more parameters to it (and overwrite their default values):</p>
 <ul>
 <li><em>bool recursive</em> This parameter defaults to true and tells ALox to not only set the given <em>log domain</em> but all its <em>sub domains</em> to the Log.DomainLevel provided. We set this to false, we do not have further sub domains either way.</li>
@@ -594,35 +592,35 @@ src\cs.unittests.alox\Tests_Tutorial.cs(339):.Tut_SeparatedLogLevels()     [00:0
 <div class="line">    <span class="comment">// Log current Log configuration </span></div>
 <div class="line">    Log.LogConfig( <span class="stringliteral">&quot;DOM&quot;</span>, Log.Level.Verbose, <span class="stringliteral">&quot;Here comes the current Log configuration:&quot;</span> );</div>
 </div><!-- fragment --><p> We are invoking <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#ab0a8ad96173757285e9ab5e832d6bee9">Log.LogConfig()</a> which logs the current configuration of of ALox. The output is quite self explanatory:</p>
-<pre class="fragment">src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()     [00:00.000  +128 µs] [T:(10)] [***] [DOM]: &gt;&gt; Here comes the current Log configuration:
-src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                                &gt;&gt; Version:      1.1.0
-src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                                &gt;&gt; Intern. dom.: ALOX
-src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                                &gt;&gt; Thread safe:  Yes
-src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                                &gt;&gt; No. of calls: 1
-src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                                &gt;&gt; Code markers: 0
-src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                                &gt;&gt; 
-src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                                &gt;&gt; Def. domains: 1
-src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                                &gt;&gt;   Domain:   DOM          Scope: "i:\Dev\A-Worx\ALox\src\cs.unittests.alox\Tests_Tutorial.cs#Tut_LogConfig"
-src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                                &gt;&gt; 
-src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                                &gt;&gt; Loggers:      2
-src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                                &gt;&gt; 
-src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                                &gt;&gt;   Logger: "Console"
-src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                                &gt;&gt;     Creation time: 07/14/2013 17:43:08
-src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                                &gt;&gt;     Lines logged:  0
-src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                                &gt;&gt;     Domains:
-src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                                &gt;&gt;       /ALOX              WarningsAndErrors
-src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                                &gt;&gt;       /DOM               All
-src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                                &gt;&gt;       /DOM/CON           All
-src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                                &gt;&gt;       /DOM/MEM           Off
-src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                                &gt;&gt; 
-src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                                &gt;&gt;   Logger: "Memory"
-src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                                &gt;&gt;     Creation time: 07/14/2013 17:43:08
-src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                                &gt;&gt;     Lines logged:  0
-src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                                &gt;&gt;     Domains:
-src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                                &gt;&gt;       /ALOX              WarningsAndErrors
-src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                                &gt;&gt;       /DOM               All
-src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                                &gt;&gt;       /DOM/CON           Off
-src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                                                &gt;&gt;       /DOM/MEM           All
+<pre class="fragment">src\cs.unittests.alox\Tests_Tutorial.cs(373):Tut_LogConfig() [00:00.000 +106 µs] [10] [***] [DOM]: &gt;&gt; Here comes the current Log configuration:
+                                                                                                   &gt;&gt; Version:      1.1.0
+                                                                                                   &gt;&gt; Intern. dom.: ALOX
+                                                                                                   &gt;&gt; Thread safe:  Yes
+                                                                                                   &gt;&gt; No. of calls: 1
+                                                                                                   &gt;&gt; Code markers: 0
+                                                                                                   &gt;&gt; 
+                                                                                                   &gt;&gt; Def. domains: 1
+                                                                                                   &gt;&gt;   Domain:   DOM          Scope: "i:\Dev\A-Worx\ALox\src\cs.unittests.alox\Tests_Tutorial.cs#Tut_LogConfig"
+                                                                                                   &gt;&gt; 
+                                                                                                   &gt;&gt; Loggers:      2
+                                                                                                   &gt;&gt; 
+                                                                                                   &gt;&gt;   Logger: "Console"
+                                                                                                   &gt;&gt;     Creation time: 07/17/2013 22:23:20
+                                                                                                   &gt;&gt;     Lines logged:  0
+                                                                                                   &gt;&gt;     Domains:
+                                                                                                   &gt;&gt;       /ALOX              WarningsAndErrors
+                                                                                                   &gt;&gt;       /DOM               All
+                                                                                                   &gt;&gt;       /DOM/CON           All
+                                                                                                   &gt;&gt;       /DOM/MEM           Off
+                                                                                                   &gt;&gt; 
+                                                                                                   &gt;&gt;   Logger: "Memory"
+                                                                                                   &gt;&gt;     Creation time: 07/17/2013 22:23:20
+                                                                                                   &gt;&gt;     Lines logged:  0
+                                                                                                   &gt;&gt;     Domains:
+                                                                                                   &gt;&gt;       /ALOX              WarningsAndErrors
+                                                                                                   &gt;&gt;       /DOM               All
+                                                                                                   &gt;&gt;       /DOM/CON           Off
+                                                                                                   &gt;&gt;       /DOM/MEM           All
 </pre><p>Besides this, there is a second option to inspect what happens internally in class <em>Log</em>. Again, from the previous sample we take the setup section, remove the log output and add a parameter in the first line of code, where the <em>ConsoleLogger</em> is added to <em>LOG</em>:</p>
 <div class="fragment"><div class="line">    <span class="comment">// create two different loggers, add console Logger verbosely</span></div>
 <div class="line">    Log.AddLogger( <span class="keyword">new</span> ConsoleLogger( <span class="stringliteral">&quot;Console&quot;</span> ), Log.DomainLevel.All );</div>
@@ -646,21 +644,21 @@ src\cs.unittests.alox\Tests_Tutorial.cs(379):.Tut_LogConfig()                   
 <div class="line"></div>
 </div><!-- fragment --><p> ALox is equipped with an <em>internal log domain</em> named "ALOX". This domain is used by ALox to log messages, from Error() to Verbose(). Now, when you add a <em>logger</em> to class <em>Log</em>, this <em>internal log domain</em> is registered with this <em>logger</em>.</p>
 <p>With the modification in the code above, we are passing a <em>log domain level</em> as a second parameter to <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a48c449476d1fd8d89894d79a3083c47c">Log.AddLogger()</a>. This <em>log domain level</em> specifies how the internal <em>log domain</em> of ALox should be set. While the default value was <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a10ac165398697ce1d642d739cc3b170f">DomainLevel.WarningsAndErrors</a> we overwrite this to <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a10ac165398697ce1d642d739cc3b170f">DomainLevel.All</a>. Now looking at the <em>ConsoleLogger</em> output, we see what is going on inside ALox while running the application:</p>
-<pre class="fragment">src\cs.unittests.alox\Tests_Tutorial.cs(428):.Tut_LogConfig2()     [00:00.000  +015 µs] [T:(10)]       [ALOX]: Lox.AddLogger(): Logger "Console" added. Internal Domain Level set to: All
-src\cs.unittests.alox\Tests_Tutorial.cs(429):.Tut_LogConfig2()     [00:00.000  +018 µs] [T:(10)]       [ALOX]: Lox.AddLogger(): Logger "Memory" added. Internal Domain Level set to: WarningsAndErrors
-src\cs.unittests.alox\Tests_Tutorial.cs(432):.Tut_LogConfig2()     [00:00.000  +009 µs] [T:(10)]       [ALOX]: Lox.RegDomain(): Domain "DOM" created in logger: Console
-src\cs.unittests.alox\Tests_Tutorial.cs(432):.Tut_LogConfig2()     [00:00.000  +005 µs] [T:(10)]       [ALOX]: Lox.RegDomain(): Domain "DOM" created in logger: Memory
-src\cs.unittests.alox\Tests_Tutorial.cs(432):.Tut_LogConfig2()     [00:00.000  +008 µs] [T:(10)]       [ALOX]: Lox.RegDomain(): Domain "DOM" set as default for scope "Method"
-src\cs.unittests.alox\Tests_Tutorial.cs(433):.Tut_LogConfig2()     [00:00.000  +006 µs] [T:(10)]       [ALOX]: Lox.RegDomain(): Domain "DOM/CON" created in logger: Console
-src\cs.unittests.alox\Tests_Tutorial.cs(433):.Tut_LogConfig2()     [00:00.000  +004 µs] [T:(10)]       [ALOX]: Lox.RegDomain(): Domain "DOM/CON" created in logger: Memory
-src\cs.unittests.alox\Tests_Tutorial.cs(434):.Tut_LogConfig2()     [00:00.000  +006 µs] [T:(10)]       [ALOX]: Lox.RegDomain(): Domain "DOM/MEM" created in logger: Console
-src\cs.unittests.alox\Tests_Tutorial.cs(434):.Tut_LogConfig2()     [00:00.000  +004 µs] [T:(10)]       [ALOX]: Lox.RegDomain(): Domain "DOM/MEM" created in logger: Memory
-src\cs.unittests.alox\Tests_Tutorial.cs(437):.Tut_LogConfig2()     [00:00.000  +007 µs] [T:(10)]       [ALOX]: Lox.SetDomain(): Domain "DOM" log level set to "All" for logger "Console"
-src\cs.unittests.alox\Tests_Tutorial.cs(437):.Tut_LogConfig2()     [00:00.000  +005 µs] [T:(10)]       [ALOX]: Lox.SetDomain(): Domain "DOM" log level set to "All" for logger "Memory"
-src\cs.unittests.alox\Tests_Tutorial.cs(440):.Tut_LogConfig2()     [00:00.000  +012 µs] [T:(10)]       [ALOX]: Lox.SetDomain(): Domain "DOM/CON" log level set to "All" for logger "Console"
-src\cs.unittests.alox\Tests_Tutorial.cs(441):.Tut_LogConfig2()     [00:00.000  +011 µs] [T:(10)]       [ALOX]: Lox.SetDomain(): Domain "DOM/CON" log level set to "Off" for logger "Memory"
-src\cs.unittests.alox\Tests_Tutorial.cs(444):.Tut_LogConfig2()     [00:00.000  +010 µs] [T:(10)]       [ALOX]: Lox.SetDomain(): Domain "DOM/MEM" log level set to "Off" for logger "Console"
-src\cs.unittests.alox\Tests_Tutorial.cs(445):.Tut_LogConfig2()     [00:00.000  +011 µs] [T:(10)]       [ALOX]: Lox.SetDomain(): Domain "DOM/MEM" log level set to "All" for logger "Memory"
+<pre class="fragment">src\cs.unittests.alox\Tests_Tutorial.cs(422):Tut_LogConfig2() [00:00.000 +009 µs] [10]       [ALOX]: Lox.AddLogger(): Logger "Console" added. Internal Domain Level set to: All
+src\cs.unittests.alox\Tests_Tutorial.cs(423):Tut_LogConfig2() [00:00.000 +009 µs] [10]       [ALOX]: Lox.AddLogger(): Logger "Memory" added. Internal Domain Level set to: WarningsAndErrors
+src\cs.unittests.alox\Tests_Tutorial.cs(426):Tut_LogConfig2() [00:00.000 +004 µs] [10]       [ALOX]: Lox.RegDomain(): Domain "DOM" created in logger: Console
+src\cs.unittests.alox\Tests_Tutorial.cs(426):Tut_LogConfig2() [00:00.000 +002 µs] [10]       [ALOX]: Lox.RegDomain(): Domain "DOM" created in logger: Memory
+src\cs.unittests.alox\Tests_Tutorial.cs(426):Tut_LogConfig2() [00:00.000 +004 µs] [10]       [ALOX]: Lox.RegDomain(): Domain "DOM" set as default for scope "Method"
+src\cs.unittests.alox\Tests_Tutorial.cs(427):Tut_LogConfig2() [00:00.000 +005 µs] [10]       [ALOX]: Lox.RegDomain(): Domain "DOM/CON" created in logger: Console
+src\cs.unittests.alox\Tests_Tutorial.cs(427):Tut_LogConfig2() [00:00.000 +004 µs] [10]       [ALOX]: Lox.RegDomain(): Domain "DOM/CON" created in logger: Memory
+src\cs.unittests.alox\Tests_Tutorial.cs(428):Tut_LogConfig2() [00:00.000 +005 µs] [10]       [ALOX]: Lox.RegDomain(): Domain "DOM/MEM" created in logger: Console
+src\cs.unittests.alox\Tests_Tutorial.cs(428):Tut_LogConfig2() [00:00.000 +003 µs] [10]       [ALOX]: Lox.RegDomain(): Domain "DOM/MEM" created in logger: Memory
+src\cs.unittests.alox\Tests_Tutorial.cs(431):Tut_LogConfig2() [00:00.000 +006 µs] [10]       [ALOX]: Lox.SetDomain(): Domain "DOM" log level set to "All" for logger "Console"
+src\cs.unittests.alox\Tests_Tutorial.cs(431):Tut_LogConfig2() [00:00.000 +004 µs] [10]       [ALOX]: Lox.SetDomain(): Domain "DOM" log level set to "All" for logger "Memory"
+src\cs.unittests.alox\Tests_Tutorial.cs(434):Tut_LogConfig2() [00:00.000 +009 µs] [10]       [ALOX]: Lox.SetDomain(): Domain "DOM/CON" log level set to "All" for logger "Console"
+src\cs.unittests.alox\Tests_Tutorial.cs(435):Tut_LogConfig2() [00:00.000 +009 µs] [10]       [ALOX]: Lox.SetDomain(): Domain "DOM/CON" log level set to "Off" for logger "Memory"
+src\cs.unittests.alox\Tests_Tutorial.cs(438):Tut_LogConfig2() [00:00.000 +008 µs] [10]       [ALOX]: Lox.SetDomain(): Domain "DOM/MEM" log level set to "Off" for logger "Console"
+src\cs.unittests.alox\Tests_Tutorial.cs(439):Tut_LogConfig2() [00:00.000 +009 µs] [10]       [ALOX]: Lox.SetDomain(): Domain "DOM/MEM" log level set to "All" for logger "Memory"
 </pre><p>To summarize: We have to ways to look into ALox:</p>
 <ol type="1">
 <li>Method <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#ab0a8ad96173757285e9ab5e832d6bee9">Log.LogConfig()</a> creates a log with a "snapshot" of the current states. The advantage of this is, that it is all logged sequentially in one place and does not clutter your log output.</li>
@@ -681,7 +679,7 @@ Further reading</h1>
 <!-- HTML footer for doxygen 1.8.4-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jul 15 2013 09:26:45 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jul 19 2013 00:35:51 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

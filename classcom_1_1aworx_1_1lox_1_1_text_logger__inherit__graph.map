@@ -1,5 +1,0 @@
-<map id="com.aworx.lox.TextLogger" name="com.aworx.lox.TextLogger">
-<area shape="rect" id="node3" href="$classcom_1_1aworx_1_1lox_1_1_console_logger.html" title="A logger that logs all messages to the VStudio IDE output window (using System.Diagnostics.Debug.WriteLine()) and/or to the application console (using Console.WriteLine()). " alt="" coords="5,155,200,181"/>
-<area shape="rect" id="node4" href="$classcom_1_1aworx_1_1lox_1_1_memory_logger.html" title="A logger that logs all messages to a in&#45;memory buffer of type MString. The name of the logger default..." alt="" coords="225,155,420,181"/>
-<area shape="rect" id="node2" href="$classcom_1_1aworx_1_1lox_1_1core_1_1_logger.html" title="This is central class of the ALox logging implementation. It is not recommended to use this class dir..." alt="" coords="181,5,243,32"/>
-</map>

@@ -108,7 +108,7 @@ Inheritance diagram for Logger:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcom_1_1aworx_1_1lox_1_1core_1_1Logger__inherit__graph.png" border="0" usemap="#Logger_inherit__map" alt="Inheritance graph"/></div>
 <map name="Logger_inherit__map" id="Logger_inherit__map">
-<area shape="rect" id="node2" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html" title="This class is a still abstract implementation of class Logger. All message objects passed to doLog ar..." alt="" coords="81,80,167,107"/><area shape="rect" id="node3" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html" title="A logger that logs all messages to the VStudio IDE output window (using System.Diagnostics.Debug.WriteLine()) and/or to the application console (using Console.WriteLine()). " alt="" coords="5,155,112,181"/><area shape="rect" id="node4" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html" title="A logger that logs all messages to a in&#45;memory buffer of type MString. The name of the logger default..." alt="" coords="137,155,244,181"/></map>
+<area shape="rect" id="node2" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html" title="This class is a still abstract implementation of class Logger which is used as the super class for al..." alt="" coords="81,80,167,107"/><area shape="rect" id="node3" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html" title="A logger that logs all messages to the VStudio IDE output window (using System.Diagnostics.Debug.WriteLine()) and/or to the application console (using Console.WriteLine()). " alt="" coords="5,155,112,181"/><area shape="rect" id="node4" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html" title="A logger that logs all messages to a in&#45;memory buffer of type MString. The name of the logger default..." alt="" coords="137,155,244,181"/></map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -119,9 +119,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8ecd4ffbcef16d4aac7e29db3afa92b3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a8ecd4ffbcef16d4aac7e29db3afa92b3">FindDomain</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> domainPath)</td></tr>
 <tr class="memdesc:a8ecd4ffbcef16d4aac7e29db3afa92b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method is used to find a domain of the logger.  <a href="#a8ecd4ffbcef16d4aac7e29db3afa92b3">More...</a><br/></td></tr>
 <tr class="separator:a8ecd4ffbcef16d4aac7e29db3afa92b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a965aae70f9bf348a2959db8fd65d702a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a965aae70f9bf348a2959db8fd65d702a">Line</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> domain, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log.Level</a> level, Object msgObject, int indent, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a> caller)</td></tr>
-<tr class="memdesc:a965aae70f9bf348a2959db8fd65d702a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the method to log a message. Internally it calls the abstract method <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#aae6d2874b82786019b36b4ac8ca9c647" title="This is the central method that derived logger classes have to implement to log a message...">doLog()</a> to let derived classes perform the log. Note: this method (in fact the whole class) should not be used from outside. Instead, the static interface <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This is a simple, 100% static wrapper of class Lox. In other words, this class incorporates one stati...">Log</a> should be the right choice for most use cases.  <a href="#a965aae70f9bf348a2959db8fd65d702a">More...</a><br/></td></tr>
-<tr class="separator:a965aae70f9bf348a2959db8fd65d702a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a131d672c77b9abb0fc4a5a3d23e66ccf"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a131d672c77b9abb0fc4a5a3d23e66ccf">Line</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> domain, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log.Level</a> level, Object msgObject, int indent, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a> caller)</td></tr>
+<tr class="memdesc:a131d672c77b9abb0fc4a5a3d23e66ccf"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the method to log a message. Internally it calls the abstract method <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#aae6d2874b82786019b36b4ac8ca9c647" title="This is the central method that derived logger classes have to implement to log a message...">doLog()</a> to let derived classes perform the log. Note: this method (in fact the whole class) should not be used from outside. Instead, the static interface <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This is a simple, 100% static wrapper of class Lox. In other words, this class incorporates one stati...">Log</a> should be the right choice for most use cases.  <a href="#a131d672c77b9abb0fc4a5a3d23e66ccf">More...</a><br/></td></tr>
+<tr class="separator:a131d672c77b9abb0fc4a5a3d23e66ccf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -140,39 +140,10 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:abada4ef55f947626e50d53b5cb8a31cc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#abada4ef55f947626e50d53b5cb8a31cc">IsDisabled</a> = false</td></tr>
 <tr class="memdesc:abada4ef55f947626e50d53b5cb8a31cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">A flag to disable the logger. <a href="#abada4ef55f947626e50d53b5cb8a31cc">More...</a><br/></td></tr>
 <tr class="separator:abada4ef55f947626e50d53b5cb8a31cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46ee964173efe1f2b01121d11d91f597"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a46ee964173efe1f2b01121d11d91f597">RootDomain</a></td></tr>
-<tr class="memdesc:a46ee964173efe1f2b01121d11d91f597"><td class="mdescLeft">&#160;</td><td class="mdescRight">The root domain "/".  <a href="#a46ee964173efe1f2b01121d11d91f597">More...</a><br/></td></tr>
+<tr class="memitem:a46ee964173efe1f2b01121d11d91f597"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a46ee964173efe1f2b01121d11d91f597"></a>
+<a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a46ee964173efe1f2b01121d11d91f597">RootDomain</a></td></tr>
+<tr class="memdesc:a46ee964173efe1f2b01121d11d91f597"><td class="mdescLeft">&#160;</td><td class="mdescRight">The root domain "/". All registered or just used domains become a sub domain of this root. If a sub domains log level is not explicitly set, such sub domain inherits the level setting of the root domain. Therefore, the log level setting of the root domain determines how unknown domains got logged. The default level of the root domain is Log.DomainLevel.Off. <br/></td></tr>
 <tr class="separator:a46ee964173efe1f2b01121d11d91f597"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09e0af5a92465ab2d6f66f722b6b4676"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a09e0af5a92465ab2d6f66f722b6b4676">LogCallerSource</a> = true</td></tr>
-<tr class="memdesc:a09e0af5a92465ab2d6f66f722b6b4676"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the logging of source file name of the caller. Default is true (enabled)  <a href="#a09e0af5a92465ab2d6f66f722b6b4676">More...</a><br/></td></tr>
-<tr class="separator:a09e0af5a92465ab2d6f66f722b6b4676"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5d02b0b07b9176e5cb7dad8754d0c3c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#aa5d02b0b07b9176e5cb7dad8754d0c3c">LogCallerMethod</a> = true</td></tr>
-<tr class="memdesc:aa5d02b0b07b9176e5cb7dad8754d0c3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the logging of method name of the caller. Default is true (enabled)  <a href="#aa5d02b0b07b9176e5cb7dad8754d0c3c">More...</a><br/></td></tr>
-<tr class="separator:aa5d02b0b07b9176e5cb7dad8754d0c3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0fefe80e767093ffe74485203deb599"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#ac0fefe80e767093ffe74485203deb599">LogDate</a> = false</td></tr>
-<tr class="memdesc:ac0fefe80e767093ffe74485203deb599"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the logging of the date. Default is false (disabled)  <a href="#ac0fefe80e767093ffe74485203deb599">More...</a><br/></td></tr>
-<tr class="separator:ac0fefe80e767093ffe74485203deb599"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af7179c0e1848e27bdff4c4b81acb1d3d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#af7179c0e1848e27bdff4c4b81acb1d3d">LogTimeOfDay</a> = false</td></tr>
-<tr class="memdesc:af7179c0e1848e27bdff4c4b81acb1d3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the logging of the (absolute) time. Default is false (disabled)  <a href="#af7179c0e1848e27bdff4c4b81acb1d3d">More...</a><br/></td></tr>
-<tr class="separator:af7179c0e1848e27bdff4c4b81acb1d3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c8309c84a8f024ce49a4d8a0d7b3bf5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a4c8309c84a8f024ce49a4d8a0d7b3bf5">LogTimeElapsed</a> = true</td></tr>
-<tr class="memdesc:a4c8309c84a8f024ce49a4d8a0d7b3bf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the logging of the elapsed time since the logger was started (or reset). Default is true (enabled)  <a href="#a4c8309c84a8f024ce49a4d8a0d7b3bf5">More...</a><br/></td></tr>
-<tr class="separator:a4c8309c84a8f024ce49a4d8a0d7b3bf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f35743a44a8640f5e27b158b7293d5c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a7f35743a44a8640f5e27b158b7293d5c">LogTimeDiff</a> = true</td></tr>
-<tr class="memdesc:a7f35743a44a8640f5e27b158b7293d5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the logging of time difference in milliseconds since last log. Default is true (enabled)  <a href="#a7f35743a44a8640f5e27b158b7293d5c">More...</a><br/></td></tr>
-<tr class="separator:a7f35743a44a8640f5e27b158b7293d5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a498868fd1eabb93eb465e43448e64ab4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a498868fd1eabb93eb465e43448e64ab4">LogDomainName</a> = true</td></tr>
-<tr class="memdesc:a498868fd1eabb93eb465e43448e64ab4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the logging of the domain name. Default is true (enabled)  <a href="#a498868fd1eabb93eb465e43448e64ab4">More...</a><br/></td></tr>
-<tr class="separator:a498868fd1eabb93eb465e43448e64ab4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7cf8d6ffaabf06eef3ae1b875d6e043"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#aa7cf8d6ffaabf06eef3ae1b875d6e043">LogLogLevel</a> = true</td></tr>
-<tr class="memdesc:aa7cf8d6ffaabf06eef3ae1b875d6e043"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the logging of the level of a log call. Default is true (enabled)  <a href="#aa7cf8d6ffaabf06eef3ae1b875d6e043">More...</a><br/></td></tr>
-<tr class="separator:aa7cf8d6ffaabf06eef3ae1b875d6e043"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56b014ec7388b47425aa15b0860610ba"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a56b014ec7388b47425aa15b0860610ba">LogThreadInfo</a> = true</td></tr>
-<tr class="memdesc:a56b014ec7388b47425aa15b0860610ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the logging of information about the current thread name. Default is true (enabled)  <a href="#a56b014ec7388b47425aa15b0860610ba">More...</a><br/></td></tr>
-<tr class="separator:a56b014ec7388b47425aa15b0860610ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a077abb316628dae754be0945c4ce0af8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a077abb316628dae754be0945c4ce0af8">LogLogCounter</a> = false</td></tr>
-<tr class="memdesc:a077abb316628dae754be0945c4ce0af8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the logging of the current log call counter. Default is false (disabled)  <a href="#a077abb316628dae754be0945c4ce0af8">More...</a><br/></td></tr>
-<tr class="separator:a077abb316628dae754be0945c4ce0af8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -180,11 +151,8 @@ Protected Member Functions</h2></td></tr>
 <tr class="memdesc:a42c27444187c8bea77c2b065a2ec183e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a logger.  <a href="#a42c27444187c8bea77c2b065a2ec183e">More...</a><br/></td></tr>
 <tr class="separator:a42c27444187c8bea77c2b065a2ec183e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aae6d2874b82786019b36b4ac8ca9c647"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#aae6d2874b82786019b36b4ac8ca9c647">doLog</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> domain, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log.Level</a> level, Object msgObject, int indent, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a> caller)</td></tr>
-<tr class="memdesc:aae6d2874b82786019b36b4ac8ca9c647"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the central method that derived logger classes have to implement to log a message.  <a href="#aae6d2874b82786019b36b4ac8ca9c647">More...</a><br/></td></tr>
+<tr class="memdesc:aae6d2874b82786019b36b4ac8ca9c647"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the central method that derived logger classes have to implement to log a message. This function is invoked by method <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a131d672c77b9abb0fc4a5a3d23e66ccf" title="This is the method to log a message. Internally it calls the abstract method doLog() to let derived c...">Line()</a>, only if this instance is not disabled and domain level and given level match. Therefore, no checks need to be performed, the only action to take is to perform the log itself.  <a href="#aae6d2874b82786019b36b4ac8ca9c647">More...</a><br/></td></tr>
 <tr class="separator:aae6d2874b82786019b36b4ac8ca9c647"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5561ad642e4d694a9de93fdd260ffcda"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a5561ad642e4d694a9de93fdd260ffcda">checkDomain</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> domain, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log.Level</a> level, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a> caller)</td></tr>
-<tr class="memdesc:a5561ad642e4d694a9de93fdd260ffcda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a given domain is active in respect to the given <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5" title="These are the levels of log verbosity used in a log call. ">Log.Level</a>.  <a href="#a5561ad642e4d694a9de93fdd260ffcda">More...</a><br/></td></tr>
-<tr class="separator:a5561ad642e4d694a9de93fdd260ffcda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -230,58 +198,6 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a5561ad642e4d694a9de93fdd260ffcda"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool checkDomain </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td>
-          <td class="paramname"><em>domain</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log.Level</a>&#160;</td>
-          <td class="paramname"><em>level</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a>&#160;</td>
-          <td class="paramname"><em>caller</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Check if a given domain is active in respect to the given <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5" title="These are the levels of log verbosity used in a log call. ">Log.Level</a>. </p>
-<hr/>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">domain</td><td>The log domain name. </td></tr>
-    <tr><td class="paramname">level</td><td>The log level that is checked against given the domains' setting. </td></tr>
-    <tr><td class="paramname">caller</td><td>Once compiler generated and passed forward to here. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if domain is active in respect to the given <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5" title="These are the levels of log verbosity used in a log call. ">Log.Level</a>. </dd></dl>
-
-</div>
-</div>
 <a class="anchor" id="a5e24dffed44ef22b05a1491799053a31"></a>
 <div class="memitem">
 <div class="memproto">
@@ -358,7 +274,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>This is the central method that derived logger classes have to implement to log a message. </p>
+<p>This is the central method that derived logger classes have to implement to log a message. This function is invoked by method <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a131d672c77b9abb0fc4a5a3d23e66ccf" title="This is the method to log a message. Internally it calls the abstract method doLog() to let derived c...">Line()</a>, only if this instance is not disabled and domain level and given level match. Therefore, no checks need to be performed, the only action to take is to perform the log itself. </p>
 <hr/>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -401,12 +317,15 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a965aae70f9bf348a2959db8fd65d702a"></a>
+<a class="anchor" id="a131d672c77b9abb0fc4a5a3d23e66ccf"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Line </td>
+          <td class="memname">virtual void Line </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td>
           <td class="paramname"><em>domain</em>, </td>
@@ -441,6 +360,11 @@ Protected Attributes</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>This is the method to log a message. Internally it calls the abstract method <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#aae6d2874b82786019b36b4ac8ca9c647" title="This is the central method that derived logger classes have to implement to log a message...">doLog()</a> to let derived classes perform the log. Note: this method (in fact the whole class) should not be used from outside. Instead, the static interface <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This is a simple, 100% static wrapper of class Lox. In other words, this class incorporates one stati...">Log</a> should be the right choice for most use cases. </p>
@@ -487,146 +411,6 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aa5d02b0b07b9176e5cb7dad8754d0c3c"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool LogCallerMethod = true</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Enable the logging of method name of the caller. Default is true (enabled) </p>
-
-</div>
-</div>
-<a class="anchor" id="a09e0af5a92465ab2d6f66f722b6b4676"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool LogCallerSource = true</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Enable the logging of source file name of the caller. Default is true (enabled) </p>
-
-</div>
-</div>
-<a class="anchor" id="ac0fefe80e767093ffe74485203deb599"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool LogDate = false</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Enable the logging of the date. Default is false (disabled) </p>
-
-</div>
-</div>
-<a class="anchor" id="a498868fd1eabb93eb465e43448e64ab4"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool LogDomainName = true</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Enable the logging of the domain name. Default is true (enabled) </p>
-
-</div>
-</div>
-<a class="anchor" id="a077abb316628dae754be0945c4ce0af8"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool LogLogCounter = false</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Enable the logging of the current log call counter. Default is false (disabled) </p>
-
-</div>
-</div>
-<a class="anchor" id="aa7cf8d6ffaabf06eef3ae1b875d6e043"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool LogLogLevel = true</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Enable the logging of the level of a log call. Default is true (enabled) </p>
-
-</div>
-</div>
-<a class="anchor" id="a56b014ec7388b47425aa15b0860610ba"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool LogThreadInfo = true</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Enable the logging of information about the current thread name. Default is true (enabled) </p>
-
-</div>
-</div>
-<a class="anchor" id="a7f35743a44a8640f5e27b158b7293d5c"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool LogTimeDiff = true</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Enable the logging of time difference in milliseconds since last log. Default is true (enabled) </p>
-
-</div>
-</div>
-<a class="anchor" id="a4c8309c84a8f024ce49a4d8a0d7b3bf5"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool LogTimeElapsed = true</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Enable the logging of the elapsed time since the logger was started (or reset). Default is true (enabled) </p>
-
-</div>
-</div>
-<a class="anchor" id="af7179c0e1848e27bdff4c4b81acb1d3d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool LogTimeOfDay = false</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Enable the logging of the (absolute) time. Default is false (disabled) </p>
-
-</div>
-</div>
 <a class="anchor" id="a934fa09ba291a97f43720640e4d83f25"></a>
 <div class="memitem">
 <div class="memproto">
@@ -638,20 +422,6 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The name of the logger. Can be used to receive a reference to it. <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="This is central class of the ALox logging implementation. It is not recommended to use this class dir...">Logger</a> names are case insensitive. </p>
-
-</div>
-</div>
-<a class="anchor" id="a46ee964173efe1f2b01121d11d91f597"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a> RootDomain</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The root domain "/". </p>
 
 </div>
 </div>
@@ -712,7 +482,7 @@ Protected Attributes</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.4-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jul 15 2013 09:26:46 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jul 19 2013 00:35:51 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

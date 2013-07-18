@@ -1,4 +1,0 @@
-<map id="com.aworx.lox.core.CallerInfo" name="com.aworx.lox.core.CallerInfo">
-<area shape="rect" id="node2" href="$classcom_1_1aworx_1_1util_1_1_m_string.html" title="A mutable string, that provides public access to its internal buffer and fields and does not implemen..." alt="" coords="5,5,160,32"/>
-<area shape="rect" id="node3" href="$structcom_1_1aworx_1_1util_1_1_tick_time.html" title="This class encapsulates a system dependent time value (ticks) and uses the static class Ticker to get..." alt="" coords="184,5,347,32"/>
-</map>

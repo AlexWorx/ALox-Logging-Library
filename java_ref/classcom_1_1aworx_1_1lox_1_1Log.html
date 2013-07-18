@@ -100,9 +100,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Log Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>This class acts as a container for Loggers and provides a convenient interface into them. Features are:  
- <a href="classcom_1_1aworx_1_1lox_1_1Log.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
@@ -223,10 +220,10 @@ Static Package Functions</h2></td></tr>
 <tr class="separator:a2e87c5ede6b7235170d287cd2e254454"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This class acts as a container for Loggers and provides a convenient interface into them. Features are: </p>
+<div class="textblock"><p>This class acts as a container for Loggers and provides a convenient interface into them. Features are:</p>
 <p>a) Store and log into one or several Logger instances at once b) Thread safeness c) Store and use of default domain names d) Store and manage caller information d) Provides shortcuts to frequently used logging tasks. e) Store "code markers" and retrieve for simple tracing in log statements f) Count log operations</p>
-<p>This class is 100% not static. In standard log scenarios, it is recommend <b>not</b> to use this class, but to use <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> instead, which is a 100% static wraper around this one. In other words, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> incorporates one static instance of this class and mirrors the whole interface with static methods.</p>
-<p>Furthermore, all invocations of methods of <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> are pruned in release code, while invocations of methods of <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a> not. Hence, this class and interface should be used in release log scenarios. Of course, the use of class <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> and <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a> can be mixed, to enable debug log output in parallel to relase output. </p>
+<p>This class is 100% not static. In standard log scenarios, it is recommend <b>not</b> to use this class, but to use <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> instead, which is a 100% static wraper around this one. In other words, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> incorporates one static instance of this class and mirrors the whole interface with static methods.</p>
+<p>Furthermore, all invocations of methods of <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> are pruned in release code, while invocations of methods of <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a> not. Hence, this class and interface should be used in release log scenarios. Of course, the use of class <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> and <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a> can be mixed, to enable debug log output in parallel to release output. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a2e87c5ede6b7235170d287cd2e254454"></a>
 <div class="memitem">
@@ -273,7 +270,7 @@ Static Package Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Adds a logger to the <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> interface. Each log call that is performed through this interface will be forwarded to this logger, unless filtered out with optional filter parameter. The logger will then check it's domain level against the given log level to decide weather a log should performed.</p>
+<p>Adds a logger to the <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> interface. Each log call that is performed through this interface will be forwarded to this logger, unless filtered out with optional filter parameter. The logger will then check it's domain level against the given log level to decide weather a log should performed.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">logger</td><td>The logger to be added. </td></tr>
@@ -314,7 +311,7 @@ Static Package Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Adds a logger to the <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> interface. Each log call that is performed through this interface will be forwarded to this logger, unless filtered out with optional filter parameter. The logger will then check it's domain level against the given log level to decide weather a log should performed.</p>
+<p>Adds a logger to the <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> interface. Each log call that is performed through this interface will be forwarded to this logger, unless filtered out with optional filter parameter. The logger will then check it's domain level against the given log level to decide weather a log should performed.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">logger</td><td>The logger to be added. </td></tr>
@@ -362,7 +359,7 @@ Static Package Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> a string only if the given condition is not true. <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> level will be highest, namely Error if condition is false. This overloaded version does not offer a domain parameter but relies on a default domain set for the source file this function is used in.</p>
+<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> a string only if the given condition is not true. <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> level will be highest, namely Error if condition is false. This overloaded version does not offer a domain parameter but relies on a default domain set for the source file this function is used in.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">trueOrLog</td><td>The log is only performed if condition is not true. </td></tr>
@@ -405,7 +402,7 @@ Static Package Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> a string only if the given condition is not true. <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> level will be highest, namely Error if condition is false. This overloaded version does not offer a domain parameter but relies on a default domain set for the source file this function is used in.</p>
+<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> a string only if the given condition is not true. <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> level will be highest, namely Error if condition is false. This overloaded version does not offer a domain parameter but relies on a default domain set for the source file this function is used in.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">trueOrLog</td><td>The log is only performed if condition is not true. </td></tr>
@@ -459,7 +456,7 @@ Static Package Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> a string only if the given condition is not true. <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> level will be highest, namely Log.Level.Error.</p>
+<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> a string only if the given condition is not true. <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> level will be highest, namely Log.Level.Error.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">trueOrLog</td><td>The log is only performed if condition is not true. </td></tr>
@@ -509,7 +506,7 @@ Static Package Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> a string only if the given condition is not true. <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> level will be highest, namely Log.Level.Error.</p>
+<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> a string only if the given condition is not true. <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> level will be highest, namely Log.Level.Error.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">trueOrLog</td><td>The log is only performed if condition is not true. </td></tr>
@@ -552,7 +549,7 @@ Static Package Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> an Object with log level equal to Log.Level.Error. <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> messages of this log level are are always logged unless domains log level is set to "Off". This overloaded version does not offer a domain parameter but relies on a default domain set for the source file this function is used in.</p>
+<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> an Object with log level equal to Log.Level.Error. <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> messages of this log level are are always logged unless domains log level is set to "Off". This overloaded version does not offer a domain parameter but relies on a default domain set for the source file this function is used in.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">msg</td><td>The message to log out. </td></tr>
@@ -584,7 +581,7 @@ Static Package Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> an Object with log level equal to Log.Level.Error. <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> messages of this log level are are always logged unless domains log level is set to "Off". This overloaded version does not offer a domain parameter but relies on a default domain set for the source file this function is used in.</p>
+<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> an Object with log level equal to Log.Level.Error. <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> messages of this log level are are always logged unless domains log level is set to "Off". This overloaded version does not offer a domain parameter but relies on a default domain set for the source file this function is used in.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">msg</td><td>The message to log out. </td></tr>
@@ -631,7 +628,7 @@ Static Package Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> an Object with log level equal to Log.Level.Error. <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> messages of this log level are are always logged unless domains log level is set to "Off".</p>
+<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> an Object with log level equal to Log.Level.Error. <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> messages of this log level are are always logged unless domains log level is set to "Off".</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">domain</td><td>If this is null, the default domain is used. If this is starting with a swung dash ('~') this is interpreted a sub domain to the default domain of the source file. For other values, the default domain is ignored (regardless if this is starting with a slash or not). </td></tr>
@@ -674,7 +671,7 @@ Static Package Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> an Object with log level equal to Log.Level.Error. <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> messages of this log level are are always logged unless domains log level is set to "Off".</p>
+<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> an Object with log level equal to Log.Level.Error. <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> messages of this log level are are always logged unless domains log level is set to "Off".</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">domain</td><td>If this is null, the default domain is used. If this is starting with a swung dash ('~') this is interpreted a sub domain to the default domain of the source file. For other values, the default domain is ignored (regardless if this is starting with a slash or not). </td></tr>
@@ -790,7 +787,7 @@ Static Package Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> an Object with log level equal to Log.Level.Info. This is the second highest (after Verbose) log level, which is only actually logged if the log domains log level is set to "Info" or "Verbose". This overloaded version does not offer a domain parameter but relies on a default domain set for the source file this function is used in.</p>
+<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> an Object with log level equal to Log.Level.Info. This is the second highest (after Verbose) log level, which is only actually logged if the log domains log level is set to "Info" or "Verbose". This overloaded version does not offer a domain parameter but relies on a default domain set for the source file this function is used in.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">msg</td><td>The message to log out. </td></tr>
@@ -822,7 +819,7 @@ Static Package Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> an Object with log level equal to Log.Level.Info. This is the second highest (after Verbose) log level, which is only actually logged if the log domains log level is set to "Info" or "Verbose". This overloaded version does not offer a domain parameter but relies on a default domain set for the source file this function is used in.</p>
+<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> an Object with log level equal to Log.Level.Info. This is the second highest (after Verbose) log level, which is only actually logged if the log domains log level is set to "Info" or "Verbose". This overloaded version does not offer a domain parameter but relies on a default domain set for the source file this function is used in.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">msg</td><td>The message to log out. </td></tr>
@@ -869,7 +866,7 @@ Static Package Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> an Object with log level equal to Log.Level.Info. This is the second highest (after Verbose) log level, which is only actually logged if the log domains log level is set to "Info" or "Verbose".</p>
+<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> an Object with log level equal to Log.Level.Info. This is the second highest (after Verbose) log level, which is only actually logged if the log domains log level is set to "Info" or "Verbose".</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">domain</td><td>If this is null, the default domain is used. If this is starting with a swung dash ('~') this is interpreted a sub domain to the default domain of the source file. For other values, the default domain is ignored (regardles if this is starting with a slash or not). </td></tr>
@@ -912,7 +909,7 @@ Static Package Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> an Object with log level equal to Log.Level.Info. This is the second highest (after Verbose) log level, which is only actually logged if the log domains log level is set to "Info" or "Verbose".</p>
+<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> an Object with log level equal to Log.Level.Info. This is the second highest (after Verbose) log level, which is only actually logged if the log domains log level is set to "Info" or "Verbose".</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">domain</td><td>If this is null, the default domain is used. If this is starting with a swung dash ('~') this is interpreted a sub domain to the default domain of the source file. For other values, the default domain is ignored (regardles if this is starting with a slash or not). </td></tr>
@@ -1351,7 +1348,7 @@ Static Package Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>This method logs the configuration the <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a> encapsulated in this static <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> interface.</p>
+<p>This method logs the configuration the <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a> encapsulated in this static <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> interface.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">domain</td><td>If this is null, the default domain is used. If this is starting with a swung dash ('~') this is interpreted a sub domain to the default domain of the source file. For other values, the default domain is ignored (regardless if this is starting with a slash or not). </td></tr>
@@ -1401,7 +1398,7 @@ Static Package Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>This method logs the configuration the <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a> encapsulated in this static <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> interface.</p>
+<p>This method logs the configuration the <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a> encapsulated in this static <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> interface.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">domain</td><td>If this is null, the default domain is used. If this is starting with a swung dash ('~') this is interpreted a sub domain to the default domain of the source file. For other values, the default domain is ignored (regardless if this is starting with a slash or not). </td></tr>
@@ -2001,7 +1998,7 @@ Static Package Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> an Object with log level equal to Log.Log.Level.Verbose. This is the highest (most verbose) log level, which is only actually logged if the log domains log level is set to "All". This overloaded version does not offer a domain parameter but relies on a default domain set for the source file this function is used in.</p>
+<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> an Object with log level equal to Log.Log.Level.Verbose. This is the highest (most verbose) log level, which is only actually logged if the log domains log level is set to "All". This overloaded version does not offer a domain parameter but relies on a default domain set for the source file this function is used in.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">msg</td><td>The message to log out. </td></tr>
@@ -2033,7 +2030,7 @@ Static Package Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> an Object with log level equal to Log.Level.Verbose. This is the highest (most verbose) log level, which is only actually logged if the log domains log level is set to "All". This overloaded version does not offer a domain parameter but relies on a default domain set for the source file this function is used in.</p>
+<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> an Object with log level equal to Log.Level.Verbose. This is the highest (most verbose) log level, which is only actually logged if the log domains log level is set to "All". This overloaded version does not offer a domain parameter but relies on a default domain set for the source file this function is used in.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">msg</td><td>The message to log out. </td></tr>
@@ -2080,7 +2077,7 @@ Static Package Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> an Object with log level equal to Log.Level.Verbose. This is the highest (most verbose) log level, which is only actually logged if the log domains log level is set to "All".</p>
+<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> an Object with log level equal to Log.Level.Verbose. This is the highest (most verbose) log level, which is only actually logged if the log domains log level is set to "All".</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">domain</td><td>If this is null, the default domain is used. If this is starting with a swung dash ('~') this is interpreted a sub domain to the default domain of the source file. For other values, the default domain is ignored (regardless if this is starting with a slash or not). </td></tr>
@@ -2123,7 +2120,7 @@ Static Package Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> an Object with log level equal to Log.Level.Verbose. This is the highest (most verbose) log level, which is only actually logged if the log domains log level is set to "All".</p>
+<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> an Object with log level equal to Log.Level.Verbose. This is the highest (most verbose) log level, which is only actually logged if the log domains log level is set to "All".</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">domain</td><td>If this is null, the default domain is used. If this is starting with a swung dash ('~') this is interpreted a sub domain to the default domain of the source file. For other values, the default domain is ignored (regardless if this is starting with a slash or not). </td></tr>
@@ -2165,7 +2162,7 @@ Static Package Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> an Object with log level equal to Log.Level.Warning. <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> messages of this log level are are logged if the log domains log level is set to "Warning", "Info" or "All". This overloaded version does not offer a domain parameter but relies on a default domain set for the source file this function is used in.</p>
+<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> an Object with log level equal to Log.Level.Warning. <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> messages of this log level are are logged if the log domains log level is set to "Warning", "Info" or "All". This overloaded version does not offer a domain parameter but relies on a default domain set for the source file this function is used in.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">msg</td><td>The message to log out. </td></tr>
@@ -2197,7 +2194,7 @@ Static Package Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> an Object with log level equal to Log.Level.Warning. <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> messages of this log level are are logged if the log domains log level is set to "Warning", "Info" or "All". This overloaded version does not offer a domain parameter but relies on a default domain set for the source file this function is used in.</p>
+<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> an Object with log level equal to Log.Level.Warning. <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> messages of this log level are are logged if the log domains log level is set to "Warning", "Info" or "All". This overloaded version does not offer a domain parameter but relies on a default domain set for the source file this function is used in.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">msg</td><td>The message to log out. </td></tr>
@@ -2244,7 +2241,7 @@ Static Package Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> an Object with log level equal to Log.Level.Warning. <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> messages of this log level are are logged if the log domains log level is set to "Warning", "Info" or "All".</p>
+<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> an Object with log level equal to Log.Level.Warning. <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> messages of this log level are are logged if the log domains log level is set to "Warning", "Info" or "All".</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">domain</td><td>If this is null, the default domain is used. If this is starting with a swung dash ('~') this is interpreted a sub domain to the default domain of the source file. For other values, the default domain is ignored (regardless if this is starting with a slash or not). </td></tr>
@@ -2287,7 +2284,7 @@ Static Package Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> an Object with log level equal to Log.Level.Warning. <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Log</a> messages of this log level are are logged if the log domains log level is set to "Warning", "Info" or "All".</p>
+<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> an Object with log level equal to Log.Level.Warning. <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> messages of this log level are are logged if the log domains log level is set to "Warning", "Info" or "All".</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">domain</td><td>If this is null, the default domain is used. If this is starting with a swung dash ('~') this is interpreted a sub domain to the default domain of the source file. For other values, the default domain is ignored (regardless if this is starting with a slash or not). </td></tr>
@@ -2327,7 +2324,7 @@ Static Package Functions</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.4-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jul 15 2013 09:26:48 for ALox Java Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jul 19 2013 00:36:05 for ALox Java Reference by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

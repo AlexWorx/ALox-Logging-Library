@@ -2,8 +2,8 @@ var searchData=
 [
   ['aworx',['aworx',['../namespacecom_1_1aworx.html',1,'com']]],
   ['caller',['caller',['../classcom_1_1aworx_1_1lox_1_1Lox.html#a661374595beb4ef6cdcd0417c8c47f0d',1,'com::aworx::lox::Lox']]],
+  ['callerdatetime',['callerDateTime',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a321e35a5312d2e9709fd591b7e5d54a5',1,'com::aworx::lox::core::TextLoggerLineFormatter']]],
   ['callerinfo',['CallerInfo',['../classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html',1,'com::aworx::lox::core']]],
-  ['checkdomain',['checkDomain',['../classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a5561ad642e4d694a9de93fdd260ffcda',1,'com::aworx::lox::core::Logger']]],
   ['clear',['Clear',['../classcom_1_1aworx_1_1util_1_1MString.html#a8cca8f037a58d8c902e5c62fdf268981',1,'com.aworx.util.MString.Clear()'],['../structcom_1_1aworx_1_1util_1_1TickTime.html#aa71d36872f416feaa853788a7a7a7ef8',1,'com.aworx.util.TickTime.Clear()']]],
   ['cntlogcalls',['CntLogCalls',['../classcom_1_1aworx_1_1lox_1_1Lox.html#a2c80e5630abe5d5042ddb4b85c0c3562',1,'com::aworx::lox::Lox']]],
   ['cntlogs',['CntLogs',['../classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a7859d287690c28acd561a307d23679bf',1,'com::aworx::lox::core::Logger']]],
@@ -16,6 +16,7 @@ var searchData=
   ['consumablesourcepathprefixstring',['ConsumableSourcePathPrefixString',['../classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#ad5e8a7d9f2c872ab23a2332e6583d908',1,'com::aworx::lox::core::CallerInfo']]],
   ['containsat',['ContainsAt',['../classcom_1_1aworx_1_1util_1_1MString.html#a15774fb77e5efd8bfb44bc2dad2a9c40',1,'com::aworx::util::MString']]],
   ['convertcase',['ConvertCase',['../classcom_1_1aworx_1_1util_1_1MString.html#a064324913d1c968daaa9fbd8014ccf6b',1,'com::aworx::util::MString']]],
+  ['convertobject',['ConvertObject',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html#ab8190be4513726c7c2c49276ab2ed3fa',1,'com::aworx::lox::core::TextLoggerObjectConverter']]],
   ['convswtodt',['convSWToDT',['../classcom_1_1aworx_1_1util_1_1Ticker.html#ad91e3ebd169964f5636d6d006cd445fb',1,'com::aworx::util::Ticker']]],
   ['core',['core',['../namespacecom_1_1aworx_1_1lox_1_1core.html',1,'com::aworx::lox']]],
   ['createdomain',['CreateDomain',['../classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a5e24dffed44ef22b05a1491799053a31',1,'com::aworx::lox::core::Logger']]],

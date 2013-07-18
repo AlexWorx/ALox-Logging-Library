@@ -5,6 +5,5 @@ var searchData=
   ['logconfig',['logConfig',['../classcom_1_1aworx_1_1lox_1_1Log.html#a3d500fb540ea7d731003c91292a742cc',1,'com.aworx.lox.Log.logConfig(String domain, Log.Level level, String headLine, String loggerFilter)'],['../classcom_1_1aworx_1_1lox_1_1Log.html#a01a959146336e7f4211c1e2b788dda29',1,'com.aworx.lox.Log.logConfig(String domain, Log.Level level, String headLine)'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#a78bb02ffe6a591b53a58b99e6d041495',1,'com.aworx.lox.Lox.logConfig(String domain, Log.Level level, String headLine, String loggerFilter)'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#ad84bd03ff5650d26ab52f576ea1407ad',1,'com.aworx.lox.Lox.logConfig(String domain, Log.Level level, String headLine)']]],
   ['logconfigdomainrecursive',['logConfigDomainRecursive',['../classcom_1_1aworx_1_1lox_1_1Lox.html#a117ffffe6a67d18964e60d277a17d71c',1,'com::aworx::lox::Lox']]],
   ['logdomain',['LogDomain',['../classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a17cbb6fb2ea129b0bd1d08254c3ba0ce',1,'com::aworx::lox::core::LogDomain']]],
-  ['logger',['Logger',['../classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a42c27444187c8bea77c2b065a2ec183e',1,'com::aworx::lox::core::Logger']]],
-  ['logtimediff',['logTimeDiff',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a992fff7225cbf662823cdcf45dfb42b6',1,'com::aworx::lox::core::TextLogger']]]
+  ['logger',['Logger',['../classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a42c27444187c8bea77c2b065a2ec183e',1,'com::aworx::lox::core::Logger']]]
 ];
