@@ -101,7 +101,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li class="level2"><a href="#tutjava_more_2">3.2 Conditional logging</a></li>
 <li class="level2"><a href="#tutjava_more_3">3.3 LogTools: Log complex things easily</a></li>
 <li class="level2"><a href="#tutjava_more_4">3.4 Indentation</a></li>
-<li class="level2"><a href="#tutjava_more_5">3.5 Separating domains levels in different loggers</a></li>
+<li class="level2"><a href="#tutjava_more_5">3.5 Separating domain log levels in different loggers</a></li>
 <li class="level2"><a href="#tutjava_more_6">3.6 ALox configuration and internal log messages</a></li>
 </ul>
 </li>
@@ -288,6 +288,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">    Log.setDomain( <span class="stringliteral">&quot;UI/DLGS&quot;</span>,   Log.DomainLevel.INFO_WARNINGS_AND_ERRORS );</div>
 <div class="line">    Log.setDomain( <span class="stringliteral">&quot;3DCALC&quot;</span>,    Log.DomainLevel.OFF  );</div>
 </div><!-- fragment --><p> Of course, you can add and remove loggers anywhere in your code. Also, you can modify <em>domain log levels</em> later at runtime as you please.</p>
+<dl class="section note"><dt>Note</dt><dd>This is also a good place to configure your log output the way you prefer it. Some hints how to do that are <a href="../man_loggers.html#man_loggers_textlogger">given here</a>.</dd></dl>
 <h3>2) Register Domains in static initializers of your classes</h3>
 <p>Java allows classes to have static initializers that are executed exactly once (in the moment when either the first object of that class type is created or a static member of that class is accessed). It is a good practice to add code that registers exactly those <em>log domains</em> that a class is using by adding a static constructor and using <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a9e2d6bea9756b5764192c7be262633f1">Log.regDomain</a> to perform the registrations.</p>
 <p>Here is an example:</p>
@@ -482,7 +483,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p><br/>
  </p>
 <h2><a class="anchor" id="tutjava_more_5"></a>
-3.5 Separating domains levels in different loggers</h2>
+3.5 Separating domain log levels in different loggers</h2>
 <p>Because ALox stores the <em>log domain level</em> not only per <em>domain</em> but also 'per <em>logger</em>', we just need to fill in a default parameter in <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a275bf5c822b593026a59279c2541a7cf">Log.setDomain()</a> to provide different <em>loggers</em> different domain levels.</p>
 <p>In the following sample code we are creating two different <em>loggers</em>, one <a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html">ConsoleLogger</a> and one of type <a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html">MemoryLogger</a>. The latter just logs into an internal buffer. Then we add three different <em>log domains</em>:</p>
 <ul>
@@ -663,7 +664,7 @@ Further reading</h1>
 <!-- HTML footer for doxygen 1.8.4-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jul 19 2013 00:36:05 for ALox Java Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jul 19 2013 02:28:13 for ALox Java Reference by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

@@ -88,20 +88,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#man_levelsanddomains_levels">Log Levels</a></li>
-<li class="level1"><a href="#man_levelsanddomains_domains">Log Domains and Log Domain Levels</a></li>
-<li class="level1"><a href="#man_levelsanddomains_hierarchical_domains">Hierarchical Log Domains</a></li>
-<li class="level1"><a href="#man_levelsanddomains_root_domain">The root domain of class Logger</a></li>
-<li class="level1"><a href="#man_levelsanddomains_default_domains">Default domains</a></li>
-<li class="level1"><a href="#man_levelsanddomains_hierarchical_default_domains">Default domains and domain hierarchy</a></li>
-<li class="level1"><a href="#man_levelsanddomains_internal_domain">The internal domain "ALOX"</a></li>
-<li class="level1"><a href="#man_levelsanddomains_summary">Summary</a></li>
+<ul><li class="level1"><a href="#man_levelsanddomains_levels">1. Log Levels</a></li>
+<li class="level1"><a href="#man_levelsanddomains_domains">2. Log Domains and Log Domain Levels</a></li>
+<li class="level1"><a href="#man_levelsanddomains_hierarchical_domains">3. Hierarchical Log Domains</a></li>
+<li class="level1"><a href="#man_levelsanddomains_root_domain">4. The Root Domain of class Logger</a></li>
+<li class="level1"><a href="#man_levelsanddomains_default_domains">5. Default Domains</a></li>
+<li class="level1"><a href="#man_levelsanddomains_hierarchical_default_domains">6. Default Domains and Domain Hierarchy</a></li>
+<li class="level1"><a href="#man_levelsanddomains_internal_domain">7. The Internal Domain "ALOX"</a></li>
+<li class="level1"><a href="#man_levelsanddomains_separating_loggers">8. Setting Different Domain Levels on Different Loggers</a></li>
+<li class="level1"><a href="#man_levelsanddomains_summary">9. Summary</a></li>
 </ul>
 </div>
 <div class="textblock"><p>This chapter provides all details on log levels and log domains. Before reading it, be sure that you have read and understood the chapter <a class="el" href="man_alox_architecture.html">Overview of the ALox architecture</a>.</p>
+<p><br/>
+ </p>
 <h1><a class="anchor" id="man_levelsanddomains_levels"></a>
-Log Levels</h1>
-<p>It is very common for logging ecosystems to provide the concept of <em>log levels</em>. Such log level is provided either as a parameter to the log call or is provided by offering different log methods, like error()*, <em>warning()</em> or <em>verbose()</em>. (Alox provides both mechanisms.) ALox is no exclamation to this. The four levels offered are enumerated in <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref" href="../html/java_ref/enumcom_1_1aworx_1_1lox_1_1Log_1_1Level.html">Log.Level</a> and are named and sorted like this:</p>
+1. Log Levels</h1>
+<p>It is very common for logging ecosystems to provide the concept of <em>log levels</em>. Such log level is provided either as a parameter to the log call or is provided by offering different log methods, like error()*, <em>warning()</em> or <em>verbose()</em>. (ALox provides both mechanisms.) ALox is no exclamation to this. The four levels offered are enumerated in <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref" href="../html/java_ref/enumcom_1_1aworx_1_1lox_1_1Log_1_1Level.html">Log.Level</a> and are named and sorted like this:</p>
 <ul>
 <li><em>Error</em></li>
 <li><em>Warning</em></li>
@@ -112,8 +115,8 @@ Log Levels</h1>
 <p><br/>
  </p>
 <h1><a class="anchor" id="man_levelsanddomains_domains"></a>
-Log Domains and Log Domain Levels</h1>
-<p>But the ALox logging ecosystem differs from most others in the respect that log levels are not evaluated against a global setting. Log levels are always evaluated in consideration of a specific <em>log domain</em>.</p>
+2. Log Domains and Log Domain Levels</h1>
+<p>The ALox logging ecosystem differs from most others in the respect that log levels are not evaluated against a global setting. Log levels are always evaluated in consideration of a specific <em>log domain</em>.</p>
 <p><em>Log domains</em> are simple names (strings) that a developer specifies with a log statement. In a kind, <em>log domains</em> specify a "topic" or "theme" to which that certain log statement belongs to. For example, those parts of a software that implement the user interface, could perform all log statements using the log domain "UI", while the parts that read or write into a database could be named "DBIO" or similar.</p>
 <p>Now, ALox administers a setting for the log level per <em>log domain</em>. Such setting is called <em>log domain level</em>. At runtime, for each log statement, the <em>log level</em> is evaluated against the <em>log domain level</em> and the log message is either suppressed or not.</p>
 <p>The <em>log domain levels</em> are enumerated in <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref" href="../html/java_ref/enumcom_1_1aworx_1_1lox_1_1Log_1_1DomainLevel.html">Log.DomainLevel</a> and are:</p>
@@ -126,8 +129,10 @@ Log Domains and Log Domain Levels</h1>
 <li><em>Inherit</em></li>
 </ul>
 <p>This should be self explanatory, despite the last one, '*Inherit**, which is explained in the next section.</p>
+<p><br/>
+ </p>
 <h1><a class="anchor" id="man_levelsanddomains_hierarchical_domains"></a>
-Hierarchical Log Domains</h1>
+3. Hierarchical Log Domains</h1>
 <p>One of the major design goals of ALox is simplicity. By nature simplicity is sometimes in in competition with flexibility or feature richness of an API. One way to resolve such conflicting goals is to provide features that - if not wanted or needed or not even known - are invisible to the user. The concept of hierarchical log domains is a good sample of how this was achieved in the ALox API design.</p>
 <p>Domain names can incorporate a domain separator character '/' (alternatively '\' or '|'). As long as such domain names are used in the normal way, nothing changes. However, as soon as sub domains are addressed (portions of domain names are given into the API), then the hierarchical domain system internally takes action.</p>
 <p>Let us look at a sample: The UI portion of an application might define three domains:</p>
@@ -168,7 +173,7 @@ Hierarchical Log Domains</h1>
 <p><br/>
  </p>
 <h1><a class="anchor" id="man_levelsanddomains_root_domain"></a>
-The root domain of class Logger</h1>
+4. The Root Domain of class Logger</h1>
 <p>As we have learned about the hierarchical organizations of domains, the next concept is easy to understand. Each instance of class <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> contains a public field of type <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a> which represents the <em>root domain</em>. Whenever a new domain is registered with a Lox, each logger contained in this Lox gets this domain added as a sub domain of its root domain.</p>
 <p>Now, if the <em>domain level</em> of such sub domain is not specified (using <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Lox.html#a1d80a2ac703e5137a8649bb6e51cbb92">Lox.SetDomain</a> or <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Log.html#aa581535137279580a7e3236132275700">Log.SetDomain</a> the setting defaults to "inherit" and hence these sub domains inherit the setting of the root domain. Therefore, the level setting of a Loggers root domain determine the "default" domain level for domains "unknown" to the current ALox state.</p>
 <p>Different derivates of class Logger might have different preferences here. For example the class <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html">ConsoleLogger</a> in its constructor, sets the domain level to <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref" href="../html/java_ref/enumcom_1_1aworx_1_1lox_1_1Log_1_1DomainLevel.html">Log.DomainLevel.All</a>. This way, messages that get logged on domains that have not been explicitly set in the boot section of an application (or somewhere else) are displayed in the console. This makes sense, as the console is mainly for debug purposes. As soon as a log statement appears under a domain that is not set properly, the programmer can insert a corresponding statement to set the domain as wanted. In contrast to this, the root domain in class <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html">MemoryLogger</a> is set to <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref" href="../html/java_ref/enumcom_1_1aworx_1_1lox_1_1Log_1_1DomainLevel.html">Log.DomainLevel.Off</a>. This way, all log messages are suppressed unless explicitly set active.</p>
@@ -177,7 +182,7 @@ The root domain of class Logger</h1>
 </div><!-- fragment --><p><br/>
  </p>
 <h1><a class="anchor" id="man_levelsanddomains_default_domains"></a>
-Default domains</h1>
+5. Default Domains</h1>
 <p>People might argue that providing a domain name to each log statement is an overhead of typing. That is true. For this reason - and to get even more benefits - ALox provides the concept of <em>default domains</em>.</p>
 <p>Domains, when registered, can be set as the default domain for a given <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref" href="../html/java_ref/enumcom_1_1aworx_1_1lox_1_1Log_1_1Scope.html">Log.Scope</a>. Unfortunately but naturally, the possible values for the scope are platform/language dependent. For example, in JAVA, the scope can be the whole package a class resides in, the class only or just a single method of a class. In C#, the scope can be the actual source file or the actual method within a source file. Namespaces can not be the scope in C#, due to restrictions in the way that <em>caller information</em> is collected.</p>
 <p>Now, setting a domain as default is done by specifying a scope value other than <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref" href="../html/java_ref/enumcom_1_1aworx_1_1lox_1_1Log_1_1Scope.html">Log.Scope.None</a> to <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Log.html#ad82a9166e7179f88e1c66c76afc32d35">Log.RegDomain</a>:</p>
@@ -203,7 +208,7 @@ Default domains</h1>
 <p><br/>
  </p>
 <h1><a class="anchor" id="man_levelsanddomains_hierarchical_default_domains"></a>
-Default domains and domain hierarchy</h1>
+6. Default Domains and Domain Hierarchy</h1>
 <p>Let us look at the sample from above once more:</p>
 <div class="fragment"><div class="line">Log.RegDomain( <span class="stringliteral">&quot;UI&quot;</span>,        Log.Scope.SourceFile );</div>
 <div class="line">Log.RegDomain( <span class="stringliteral">&quot;UI/MENU&quot;</span>,   Log.Scope.None );</div>
@@ -218,10 +223,10 @@ Default domains and domain hierarchy</h1>
 <li>copy and pasting code into different "domains" does not involve updating the domain name in each log statement, as long as the the same sub domain names are wanted.</li>
 </ul>
 <p><br/>
-</p>
+ </p>
 <h1><a class="anchor" id="man_levelsanddomains_internal_domain"></a>
-The internal domain "ALOX"</h1>
-<p>We want to end this chapter, with a look at internal log messages coming from the ALox ecosystem itself and how their level can be controlled. This is quite easy and straightforward.</p>
+7. The Internal Domain "ALOX"</h1>
+<p>Now, let us have a look at internal log messages coming from the ALox ecosystem itself and how their domain level can be controlled. This is quite easy and straightforward.</p>
 <p>ALox uses a domain called "ALOX" to log internal. This name is not hard coded, but represented in a field in class <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a>. E.g. in C#, this field is called <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Lox.html#aed8c5ed6af267304f7aae60589a589c3">Lox.InternalDomain</a>. If you want to change that (which should only be needed if you operate with different Lox instances that share one or more Logger instances and you want to distinguish which Lox instance caused a message), you go ahead as follows:</p>
 <div class="fragment"><div class="line">Lox aLox= <span class="keyword">new</span> Lox();</div>
 <div class="line">aLox.InternalDomain= <span class="stringliteral">&quot;ABC&quot;</span>;</div>
@@ -233,24 +238,45 @@ The internal domain "ALOX"</h1>
 <p>Of course, the domain level of the internal domain can be manipulated any time later, like any other domains' log level using <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Log.html#aa581535137279580a7e3236132275700">Log.SetDomain()</a> respectively <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Lox.html#a1d80a2ac703e5137a8649bb6e51cbb92">Lox.SetDomain()</a>. The code would look like this:</p>
 <div class="fragment"><div class="line">Log.SetDomain( Log.LOX.InternalDomain, Log.DomainLevel.WarningsAndErrors, <span class="keyword">false</span>, <span class="stringliteral">&quot;Console&quot;</span> );</div>
 </div><!-- fragment --><p><br/>
-</p>
-<h1><a class="anchor" id="man_levelsanddomains_summary"></a>
-Summary</h1>
-<p>In this chapter we covered the following things:</p>
+ </p>
+<h1><a class="anchor" id="man_levelsanddomains_separating_loggers"></a>
+8. Setting Different Domain Levels on Different Loggers</h1>
+<p>We want to end this chapter, with another very important feature that the ALox logging ecosystem just "provides by design": The concept of matching <em>log levels</em> against <em>log domains</em> does not only allow us to configure the verbosity of the log output per domain. In addition, because of the simple fact that the <em>domain log level</em> setting is stored per <em>Logger</em> and not globally, ALox can be configured to have different loggers logging completely different things.</p>
+<p>As we have already seen a source sample of that provided in the tutorials (see section "Separating domain log levels in different loggers" <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/tutorial_cs.html#tutcs_more_5">for C#</a> or <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref" href="../html/java_ref/tutorial_java.html#tutjava_more_5">for Java</a>.), we want to give now a more formal description on how this is achieved:</p>
 <ul>
-<li>The log levels <em>Error</em>, <em>Warning</em>, <em>Info</em>, <em>Verbose</em></li>
-<li>Log domains and their domain level setting which controls the output of log messages of different levels.</li>
-<li>Hierarchical log domains and how domain log levels are inherited</li>
-<li>The root domain of the class Logger, which determines the domain level of "unknown" domains</li>
-<li>Setting default domains for scopes</li>
-<li>Using the swung dash character "~". to address sub domains of default domains</li>
-<li>The internal domain of class Lox </li>
+<li>Create and add your loggers using <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Log.html#a48c449476d1fd8d89894d79a3083c47c">Log.AddLogger()</a></li>
+<li>For each <em>log domain</em> with log output that should go to all loggers invoke <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Log.html#aa581535137279580a7e3236132275700">Log.SetDomain</a> without specifying the parameter <em>loggerFilter</em></li>
+<li>For each <em>log domain</em> with a log output that should go exclusively to a certain logger (or a set of loggers) go ahead and:<ul>
+<li>for each logger, that should receive the domains' log messages, invoke <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Log.html#aa581535137279580a7e3236132275700">Log.SetDomain</a> and specify the parameter <em>loggerFilter</em> to address the according logger by name. For these loggers set the parameter domainLevel to your desired verbosity (<a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref" href="../html/java_ref/enumcom_1_1aworx_1_1lox_1_1Log_1_1DomainLevel.html">Log.DomainLevel</a>).</li>
+<li>for each logger, that should <b>not</b> receive the domains' log messages, invoke <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Log.html#aa581535137279580a7e3236132275700">Log.SetDomain</a> and specify the parameter <em>loggerFilter</em> to address the according logger by name. For these loggers set the parameter domainLevel to <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref" href="../html/java_ref/enumcom_1_1aworx_1_1lox_1_1Log_1_1DomainLevel.html">Log.DomainLevel.Off</a></li>
+</ul>
+</li>
+</ul>
+<p>This probably sounds more complex than it is. If you think about it for a second, it should become obvious.</p>
+<p>This mechanism allows for example to redirect all logs coming from an external library (or a different department in your company or just a portion of code that you are currently not interested in) maybe together with your logs into a file, while on the debug console you see exclusively the things your are currently interested in.</p>
+<p>Or as another example, you could consider a logger that sends alert emails to you. Of-course, you just want to receive such mails on very special occasions, e.g. something really severe happens.</p>
+<p><br/>
+ </p>
+<h1><a class="anchor" id="man_levelsanddomains_summary"></a>
+9. Summary</h1>
+<p>Ok, this was quite a bunch of things that we need to know about <em>log levels</em> and corresponding <em>log domains</em> and their <em>log domain levels</em>.<br/>
+ So, let us summarize the takeaways of this chapter and repeat quickly what we learned:</p>
+<ul>
+<li>Each log call with ALox has is related to a certain <em>log domain</em></li>
+<li>The log levels <em>Error</em>, <em>Warning</em>, <em>Info</em>, <em>Verbose</em> of each log call determine how they get filtered according to the <em>log domain level</em>.</li>
+<li>Log domains are hierarchically organized and domain levels can be inherited through this hierarchy.</li>
+<li>Log domains are attached to Loggers and hence can be controlled per Logger.</li>
+<li>Each logger has a <em>root domain</em>. Due to the inheritance feature of the <em>domain level</em>, this root domains's level determines the level of "unknown" domains (domains that have not been set or registered during the lifetime of the logger).</li>
+<li>It is possible to set a default domain for a certain scope.</li>
+<li>Using the swung dash character "~" allows to address sub domains of default domains.</li>
+<li>class Lox has an own domain "ALOX" for internal messages.</li>
+<li>The parameter <em>loggerFilter</em> of method <em>Log.SetDomain()</em> allows to separate log messages of certain log domains into different log streams. </li>
 </ul>
 </div></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.4-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jul 19 2013 00:36:34 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jul 19 2013 03:03:21 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

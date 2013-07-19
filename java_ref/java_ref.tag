@@ -24,7 +24,7 @@
     <docanchor file="tutorial_java" title="3.2 Conditional logging">tutjava_more_2</docanchor>
     <docanchor file="tutorial_java" title="3.3 LogTools: Log complex things easily">tutjava_more_3</docanchor>
     <docanchor file="tutorial_java" title="3.4 Indentation">tutjava_more_4</docanchor>
-    <docanchor file="tutorial_java" title="3.5 Separating domains levels in different loggers">tutjava_more_5</docanchor>
+    <docanchor file="tutorial_java" title="3.5 Separating domain log levels in different loggers">tutjava_more_5</docanchor>
     <docanchor file="tutorial_java" title="3.6 ALox configuration and internal log messages">tutjava_more_6</docanchor>
     <docanchor file="tutorial_java" title="Further reading">tutjava_end</docanchor>
   </compound>
