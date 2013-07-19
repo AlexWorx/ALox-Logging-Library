@@ -15,14 +15,13 @@ This chapter provides all details on log levels and log domains. Before reading 
 you have read and understood the chapter \ref man_alox_architecture. 
 
 
-\~Comment ###
-########################### Log Levels ############################
-############# \~
-\section man_levelsanddomains_levels     Log Levels
+\~Comment ############################################################################################## \~
+<br>
+# 1. Log Levels# {#man_levelsanddomains_levels}
 
 It is very common for logging ecosystems to provide the concept of *log levels*. Such log level
 is provided either as a parameter to the log call or is provided by offering different log methods, like
-*error()*, *warning()* or *verbose()*. (Alox provides both mechanisms.)
+*error()*, *warning()* or *verbose()*. (ALox provides both mechanisms.)
 ALox is no exclamation to this. The four levels offered are enumerated in [Log.Level](@ref #com.aworx.lox.Log.Level)
 and are named and sorted like this:
  - *Error*
@@ -35,12 +34,11 @@ log levels below '*Info*' ('*Warning*' and '*Error*') are also enabled. This way
 log level changes the so called "verbosity" of your application. The higher the level setting
 is, the more log messages will appear in the log.
                                                   
-\~Comment ###
-########################### Log Domains and Log Domain Levels ############################
-############# \~
+\~Comment ############################################################################################## \~
 <br>
-\section man_levelsanddomains_domains     Log Domains and Log Domain Levels
-But the ALox logging ecosystem differs from most others in the respect that log levels are not evaluated
+# 2. Log Domains and Log Domain Levels # {#man_levelsanddomains_domains}
+
+The ALox logging ecosystem differs from most others in the respect that log levels are not evaluated
 against a global setting. Log levels are always evaluated in consideration of a specific *log domain*.
 
 _Log domains_ are simple names (strings) that a developer specifies with a log statement. 
@@ -66,10 +64,10 @@ The *log domain levels* are enumerated in [Log.DomainLevel](@ref #com.aworx.lox.
 This should be self explanatory, despite the last one, '*Inherit**, which is explained in the
 next section.
 
-\~Comment ###
-########################### Hierarchical Log Domains ############################
-############# \~
-\section man_levelsanddomains_hierarchical_domains     Hierarchical Log Domains
+\~Comment ############################################################################################## \~
+<br>
+# 3. Hierarchical Log Domains # {#man_levelsanddomains_hierarchical_domains}
+
 
 One of the major design goals of ALox is simplicity. By nature simplicity is sometimes in 
 in competition with flexibility or feature richness of an API. One way to resolve such conflicting 
@@ -156,11 +154,9 @@ The advantages of hierarchical domains so far are:
 But there is one more point on it, described later in this chapter. First let us
 look at the root domain of a Logger.
 
-\~Comment ###
-########################### Logger Root Domains ############################
-############# \~
+\~Comment ############################################################################################## \~
 <br>
-\section man_levelsanddomains_root_domain     The root domain of class Logger
+# 4. The Root Domain of class Logger # {#man_levelsanddomains_root_domain}
 
 As we have learned about the hierarchical organizations of domains, the next
 concept is easy to understand. Each instance of class 
@@ -201,11 +197,9 @@ Log.SetDomain( "/", Log.DomainLevel.WarningsAndErrors, false, "Console" );
 \endcode
 
 
-\~Comment ###
-########################### Default Domains ############################
-############# \~
+\~Comment ############################################################################################## \~
 <br>
-\section man_levelsanddomains_default_domains     Default domains
+# 5. Default Domains # {#man_levelsanddomains_default_domains}
 
 People might argue that providing a domain name to each log statement is an overhead of
 typing. That is true. For this reason - and to get even more benefits - ALox provides the concept
@@ -263,14 +257,10 @@ is done:
 
 - For C#, see tutorial chapter \ref tutcs_llld_3.
 
-
-
  
-\~Comment ###
-########################### Default Domains and domain hierarchy ############################
-############# \~
+\~Comment ############################################################################################## \~
 <br>
-\section man_levelsanddomains_hierarchical_default_domains     Default domains and domain hierarchy
+# 6. Default Domains and Domain Hierarchy # {#man_levelsanddomains_hierarchical_default_domains}
 
 Let us look at the sample from above once more:
 
@@ -296,16 +286,13 @@ The benefits are the same as above:
   name in each log statement, as long as the the same sub domain names are wanted.
 
 
-\~Comment ###
-########################### The internal domain "ALOX" ############################
-############# \~
+ 
+\~Comment ############################################################################################## \~
 <br>
+# 7. The Internal Domain "ALOX" # {#man_levelsanddomains_internal_domain}
 
-\section man_levelsanddomains_internal_domain   The internal domain "ALOX"
-
-We want to end this chapter, with a look at internal log messages coming from the ALox 
-ecosystem itself and how their level can be controlled. This is quite easy 
-and straightforward. 
+Now, let us have a look at internal log messages coming from the ALox ecosystem itself and how their 
+domain level can be controlled. This is quite easy and straightforward. 
 
 ALox uses a domain called "ALOX" to log internal. This name is not hard coded, but represented
 in a field in class [Lox](@ref #com.aworx.lox.Lox). E.g. in C#, this field
@@ -343,27 +330,66 @@ The code would look like this:
 Log.SetDomain( Log.LOX.InternalDomain, Log.DomainLevel.WarningsAndErrors, false, "Console" );
 \endcode
 
-
-\~Comment ###
-########################### Summary ############################
-############# \~
+\~Comment ############################################################################################## \~
 <br>
+# 8. Setting Different Domain Levels on Different Loggers # {#man_levelsanddomains_separating_loggers}
 
-\section man_levelsanddomains_summary   Summary
-In this chapter we covered the following things:
-- The log levels *Error*, *Warning*, *Info*, *Verbose*
-- Log domains and their domain level setting which controls the 
-  output of log messages of different levels.
-- Hierarchical log domains and how domain log levels are inherited
-- The root domain of the class Logger, which determines the domain level
-  of "unknown" domains
-- Setting default domains for scopes
-- Using the swung dash character "~". to address sub domains of default domains
-- The internal domain of class Lox
+We want to end this chapter, with another very important feature that the ALox logging ecosystem just
+"provides by design": The concept of matching *log levels* against *log domains* does not only allow
+us to configure the verbosity of the log output per domain. In addition, because of the simple fact
+that the *domain log level* setting is stored per *Logger* and not globally, ALox can be configured
+to have different loggers logging completely different things. 
+
+As we have already seen a source sample of that provided in the tutorials (see section 
+"Separating domain log levels in different loggers" 
+\ref tutcs_more_5 "for C#" or
+\ref tutjava_more_5 "for Java".), we want to give now a more formal description on how this is achieved:
+
+- Create and add your loggers using [Log.AddLogger()](@ref #com.aworx.lox.Log.AddLogger)
+- For each *log domain* with log output that should go to all loggers invoke
+  [Log.SetDomain](@ref #com.aworx.lox.Log.SetDomain) without specifying the parameter *loggerFilter*
+- For each *log domain* with a log output that should go exclusively to a certain logger (or a set of 
+  loggers) go ahead and:
+  - for each logger, that should receive the domains' log messages,  invoke [Log.SetDomain](@ref #com.aworx.lox.Log.SetDomain) 
+    and specify the parameter *loggerFilter* to address the according logger by name. For these loggers set the 
+    parameter domainLevel to your desired verbosity ([Log.DomainLevel](@ref #com.aworx.lox.Log.DomainLevel)). 
+  - for each logger, that should **not** receive the domains' log messages, invoke [Log.SetDomain](@ref #com.aworx.lox.Log.SetDomain) 
+    and specify the parameter *loggerFilter* to address the according logger by name. For these loggers set the 
+    parameter domainLevel to [Log.DomainLevel.Off](@ref #com.aworx.lox.Log.DomainLevel) 
+
+This probably sounds more complex than it is. If you think about it for a second, it should become obvious.
+
+This mechanism allows for example to redirect all logs coming from an external library (or a different
+department in your company or just a portion of code that you  are currently not interested in) maybe
+together with your logs into a file, while on the debug console you see exclusively the things your are currently 
+interested 
+in.
+
+Or, as another example, you could consider a logger that sends alert emails to you. Of-course, you just
+want to receive such mails on very special occasions, e.g. something really severe happens.
 
 
+\~Comment ############################################################################################## \~
+<br>
+# 9. Summary # {#man_levelsanddomains_summary}
 
-\~Comment
-\~
+Okay, this was quite a bunch of things that we need to know about *log levels* and corresponding *log domains* and 
+their *log domain levels*.<br>
+So, let us summarize the takeaways of this chapter and repeat quickly what we learned:
+ 
+
+- Each log call is related to a certain *log domain*.
+- The log levels *Error*, *Warning*, *Info*, *Verbose* of each log call determine how they get filtered
+  according to the *log domain level*. 
+- Log domains are hierarchically organized and domain levels can be inherited through this hierarchy.
+- Log domains are attached to Loggers and hence can be controlled per Logger.
+- Each logger has a *root domain*. Due to the inheritance feature of the *domain level*, this root domains's level
+  determines the level of "unknown" domains (domains that have not been set or registered during the lifetime of the logger).
+- It is possible to set a default domain for a certain scope. 
+- Using the swung dash character "~" allows to address sub domains of default domains.
+- class Lox has an own domain "ALOX" for internal messages.
+- The parameter *loggerFilter* of method *Log.SetDomain()* allows to separate log messages of certain log domains 
+  into different log streams.
+
 
 */

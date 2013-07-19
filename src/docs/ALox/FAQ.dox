@@ -9,23 +9,24 @@
 /**
 \page alox_faq              FAQ - Frequently asked Questions for ALox
 
-\section alox_faq_the_name_alex       Why the name "ALox" and how is it pronounced?
+\tableofcontents
+
+<br>
+# Why the name "ALox" and how is it pronounced? # {#alox_faq_the_name_alex}
 
 The English term "log" is known. Now "logs" is the plural. As English pronunciation is always
 a little unspecific and volatile, you could write the word "logs" as "lox" easily without
 changing the pronunciation.  Now, as we were looking for some artificial new word for the project,
 we loved to turn "logs" into "lox". 
 
-But then we wanted to add the "A". This tells you: **This is *class a* logging!**
+But then we wanted to add the "A". This tells you: **This is *class A* logging!**
 Got it? So, please pronounce it in two words, with a separately spoken "a" like in "a car" or "a cat".
 
-*Note: This explanation also proves that the name has nothing to do with this guy called "Alex", because 
-his name pronounced in one word!)*
+_Note: This explanation also proves that the name has nothing to do with this guy called "Alex", because 
+his name pronounced in one word!_
 
-
-
-
-\section alox_faq_bauhaus             What is "Bauhaus Code Style", please? 
+<br>
+# What is "Bauhaus Code Style", please? # {#alox_faq_bauhaus}
 
 Well, if you are not familiar with it, checkout [Bauhaus](http://http://en.wikipedia.org/wiki/Bauhaus)
 on Wikipedia (and yes, we are a German team). 
@@ -54,7 +55,9 @@ of a *DateTime*  object (what *DateTime.Now* does), then please send us an Email
 
 Update: Too late, we solved it! A little tricky and some static code was needed, but it works well.
 
-\section alox_faq_performance       What is the performance impact of using ALox 
+<br>
+# What is the performance impact on my application when using ALox # {#alox_faq_performance}
+
 ALox is fast (see previous question on Bauhaus). Using a MemoryLogger, in C# we
 measured more than 200.000 log entries per second on a Notebook (equipped with an Intel(R) Core(TM) i7 CPU @2.8GHz)
 while running an application (and ALox) in debug mode! Hence, doing 100 log entries per second, 
@@ -66,7 +69,9 @@ is so fast, there will not be a measurable difference between "normal" debug log
 gets automatically pruned in the release code. Hence, the release version of your software is free
 of any performance issue caused by debug logging. 
 
-\section alox_faq_debug_vs_release_logging   What do the terms "debug logging" and "release logging" mean?
+<br>
+# What do the terms "debug logging" and "release logging" mean?  # {#alox_faq_debug_vs_release_logging}
+
 In general debug logging and release logging are two different things. Debug logging is about adding 
 log statements to your code that enables you to see on the terminal console or your IDEs output window
 what your software currently does, what errors and warnings it produces, how long certain
@@ -84,6 +89,28 @@ solve both. Basic support for release logging is here today already. The introdu
 in the area of release logging will also support debug logging aspects of ALox and vice versa. 
 Therefore the natural path of evolution for the ALox project is "debug logging features first, release logging features next".
 
+<br>
+# Why are ALox log formats all US/English? # {#alox_faq_internationalization}
 
+Of-course the log content itself is unicode and hence supports your locale within 
+your application. But the following is true: All configurable output of meta information is done in US/English locale. 
+There is config option to change this. The reason is, that log output is really something that is not for a different audience
+than the software developers and here, US/English rules (just look at the keywords of your programming language). 
+And we think that a maximum of compatibility (e.g. with other tools or within international teams)
+is guaranteed this way.<br>
+If you absolutely want localized meta information, like log dates in Finnish, you can extend ALox for that. 
+Here is \ref man_loggers_textlogger "how you do that"!
+
+<br>
+# Why is ALox introducing a set of own utility classes? # {#alox_faq_aworx_util}
+We would not say that ALox is "introducing" an own set of utility classes. ALox
+only builds upon such own set. They are located in namespace *com.aworx.util*. 
+We know that there are other, better and much more complete sets in the market. Our
+motivation is twofold: we design these classes that their interface is almost
+identical accross programming languages. This helps us porting ALox to other
+languages and platforms. On the other hand, of-course, our classes are more internal
+and therefore can quite unabashedly follow the Bauhaus design principles. 
+Again, we neither want to promote Bauhaus, nor the utility classes. It is just our
+code style when it comes to core stuff like logging libraries.
 
 */

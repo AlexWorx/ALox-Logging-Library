@@ -297,6 +297,10 @@ Code for this section would look like this:
 Of course, you can add and remove loggers anywhere in your code. Also, you can 
 modify *domain log levels* later at runtime as you please. 
 
+\note 
+This is also a good place to configure your log output the way you prefer it. 
+Some hints how to do that are [given here](../man_loggers.html#man_loggers_textlogger).
+
 ### 2) Register Domains in static initializers of your classes  ###
 Java allows classes to have static initializers that are executed exactly once 
 (in the moment when either the first object of that class type is created or a static
@@ -525,7 +529,7 @@ for example (the base class of [ConsoleLogger](@ref #com::aworx::lox::loggers::C
 
 
 <BR>
-## 3.5 Separating domains levels in different loggers ##        {#tutjava_more_5}
+## 3.5 Separating domain log levels in different loggers ##        {#tutjava_more_5}
 Because  ALox stores the *log domain level* not only per *domain* but also 'per *logger*', we just 
 need to fill in a default parameter in [Log.setDomain()](@ref #com::aworx::lox::Log::setDomain ) to
 provide different *loggers* different domain levels. 
