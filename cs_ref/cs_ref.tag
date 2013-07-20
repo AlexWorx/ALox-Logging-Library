@@ -33,7 +33,11 @@
     <docanchor file="setup_projects_vs_cs" title="1.2. Add one of the following projects into your solution">setup_projects_vs_cs_1_2</docanchor>
     <docanchor file="setup_projects_vs_cs" title="1.3 Alternatively: Adding source code to your project">setup_projects_vs_cs_1_3</docanchor>
     <docanchor file="setup_projects_vs_cs" title="1.4 Configure your project properties">setup_projects_vs_cs_1_4</docanchor>
-    <docanchor file="setup_projects_vs_cs" title="2. Conditional Compilation Symbols">setup_projects_vs_cs_2</docanchor>
+    <docanchor file="setup_projects_vs_cs" title="2. Conditional Compilation Symbols">setup_projects_vs_conditional_compile_symbols</docanchor>
+    <docanchor file="setup_projects_vs_cs" title="3. Pruning ALox">setup_projects_vs_cs_pruning</docanchor>
+    <docanchor file="setup_projects_vs_cs" title="3.1 What is Pruning?">setup_projects_vs_cs_pruning_1</docanchor>
+    <docanchor file="setup_projects_vs_cs" title="3.1 How Pruning in ALox for C# works">setup_projects_vs_cs_pruning_2</docanchor>
+    <docanchor file="setup_projects_vs_cs" title="3.1 Mission accomplished: Perfect Auto Pruning with ALox!">setup_projects_vs_cs_pruning_3</docanchor>
   </compound>
   <compound kind="namespace">
     <name>com</name>

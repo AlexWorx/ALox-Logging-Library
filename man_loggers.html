@@ -41,9 +41,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>ALox&#160;Home</span></a></li>
+      <li><a href="faq.html"><span>FAQ</span></a></li>
       <li><a href="manual.html"><span>Manual</span></a></li>
-      <li><a href="cs_ref/index.html"><span>C#&#160;Reference</span></a></li>
-      <li><a href="java_ref/index.html"><span>Java&#160;Reference</span></a></li>
+      <li><a href="cs_ref/index.html"><span>ALox&#160;for&#160;C#</span></a></li>
+      <li><a href="java_ref/index.html"><span>ALox&#160;for&#160;Java</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -123,7 +124,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>Allow the extension of the ALox logging ecosystem with custom log streams (log targets).</li>
 </ul>
 <p>While all ALox code tries to be short and simple, class <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> is particularly simple! So, let us quickly walk through the class by looking at its members.</p>
-<dl class="section note"><dt>Note</dt><dd>Attention to users who are in love with oo techniques, like encapsulation, getters/setters and all this stuff: unfortunately, we are not. ALox, by design, does neither protect its members, nor follows many other of these nice oo patterns. See <a class="el" href="alox_faq.html#alox_faq_bauhaus">What is "Bauhaus Code Style", please?</a>.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Attention to users who are in love with oo techniques, like encapsulation, getters/setters and all this stuff: unfortunately, we are not. ALox, by design, does neither protect its members, nor follows many other of these nice oo patterns. See <a class="el" href="faq.html#faq_bauhaus">What is "Bauhaus Code Style", please?</a>.</dd></dl>
 <h2><a class="anchor" id="man_loggers_logger_fields"></a>
 1.1 The fields of class Logger</h2>
 <p>There are just a few fields in class <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a>:</p>
@@ -240,7 +241,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>While the abstract classes <em>Logger</em> and <em>TextLogger</em> are located in the namespace (package) "com.aworx.lox.core", the Logger implementations are found in package "com.aworx.lox.loggers".</p>
 <h2><a class="anchor" id="man_loggers_implementations_ConsoleLogger"></a>
 3.1 ConsoleLogger</h2>
-<p>For debugging purposes (remember: ALox is designed to support both, debug and release logging, see <a class="el" href="alox_faq.html#alox_faq_debug_vs_release_logging">What do the terms "debug logging" and "release logging" mean?</a>), the most important <em>Logger</em> implementation is of-course class <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html">ConsoleLogger</a> which logs to an application console window and/or into your IDE output window. This class by nature varies from between languages and IDEs. The goal is to provide specific versions of that Logger for different IDEs that allow "clickable" log lines, which means, a mouse click on a log line in the output window of your IDE will open the source file and mark the line number where your exactly this log line was generated. This is extremely useful in debugging scenarios.</p>
+<p>For debugging purposes (remember: ALox is designed to support both, debug and release logging, see <a class="el" href="faq.html#faq_debug_vs_release_logging">What do the terms "debug logging" and "release logging" mean?</a>), the most important <em>Logger</em> implementation is of-course class <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html">ConsoleLogger</a> which logs to an application console window and/or into your IDE output window. This class by nature varies from between languages and IDEs. The goal is to provide specific versions of that Logger for different IDEs that allow "clickable" log lines, which means, a mouse click on a log line in the output window of your IDE will open the source file and mark the line number where your exactly this log line was generated. This is extremely useful in debugging scenarios.</p>
 <p>Check your language specific class reference manual (or the source code) to see which loggers are provided for your platform. For example, Android mobile application developers will happily find a Logger called <em>AndroidLogCatLogger</em> that synergizes with the Android logging system "LogCat". And yes, also LogCat log lines become magically clickable (tested in Eclipse)!</p>
 <h2><a class="anchor" id="man_loggers_implementations_MemoryLogger"></a>
 3.2 MemoryLogger</h2>
@@ -256,14 +257,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>We saw how the output format of class <em>TextLogger</em> can be manipulated without introducing new code and also, more complex but powerful, with introducing new code.</li>
 <li>Then we looked at the currently existing Logger types in the ALox ecosystem.</li>
 </ul>
-<p>As ALox is still in a quite early state, the number of provided <em>Logger</em> types is limited. The most urgent <em>Logger</em> expected in future versions is of course a <em>FileLogger</em> to make log output persistent and basically transportable. We will equip the <em>FileLogger</em> with the optional feature to create new files each time an application is started and also to optionally delete outdated log files automatically. This will be useful for debug logging and release logging as well. (See <a class="el" href="alox_faq.html#alox_faq_debug_vs_release_logging">What do the terms "debug logging" and "release logging" mean?</a>.)</p>
+<p>As ALox is still in a quite early state, the number of provided <em>Logger</em> types is limited. The most urgent <em>Logger</em> expected in future versions is of course a <em>FileLogger</em> to make log output persistent and basically transportable. We will equip the <em>FileLogger</em> with the optional feature to create new files each time an application is started and also to optionally delete outdated log files automatically. This will be useful for debug logging and release logging as well. (See <a class="el" href="faq.html#faq_debug_vs_release_logging">What do the terms "debug logging" and "release logging" mean?</a>.)</p>
 <p>For release logging (especially on mobile devices with limited persistent memory), a binary file logger is planned. We think, log files can be compressed heavily using incremental timestamps, a caller info dictionary, etc. Of-course this would need a tool to read the binary files back in. We would be thankful to the community to contribute!</p>
 <p>Other ideas are <em>Logger</em> typs that encapsulate other <em>Logger</em> instances. For example a <em>Logger</em> type that lazily collects and schedules log requests into a background thread. The idea is to just provide the "final" <em>Logger</em> to such lazy <em>Logger</em> and hence, it would be possible to put just any existing <em>Logger</em> into lazy mode. </p>
 </div></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.4-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jul 19 2013 03:03:22 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jul 20 2013 02:18:53 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

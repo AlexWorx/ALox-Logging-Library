@@ -41,10 +41,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="../index.html"><span>ALox&#160;Home</span></a></li>
+      <li><a href="../faq.html"><span>FAQ</span></a></li>
+      <li><a href="../manual.html"><span>Manual</span></a></li>
       <li><a href="index.html"><span>ALox&#160;for&#160;C#</span></a></li>
-      <li><a href="setup_projects_vs_cs.html"><span>Visual&#160;Studio&#160;Setup</span></a></li>
+      <li><a href="setup_projects_vs_cs.html"><span>VStudio&#160;Setup</span></a></li>
       <li><a href="tutorial_cs.html"><span>Tutorial</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Class&#160;Reference</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Class&#160;Ref.</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -109,7 +111,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a74ba68166dee3359939d25f87e648cbe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a74ba68166dee3359939d25f87e648cbe">GetLogger</a> (String loggerName)</td></tr>
-<tr class="memdesc:a74ba68166dee3359939d25f87e648cbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve an instance of a Logger by its name. Note: This function is not automatically removed from the release code because of technical restrictions. It has to be conditionally compiled by enclosing calls to it with "#if ... #endif" statements.  <a href="#a74ba68166dee3359939d25f87e648cbe">More...</a><br/></td></tr>
+<tr class="memdesc:a74ba68166dee3359939d25f87e648cbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve an instance of a Logger by its name. Note: This function is not automatically removed from the release code because of technical restrictions. Invocations of this methods have to be conditionally compiled by enclosing calls to it with "#if ... #endif" statements.  <a href="#a74ba68166dee3359939d25f87e648cbe">More...</a><br/></td></tr>
 <tr class="separator:a74ba68166dee3359939d25f87e648cbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a360d4bab0de9498716bfe3328e3aca48"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a360d4bab0de9498716bfe3328e3aca48">AddLogger</a> (<a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> logger, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a10ac165398697ce1d642d739cc3b170f">Log.DomainLevel</a> internalDomainLevel=Log.DomainLevel.WarningsAndErrors,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
 <tr class="memdesc:a360d4bab0de9498716bfe3328e3aca48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a logger to the <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This is a simple, 100% static wrapper of class Lox. In other words, this class incorporates one stati...">Log</a> interface. Each log call that is performed through this interface will be forwarded to this logger, unless filtered out with optional filter parameter. The logger will then check it's domain level against the given log level to decide whether a log should performed.  <a href="#a360d4bab0de9498716bfe3328e3aca48">More...</a><br/></td></tr>
@@ -585,7 +587,7 @@ Static Private Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Retrieve an instance of a Logger by its name. Note: This function is not automatically removed from the release code because of technical restrictions. It has to be conditionally compiled by enclosing calls to it with "#if ... #endif" statements. </p>
+<p>Retrieve an instance of a Logger by its name. Note: This function is not automatically removed from the release code because of technical restrictions. Invocations of this methods have to be conditionally compiled by enclosing calls to it with "#if ... #endif" statements. </p>
 <hr/>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2157,7 +2159,7 @@ Static Private Member Functions</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.4-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jul 19 2013 02:27:59 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jul 20 2013 02:18:12 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

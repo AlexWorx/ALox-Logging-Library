@@ -41,10 +41,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="../index.html"><span>ALox&#160;Home</span></a></li>
+      <li><a href="../faq.html"><span>FAQ</span></a></li>
+      <li><a href="../manual.html"><span>Manual</span></a></li>
       <li><a href="index.html"><span>ALox&#160;for&#160;C#</span></a></li>
-      <li><a href="setup_projects_vs_cs.html"><span>Visual&#160;Studio&#160;Setup</span></a></li>
+      <li><a href="setup_projects_vs_cs.html"><span>VStudio&#160;Setup</span></a></li>
       <li><a href="tutorial_cs.html"><span>Tutorial</span></a></li>
-      <li><a href="annotated.html"><span>Class&#160;Reference</span></a></li>
+      <li><a href="annotated.html"><span>Class&#160;Ref.</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -91,7 +93,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li class="level2"><a href="#setup_projects_vs_cs_1_4">1.4 Configure your project properties</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#setup_projects_vs_cs_2">2. Conditional Compilation Symbols</a></li>
+<li class="level1"><a href="#setup_projects_vs_conditional_compile_symbols">2. Conditional Compilation Symbols</a><ul><li class="level2"><a href="#setup_projects_vs_cs_pruning">3. Pruning ALox</a></li>
+<li class="level2"><a href="#setup_projects_vs_cs_pruning_1">3.1 What is Pruning?</a></li>
+<li class="level2"><a href="#setup_projects_vs_cs_pruning_2">3.1 How Pruning in ALox for C# works</a></li>
+<li class="level2"><a href="#setup_projects_vs_cs_pruning_3">3.1 Mission accomplished: Perfect Auto Pruning with ALox!</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="textblock"><h1><a class="anchor" id="setup_projects_vs_cs_1"></a>
@@ -103,37 +110,76 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>add ALox sources directly to your project.</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>If you do not actually have a C# project (or do not want to touch it now) and you just want to have a first look into ALox, then create a new project using the Visual Studio Project Wizard. Be sure to create an executable and that the typical "hello world" sample prints to the Visual Studio console.</dd></dl>
+<p><br/>
+ </p>
 <h2><a class="anchor" id="setup_projects_vs_cs_1_1"></a>
 1.1. Download</h2>
 <p>Unpack the ALox distribution (e.g. as zip) from <a href="https://github.com/AlexWorx/ALox-Logging-Library">Alox at GitHub</a> and move all its contents to a place where you safely store 3rd party libraries.</p>
 <p>We call this folder the <em>ALOX_LIB_PATH</em>.</p>
+<p><br/>
+ </p>
 <h2><a class="anchor" id="setup_projects_vs_cs_1_2"></a>
 1.2. Add one of the following projects into your solution</h2>
 <p>To incorporate ALox into your Visual Studio solution, you have to follow three steps:</p>
-<p>a) Choose the right class library project that fits well to your own project target and platform. Currently, choices are:</p>
+<p><b>Step 1:</b> Choose the right class library project that fits well to your own project target and platform. The projects are found in </p>
+<pre class="fragment">    ALOX_LIB_PATH\ide.vstudio\ALox-CS.xxx-DLL-xxx
+</pre><p>Your, choices are:</p>
+<table  border="1">
+<tr>
+<th><center>Project Name</center>  </th><th><center>Description</center> <p class="endtd"></p>
+</th></tr>
+<tr>
+<td>ALox-CS-.Net45-DLL  </td><td>For .Net 4.5 projects that do <em>not</em> use ALox release logging </td></tr>
+<tr>
+<td>ALox-CS-.Net45-DLL-Release-Log  </td><td><p class="starttd">For .Net 4.5 projects that do use ALox release logging</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td>ALox-CS-.WP71-DLL  </td><td>For windows Phone 7.1 projects that do <em>not</em> use ALox release logging </td></tr>
+<tr>
+<td>ALox-CS-.WP71-DLL-Release-Log  </td><td><p class="starttd">For windows Phone 7.1 projects that do use ALox release logging</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td>ALox-CS-.WP80-DLL  </td><td>For windows Phone 8 projects that do <em>not</em> use ALox release logging </td></tr>
+<tr>
+<td>ALox-CS-.WP80-DLL-Release-Log  </td><td>For windows Phone 8 projects that do use ALox release logging </td></tr>
+</table>
+<dl class="section note"><dt>Note</dt><dd>If you do not know the difference between debug and release logging, see the <a href="../faq.html#faq_debug_vs_release_logging">FAQ</a> </dd></dl>
+<dl class="section user"><dt></dt><dd></dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The difference between the project versions with or without the release logging options are:</dd>
+<dd>
 <ul>
-<li><em>ALox-CS-DLL</em>: For .Net 4.5 projects</li>
-<li><em>ALox-CS-WP71-DLL</em>: For windows Phone 7.1 projects</li>
-<li><em>ALox-CS-WP80-DLL</em>: For windows Phone 8 projects</li>
+<li>The conditional compile symbol "ALOX_REL_LOG" is set in the release configuration of the projects named <em>ALox-CS-???-DLL-Release-Log</em>.</li>
+<li>Due to this, ALox features are still included. (Only, class <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> gets its interface replaced by thin stub methods in release mode.).</li>
+<li>The size of the release assembly increases.</li>
 </ul>
+</dd>
+<dd>
+Because the size of the release assembly is very small anyhow (as of ALox V.1.1.0 it is 25kb without release logging vs. 49kb including release logging) you can easily choose the "Release-Log" version of your platform.</dd></dl>
+<dl class="section user"><dt></dt><dd></dd></dl>
 <dl class="section note"><dt>Note</dt><dd>If there is no appropriate predefined project available for you, skip b) and c) and continue reading below at <a class="el" href="setup_projects_vs_cs.html#setup_projects_vs_cs_1_3">1.3 Alternatively: Adding source code to your project</a>!</dd></dl>
 <p>Add the Visual Studio project that you find in the corresponding sub folder of the <em>ALOX_LIB_PATH</em> to your solution.</p>
-<p>b) Set a build dependency from your project to the just added <em>ALox-CS-DLL</em> project. Steps are:</p>
+<p><br/>
+ <b>Step 2:</b> Set a build dependency from your project to the just added <em>ALox-CS-DLL</em> project. Steps are:</p>
 <ul>
 <li>right click your project in solution explorer</li>
 <li>choose context menu <b>Project dependencies...</b></li>
 <li>tick the checkbox for the <em>ALox-CS-DLL</em> project.</li>
 </ul>
-<p>c) Add the ALox-CS-DLL project as a reference to your project. Steps are:</p>
+<p><br/>
+ <b>Step 3:</b> Add the ALox-CS-DLL project as a reference to your project. Steps are:</p>
 <ul>
 <li>right click your project in solution explorer</li>
 <li>choose context menu <b>Add reference...</b></li>
 <li>on the left side choose "Solution" and "Projects"</li>
 <li>tick the checkbox for the <em>ALox-CS-DLL</em> project.</li>
 </ul>
+<p><br/>
+ </p>
 <h2><a class="anchor" id="setup_projects_vs_cs_1_3"></a>
 1.3 Alternatively: Adding source code to your project</h2>
-<p>Alternatively, if there is no appropriate predefined project for your target and platform, you might want to add the ALox source code directly to your project. This can be done as follows:</p>
+<p>If there is no appropriate predefined project for your target and platform, you might want to add the ALox source code directly to your project. This can be done as follows:</p>
 <ul>
 <li>Within your Visual Studios solution explorer, right-click on your project and use <b>Add/New Folder...</b> to create a new source folder called "ALox" or similar.</li>
 <li>Right-click the new folder in solution explorer and use <b>Add/Existing Item...</b> repeatedly to add all *.cs files that you find in the ALox source folder's subfolders<ul>
@@ -142,40 +188,50 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li><b>src.util</b>.</li>
 </ul>
 </li>
-<li>Note: You can just add all *.cs files to your new src folder "ALox". However, if you want, you can keep the source tree intact by adding the right sub folders (unfortunately Visual Studio does not do this for you automatically).</li>
-<li>Note: You do not need to include the *.cs files from folders <b>tests.src</b> and <b>tests.src.util</b>.</li>
 </ul>
+<dl class="section note"><dt>Note</dt><dd>You can just add all *.cs files to your new src folder "ALox". However, if you want, you can keep the source tree intact by adding the right sub folders (unfortunately Visual Studio does not do this for you automatically).</dd></dl>
+<dl class="section user"><dt></dt><dd></dd></dl>
+<dl class="section note"><dt>Note</dt><dd>You do not need to include the *.cs files from folders <b>tests.src</b> and <b>tests.src.util</b>.</dd></dl>
+<p><br/>
+ </p>
 <h2><a class="anchor" id="setup_projects_vs_cs_1_4"></a>
 1.4 Configure your project properties</h2>
 <p>Now, as ALox is a part of your Visual Studio solution, go ahead as follows:</p>
 <ul>
-<li><p class="startli">Open your projects' properties and:</p>
-<ul>
+<li>Open your projects' properties and:<ul>
 <li>choose "Debug" as the <b>Configuration</b> you want to modify.</li>
 <li>In the 'Build' section add <b>ALOX_DEBUG</b> to the list of <em>conditional compilation symbols</em> (separated from existing symbols by a semicolon).</li>
 <li>Make sure that the checkbox "Define DEBUG constant" is checked (this is the default).</li>
-<li>For windows phone projects, also add either <b>ALOX_WP71</b> or <b>ALOX_WP8</b> to that list depending on what platform you are targeting. </li>
+<li>For windows phone projects, also add either <b>ALOX_WP71</b> or <b>ALOX_WP8</b> to that list depending on what platform you are targeting. <br/>
+ <em>Note:</em> Besides other minor changes, this disables a feature to recursively log an object using reflection, because reflection operations are not supported (allowed) on the Windows Phone platform.</li>
+<li>If you want to use ALox for release logging (see <a href="../faq.html#faq_debug_vs_release_logging">FAQ</a>) then you do the same for the "Release" configuration. But, instead of <b>ALOX_DEBUG</b> please specify <b>ALOX_REL_LOG</b>. <dl class="section user"><dt></dt><dd></dd></dl>
+</li>
 </ul>
-<p class="startli">Note:* Besides other minor changes, this disables a feature to recursively log an object using reflection, because reflection operations are not supported (allowed) on the Windows Phone platform.</p>
 </li>
 <li><p class="startli">Now close the project properties and continue with adjusting the references of your project:</p>
 <ul>
 <li>In Solution Explorer, right-click the "References" folder in your project</li>
 <li>choose "Add Reference..."</li>
-<li>In the now open dialog navigate to section "Assemblies" and here choose "Framework".</li>
-</ul>
+<li><p class="startli">In the now open dialog navigate to section "Assemblies" and here choose "Framework".</p>
 <p class="startli">Make sure that you have ticked the checkboxes for:</p>
 <ul>
 <li>System.Xml.Linq library (you can avoid this by setting the <em>conditional compilation symbol</em> <b>ALOX_NO_XML</b>, see above)</li>
 <li>For Windows Phone 7.1 projects: "Microsoft.Phone" (not needed for Windows Phone 8)</li>
 </ul>
 </li>
-<li>For Windows Phone 7.1 projects (not needed for Windows Phone 8) you need to download and install the <a href="http://nuget.org/packages/Microsoft.Bcl/">Mircosoft BCL Portability Pack</a> Using the NuGet package manager as described on the libraries page, this is a matter of just a minute.</li>
+</ul>
+<dl class="section user"><dt></dt><dd></dd></dl>
+</li>
+<li>For Windows Phone 7.1 projects (not needed for Windows Phone 8) you need to download and install the <a href="http://nuget.org/packages/Microsoft.Bcl/">Microsoft BCL Portability Pack</a> Using the NuGet package manager as described on the libraries page, this is a matter of just a minute.</li>
 </ul>
 <p><b>You are set and your solution should compile without an error!</b></p>
-<h1><a class="anchor" id="setup_projects_vs_cs_2"></a>
+<p><br/>
+ </p>
+<h1><a class="anchor" id="setup_projects_vs_conditional_compile_symbols"></a>
 2. Conditional Compilation Symbols</h1>
-<p>In section <a class="el" href="setup_projects_vs_cs.html#setup_projects_vs_cs_1_4">1.4 Configure your project properties</a> we have learned about some conditional compilation symbols already. The following lists all symbols available:</p>
+<p>In section <a class="el" href="setup_projects_vs_cs.html#setup_projects_vs_cs_1_4">1.4 Configure your project properties</a> we have learned about some conditional compilation symbols already. The following gives the complete list of such symbols introduced by ALox:</p>
+<p><br/>
+</p>
 <ul>
 <li><b>ALOX_DEBUG</b> Enable debug logging. This should be set in the <em>Debug configuration</em> of your projects. Otherwise, not log output is generated if using the static interface of class <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a>.</li>
 <li><b>ALOX_REL_LOG</b> To enable release logging. This should only be set in the <em>Release configuration</em> of your projects if you are using release logging with class <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Lox</a>. If you do not use release logging features of ALox, this symbol should not be set to minimize the code that the ALox classes add to your executables.</li>
@@ -187,13 +243,62 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   If this is set, the flag @ref #com::aworx::lox::loggers::ConsoleLogger::EnableAppConsole "ConsoleLogger.EnableAppConsole"
   becomes unavailable. The output of @ref #com::aworx::lox::loggers::ConsoleLogger "ConsoleLogger" which is controlled
   by the second flag @ref #com::aworx::lox::loggers::ConsoleLogger::EnableVSDebugConsole "ConsoleLogger.EnableAppConsole" will go exclusively to System.Diagnostics.Debug.WriteLine().</li>
-<li><b>ALOX_NO_THREADS</b> This symbol deactivates any mechanisms to protect ALox logging in multi-threaded environments. Use this symbol only if you are sure to operate single threaded. (Even if your application does not create a new thread directly, e.g. UI driven applications are generally multi threaded. The advantage of using this compile symbol is to increase ALox performance by around 8% (when logging in-memory). For console logging the performance gain is much less. So, only in very critical situations this symbol should be used. </li>
+<li><b>ALOX_NO_THREADS</b> This symbol deactivates any mechanisms to protect ALox logging in multi-threaded environments. Use this symbol only if you are sure to operate single threaded. (Even if your application does not create a new thread directly, e.g. UI driven applications are generally multi threaded. The advantage of using this compile symbol is to increase ALox performance by around 8% (when logging in-memory). For console logging the performance gain is much less. So, only in very critical situations this symbol should be used.</li>
 </ul>
+<p><br/>
+ </p>
+<h2><a class="anchor" id="setup_projects_vs_cs_pruning"></a>
+3. Pruning ALox</h2>
+<h2><a class="anchor" id="setup_projects_vs_cs_pruning_1"></a>
+3.1 What is Pruning?</h2>
+<p>What we mean with the term "pruning" is the automatic removal of the (debug) logging code from your release executable (or library) that is ready for deployment. The goals that motivate for auto pruning are:</p>
+<ul>
+<li>Maximize execution speed of your code, because all logging is pruned.</li>
+<li>Minimize the footprint of your code.</li>
+<li>Keep the console clean in the release version of your console application.</li>
+<li>Hide your software secrets, by removing all textual strings from your executable or library that includes debug messages.</li>
+</ul>
+<p>Furthermore, if you are using ALox as well for release log outputs, then the above stays true for all of your debug log statements, while all release log statements need to stay in.</p>
+<h2><a class="anchor" id="setup_projects_vs_cs_pruning_2"></a>
+3.1 How Pruning in ALox for C# works</h2>
+<p>Since Version 5, the Microsoft C# compiler supports methods to be annotated with class "ConditionalAttribute". This attribute uses a conditional compilation symbol which causes the compiler to ignore the invocation of methods when the symbol is not set. Again: the <em>invocation</em> of the methods is disabled, not the compilation of the methods itself!</p>
+<p>Consider the following line of code:</p>
+<div class="fragment"><div class="line">Log.AddLogger( <span class="keyword">new</span> ConsoleLogger( <span class="stringliteral">&quot;Console&quot;</span> ) );</div>
+</div><!-- fragment --><p>Method Log.AddLogger() is annotated as conditional using the symbol <em>ALOX_DEBUG</em>. Now the compiler does not include this line into the executable when <em>ALOX_DEBUG</em> is not set.</p>
+<p>However, the compiler still checks the integrity of the parameter. Therefore, ALox provides empty method stubs for the most common classes and a few of their methods, even in the release configuration. To be able to compile the sample above in release mode, we need</p>
+<ul>
+<li>a class ConsoleLogger</li>
+<li>a constructor of class ConsoleLogger taking a String object</li>
+</ul>
+<p>In the release version, both are empty "stubs" of their original classes. The reason why ALox creates stubs is to minimize the footprint of ALox in the moment it is not used (in the deployed applications that do not do release logging). Members of classes that are not too frequently used are not available in the release.</p>
+<p>Consider the following code to setup the format of a log line:</p>
+<div class="fragment"><div class="line">ConsoleLogger cl= <span class="keyword">new</span> ConsoleLogger();</div>
+<div class="line">cl.LineFormatter.Format= <span class="keyword">new</span> MString( <span class="stringliteral">&quot;%CF(%CL):%CM()%A3[%DD][%TD][%TE +%TI] %L [%O] &lt;%#&gt;: &quot;</span>);</div>
+<div class="line">Log.AddLogger( <span class="keyword">new</span> ConsoleLogger( <span class="stringliteral">&quot;Console&quot;</span> ) );</div>
+</div><!-- fragment --><p>This would lead to a compilation error in the release configuration of your project (if you do not use release logging). The reason is, that the field <em>LineFormatter</em> is not included in the release version of ALox. In fact, the whole class <em>TextLoggerLineFormatter</em> is not existing!</p>
+<p>To resolve this, use conditional compilation:</p>
+<div class="fragment"><div class="line">ConsoleLogger cl= <span class="keyword">new</span> ConsoleLogger();</div>
+<div class="line"><span class="preprocessor">#if ALOX_DEBUG</span></div>
+<div class="line"><span class="preprocessor"></span>    cl.LineFormatter.Format= <span class="keyword">new</span> MString( <span class="stringliteral">&quot;%CF(%CL):%CM()%A3[%DD][%TD][%TE +%TI] %L [%O] &lt;%#&gt;: &quot;</span>);</div>
+<div class="line"><span class="preprocessor">#endif</span></div>
+<div class="line"><span class="preprocessor">Log.AddLogger( new ConsoleLogger( &quot;Console&quot; ) );</span></div>
+</div><!-- fragment --><h2><a class="anchor" id="setup_projects_vs_cs_pruning_3"></a>
+3.1 Mission accomplished: Perfect Auto Pruning with ALox!</h2>
+<p>The result of the things said above incorporate <b>five</b> great news for you:</p>
+<ol type="1">
+<li>You can safely use most methods of class <em>Log</em> without enclosing them by <code>#if</code> <code></code>... <code>#endif</code> statements!</li>
+<li>The impact of using ALox debug log statements in respect to execution speed in the release version of your application is exactly ZERO, because the methods do not make it into your release executable!</li>
+<li>The impact of using ALox in respect to the footprint of your executable extremely small (all that remains are some empty classes with a few stubs). This remains true, even if thousands of new features would come in future versions of ALox!</li>
+<li>All debug log statements, including all textual messages you are adding to your log calls, are completely pruned from the release executable! Your "debug secrets" can not be reverse engineered, they are just gone!</li>
+<li>You do not need to clutter your code with <code>#if</code> <code></code>... <code>#endif</code> statements if using ALox!</li>
+<li>Even if you mix debug and release logging features of ALox, while the footprint of the ALox library is higher, all the rest of the above stays true!</li>
+</ol>
+<dl class="section note"><dt>Note</dt><dd>This is all true for C#. For other platforms check out platform specific sections of ALox pruning techniques. </dd></dl>
 </div></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.4-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jul 19 2013 02:27:59 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jul 20 2013 02:18:12 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

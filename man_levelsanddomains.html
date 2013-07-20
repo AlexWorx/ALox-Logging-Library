@@ -41,9 +41,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>ALox&#160;Home</span></a></li>
+      <li><a href="faq.html"><span>FAQ</span></a></li>
       <li><a href="manual.html"><span>Manual</span></a></li>
-      <li><a href="cs_ref/index.html"><span>C#&#160;Reference</span></a></li>
-      <li><a href="java_ref/index.html"><span>Java&#160;Reference</span></a></li>
+      <li><a href="cs_ref/index.html"><span>ALox&#160;for&#160;C#</span></a></li>
+      <li><a href="java_ref/index.html"><span>ALox&#160;for&#160;Java</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -254,15 +255,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </ul>
 <p>This probably sounds more complex than it is. If you think about it for a second, it should become obvious.</p>
 <p>This mechanism allows for example to redirect all logs coming from an external library (or a different department in your company or just a portion of code that you are currently not interested in) maybe together with your logs into a file, while on the debug console you see exclusively the things your are currently interested in.</p>
-<p>Or as another example, you could consider a logger that sends alert emails to you. Of-course, you just want to receive such mails on very special occasions, e.g. something really severe happens.</p>
+<p>Or, as another example, you could consider a logger that sends alert emails to you. Of-course, you just want to receive such mails on very special occasions, e.g. something really severe happens.</p>
 <p><br/>
  </p>
 <h1><a class="anchor" id="man_levelsanddomains_summary"></a>
 9. Summary</h1>
-<p>Ok, this was quite a bunch of things that we need to know about <em>log levels</em> and corresponding <em>log domains</em> and their <em>log domain levels</em>.<br/>
+<p>Okay, this was quite a bunch of things that we need to know about <em>log levels</em> and corresponding <em>log domains</em> and their <em>log domain levels</em>.<br/>
  So, let us summarize the takeaways of this chapter and repeat quickly what we learned:</p>
 <ul>
-<li>Each log call with ALox has is related to a certain <em>log domain</em></li>
+<li>Each log call is related to a certain <em>log domain</em>.</li>
 <li>The log levels <em>Error</em>, <em>Warning</em>, <em>Info</em>, <em>Verbose</em> of each log call determine how they get filtered according to the <em>log domain level</em>.</li>
 <li>Log domains are hierarchically organized and domain levels can be inherited through this hierarchy.</li>
 <li>Log domains are attached to Loggers and hence can be controlled per Logger.</li>
@@ -276,7 +277,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <!-- HTML footer for doxygen 1.8.4-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jul 19 2013 03:03:21 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jul 20 2013 02:18:52 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

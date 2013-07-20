@@ -41,10 +41,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="../index.html"><span>ALox&#160;Home</span></a></li>
+      <li><a href="../faq.html"><span>FAQ</span></a></li>
+      <li><a href="../manual.html"><span>Manual</span></a></li>
       <li><a href="index.html"><span>ALox&#160;for&#160;C#</span></a></li>
-      <li><a href="setup_projects_vs_cs.html"><span>Visual&#160;Studio&#160;Setup</span></a></li>
+      <li><a href="setup_projects_vs_cs.html"><span>VStudio&#160;Setup</span></a></li>
       <li><a href="tutorial_cs.html"><span>Tutorial</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Class&#160;Reference</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Class&#160;Ref.</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -119,11 +121,12 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:aa8fbde711ff2895904643515cd565a8f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html#aa8fbde711ff2895904643515cd565a8f">EnableVSDebugConsole</a> = true</td></tr>
-<tr class="memdesc:aa8fbde711ff2895904643515cd565a8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables logging to the debug window of Visual Studio. Defaults to true. <a href="#aa8fbde711ff2895904643515cd565a8f">More...</a><br/></td></tr>
+<tr class="memitem:aa8fbde711ff2895904643515cd565a8f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa8fbde711ff2895904643515cd565a8f"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html#aa8fbde711ff2895904643515cd565a8f">EnableVSDebugConsole</a> = true</td></tr>
+<tr class="memdesc:aa8fbde711ff2895904643515cd565a8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables logging to the debug window of Visual Studio. Defaults to true in <br/></td></tr>
 <tr class="separator:aa8fbde711ff2895904643515cd565a8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afebe821fecca4fbd3778cb0227fd9a32"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html#afebe821fecca4fbd3778cb0227fd9a32">EnableAppConsole</a> = false</td></tr>
-<tr class="memdesc:afebe821fecca4fbd3778cb0227fd9a32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables logging to the application console (std. out). Defaults to false. <a href="#afebe821fecca4fbd3778cb0227fd9a32">More...</a><br/></td></tr>
+<tr class="memdesc:afebe821fecca4fbd3778cb0227fd9a32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables logging to the application console (std. out). Defaults to true in ALOX_DEBUG configuration, to false in ALOX_REL_LOG configuration. <a href="#afebe821fecca4fbd3778cb0227fd9a32">More...</a><br/></td></tr>
 <tr class="separator:afebe821fecca4fbd3778cb0227fd9a32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html">TextLogger</a></td></tr>
 <tr class="memitem:a4659dec01dc35beaed57a1d13fb3a60c inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html">TextLoggerObjectConverter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a4659dec01dc35beaed57a1d13fb3a60c">ObjectConverter</a> = new <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html">TextLoggerObjectConverter</a>()</td></tr>
@@ -343,21 +346,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Enables logging to the application console (std. out). Defaults to false.</p>
-
-</div>
-</div>
-<a class="anchor" id="aa8fbde711ff2895904643515cd565a8f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool EnableVSDebugConsole = true</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Enables logging to the debug window of Visual Studio. Defaults to true.</p>
+<p>Enables logging to the application console (std. out). Defaults to true in ALOX_DEBUG configuration, to false in ALOX_REL_LOG configuration.</p>
 
 </div>
 </div>
@@ -368,7 +357,7 @@ Protected Attributes</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.4-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jul 19 2013 02:27:59 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jul 20 2013 02:18:13 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

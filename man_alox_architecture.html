@@ -41,9 +41,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>ALox&#160;Home</span></a></li>
+      <li><a href="faq.html"><span>FAQ</span></a></li>
       <li><a href="manual.html"><span>Manual</span></a></li>
-      <li><a href="cs_ref/index.html"><span>C#&#160;Reference</span></a></li>
-      <li><a href="java_ref/index.html"><span>Java&#160;Reference</span></a></li>
+      <li><a href="cs_ref/index.html"><span>ALox&#160;for&#160;C#</span></a></li>
+      <li><a href="java_ref/index.html"><span>ALox&#160;for&#160;Java</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -105,7 +106,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  In addtion there are utility classes, currently for <em>TextLoggers</em>, probably more to come in the future. As a basic user of ALox, you do not need to know too much about the classes in <em><a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/namespacecom_1_1aworx_1_1lox_1_1core.html">com.aworx.lox.core</a></em>.</li>
 <li><b><a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/namespacecom_1_1aworx_1_1lox.html">com.aworx.lox</a></b><br/>
  In namespace <em><a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/namespacecom_1_1aworx_1_1lox.html">com.aworx.lox</a></em> the central class is <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a> which acts as a container for the loggers, manages a set of different settings and prvides the user interface (API) into ALox release logging.<br/>
- In addtion you will find class <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> which is a static interface into one dedicated <em>Lox</em> instance and this is all about debug logging. (For information about the terms debug and release logging, see <a class="el" href="alox_faq.html#alox_faq_debug_vs_release_logging">What do the terms "debug logging" and "release logging" mean?</a>.)</li>
+ In addtion you will find class <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> which is a static interface into one dedicated <em>Lox</em> instance and this is all about debug logging. (For information about the terms debug and release logging, see <a class="el" href="faq.html#faq_debug_vs_release_logging">What do the terms "debug logging" and "release logging" mean?</a>.)</li>
 </ul>
 <p>Now, namespace <em><a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/namespacecom_1_1aworx_1_1lox.html">com.aworx.lox</a></em> knows namespace <em><a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/namespacecom_1_1aworx_1_1lox_1_1core.html">com.aworx.lox.core</a></em> (but not vice versa):</p>
 <div align="center">
@@ -157,7 +158,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  </p>
 <h1><a class="anchor" id="man_architecture_log"></a>
 4. Log - Debug Logging</h1>
-<p>There are two fundamental logging scenarios that we call <b>debug logging</b> and <b>release logging</b>. (For information, see <a class="el" href="alox_faq.html#alox_faq_debug_vs_release_logging">What do the terms "debug logging" and "release logging" mean?</a>.)</p>
+<p>There are two fundamental logging scenarios that we call <b>debug logging</b> and <b>release logging</b>. (For information, see <a class="el" href="faq.html#faq_debug_vs_release_logging">What do the terms "debug logging" and "release logging" mean?</a>.)</p>
 <p>For various reasons (performance, code size, security, etc), debug log statements should be disabled and removed (pruned) from the release version of a software.</p>
 <p>To achieve all goals and provide a very simple interface into debug logging, the ALox ecosystem provides class <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Log.html">Log</a>. This class is a 100% static interface into class Lox. In other words, class Log creates and holds exaclty one static instance of class Lox and mimics the complete interface of that instance into corresponding static methods.</p>
 <div align="center">
@@ -181,7 +182,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <!-- HTML footer for doxygen 1.8.4-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jul 19 2013 03:03:21 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jul 20 2013 02:18:52 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>
