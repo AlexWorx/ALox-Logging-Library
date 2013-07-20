@@ -134,8 +134,8 @@ public class Lox
 		/** ***********************************************************************************************
 		 * <summary>
 		 *  Retrieve an instance of a Logger by its name. Note: This function is not automatically
-		 *  removed from the release code because of technical restrictions. It has to be conditionally
-		 *  compiled by enclosing calls to it with "#if ... #endif" statements.
+		 *  removed from the release code because of technical restrictions. Invocations of this methods have
+		 *  to be conditionally compiled by enclosing calls to it with "#if ... #endif" statements.
 		 * </summary>
 		 * <param name="loggerName">	The name of the logger to search for (case insensitive) </param>
 		 * <returns>	The logger, null if not found. </returns>

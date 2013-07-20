@@ -30,7 +30,7 @@ So, let us quickly walk through the class by looking at its members.
 \note
 Attention to users who are in love with oo techniques, like encapsulation, getters/setters
 and all this stuff: unfortunately, we are not. ALox, by design, does neither protect
-its members, nor follows many other of these nice oo patterns. See \ref alox_faq_bauhaus.
+its members, nor follows many other of these nice oo patterns. See \ref faq_bauhaus.
 
 ## 1.1 The fields of class Logger ## {#man_loggers_logger_fields}
 There are just a few fields in class [Logger](@ref #com.aworx.lox.core.Logger):
@@ -322,7 +322,7 @@ While the abstract classes *Logger* and *TextLogger* are located in the namespac
 
 ## 3.1 ConsoleLogger ## {#man_loggers_implementations_ConsoleLogger}
 For debugging purposes (remember: ALox is designed to support both, debug and release logging, 
-see \ref alox_faq_debug_vs_release_logging), the most important *Logger* implementation is of-course class 
+see \ref faq_debug_vs_release_logging), the most important *Logger* implementation is of-course class 
 [ConsoleLogger](@ref #com.aworx.lox.loggers.ConsoleLogger) which logs to an application console
 window and/or into your IDE output window. 
 This class by nature varies from between languages and IDEs. The goal is to provide specific
@@ -366,7 +366,7 @@ The most urgent *Logger* expected in future versions is of course a *FileLogger*
 log output persistent and basically transportable. We will equip the *FileLogger* with the 
 optional feature to create new files each time an application is started and also to
 optionally delete outdated log files automatically. This will be useful for debug logging
-and release logging as well. (See \ref alox_faq_debug_vs_release_logging.)
+and release logging as well. (See \ref faq_debug_vs_release_logging.)
 
 For release logging (especially on mobile devices with limited persistent memory), a 
 binary file logger is planned. We think, log files can be compressed heavily using

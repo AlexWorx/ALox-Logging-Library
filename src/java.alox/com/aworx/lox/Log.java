@@ -138,9 +138,7 @@ public abstract class Log
 	// #################################################################################################
 
 	/**********************************************************************************************//**
-	 * Retrieve an instance of a Logger by its name. Note: This function is not automatically
-	 * removed from the release code because of technical restrictions. It has to be conditionally
-	 * compiled by enclosing calls to it with "//#if ... //#endif" statements.
+	 * Retrieve an instance of a Logger by its name. 
 	 *
 	 * @param loggerName    The name of the logger to search for (case insensitive)
 	 *

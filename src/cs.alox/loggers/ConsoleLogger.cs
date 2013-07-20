@@ -33,19 +33,34 @@ namespace com.aworx.lox.loggers  {
  **************************************************************************************************/
 public class ConsoleLogger : TextLogger
 {
-	// #################################################################################################
-	// Empty method stubs for release version (with no release logging)
-	// #################################################################################################
-	#if !(ALOX_DEBUG || ALOX_REL_LOG)
+// #################################################################################################
+// Empty method stubs for release version (with no release logging)
+// #################################################################################################
+#if !(ALOX_DEBUG || ALOX_REL_LOG)
 		public ConsoleLogger( String name= "CONSOLE" ){}
+#else
+
+
+	#if ALOX_DEBUG
+		/// <summary>Enables logging to the debug window of Visual Studio. Defaults to true in
+		// ALOX_DEBUG configuration, to false in ALOX_REL_LOG configuration.</summary>
+		public		bool			EnableVSDebugConsole			= true;
+
+		#if !ALOX_NO_CONSOLE	
+			/// <summary>Enables logging to the application console (std. out).  Defaults to true in
+			///	ALOX_DEBUG configuration, to false in ALOX_REL_LOG configuration.</summary>
+			public		bool		EnableAppConsole				= false;
+		#endif
 	#else
+		/// <summary>Enables logging to the debug window of Visual Studio. Defaults to true in
+		// ALOX_DEBUG configuration, to false in ALOX_REL_LOG configuration.</summary>
+		public		bool			EnableVSDebugConsole			= false;
 
-	/// <summary>Enables logging to the debug window of Visual Studio. Defaults to true.</summary>
-	public		bool			EnableVSDebugConsole			= true;
-
-	/// <summary>Enables logging to the application console (std. out). Defaults to false.</summary>
-	#if !ALOX_NO_CONSOLE	
-	  public		bool		EnableAppConsole				= false;
+		#if !ALOX_NO_CONSOLE	
+			/// <summary>Enables logging to the application console (std. out).  Defaults to true in
+			///	ALOX_DEBUG configuration, to false in ALOX_REL_LOG configuration.</summary>
+			public		bool		EnableAppConsole				= true;
+		#endif
 	#endif
 
 	/// <summary>A temporary buffer for assembling the caller info string</summary>

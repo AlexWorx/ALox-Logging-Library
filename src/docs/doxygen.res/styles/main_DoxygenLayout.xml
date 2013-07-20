@@ -4,11 +4,12 @@
 	<navindex>
 		<tab type="mainpage" visible="yes" title="ALox Home"/>
 		<tab type="pages" visible="no" title="List of pages" intro=""/>
+		<tab type="user" visible="yes" title="FAQ"							url=  "@ref faq"/>
 		<tab type="user" visible="yes" title="Manual"						url=  "@ref manual"/>
 
 		<!-- <tab type="usergroup" title="Reference Manuals"> -->
-			<tab type="user" visible="yes" title="C# Reference"			url=  "cs_ref/index.html"/>
-			<tab type="user" visible="yes" title="Java Reference"		url="java_ref/index.html"/>
+			<tab type="user" visible="yes" title="ALox for C#"			url=  "cs_ref/index.html"/>
+			<tab type="user" visible="yes" title="ALox for Java"		url="java_ref/index.html"/>
 		<!-- </tab> -->
 
 

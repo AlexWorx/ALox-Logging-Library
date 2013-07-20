@@ -33,7 +33,7 @@ Lets start with two namespaces:
   interface (API) into ALox release logging.<br>
   In addtion you will find class [Log](@ref #com.aworx.lox.Log) which is a static interface
   into one dedicated *Lox* instance and this is all about debug logging.
-  (For information about the terms debug and release logging, see \ref alox_faq_debug_vs_release_logging.)
+  (For information about the terms debug and release logging, see \ref faq_debug_vs_release_logging.)
 
 Now, namespace *com.aworx.lox* knows namespace *com.aworx.lox.core* (but not vice versa): 
   
@@ -272,7 +272,7 @@ names. For standard scenarios this is not recommended, because the flexibility t
 # 4. Log - Debug Logging # {#man_architecture_log}
 
 There are two fundamental logging scenarios that we call **debug logging** and **release logging**.
-(For information, see \ref alox_faq_debug_vs_release_logging.)
+(For information, see \ref faq_debug_vs_release_logging.)
 
 For various reasons (performance, code size, security, etc), debug log statements should be disabled
 and removed (pruned) from the release version of a software.

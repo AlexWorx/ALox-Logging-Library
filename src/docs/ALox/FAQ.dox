@@ -7,12 +7,12 @@
 // #################################################################################################
 
 /**
-\page alox_faq              FAQ - Frequently asked Questions for ALox
+\page faq              FAQ - Frequently asked Questions for ALox
 
 \tableofcontents
 
 <br>
-# Why the name "ALox" and how is it pronounced? # {#alox_faq_the_name_alex}
+# Why the name "ALox" and how is it pronounced? # {#faq_the_name_alex}
 
 The English term "log" is known. Now "logs" is the plural. As English pronunciation is always
 a little unspecific and volatile, you could write the word "logs" as "lox" easily without
@@ -26,7 +26,7 @@ _Note: This explanation also proves that the name has nothing to do with this gu
 his name pronounced in one word!_
 
 <br>
-# What is "Bauhaus Code Style", please? # {#alox_faq_bauhaus}
+# What is "Bauhaus Code Style", please? # {#faq_bauhaus}
 
 Well, if you are not familiar with it, checkout [Bauhaus](http://http://en.wikipedia.org/wiki/Bauhaus)
 on Wikipedia (and yes, we are a German team). 
@@ -56,27 +56,32 @@ of a *DateTime*  object (what *DateTime.Now* does), then please send us an Email
 Update: Too late, we solved it! A little tricky and some static code was needed, but it works well.
 
 <br>
-# What is the performance impact on my application when using ALox # {#alox_faq_performance}
+# What is the performance impact on my application when using ALox # {#faq_performance}
 
 ALox is fast (see previous question on Bauhaus). Using a MemoryLogger, in C# we
 measured more than 200.000 log entries per second on a Notebook (equipped with an Intel(R) Core(TM) i7 CPU @2.8GHz)
-while running an application (and ALox) in debug mode! Hence, doing 100 log entries per second, 
-the performance loss for your application would be a maximum of 0.05%. 
+while running an application (and ALox) in debug mode! Hence, if doing as much as 100 log entries 
+per second, the performance loss for your application would still be a maximum of 0.05%. 
 
 Of-course, logging into a console is slower. But the good news is: As the internal management of ALox
-is so fast, there will not be a measurable difference between "normal" debug log output using "printf()", 
-"System.out.println()", "Console.WriteLine", etc. and ALox logging. And: as for debug logging, this 
+is so fast, there will not be a measurable difference between "normal" debug log output using \c printf(), 
+\c System.out.println(), \c Console.WriteLine, etc. versus ALox logging. And: as for debug logging, this 
 gets automatically pruned in the release code. Hence, the release version of your software is free
-of any performance issue caused by debug logging. 
+of any performance issue caused by debug logging. (For example, C# users read 
+\ref setup_projects_vs_cs_pruning_3 "Mission accomplished: Perfect Auto Pruning with ALox!"
+for more information.)
 
 <br>
-# What do the terms "debug logging" and "release logging" mean?  # {#alox_faq_debug_vs_release_logging}
-
+# What do the terms "debug logging" and "release logging" mean?  # {#faq_debug_vs_release_logging}
+                                                                    
 In general debug logging and release logging are two different things. Debug logging is about adding 
 log statements to your code that enables you to see on the terminal console or your IDEs output window
 what your software currently does, what errors and warnings it produces, how long certain
 methods take to execute and whatever you want your software to tell you.
-Debug log statements should be ultimately removed from your executable in the moment it gets deployed.
+Debug log statements should be ultimately pruned 
+(removed, see \ref setup_projects_vs_cs_pruning_1 "What is Pruning") 
+from your executable in the moment it gets deployed.
+
 
 Release logging is about generating a log file, a log database, an online report to a server or whatever 
 you choose during execution of your deployed software. Often, release logging is used for dealing with
@@ -90,7 +95,7 @@ in the area of release logging will also support debug logging aspects of ALox a
 Therefore the natural path of evolution for the ALox project is "debug logging features first, release logging features next".
 
 <br>
-# Why are ALox log formats all US/English? # {#alox_faq_internationalization}
+# Why are ALox log formats all US/English? # {#faq_internationalization}
 
 Of-course the log content itself is unicode and hence supports your locale within 
 your application. But the following is true: All configurable output of meta information is done in US/English locale. 
@@ -102,7 +107,7 @@ If you absolutely want localized meta information, like log dates in Finnish, yo
 Here is \ref man_loggers_textlogger "how you do that"!
 
 <br>
-# Why is ALox introducing a set of own utility classes? # {#alox_faq_aworx_util}
+# Why is ALox introducing a set of own utility classes? # {#faq_aworx_util}
 We would not say that ALox is "introducing" an own set of utility classes. ALox
 only builds upon such own set. They are located in namespace *com.aworx.util*. 
 We know that there are other, better and much more complete sets in the market. Our

@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0D355910-46A3-4BBC-B1DA-1538C3AB6516}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ALox_CS_WP71_DLL</RootNamespace>
+    <AssemblyName>ALox-CS-WP71-DLL</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SILVERLIGHT;WINDOWS_PHONE;ALOX_DEBUG;ALOX_WP71</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE;ALOX_REL_LOG;ALOX_WP71</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Phone" />
+    <Reference Include="System.Runtime">
+      <HintPath>..\packages\Microsoft.Bcl.1.0.19\lib\sl4-windowsphone71\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.1.0.19\lib\sl4-windowsphone71\System.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Net" />
+    <Reference Include="mscorlib.extensions" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\src\cs.alox\core\CallerInfo.cs">
+      <Link>src\core\CallerInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.alox\core\LogDomain.cs">
+      <Link>src\core\LogDomain.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.alox\core\Logger.cs">
+      <Link>src\core\Logger.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.alox\core\TextLogger.cs">
+      <Link>src\core\TextLogger.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.alox\core\TextLoggerLineFormatter.cs">
+      <Link>src\core\TextLoggerLineFormatter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.alox\core\TextLoggerObjectConverter.cs">
+      <Link>src\core\TextLoggerObjectConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.alox\Log.cs">
+      <Link>src\Log.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.alox\loggers\ConsoleLogger.cs">
+      <Link>src\loggers\ConsoleLogger.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.alox\loggers\MemoryLogger.cs">
+      <Link>src\loggers\MemoryLogger.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.alox\LogTools.cs">
+      <Link>src\LogTools.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.alox\Lox.cs">
+      <Link>src\Lox.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.aworx.util\AWXU.cs">
+      <Link>src.util\AWXU.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.aworx.util\MString.cs">
+      <Link>src.util\MString.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.aworx.util\ThreadLock.cs">
+      <Link>src.util\ThreadLock.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\cs.aworx.util\Ticker.cs">
+      <Link>src.util\Ticker.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <ProjectExtensions />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.5\tools\Microsoft.Bcl.Build.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

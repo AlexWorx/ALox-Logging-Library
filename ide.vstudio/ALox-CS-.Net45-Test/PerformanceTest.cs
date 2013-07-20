@@ -20,15 +20,11 @@ class PerformanceTest
 		test.test();
 	}
 
-	#if ALOX_DEBUG || ALOX_REL_LOG
-
 	// #################################################################################################
 	// Fields
 	// #################################################################################################
 	ConsoleLogger cl;
 	MemoryLogger  ml;
-
-	#endif
 
 	// #################################################################################################
 	// Test functions
@@ -36,15 +32,15 @@ class PerformanceTest
 	
 	void test()
 	{
+		cl=	new ConsoleLogger( "Console" );
 		#if ALOX_DEBUG || ALOX_REL_LOG
-			cl=	new ConsoleLogger( "Console" );
 			cl.EnableAppConsole=		true;
 			cl.EnableVSDebugConsole=	false;
-			ml= new MemoryLogger( "Memory");
-
-			Log.AddLogger( cl, Log.DomainLevel.WarningsAndErrors );
-			Log.AddLogger( ml, Log.DomainLevel.Off );
 		#endif
+		ml= new MemoryLogger( "Memory");
+
+		Log.AddLogger( cl, Log.DomainLevel.WarningsAndErrors );
+		Log.AddLogger( ml, Log.DomainLevel.Off );
 
 		Log.RegDomain( "CON", Log.Scope.SourceFile );
 		Log.RegDomain( "MEM", Log.Scope.None  );

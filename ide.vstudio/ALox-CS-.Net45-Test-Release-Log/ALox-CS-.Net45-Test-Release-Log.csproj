@@ -54,20 +54,20 @@
     <Compile Include="..\..\src\cs.unittests.aworx.util\Test_TickerAndTickTime.cs">
       <Link>tests.aworx.util\Test_TickerAndTickTime.cs</Link>
     </Compile>
-    <Compile Include="PerformanceTest.cs" />
+    <Compile Include="ReleaseLogTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ALox-CS-DLL\ALox-CS-DLL.csproj">
-      <Project>{e4ff710a-4e99-4dcf-9bbd-efd0fab1e46d}</Project>
-      <Name>ALox-CS-DLL</Name>
-    </ProjectReference>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
+    <ProjectReference Include="..\ALox-CS-.Net45-DLL-Release-Log\ALox-CS-.Net45-DLL-Release-Log.csproj">
+      <Project>{e8e5d176-ece6-4757-931a-fcead361f8c7}</Project>
+      <Name>ALox-CS-.Net45-DLL-Release-Log</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

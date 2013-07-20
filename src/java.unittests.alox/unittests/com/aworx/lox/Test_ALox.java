@@ -636,12 +636,12 @@ public class Test_ALox
 
 				cl.multiLineMsgMode= 3;
 				Log.info( "" );
-				Log.info( "-------- ML Mode = 3 (multi line, print headline with info, text starts at pos 0) --------\" );
+				Log.info( "-------- ML Mode = 3 (multi line, print headline with info, text starts at pos 0) --------" );
 				Log.logConfig( "MLine", Log.Level.INFO, "Our Log configuration is:" );
 
 				cl.multiLineMsgMode= 4;
 				Log.info( "" );
-				Log.info( "-------- ML Mode = 4 (pure multi line, no meta info, no headline, starts at pos 0)) --------\" );
+				Log.info( "-------- ML Mode = 4 (pure multi line, no meta info, no headline, starts at pos 0)) --------" );
 				Log.logConfig( "MLine", Log.Level.INFO, "Our Log configuration is:" );
 			//#endif
 		}

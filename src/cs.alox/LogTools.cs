@@ -152,7 +152,7 @@ public class LogTools
 	 * <param name="cln">	  	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cmn">	  	(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
-	[Conditional("ALOX_DEBUG")] 
+	[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
 	public static void Exception( String		domain,		Log.Level	level,
 								  Exception		e,			String		headline= null,
 								  int			indent= 0, 	Lox			lox= null,
@@ -200,7 +200,7 @@ public class LogTools
 	 * <param name="cln">	   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cmn">	   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
-	[Conditional("ALOX_DEBUG")] 
+	[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
 	public static void Exception( Exception		e,				String		headline= null,
 								  int			indent=	0,		Lox			lox= null,
 								  [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
@@ -226,7 +226,7 @@ public class LogTools
 	 * <param name="cln">		  	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cmn">		  	(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
-	[Conditional("ALOX_DEBUG")] 
+	[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
 	public static void Instance( String		domain,				Log.Level	level,
 								 Object		o,					int			maxRecursion,
 								 String		headline=  null, 	int			indent=	0,
@@ -251,11 +251,11 @@ public class LogTools
 					instMain( o, maxRecursion, headline );
 
 					// log it using the static Log interface
-					lox.Line ( true, domain, level, toolBuf, indent, null, csf, cln, cmn );
+					lox.Line ( true, domain, level, toolBuf, indent, null, csf,cln,cmn );
 
 				#else
-					lox.Line ( true, domain, level, "LoxTools.Instance(): Reflection not supported on this platform. ToString(): ", indent );
-					lox.Line ( true, domain, level, ( o == null ? "null" : o.ToString()), indent + 1 );
+					lox.Line ( true, domain, level, "LoxTools.Instance(): Reflection not supported on this platform. ToString(): ", indent, null, csf,cln,cmn );
+					lox.Line ( true, domain, level, ( o == null ? "null" : o.ToString()), indent + 1, null, csf, cln, cmn );
 				#endif // NO_REFLECTION
 
 			} finally { Lock.Release(); }
@@ -276,7 +276,7 @@ public class LogTools
 	 * <param name="cln">		  	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cmn">		  	(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
-	[Conditional("ALOX_DEBUG")] 
+	[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
 	public static void Instance( Log.Level	level,
 								 Object		o,					int	maxRecursion,
 								 String		headline= null, 	int	indent=	0,
@@ -306,7 +306,7 @@ public class LogTools
 		 * <param name="cln">	   	(Optional) Caller info, compiler generated. Please omit. </param>
 		 * <param name="cmn">	   	(Optional) Caller info, compiler generated. Please omit. </param>
 		 **************************************************************************************************/
-		[Conditional("ALOX_DEBUG")] 
+		[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
 		public static void XML(	String		domain,			Log.Level	level,
 								XDocument	xDocument,		String		headLine=	null,
 								int			indent=	  0, 	Lox			lox=		null,
@@ -349,7 +349,7 @@ public class LogTools
 		 * <param name="cln">	   	(Optional) Caller info, compiler generated. Please omit. </param>
 		 * <param name="cmn">	   	(Optional) Caller info, compiler generated. Please omit. </param>
 		 **************************************************************************************************/
-		[Conditional("ALOX_DEBUG")] 
+		[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
 		public static void XML(	Log.Level		level,
 								XDocument		xDocument,	String	headLine,
 								int				indent=	0, 	Lox		lox= null,
@@ -376,7 +376,7 @@ public class LogTools
 		 * <param name="cln">	   	(Optional) Caller info, compiler generated. Please omit. </param>
 		 * <param name="cmn">	   	(Optional) Caller info, compiler generated. Please omit. </param>
 		 **************************************************************************************************/
-		[Conditional("ALOX_DEBUG")] 
+		[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
 		public static void XML(	String			domain,		Log.Level	level,
 								XElement		xElement,	String		headLine=	null,
 								int				indent=	 0, Lox			lox= null,
@@ -425,7 +425,7 @@ public class LogTools
 		 * <param name="cln">	   	(Optional) Caller info, compiler generated. Please omit. </param>
 		 * <param name="cmn">	   	(Optional) Caller info, compiler generated. Please omit. </param>
 		 **************************************************************************************************/
-		[Conditional("ALOX_DEBUG")] 
+		[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
 		public static void XML(	Log.Level	level,
 								XElement	xElement,	String		headLine,
 								int			indent=	0, 	Lox			lox= null,

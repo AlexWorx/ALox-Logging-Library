@@ -3,6 +3,8 @@
 	<!-- Navigation index tabs for HTML output -->
 	<navindex>
 		<tab type="user"			visible="yes" title="ALox Home"						url="../index.html"/>
+		<tab type="user"		  visible="yes" title="FAQ"									url="../faq.html"/>
+		<tab type="user"		  visible="yes" title="Manual"							url="../manual.html"/>
 		<tab type="mainpage"	visible="no"	title="ALox for Java"/>
 		<tab type="user"			visible="yes" title="IDE Setup"						url="@ref setup_projects_java"/>
 		<tab type="user"			visible="yes" title="Tutorial"					  url="@ref tutorial_java"/>
@@ -13,7 +15,7 @@
 					<tab type="namespacelist" visible="yes" title="" intro=""/>
 					<tab type="namespacemembers" visible="yes" title="" intro=""/>
 				</tab>
-				<tab type="classes" visible="yes" title="Class Reference">
+				<tab type="classes" visible="yes" title="Class Ref.">
 					<tab type="classlist" visible="yes" title="" intro=""/>
 					<tab type="classindex" visible="$ALPHABETICAL_INDEX" title=""/> 
 					<tab type="hierarchy" visible="yes" title="" intro=""/>
