@@ -1,9 +1,7 @@
 package unittests.com.aworx.util;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
-
 import com.aworx.util.MString;
 
 
@@ -21,6 +19,7 @@ public class Test_MString
 
 		MString tMSEmpty= new MString ( );
 		ms= new MString( (MString) null );			assertTrue ( ms.length == 0 );
+		ms.append( "was null" );					assertTrue ( ms.length == 8 );
 		ms= new MString( tMSEmpty );				assertTrue ( ms.length == 0 );
 		ms= new MString( tMSEmpty, 1,     0 );		assertTrue ( ms.length == 0 );
 		ms= new MString( tMSEmpty, -1000, 0 );		assertTrue ( ms.length == 0 );

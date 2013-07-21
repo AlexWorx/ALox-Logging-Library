@@ -43,7 +43,7 @@ To incorporate ALox into your Visual Studio solution, you have to follow three s
 __Step 1:__ Choose the right class library project that fits well to your own project target and platform. 
 The projects are found in
 
-        ALOX_LIB_PATH\ide.vstudio\ALox-CS.xxx-DLL-xxx
+        ALOX_LIB_PATH\ide\vstudio.2012\ALox-CS.xxx-DLL-xxx
    
 Your, choices are:
       
@@ -82,7 +82,7 @@ logging vs. 49kb including release logging) you can easily choose the "Release-L
 
 \par
 \note
-If there is no appropriate predefined project available for you, skip b) and c) and continue reading
+If there is no appropriate predefined project available for you, skip steps 2 and 3 and continue reading
 below at \ref setup_projects_vs_cs_1_3!
 
    Add the Visual Studio project that you find in the corresponding sub folder of the *ALOX_LIB_PATH*
@@ -168,49 +168,49 @@ compilation symbols already. The following gives the complete list of such symbo
 introduced by ALox:
 
 <br>
-- **ALOX_DEBUG**
+- **ALOX_DEBUG**<br>
   Enable debug logging. This should be set in the *Debug configuration* of your projects. Otherwise,
   not log output is generated if using the static interface of class [Log](@ref #com::aworx::lox::Log).  
  
-- **ALOX_REL_LOG**
+- **ALOX_REL_LOG**<br>
   To enable release logging. This should only be set in the *Release configuration* of your projects
   if you are using release logging with class [Lox](@ref #com::aworx::lox::Log).  If you do not
   use release logging features of ALox, this symbol should not be set to minimize the code that
   the ALox classes add to your executables.
 
-- **ALOX_WP71**
+- **ALOX_WP71**<br>
   To compile ALox for Windows Phone 7.1 projects. This should be set in the Debug and Release 
   configuration of your projects Windows Phone 7.1 projects.
   In addition to some compatibility changes in the code, this symbol also activates **ALOX_NO_REFLECTION**,
   hence the LogTools.Instance method is not available in Windows Phone projects. (This is due to security
   restrictions in the Windows Phone system architecture).
 
-- **ALOX_WP8**
+- **ALOX_WP8**<br>
   To compile ALox for Windows Phone 8 projects. This should be set in the Debug and Release 
   configuration of your projects Windows Phone 8.x projects.
   In addition to some compatibility changes in the code, this symbol also activates **ALOX_NO_REFLECTION**,
   hence the LogTools.Instance method is not available in Windows Phone projects. (This is due to security
   restrictions in the Windows Phone system architecture).
 
-- **ALOX_NO_REFLECTION**
+- **ALOX_NO_REFLECTION**<br>
   This symbol deactivates the use of reflection in class [LogTools](@ref #com::aworx::lox::LogTools). 
   This is useful for target platforms that do not allow instance inspection using reflection techniques.
   The method [LogTools.Instance](@ref #com::aworx::lox::LogTools::Instance) will not be available 
   however.
 
-- **ALOX_NO_XML**
+- **ALOX_NO_XML**<br>
   This symbol deactivates the use of *System.Xml.Linq* library in class [LogTools](@ref #com::aworx::lox::LogTools). 
   This is useful for target platforms that do not support this library. 
   The method [LogTools.XML](@ref #com::aworx::lox::LogTools::XML) will not be available however.
 
-- **ALOX_NO_CONSOLE**
-  This symbol deactivates the use of *Console.WriteLine" calls in class [ConsoleLogger](@ref #com::aworx::lox::loggers::ConsoleLogger). 
+- **ALOX_NO_CONSOLE**<br>
+  This symbol deactivates the use of *Console.WriteLine()* calls in class [ConsoleLogger](@ref #com::aworx::lox::loggers::ConsoleLogger). 
   If this is set, the flag [ConsoleLogger.EnableAppConsole](@ref #com::aworx::lox::loggers::ConsoleLogger::EnableAppConsole)
   becomes unavailable. The output of [ConsoleLogger](@ref #com::aworx::lox::loggers::ConsoleLogger) which is controlled
   by the second flag [ConsoleLogger.EnableAppConsole](@ref #com::aworx::lox::loggers::ConsoleLogger::EnableVSDebugConsole)
   will go exclusively to System.Diagnostics.Debug.WriteLine().
 
-- **ALOX_NO_THREADS**
+- **ALOX_NO_THREADS**<br>
   This symbol deactivates any mechanisms to protect ALox logging in multi-threaded environments. Use this 
   symbol only if you are sure to operate single threaded. (Even if your application does not create a new thread
   directly, e.g. UI driven applications are generally multi threaded. The advantage of using this 
@@ -218,7 +218,7 @@ introduced by ALox:
   performance gain is much less. So, only in very critical situations this symbol should be used.
 
 <br>
-## 3. Pruning ALox ##  {#setup_projects_vs_cs_pruning}
+# 3. Pruning ALox #  {#setup_projects_vs_cs_pruning}
 
 ## 3.1 What is Pruning? ##  {#setup_projects_vs_cs_pruning_1}
 
@@ -286,9 +286,10 @@ To resolve this, use conditional compilation:
 
 ## 3.1 Mission accomplished: Perfect Auto Pruning with ALox! ##  {#setup_projects_vs_cs_pruning_3}
 
+
 The result of the things said above incorporate **five** great news for you:
 
-1. You can safely use most methods of class *Log* without enclosing them by \c \#if \c... \c \#endif statements!
+1. You can safely use most methods of class *Log* without enclosing them by \c \#if \c ... \c \#endif statements!
 2. The impact of using ALox debug log statements in respect to execution speed in the release version of your application 
    is exactly ZERO, because the methods do not make it into your release executable!
 3. The impact of using ALox in respect to the footprint of your executable extremely small (all that remains are
@@ -296,9 +297,9 @@ The result of the things said above incorporate **five** great news for you:
    versions of ALox!
 4. All debug log statements, including all textual messages you are adding to your log calls, are completely
    pruned from the release executable! Your "debug secrets" can not be reverse engineered, they are just gone!
-5. You do not need to clutter your code with \c \#if \c... \c \#endif statements if using ALox!
-6. Even if you mix debug and release logging features of ALox, while the footprint of the ALox library is higher,
-   all the rest of the above stays true!
+5. You do not need to clutter your code with \c \#if \c ... \c \#endif statements if using ALox!
+6. Even if you mix debug and release logging features of ALox the above stays true, except that the footprint
+   of the ALox library is a little higher (e.g. it is 50kb in V1.1.0) !
 
 \note 
 This is all true for C#. For other platforms check out platform specific sections of ALox pruning techniques.

@@ -74,7 +74,7 @@ public class MString
 		if ( ms == null )
 		{
 			// create Buffer
-			Buffer=	new char[1024];
+			Buffer=	new char[16];
 			Clear();
 			return;
 		}
@@ -83,14 +83,14 @@ public class MString
 		if (length <= 0)
 		{
 			length= 0;
-			Buffer=	new char[ 1024 ];
+			Buffer=	new char[ 16 ];
 		}
 		else
 		{
 			if ( length == int.MaxValue )
 				length= ms.Length - startIdx;
 
-			Buffer=	new char[ length > 0 ?  length : 1024 ];
+			Buffer=	new char[ length > 0 ?  length : 16 ];
 		}
 		Clear();
 
@@ -109,10 +109,10 @@ public class MString
 	public MString( String s, int startIdx= 0, int length= int.MaxValue) 
 	{
 		// check null argument
-		if ( s == null )	   //TODO smaller or no buffer! See Java
+		if ( s == null )
 		{
 			// create Buffer
-			Buffer=	new char[1024];
+			Buffer=	new char[ 16 ];
 			Clear();
 			return;
 		}
@@ -121,14 +121,14 @@ public class MString
 		if (length <= 0)
 		{
 			length= 0;
-			Buffer=	new char[ 1024 ];
+			Buffer=	new char[ 16 ];
 		}
 		else
 		{
 			if ( length == int.MaxValue )
 				length= s.Length - startIdx;
 
-			Buffer=	new char[ (length > 0)  ? length : 1024  ];
+			Buffer=	new char[ (length > 0)  ? length : 16  ];
 		}
 		Clear();
 
@@ -150,7 +150,7 @@ public class MString
 		if ( sb == null )
 		{
 			// create Buffer
-			Buffer=	new char[1024];
+			Buffer=	new char[16];
 			Clear();
 			return;
 		}
@@ -159,14 +159,14 @@ public class MString
 		if (length <= 0)
 		{
 			length= 0;
-			Buffer=	new char[ 1024 ];
+			Buffer=	new char[ 16 ];
 		}
 		else
 		{
 			if ( length == int.MaxValue )
 				length= sb.Length - startIdx;
 
-			Buffer=	new char[ (length > 0)  ? length : 1024  ];
+			Buffer=	new char[ (length > 0)  ? length : 16  ];
 		}
 		Clear();
 

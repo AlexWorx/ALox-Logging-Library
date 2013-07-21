@@ -190,6 +190,34 @@ public class LogTools
 	 *  Log an exception including inner exceptions recursively. Default domain of file is used with
 	 *  Log.Level.Error. Note: Calls to this  method are automatically removed from release code.
 	 * </summary>
+	 * <param name="level">   	The log level. </param>
+	 * <param name="e">		  	The Exception to log. </param>
+	 * <param name="headline">	(Optional) A headline string to precede the exception with. </param>
+	 * <param name="indent">  	(Optional) the indentation in the output (recursively increased).
+	 * 							Defaults to 0. </param>
+	 * <param name="lox">	  	(Optional) The lox to log with. If null, the static member LOX of 
+	 * 							the static class Log is used. </param>
+	 * <param name="csf">	   	(Optional) Caller info, compiler generated. Please omit. </param>
+	 * <param name="cln">	   	(Optional) Caller info, compiler generated. Please omit. </param>
+	 * <param name="cmn">	   	(Optional) Caller info, compiler generated. Please omit. </param>
+	 **************************************************************************************************/
+	[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
+	public static void Exception( Log.Level		level,
+								  Exception		e,				String		headline= null,
+								  int			indent=	0,		Lox			lox= null,
+								  [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
+
+	{
+		#if ALOX_DEBUG || ALOX_REL_LOG
+			Exception( null, level, e, headline, indent, lox, csf,cln,cmn );
+		#endif
+	}
+
+	/** ***********************************************************************************************
+	 * <summary>
+	 *  Log an exception including inner exceptions recursively. Default domain of file is used with
+	 *  Log.Level.Error. Note: Calls to this  method are automatically removed from release code.
+	 * </summary>
 	 * <param name="e">		  	The Exception to log. </param>
 	 * <param name="headline">	(Optional) A headline string to precede the exception with. </param>
 	 * <param name="indent">  	(Optional) the indentation in the output (recursively increased).

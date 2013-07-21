@@ -146,7 +146,7 @@ public abstract class LogTools
 			toolBuf.clear();
 
 			// dump exception to the Buffer
-			exception ( e, headline, -1 );
+			exc ( e, headline, -1 );
 
 			// if no lox given, use static Log.LOX
 			if ( lox == null )
@@ -157,6 +157,7 @@ public abstract class LogTools
 
 		} finally { lock.release(); } 
 	}
+	
 	/** ***********************************************************************************************
 	 *  Log an exception including inner exceptions recursively.
 	 *   
@@ -191,8 +192,18 @@ public abstract class LogTools
 	 * @param e		  	The Exception to log.
 	 * @param headline	(Optional) A headline string preceding the exception output.
 	 * @param indent  	(Optional) the indentation in the output (recursively increased). Defaults to 0.
+	 * @param lox	  	(Optional) The Lox to log with. If null, the static member LOX of class Log is used.
 	 **************************************************************************************************/
-	public static void exception( 				 Log.Level level, Exception e, String headline, int indent ){ exception( null,    level, e, headline, 	indent, null ); }
+	public static void exception( 				 Log.Level level, Exception e, String headline, int indent, Lox lox){ exception( null,    level, e, headline, 	indent, lox ); }
+	/** ***********************************************************************************************
+	 *  Log an exception including inner exceptions recursively.
+	 *   
+	 * @param level   	The log level.
+	 * @param e		  	The Exception to log.
+	 * @param headline	(Optional) A headline string preceding the exception output.
+	 * @param indent  	(Optional) the indentation in the output (recursively increased). Defaults to 0.
+	 **************************************************************************************************/
+	public static void exception( 				 Log.Level level, Exception e, String headline, int indent )		{ exception( null,    level, e, headline, 	indent, null ); }
 	/** ***********************************************************************************************
 	 *  Log an exception including inner exceptions recursively.
 	 *   
@@ -200,15 +211,44 @@ public abstract class LogTools
 	 * @param e		  	The Exception to log.
 	 * @param headline	(Optional) A headline string preceding the exception output.
 	 **************************************************************************************************/
-	public static void exception( 				 Log.Level level, Exception e, String headline )			{ exception( null,    level, e, headline, 	0,		null ); }
+	public static void exception( 				 Log.Level level, Exception e, String headline )					{ exception( null,    level, e, headline, 	0,		null ); }
 	/** ***********************************************************************************************
 	 *  Log an exception including inner exceptions recursively.
 	 *   
 	 * @param level   	The log level.
 	 * @param e		  	The Exception to log.
 	 **************************************************************************************************/
-	public static void exception( 				 Log.Level level, Exception e )								{ exception( null,	  level, e, null, 		0,		null ); }
-
+	public static void exception( 				 Log.Level level, Exception e )										{ exception( null,	  level, e, null, 		0,		null ); }
+	/** ***********************************************************************************************
+	 *  Log an exception including inner exceptions recursively.
+	 *   
+	 * @param e		  	The Exception to log.
+	 * @param headline	(Optional) A headline string preceding the exception output.
+	 * @param indent  	(Optional) the indentation in the output (recursively increased). Defaults to 0.
+	 * @param lox	  	(Optional) The Lox to log with. If null, the static member LOX of class Log is used.
+	 **************************************************************************************************/
+	public static void exception( 				 				  Exception e, String headline, int indent, Lox lox){ exception( null,    Log.Level.ERROR, e, headline, 	indent, lox ); }
+	/** ***********************************************************************************************
+	 *  Log an exception including inner exceptions recursively.
+	 *   
+	 * @param e		  	The Exception to log.
+	 * @param headline	(Optional) A headline string preceding the exception output.
+	 * @param indent  	(Optional) the indentation in the output (recursively increased). Defaults to 0.
+	 **************************************************************************************************/
+	public static void exception( 				 				  Exception e, String headline, int indent )		{ exception( null,    Log.Level.ERROR, e, headline, 	indent, null ); }
+	/** ***********************************************************************************************
+	 *  Log an exception including inner exceptions recursively.
+	 *   
+	 * @param e		  	The Exception to log.
+	 * @param headline	(Optional) A headline string preceding the exception output.
+	 **************************************************************************************************/
+	public static void exception( 				 				  Exception e, String headline )					{ exception( null,    Log.Level.ERROR, e, headline, 	0,		null ); }
+	/** ***********************************************************************************************
+	 *  Log an exception including inner exceptions recursively.
+	 *   
+	 * @param e		  	The Exception to log.
+	 **************************************************************************************************/
+	public static void exception( 				 				  Exception e )										{ exception( null,	  Log.Level.ERROR, e, null, 		0,		null ); }
 
 	/** ***********************************************************************************************
 	 *  Log the current stack trace.
@@ -319,9 +359,9 @@ public abstract class LogTools
 	 * @param maxRecursion	The maximum depth of recursion for logging nested object.
 	 * @param headline	  	(Optional) A headline string to precede the exception with.
 	 * @param indent	  	(Optional) The indentation in the output (recursively increased).
-	 * 								Defaults to 0.
+	 * 						Defaults to 0.
 	 * @param lox			(Optional) The lox to log with. If null, the static member LOX of 
-	 * 								the static class Log is used.
+	 * 						the static class Log is used.
 	 **************************************************************************************************/
 	public static void instance( String domain, Log.Level level, Object o, int maxRecursion, String headline, int indent, Lox lox)
 
@@ -369,6 +409,18 @@ public abstract class LogTools
 	 * @param maxRecursion	The maximum depth of recursion for logging nested object.
 	 **************************************************************************************************/
 	public static void instance( String domain, Log.Level level, Object o, int maxRecursion )								{ instance( domain,	level, o, maxRecursion, null, 		0,		null ); }
+
+	/** ***********************************************************************************************
+	 * 	Recursively logs objects using reflection. 
+	 * @param level		  	The log level.
+	 * @param o			  	The object to be logged.
+	 * @param maxRecursion	The maximum depth of recursion for logging nested object.
+	 * @param headline	  	(Optional) A headline string to precede the exception with.
+	 * @param indent	  	(Optional) The indentation in the output (recursively increased). Defaults to 0.
+	 * @param lox			(Optional) The lox to log with. If null, the static member LOX of 
+	 * 						the static class Log is used.
+	 **************************************************************************************************/
+	public static void instance( 				Log.Level level, Object o, int maxRecursion, String headline, int indent, Lox lox )	{ instance( null,	level, o, maxRecursion, headline, 	indent, lox ); }
 	/** ***********************************************************************************************
 	 * 	Recursively logs objects using reflection. 
 	 * @param level		  	The log level.
@@ -377,7 +429,7 @@ public abstract class LogTools
 	 * @param headline	  	(Optional) A headline string to precede the exception with.
 	 * @param indent	  	(Optional) The indentation in the output (recursively increased). Defaults to 0.
 	 **************************************************************************************************/
-	public static void instance( 				Log.Level level, Object o, int maxRecursion, String headline, int indent )	{ instance( null,	level, o, maxRecursion, headline, 	indent, null ); }
+	public static void instance( 				Log.Level level, Object o, int maxRecursion, String headline, int indent )			{ instance( null,	level, o, maxRecursion, headline, 	indent, null ); }
 	/** ***********************************************************************************************
 	 * 	Recursively logs objects using reflection. 
 	 * @param level		  	The log level.
@@ -385,14 +437,14 @@ public abstract class LogTools
 	 * @param maxRecursion	The maximum depth of recursion for logging nested object.
 	 * @param headline	  	(Optional) A headline string to precede the exception with.
 	 **************************************************************************************************/
-	public static void instance( 				Log.Level level, Object o, int maxRecursion, String headline )				{ instance( null,	level, o, maxRecursion, headline, 	0,		null ); }
+	public static void instance( 				Log.Level level, Object o, int maxRecursion, String headline )						{ instance( null,	level, o, maxRecursion, headline, 	0,		null ); }
 	/** ***********************************************************************************************
 	 * 	Recursively logs objects using reflection. 
 	 * @param level		  	The log level.
 	 * @param o			  	The object to be logged.
 	 * @param maxRecursion	The maximum depth of recursion for logging nested object.
 	 **************************************************************************************************/
-	public static void instance( 				Log.Level level, Object o, int maxRecursion )								{ instance( null,	level, o, maxRecursion, null, 		0,		null ); }
+	public static void instance( 				Log.Level level, Object o, int maxRecursion )										{ instance( null,	level, o, maxRecursion, null, 		0,		null ); }
 		
 
 //	#if  !ALOX_NO_XML
@@ -522,7 +574,7 @@ public abstract class LogTools
 	 * @param indent  	The indentation in the output (recursively increased). If set to -1
 	 * 							the 'headline' is logged.
 	 **************************************************************************************************/
-	protected static void exception( Throwable e, String headline, int indent )
+	protected static void exc( Throwable e, String headline, int indent )
 	{ 
 		// log headline if answer exception
 		if ( indent == -1 )
@@ -550,7 +602,7 @@ public abstract class LogTools
 		if ( e.getCause() != null )
 		{
 			toolBuf.append( ' ',  indent * 2 ).append( "Cause:   " ).newLine();
-			exception( e.getCause() , null, indent );
+			exc( e.getCause() , null, indent );
 		}
 		
 		// print stack trace, but only on indent level 0

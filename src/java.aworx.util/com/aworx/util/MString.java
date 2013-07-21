@@ -119,7 +119,7 @@ public class MString implements CharSequence
 		if ( ms == null )
 		{
 			// create Buffer
-			buffer=	new char[1024];
+			buffer=	new char[ 16 ];
 			clear();
 			return;
 		}
@@ -144,7 +144,7 @@ public class MString implements CharSequence
 		if ( ms == null )
 		{
 			// create Buffer
-			buffer=	new char[1024];
+			buffer=	new char[ 16 ];
 			clear();
 			return;
 		}
@@ -154,7 +154,7 @@ public class MString implements CharSequence
 		if (len <= 0)
 		{
 			len= 0;
-			buffer=	new char[ 1024 ];
+			buffer=	new char[ 16 ];
 			clear();
 			return;
 		}
@@ -181,7 +181,7 @@ public class MString implements CharSequence
 		if ( ms == null )
 		{
 			// create Buffer
-			buffer=	new char[1024];
+			buffer=	new char[ 16 ];
 			clear();
 			return;
 		}
@@ -190,14 +190,14 @@ public class MString implements CharSequence
 		if (len <= 0)
 		{
 			len= 0;
-			buffer=	new char[ 1024 ];
+			buffer=	new char[ 16 ];
 		}
 		else
 		{
 			if ( len == Integer.MAX_VALUE )
 				len= ms.length - startIdx;
 
-			buffer=	new char[ (len > 0)  ? len : 1024  ];
+			buffer=	new char[ (len > 0)  ? len : 0  ];
 		}
 		clear();
 
@@ -216,7 +216,7 @@ public class MString implements CharSequence
 		if ( MString.isNullOrEmpty( s )  )
 		{
 			// create Buffer
-			buffer=	new char[0];
+			buffer=	new char[ 16 ];
 			clear();
 			return;
 		}
@@ -241,7 +241,7 @@ public class MString implements CharSequence
 		if ( MString.isNullOrEmpty( s ) )
 		{
 			// create Buffer
-			buffer=	new char[0];
+			buffer=	new char[ 16 ];
 			clear();
 			return;
 		}
@@ -251,7 +251,7 @@ public class MString implements CharSequence
 		if (len <= 0)
 		{
 			len= 0;
-			buffer=	new char[ 0 ];
+			buffer=	new char[ 16 ];
 			clear();
 			return;
 		}
@@ -278,7 +278,7 @@ public class MString implements CharSequence
 		if ( MString.isNullOrEmpty( s ) )
 		{
 			// create Buffer
-			buffer=	new char[0];
+			buffer=	new char[ 16 ];
 			clear();
 			return;
 		}
@@ -287,15 +287,14 @@ public class MString implements CharSequence
 		if (len <= 0)
 		{
 			len= 0;
-			buffer=	new char[ 0 ];
+			buffer=	new char[ 16 ];
 		}
 		else
 		{
 			if ( len == Integer.MAX_VALUE )
 				len= s.length() - startIdx;
 
-			buffer=	new char[ (len > 0)  ? len : 0  ]; // TODO: is it allowed to initialize wiht 0 lenght? Check also other constructors. add unit tests,
-// Then, change this in C#!			
+			buffer=	new char[ (len > 0)  ? len : 0  ]; 
 		}
 		clear();
 
@@ -314,7 +313,7 @@ public class MString implements CharSequence
 		if ( s == null )
 		{
 			// create Buffer
-			buffer=	new char[1024];
+			buffer=	new char[ 16 ];
 			clear();
 			return;
 		}
@@ -339,7 +338,7 @@ public class MString implements CharSequence
 		if ( s == null )
 		{
 			// create Buffer
-			buffer=	new char[1024];
+			buffer=	new char[ 16 ];
 			clear();
 			return;
 		}
@@ -349,7 +348,7 @@ public class MString implements CharSequence
 		if (len <= 0)
 		{
 			len= 0;
-			buffer=	new char[ 1024 ];
+			buffer=	new char[ 16 ];
 			clear();
 			return;
 		}
@@ -375,7 +374,7 @@ public class MString implements CharSequence
 		if ( s == null )
 		{
 			// create Buffer
-			buffer=	new char[1024];
+			buffer=	new char[ 16 ];
 			clear();
 			return;
 		}
@@ -384,7 +383,7 @@ public class MString implements CharSequence
 		if (len <= 0)
 		{
 			len= 0;
-			buffer=	new char[ 1024 ];
+			buffer=	new char[ 16 ];
 		}
 		else
 		{

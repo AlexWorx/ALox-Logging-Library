@@ -79,7 +79,7 @@ public class Lox
 		 *   Dictionary to translate thread ids into something maybe nicer/shorter. The dictionary has to
 		 *   be filled by the user of the library.
 		 */
-		public 	HashMap <Long, String>	threadDictionary	=new HashMap <Long, String>();
+		public 	HashMap <Long, String>	threadDictionary		=new HashMap<Long, String>();
 
 	//#endif
 

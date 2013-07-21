@@ -9,6 +9,10 @@
 /**
 \page setup_projects_java         Setup Eclipse for Java Projects
 
+\tableofcontents
+       
+
+# 1. Setting up your IDE # {#setup_projects_java_1}
 
 To use ALox logging in your Java project, some few preparatory steps have to be taken.
 
@@ -23,25 +27,28 @@ If you do not actually have a Java project (or do not want to touch it now) and 
 have a first look into ALox, then create a new JAVA project in your IDE. 
 Be sure to create an executable and that the typical "hello world" sample prints to the console.
 
-## Download ##
+## 1.1 Download ##  {#setup_projects_java_download}
 Unpack the ALox distribution (e.g. as zip) from [Alox at GitHub](https://github.com/AlexWorx/ALox-Logging-Library)
 and move all its contents to a place where you safely store 3rd party libraries.  
 
 We call this folder the *ALOX_LIB_PATH*.
 
-## For Eclipse Users: Link one of the following projects into your solution ##
+<br>
+## 1.2. For Eclipse Users: Link one of the following projects into your solution ## {#setup_projects_java_eclipse}
 
-To incorporate ALox into Eclipse, you will find the following ready to use projects in 
-"ALOX_LIB_PATH/ide.eclipse:"
+To incorporate ALox into Eclipse, you will find the following ready to use projects in *ALOX_LIB_PATH*:
 
-- For Eclipse Juno (Eclipse 4.2): *ALOXLIBPATH/ide.eclipse/ALox-Java-Eclipse-Juno*
-- For Eclipse Kepler (Eclipse 4.3): *ALOXLIBPATH/ide.eclipse/ALox-Java-Eclipse-Kepler*
+- *ALOXLIBPATH/ide/eclipse.kepler/ALox-Java-1.6*
+  Eclipse V.4.3 (Kepler) project, standard (Desktop) Java with Java compiler 1.6. This should also work for Eclipse V.4.2 (Juno).
+- *ALOXLIBPATH/ide/eclipse.kepler/ALox-Java-Android*
+  Eclipse V.4.3 (Kepler) project for Android development. This should also work for Eclipse V.4.2 (Juno). 
 
-\note
 If there is no appropriate predefined project available for you, skip the next section and continue reading
-below at **adding source**!*
+\ref setup_projects_java_addingsource.
 
-a) Import the predefined project into your eclipse workspace. Steps are:
+Otherwise, its just two quick steps:
+
+__Step 1:__ Import the predefined project into your eclipse workspace. Steps are:
 
 - Open Eclipse with the workspace that contains the project(s) that you want to enrich with ALox logging
 - In Eclipse main menu, choose "File" / "Import"
@@ -60,13 +67,16 @@ Preferences "Window/Preferences", Section "Java/Compiler/Errors/Warnings". Here,
 section, set "Unused '@SuppressWarnings' token:" to "Ignore". 
 
 
-b) Set a build dependency from your project to the just added *ALox-Java* project. Steps are:
+__Step 2:__ Set a build dependency from your project to the just added *ALox-Java-xxx* project. Steps are:
 
    - right click your project in Eclipse "Project Explorer" and choose "Properties"
    - In section "Java Build Path" go to the tab named "Projects" 
    - Press the "Add..." button and tick "ALox-Java"
+   - For the android projects: Also set the ALox project for Android a library in the "Android" section 
+     of the project properties.
 
-## Other IDE / Adding source ## 
+<br>
+## 1.3 Alternatively: Adding source code to your project ## {#setup_projects_java_addingsource}
 If there is no pre-defined project provided that suits your IDE (or needs), then you might want to add 
 the ALox source code directly to your project or to a library  project that you may want to create to
 separate the ALox code from your code. It should be fairly easy. The Java sources found in:
@@ -74,10 +84,17 @@ separate the ALox code from your code. It should be fairly easy. The Java source
     - *ALOXLIBPATH/src/java.aworx.util*
     - *ALOXLIBPATH/src/java.alox*
 
-need to be compiled into your project. 
+need to be compiled into your project.<br>
+\note
+It is a good idea, to not copy the code, but to add the sources as links to their original place
+where you unpacked ALox. In Eclipse, linking source folders is found under "Project Properties", 
+"Java Build Path", tab "Source" and then button "Link Source".
+The advantage of linking the source folders is that updating the source (e.g. with Git) updates
+the your projects as well. Furthermore, if you might want to push your fixes or improvements to us
+using Git, the sources in the original folder need to be modified by you.
 
 
-## Android Developers ## 
+## 1.4 Android Developers ## {#setup_projects_java_android}
 
 ALox provides a dedicated logger class that supports Android LogCat outputs. Therefore, to
 support Android projects, this logger class has to be added to your Android project (or
@@ -95,7 +112,7 @@ Attention: The normal [ConsoleLogger](com.aworx.lox.loggers.ConsoleLogger) would
 the Android Emulator or a debugging device.
 
 
-## Test your setup## 
+## 1.5 Test your setup ##  {#setup_projects_java_testnow}
 
 To test your setup, add minimum ALox functionality to your project as described in the first chapter
 of \ref tutorial_java.

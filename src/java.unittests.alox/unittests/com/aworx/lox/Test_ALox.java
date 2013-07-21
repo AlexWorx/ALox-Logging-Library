@@ -468,7 +468,7 @@ public class Test_ALox
 		}
 
 		/** ***********************************************************************************************
-		 * 	Log_TestXML
+		 * 	Log_TestInstance
 		 **************************************************************************************************/
 		@Test
 		public void Log_TestInstance()
@@ -646,87 +646,6 @@ public class Test_ALox
 			//#endif
 		}
 
-		/** ***********************************************************************************************
-		 * 	Log_TestXML
-		 **************************************************************************************************/
-/*	NIY	 
-		@Test 
-		public void Log_TestInstance()
-		{
-			clearCreateAndAddLoggers();
-
-			Log.regDomain( "INST", Log.Scope.Method );
-			Log.setDomain( "INST", Log.DomainLevel.All );
-
-			// simple type double
-			{
-				Double o= 3.14;
-				
-				LogTools.Instance( Log.Level.Info, o, 2, "Logging an object of type 'Double':", 1 );
-			}
-
-			// Double array
-			{
-				Double[] o= new Double[3];
-				o[0]= 12.5;
-				o[1]= 123456789.987654321;
-				o[2]= 100;
-
-				LogTools.Instance( Log.Level.Info, o, 2, "Logging an object of type 'Double[]':", 1 );
-			}
-
-			// byte array
-			{
-				byte[] o= new byte[3];
-				o[0]= 2;
-				o[1]= 8;
-				o[2]= 16;
-
-				LogTools.Instance( Log.Level.Info, o, 2, "Logging an object of type 'byte[]':", 1 );
-			}
-
-
-			// simple type String
-			{
-				String o= "Hello reflection";
-				LogTools.Instance( Log.Level.Info, o, 2, "Logging an object of type 'String':", 1 );
-			}
-
-
-			// String array
-			{
-				String[] o= new String[3];
-				o[0]= "Entry 0";
-				o[1]= "Entry 1";
-				o[2]= "Entry 2";
-
-				LogTools.Instance( Log.Level.Info, o, 2, "Logging an object of type 'String[]':", 1 );
-			}
-
-			// Object array
-			{
-				Object[] o= new Object[10];
-				int i= 0;
-				o[i++]= "Entry 0";
-				o[i++]= 3.14;
-				o[i++]= "next is array itself!";
-				o[i++]= o;
-				o[i++]= "next is console logger";
-				//#if ALOX_DEBUG || ALOX_REL_LOG
-					o[i++]= cl;
-				//#endif  // ALOX_DEBUG || ALOX_REL_LOG
-				o[i++]= "last filled object";
-
-				LogTools.Instance( Log.Level.Info, o, 2, "Logging an object of type 'Object[]':", 1 );
-			}
-
-			// This thread
-			{
-				Thread o= Thread.currentThread();
-				LogTools.Instance( Log.Level.Info, o, 2, ("Actual Thread: " + o.Name), 1 );
-			}
-		}
-*/
 
 		/** ***********************************************************************************************
 		 * 	Log_TestXML
