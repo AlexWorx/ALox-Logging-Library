@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.4"/>
-<title>ALox Java Reference: Setup Eclipse for Java Projects</title>
+<title>ALox Java Reference: Setup your IDE for Java Projects</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -83,27 +83,44 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">Setup Eclipse for Java Projects </div>  </div>
+<div class="title">Setup your IDE for Java Projects </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>To use ALox logging in your Java project, some few preparatory steps have to be taken.</p>
+<div class="toc"><h3>Table of Contents</h3>
+<ul><li class="level1"><a href="#setup_projects_java_1">1. Setting up your IDE</a><ul><li class="level2"><a href="#setup_projects_java_download">1.1 Download</a></li>
+<li class="level2"><a href="#setup_projects_java_eclipse">1.2. For Eclipse Users: Link one of the following projects into your solution</a></li>
+<li class="level2"><a href="#setup_projects_java_addingsource">1.3 Alternatively: Adding source code to your project</a></li>
+<li class="level2"><a href="#setup_projects_java_android">1.4 Android Developers</a></li>
+<li class="level2"><a href="#setup_projects_java_testnow">1.5 Test your setup</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="textblock"><h1><a class="anchor" id="setup_projects_java_1"></a>
+1. Setting up your IDE</h1>
+<p>To use ALox logging in your Java project, some few preparatory steps have to be taken.</p>
 <p>Currently, there is no binary distribution of ALox for Java available. Therefore, the way to incorporate ALox into your project is to include the sources. There are two options:</p>
 <ul>
 <li>add one of the existing ALox class library projects (Eclipse) to your solution or to</li>
 <li>add ALox sources directly to your project.</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>If you do not actually have a Java project (or do not want to touch it now) and you just want to have a first look into ALox, then create a new JAVA project in your IDE. Be sure to create an executable and that the typical "hello world" sample prints to the console.</dd></dl>
-<h2>Download</h2>
+<h2><a class="anchor" id="setup_projects_java_download"></a>
+1.1 Download</h2>
 <p>Unpack the ALox distribution (e.g. as zip) from <a href="https://github.com/AlexWorx/ALox-Logging-Library">Alox at GitHub</a> and move all its contents to a place where you safely store 3rd party libraries.</p>
 <p>We call this folder the <em>ALOX_LIB_PATH</em>.</p>
-<h2>For Eclipse Users: Link one of the following projects into your solution</h2>
-<p>To incorporate ALox into Eclipse, you will find the following ready to use projects in "ALOX_LIB_PATH/ide.eclipse:"</p>
+<p><br/>
+ </p>
+<h2><a class="anchor" id="setup_projects_java_eclipse"></a>
+1.2. For Eclipse Users: Link one of the following projects into your solution</h2>
+<p>To incorporate ALox into Eclipse, you will find the following ready to use projects in <em>ALOX_LIB_PATH</em>:</p>
 <ul>
-<li>For Eclipse Juno (Eclipse 4.2): <em>ALOXLIBPATH/ide.eclipse/ALox-Java-Eclipse-Juno</em></li>
-<li>For Eclipse Kepler (Eclipse 4.3): <em>ALOXLIBPATH/ide.eclipse/ALox-Java-Eclipse-Kepler</em></li>
+<li><em>ALOXLIBPATH/ide/eclipse.kepler/ALox-Java-1.6</em> Eclipse V.4.3 (Kepler) project, standard (Desktop) Java with Java compiler 1.6. This should also work for Eclipse V.4.2 (Juno).</li>
+<li><em>ALOXLIBPATH/ide/eclipse.kepler/ALox-Java-Android</em> Eclipse V.4.3 (Kepler) project for Android development. This should also work for Eclipse V.4.2 (Juno).</li>
 </ul>
-<dl class="section note"><dt>Note</dt><dd>If there is no appropriate predefined project available for you, skip the next section and continue reading below at <b>adding source</b>!*</dd></dl>
-<p>a) Import the predefined project into your eclipse workspace. Steps are:</p>
+<p>If there is no appropriate predefined project available for you, skip the next section and continue reading <a class="el" href="setup_projects_java.html#setup_projects_java_addingsource">1.3 Alternatively: Adding source code to your project</a>.</p>
+<p>Otherwise, its just two quick steps:</p>
+<p><b>Step 1:</b> Import the predefined project into your eclipse workspace. Steps are:</p>
 <ul>
 <li>Open Eclipse with the workspace that contains the project(s) that you want to enrich with ALox logging</li>
 <li>In Eclipse main menu, choose "File" / "Import"</li>
@@ -113,30 +130,38 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </ul>
 <p>You should have the project now incorporated into your workspace without any compiler errors.</p>
 <dl class="section note"><dt>Note</dt><dd>The Java sources were coded using Eclipse with quite a high warning level setting. This led to the need to add some code annotations to suppress some warnings. If your Eclipse warning level setting is lower but now you get warnings on unnecessary code annotations (because the suppress warnings are not necessary in your environment), you can get rid of these messages by opening the Eclipse Preferences "Window/Preferences", Section "Java/Compiler/Errors/Warnings". Here, in the "Annotations" section, set "Unused '@SuppressWarnings' token:" to "Ignore".</dd></dl>
-<p>b) Set a build dependency from your project to the just added <em>ALox-Java</em> project. Steps are:</p>
+<p><b>Step 2:</b> Set a build dependency from your project to the just added <em>ALox-Java-xxx</em> project. Steps are:</p>
 <ul>
 <li>right click your project in Eclipse "Project Explorer" and choose "Properties"</li>
 <li>In section "Java Build Path" go to the tab named "Projects"</li>
 <li>Press the "Add..." button and tick "ALox-Java"</li>
+<li>For the android projects: Also set the ALox project for Android a library in the "Android" section of the project properties.</li>
 </ul>
-<h2>Other IDE / Adding source</h2>
+<p><br/>
+ </p>
+<h2><a class="anchor" id="setup_projects_java_addingsource"></a>
+1.3 Alternatively: Adding source code to your project</h2>
 <p>If there is no pre-defined project provided that suits your IDE (or needs), then you might want to add the ALox source code directly to your project or to a library project that you may want to create to separate the ALox code from your code. It should be fairly easy. The Java sources found in: </p>
 <pre class="fragment">- *ALOXLIBPATH/src/java.aworx.util*
 - *ALOXLIBPATH/src/java.alox*
-</pre><p>need to be compiled into your project.</p>
-<h2>Android Developers</h2>
+</pre><p>need to be compiled into your project.<br/>
+ </p>
+<dl class="section note"><dt>Note</dt><dd>It is a good idea, to not copy the code, but to add the sources as links to their original place where you unpacked ALox. In Eclipse, linking source folders is found under "Project Properties", "Java Build Path", tab "Source" and then button "Link Source". The advantage of linking the source folders is that updating the source (e.g. with Git) updates the your projects as well. Furthermore, if you might want to push your fixes or improvements to us using Git, the sources in the original folder need to be modified by you.</dd></dl>
+<h2><a class="anchor" id="setup_projects_java_android"></a>
+1.4 Android Developers</h2>
 <p>ALox provides a dedicated logger class that supports Android LogCat outputs. Therefore, to support Android projects, this logger class has to be added to your Android project (or Android ALox library project) into your project. For Android, in addition add folder: </p>
 <pre class="fragment">  ALOXLIBPATH/src/java.android.alox*
 </pre><p>To stream ALox into LogCat create a logger of type <a href="com.aworx.lox.android.AndroidLogCatLogger">AndroidLogCatLogger</a> instead of type <a href="com.aworx.lox.loggers.ConsoleLogger">ConsoleLogger</a> as follows: </p>
 <pre class="fragment">Log.addLogger( new AndroidLogCatLogger("LogCat") );
 </pre><p>Attention: The normal <a href="com.aworx.lox.loggers.ConsoleLogger">ConsoleLogger</a> would not produce any visible output using the Android Emulator or a debugging device.</p>
-<h2>Test your setup</h2>
+<h2><a class="anchor" id="setup_projects_java_testnow"></a>
+1.5 Test your setup</h2>
 <p>To test your setup, add minimum ALox functionality to your project as described in the first chapter of <a class="el" href="tutorial_java.html">ALox for Java Tutorial</a>. </p>
 </div></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.4-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jul 20 2013 02:18:27 for ALox Java Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 21 2013 23:08:33 for ALox Java Reference by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

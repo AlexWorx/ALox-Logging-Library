@@ -398,6 +398,13 @@
       <type>static void</type>
       <name>Exception</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
+      <anchor>a64f87b393288e74399e1be5a18339ab0</anchor>
+      <arglist>(Log.Level level, Exception e, String headline=null, int indent=0, Lox lox=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Exception</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
       <anchor>a53d84203c6717bcc67dd5c2a16d0cd32</anchor>
       <arglist>(Exception e, String headline=null, int indent=0, Lox lox=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>

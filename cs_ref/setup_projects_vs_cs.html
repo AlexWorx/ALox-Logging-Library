@@ -93,8 +93,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li class="level2"><a href="#setup_projects_vs_cs_1_4">1.4 Configure your project properties</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#setup_projects_vs_conditional_compile_symbols">2. Conditional Compilation Symbols</a><ul><li class="level2"><a href="#setup_projects_vs_cs_pruning">3. Pruning ALox</a></li>
-<li class="level2"><a href="#setup_projects_vs_cs_pruning_1">3.1 What is Pruning?</a></li>
+<li class="level1"><a href="#setup_projects_vs_conditional_compile_symbols">2. Conditional Compilation Symbols</a></li>
+<li class="level1"><a href="#setup_projects_vs_cs_pruning">3. Pruning ALox</a><ul><li class="level2"><a href="#setup_projects_vs_cs_pruning_1">3.1 What is Pruning?</a></li>
 <li class="level2"><a href="#setup_projects_vs_cs_pruning_2">3.1 How Pruning in ALox for C# works</a></li>
 <li class="level2"><a href="#setup_projects_vs_cs_pruning_3">3.1 Mission accomplished: Perfect Auto Pruning with ALox!</a></li>
 </ul>
@@ -122,7 +122,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 1.2. Add one of the following projects into your solution</h2>
 <p>To incorporate ALox into your Visual Studio solution, you have to follow three steps:</p>
 <p><b>Step 1:</b> Choose the right class library project that fits well to your own project target and platform. The projects are found in </p>
-<pre class="fragment">    ALOX_LIB_PATH\ide.vstudio\ALox-CS.xxx-DLL-xxx
+<pre class="fragment">    ALOX_LIB_PATH\ide\vstudio.2012\ALox-CS.xxx-DLL-xxx
 </pre><p>Your, choices are:</p>
 <table  border="1">
 <tr>
@@ -158,7 +158,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <dd>
 Because the size of the release assembly is very small anyhow (as of ALox V.1.1.0 it is 25kb without release logging vs. 49kb including release logging) you can easily choose the "Release-Log" version of your platform.</dd></dl>
 <dl class="section user"><dt></dt><dd></dd></dl>
-<dl class="section note"><dt>Note</dt><dd>If there is no appropriate predefined project available for you, skip b) and c) and continue reading below at <a class="el" href="setup_projects_vs_cs.html#setup_projects_vs_cs_1_3">1.3 Alternatively: Adding source code to your project</a>!</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>If there is no appropriate predefined project available for you, skip steps 2 and 3 and continue reading below at <a class="el" href="setup_projects_vs_cs.html#setup_projects_vs_cs_1_3">1.3 Alternatively: Adding source code to your project</a>!</dd></dl>
 <p>Add the Visual Studio project that you find in the corresponding sub folder of the <em>ALOX_LIB_PATH</em> to your solution.</p>
 <p><br/>
  <b>Step 2:</b> Set a build dependency from your project to the just added <em>ALox-CS-DLL</em> project. Steps are:</p>
@@ -233,22 +233,27 @@ Because the size of the release assembly is very small anyhow (as of ALox V.1.1.
 <p><br/>
 </p>
 <ul>
-<li><b>ALOX_DEBUG</b> Enable debug logging. This should be set in the <em>Debug configuration</em> of your projects. Otherwise, not log output is generated if using the static interface of class <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a>.</li>
-<li><b>ALOX_REL_LOG</b> To enable release logging. This should only be set in the <em>Release configuration</em> of your projects if you are using release logging with class <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Lox</a>. If you do not use release logging features of ALox, this symbol should not be set to minimize the code that the ALox classes add to your executables.</li>
-<li><b>ALOX_WP71</b> To compile ALox for Windows Phone 7.1 projects. This should be set in the Debug and Release configuration of your projects Windows Phone 7.1 projects. In addition to some compatibility changes in the code, this symbol also activates <b>ALOX_NO_REFLECTION</b>, hence the LogTools.Instance method is not available in Windows Phone projects. (This is due to security restrictions in the Windows Phone system architecture).</li>
-<li><b>ALOX_WP8</b> To compile ALox for Windows Phone 8 projects. This should be set in the Debug and Release configuration of your projects Windows Phone 8.x projects. In addition to some compatibility changes in the code, this symbol also activates <b>ALOX_NO_REFLECTION</b>, hence the LogTools.Instance method is not available in Windows Phone projects. (This is due to security restrictions in the Windows Phone system architecture).</li>
-<li><b>ALOX_NO_REFLECTION</b> This symbol deactivates the use of reflection in class <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogTools.html">LogTools</a>. This is useful for target platforms that do not allow instance inspection using reflection techniques. The method <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogTools.html#a8c29adc9ba464af7c76dc25fd65f46a1">LogTools.Instance</a> will not be available however.</li>
-<li><b>ALOX_NO_XML</b> This symbol deactivates the use of <em>System.Xml.Linq</em> library in class <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogTools.html">LogTools</a>. This is useful for target platforms that do not support this library. The method <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogTools.html#adad74abbe21748cf5db7fb9811e19327">LogTools.XML</a> will not be available however.</li>
-<li><b>ALOX_NO_CONSOLE</b> This symbol deactivates the use of *Console.WriteLine" calls in class @ref #com::aworx::lox::loggers::ConsoleLogger "ConsoleLogger". 
-  If this is set, the flag @ref #com::aworx::lox::loggers::ConsoleLogger::EnableAppConsole "ConsoleLogger.EnableAppConsole"
-  becomes unavailable. The output of @ref #com::aworx::lox::loggers::ConsoleLogger "ConsoleLogger" which is controlled
-  by the second flag @ref #com::aworx::lox::loggers::ConsoleLogger::EnableVSDebugConsole "ConsoleLogger.EnableAppConsole" will go exclusively to System.Diagnostics.Debug.WriteLine().</li>
-<li><b>ALOX_NO_THREADS</b> This symbol deactivates any mechanisms to protect ALox logging in multi-threaded environments. Use this symbol only if you are sure to operate single threaded. (Even if your application does not create a new thread directly, e.g. UI driven applications are generally multi threaded. The advantage of using this compile symbol is to increase ALox performance by around 8% (when logging in-memory). For console logging the performance gain is much less. So, only in very critical situations this symbol should be used.</li>
+<li><b>ALOX_DEBUG</b><br/>
+ Enable debug logging. This should be set in the <em>Debug configuration</em> of your projects. Otherwise, not log output is generated if using the static interface of class <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a>.</li>
+<li><b>ALOX_REL_LOG</b><br/>
+ To enable release logging. This should only be set in the <em>Release configuration</em> of your projects if you are using release logging with class <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Lox</a>. If you do not use release logging features of ALox, this symbol should not be set to minimize the code that the ALox classes add to your executables.</li>
+<li><b>ALOX_WP71</b><br/>
+ To compile ALox for Windows Phone 7.1 projects. This should be set in the Debug and Release configuration of your projects Windows Phone 7.1 projects. In addition to some compatibility changes in the code, this symbol also activates <b>ALOX_NO_REFLECTION</b>, hence the LogTools.Instance method is not available in Windows Phone projects. (This is due to security restrictions in the Windows Phone system architecture).</li>
+<li><b>ALOX_WP8</b><br/>
+ To compile ALox for Windows Phone 8 projects. This should be set in the Debug and Release configuration of your projects Windows Phone 8.x projects. In addition to some compatibility changes in the code, this symbol also activates <b>ALOX_NO_REFLECTION</b>, hence the LogTools.Instance method is not available in Windows Phone projects. (This is due to security restrictions in the Windows Phone system architecture).</li>
+<li><b>ALOX_NO_REFLECTION</b><br/>
+ This symbol deactivates the use of reflection in class <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogTools.html">LogTools</a>. This is useful for target platforms that do not allow instance inspection using reflection techniques. The method <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogTools.html#a8c29adc9ba464af7c76dc25fd65f46a1">LogTools.Instance</a> will not be available however.</li>
+<li><b>ALOX_NO_XML</b><br/>
+ This symbol deactivates the use of <em>System.Xml.Linq</em> library in class <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogTools.html">LogTools</a>. This is useful for target platforms that do not support this library. The method <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogTools.html#adad74abbe21748cf5db7fb9811e19327">LogTools.XML</a> will not be available however.</li>
+<li><b>ALOX_NO_CONSOLE</b><br/>
+ This symbol deactivates the use of <em>Console.WriteLine()</em> calls in class <a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html">ConsoleLogger</a>. If this is set, the flag <a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html#afebe821fecca4fbd3778cb0227fd9a32">ConsoleLogger.EnableAppConsole</a> becomes unavailable. The output of <a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html">ConsoleLogger</a> which is controlled by the second flag <a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html#aa8fbde711ff2895904643515cd565a8f">ConsoleLogger.EnableAppConsole</a> will go exclusively to System.Diagnostics.Debug.WriteLine().</li>
+<li><b>ALOX_NO_THREADS</b><br/>
+ This symbol deactivates any mechanisms to protect ALox logging in multi-threaded environments. Use this symbol only if you are sure to operate single threaded. (Even if your application does not create a new thread directly, e.g. UI driven applications are generally multi threaded. The advantage of using this compile symbol is to increase ALox performance by around 8% (when logging in-memory). For console logging the performance gain is much less. So, only in very critical situations this symbol should be used.</li>
 </ul>
 <p><br/>
  </p>
-<h2><a class="anchor" id="setup_projects_vs_cs_pruning"></a>
-3. Pruning ALox</h2>
+<h1><a class="anchor" id="setup_projects_vs_cs_pruning"></a>
+3. Pruning ALox</h1>
 <h2><a class="anchor" id="setup_projects_vs_cs_pruning_1"></a>
 3.1 What is Pruning?</h2>
 <p>What we mean with the term "pruning" is the automatic removal of the (debug) logging code from your release executable (or library) that is ready for deployment. The goals that motivate for auto pruning are:</p>
@@ -291,14 +296,14 @@ Because the size of the release assembly is very small anyhow (as of ALox V.1.1.
 <li>The impact of using ALox in respect to the footprint of your executable extremely small (all that remains are some empty classes with a few stubs). This remains true, even if thousands of new features would come in future versions of ALox!</li>
 <li>All debug log statements, including all textual messages you are adding to your log calls, are completely pruned from the release executable! Your "debug secrets" can not be reverse engineered, they are just gone!</li>
 <li>You do not need to clutter your code with <code>#if</code> <code></code>... <code>#endif</code> statements if using ALox!</li>
-<li>Even if you mix debug and release logging features of ALox, while the footprint of the ALox library is higher, all the rest of the above stays true!</li>
+<li>Even if you mix debug and release logging features of ALox the above stays true, except that the footprint of the ALox library is a little higher (e.g. it is 50kb in V1.1.0) !</li>
 </ol>
 <dl class="section note"><dt>Note</dt><dd>This is all true for C#. For other platforms check out platform specific sections of ALox pruning techniques. </dd></dl>
 </div></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.4-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jul 20 2013 02:18:12 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 21 2013 23:08:32 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

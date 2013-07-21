@@ -111,6 +111,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a3a172ec6285dc3cdd47f147801dbbc32"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogTools.html#a3a172ec6285dc3cdd47f147801dbbc32">Exception</a> (String domain, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log.Level</a> level, Exception e, String headline=null, int indent=0, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a> lox=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
 <tr class="memdesc:a3a172ec6285dc3cdd47f147801dbbc32"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This is a simple, 100% static wrapper of class Lox. In other words, this class incorporates one stati...">Log</a> an exception including inner exceptions recursively. Note: Calls to this method are automatically removed from release code.  <a href="#a3a172ec6285dc3cdd47f147801dbbc32">More...</a><br/></td></tr>
 <tr class="separator:a3a172ec6285dc3cdd47f147801dbbc32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64f87b393288e74399e1be5a18339ab0"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogTools.html#a64f87b393288e74399e1be5a18339ab0">Exception</a> (<a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log.Level</a> level, Exception e, String headline=null, int indent=0, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a> lox=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
+<tr class="memdesc:a64f87b393288e74399e1be5a18339ab0"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This is a simple, 100% static wrapper of class Lox. In other words, this class incorporates one stati...">Log</a> an exception including inner exceptions recursively. Default domain of file is used with Log.Level.Error. Note: Calls to this method are automatically removed from release code.  <a href="#a64f87b393288e74399e1be5a18339ab0">More...</a><br/></td></tr>
+<tr class="separator:a64f87b393288e74399e1be5a18339ab0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53d84203c6717bcc67dd5c2a16d0cd32"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogTools.html#a53d84203c6717bcc67dd5c2a16d0cd32">Exception</a> (Exception e, String headline=null, int indent=0, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a> lox=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
 <tr class="memdesc:a53d84203c6717bcc67dd5c2a16d0cd32"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This is a simple, 100% static wrapper of class Lox. In other words, this class incorporates one stati...">Log</a> an exception including inner exceptions recursively. Default domain of file is used with Log.Level.Error. Note: Calls to this method are automatically removed from release code.  <a href="#a53d84203c6717bcc67dd5c2a16d0cd32">More...</a><br/></td></tr>
 <tr class="separator:a53d84203c6717bcc67dd5c2a16d0cd32"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -319,6 +322,92 @@ static <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html">ThreadL
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">domain</td><td>The log domain name. </td></tr>
+    <tr><td class="paramname">level</td><td>The log level. </td></tr>
+    <tr><td class="paramname">e</td><td>The Exception to log. </td></tr>
+    <tr><td class="paramname">headline</td><td>(Optional) A headline string to precede the exception with. </td></tr>
+    <tr><td class="paramname">indent</td><td>(Optional) the indentation in the output (recursively increased). Defaults to 0. </td></tr>
+    <tr><td class="paramname">lox</td><td>(Optional) The lox to log with. If null, the static member LOX of the static class <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This is a simple, 100% static wrapper of class Lox. In other words, this class incorporates one stati...">Log</a> is used. </td></tr>
+    <tr><td class="paramname">csf</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
+    <tr><td class="paramname">cln</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
+    <tr><td class="paramname">cmn</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a64f87b393288e74399e1be5a18339ab0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Exception </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log.Level</a>&#160;</td>
+          <td class="paramname"><em>level</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Exception&#160;</td>
+          <td class="paramname"><em>e</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>headline</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>indent</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a>&#160;</td>
+          <td class="paramname"><em>lox</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[CallerFilePath] String&#160;</td>
+          <td class="paramname"><em>csf</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[CallerLineNumber] int&#160;</td>
+          <td class="paramname"><em>cln</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[CallerMemberName] String&#160;</td>
+          <td class="paramname"><em>cmn</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This is a simple, 100% static wrapper of class Lox. In other words, this class incorporates one stati...">Log</a> an exception including inner exceptions recursively. Default domain of file is used with Log.Level.Error. Note: Calls to this method are automatically removed from release code. </p>
+<hr/>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
     <tr><td class="paramname">level</td><td>The log level. </td></tr>
     <tr><td class="paramname">e</td><td>The Exception to log. </td></tr>
     <tr><td class="paramname">headline</td><td>(Optional) A headline string to precede the exception with. </td></tr>
@@ -1806,7 +1895,7 @@ static <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html">ThreadL
 <!-- HTML footer for doxygen 1.8.4-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jul 20 2013 02:18:12 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 21 2013 23:08:32 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

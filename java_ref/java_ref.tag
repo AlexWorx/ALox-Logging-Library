@@ -2,8 +2,14 @@
 <tagfile>
   <compound kind="page">
     <name>setup_projects_java</name>
-    <title>Setup Eclipse for Java Projects</title>
+    <title>Setup your IDE for Java Projects</title>
     <filename>setup_projects_java</filename>
+    <docanchor file="setup_projects_java" title="1. Setting up your IDE">setup_projects_java_1</docanchor>
+    <docanchor file="setup_projects_java" title="1.1 Download">setup_projects_java_download</docanchor>
+    <docanchor file="setup_projects_java" title="1.2. For Eclipse Users: Link one of the following projects into your solution">setup_projects_java_eclipse</docanchor>
+    <docanchor file="setup_projects_java" title="1.3 Alternatively: Adding source code to your project">setup_projects_java_addingsource</docanchor>
+    <docanchor file="setup_projects_java" title="1.4 Android Developers">setup_projects_java_android</docanchor>
+    <docanchor file="setup_projects_java" title="1.5 Test your setup">setup_projects_java_testnow</docanchor>
   </compound>
   <compound kind="page">
     <name>tutorial_java</name>
@@ -530,6 +536,13 @@
       <type>static void</type>
       <name>exception</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
+      <anchor>a72e68689d57b79afb0c808869a8fa0f2</anchor>
+      <arglist>(Log.Level level, Exception e, String headline, int indent, Lox lox)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>exception</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
       <anchor>a9d466aba103eba05d942556dd37d2e63</anchor>
       <arglist>(Log.Level level, Exception e, String headline, int indent)</arglist>
     </member>
@@ -546,6 +559,34 @@
       <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
       <anchor>ad457dd13412a755b99cf4a32b05456c2</anchor>
       <arglist>(Log.Level level, Exception e)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>exception</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
+      <anchor>ababb44a10033d07adc1c83b1af162c41</anchor>
+      <arglist>(Exception e, String headline, int indent, Lox lox)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>exception</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
+      <anchor>a03b1a235ac32902423d66ee923c94613</anchor>
+      <arglist>(Exception e, String headline, int indent)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>exception</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
+      <anchor>ab509e4a2178a8777c80ad168e194ce7c</anchor>
+      <arglist>(Exception e, String headline)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>exception</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
+      <anchor>adda16042d701a9c9dbdd7aee7eaceb7f</anchor>
+      <arglist>(Exception e)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
@@ -623,6 +664,13 @@
       <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
       <anchor>ac32aa2578833e9f22f41a7d1efb3a6b5</anchor>
       <arglist>(String domain, Log.Level level, Object o, int maxRecursion)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>instance</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
+      <anchor>acd2cad4423fd97fc82952d7c54d588d6</anchor>
+      <arglist>(Log.Level level, Object o, int maxRecursion, String headline, int indent, Lox lox)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
@@ -773,9 +821,9 @@
     </member>
     <member kind="function" protection="protected" static="yes">
       <type>static void</type>
-      <name>exception</name>
+      <name>exc</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>ae3629acd99b0a1b6bbdfd6ddf73bf164</anchor>
+      <anchor>af4544e4fd1f72d149af6e19fc2cd1dc1</anchor>
       <arglist>(Throwable e, String headline, int indent)</arglist>
     </member>
     <member kind="function" protection="protected" static="yes">

@@ -11,7 +11,7 @@ var searchData=
   ['setto',['setTo',['../classcom_1_1aworx_1_1util_1_1TickTime.html#a0d1c98da72b9583bac51cca4222144f8',1,'com::aworx::util::TickTime']]],
   ['settonow',['setToNow',['../classcom_1_1aworx_1_1util_1_1TickTime.html#a41bca45d4327378ef42f94b8989f3668',1,'com::aworx::util::TickTime']]],
   ['setunsafe',['setUnsafe',['../classcom_1_1aworx_1_1util_1_1ThreadLock.html#a89682a610134dbf105652e33657e0ee8',1,'com::aworx::util::ThreadLock']]],
-  ['setup_20eclipse_20for_20java_20projects',['Setup Eclipse for Java Projects',['../setup_projects_java.html',1,'']]],
+  ['setup_20your_20ide_20for_20java_20projects',['Setup your IDE for Java Projects',['../setup_projects_java.html',1,'']]],
   ['simplewildcardfilter',['simpleWildcardFilter',['../classcom_1_1aworx_1_1lox_1_1Lox.html#a2b24103f62da8cad52b51faea81dd5f4',1,'com::aworx::lox::Lox']]],
   ['sleep',['sleep',['../classcom_1_1aworx_1_1util_1_1AWXU.html#a681128635e507f1fc14c07e7541123d2',1,'com::aworx::util::AWXU']]],
   ['span',['span',['../classcom_1_1aworx_1_1util_1_1TickTime.html#a516f3b5127b0a6c488d020aeaeac82ff',1,'com::aworx::util::TickTime']]],
