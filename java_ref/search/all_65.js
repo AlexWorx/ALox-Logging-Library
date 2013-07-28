@@ -1,7 +1,7 @@
 var searchData=
 [
   ['empty',['empty',['../classcom_1_1aworx_1_1util_1_1MString.html#a4161fdf6dff38fd6cd122809e65cd1f3',1,'com::aworx::util::MString']]],
-  ['endswith',['endsWith',['../classcom_1_1aworx_1_1util_1_1MString.html#ab0f4b2881454b063c7bb9fee6d58ded2',1,'com::aworx::util::MString']]],
+  ['endswith',['endsWith',['../classcom_1_1aworx_1_1lox_1_1LogBuf.html#ab0f4b2881454b063c7bb9fee6d58ded2',1,'com.aworx.lox.LogBuf.endsWith()'],['../classcom_1_1aworx_1_1util_1_1MString.html#ab0f4b2881454b063c7bb9fee6d58ded2',1,'com.aworx.util.MString.endsWith()']]],
   ['endswithignorecase',['endsWithIgnoreCase',['../classcom_1_1aworx_1_1util_1_1MString.html#a9725bfa39e4a751d10ee54f63a15173c',1,'com::aworx::util::MString']]],
   ['ensurecapacity',['ensureCapacity',['../classcom_1_1aworx_1_1util_1_1MString.html#adc900259936e34e93cbbce4935566d59',1,'com::aworx::util::MString']]],
   ['equals',['equals',['../classcom_1_1aworx_1_1util_1_1MString.html#a39e5bc339e3b5924ec96de42fbb8f33f',1,'com::aworx::util::MString']]],

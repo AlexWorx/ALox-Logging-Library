@@ -110,9 +110,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac633439ece63e381762e30fc8599c1a9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#ac633439ece63e381762e30fc8599c1a9">ThreadLock</a> (bool <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#a1ea15561e57893d4e2a4a16a366cdb68">recursiveMode</a>=true, bool setUnsafeMode=false)</td></tr>
 <tr class="memdesc:ac633439ece63e381762e30fc8599c1a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html" title="This class allows mutual exclusive access to resources that the using software agrees on to protect w...">ThreadLock</a> that allows recursion. A warning will be given (ALox Error) when the given recursion level is reached (and each multiple of it). In addition the lock can be initialized to be unsafe, which means the locking critical sections is disabled.  <a href="#ac633439ece63e381762e30fc8599c1a9">More...</a><br/></td></tr>
 <tr class="separator:ac633439ece63e381762e30fc8599c1a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00a94cc394ebd68410e938195a5c4849"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#a00a94cc394ebd68410e938195a5c4849">Aquire</a> ()</td></tr>
-<tr class="memdesc:a00a94cc394ebd68410e938195a5c4849"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread which invokes this method gets registered as the current owner of this object, until the same thread releases the ownership invoking unlock(). In the case that this object is already owned by another thread, the invoking thread is suspended until ownership can be gained. Multiple (nested) calls to this method are counted and the object is only released when the same number of unlock() calls have been made.  <a href="#a00a94cc394ebd68410e938195a5c4849">More...</a><br/></td></tr>
-<tr class="separator:a00a94cc394ebd68410e938195a5c4849"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab91dc804181f48b0b445ac1299c36c05"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#ab91dc804181f48b0b445ac1299c36c05">Acquire</a> ()</td></tr>
+<tr class="memdesc:ab91dc804181f48b0b445ac1299c36c05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread which invokes this method gets registered as the current owner of this object, until the same thread releases the ownership invoking unlock(). In the case that this object is already owned by another thread, the invoking thread is suspended until ownership can be gained. Multiple (nested) calls to this method are counted and the object is only released when the same number of unlock() calls have been made.  <a href="#ab91dc804181f48b0b445ac1299c36c05">More...</a><br/></td></tr>
+<tr class="separator:ab91dc804181f48b0b445ac1299c36c05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94c93747c8daa99d65c2a04c6be0748c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#a94c93747c8daa99d65c2a04c6be0748c">Release</a> ()</td></tr>
 <tr class="memdesc:a94c93747c8daa99d65c2a04c6be0748c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases ownership of this object. If lock() was called multiple times before, the same number of calls to this method have to be performed to release ownership.  <a href="#a94c93747c8daa99d65c2a04c6be0748c">More...</a><br/></td></tr>
 <tr class="separator:a94c93747c8daa99d65c2a04c6be0748c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -199,12 +199,12 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a00a94cc394ebd68410e938195a5c4849"></a>
+<a class="anchor" id="ab91dc804181f48b0b445ac1299c36c05"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Aquire </td>
+          <td class="memname">void Acquire </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td></td>
@@ -436,7 +436,7 @@ Protected Attributes</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.4-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 21 2013 23:08:33 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 28 2013 23:50:41 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

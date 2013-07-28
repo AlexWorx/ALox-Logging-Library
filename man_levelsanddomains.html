@@ -243,7 +243,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1><a class="anchor" id="man_levelsanddomains_separating_loggers"></a>
 8. Setting Different Domain Levels on Different Loggers</h1>
 <p>We want to end this chapter, with another very important feature that the ALox logging ecosystem just "provides by design": The concept of matching <em>log levels</em> against <em>log domains</em> does not only allow us to configure the verbosity of the log output per domain. In addition, because of the simple fact that the <em>domain log level</em> setting is stored per <em>Logger</em> and not globally, ALox can be configured to have different loggers logging completely different things.</p>
-<p>As we have already seen a source sample of that provided in the tutorials (see section "Separating domain log levels in different loggers" <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/tutorial_cs.html#tutcs_more_5">for C#</a> or <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref" href="../html/java_ref/tutorial_java.html#tutjava_more_5">for Java</a>.), we want to give now a more formal description on how this is achieved:</p>
+<p>As we have already seen a source sample of that provided in the tutorials (see section "Directing log output to distinct loggers" <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/tutorial_cs.html#tutcs_more_seplog">for C#</a> or <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref" href="../html/java_ref/tutorial_java.html#tutjava_more_seplog">for Java</a>.), we want to give now a more formal description on how this is achieved:</p>
 <ul>
 <li>Create and add your loggers using <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Log.html#a48c449476d1fd8d89894d79a3083c47c">Log.AddLogger()</a></li>
 <li>For each <em>log domain</em> with log output that should go to all loggers invoke <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Log.html#aa581535137279580a7e3236132275700">Log.SetDomain</a> without specifying the parameter <em>loggerFilter</em></li>
@@ -277,7 +277,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <!-- HTML footer for doxygen 1.8.4-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 21 2013 23:08:39 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 28 2013 23:50:51 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

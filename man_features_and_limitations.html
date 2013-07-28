@@ -89,29 +89,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><ul>
-<li>Very simple to use.</li>
+<li>Available for C# (.Net, Windows Phone 7.1 - 8.0) and Java (with explicit Android extensions). Other languages/platforms to come.</li>
+<li>Simple programming interface, easy to learn.</li>
 <li>Very fast implementation to minimize runtime overhead of logging.</li>
-<li>Automatic removal (pruning) of log statements (even complex stuff) from release code without the need of preprocessor if/endif code cluttering.</li>
-<li>Automatic collection and logging of information about the entity that invoked a log statements. Each log line is "clickable" in your IDE. Such clicks jump to the corresponding source code and line number that performed the log.</li>
+<li>Automatic removal (pruning) of debug log statements from release code mostly without the need of preprocessor if/endif code cluttering. Optionally also automatic pruning of release log statements.</li>
+<li>Automatic collection and logging of information about the entity that invoked a log statements. Each log line is "clickable" in your IDE. Such clicks open the corresponding source code and line number that performed the log.</li>
 <li>API design follows concept of "tolerance", using default values, auto-creation of missing objects, etc. to minimize intrusiveness of ALox in respect to cluttering your code and what you need to make it really work.</li>
-<li>Release logging for all or selected parts (optional filtered pruning of release code)</li>
+<li>Release logging, side-by-side to (prunable) debug logging (optionally: also pruning of release log code)</li>
 <li>Multiple parallel log streams, e.g. for logging to the console and in parallel into a file.</li>
-<li>Plug in customized log targets, which enables custom output targets (e.g. databases or an internet service) and custom output formatting.</li>
-<li>Predefined TextLogger with automatically adjusted column widths for the various attributes of a log line. This allows to get interesting parts of a log output at a glimpse.</li>
-<li><p class="startli"><em>Log domains</em> allow the classification of different log statements into user defined topics. Such domains can be controlled at runtime to allow the programmer to concentrate on the area of current interest.</p>
-<p class="startli">Log domains are hierarchically organized what allows to control a whole "tree" of domains with only one line of code.</p>
-</li>
+<li>Extensible for custom log targets, which enables dedicated "data drains" (e.g. databases or a internet services) and custom output formatting.</li>
+<li>Abstract (extensible) TextLogger with automatically adjusted column widths displaying various collected attributes of a log entry. This allows to grasp interesting parts of a log output at a glimpse. Log format customizable by simple string definition.</li>
+<li><em>Log domains</em> allow the classification of different log statements into user defined topics. Such domains can be controlled at runtime to allow the programmer to concentrate on the area of current interest. Log domains are hierarchically organized what allows to control a whole "tree" of domains with only one line of code.</li>
 <li>Conditional logging, similar to assertions.</li>
-<li>Logging of objects using reflection with variable recursion depth and detection of cyclic references with one line of code.</li>
-<li>Logging Exceptions, XML documents, etc, also with one line of code.</li>
-<li>Code markers to allow back tracing of conditions that happened previous to a log statement (This is useful for example within exception handler code).</li>
-<li>Log output easily configurable in respect to detail and format</li>
+<li>LogTools for automated:<ul>
+<li>Logging of objects using reflection with variable recursion depth and detection of cyclic references, invoked with one line of code.</li>
+<li>Logging Exceptions, inner exceptions,</li>
+<li>XML documents All with one line of code.</li>
+</ul>
+</li>
+<li>Code markers for debug logging (auto pruned) to allow back tracing of conditions that happened previous to a log statement. (This is useful for example within exception handlers.)</li>
 </ul>
 <h3>Future work (and therefore today's limitations)</h3>
 <ul>
-<li>Today, ALox Logging is available for C# only. JAVA, C++ and Objective-C are planned. Java is next!</li>
-<li>File loggers (easy, will come very soon)</li>
-<li>HTTP/SOAP/REST loggers (send us your proposals for the right standards to support first!)</li>
+<li>Today, the ALox logging ecosystem is available for C# and JAVA only. C++ and Objective-C are planned. C++ is next!</li>
+<li>File loggers (easy, will come very soon, with pretty neat features)</li>
+<li>HTTP/SOAP/REST loggers (send us your proposals for the right standards/backends to support first!)</li>
+<li>Thread tools for analysis and assertions</li>
 <li><em>Log domain</em> substitution to modify domains in foreign code to suit your needs needs</li>
 <li>More on performance logging </li>
 </ul>
@@ -119,7 +122,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <!-- HTML footer for doxygen 1.8.4-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 21 2013 23:08:35 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 28 2013 23:50:46 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

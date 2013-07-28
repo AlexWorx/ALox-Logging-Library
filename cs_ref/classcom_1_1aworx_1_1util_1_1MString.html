@@ -200,9 +200,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa2710664520cb638ed2c7b9abd9bd737"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#aa2710664520cb638ed2c7b9abd9bd737">IndexOf</a> (String s, int startIdx=0)</td></tr>
 <tr class="memdesc:aa2710664520cb638ed2c7b9abd9bd737"><td class="mdescLeft">&#160;</td><td class="mdescRight">Search the given String in the Buffer.  <a href="#aa2710664520cb638ed2c7b9abd9bd737">More...</a><br/></td></tr>
 <tr class="separator:aa2710664520cb638ed2c7b9abd9bd737"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0cc4cc73d0ea81d71ca3f8ce5968bdb0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a0cc4cc73d0ea81d71ca3f8ce5968bdb0">Replace</a> (String searchStr, String newStr, int startIdx=0, int maxReplacements=int.MaxValue)</td></tr>
-<tr class="memdesc:a0cc4cc73d0ea81d71ca3f8ce5968bdb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replace one more more occurrences of a string by another string.  <a href="#a0cc4cc73d0ea81d71ca3f8ce5968bdb0">More...</a><br/></td></tr>
-<tr class="separator:a0cc4cc73d0ea81d71ca3f8ce5968bdb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54ab85639d2a852e05a354727b78cb26"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a54ab85639d2a852e05a354727b78cb26">ReplaceCount</a> (String searchStr, String newStr, int startIdx=0, int maxReplacements=int.MaxValue)</td></tr>
+<tr class="memdesc:a54ab85639d2a852e05a354727b78cb26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replace one more more occurrences of a string by another string. Returns the number of replacements.  <a href="#a54ab85639d2a852e05a354727b78cb26">More...</a><br/></td></tr>
+<tr class="separator:a54ab85639d2a852e05a354727b78cb26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef0aea1110eb6583bbdb021b1b32055b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#aef0aea1110eb6583bbdb021b1b32055b">Replace</a> (String searchStr, String newStr, int startIdx=0, int maxReplacements=int.MaxValue)</td></tr>
+<tr class="memdesc:aef0aea1110eb6583bbdb021b1b32055b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replace one more more occurrences of a string by another string. To receive the number of replacements, see alternative method <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a54ab85639d2a852e05a354727b78cb26" title="Replace one more more occurrences of a string by another string. Returns the number of replacements...">ReplaceCount()</a>.  <a href="#aef0aea1110eb6583bbdb021b1b32055b">More...</a><br/></td></tr>
+<tr class="separator:aef0aea1110eb6583bbdb021b1b32055b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a308cbb147b4dc0a8ed794f84cc711a7c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a308cbb147b4dc0a8ed794f84cc711a7c">CompareTo</a> (Object cmp, bool ignoreCase=false, int sStartIdx=0, int sLen=int.MaxValue, int startIdx=0, int len=int.MaxValue)</td></tr>
 <tr class="memdesc:a308cbb147b4dc0a8ed794f84cc711a7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares a given string (or part of it) with the contents of this. If the optionally given substring start indices and lengths parameters are out of bounds, they are corrected. This could lead to unwanted results in some cases.  <a href="#a308cbb147b4dc0a8ed794f84cc711a7c">More...</a><br/></td></tr>
 <tr class="separator:a308cbb147b4dc0a8ed794f84cc711a7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1565,12 +1568,12 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a0cc4cc73d0ea81d71ca3f8ce5968bdb0"></a>
+<a class="anchor" id="aef0aea1110eb6583bbdb021b1b32055b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int Replace </td>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> Replace </td>
           <td>(</td>
           <td class="paramtype">String&#160;</td>
           <td class="paramname"><em>searchStr</em>, </td>
@@ -1601,7 +1604,58 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Replace one more more occurrences of a string by another string. </p>
+<p>Replace one more more occurrences of a string by another string. To receive the number of replacements, see alternative method <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a54ab85639d2a852e05a354727b78cb26" title="Replace one more more occurrences of a string by another string. Returns the number of replacements...">ReplaceCount()</a>. </p>
+<hr/>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">searchStr</td><td>The string to be replaced. </td></tr>
+    <tr><td class="paramname">newStr</td><td>The replacement string. </td></tr>
+    <tr><td class="paramname">startIdx</td><td>The index where the search starts. Optional and defaults to 0. </td></tr>
+    <tr><td class="paramname">maxReplacements</td><td>The maximum number of replacements to perform. Optional and defaults to int.MaxValue . </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a54ab85639d2a852e05a354727b78cb26"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ReplaceCount </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>searchStr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>newStr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>startIdx</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>maxReplacements</em> = <code>int.MaxValue</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Replace one more more occurrences of a string by another string. Returns the number of replacements. </p>
 <hr/>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1799,7 +1853,7 @@ Protected Member Functions</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.4-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 21 2013 23:08:33 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 28 2013 23:50:41 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

@@ -78,10 +78,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="index.html">ALox Main Page</a></li>  </ul>
-</div>
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
@@ -91,18 +87,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="textblock"><p>Historically, there existed a kind of predecessor of this library for C++ and JAVA and was more or less maintained since the the year 1999. However this is a complete rewrite with C# as the originating language.</p>
 <p>The first released version was Version 1.0.1 in <b>May 2013</b>.</p>
 <p>This change log is sorted reversely in respect to chronology.</p>
-<h2>Version 1.1.0, not released, (but considered stable, and very close to be released)</h2>
+<h2>Version 1.1.0, not released (but considered stable, and very close to be released)</h2>
 <ul>
 <li>First ALox for Java Release!!! 100% Feature complete (as compared to actual C# Version).</li>
 <li>ALox for JAVA includes an LogCat logger for Android. This enables LogCat filtering and double-click support (jump to code line)</li>
 <li>Doxygen documentation now builds three different sites: Main, C# and JAVA. With a little doxygen manipulation, these three sites nicely integrate into each other, without much of a "media break".</li>
+<li>Added tutorials and sample projects on how to configure pruning for C# (incl. Windows Phone) and Java (inlc. Android).<br/>
+ Attn: The project folders and project names changed. So after doing a checkout, you have to fix your VStudio solution.<br/>
+ For C#, see <a href="cs_ref/setup_projects_vs_cs.html">Setting Up Visual Studio</a> <br/>
+ For Java, see <a href="java_ref/setup_projects_java.html">Setup your IDE for Java Projects</a></li>
 <li>Slightly different namespace (C#), respectively package (Java) structure:<ul>
-<li>class [Lox](<a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Lox.html">com::aworx::lox::Lox</a>) moved one package "up" from <em><a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/namespacecom_1_1aworx_1_1lox_1_1core.html">com.aworx.lox.core</a></em> to <em><a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/namespacecom_1_1aworx_1_1lox.html">com.aworx.lox</a></em></li>
-<li>classes [MemoryLogger](<a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html">com::aworx::lox::loggers::MemoryLogger</a>) and [ConsoleLogger](<a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html">com::aworx::lox::loggers::ConsoleLogger</a>) moved to a new package from <em><a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/namespacecom_1_1aworx_1_1lox_1_1loggers.html">com.aworx.lox.loggers</a></em> This new packages is to be filled over time with new Logger types. Class [TextLogger](com::aworx::lox::loggers::TextLogger) however, was kept in package <em><a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/namespacecom_1_1aworx_1_1lox_1_1core.html">com.aworx.lox.core</a></em> as this class is an abstract foundation class for current and future text based loggers.</li>
+<li>class <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a> moved one package "up" from <em><a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/namespacecom_1_1aworx_1_1lox_1_1core.html">com.aworx.lox.core</a></em> to <em><a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/namespacecom_1_1aworx_1_1lox.html">com.aworx.lox</a></em></li>
+<li>classes <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html">MemoryLogger</a> and <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html">ConsoleLogger</a> moved to a new package from <em><a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/namespacecom_1_1aworx_1_1lox_1_1loggers.html">com.aworx.lox.loggers</a></em> This new packages is to be filled over time with new Logger types. Class <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html">TextLogger</a> however, was kept in package <em><a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/namespacecom_1_1aworx_1_1lox_1_1core.html">com.aworx.lox.core</a></em> as this class is an abstract foundation class for current and future text based loggers.</li>
 </ul>
 </li>
-<li>Class [Textlogger](com::aworx::lox::core::Textlogger) was completely redesigned to be more configurable and extensible. For a complete description, see new manual chapter <a class="el" href="man_loggers.html">Details on ALox Loggers</a>.</li>
-<li>C# class [ThreadLock](<a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1util_1_1ThreadLock.html">com::aworx::util::ThreadLock</a>) corrected method names to follow "upper camel case".</li>
+<li>Class <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html">TextLogger</a> was completely redesigned to be more configurable and extensible. For a complete description, see new manual chapter <a class="el" href="man_loggers.html">Details on ALox Loggers</a>.</li>
+<li>Added a MString singleton to classes <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> and <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a> that can be acquired using <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Lox.html#ab411a126ad91b1460609c37db472ea00">Log.Buf()</a> respectively <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Lox.html#ab411a126ad91b1460609c37db472ea00">Lox.Buf()</a> and is automatically released when contents gets logged. See new tutorial section <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/tutorial_cs.html#tutcs_more_logbuf">3.2 Using the log buffer singleton</a>.</li>
+<li>C# class <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1util_1_1ThreadLock.html">ThreadLock</a> corrected method names to follow "upper camel case".</li>
+<li>A very lot of small changes and improvements. Reviewed and extended tutorials and user manual with new chapters.</li>
 </ul>
 <h2>Version 1.0.4, released June 24th, 2013</h2>
 <ul>
@@ -129,7 +131,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <ul>
 <li>added Windows Phone 7.1 compatibility (Windows Phone 8, was already supported)</li>
 <li>minor bug fixes in code and documentation</li>
-<li><p class="startli">renamed methods <em>Log.LOG()</em>, <em>Lox.log()</em> and <em>Logger.Log()</em> to <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Log.html#a3e7e792f0cb6840a49f4730c49aa3a4e">Log.Line()</a>, <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Lox.html#a1412969c1414fbd571289d5265c21139">Lox.Line()</a> and <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a131d672c77b9abb0fc4a5a3d23e66ccf">Logger.Line()</a>. The reason may be obvious. The reasons why they had been named as they were before, is maybe not too obvious. Some name conflicts where confusing. Now, all confusion should be gone!</p>
+<li><p class="startli">renamed methods <em>Log.LOG()</em>, <em>Lox.log()</em> and <em>Logger.Log()</em> to <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Log.html#ad76120113b208f598fbff178bbe1cf5e">Log.Line()</a>, <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Lox.html#ab870124af0644bd2f2b16e0a54bf6631">Lox.Line()</a> and <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a131d672c77b9abb0fc4a5a3d23e66ccf">Logger.Line()</a>. The reason may be obvious. The reasons why they had been named as they were before, is maybe not too obvious. Some name conflicts where confusing. Now, all confusion should be gone!</p>
 <p class="startli">Note: If you had used these methods, you have to rename them in your code accordingly.</p>
 </li>
 <li><p class="startli">Enums <em>Level</em> and <em>DomainLevel</em> stop existing several times in different namespaces. Their place is now in class Log, hence <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref" href="../html/java_ref/enumcom_1_1aworx_1_1lox_1_1Log_1_1Level.html">Log.Level</a> and <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref" href="../html/java_ref/enumcom_1_1aworx_1_1lox_1_1Log_1_1DomainLevel.html">Log.DomainLevel</a></p>
@@ -170,7 +172,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <!-- HTML footer for doxygen 1.8.4-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 21 2013 23:08:35 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 28 2013 23:50:46 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

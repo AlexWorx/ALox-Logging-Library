@@ -194,13 +194,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>CL: The line number in the caller's source file.</li>
 <li>CM: The caller's method name.</li>
 <li>D: The date the log call was invoked.</li>
-<li>TD: Time of day the log call was invoked</li>
-<li>TE: Time elapsed since the Logger was created or it's timer was reset</li>
-<li>TI: Time elapsed since the last log call</li>
-<li>t: Thread name and/or ID</li>
+<li>TD: Time of day the log call was invoked.</li>
+<li>TE: Time elapsed since the Logger was created or it's timer was reset.</li>
+<li>TI: Time elapsed since the last log call. Note: You might realize, that these time values do not sum up correctly. This is not only because of rounding errors, but also because the time between the "end" of the last log call and the "beginning" of this log call is measured. This has the advantage that a quite accurate value of "elapsed time since the last log call" is displayed and hence a very good performance indicator is provided.</li>
+<li>t: Thread name and/or ID.</li>
 <li>L: The <em>log level</em>. For the display of the different levels, <em>TextLoggerLineFormatter</em> exposes four public string definitions.</li>
-<li>O: The <em>log domain</em> name</li>
-<li>%#: The log call counter (like a line counter, but counting multi-line log output as one)</li>
+<li>O: The <em>log domain</em> name.</li>
+<li>%#: The log call counter (like a line counter, but counting multi-line log output as one).</li>
 <li>Ax: An auto-adjusted tabulator. This grows whenever it needs to grow, but never shrinks. The mandatory number x (a character between 0 and 9) specifies how much extra space is added when tab is adjusted. This is useful to achieve very clean column formatting.</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>The variables for the caller information vary across languages and platforms. For details see class TextLoggerLineFormatter in the reference section of your programming language of choice. </dd></dl>
@@ -264,7 +264,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <!-- HTML footer for doxygen 1.8.4-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 21 2013 23:08:39 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 28 2013 23:50:51 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

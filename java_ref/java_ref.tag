@@ -8,8 +8,16 @@
     <docanchor file="setup_projects_java" title="1.1 Download">setup_projects_java_download</docanchor>
     <docanchor file="setup_projects_java" title="1.2. For Eclipse Users: Link one of the following projects into your solution">setup_projects_java_eclipse</docanchor>
     <docanchor file="setup_projects_java" title="1.3 Alternatively: Adding source code to your project">setup_projects_java_addingsource</docanchor>
-    <docanchor file="setup_projects_java" title="1.4 Android Developers">setup_projects_java_android</docanchor>
-    <docanchor file="setup_projects_java" title="1.5 Test your setup">setup_projects_java_testnow</docanchor>
+    <docanchor file="setup_projects_java" title="1.4 Test your setup">setup_projects_java_testnow</docanchor>
+    <docanchor file="setup_projects_java" title="2. Pruning ALox">setup_projects_java_pruning</docanchor>
+    <docanchor file="setup_projects_java" title="2.1 What is Pruning?">setup_projects_java_pruning_what_is_pruning</docanchor>
+    <docanchor file="setup_projects_java" title="2.1 How Pruning in ALox for Java works">setup_projects_java_pruning_basics</docanchor>
+    <docanchor file="setup_projects_java" title="2.2 What to Prune">setup_projects_java_pruning_breadth</docanchor>
+    <docanchor file="setup_projects_java" title="2.3.1 ProGuard configuration for different platforms">setup_projects_java_pruning_proguard_platforms</docanchor>
+    <docanchor file="setup_projects_java" title="2.3.1 ProGuard configuration for standard Java">setup_projects_java_pruning_proguard_config_standard</docanchor>
+    <docanchor file="setup_projects_java" title="2.3.1 ProGuard configuration for Android">setup_projects_java_pruning_proguard_config_android</docanchor>
+    <docanchor file="setup_projects_java" title="2.4 Obfuscating the code">setup_projects_java_pruning_obfuscating</docanchor>
+    <docanchor file="setup_projects_java" title="2.5 Mission accomplished: Perfect Auto Pruning of ALox code!">setup_projects_java_pruning_result</docanchor>
   </compound>
   <compound kind="page">
     <name>tutorial_java</name>
@@ -27,11 +35,14 @@
     <docanchor file="tutorial_java" title="2.3. Where to place ALox log code">tutjava_llld_3</docanchor>
     <docanchor file="tutorial_java" title="3. Some more Details">tutjava_more</docanchor>
     <docanchor file="tutorial_java" title="3.1 Stop reading here?">tutjava_more_1</docanchor>
-    <docanchor file="tutorial_java" title="3.2 Conditional logging">tutjava_more_2</docanchor>
-    <docanchor file="tutorial_java" title="3.3 LogTools: Log complex things easily">tutjava_more_3</docanchor>
-    <docanchor file="tutorial_java" title="3.4 Indentation">tutjava_more_4</docanchor>
-    <docanchor file="tutorial_java" title="3.5 Separating domain log levels in different loggers">tutjava_more_5</docanchor>
-    <docanchor file="tutorial_java" title="3.6 ALox configuration and internal log messages">tutjava_more_6</docanchor>
+    <docanchor file="tutorial_java" title="3.2 Using the log buffer singleton">tutjava_more_logbuf</docanchor>
+    <docanchor file="tutorial_java" title="3.3 Conditional logging">tutjava_more_conditional</docanchor>
+    <docanchor file="tutorial_java" title="3.4 LogTools: Log complex things easily">tutjava_more_logtools</docanchor>
+    <docanchor file="tutorial_java" title="3.4.1 Instance(): Log any object recursively">tutjava_more_logtools_instance</docanchor>
+    <docanchor file="tutorial_java" title="3.4.2 Exception(): Log an exception recursively (with inner exceptions)">tutjava_more_logtools_exception</docanchor>
+    <docanchor file="tutorial_java" title="3.5 Indentation">tutjava_more_indentation</docanchor>
+    <docanchor file="tutorial_java" title="3.6 Directing log output to distinct loggers">tutjava_more_seplog</docanchor>
+    <docanchor file="tutorial_java" title="3.7 ALox configuration and internal log messages">tutjava_more_config</docanchor>
     <docanchor file="tutorial_java" title="Further reading">tutjava_end</docanchor>
   </compound>
   <compound kind="class">
@@ -41,17 +52,17 @@
     <class kind="enum">com::aworx::lox::Log::Level</class>
     <class kind="enum">com::aworx::lox::Log::Scope</class>
     <member kind="function" static="yes">
-      <type>static Logger</type>
-      <name>getLogger</name>
+      <type>static LogBuf</type>
+      <name>buf</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>ac5188fd3597ba8f1821512f2e4453279</anchor>
-      <arglist>(String loggerName)</arglist>
+      <anchor>a53c5060b0096f40c1001f96ff7ba80de</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
-      <name>reset</name>
+      <name>bufAbort</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>ab9d3f06dc4ef871fad50465095b5ea32</anchor>
+      <anchor>ad1620aa4a65ceb3f74ed54962e68383d</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
@@ -69,6 +80,13 @@
       <arglist>(Logger logger, Log.DomainLevel internalDomainLevel)</arglist>
     </member>
     <member kind="function" static="yes">
+      <type>static Logger</type>
+      <name>getLogger</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>ac5188fd3597ba8f1821512f2e4453279</anchor>
+      <arglist>(String loggerName)</arglist>
+    </member>
+    <member kind="function" static="yes">
       <type>static void</type>
       <name>removeLoggers</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
@@ -80,6 +98,13 @@
       <name>removeLoggers</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
       <anchor>a6804f40fbfc5683660ab0e4b3fcda298</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>reset</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>ab9d3f06dc4ef871fad50465095b5ea32</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
@@ -331,56 +356,70 @@
       <type>static void</type>
       <name>line</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>adc661f4ad4b9a8a4e91f9447d702e754</anchor>
-      <arglist>(boolean doLog, String domain, Log.Level level, Object msgObject, int indent, String loggerFilter)</arglist>
+      <anchor>a4e97e04e1f54ed79523211878fc0f687</anchor>
+      <arglist>(boolean doLog, String domain, Log.Level level, Object msg, int indent, String loggerFilter)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>line</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a8f85a19484c30bbd038b1f0e420df74a</anchor>
-      <arglist>(boolean doLog, String domain, Log.Level level, Object msgObject, int indent)</arglist>
+      <anchor>a2e5ea9d1202dd6a6543508010b04b815</anchor>
+      <arglist>(boolean doLog, String domain, Log.Level level, Object msg, int indent)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>line</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a12f510ef2506a53519d43768f989a829</anchor>
-      <arglist>(boolean doLog, String domain, Log.Level level, Object msgObject)</arglist>
+      <anchor>a70607e01082132ee0ea82dbd1bd4b201</anchor>
+      <arglist>(boolean doLog, String domain, Log.Level level, Object msg)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>line</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>abd4a287a5c7699d03815f0a88be96cfc</anchor>
-      <arglist>(String domain, Log.Level level, Object msgObject)</arglist>
+      <anchor>a3b0de0cec9b282bdae3f824211932925</anchor>
+      <arglist>(String domain, Log.Level level, Object msg)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>line</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>abd98bc9da70a9206bf6ab7267e995484</anchor>
-      <arglist>(Log.Level level, Object msgObject)</arglist>
+      <anchor>a70f180274d1ecb02fa9ea97aca7afd46</anchor>
+      <arglist>(Log.Level level, Object msg)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>line</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>ab54acd82ba516135608daa1caa1c6da0</anchor>
-      <arglist>(Log.Level level, Object msgObject, int indent)</arglist>
+      <anchor>a76d5375571bdb64b68858310097db88f</anchor>
+      <arglist>(Log.Level level, Object msg, int indent)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>line</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a459b3d136e4526487d4bc67bd4b49c11</anchor>
-      <arglist>(Log.Level level, Object msgObject, int indent, String loggerFilter)</arglist>
+      <anchor>a8b8e21d34f079a0b503a3e2bff26e70c</anchor>
+      <arglist>(Log.Level level, Object msg, int indent, String loggerFilter)</arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static Lox</type>
       <name>LOX</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
       <anchor>a9291aece8829db000d6508daa16f67fc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static LogBuf</type>
+      <name>logBuf</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a7cb12d57dc01488b568522f5a4f576e5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static ThreadLock</type>
+      <name>logBufLock</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a115a099b1c0c5425cd37ec7b54056d01</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" protection="package" static="yes">
@@ -498,6 +537,556 @@
       <name>METHOD</name>
       <anchorfile>enumcom_1_1aworx_1_1lox_1_1Log_1_1Scope.html</anchorfile>
       <anchor>a980085812d120b3761817608d332fecd</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>com::aworx::lox::LogBuf</name>
+    <filename>classcom_1_1aworx_1_1lox_1_1LogBuf.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>LogBuf</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a736a6ff738666fcdf1619d997ee46d5b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>LogBuf</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a50732db6d20a93af8a347f35dfa9a183</anchor>
+      <arglist>(int size)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>LogBuf</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a3ffcd6c1ad5154e9396c69299ae7a95b</anchor>
+      <arglist>(MString ms)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>LogBuf</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>aef7e8b04905bd6f96b33ce2455063338</anchor>
+      <arglist>(MString ms, int startIdx)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>LogBuf</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a2f9e27d816bd65805d97d72bd6183338</anchor>
+      <arglist>(MString ms, int startIdx, int len)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>LogBuf</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a31311bbf21a0159d9807107533ce518c</anchor>
+      <arglist>(String s)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>LogBuf</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>ae7ff5706960efcba4cb9f4ac17fe6011</anchor>
+      <arglist>(String s, int startIdx)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>LogBuf</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>ad9cb1ff9045630c758d0d6067842cd26</anchor>
+      <arglist>(String s, int startIdx, int len)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>LogBuf</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a05ef383705e7882ba7397be0174438ab</anchor>
+      <arglist>(StringBuffer s)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>LogBuf</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>afefc3e0533d621d8fc06dd2a2cc8abdc</anchor>
+      <arglist>(StringBuffer s, int startIdx)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>LogBuf</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>ac0bacdfc924cb6589e9b2fd55aef19c9</anchor>
+      <arglist>(StringBuffer s, int startIdx, int len)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>clear</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a58aafa1bec9d1e812dd0d168b37ee03f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>append</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a2a50afdabf5b53792436f43c0624f492</anchor>
+      <arglist>(MString ms)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>append</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a5bfcf493579adb133bacec5e88f0a171</anchor>
+      <arglist>(MString ms, int startIdx)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>append</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a1ee6f98e440a78bbbb5cdab80e95fabb</anchor>
+      <arglist>(MString ms, int startIdx, int len)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>append</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a2ce2f5cfeeb7148c970bb0cb9e29f8d3</anchor>
+      <arglist>(String s)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>append</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a44adcca284d9d0532746ea54cc3d887c</anchor>
+      <arglist>(String s, int startIdx)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>append</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a42aabedfefccf889900f038f7639e4c7</anchor>
+      <arglist>(String s, int startIdx, int len)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>append</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>ad82981787f445e15309bafe3b73d67bb</anchor>
+      <arglist>(StringBuffer sb)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>append</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a7713929ab20beba77e91fdd24f44f661</anchor>
+      <arglist>(StringBuffer sb, int startIdx)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>append</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>abff13a2e95e23d02a1f5042f9aad2004</anchor>
+      <arglist>(StringBuffer sb, int startIdx, int len)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>append</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>ae7c660131e7cb25fd02a34664614c06f</anchor>
+      <arglist>(StringBuilder sb)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>append</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>abe51ed3d04ad7566e000307872b564aa</anchor>
+      <arglist>(StringBuilder sb, int startIdx)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>append</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a69088e61df3e644ba234d166ef3eca96</anchor>
+      <arglist>(StringBuilder sb, int startIdx, int len)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>append</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>ae698a8f4a71794a2f0f2e9a1db57544d</anchor>
+      <arglist>(CharSequence sb)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>append</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>af104a3b5dcebba9a7b8d9ba4ced948f1</anchor>
+      <arglist>(CharSequence sb, int startIdx)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>append</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>adffeec7397aa68cddf106fd9944f2c50</anchor>
+      <arglist>(CharSequence sb, int startIdx, int len)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>append</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a625e445cac7d220f2b76bb247ea8b860</anchor>
+      <arglist>(char c)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>append</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a5908ecb4b2f9537759dfe085416707ab</anchor>
+      <arglist>(char c, int qty)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>appendPadRight</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>ae2100de8b9132e548b278079669b183e</anchor>
+      <arglist>(MString ms, int fieldSize)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>appendPadRight</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a923949c7eedb8ad390707f071b033771</anchor>
+      <arglist>(MString ms, int fieldSize, char padChar)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>appendPadRight</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a3eb9248094733b754fb8c3bc384de589</anchor>
+      <arglist>(String s, int fieldSize)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>appendPadRight</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>ac989eab3be63ea5b1dfe7ca84173624c</anchor>
+      <arglist>(String s, int fieldSize, char padChar)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>appendPadRight</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>af66b4fcd1ab02168be70ec9b2a2cefdc</anchor>
+      <arglist>(StringBuffer sb, int fieldSize)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>appendPadRight</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>af6a8ae4e9d9d262f46d682e9e9cc9223</anchor>
+      <arglist>(StringBuffer sb, int fieldSize, char padChar)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>appendPadLeft</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a0daa5dc4f85565610e6135b61d02d82f</anchor>
+      <arglist>(MString ms, int fieldSize)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>appendPadLeft</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>aed317eb04bf1f314b4815435853279f2</anchor>
+      <arglist>(MString ms, int fieldSize, char padChar)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>appendPadLeft</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>aef2d8423e39b88e52a3339139d4331fc</anchor>
+      <arglist>(String s, int fieldSize)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>appendPadLeft</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a14f3651fbe621de3b9aab531e63ce4a9</anchor>
+      <arglist>(String s, int fieldSize, char padChar)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>appendPadLeft</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a061da5a410f380b64b536724a7ea6771</anchor>
+      <arglist>(StringBuffer sb, int fieldSize)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>appendPadLeft</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a7e8f71a7b7c6d902cfda4b898f75b654</anchor>
+      <arglist>(StringBuffer sb, int fieldSize, char padChar)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>appendPadCenter</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a6d86b0ba5b987db11ced12bfd0f427a2</anchor>
+      <arglist>(MString ms, int fieldSize)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>appendPadCenter</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a58efbc794a2309187991abea36a78c91</anchor>
+      <arglist>(MString ms, int fieldSize, char padChar)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>appendPadCenter</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a364ca9ad9632692fc1e6313def971a38</anchor>
+      <arglist>(String s, int fieldSize)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>appendPadCenter</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a916f1cc7fdd6e1f2461508732c2efc56</anchor>
+      <arglist>(String s, int fieldSize, char padChar)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>appendPadCenter</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a96f2056ef57ef69d1f5c3966c60e328d</anchor>
+      <arglist>(StringBuffer sb, int fieldSize)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>appendPadCenter</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a4736f7398efc81d86b9804b9f95eeffd</anchor>
+      <arglist>(StringBuffer sb, int fieldSize, char padChar)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>append</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a1ffdad8f3bc13e03c504612e4c660529</anchor>
+      <arglist>(int i, int minDigits)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>append</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a924321c546c3f11c593fb2b94724482a</anchor>
+      <arglist>(int i)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>append</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a2f49f931a3f816884c74b802211ed7c6</anchor>
+      <arglist>(double d, int minDigitsBeforeDot, int digitsAfterDot)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>tab</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>aa3a8767705fdc50aa7ba23503c40ec39</anchor>
+      <arglist>(int tabSize)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>tab</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>afdb35b96fc567bed45f52c549139d7f1</anchor>
+      <arglist>(int tabSize, int tabReference)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>tab</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>ad89309c646ffcc8dcf02e3ee74f9b166</anchor>
+      <arglist>(int tabSize, int tabReference, int minPad)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>tab</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a711e06286cc91a555aca689df5a4d68c</anchor>
+      <arglist>(int tabSize, int tabReference, int minPad, char padChar)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>newLine</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>af8ab44130376a07ef17460b392f41590</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>boolean</type>
+      <name>containsAt</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a5cfe24fea5a9f07bc3b411a5d5cf1222</anchor>
+      <arglist>(CharSequence s, int pos, boolean ignoreCase)</arglist>
+    </member>
+    <member kind="function">
+      <type>boolean</type>
+      <name>containsAt</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a4fe1e46da5df87fefcacb81b6330bdc9</anchor>
+      <arglist>(CharSequence s, int pos)</arglist>
+    </member>
+    <member kind="function">
+      <type>boolean</type>
+      <name>startsWith</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>ab316fed7f0f6497158869355aba96fbe</anchor>
+      <arglist>(CharSequence s)</arglist>
+    </member>
+    <member kind="function">
+      <type>boolean</type>
+      <name>endsWith</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>ab0f4b2881454b063c7bb9fee6d58ded2</anchor>
+      <arglist>(CharSequence s)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>indexOf</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a1c43dcbb767f10f9a625ec20694999f6</anchor>
+      <arglist>(CharSequence s, int startIdx)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>indexOf</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a3aaa0641d23c63ae7c0b45f4b14d5016</anchor>
+      <arglist>(CharSequence s)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>replaceCount</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>ab991a6222121588e5a3f0748d1829c63</anchor>
+      <arglist>(CharSequence searchStr, CharSequence newStr, int startIdx, int maxReplacements)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>replaceCount</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a654366ab8ca12d4ef86486b50b265519</anchor>
+      <arglist>(CharSequence searchStr, CharSequence newStr, int startIdx)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>replaceCount</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>adda75690958f9a3e69f7184f9aa0b2c7</anchor>
+      <arglist>(CharSequence searchStr, CharSequence newStr)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>replace</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a227cfca88f09377ab8f3df308ce7bbd8</anchor>
+      <arglist>(CharSequence searchStr, CharSequence newStr, int startIdx, int maxReplacements)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>replace</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>ae60b82414effca963c5f101e63a83fe0</anchor>
+      <arglist>(CharSequence searchStr, CharSequence newStr, int startIdx)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>replace</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a9f3009634c719d3158d84d94e50064ec</anchor>
+      <arglist>(CharSequence searchStr, CharSequence newStr)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>compareTo</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>af214887db1ff5c940a796209e4687231</anchor>
+      <arglist>(CharSequence cmp)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>compareTo</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>ad95fecd8c81767b0cd6a1eab72388372</anchor>
+      <arglist>(CharSequence cmp, boolean ignoreCase)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>compareTo</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a15a4cc63cefdd926a2f7c0358b8f3ede</anchor>
+      <arglist>(CharSequence cmp, boolean ignoreCase, int sStartIdx)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>compareTo</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>ae80efe75fdcb033dc6d8fdbf7306f2a5</anchor>
+      <arglist>(CharSequence cmp, boolean ignoreCase, int sStartIdx, int sLen)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>compareTo</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>aeab16cc30f29931695223b601ae1682d</anchor>
+      <arglist>(CharSequence cmp, boolean ignoreCase, int sStartIdx, int sLen, int startIdx)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>compareTo</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>af95a0dea99badea2ab30e30c3c05ce09</anchor>
+      <arglist>(CharSequence cmp, boolean ignoreCase, int sStartIdx, int sLen, int startIdx, int len)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>convertCase</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a40399a25a11cfdb9e26392de08bb525d</anchor>
+      <arglist>(boolean toUpper)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>convertCase</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>ac789c33a97364043bb232bc1b7e27492</anchor>
+      <arglist>(boolean toUpper, int substrStart)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogBuf</type>
+      <name>convertCase</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>ab316e5518910f4b8dbacef93ee704c1b</anchor>
+      <arglist>(boolean toUpper, int substrStart, int substrLength)</arglist>
+    </member>
+    <member kind="function">
+      <type>String</type>
+      <name>toString</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>ad146fa8579a5f8a876c4688cc5a68520</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable">
+      <type>MString</type>
+      <name>b</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogBuf.html</anchorfile>
+      <anchor>a8407bef70dc3483bc9b223482b0e162f</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -957,11 +1546,25 @@
     <name>com::aworx::lox::Lox</name>
     <filename>classcom_1_1aworx_1_1lox_1_1Lox.html</filename>
     <member kind="function">
-      <type>Logger</type>
-      <name>getLogger</name>
+      <type></type>
+      <name>Lox</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>acaa486d7048bb92b36bf103fdea4518c</anchor>
-      <arglist>(String loggerName)</arglist>
+      <anchor>adeecd070b47db04dfac1b186f99a95d2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>MString</type>
+      <name>buf</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a443cb85820239541d45f3d05477fa832</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>bufAbort</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a695ba83e7bf11b5043bbfed84c573748</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -976,6 +1579,13 @@
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
       <anchor>a9348b034cf3c349e591157487ddf5db5</anchor>
       <arglist>(Logger logger, Log.DomainLevel internalDomainLevel)</arglist>
+    </member>
+    <member kind="function">
+      <type>Logger</type>
+      <name>getLogger</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>acaa486d7048bb92b36bf103fdea4518c</anchor>
+      <arglist>(String loggerName)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -1381,6 +1991,20 @@
       <name>resDomain</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
       <anchor>a53cc89ae4402b9385259e06c5fc0a546</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>MString</type>
+      <name>logBuf</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>aaf37e693e36d895e18bcc1f6037f5d9e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ThreadLock</type>
+      <name>logBufLock</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a115a099b1c0c5425cd37ec7b54056d01</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -2613,23 +3237,44 @@
     </member>
     <member kind="function">
       <type>int</type>
-      <name>replace</name>
+      <name>replaceCount</name>
       <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>af8542d4003ef95ad4e15f33c14e8b86b</anchor>
+      <anchor>ab991a6222121588e5a3f0748d1829c63</anchor>
       <arglist>(CharSequence searchStr, CharSequence newStr, int startIdx, int maxReplacements)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
-      <name>replace</name>
+      <name>replaceCount</name>
       <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>aaa8b790884ca485b8698cc624c7abdd7</anchor>
+      <anchor>a654366ab8ca12d4ef86486b50b265519</anchor>
       <arglist>(CharSequence searchStr, CharSequence newStr, int startIdx)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
+      <name>replaceCount</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
+      <anchor>adda75690958f9a3e69f7184f9aa0b2c7</anchor>
+      <arglist>(CharSequence searchStr, CharSequence newStr)</arglist>
+    </member>
+    <member kind="function">
+      <type>MString</type>
       <name>replace</name>
       <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>ac22fce57adf0f8170f2343c9d0a2901e</anchor>
+      <anchor>ab72cc9e02518c6e8dfedca69f8302786</anchor>
+      <arglist>(CharSequence searchStr, CharSequence newStr, int startIdx, int maxReplacements)</arglist>
+    </member>
+    <member kind="function">
+      <type>MString</type>
+      <name>replace</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
+      <anchor>af6cc37a927414c1edb97490cbc20c569</anchor>
+      <arglist>(CharSequence searchStr, CharSequence newStr, int startIdx)</arglist>
+    </member>
+    <member kind="function">
+      <type>MString</type>
+      <name>replace</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
+      <anchor>aea9700b7f9405124ef7598206338bbeb</anchor>
       <arglist>(CharSequence searchStr, CharSequence newStr)</arglist>
     </member>
     <member kind="function">
@@ -2855,9 +3500,9 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>aquire</name>
+      <name>acquire</name>
       <anchorfile>classcom_1_1aworx_1_1util_1_1ThreadLock.html</anchorfile>
-      <anchor>a29ebe4f44772d276c34510a35a55db9e</anchor>
+      <anchor>af9f5b35a212d21af601a8213ed325871</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
@@ -3353,6 +3998,7 @@
     <dir>core</dir>
     <dir>loggers</dir>
     <file>Log.java</file>
+    <file>LogBuf.java</file>
     <file>LogTools.java</file>
     <file>Lox.java</file>
   </compound>

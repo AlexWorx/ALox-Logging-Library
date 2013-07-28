@@ -110,12 +110,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a74ba68166dee3359939d25f87e648cbe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a74ba68166dee3359939d25f87e648cbe">GetLogger</a> (String loggerName)</td></tr>
-<tr class="memdesc:a74ba68166dee3359939d25f87e648cbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve an instance of a Logger by its name. Note: This function is not automatically removed from the release code because of technical restrictions. Invocations of this methods have to be conditionally compiled by enclosing calls to it with "#if ... #endif" statements.  <a href="#a74ba68166dee3359939d25f87e648cbe">More...</a><br/></td></tr>
-<tr class="separator:a74ba68166dee3359939d25f87e648cbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adeecd070b47db04dfac1b186f99a95d2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#adeecd070b47db04dfac1b186f99a95d2">Lox</a> ()</td></tr>
+<tr class="separator:adeecd070b47db04dfac1b186f99a95d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab411a126ad91b1460609c37db472ea00"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#ab411a126ad91b1460609c37db472ea00">Buf</a> ()</td></tr>
+<tr class="memdesc:ab411a126ad91b1460609c37db472ea00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a MString singleton, that can be reused for all basic log calls. Textual messages that are assembled from out of strings, numbers and other data, can be efficiently built by reusing this singleton. Whenever this method is called, the returned MString object gets "locked" by a corresponding ThreadLock object. Therefore it has to be used as a message within one of the log methods of this class (error(), warning(), info(), verbose(), assert() or line()) or it has to be explicitly released using <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a3474a54c9a6f9f6db081eddb91c078af" title="Use this method when you want to abort a log call that you &quot;started&quot; with acquiring the internal MStr...">BufAbort()</a>. If this is not done, the object does not get released and parallel threads using this method would block! So, do not use <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#ab411a126ad91b1460609c37db472ea00" title="Returns a MString singleton, that can be reused for all basic log calls. Textual messages that are as...">Buf()</a> for other reasons than for creating log messages and be sure to release it "in time".  <a href="#ab411a126ad91b1460609c37db472ea00">More...</a><br/></td></tr>
+<tr class="separator:ab411a126ad91b1460609c37db472ea00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3474a54c9a6f9f6db081eddb91c078af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a3474a54c9a6f9f6db081eddb91c078af">BufAbort</a> ()</td></tr>
+<tr class="memdesc:a3474a54c9a6f9f6db081eddb91c078af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method when you want to abort a log call that you "started" with acquiring the internal MString singleton acquired using method <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#ab411a126ad91b1460609c37db472ea00" title="Returns a MString singleton, that can be reused for all basic log calls. Textual messages that are as...">Buf()</a>. Use <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a3474a54c9a6f9f6db081eddb91c078af" title="Use this method when you want to abort a log call that you &quot;started&quot; with acquiring the internal MStr...">BufAbort()</a> only if you did not use the acquired buffer as a parameter of a log method, because this internally releases the buf already.  <a href="#a3474a54c9a6f9f6db081eddb91c078af">More...</a><br/></td></tr>
+<tr class="separator:a3474a54c9a6f9f6db081eddb91c078af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a360d4bab0de9498716bfe3328e3aca48"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a360d4bab0de9498716bfe3328e3aca48">AddLogger</a> (<a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> logger, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a10ac165398697ce1d642d739cc3b170f">Log.DomainLevel</a> internalDomainLevel=Log.DomainLevel.WarningsAndErrors,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
 <tr class="memdesc:a360d4bab0de9498716bfe3328e3aca48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a logger to the <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This is a simple, 100% static wrapper of class Lox. In other words, this class incorporates one stati...">Log</a> interface. Each log call that is performed through this interface will be forwarded to this logger, unless filtered out with optional filter parameter. The logger will then check it's domain level against the given log level to decide whether a log should performed.  <a href="#a360d4bab0de9498716bfe3328e3aca48">More...</a><br/></td></tr>
 <tr class="separator:a360d4bab0de9498716bfe3328e3aca48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74ba68166dee3359939d25f87e648cbe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a74ba68166dee3359939d25f87e648cbe">GetLogger</a> (String loggerName)</td></tr>
+<tr class="memdesc:a74ba68166dee3359939d25f87e648cbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve an instance of a Logger by its name. Note: This function is not automatically removed from the release code because of technical restrictions. Invocations of this methods have to be conditionally compiled by enclosing calls to it with "#if ... #endif" statements.  <a href="#a74ba68166dee3359939d25f87e648cbe">More...</a><br/></td></tr>
+<tr class="separator:a74ba68166dee3359939d25f87e648cbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af07a94c1e4cf8e5d66b6852e04b08624"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#af07a94c1e4cf8e5d66b6852e04b08624">RemoveLoggers</a> (String loggerFilter=null)</td></tr>
 <tr class="memdesc:af07a94c1e4cf8e5d66b6852e04b08624"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all loggers that match the filter name from this interface.  <a href="#af07a94c1e4cf8e5d66b6852e04b08624">More...</a><br/></td></tr>
 <tr class="separator:af07a94c1e4cf8e5d66b6852e04b08624"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -152,9 +160,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a94bc46def19c21f0607b7d43cc2e765f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a94bc46def19c21f0607b7d43cc2e765f">Verbose</a> (String domain, Object msg, int indent=0,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
 <tr class="memdesc:a94bc46def19c21f0607b7d43cc2e765f"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This is a simple, 100% static wrapper of class Lox. In other words, this class incorporates one stati...">Log</a> an Object with log level equal to Log.Level.Verbose. This is the highest (most verbose) log level, which is only actually logged if the log domains log level is set to "All". Note: Calls to this method are automatically removed from release code.  <a href="#a94bc46def19c21f0607b7d43cc2e765f">More...</a><br/></td></tr>
 <tr class="separator:a94bc46def19c21f0607b7d43cc2e765f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d68c7953af41794595495cefe5daec6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a4d68c7953af41794595495cefe5daec6">Info</a> (String msg, int indent=0,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
-<tr class="memdesc:a4d68c7953af41794595495cefe5daec6"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This is a simple, 100% static wrapper of class Lox. In other words, this class incorporates one stati...">Log</a> an Object with log level equal to Log.Level.Info. This is the second highest (after Verbose) log level, which is only actually logged if the log domains log level is set to "Info" or "Verbose". This overloaded version does not offer a domain parameter but relies on a default domain set for the source file this function is used in.  <a href="#a4d68c7953af41794595495cefe5daec6">More...</a><br/></td></tr>
-<tr class="separator:a4d68c7953af41794595495cefe5daec6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa69521642c4b561ae66aa0e7eab48c2f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#aa69521642c4b561ae66aa0e7eab48c2f">Info</a> (Object msg, int indent=0,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
+<tr class="memdesc:aa69521642c4b561ae66aa0e7eab48c2f"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This is a simple, 100% static wrapper of class Lox. In other words, this class incorporates one stati...">Log</a> an Object with log level equal to Log.Level.Info. This is the second highest (after Verbose) log level, which is only actually logged if the log domains log level is set to "Info" or "Verbose". This overloaded version does not offer a domain parameter but relies on a default domain set for the source file this function is used in.  <a href="#aa69521642c4b561ae66aa0e7eab48c2f">More...</a><br/></td></tr>
+<tr class="separator:aa69521642c4b561ae66aa0e7eab48c2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3322de1c1e20d3b3cc884c9ebe08045"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#ac3322de1c1e20d3b3cc884c9ebe08045">Info</a> (String domain, Object msg, int indent=0,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
 <tr class="memdesc:ac3322de1c1e20d3b3cc884c9ebe08045"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This is a simple, 100% static wrapper of class Lox. In other words, this class incorporates one stati...">Log</a> an Object with log level equal to Log.Level.Info. This is the second highest (after Verbose) log level, which is only actually logged if the log domains log level is set to "Info" or "Verbose".  <a href="#ac3322de1c1e20d3b3cc884c9ebe08045">More...</a><br/></td></tr>
 <tr class="separator:ac3322de1c1e20d3b3cc884c9ebe08045"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -176,21 +184,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af2b9896d54cc46e902a105da26176da5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#af2b9896d54cc46e902a105da26176da5">Assert</a> (bool trueOrLog, String domain, Object msg, int indent=0,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
 <tr class="memdesc:af2b9896d54cc46e902a105da26176da5"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This is a simple, 100% static wrapper of class Lox. In other words, this class incorporates one stati...">Log</a> a string only if the given condition is not true. <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This is a simple, 100% static wrapper of class Lox. In other words, this class incorporates one stati...">Log</a> level will be highest, namely Log.Level.Error.  <a href="#af2b9896d54cc46e902a105da26176da5">More...</a><br/></td></tr>
 <tr class="separator:af2b9896d54cc46e902a105da26176da5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1412969c1414fbd571289d5265c21139"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a1412969c1414fbd571289d5265c21139">Line</a> (bool doLog, String domain, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log.Level</a> level, Object msgObject, int indent=0, String loggerFilter=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
-<tr class="memdesc:a1412969c1414fbd571289d5265c21139"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides a more flexible but complex way to log a message. The methods <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a8705225063ecca80f30b87035bc11bdd" title="Log an Object with log level equal to Log.Level.Verbose. This is the highest (most verbose) log level...">Verbose()</a>, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a4d68c7953af41794595495cefe5daec6" title="Log an Object with log level equal to Log.Level.Info. This is the second highest (after Verbose) log ...">Info()</a>, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#aa329f2e9f7592e041c96a88ba7e93ce7" title="Log an Object with log level equal to Log.Level.Warning. Log messages of this log level are are logge...">Warning()</a>, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#aa50a0ec4f97b5c06b65c9f70f0edbda2" title="Log an Object with log level equal to Log.Level.Error. Log messages of this log level are are always ...">Error()</a> and <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a33684b7e69af6726dbfaf0105e9a128a" title="Log a string only if the given condition is not true. Log level will be highest, namely Error if cond...">Assert()</a> are using this function internally and should be used in standard cases. Use this function only in the rare cases, e.g. when a log level is decided only at runtime or when you want to use a logger filter, etc.  <a href="#a1412969c1414fbd571289d5265c21139">More...</a><br/></td></tr>
-<tr class="separator:a1412969c1414fbd571289d5265c21139"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b98598ed96bf177d5fb1528fd70baa6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a8b98598ed96bf177d5fb1528fd70baa6">Line</a> (String domain, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log.Level</a> level, Object msgObject, int indent=0, String loggerFilter=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
-<tr class="memdesc:a8b98598ed96bf177d5fb1528fd70baa6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs an Object using the given log level, log domain and indentation and logger filter.  <a href="#a8b98598ed96bf177d5fb1528fd70baa6">More...</a><br/></td></tr>
-<tr class="separator:a8b98598ed96bf177d5fb1528fd70baa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af35754849cbc87fdf297951d3fb379a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#af35754849cbc87fdf297951d3fb379a3">Line</a> (<a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log.Level</a> level, Object msgObject, int indent=0, String loggerFilter=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
-<tr class="memdesc:af35754849cbc87fdf297951d3fb379a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs an Object using the given log level, indentation and logger filter and the default domain set for the scope.  <a href="#af35754849cbc87fdf297951d3fb379a3">More...</a><br/></td></tr>
-<tr class="separator:af35754849cbc87fdf297951d3fb379a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab870124af0644bd2f2b16e0a54bf6631"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#ab870124af0644bd2f2b16e0a54bf6631">Line</a> (bool doLog, String domain, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log.Level</a> level, Object msg, int indent=0, String loggerFilter=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
+<tr class="memdesc:ab870124af0644bd2f2b16e0a54bf6631"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides a more flexible but complex way to log a message. The methods <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a8705225063ecca80f30b87035bc11bdd" title="Log an Object with log level equal to Log.Level.Verbose. This is the highest (most verbose) log level...">Verbose()</a>, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#aa69521642c4b561ae66aa0e7eab48c2f" title="Log an Object with log level equal to Log.Level.Info. This is the second highest (after Verbose) log ...">Info()</a>, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#aa329f2e9f7592e041c96a88ba7e93ce7" title="Log an Object with log level equal to Log.Level.Warning. Log messages of this log level are are logge...">Warning()</a>, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#aa50a0ec4f97b5c06b65c9f70f0edbda2" title="Log an Object with log level equal to Log.Level.Error. Log messages of this log level are are always ...">Error()</a> and <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a33684b7e69af6726dbfaf0105e9a128a" title="Log a string only if the given condition is not true. Log level will be highest, namely Error if cond...">Assert()</a> are using this function internally and should be used in standard cases. Use this function only in the rare cases, e.g. when a log level is decided only at runtime or when you want to use a logger filter, etc.  <a href="#ab870124af0644bd2f2b16e0a54bf6631">More...</a><br/></td></tr>
+<tr class="separator:ab870124af0644bd2f2b16e0a54bf6631"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a8d5c051f75fb43386c36a4d7eb9547"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a3a8d5c051f75fb43386c36a4d7eb9547">Line</a> (String domain, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log.Level</a> level, Object msg, int indent=0, String loggerFilter=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
+<tr class="memdesc:a3a8d5c051f75fb43386c36a4d7eb9547"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs an Object using the given log level, log domain and indentation and logger filter.  <a href="#a3a8d5c051f75fb43386c36a4d7eb9547">More...</a><br/></td></tr>
+<tr class="separator:a3a8d5c051f75fb43386c36a4d7eb9547"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adeba612941c97b865bbee4aeddc53c9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#adeba612941c97b865bbee4aeddc53c9b">Line</a> (<a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log.Level</a> level, Object msg, int indent=0, String loggerFilter=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
+<tr class="memdesc:adeba612941c97b865bbee4aeddc53c9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs an Object using the given log level, indentation and logger filter and the default domain set for the scope.  <a href="#adeba612941c97b865bbee4aeddc53c9b">More...</a><br/></td></tr>
+<tr class="separator:adeba612941c97b865bbee4aeddc53c9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a2c80e5630abe5d5042ddb4b85c0c3562"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2c80e5630abe5d5042ddb4b85c0c3562"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a2c80e5630abe5d5042ddb4b85c0c3562">CntLogCalls</a> =0</td></tr>
-<tr class="memdesc:a2c80e5630abe5d5042ddb4b85c0c3562"><td class="mdescLeft">&#160;</td><td class="mdescRight">A counter for the quantity of calls. The count includes logs that were suppressed by disabled log rootDomain and those suppressed by the optional log condition parameter. Hence, it can also be used as a condition to log only every n-th time by calling using the conditional parameter of <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a1412969c1414fbd571289d5265c21139" title="Provides a more flexible but complex way to log a message. The methods Verbose(), Info()...">Line()</a>, e.g.: <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a1412969c1414fbd571289d5265c21139" title="Provides a more flexible but complex way to log a message. The methods Verbose(), Info()...">Lox.Line</a>( (Log.qtyLogCalls % n) == 0, ...</em>. <br/></td></tr>
+<tr class="memdesc:a2c80e5630abe5d5042ddb4b85c0c3562"><td class="mdescLeft">&#160;</td><td class="mdescRight">A counter for the quantity of calls. The count includes logs that were suppressed by disabled log rootDomain and those suppressed by the optional log condition parameter. Hence, it can also be used as a condition to log only every n-th time by calling using the conditional parameter of <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#ab870124af0644bd2f2b16e0a54bf6631" title="Provides a more flexible but complex way to log a message. The methods Verbose(), Info()...">Line()</a>, e.g.: <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#ab870124af0644bd2f2b16e0a54bf6631" title="Provides a more flexible but complex way to log a message. The methods Verbose(), Info()...">Lox.Line</a>( (Log.qtyLogCalls % n) == 0, ...</em>. <br/></td></tr>
 <tr class="separator:a2c80e5630abe5d5042ddb4b85c0c3562"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae10600cb6914f091adfbbde00bbfdcd7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae10600cb6914f091adfbbde00bbfdcd7"></a>
 <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html">ThreadLock</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#ae10600cb6914f091adfbbde00bbfdcd7">Lock</a> =new <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html">ThreadLock</a>()</td></tr>
@@ -240,6 +248,12 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a53cc89ae4402b9385259e06c5fc0a546"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a53cc89ae4402b9385259e06c5fc0a546">resDomain</a> =new <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>( 32 )</td></tr>
 <tr class="memdesc:a53cc89ae4402b9385259e06c5fc0a546"><td class="mdescLeft">&#160;</td><td class="mdescRight">The resulting domain name.  <a href="#a53cc89ae4402b9385259e06c5fc0a546">More...</a><br/></td></tr>
 <tr class="separator:a53cc89ae4402b9385259e06c5fc0a546"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf37e693e36d895e18bcc1f6037f5d9e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#aaf37e693e36d895e18bcc1f6037f5d9e">logBuf</a> = new <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>( 128 )</td></tr>
+<tr class="memdesc:aaf37e693e36d895e18bcc1f6037f5d9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">A MString singleton. Can be acquired, using buf()  <a href="#aaf37e693e36d895e18bcc1f6037f5d9e">More...</a><br/></td></tr>
+<tr class="separator:aaf37e693e36d895e18bcc1f6037f5d9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a115a099b1c0c5425cd37ec7b54056d01"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html">ThreadLock</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a115a099b1c0c5425cd37ec7b54056d01">logBufLock</a> = new <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html">ThreadLock</a>()</td></tr>
+<tr class="memdesc:a115a099b1c0c5425cd37ec7b54056d01"><td class="mdescLeft">&#160;</td><td class="mdescRight">A locker for the log buffer singleton  <a href="#a115a099b1c0c5425cd37ec7b54056d01">More...</a><br/></td></tr>
+<tr class="separator:a115a099b1c0c5425cd37ec7b54056d01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1e2c7dee8db47cd16ca92fb3a7ae904"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#ab1e2c7dee8db47cd16ca92fb3a7ae904">tempDomain</a> =new <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>( 32 )</td></tr>
 <tr class="memdesc:ab1e2c7dee8db47cd16ca92fb3a7ae904"><td class="mdescLeft">&#160;</td><td class="mdescRight">A temporary domain name.  <a href="#ab1e2c7dee8db47cd16ca92fb3a7ae904">More...</a><br/></td></tr>
 <tr class="separator:ab1e2c7dee8db47cd16ca92fb3a7ae904"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -259,7 +273,24 @@ Static Private Member Functions</h2></td></tr>
 </pre><p> } * a) Store and log into one or several Logger instances at once b) Thread safeness c) Store and use of default domain names d) Store and manage caller information d) Provides shortcuts to frequently used logging tasks. e) Store "code markers" and retrieve for simple tracing in log statements f) Count log operations</p>
 <p>This class is 100% not static. In standard log scenarios, it is recommend <b>not</b> to use this class, but to use <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This is a simple, 100% static wrapper of class Lox. In other words, this class incorporates one stati...">Log</a> instead, which is a 100% static wrapper around this one. In other words, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This is a simple, 100% static wrapper of class Lox. In other words, this class incorporates one stati...">Log</a> incorporates one static instance of this class and mirrors the whole interface with static methods.</p>
 <p>Furthermore, all invocations of methods of <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This is a simple, 100% static wrapper of class Lox. In other words, this class incorporates one stati...">Log</a> are pruned in release code, while invocations of methods of <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Lox</a> not. Hence, this class and interface should be used in release log scenarios. Of course, the use of class <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This is a simple, 100% static wrapper of class Lox. In other words, this class incorporates one stati...">Log</a> and <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Lox</a> can be mixed, to enable debug log output in parallel to release output. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="adeecd070b47db04dfac1b186f99a95d2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a> </td>
+          <td>(</td>
+          <td class="paramname">)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Constructs a new, empty <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Lox</a>. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a360d4bab0de9498716bfe3328e3aca48"></a>
 <div class="memitem">
 <div class="memproto">
@@ -450,6 +481,43 @@ Static Private Member Functions</h2></td></tr>
   </dd>
 </dl>
 
+</div>
+</div>
+<a class="anchor" id="ab411a126ad91b1460609c37db472ea00"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> Buf </td>
+          <td>(</td>
+          <td class="paramname">)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a MString singleton, that can be reused for all basic log calls. Textual messages that are assembled from out of strings, numbers and other data, can be efficiently built by reusing this singleton. Whenever this method is called, the returned MString object gets "locked" by a corresponding ThreadLock object. Therefore it has to be used as a message within one of the log methods of this class (error(), warning(), info(), verbose(), assert() or line()) or it has to be explicitly released using <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a3474a54c9a6f9f6db081eddb91c078af" title="Use this method when you want to abort a log call that you &quot;started&quot; with acquiring the internal MStr...">BufAbort()</a>. If this is not done, the object does not get released and parallel threads using this method would block! So, do not use <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#ab411a126ad91b1460609c37db472ea00" title="Returns a MString singleton, that can be reused for all basic log calls. Textual messages that are as...">Buf()</a> for other reasons than for creating log messages and be sure to release it "in time". </p>
+<hr/>
+<dl class="section return"><dt>Returns</dt><dd>the static MString singleton. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a3474a54c9a6f9f6db081eddb91c078af"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BufAbort </td>
+          <td>(</td>
+          <td class="paramname">)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Use this method when you want to abort a log call that you "started" with acquiring the internal MString singleton acquired using method <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#ab411a126ad91b1460609c37db472ea00" title="Returns a MString singleton, that can be reused for all basic log calls. Textual messages that are as...">Buf()</a>. Use <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a3474a54c9a6f9f6db081eddb91c078af" title="Use this method when you want to abort a log call that you &quot;started&quot; with acquiring the internal MStr...">BufAbort()</a> only if you did not use the acquired buffer as a parameter of a log method, because this internally releases the buf already. </p>
+<hr/>
+ 
 </div>
 </div>
 <a class="anchor" id="aa50a0ec4f97b5c06b65c9f70f0edbda2"></a>
@@ -656,14 +724,14 @@ Static Private Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a4d68c7953af41794595495cefe5daec6"></a>
+<a class="anchor" id="aa69521642c4b561ae66aa0e7eab48c2f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Info </td>
           <td>(</td>
-          <td class="paramtype">String&#160;</td>
+          <td class="paramtype">Object&#160;</td>
           <td class="paramname"><em>msg</em>, </td>
         </tr>
         <tr>
@@ -821,7 +889,7 @@ Static Private Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a1412969c1414fbd571289d5265c21139"></a>
+<a class="anchor" id="ab870124af0644bd2f2b16e0a54bf6631"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -847,7 +915,7 @@ Static Private Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">Object&#160;</td>
-          <td class="paramname"><em>msgObject</em>, </td>
+          <td class="paramname"><em>msg</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -887,14 +955,14 @@ Static Private Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Provides a more flexible but complex way to log a message. The methods <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a8705225063ecca80f30b87035bc11bdd" title="Log an Object with log level equal to Log.Level.Verbose. This is the highest (most verbose) log level...">Verbose()</a>, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a4d68c7953af41794595495cefe5daec6" title="Log an Object with log level equal to Log.Level.Info. This is the second highest (after Verbose) log ...">Info()</a>, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#aa329f2e9f7592e041c96a88ba7e93ce7" title="Log an Object with log level equal to Log.Level.Warning. Log messages of this log level are are logge...">Warning()</a>, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#aa50a0ec4f97b5c06b65c9f70f0edbda2" title="Log an Object with log level equal to Log.Level.Error. Log messages of this log level are are always ...">Error()</a> and <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a33684b7e69af6726dbfaf0105e9a128a" title="Log a string only if the given condition is not true. Log level will be highest, namely Error if cond...">Assert()</a> are using this function internally and should be used in standard cases. Use this function only in the rare cases, e.g. when a log level is decided only at runtime or when you want to use a logger filter, etc. </p>
+<p>Provides a more flexible but complex way to log a message. The methods <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a8705225063ecca80f30b87035bc11bdd" title="Log an Object with log level equal to Log.Level.Verbose. This is the highest (most verbose) log level...">Verbose()</a>, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#aa69521642c4b561ae66aa0e7eab48c2f" title="Log an Object with log level equal to Log.Level.Info. This is the second highest (after Verbose) log ...">Info()</a>, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#aa329f2e9f7592e041c96a88ba7e93ce7" title="Log an Object with log level equal to Log.Level.Warning. Log messages of this log level are are logge...">Warning()</a>, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#aa50a0ec4f97b5c06b65c9f70f0edbda2" title="Log an Object with log level equal to Log.Level.Error. Log messages of this log level are are always ...">Error()</a> and <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a33684b7e69af6726dbfaf0105e9a128a" title="Log a string only if the given condition is not true. Log level will be highest, namely Error if cond...">Assert()</a> are using this function internally and should be used in standard cases. Use this function only in the rare cases, e.g. when a log level is decided only at runtime or when you want to use a logger filter, etc. </p>
 <hr/>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">doLog</td><td>Conditional logging. If false, the log is not performed. CntLogCalls is still increased by one. </td></tr>
     <tr><td class="paramname">domain</td><td>If this is null, the default domain is used. If this is starting with a swung dash ('~') this is interpreted a sub domain to the default domain of the source file. For other values, the default domain is ignored (regardless if this is starting with a slash or not). </td></tr>
     <tr><td class="paramname">level</td><td>The log level. </td></tr>
-    <tr><td class="paramname">msgObject</td><td>An Object to be logged. </td></tr>
+    <tr><td class="paramname">msg</td><td>An Object to be logged. </td></tr>
     <tr><td class="paramname">indent</td><td>(Optional) The indentation in the output. Defaults to 0. </td></tr>
     <tr><td class="paramname">loggerFilter</td><td>(Optional) A filter for the loggers to be affected. This parameter enables different loggers to have different domains. A simple string compare without case sensitivity is performed. An asterisk ('*') at the beginning or end of the string is used as a wildcard. Leave null if all loggers should be affected. Use this parameter only in more complex logging scenarios. </td></tr>
     <tr><td class="paramname">csf</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
@@ -906,7 +974,7 @@ Static Private Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a8b98598ed96bf177d5fb1528fd70baa6"></a>
+<a class="anchor" id="a3a8d5c051f75fb43386c36a4d7eb9547"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -926,7 +994,7 @@ Static Private Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">Object&#160;</td>
-          <td class="paramname"><em>msgObject</em>, </td>
+          <td class="paramname"><em>msg</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -972,7 +1040,7 @@ Static Private Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">domain</td><td>If this is null, the default domain is used. If this is starting with a swung dash ('~') this is interpreted a sub domain to the default domain of the source file. For other values, the default domain is ignored (regardless if this is starting with a slash or not). </td></tr>
     <tr><td class="paramname">level</td><td>The log level. </td></tr>
-    <tr><td class="paramname">msgObject</td><td>An Object to be logged. </td></tr>
+    <tr><td class="paramname">msg</td><td>An Object to be logged. </td></tr>
     <tr><td class="paramname">indent</td><td>(Optional) The indentation in the output. Defaults to 0. </td></tr>
     <tr><td class="paramname">loggerFilter</td><td>(Optional) A filter for the loggers to be affected. This parameter enables different loggers to have different domains. A simple string compare without case sensitivity is performed. An asterisk ('*') at the beginning or end of the string is used as a wildcard. Leave null if all loggers should be affected. Use this parameter only in more complex logging scenarios. </td></tr>
     <tr><td class="paramname">csf</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
@@ -984,7 +1052,7 @@ Static Private Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="af35754849cbc87fdf297951d3fb379a3"></a>
+<a class="anchor" id="adeba612941c97b865bbee4aeddc53c9b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -998,7 +1066,7 @@ Static Private Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">Object&#160;</td>
-          <td class="paramname"><em>msgObject</em>, </td>
+          <td class="paramname"><em>msg</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1043,7 +1111,7 @@ Static Private Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">level</td><td>The log level. </td></tr>
-    <tr><td class="paramname">msgObject</td><td>An Object to be logged. </td></tr>
+    <tr><td class="paramname">msg</td><td>An Object to be logged. </td></tr>
     <tr><td class="paramname">indent</td><td>(Optional) The indentation in the output. Defaults to 0. </td></tr>
     <tr><td class="paramname">loggerFilter</td><td>(Optional) A filter for the loggers to be affected. This parameter enables different loggers to have different domains. A simple string compare without case sensitivity is performed. An asterisk ('*') at the beginning or end of the string is used as a wildcard. Leave null if all loggers should be affected. Use this parameter only in more complex logging scenarios. </td></tr>
     <tr><td class="paramname">csf</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
@@ -2020,6 +2088,50 @@ Static Private Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="aaf37e693e36d895e18bcc1f6037f5d9e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> logBuf = new <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>( 128 )</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A MString singleton. Can be acquired, using buf() </p>
+
+</div>
+</div>
+<a class="anchor" id="a115a099b1c0c5425cd37ec7b54056d01"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html">ThreadLock</a> logBufLock = new <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html">ThreadLock</a>()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A locker for the log buffer singleton </p>
+
+</div>
+</div>
 <a class="anchor" id="a0078398c1e76599b6e0852ffe2937af9"></a>
 <div class="memitem">
 <div class="memproto">
@@ -2159,7 +2271,7 @@ Static Private Member Functions</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.4-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 21 2013 23:08:32 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 28 2013 23:50:41 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

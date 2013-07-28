@@ -17,27 +17,32 @@
     <docanchor file="tutorial_cs" title="2.3. Where to place ALox log code">tutcs_llld_3</docanchor>
     <docanchor file="tutorial_cs" title="3. Some more Details">tutcs_more</docanchor>
     <docanchor file="tutorial_cs" title="3.1 Stop reading here?">tutcs_more_1</docanchor>
-    <docanchor file="tutorial_cs" title="3.2 Conditional logging">tutcs_more_2</docanchor>
-    <docanchor file="tutorial_cs" title="3.3 LogTools: Log complex things easily">tutcs_more_3</docanchor>
-    <docanchor file="tutorial_cs" title="3.4 Indentation">tutcs_more_4</docanchor>
-    <docanchor file="tutorial_cs" title="3.5 Separating domain log levels in different loggers">tutcs_more_5</docanchor>
-    <docanchor file="tutorial_cs" title="3.6 ALox configuration and internal log messages">tutcs_more_6</docanchor>
+    <docanchor file="tutorial_cs" title="3.2 Using the log buffer singleton">tutcs_more_logbuf</docanchor>
+    <docanchor file="tutorial_cs" title="3.3 Conditional logging">tutcs_more_conditional</docanchor>
+    <docanchor file="tutorial_cs" title="3.4 LogTools: Log complex things easily">tutcs_more_logtools</docanchor>
+    <docanchor file="tutorial_cs" title="3.4.1 Instance(): Log any object recursively">tutcs_more_logtools_instance</docanchor>
+    <docanchor file="tutorial_cs" title="3.4.2 Exception(): Log an exception recursively (with inner exceptions)">tutcs_more_logtools_exception</docanchor>
+    <docanchor file="tutorial_cs" title="3.4.3 XML(): Log out an XML document or element">tutcs_more_logtools_xml</docanchor>
+    <docanchor file="tutorial_cs" title="3.5 Indentation">tutcs_more_indentation</docanchor>
+    <docanchor file="tutorial_cs" title="3.6 Directing log output to distinct loggers">tutcs_more_seplog</docanchor>
+    <docanchor file="tutorial_cs" title="3.7 ALox configuration and internal log messages">tutcs_more_config</docanchor>
     <docanchor file="tutorial_cs" title="Further reading">tutcs_end</docanchor>
   </compound>
   <compound kind="page">
     <name>setup_projects_vs_cs</name>
     <title>Setup Visual Studio for C# Projects</title>
     <filename>setup_projects_vs_cs</filename>
-    <docanchor file="setup_projects_vs_cs" title="1. Setting Up Visual Studio">setup_projects_vs_cs_1</docanchor>
-    <docanchor file="setup_projects_vs_cs" title="1.1. Download">setup_projects_vs_cs_1_1</docanchor>
-    <docanchor file="setup_projects_vs_cs" title="1.2. Add one of the following projects into your solution">setup_projects_vs_cs_1_2</docanchor>
-    <docanchor file="setup_projects_vs_cs" title="1.3 Alternatively: Adding source code to your project">setup_projects_vs_cs_1_3</docanchor>
-    <docanchor file="setup_projects_vs_cs" title="1.4 Configure your project properties">setup_projects_vs_cs_1_4</docanchor>
-    <docanchor file="setup_projects_vs_cs" title="2. Conditional Compilation Symbols">setup_projects_vs_conditional_compile_symbols</docanchor>
+    <docanchor file="setup_projects_vs_cs" title="1. Setting Up Visual Studio">setup_projects_vs_cs_intro</docanchor>
+    <docanchor file="setup_projects_vs_cs" title="1.1. Download">setup_projects_vs_cs_download</docanchor>
+    <docanchor file="setup_projects_vs_cs" title="1.2. Add one of the following projects into your solution">setup_projects_vs_cs_addprojects</docanchor>
+    <docanchor file="setup_projects_vs_cs" title="1.3 Alternatively: Adding source code to your project">setup_projects_vs_cs_adding_source</docanchor>
+    <docanchor file="setup_projects_vs_cs" title="1.4 Configure your project properties">setup_projects_vs_cs_configure</docanchor>
+    <docanchor file="setup_projects_vs_cs" title="1.5 Test your setup">setup_projects_vs_cs_testnow</docanchor>
+    <docanchor file="setup_projects_vs_cs" title="2. Conditional Compilation Symbols">setup_projects_vs_cs_conditional_compile_symbols</docanchor>
     <docanchor file="setup_projects_vs_cs" title="3. Pruning ALox">setup_projects_vs_cs_pruning</docanchor>
-    <docanchor file="setup_projects_vs_cs" title="3.1 What is Pruning?">setup_projects_vs_cs_pruning_1</docanchor>
-    <docanchor file="setup_projects_vs_cs" title="3.1 How Pruning in ALox for C# works">setup_projects_vs_cs_pruning_2</docanchor>
-    <docanchor file="setup_projects_vs_cs" title="3.1 Mission accomplished: Perfect Auto Pruning with ALox!">setup_projects_vs_cs_pruning_3</docanchor>
+    <docanchor file="setup_projects_vs_cs" title="3.1 What is Pruning?">setup_projects_vs_cs_pruning_what_is_pruning</docanchor>
+    <docanchor file="setup_projects_vs_cs" title="3.1 How Pruning in ALox for C# works">setup_projects_vs_cs_pruning_how</docanchor>
+    <docanchor file="setup_projects_vs_cs" title="3.1 Mission accomplished: Perfect Auto Pruning with ALox!">setup_projects_vs_cs_pruning_result</docanchor>
   </compound>
   <compound kind="namespace">
     <name>com</name>
@@ -184,9 +189,23 @@
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
-      <name>Reset</name>
+      <name>SetConsumableSourcePathPrefix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a77ad624cc83a2a71aa4d5ad991d811d7</anchor>
+      <anchor>a8ca190d37d5b67e60b1c1506adc25e7b</anchor>
+      <arglist>(String cspp,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MString</type>
+      <name>Buf</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a8ab24670ee3420b26005d66c8543794b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>BufAbort</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a3d64fb6257e17b5bd2a4cfa1cba55892</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
@@ -205,10 +224,10 @@
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
-      <name>SetConsumableSourcePathPrefix</name>
+      <name>Reset</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a8ca190d37d5b67e60b1c1506adc25e7b</anchor>
-      <arglist>(String cspp,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a77ad624cc83a2a71aa4d5ad991d811d7</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
@@ -284,8 +303,8 @@
       <type>static void</type>
       <name>Info</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a8ece5802704a024dcea32c5c1308fe59</anchor>
-      <arglist>(String msg, int indent=0,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>ad770b53fc9b6872bf9160b9001a393aa</anchor>
+      <arglist>(Object msg, int indent=0,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
@@ -340,22 +359,22 @@
       <type>static void</type>
       <name>Line</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a3e7e792f0cb6840a49f4730c49aa3a4e</anchor>
-      <arglist>(bool doLog, String domain, Level level, Object msgObject, int indent=0, String loggerFilter=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>ad76120113b208f598fbff178bbe1cf5e</anchor>
+      <arglist>(bool doLog, String domain, Level level, Object msg, int indent=0, String loggerFilter=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>Line</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a587ecc8edd693a30830a3e22004c5a41</anchor>
-      <arglist>(String domain, Level level, Object msgObject, int indent=0, String loggerFilter=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a1db71a73d8e2353322344c10ff4f3784</anchor>
+      <arglist>(String domain, Level level, Object msg, int indent=0, String loggerFilter=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>Line</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>aab174cba345afa40506456c68580bb9c</anchor>
-      <arglist>(Level level, Object msgObject, int indent=0, String loggerFilter=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a9576c4d997ddce0598d77708cafdd9a5</anchor>
+      <arglist>(Level level, Object msg, int indent=0, String loggerFilter=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static Lox</type>
@@ -672,11 +691,25 @@
     <name>com::aworx::lox::Lox</name>
     <filename>classcom_1_1aworx_1_1lox_1_1Lox.html</filename>
     <member kind="function">
-      <type>Logger</type>
-      <name>GetLogger</name>
+      <type></type>
+      <name>Lox</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a74ba68166dee3359939d25f87e648cbe</anchor>
-      <arglist>(String loggerName)</arglist>
+      <anchor>adeecd070b47db04dfac1b186f99a95d2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>MString</type>
+      <name>Buf</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ab411a126ad91b1460609c37db472ea00</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>BufAbort</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a3474a54c9a6f9f6db081eddb91c078af</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -684,6 +717,13 @@
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
       <anchor>a360d4bab0de9498716bfe3328e3aca48</anchor>
       <arglist>(Logger logger, Log.DomainLevel internalDomainLevel=Log.DomainLevel.WarningsAndErrors,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>Logger</type>
+      <name>GetLogger</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a74ba68166dee3359939d25f87e648cbe</anchor>
+      <arglist>(String loggerName)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -773,8 +813,8 @@
       <type>void</type>
       <name>Info</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a4d68c7953af41794595495cefe5daec6</anchor>
-      <arglist>(String msg, int indent=0,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>aa69521642c4b561ae66aa0e7eab48c2f</anchor>
+      <arglist>(Object msg, int indent=0,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -829,22 +869,22 @@
       <type>void</type>
       <name>Line</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a1412969c1414fbd571289d5265c21139</anchor>
-      <arglist>(bool doLog, String domain, Log.Level level, Object msgObject, int indent=0, String loggerFilter=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>ab870124af0644bd2f2b16e0a54bf6631</anchor>
+      <arglist>(bool doLog, String domain, Log.Level level, Object msg, int indent=0, String loggerFilter=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Line</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a8b98598ed96bf177d5fb1528fd70baa6</anchor>
-      <arglist>(String domain, Log.Level level, Object msgObject, int indent=0, String loggerFilter=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a3a8d5c051f75fb43386c36a4d7eb9547</anchor>
+      <arglist>(String domain, Log.Level level, Object msg, int indent=0, String loggerFilter=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Line</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>af35754849cbc87fdf297951d3fb379a3</anchor>
-      <arglist>(Log.Level level, Object msgObject, int indent=0, String loggerFilter=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>adeba612941c97b865bbee4aeddc53c9b</anchor>
+      <arglist>(Log.Level level, Object msg, int indent=0, String loggerFilter=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="variable">
       <type>int</type>
@@ -935,6 +975,20 @@
       <name>resDomain</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
       <anchor>a53cc89ae4402b9385259e06c5fc0a546</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>MString</type>
+      <name>logBuf</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>aaf37e693e36d895e18bcc1f6037f5d9e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ThreadLock</type>
+      <name>logBufLock</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a115a099b1c0c5425cd37ec7b54056d01</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -1880,9 +1934,16 @@
     </member>
     <member kind="function">
       <type>int</type>
+      <name>ReplaceCount</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
+      <anchor>a54ab85639d2a852e05a354727b78cb26</anchor>
+      <arglist>(String searchStr, String newStr, int startIdx=0, int maxReplacements=int.MaxValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>MString</type>
       <name>Replace</name>
       <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>a0cc4cc73d0ea81d71ca3f8ce5968bdb0</anchor>
+      <anchor>aef0aea1110eb6583bbdb021b1b32055b</anchor>
       <arglist>(String searchStr, String newStr, int startIdx=0, int maxReplacements=int.MaxValue)</arglist>
     </member>
     <member kind="function">
@@ -1975,9 +2036,9 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>Aquire</name>
+      <name>Acquire</name>
       <anchorfile>classcom_1_1aworx_1_1util_1_1ThreadLock.html</anchorfile>
-      <anchor>a00a94cc394ebd68410e938195a5c4849</anchor>
+      <anchor>ab91dc804181f48b0b445ac1299c36c05</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
