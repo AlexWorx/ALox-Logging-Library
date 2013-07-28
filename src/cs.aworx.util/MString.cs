@@ -991,7 +991,10 @@ public class MString
 	}
 	
 	/** ************************************************************************************************
-	 * <summary>	Replace one more more occurrences of a string by another string. </summary>
+	 * <summary>
+	 * 	Replace one more more occurrences of a string by another string. Returns the number
+	 * 	of replacements.
+	 * 	</summary>
 	 *
 	 * <param name="searchStr">			The string to be replaced. </param>
 	 * <param name="newStr">			The replacement string. </param>
@@ -1002,7 +1005,7 @@ public class MString
 	 *
 	 * <returns> The number of replacements that where performed. </returns>
 	 **************************************************************************************************/
-	public int Replace( String searchStr, String newStr, int startIdx= 0, int maxReplacements= int.MaxValue )
+	public int ReplaceCount( String searchStr, String newStr, int startIdx= 0, int maxReplacements= int.MaxValue )
 	{
 		// check null arguments
 		if ( String.IsNullOrEmpty(searchStr) || newStr == null )
@@ -1056,6 +1059,27 @@ public class MString
 			if ( cntReplacements >= maxReplacements )
 				return cntReplacements;
 		}
+	}
+
+	/** ************************************************************************************************
+	 * <summary> 
+	 * 	Replace one more more occurrences of a string by another string. To receive the number of 
+	 * 	replacements, see alternative method #ReplaceCount().
+	 * </summary>
+	 *
+	 * <param name="searchStr">			The string to be replaced. </param>
+	 * <param name="newStr">			The replacement string. </param>
+	 * <param name="startIdx">		 	The index where the search starts. Optional and defaults
+	 * 									to 0. </param>
+	 * <param name="maxReplacements">	The maximum number of replacements to perform. Optional and  
+	 * 									defaults to int.MaxValue . </param>
+	 *
+	 * <returns> 'this' to allow concatenated calls. </returns>
+	 **************************************************************************************************/
+	public MString Replace( String searchStr, String newStr, int startIdx= 0, int maxReplacements= int.MaxValue )
+	{
+		ReplaceCount( searchStr, newStr, startIdx, maxReplacements );
+		return this;
 	}
 
 	/** ***********************************************************************************************

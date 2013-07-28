@@ -18,3 +18,11 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+# Pruning ALox completely (release logging as well as debug logging)
+# to enable, remove the comment '#' and uncomment the two lines below!
+#-assumenosideeffects class com.aworx.lox.** 	{ <methods>; <fields>; }
+
+# Pruning ALox debug logging (release logging stays in)
+-assumenosideeffects class com.aworx.lox.Log 	{ <methods>; <fields>; }
+-assumenosideeffects class com.aworx.lox.LogBuf { <methods>; <fields>; }

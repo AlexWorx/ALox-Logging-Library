@@ -477,13 +477,13 @@ public class Test_MString
 		// replace
 		ms.clear();
 		ms.append("Hello W!");
-		result= ms.replace( "W!",	"world!"  );	assertEquals( ms.toString(), "Hello world!" );		assertEquals( 1, result );
-		result= ms.replace( " ",	"* *"	  );	assertEquals( ms.toString(), "Hello* *world!" );		assertEquals( 1, result );
-		result= ms.replace( "*",	"#", 0, 1 );	assertEquals( ms.toString(), "Hello# *world!" );		assertEquals( 1, result );
-		result= ms.replace( "*",	"#"		  );	assertEquals( ms.toString(), "Hello# #world!" );		assertEquals( 1, result );
-		result= ms.replace( "#",	"$$$"	  );	assertEquals( ms.toString(), "Hello$$$ $$$world!" );	assertEquals( 2, result );
-		result= ms.replace( "$$$",	"*"		  );	assertEquals( ms.toString(), "Hello* *world!" );		assertEquals( 2, result );
-		result= ms.replace( "*",	""		  );	assertEquals( ms.toString(), "Hello world!" );		assertEquals( 2, result );
+		result= ms.replaceCount( "W!",	"world!"  );	assertEquals( ms.toString(), "Hello world!" );		assertEquals( 1, result );
+		result= ms.replaceCount( " ",	"* *"	  );	assertEquals( ms.toString(), "Hello* *world!" );	assertEquals( 1, result );
+		result= ms.replaceCount( "*",	"#", 0, 1 );	assertEquals( ms.toString(), "Hello# *world!" );	assertEquals( 1, result );
+		result= ms.replaceCount( "*",	"#"		  );	assertEquals( ms.toString(), "Hello# #world!" );	assertEquals( 1, result );
+		result= ms.replaceCount( "#",	"$$$"	  );	assertEquals( ms.toString(), "Hello$$$ $$$world!" );assertEquals( 2, result );
+		result= ms.replaceCount( "$$$",	"*"		  );	assertEquals( ms.toString(), "Hello* *world!" );	assertEquals( 2, result );
+		result= ms.replaceCount( "*",	""		  );	assertEquals( ms.toString(), "Hello world!" );		assertEquals( 2, result );
 	}
 
 
@@ -504,13 +504,13 @@ public class Test_MString
 		// replace
 		ms.clear();
 		ms.append("Hello W!");
-		result= ms.replace( "W!",	"world!"  );	assertEquals( ms.toString(), "Hello world!" );		assertEquals( 1, result );
-		result= ms.replace( " ",	"* *"	  );	assertEquals( ms.toString(), "Hello* *world!" );		assertEquals( 1, result );
-		result= ms.replace( "*",	"#", 0, 1 );	assertEquals( ms.toString(), "Hello# *world!" );		assertEquals( 1, result );
-		result= ms.replace( "*",	"#"		  );	assertEquals( ms.toString(), "Hello# #world!" );		assertEquals( 1, result );
-		result= ms.replace( "#",	"$$$"	  );	assertEquals( ms.toString(), "Hello$$$ $$$world!" );	assertEquals( 2, result );
-		result= ms.replace( "$$$",	"*"		  );	assertEquals( ms.toString(), "Hello* *world!" );		assertEquals( 2, result );
-		result= ms.replace( "*",	""		  );	assertEquals( ms.toString(), "Hello world!" );		assertEquals( 2, result );
+		result= ms.replaceCount( "W!",	"world!"  );	assertEquals( ms.toString(), "Hello world!" );		assertEquals( 1, result );
+		result= ms.replaceCount( " ",	"* *"	  );	assertEquals( ms.toString(), "Hello* *world!" );	assertEquals( 1, result );
+		result= ms.replaceCount( "*",	"#", 0, 1 );	assertEquals( ms.toString(), "Hello# *world!" );	assertEquals( 1, result );
+		result= ms.replaceCount( "*",	"#"		  );	assertEquals( ms.toString(), "Hello# #world!" );	assertEquals( 1, result );
+		result= ms.replaceCount( "#",	"$$$"	  );	assertEquals( ms.toString(), "Hello$$$ $$$world!" );assertEquals( 2, result );
+		result= ms.replaceCount( "$$$",	"*"		  );	assertEquals( ms.toString(), "Hello* *world!" );	assertEquals( 2, result );
+		result= ms.replaceCount( "*",	""		  );	assertEquals( ms.toString(), "Hello world!" );		assertEquals( 2, result );
 		
 		// search in normal strings ignore case (static util methods)
 		String s= "Hallo A-Worx util";

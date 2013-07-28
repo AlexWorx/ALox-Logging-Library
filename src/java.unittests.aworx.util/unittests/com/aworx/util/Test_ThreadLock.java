@@ -16,14 +16,14 @@ public class Test_ThreadLock
 	{
 		// lock a recursive lock 
 		ThreadLock aLock= new ThreadLock();
-		aLock.aquire();
+		aLock.acquire();
 		aLock.release();
 
-		aLock.aquire(); 				assertTrue ( !aLock.toString().startsWith("null") );
-		aLock.aquire();					assertTrue ( !aLock.toString().startsWith("null") );
+		aLock.acquire(); 				assertTrue ( !aLock.toString().startsWith("null") );
+		aLock.acquire();					assertTrue ( !aLock.toString().startsWith("null") );
 		aLock.release();				assertTrue ( !aLock.toString().startsWith("null") );
 		                                                          
-		aLock.aquire();					assertTrue ( !aLock.toString().startsWith("null") );
+		aLock.acquire();					assertTrue ( !aLock.toString().startsWith("null") );
 		aLock.release();				assertTrue ( !aLock.toString().startsWith("null") );
 		aLock.release();				assertTrue ( aLock.toString().startsWith("null") );
 
@@ -32,17 +32,17 @@ public class Test_ThreadLock
 		aLock.setUnsafe( false );		assertTrue ( aLock.toString().startsWith("null") );
 
 		aLock.setUnsafe( true );		assertTrue ( aLock.toString().startsWith("null") );
-		aLock.aquire();					assertTrue ( aLock.toString().startsWith("null") );
+		aLock.acquire();					assertTrue ( aLock.toString().startsWith("null") );
 		aLock.release();				assertTrue ( aLock.toString().startsWith("null") );
 
 		// unsafe
-		aLock.aquire();					assertTrue ( aLock.toString().startsWith("null") );
+		aLock.acquire();					assertTrue ( aLock.toString().startsWith("null") );
 		System.out.println("One error should come now: ");
 		aLock.setUnsafe( false );		assertTrue ( aLock.toString().startsWith("null") );
 		
 		// safe (new lock)
 		aLock= new ThreadLock();
-		aLock.aquire();					assertTrue ( !aLock.toString().startsWith("null") );
+		aLock.acquire();					assertTrue ( !aLock.toString().startsWith("null") );
 		System.out.println("One warning should come now: ");
 		aLock.setUnsafe( true );		assertTrue ( !aLock.toString().startsWith("null") );
 
@@ -51,7 +51,7 @@ public class Test_ThreadLock
 		aLock= new ThreadLock();
 		System.out.println("Two warnings should come now: ");
 		for (int i= 0; i<20; i++)	
-			aLock.aquire();
+			aLock.acquire();
 		assertTrue ( !aLock.toString().startsWith("null") );
 		for (int i= 0; i<20; i++)	
 			aLock.release();
@@ -59,8 +59,8 @@ public class Test_ThreadLock
 
 		// test a non-recursive lock 
 		aLock= new ThreadLock( false );
-		aLock.aquire();				assertTrue ( !aLock.toString().startsWith("null") );
-		aLock.aquire();				assertTrue ( !aLock.toString().startsWith("null") );
+		aLock.acquire();				assertTrue ( !aLock.toString().startsWith("null") );
+		aLock.acquire();				assertTrue ( !aLock.toString().startsWith("null") );
 		aLock.release();				assertTrue ( aLock.toString().startsWith("null") );
 		
 		System.out.println("One warning should come now: ");
@@ -73,7 +73,7 @@ public class Test_ThreadLock
 		ThreadLock aLock= new ThreadLock();
 		Test_ThreadLock_SharedInt shared= new Test_ThreadLock_SharedInt();
 		System.out.println("starting thread locked");
-		aLock.aquire();		
+		aLock.acquire();		
 		Test_ThreadLock_TestThread t= new Test_ThreadLock_TestThread( "A Thread", aLock, 10, 1, true, shared );
 		t.start();
 		System.out.println("We wait 1100 ms. This should give a warning! ");
@@ -86,7 +86,7 @@ public class Test_ThreadLock
 			
 		// now we do the same with a higher wait limit, no erro should come
 		aLock.waitALoxWarningLimit= Ticker.fromMillis( 1200 );
-		aLock.aquire();		
+		aLock.acquire();		
 		t= new Test_ThreadLock_TestThread( "A Thread", aLock, 10, 1, true, shared );
 		t.start();
 		System.out.println("We wait 1100 ms. This should NOT give a warning! ");
@@ -149,7 +149,7 @@ public class Test_ThreadLock
 			stopwatch.setToNow();
 			for ( int i= 0; i < repeats; i++ )
 			{
-				aLock.aquire();
+				aLock.acquire();
 				aLock.release();
 			}
 			int time= stopwatch.ageInMillis();
@@ -159,7 +159,7 @@ public class Test_ThreadLock
 			stopwatch.setToNow();
 			for ( int i= 0; i < repeats; i++ )
 			{
-				aLock.aquire();
+				aLock.acquire();
 				aLock.release();
 				
 				// in java, adding the following two loops, results in similar execution speed
@@ -204,7 +204,7 @@ public class Test_ThreadLock_TestThread extends Thread
 		for ( int i= 0; i < repeats ; i++ )
 		{
 			if (verbose) { System.out.println("Thread: "+ getName() +" acuiring lock..."); }
-			lock.aquire();
+			lock.acquire();
 			if (verbose) { System.out.println("Thread: "+ getName() +" has lock."); }
 				
 				int sVal= ++shared.val;

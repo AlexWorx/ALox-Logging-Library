@@ -29,7 +29,7 @@ public class Test_TickerAndTickTime
 	public void TickerSpeedTest()
 	{
 		//Log.RemoveLoggers( );
-		//Log.AddLogger( new ConsoleLogger( "Console" ) );
+		//Log.AddLogger( new ConsoleLogger() );
 		//Log.RegDomain( "Ticker", true );
 
 		// first let's test if the static ticker frequency value is properly set
@@ -79,7 +79,7 @@ public class Test_TickerAndTickTime
 	public void TickerDateTimeConversion()
 	{
 		//Log.RemoveLoggers( );
-		//Log.AddLogger( new ConsoleLogger( "Console" ) );
+		//Log.AddLogger( new ConsoleLogger() );
 		//Log.RegDomain( "Ticker", true );
 
 		long ticksNow= Ticker.now();
@@ -148,7 +148,7 @@ public class Test_TickerAndTickTime
 	public void TickerMicroSecsOutput()
 	{
 		//Log.RemoveLoggers( );
-		//Log.AddLogger( new ConsoleLogger( "Console" ) );
+		//Log.AddLogger( new ConsoleLogger() );
 		//Log.RegDomain( "Ticker", true );
 		
 		//((ConsoleLogger) Log.GetLogger( "Console" )).EnableVSDebugConsole=
@@ -190,7 +190,7 @@ public class Test_TickerAndTickTime
 	public void Ticktime()
 	{
 		//Log.RemoveLoggers( );
-		//Log.AddLogger( new ConsoleLogger( "Console" ) );
+		//Log.AddLogger( new ConsoleLogger() );
 		//Log.RegDomain( "Ticker", true );
 
 		System.out.println( "Nanos per 2013 years:    "			+ (nanosPerYear*2013) );

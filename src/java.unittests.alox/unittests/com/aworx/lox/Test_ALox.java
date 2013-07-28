@@ -32,7 +32,7 @@ public class Test_ALox
 
 		if ( consoleLogger )
 		{
-			cl=		new ConsoleLogger( "Console" );
+			cl=		new ConsoleLogger();
 			Log.addLogger( cl, Log.DomainLevel.ALL );
 
 			//cl.EnableAppConsole=		true;

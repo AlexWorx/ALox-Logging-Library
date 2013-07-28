@@ -138,7 +138,7 @@ public abstract class LogTools
 	 **************************************************************************************************/
 	public static void exception( String domain, Log.Level level, Exception e, String headline, int indent, Lox lox)
 	{
-		try { lock.aquire();
+		try { lock.acquire();
 
 			// create/clear toolBuf
 			if ( toolBuf == null )
@@ -261,7 +261,7 @@ public abstract class LogTools
 	 **************************************************************************************************/
 	public static void stackTrace( String domain, Log.Level level, String headline, int indent, Lox lox)
 	{
-		try { lock.aquire();
+		try { lock.acquire();
 
 			// create/clear toolBuf
 			if ( toolBuf == null )
@@ -366,7 +366,7 @@ public abstract class LogTools
 	public static void instance( String domain, Log.Level level, Object o, int maxRecursion, String headline, int indent, Lox lox)
 
 	{
-		try { lock.aquire();
+		try { lock.acquire();
 
 			// if no lox given, use static Log.LOX
 			if ( lox == null )

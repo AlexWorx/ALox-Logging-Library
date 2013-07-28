@@ -25,12 +25,12 @@ namespace com.aworx.lox {
  *  one static singleton of Lox and mirrors the whole non static interface of Lox into a static
  *  one.
  *  
- *  The exclusive use of this class covers the vast majority of all logging scenarios. Only for
- *  release logging, remote logging and similar scenarios, the use of a dedicated instance of
+ *  The exclusive use of this class covers the vast majority of all debug logging scenarios. 
+ *  For release logging, remote logging and similar scenarios, the use of a dedicated instance of
  *  class Lox is needed.
  *  
- *  Hence, this is the interface of choice for standard log scenarios. All invocations of methods
- *  of Log are pruned in release code. (Using method annotation "[Conditional("ALOX_DEBUG")]".
+ *  All invocations of methods of Log are pruned in release code. (Using method annotation 
+ *  "[Conditional("ALOX_DEBUG")]").
  *  
  *  Of course, the use of class Log and Lox can be mixed, to enable debug log output in parallel
  *  to release output.
@@ -171,18 +171,68 @@ public static class Log
 	// #################################################################################################
 	// Interface (auto removed)
 	// #################################################################################################
+	// 
+	/** ***********************************************************************************************
+	 * <summary>
+	 *  To shorten the log output the given prefix might be cut from the source file path.  
+	 *  If this method is not invoked (or invoked with parameter 'cspp= null' at runtime), it is tried to
+	 *  detect this path automatically once. However, in remote debug sessions (e.g. on mobile device
+	 *  development)
+	 *  this fails. Hence, this parameter can be set 'manually' to the right prefix that is to be
+	 *  consumed. In this case, whenever the project is compiled on a different machine setup (with
+	 *  different project path), this field has to be changed. If it is not changed, there is no
+	 *  other problem than that the path is not shortened and the log output might get a little wide.
+	 *  If the output of the full path is intended, the parameter can be set to 'String.Empty'.  
+	 * </summary>
+	 * <param name="cspp">	The prefix to cut from the source file name in log outputs.</param>
+	 * <param name="csf"> 	(Optional) Caller info, compiler generated. Please omit. </param>
+	 * <param name="cln"> 	(Optional) Caller info, compiler generated. Please omit. </param>
+	 * <param name="cmn"> 	(Optional) Caller info, compiler generated. Please omit. </param>
+	 **************************************************************************************************/
+	[Conditional("ALOX_DEBUG")]	
+	public static void SetConsumableSourcePathPrefix( String cspp,	
+									 [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
+	{
+		#if ALOX_DEBUG
+			LOX.SetConsumableSourcePathPrefix( cspp, csf,cln,cmn );
+		#endif
+	}
 
 	/** ***********************************************************************************************
 	 * <summary>
-	 *  This method disposes the internal static Lox and with it all loggers, preferences and stuff
-	 *  and replaces it with a fresh one. The method was added to support clean unit testing.
+	 *  Returns a MString singleton (contained in the Lox singleton), that can be reused for all basic 
+	 *  log calls. Textual messages that are assembled from out of strings, numbers and other data, can 
+	 *  be efficiently built by reusing this singleton. 
+	 *  Whenever this method is called, the returned MString object gets "locked" by a corresponding
+	 *  ThreadLock object. Therefore it has to be used as a message within one of the log methods of 
+	 *  this class (error(), warning(), info(), verbose(), assert() or line()) or it has to be 
+	 *  explicitly released using BufAbort().
+	 *  If this is not done, the object does not get released and parallel threads using this method would 
+	 *  block! So, do not use Buf() for other reasons than for creating log messages and be sure to
+	 *  release it "in time".
+	 * </summary>
+	 * <returns> The static LogBuf singleton. </returns>
+	 **************************************************************************************************/
+	public static MString Buf()	
+	{ 
+		#if ALOX_DEBUG 
+			return LOX.Buf();
+		#else
+			return null;
+		#endif
+	}
+
+	/** ***********************************************************************************************
+	 * <summary>
+	 *  Use this method when you want to abort a log call that you "started" with acquiring the internal
+	 *  MString singleton acquired using method Buf(). Use BufAbort() only if you did not use the 
+	 *  acquired buffer as a parameter of a log method, because this internally releases the buf already.
 	 * </summary>
 	 **************************************************************************************************/
-	[Conditional("ALOX_DEBUG")]	
-	public static void Reset()
-	{
-		#if ALOX_DEBUG
-			LOX= new Lox();
+	public static void BufAbort()	
+	{ 
+		#if ALOX_DEBUG 
+			LOX.BufAbort();
 		#endif
 	}
 
@@ -231,27 +281,15 @@ public static class Log
 
 	/** ***********************************************************************************************
 	 * <summary>
-	 *  To shorten the log output the given prefix might be cut from the source file path.  
-	 *  If this method is not invoked (or invoked with parameter 'cspp= null' at runtime), it is tried to
-	 *  detect this path automatically once. However, in remote debug sessions (e.g. on mobile device
-	 *  development)
-	 *  this fails. Hence, this parameter can be set 'manually' to the right prefix that is to be
-	 *  consumed. In this case, whenever the project is compiled on a different machine setup (with
-	 *  different project path), this field has to be changed. If it is not changed, there is no
-	 *  other problem than that the path is not shortened and the log output might get a little wide.
-	 *  If the output of the full path is intended, the parameter can be set to 'String.Empty'.  
+	 *  This method disposes the internal static Lox and with it all loggers, preferences and stuff
+	 *  and replaces it with a fresh one. The method was added to support clean unit testing.
 	 * </summary>
-	 * <param name="cspp">	The prefix to cut from the source file name in log outputs.</param>
-	 * <param name="csf"> 	(Optional) Caller info, compiler generated. Please omit. </param>
-	 * <param name="cln"> 	(Optional) Caller info, compiler generated. Please omit. </param>
-	 * <param name="cmn"> 	(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
 	[Conditional("ALOX_DEBUG")]	
-	public static void SetConsumableSourcePathPrefix( String cspp,	
-									 [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
+	public static void Reset()
 	{
 		#if ALOX_DEBUG
-			LOX.SetConsumableSourcePathPrefix( cspp, csf,cln,cmn );
+			LOX= new Lox();
 		#endif
 	}
 
@@ -567,7 +605,7 @@ public static class Log
 	 * <param name="cmn">   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
 	[Conditional("ALOX_DEBUG")]
-	public static void Info( String msg, int indent = 0,
+	public static void Info( Object msg, int indent = 0,
 							 [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
 		#if ALOX_DEBUG
@@ -754,7 +792,7 @@ public static class Log
 	 * 								domain is ignored (regardless if this is starting with a slash or
 	 * 								not). </param>
 	 * <param name="level">		  	The log level. </param>
-	 * <param name="msgObject">	  	An Object to be logged. </param>
+	 * <param name="msg">		  	An Object to be logged. </param>
 	 * <param name="indent">	  	(Optional) The indentation in the output. Defaults to 0. </param>
 	 * <param name="loggerFilter">	(Optional) A filter for the loggers to be affected. This
 	 * 								parameter enables different loggers to have different domains. A
@@ -767,11 +805,11 @@ public static class Log
 	 * <param name="cmn">		  	(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
 	[Conditional("ALOX_DEBUG")]
-	public static void Line( bool doLog, String domain, Level level, Object msgObject, int indent = 0, String loggerFilter = null,
+	public static void Line( bool doLog, String domain, Level level, Object msg, int indent = 0, String loggerFilter = null,
 							[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
 		#if ALOX_DEBUG
-			LOX.Line( doLog, domain, level, msgObject, indent, loggerFilter, csf,cln,cmn );
+			LOX.Line( doLog, domain, level, msg, indent, loggerFilter, csf,cln,cmn );
 		#endif
 	}
 
@@ -785,7 +823,7 @@ public static class Log
 	 * 								domain is ignored (regardless if this is starting with a slash or
 	 * 								not). </param>
 	 * <param name="level">		  	The log level. </param>
-	 * <param name="msgObject">	  	An Object to be logged. </param>
+	 * <param name="msg">		 	An Object to be logged. </param>
 	 * <param name="indent">	  	(Optional) The indentation in the output. Defaults to 0. </param>
 	 * <param name="loggerFilter">	(Optional) A filter for the loggers to be affected. This
 	 * 								parameter enables different loggers to have different domains. A
@@ -798,11 +836,11 @@ public static class Log
 	 * <param name="cmn">		  	(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
 	[Conditional("ALOX_DEBUG")]
-	public static void Line( String domain, Level level, Object msgObject, int indent = 0, String loggerFilter = null,
+	public static void Line( String domain, Level level, Object msg, int indent = 0, String loggerFilter = null,
 							[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
 		#if ALOX_DEBUG
-			LOX.Line( true, domain, level, msgObject, indent, loggerFilter, csf,cln,cmn );
+			LOX.Line( true, domain, level, msg, indent, loggerFilter, csf,cln,cmn );
 		#endif
 	}
 
@@ -812,7 +850,7 @@ public static class Log
 	 *  domain set for the scope.
 	 * </summary>
 	 * <param name="level">		  	The log level. </param>
-	 * <param name="msgObject">	  	An Object to be logged. </param>
+	 * <param name="msg">		  	An Object to be logged. </param>
 	 * <param name="indent">	  	(Optional) The indentation in the output. Defaults to 0. </param>
 	 * <param name="loggerFilter">	(Optional) A filter for the loggers to be affected. This
 	 * 								parameter enables different loggers to have different domains. A
@@ -825,11 +863,11 @@ public static class Log
 	 * <param name="cmn">		  	(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
 	[Conditional("ALOX_DEBUG")]
-	public static void Line( Level level, Object msgObject, int indent = 0, String loggerFilter = null,
+	public static void Line( Level level, Object msg, int indent = 0, String loggerFilter = null,
 							[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
 		#if ALOX_DEBUG
-			LOX.Line( true, null, level, msgObject, indent, loggerFilter, csf,cln,cmn );
+			LOX.Line( true, null, level, msg, indent, loggerFilter, csf,cln,cmn );
 		#endif
 	}
 }

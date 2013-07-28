@@ -3,6 +3,7 @@
  */
 package com.aworx.lox.core;
 
+import com.aworx.lox.LogBuf;
 import com.aworx.util.MString;
 
 /**********************************************************************************************//**
@@ -36,6 +37,7 @@ public class TextLoggerObjectConverter
 
 			 if ( o == null )					msg.append( fmtNullObject );
 		else if ( o instanceof String ) 		msg.append( (String) 		o );
+		else if ( o instanceof LogBuf )			msg= 	    ((LogBuf) o).b;		 // reassign!
 		else if ( o instanceof MString )		msg= 	    (MString) 		o;	 // reassign!
 		else if ( o instanceof StringBuilder )	msg.append( (StringBuilder)	o );
 		else if ( o instanceof StringBuffer )	msg.append( (StringBuffer)	o );

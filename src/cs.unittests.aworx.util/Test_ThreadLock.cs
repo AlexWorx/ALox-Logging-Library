@@ -18,7 +18,7 @@ namespace com.aworx.lox.unittests
 		public void ThreadLock_SimpleTests()
 		{
 			Log.Reset();
-			Log.AddLogger( new ConsoleLogger( "Console" ) );
+			Log.AddLogger( new ConsoleLogger() );
 			Log.MapThreadName( "UnitTest" );
 			Log.RegDomain( "TestTLock", Log.Scope.Method );
 			Log.SetDomain( "AWXU", Log.DomainLevel.All );
@@ -27,14 +27,14 @@ namespace com.aworx.lox.unittests
 			ThreadLock aLock= new ThreadLock();
 			aLock.UseAssertions= false;
 
-			aLock.Aquire();
+			aLock.Acquire();
 			aLock.Release();
 
-			aLock.Aquire(); 								Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
-			aLock.Aquire();									Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
+			aLock.Acquire(); 								Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
+			aLock.Acquire();									Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
 			aLock.Release();								Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
 															                      
-			aLock.Aquire();									Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
+			aLock.Acquire();									Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
 			aLock.Release();								Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
 			aLock.Release();								Assert.IsTrue (  aLock.ToString().StartsWith("null") );
 
@@ -43,18 +43,18 @@ namespace com.aworx.lox.unittests
 			aLock.SetUnsafe( false );						Assert.IsTrue ( aLock.ToString().StartsWith("null") );
 
 			aLock.SetUnsafe( true );						Assert.IsTrue ( aLock.ToString().StartsWith("null") );
-			aLock.Aquire();									Assert.IsTrue ( aLock.ToString().StartsWith("null") );
+			aLock.Acquire();									Assert.IsTrue ( aLock.ToString().StartsWith("null") );
 			aLock.Release();								Assert.IsTrue ( aLock.ToString().StartsWith("null") );
 
 			// unsafe
-			aLock.Aquire();									Assert.IsTrue ( aLock.ToString().StartsWith("null") );
+			aLock.Acquire();									Assert.IsTrue ( aLock.ToString().StartsWith("null") );
 			Log.Info("One warning should come now: ");
 			aLock.SetUnsafe( false );						Assert.IsTrue ( aLock.ToString().StartsWith("null") );
 		
 			// safe (new lock)
 			aLock= new ThreadLock();
 			aLock.UseAssertions= false;
-			aLock.Aquire();									Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
+			aLock.Acquire();									Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
 			Log.Info("One warning should come now: ");
 			aLock.SetUnsafe( true );						Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
 
@@ -64,7 +64,7 @@ namespace com.aworx.lox.unittests
 			aLock.UseAssertions= false;
 			Log.Info("Two warnings should come now: ");
 			for (int i= 0; i<20; i++)	
-				aLock.Aquire();
+				aLock.Acquire();
 			Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
 			for (int i= 0; i<20; i++)	
 				aLock.Release();
@@ -73,8 +73,8 @@ namespace com.aworx.lox.unittests
 			// test a non-recursive lock 
 			aLock= new ThreadLock( false );
 			aLock.UseAssertions= false;
-			aLock.Aquire();				Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
-			aLock.Aquire();				Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
+			aLock.Acquire();				Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
+			aLock.Acquire();				Assert.IsTrue ( !aLock.ToString().StartsWith("null") );
 			aLock.Release();				Assert.IsTrue ( aLock.ToString().StartsWith("null") );
 		
 			Log.Info("One warning should come now: ");
@@ -90,7 +90,7 @@ namespace com.aworx.lox.unittests
 		{
 			Log.Reset();
 
-			Log.AddLogger( new ConsoleLogger( "Console" ) );
+			Log.AddLogger( new ConsoleLogger() );
 			Log.MapThreadName( "UnitTest" );
 			Log.RegDomain( "TestTLock", Log.Scope.SourceFile );
 			Log.SetDomain( "AWXU", Log.DomainLevel.All );
@@ -100,7 +100,7 @@ namespace com.aworx.lox.unittests
 			Test_ThreadLock_SharedInt shared= new Test_ThreadLock_SharedInt();
 
 			Log.Info("starting thread locked");
-			aLock.Aquire();		
+			aLock.Acquire();		
 			Test_ThreadLock_TestThreadParams tParam= new Test_ThreadLock_TestThreadParams( aLock, 10, 1, true, shared );
 
 			Thread thread = new Thread( new ParameterizedThreadStart( Test_ThreadLock_Test_run ) );
@@ -117,7 +117,7 @@ namespace com.aworx.lox.unittests
 			
 			// now we do the same with a higher wait limit, no erro should come
 			aLock.WaitALoxWarningLimit= Ticker.FromMillis( 1200 );
-			aLock.Aquire();		
+			aLock.Acquire();		
 			tParam= new Test_ThreadLock_TestThreadParams( aLock, 10, 1, true, shared );
 			thread = new Thread( new ParameterizedThreadStart( Test_ThreadLock_Test_run ) );
 			thread.Start( tParam );
@@ -138,7 +138,7 @@ namespace com.aworx.lox.unittests
 		public void ThreadLock_HeavyLoad()
 		{
 			Log.Reset();
-			Log.AddLogger( new ConsoleLogger( "Console" ) );
+			Log.AddLogger( new ConsoleLogger() );
 			Log.MapThreadName( "UnitTest" );
 			Log.RegDomain( "TestTLock", Log.Scope.SourceFile );
 			Log.SetDomain( "AWXU", Log.DomainLevel.All );
@@ -183,7 +183,7 @@ namespace com.aworx.lox.unittests
 		{
 			Log.Reset();
 
-			Log.AddLogger( new ConsoleLogger( "Console" ) );
+			Log.AddLogger( new ConsoleLogger() );
 			Log.MapThreadName( "UnitTest" );
 			Log.RegDomain( "TestTLock", Log.Scope.Method );
 			Log.SetDomain( "AWXU", Log.DomainLevel.All );
@@ -202,7 +202,7 @@ namespace com.aworx.lox.unittests
 				stopwatch.SetToNow();
 				for ( int i= 0; i < repeats; i++ )
 				{
-					aLock.Aquire();
+					aLock.Acquire();
 					aLock.Release();
 				}
 				long time= stopwatch.AgeInMillis();
@@ -256,7 +256,7 @@ namespace com.aworx.lox.unittests
 			for ( int i= 0; i < p.repeats ; i++ )
 			{
 				if (p.verbose) { Log.Info("Thread: "+ Thread.CurrentThread.Name +" acuiring lock..."); }
-				p.aLock.Aquire();
+				p.aLock.Acquire();
 				if (p.verbose) { Log.Info("Thread: "+ Thread.CurrentThread.Name +" has lock."); }
 				
 					int sVal= ++p.shared.val;

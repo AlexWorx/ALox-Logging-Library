@@ -79,7 +79,9 @@ log statements to your code that enables you to see on the terminal console or y
 what your software currently does, what errors and warnings it produces, how long certain
 methods take to execute and whatever you want your software to tell you.
 Debug log statements should be ultimately pruned 
-(removed, see \ref setup_projects_vs_cs_pruning_1 "What is Pruning") 
+(which means *removed*, see 
+for C#   \ref setup_projects_vs_cs_pruning_what_is_pruning "What is Pruning" and 
+for Java \ref setup_projects_java_pruning_what_is_pruning "What is Pruning")
 from your executable in the moment it gets deployed.
 
 

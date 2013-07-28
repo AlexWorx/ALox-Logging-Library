@@ -32,7 +32,7 @@ namespace com.aworx.lox.unittests
 		{
 			Log.Reset();
 
-			Log.AddLogger( new ConsoleLogger( "Console" ) );
+			Log.AddLogger( new ConsoleLogger() );
 			Log.MapThreadName( "UnitTest" );
 			Log.RegDomain( "Ticker", Log.Scope.Method );
 
@@ -78,7 +78,7 @@ namespace com.aworx.lox.unittests
 		{
 			Log.Reset();
 
-			Log.AddLogger( new ConsoleLogger( "Console" ) );
+			Log.AddLogger( new ConsoleLogger() );
 			Log.MapThreadName( "UnitTest" );
 			Log.RegDomain( "Ticker", Log.Scope.Method );
 
@@ -133,7 +133,7 @@ namespace com.aworx.lox.unittests
 		{
 			Log.Reset();
 
-			Log.AddLogger( new ConsoleLogger( "Console" ) );
+			Log.AddLogger( new ConsoleLogger() );
 			Log.MapThreadName( "UnitTest" );
 			Log.RegDomain( "Ticker", Log.Scope.Method );
 
@@ -182,7 +182,7 @@ namespace com.aworx.lox.unittests
 		{
 			Log.Reset();
 
-			Log.AddLogger( new ConsoleLogger( "Console" ) );
+			Log.AddLogger( new ConsoleLogger() );
 			Log.MapThreadName( "UnitTest" );
 			Log.RegDomain( "Ticker", Log.Scope.Method );
 

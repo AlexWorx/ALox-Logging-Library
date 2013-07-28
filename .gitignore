@@ -155,3 +155,5 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
+/ide/eclipse.kepler/ALox-Java-1.6-Test/bin.pruned
+/ide/eclipse.kepler/ALox-Java-Android-Test-Release-Log/proguard

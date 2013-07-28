@@ -204,12 +204,12 @@ public abstract class TextLogger : Logger
 			// replace line separators
 			int cntReplacements= 0;
 			if ( MultiLineDelimiter != null )
-				cntReplacements+= msg.Replace( MultiLineDelimiter,	MultiLineDelimiterRepl );
+				cntReplacements+= msg.ReplaceCount( MultiLineDelimiter,	MultiLineDelimiterRepl );
 			else
 			{
-				cntReplacements+= msg.Replace( "\r\n",					MultiLineDelimiterRepl );
-				cntReplacements+= msg.Replace( "\r",					MultiLineDelimiterRepl );
-				cntReplacements+= msg.Replace( "\n",					MultiLineDelimiterRepl );
+				cntReplacements+= msg.ReplaceCount( "\r\n",				MultiLineDelimiterRepl );
+				cntReplacements+= msg.ReplaceCount( "\r",				MultiLineDelimiterRepl );
+				cntReplacements+= msg.ReplaceCount( "\n",				MultiLineDelimiterRepl );
 			}
 
 			// append msg to logBuf

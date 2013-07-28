@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALox-CS-.Net45-Test-Release
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALox-CS-.Net45-Test", "ide\vstudio.2012\ALox-CS-.Net45-Test\ALox-CS-.Net45-Test.csproj", "{FEC499F1-05FE-429D-87A2-9352FFD29F12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALox-CS-WP71-Release-Log", "ide\vstudio.2012\ALox-CS-WP71-DLL-Release-Log\ALox-CS-WP71-Release-Log.csproj", "{0D355910-46A3-4BBC-B1DA-1538C3AB6516}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALox-CS-WP71-DLL-Release-Log", "ide\vstudio.2012\ALox-CS-WP71-DLL-Release-Log\ALox-CS-WP71-DLL-Release-Log.csproj", "{0D355910-46A3-4BBC-B1DA-1538C3AB6516}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALox-CS-WP71-Test-Release-Log", "ide\vstudio.2012\ALox-CS-WP71-Test-Release-Log\ALox-CS-WP71-Test-Release-Log.csproj", "{98BF6943-0E0E-41A8-BB01-21AE188AA43F}"
 EndProject

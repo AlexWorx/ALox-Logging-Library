@@ -192,12 +192,12 @@ public abstract class TextLogger extends Logger
 			// replace line separators
 			int cntReplacements= 0;
 			if ( multiLineDelimiter != null )
-				cntReplacements+= msg.replace( multiLineDelimiter,	multiLineDelimiterRepl );
+				cntReplacements+= msg.replaceCount( multiLineDelimiter,	multiLineDelimiterRepl );
 			else
 			{
-				cntReplacements+= msg.replace( "\r\n",					multiLineDelimiterRepl );
-				cntReplacements+= msg.replace( "\r",					multiLineDelimiterRepl );
-				cntReplacements+= msg.replace( "\n",					multiLineDelimiterRepl );
+				cntReplacements+= msg.replaceCount( "\r\n",					multiLineDelimiterRepl );
+				cntReplacements+= msg.replaceCount( "\r",					multiLineDelimiterRepl );
+				cntReplacements+= msg.replaceCount( "\n",					multiLineDelimiterRepl );
 			}
 
 			// append msg to logBuf

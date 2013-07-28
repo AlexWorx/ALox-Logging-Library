@@ -18,31 +18,51 @@ public class ALoxJavaAndroidTestReleaseLog extends Activity
 		super.onCreate( savedInstanceState );
 		setContentView( R.layout.activity_alox_java_android_test_release_log );
 		
-		TestReleaseLogging();
+		testReleaseLogging();
 	}
 
-	public void TestReleaseLogging()
+	public void testReleaseLogging()
 	{
+		// create a lox for release logging
 		Lox lox= new Lox();
-		MemoryLogger ml= new MemoryLogger();
-		ml.lineFormatter.format	= new MString( "[%TE]%L[%O]: ");
-		lox.addLogger( ml, Log.DomainLevel.ALL );
 
-		lox.regDomain( "RelLog", Log.Scope.PACKAGE );
-		lox.setDomain( "RelLog", Log.DomainLevel.ALL  );
+		// add and configure a memory logger
+		MemoryLogger ml= 			new MemoryLogger();
+		ml.lineFormatter.format=	new MString( "[%TE]%L[%O]: ");
+		lox.addLogger( ml, 	Log.DomainLevel.ALL );
 
-		lox.info( "Hello ALox, thank you for providing release logging!" );
-		lox.info( "Let's see if LogTools is available." );
-		lox.info( "We need to provide our lox as a parameter to all LogTools methods!" );
-		LogTools.instance( Log.Level.INFO, Log.LOX, 2, " Logging the Lox in Log:", 0, lox );
-		lox.info( "But exceptions are: " );
-		LogTools.exception( new Exception("This is not a real Exception", new Exception("...unreal inner")), " Logging instance 'this':", 0, lox );
-		lox.info( "That's it for now. More release logging tests to come...stay tuned!" );
+		// We do not work with default domains, as we will obfuscate the code.
+		// Obfuscated code and release logging does not allow default domains, because
+		// the rely on caller information and reasonable package, class and method names
+		lox.regDomain( "RelLog",	Log.Scope.NONE );
+		lox.setDomain( "RelLog",	Log.DomainLevel.ALL  );
+
+		// all log invocations provide the "domain" parameter explicitly to be safe when
+		// obfuscation is enabled!
+		lox.info( "RelLog", "Hello ALox, thank you for providing release logging!" );
+		lox.info( "RelLog", "Let's see if LogTools is available." );
+		lox.info( "RelLog", "We need to provide our lox as a parameter to all LogTools methods!" );
+
+		// instance() will not give very nice member names, if obfuscated!
+		LogTools.instance( "RelLog", Log.Level.INFO, Log.LOX, 2, " Logging the Lox:", 0, lox );
+
+		// also, the exception stack trace should be not too easy to read. Proguard provides a tool "retrace"...
+		lox.info( "RelLog", "Logging exceptions: " );
+		LogTools.exception( "RelLog", Log.Level.ERROR, new Exception("This is not a real Exception", new Exception("...unreal inner")), " Logging instance 'this':", 0, lox );
+
+		lox.info( "RelLog", "That's it for now. More release logging tests to come...stay tuned!" );
 
 		// copy the memory logger's output to the TextBlock
 		TextView logOutput= (TextView) findViewById( R.id.logOutput );
 		logOutput.setMovementMethod(new ScrollingMovementMethod());
-		logOutput.setText( ml.buffer.toString() );
+		
+		// copy the memory logger's output to the view
+		if ( ml.buffer.length > 0 ) 
+			logOutput.setText( ml.buffer.toString() );
+		else
+			logOutput.setText( "No output" + MString.NEWLINE + "obiously ALox was" + MString.NEWLINE + "fully pruned!" );
+			
+			
 	}
 
 	@Override public boolean onCreateOptionsMenu(Menu menu)

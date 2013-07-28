@@ -26,7 +26,8 @@ public class MemoryLogger : TextLogger
 	// Empty method stubs for release version (with no release logging)
 	// #################################################################################################
 	#if !(ALOX_DEBUG || ALOX_REL_LOG)
-		public MemoryLogger( String name= "CONSOLE" ){}
+		public MemoryLogger( String name= "Memory" ){}
+		public		MString			Buffer							= new MString( 0 );
 	#else
 	/**
 	 * <summary>

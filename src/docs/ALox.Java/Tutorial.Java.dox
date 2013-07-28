@@ -49,6 +49,17 @@ static interface class [Log](@ref #com::aworx::lox::Log). For now, we can forget
 After it was created, we do not touch it directly for the rest of this introductory tutorial. As you might
 guess, other Loggers could be added in parallel that write the output to other "drains", e.g. log files.
 
+\note
+For Android developers: To stream ALox logging into LogCat create a logger of type 
+[AndroidLogCatLogger](@ref com.aworx.lox.android.AndroidLogCatLogger)
+instead of type [ConsoleLogger](@ref com.aworx.lox.loggers.ConsoleLogger) as follows:
+\code{.cs}
+    Log.addLogger( new AndroidLogCatLogger() );
+\endcode
+<br> The normal [ConsoleLogger](@ref com.aworx.lox.loggers.ConsoleLogger) would not produce any visible output using
+the Android Emulator or a debugging device.
+
+
 <BR>
 ## 1.3. Add code to create and set a *log domain* ##     {#tutjava_ha_3}
 
@@ -405,14 +416,84 @@ be implemented tidy and clean using a nice language. With ALox, such debug outpu
 never be temporary again and as such never be removed from the code! Programmers often remove
 debug output after they think a piece of code works. But if problems arise or if the code
 is further extended at a later stage, similar lines are inserted and re-written. 
-This is obviously a waste of time. 
+This is obviously a waste of time. With ALox, you just disable certain log domains for 
+which you think the code is fine and be able to reactivate them (with different verbose levels)
+in the moment your interest moves back to it!
 
 If you want and have the time to continue reading, you are invited to learn more
 pretty neat features. Here we go!
 
+<BR>
+## 3.2 Using the log buffer singleton ##        {#tutjava_more_logbuf}
+
+In many occasions, a log message consists of a string that is assembled from strings and
+values. Creating such strings is time consuming. It would not hurt too much, but in addition
+on some ALox platform/language implementations, when creating a release binary, the auto-pruning 
+process would omit the creation code of such strings, so they would still exist. Besides correct pruning
+handling and general speed considerations even in the debug version, the third motivation for using the
+internal log buffer singleton is that it is quite handy!
+ALox provides it in classes 
+[Log](@ref com::aworx::lox::Log) and
+[Lox](@ref com::aworx::lox::Lox) where it can be acquired using 
+[Log.buf()](@ref com::aworx::lox::Log::buf) respectively
+[Lox.buf()](@ref com::aworx::lox::Lox::buf).
+
+"Acquired" here means, that when retrieved, internally a mutex (see
+[ThreadLock](@ref com::aworx::util::ThreadLock)) is locked. The mutex is released in the moment
+the buffer is passed into one of the log methods.
+
+Look at the following sample code:
+
+\snippet java.unittests.alox/unittests/com/aworx/lox/Tests_Tutorial.java        Tut_UsingLogBuffer1
+ 
+As you see, the internal log buf is acquired in the parameter list of the *info()* method and
+filled with the log contents using concatenated calls to it.<br> 
+Passed to method *info()*, class *Log* internally *releases* (the opposite of *acquire*) the buffer.
+
+Alternatively, the buffer can also be used "outside" of the log call and then passed
+to it. The following snippet shows a sample:
+
+
+\snippet java.unittests.alox/unittests/com/aworx/lox/Tests_Tutorial.java         Tut_UsingLogBuffer2
+
+
+As you see, in the sample the log statement is not executed. Therefore it is necessary
+to *release* the buffer "manually" using 
+[Log.bufAbort()](@ref com::aworx::lox::Lox::bufAbort) respectively
+[Lox.bufAbort()](@ref com::aworx::lox::Lox::bufAbort) in the case of release logging.
+
+\note
+While with other language/platform combinations, ALox provides an object of type
+[MString](@ref com::aworx::util::MString), in the Java version of ALox the method
+[Log.buf()](@ref com::aworx::lox::Lox::buf) returns an object of type 
+[LogBuf](@ref com::aworx::lox::LogBuf)! (Method
+[Lox.buf()](@ref com::aworx::lox::Lox::buf) still returns an MString!)<br>
+<br>
+Class *LogBuf* encapsulates an MString and mimics its public non-static interface 1:1 
+as its own. The reason for this (otherwise stupid) thing is the auto pruning mechanics in
+Java (see \ref setup_projects_java_pruning "Pruning ALox"). So, as a Java programmer, keep in mind that
+when you use the internal log buffer singleton outside of a function call, 
+- for debug logging you will receive an object of type *LogBuf* from class *Log*, while 
+- in release logging you will receive an object of type *MString* from class *Lox*
+
+Finally, let's see what happens if you do not release the log buffer singleton:
+
+\snippet java.unittests.alox/unittests/com/aworx/lox/Tests_Tutorial.java         Tut_UsingLogBuffer3
+
+The output of the whole sequence of this section looks like this. Please note the last line:
+
+\verbinclude docs/generated_javatut/Tut_UsingLogBuffer.txt 
+
+You get a warning from utility class 
+[ThreadLock](@ref com::aworx::util::ThreadLock) (on log domain "AWXU") that tells you that the buffer
+was doubly acquired. This should never happen. The warning is very severe! The
+problem would start if you accessed the buffer in a different thread later on
+(e.g. your applications UI thread). In this moment **your application would run into
+a deadlock!**
+
 
 <BR>
-## 3.2 Conditional logging ##        {#tutjava_more_2}
+## 3.3 Conditional logging ##        {#tutjava_more_conditional}
 
 Often log lines should only be displayed if a certain condition is met. Here is a
 sample:
@@ -431,7 +512,7 @@ sure you do not put side effects into expressions of *Assert()* invocations.
 \note
 - In accordance with the concept of assertions, the condition has to be 'false' to have ALox perform the log.*
 - The *log level* of *Assert()* is *Log.Level.ERROR*
-- The method Assert() starts with capitalized "A" because "assert" is a key word in Java.
+- The method Assert() starts with capitalized "A" because "assert" is a reserved key word in Java.
 
 The method [Assert()] (@ref #com::aworx::lox::Log::error) in class [Log]	(@ref #com::aworx::lox::Log) is
 similar to the other log methods (namely 
@@ -443,7 +524,7 @@ log method [Line()]	(@ref #com::aworx::lox::Log::line), setting some default par
 
 
 <BR>
-## 3.3 LogTools: Log complex things easily ##       {#tutjava_more_3}
+## 3.4 LogTools: Log complex things easily ##       {#tutjava_more_logtools}
 
 ALox also provides some log functions that log more complex stuff. The design decision was made to not
 put this into the class [Log](@ref #com::aworx::lox::Log) but into a separated class [LogTools](@ref #com::aworx::lox::LogTools).
@@ -452,7 +533,7 @@ another word for Log.
 
 On the Java language platform two methods are currently available which are briefly covered in the following:
 
-### 3.3.1 Instance(): Log any object recursively
+### 3.4.1 Instance(): Log any object recursively ### {#tutjava_more_logtools_instance}
 
 The method [LogTools.instance()] (@ref #com::aworx::lox::LogTools::instance) allows you to log just any object 
 recursively in a well formatted way. You can try this out quickly by adding the following code to your sample:
@@ -477,7 +558,7 @@ This uses the inspection features of Java. Unfortunately under Windows Phone dev
 inspection is not a feature. Therefore, this method is not available for Windows Phone projects. TODO: HOW IS THIS IN ANDROID?
 \~
 
-### 3.3.2 Exception(): Log an exception recursively (with inner exceptions) 
+### 3.4.2 Exception(): Log an exception recursively (with inner exceptions) ### {#tutjava_more_logtools_exception}
 
 Just like Instance(), the method [LogTools.exception()] (@ref #com::aworx::lox::LogTools::exception) uses the multi
 line feature of ALox to log out the contents of a Java Exception well formatted and recursively (following inner exceptions).
@@ -498,7 +579,7 @@ The following log output will be generated:
 \verbinclude  docs/generated_javatut/Tut_Exceptions.txt 
 
 \~Comment  NIY in Java (when adding, change number some paragraphs above
-### c) XML(): Log out an XML document or element
+### 3.4.3 XML(): Log out an XML document or element  ### {#tutjava_more_logtools_xml}
 
 The third method in LogTools that logs a complex object is [LogTools.exception()] (@ref #com::aworx::lox::LogTools::exception) for
 logging objects of type XMLDocument or XMLElement. Here is a quick sample code:
@@ -511,7 +592,7 @@ The output will look similar to this:
 \~
 
 <BR>
-## 3.4 Indentation ##                    {#tutjava_more_4}
+## 3.5 Indentation ##                    {#tutjava_more_indentation}
 
 The outputs of the above samples which make use of the [LogTools](@ref #com::aworx::lox::LogTools) class look nice because 
 they use indentation when they recursively walk through a complex object.
@@ -525,14 +606,15 @@ See the documentation of the log methods
 [info()]	(@ref #com::aworx::lox::Log::error) and
 [verbose()]	(@ref #com::aworx::lox::Log::error) to identify where to add the indentation parameter.
 The default is 0. The result of increasing it depends on the Logger you are using. The [TextLogger](@ref #com::aworx::lox::core::TextLogger)
-for example (the base class of [ConsoleLogger](@ref #com::aworx::lox::loggers::ConsoleLogger) ) adds two spaces per indent number. 
+for example (the base class of [ConsoleLogger](@ref #com::aworx::lox::loggers::ConsoleLogger) ) adds two spaces per indent number
+(which is configurable). 
 
 
 <BR>
-## 3.5 Separating domain log levels in different loggers ##        {#tutjava_more_5}
+## 3.6 Directing log output to distinct loggers ##        {#tutjava_more_seplog}
 Because  ALox stores the *log domain level* not only per *domain* but also 'per *logger*', we just 
 need to fill in a default parameter in [Log.setDomain()](@ref #com::aworx::lox::Log::setDomain ) to
-provide different *loggers* different domain levels. 
+assign different domain levels to different *loggers*. 
 
 In the following sample code we are creating two different *loggers*, one 
 [ConsoleLogger](@ref #com::aworx::lox::loggers::ConsoleLogger) and one of type 
@@ -597,7 +679,7 @@ Some further quick remarks on the code:
  \~
 
 <BR>
-## 3.6 ALox configuration and internal log messages ##               {#tutjava_more_6}
+## 3.7 ALox configuration and internal log messages ##               {#tutjava_more_config}
 
 In complex projects it might get a little confusing to keep track about the 
 loggers and their domains. Also, when you use 3rd party components supporting ALox, 
@@ -628,7 +710,7 @@ registered with this *logger*.
 
 With the modification in the code above, we are passing a *log domain level* as a second parameter to 
 [Log.addLogger()](@ref #com::aworx::lox::Log::addLogger).  This *log domain level* specifies how the
-internal *log domain* of ALox should be set. While the default value was  
+internal *log domain* of ALox should be set for the logger we are just adding. While the default value was  
 [DomainLevel.INFO_WARNINGS_AND_ERRORS](@ref #com::aworx::lox::Log::DomainLevel) we overwrite this to 
 [DomainLevel.ALL]                (@ref #com::aworx::lox::Log::DomainLevel). Now looking at the *ConsoleLogger*
 output, we see what is going on inside ALox while running the application:
@@ -637,7 +719,7 @@ output, we see what is going on inside ALox while running the application:
 
 To summarize: We have to ways to look into ALox: 
 
-1. Method [Log.logConfig()](@ref #com::aworx::lox::Log::logConfig) creates a log with a "snapshot" of the current states. The advantage of this is,
+1. Method [Log.logConfig()](@ref #com::aworx::lox::Log::logConfig) logs a "snapshot" of the current states. The advantage of this is,
    that it is all logged sequentially in one place and does not clutter your log output.
 2. By setting the *log domain level* of the internal log domain "ALOX" to a more verbose level. While this clutters your log output and you 
    might have to search the pieces in your overall log stream, the advantage here is that you see the caller information and therefore

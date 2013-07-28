@@ -1,9 +1,8 @@
-(Tests_Tutorial.java:216) Tut_Instance(): [00:00.005 +005 ms] [main(1)]        [MYDOM]:   ALox: Multi line message follows: 
 >> Actual Thread:                                                    {Thread}
 >> <01>  name:                         "main"                        {[C}
 >> <02>  priority:                     5                             {Integer}
 >> <03>  threadQ:                      <null>
->> <04>  eetop:                        36032512                      {Long}
+>> <04>  eetop:                        48680960                      {Long}
 >> <05>  single_step:                  false                         {Boolean}
 >> <06>  daemon:                       false                         {Boolean}
 >> <07>  stillborn:                    false                         {Boolean}
@@ -16,7 +15,7 @@
 >> <14>    vmAllowSuspension:          false                         {Boolean}
 >> <15>    nUnstartedThreads:          0                             {Integer}
 >> <16>    nthreads:                   2                             {Integer}
->> <17>    threads:                    (MAX REC) @5318a0ac           {[Ljava.lang.Thread;}
+>> <17>    threads:                    (MAX REC) @387aec07           {[Ljava.lang.Thread;}
 >> <18>    ngroups:                    0                             {Integer}
 >> <19>    groups:                     <null>
 >> <20>  contextClassLoader:                                         {sun.misc.Launcher$AppClassLoader}
@@ -26,10 +25,11 @@
 >> <24>    privilegedContext:          <null>
 >> <25>    combiner:                   <null>
 >> <26>  threadLocals:                                               {ThreadLocal$ThreadLocalMap}
->> <27>    table:                      (MAX REC) @14b1dbf            {[Ljava.lang.ThreadLocal$ThreadLocalMap$Entry;}
+>> <27>    table:                      (MAX REC) @1815a349           {[Ljava.lang.ThreadLocal$ThreadLocalMap$Entry;}
 >> <28>    size:                       4                             {Integer}
 >> <29>    threshold:                  10                            {Integer}
 >> <30>  inheritableThreadLocals:                                    {ThreadLocal$ThreadLocalMap}
+>> <31>    table:                      (MAX REC) @258e4566           {[Ljava.lang.ThreadLocal$ThreadLocalMap$Entry;}
 ...
 ...
 ...

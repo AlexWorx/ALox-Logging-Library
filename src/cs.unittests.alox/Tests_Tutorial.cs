@@ -23,7 +23,7 @@ namespace com.aworx.unittests.lox
 public class TestsTutorial
 {
 MemoryLogger	tutLog;
-String			outputPath=		"../../../../src/docs/generated_cstut/";
+String			outputPath=		"../../../../../src/docs/generated_cstut/";
 
 void SaveTutorialOuput( string fileName, MString log )
 {
@@ -47,7 +47,7 @@ public void Tut_Hello_ALox()
 
 	//! [Tut_Hello_ALox]
 	//! [Tut_Hello_ALox_Line1]
-	Log.AddLogger( new ConsoleLogger( "Console" ) );
+	Log.AddLogger( new ConsoleLogger() );
 	//! [Tut_Hello_ALox_Line1]
 	//! [Tut_Hello_ALox_Line2]
 	Log.SetDomain( "APP",	Log.DomainLevel.InfoWarningsAndErrors );
@@ -76,7 +76,7 @@ public void Tut_LogLevels()
 	#endif
 
 	//! [Tut_LogLevels]
-	Log.AddLogger( new ConsoleLogger( "Console" ) );
+	Log.AddLogger( new ConsoleLogger() );
 	//! [Tut_LogLevels_SetDomain]
 	Log.SetDomain( "APP",	Log.DomainLevel.InfoWarningsAndErrors );
 	//! [Tut_LogLevels_SetDomain]
@@ -105,7 +105,7 @@ public void Tut_DefaultDomains()
 	#endif
 
 	//! [Tut_DefaultDomains]
-	Log.AddLogger( new ConsoleLogger( "Console" ) );
+	Log.AddLogger( new ConsoleLogger() );
 	Log.RegDomain( "APP", Log.Scope.SourceFile );
 	Log.SetDomain( "APP", Log.DomainLevel.InfoWarningsAndErrors );
 
@@ -126,7 +126,7 @@ public void Tut_DefaultDomains()
 	#endif
 
 	//! [Tut_DefaultDomains_part2]
-	Log.AddLogger( new ConsoleLogger( "Console" ) );
+	Log.AddLogger( new ConsoleLogger() );
 	Log.Info  ( "APP", "Hallo ALox" );
 	//! [Tut_DefaultDomains_part2]
 
@@ -139,7 +139,7 @@ public void Tut_DefaultDomains()
 public void Tut_Placing()
 {
 	//! [Tut_Placing_Part1]
-	Log.AddLogger( new ConsoleLogger( "Console" ) );
+	Log.AddLogger( new ConsoleLogger() );
 
 	Log.SetDomain( "MYAPP",     Log.DomainLevel.All);
 	Log.SetDomain( "SOCKETS",   Log.DomainLevel.WarningsAndErrors );
@@ -213,7 +213,7 @@ public void Tut_Instance()
 {
 #if ALOX_DEBUG || ALOX_REL_LOG
 	Log.Reset(); 
-	Log.AddLogger( new ConsoleLogger( "Console" ) );
+	Log.AddLogger( new ConsoleLogger() );
 	Log.AddLogger( tutLog= new MemoryLogger( "Tutlog" ), Log.DomainLevel.Off  );
 	Log.SetDomain( "MYDOM", Log.DomainLevel.All );
 	tutLog.RootDomain.SetLevel( Log.DomainLevel.All, false );
@@ -264,7 +264,7 @@ public void Tut_Exception()
 	LogTools.Exception( "MYDOM", Log.Level.Warning, testException, "Logging an exception: " );
 	//! [Tut_Exceptions]
 
-	tutLog.Buffer.Replace( "Tutlog", "Console" );
+	tutLog.Buffer.Replace( "Tutlog", "CONSOLE" );
 	SaveTutorialOuput( "Tut_Exceptions.txt", tutLog.Buffer );
 #endif
 }
@@ -292,7 +292,7 @@ public void Tut_XML()
 	LogTools.XML("MYDOM", Log.Level.Info, xdoc, "Logging an xml document: " );
 	//! [Tut_XML]
 
-	tutLog.Buffer.Replace( "Tutlog", "Console" );
+	tutLog.Buffer.Replace( "Tutlog", "CONSOLE" );
 	SaveTutorialOuput( "Tut_XML.txt", tutLog.Buffer );
 #endif
 }
@@ -317,12 +317,12 @@ public void Tut_SeparatedLogLevels()
 
 	//! [Tut_SeparatedLogLevels]
 	// create two different loggers
-	Log.AddLogger( new ConsoleLogger( "Console" ) );
-	Log.AddLogger( new MemoryLogger ( "Memory" ) );
+	Log.AddLogger( new ConsoleLogger( "MyConsoleLogger" ) );
+	Log.AddLogger( new MemoryLogger ( "MyMemoryLogger" ) );
 	
 	// switch some log information off with memory logger
 	#if ALOX_DEBUG
-		((MemoryLogger) Log.GetLogger("Memory")).LineFormatter.Format= new MString( "%CF(%CL): %L [%O]: ");
+		((MemoryLogger) Log.GetLogger("MyMemoryLogger")).LineFormatter.Format= new MString( "%CF(%CL): %L [%O]: ");
 	#endif
 	
 	// register domains, set DOM as default
@@ -334,12 +334,12 @@ public void Tut_SeparatedLogLevels()
 	Log.SetDomain( "DOM",  Log.DomainLevel.All, false );
 	
 	// set level of DOM/CON separately for console and memory logger
-	Log.SetDomain( "~CON", Log.DomainLevel.All, false, "Console" );
-	Log.SetDomain( "~CON", Log.DomainLevel.Off, false, "Memory"  );
+	Log.SetDomain( "~CON", Log.DomainLevel.All, false, "MyConsoleLogger" );
+	Log.SetDomain( "~CON", Log.DomainLevel.Off, false, "MyMemoryLogger"  );
 	
 	// set level of DOM/MEM separately for console and memory logger
-	Log.SetDomain( "~MEM", Log.DomainLevel.Off, false, "Console" );
-	Log.SetDomain( "~MEM", Log.DomainLevel.All, false, "Memory"  );
+	Log.SetDomain( "~MEM", Log.DomainLevel.Off, false, "MyConsoleLogger" );
+	Log.SetDomain( "~MEM", Log.DomainLevel.All, false, "MyMemoryLogger"  );
 	
 	// Log info to each of the domains
 	Log.Info(         "Domain= DOM      -> This goes to all loggers");
@@ -349,11 +349,11 @@ public void Tut_SeparatedLogLevels()
 	// To verify the result, we log the contents of the MemoryLogger to the console logger
 	Log.Info( "~CON", "Here comes the contents of MemoryLogger:");
 	#if ALOX_DEBUG
-		Log.Info( "~CON", ((MemoryLogger) Log.GetLogger("Memory")).Buffer.ToString(), 1);
+		Log.Info( "~CON", ((MemoryLogger) Log.GetLogger("MyMemoryLogger")).Buffer.ToString(), 1);
 	#endif
 	//! [Tut_SeparatedLogLevels]
 
-	tutLog.Buffer.Replace( "Tutlog", "Console" );
+	tutLog.Buffer.Replace( "Tutlog", "MyConsoleLogger" );
 	SaveTutorialOuput( "Tut_SeparatedLogLevels.txt", tutLog.Buffer );
 #endif
 }
@@ -370,8 +370,8 @@ public void Tut_LogConfig()
 
 	//! [Tut_LogConfig]
 	// create two different loggers
-	Log.AddLogger( new ConsoleLogger( "Console" ) );
-	Log.AddLogger( new MemoryLogger ( "Memory" ) );
+	Log.AddLogger( new ConsoleLogger() );
+	Log.AddLogger( new MemoryLogger () );
 	
 	// register domains, set DOM as default
 	Log.RegDomain( "DOM",     Log.Scope.Method );
@@ -393,7 +393,7 @@ public void Tut_LogConfig()
 	Log.LogConfig( "DOM", Log.Level.Verbose, "Here comes the current Log configuration:" );
 	//! [Tut_LogConfig]
 
-	//tutLog.Buffer.Replace( "Tutlog", "Console" );
+	//tutLog.Buffer.Replace( "Tutlog", "CONSOLE" );
 	#if ALOX_DEBUG
 		SaveTutorialOuput( "Tut_LogConfig.txt", ((MemoryLogger) Log.GetLogger( "Memory" )).Buffer );
 	#endif
@@ -414,8 +414,8 @@ public void Tut_LogConfig2()
 	// ##### code inclusion version ########
 	//! [Tut_LogConfig2]
 	// create two different loggers, add console Logger verbosely
-	Log.AddLogger( new ConsoleLogger( "Console" ), Log.DomainLevel.All );
-	Log.AddLogger( new MemoryLogger ( "Memory" )  );
+	Log.AddLogger( new ConsoleLogger(), Log.DomainLevel.All );
+	Log.AddLogger( new MemoryLogger ()  );
 	
 	// register domains, set DOM as default
 	Log.RegDomain( "DOM",     Log.Scope.Method );
@@ -439,10 +439,10 @@ public void Tut_LogConfig2()
 	Log.Reset(); 
 
 	// create two different loggers, add console Logger verbosely
-	tutLog= new MemoryLogger ( "Console" );
+	tutLog= new MemoryLogger ("CONSOLE");
 	tutLog.RootDomain.SetLevel( Log.DomainLevel.All, false );
 	Log.AddLogger( tutLog, Log.DomainLevel.All ); 
-	Log.AddLogger( new ConsoleLogger( "Memory" ) );
+	Log.AddLogger( new ConsoleLogger("MEMORY") );
 	
 	// register domains, set DOM as default
 	Log.RegDomain( "DOM",     Log.Scope.Method );
@@ -460,7 +460,7 @@ public void Tut_LogConfig2()
 	Log.SetDomain( "~MEM", Log.DomainLevel.Off, false, "Console" );
 	Log.SetDomain( "~MEM", Log.DomainLevel.All, false, "Memory"  );
 
-	//tutLog.Buffer.Replace( "Tutlog", "Console" );
+	//tutLog.Buffer.Replace( "Tutlog", "CONSOLE" );
 	#if ALOX_DEBUG
 		SaveTutorialOuput( "Tut_LogConfig2.txt", ((MemoryLogger) Log.GetLogger( "Console" )).Buffer );
 	#endif
@@ -476,5 +476,72 @@ public void Tut_LogConfig2()
 	#endif
 #endif
 }
+
+
+/** ***********************************************************************************************
+* <summary>	Tut_UsingLogBuffer </summary>
+**************************************************************************************************/
+[TestMethod]
+#if !WINDOWS_PHONE
+	[TestCategory("Tutorial")]
+#endif
+public void Tut_UsingLogBuffer()
+{
+#if ALOX_DEBUG || ALOX_REL_LOG
+	Log.Reset(); 
+	Log.AddLogger( tutLog= new MemoryLogger( "Tutlog" ), Log.DomainLevel.Off  );
+	tutLog.RootDomain.SetLevel( Log.DomainLevel.All, false );
+
+	//! [Tut_UsingLogBuffer1]
+	//  Create logger and register domain LOGBUF
+	Log.AddLogger( new ConsoleLogger(), Log.DomainLevel.WarningsAndErrors );
+	Log.RegDomain( "LOGBUF", Log.Scope.Method );
+	Log.SetDomain( "LOGBUF", Log.DomainLevel.All);
+			
+	//  Let's do some logging using the internal buffer singleton;
+	Log.Info( Log.Buf().Append( "Hallo Buf!. This is only one string. Not useful to use the buf, however..." ) );
+	Log.Info( Log.Buf().Append( "This is a 5-digtit rep of 42: " ).Append( 42, 5 ) );
+	Log.Info( Log.Buf().Append( "***All upper case and stars replaced by dollar signs ***" )
+					   .ConvertCase( true )
+					   .Replace( "*", "$" ) 
+			);
+	//! [Tut_UsingLogBuffer1]
+
+	//! [Tut_UsingLogBuffer2]
+	// using the log buf outside of the log statement
+	#if ALOX_DEBUG
+
+		MString logBuf= Log.Buf();
+		logBuf.Append( "Lets see if school math is correct: " );
+		int a= 4;
+		int b= 2;
+		if( a/b == 3)
+		{
+			// shout it out loud!
+			logBuf.Append( "They taught me wrong in school!" );
+			Log.Error( logBuf );
+		}
+		else
+		{
+			// we better say nothing
+			Log.BufAbort();
+		}
+
+	#endif
+	//! [Tut_UsingLogBuffer2]
+
+	//! [Tut_UsingLogBuffer3]
+	// causing trouble
+	Log.Info( "Let's create an internal error by accessing the buffer twice:" );
+	Log.Buf();
+	Log.Buf();
+	//! [Tut_UsingLogBuffer3]
+
+	// END OF TUTORIAL
+	tutLog.Buffer.Replace( "Tutlog", "CONSOLE" );
+	SaveTutorialOuput( "Tut_UsingLogBuffer.txt", tutLog.Buffer );
+	#endif
+}
+
 	}
 }

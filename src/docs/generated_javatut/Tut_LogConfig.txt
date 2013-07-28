@@ -1,29 +1,29 @@
-(Tests_Tutorial.java:356) Tut_LogConfig(): [00:00.002 +002 ms] [main(1)]  [***] [DOM]: >> Here comes the current Log configuration:
-                                                                                       >> Version:      1.1.0
-                                                                                       >> Intern. dom.: ALOX
-                                                                                       >> Thread safe:  Yes
-                                                                                       >> No. of calls: 1
-                                                                                       >> Code markers: 0
-                                                                                       >> 
-                                                                                       >> Def. domains: 1
-                                                                                       >>   Domain:   DOM          Scope: "unittests.com.aworx.lox#Tests_Tutorial#Tut_LogConfig"
-                                                                                       >> 
-                                                                                       >> Loggers:      2
-                                                                                       >> 
-                                                                                       >>   Logger: "Console"
-                                                                                       >>     Creation time: java.util.GregorianCalendar[time=1374060377350,areFieldsSet=true,areAllFieldsSet=true,lenient=true,zone=sun.util.calendar.ZoneInfo[id="Europe/Berlin",offset=3600000,dstSavings=3600000,useDaylight=true,transitions=143,lastRule=java.util.SimpleTimeZone[id=Europe/Berlin,offset=3600000,dstSavings=3600000,useDaylight=true,startYear=0,startMode=2,startMonth=2,startDay=-1,startDayOfWeek=1,startTime=3600000,startTimeMode=2,endMode=2,endMonth=9,endDay=-1,endDayOfWeek=1,endTime=3600000,endTimeMode=2]],firstDayOfWeek=2,minimalDaysInFirstWeek=4,ERA=1,YEAR=2013,MONTH=6,WEEK_OF_YEAR=29,WEEK_OF_MONTH=3,DAY_OF_MONTH=17,DAY_OF_YEAR=198,DAY_OF_WEEK=4,DAY_OF_WEEK_IN_MONTH=3,AM_PM=1,HOUR=1,HOUR_OF_DAY=13,MINUTE=26,SECOND=17,MILLISECOND=350,ZONE_OFFSET=3600000,DST_OFFSET=3600000]
-                                                                                       >>     Lines logged:  0
-                                                                                       >>     Domains:
-                                                                                       >>       /ALOX              WARNINGS_AND_ERRORS
-                                                                                       >>       /DOM               ALL
-                                                                                       >>       /DOM/CON           ALL
-                                                                                       >>       /DOM/MEM           OFF
-                                                                                       >> 
-                                                                                       >>   Logger: "Memory"
-                                                                                       >>     Creation time: java.util.GregorianCalendar[time=1374060377350,areFieldsSet=true,areAllFieldsSet=true,lenient=true,zone=sun.util.calendar.ZoneInfo[id="Europe/Berlin",offset=3600000,dstSavings=3600000,useDaylight=true,transitions=143,lastRule=java.util.SimpleTimeZone[id=Europe/Berlin,offset=3600000,dstSavings=3600000,useDaylight=true,startYear=0,startMode=2,startMonth=2,startDay=-1,startDayOfWeek=1,startTime=3600000,startTimeMode=2,endMode=2,endMonth=9,endDay=-1,endDayOfWeek=1,endTime=3600000,endTimeMode=2]],firstDayOfWeek=2,minimalDaysInFirstWeek=4,ERA=1,YEAR=2013,MONTH=6,WEEK_OF_YEAR=29,WEEK_OF_MONTH=3,DAY_OF_MONTH=17,DAY_OF_YEAR=198,DAY_OF_WEEK=4,DAY_OF_WEEK_IN_MONTH=3,AM_PM=1,HOUR=1,HOUR_OF_DAY=13,MINUTE=26,SECOND=17,MILLISECOND=350,ZONE_OFFSET=3600000,DST_OFFSET=3600000]
-                                                                                       >>     Lines logged:  0
-                                                                                       >>     Domains:
-                                                                                       >>       /ALOX              WARNINGS_AND_ERRORS
-                                                                                       >>       /DOM               ALL
-                                                                                       >>       /DOM/CON           OFF
-                                                                                       >>       /DOM/MEM           ALL
+(Tests_Tutorial.java:354) Tut_LogConfig(): [00:00.003 +003 ms] [main(1)] [***] [DOM]: >> Here comes the current Log configuration:
+                                                                                      >> Version:      1.1.0
+                                                                                      >> Intern. dom.: ALOX
+                                                                                      >> Thread safe:  Yes
+                                                                                      >> No. of calls: 1
+                                                                                      >> Code markers: 0
+                                                                                      >> 
+                                                                                      >> Def. domains: 1
+                                                                                      >>   Domain:   DOM          Scope: "unittests.com.aworx.lox#Tests_Tutorial#Tut_LogConfig"
+                                                                                      >> 
+                                                                                      >> Loggers:      2
+                                                                                      >> 
+                                                                                      >>   Logger: "CONSOLE"
+                                                                                      >>     Creation time: java.util.GregorianCalendar[time=1375044376556,areFieldsSet=true,areAllFieldsSet=true,lenient=true,zone=sun.util.calendar.ZoneInfo[id="Europe/Berlin",offset=3600000,dstSavings=3600000,useDaylight=true,transitions=143,lastRule=java.util.SimpleTimeZone[id=Europe/Berlin,offset=3600000,dstSavings=3600000,useDaylight=true,startYear=0,startMode=2,startMonth=2,startDay=-1,startDayOfWeek=1,startTime=3600000,startTimeMode=2,endMode=2,endMonth=9,endDay=-1,endDayOfWeek=1,endTime=3600000,endTimeMode=2]],firstDayOfWeek=2,minimalDaysInFirstWeek=4,ERA=1,YEAR=2013,MONTH=6,WEEK_OF_YEAR=30,WEEK_OF_MONTH=4,DAY_OF_MONTH=28,DAY_OF_YEAR=209,DAY_OF_WEEK=1,DAY_OF_WEEK_IN_MONTH=4,AM_PM=1,HOUR=10,HOUR_OF_DAY=22,MINUTE=46,SECOND=16,MILLISECOND=556,ZONE_OFFSET=3600000,DST_OFFSET=3600000]
+                                                                                      >>     Lines logged:  0
+                                                                                      >>     Domains:
+                                                                                      >>       /ALOX              WARNINGS_AND_ERRORS
+                                                                                      >>       /DOM               ALL
+                                                                                      >>       /DOM/CON           ALL
+                                                                                      >>       /DOM/MEM           OFF
+                                                                                      >> 
+                                                                                      >>   Logger: "MEMORY"
+                                                                                      >>     Creation time: java.util.GregorianCalendar[time=1375044376556,areFieldsSet=true,areAllFieldsSet=true,lenient=true,zone=sun.util.calendar.ZoneInfo[id="Europe/Berlin",offset=3600000,dstSavings=3600000,useDaylight=true,transitions=143,lastRule=java.util.SimpleTimeZone[id=Europe/Berlin,offset=3600000,dstSavings=3600000,useDaylight=true,startYear=0,startMode=2,startMonth=2,startDay=-1,startDayOfWeek=1,startTime=3600000,startTimeMode=2,endMode=2,endMonth=9,endDay=-1,endDayOfWeek=1,endTime=3600000,endTimeMode=2]],firstDayOfWeek=2,minimalDaysInFirstWeek=4,ERA=1,YEAR=2013,MONTH=6,WEEK_OF_YEAR=30,WEEK_OF_MONTH=4,DAY_OF_MONTH=28,DAY_OF_YEAR=209,DAY_OF_WEEK=1,DAY_OF_WEEK_IN_MONTH=4,AM_PM=1,HOUR=10,HOUR_OF_DAY=22,MINUTE=46,SECOND=16,MILLISECOND=556,ZONE_OFFSET=3600000,DST_OFFSET=3600000]
+                                                                                      >>     Lines logged:  0
+                                                                                      >>     Domains:
+                                                                                      >>       /ALOX              WARNINGS_AND_ERRORS
+                                                                                      >>       /DOM               ALL
+                                                                                      >>       /DOM/CON           OFF
+                                                                                      >>       /DOM/MEM           ALL

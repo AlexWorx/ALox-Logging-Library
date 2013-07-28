@@ -341,9 +341,9 @@ that the *domain log level* setting is stored per *Logger* and not globally, ALo
 to have different loggers logging completely different things. 
 
 As we have already seen a source sample of that provided in the tutorials (see section 
-"Separating domain log levels in different loggers" 
-\ref tutcs_more_5 "for C#" or
-\ref tutjava_more_5 "for Java".), we want to give now a more formal description on how this is achieved:
+"Directing log output to distinct loggers" 
+\ref tutcs_more_seplog "for C#" or
+\ref tutjava_more_seplog "for Java".), we want to give now a more formal description on how this is achieved:
 
 - Create and add your loggers using [Log.AddLogger()](@ref #com.aworx.lox.Log.AddLogger)
 - For each *log domain* with log output that should go to all loggers invoke

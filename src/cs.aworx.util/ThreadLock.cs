@@ -122,7 +122,7 @@ public class ThreadLock
 	 * number of unlock() calls have been made. 
 	 * </summary>
 	 **************************************************************************************************/
-	public void Aquire()		
+	public void Acquire()		
 	{
 		// are we in unsafe mode?
 		if ( mutex == null )
@@ -142,7 +142,7 @@ public class ThreadLock
 			else if ( lockCount % RecursionWarningThreshold == 0  )
 			{
 				if ( AWXU.errorHandler != null ) 
-					AWXU.errorHandler.warning( "ThreadLock.lock() Warning: Recursion depth " + lockCount + " To prevent this, change ThreadSafe.recursionWarningThreshold." );
+					AWXU.errorHandler.warning( "ThreadLock.lock() Warning: Recursion depth " + lockCount + ". To prevent this, change ThreadSafe.recursionWarningThreshold or fix your code!");
 			}
 										
 			// end of unsafe version of this method
@@ -169,7 +169,7 @@ public class ThreadLock
 				if ( lockCount % RecursionWarningThreshold == 0  )
 				{
 					if ( AWXU.errorHandler != null ) 
-						AWXU.errorHandler.warning( "ThreadLock.lock() Warning: Recursion depth " + lockCount + " To prevent this, change ThreadSafe.recursionWarningThreshold.");
+						AWXU.errorHandler.warning( "ThreadLock.lock() Warning: Recursion depth " + lockCount + ". To prevent this, change ThreadSafe.recursionWarningThreshold or fix your code!");
 				}
 											
 				return;

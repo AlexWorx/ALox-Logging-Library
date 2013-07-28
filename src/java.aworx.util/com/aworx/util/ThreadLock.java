@@ -130,7 +130,7 @@ public class ThreadLock
      * gained. Multiple (nested) calls to this method are counted and the object is only released
      * when the same number of unlock() calls have been made.
      **************************************************************************************************/
-	public void aquire()		
+	public void acquire()		
 	{
 		// are we in unsafe mode?
 		if ( mutex == null )
@@ -150,7 +150,7 @@ public class ThreadLock
 			else if ( lockCount % recursionWarningThreshold == 0  )
 			{
 				if ( AWXU.errorHandler != null ) 
-					AWXU.errorHandler.warning( "ThreadLock.lock() Warning: Recursion depth " + lockCount + " To prevent this, change ThreadSafe.recursionWarningThreshold." );
+					AWXU.errorHandler.warning( "ThreadLock.lock() Warning: Recursion depth " + lockCount + ". To prevent this, change ThreadSafe.recursionWarningThreshold or fix your code." );
 			}
 										
 			// end of unsafe version of this method
@@ -177,7 +177,7 @@ public class ThreadLock
 				if ( lockCount % recursionWarningThreshold == 0  )
 				{
 					if ( AWXU.errorHandler != null ) 
-						AWXU.errorHandler.warning( "ThreadLock.lock() Warning: Recursion depth " + lockCount + " To prevent this, change ThreadSafe.recursionWarningThreshold.");
+						AWXU.errorHandler.warning( "ThreadLock.lock() Warning: Recursion depth " + lockCount + ". To prevent this, change ThreadSafe.recursionWarningThreshold or fix your code." );
 				}
 											
 				return;

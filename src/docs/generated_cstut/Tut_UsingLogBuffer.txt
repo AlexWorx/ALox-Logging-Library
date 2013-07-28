@@ -1,0 +1,6 @@
+src\cs.unittests.alox\Tests_Tutorial.cs(502):Tut_UsingLogBuffer() [00:00.000 +342 µs] [14]       [LOGBUF]: Hallo Buf!. This is only one string. Not useful to use the buf, however...
+src\cs.unittests.alox\Tests_Tutorial.cs(503):Tut_UsingLogBuffer() [00:00.000 +301 µs] [14]       [LOGBUF]: This is a 5-digtit rep of 42: 00042
+src\cs.unittests.alox\Tests_Tutorial.cs(504):Tut_UsingLogBuffer() [00:00.000 +076 µs] [14]       [LOGBUF]: $$$ALL UPPER CASE AND STARS REPLACED BY DOLLAR SIGNS $$$
+src\cs.unittests.alox\Tests_Tutorial.cs(535):Tut_UsingLogBuffer() [00:00.001 +241 µs] [14]       [LOGBUF]: Let's create an internal error by accessing the buffer twice:
+src\cs.alox\Log.cs(142):warning()                                 [00:00.001 +197 µs] [14] [***] [ AWXU ]: Logger 'CONSOLE': log domain 'AWXU' not found. Created. Inherited domain level is: All 
+src\cs.alox\Log.cs(142):warning()                                 [00:00.001 +197 µs] [14] [WRN] [ AWXU ]: ThreadLock.lock() Warning: Recursion depth 2. To prevent this, change ThreadSafe.recursionWarningThreshold or fix your code!

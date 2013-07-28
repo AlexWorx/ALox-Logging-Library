@@ -9,15 +9,28 @@ using com.aworx.lox.loggers;
 
 namespace ALox_CS_Test_Perf	 {
 
-class PerformanceTest
+class SimpleTests
 {
 	// #################################################################################################
 	// static entrance (Main)
 	// #################################################################################################
 	static void Main( string[] args )
 	{
-		PerformanceTest test= new PerformanceTest();
-		test.test();
+		// create us
+		SimpleTests test= new SimpleTests();
+		
+		// do some release logging tests. 
+		Console.WriteLine( "PRINT: Release logging test:" );
+			test.testReleaseLogging();
+		Log.Reset();
+
+		// do some performance tests. 
+		Console.WriteLine( "PRINT: Performance test:" );
+			test.performanceTest();
+		Log.Reset();
+		
+		Console.WriteLine( "PRINT: Thats it!" );
+
 	}
 
 	// #################################################################################################
@@ -30,14 +43,14 @@ class PerformanceTest
 	// Test functions
 	// #################################################################################################
 	
-	void test()
+	void performanceTest()
 	{
-		cl=	new ConsoleLogger( "Console" );
+		cl=	new ConsoleLogger();
 		#if ALOX_DEBUG || ALOX_REL_LOG
 			cl.EnableAppConsole=		true;
 			cl.EnableVSDebugConsole=	false;
 		#endif
-		ml= new MemoryLogger( "Memory");
+		ml= new MemoryLogger();
 
 		Log.AddLogger( cl, Log.DomainLevel.WarningsAndErrors );
 		Log.AddLogger( ml, Log.DomainLevel.Off );
@@ -57,7 +70,7 @@ class PerformanceTest
 
 		MString	msgBuf=		new MString( );
 		long	fastest=	long.MaxValue;
-		for ( int i= 0 ; i < 100000 ; i++ )
+		for ( int i= 0 ; i < 500 ; i++ )
 		{
 			#if ALOX_DEBUG || ALOX_REL_LOG
 				ml.Buffer.Clear();
@@ -82,6 +95,46 @@ class PerformanceTest
 	{
 		for ( int i= 0 ; i < qty ; i++ )
 			Log.Info( "MEM", "Test Line" );
+	}
+
+	public void testReleaseLogging()
+	{
+		// create a lox for release logging
+		Lox				lox= 	new Lox();
+		
+		// add and configure a memory logger
+		MemoryLogger	ml=			new MemoryLogger();
+		#if ALOX_DEBUG || ALOX_REL_LOG
+			ml.LineFormatter.Format= 	new MString( "[%TE]%L[%O]: ");
+		#endif
+		lox.AddLogger( ml, 	Log.DomainLevel.All );
+		
+		// We do not work with default domains, as we will obfuscate the code.
+		// Obfuscated code and release logging does not allow default domains, because
+		// the rely on caller information and reasonable package, class and method names
+		lox.RegDomain( "RelLog",	Log.Scope.None );
+		lox.SetDomain( "RelLog",	Log.DomainLevel.All  );
+
+		// all log invocations provide the "domain" parameter explicitly to be safe when
+		// obfuscation is enabled!
+		lox.Info( "RelLog", "Hello ALox, thank you for providing release logging!" );
+		lox.Info( "RelLog", "Let's see if LogTools is available." );
+		lox.Info( "RelLog", "We need to provide our lox as a parameter to all LogTools methods!" );
+		
+		// instance() will not give very nice member names, if obfuscated!
+		LogTools.Instance( "RelLog", Log.Level.Info, lox, 2, "Logging the Lox:", 0, lox );
+		
+		// also, the exception stack trace should be not too easy to read. Proguard provides a tool "retrace"...
+		lox.Info( "RelLog", "Logging exceptions: " );
+		LogTools.Exception( "RelLog", Log.Level.Error, new Exception("This is not a real Exception", new Exception("...unreal inner")), " Logging instance 'this':", 0, lox );
+
+		lox.Info( "RelLog", "That's it for now. More release logging tests to come...stay tuned!" );
+
+		// copy the memory logger's output to the console
+		if ( ml.Buffer.Length > 0 ) 
+			Console.WriteLine(  ml.Buffer.ToString() );
+		else
+			Console.WriteLine(  "  Even release logging got pruned - nothing logged!" );
 	}
 
 

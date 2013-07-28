@@ -54,7 +54,7 @@
     <Compile Include="..\..\..\src\cs.unittests.aworx.util\Test_TickerAndTickTime.cs">
       <Link>tests.aworx.util\Test_TickerAndTickTime.cs</Link>
     </Compile>
-    <Compile Include="ReleaseLogTest.cs" />
+    <Compile Include="SimpleTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

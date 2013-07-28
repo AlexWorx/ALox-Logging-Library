@@ -1,6 +1,5 @@
-src\cs.unittests.alox\Tests_Tutorial.cs(211):Tut_Instance() [00:00.002 +002 ms] [10]       [MYDOM]:   ALox: Multi line message follows: 
 >> Actual Thread:                                                    {Thread}
->> <01>  ManagedThreadId:              10                            {Int32}
+>> <01>  ManagedThreadId:              14                            {Int32}
 >> <02>  ExecutionContextBelongsToCurrentScope: True                 {Boolean}
 >> <03>  ExecutionContext:                                           {ExecutionContext}
 >> <04>    isNewCapture:               False                         {Boolean}
@@ -30,6 +29,7 @@ src\cs.unittests.alox\Tests_Tutorial.cs(211):Tut_Instance() [00:00.002 +002 ms] 
 >> <28>    CreatedDomainID:            0                             {Int32}
 >> <29>    Parent:                     (MAX REC) de                  {CultureInfo}
 >> <30>    LCID:                       1031                          {Int32}
+>> <31>    KeyboardLayoutId:           1031                          {Int32}
 ...
 ...
 ...

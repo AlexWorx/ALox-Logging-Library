@@ -90,7 +90,7 @@ public class CallerInfo
 			int 					stackLen= 	stElems.length;
 			String 					teClassName;
 			StackTraceElement 		te;
-			int i= 3;	// we skip 3 levels anyhow
+			int i= (stackLen - 1 > 3) ? 3 : stackLen - 1;	// we skip 3 levels anyhow
 			while (true )
 			{
 				te= stElems[i];
@@ -101,10 +101,10 @@ public class CallerInfo
 				// next 
 				if (++i == stackLen )
 				{
-					packageName				.append("(#err pkg)");
-					className				.append("(#err class)");
-					methodName				.append("(#err method)");
-					fileNameAndLineNumber	.append("(#err filename)");
+					packageName				.clear().append("(#err pkg)");
+					className				.clear().append("(#err class)");
+					methodName				.clear().append("(#err method)");
+					fileNameAndLineNumber	.clear().append("(#err filename)");
 					return;
 				}
 			}

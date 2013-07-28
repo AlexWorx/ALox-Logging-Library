@@ -23,21 +23,21 @@ In addition you might find information on how to setup up ALox projects in the p
 
 - \subpage man_intro
   - \ref man_features_and_limitations
-<BR>
-<BR>
+<br>
+<br>
 - \subpage man_concepts
   - \ref man_alox_architecture
   - \ref man_levelsanddomains
   - \ref man_loggers
-<BR>
-<BR>
+<br>
+<br>
 
 - \subpage man_achieving_goals
   - \ref man_filtering_loggers  (not written yet)
   - \ref man_source_code_prefix (not written yet)
   - \ref man_release_logging (not written yet)
-<BR>
-<BR>
+<br>
+<br>
 
 
 */

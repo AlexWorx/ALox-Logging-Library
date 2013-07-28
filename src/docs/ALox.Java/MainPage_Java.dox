@@ -21,17 +21,17 @@ through the \ref tutorial_java.
 
 ## Project Setup ##
 The steps to configure Eclipse or any other JAVA IDE to support ALox is described
-here: \ref setup_projects_java".
+here: \ref setup_projects_java.
 
 ## ALox for Android ##
 
 The Java Version is compatible with Android development and supports logging into LogCat.
-To stream ALox into LogCat create a logger of type [AndroidLogCatLogger](com.aworx.lox.android.AndroidLogCatLogger)
-instead of type [ConsoleLogger](com.aworx.lox.loggers.ConsoleLogger)
+To stream ALox into LogCat create a logger of type [AndroidLogCatLogger](@ref com.aworx.lox.android.AndroidLogCatLogger)
+instead of type [ConsoleLogger](@ref com.aworx.lox.loggers.ConsoleLogger)
 
     Log.addLogger( new AndroidLogCatLogger("LogCat") );
 
-Attention: The normal [ConsoleLogger](com.aworx.lox.loggers.ConsoleLogger) would not produce any visible output using
+Attention: The normal [ConsoleLogger](@ref com.aworx.lox.loggers.ConsoleLogger) would not produce any visible output using
 the Android Emulator or a debugging device.
 
 ## Pruning ALox from your release code ##

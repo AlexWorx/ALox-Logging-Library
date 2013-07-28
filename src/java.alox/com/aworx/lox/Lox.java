@@ -40,7 +40,7 @@ public class Lox
 	// #################################################################################################
 
 	/** The version of ALox. */
-	public  final static String			version					="1.1.0";
+	public  final static String			version					= "1.1.0";
 
     /**
      * A counter for the quantity of calls. The count includes logs that were suppressed by disabled
@@ -48,7 +48,7 @@ public class Lox
      * also be used as a condition to log only every n-th time by calling using the conditional
      * parameter of #line(), e.g.: *Lox.Line( (Log.qtyLogCalls % n) == 0, ...*.
      */
-	public 				int				cntLogCalls				=0;
+	public 				int				cntLogCalls				= 0;
 
 	/**
 	 *  This is the ThreadLock (mutex) for the Lox class. Each Lox method uses this mutex. If thread
@@ -56,7 +56,7 @@ public class Lox
 	 *  using ThreadLock.setUnsafe(). The goal here would be to increase logging performance. This is
 	 *  really a very seldom case, and it is better to be kept in safe mode.
 	 */
-	public 				ThreadLock		lock					=new ThreadLock();
+	public 				ThreadLock		lock					= new ThreadLock();
 
 	/**
 	 *  This is the log domain name used by this class. By manipulating this Domains log level, the
@@ -64,7 +64,7 @@ public class Lox
 	 *  #regDomain and #setDomain are logged which can be helpful to determine the log
 	 *  domains that are created by libraries and larger projects.
 	 */
-	public 				String			internalDomain			="ALOX";
+	public 				String			internalDomain			= "ALOX";
 	
 	/**  
 	 * The prefix of packages.classes.methods on the stack that are ignored when identifying the caller info.
@@ -73,78 +73,80 @@ public class Lox
 	public				String			omittablePackagePrefix	= "com.aworx.lox";
 	
 
-	//#if !ALOX_NO_THREADS
-
-		/** 
-		 *   Dictionary to translate thread ids into something maybe nicer/shorter. The dictionary has to
-		 *   be filled by the user of the library.
-		 */
-		public 	HashMap <Long, String>	threadDictionary		=new HashMap<Long, String>();
-
-	//#endif
-
-
-	//#if ALOX_DEBUG || ALOX_REL_LOG
-
-		// #################################################################################################
-		// Private/protected fields
-		// #################################################################################################
-		/** The loggers. At least one logger (e.g. ConsoleLogger) needs to be created.*/
-		protected 		ArrayList<Logger>				loggers;
-
-		/** Optional default domains for a source file*/
-		protected 		HashMap<MString, MString>		defaultDomains		= new HashMap<MString, MString>();
-
-		/** Code markers*/
-		protected 		HashMap<MString, Object>		markers				= new HashMap<MString, Object>();
-
-		/** An instance to store the actual caller info in. */
-		protected 		CallerInfo						caller				=new CallerInfo();
-
-		/**  The resulting domain name. */
-		protected 		MString							resDomain			=new MString( 32 );
-
-		/**  A temporary domain name. */
-		protected 		MString							tempDomain			=new MString( 32 );
-		
-		/**  A temporary MString, following the "create once and reuse" design pattern. */
-		protected 		MString							tempMS				=new MString( 256 );
-
-		// #################################################################################################
-		// Interface (not auto removed)
-		// #################################################################################################
-
-        /**********************************************************************************************//**
-         * Retrieve an instance of a Logger by its name. Note: This function is not automatically
-         * removed from the release code because of technical restrictions. It has to be conditionally
-         * compiled by enclosing calls to it with "//#if ... //#endif" statements.
-         *
-         * @param loggerName    The name of the logger to search for (case insensitive)
-         *
-         * @return  The logger, null if not found.
-         **************************************************************************************************/
-		public  Logger getLogger( String loggerName )
-		{
-			try { lock.aquire();
-
-				// search logger
-				for ( Logger logger : loggers )
-					if ( logger.name.equalsIgnoreCase( loggerName ) )
-						return logger;
-
-				// not found
-				return null;
-
-			} finally { lock.release(); } 
-		}
-
-	//#endif
+	/** 
+	 *   Dictionary to translate thread ids into something maybe nicer/shorter. The dictionary has to
+	 *   be filled by the user of the library.
+	 */
+	public 	HashMap <Long, String>	threadDictionary		= new HashMap<Long, String>();
 
 
 	// #################################################################################################
-	// Interface (auto removed)
+	// Private/protected fields
+	// #################################################################################################
+	/** The loggers. At least one logger (e.g. ConsoleLogger) needs to be created.*/
+	protected 		ArrayList<Logger>				loggers;
+
+	/** Optional default domains for a source file*/
+	protected 		HashMap<MString, MString>		defaultDomains		= new HashMap<MString, MString>();
+
+	/** Code markers*/
+	protected 		HashMap<MString, Object>		markers				= new HashMap<MString, Object>();
+
+	/** An instance to store the actual caller info in. */
+	protected 		CallerInfo						caller				= new CallerInfo();
+
+	/**  The resulting domain name. */
+	protected 		MString							resDomain			= new MString( 32 );
+
+	/** A MString singleton. Can be aquired, using buf() */
+	protected 		MString							logBuf				= new MString( 128 );
+
+	/** A locker for the log buffer singleton */
+	protected		ThreadLock						logBufLock			= new ThreadLock();
+
+	/**  A temporary domain name. */
+	protected 		MString							tempDomain			= new MString( 32 );
+	
+	/**  A temporary MString, following the "create once and reuse" design pattern. */
+	protected 		MString							tempMS				= new MString( 256 );
+
+	// #################################################################################################
+	// Constructors
 	// #################################################################################################
 
+	/**********************************************************************************************//**
+	 * Constructs a new, empty Lox.
+	 **************************************************************************************************/
+	public Lox()
+	{
+		// set recursion warning of log buffer lock to 1. Warnings are logged if recursively acquired more
+		// than once
+		logBufLock.recursionWarningThreshold= 1;
+	}
+	
+	// #################################################################################################
+	// Interface
+	// #################################################################################################
+
+	/**********************************************************************************************//**
+	 * Returns a MString singleton, similar to the LogBuf singleton returned by Log.buf().
+	 * Whenever this method is called, the returned MString object has to be used as a message within
+	 * one of the log methods of this class (error(), warning(), info(), verbose(), assert() or line()).
+	 * If this is not done, the object does not get released and parallel threads using it would 
+	 * block! So, do not use buf() for other reasons than for creating log messages and be sure to
+	 * re-acquire the MString object by calling this method again prior to the next log call.
+	 * 
+	 * @return the static MString singleton.
+	 **************************************************************************************************/
+	public MString 	buf()			{ logBufLock.acquire(); logBuf.clear(); return logBuf; }
+
+	/**********************************************************************************************//**
+	 *  Use this method when you want to abort a log call that you "started" with acquiring the internal
+	 *  MString singleton acquired using method buf(). Use bufAbort() only if you did not use the 
+	 *  acquired buffer as a parameter of a log method, because this internally releases the buf already.
+	 **************************************************************************************************/
+	public void 	bufAbort()		{ logBufLock.release(); }
+	
     /**********************************************************************************************//**
      * Adds a logger to the Log interface. Each log call that is performed through this Lox will be
      * forwarded to this logger, unless filtered out with optional filter parameter. The logger will
@@ -170,7 +172,7 @@ public class Lox
 	public  void addLogger( Logger logger, Log.DomainLevel internalDomainLevel )
 	{
 		//#if ALOX_DEBUG || ALOX_REL_LOG
-			try { lock.aquire();
+			try { lock.acquire();
 
 				// Find or Create the internal domain (LOX) for logger  and set level
 				resDomain.clear().append( internalDomain );
@@ -204,6 +206,30 @@ public class Lox
 	}
 
     /**********************************************************************************************//**
+     * Retrieve an instance of a Logger by its name. Note: This function is not automatically
+     * removed from the release code because of technical restrictions. It has to be conditionally
+     * compiled by enclosing calls to it with "//#if ... //#endif" statements.
+     *
+     * @param loggerName    The name of the logger to search for (case insensitive)
+     *
+     * @return  The logger, null if not found.
+     **************************************************************************************************/
+	public  Logger getLogger( String loggerName )
+	{
+		try { lock.acquire();
+
+			// search logger
+			for ( Logger logger : loggers )
+				if ( logger.name.equalsIgnoreCase( loggerName ) )
+					return logger;
+
+			// not found
+			return null;
+
+		} finally { lock.release(); } 
+	}
+	
+    /**********************************************************************************************//**
      * Removes all loggers that match the filter name from this container.
      *
      * @param loggerFilter  A filter for the loggers to be affected. A simple string compare without
@@ -214,7 +240,7 @@ public class Lox
 	public void removeLoggers( String loggerFilter )
 	{
 		//#if ALOX_DEBUG || ALOX_REL_LOG
-			try { lock.aquire();
+			try { lock.acquire();
 
 				// check logger list
 				if ( loggers == null )
@@ -271,7 +297,7 @@ public class Lox
 	public  void regDomain( String	domain,	 Log.Scope scope )	
 	{
 		//#if ALOX_DEBUG || ALOX_REL_LOG
-			try { lock.aquire();
+			try { lock.acquire();
 
 				// save caller info and get resulting domain
 				saveAndSet( true, domain );
@@ -351,7 +377,7 @@ public class Lox
 							boolean	recursive,		String			loggerFilter)
 	{
 		//#if ALOX_DEBUG || ALOX_REL_LOG
-			try { lock.aquire();
+			try { lock.acquire();
 
 				// save caller info and get resulting domain
 				saveAndSet( true, domain);
@@ -425,7 +451,7 @@ public class Lox
 	public  void setDisabled(	boolean disabled, String loggerFilter )
 	{
 		//#if ALOX_DEBUG || ALOX_REL_LOG
-			try { lock.aquire();
+			try { lock.acquire();
 			
 				saveAndSet( false, null );
 				for ( Logger logger : loggers )
@@ -468,7 +494,7 @@ public class Lox
 	public  void setStartTime( Date startTime, String loggerFilter)
 	{
 		//#if ALOX_DEBUG || ALOX_REL_LOG
-			try { lock.aquire();
+			try { lock.acquire();
 
 				// check if logger was initialized
 				saveAndSet( false, null );
@@ -527,7 +553,7 @@ public class Lox
 
 	{
 		//#if ALOX_DEBUG || ALOX_REL_LOG
-			try { lock.aquire();
+			try { lock.acquire();
 
 				// get current thread id
 				String origThreadName= null;
@@ -577,7 +603,7 @@ public class Lox
 	public  void setMarker(	Object marker, Log.Scope scope)
 	{
 		//#if ALOX_DEBUG || ALOX_REL_LOG
-			try { lock.aquire();
+			try { lock.acquire();
 
 				// create caller info
 				saveAndSet( false, null );
@@ -624,7 +650,7 @@ public class Lox
 	public  void getMarker( Object[] markerPointer, Log.Scope scope )
 	{
 		//#if ALOX_DEBUG || ALOX_REL_LOG
-			try { lock.aquire();
+			try { lock.acquire();
 
 				// create caller info
 				saveAndSet( false, null );
@@ -675,7 +701,7 @@ public class Lox
 							String	headLine,		String			loggerFilter )
 	{
 		//#if ALOX_DEBUG || ALOX_REL_LOG
-			try { lock.aquire();
+			try { lock.acquire();
 		
 				// count overall calls 
 				cntLogCalls++;
@@ -906,7 +932,7 @@ public class Lox
      * @param msg       The message to log out.
      * @param indent    The indentation in the output.
      **************************************************************************************************/
-	public  void error( Object msg, int indent )					{	line( true, null, Log.Level.ERROR, msg, indent,	null );	}
+	public  void error( Object msg, int indent )						{	line( true, null, Log.Level.ERROR, msg, indent,	null );	}
 
     /**********************************************************************************************//**
      * Log an Object with log level equal to Log.Level.Error. Log messages of this log level are are
@@ -916,7 +942,7 @@ public class Lox
      *
      * @param msg       The message to log out.
      **************************************************************************************************/
-	public  void error( Object msg )								{	line( true, null, Log.Level.ERROR, msg, 0,		null );	}
+	public  void error( Object msg )									{	line( true, null, Log.Level.ERROR, msg, 0,		null );	}
 
     /**********************************************************************************************//**
      * Log an Object with log level equal to Log.Level.Error. Log messages of this log level are are
@@ -929,7 +955,7 @@ public class Lox
      * @param msg       The message to log out.
      * @param indent    The indentation in the output.
      **************************************************************************************************/
-	public  void error( String domain, Object msg, int indent )		{	line( true, domain, Log.Level.ERROR, msg, indent,	null );	}
+	public  void error( String domain, Object msg, int indent )			{	line( true, domain, Log.Level.ERROR, msg, indent,	null );	}
 
     /**********************************************************************************************//**
      * Log an Object with log level equal to Log.Level.Error. Log messages of this log level are are
@@ -941,7 +967,7 @@ public class Lox
      *                  starting with a slash or not).
      * @param msg       The message to log out.
      **************************************************************************************************/
-	public  void error( String domain, Object msg )					{	line( true, domain, Log.Level.ERROR, msg, 0,		null );	}
+	public  void error( String domain, Object msg )						{	line( true, domain, Log.Level.ERROR, msg, 0,		null );	}
 
     /**********************************************************************************************//**
      * Log a string only if the given condition is not true. Log level will be highest, namely Error
@@ -1015,7 +1041,7 @@ public class Lox
 	public void line( boolean doLog, String domain, Log.Level level, Object msgObject, int indent, String loggerFilter )
 	{
 		//#if ALOX_DEBUG || ALOX_REL_LOG
-			try { lock.aquire();
+			try { lock.acquire();
 
 				// count overall calls 
 				cntLogCalls++;
@@ -1031,6 +1057,10 @@ public class Lox
 				for ( Logger logger : loggers )
 					if ( simpleWildcardFilter( logger, loggerFilter ) )
 						logger.line( resDomain, level, msgObject, indent, caller );
+						
+				// release lock if msgObject was our internal log buffer singleton
+				if ( msgObject == logBuf )
+					logBufLock.release();
 	
 			} finally { lock.release(); }
 		// #endif
@@ -1144,7 +1174,7 @@ public class Lox
 			// b) check if we got any logger
 			if ( loggers == null || loggers.size() == 0 )
 			{
-				addLogger( new ConsoleLogger( "CONSOLE" ) );
+				addLogger( new ConsoleLogger() );
 				internalLog( Log.Level.WARNING,	tempMS.clear().append("Lox: Class 'Log' was used without prior creation of a Log instance. ConsoleLogger Logger created as default.") );
 			}
 

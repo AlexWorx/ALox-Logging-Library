@@ -12,7 +12,7 @@
 \tableofcontents
        
 
-# 1. Setting Up Visual Studio # {#setup_projects_vs_cs_1}
+# 1. Setting Up Visual Studio # {#setup_projects_vs_cs_intro}
 
 To use ALox logging in your C# project using Visual Studio, some few preparatory steps have to be
 taken.
@@ -29,14 +29,14 @@ have a first look into ALox, then create a new project using the Visual Studio P
 Be sure to create an executable and that the typical "hello world" sample prints to the Visual Studio console.
 
 <br>
-## 1.1. Download ##      {#setup_projects_vs_cs_1_1}
+## 1.1. Download ##      {#setup_projects_vs_cs_download}
 Unpack the ALox distribution (e.g. as zip) from [Alox at GitHub](https://github.com/AlexWorx/ALox-Logging-Library)
 and move all its contents to a place where you safely store 3rd party libraries.  
 
 We call this folder the *ALOX_LIB_PATH*.
 
 <br>
-## 1.2. Add one of the following projects into your solution ##    {#setup_projects_vs_cs_1_2}
+## 1.2. Add one of the following projects into your solution ##    {#setup_projects_vs_cs_addprojects}
 
 To incorporate ALox into your Visual Studio solution, you have to follow three steps:
 
@@ -63,30 +63,31 @@ Your, choices are:
 
                                                                               
 \note
-If you do not know the difference between debug and release logging, see the [FAQ](../faq.html#faq_debug_vs_release_logging)
+If you do not know the difference between debug and release logging, [see the FAQ](../faq.html#faq_debug_vs_release_logging)
 \par
 
 \note
 The difference between the project versions with or without the release logging options are:
 
 \note 
-- The conditional compile symbol "ALOX_REL_LOG" is set in the release configuration of the projects 
-  named *ALox-CS-???-DLL-Release-Log*.
-- Due to this, ALox features are still included. (Only, class [Log](@ref #com::aworx::lox::Log) gets its
-  interface replaced by thin stub methods in release mode.). 
-- The size of the release assembly increases.
-
-\note 
+- Those projects named *ALox-CS-???-DLL-Release-Log* have the conditional compile symbol *ALOX_REL_LOG* set in their
+  release configuration. (You will read more on conditional compile symbols in the next section).
+- Due to this, ALox features are still included in the release version of these projects' assemblies. 
+  (Only, class [Log](@ref #com::aworx::lox::Log) gets its  interface replaced by thin stub methods in release mode.). 
+- The size of the release assembly increases if you use the release log enabled projects.
+- Temporary or long-term pruning of the release log statements in your code is still enabled when you use the release log
+  versions of the library. Only, if you never want to use release logging, choose the smaller library that just enables debug logging.
+<br>
+Sounds complicated, but isn't! Just go with the release-log enabled version for now!
 Because the size of the release assembly is very small anyhow (as of ALox V.1.1.0 it is 25kb without release
 logging vs. 49kb including release logging) you can easily choose the "Release-Log" version of your platform.
 
 \par
 \note
 If there is no appropriate predefined project available for you, skip steps 2 and 3 and continue reading
-below at \ref setup_projects_vs_cs_1_3!
+below at \ref setup_projects_vs_cs_adding_source!
 
-   Add the Visual Studio project that you find in the corresponding sub folder of the *ALOX_LIB_PATH*
-   to your solution.
+Go ahead and add the Visual Studio project that suit you to your solution.
 
 <br>
 __Step 2:__  Set a build dependency from your project to the just added *ALox-CS-DLL* project. Steps are:
@@ -104,7 +105,7 @@ __Step 3:__  Add the ALox-CS-DLL project as a reference to your project. Steps a
    - tick the checkbox for the *ALox-CS-DLL* project.
 
 <br>
-## 1.3 Alternatively: Adding source code to your project ## {#setup_projects_vs_cs_1_3}
+## 1.3 Alternatively: Adding source code to your project ## {#setup_projects_vs_cs_adding_source}
 If there is no appropriate predefined project for your target and 
 platform, you might want to add the ALox source code directly to your project. This can be
 done as follows:
@@ -112,11 +113,10 @@ done as follows:
  - Within your Visual Studios solution explorer, right-click on your project and use **Add/New Folder...** to create a new source
    folder called "ALox" or similar.
  - Right-click the new folder in solution explorer and use **Add/Existing Item...** repeatedly to add all *.cs files that you find
-   in the ALox source folder's subfolders 
+   in the ALox source folder's subfolders: 
 
-   - **src**,  
-   - **src/core** and 
-   - **src.util**.
+   - \c ALOX_LIB_PATH\src\cs.aworx.util
+   - \c ALOX_LIB_PATH\src\cs.alox
 
 \note
 You can just add all *.cs files to your new src folder "ALox". However, if you want, you can keep the source tree 
@@ -127,7 +127,7 @@ intact by adding the right sub folders (unfortunately Visual Studio does not do 
 You do not need to include the *.cs files from folders **tests.src** and  **tests.src.util**.
 
 <br>
-## 1.4 Configure your project properties ## {#setup_projects_vs_cs_1_4}
+## 1.4 Configure your project properties ## {#setup_projects_vs_cs_configure}
 
 Now, as ALox is a part of your Visual Studio solution, go ahead as follows:
 
@@ -155,19 +155,25 @@ Now, as ALox is a part of your Visual Studio solution, go ahead as follows:
  \par
 - For Windows Phone 7.1 projects (not needed for Windows Phone 8) you need to download and install the 
   <a href="http://nuget.org/packages/Microsoft.Bcl/">Microsoft BCL Portability Pack</a>
-  Using the NuGet package manager as described on the libraries page, this is a matter of just a minute.
+  Using the NuGet package manager as described on the libraries' page. This should be a matter of just a minute.
+
+## 1.5 Test your setup ##  {#setup_projects_vs_cs_testnow}
+
+To test your setup, add minimum ALox functionality to your project as described in the first chapter
+of \ref tutorial_cs into your main method or anywhere you think it is appropriate:
+
+\snippet cs.unittests.alox/Tests_Tutorial.cs        Tut_Hello_ALox
 
 
 __You are set and your solution should compile without an error!__
 
 <br>
-# 2. Conditional Compilation Symbols #  {#setup_projects_vs_conditional_compile_symbols}
+# 2. Conditional Compilation Symbols #  {#setup_projects_vs_cs_conditional_compile_symbols}
 
-In section \ref setup_projects_vs_cs_1_4 we have learned about some conditional 
+In section \ref setup_projects_vs_cs_configure we have learned about some conditional 
 compilation symbols already. The following gives the complete list of such symbols
-introduced by ALox:
+introduced by ALox for C#:
 
-<br>
 - **ALOX_DEBUG**<br>
   Enable debug logging. This should be set in the *Debug configuration* of your projects. Otherwise,
   not log output is generated if using the static interface of class [Log](@ref #com::aworx::lox::Log).  
@@ -177,6 +183,8 @@ introduced by ALox:
   if you are using release logging with class [Lox](@ref #com::aworx::lox::Log).  If you do not
   use release logging features of ALox, this symbol should not be set to minimize the code that
   the ALox classes add to your executables.
+  And, even if you do use release logging, but you want to (temporarily) disable and prune it, then unset this
+  symbol. On recompile, also your release logging code will disappear.
 
 - **ALOX_WP71**<br>
   To compile ALox for Windows Phone 7.1 projects. This should be set in the Debug and Release 
@@ -195,8 +203,8 @@ introduced by ALox:
 - **ALOX_NO_REFLECTION**<br>
   This symbol deactivates the use of reflection in class [LogTools](@ref #com::aworx::lox::LogTools). 
   This is useful for target platforms that do not allow instance inspection using reflection techniques.
-  The method [LogTools.Instance](@ref #com::aworx::lox::LogTools::Instance) will not be available 
-  however.
+  The method [LogTools.Instance](@ref #com::aworx::lox::LogTools::Instance) will be available 
+  but just convert your object into readable text using *ToString()*.
 
 - **ALOX_NO_XML**<br>
   This symbol deactivates the use of *System.Xml.Linq* library in class [LogTools](@ref #com::aworx::lox::LogTools). 
@@ -206,8 +214,7 @@ introduced by ALox:
 - **ALOX_NO_CONSOLE**<br>
   This symbol deactivates the use of *Console.WriteLine()* calls in class [ConsoleLogger](@ref #com::aworx::lox::loggers::ConsoleLogger). 
   If this is set, the flag [ConsoleLogger.EnableAppConsole](@ref #com::aworx::lox::loggers::ConsoleLogger::EnableAppConsole)
-  becomes unavailable. The output of [ConsoleLogger](@ref #com::aworx::lox::loggers::ConsoleLogger) which is controlled
-  by the second flag [ConsoleLogger.EnableAppConsole](@ref #com::aworx::lox::loggers::ConsoleLogger::EnableVSDebugConsole)
+  becomes unavailable. The output of [ConsoleLogger](@ref #com::aworx::lox::loggers::ConsoleLogger) 
   will go exclusively to System.Diagnostics.Debug.WriteLine().
 
 - **ALOX_NO_THREADS**<br>
@@ -220,22 +227,22 @@ introduced by ALox:
 <br>
 # 3. Pruning ALox #  {#setup_projects_vs_cs_pruning}
 
-## 3.1 What is Pruning? ##  {#setup_projects_vs_cs_pruning_1}
+## 3.1 What is Pruning? ##  {#setup_projects_vs_cs_pruning_what_is_pruning}
 
 What we mean with the term "pruning" is the automatic removal of the (debug) logging code from
 your release executable (or library) that is ready for deployment. The goals that motivate
 for auto pruning are:
 
-- Maximize execution speed of your code, because all logging is pruned.
+- Maximize execution speed of your code, because all log statements are pruned.
 - Minimize the footprint of your code.
 - Keep the console clean in the release version of your console application.
 - Hide your software secrets, by removing all textual strings from your executable or library
   that includes debug messages.
    
 Furthermore, if you are using ALox as well for release log outputs, then the above
-stays true for all of your debug log statements, while all release log statements need to stay in.
+stays true for all of your debug log statements, while all release log statements remain.
 
-## 3.1 How Pruning in ALox for C# works ##  {#setup_projects_vs_cs_pruning_2}
+## 3.1 How Pruning in ALox for C# works ##  {#setup_projects_vs_cs_pruning_how}
 
 Since Version 5, the Microsoft C# compiler supports methods to be annotated with class "ConditionalAttribute".
 This attribute uses a conditional compilation symbol which causes the compiler to ignore the invocation of methods
@@ -245,7 +252,7 @@ itself!
 Consider the following line of code:
 
 \code{.cs}
-    Log.AddLogger( new ConsoleLogger( "Console" ) );
+    Log.AddLogger( new ConsoleLogger() );
 \endcode
 
 Method Log.AddLogger() is annotated as conditional using the symbol *ALOX_DEBUG*. Now the compiler does not
@@ -267,7 +274,7 @@ Consider the following code to setup the format of a log line:
 \code{.cs}
     ConsoleLogger cl= new ConsoleLogger();
     cl.LineFormatter.Format= new MString( "%CF(%CL):%CM()%A3[%DD][%TD][%TE +%TI] %L [%O] <%#>: ");
-    Log.AddLogger( new ConsoleLogger( "Console" ) );
+    Log.AddLogger( cl ) );
 \endcode
 
 This would lead to a compilation error in the release configuration of your project (if you do not use
@@ -281,13 +288,29 @@ To resolve this, use conditional compilation:
     #if ALOX_DEBUG
         cl.LineFormatter.Format= new MString( "%CF(%CL):%CM()%A3[%DD][%TD][%TE +%TI] %L [%O] <%#>: ");
     #endif
-    Log.AddLogger( new ConsoleLogger( "Console" ) );
+    Log.AddLogger( cl ) );
 \endcode
 
-## 3.1 Mission accomplished: Perfect Auto Pruning with ALox! ##  {#setup_projects_vs_cs_pruning_3}
+While this is sufficient, in the last sample, when compiled in release configuration, 
+there is an almost empty version of ConsoleLogger still created and never used. Therefore, you
+might want to do it like this:
 
+\code{.cs}
+    #if ALOX_DEBUG
+        ConsoleLogger cl= new ConsoleLogger();
+        cl.LineFormatter.Format= new MString( "%CF(%CL):%CM()%A3[%DD][%TD][%TE +%TI] %L [%O] <%#>: ");
+        Log.AddLogger( cl ) );
+    #endif
+\endcode
 
-The result of the things said above incorporate **five** great news for you:
+This sample shows, that only for the configuration/bootstrap part your code gets "cluttered" with 
+\c \#if \c ... \c \#endif statements. And: As long as you do not get compiler errors in 
+the release version, you can trust ALox that the impact of remaining configuration code
+is minimal. Again: standard logging code is removed 100%!
+
+## 3.1 Mission accomplished: Perfect Auto Pruning with ALox! ##  {#setup_projects_vs_cs_pruning_result}
+
+The result of the things said above incorporate **six great news** for you:
 
 1. You can safely use most methods of class *Log* without enclosing them by \c \#if \c ... \c \#endif statements!
 2. The impact of using ALox debug log statements in respect to execution speed in the release version of your application 

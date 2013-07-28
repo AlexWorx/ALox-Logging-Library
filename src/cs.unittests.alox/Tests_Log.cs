@@ -33,7 +33,7 @@ namespace com.aworx.unittests.lox
 
 				if ( consoleLogger )
 				{
-					cl=		new ConsoleLogger( "Console" );
+					cl=		new ConsoleLogger();
 					Log.AddLogger( cl, Log.DomainLevel.All );
 
 					//cl.EnableAppConsole=		true;
@@ -42,7 +42,7 @@ namespace com.aworx.unittests.lox
 
 				if ( memoryLogger )
 				{
-					ml=		new MemoryLogger( "Memory" );
+					ml=		new MemoryLogger();
 					Log.AddLogger( ml, Log.DomainLevel.Off );
 				}
 
@@ -335,8 +335,9 @@ namespace com.aworx.unittests.lox
 			#endif
 		}
 
+
 		/** ***********************************************************************************************
-		 * <summary>	Log_TestDefaultDomain </summary>
+		 * <summary>	Log_TestLineFormat </summary>
 		 **************************************************************************************************/
 		[TestMethod]
 		#if !WINDOWS_PHONE

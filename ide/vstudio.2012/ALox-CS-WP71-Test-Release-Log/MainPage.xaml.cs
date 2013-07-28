@@ -29,7 +29,9 @@ namespace ALox_CS_WP71_Test
 		{
 			Lox lox= new Lox();
 			MemoryLogger ml= new MemoryLogger();
-			ml.LineFormatter.Format	= new MString( "[%TE]%L[%O]: ");
+			#if ALOX_REL_LOG
+				ml.LineFormatter.Format	= new MString( "[%TE]%L[%O]: ");
+			#endif
 			lox.AddLogger( ml, Log.DomainLevel.All );
 
 			lox.RegDomain( "RelLog", Log.Scope.SourceFile );
@@ -38,14 +40,16 @@ namespace ALox_CS_WP71_Test
 			lox.Info( "Hello ALox, thank you for providing release logging!" );
 			lox.Info( "Let's see if LogTools is available." );
 			lox.Info( "We need to provide our lox as a parameter to all LogTools methods!" );
-			LogTools.Instance( Log.Level.Info, this, 2, " Logging instance 'this':", 0, lox );
-			lox.Info( "But exceptions are: " );
+			LogTools.Instance( Log.Level.Info, lox, 2, " Logging the Lox:", 0, lox );
+			lox.Info( "Logging an Exception" );
 			LogTools.Exception( new Exception("This is not a real Exception", new Exception("...unreal inner")), " Logging instance 'this':", 0, lox );
-			lox.Info( "That's it for now. More release logging tests to come...stay tuned!" );
+			lox.Info( "That's it for now..." );
 
 			// copy the memory logger's output to the TextBlock
-			ALoxOutput.Text= ml.Buffer.ToString();
+			if ( ml.Buffer.Length > 0 )
+				ALoxOutput.Text= ml.Buffer.ToString();
+			else
+				ALoxOutput.Text= "Obviously, release logging got pruned :-(" + Environment.NewLine + "Set conditional compile symbol ALOX_REL_LOG!";
 		}
-
 	}
 }

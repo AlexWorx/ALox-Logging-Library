@@ -1,4 +1,4 @@
-src\cs.unittests.alox\Tests_Tutorial.cs(373):Tut_LogConfig() [00:00.000 +106 µs] [10] [***] [DOM]: >> Here comes the current Log configuration:
+src\cs.unittests.alox\Tests_Tutorial.cs(393):Tut_LogConfig() [00:00.002 +002 ms] [14] [***] [DOM]: >> Here comes the current Log configuration:
                                                                                                    >> Version:      1.1.0
                                                                                                    >> Intern. dom.: ALOX
                                                                                                    >> Thread safe:  Yes
@@ -10,8 +10,8 @@ src\cs.unittests.alox\Tests_Tutorial.cs(373):Tut_LogConfig() [00:00.000 +106 µs
                                                                                                    >> 
                                                                                                    >> Loggers:      2
                                                                                                    >> 
-                                                                                                   >>   Logger: "Console"
-                                                                                                   >>     Creation time: 07/17/2013 22:23:20
+                                                                                                   >>   Logger: "CONSOLE"
+                                                                                                   >>     Creation time: 07/28/2013 22:46:33
                                                                                                    >>     Lines logged:  0
                                                                                                    >>     Domains:
                                                                                                    >>       /ALOX              WarningsAndErrors
@@ -19,8 +19,8 @@ src\cs.unittests.alox\Tests_Tutorial.cs(373):Tut_LogConfig() [00:00.000 +106 µs
                                                                                                    >>       /DOM/CON           All
                                                                                                    >>       /DOM/MEM           Off
                                                                                                    >> 
-                                                                                                   >>   Logger: "Memory"
-                                                                                                   >>     Creation time: 07/17/2013 22:23:20
+                                                                                                   >>   Logger: "MEMORY"
+                                                                                                   >>     Creation time: 07/28/2013 22:46:33
                                                                                                    >>     Lines logged:  0
                                                                                                    >>     Domains:
                                                                                                    >>       /ALOX              WarningsAndErrors

@@ -18,6 +18,7 @@ using com.aworx.lox.loggers;
 #if (!ALOX_NO_THREADS) 
 	using System.Threading;
 using System.Globalization;
+using System.Diagnostics;
 #endif
 
 namespace com.aworx.lox {
@@ -115,11 +116,17 @@ public class Lox
 		/// <summary>Code markers</summary>
 		protected 		Dictionary<MString, Object>		markers				= new Dictionary<MString, Object>();
 
-		/// <summary>	An instance to store the actual caller info in. </summary>
+		/// <summary>An instance to store the actual caller info in. </summary>
 		protected 		CallerInfo						caller				=new CallerInfo();
 
-		/// <summary> The resulting domain name. </summary>
+		/// <summary>The resulting domain name. </summary>
 		protected 		MString							resDomain			=new MString( 32 );
+
+		/// <summary>A MString singleton. Can be acquired, using buf() </summary>
+		protected 		MString							logBuf				= new MString( 128 );
+
+		/// <summary>A locker for the log buffer singleton </summary>
+		protected		ThreadLock						logBufLock			= new ThreadLock();
 
 		/// <summary> A temporary domain name. </summary>
 		protected 		MString							tempDomain			=new MString( 32 );
@@ -127,41 +134,72 @@ public class Lox
 		/// <summary> A temporary MString, following the "create once and reuse" design pattern. </summary>
 		protected 		MString							tempMS				=new MString( 256 );
 
-		// #################################################################################################
-		// Interface (not auto removed)
-		// #################################################################################################
-
-		/** ***********************************************************************************************
-		 * <summary>
-		 *  Retrieve an instance of a Logger by its name. Note: This function is not automatically
-		 *  removed from the release code because of technical restrictions. Invocations of this methods have
-		 *  to be conditionally compiled by enclosing calls to it with "#if ... #endif" statements.
-		 * </summary>
-		 * <param name="loggerName">	The name of the logger to search for (case insensitive) </param>
-		 * <returns>	The logger, null if not found. </returns>
-		 **************************************************************************************************/
-		public  Logger GetLogger( String loggerName )
-		{
-			try { Lock.Aquire();
-
-				// search logger
-				foreach ( Logger logger in loggers )
-				if ( logger.Name.Equals( loggerName, StringComparison.OrdinalIgnoreCase ) )
-					return logger;
-
-				// not found
-				return null;
-
-			} finally { Lock.Release(); } 
-		}
-
 	#endif //ALOX_DEBUG || ALOX_REL_LOG
 
 
 
 	// #################################################################################################
-	// Interface (auto removed)
+	// Constructors
 	// #################################################################################################
+
+	/**********************************************************************************************//**
+	 * Constructs a new, empty Lox.
+	 **************************************************************************************************/
+	public Lox()
+	{
+		// set recursion warning of log buffer lock to 1. Warnings are logged if recursively acquired more
+		// than once
+		#if ALOX_DEBUG || ALOX_REL_LOG
+			logBufLock.RecursionWarningThreshold= 1;
+		#endif
+	}
+	
+	// #################################################################################################
+	// Interface
+	// #################################################################################################
+
+
+	/** ***********************************************************************************************
+	 * <summary>
+	 *  Returns a MString singleton, that can be reused for all basic log calls. Textual messages that 
+	 *  are assembled from out of strings, numbers and other data, can be efficiently built by reusing
+	 *  this singleton. 
+	 *  Whenever this method is called, the returned MString object gets "locked" by a corresponding
+	 *  ThreadLock object. Therefore it has to be used as a message within one of the log methods of 
+	 *  this class (error(), warning(), info(), verbose(), assert() or line()) or it has to be 
+	 *  explicitly released using BufAbort().
+	 *  If this is not done, the object does not get released and parallel threads using this method would 
+	 *  block! So, do not use Buf() for other reasons than for creating log messages and be sure to
+	 *  release it "in time".
+	 * </summary>
+	 * <returns> the static MString singleton. </returns>
+	 **************************************************************************************************/
+	public MString	Buf()					
+	{ 
+		#if ALOX_DEBUG || ALOX_REL_LOG
+			logBufLock.Acquire(); 
+			logBuf.Clear(); 
+			return logBuf; 
+		#else
+			return  null;
+		#endif
+	}
+
+	/** ***********************************************************************************************
+	 * <summary>
+	 *  Use this method when you want to abort a log call that you "started" with acquiring the internal
+	 *  MString singleton acquired using method Buf(). Use BufAbort() only if you did not use the 
+	 *  acquired buffer as a parameter of a log method, because this internally releases the buf already.
+	 * </summary>
+	 **************************************************************************************************/
+	[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
+	public void		BufAbort()			
+	{
+		#if ALOX_DEBUG || ALOX_REL_LOG
+			logBufLock.Release();  
+		#endif
+	}
+ 
 
 	/** ***********************************************************************************************
 	 * <summary>
@@ -180,11 +218,12 @@ public class Lox
 	 * <param name="cln"> 	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cmn"> 	(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
-	public  void AddLogger( Logger logger, Log.DomainLevel internalDomainLevel= Log.DomainLevel.WarningsAndErrors,
+	[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
+	public void		AddLogger( Logger logger, Log.DomainLevel internalDomainLevel= Log.DomainLevel.WarningsAndErrors,
 							[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
-			try { Lock.Aquire();
+			try { Lock.Acquire();
 
 				// Find or Create the internal domain (LOX) for logger  and set level 
 				resDomain.Clear().Append( InternalDomain );
@@ -216,6 +255,34 @@ public class Lox
 	}
 
 	/** ***********************************************************************************************
+	 * <summary>
+	 *  Retrieve an instance of a Logger by its name. Note: This function is not automatically
+	 *  removed from the release code because of technical restrictions. Invocations of this methods have
+	 *  to be conditionally compiled by enclosing calls to it with "#if ... #endif" statements.
+	 * </summary>
+	 * <param name="loggerName">	The name of the logger to search for (case insensitive) </param>
+	 * <returns>	The logger, null if not found. </returns>
+	 **************************************************************************************************/
+	public  Logger GetLogger( String loggerName )
+	{
+		#if ALOX_DEBUG || ALOX_REL_LOG
+			try { Lock.Acquire();
+
+				// search logger
+				foreach ( Logger logger in loggers )
+				if ( logger.Name.Equals( loggerName, StringComparison.OrdinalIgnoreCase ) )
+					return logger;
+
+				// not found
+				return null;
+
+			} finally { Lock.Release(); } 
+		#else
+			return  null;
+		#endif
+	}
+
+	/** ***********************************************************************************************
 	 * <summary>	Removes all loggers that match the filter name from this  interface. </summary>
 	 * <param name="loggerFilter">	(Optional) A filter for the loggers to be affected. A simple
 	 * 								string compare without case sensitivity is performed. An asterisk
@@ -223,10 +290,11 @@ public class Lox
 	 * 								wildcard. Defaults to null which causes all loggers to be
 	 * 								removed. </param>
 	 **************************************************************************************************/
+	[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
 	public void RemoveLoggers( String loggerFilter= null )
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
-			try { Lock.Aquire();
+			try { Lock.Acquire();
 
 				// check logger list
 				if ( loggers == null )
@@ -258,11 +326,12 @@ public class Lox
 	 * <param name="cln"> 	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cmn"> 	(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
+	[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
 	public  void SetConsumableSourcePathPrefix( String cspp,	
 												[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
-			try { Lock.Aquire();
+			try { Lock.Acquire();
 
 				// save caller info
 				saveAndSet( csf, cln, cmn, false, null );
@@ -318,11 +387,12 @@ public class Lox
 	 * <param name="cln">   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cmn">   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
+	[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
 	public  void RegDomain( String	domain,	 Log.Scope scope,
 							[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
-			try { Lock.Aquire();
+			try { Lock.Acquire();
 
 				// save caller info and get resulting domain
 				saveAndSet( csf, cln, cmn, true, domain);
@@ -402,12 +472,13 @@ public class Lox
 	 * <param name="cln">		  	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cmn">		  	(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
+	[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
 	public  void SetDomain(	String	domain,				Log.DomainLevel	domainLevel, 
 							bool	recursive= true,	String		loggerFilter= null,
 							[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
-			try { Lock.Aquire();
+			try { Lock.Acquire();
 
 				// save caller info and get resulting domain
 				saveAndSet( csf, cln, cmn, true, domain);
@@ -451,11 +522,12 @@ public class Lox
 	 * <param name="cln">		  	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cmn">		  	(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
+	[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
 	public  void SetDisabled(	bool disabled, String loggerFilter= null,
 									[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
-			try { Lock.Aquire();
+			try { Lock.Acquire();
 			
 				saveAndSet( csf, cln, cmn, false, null );
 				foreach ( Logger logger in loggers )
@@ -490,11 +562,12 @@ public class Lox
 	 * <param name="cln">		  	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cmn">		  	(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
+	[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
 	public  void SetStartTime( DateTime? startTime= null, String loggerFilter= null,
 									 [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
-			try { Lock.Aquire();
+			try { Lock.Acquire();
 
 				// check if logger was initialized
 				saveAndSet( csf, cln, cmn, false, null );
@@ -534,13 +607,14 @@ public class Lox
 	 * <param name="cln">			(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cmn">			(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
+	[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
 	public  void MapThreadName(	String threadName, int id= -1,
 								[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
 			#if !ALOX_NO_THREADS
-				try { Lock.Aquire();
+				try { Lock.Acquire();
 
 					// get current thread id
 					String origThreadName= null;
@@ -585,11 +659,12 @@ public class Lox
 	 * <param name="cln">		  	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cmn">		  	(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
+	[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
 	public  void SetMarker(	Object marker, Log.Scope scope,
 									[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
-			try { Lock.Aquire();
+			try { Lock.Acquire();
 
 				// build key string
 				MString key= new MString(64);
@@ -635,11 +710,12 @@ public class Lox
 	 * <param name="cln">		   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cmn">		   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
+	[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
 	public  void GetMarker( Object[] markerPointer, Log.Scope scope,
 								  [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
-			try { Lock.Aquire();
+			try { Lock.Acquire();
 
 				// build key string
 				tempMS.Clear();
@@ -685,6 +761,7 @@ public class Lox
 	 * <param name="cln">		  	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cmn">		  	(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
+	[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
 	public  void LogConfig(	String			domain,
 							Log.Level		level,
 							String			headLine,
@@ -692,7 +769,7 @@ public class Lox
 							[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
-			try { Lock.Aquire();
+			try { Lock.Acquire();
 		
 				// count overall calls 
 				CntLogCalls++;
@@ -774,6 +851,7 @@ public class Lox
 	 * <param name="cln">   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cmn">   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
+	[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
 	public  void Verbose( Object msg, int indent=	0,
 						  [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
@@ -798,6 +876,7 @@ public class Lox
 	 * <param name="cln">   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cmn">   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
+	[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
 	public  void Verbose( String domain, Object msg, int indent= 0,
 						  [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
@@ -819,7 +898,8 @@ public class Lox
 	 * <param name="cln">   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cmn">   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
-	public  void Info(	String msg, int indent= 0,
+	[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
+	public  void Info(	Object msg, int indent= 0,
 						[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
@@ -843,6 +923,7 @@ public class Lox
 	 * <param name="cln">   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cmn">   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
+	[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
 	public  void Info(	String domain, Object msg, int indent= 0,
 						[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
@@ -864,6 +945,7 @@ public class Lox
 	 * <param name="cln">   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cmn">   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
+	[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
 	public  void Warning( Object msg, int indent= 0,
 						  [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
@@ -887,6 +969,7 @@ public class Lox
 	 * <param name="cln">   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cmn">   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
+	[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
 	public  void Warning( String domain, Object msg, int indent= 0,
 						  [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
@@ -908,6 +991,7 @@ public class Lox
 	 * <param name="cln">   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cmn">   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
+	[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
 	public  void Error(	Object msg, int indent= 0,
 						[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
@@ -931,6 +1015,7 @@ public class Lox
 	 * <param name="cln">   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cmn">   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
+	[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
 	public  void Error(	String domain, Object msg, int indent= 0,
 						[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
@@ -952,6 +1037,7 @@ public class Lox
 	 * <param name="cln">	   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cmn">	   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
+	[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
 	public  void Assert( bool trueOrLog, Object msg, int indent= 0,
 						 [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
@@ -976,6 +1062,7 @@ public class Lox
 	 * <param name="cln">	   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cmn">	   	(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
+	[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
 	public  void Assert( bool trueOrLog, String domain, Object msg, int indent= 0,
 						 [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
@@ -999,7 +1086,7 @@ public class Lox
 	 * 								domain is ignored (regardless if this is starting with a slash or
 	 * 								not). </param>
 	 * <param name="level">		  	The log level. </param>
-	 * <param name="msgObject">	  	An Object to be logged. </param>
+	 * <param name="msg">			An Object to be logged. </param>
 	 * <param name="indent">	  	(Optional) The indentation in the output. Defaults to 0. </param>
 	 * <param name="loggerFilter">	(Optional) A filter for the loggers to be affected. This
 	 * 								parameter enables different loggers to have different domains. A
@@ -1011,11 +1098,12 @@ public class Lox
 	 * <param name="cln">		  	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cmn">		  	(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
-	public  void Line( bool doLog, String domain, Log.Level level, Object msgObject, int indent= 0, String loggerFilter= null,
+	[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
+	public  void Line( bool doLog, String domain, Log.Level level, Object msg, int indent= 0, String loggerFilter= null,
 					   [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
-			try { Lock.Aquire();
+			try { Lock.Acquire();
 
 				// count overall calls 
 				CntLogCalls++;
@@ -1030,8 +1118,12 @@ public class Lox
 				// loop over all loggers 
 				foreach ( Logger logger in loggers )
 					if ( simpleWildcardFilter( logger, loggerFilter ) )
-						logger.Line( resDomain, level, msgObject, indent, caller );
+						logger.Line( resDomain, level, msg, indent, caller );
 	
+				// release lock if msg was our internal log buffer singleton
+				if ( msg == logBuf )
+					logBufLock.Release();
+
 			} finally { Lock.Release(); }
 		#endif
 	}
@@ -1046,7 +1138,7 @@ public class Lox
 	 * 								domain is ignored (regardless if this is starting with a slash or
 	 * 								not). </param>
 	 * <param name="level">		  	The log level. </param>
-	 * <param name="msgObject">	  	An Object to be logged. </param>
+	 * <param name="msg">			An Object to be logged. </param>
 	 * <param name="indent">	  	(Optional) The indentation in the output. Defaults to 0. </param>
 	 * <param name="loggerFilter">	(Optional) A filter for the loggers to be affected. This
 	 * 								parameter enables different loggers to have different domains. A
@@ -1058,15 +1150,16 @@ public class Lox
 	 * <param name="cln">		  	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cmn">		  	(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
+	[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
 	public void Line(	String			domain,
 						Log.Level		level,
-						Object			msgObject,
+						Object			msg,
 						int				indent=				0,
 						String			loggerFilter=		null,
 						[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
-			Line( true, domain, level, msgObject, indent, loggerFilter, csf,cln,cmn );
+			Line( true, domain, level, msg, indent, loggerFilter, csf,cln,cmn );
 		#endif
 	}
 
@@ -1076,7 +1169,7 @@ public class Lox
 	 *  domain set for the scope.
 	 * </summary>
 	 * <param name="level">		  	The log level. </param>
-	 * <param name="msgObject">	  	An Object to be logged. </param>
+	 * <param name="msg">		 	An Object to be logged. </param>
 	 * <param name="indent">	  	(Optional) The indentation in the output. Defaults to 0. </param>
 	 * <param name="loggerFilter">	(Optional) A filter for the loggers to be affected. This
 	 * 								parameter enables different loggers to have different domains. A
@@ -1088,14 +1181,15 @@ public class Lox
 	 * <param name="cln">		  	(Optional) Caller info, compiler generated. Please omit. </param>
 	 * <param name="cmn">		  	(Optional) Caller info, compiler generated. Please omit. </param>
 	 **************************************************************************************************/
+	[Conditional("ALOX_DEBUG"), Conditional("ALOX_REL_LOG")] 
 	public void Line(	Log.Level		level,
-						Object			msgObject,
+						Object			msg,
 						int				indent=				0,
 						String			loggerFilter=		null,
 						[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
-			Line( true, null, level, msgObject, indent, loggerFilter, csf,cln,cmn );
+			Line( true, null, level, msg, indent, loggerFilter, csf,cln,cmn );
 		#endif
 	}
 
@@ -1141,7 +1235,7 @@ public class Lox
 			// b) check if we got any logger
 			if ( loggers == null || loggers.Count == 0 )
 			{
-				AddLogger( new ConsoleLogger( "CONSOLE" ) );
+				AddLogger( new ConsoleLogger() );
 				internalLog( Log.Level.Warning,	tempMS.Clear().Append("Lox: Class 'Log' was used without prior creation of a Log instance. ConsoleLogger Logger created as default.") );
 			}
 

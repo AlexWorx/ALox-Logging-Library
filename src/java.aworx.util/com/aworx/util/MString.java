@@ -516,20 +516,21 @@ public class MString implements CharSequence
 	 **************************************************************************************************/
 	public MString append( String s )
 	{
+	
 		// check null argument
 		if ( s == null )
 			return this;
 
 		// get length once
-		int leh= s.length();
+		int len= s.length();
 
 		// check capacity
-		ensureCapacity( length + leh );
+		ensureCapacity( length + len );
 
 		// copy and adjust my length
-		s.getChars( 0, leh, buffer, length );
+		s.getChars( 0, len, buffer, length );
 
-		length+= leh;
+		length+= len;
 
 		// return me for concatenated operations	
 		return this;
@@ -1470,10 +1471,7 @@ public class MString implements CharSequence
 	 *
 	 * @return  true if this starts with the given sequence, false if not.
 	 **************************************************************************************************/
-	public boolean startsWith( CharSequence s )
-	{
-		return containsAt( s, 0, false );
-	}
+	public boolean startsWith( CharSequence s )					{ return containsAt( s, 0, false );	}
 
 	/**********************************************************************************************//**
 	 * Checks if this MString ends with the given sequence.
@@ -1535,7 +1533,8 @@ public class MString implements CharSequence
 	public int indexOf( CharSequence s )				{ return indexOf( s, 0 ); }
 
 	/**********************************************************************************************//**
-	 * Replace one more more occurrences of a string by another string.
+	 * 	Replace one more more occurrences of a string by another string. Returns the number
+	 * 	of replacements. Use #replace() to allow concatenated operations.
 	 *
 	 * @param searchStr         The string to be replaced.
 	 * @param newStr            The replacement string.
@@ -1545,7 +1544,7 @@ public class MString implements CharSequence
 	 *
 	 * @return  The number of replacements that where performed.
 	 **************************************************************************************************/
-	public int replace( CharSequence searchStr, CharSequence newStr, int startIdx, int maxReplacements )
+	public int replaceCount( CharSequence searchStr, CharSequence newStr, int startIdx, int maxReplacements )
 	{
 		// check null arguments
 		if ( MString.isNullOrEmpty(searchStr) || newStr == null )
@@ -1602,7 +1601,8 @@ public class MString implements CharSequence
 	}
 
 	/**********************************************************************************************//**
-	 * Replace one more more occurrences of a string by another string.
+	 * 	Replace one more more occurrences of a string by another string. Returns the number
+	 * 	of replacements. Use #replace() to allow concatenated operations.
 	 *
 	 * @param searchStr The string to be replaced.
 	 * @param newStr    The replacement string.
@@ -1610,17 +1610,55 @@ public class MString implements CharSequence
 	 *
 	 * @return  The number of replacements that where performed.
 	 **************************************************************************************************/
-	public int replace( CharSequence searchStr, CharSequence newStr, int startIdx ) { return replace( searchStr, newStr, startIdx, Integer.MAX_VALUE); }
+	public int replaceCount( CharSequence searchStr, CharSequence newStr, int startIdx ) { return replaceCount( searchStr, newStr, startIdx, Integer.MAX_VALUE); }
 
 	/**********************************************************************************************//**
-	 * Replace one more more occurrences of a string by another string.
+	 * 	Replace one more more occurrences of a string by another string. Returns the number
+	 * 	of replacements. Use #replace() to allow concatenated operations.
 	 *
 	 * @param searchStr The string to be replaced.
 	 * @param newStr    The replacement string.
 	 *
 	 * @return  The number of replacements that where performed.
 	 **************************************************************************************************/
-	public int replace( CharSequence searchStr, CharSequence newStr) 				{ return replace( searchStr, newStr, 0, 	   Integer.MAX_VALUE); }
+	public int replaceCount( CharSequence searchStr, CharSequence newStr) 				{ return replaceCount( searchStr, newStr, 0, Integer.MAX_VALUE); }
+
+	/**********************************************************************************************//**
+	 * 	Replace one more more occurrences of a string by another string. To receive the number of 
+	 * 	replacements, see alternative method #ReplaceCount().
+	 *
+	 * @param searchStr         The string to be replaced.
+	 * @param newStr            The replacement string.
+	 * @param startIdx          The index where the search starts. Optional and defaults to 0.
+	 * @param maxReplacements   The maximum number of replacements to perform. Optional and  
+	 *                          defaults to Integer.MAX_VALUE .
+	 *
+	 * @return  The number of replacements that where performed.
+	 **************************************************************************************************/
+	public MString replace( CharSequence searchStr, CharSequence newStr, int startIdx, int maxReplacements ) { replaceCount( searchStr, newStr, startIdx, maxReplacements); return this; }
+
+	/**********************************************************************************************//**
+	 * 	Replace one more more occurrences of a string by another string. To receive the number of 
+	 * 	replacements, see alternative method #ReplaceCount().
+	 *
+	 * @param searchStr The string to be replaced.
+	 * @param newStr    The replacement string.
+	 * @param startIdx  The index where the search starts. Optional and defaults to 0.
+	 *
+	 * @return  The number of replacements that where performed.
+	 **************************************************************************************************/
+	public MString replace( CharSequence searchStr, CharSequence newStr, int startIdx ) { replaceCount( searchStr, newStr, startIdx, Integer.MAX_VALUE); return this; }
+
+	/**********************************************************************************************//**
+	 * 	Replace one more more occurrences of a string by another string. To receive the number of 
+	 * 	replacements, see alternative method #ReplaceCount().
+	 *
+	 * @param searchStr The string to be replaced.
+	 * @param newStr    The replacement string.
+	 *
+	 * @return  The number of replacements that where performed.
+	 **************************************************************************************************/
+	public MString replace( CharSequence searchStr, CharSequence newStr) 				{  replaceCount( searchStr, newStr, 0, Integer.MAX_VALUE); return this; }
 
 	/**********************************************************************************************//**
 	 * Compares a given string (or part of it) with the contents of this. If the optionally given

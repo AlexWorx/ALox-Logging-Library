@@ -489,13 +489,13 @@ namespace com.aworx.lox.unittests
 			// replace
 			ms.Clear();
 			ms.Append("Hello W!");
-			result= ms.Replace( "W!",	"world!"  );	Assert.AreEqual( ms.ToString(), "Hello world!" );		Assert.AreEqual( 1, result );
-			result= ms.Replace( " ",	"* *"	  );	Assert.AreEqual( ms.ToString(), "Hello* *world!" );		Assert.AreEqual( 1, result );
-			result= ms.Replace( "*",	"#", 0, 1 );	Assert.AreEqual( ms.ToString(), "Hello# *world!" );		Assert.AreEqual( 1, result );
-			result= ms.Replace( "*",	"#"		  );	Assert.AreEqual( ms.ToString(), "Hello# #world!" );		Assert.AreEqual( 1, result );
-			result= ms.Replace( "#",	"$$$"	  );	Assert.AreEqual( ms.ToString(), "Hello$$$ $$$world!" );	Assert.AreEqual( 2, result );
-			result= ms.Replace( "$$$",	"*"		  );	Assert.AreEqual( ms.ToString(), "Hello* *world!" );		Assert.AreEqual( 2, result );
-			result= ms.Replace( "*",	""		  );	Assert.AreEqual( ms.ToString(), "Hello world!" );		Assert.AreEqual( 2, result );
+			result= ms.ReplaceCount( "W!",	"world!"  );	Assert.AreEqual( ms.ToString(), "Hello world!" );		Assert.AreEqual( 1, result );
+			result= ms.ReplaceCount( " ",	"* *"	  );	Assert.AreEqual( ms.ToString(), "Hello* *world!" );		Assert.AreEqual( 1, result );
+			result= ms.ReplaceCount( "*",	"#", 0, 1 );	Assert.AreEqual( ms.ToString(), "Hello# *world!" );		Assert.AreEqual( 1, result );
+			result= ms.ReplaceCount( "*",	"#"		  );	Assert.AreEqual( ms.ToString(), "Hello# #world!" );		Assert.AreEqual( 1, result );
+			result= ms.ReplaceCount( "#",	"$$$"	  );	Assert.AreEqual( ms.ToString(), "Hello$$$ $$$world!" );	Assert.AreEqual( 2, result );
+			result= ms.ReplaceCount( "$$$",	"*"		  );	Assert.AreEqual( ms.ToString(), "Hello* *world!" );		Assert.AreEqual( 2, result );
+			result= ms.ReplaceCount( "*",	""		  );	Assert.AreEqual( ms.ToString(), "Hello world!" );		Assert.AreEqual( 2, result );
 		}
 
 
@@ -518,13 +518,13 @@ namespace com.aworx.lox.unittests
 			// replace
 			ms.Clear();
 			ms.Append("Hello W!");
-			result= ms.Replace( "W!",	"world!"  );	Assert.AreEqual( ms.ToString(), "Hello world!" );		Assert.AreEqual( 1, result );
-			result= ms.Replace( " ",	"* *"	  );	Assert.AreEqual( ms.ToString(), "Hello* *world!" );		Assert.AreEqual( 1, result );
-			result= ms.Replace( "*",	"#", 0, 1 );	Assert.AreEqual( ms.ToString(), "Hello# *world!" );		Assert.AreEqual( 1, result );
-			result= ms.Replace( "*",	"#"		  );	Assert.AreEqual( ms.ToString(), "Hello# #world!" );		Assert.AreEqual( 1, result );
-			result= ms.Replace( "#",	"$$$"	  );	Assert.AreEqual( ms.ToString(), "Hello$$$ $$$world!" );	Assert.AreEqual( 2, result );
-			result= ms.Replace( "$$$",	"*"		  );	Assert.AreEqual( ms.ToString(), "Hello* *world!" );		Assert.AreEqual( 2, result );
-			result= ms.Replace( "*",	""		  );	Assert.AreEqual( ms.ToString(), "Hello world!" );		Assert.AreEqual( 2, result );
+			result= ms.ReplaceCount( "W!",	"world!"  );	Assert.AreEqual( ms.ToString(), "Hello world!" );		Assert.AreEqual( 1, result );
+			result= ms.ReplaceCount( " ",	"* *"	  );	Assert.AreEqual( ms.ToString(), "Hello* *world!" );		Assert.AreEqual( 1, result );
+			result= ms.ReplaceCount( "*",	"#", 0, 1 );	Assert.AreEqual( ms.ToString(), "Hello# *world!" );		Assert.AreEqual( 1, result );
+			result= ms.ReplaceCount( "*",	"#"		  );	Assert.AreEqual( ms.ToString(), "Hello# #world!" );		Assert.AreEqual( 1, result );
+			result= ms.ReplaceCount( "#",	"$$$"	  );	Assert.AreEqual( ms.ToString(), "Hello$$$ $$$world!" );	Assert.AreEqual( 2, result );
+			result= ms.ReplaceCount( "$$$",	"*"		  );	Assert.AreEqual( ms.ToString(), "Hello* *world!" );		Assert.AreEqual( 2, result );
+			result= ms.ReplaceCount( "*",	""		  );	Assert.AreEqual( ms.ToString(), "Hello world!" );		Assert.AreEqual( 2, result );
 		}
 
 		[TestMethod]

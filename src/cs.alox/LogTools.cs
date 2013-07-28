@@ -160,7 +160,7 @@ public class LogTools
 
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
-			try { Lock.Aquire();
+			try { Lock.Acquire();
 
 				// create/clear toolBuf
 				if ( toolBuf == null )
@@ -263,7 +263,7 @@ public class LogTools
 
 	{
 		#if ALOX_DEBUG || ALOX_REL_LOG
-			try { Lock.Aquire();
+			try { Lock.Acquire();
 
 				// if no lox given, use static Log.LOX or, if debug logging is not active, return
 				if ( lox == null )
@@ -341,7 +341,7 @@ public class LogTools
 								[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 		{
 			#if ALOX_DEBUG || ALOX_REL_LOG
-				try { Lock.Aquire();
+				try { Lock.Acquire();
 
 					// dump exception to the Buffer
 					xml( xDocument, headLine );
@@ -411,7 +411,7 @@ public class LogTools
 								[CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
 		{
 			#if ALOX_DEBUG || ALOX_REL_LOG
-				try { Lock.Aquire();
+				try { Lock.Acquire();
 
 					// create/clear toolBuf
 					if ( toolBuf == null )

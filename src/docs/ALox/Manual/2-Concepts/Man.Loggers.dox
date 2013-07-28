@@ -198,14 +198,18 @@ The set of these format variables available are:
 - %CL: The line number in the caller's source file.
 - %CM: The caller's method name.
 - %D:  The date the log call was invoked.
-- %TD: Time of day the log call was invoked
-- %TE: Time elapsed since the Logger was created or it's timer was reset
-- %TI: Time elapsed since the last log call
-- %t:  Thread name and/or ID
-- %L:  The *log level*. For the display of the different levels, *TextLoggerLineFormatter* 
+- %TD: Time of day the log call was invoked.
+- %TE: Time elapsed since the Logger was created or it's timer was reset.
+- %TI: Time elapsed since the last log call. Note: You might realize, that these time values do not 
+       sum up correctly.  This is not only because of rounding errors, but also because the time between the "end" of the
+       last log call and the "beginning" of this log call is measured. This has the advantage that a quite accurate
+       value of "elapsed time since the last log call" is displayed and hence a very good performance
+       indicator is provided.
+- %t:  Thread name and/or ID.
+- %L:  The *log level*. For the display of the different levels, *TextLoggerLineFormatter*
        exposes four public string definitions.
-- %O:  The *log domain* name
-- %#:  The log call counter (like a line counter, but counting multi-line log output as one)
+- %O:  The *log domain* name.
+- %#:  The log call counter (like a line counter, but counting multi-line log output as one).
 - %Ax: An auto-adjusted tabulator. This grows whenever it needs to grow, but never 
        shrinks. The mandatory number x (a character between 0 and 9) specifies how much extra
        space is added when tab is adjusted. This is useful to achieve very clean column formatting.

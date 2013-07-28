@@ -128,9 +128,9 @@
     <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ALox-CS-WP71-DLL-Release-Log\ALox-CS-WP71-Release-Log.csproj">
+    <ProjectReference Include="..\ALox-CS-WP71-DLL-Release-Log\ALox-CS-WP71-DLL-Release-Log.csproj">
       <Project>{0D355910-46A3-4BBC-B1DA-1538C3AB6516}</Project>
-      <Name>ALox-CS-WP71-Release-Log</Name>
+      <Name>ALox-CS-WP71-DLL-Release-Log</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />

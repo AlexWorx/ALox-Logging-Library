@@ -17,7 +17,7 @@ The first released version was Version 1.0.1 in **May 2013**.
 
 This change log is sorted reversely in respect to chronology. 
 
-## Version 1.1.0, not released, (but considered stable, and very close to be released) ##
+## Version 1.1.0, not released (but considered stable, and very close to be released) ##
 - First ALox for Java Release!!!
   100% Feature complete (as compared to actual C# Version). 
   
@@ -27,22 +27,36 @@ This change log is sorted reversely in respect to chronology.
 - Doxygen documentation now builds three different sites: Main, C# and JAVA. With a little doxygen 
   manipulation, these three sites nicely integrate into each other, without much of a "media break".
 
+- Added tutorials and sample projects on how to configure pruning for C# (incl. Windows Phone) and 
+  Java (inlc. Android).<br>
+  Attn: The project folders and project names changed. So after doing a
+  checkout, you have to fix your VStudio solution.<br>
+  For C#, see [Setting Up Visual Studio](cs_ref/setup_projects_vs_cs.html) <br>
+  For Java, see [Setup your IDE for Java Projects](java_ref/setup_projects_java.html)
+
 - Slightly different namespace (C#), respectively package (Java) structure:
-  - class [Lox](com::aworx::lox::Lox) moved one package "up" from *com.aworx.lox.core* to *com.aworx.lox*
+  - class [Lox](@ref com::aworx::lox::Lox) moved one package "up" from *com.aworx.lox.core* to *com.aworx.lox*
   - classes 
-    [MemoryLogger](com::aworx::lox::loggers::MemoryLogger) and
-    [ConsoleLogger](com::aworx::lox::loggers::ConsoleLogger) 
+    [MemoryLogger](@ref com::aworx::lox::loggers::MemoryLogger) and
+    [ConsoleLogger](@ref com::aworx::lox::loggers::ConsoleLogger) 
     moved to a new package from *com.aworx.lox.loggers* 
     This new packages is to be filled over time with new Logger types. Class
-    [TextLogger](com::aworx::lox::loggers::TextLogger) however, was kept in package *com.aworx.lox.core*
+    [TextLogger](@ref com::aworx::lox::core::TextLogger) however, was kept in package *com.aworx.lox.core*
     as this class is an abstract foundation class for current and future text based loggers.
 
-- Class [Textlogger](com::aworx::lox::core::Textlogger) was completely redesigned to be more configurable
+- Class [TextLogger](@ref #com::aworx::lox::core::TextLogger) was completely redesigned to be more configurable
   and extensible. For a complete description, see new manual chapter \ref man_loggers.
-  
-- C# class [ThreadLock](com::aworx::util::ThreadLock) corrected method names to follow "upper camel case".
 
+- Added a MString singleton to classes 
+  [Log](@ref #com::aworx::lox::Log) and
+  [Lox](@ref #com::aworx::lox::Lox) that can be acquired using 
+  [Log.Buf()](@ref #com::aworx::lox::Lox::Buf) respectively
+  [Lox.Buf()](@ref #com::aworx::lox::Lox::Buf) and is automatically released when contents gets logged. See
+  new tutorial section \ref tutcs_more_logbuf.
 
+- C# class [ThreadLock](@ref com::aworx::util::ThreadLock) corrected method names to follow "upper camel case".
+
+- A very lot of small changes and improvements. Reviewed and extended tutorials and user manual with new chapters.
 
 ## Version 1.0.4, released June 24th, 2013 ##
 - Java Version (including Android LogCat support) is **on its way**. It is almost "feature complete", but not in a 

@@ -55,7 +55,7 @@
 						   HorizontalAlignment='Left' 
 						   VerticalAlignment='Top' 
 						   
-						   FontSize='16' ScrollViewer.HorizontalScrollBarVisibility='Visible' ScrollViewer.VerticalScrollBarVisibility='Visible'/>
+						   FontSize='12' ScrollViewer.HorizontalScrollBarVisibility='Visible' ScrollViewer.VerticalScrollBarVisibility='Visible'/>
 
 		</Grid>
 

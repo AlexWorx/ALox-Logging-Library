@@ -41,7 +41,7 @@ public class Tests_Tutorial
 {
 
 MemoryLogger	tutLog;
-String			outputPath=		"../../src/docs/generated_javatut/";
+String			outputPath=		"../../../src/docs/generated_javatut/";
 
 void SaveTutorialOuput( String fileName, MString log )
 {
@@ -74,7 +74,7 @@ public void Tut_Hello_ALox()
 
 	//! [Tut_Hello_ALox]
 	//! [Tut_Hello_ALox_Line1]
-	Log.addLogger( new ConsoleLogger( "Console" ) );
+	Log.addLogger( new ConsoleLogger() );
 	//! [Tut_Hello_ALox_Line1]
 	//! [Tut_Hello_ALox_Line2]
 	Log.setDomain( "APP",	Log.DomainLevel.INFO_WARNINGS_AND_ERRORS );
@@ -96,7 +96,7 @@ public void Tut_LogLevels()
 	tutLog.rootDomain.setLevel( Log.DomainLevel.ALL, false );
 
 	//! [Tut_LogLevels]
-	Log.addLogger( new ConsoleLogger( "Console" ) );
+	Log.addLogger( new ConsoleLogger() );
 	//! [Tut_LogLevels_SetDomain]
 	Log.setDomain( "APP",	Log.DomainLevel.INFO_WARNINGS_AND_ERRORS );
 	//! [Tut_LogLevels_SetDomain]
@@ -118,7 +118,7 @@ public void Tut_DefaultDomains()
 	tutLog.rootDomain.setLevel( Log.DomainLevel.ALL, false );
 
 	//! [Tut_DefaultDomains]
-	Log.addLogger( new ConsoleLogger( "Console" ) );
+	Log.addLogger( new ConsoleLogger() );
 	Log.regDomain( "APP", Log.Scope.PACKAGE );
 	Log.setDomain( "APP", Log.DomainLevel.INFO_WARNINGS_AND_ERRORS );
 
@@ -135,18 +135,18 @@ public void Tut_DefaultDomains()
 	tutLog.rootDomain.setLevel( Log.DomainLevel.ALL, false );
 
 	//! [Tut_DefaultDomains_part2]
-	Log.addLogger( new ConsoleLogger( "Console" ) );
+	Log.addLogger( new ConsoleLogger() );
 	Log.info  ( "APP", "Hallo ALox" );
 	//! [Tut_DefaultDomains_part2]
 
-	tutLog.buffer.replace( "Tutlog", "Console" );
+	tutLog.buffer.replace( "Tutlog", "CONSOLE" );
 	SaveTutorialOuput( "Tut_DefaultDomains_part2.txt", tutLog.buffer );
 }
 
 public void Tut_Placing()
 {
 	//! [Tut_Placing_Part1]
-	Log.addLogger( new ConsoleLogger( "Console" ) );
+	Log.addLogger( new ConsoleLogger() );
 
 	Log.setDomain( "MYAPP",     Log.DomainLevel.ALL);
 	Log.setDomain( "SOCKETS",   Log.DomainLevel.WARNINGS_AND_ERRORS );
@@ -200,7 +200,7 @@ private void process(@SuppressWarnings ("unused") int i) {}
 public void Tut_Instance()
 {
 	Log.reset(); 
-	Log.addLogger( new ConsoleLogger( "Console" ) );
+	Log.addLogger( new ConsoleLogger() );
 	Log.addLogger( tutLog= new MemoryLogger( "Tutlog" ), Log.DomainLevel.OFF  );
 	Log.setDomain( "MYDOM", Log.DomainLevel.ALL );
 	tutLog.rootDomain.setLevel( Log.DomainLevel.ALL, false );
@@ -244,7 +244,7 @@ public void Tut_Exception()
 	LogTools.exception( "MYDOM", Log.Level.WARNING, testException, "Logging an exception: " );
 	//! [Tut_Exceptions]
 
-	tutLog.buffer.replace( "Tutlog", "Console" );
+	tutLog.buffer.replace( "Tutlog", "CONSOLE" );
 	SaveTutorialOuput( "Tut_Exceptions.txt", tutLog.buffer );
 }
 
@@ -267,7 +267,7 @@ public void Tut_Exception()
 //	LogTools.XML("MYDOM", Log.Level.INFO, xdoc, "Logging an xml document: " );
 //	//! [Tut_XML]
 //
-//	tutLog.buffer.Replace( "Tutlog", "Console" );
+//	tutLog.buffer.Replace( "Tutlog", "CONSOLE" );
 //	SaveTutorialOuput( "Tut_XML.txt", tutLog.buffer );
 //}
 
@@ -287,11 +287,11 @@ public void Tut_SeparatedLogLevels()
 
 	//! [Tut_SeparatedLogLevels]
 	// create two different loggers
-	Log.addLogger( new ConsoleLogger( "Console" ) );
-	Log.addLogger( new MemoryLogger ( "Memory" ) );
+	Log.addLogger( new ConsoleLogger( "MyConsoleLogger" ) );
+	Log.addLogger( new MemoryLogger ( "MyMemoryLogger" ) );
 	
 	// switch some log information off with memory logger
-	((MemoryLogger) Log.getLogger("Memory")).lineFormatter.format= new MString( "%CF(%CL): %L [%O]: ");
+	((MemoryLogger) Log.getLogger("MyMemoryLogger")).lineFormatter.format= new MString( "%CF(%CL): %L [%O]: ");
 	
 	// register domains, set DOM as default
 	Log.regDomain( "DOM",     Log.Scope.METHOD );
@@ -302,24 +302,24 @@ public void Tut_SeparatedLogLevels()
 	Log.setDomain( "DOM",  Log.DomainLevel.ALL, false );
 	
 	// set level of DOM/CON separately for console and memory logger
-	Log.setDomain( "~CON", Log.DomainLevel.ALL, false, "Console" );
-	Log.setDomain( "~CON", Log.DomainLevel.OFF, false, "Memory"  );
+	Log.setDomain( "~CON", Log.DomainLevel.ALL, false, "MyConsoleLogger" );
+	Log.setDomain( "~CON", Log.DomainLevel.OFF, false, "MyMemoryLogger"  );
 	
 	// set level of DOM/MEM separately for console and memory logger
-	Log.setDomain( "~MEM", Log.DomainLevel.OFF, false, "Console" );
-	Log.setDomain( "~MEM", Log.DomainLevel.ALL, false, "Memory"  );
+	Log.setDomain( "~MEM", Log.DomainLevel.OFF, false, "MyConsoleLogger" );
+	Log.setDomain( "~MEM", Log.DomainLevel.ALL, false, "MyMemoryLogger"  );
 	
 	// Log info to each of the domains
+	Log.info(         "Domain= DOM      -> This goes to all loggers");
 	Log.info( "~CON", "Domain= DOM/CON  -> This goes to ConsoleLogger exclusively");
 	Log.info( "~MEM", "Domain= DOM/MEM  -> This goes to MemoryLogger exclusively");
-	Log.info(         "Domain= DOM      -> This goes to all loggers");
 	
 	// To verify the result, we log the contents of the MemoryLogger to the console logger
 	Log.info( "~CON", "Here comes the contents of MemoryLogger:");
-	Log.info( "~CON", ((MemoryLogger) Log.getLogger("Memory")).buffer.toString(), 1);
+	Log.info( "~CON", ((MemoryLogger) Log.getLogger("MyMemoryLogger")).buffer.toString(), 1);
 	//! [Tut_SeparatedLogLevels]
 
-	tutLog.buffer.replace( "Tutlog", "Console" );
+	tutLog.buffer.replace( "Tutlog", "MyConsoleLogger" );
 	SaveTutorialOuput( "Tut_SeparatedLogLevels.txt", tutLog.buffer );
 }
 
@@ -331,8 +331,8 @@ public void Tut_LogConfig()
 
 	//! [Tut_LogConfig]
 	// create two different loggers
-	Log.addLogger( new ConsoleLogger( "Console" ) );
-	Log.addLogger( new MemoryLogger ( "Memory" ) );
+	Log.addLogger( new ConsoleLogger() );
+	Log.addLogger( new MemoryLogger () );
 	
 	// register domains, set DOM as default
 	Log.regDomain( "DOM",     Log.Scope.METHOD );
@@ -354,7 +354,7 @@ public void Tut_LogConfig()
 	Log.logConfig( "DOM", Log.Level.VERBOSE, "Here comes the current Log configuration:" );
 	//! [Tut_LogConfig]
 
-	//tutLog.buffer.Replace( "Tutlog", "Console" );
+	//tutLog.buffer.Replace( "Tutlog", "CONSOLE" );
 	SaveTutorialOuput( "Tut_LogConfig.txt", ((MemoryLogger) Log.getLogger( "Memory" )).buffer );
 }
 
@@ -368,9 +368,9 @@ public void Tut_LogConfig2()
 	// ##### code inclusion version ########
 	//! [Tut_LogConfig2]
 	// create two different loggers, add console Logger verbosely
-	Log.addLogger( new ConsoleLogger( "Console" ), Log.DomainLevel.ALL );
-	Log.addLogger( new MemoryLogger ( "Memory" )  );
-	
+	Log.addLogger( new ConsoleLogger(), Log.DomainLevel.ALL );
+	Log.addLogger( new MemoryLogger () );
+
 	// register domains, set DOM as default
 	Log.regDomain( "DOM",     Log.Scope.METHOD );
 	Log.regDomain( "DOM/CON", Log.Scope.NONE );
@@ -393,10 +393,10 @@ public void Tut_LogConfig2()
 	Log.reset(); 
 
 	// create two different loggers, add console Logger verbosely
-	tutLog= new MemoryLogger ( "Console" );
+	tutLog= new MemoryLogger ( "CONSOLE" );
 	tutLog.rootDomain.setLevel( Log.DomainLevel.ALL, false );
 	Log.addLogger( tutLog, Log.DomainLevel.ALL ); 
-	Log.addLogger( new ConsoleLogger( "Memory" ) );
+	Log.addLogger( new ConsoleLogger( "MEMORY" ) );
 	
 	// register domains, set DOM as default
 	Log.regDomain( "DOM",     Log.Scope.METHOD );
@@ -414,7 +414,7 @@ public void Tut_LogConfig2()
 	Log.setDomain( "~MEM", Log.DomainLevel.OFF, false, "Console" );
 	Log.setDomain( "~MEM", Log.DomainLevel.ALL, false, "Memory"  );
 
-	//tutLog.buffer.Replace( "Tutlog", "Console" );
+	//tutLog.buffer.Replace( "Tutlog", "CONSOLE" );
 	SaveTutorialOuput( "Tut_LogConfig2.txt", ((MemoryLogger) Log.getLogger( "Console" )).buffer );
 
 
@@ -426,4 +426,58 @@ public void Tut_LogConfig2()
 	Log.setDomain( Log.LOX.internalDomain, Log.DomainLevel.ALL, true, "Console");
 	//! [Tut_LogConfig4]
 }
+/** ***********************************************************************************************
+	* <summary>	Tut_UsingLogBuffer </summary>
+	**************************************************************************************************/
+@Test
+public void Tut_UsingLogBuffer()
+{
+	Log.reset(); 
+	Log.addLogger( tutLog= new MemoryLogger( "Tutlog" ), Log.DomainLevel.OFF  );
+	tutLog.rootDomain.setLevel( Log.DomainLevel.ALL, false );
+
+	//! [Tut_UsingLogBuffer1]
+	//  Create logger and register domain LOGBUF
+	Log.addLogger( new ConsoleLogger(), Log.DomainLevel.WARNINGS_AND_ERRORS );
+	Log.regDomain( "LOGBUF", Log.Scope.METHOD );
+	Log.setDomain( "LOGBUF", Log.DomainLevel.ALL );
+			
+	//  Let's do some logging using the internal buffer singleton;
+	Log.info( Log.buf().append( "Hallo Buf!. This is only one string. Not useful to use the buf, however..." ) );
+	Log.info( Log.buf().append( "This is a 5-digtit rep of 42: " ).append( 42, 5 ) );
+	Log.info( Log.buf().append( "***All upper case and stars replaced by dollar signs ***" ).convertCase( true ).replace( "*", "$" ) );
+	//! [Tut_UsingLogBuffer1]
+
+	//! [Tut_UsingLogBuffer2]
+	// using the log buf outside of the log statement
+	LogBuf logBuf= Log.buf();
+	logBuf.append( "Lets see if school math is correct: " );
+	int a= 4;
+	int b= 2;
+	if( a/b == 3)
+	{
+		// shout it out loud!
+		logBuf.append( "They taught me wrong in school!" );
+		Log.error( logBuf );
+	}
+	else
+	{
+		// we better say nothing
+		Log.bufAbort();
+	}
+	//! [Tut_UsingLogBuffer2]
+
+	//! [Tut_UsingLogBuffer3]
+	// causing trouble
+	Log.info( "Let's create an internal error by accessing the buffer twice:" );
+	Log.buf();
+	Log.buf();
+	//! [Tut_UsingLogBuffer3]
+
+	// END OF TUTORIAL
+	tutLog.buffer.replace( "Tutlog", "CONSOLE" );
+	SaveTutorialOuput( "Tut_UsingLogBuffer.txt", tutLog.buffer );
 }
+
+
+} // class

@@ -16,11 +16,6 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>java.othertests.aworx.util</name>
-			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/src/java.othertests.aworx.util</locationURI>
-		</link>
-		<link>
 			<name>java.unittests.alox</name>
 			<type>2</type>
 			<locationURI>PARENT-3-PROJECT_LOC/src/java.unittests.alox</locationURI>
