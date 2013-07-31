@@ -118,7 +118,7 @@ nice in code, but would increase execution time."</p>
 <h1><a class="anchor" id="faq_performance"></a>
 What is the performance impact on my application when using ALox</h1>
 <p>ALox is fast (see previous question on Bauhaus). Using a MemoryLogger, in C# we measured more than 200.000 log entries per second on a Notebook (equipped with an Intel(R) Core(TM) i7 CPU @2.8GHz) while running an application (and ALox) in debug mode! Hence, if doing as much as 100 log entries per second, the performance loss for your application would still be a maximum of 0.05%.</p>
-<p>Of-course, logging into a console is slower. But the good news is: As the internal management of ALox is so fast, there will not be a measurable difference between "normal" debug log output using <code>printf()</code>, <code>System.out.println()</code>, <code>Console.WriteLine</code>, etc. versus ALox logging. And: as for debug logging, this gets automatically pruned in the release code. Hence, the release version of your software is free of any performance issue caused by debug logging. (For example, C# users read Mission accomplished: Perfect Auto Pruning with ALox! for more information.)</p>
+<p>Of-course, logging into a console is slower. But the good news is: As the internal management of ALox is so fast, there will not be a measurable difference between "normal" debug log output using <code>printf()</code>, <code>System.out.println()</code>, <code>Console.WriteLine</code>, etc. versus ALox logging. And: as for debug logging, this gets automatically pruned in the release code. Hence, the release version of your software is free of any performance issue caused by debug logging. (For example, C# users read <a class="elRef" doxygen="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/setup_projects_vs_cs.html#setup_projects_vs_cs_pruning_result">Mission accomplished: Perfect Auto Pruning with ALox!</a> for more information.)</p>
 <p><br/>
  </p>
 <h1><a class="anchor" id="faq_debug_vs_release_logging"></a>
@@ -141,7 +141,7 @@ Why is ALox introducing a set of own utility classes?</h1>
 <!-- HTML footer for doxygen 1.8.4-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 28 2013 23:50:46 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jul 31 2013 10:20:16 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

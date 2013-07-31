@@ -2187,6 +2187,13 @@
       <anchor>a922bc82585360a89568276c894e3631c</anchor>
       <arglist>(String name)</arglist>
     </member>
+    <member kind="function" protection="protected" virtualness="pure">
+      <type>abstract void</type>
+      <name>multiLineOp</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
+      <anchor>ab3a1e7778e44c667c12434b6d03892fa</anchor>
+      <arglist>(boolean start)</arglist>
+    </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>doLog</name>
@@ -2714,6 +2721,13 @@
       <anchor>a7d0332030c6bce887e10e6156301da35</anchor>
       <arglist>(MString domain, Log.Level level, MString msg, int indent, CallerInfo caller, int lineNumber)</arglist>
     </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>multiLineOp</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html</anchorfile>
+      <anchor>aa4e5aab0524e172b2c3ba6b36c91c5a5</anchor>
+      <arglist>(boolean start)</arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>com::aworx::lox::loggers::MemoryLogger</name>
@@ -2746,6 +2760,13 @@
       <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html</anchorfile>
       <anchor>a7d0332030c6bce887e10e6156301da35</anchor>
       <arglist>(MString domain, Log.Level level, MString msg, int indent, CallerInfo caller, int lineNumber)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>multiLineOp</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html</anchorfile>
+      <anchor>aa4e5aab0524e172b2c3ba6b36c91c5a5</anchor>
+      <arglist>(boolean start)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -3990,6 +4011,7 @@
     <filename>dir_f1e47fa4c3b9b8e09c452d1865919106.html</filename>
     <file>ConsoleLogger.java</file>
     <file>MemoryLogger.java</file>
+    <file>TextFileLogger.java</file>
   </compound>
   <compound kind="dir">
     <name>lox</name>

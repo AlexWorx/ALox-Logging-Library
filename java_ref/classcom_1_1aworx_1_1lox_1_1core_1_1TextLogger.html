@@ -149,6 +149,8 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:a922bc82585360a89568276c894e3631c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1300bd920d9f44ebc751480932ed2585"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a1300bd920d9f44ebc751480932ed2585">doTextLog</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> domain, Log.Level level, <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> msg, int indent, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a> caller, int lineNumber)</td></tr>
 <tr class="separator:a1300bd920d9f44ebc751480932ed2585"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3a1e7778e44c667c12434b6d03892fa"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#ab3a1e7778e44c667c12434b6d03892fa">multiLineOp</a> (boolean start)</td></tr>
+<tr class="separator:ab3a1e7778e44c667c12434b6d03892fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc9afa8c3afaaacb3c3321d58037070c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#acc9afa8c3afaaacb3c3321d58037070c">doLog</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> domain, Log.Level level, Object msgObject, int indent, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a> caller)</td></tr>
 <tr class="separator:acc9afa8c3afaaacb3c3321d58037070c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></td></tr>
@@ -331,7 +333,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>The abstract function that logs a message.</p>
+<p>The abstract function that logs a text message to be implemented by descendants.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">domain</td><td>The log domain name. If not starting with a slash ('/') this is appended to any default domain name that might have been specified for the source file. </td></tr>
@@ -345,6 +347,39 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 
 <p>Implemented in <a class="el" href="classcom_1_1aworx_1_1lox_1_1android_1_1AndroidLogCatLogger.html#a7d0332030c6bce887e10e6156301da35">AndroidLogCatLogger</a>, <a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html#a7d0332030c6bce887e10e6156301da35">ConsoleLogger</a>, and <a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html#a7d0332030c6bce887e10e6156301da35">MemoryLogger</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab3a1e7778e44c667c12434b6d03892fa"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">abstract void multiLineOp </td>
+          <td>(</td>
+          <td class="paramtype">boolean&#160;</td>
+          <td class="paramname"><em>start</em>)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Abstract method to be implemented by descendants. This message is called only when multi-line messages are logged. It is called with parameter start equal to true before a series of <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#acc9afa8c3afaaacb3c3321d58037070c">doLog()</a> calls of a multi-line message and once after with parameter start equal to false.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">start</td><td>If true, indicates the begin of a multi-line message, the end otherwise. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html#aa4e5aab0524e172b2c3ba6b36c91c5a5">ConsoleLogger</a>, and <a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html#aa4e5aab0524e172b2c3ba6b36c91c5a5">MemoryLogger</a>.</p>
 
 </div>
 </div>
@@ -462,7 +497,7 @@ Additional Inherited Members</h2></td></tr>
 <li>0: No line split is performed. Delimiters can be replaced by readable delimiters (depending on setting of <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a927436a8c9c6474fc683bb0888f43b62">multiLineDelimiter</a> and <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a55f49a9dca5dd991ad7198b48307732b">multiLineDelimiterRepl</a>).</li>
 <li>1: Each log line contains all meta information</li>
 <li>2: Starting with second log line, meta information is replaced by blanks (default)</li>
-<li>3: The headline <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#aeddddadb6299e40585333c787194c0fe">fmtMultiLineMsgHeadline</a> is logged and all lines of the multi line text are logged at postion zero (without further meta information)</li>
+<li>3: The headline <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#aeddddadb6299e40585333c787194c0fe">fmtMultiLineMsgHeadline</a> is logged and all lines of the multi line text are logged at position zero (without further meta information)</li>
 <li>4: Just the multi line text is logged, starting at column zero (no meta information is logged) </li>
 </ul>
 
@@ -501,7 +536,7 @@ Additional Inherited Members</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.4-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 28 2013 23:50:44 for ALox Java Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jul 31 2013 10:20:12 for ALox Java Reference by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

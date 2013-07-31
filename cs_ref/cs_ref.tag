@@ -1347,6 +1347,13 @@
       <anchor>a1300bd920d9f44ebc751480932ed2585</anchor>
       <arglist>(MString domain, Log.Level level, MString msg, int indent, CallerInfo caller, int lineNumber)</arglist>
     </member>
+    <member kind="function" protection="protected" virtualness="pure">
+      <type>abstract void</type>
+      <name>multiLineOp</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
+      <anchor>aa35518d6daed290383837b6fa6ff8062</anchor>
+      <arglist>(bool start)</arglist>
+    </member>
     <member kind="function" protection="protected">
       <type>override void</type>
       <name>doLog</name>
@@ -1632,6 +1639,13 @@
       <anchor>af8da5b301accf1a23758a98b88f222d0</anchor>
       <arglist>(MString domain, Log.Level level, MString msg, int indent, CallerInfo caller, int lineNumber)</arglist>
     </member>
+    <member kind="function" protection="protected">
+      <type>override void</type>
+      <name>multiLineOp</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html</anchorfile>
+      <anchor>a98abe5571900a3c0ae88b24bd3d7a2ba</anchor>
+      <arglist>(bool start)</arglist>
+    </member>
     <member kind="variable" protection="protected">
       <type>MString</type>
       <name>consoleBuffer</name>
@@ -1664,6 +1678,13 @@
       <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html</anchorfile>
       <anchor>af8da5b301accf1a23758a98b88f222d0</anchor>
       <arglist>(MString domain, Log.Level level, MString msg, int indent, CallerInfo caller, int lineNumber)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>override void</type>
+      <name>multiLineOp</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html</anchorfile>
+      <anchor>a98abe5571900a3c0ae88b24bd3d7a2ba</anchor>
+      <arglist>(bool start)</arglist>
     </member>
   </compound>
   <compound kind="namespace">

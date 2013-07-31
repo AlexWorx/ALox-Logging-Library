@@ -167,8 +167,11 @@ Protected Member Functions</h2></td></tr>
 <tr class="memdesc:a922bc82585360a89568276c894e3631c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a logger.  <a href="#a922bc82585360a89568276c894e3631c">More...</a><br/></td></tr>
 <tr class="separator:a922bc82585360a89568276c894e3631c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1300bd920d9f44ebc751480932ed2585"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a1300bd920d9f44ebc751480932ed2585">doTextLog</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> domain, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log.Level</a> level, <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> msg, int indent, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a> caller, int lineNumber)</td></tr>
-<tr class="memdesc:a1300bd920d9f44ebc751480932ed2585"><td class="mdescLeft">&#160;</td><td class="mdescRight">The abstract function that logs a message.  <a href="#a1300bd920d9f44ebc751480932ed2585">More...</a><br/></td></tr>
+<tr class="memdesc:a1300bd920d9f44ebc751480932ed2585"><td class="mdescLeft">&#160;</td><td class="mdescRight">The abstract function that logs a text message to be implemented by descendants  <a href="#a1300bd920d9f44ebc751480932ed2585">More...</a><br/></td></tr>
 <tr class="separator:a1300bd920d9f44ebc751480932ed2585"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa35518d6daed290383837b6fa6ff8062"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#aa35518d6daed290383837b6fa6ff8062">multiLineOp</a> (bool start)</td></tr>
+<tr class="memdesc:aa35518d6daed290383837b6fa6ff8062"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract method to be implemented by descendants. This message is called only when multi-line messages are logged. It is called with parameter start equal to true before a series of <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#af95411fc4b7545a2f5c660bc51159245" title="Implementation of Logger.doLog(). Creates all the textual information that is logged in a line before...">doLog()</a> calls of a multi-line message and once after with parameter start equal to false.  <a href="#aa35518d6daed290383837b6fa6ff8062">More...</a><br/></td></tr>
+<tr class="separator:aa35518d6daed290383837b6fa6ff8062"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af95411fc4b7545a2f5c660bc51159245"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#af95411fc4b7545a2f5c660bc51159245">doLog</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> domain, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log.Level</a> level, Object msgObject, int indent, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a> caller)</td></tr>
 <tr class="memdesc:af95411fc4b7545a2f5c660bc51159245"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementation of <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#aae6d2874b82786019b36b4ac8ca9c647" title="This is the central method that derived logger classes have to implement to log a message...">Logger.doLog()</a>. Creates all the textual information that is logged in a line before the message itself.  <a href="#af95411fc4b7545a2f5c660bc51159245">More...</a><br/></td></tr>
 <tr class="separator:af95411fc4b7545a2f5c660bc51159245"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -204,7 +207,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="textblock"><p>This class is a still abstract implementation of class <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="This is central class of the ALox logging implementation. It is not recommended to use this class dir...">Logger</a> which is used as the super class for all textual <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="This is central class of the ALox logging implementation. It is not recommended to use this class dir...">Logger</a> implementations within ALox, e.g. ConsoleLogger. </p>
 <hr/>
 <p> The class uses two helper classes. One to convert the log message object into a string representation and a second to generate the textual representation of the meta information of a log call. These helpers can be extended and replaced to modify the behavior of <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html" title="This class is a still abstract implementation of class Logger which is used as the super class for al...">TextLogger</a>.</p>
-<p>The final log message is then passed to the abstract method <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a1300bd920d9f44ebc751480932ed2585" title="The abstract function that logs a message. ">doTextLog()</a>. Hence, custom <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="This is central class of the ALox logging implementation. It is not recommended to use this class dir...">Logger</a> classes that inherited from this class instead of directly from class <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a42c27444187c8bea77c2b065a2ec183e" title="Constructs a logger. ">Logger</a>, need to implement <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a1300bd920d9f44ebc751480932ed2585" title="The abstract function that logs a message. ">doTextLog()</a> instead of implementing <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#af95411fc4b7545a2f5c660bc51159245" title="Implementation of Logger.doLog(). Creates all the textual information that is logged in a line before...">doLog()</a>!</p>
+<p>The final log message is then passed to the abstract method <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a1300bd920d9f44ebc751480932ed2585" title="The abstract function that logs a text message to be implemented by descendants ">doTextLog()</a>. Hence, custom <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="This is central class of the ALox logging implementation. It is not recommended to use this class dir...">Logger</a> classes that inherited from this class instead of directly from class <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a42c27444187c8bea77c2b065a2ec183e" title="Constructs a logger. ">Logger</a>, need to implement <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a1300bd920d9f44ebc751480932ed2585" title="The abstract function that logs a text message to be implemented by descendants ">doTextLog()</a> instead of implementing <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#af95411fc4b7545a2f5c660bc51159245" title="Implementation of Logger.doLog(). Creates all the textual information that is logged in a line before...">doLog()</a>!</p>
 <p>Class <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html" title="This class is a still abstract implementation of class Logger which is used as the super class for al...">TextLogger</a> supports multi line log outputs. Such multi line log outputs can be configured to be logged in different ways. See <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a95ea94dee572eaac760d028ddcf3cf65" title="Determines if multi line messages should be split into different log lines. Possible values are: ...">MultiLineMsgMode</a> for more information. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a922bc82585360a89568276c894e3631c"></a>
@@ -364,7 +367,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The abstract function that logs a message. </p>
+<p>The abstract function that logs a text message to be implemented by descendants </p>
 <hr/>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -379,6 +382,41 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 
 <p>Implemented in <a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html#af8da5b301accf1a23758a98b88f222d0">ConsoleLogger</a>, and <a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html#af8da5b301accf1a23758a98b88f222d0">MemoryLogger</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa35518d6daed290383837b6fa6ff8062"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">abstract void multiLineOp </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>start</em>)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Abstract method to be implemented by descendants. This message is called only when multi-line messages are logged. It is called with parameter start equal to true before a series of <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#af95411fc4b7545a2f5c660bc51159245" title="Implementation of Logger.doLog(). Creates all the textual information that is logged in a line before...">doLog()</a> calls of a multi-line message and once after with parameter start equal to false. </p>
+<hr/>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">start</td><td>If true, indicates the begin of a multi-line message, the end otherwise. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html#a98abe5571900a3c0ae88b24bd3d7a2ba">ConsoleLogger</a>, and <a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html#a98abe5571900a3c0ae88b24bd3d7a2ba">MemoryLogger</a>.</p>
 
 </div>
 </div>
@@ -504,7 +542,7 @@ Additional Inherited Members</h2></td></tr>
 <li>0: No line split is performed, delimiters can be replaced by readable delimiters (depending on setting of <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#aba58580b1670dbfb1caf21f47d0d53de" title="This is the string interpreted as line delimiter within log messages. If null, CR, LF or CRLF are used. Important: Set to empty string, to stop any multi line processing of TextLogger, even the replacements. ">MultiLineDelimiter</a> and # MultiLineDelimiterRepl).</li>
 <li>1: Each log line contains all meta information</li>
 <li>2: Starting with second log line, meta information is replaced by blanks (default)</li>
-<li>3: The headline <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#ab3423baaf4b67d0e7cfa757203aaf872" title="Headline for multi line messages (depending on MultiLineMsgMode) .">FmtMultiLineMsgHeadline</a> is logged and all lines of the multi line text are logged at postion zero (without further meta information)</li>
+<li>3: The headline <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#ab3423baaf4b67d0e7cfa757203aaf872" title="Headline for multi line messages (depending on MultiLineMsgMode) .">FmtMultiLineMsgHeadline</a> is logged and all lines of the multi line text are logged at position zero (without further meta information)</li>
 <li>4: Just the multi line text is logged, starting at column zero (no meta information is logged) </li>
 </ul>
 
@@ -544,7 +582,7 @@ Additional Inherited Members</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.4-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 28 2013 23:50:41 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jul 31 2013 10:20:10 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>
