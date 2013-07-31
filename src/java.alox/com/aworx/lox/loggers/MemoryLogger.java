@@ -57,5 +57,15 @@ public class MemoryLogger extends TextLogger
 		// append message 
 		buffer.append( msg );
 	}
+	
+	/**********************************************************************************************//**
+	 * Empty, not needed here
+	 *
+	 * @param start void    
+	 **************************************************************************************************/
+	@Override protected void multiLineOp (boolean start)
+	{
+	} 
+	
 
 } // class MemoryLogger

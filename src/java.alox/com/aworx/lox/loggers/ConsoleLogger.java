@@ -77,6 +77,17 @@ public class ConsoleLogger extends TextLogger
 		else
 			System.out  .println( msg.toString() );
 	}
+	
+	/**********************************************************************************************//**
+	 * Empty implementation, not needed for this class
+	 *
+	 * @param start void    
+	 **************************************************************************************************/
+	@Override protected void multiLineOp (boolean start)
+	{
+	} 
+	
+
 
 //#endif // ALOX_DEBUG || ALOX_REL_LOG
 

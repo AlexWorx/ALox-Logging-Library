@@ -81,7 +81,7 @@ public abstract class TextLogger : Logger
 	 * - 2: Starting with second log line, meta information is replaced by blanks  (default)  
 	 *  
 	 * - 3: The headline #FmtMultiLineMsgHeadline is logged and all lines of the multi line text are logged
-	 *      at postion zero (without further meta information)  
+	 *      at position zero (without further meta information)  
 	 * 
 	 * - 4: Just the multi line text is logged, starting at column zero (no meta information is logged)
 	 * </summary>*/
@@ -141,7 +141,7 @@ public abstract class TextLogger : Logger
 	// #################################################################################################
 
 	/** ***********************************************************************************************
-	 * <summary>	The abstract function that logs a message. </summary>
+	 * <summary> The abstract function that logs a text message to be implemented by descendants </summary>
 	 * <param name="domain">	The log domain name. </param>
 	 * <param name="level"> 	The log level. This has been checked to be active already on this
 	 * 							stage and is provided to be able to be logged out only. </param>
@@ -155,6 +155,16 @@ public abstract class TextLogger : Logger
 										MString		msg,		int			indent,
 										CallerInfo	caller, 	int			lineNumber);
 
+	/** ***********************************************************************************************
+	 * <summary>
+	 *  Abstract method to be implemented by descendants. This message is called only when multi-line
+	 *  messages are logged. It is called with parameter start equal to true before a series of 
+	 *  doLog() calls of a multi-line message and once after with parameter start equal to false. 
+	 * </summary>
+	 * <param name="start">   	If true, indicates the begin of a multi-line message, the end otherwise. 
+	 **************************************************************************************************/
+	abstract protected void multiLineOp (bool start); 
+										
 
 	// #################################################################################################
 	// Abstract inherited method implementations
@@ -282,7 +292,11 @@ public abstract class TextLogger : Logger
 			}
 
 			// found a delimiter
-			// 
+
+			// signal start of multi line log
+			if ( lineNo == 0 )
+				multiLineOp( true );
+			 
 			// in mode 3, 4, when meta info is deleted, we log a separate line first!
 			if ( lineNo == 0 && (MultiLineMsgMode == 3 || MultiLineMsgMode == 4) )
 			{
@@ -317,6 +331,10 @@ public abstract class TextLogger : Logger
 			actStart= actEnd + delimLen;
 			lineNo++;
 		}
+
+		// signal end of multi line log
+		if ( lineNo > 0 )
+			multiLineOp( false );
 	}
 
 	#endif // ALOX_DEBUG || ALOX_REL_LOG

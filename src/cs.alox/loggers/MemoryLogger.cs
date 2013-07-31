@@ -75,7 +75,14 @@ public class MemoryLogger : TextLogger
 		Buffer.Append( msg );
 	}
 
-
+	/**********************************************************************************************//**
+	 * Empty implementation, not needed for this class
+	 *
+	 * @param start void    
+	 **************************************************************************************************/
+	override protected void multiLineOp (bool start)
+	{
+	} 
 	#endif // ALOX_DEBUG || ALOX_REL_LOG
 }
 } // namespace
