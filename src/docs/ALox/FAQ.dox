@@ -68,7 +68,7 @@ is so fast, there will not be a measurable difference between "normal" debug log
 \c System.out.println(), \c Console.WriteLine, etc. versus ALox logging. And: as for debug logging, this 
 gets automatically pruned in the release code. Hence, the release version of your software is free
 of any performance issue caused by debug logging. (For example, C# users read 
-\ref setup_projects_vs_cs_pruning_3 "Mission accomplished: Perfect Auto Pruning with ALox!"
+\ref setup_projects_vs_cs_pruning_result "Mission accomplished: Perfect Auto Pruning with ALox!"
 for more information.)
 
 <br>

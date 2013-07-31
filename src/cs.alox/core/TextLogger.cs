@@ -161,7 +161,7 @@ public abstract class TextLogger : Logger
 	 *  messages are logged. It is called with parameter start equal to true before a series of 
 	 *  doLog() calls of a multi-line message and once after with parameter start equal to false. 
 	 * </summary>
-	 * <param name="start">   	If true, indicates the begin of a multi-line message, the end otherwise. 
+	 * <param name="start">   	If true, indicates the begin of a multi-line message, the end otherwise.  </param>
 	 **************************************************************************************************/
 	abstract protected void multiLineOp (bool start); 
 										
