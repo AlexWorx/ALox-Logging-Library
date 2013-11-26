@@ -4,7 +4,7 @@
 //  (c) 2013 A-Worx GmbH,  Published under the The MIT License (Open Source License, see LICENSE.txt)
 //  
 //  Class:	MemoryLogger
-//  File:	MemoryLogger.cs												  Namespace:  com.aworx.lox
+//  File:	MemoryLogger.cs										  Namespace:  com.aworx.lox.loggers
 // #################################################################################################
 using System;
 using System.Runtime.CompilerServices;
@@ -75,12 +75,11 @@ public class MemoryLogger : TextLogger
 		Buffer.Append( msg );
 	}
 
-	/**********************************************************************************************//**
-	 * Empty implementation, not needed for this class
-	 *
-	 * @param start void    
+	/** ***********************************************************************************************
+	 * <summary> Empty implementation, not needed for this class <summary>
+	 * <param name="isStart">	(Optional) The name of the logger. Defaults to "MEMORY". </param>
 	 **************************************************************************************************/
-	override protected void multiLineOp (bool start)
+	override protected void notifyMultiLineOp (bool isStart)
 	{
 	} 
 	#endif // ALOX_DEBUG || ALOX_REL_LOG

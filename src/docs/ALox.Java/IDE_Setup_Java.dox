@@ -159,10 +159,10 @@ The advantages that *ProGuard* offers are:
 
 The disadvantages are:
 - A separated release built step has to be incorporated into your build process.
-- Due to the optimization features of *ProGuard*, the resulting code has be tested extensively. 
+- Due to the optimization features of *ProGuard*, the resulting code has to be tested extensively. 
   (Sometimes *ProGuard* can corrupt your executable.)
 - If you choose to also obfuscate your code (not needed for pruning!) then debugging the release
-  versions of your app gets very tough. Also stack traces from exceptions are only readable 
+  versions of your software gets very tough. Also stack traces from exceptions are only readable 
   using a dedicated *ProGuard* tool.
 
 
@@ -392,7 +392,7 @@ if you obfuscate. This is also not a severe restriction, as these function have 
 to ALox to support debug logging code. They have been made to be pruned!
 For release logging, similar functionality can be included directly into the code.
 
-Finally, it is obvious that [LogToools.instance()](@ref com::aworx::lox::LogTools::instance) will
+Finally, it is obvious that [LogToools.instance()](@ref com::aworx::lox::tools::LogTools::instance) will
 not show readable results when your classes become obfuscated.
   
 ## 2.5 Mission accomplished: Perfect Auto Pruning of ALox code! ##  {#setup_projects_java_pruning_result}

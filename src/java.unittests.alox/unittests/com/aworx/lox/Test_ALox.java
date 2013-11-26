@@ -10,6 +10,7 @@ import com.aworx.lox.*;
 import com.aworx.lox.core.TextLoggerLineFormatter;
 import com.aworx.lox.loggers.ConsoleLogger;
 import com.aworx.lox.loggers.MemoryLogger;
+import com.aworx.lox.tools.LogTools;
 import com.aworx.util.*;
 
 
@@ -645,26 +646,5 @@ public class Test_ALox
 				Log.logConfig( "MLine", Log.Level.INFO, "Our Log configuration is:" );
 			//#endif
 		}
-
-
-		/** ***********************************************************************************************
-		 * 	Log_TestXML
-		 **************************************************************************************************/
-/* NIY-XML
-		@Test 
-		public void Log_TestXML()
-		{
-			clearCreateAndAddLoggers();
-
-			Log.regDomain( "XML", Log.Scope.Method );
-			Log.setDomain( "XML", Log.DomainLevel.All );
-
-
-			String xmltext= "<MainTag> <SubTag>Hallo ALox XML</SubTag> <SubTag2> <SubsubTag>A sub tags' string</SubsubTag> </SubTag2> </MainTag>";
-			XDocument xdoc= XDocument.Parse( xmltext );
-
-			LogTools.XML(Log.Level.Info, xdoc, "Logging an xml document: " );
-		}
-*/
 
 }

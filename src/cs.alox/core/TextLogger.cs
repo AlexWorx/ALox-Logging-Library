@@ -4,7 +4,7 @@
 //  (c) 2013 A-Worx GmbH,  Published under the The MIT License (Open Source License, see LICENSE.txt)
 //  
 //  Class:  TextLogger
-//  File:	TextLogger.cs												  Namespace:  com.aworx.lox
+//  File:	TextLogger.cs											  Namespace:  com.aworx.lox.core
 // #################################################################################################
 
 using System;
@@ -158,12 +158,15 @@ public abstract class TextLogger : Logger
 	/** ***********************************************************************************************
 	 * <summary>
 	 *  Abstract method to be implemented by descendants. This message is called only when multi-line
-	 *  messages are logged. It is called with parameter start equal to true before a series of 
-	 *  doLog() calls of a multi-line message and once after with parameter start equal to false. 
+	 *  messages are logged. It is called exactly once before a series of doLog() calls of a multi-line 
+	 *  message and exactly once after such series. The parameter isStart equals to true in the 
+	 *  pre series call and to false in the post series call. 
+	 *  This is useful if the writing of text includes the acquisition of system resources (e.g. opening
+	 *  a file).
 	 * </summary>
-	 * <param name="start">   	If true, indicates the begin of a multi-line message, the end otherwise.  </param>
+	 * <param name="isStart">	If true, indicates the begin of a multi-line message, the end otherwise.  </param>
 	 **************************************************************************************************/
-	abstract protected void multiLineOp (bool start); 
+	abstract protected void notifyMultiLineOp (bool isStart); 
 										
 
 	// #################################################################################################
@@ -295,7 +298,7 @@ public abstract class TextLogger : Logger
 
 			// signal start of multi line log
 			if ( lineNo == 0 )
-				multiLineOp( true );
+				notifyMultiLineOp( true );
 			 
 			// in mode 3, 4, when meta info is deleted, we log a separate line first!
 			if ( lineNo == 0 && (MultiLineMsgMode == 3 || MultiLineMsgMode == 4) )
@@ -334,7 +337,7 @@ public abstract class TextLogger : Logger
 
 		// signal end of multi line log
 		if ( lineNo > 0 )
-			multiLineOp( false );
+			notifyMultiLineOp( false );
 	}
 
 	#endif // ALOX_DEBUG || ALOX_REL_LOG

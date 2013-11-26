@@ -20,13 +20,17 @@ taken.
 Currently, there is no binary distribution of ALox for C# available. Therefore, the way to incorporate
 ALox into your project is to include the sources. There are two options:
                                                                         
-- add one of the existing ALox class library projects to your solution or to 
+- add one of the existing ALox class library Visual Studio projects to your solution or to 
 - add ALox sources directly to your project. 
 
 \note
 If you do not actually have a C# project (or do not want to touch it now) and you just want to
 have a first look into ALox, then create a new project using the Visual Studio Project Wizard. 
 Be sure to create an executable and that the typical "hello world" sample prints to the Visual Studio console.
+
+\note
+Microsoft claims that Visual Studio enables "round trip engineering" between Visual Studio versions 2010, 2012 and 2013.
+We have not tested ALox with VS 2010, however, 2012 and 2013 both work well within our installation.
 
 <br>
 ## 1.1. Download ##      {#setup_projects_vs_cs_download}
@@ -43,7 +47,7 @@ To incorporate ALox into your Visual Studio solution, you have to follow three s
 __Step 1:__ Choose the right class library project that fits well to your own project target and platform. 
 The projects are found in
 
-        ALOX_LIB_PATH\ide\vstudio.2012\ALox-CS.xxx-DLL-xxx
+        ALOX_LIB_PATH\ide\vstudio\ALox-CS.xxx-DLL-xxx
    
 Your, choices are:
       
@@ -201,15 +205,15 @@ introduced by ALox for C#:
   restrictions in the Windows Phone system architecture).
 
 - **ALOX_NO_REFLECTION**<br>
-  This symbol deactivates the use of reflection in class [LogTools](@ref #com::aworx::lox::LogTools). 
+  This symbol deactivates the use of reflection in class [LogTools](@ref #com::aworx::lox::tools::LogTools). 
   This is useful for target platforms that do not allow instance inspection using reflection techniques.
-  The method [LogTools.Instance](@ref #com::aworx::lox::LogTools::Instance) will be available 
+  The method [LogTools.Instance](@ref #com::aworx::lox::tools::LogTools::Instance) will be available 
   but just convert your object into readable text using *ToString()*.
 
 - **ALOX_NO_XML**<br>
-  This symbol deactivates the use of *System.Xml.Linq* library in class [LogTools](@ref #com::aworx::lox::LogTools). 
+  This symbol deactivates the use of *System.Xml.Linq* library in class [LogTools](@ref #com::aworx::lox::tools::LogTools). 
   This is useful for target platforms that do not support this library. 
-  The method [LogTools.XML](@ref #com::aworx::lox::LogTools::XML) will not be available however.
+  The method [LogTools.XML](@ref #com::aworx::lox::tools::LogTools::XML) will not be available however.
 
 - **ALOX_NO_CONSOLE**<br>
   This symbol deactivates the use of *Console.WriteLine()* calls in class [ConsoleLogger](@ref #com::aworx::lox::loggers::ConsoleLogger). 

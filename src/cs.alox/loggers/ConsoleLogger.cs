@@ -4,7 +4,7 @@
 //  (c) 2013 A-Worx GmbH,  Published under the The MIT License (Open Source License, see LICENSE.txt)
 //  
 //  Class:	ConsoleLogger
-//  File:	ConsoleLogger.cs											Namespace:  com.aworx.lox
+//  File:	ConsoleLogger.cs									Namespace:  com.aworx.lox.loggers
 // #################################################################################################
 
 using System;
@@ -13,7 +13,7 @@ using com.aworx.lox.core;
 using com.aworx.util;
 	
 
-namespace com.aworx.lox.loggers  {
+namespace com.aworx.lox.loggers	{
 
 
 /** ***********************************************************************************************
@@ -33,14 +33,12 @@ namespace com.aworx.lox.loggers  {
  **************************************************************************************************/
 public class ConsoleLogger : TextLogger
 {
-// #################################################################################################
-// Empty method stubs for release version (with no release logging)
-// #################################################################################################
+	// #################################################################################################
+	// Empty method stubs for release version (with no release logging)
+	// #################################################################################################
 #if !(ALOX_DEBUG || ALOX_REL_LOG)
 		public ConsoleLogger( String name= "CONSOLE" ){}
 #else
-
-
 	#if ALOX_DEBUG
 		/// <summary>Enables logging to the debug window of Visual Studio. Defaults to true in
 		// ALOX_DEBUG configuration, to false in ALOX_REL_LOG configuration.</summary>
@@ -119,7 +117,7 @@ public class ConsoleLogger : TextLogger
 	 *
 	 * @param start void    
 	 **************************************************************************************************/
-	override protected void multiLineOp (bool start)
+	override protected void notifyMultiLineOp (bool start)
 	{
 	} 
 

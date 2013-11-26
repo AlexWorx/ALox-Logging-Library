@@ -107,7 +107,7 @@ public abstract class Log
 	// #################################################################################################
 
 	/** The loggers. At least one logger (e.g. ConsoleLogger) needs to be created. */
-	public	static		Lox								LOX					= new Lox();
+	public	static		Lox									LOX					= new Lox();
 	
 	// #################################################################################################
 	// Protected static fields
@@ -172,7 +172,7 @@ public abstract class Log
 	/**********************************************************************************************//**
 	 * Adds a logger to the Log interface. Each log call that is performed through this interface
 	 * will be forwarded to this logger, unless filtered out with optional filter parameter. The
-	 * logger will then check it's domain level against the given log level to decide weather a log
+	 * logger will then check it's domain level against the given log level to decide whether a log
 	 * should performed.
 	 *
 	 * @param logger                The logger to be added.
@@ -182,7 +182,7 @@ public abstract class Log
 	/**********************************************************************************************//**
 	 * Adds a logger to the Log interface. Each log call that is performed through this interface
 	 * will be forwarded to this logger, unless filtered out with optional filter parameter. The
-	 * logger will then check it's domain level against the given log level to decide weather a log
+	 * logger will then check it's domain level against the given log level to decide whether a log
 	 * should performed.
 	 *
 	 * @param logger                The logger to be added.

@@ -527,7 +527,7 @@ log method [Line()]	(@ref #com::aworx::lox::Log::line), setting some default par
 ## 3.4 LogTools: Log complex things easily ##       {#tutjava_more_logtools}
 
 ALox also provides some log functions that log more complex stuff. The design decision was made to not
-put this into the class [Log](@ref #com::aworx::lox::Log) but into a separated class [LogTools](@ref #com::aworx::lox::LogTools).
+put this into the class [Log](@ref #com::aworx::lox::Log) but into a separated class [LogTools](@ref #com::aworx::lox::tools::LogTools).
 However, LogTools is used in the same simple fashion as class Log itself. Consider it just an extension or
 another word for Log. 
 
@@ -535,7 +535,7 @@ On the Java language platform two methods are currently available which are brie
 
 ### 3.4.1 Instance(): Log any object recursively ### {#tutjava_more_logtools_instance}
 
-The method [LogTools.instance()] (@ref #com::aworx::lox::LogTools::instance) allows you to log just any object 
+The method [LogTools.instance()] (@ref #com::aworx::lox::tools::LogTools::instance) allows you to log just any object 
 recursively in a well formatted way. You can try this out quickly by adding the following code to your sample:
 
 \snippet java.unittests.alox/unittests/com/aworx/lox/Tests_Tutorial.java        Tut_Instance
@@ -560,10 +560,10 @@ inspection is not a feature. Therefore, this method is not available for Windows
 
 ### 3.4.2 Exception(): Log an exception recursively (with inner exceptions) ### {#tutjava_more_logtools_exception}
 
-Just like Instance(), the method [LogTools.exception()] (@ref #com::aworx::lox::LogTools::exception) uses the multi
+Just like Instance(), the method [LogTools.exception()] (@ref #com::aworx::lox::tools::LogTools::exception) uses the multi
 line feature of ALox to log out the contents of a Java Exception well formatted and recursively (following inner exceptions).
  
-Of-course a perfect place in your code to add [LogTools.exception()] (@ref #com::aworx::lox::LogTools::exception) is
+Of-course a perfect place in your code to add [LogTools.exception()] (@ref #com::aworx::lox::tools::LogTools::exception) is
 the first line within a *catch() block*. 
 
 To try it out, add the following code into your project:
@@ -571,7 +571,7 @@ To try it out, add the following code into your project:
 \snippet java.unittests.alox/unittests/com/aworx/lox/Tests_Tutorial.java        Tut_Exceptions
 
 
-Like the method [LogTools.instance()] (@ref #com::aworx::lox::LogTools::instance), a headline for the Exception log output can be specified.
+Like the method [LogTools.instance()] (@ref #com::aworx::lox::tools::LogTools::instance), a headline for the Exception log output can be specified.
 This allows you to save another line of code, which would be logging the headline explicitly.
 
 The following log output will be generated:
@@ -581,7 +581,7 @@ The following log output will be generated:
 \~Comment  NIY in Java (when adding, change number some paragraphs above
 ### 3.4.3 XML(): Log out an XML document or element  ### {#tutjava_more_logtools_xml}
 
-The third method in LogTools that logs a complex object is [LogTools.exception()] (@ref #com::aworx::lox::LogTools::exception) for
+The third method in LogTools that logs a complex object is [LogTools.exception()] (@ref #com::aworx::lox::tools::LogTools::exception) for
 logging objects of type XMLDocument or XMLElement. Here is a quick sample code:
 
 \snippet java.unittests.alox/unittests/com/aworx/lox/Tests_Tutorial.java        Tut_XML
@@ -594,7 +594,7 @@ The output will look similar to this:
 <BR>
 ## 3.5 Indentation ##                    {#tutjava_more_indentation}
 
-The outputs of the above samples which make use of the [LogTools](@ref #com::aworx::lox::LogTools) class look nice because 
+The outputs of the above samples which make use of the [LogTools](@ref #com::aworx::lox::tools::LogTools) class look nice because 
 they use indentation when they recursively walk through a complex object.
 
 Indentation is a core feature of every single log method. We just did not use it yet, because

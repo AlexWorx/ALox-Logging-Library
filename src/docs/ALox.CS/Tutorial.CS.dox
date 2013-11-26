@@ -503,7 +503,7 @@ log method [Line()]	(@ref #com::aworx::lox::Log::Line), setting some default par
 ## 3.4 LogTools: Log complex things easily ##       {#tutcs_more_logtools}
 
 ALox also provides some log functions that log more complex stuff. The design decision was made to not
-put this into the class [Log](@ref #com::aworx::lox::Log) but into a separated class [LogTools](@ref #com::aworx::lox::LogTools).
+put this into the class [Log](@ref #com::aworx::lox::Log) but into a separated class [LogTools](@ref #com::aworx::lox::tools::LogTools).
 However, LogTools is used in the same simple fashion as class Log itself. Consider it just an extension or
 another word for Log. 
 
@@ -511,7 +511,7 @@ On the C# language platform three methods are currently available which are brie
 
 ### 3.4.1 Instance(): Log any object recursively ### {#tutcs_more_logtools_instance}
 
-The method [LogTools.Instance()] (@ref #com::aworx::lox::LogTools::Instance) allows you to log just any object 
+The method [LogTools.Instance()] (@ref #com::aworx::lox::tools::LogTools::Instance) allows you to log just any object 
 recursively in a well formatted way. You can try this out quickly by adding the following code to your sample:
 
 \snippet cs.unittests.alox/Tests_Tutorial.cs        Tut_Instance
@@ -535,10 +535,10 @@ inspection is not a feature. Therefore, this method is not available for Windows
 
 ### 3.4.2 Exception(): Log an exception recursively (with inner exceptions) ### {#tutcs_more_logtools_exception}
 
-Just like Instance(), the method [LogTools.Exception()] (@ref #com::aworx::lox::LogTools::Exception) uses the multi
+Just like Instance(), the method [LogTools.Exception()] (@ref #com::aworx::lox::tools::LogTools::Exception) uses the multi
 line feature of ALox to log out the contents of a C# Exception well formatted and recursively (following inner exceptions).
  
-Of-course a perfect place in your code to add [LogTools.Exception()] (@ref #com::aworx::lox::LogTools::Exception) is
+Of-course a perfect place in your code to add [LogTools.Exception()] (@ref #com::aworx::lox::tools::LogTools::Exception) is
 the first line within a *catch() block*. 
 
 To try it out, add the following code into your project:
@@ -546,7 +546,7 @@ To try it out, add the following code into your project:
 \snippet cs.unittests.alox/Tests_Tutorial.cs        Tut_Exceptions
 
 
-Like the method [LogTools.Instance()] (@ref #com::aworx::lox::LogTools::Instance), a headline for the Exception log output can be specified.
+Like the method [LogTools.Instance()] (@ref #com::aworx::lox::tools::LogTools::Instance), a headline for the Exception log output can be specified.
 This allows you to save another line of code, which would be logging the headline explicitly.
 
 The following log output will be generated:
@@ -556,7 +556,7 @@ The following log output will be generated:
 
 ### 3.4.3 XML(): Log out an XML document or element ### {#tutcs_more_logtools_xml}
 
-The third method in LogTools that logs a complex object is [LogTools.Exception()] (@ref #com::aworx::lox::LogTools::Exception) for
+The third method in LogTools that logs a complex object is [LogTools.Exception()] (@ref #com::aworx::lox::tools::LogTools::Exception) for
 logging objects of type XMLDocument or XMLElement. Here is a quick sample code:
 
 \snippet cs.unittests.alox/Tests_Tutorial.cs        Tut_XML
@@ -568,7 +568,7 @@ The output will look similar to this:
 <BR>
 ## 3.5 Indentation ##                    {#tutcs_more_indentation}
 
-The outputs of the above samples which make use of the [LogTools](@ref #com::aworx::lox::LogTools) class look nice because 
+The outputs of the above samples which make use of the [LogTools](@ref #com::aworx::lox::tools::LogTools) class look nice because 
 they use indentation when they recursively walk through a complex object.
 
 Indentation is a core feature of every single log method. We just did not use it yet, because

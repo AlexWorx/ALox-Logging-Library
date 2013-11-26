@@ -17,6 +17,18 @@ The first released version was Version 1.0.1 in **May 2013**.
 
 This change log is sorted reversely in respect to chronology. 
 
+## Version 1.1.1, released November 26th, 2013 ##
+- Added a first, simplistic file logger. This is really just a first shot, not optimized in any
+  respect. This is due to be extended in next versions.
+- Created an own source folder for tools and moved class [LogTools](@ref #com::aworx::lox::tools::LogTools)
+  there. 
+- C# Version: Improvement of [LogTools.Instance](@ref #com::aworx::lox::tools::LogTools::Instance) to be 
+  able to handle members of type KeyValuePair<,>, which are considered a value type in C#.
+- C# Version: In the tool section, added a simple generic JSON file reader which in combination with 
+  [LogTools.Instance](@ref #com::aworx::lox::tools::LogTools::Instance) provides very easy simplistic
+  JSON handling (good for quick and dirty exploration of JSON data).
+
+  
 ## Version 1.1.0, released July 31st, 2013 ##
 - First ALox for Java Release!
   100% Feature complete (as compared to actual C# Version). 
@@ -130,7 +142,7 @@ This change log is sorted reversely in respect to chronology.
 
 - Fixed list of minor bugs
 
-- Some improvements in formatted output of class [LogTools](@ref #com::aworx::lox::LogTools)
+- Some improvements in formatted output of class [LogTools](@ref #com::aworx::lox::tools::LogTools)
 
 - Improvements in formatted output of method [Log.LogConfig()](@ref #com::aworx::lox::Log::LogConfig)
 

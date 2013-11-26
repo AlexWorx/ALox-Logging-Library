@@ -269,9 +269,9 @@ is minimal either way and just about some memory allocation for the internal con
 \note
 For the logging of complex objects using reflection, there is no need to derive your own  
 [TextLoggerObjectConverter](@ref #com.aworx.lox.core.TextLoggerObjectConverter). In class 
-[LogTools](@ref #com.aworx.lox.LogTools) you will find a tool function that recursively 
+[LogTools](@ref #com.aworx.lox.tools.LogTools) you will find a tool function that recursively 
 and prettily dumps out instances of any class using reflection. 
-See [LogTools.Instance()](@ref #com.aworx.lox.LogTools.Instance) for further information.
+See [LogTools.Instance()](@ref #com.aworx.lox.tools.LogTools.Instance) for further information.
   
 ## 2.2 The multi-line features of class TextLogger ## {#man_loggers_textlogger_multiline}
 Class [TextLogger](@ref #com.aworx.lox.core.TextLogger) provides a feature to log a message

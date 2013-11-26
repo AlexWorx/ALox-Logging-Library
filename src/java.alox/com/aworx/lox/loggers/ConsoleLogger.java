@@ -83,7 +83,7 @@ public class ConsoleLogger extends TextLogger
 	 *
 	 * @param start void    
 	 **************************************************************************************************/
-	@Override protected void multiLineOp (boolean start)
+	@Override protected void notifyMultiLineOp (boolean start)
 	{
 	} 
 	

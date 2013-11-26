@@ -150,7 +150,7 @@ public class Lox
     /**********************************************************************************************//**
      * Adds a logger to the Log interface. Each log call that is performed through this Lox will be
      * forwarded to this logger, unless filtered out with optional filter parameter. The logger will
-     * then check it's domain level against the given log level to decide weather a log should
+     * then check it's domain level against the given log level to decide whether a log should
      * performed.
      *
      * @param logger    The logger to be added.
@@ -160,7 +160,7 @@ public class Lox
     /**********************************************************************************************//**
      * Adds a logger to the Log interface. Each log call that is performed through this Lox will be
      * forwarded to this logger, unless filtered out with optional filter parameter. The logger will
-     * then check it's domain level against the given log level to decide weather a log should
+     * then check it's domain level against the given log level to decide whether a log should
      * performed.
      *
      * @param logger                The logger to be added.

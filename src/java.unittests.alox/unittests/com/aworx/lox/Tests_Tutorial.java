@@ -9,9 +9,11 @@ import org.junit.Test;
 
 
 
+
 //! [Tut_using_statement]
 import com.aworx.lox.*;
 import com.aworx.lox.loggers.*;
+import com.aworx.lox.tools.LogTools;
 //! [Tut_using_statement]
 import com.aworx.lox.core.TextLogger;
 import com.aworx.util.*;

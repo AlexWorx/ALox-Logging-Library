@@ -3,10 +3,16 @@ using System.Xml.Linq;
 using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+using com.aworx.util;
 using com.aworx.lox;
 using com.aworx.lox.core;
-using com.aworx.util;
 using com.aworx.lox.loggers;
+using com.aworx.lox.tools;
+using System.Collections.Generic;
+
+#if !WINDOWS_PHONE
+	using com.aworx.lox.tools.json;
+#endif
 
 namespace com.aworx.unittests.lox
 {
@@ -544,7 +550,7 @@ namespace com.aworx.unittests.lox
 		}
 
 		/** ***********************************************************************************************
-		 * <summary>	Log_TestXML </summary>
+		 * <summary>	Log_TestInstance </summary>
 		 **************************************************************************************************/
 		[TestMethod]
 		#if !WINDOWS_PHONE
@@ -679,5 +685,40 @@ namespace com.aworx.unittests.lox
 			LogTools.XML(Log.Level.Info, xdoc, "Logging an xml document: " );
 		}
 
+		/** ***********************************************************************************************
+		 * <summary>	Log_JSON </summary>
+		 **************************************************************************************************/
+		#if !WINDOWS_PHONE
+			[TestMethod]
+			[TestCategory("ALox")]
+			public void Log_JSON()
+			{
+				clearCreateAndAddLoggers();
+
+				Log.RegDomain( "JSON", Log.Scope.Method );
+				Log.SetDomain( "JSON", Log.DomainLevel.All );
+
+
+				String	jsonString= 
+					"{\"glossary\": "
+						+ "{\"title\": \"example glossary\",\"GlossDiv\":"
+							+ "{\"title\": \"S\",\"GlossList\": "
+								+ "{\"GlossEntry\":"
+									+ "{\"ID\": \"SGML\",\"SortAs\": \"SGML\",\"GlossTerm\": \"Standard Generalized Markup Language\","
+									+ "\"Acronym\": \"SGML\",\"Abbrev\": \"ISO 8879:1986\",\"GlossDef\":"
+										+ "{\"para\": \"A meta-markup language, used to create markup languages such as DocBook.\",\"GlossSeeAlso\": [\"GML\", \"XML\"]"
+										+ "},"
+									+ "\"GlossSee\": \"markup\""
+									+ "}"
+								+ "}"
+							+ "}"
+						+ "}"
+					+ "}";
+				//Log.Info(jsonString);
+				IDictionary<string, object> dict= DynamicJSONDeserializer.FromString( jsonString );
+
+				LogTools.Instance(Log.Level.Info, dict, 100, "Logging an JSON data: " );
+			}
+		#endif
 	}
 }
