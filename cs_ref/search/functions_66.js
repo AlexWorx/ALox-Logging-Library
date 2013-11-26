@@ -8,5 +8,6 @@ var searchData=
   ['fromepochmillis',['FromEpochMillis',['../classcom_1_1aworx_1_1util_1_1Ticker.html#a45d3916fd9a582e8c6f724ad818882bb',1,'com::aworx::util::Ticker']]],
   ['frommicros',['FromMicros',['../classcom_1_1aworx_1_1util_1_1Ticker.html#af0da9284c84b48770e00a3c49fcec905',1,'com::aworx::util::Ticker']]],
   ['frommillis',['FromMillis',['../classcom_1_1aworx_1_1util_1_1Ticker.html#ab80965005ac6ffa5c7b676f60abf9bc1',1,'com::aworx::util::Ticker']]],
-  ['fromnanos',['FromNanos',['../classcom_1_1aworx_1_1util_1_1Ticker.html#a43b1f0d145027ca85981416e3063b4c6',1,'com::aworx::util::Ticker']]]
+  ['fromnanos',['FromNanos',['../classcom_1_1aworx_1_1util_1_1Ticker.html#a43b1f0d145027ca85981416e3063b4c6',1,'com::aworx::util::Ticker']]],
+  ['fromstring',['FromString',['../classcom_1_1aworx_1_1lox_1_1tools_1_1json_1_1DynamicJSONDeserializer.html#ae8ed5a6a4f77379a35ea093f0cdf50d5',1,'com::aworx::lox::tools::json::DynamicJSONDeserializer']]]
 ];

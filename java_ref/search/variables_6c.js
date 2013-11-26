@@ -3,7 +3,7 @@ var searchData=
   ['length',['length',['../classcom_1_1aworx_1_1util_1_1MString.html#a9f59b34b1f25fe00023291b678246bcc',1,'com::aworx::util::MString']]],
   ['level',['level',['../classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a1a9f7325c08dd31ecae733ac275a3791',1,'com::aworx::lox::core::LogDomain']]],
   ['lineformatter',['lineFormatter',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#aa5e10d11120b3589e7b35e5ae709f9e5',1,'com::aworx::lox::core::TextLogger']]],
-  ['lock',['lock',['../classcom_1_1aworx_1_1lox_1_1LogTools.html#a77074852c5d95a31cab43e8c85871c64',1,'com.aworx.lox.LogTools.lock()'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#a77074852c5d95a31cab43e8c85871c64',1,'com.aworx.lox.Lox.lock()']]],
+  ['lock',['lock',['../classcom_1_1aworx_1_1lox_1_1Lox.html#a77074852c5d95a31cab43e8c85871c64',1,'com.aworx.lox.Lox.lock()'],['../classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a77074852c5d95a31cab43e8c85871c64',1,'com.aworx.lox.tools.LogTools.lock()']]],
   ['lockcount',['lockCount',['../classcom_1_1aworx_1_1util_1_1ThreadLock.html#a7f41e1e3070abd18f7cdfdb9a95b3d9c',1,'com::aworx::util::ThreadLock']]],
   ['logbuf',['logBuf',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#aaf37e693e36d895e18bcc1f6037f5d9e',1,'com.aworx.lox.core.TextLogger.logBuf()'],['../classcom_1_1aworx_1_1lox_1_1Log.html#a7cb12d57dc01488b568522f5a4f576e5',1,'com.aworx.lox.Log.logBuf()'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#aaf37e693e36d895e18bcc1f6037f5d9e',1,'com.aworx.lox.Lox.logBuf()']]],
   ['logbuflock',['logBufLock',['../classcom_1_1aworx_1_1lox_1_1Log.html#a115a099b1c0c5425cd37ec7b54056d01',1,'com.aworx.lox.Log.logBufLock()'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#a115a099b1c0c5425cd37ec7b54056d01',1,'com.aworx.lox.Lox.logBufLock()']]],

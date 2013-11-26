@@ -6,5 +6,6 @@ var searchData=
   ['defaultdomains',['defaultDomains',['../classcom_1_1aworx_1_1lox_1_1Lox.html#ad8161c647b7b5d806611c07ad2357e75',1,'com::aworx::lox::Lox']]],
   ['detectdateformatchanges',['detectDateFormatChanges',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#ab621f55d7a1a3c04988089afeea88208',1,'com::aworx::lox::core::TextLoggerLineFormatter']]],
   ['detecttimeofdayformatchanges',['detectTimeOfDayFormatChanges',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#ae2eb584a3f8074d9b14f56741ff2b628',1,'com::aworx::lox::core::TextLoggerLineFormatter']]],
+  ['dictionary',['Dictionary',['../classcom_1_1aworx_1_1lox_1_1tools_1_1json_1_1DynamicJSONDeserializer_1_1DynamicJsonObject.html#a0ecddbd2f0dd3f9e45aea60eb4e4fe53',1,'com::aworx::lox::tools::json::DynamicJSONDeserializer::DynamicJsonObject']]],
   ['domainseparatorchars',['DomainSeparatorChars',['../classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#afb75ecb5fef3bcf61597efd190ca0114',1,'com::aworx::lox::core::LogDomain']]]
 ];

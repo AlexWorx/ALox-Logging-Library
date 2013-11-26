@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['tempbuf',['tempBuf',['../classcom_1_1aworx_1_1lox_1_1LogTools.html#a570982a6045c2e2c409321b2e1a01898',1,'com::aworx::lox::LogTools']]],
+  ['tempbuf',['tempBuf',['../classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a570982a6045c2e2c409321b2e1a01898',1,'com::aworx::lox::tools::LogTools']]],
   ['tempdomain',['tempDomain',['../classcom_1_1aworx_1_1lox_1_1Lox.html#ab1e2c7dee8db47cd16ca92fb3a7ae904',1,'com::aworx::lox::Lox']]],
   ['tempdomainpath',['tempDomainPath',['../classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#af717d7b13f31ce14d19c3b24707f20f6',1,'com::aworx::lox::core::Logger']]],
-  ['templineendidx',['tempLineEndIdx',['../classcom_1_1aworx_1_1lox_1_1LogTools.html#a3e071e391087b62155ccd1f5b3e3ab46',1,'com::aworx::lox::LogTools']]],
-  ['templinestartidx',['tempLineStartIdx',['../classcom_1_1aworx_1_1lox_1_1LogTools.html#a93c641104eda6fb4550ce017b73430bf',1,'com::aworx::lox::LogTools']]],
+  ['templineendidx',['tempLineEndIdx',['../classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a3e071e391087b62155ccd1f5b3e3ab46',1,'com::aworx::lox::tools::LogTools']]],
+  ['templinestartidx',['tempLineStartIdx',['../classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a93c641104eda6fb4550ce017b73430bf',1,'com::aworx::lox::tools::LogTools']]],
   ['tempms',['tempMS',['../classcom_1_1aworx_1_1lox_1_1Lox.html#a0d99bb961369853273a8f67384b2c3c1',1,'com::aworx::lox::Lox']]],
   ['tempsbuf',['tempSBuf',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#afe17394f84cf5bdb4891727e32f49300',1,'com::aworx::lox::core::TextLoggerLineFormatter']]],
   ['thread',['thread',['../classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#ac99b75d10f465c1160242dea4544069a',1,'com::aworx::lox::core::CallerInfo']]],
@@ -24,5 +24,5 @@ var searchData=
   ['timeofdayformatter',['timeOfDayFormatter',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#aeb350e099bc2a47cf6c85fa0db340748',1,'com::aworx::lox::core::TextLoggerLineFormatter']]],
   ['timeoflastlog',['timeOfLastLog',['../classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a101380ea5d8e738d844f5562a39b5174',1,'com::aworx::lox::core::Logger']]],
   ['timestamp',['timeStamp',['../classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#af11689f2da47b3d6082a1afd0a7a20ae',1,'com::aworx::lox::core::CallerInfo']]],
-  ['toolbuf',['toolBuf',['../classcom_1_1aworx_1_1lox_1_1LogTools.html#ab2b7fd952d42f838905b7ce560f1e68e',1,'com::aworx::lox::LogTools']]]
+  ['toolbuf',['toolBuf',['../classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#ab2b7fd952d42f838905b7ce560f1e68e',1,'com::aworx::lox::tools::LogTools']]]
 ];

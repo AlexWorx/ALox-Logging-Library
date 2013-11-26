@@ -11,5 +11,6 @@ var searchData=
   ['cntmeasures',['cntMeasures',['../classcom_1_1aworx_1_1util_1_1TickTime.html#a388aae1c6d770ab01965f0d01b2fdc1a',1,'com::aworx::util::TickTime']]],
   ['consolebuffer',['consoleBuffer',['../classcom_1_1aworx_1_1lox_1_1android_1_1AndroidLogCatLogger.html#a13297cc2c876d3e5667e2c567efbb377',1,'com::aworx::lox::android::AndroidLogCatLogger']]],
   ['creationtimedatemillis',['creationTimeDateMillis',['../classcom_1_1aworx_1_1util_1_1Ticker.html#a8843ea79744d6cae8884ad2c81737d8c',1,'com::aworx::util::Ticker']]],
-  ['creationtimesystemnanos',['creationTimeSystemNanos',['../classcom_1_1aworx_1_1util_1_1Ticker.html#a17c2298e03748d9bff95cdf0fb8bcc6c',1,'com::aworx::util::Ticker']]]
+  ['creationtimesystemnanos',['creationTimeSystemNanos',['../classcom_1_1aworx_1_1util_1_1Ticker.html#a17c2298e03748d9bff95cdf0fb8bcc6c',1,'com::aworx::util::Ticker']]],
+  ['currentlyinmultilineop',['currentlyInMultiLineOp',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html#a8a408a0f7e8f2d08e08e1d475388107c',1,'com::aworx::lox::loggers::TextFileLogger']]]
 ];

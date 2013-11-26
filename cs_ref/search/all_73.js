@@ -2,13 +2,14 @@ var searchData=
 [
   ['saveandset',['saveAndSet',['../classcom_1_1aworx_1_1lox_1_1Lox.html#a27b95a1106d1211289720ecf01db9e81',1,'com::aworx::lox::Lox']]],
   ['scope',['Scope',['../classcom_1_1aworx_1_1lox_1_1Log.html#aaecc53892786f2fa11e682f633af84c6',1,'com::aworx::lox::Log']]],
+  ['serialize',['Serialize',['../classcom_1_1aworx_1_1lox_1_1tools_1_1json_1_1DynamicJSONDeserializer.html#a115cd59bd1cbe0bfeba59015090b8fa2',1,'com::aworx::lox::tools::json::DynamicJSONDeserializer']]],
   ['set',['Set',['../classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#a57555728289b3e873ec939e3a20bc084',1,'com::aworx::lox::core::CallerInfo']]],
-  ['setconsumablesourcepathprefix',['SetConsumableSourcePathPrefix',['../classcom_1_1aworx_1_1lox_1_1Log.html#a8ca190d37d5b67e60b1c1506adc25e7b',1,'com.aworx.lox.Log.SetConsumableSourcePathPrefix()'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#a2f942041d5724873ea6daa9fdd86563f',1,'com.aworx.lox.Lox.SetConsumableSourcePathPrefix()']]],
-  ['setdisabled',['SetDisabled',['../classcom_1_1aworx_1_1lox_1_1Log.html#ab49f2ffa2ac6ff60e03a7042461d894e',1,'com.aworx.lox.Log.SetDisabled()'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#a86ab9bdfd6b89e7a20ab2508bf00fc9e',1,'com.aworx.lox.Lox.SetDisabled()']]],
-  ['setdomain',['SetDomain',['../classcom_1_1aworx_1_1lox_1_1Log.html#aa581535137279580a7e3236132275700',1,'com.aworx.lox.Log.SetDomain()'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#a1d80a2ac703e5137a8649bb6e51cbb92',1,'com.aworx.lox.Lox.SetDomain()']]],
+  ['setconsumablesourcepathprefix',['SetConsumableSourcePathPrefix',['../classcom_1_1aworx_1_1lox_1_1Log.html#ac929bdf5c24e7713c817f83d020d504a',1,'com.aworx.lox.Log.SetConsumableSourcePathPrefix()'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#af18033862779e2fb6758c0368290b46d',1,'com.aworx.lox.Lox.SetConsumableSourcePathPrefix()']]],
+  ['setdisabled',['SetDisabled',['../classcom_1_1aworx_1_1lox_1_1Log.html#a9d97d9ea1b27436cedd5195a6f2f4867',1,'com.aworx.lox.Log.SetDisabled()'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#ac19aea9f7a17923c0fe41990d701538f',1,'com.aworx.lox.Lox.SetDisabled()']]],
+  ['setdomain',['SetDomain',['../classcom_1_1aworx_1_1lox_1_1Log.html#a4288665943d2ce35935634d3930c9db1',1,'com.aworx.lox.Log.SetDomain()'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#adddbfe67bfaa5b84a9a01503fa423313',1,'com.aworx.lox.Lox.SetDomain()']]],
   ['setlevel',['SetLevel',['../classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a6b11c04355e05570006df5aa449f62db',1,'com::aworx::lox::core::LogDomain']]],
-  ['setmarker',['SetMarker',['../classcom_1_1aworx_1_1lox_1_1Log.html#a743ee0a0ddfa6e6cdcabb4695a548d81',1,'com.aworx.lox.Log.SetMarker()'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#acf90c6eb026b11c9f2bc528e78c34832',1,'com.aworx.lox.Lox.SetMarker()']]],
-  ['setstarttime',['SetStartTime',['../classcom_1_1aworx_1_1lox_1_1Log.html#ad0aaaed2c1edfeac7c2005502c48cc2d',1,'com.aworx.lox.Log.SetStartTime()'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#ad5a5538441906cd183b14593e4a6525d',1,'com.aworx.lox.Lox.SetStartTime()']]],
+  ['setmarker',['SetMarker',['../classcom_1_1aworx_1_1lox_1_1Log.html#ad302d68c6786a82d3c21eb749fb40015',1,'com.aworx.lox.Log.SetMarker()'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#a81953e8bd2915702eccfad989570e156',1,'com.aworx.lox.Lox.SetMarker()']]],
+  ['setstarttime',['SetStartTime',['../classcom_1_1aworx_1_1lox_1_1Log.html#a1bd69f9755411a857b06d5cd5bf4be69',1,'com.aworx.lox.Log.SetStartTime()'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#ac4e1e9de43f94c25f2b2eb7be54f7a7a',1,'com.aworx.lox.Lox.SetStartTime()']]],
   ['setto',['SetTo',['../structcom_1_1aworx_1_1util_1_1TickTime.html#adaff9e91bf2bf109eb4238a7c6fb9ffe',1,'com::aworx::util::TickTime']]],
   ['settonow',['SetToNow',['../structcom_1_1aworx_1_1util_1_1TickTime.html#aaa9eaa4f0de081c6f34ff9557cc04e62',1,'com::aworx::util::TickTime']]],
   ['setunsafe',['SetUnsafe',['../classcom_1_1aworx_1_1util_1_1ThreadLock.html#ae8c3cd592757e0998048abf426d2412c',1,'com::aworx::util::ThreadLock']]],
@@ -22,5 +23,7 @@ var searchData=
   ['spaninmillis',['SpanInMillis',['../structcom_1_1aworx_1_1util_1_1TickTime.html#a5a92e041a09e093bd25a65cc79b804f4',1,'com::aworx::util::TickTime']]],
   ['startswith',['StartsWith',['../classcom_1_1aworx_1_1util_1_1MString.html#a333af236691b446f1c84a9b9d5275908',1,'com::aworx::util::MString']]],
   ['subdomains',['SubDomains',['../classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a376c0d4a4807be43e52cd1ad25a09ace',1,'com::aworx::lox::core::LogDomain']]],
-  ['sum',['sum',['../structcom_1_1aworx_1_1util_1_1TickTime.html#ad21ee1949296449cb2806778a7fc94de',1,'com::aworx::util::TickTime']]]
+  ['sum',['sum',['../structcom_1_1aworx_1_1util_1_1TickTime.html#ad21ee1949296449cb2806778a7fc94de',1,'com::aworx::util::TickTime']]],
+  ['supportedtypes',['SupportedTypes',['../classcom_1_1aworx_1_1lox_1_1tools_1_1json_1_1DynamicJSONDeserializer.html#aa7fc96d53ba9a1823678b99be1580b0d',1,'com::aworx::lox::tools::json::DynamicJSONDeserializer']]],
+  ['sw',['sw',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html#a6943cae82840a1d0b33fe03557040219',1,'com::aworx::lox::loggers::TextFileLogger']]]
 ];

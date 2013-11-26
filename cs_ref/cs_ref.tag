@@ -60,8 +60,8 @@
     <filename>namespacecom_1_1aworx_1_1lox.html</filename>
     <namespace>com::aworx::lox::core</namespace>
     <namespace>com::aworx::lox::loggers</namespace>
+    <namespace>com::aworx::lox::tools</namespace>
     <class kind="class">com::aworx::lox::Log</class>
-    <class kind="class">com::aworx::lox::LogTools</class>
     <class kind="class">com::aworx::lox::Lox</class>
   </compound>
   <compound kind="class">
@@ -191,8 +191,8 @@
       <type>static void</type>
       <name>SetConsumableSourcePathPrefix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a8ca190d37d5b67e60b1c1506adc25e7b</anchor>
-      <arglist>(String cspp,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>ac929bdf5c24e7713c817f83d020d504a</anchor>
+      <arglist>(String cspp, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static MString</type>
@@ -212,8 +212,8 @@
       <type>static void</type>
       <name>AddLogger</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a48c449476d1fd8d89894d79a3083c47c</anchor>
-      <arglist>(Logger logger, DomainLevel internalDomainLevel=DomainLevel.WarningsAndErrors,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a39c0cfae2056cb6f41128c4ae5679cba</anchor>
+      <arglist>(Logger logger, DomainLevel internalDomainLevel=DomainLevel.WarningsAndErrors, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
@@ -233,148 +233,148 @@
       <type>static void</type>
       <name>RegDomain</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>ad82a9166e7179f88e1c66c76afc32d35</anchor>
-      <arglist>(String domain, Log.Scope scope,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a5e8f1e6092851cabd2bb0e766cbfbb14</anchor>
+      <arglist>(String domain, Log.Scope scope, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>SetDomain</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>aa581535137279580a7e3236132275700</anchor>
-      <arglist>(String domain, DomainLevel domainLevel, bool recursive=true, String loggerFilter=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a4288665943d2ce35935634d3930c9db1</anchor>
+      <arglist>(String domain, DomainLevel domainLevel, bool recursive=true, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>SetDisabled</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>ab49f2ffa2ac6ff60e03a7042461d894e</anchor>
-      <arglist>(bool disabled, String loggerFilter=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a9d97d9ea1b27436cedd5195a6f2f4867</anchor>
+      <arglist>(bool disabled, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>SetStartTime</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>ad0aaaed2c1edfeac7c2005502c48cc2d</anchor>
-      <arglist>(DateTime?startTime=null, String loggerFilter=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a1bd69f9755411a857b06d5cd5bf4be69</anchor>
+      <arglist>(DateTime?startTime=null, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>MapThreadName</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>ac412e05b0ef291166764d99bf255e550</anchor>
-      <arglist>(String threadName, int id=-1,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a99487aa02122a2ddf46146259faeda1c</anchor>
+      <arglist>(String threadName, int id=-1, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>SetMarker</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a743ee0a0ddfa6e6cdcabb4695a548d81</anchor>
-      <arglist>(Object marker, Log.Scope scope,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>ad302d68c6786a82d3c21eb749fb40015</anchor>
+      <arglist>(Object marker, Log.Scope scope, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>GetMarker</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a1a6524586457c57f00bd4f6fb309512a</anchor>
-      <arglist>(Object[] markerPointer, Log.Scope scope,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a4576b25512979ba59a7180486b18874a</anchor>
+      <arglist>(Object[] markerPointer, Log.Scope scope, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>LogConfig</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>ab0a8ad96173757285e9ab5e832d6bee9</anchor>
-      <arglist>(String domain, Log.Level level, String headLine, String loggerFilter=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>ae2f57078a4a860f7e16adfe726d81338</anchor>
+      <arglist>(String domain, Log.Level level, String headLine, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>Verbose</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a8646e072715a76d18a5a581a7a031ca7</anchor>
-      <arglist>(Object msg, int indent=0,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>ae7cd2d23b5a04d9cc3a073cf3b58121e</anchor>
+      <arglist>(Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>Verbose</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a8275e68d3beb1580971d608f071c95d9</anchor>
-      <arglist>(String domain, Object msg, int indent=0,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>aef109fd14f5ee0cc93c271dc40c576ea</anchor>
+      <arglist>(String domain, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>Info</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>ad770b53fc9b6872bf9160b9001a393aa</anchor>
-      <arglist>(Object msg, int indent=0,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a8d4eed10072fbce336d60fd926d7c698</anchor>
+      <arglist>(Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>Info</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a8bb22c0b2c0703060eb5db8c638a4373</anchor>
-      <arglist>(String domain, Object msg, int indent=0,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>ac3b403e887df378d8bdb9c480432e4b4</anchor>
+      <arglist>(String domain, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>Warning</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a4b9e2f35dadea676f0bebe0a80c9f168</anchor>
-      <arglist>(Object msg, int indent=0,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a1c5a83906517e5233bfde85c6dde7a81</anchor>
+      <arglist>(Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>Warning</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a0b68b2cc760d84b02b5ad96ff45f25ed</anchor>
-      <arglist>(String domain, Object msg, int indent=0,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a9eefa1e047d6b4eb185e8b6dfec21472</anchor>
+      <arglist>(String domain, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>Error</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a3a18674e47f0eb74c55eb7f8c44508dd</anchor>
-      <arglist>(Object msg, int indent=0,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>aaad724a6f491718ebea94e5bdc304eaf</anchor>
+      <arglist>(Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>Error</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>ac45da91372538ac41ae599081dcdd65b</anchor>
-      <arglist>(String domain, Object msg, int indent=0,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>afbd8c7a382e995b163bc98a3bdad137e</anchor>
+      <arglist>(String domain, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>Assert</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>aec98b95865d8af15195eed1c3b86f7f7</anchor>
-      <arglist>(bool trueOrLog, Object msg, int indent=0,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>aee095ff4374fa0a92674287dc27a08d1</anchor>
+      <arglist>(bool trueOrLog, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>Assert</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a18185a2d919187e0821d2a5dd7b2f92a</anchor>
-      <arglist>(bool trueOrLog, String domain, Object msg, int indent=0,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a3d4802c79d9f529479edeab504bbe7fb</anchor>
+      <arglist>(bool trueOrLog, String domain, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>Line</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>ad76120113b208f598fbff178bbe1cf5e</anchor>
-      <arglist>(bool doLog, String domain, Level level, Object msg, int indent=0, String loggerFilter=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>af545c26975f606a7ea708d954d1c6db8</anchor>
+      <arglist>(bool doLog, String domain, Level level, Object msg, int indent=0, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>Line</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a1db71a73d8e2353322344c10ff4f3784</anchor>
-      <arglist>(String domain, Level level, Object msg, int indent=0, String loggerFilter=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a4da83abd593e5558182f7ebe0b9bd789</anchor>
+      <arglist>(String domain, Level level, Object msg, int indent=0, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>Line</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a9576c4d997ddce0598d77708cafdd9a5</anchor>
-      <arglist>(Level level, Object msg, int indent=0, String loggerFilter=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>adf23b6f4fc2211516fa1bbf5df64e5bc</anchor>
+      <arglist>(Level level, Object msg, int indent=0, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static Lox</type>
@@ -401,290 +401,6 @@
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log_1_1ALoxAWXUErrorHandler.html</anchorfile>
       <anchor>a054c4b2d956d70587cfc45b54d09d1c9</anchor>
       <arglist>(Object msg)</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>com::aworx::lox::LogTools</name>
-    <filename>classcom_1_1aworx_1_1lox_1_1LogTools.html</filename>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>Exception</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>a3a172ec6285dc3cdd47f147801dbbc32</anchor>
-      <arglist>(String domain, Log.Level level, Exception e, String headline=null, int indent=0, Lox lox=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>Exception</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>a64f87b393288e74399e1be5a18339ab0</anchor>
-      <arglist>(Log.Level level, Exception e, String headline=null, int indent=0, Lox lox=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>Exception</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>a53d84203c6717bcc67dd5c2a16d0cd32</anchor>
-      <arglist>(Exception e, String headline=null, int indent=0, Lox lox=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>Instance</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>a8c29adc9ba464af7c76dc25fd65f46a1</anchor>
-      <arglist>(String domain, Log.Level level, Object o, int maxRecursion, String headline=null, int indent=0, Lox lox=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>Instance</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>a7d89783dae96a8d7d71d937c2fbe7716</anchor>
-      <arglist>(Log.Level level, Object o, int maxRecursion, String headline=null, int indent=0, Lox lox=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>XML</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>adad74abbe21748cf5db7fb9811e19327</anchor>
-      <arglist>(String domain, Log.Level level, XDocument xDocument, String headLine=null, int indent=0, Lox lox=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>XML</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>aa97d1f2fa1006ac9dd2a7913a8309642</anchor>
-      <arglist>(Log.Level level, XDocument xDocument, String headLine, int indent=0, Lox lox=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>XML</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>a0ff47e9ff0259463e827d31a8f6b00ca</anchor>
-      <arglist>(String domain, Log.Level level, XElement xElement, String headLine=null, int indent=0, Lox lox=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>XML</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>af33f2251927a308f5252b4fc4fc68a18</anchor>
-      <arglist>(Log.Level level, XElement xElement, String headLine, int indent=0, Lox lox=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static String</type>
-      <name>FmtExcNull</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>aa8eaf49e43df1021c2d606be3fa2a105</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static String</type>
-      <name>FmtInstLineNoPrefix</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>a2e36df8103a33a2a906ee197a2dea443</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static String</type>
-      <name>FmtInstLineNoPostfix</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>a965ccdf58230d74195cceaed3fe40539</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static String</type>
-      <name>FmtInstNull</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>adb9f89054eac0cbc3a6baf24c662f464</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static String</type>
-      <name>FmtInstRecursionLimit</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>a4fae788c8c8cd1749d55f7336eae2abf</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static String</type>
-      <name>FmtInstCycRefPrefix</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>ad56bd642c748ee1addec1188df481eae</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static String</type>
-      <name>FmtInstIEnumerablePrefix</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>aed0d6d14c822f1c1955ef11ae01fb9fe</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static String</type>
-      <name>FmtInstIEnumerablePostfix</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>ab8b8bddb1a3fa62c73e753171cd49dcd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static String</type>
-      <name>FmtInstArrayPrefix</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>aff77a89c541f9f77d08d78b65b9f775b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static String</type>
-      <name>FmtInstArrayPostfix</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>a589175368d4447e9e299a6772c2de1d0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static String</type>
-      <name>FmtInstCycRefPostfix</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>ab09e0f17b2e136eab6dd0b8bebb2900a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static String</type>
-      <name>FmtInstNoAccessToValue</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>aa4ce00beb85593e9964f9036a2a57933</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static String</type>
-      <name>FmtInstTypePrefix</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>a961fca96721ab094e840bd62fd81a30b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static String</type>
-      <name>FmtInstTypePostfix</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>acfe76f019ad1076ce73f8d67f292e228</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static String</type>
-      <name>FmtInstIndent</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>a45adaa09fbb02529d24d98b541412995</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function" protection="protected" static="yes">
-      <type>static void</type>
-      <name>exception</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>a03b1a235ac32902423d66ee923c94613</anchor>
-      <arglist>(Exception e, String headline, int indent)</arglist>
-    </member>
-    <member kind="function" protection="protected" static="yes">
-      <type>static void</type>
-      <name>instMain</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>a670b8642fe3a9f4737c9e398c2050006</anchor>
-      <arglist>(Object o, int maxRecursion, String headLine)</arglist>
-    </member>
-    <member kind="function" protection="protected" static="yes">
-      <type>static void</type>
-      <name>instRecursive</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>ac03b6467ac0863a99a0b52afa782fe8f</anchor>
-      <arglist>(Object inst, int maxRecursion, int indent)</arglist>
-    </member>
-    <member kind="function" protection="protected" static="yes">
-      <type>static void</type>
-      <name>instNewLine</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>a7f90bc448f889a4afd2a0d051508a8e7</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="protected" static="yes">
-      <type>static void</type>
-      <name>instBeginLine</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>a1a60fd445cafbf21819717c2b817af7f</anchor>
-      <arglist>(int indent)</arglist>
-    </member>
-    <member kind="function" protection="protected" static="yes">
-      <type>static void</type>
-      <name>instTabStop</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>a7ea8777191d09d2b9e64f2c3384ebaf8</anchor>
-      <arglist>(int tabStop)</arglist>
-    </member>
-    <member kind="function" protection="protected" static="yes">
-      <type>static void</type>
-      <name>instTabTypeAndNewLine</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>aa64ceea3ae9af0dc33366784f0dfe0e0</anchor>
-      <arglist>(Type type)</arglist>
-    </member>
-    <member kind="function" protection="protected" static="yes">
-      <type>static void</type>
-      <name>xml</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>a1bf3553c854f8a7d0b938a5eeb7bc79c</anchor>
-      <arglist>(XDocument xDocument, String headLine)</arglist>
-    </member>
-    <member kind="function" protection="protected" static="yes">
-      <type>static void</type>
-      <name>xmlElement</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>ab871223d442ff953c52fb281aaf84ea6</anchor>
-      <arglist>(XElement xe, String headLine, int indent)</arglist>
-    </member>
-    <member kind="variable" protection="protected" static="yes">
-      <type>static int</type>
-      <name>instValueTabStop</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>ac586537acea9202be95f5cf793324550</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected" static="yes">
-      <type>static int</type>
-      <name>instTypeTabStop</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>a1cfe4bbb4fae0ca0db99d3fe768ffa64</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected" static="yes">
-      <type>static MString</type>
-      <name>toolBuf</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>ab2b7fd952d42f838905b7ce560f1e68e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected" static="yes">
-      <type>static uint</type>
-      <name>instLineNumber</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>a4ef97f200cc58b6c0e22c895ddf7c76b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected" static="yes">
-      <type>static Dictionary&lt; Object, UInt32 &gt;</type>
-      <name>instObject2LineNumber</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>a6e81430abaff658ea6e14fbbf242c1d2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected" static="yes">
-      <type>static int</type>
-      <name>instLineBeginIdx</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>aaa958e582bb109b5cf63121eb10a194a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected" static="yes">
-      <type>static ThreadLock</type>
-      <name>Lock</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogTools.html</anchorfile>
-      <anchor>ae10600cb6914f091adfbbde00bbfdcd7</anchor>
-      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -715,8 +431,8 @@
       <type>void</type>
       <name>AddLogger</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a360d4bab0de9498716bfe3328e3aca48</anchor>
-      <arglist>(Logger logger, Log.DomainLevel internalDomainLevel=Log.DomainLevel.WarningsAndErrors,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a243fce4c26d51b58f1856ce2e57b68a9</anchor>
+      <arglist>(Logger logger, Log.DomainLevel internalDomainLevel=Log.DomainLevel.WarningsAndErrors, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>Logger</type>
@@ -736,155 +452,155 @@
       <type>void</type>
       <name>SetConsumableSourcePathPrefix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a2f942041d5724873ea6daa9fdd86563f</anchor>
-      <arglist>(String cspp,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>af18033862779e2fb6758c0368290b46d</anchor>
+      <arglist>(String cspp, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>RegDomain</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a87c7c940b64590f9c757a918cff85eb8</anchor>
-      <arglist>(String domain, Log.Scope scope,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a9b3c063f3323ee4d81d3887f3c62940c</anchor>
+      <arglist>(String domain, Log.Scope scope, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>SetDomain</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a1d80a2ac703e5137a8649bb6e51cbb92</anchor>
-      <arglist>(String domain, Log.DomainLevel domainLevel, bool recursive=true, String loggerFilter=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>adddbfe67bfaa5b84a9a01503fa423313</anchor>
+      <arglist>(String domain, Log.DomainLevel domainLevel, bool recursive=true, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>SetDisabled</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a86ab9bdfd6b89e7a20ab2508bf00fc9e</anchor>
-      <arglist>(bool disabled, String loggerFilter=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>ac19aea9f7a17923c0fe41990d701538f</anchor>
+      <arglist>(bool disabled, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>SetStartTime</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ad5a5538441906cd183b14593e4a6525d</anchor>
-      <arglist>(DateTime?startTime=null, String loggerFilter=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>ac4e1e9de43f94c25f2b2eb7be54f7a7a</anchor>
+      <arglist>(DateTime?startTime=null, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>MapThreadName</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a92fa582c87c957cddbd0fd3bd50144d7</anchor>
-      <arglist>(String threadName, int id=-1,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a8f5b159dea287785d7d38be9288ab054</anchor>
+      <arglist>(String threadName, int id=-1, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>SetMarker</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>acf90c6eb026b11c9f2bc528e78c34832</anchor>
-      <arglist>(Object marker, Log.Scope scope,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a81953e8bd2915702eccfad989570e156</anchor>
+      <arglist>(Object marker, Log.Scope scope, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>GetMarker</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>af64d481903ed65f97ee4e7a8df7892ee</anchor>
-      <arglist>(Object[] markerPointer, Log.Scope scope,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>aface0c1255d1c75523c654b095c2dc56</anchor>
+      <arglist>(Object[] markerPointer, Log.Scope scope, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>LogConfig</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a1880766f95ae58955e908fe2e54fb321</anchor>
-      <arglist>(String domain, Log.Level level, String headLine, String loggerFilter=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a833586c138334739ddad9eede52cb909</anchor>
+      <arglist>(String domain, Log.Level level, String headLine, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Verbose</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a8705225063ecca80f30b87035bc11bdd</anchor>
-      <arglist>(Object msg, int indent=0,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>aaf5e3df48abc6a754ee07dd993b13d07</anchor>
+      <arglist>(Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Verbose</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a94bc46def19c21f0607b7d43cc2e765f</anchor>
-      <arglist>(String domain, Object msg, int indent=0,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a4dbf92fb71a193b0433238cbe3052a11</anchor>
+      <arglist>(String domain, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Info</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>aa69521642c4b561ae66aa0e7eab48c2f</anchor>
-      <arglist>(Object msg, int indent=0,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a861890f074da5b826d5b7802c955874c</anchor>
+      <arglist>(Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Info</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ac3322de1c1e20d3b3cc884c9ebe08045</anchor>
-      <arglist>(String domain, Object msg, int indent=0,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a4806ffdc267673deca9e08b9cf0b8c78</anchor>
+      <arglist>(String domain, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Warning</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>aa329f2e9f7592e041c96a88ba7e93ce7</anchor>
-      <arglist>(Object msg, int indent=0,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a683a6aa22be8c620d60c49267ef94e8a</anchor>
+      <arglist>(Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Warning</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a4ae89f59de79d1054aa9acd848c7f939</anchor>
-      <arglist>(String domain, Object msg, int indent=0,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>aad904dcf59b775d6050f63d25dbce9fa</anchor>
+      <arglist>(String domain, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Error</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>aa50a0ec4f97b5c06b65c9f70f0edbda2</anchor>
-      <arglist>(Object msg, int indent=0,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>ae6a54af27a36df2b4f1ade1c5e3a6b26</anchor>
+      <arglist>(Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Error</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>abb1993ef714a4c7516e813a343ca8eab</anchor>
-      <arglist>(String domain, Object msg, int indent=0,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>aa175be4be1461484939e26caef684102</anchor>
+      <arglist>(String domain, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Assert</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a33684b7e69af6726dbfaf0105e9a128a</anchor>
-      <arglist>(bool trueOrLog, Object msg, int indent=0,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a9cfead5fe6ef707a9c81fbab91b88db8</anchor>
+      <arglist>(bool trueOrLog, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Assert</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>af2b9896d54cc46e902a105da26176da5</anchor>
-      <arglist>(bool trueOrLog, String domain, Object msg, int indent=0,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a2b0f85b9e5c5f9102e4ee030de4978bd</anchor>
+      <arglist>(bool trueOrLog, String domain, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Line</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ab870124af0644bd2f2b16e0a54bf6631</anchor>
-      <arglist>(bool doLog, String domain, Log.Level level, Object msg, int indent=0, String loggerFilter=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a92a07a47e1dc6dd3bd09428f02e4f835</anchor>
+      <arglist>(bool doLog, String domain, Log.Level level, Object msg, int indent=0, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Line</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a3a8d5c051f75fb43386c36a4d7eb9547</anchor>
-      <arglist>(String domain, Log.Level level, Object msg, int indent=0, String loggerFilter=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a369c3716dd8697a8824fe3992fb39e7f</anchor>
+      <arglist>(String domain, Log.Level level, Object msg, int indent=0, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Line</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>adeba612941c97b865bbee4aeddc53c9b</anchor>
-      <arglist>(Log.Level level, Object msg, int indent=0, String loggerFilter=null,[CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a43d5b54bca91e52364461f111829a55d</anchor>
+      <arglist>(Log.Level level, Object msg, int indent=0, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="variable">
       <type>int</type>
@@ -1349,10 +1065,10 @@
     </member>
     <member kind="function" protection="protected" virtualness="pure">
       <type>abstract void</type>
-      <name>multiLineOp</name>
+      <name>notifyMultiLineOp</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>aa35518d6daed290383837b6fa6ff8062</anchor>
-      <arglist>(bool start)</arglist>
+      <anchor>a4d3a55a9d84e89edabbfa7e7c8670bc1</anchor>
+      <arglist>(bool isStart)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>override void</type>
@@ -1606,6 +1322,7 @@
     <filename>namespacecom_1_1aworx_1_1lox_1_1loggers.html</filename>
     <class kind="class">com::aworx::lox::loggers::ConsoleLogger</class>
     <class kind="class">com::aworx::lox::loggers::MemoryLogger</class>
+    <class kind="class">com::aworx::lox::loggers::TextFileLogger</class>
   </compound>
   <compound kind="class">
     <name>com::aworx::lox::loggers::ConsoleLogger</name>
@@ -1641,9 +1358,9 @@
     </member>
     <member kind="function" protection="protected">
       <type>override void</type>
-      <name>multiLineOp</name>
+      <name>notifyMultiLineOp</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html</anchorfile>
-      <anchor>a98abe5571900a3c0ae88b24bd3d7a2ba</anchor>
+      <anchor>a9bf7948c6fc37e6d55d77759c532f241</anchor>
       <arglist>(bool start)</arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -1681,10 +1398,452 @@
     </member>
     <member kind="function" protection="protected">
       <type>override void</type>
-      <name>multiLineOp</name>
+      <name>notifyMultiLineOp</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html</anchorfile>
-      <anchor>a98abe5571900a3c0ae88b24bd3d7a2ba</anchor>
-      <arglist>(bool start)</arglist>
+      <anchor>a54d60a19ba6e0e1577a6c064010867eb</anchor>
+      <arglist>(bool isStart)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>com::aworx::lox::loggers::TextFileLogger</name>
+    <filename>classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html</filename>
+    <base>com::aworx::lox::core::TextLogger</base>
+    <member kind="function">
+      <type></type>
+      <name>TextFileLogger</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html</anchorfile>
+      <anchor>a7ef1bc01fdac2d5155893f4eb1dfa970</anchor>
+      <arglist>(String fileName, String loggerName=&quot;TEXTFILE&quot;)</arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>fileName</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html</anchorfile>
+      <anchor>a3a5f56162810aa1e371620c4c18cc82a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>override void</type>
+      <name>notifyMultiLineOp</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html</anchorfile>
+      <anchor>a54d60a19ba6e0e1577a6c064010867eb</anchor>
+      <arglist>(bool isStart)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>override void</type>
+      <name>doTextLog</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html</anchorfile>
+      <anchor>af8da5b301accf1a23758a98b88f222d0</anchor>
+      <arglist>(MString domain, Log.Level level, MString msg, int indent, CallerInfo caller, int lineNumber)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>openFile</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html</anchorfile>
+      <anchor>acd0224d6aee829fc45210f977168abb4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>closeFile</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html</anchorfile>
+      <anchor>ab2ff17b940ae7aca4827d832ceeaeda4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>StreamWriter</type>
+      <name>sw</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html</anchorfile>
+      <anchor>a6943cae82840a1d0b33fe03557040219</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>currentlyInMultiLineOp</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html</anchorfile>
+      <anchor>a79360590a52ab99fa5ca7bd3e679fef5</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="namespace">
+    <name>com::aworx::lox::tools</name>
+    <filename>namespacecom_1_1aworx_1_1lox_1_1tools.html</filename>
+    <namespace>com::aworx::lox::tools::json</namespace>
+    <class kind="class">com::aworx::lox::tools::LogTools</class>
+  </compound>
+  <compound kind="class">
+    <name>com::aworx::lox::tools::LogTools</name>
+    <filename>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</filename>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Exception</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>afc842a4c97fba750a7459c6a7016a9d9</anchor>
+      <arglist>(String domain, Log.Level level, Exception e, String headline=null, int indent=0, Lox lox=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Exception</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>a66ae777e225caa3a816e9d50fabe159f</anchor>
+      <arglist>(Log.Level level, Exception e, String headline=null, int indent=0, Lox lox=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Exception</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>a45c6bc127d70ac0cf8be2f57fdb0c552</anchor>
+      <arglist>(Exception e, String headline=null, int indent=0, Lox lox=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Instance</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>a2fe80db61affa775074be23675d518ba</anchor>
+      <arglist>(String domain, Log.Level level, Object o, int maxRecursion, String headline=null, int indent=0, Lox lox=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Instance</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>abafcf461fb3cd01cc81c14a8b9573309</anchor>
+      <arglist>(Log.Level level, Object o, int maxRecursion, String headline=null, int indent=0, Lox lox=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>XML</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>ac25c0cc25b178a10ef7441a1bccb2a74</anchor>
+      <arglist>(String domain, Log.Level level, XDocument xDocument, String headLine=null, int indent=0, Lox lox=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>XML</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>a5e344feafc8ffdaef2a654393ac57204</anchor>
+      <arglist>(Log.Level level, XDocument xDocument, String headLine, int indent=0, Lox lox=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>XML</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>a7c93d3f5007d74bd4806a97ef33bdb2e</anchor>
+      <arglist>(String domain, Log.Level level, XElement xElement, String headLine=null, int indent=0, Lox lox=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>XML</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>acc389c99e2680bf119bef50f73a51cb3</anchor>
+      <arglist>(Log.Level level, XElement xElement, String headLine, int indent=0, Lox lox=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static String</type>
+      <name>FmtExcNull</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>aa8eaf49e43df1021c2d606be3fa2a105</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static String</type>
+      <name>FmtInstLineNoPrefix</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>a2e36df8103a33a2a906ee197a2dea443</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static String</type>
+      <name>FmtInstLineNoPostfix</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>a965ccdf58230d74195cceaed3fe40539</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static String</type>
+      <name>FmtInstNull</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>adb9f89054eac0cbc3a6baf24c662f464</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static String</type>
+      <name>FmtInstRecursionLimit</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>a4fae788c8c8cd1749d55f7336eae2abf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static String</type>
+      <name>FmtInstCycRefPrefix</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>ad56bd642c748ee1addec1188df481eae</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static String</type>
+      <name>FmtInstIEnumerablePrefix</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>aed0d6d14c822f1c1955ef11ae01fb9fe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static String</type>
+      <name>FmtInstIEnumerablePostfix</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>ab8b8bddb1a3fa62c73e753171cd49dcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static String</type>
+      <name>FmtInstArrayPrefix</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>aff77a89c541f9f77d08d78b65b9f775b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static String</type>
+      <name>FmtInstArrayPostfix</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>a589175368d4447e9e299a6772c2de1d0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static String</type>
+      <name>FmtInstCycRefPostfix</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>ab09e0f17b2e136eab6dd0b8bebb2900a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static String</type>
+      <name>FmtInstNoAccessToValue</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>aa4ce00beb85593e9964f9036a2a57933</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static String</type>
+      <name>FmtInstTypePrefix</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>a961fca96721ab094e840bd62fd81a30b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static String</type>
+      <name>FmtInstTypePostfix</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>acfe76f019ad1076ce73f8d67f292e228</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static String</type>
+      <name>FmtInstIndent</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>a45adaa09fbb02529d24d98b541412995</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected" static="yes">
+      <type>static void</type>
+      <name>exception</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>a03b1a235ac32902423d66ee923c94613</anchor>
+      <arglist>(Exception e, String headline, int indent)</arglist>
+    </member>
+    <member kind="function" protection="protected" static="yes">
+      <type>static void</type>
+      <name>instMain</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>a670b8642fe3a9f4737c9e398c2050006</anchor>
+      <arglist>(Object o, int maxRecursion, String headLine)</arglist>
+    </member>
+    <member kind="function" protection="protected" static="yes">
+      <type>static void</type>
+      <name>instRecursive</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>ac03b6467ac0863a99a0b52afa782fe8f</anchor>
+      <arglist>(Object inst, int maxRecursion, int indent)</arglist>
+    </member>
+    <member kind="function" protection="protected" static="yes">
+      <type>static bool</type>
+      <name>isValueType</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>a5f76c7257611240fe4d94d77ef3016f4</anchor>
+      <arglist>(Object o, Type type)</arglist>
+    </member>
+    <member kind="function" protection="protected" static="yes">
+      <type>static void</type>
+      <name>instNewLine</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>a7f90bc448f889a4afd2a0d051508a8e7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected" static="yes">
+      <type>static void</type>
+      <name>instBeginLine</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>a1a60fd445cafbf21819717c2b817af7f</anchor>
+      <arglist>(int indent)</arglist>
+    </member>
+    <member kind="function" protection="protected" static="yes">
+      <type>static void</type>
+      <name>instTabStop</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>a7ea8777191d09d2b9e64f2c3384ebaf8</anchor>
+      <arglist>(int tabStop)</arglist>
+    </member>
+    <member kind="function" protection="protected" static="yes">
+      <type>static void</type>
+      <name>instTabTypeAndNewLine</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>aa64ceea3ae9af0dc33366784f0dfe0e0</anchor>
+      <arglist>(Type type)</arglist>
+    </member>
+    <member kind="function" protection="protected" static="yes">
+      <type>static void</type>
+      <name>xml</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>a1bf3553c854f8a7d0b938a5eeb7bc79c</anchor>
+      <arglist>(XDocument xDocument, String headLine)</arglist>
+    </member>
+    <member kind="function" protection="protected" static="yes">
+      <type>static void</type>
+      <name>xmlElement</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>ab871223d442ff953c52fb281aaf84ea6</anchor>
+      <arglist>(XElement xe, String headLine, int indent)</arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static int</type>
+      <name>instValueTabStop</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>ac586537acea9202be95f5cf793324550</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static int</type>
+      <name>instTypeTabStop</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>a1cfe4bbb4fae0ca0db99d3fe768ffa64</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static MString</type>
+      <name>toolBuf</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>ab2b7fd952d42f838905b7ce560f1e68e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static MString</type>
+      <name>tempBuf</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>a570982a6045c2e2c409321b2e1a01898</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static uint</type>
+      <name>instLineNumber</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>a4ef97f200cc58b6c0e22c895ddf7c76b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static Dictionary&lt; Object, UInt32 &gt;</type>
+      <name>instObject2LineNumber</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>a6e81430abaff658ea6e14fbbf242c1d2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static int</type>
+      <name>instLineBeginIdx</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>aaa958e582bb109b5cf63121eb10a194a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static ThreadLock</type>
+      <name>Lock</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>ae10600cb6914f091adfbbde00bbfdcd7</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="namespace">
+    <name>com::aworx::lox::tools::json</name>
+    <filename>namespacecom_1_1aworx_1_1lox_1_1tools_1_1json.html</filename>
+    <class kind="class">com::aworx::lox::tools::json::DynamicJSONDeserializer</class>
+  </compound>
+  <compound kind="class">
+    <name>com::aworx::lox::tools::json::DynamicJSONDeserializer</name>
+    <filename>classcom_1_1aworx_1_1lox_1_1tools_1_1json_1_1DynamicJSONDeserializer.html</filename>
+    <class kind="class">com::aworx::lox::tools::json::DynamicJSONDeserializer::DynamicJsonObject</class>
+    <member kind="function">
+      <type>override object</type>
+      <name>Deserialize</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1json_1_1DynamicJSONDeserializer.html</anchorfile>
+      <anchor>a01092d5e0484947c002d470453cbf4b5</anchor>
+      <arglist>(IDictionary&lt; string, object &gt; dictionary, Type type, JavaScriptSerializer serializer)</arglist>
+    </member>
+    <member kind="function">
+      <type>override IDictionary&lt; string, object &gt;</type>
+      <name>Serialize</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1json_1_1DynamicJSONDeserializer.html</anchorfile>
+      <anchor>a115cd59bd1cbe0bfeba59015090b8fa2</anchor>
+      <arglist>(object obj, JavaScriptSerializer serializer)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static IDictionary&lt; string, object &gt;</type>
+      <name>FromString</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1json_1_1DynamicJSONDeserializer.html</anchorfile>
+      <anchor>ae8ed5a6a4f77379a35ea093f0cdf50d5</anchor>
+      <arglist>(String json)</arglist>
+    </member>
+    <member kind="property">
+      <type>override IEnumerable&lt; Type &gt;</type>
+      <name>SupportedTypes</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1json_1_1DynamicJSONDeserializer.html</anchorfile>
+      <anchor>aa7fc96d53ba9a1823678b99be1580b0d</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>com::aworx::lox::tools::json::DynamicJSONDeserializer::DynamicJsonObject</name>
+    <filename>classcom_1_1aworx_1_1lox_1_1tools_1_1json_1_1DynamicJSONDeserializer_1_1DynamicJsonObject.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>DynamicJsonObject</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1json_1_1DynamicJSONDeserializer_1_1DynamicJsonObject.html</anchorfile>
+      <anchor>a68418c7d2b2e5800b79deccdf8a1324a</anchor>
+      <arglist>(IDictionary&lt; string, object &gt; dictionary)</arglist>
+    </member>
+    <member kind="function">
+      <type>override bool</type>
+      <name>TryGetMember</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1json_1_1DynamicJSONDeserializer_1_1DynamicJsonObject.html</anchorfile>
+      <anchor>ae76343f2ab1f658ec5ec5a9850b91709</anchor>
+      <arglist>(GetMemberBinder binder, out object result)</arglist>
+    </member>
+    <member kind="function">
+      <type>override bool</type>
+      <name>TryGetIndex</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1json_1_1DynamicJSONDeserializer_1_1DynamicJsonObject.html</anchorfile>
+      <anchor>af90b4bbff5fc599e84ae7b91c6991cf8</anchor>
+      <arglist>(GetIndexBinder binder, object[] indexes, out object result)</arglist>
+    </member>
+    <member kind="variable" protection="package">
+      <type>readonly IDictionary&lt; string, object &gt;</type>
+      <name>Dictionary</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1json_1_1DynamicJSONDeserializer_1_1DynamicJsonObject.html</anchorfile>
+      <anchor>a0ecddbd2f0dd3f9e45aea60eb4e4fe53</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="private" static="yes">
+      <type>static object</type>
+      <name>WrapResultObject</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1json_1_1DynamicJSONDeserializer_1_1DynamicJsonObject.html</anchorfile>
+      <anchor>a0806c1b8bc7eff97057211334c0edd81</anchor>
+      <arglist>(object result)</arglist>
     </member>
   </compound>
   <compound kind="namespace">
@@ -2459,8 +2618,8 @@
     <filename>dir_fc6ab29db87cee32fc2f048db43c2136.html</filename>
     <dir>core</dir>
     <dir>loggers</dir>
+    <dir>tools</dir>
     <file>Log.cs</file>
-    <file>LogTools.cs</file>
     <file>Lox.cs</file>
   </compound>
   <compound kind="dir">
@@ -2473,11 +2632,25 @@
     <file>Ticker.cs</file>
   </compound>
   <compound kind="dir">
+    <name>json</name>
+    <path>I:/Dev/A-Worx/ALox/src/cs.alox/tools/json/</path>
+    <filename>dir_515d70dc51fc552d56c39b09e44ed935.html</filename>
+    <file>DynamicJSONDeserializer.cs</file>
+  </compound>
+  <compound kind="dir">
     <name>loggers</name>
     <path>I:/Dev/A-Worx/ALox/src/cs.alox/loggers/</path>
     <filename>dir_cf285cfc70250f5bcc2c291ec3c5dd43.html</filename>
     <file>ConsoleLogger.cs</file>
     <file>MemoryLogger.cs</file>
+    <file>TextFileLogger.cs</file>
+  </compound>
+  <compound kind="dir">
+    <name>tools</name>
+    <path>I:/Dev/A-Worx/ALox/src/cs.alox/tools/</path>
+    <filename>dir_d14dc233f3868ff4cd79186c5ff2fb5e.html</filename>
+    <dir>json</dir>
+    <file>LogTools.cs</file>
   </compound>
   <compound kind="page">
     <name>index</name>

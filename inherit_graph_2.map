@@ -1,7 +1,8 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag$classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="com::aworx::lox::core\l::Logger" alt="" coords="5,57,152,98"/>
-<area shape="rect" id="node2" href="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag$classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html" title="com::aworx::lox::core\l::TextLogger" alt="" coords="200,57,347,98"/>
-<area shape="rect" id="node3" href="I:/Dev/A-Worx/ALox/html/java_ref/java_ref.tag$classcom_1_1aworx_1_1lox_1_1android_1_1AndroidLogCatLogger.html" title="AndroidLogCatLogger" alt="" coords="404,5,551,32"/>
-<area shape="rect" id="node4" href="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag$classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html" title="com::aworx::lox::loggers\l::ConsoleLogger" alt="" coords="395,57,559,98"/>
-<area shape="rect" id="node5" href="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag$classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html" title="com::aworx::lox::loggers\l::MemoryLogger" alt="" coords="395,122,559,163"/>
+<area shape="rect" id="node1" href="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag$classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="com::aworx::lox::core\l::Logger" alt="" coords="5,103,152,145"/>
+<area shape="rect" id="node2" href="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag$classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html" title="com::aworx::lox::core\l::TextLogger" alt="" coords="200,103,347,145"/>
+<area shape="rect" id="node3" href="I:/Dev/A-Worx/ALox/html/java_ref/java_ref.tag$classcom_1_1aworx_1_1lox_1_1android_1_1AndroidLogCatLogger.html" title="com::aworx::lox::android\l::AndroidLogCatLogger" alt="" coords="395,5,559,46"/>
+<area shape="rect" id="node4" href="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag$classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html" title="com::aworx::lox::loggers\l::ConsoleLogger" alt="" coords="395,70,559,111"/>
+<area shape="rect" id="node5" href="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag$classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html" title="com::aworx::lox::loggers\l::MemoryLogger" alt="" coords="395,135,559,177"/>
+<area shape="rect" id="node6" href="I:/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag$classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html" title="com::aworx::lox::loggers\l::TextFileLogger" alt="" coords="395,201,559,242"/>
 </map>

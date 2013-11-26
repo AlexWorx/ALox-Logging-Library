@@ -9,5 +9,6 @@ var searchData=
   ['consumablesourcepathprefixstring',['ConsumableSourcePathPrefixString',['../classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#ad5e8a7d9f2c872ab23a2332e6583d908',1,'com::aworx::lox::core::CallerInfo']]],
   ['convswtodt',['convSWToDT',['../classcom_1_1aworx_1_1util_1_1Ticker.html#ad91e3ebd169964f5636d6d006cd445fb',1,'com::aworx::util::Ticker']]],
   ['creationtimestopwatch',['creationTimeStopWatch',['../classcom_1_1aworx_1_1util_1_1Ticker.html#a58d43e7232052f1601bc2914babafb17',1,'com::aworx::util::Ticker']]],
-  ['creationtimeticks',['creationTimeTicks',['../classcom_1_1aworx_1_1util_1_1Ticker.html#a4ca94541f535289b6d50b0eaf9469c11',1,'com::aworx::util::Ticker']]]
+  ['creationtimeticks',['creationTimeTicks',['../classcom_1_1aworx_1_1util_1_1Ticker.html#a4ca94541f535289b6d50b0eaf9469c11',1,'com::aworx::util::Ticker']]],
+  ['currentlyinmultilineop',['currentlyInMultiLineOp',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html#a79360590a52ab99fa5ca7bd3e679fef5',1,'com::aworx::lox::loggers::TextFileLogger']]]
 ];

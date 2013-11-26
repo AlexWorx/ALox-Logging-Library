@@ -4,7 +4,7 @@ var searchData=
   ['level',['level',['../classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a1a9f7325c08dd31ecae733ac275a3791',1,'com::aworx::lox::core::LogDomain']]],
   ['lineformatter',['LineFormatter',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#afd6c2389bad25caa4a5b201ef86e4608',1,'com::aworx::lox::core::TextLogger']]],
   ['linenumber',['LineNumber',['../classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#abc72cc909922c33908e48159b106efa3',1,'com::aworx::lox::core::CallerInfo']]],
-  ['lock',['Lock',['../classcom_1_1aworx_1_1lox_1_1LogTools.html#ae10600cb6914f091adfbbde00bbfdcd7',1,'com.aworx.lox.LogTools.Lock()'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#ae10600cb6914f091adfbbde00bbfdcd7',1,'com.aworx.lox.Lox.Lock()']]],
+  ['lock',['Lock',['../classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#ae10600cb6914f091adfbbde00bbfdcd7',1,'com.aworx.lox.tools.LogTools.Lock()'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#ae10600cb6914f091adfbbde00bbfdcd7',1,'com.aworx.lox.Lox.Lock()']]],
   ['lockcount',['lockCount',['../classcom_1_1aworx_1_1util_1_1ThreadLock.html#a7f41e1e3070abd18f7cdfdb9a95b3d9c',1,'com::aworx::util::ThreadLock']]],
   ['logbuf',['logBuf',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#aaf37e693e36d895e18bcc1f6037f5d9e',1,'com.aworx.lox.core.TextLogger.logBuf()'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#aaf37e693e36d895e18bcc1f6037f5d9e',1,'com.aworx.lox.Lox.logBuf()']]],
   ['logbuflock',['logBufLock',['../classcom_1_1aworx_1_1lox_1_1Lox.html#a115a099b1c0c5425cd37ec7b54056d01',1,'com::aworx::lox::Lox']]],

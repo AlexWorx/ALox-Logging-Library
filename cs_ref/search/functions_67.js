@@ -9,6 +9,6 @@ var searchData=
   ['gethashcode',['GetHashCode',['../classcom_1_1aworx_1_1util_1_1MString.html#a77e1afa2b6dee1ed3640da81d7407b42',1,'com::aworx::util::MString']]],
   ['getlevel',['GetLevel',['../classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a6b35d5ba376191a0aa5b9ed52b8f05e9',1,'com::aworx::lox::core::LogDomain']]],
   ['getlogger',['GetLogger',['../classcom_1_1aworx_1_1lox_1_1Log.html#a81583fc2028aa1ccb925afaa0d63a224',1,'com.aworx.lox.Log.GetLogger()'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#a74ba68166dee3359939d25f87e648cbe',1,'com.aworx.lox.Lox.GetLogger()']]],
-  ['getmarker',['GetMarker',['../classcom_1_1aworx_1_1lox_1_1Log.html#a1a6524586457c57f00bd4f6fb309512a',1,'com.aworx.lox.Log.GetMarker()'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#af64d481903ed65f97ee4e7a8df7892ee',1,'com.aworx.lox.Lox.GetMarker()']]],
+  ['getmarker',['GetMarker',['../classcom_1_1aworx_1_1lox_1_1Log.html#a4576b25512979ba59a7180486b18874a',1,'com.aworx.lox.Log.GetMarker()'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#aface0c1255d1c75523c654b095c2dc56',1,'com.aworx.lox.Lox.GetMarker()']]],
   ['getmeasurecnt',['GetMeasureCnt',['../structcom_1_1aworx_1_1util_1_1TickTime.html#a5118e8ba97392f0a502bb6071186e10f',1,'com::aworx::util::TickTime']]]
 ];

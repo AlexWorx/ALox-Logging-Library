@@ -1,15 +1,17 @@
 var searchData=
 [
   ['tab',['tab',['../classcom_1_1aworx_1_1lox_1_1LogBuf.html#aa3a8767705fdc50aa7ba23503c40ec39',1,'com.aworx.lox.LogBuf.tab(int tabSize)'],['../classcom_1_1aworx_1_1lox_1_1LogBuf.html#afdb35b96fc567bed45f52c549139d7f1',1,'com.aworx.lox.LogBuf.tab(int tabSize, int tabReference)'],['../classcom_1_1aworx_1_1lox_1_1LogBuf.html#ad89309c646ffcc8dcf02e3ee74f9b166',1,'com.aworx.lox.LogBuf.tab(int tabSize, int tabReference, int minPad)'],['../classcom_1_1aworx_1_1lox_1_1LogBuf.html#a711e06286cc91a555aca689df5a4d68c',1,'com.aworx.lox.LogBuf.tab(int tabSize, int tabReference, int minPad, char padChar)'],['../classcom_1_1aworx_1_1util_1_1MString.html#a9cc68303640d37c682c3ab798633764d',1,'com.aworx.util.MString.tab(int tabSize)'],['../classcom_1_1aworx_1_1util_1_1MString.html#abd3a46e407fd78e345735e4eed25ebfe',1,'com.aworx.util.MString.tab(int tabSize, int tabReference)'],['../classcom_1_1aworx_1_1util_1_1MString.html#a252867e4b920b7eb8463351abf48e25c',1,'com.aworx.util.MString.tab(int tabSize, int tabReference, int minPad)'],['../classcom_1_1aworx_1_1util_1_1MString.html#aca40b491a66d09efc3d897325da417d2',1,'com.aworx.util.MString.tab(int tabSize, int tabReference, int minPad, char padChar)']]],
-  ['tempbuf',['tempBuf',['../classcom_1_1aworx_1_1lox_1_1LogTools.html#a570982a6045c2e2c409321b2e1a01898',1,'com::aworx::lox::LogTools']]],
+  ['tempbuf',['tempBuf',['../classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a570982a6045c2e2c409321b2e1a01898',1,'com::aworx::lox::tools::LogTools']]],
   ['tempdomain',['tempDomain',['../classcom_1_1aworx_1_1lox_1_1Lox.html#ab1e2c7dee8db47cd16ca92fb3a7ae904',1,'com::aworx::lox::Lox']]],
   ['tempdomainpath',['tempDomainPath',['../classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#af717d7b13f31ce14d19c3b24707f20f6',1,'com::aworx::lox::core::Logger']]],
-  ['templineendidx',['tempLineEndIdx',['../classcom_1_1aworx_1_1lox_1_1LogTools.html#a3e071e391087b62155ccd1f5b3e3ab46',1,'com::aworx::lox::LogTools']]],
-  ['templinestartidx',['tempLineStartIdx',['../classcom_1_1aworx_1_1lox_1_1LogTools.html#a93c641104eda6fb4550ce017b73430bf',1,'com::aworx::lox::LogTools']]],
+  ['templineendidx',['tempLineEndIdx',['../classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a3e071e391087b62155ccd1f5b3e3ab46',1,'com::aworx::lox::tools::LogTools']]],
+  ['templinestartidx',['tempLineStartIdx',['../classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a93c641104eda6fb4550ce017b73430bf',1,'com::aworx::lox::tools::LogTools']]],
   ['tempms',['tempMS',['../classcom_1_1aworx_1_1lox_1_1Lox.html#a0d99bb961369853273a8f67384b2c3c1',1,'com::aworx::lox::Lox']]],
   ['tempsbuf',['tempSBuf',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#afe17394f84cf5bdb4891727e32f49300',1,'com::aworx::lox::core::TextLoggerLineFormatter']]],
-  ['textlogger',['TextLogger',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html',1,'com::aworx::lox::core']]],
+  ['textfilelogger',['TextFileLogger',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html',1,'com::aworx::lox::loggers']]],
+  ['textfilelogger',['TextFileLogger',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html#a1b10991cc9dc37bc46e39f286117a2fe',1,'com.aworx.lox.loggers.TextFileLogger.TextFileLogger(String fileName, String loggerName)'],['../classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html#ad2ba6de813c21276b42df530b4422be7',1,'com.aworx.lox.loggers.TextFileLogger.TextFileLogger(String fileName)']]],
   ['textlogger',['TextLogger',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a922bc82585360a89568276c894e3631c',1,'com::aworx::lox::core::TextLogger']]],
+  ['textlogger',['TextLogger',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html',1,'com::aworx::lox::core']]],
   ['textloggerlineformatter',['TextLoggerLineFormatter',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html',1,'com::aworx::lox::core']]],
   ['textloggerobjectconverter',['TextLoggerObjectConverter',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html',1,'com::aworx::lox::core']]],
   ['thread',['thread',['../classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#ac99b75d10f465c1160242dea4544069a',1,'com::aworx::lox::core::CallerInfo']]],
@@ -40,6 +42,6 @@ var searchData=
   ['tomicros',['toMicros',['../classcom_1_1aworx_1_1util_1_1Ticker.html#a3c5f77b7a3b2479ea95a51559b6bd83f',1,'com::aworx::util::Ticker']]],
   ['tomillis',['toMillis',['../classcom_1_1aworx_1_1util_1_1Ticker.html#a40bc3e2129b61393b98cac6c59e48a07',1,'com::aworx::util::Ticker']]],
   ['tonanos',['toNanos',['../classcom_1_1aworx_1_1util_1_1Ticker.html#a3d2548f74dc7a245e0b29b54cf343144',1,'com::aworx::util::Ticker']]],
-  ['toolbuf',['toolBuf',['../classcom_1_1aworx_1_1lox_1_1LogTools.html#ab2b7fd952d42f838905b7ce560f1e68e',1,'com::aworx::lox::LogTools']]],
+  ['toolbuf',['toolBuf',['../classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#ab2b7fd952d42f838905b7ce560f1e68e',1,'com::aworx::lox::tools::LogTools']]],
   ['tostring',['toString',['../classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#ad146fa8579a5f8a876c4688cc5a68520',1,'com.aworx.lox.core.LogDomain.toString()'],['../classcom_1_1aworx_1_1lox_1_1LogBuf.html#ad146fa8579a5f8a876c4688cc5a68520',1,'com.aworx.lox.LogBuf.toString()'],['../classcom_1_1aworx_1_1util_1_1MString.html#ad146fa8579a5f8a876c4688cc5a68520',1,'com.aworx.util.MString.toString()'],['../classcom_1_1aworx_1_1util_1_1MString.html#ad6f084f891f7f8edebc1980b3b7c854d',1,'com.aworx.util.MString.toString(int startIdx)'],['../classcom_1_1aworx_1_1util_1_1MString.html#ae9b5b93abce1d30a3daddb12c1c81cff',1,'com.aworx.util.MString.toString(int startIdx, int len)'],['../classcom_1_1aworx_1_1util_1_1ThreadLock.html#ad146fa8579a5f8a876c4688cc5a68520',1,'com.aworx.util.ThreadLock.toString()'],['../classcom_1_1aworx_1_1util_1_1TickTime.html#ad146fa8579a5f8a876c4688cc5a68520',1,'com.aworx.util.TickTime.toString()']]]
 ];
