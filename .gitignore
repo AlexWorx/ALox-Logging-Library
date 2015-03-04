@@ -4,6 +4,10 @@
 # ALox Doxygen generated files
 html/
 
+# VStudio packages
+ide/vstudio/packages
+packages/
+
 # User-specific files
 *.suo
 *.user

@@ -1,3 +1,3 @@
-(Tests_Tutorial.java:104) Tut_LogLevels(): [00:00.000 +614 µs] [main(1)] [ERR] [APP]: A severe error happened :-(
-(Tests_Tutorial.java:105) Tut_LogLevels(): [00:00.000 +096 µs] [main(1)] [WRN] [APP]: This is a warning :-/ Maybe an error follows?
-(Tests_Tutorial.java:106) Tut_LogLevels(): [00:00.000 +062 µs] [main(1)]       [APP]: Just for your further information!
+(Tests_Tutorial.java:106) Tut_LogLevels(): [00:00.000 +351 µs] [main(1)] [ERR] [APP]: A severe error happened :-(
+(Tests_Tutorial.java:107) Tut_LogLevels(): [00:00.000 +044 µs] [main(1)] [WRN] [APP]: This is a warning :-/ Maybe an error follows?
+(Tests_Tutorial.java:108) Tut_LogLevels(): [00:00.000 +038 µs] [main(1)]       [APP]: Just for your further information!

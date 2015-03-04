@@ -231,24 +231,6 @@ public class Test_MString
 					d+= inc;
 				} 
 			}
-
-			// Tabs
-			{
-				ms= new MString();
-		
-				ms.clear();									ms.tab( 5 ); ms.append( "#" );			assertEquals( ms.toString(), "     #"			);
-				ms.clear(); ms.append( "123" );				ms.tab( 5 ); ms.append( "#" );			assertEquals( ms.toString(), "123  #"			);
-				ms.clear(); ms.append( "1234" );			ms.tab( 5 ); ms.append( "#" );			assertEquals( ms.toString(), "1234 #"			);
-				ms.clear(); ms.append( "12345" );			ms.tab( 5 ); ms.append( "#" );			assertEquals( ms.toString(), "12345     #"		);
-				ms.clear(); ms.append( "123456789" );		ms.tab( 5 ); ms.append( "#" );			assertEquals( ms.toString(), "123456789 #"		);
-				ms.clear(); ms.append( "1234567890" );		ms.tab( 5 ); ms.append( "#" );			assertEquals( ms.toString(), "1234567890     #"	);
-
-				ms.clear(); ms.append( "REF:123" );			ms.tab( 5, 4 ); ms.append( "#" );		assertEquals( ms.toString(), "REF:123  #"			);
-				ms.clear(); ms.append( "REF:1234" );		ms.tab( 5, 4 ); ms.append( "#" );		assertEquals( ms.toString(), "REF:1234 #"			);
-				ms.clear(); ms.append( "REF:12345" );		ms.tab( 5, 4 ); ms.append( "#" );		assertEquals( ms.toString(), "REF:12345     #"		);
-				ms.clear(); ms.append( "REF:123456789" );	ms.tab( 5, 4 ); ms.append( "#" );		assertEquals( ms.toString(), "REF:123456789 #"		);
-				ms.clear(); ms.append( "REF:1234567890" );	ms.tab( 5, 4 ); ms.append( "#" );		assertEquals( ms.toString(), "REF:1234567890     #"	);
-			}
 		}
 
 		// append mutable strings
@@ -467,25 +449,87 @@ public class Test_MString
 		MString ms= new MString();
 		int result;
 
-		// search
-		ms.append("abcd abcd");
-		result= ms.indexOf( "abcd"	  );			assertTrue( result == 0 );
-		result= ms.indexOf( "b"		  );			assertTrue( result == 1 );
-		result= ms.indexOf( " abcd"	  );			assertTrue( result == 4 );
-		result= ms.indexOf( "abcd", 1 );			assertTrue( result == 5 );
-		
-		// replace
-		ms.clear();
-		ms.append("Hello W!");
-		result= ms.replaceCount( "W!",	"world!"  );	assertEquals( ms.toString(), "Hello world!" );		assertEquals( 1, result );
-		result= ms.replaceCount( " ",	"* *"	  );	assertEquals( ms.toString(), "Hello* *world!" );	assertEquals( 1, result );
-		result= ms.replaceCount( "*",	"#", 0, 1 );	assertEquals( ms.toString(), "Hello# *world!" );	assertEquals( 1, result );
-		result= ms.replaceCount( "*",	"#"		  );	assertEquals( ms.toString(), "Hello# #world!" );	assertEquals( 1, result );
-		result= ms.replaceCount( "#",	"$$$"	  );	assertEquals( ms.toString(), "Hello$$$ $$$world!" );assertEquals( 2, result );
-		result= ms.replaceCount( "$$$",	"*"		  );	assertEquals( ms.toString(), "Hello* *world!" );	assertEquals( 2, result );
-		result= ms.replaceCount( "*",	""		  );	assertEquals( ms.toString(), "Hello world!" );		assertEquals( 2, result );
-	}
+		// test some bad input 
+					ms.tab(  0,	0,	-1,	'@' );			assertEquals( "", ms.toString() );
+		ms.clear();	ms.tab(  0,	-1,	 0,	'@' );			assertEquals( "", ms.toString() );
+		ms.clear();	ms.tab( -1,	 0,	 0,	'@' );			assertEquals( "", ms.toString() );
+		ms.clear();	ms.tab( -1,	 -1, 0,	'@' );			assertEquals( "", ms.toString() );
+		ms.clear();	ms.tab( -1,	 -1, -1,'@' );			assertEquals( "", ms.toString() );
+		ms.clear();	ms.tab( -5,	-10, 0,	'@' );			assertEquals( "", ms.toString() );
+		ms.clear();	ms.tab( -5,	-10, -100,	'@' );		assertEquals( "", ms.toString() );
+		ms.clear();	ms.tab( 2,	-10, -100,	'@' );		assertEquals( "", ms.toString() );
+		ms.clear();	ms.tab( 0,	  5,    0,	'@' );		assertEquals( "", ms.toString() );
 
+
+		// minpad 0 (not common, default is 1, tab wont move if on tab position) 
+		ms.clear();						ms.tab( 2, 0 , 0,	'@' ).append( '-' );		assertEquals( "-",   ms.toString());
+		ms.clear();	ms.append( 'x' );	ms.tab( 2, 0 , 0,	'@' ).append( '-' );		assertEquals( "x@-", ms.toString());
+		
+		// more standard tabs
+		ms.clear();
+		ms.append( "12" ).tab( 2 )
+		  .append( "1" ).tab( 2 )
+		  .tab(2)
+		  .append( "@" );
+		assertEquals( "12  1   @", ms.toString() );
+		
+		ms.clear();
+		ms.append( "12" ).tab( 2, 0, 0 )
+		  .append( "1" ).tab( 2, 0, 0 )
+		  .tab(2, 0, 0)
+		  .append( "@" );
+		assertEquals( "121 @", ms.toString() );
+		
+		 
+		ms.clear();
+		ms.append( "12345" ).tab( 5 )
+		  .append( "1234" )	.tab( 5 )
+		  .append( "123" )	.tab( 5 )
+		  .append( "12" )	.tab( 5 )
+		  .append( "1" )	.tab( 5 )
+		  					.tab( 5 )
+		  .append( "@" );
+		assertEquals( "12345     1234 123  12   1         @", ms.toString() );
+		
+		ms.clear();
+		ms.append( "12345" ).tab( 5, 0, 0 )
+		  .append( "1234" )	.tab( 5, 0, 0 )
+		  .append( "123" )	.tab( 5, 0, 0 )
+		  .append( "12" )	.tab( 5, 0, 0 )
+		  .append( "1" )	.tab( 5, 0, 0 )
+		  					.tab( 5, 0, 0 )
+		  .append( "@" );
+		assertEquals( "123451234 123  12   1    @", ms.toString() );
+		
+		ms.clear();						ms.tab( 0 ).append( '-' );		assertEquals( " -"		, ms.toString() );
+		ms.clear();						ms.tab( 1 ).append( '-' );		assertEquals( " -"		, ms.toString() );
+		ms.clear();						ms.tab( 2 ).append( '-' );		assertEquals( "  -"		, ms.toString() );
+		ms.clear();						ms.tab( 3 ).append( '-' );		assertEquals( "   -"	, ms.toString() );
+		ms.clear();	ms.append( 'x' );	ms.tab( 1 ).append( '-' );		assertEquals( "x -"		, ms.toString() );
+		ms.clear();	ms.append( 'x' );	ms.tab( 2 ).append( '-' );		assertEquals( "x -"		, ms.toString() );
+		ms.clear();	ms.append( 'x' );	ms.tab( 3 ).append( '-' );		assertEquals( "x  -"	, ms.toString() );
+		
+		// tabs with tab reference set (designed for multi line tabs)
+		ms.clear().append("ABC");
+		ms.append( "12345" ).tab( 5, 3 )
+		  .append( "1234" )	.tab( 5, 3 )
+		  .append( "123" )	.tab( 5, 3 )
+		  .append( "12" )	.tab( 5, 3 )
+		  .append( "1" )	.tab( 5, 3 )
+		  					.tab( 5, 3 )
+		  .append( "@" );
+		assertEquals( "ABC12345     1234 123  12   1         @", ms.toString() );
+
+		ms.clear().append("ABC");
+		ms.append( "12345" ).tab( 5, 3, 0 )
+		  .append( "1234" )	.tab( 5, 3, 0 )
+		  .append( "123" )	.tab( 5, 3, 0 )
+		  .append( "12" )	.tab( 5, 3, 0 )
+		  .append( "1" )	.tab( 5, 3, 0 )
+		  					.tab( 5, 3, 0 )
+		  .append( "@" );
+		assertEquals( "ABC123451234 123  12   1    @", ms.toString() );
+	}
 
 	@SuppressWarnings("static-method")
 	@Test 

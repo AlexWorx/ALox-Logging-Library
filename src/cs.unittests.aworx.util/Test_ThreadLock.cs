@@ -1,19 +1,32 @@
 ﻿using System;
 using System.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+#if MONO_DEVELOP
+	using NUnit.Framework;
+#else
+	using Microsoft.VisualStudio.TestTools.UnitTesting;
+#endif
 
 using System.Text;
 using com.aworx.util;
+using com.aworx.lox;
 using com.aworx.lox.loggers;
 
-namespace com.aworx.lox.unittests
+namespace com.aworx.util.unittests
 {
-	[TestClass]
+	#if MONO_DEVELOP
+		[TestFixture ()]
+	#else
+		[TestClass]
+	#endif
 	public class Test_ThreadLock
 	{
+		#if MONO_DEVELOP
+		[Test ()]
+		#else
 		[TestMethod]
 		#if !WINDOWS_PHONE
-			[TestCategory("ThreadLock")]
+		[TestCategory("ThreadLock")]
+		#endif
 		#endif
 		public void ThreadLock_SimpleTests()
 		{
@@ -82,9 +95,13 @@ namespace com.aworx.lox.unittests
 
 		}
 
+		#if MONO_DEVELOP
+		[Test ()]
+		#else
 		[TestMethod]
 		#if !WINDOWS_PHONE
-			[TestCategory("ThreadLock")]
+		[TestCategory("ThreadLock")]
+		#endif
 		#endif
 		public void ThreadLock_Threaded()
 		{
@@ -131,9 +148,13 @@ namespace com.aworx.lox.unittests
 
 		}
 
+		#if MONO_DEVELOP
+		[Test ()]
+		#else
 		[TestMethod]
 		#if !WINDOWS_PHONE
-			[TestCategory("ThreadLock")]
+		[TestCategory("ThreadLock")]
+		#endif
 		#endif
 		public void ThreadLock_HeavyLoad()
 		{
@@ -175,9 +196,13 @@ namespace com.aworx.lox.unittests
 
 		}
 
+		#if MONO_DEVELOP
+		[Test ()]
+		#else
 		[TestMethod]
 		#if !WINDOWS_PHONE
-			[TestCategory("ThreadLock")]
+		[TestCategory("ThreadLock")]
+		#endif
 		#endif
 		public void ThreadLock_SpeedTest()
 		{

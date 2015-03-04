@@ -182,7 +182,7 @@ If you run your application now (in "Debug" mode), the following output should a
 \verbinclude  docs/generated_cstut/Tut_LogLevels.txt
 
 As you see, the last line of our code, containing the [Verbose()](@ref #com::aworx::lox::Log::Verbose ) log statement was not logged!
-This is because in line two of the code of we set the *log domain level* to [WarningsAndErrors](@ref #com::aworx::lox::Log::DomainLevel ). 
+This is because in line two of the code we set the *log domain level* to [WarningsAndErrors](@ref #com::aworx::lox::Log::DomainLevel ). 
 This tells the logging system that logs implemented with the method [Verbose()](@ref #com::aworx::lox::Log::Verbose) are not to be logged.
 
 The following table lists the domain log levels in the columns and the *log level* in the rows and shows which log levels are
@@ -488,7 +488,7 @@ sure you do not put side effects into expressions of *Assert()* invocations.
 
 \note
 - In accordance with the concept of assertions, the condition has to be 'false' to have ALox perform the log.
-- The *log level* of *Assert()* is *Log.Level.Eror*
+- The *log level* of *Assert()* is *Log.Level.Error*
 
 The method [Assert()] (@ref #com::aworx::lox::Log::Error) in class [Log]	(@ref #com::aworx::lox::Log) is
 similar to the other log methods (namely 
@@ -633,19 +633,23 @@ Some further quick remarks on the code:
   See class 
   [MString](@ref #com::aworx::util::MString) for more information.
 
-- As you can see from the output, the two log lines contained in the MemoryLogger are in two separated
-  lines by the *ConsoleLogger*. This is a feature of [TextLogger](@ref #com::aworx::lox::core::TextLogger), the 
-  super class of both, *ConsoleLogger* and MemoryLogger to log out multi-line data in a readable format. 
-  Hence, logging all kinds of text documents (e.g. XML) results in a readable output. 
+- As you can see from the output, the two log lines contained in the
+  [MemoryLogger](@ref #com::aworx::lox::loggers::MemoryLogger) are logged into two separated lines by the 
+  [ConsoleLogger(@ref #com::aworx::lox::loggers::ConsoleLogger). This is a feature of 
+  [TextLogger](@ref #com::aworx::lox::core::TextLogger), the 
+  super class of both. *ConsoleLogger* and MemoryLogger inherit this feature to log out multi-line data in a readable format. 
+  Hence, logging all kinds of multi-line text documents (e.g. XML) results in a nicely readable output. 
   The multiple line output can be modified in some ways and also can be turned off.
   \~Comment TODO: See in depth section TextLogger \~
 
-- At the beginning of the sample, we are tweaking the output in the MemoryLogger a bit.
+- At the beginning of the sample, we are tweaking the output in the 
+  [MemoryLogger](@ref #com::aworx::lox::loggers::MemoryLogger) a bit.
   The flags we are setting here are available to all Loggers as they are defined in the abstract class 
-  [Logger](@ref #com::aworx::lox::core::Logger) already, but might be differently handled by  different 
-  *Logger* implementations. What we are achieving in this sample, is that the log output does not get too wide.
+  [Logger](@ref #com::aworx::lox::core::Logger) already, but might be differently handled by different *Logger* 
+  implementations. What we are achieving in this sample, is that the log output does not get too wide.
 
-- The tweaks we do on the *MemoryLogger* are surrounded by \c \#if \c ALOX_DEBUG \c ... \c \#endif. 
+- The tweaks we do on the [MemoryLogger](@ref #com::aworx::lox::loggers::MemoryLogger) are surrounded 
+  by \c \#if \c ALOX_DEBUG \c ... \c \#endif. 
   This is necessary as these lines of code are not automatically removed in the release version of the project. 
   Remember, the good news is that all methods invocations of class [Log](@ref #com::aworx::lox::Log) are automatically
   pruned!

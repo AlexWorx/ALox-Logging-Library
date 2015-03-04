@@ -72,11 +72,11 @@ The third namespace is:
 
 Neither *com.aworx.lox.core* nor *com.aworx.lox* know about this namespace. Of-course, *com.aworx.lox.loggers* knows about *com.aworx.lox.core*.
 This makes sense, because instances of *Lox* get instances of abstract type *Logger* attached.
-All that*Lox* knows is that they are derived from class *Logger* in namespace *com.aworx.lox.core*.
+All that class *Lox* knows is that they are derived from class *Logger* in namespace *com.aworx.lox.core*.
 This allows you to create your own loggers. 
 
 Let's imagine you are using ALox from within your own namespace *yournamespace* and you have 
-created your own *Logger* class, residing in namepsace *yourloggers*. 
+created your own *Logger* class, residing in namespace *yourloggers*. 
 This then looks as follows:
 
 
@@ -200,7 +200,7 @@ intentionally by adding the enums
 [Log.Level](@ref #com.aworx.lox.Log.Level),
 [Log.DomainLevel](@ref #com.aworx.lox.Log.Level) and
 [Log.Scope](@ref #com.aworx.lox.Log.Level) to class *Log* in namespace *com.aworx.lox*. They absolutely should
-not be there! And *com.aworx.lox.core* classes rely on them. But the advantage of doing this was to tempting that
+not be there! And *com.aworx.lox.core* classes rely on them. But the advantage of doing this was too tempting that
 we broke the rule. We did it just for the reason that your code should look nice when you use ALox!
 
 <br>
@@ -279,7 +279,7 @@ and removed (pruned) from the release version of a software.
 
 To achieve all goals and provide a very simple interface into debug logging, the ALox ecosystem
 provides class [Log] (@ref #com.aworx.lox.Log). This class is a 100% static interface into
-class Lox. In other words, class Log creates and holds exaclty one static instance of class Lox and
+class Lox. In other words, class Log creates and holds exactly one static instance of class Lox and
 mimics the complete interface of that instance into corresponding static methods.
 
 \dot

@@ -11,11 +11,19 @@
 
 Historically, there existed a kind of predecessor of this library for C++ and JAVA and was
 more or less maintained since the the year 1999. However this is a complete rewrite with C# 
-as the originating language. 
+and Java implementations so far. A C++ version is currently in development. 
 
 The first released version was Version 1.0.1 in **May 2013**. 
 
 This change log is sorted reversely in respect to chronology. 
+
+## Version 1.1.2, released March 4th, 2015 ##
+- Various bug fixes in the documentation.
+- Android fix fo LogCat output. 
+- C# Version: Support for Mono and MonoDevelop. This means, corresponding ide files (MonoDevelop)
+  have been set up and Unit Testing now supports VStudio and NUnit Test 
+- Outlook: A C++ Version is currently in development and to be released in Q2 2015 
+
 
 ## Version 1.1.1, released November 26th, 2013 ##
 - Added a first, simplistic file logger. This is really just a first shot, not optimized in any

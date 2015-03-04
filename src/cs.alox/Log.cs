@@ -50,16 +50,16 @@ public static class Log
 		/** <summary>Do not log anything </summary>*/					
 		Off,	
 
-		/** <summary>Log only level Error</summary>*/					
+		/** <summary>%Log only level Error</summary>*/					
 		Errors,
 
-		/** <summary>Log only levels Warning or Error.</summary>*/		
+		/** <summary>%Log only levels Warning or Error.</summary>*/		
 		WarningsAndErrors,
 
-		/** <summary>Log all  levels but Verbose.</summary>*/				
+		/** <summary>%Log all  levels but Verbose.</summary>*/				
 		InfoWarningsAndErrors,
 
-		/** <summary>Log all.</summary>*/								
+		/** <summary>%Log all.</summary>*/								
 		All,	
 
 		/** <summary>Inherit level from parent domain</summary>*/

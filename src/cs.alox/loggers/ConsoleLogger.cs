@@ -39,7 +39,7 @@ public class ConsoleLogger : TextLogger
 #if !(ALOX_DEBUG || ALOX_REL_LOG)
 		public ConsoleLogger( String name= "CONSOLE" ){}
 #else
-	#if ALOX_DEBUG
+	#if ALOX_DEBUG && !MONO_DEVELOP
 		/// <summary>Enables logging to the debug window of Visual Studio. Defaults to true in
 		// ALOX_DEBUG configuration, to false in ALOX_REL_LOG configuration.</summary>
 		public		bool			EnableVSDebugConsole			= true;

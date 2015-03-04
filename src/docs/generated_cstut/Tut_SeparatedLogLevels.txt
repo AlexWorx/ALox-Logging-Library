@@ -1,5 +1,5 @@
-src\cs.unittests.alox\Tests_Tutorial.cs(346):Tut_SeparatedLogLevels() [00:00.000 +107 µs] [14]       [DOM]: Domain= DOM      -> This goes to all loggers
-src\cs.unittests.alox\Tests_Tutorial.cs(347):Tut_SeparatedLogLevels() [00:00.000 +054 µs] [14]       [DOM/CON]: Domain= DOM/CON  -> This goes to ConsoleLogger exclusively
-src\cs.unittests.alox\Tests_Tutorial.cs(351):Tut_SeparatedLogLevels() [00:00.000 +032 µs] [14]       [DOM/CON]: Here comes the contents of MemoryLogger:
->> src\cs.unittests.alox\Tests_Tutorial.cs(346):       [DOM]: Domain= DOM      -> This goes to all loggers
->> src\cs.unittests.alox\Tests_Tutorial.cs(348):       [DOM/MEM]: Domain= DOM/MEM  -> This goes to MemoryLogger exclusively
+src/cs.unittests.alox/Tests_Tutorial.cs(381):Tut_SeparatedLogLevels() [00:00.000 +155 µs] [TestRunnerThread(10)]       [DOM]: Domain= DOM      -> This goes to all loggers
+src/cs.unittests.alox/Tests_Tutorial.cs(382):Tut_SeparatedLogLevels() [00:00.000 +140 µs] [TestRunnerThread(10)]       [DOM/CON]: Domain= DOM/CON  -> This goes to ConsoleLogger exclusively
+src/cs.unittests.alox/Tests_Tutorial.cs(386):Tut_SeparatedLogLevels() [00:00.000 +145 µs] [TestRunnerThread(10)]       [DOM/CON]: Here comes the contents of MemoryLogger:
+>> src/cs.unittests.alox/Tests_Tutorial.cs(381):       [DOM]: Domain= DOM      -> This goes to all loggers
+>> src/cs.unittests.alox/Tests_Tutorial.cs(383):       [DOM/MEM]: Domain= DOM/MEM  -> This goes to MemoryLogger exclusively

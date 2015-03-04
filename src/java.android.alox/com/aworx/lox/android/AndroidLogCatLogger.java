@@ -95,6 +95,23 @@ public class AndroidLogCatLogger extends TextLogger
 		else {	if (verboseIsDebug)					{	android.util.Log.d( logCat, logCatMsg );	} 
 				else								{	android.util.Log.v( logCat, logCatMsg );	} }
 	}
+	
+	/**********************************************************************************************//**
+	 *  Abstract method to be implemented by descendants. This message is called only when multi-line
+	 *  messages are logged. It is called exactly once before a series of doLog() calls of a multi-line 
+	 *  message and exactly once after such series. The parameter isStart equals to true in the 
+	 *  pre series call and to false in the post series call. 
+	 *  This is useful if the writing of text includes the acquisition of system resources (e.g. opening
+	 *  a file).
+	 *  
+	 * @param isStart   	If true, indicates the begin of a multi-line message, the end otherwise. 
+	 **************************************************************************************************/
+	@Override protected void notifyMultiLineOp (boolean isStart)
+	{
+		// TODO: check if something has to go here. 
+		// 		 Could be helpful for catlog do something here to have multi-line messages supported nicely.
+	} 
+	
 
 //#endif // ALOX_DEBUG || ALOX_REL_LOG
 

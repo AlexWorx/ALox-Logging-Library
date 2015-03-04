@@ -1,15 +1,24 @@
 ﻿using System;
 using System.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+#if MONO_DEVELOP
+	using NUnit.Framework;
+#else
+	using Microsoft.VisualStudio.TestTools.UnitTesting;
+#endif
 
 using System.Text;
 using com.aworx.util;
+using com.aworx.lox;
 using com.aworx.lox.loggers;
 
-namespace com.aworx.lox.unittests
+namespace com.aworx.util.unittests
 {
 
-	[TestClass]
+	#if MONO_DEVELOP
+		[TestFixture ()]
+	#else
+		[TestClass]
+	#endif
 	public class Test_TickerAndTickTime
 	{
 		static	long		nanosPerSecond;
@@ -24,9 +33,13 @@ namespace com.aworx.lox.unittests
 			nanosPerYear=	nanosPerDay * 365;	
 		}
 
+		#if MONO_DEVELOP
+		[Test ()]
+		#else
 		[TestMethod]
 		#if !WINDOWS_PHONE
-			[TestCategory("Ticker")]
+		[TestCategory("Ticker")]
+		#endif
 		#endif
 		public void TickerSpeedTest()
 		{
@@ -69,10 +82,13 @@ namespace com.aworx.lox.unittests
 		}
 
 
-
+		#if MONO_DEVELOP
+		[Test ()]
+		#else
 		[TestMethod]
 		#if !WINDOWS_PHONE
-			[TestCategory("Ticker")]
+		[TestCategory("Ticker")]
+		#endif
 		#endif
 		public void TickerDateTimeConversion()
 		{
@@ -125,9 +141,13 @@ namespace com.aworx.lox.unittests
 			Log.Info( "5.1.71 3:51:00:   "	+  ( Ticker.ToDotNetDateTime (ticks5_1_71_3_51	).ToString() ) );
 		}
 	
+		#if MONO_DEVELOP
+		[Test ()]
+		#else
 		[TestMethod]
 		#if !WINDOWS_PHONE
-			[TestCategory("Ticker")]
+		[TestCategory("Ticker")]
+		#endif
 		#endif
 		public void TickerMicroSecsOutput()
 		{
@@ -174,9 +194,13 @@ namespace com.aworx.lox.unittests
 		}
 
 
+		#if MONO_DEVELOP
+		[Test ()]
+		#else
 		[TestMethod]
 		#if !WINDOWS_PHONE
-			[TestCategory("Ticker")]
+		[TestCategory("Ticker")]
+		#endif
 		#endif
 		public void Ticktime()
 		{

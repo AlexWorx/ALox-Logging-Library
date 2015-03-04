@@ -1,18 +1,30 @@
 ﻿using System;
 using System.Globalization;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+#if MONO_DEVELOP
+	using NUnit.Framework;
+#else
+	using Microsoft.VisualStudio.TestTools.UnitTesting;
+#endif
 
 using System.Text;
 using com.aworx.util;
 
-namespace com.aworx.lox.unittests
+namespace com.aworx.util.unittests
 {
-	[TestClass]
+	#if MONO_DEVELOP
+		[TestFixture ()]
+	#else
+		[TestClass]
+	#endif
 	public class TestsMString
 	{
+		#if MONO_DEVELOP
+		[Test ()]
+		#else
 		[TestMethod]
 		#if !WINDOWS_PHONE
-			[TestCategory("MString")]
+		[TestCategory("MString")]
+		#endif
 		#endif
 		public void MString_Constructors()
 		{
@@ -87,9 +99,13 @@ namespace com.aworx.lox.unittests
 															Assert.AreEqual( ms.ToString(), "0123456789");
 		}
 
+		#if MONO_DEVELOP
+		[Test ()]
+		#else
 		[TestMethod]
 		#if !WINDOWS_PHONE
-			[TestCategory("MString")]
+		[TestCategory("MString")]
+		#endif
 		#endif
 		public void MString_Conversion()
 		{
@@ -116,9 +132,13 @@ namespace com.aworx.lox.unittests
 			s= ms.ToString( 20, 100);			Assert.IsTrue ( s.Equals("") ); 
 		}
 
+		#if MONO_DEVELOP
+		[Test ()]
+		#else
 		[TestMethod]
 		#if !WINDOWS_PHONE
-			[TestCategory("MString")]
+		[TestCategory("MString")]
+		#endif
 		#endif
 		public void MString_Append()
 		{
@@ -236,25 +256,6 @@ namespace com.aworx.lox.unittests
 						d+= inc;
 					} 
 				}
-
- 
-				// Tabs
-				{
-					ms= new MString();
-			
-					ms.Clear();									ms.Tab( 5 ); ms.Append( "#" );			Assert.AreEqual( ms.ToString(), "     #"			);
-					ms.Clear(); ms.Append( "123" );				ms.Tab( 5 ); ms.Append( "#" );			Assert.AreEqual( ms.ToString(), "123  #"			);
-					ms.Clear(); ms.Append( "1234" );			ms.Tab( 5 ); ms.Append( "#" );			Assert.AreEqual( ms.ToString(), "1234 #"			);
-					ms.Clear(); ms.Append( "12345" );			ms.Tab( 5 ); ms.Append( "#" );			Assert.AreEqual( ms.ToString(), "12345     #"		);
-					ms.Clear(); ms.Append( "123456789" );		ms.Tab( 5 ); ms.Append( "#" );			Assert.AreEqual( ms.ToString(), "123456789 #"		);
-					ms.Clear(); ms.Append( "1234567890" );		ms.Tab( 5 ); ms.Append( "#" );			Assert.AreEqual( ms.ToString(), "1234567890     #"	);
-
-					ms.Clear(); ms.Append( "REF:123" );			ms.Tab( 5, 4 ); ms.Append( "#" );			Assert.AreEqual( ms.ToString(), "REF:123  #"			);
-					ms.Clear(); ms.Append( "REF:1234" );		ms.Tab( 5, 4 ); ms.Append( "#" );			Assert.AreEqual( ms.ToString(), "REF:1234 #"			);
-					ms.Clear(); ms.Append( "REF:12345" );		ms.Tab( 5, 4 ); ms.Append( "#" );			Assert.AreEqual( ms.ToString(), "REF:12345     #"		);
-					ms.Clear(); ms.Append( "REF:123456789" );	ms.Tab( 5, 4 ); ms.Append( "#" );			Assert.AreEqual( ms.ToString(), "REF:123456789 #"		);
-					ms.Clear(); ms.Append( "REF:1234567890" );	ms.Tab( 5, 4 ); ms.Append( "#" );			Assert.AreEqual( ms.ToString(), "REF:1234567890     #"	);
-				}
 			}
 
 			// append mutable strings
@@ -329,9 +330,13 @@ namespace com.aworx.lox.unittests
 
 		}
 
+		#if MONO_DEVELOP
+		[Test ()]
+		#else
 		[TestMethod]
 		#if !WINDOWS_PHONE
-			[TestCategory("MString")]
+		[TestCategory("MString")]
+		#endif
 		#endif
 		public void MString_Capacity()
 		{
@@ -348,9 +353,13 @@ namespace com.aworx.lox.unittests
 			ms.EnsureCapacity( 2000 ); Assert.IsTrue ( ms.Buffer.Length >= 2000 );
 		}
 
+		#if MONO_DEVELOP
+		[Test ()]
+		#else
 		[TestMethod]
 		#if !WINDOWS_PHONE
-			[TestCategory("MString")]
+		[TestCategory("MString")]
+		#endif
 		#endif
 		public void MString_AppendWithPadding()
 		{
@@ -470,38 +479,108 @@ namespace com.aworx.lox.unittests
 
 
 
+		#if MONO_DEVELOP
+		[Test ()]
+		#else
 		[TestMethod]
 		#if !WINDOWS_PHONE
-			[TestCategory("MString")]
+		[TestCategory("MString")]
+		#endif
 		#endif
 		public void MString_Tabs()
 		{
 			MString ms= new MString();
-			int result;
 
-			// search
-			ms.Append("abcd abcd");
-			result= ms.IndexOf( "abcd"	  );			Assert.IsTrue( result == 0 );
-			result= ms.IndexOf( "b"		  );			Assert.IsTrue( result == 1 );
-			result= ms.IndexOf( " abcd"	  );			Assert.IsTrue( result == 4 );
-			result= ms.IndexOf( "abcd", 1 );			Assert.IsTrue( result == 5 );
+			// test some bad input 
+						ms.Tab(  0,	0,	-1,	'@' );			Assert.AreEqual( "", ms.ToString() );
+			ms.Clear();	ms.Tab(  0,	-1,	 0,	'@' );			Assert.AreEqual( "", ms.ToString() );
+			ms.Clear();	ms.Tab( -1,	 0,	 0,	'@' );			Assert.AreEqual( "", ms.ToString() );
+			ms.Clear();	ms.Tab( -1,	 -1, 0,	'@' );			Assert.AreEqual( "", ms.ToString() );
+			ms.Clear();	ms.Tab( -1,	 -1, -1,'@' );			Assert.AreEqual( "", ms.ToString() );
+			ms.Clear();	ms.Tab( -5,	-10, 0,	'@' );			Assert.AreEqual( "", ms.ToString() );
+			ms.Clear();	ms.Tab( -5,	-10, -100,	'@' );		Assert.AreEqual( "", ms.ToString() );
+			ms.Clear();	ms.Tab( 2,	-10, -100,	'@' );		Assert.AreEqual( "", ms.ToString() );
+			ms.Clear();	ms.Tab( 0,	  5,    0,	'@' );		Assert.AreEqual( "", ms.ToString() );
+
+
+			// minpad 0 (not common, default is 1, tab wont move if on tab position) 
+			ms.Clear();						ms.Tab( 2, 0 , 0,	'@' ).Append( '-' );		Assert.AreEqual( "-",   ms.ToString());
+			ms.Clear();	ms.Append( 'x' );	ms.Tab( 2, 0 , 0,	'@' ).Append( '-' );		Assert.AreEqual( "x@-", ms.ToString());
 			
-			// replace
+			// more standard tabs
 			ms.Clear();
-			ms.Append("Hello W!");
-			result= ms.ReplaceCount( "W!",	"world!"  );	Assert.AreEqual( ms.ToString(), "Hello world!" );		Assert.AreEqual( 1, result );
-			result= ms.ReplaceCount( " ",	"* *"	  );	Assert.AreEqual( ms.ToString(), "Hello* *world!" );		Assert.AreEqual( 1, result );
-			result= ms.ReplaceCount( "*",	"#", 0, 1 );	Assert.AreEqual( ms.ToString(), "Hello# *world!" );		Assert.AreEqual( 1, result );
-			result= ms.ReplaceCount( "*",	"#"		  );	Assert.AreEqual( ms.ToString(), "Hello# #world!" );		Assert.AreEqual( 1, result );
-			result= ms.ReplaceCount( "#",	"$$$"	  );	Assert.AreEqual( ms.ToString(), "Hello$$$ $$$world!" );	Assert.AreEqual( 2, result );
-			result= ms.ReplaceCount( "$$$",	"*"		  );	Assert.AreEqual( ms.ToString(), "Hello* *world!" );		Assert.AreEqual( 2, result );
-			result= ms.ReplaceCount( "*",	""		  );	Assert.AreEqual( ms.ToString(), "Hello world!" );		Assert.AreEqual( 2, result );
+			ms.Append( "12" ).Tab( 2 )
+			  .Append( "1" ).Tab( 2 )
+			  .Tab(2)
+			  .Append( "@" );
+			Assert.AreEqual( "12  1   @", ms.ToString() );
+			
+			ms.Clear();
+			ms.Append( "12" ).Tab( 2, 0, 0 )
+			  .Append( "1" ).Tab( 2, 0, 0 )
+			  .Tab(2, 0, 0)
+			  .Append( "@" );
+			Assert.AreEqual( "121 @", ms.ToString() );
+			
+			 
+			ms.Clear();
+			ms.Append( "12345" ).Tab( 5 )
+			  .Append( "1234" )	.Tab( 5 )
+			  .Append( "123" )	.Tab( 5 )
+			  .Append( "12" )	.Tab( 5 )
+			  .Append( "1" )	.Tab( 5 )
+			  					.Tab( 5 )
+			  .Append( "@" );
+			Assert.AreEqual( "12345     1234 123  12   1         @", ms.ToString() );
+			
+			ms.Clear();
+			ms.Append( "12345" ).Tab( 5, 0, 0 )
+			  .Append( "1234" )	.Tab( 5, 0, 0 )
+			  .Append( "123" )	.Tab( 5, 0, 0 )
+			  .Append( "12" )	.Tab( 5, 0, 0 )
+			  .Append( "1" )	.Tab( 5, 0, 0 )
+			  					.Tab( 5, 0, 0 )
+			  .Append( "@" );
+			Assert.AreEqual( "123451234 123  12   1    @", ms.ToString() );
+			
+			ms.Clear();						ms.Tab( 0 ).Append( '-' );		Assert.AreEqual( " -"		, ms.ToString() );
+			ms.Clear();						ms.Tab( 1 ).Append( '-' );		Assert.AreEqual( " -"		, ms.ToString() );
+			ms.Clear();						ms.Tab( 2 ).Append( '-' );		Assert.AreEqual( "  -"		, ms.ToString() );
+			ms.Clear();						ms.Tab( 3 ).Append( '-' );		Assert.AreEqual( "   -"		, ms.ToString() );
+			ms.Clear();	ms.Append( 'x' );	ms.Tab( 1 ).Append( '-' );		Assert.AreEqual( "x -"		, ms.ToString() );
+			ms.Clear();	ms.Append( 'x' );	ms.Tab( 2 ).Append( '-' );		Assert.AreEqual( "x -"		, ms.ToString() );
+			ms.Clear();	ms.Append( 'x' );	ms.Tab( 3 ).Append( '-' );		Assert.AreEqual( "x  -"		, ms.ToString() );
+			
+			// tabs with tab reference set (designed for multi line tabs)
+			ms.Clear().Append("ABC");
+			ms.Append( "12345" ).Tab( 5, 3 )
+			  .Append( "1234" )	.Tab( 5, 3 )
+			  .Append( "123" )	.Tab( 5, 3 )
+			  .Append( "12" )	.Tab( 5, 3 )
+			  .Append( "1" )	.Tab( 5, 3 )
+			  					.Tab( 5, 3 )
+			  .Append( "@" );
+			Assert.AreEqual( "ABC12345     1234 123  12   1         @", ms.ToString() );
+
+			ms.Clear().Append("ABC");
+			ms.Append( "12345" ).Tab( 5, 3, 0 )
+			  .Append( "1234" )	.Tab( 5, 3, 0 )
+			  .Append( "123" )	.Tab( 5, 3, 0 )
+			  .Append( "12" )	.Tab( 5, 3, 0 )
+			  .Append( "1" )	.Tab( 5, 3, 0 )
+			  					.Tab( 5, 3, 0 )
+			  .Append( "@" );
+			Assert.AreEqual( "ABC123451234 123  12   1    @", ms.ToString() );
 		}
 
 
+		#if MONO_DEVELOP
+		[Test ()]
+		#else
 		[TestMethod]
 		#if !WINDOWS_PHONE
-			[TestCategory("MString")]
+		[TestCategory("MString")]
+		#endif
 		#endif
 		public void MString_SearchAndReplace()
 		{
@@ -527,9 +606,13 @@ namespace com.aworx.lox.unittests
 			result= ms.ReplaceCount( "*",	""		  );	Assert.AreEqual( ms.ToString(), "Hello world!" );		Assert.AreEqual( 2, result );
 		}
 
+		#if MONO_DEVELOP
+		[Test ()]
+		#else
 		[TestMethod]
 		#if !WINDOWS_PHONE
-			[TestCategory("MString")]
+		[TestCategory("MString")]
+		#endif
 		#endif
 		public void MString_Compare()
 		{
@@ -615,9 +698,13 @@ namespace com.aworx.lox.unittests
 										bRes= ms.ContainsAt( sub2, 0, true );	Assert.AreEqual( false,		bRes );
 		}
 
+		#if MONO_DEVELOP
+		[Test ()]
+		#else
 		[TestMethod]
 		#if !WINDOWS_PHONE
-			[TestCategory("MString")]
+		[TestCategory("MString")]
+		#endif
 		#endif
 		public void MString_ConvertCase()
 		{

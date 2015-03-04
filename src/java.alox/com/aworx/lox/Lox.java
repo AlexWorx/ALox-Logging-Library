@@ -40,7 +40,7 @@ public class Lox
 	// #################################################################################################
 
 	/** The version of ALox. */
-	public  final static String			version					= "1.1.0";
+	public  final static String			version					= "1.1.2";
 
     /**
      * A counter for the quantity of calls. The count includes logs that were suppressed by disabled

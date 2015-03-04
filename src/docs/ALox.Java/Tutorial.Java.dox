@@ -284,8 +284,8 @@ The *domain level* that such *unknown* domains receive is inherited through the 
 is a field existing in each *logger*. By default the root domain of a [ConsoleLogger](@ref #com::aworx::lox::loggers::ConsoleLogger) has
 its *domain level* set to *All*. This is extremely useful, because whenever you are using 3rd party code that defines its custom 
 domain names, you can easily identify those domains in your console window log stream. In contrast, other loggers that
-you create for specific purposes (e.g. log only messages of certain domains into a file), do not enable
-*unknown* domains as a default. Therefore, these special purpose loggers stay clean and log only what you explicitly ask them to log.
+you create for specific purposes (e.g. log only messages of certain domains into a file), do not enable *unknown* domains 
+as a default. Therefore, these special purpose loggers stay clean and log only what you explicitly ask them to log.
 
 
 <BR>

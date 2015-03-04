@@ -2,7 +2,11 @@
 using System.IO;
 using System.Threading;
 using System.Xml.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+#if MONO_DEVELOP
+	using NUnit.Framework;
+#else
+	using Microsoft.VisualStudio.TestTools.UnitTesting;
+#endif
 using com.aworx.lox.core;
 using com.aworx.util;
 
@@ -20,7 +24,11 @@ namespace com.aworx.unittests.lox
 *  Implements the tutorial code that with snippets markers for doxygen inclusion.
 * </summary>
 **************************************************************************************************/
-[TestClass]
+#if MONO_DEVELOP
+	[TestFixture ()]
+#else
+	[TestClass]
+#endif
 public class TestsTutorial
 {
 MemoryLogger	tutLog;
@@ -33,9 +41,13 @@ void SaveTutorialOuput( string fileName, MString log )
 #endif
 }
 
+#if MONO_DEVELOP
+[Test ()]
+#else
 [TestMethod]
 #if !WINDOWS_PHONE
-	[TestCategory("Tutorial")]
+[TestCategory("Tutorial")]
+#endif
 #endif
 public void Tut_Hello_ALox()
 {
@@ -64,9 +76,13 @@ public void Tut_Hello_ALox()
 	#endif
 }
 
+#if MONO_DEVELOP
+[Test ()]
+#else
 [TestMethod]
 #if !WINDOWS_PHONE
-	[TestCategory("Tutorial")]
+[TestCategory("Tutorial")]
+#endif
 #endif
 public void Tut_LogLevels()
 {
@@ -93,9 +109,13 @@ public void Tut_LogLevels()
 	#endif
 }
 
+#if MONO_DEVELOP
+[Test ()]
+#else
 [TestMethod]
 #if !WINDOWS_PHONE
-	[TestCategory("Tutorial")]
+[TestCategory("Tutorial")]
+#endif
 #endif
 public void Tut_DefaultDomains()
 {
@@ -206,9 +226,13 @@ public void Tut_ConditionalLogging()
 }
 private void process(int i) {}
 
+#if MONO_DEVELOP
+[Test ()]
+#else
 [TestMethod]
 #if !WINDOWS_PHONE
-	[TestCategory("Tutorial")]
+[TestCategory("Tutorial")]
+#endif
 #endif
 public void Tut_Instance()
 {
@@ -247,9 +271,13 @@ public void Tut_Instance()
 #endif
 }
 
+#if MONO_DEVELOP
+[Test ()]
+#else
 [TestMethod]
 #if !WINDOWS_PHONE
-	[TestCategory("Tutorial")]
+[TestCategory("Tutorial")]
+#endif
 #endif
 public void Tut_Exception()
 {
@@ -270,9 +298,13 @@ public void Tut_Exception()
 #endif
 }
 
+#if MONO_DEVELOP
+[Test ()]
+#else
 [TestMethod]
 #if !WINDOWS_PHONE
-	[TestCategory("Tutorial")]
+[TestCategory("Tutorial")]
+#endif
 #endif
 public void Tut_XML()
 {
@@ -298,10 +330,13 @@ public void Tut_XML()
 #endif
 }
 
-
+#if MONO_DEVELOP
+[Test ()]
+#else
 [TestMethod]
 #if !WINDOWS_PHONE
-	[TestCategory("Tutorial")]
+[TestCategory("Tutorial")]
+#endif
 #endif
 public void Tut_SeparatedLogLevels()
 {
@@ -359,10 +394,13 @@ public void Tut_SeparatedLogLevels()
 #endif
 }
 
-
+#if MONO_DEVELOP
+[Test ()]
+#else
 [TestMethod]
 #if !WINDOWS_PHONE
-	[TestCategory("Tutorial")]
+[TestCategory("Tutorial")]
+#endif
 #endif
 public void Tut_LogConfig()
 {
@@ -402,10 +440,13 @@ public void Tut_LogConfig()
 }
 
 
-
+#if MONO_DEVELOP
+[Test ()]
+#else
 [TestMethod]
 #if !WINDOWS_PHONE
-	[TestCategory("Tutorial")]
+[TestCategory("Tutorial")]
+#endif
 #endif
 public void Tut_LogConfig2()
 {
@@ -482,9 +523,13 @@ public void Tut_LogConfig2()
 /** ***********************************************************************************************
 * <summary>	Tut_UsingLogBuffer </summary>
 **************************************************************************************************/
+#if MONO_DEVELOP
+[Test ()]
+#else
 [TestMethod]
 #if !WINDOWS_PHONE
-	[TestCategory("Tutorial")]
+[TestCategory("Tutorial")]
+#endif
 #endif
 public void Tut_UsingLogBuffer()
 {

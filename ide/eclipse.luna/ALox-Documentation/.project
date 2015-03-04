@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>ALox-Documentation</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.ui.externaltools.ExternalToolBuilder</name>
+			<triggers>auto,full,</triggers>
+			<arguments>
+				<dictionary>
+					<key>LaunchConfigHandle</key>
+					<value>&lt;project&gt;/.externalToolBuilders/makedox.sh.launch</value>
+				</dictionary>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>docs</name>
+			<type>2</type>
+			<location>/home/a/mnt/dev/Dev/A-Worx/ALox/src/docs</location>
+		</link>
+		<link>
+			<name>Readme-License-etc/LICENSE.txt</name>
+			<type>1</type>
+			<location>/home/a/mnt/dev/Dev/A-Worx/ALox/LICENSE.txt</location>
+		</link>
+		<link>
+			<name>Readme-License-etc/README.md</name>
+			<type>1</type>
+			<location>/home/a/mnt/dev/Dev/A-Worx/ALox/README.md</location>
+		</link>
+	</linkedResources>
+</projectDescription>

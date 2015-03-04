@@ -1,5 +1,5 @@
-(Tests_Tutorial.java:313) Tut_SeparatedLogLevels(): [00:00.003 +003 ms] [main(1)]       [DOM]: Domain= DOM      -> This goes to all loggers
-(Tests_Tutorial.java:314) Tut_SeparatedLogLevels(): [00:00.003 +127 µs] [main(1)]       [DOM/CON]: Domain= DOM/CON  -> This goes to ConsoleLogger exclusively
-(Tests_Tutorial.java:318) Tut_SeparatedLogLevels(): [00:00.003 +191 µs] [main(1)]       [DOM/CON]: Here comes the contents of MemoryLogger:
->> Tests_Tutorial.java:313(?):       [DOM]: Domain= DOM      -> This goes to all loggers
->> Tests_Tutorial.java:315(?):       [DOM/MEM]: Domain= DOM/MEM  -> This goes to MemoryLogger exclusively
+(Tests_Tutorial.java:315) Tut_SeparatedLogLevels(): [00:00.001 +001 ms] [main(1)]       [DOM]: Domain= DOM      -> This goes to all loggers
+(Tests_Tutorial.java:316) Tut_SeparatedLogLevels(): [00:00.001 +058 µs] [main(1)]       [DOM/CON]: Domain= DOM/CON  -> This goes to ConsoleLogger exclusively
+(Tests_Tutorial.java:320) Tut_SeparatedLogLevels(): [00:00.001 +124 µs] [main(1)]       [DOM/CON]: Here comes the contents of MemoryLogger:
+>> Tests_Tutorial.java:315(?):       [DOM]: Domain= DOM      -> This goes to all loggers
+>> Tests_Tutorial.java:317(?):       [DOM/MEM]: Domain= DOM/MEM  -> This goes to MemoryLogger exclusively

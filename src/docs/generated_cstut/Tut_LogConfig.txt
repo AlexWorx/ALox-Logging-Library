@@ -1,29 +1,29 @@
-src\cs.unittests.alox\Tests_Tutorial.cs(394):Tut_LogConfig() [00:00.000 +058 µs] [14] [***] [DOM]: >> Here comes the current Log configuration:
-                                                                                                   >> Version:      1.1.1
-                                                                                                   >> Intern. dom.: ALOX
-                                                                                                   >> Thread safe:  Yes
-                                                                                                   >> No. of calls: 1
-                                                                                                   >> Code markers: 0
-                                                                                                   >> 
-                                                                                                   >> Def. domains: 1
-                                                                                                   >>   Domain:   DOM          Scope: "i:\Dev\A-Worx\ALox\src\cs.unittests.alox\Tests_Tutorial.cs#Tut_LogConfig"
-                                                                                                   >> 
-                                                                                                   >> Loggers:      2
-                                                                                                   >> 
-                                                                                                   >>   Logger: "CONSOLE"
-                                                                                                   >>     Creation time: 11/26/2013 14:19:06
-                                                                                                   >>     Lines logged:  0
-                                                                                                   >>     Domains:
-                                                                                                   >>       /ALOX              WarningsAndErrors
-                                                                                                   >>       /DOM               All
-                                                                                                   >>       /DOM/CON           All
-                                                                                                   >>       /DOM/MEM           Off
-                                                                                                   >> 
-                                                                                                   >>   Logger: "MEMORY"
-                                                                                                   >>     Creation time: 11/26/2013 14:19:06
-                                                                                                   >>     Lines logged:  0
-                                                                                                   >>     Domains:
-                                                                                                   >>       /ALOX              WarningsAndErrors
-                                                                                                   >>       /DOM               All
-                                                                                                   >>       /DOM/CON           Off
-                                                                                                   >>       /DOM/MEM           All
+src/cs.unittests.alox/Tests_Tutorial.cs(432):Tut_LogConfig() [00:00.000 +076 µs] [TestRunnerThread(10)] [***] [DOM]: >> Here comes the current Log configuration:
+                                                                                                                     >> Version:      1.1.2
+                                                                                                                     >> Intern. dom.: ALOX
+                                                                                                                     >> Thread safe:  Yes
+                                                                                                                     >> No. of calls: 1
+                                                                                                                     >> Code markers: 0
+                                                                                                                     >> 
+                                                                                                                     >> Def. domains: 1
+                                                                                                                     >>   Domain:   DOM          Scope: "/home/a/mnt/dev/Dev/A-Worx/ALox/src/cs.unittests.alox/Tests_Tutorial.cs#Tut_LogConfig"
+                                                                                                                     >> 
+                                                                                                                     >> Loggers:      2
+                                                                                                                     >> 
+                                                                                                                     >>   Logger: "CONSOLE"
+                                                                                                                     >>     Creation time: 03/04/2015 10:30:58
+                                                                                                                     >>     Lines logged:  0
+                                                                                                                     >>     Domains:
+                                                                                                                     >>       /ALOX              WarningsAndErrors
+                                                                                                                     >>       /DOM               All
+                                                                                                                     >>       /DOM/CON           All
+                                                                                                                     >>       /DOM/MEM           Off
+                                                                                                                     >> 
+                                                                                                                     >>   Logger: "MEMORY"
+                                                                                                                     >>     Creation time: 03/04/2015 10:30:58
+                                                                                                                     >>     Lines logged:  0
+                                                                                                                     >>     Domains:
+                                                                                                                     >>       /ALOX              WarningsAndErrors
+                                                                                                                     >>       /DOM               All
+                                                                                                                     >>       /DOM/CON           Off
+                                                                                                                     >>       /DOM/MEM           All

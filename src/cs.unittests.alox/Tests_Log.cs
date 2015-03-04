@@ -1,7 +1,11 @@
 ﻿using System;
-using System.Xml.Linq;
 using System.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Xml.Linq;
+#if MONO_DEVELOP
+	using NUnit.Framework;
+#else
+	using Microsoft.VisualStudio.TestTools.UnitTesting;
+#endif
 
 using com.aworx.util;
 using com.aworx.lox;
@@ -16,7 +20,11 @@ using System.Collections.Generic;
 
 namespace com.aworx.unittests.lox
 {
+	#if MONO_DEVELOP
+	[TestFixture ()]
+	#else
 	[TestClass]
+	#endif
 	public class TestsALox
 	{
 		/** ***********************************************************************************************
@@ -68,9 +76,13 @@ namespace com.aworx.unittests.lox
 		}
 	#endif
 		
+	#if MONO_DEVELOP
+	[Test ()]
+	#else
 	[TestMethod]
 	#if !WINDOWS_PHONE
-		[TestCategory("ALox")]
+	[TestCategory("ALox")]
+	#endif
 	#endif
 	public void Log_TestTextLoggerTimeDiff()
 	{
@@ -158,9 +170,13 @@ namespace com.aworx.unittests.lox
 		/** ***********************************************************************************************
 		 * <summary>	Log_TestLogLevelSetting </summary>
 		 **************************************************************************************************/
+		#if MONO_DEVELOP
+		[Test ()]
+		#else
 		[TestMethod]
 		#if !WINDOWS_PHONE
-			[TestCategory("ALox")]
+		[TestCategory("ALox")]
+		#endif
 		#endif
 		public void Log_TestLogLevelSetting()
 		{
@@ -212,9 +228,13 @@ namespace com.aworx.unittests.lox
 		/** ***********************************************************************************************
 		 * <summary>	Log_TestDefaultDomain </summary>
 		 **************************************************************************************************/
+		#if MONO_DEVELOP
+		[Test ()]
+		#else
 		[TestMethod]
 		#if !WINDOWS_PHONE
-			[TestCategory("ALox")]
+		[TestCategory("ALox")]
+		#endif
 		#endif
 		public void Log_TestDefaultDomain()
 		{
@@ -316,9 +336,13 @@ namespace com.aworx.unittests.lox
 		/** ***********************************************************************************************
 		 * <summary>	Log_TestDefaultDomain </summary>
 		 **************************************************************************************************/
+		#if MONO_DEVELOP
+		[Test ()]
+		#else
 		[TestMethod]
 		#if !WINDOWS_PHONE
-			[TestCategory("ALox")]
+		[TestCategory("ALox")]
+		#endif
 		#endif
 		public void Log_TestAssertAndConditional()
 		{
@@ -345,9 +369,13 @@ namespace com.aworx.unittests.lox
 		/** ***********************************************************************************************
 		 * <summary>	Log_TestLineFormat </summary>
 		 **************************************************************************************************/
+		#if MONO_DEVELOP
+		[Test ()]
+		#else
 		[TestMethod]
 		#if !WINDOWS_PHONE
-			[TestCategory("ALox")]
+		[TestCategory("ALox")]
+		#endif
 		#endif
 		public void Log_TestLineFormat()
 		{
@@ -379,9 +407,13 @@ namespace com.aworx.unittests.lox
 		/** ***********************************************************************************************
 		 * <summary>	Log_TestMarker </summary>
 		 **************************************************************************************************/
+		#if MONO_DEVELOP
+		[Test ()]
+		#else
 		[TestMethod]
 		#if !WINDOWS_PHONE
-			[TestCategory("ALox")]
+		[TestCategory("ALox")]
+		#endif
 		#endif
 		public void Log_TestMarker()
 		{
@@ -434,9 +466,13 @@ namespace com.aworx.unittests.lox
 		/** ***********************************************************************************************
 		 * <summary>	Log_TestThreads </summary>
 		 **************************************************************************************************/
+		#if MONO_DEVELOP
+		[Test ()]
+		#else
 		[TestMethod]
 		#if !WINDOWS_PHONE
-			[TestCategory("ALox")]
+		[TestCategory("ALox")]
+		#endif
 		#endif
 		public void Log_TestThreads()
 		{
@@ -476,9 +512,13 @@ namespace com.aworx.unittests.lox
 		/** ***********************************************************************************************
 		 * <summary>	Log_TestException. </summary>
 		 **************************************************************************************************/
+		#if MONO_DEVELOP
+		[Test ()]
+		#else
 		[TestMethod]
 		#if !WINDOWS_PHONE
-			[TestCategory("ALox")]
+		[TestCategory("ALox")]
+		#endif
 		#endif
 		public void Log_TestException()
 		{
@@ -496,9 +536,13 @@ namespace com.aworx.unittests.lox
 		/** ***********************************************************************************************
 		 * <summary>	Log_TestException. </summary>
 		 **************************************************************************************************/
+		#if MONO_DEVELOP
+		[Test ()]
+		#else
 		[TestMethod]
 		#if !WINDOWS_PHONE
-			[TestCategory("ALox")]
+		[TestCategory("ALox")]
+		#endif
 		#endif
 		public void Log_TestMultiline()
 		{
@@ -552,9 +596,13 @@ namespace com.aworx.unittests.lox
 		/** ***********************************************************************************************
 		 * <summary>	Log_TestInstance </summary>
 		 **************************************************************************************************/
+		#if MONO_DEVELOP
+		[Test ()]
+		#else
 		[TestMethod]
 		#if !WINDOWS_PHONE
-			[TestCategory("ALox")]
+		[TestCategory("ALox")]
+		#endif
 		#endif
 		public void Log_TestInstance()
 		{
@@ -667,9 +715,13 @@ namespace com.aworx.unittests.lox
 		/** ***********************************************************************************************
 		 * <summary>	Log_TestXML </summary>
 		 **************************************************************************************************/
+		#if MONO_DEVELOP
+		[Test ()]
+		#else
 		[TestMethod]
 		#if !WINDOWS_PHONE
-			[TestCategory("ALox")]
+		[TestCategory("ALox")]
+		#endif
 		#endif
 		public void Log_TestXML()
 		{
@@ -688,9 +740,13 @@ namespace com.aworx.unittests.lox
 		/** ***********************************************************************************************
 		 * <summary>	Log_JSON </summary>
 		 **************************************************************************************************/
-		#if !WINDOWS_PHONE
+		#if !WINDOWS_PHONE 
+			#if MONO_DEVELOP
+			[Test ()]
+			#else
 			[TestMethod]
 			[TestCategory("ALox")]
+			#endif
 			public void Log_JSON()
 			{
 				clearCreateAndAddLoggers();

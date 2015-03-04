@@ -28,8 +28,8 @@ Basic support for release logging is here today already. The introduction of new
 in the area of release logging will also support debug logging aspects of ALox. Therefore the natural path
 of evolution for the ALox project is "debug features first, release features next".
 
-This is Version 1.1.1, the first release supporting a simple file logger (we were concentrating on the
-console and the core logging engine so far). A lot of future improvements are to come. 
+This is Version 1.1.2, a maintenance release. Currently, we are working on a C++ Version of ALox.
+A lot of future improvements are to come. 
 Stay tuned. If you do not want to wait, take the source and do  it yourself: We hope, the simple [Bauhaus Style](\ref faq_bauhaus)
 architecture and code style  of the library allows users to easily extend it with features they 
 need today.

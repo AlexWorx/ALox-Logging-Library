@@ -101,7 +101,7 @@ public class MString
 	/** ************************************************************************************************
 	 * <summary> Constructor copying a substring of a String. </summary>
 	 *
-	 * <param name="s">			The source String to copy from. </param>
+	 * <param name="s">		The source String to copy from. </param>
 	 * <param name="startIdx">	The start index in s to append. Defaults to 0. </param>
 	 * <param name="length">  	The maximum length of the substring in s to append.
 	 * 							Defaults to int.MaxInt. </param>
@@ -139,7 +139,7 @@ public class MString
 	/** ************************************************************************************************
 	 * <summary> Constructor copying a substring of a StringBuilder. </summary>
 	 *
-	 * <param name="sb">	  	The source Mutable StringBuilder to copy. </param>
+	 * <param name="sb">	  	The source StringBuilder to copy. </param>
 	 * <param name="startIdx">	The start index in ms to append. Defaults to 0. </param>
 	 * <param name="length">  	The maximum length of the substring in ms to append.
 	 * 							Defaults to int.MaxInt. </param>
@@ -298,7 +298,7 @@ public class MString
 	/** ************************************************************************************************
 	 * <summary>	Append a substring of a String. </summary>
 	 *
-	 * <param name="s">		 	The String to append. </param>
+	 * <param name="s">		The String to append. </param>
 	 * <param name="startIdx">	The start index in s to append. Defaults to 0.</param>
 	 * <param name="length">	The maximum length of the substring in s to append. Defaults to 
 	 * 							int.MaxInt</param>
@@ -329,7 +329,7 @@ public class MString
 	/** ************************************************************************************************
 	 * <summary>	Append a StringBuilder. </summary>
 	 *
-	 * <param name="sb">	 	The StringBuilder to append. </param>
+	 * <param name="sb">	 The StringBuilder to append. </param>
 	 *
 	 * <returns> 'this' to allow concatenated calls. </returns>
 	 **************************************************************************************************/
@@ -538,7 +538,7 @@ public class MString
 	/** ************************************************************************************************
 	 * <summary>	Append the given String and add padding spaces. </summary>
 	 *
-	 * <param name="ms">		The string to append. </param>
+	 * <param name="ms">		The MString to append. </param>
 	 * <param name="fieldSize">	The minimum number of characters to append. </param>
 	 * <param name="padChar">  	The character to add to the right of the given string src.
 	 * 							Defaults to ' ' (space). </param>
@@ -570,7 +570,7 @@ public class MString
 	/** ************************************************************************************************
 	 * <summary>	Append the given String and add padding spaces. </summary>
 	 *
-	 * <param name="s">		   	The string to append. </param>
+	 * <param name="s">		   	The String to append. </param>
 	 * <param name="fieldSize">	The minimum number of characters to append. </param>
 	 * <param name="padChar">  	The character to add to the right of the given string src.
 	 * 							Defaults to ' ' (space). </param>
@@ -872,13 +872,13 @@ public class MString
 		// append minimum padding
 		Append( padChar, minPad );
 
+		// check 
+		if ( tabSize < 1)
+			return this;
+
 		// append characters to meet next tab
-		Append( padChar, (tabSize - ( (Length - tabReference) % tabSize ) ) % tabSize );
-
-		// return me for concatenated operations	
-		return this;
+		return Append( padChar, (tabSize - ( (Length - tabReference) % tabSize ) ) % tabSize );
 	}
-
 
 	/** ***********************************************************************************************
 	 * <summary>	Appends platform specific new line character(s). Here: "\r\n" </summary>
@@ -932,7 +932,7 @@ public class MString
 	}
 
 	/** ***********************************************************************************************
-	 * <summary> Checks if this MString starts with the given sequence. </summary>
+	 * <summary> Checks if this MString starts with the given String. </summary>
 	 * <param name="s">	The String to search. If s is null or empty, false is returned.</param>
 	 * <returns> true if this starts with the given sequence, false if not.</returns>
 	 **************************************************************************************************/
@@ -942,7 +942,7 @@ public class MString
 	}
 
 	/** ***********************************************************************************************
-	 * <summary> Checks if this MString ends with the given sequence. </summary>
+	 * <summary> Checks if this MString ends with the given String. </summary>
 	 * <param name="s">	The String to search. If s is null or empty, false is returned.</param>
 	 * <returns> true if this starts with the given sequence, false if not.</returns>
 	 **************************************************************************************************/
@@ -958,8 +958,8 @@ public class MString
 	/** ************************************************************************************************
 	 * <summary>	Search the given String in the Buffer. </summary>
 	 *
-	 * <param name="s">		   	The string to search. </param>
-	 * <param name="startIdx">	The index to start the search at. Optional and defaults to 0. </param>
+	 * <param name="s">		   	The String to search. </param>
+	 * <param name="startIdx">	    The index to start the search at. Optional and defaults to 0. </param>
 	 *
 	 * <returns>	-1 if the String is not found. Otherwise the index of first occurrence. </returns>
 	 **************************************************************************************************/
@@ -996,7 +996,7 @@ public class MString
 	 * 	of replacements.
 	 * 	</summary>
 	 *
-	 * <param name="searchStr">			The string to be replaced. </param>
+	 * <param name="searchStr">		The String to be replaced. </param>
 	 * <param name="newStr">			The replacement string. </param>
 	 * <param name="startIdx">		 	The index where the search starts. Optional and defaults
 	 * 									to 0. </param>
@@ -1067,7 +1067,7 @@ public class MString
 	 * 	replacements, see alternative method #ReplaceCount().
 	 * </summary>
 	 *
-	 * <param name="searchStr">			The string to be replaced. </param>
+	 * <param name="searchStr">		The string to be replaced. </param>
 	 * <param name="newStr">			The replacement string. </param>
 	 * <param name="startIdx">		 	The index where the search starts. Optional and defaults
 	 * 									to 0. </param>
@@ -1216,7 +1216,7 @@ public class MString
 	}
 
 	/** ************************************************************************************************
-	 * <summary>	Converts the MString into a this String. </summary>
+	 * <summary>	Converts the MString into a String. </summary>
 	 *
 	 * <returns> A string that represents this object. </returns>
 	 **************************************************************************************************/

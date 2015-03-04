@@ -1,15 +1,15 @@
-src\cs.unittests.alox\Tests_Tutorial.cs(445):Tut_LogConfig2() [00:00.000 +004 µs] [14]       [ALOX]: Lox.AddLogger(): Logger "CONSOLE" added. Internal Domain Level set to: All
-src\cs.unittests.alox\Tests_Tutorial.cs(446):Tut_LogConfig2() [00:00.000 +005 µs] [14]       [ALOX]: Lox.AddLogger(): Logger "MEMORY" added. Internal Domain Level set to: WarningsAndErrors
-src\cs.unittests.alox\Tests_Tutorial.cs(449):Tut_LogConfig2() [00:00.000 +002 µs] [14]       [ALOX]: Lox.RegDomain(): Domain "DOM" created in logger: CONSOLE
-src\cs.unittests.alox\Tests_Tutorial.cs(449):Tut_LogConfig2() [00:00.000 +001 µs] [14]       [ALOX]: Lox.RegDomain(): Domain "DOM" created in logger: MEMORY
-src\cs.unittests.alox\Tests_Tutorial.cs(449):Tut_LogConfig2() [00:00.000 +002 µs] [14]       [ALOX]: Lox.RegDomain(): Domain "DOM" set as default for scope "Method"
-src\cs.unittests.alox\Tests_Tutorial.cs(450):Tut_LogConfig2() [00:00.000 +002 µs] [14]       [ALOX]: Lox.RegDomain(): Domain "DOM/CON" created in logger: CONSOLE
-src\cs.unittests.alox\Tests_Tutorial.cs(450):Tut_LogConfig2() [00:00.000 +002 µs] [14]       [ALOX]: Lox.RegDomain(): Domain "DOM/CON" created in logger: MEMORY
-src\cs.unittests.alox\Tests_Tutorial.cs(451):Tut_LogConfig2() [00:00.000 +002 µs] [14]       [ALOX]: Lox.RegDomain(): Domain "DOM/MEM" created in logger: CONSOLE
-src\cs.unittests.alox\Tests_Tutorial.cs(451):Tut_LogConfig2() [00:00.000 +001 µs] [14]       [ALOX]: Lox.RegDomain(): Domain "DOM/MEM" created in logger: MEMORY
-src\cs.unittests.alox\Tests_Tutorial.cs(454):Tut_LogConfig2() [00:00.000 +003 µs] [14]       [ALOX]: Lox.SetDomain(): Domain "DOM" log level set to "All" for logger "CONSOLE"
-src\cs.unittests.alox\Tests_Tutorial.cs(454):Tut_LogConfig2() [00:00.000 +003 µs] [14]       [ALOX]: Lox.SetDomain(): Domain "DOM" log level set to "All" for logger "MEMORY"
-src\cs.unittests.alox\Tests_Tutorial.cs(457):Tut_LogConfig2() [00:00.000 +005 µs] [14]       [ALOX]: Lox.SetDomain(): Domain "DOM/CON" log level set to "All" for logger "CONSOLE"
-src\cs.unittests.alox\Tests_Tutorial.cs(458):Tut_LogConfig2() [00:00.000 +005 µs] [14]       [ALOX]: Lox.SetDomain(): Domain "DOM/CON" log level set to "Off" for logger "MEMORY"
-src\cs.unittests.alox\Tests_Tutorial.cs(461):Tut_LogConfig2() [00:00.000 +004 µs] [14]       [ALOX]: Lox.SetDomain(): Domain "DOM/MEM" log level set to "Off" for logger "CONSOLE"
-src\cs.unittests.alox\Tests_Tutorial.cs(462):Tut_LogConfig2() [00:00.000 +005 µs] [14]       [ALOX]: Lox.SetDomain(): Domain "DOM/MEM" log level set to "All" for logger "MEMORY"
+src/cs.unittests.alox/Tests_Tutorial.cs(486):Tut_LogConfig2() [00:00.000 +005 µs] [TestRunnerThread(10)]       [ALOX]: Lox.AddLogger(): Logger "CONSOLE" added. Internal Domain Level set to: All
+src/cs.unittests.alox/Tests_Tutorial.cs(487):Tut_LogConfig2() [00:00.000 +006 µs] [TestRunnerThread(10)]       [ALOX]: Lox.AddLogger(): Logger "MEMORY" added. Internal Domain Level set to: WarningsAndErrors
+src/cs.unittests.alox/Tests_Tutorial.cs(490):Tut_LogConfig2() [00:00.000 +002 µs] [TestRunnerThread(10)]       [ALOX]: Lox.RegDomain(): Domain "DOM" created in logger: CONSOLE
+src/cs.unittests.alox/Tests_Tutorial.cs(490):Tut_LogConfig2() [00:00.000 +001 µs] [TestRunnerThread(10)]       [ALOX]: Lox.RegDomain(): Domain "DOM" created in logger: MEMORY
+src/cs.unittests.alox/Tests_Tutorial.cs(490):Tut_LogConfig2() [00:00.000 +002 µs] [TestRunnerThread(10)]       [ALOX]: Lox.RegDomain(): Domain "DOM" set as default for scope "Method"
+src/cs.unittests.alox/Tests_Tutorial.cs(491):Tut_LogConfig2() [00:00.000 +002 µs] [TestRunnerThread(10)]       [ALOX]: Lox.RegDomain(): Domain "DOM/CON" created in logger: CONSOLE
+src/cs.unittests.alox/Tests_Tutorial.cs(491):Tut_LogConfig2() [00:00.000 +001 µs] [TestRunnerThread(10)]       [ALOX]: Lox.RegDomain(): Domain "DOM/CON" created in logger: MEMORY
+src/cs.unittests.alox/Tests_Tutorial.cs(492):Tut_LogConfig2() [00:00.000 +002 µs] [TestRunnerThread(10)]       [ALOX]: Lox.RegDomain(): Domain "DOM/MEM" created in logger: CONSOLE
+src/cs.unittests.alox/Tests_Tutorial.cs(492):Tut_LogConfig2() [00:00.000 +001 µs] [TestRunnerThread(10)]       [ALOX]: Lox.RegDomain(): Domain "DOM/MEM" created in logger: MEMORY
+src/cs.unittests.alox/Tests_Tutorial.cs(495):Tut_LogConfig2() [00:00.000 +003 µs] [TestRunnerThread(10)]       [ALOX]: Lox.SetDomain(): Domain "DOM" log level set to "All" for logger "CONSOLE"
+src/cs.unittests.alox/Tests_Tutorial.cs(495):Tut_LogConfig2() [00:00.000 +001 µs] [TestRunnerThread(10)]       [ALOX]: Lox.SetDomain(): Domain "DOM" log level set to "All" for logger "MEMORY"
+src/cs.unittests.alox/Tests_Tutorial.cs(498):Tut_LogConfig2() [00:00.000 +006 µs] [TestRunnerThread(10)]       [ALOX]: Lox.SetDomain(): Domain "DOM/CON" log level set to "All" for logger "CONSOLE"
+src/cs.unittests.alox/Tests_Tutorial.cs(499):Tut_LogConfig2() [00:00.000 +009 µs] [TestRunnerThread(10)]       [ALOX]: Lox.SetDomain(): Domain "DOM/CON" log level set to "Off" for logger "MEMORY"
+src/cs.unittests.alox/Tests_Tutorial.cs(502):Tut_LogConfig2() [00:00.000 +005 µs] [TestRunnerThread(10)]       [ALOX]: Lox.SetDomain(): Domain "DOM/MEM" log level set to "Off" for logger "CONSOLE"
+src/cs.unittests.alox/Tests_Tutorial.cs(503):Tut_LogConfig2() [00:00.000 +009 µs] [TestRunnerThread(10)]       [ALOX]: Lox.SetDomain(): Domain "DOM/MEM" log level set to "All" for logger "MEMORY"

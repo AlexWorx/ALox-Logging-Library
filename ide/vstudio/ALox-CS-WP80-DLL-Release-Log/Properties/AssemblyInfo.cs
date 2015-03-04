@@ -11,7 +11,7 @@ using System.Resources;
 [assembly: AssemblyConfiguration( "" )]
 [assembly: AssemblyCompany( "" )]
 [assembly: AssemblyProduct( "ALox_CS_WP80_DLL" )]
-[assembly: AssemblyCopyright( "Copyright ©  2013 A-Worx GmbH" )]
+[assembly: AssemblyCopyright( "Written 2013-2015 by A-Worx GmbH, MIT License" )]
 [assembly: AssemblyTrademark( "" )]
 [assembly: AssemblyCulture( "" )]
 
@@ -32,6 +32,6 @@ using System.Resources;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion( "1.1.1.0" )]
-[assembly: AssemblyFileVersion( "1.1.1.0" )]
+[assembly: AssemblyVersion( "1.1.2.0" )]
+[assembly: AssemblyFileVersion( "1.1.2.0" )]
 [assembly: NeutralResourcesLanguageAttribute( "en-US" )]

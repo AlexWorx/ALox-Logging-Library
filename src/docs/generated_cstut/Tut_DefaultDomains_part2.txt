@@ -1,2 +1,2 @@
-src\cs.unittests.alox\Tests_Tutorial.cs(131):Tut_DefaultDomains() [00:00.000 +020 µs] [14] [***] [APP]: Logger 'Console': log domain 'APP' not found. Created. Inherited domain level is: All 
-src\cs.unittests.alox\Tests_Tutorial.cs(131):Tut_DefaultDomains() [00:00.000 +020 µs] [14]       [APP]: Hallo ALox
+src/cs.unittests.alox/Tests_Tutorial.cs(151):Tut_DefaultDomains() [00:00.000 +025 µs] [TestRunnerThread(10)] [***] [APP]: Logger 'Console': log domain 'APP' not found. Created. Inherited domain level is: All 
+src/cs.unittests.alox/Tests_Tutorial.cs(151):Tut_DefaultDomains() [00:00.000 +025 µs] [TestRunnerThread(10)]       [APP]: Hallo ALox

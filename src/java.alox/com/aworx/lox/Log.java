@@ -39,16 +39,16 @@ public abstract class Log
 		/** Do not log anything. */
 		OFF,	
 
-		/** Log only level Error. */
+		/** %Log only level Error. */
 		ERRORS,
 
-		/** Log only levels Warning or Error. */
+		/** %Log only levels Warning or Error. */
 		WARNINGS_AND_ERRORS,
 
-		/** Log all  levels but Verbose. */
+		/** %Log all  levels but Verbose. */
 		INFO_WARNINGS_AND_ERRORS,
 
-		/** Log all. */								
+		/** %Log all. */								
 		ALL,	
 
 		/** Inherit level from parent domain. */

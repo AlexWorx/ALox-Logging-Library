@@ -1,4 +1,4 @@
-(Tests_Tutorial.java:244) Tut_Exception(): [00:00.005 +005 ms] [main(1)] [WRN] [MYDOM]: >> Logging an exception: 
+(Tests_Tutorial.java:246) Tut_Exception(): [00:00.001 +001 ms] [main(1)] [WRN] [MYDOM]: >> Logging an exception: 
                                                                                         >>   Type:       java.lang.Exception
                                                                                         >>   Message:    TestException Message
                                                                                         >>   Cause:   
@@ -8,11 +8,11 @@
                                                                                         >>       Type:       java.lang.Exception
                                                                                         >>       Message:    Inner, inner Exception
                                                                                         >>   Exception stack trace:
-                                                                                        >>     unittests.com.aworx.lox.Tests_Tutorial.Tut_Exception(Tests_Tutorial.java:241)
+                                                                                        >>     unittests.com.aworx.lox.Tests_Tutorial.Tut_Exception(Tests_Tutorial.java:243)
                                                                                         >>     sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-                                                                                        >>     sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-                                                                                        >>     sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-                                                                                        >>     java.lang.reflect.Method.invoke(Unknown Source)
+                                                                                        >>     sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+                                                                                        >>     sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+                                                                                        >>     java.lang.reflect.Method.invoke(Method.java:606)
                                                                                         >>     org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
                                                                                         >>     org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
                                                                                         >>     org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
@@ -28,9 +28,9 @@
                                                                                         >>     org.junit.runners.ParentRunner.run(ParentRunner.java:309)
                                                                                         >>     org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
                                                                                         >>     org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
-                                                                                        >>     org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
-                                                                                        >>     org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
-                                                                                        >>     org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
-                                                                                        >>     org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
-                                                                                        >>     unittests.com.aworx.lox.Tests_Tutorial.Tut_Exception(Tests_Tutorial.java:242)
-                                                                                        >>     unittests.com.aworx.lox.Tests_Tutorial.Tut_Exception(Tests_Tutorial.java:243)
+                                                                                        >>     org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+                                                                                        >>     org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+                                                                                        >>     org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+                                                                                        >>     org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+                                                                                        >>     unittests.com.aworx.lox.Tests_Tutorial.Tut_Exception(Tests_Tutorial.java:244)
+                                                                                        >>     unittests.com.aworx.lox.Tests_Tutorial.Tut_Exception(Tests_Tutorial.java:245)

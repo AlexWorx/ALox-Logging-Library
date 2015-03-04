@@ -672,7 +672,7 @@ public class LogBuf
 
 	/**********************************************************************************************//**
 	 * 	Replace one more more occurrences of a string by another string. To receive the number of 
-	 * 	replacements, see alternative method #ReplaceCount().
+	 * 	replacements, see alternative method #replaceCount().
 	 *
 	 * @param searchStr         The string to be replaced.
 	 * @param newStr            The replacement string.
@@ -686,7 +686,7 @@ public class LogBuf
 
 	/**********************************************************************************************//**
 	 * 	Replace one more more occurrences of a string by another string. To receive the number of 
-	 * 	replacements, see alternative method #ReplaceCount().
+	 * 	replacements, see alternative method #replaceCount().
 	 *
 	 * @param searchStr The string to be replaced.
 	 * @param newStr    The replacement string.
@@ -698,7 +698,7 @@ public class LogBuf
 
 	/**********************************************************************************************//**
 	 * 	Replace one more more occurrences of a string by another string. To receive the number of 
-	 * 	replacements, see alternative method #ReplaceCount().
+	 * 	replacements, see alternative method #replaceCount().
 	 *
 	 * @param searchStr The string to be replaced.
 	 * @param newStr    The replacement string.

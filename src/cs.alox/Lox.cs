@@ -54,7 +54,7 @@ public class Lox
 	// #################################################################################################
 
 	/** <summary>	The version of ALox. </summary> */
-	public  static readonly	String		Version					="1.1.1";
+	public  static readonly	String		Version					="1.1.2";
 
 	#if ALOX_DEBUG || ALOX_REL_LOG
 
