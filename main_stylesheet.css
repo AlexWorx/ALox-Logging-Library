@@ -1,4 +1,4 @@
-/* The standard CSS for doxygen 1.8.4 */
+/* The standard CSS for doxygen 1.8.9.1 */
 
 body, table, div, p, dl {
 	font: 400 14px/22px Roboto,sans-serif;
@@ -18,8 +18,8 @@ h1.groupheader {
 }
 
 h2.groupheader {
-	border-bottom: 1px solid #879ECB;
-	color: #354C7B;
+	border-bottom: 1px solid #6693EC;
+	color: #13419E;
 	font-size: 150%;
 	font-weight: normal;
 	margin-top: 1.75em;
@@ -56,8 +56,12 @@ div.multicol {
 	-webkit-column-count: 3;
 }
 
-p.startli, p.startdd, p.starttd {
+p.startli, p.startdd {
 	margin-top: 2px;
+}
+
+p.starttd {
+	margin-top: 0px;
 }
 
 p.endli {
@@ -89,8 +93,8 @@ h3.version {
 }
 
 div.qindex, div.navtab{
-	background-color: #EBEFF6;
-	border: 1px solid #A3B4D7;
+	background-color: #E6EDFC;
+	border: 1px solid #8AACF0;
 	text-align: center;
 }
 
@@ -106,13 +110,13 @@ div.navtab {
 /* @group Link Styling */
 
 a {
-	color: #3D578C;
+	color: #154AB3;
 	font-weight: normal;
 	text-decoration: none;
 }
 
 .contents a:visited {
-	color: #4665A2;
+	color: #1956D0;
 }
 
 a:hover {
@@ -125,9 +129,9 @@ a.qindex {
 
 a.qindexHL {
 	font-weight: bold;
-	background-color: #9CAFD4;
+	background-color: #80A5EF;
 	color: #ffffff;
-	border: 1px double #869DCA;
+	border: 1px double #6491EC;
 }
 
 .contents a.qindexHL:visited {
@@ -141,11 +145,11 @@ a.el {
 a.elRef {
 }
 
-a.code, a.code:visited {
+a.code, a.code:visited, a.line, a.line:visited {
 	color: #4665A2; 
 }
 
-a.codeRef, a.codeRef:visited {
+a.codeRef, a.codeRef:visited, a.lineRef, a.lineRef:visited {
 	color: #4665A2; 
 }
 
@@ -169,10 +173,10 @@ pre.fragment {
 }
 
 div.fragment {
-        padding: 0px;
-        margin: 0px;
-	background-color: #FBFCFD;
-	border: 1px solid #C4CFE5;
+        padding: 4px 6px;
+        margin: 4px 8px 4px 2px;
+	background-color: #FAFBFE;
+	border: 1px solid #B4CAF6;
 }
 
 div.line {
@@ -223,7 +227,7 @@ span.lineno a:hover {
 	background-color: #C8C8C8;
 }
 
-div.ah {
+div.ah, span.ah {
 	background-color: black;
 	font-weight: bold;
 	color: #ffffff;
@@ -239,6 +243,15 @@ div.ah {
 	-moz-box-shadow: rgba(0, 0, 0, 0.15) 2px 2px 2px;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#000),color-stop(0.3, #444));
 	background-image: -moz-linear-gradient(center top, #eee 0%, #444 40%, #000);
+}
+
+div.classindex ul {
+        list-style: none;
+        padding-left: 0;
+}
+
+div.classindex span.ai {
+        display: inline-block;
 }
 
 div.groupHeader {
@@ -265,9 +278,9 @@ div.contents {
 }
 
 td.indexkey {
-	background-color: #EBEFF6;
+	background-color: #E6EDFC;
 	font-weight: bold;
-	border: 1px solid #C4CFE5;
+	border: 1px solid #B4CAF6;
 	margin: 2px 0px 2px 0;
 	padding: 2px 10px;
         white-space: nowrap;
@@ -275,14 +288,14 @@ td.indexkey {
 }
 
 td.indexvalue {
-	background-color: #EBEFF6;
-	border: 1px solid #C4CFE5;
+	background-color: #E6EDFC;
+	border: 1px solid #B4CAF6;
 	padding: 2px 10px;
 	margin: 2px 0px;
 }
 
 tr.memlist {
-	background-color: #EEF1F7;
+	background-color: #E9EFFC;
 }
 
 p.formulaDsp {
@@ -365,8 +378,8 @@ span.vhdllogic {
 }
 
 blockquote {
-        background-color: #F7F8FB;
-        border-left: 2px solid #9CAFD4;
+        background-color: #F4F7FD;
+        border-left: 2px solid #80A5EF;
         margin: 0 24px 0 4px;
         padding: 0 12px 0 16px;
 }
@@ -399,18 +412,18 @@ td.tiny {
 .dirtab {
 	padding: 4px;
 	border-collapse: collapse;
-	border: 1px solid #A3B4D7;
+	border: 1px solid #8AACF0;
 }
 
 th.dirtab {
-	background: #EBEFF6;
+	background: #E6EDFC;
 	font-weight: bold;
 }
 
 hr {
 	height: 0px;
 	border: none;
-	border-top: 1px solid #4A6AAA;
+	border-top: 1px solid #1A5ADA;
 }
 
 hr.footer {
@@ -445,7 +458,7 @@ table.memberdecls {
 .mdescLeft, .mdescRight,
 .memItemLeft, .memItemRight,
 .memTemplItemLeft, .memTemplItemRight, .memTemplParams {
-	background-color: #F9FAFC;
+	background-color: #F7F9FE;
 	border: none;
 	margin: 4px;
 	padding: 1px 0 0 8px;
@@ -472,7 +485,7 @@ table.memberdecls {
 }
 
 .memTemplParams {
-	color: #4665A2;
+	color: #1956D0;
         white-space: nowrap;
 	font-size: 80%;
 }
@@ -485,14 +498,14 @@ table.memberdecls {
 
 .memtemplate {
 	font-size: 80%;
-	color: #4665A2;
+	color: #1956D0;
 	font-weight: normal;
 	margin-left: 9px;
 }
 
 .memnav {
-	background-color: #EBEFF6;
-	border: 1px solid #A3B4D7;
+	background-color: #E6EDFC;
+	border: 1px solid #8AACF0;
 	text-align: center;
 	margin: 2px;
 	margin-right: 15px;
@@ -530,16 +543,16 @@ table.memberdecls {
 }
 
 .memproto, dl.reflist dt {
-        border-top: 1px solid #A8B8D9;
-        border-left: 1px solid #A8B8D9;
-        border-right: 1px solid #A8B8D9;
+        border-top: 1px solid #90B0F1;
+        border-left: 1px solid #90B0F1;
+        border-right: 1px solid #90B0F1;
         padding: 6px 0px 6px 0px;
-        color: #253555;
+        color: #0D2D6D;
         font-weight: bold;
         text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.9);
         background-image:url('nav_f.png');
         background-repeat:repeat-x;
-        background-color: #E2E8F2;
+        background-color: #DAE5FA;
         /* opera specific markup */
         box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
         border-top-right-radius: 4px;
@@ -556,11 +569,11 @@ table.memberdecls {
 }
 
 .memdoc, dl.reflist dd {
-        border-bottom: 1px solid #A8B8D9;      
-        border-left: 1px solid #A8B8D9;      
-        border-right: 1px solid #A8B8D9; 
+        border-bottom: 1px solid #90B0F1;      
+        border-left: 1px solid #90B0F1;      
+        border-right: 1px solid #90B0F1; 
         padding: 6px 10px 2px 10px;
-        background-color: #FBFCFD;
+        background-color: #FAFBFE;
         border-top-width: 0;
         background-image:url('nav_g.png');
         background-repeat:repeat-x;
@@ -647,11 +660,11 @@ span.mlabels {
 }
 
 span.mlabel {
-        background-color: #728DC1;
-        border-top:1px solid #5373B4;
-        border-left:1px solid #5373B4;
-        border-right:1px solid #C4CFE5;
-        border-bottom:1px solid #C4CFE5;
+        background-color: #4B7FE9;
+        border-top:1px solid #2363E4;
+        border-left:1px solid #2363E4;
+        border-right:1px solid #B4CAF6;
+        border-bottom:1px solid #B4CAF6;
 	text-shadow: none;
 	color: white;
 	margin-right: 4px;
@@ -666,12 +679,12 @@ span.mlabel {
 
 /* @end */
 
-/* these are for tree view when not used as main index */
+/* these are for tree view inside a (index) page */
 
 div.directory {
         margin: 10px 0px;
-        border-top: 1px solid #A8B8D9;
-        border-bottom: 1px solid #A8B8D9;
+        border-top: 1px solid #80A5EF;
+        border-bottom: 1px solid #80A5EF;
         width: 100%;
 }
 
@@ -709,7 +722,7 @@ div.directory {
 
 .directory tr.even {
 	padding-left: 6px;
-	background-color: #F7F8FB;
+	background-color: #F4F7FD;
 }
 
 .directory img {
@@ -727,8 +740,82 @@ div.directory {
         cursor: pointer;
         padding-left: 2px;
         padding-right: 2px;
-	color: #3D578C;
+	color: #154AB3;
 }
+
+.arrow {
+    color: #80A5EF;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    font-size: 80%;
+    display: inline-block;
+    width: 16px;
+    height: 22px;
+}
+
+.icon {
+    font-family: Arial, Helvetica;
+    font-weight: bold;
+    font-size: 12px;
+    height: 14px;
+    width: 16px;
+    display: inline-block;
+    background-color: #4B7FE9;
+    color: white;
+    text-align: center;
+    border-radius: 4px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.icona {
+    width: 24px;
+    height: 22px;
+    display: inline-block;
+}
+
+.iconfopen {
+    width: 24px;
+    height: 18px;
+    margin-bottom: 4px;
+    background-image:url('folderopen.png');
+    background-position: 0px -4px;
+    background-repeat: repeat-y;
+    vertical-align:top;
+    display: inline-block;
+}
+
+.iconfclosed {
+    width: 24px;
+    height: 18px;
+    margin-bottom: 4px;
+    background-image:url('folderclosed.png');
+    background-position: 0px -4px;
+    background-repeat: repeat-y;
+    vertical-align:top;
+    display: inline-block;
+}
+
+.icondoc {
+    width: 24px;
+    height: 18px;
+    margin-bottom: 4px;
+    background-image:url('doc.png');
+    background-position: 0px -4px;
+    background-repeat: repeat-y;
+    vertical-align:top;
+    display: inline-block;
+}
+
+table.directory {
+    font: 400 14px Roboto,sans-serif;
+}
+
+/* @end */
 
 div.dynheader {
         margin-top: 8px;
@@ -742,7 +829,7 @@ div.dynheader {
 
 address {
 	font-style: normal;
-	color: #2A3D61;
+	color: #0F337D;
 }
 
 table.doxtable {
@@ -752,12 +839,12 @@ table.doxtable {
 }
 
 table.doxtable td, table.doxtable th {
-	border: 1px solid #2D4068;
+	border: 1px solid #103785;
 	padding: 3px 7px 2px;
 }
 
 table.doxtable th {
-	background-color: #374F7F;
+	background-color: #1343A3;
 	color: #FFFFFF;
 	font-size: 110%;
 	padding-bottom: 4px;
@@ -767,7 +854,7 @@ table.doxtable th {
 table.fieldtable {
         /*width: 100%;*/
         margin-bottom: 10px;
-        border: 1px solid #A8B8D9;
+        border: 1px solid #90B0F1;
         border-spacing: 0px;
         -moz-border-radius: 4px;
         -webkit-border-radius: 4px;
@@ -783,8 +870,8 @@ table.fieldtable {
 
 .fieldtable td.fieldtype, .fieldtable td.fieldname {
         white-space: nowrap;
-        border-right: 1px solid #A8B8D9;
-        border-bottom: 1px solid #A8B8D9;
+        border-right: 1px solid #90B0F1;
+        border-bottom: 1px solid #90B0F1;
         vertical-align: top;
 }
 
@@ -793,7 +880,7 @@ table.fieldtable {
 }
 
 .fieldtable td.fielddoc {
-        border-bottom: 1px solid #A8B8D9;
+        border-bottom: 1px solid #90B0F1;
         /*width: 100%;*/
 }
 
@@ -812,9 +899,9 @@ table.fieldtable {
 .fieldtable th {
         background-image:url('nav_f.png');
         background-repeat:repeat-x;
-        background-color: #E2E8F2;
+        background-color: #DAE5FA;
         font-size: 90%;
-        color: #253555;
+        color: #0D2D6D;
         padding-bottom: 4px;
         padding-top: 5px;
         text-align:left;
@@ -824,7 +911,7 @@ table.fieldtable {
         -webkit-border-top-right-radius: 4px;
         border-top-left-radius: 4px;
         border-top-right-radius: 4px;
-        border-bottom: 1px solid #A8B8D9;
+        border-bottom: 1px solid #90B0F1;
 }
 
 
@@ -846,8 +933,8 @@ table.fieldtable {
 	background-position: 0 -5px;
 	height:30px;
 	line-height:30px;
-	color:#8AA0CC;
-	border:solid 1px #C2CDE4;
+	color:#6995EC;
+	border:solid 1px #B1C8F5;
 	overflow:hidden;
 	margin:0px;
 	padding:0px;
@@ -862,7 +949,7 @@ table.fieldtable {
 	background-image:url('bc_s.png');
 	background-repeat:no-repeat;
 	background-position:right;
-	color:#364D7C;
+	color:#13429F;
 }
 
 .navpath li.navelem a
@@ -871,7 +958,7 @@ table.fieldtable {
 	display:block;
 	text-decoration: none;
 	outline: none;
-	color: #283A5D;
+	color: #0E3177;
 	font-family: 'Lucida Grande',Geneva,Helvetica,Arial,sans-serif;
 	text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.9);
 	text-decoration: none;        
@@ -879,7 +966,7 @@ table.fieldtable {
 
 .navpath li.navelem a:hover
 {
-	color:#6884BD;
+	color:#3E76E7;
 }
 
 .navpath li.footer
@@ -891,7 +978,7 @@ table.fieldtable {
         background-image:none;
         background-repeat:no-repeat;
         background-position:right;
-        color:#364D7C;
+        color:#13429F;
         font-size: 8pt;
 }
 
@@ -926,9 +1013,9 @@ div.header
 {
         background-image:url('nav_h.png');
         background-repeat:repeat-x;
-	background-color: #F9FAFC;
+	background-color: #F7F9FE;
 	margin:  0px;
-	border-bottom: 1px solid #C4CFE5;
+	border-bottom: 1px solid #B4CAF6;
 }
 
 div.headertitle
@@ -1047,7 +1134,7 @@ dl.section dd {
 	padding: 0px;
 	margin: 0px;
 	width: 100%;
-	border-bottom: 1px solid #5373B4;
+	border-bottom: 1px solid #2363E4;
 }
 
 .image
@@ -1065,6 +1152,11 @@ dl.section dd {
         text-align: center;
 }
 
+.diagraph
+{
+        text-align: center;
+}
+
 .caption
 {
 	font-weight: bold;
@@ -1072,7 +1164,7 @@ dl.section dd {
 
 div.zoom
 {
-	border: 1px solid #90A5CE;
+	border: 1px solid #719AED;
 }
 
 dl.citelist {
@@ -1080,7 +1172,7 @@ dl.citelist {
 }
 
 dl.citelist dt {
-        color:#334975;
+        color:#123E96;
         float:left;
         font-weight:bold;
         margin-right:10px;
@@ -1094,8 +1186,8 @@ dl.citelist dd {
 
 div.toc {
         padding: 14px 25px;
-        background-color: #F4F6FA;
-        border: 1px solid #D8DFEE;
+        background-color: #F2F5FD;
+        border: 1px solid #CDDCF9;
         border-radius: 7px 7px 7px 7px;
         float: right;
         height: auto;
@@ -1113,7 +1205,7 @@ div.toc li {
 
 div.toc h3 {
         font: bold 12px/1.2 Arial,FreeSans,sans-serif;
-	color: #4665A2;
+	color: #1956D0;
         border-bottom: 0 none;
         margin: 0;
 }
@@ -1163,6 +1255,177 @@ div.toc li.level4 {
 tr.heading h2 {
         margin-top: 12px;
         margin-bottom: 4px;
+}
+
+/* tooltip related style info */
+
+.ttc {
+        position: absolute;
+        display: none;
+}
+
+#powerTip {
+	cursor: default;
+	white-space: nowrap;
+	background-color: white;
+	border: 1px solid gray;
+	border-radius: 4px 4px 4px 4px;
+	box-shadow: 1px 1px 7px gray;
+	display: none;
+	font-size: smaller;
+	max-width: 80%;
+	opacity: 0.9;
+	padding: 1ex 1em 1em;
+	position: absolute;
+	z-index: 2147483647;
+}
+
+#powerTip div.ttdoc {
+        color: grey;
+	font-style: italic;
+}
+
+#powerTip div.ttname a {
+        font-weight: bold;
+}
+
+#powerTip div.ttname {
+        font-weight: bold;
+}
+
+#powerTip div.ttdeci {
+        color: #006318;
+}
+
+#powerTip div {
+        margin: 0px;
+        padding: 0px;
+        font: 12px/16px Roboto,sans-serif;
+}
+
+#powerTip:before, #powerTip:after {
+	content: "";
+	position: absolute;
+	margin: 0px;
+}
+
+#powerTip.n:after,  #powerTip.n:before,
+#powerTip.s:after,  #powerTip.s:before,
+#powerTip.w:after,  #powerTip.w:before,
+#powerTip.e:after,  #powerTip.e:before,
+#powerTip.ne:after, #powerTip.ne:before,
+#powerTip.se:after, #powerTip.se:before,
+#powerTip.nw:after, #powerTip.nw:before,
+#powerTip.sw:after, #powerTip.sw:before {
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+}
+
+#powerTip.n:after,  #powerTip.s:after,
+#powerTip.w:after,  #powerTip.e:after,
+#powerTip.nw:after, #powerTip.ne:after,
+#powerTip.sw:after, #powerTip.se:after {
+	border-color: rgba(255, 255, 255, 0);
+}
+
+#powerTip.n:before,  #powerTip.s:before,
+#powerTip.w:before,  #powerTip.e:before,
+#powerTip.nw:before, #powerTip.ne:before,
+#powerTip.sw:before, #powerTip.se:before {
+	border-color: rgba(128, 128, 128, 0);
+}
+
+#powerTip.n:after,  #powerTip.n:before,
+#powerTip.ne:after, #powerTip.ne:before,
+#powerTip.nw:after, #powerTip.nw:before {
+	top: 100%;
+}
+
+#powerTip.n:after, #powerTip.ne:after, #powerTip.nw:after {
+	border-top-color: #ffffff;
+	border-width: 10px;
+	margin: 0px -10px;
+}
+#powerTip.n:before {
+	border-top-color: #808080;
+	border-width: 11px;
+	margin: 0px -11px;
+}
+#powerTip.n:after, #powerTip.n:before {
+	left: 50%;
+}
+
+#powerTip.nw:after, #powerTip.nw:before {
+	right: 14px;
+}
+
+#powerTip.ne:after, #powerTip.ne:before {
+	left: 14px;
+}
+
+#powerTip.s:after,  #powerTip.s:before,
+#powerTip.se:after, #powerTip.se:before,
+#powerTip.sw:after, #powerTip.sw:before {
+	bottom: 100%;
+}
+
+#powerTip.s:after, #powerTip.se:after, #powerTip.sw:after {
+	border-bottom-color: #ffffff;
+	border-width: 10px;
+	margin: 0px -10px;
+}
+
+#powerTip.s:before, #powerTip.se:before, #powerTip.sw:before {
+	border-bottom-color: #808080;
+	border-width: 11px;
+	margin: 0px -11px;
+}
+
+#powerTip.s:after, #powerTip.s:before {
+	left: 50%;
+}
+
+#powerTip.sw:after, #powerTip.sw:before {
+	right: 14px;
+}
+
+#powerTip.se:after, #powerTip.se:before {
+	left: 14px;
+}
+
+#powerTip.e:after, #powerTip.e:before {
+	left: 100%;
+}
+#powerTip.e:after {
+	border-left-color: #ffffff;
+	border-width: 10px;
+	top: 50%;
+	margin-top: -10px;
+}
+#powerTip.e:before {
+	border-left-color: #808080;
+	border-width: 11px;
+	top: 50%;
+	margin-top: -11px;
+}
+
+#powerTip.w:after, #powerTip.w:before {
+	right: 100%;
+}
+#powerTip.w:after {
+	border-right-color: #ffffff;
+	border-width: 10px;
+	top: 50%;
+	margin-top: -10px;
+}
+#powerTip.w:before {
+	border-right-color: #808080;
+	border-width: 11px;
+	top: 50%;
+	margin-top: -11px;
 }
 
 @media print

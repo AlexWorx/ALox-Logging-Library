@@ -1,6 +1,6 @@
 <map id="TextLogger" name="TextLogger">
-<area shape="rect" id="node3" href="$classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html" title="A logger that logs all messages to the VStudio IDE output window (using System.Diagnostics.Debug.WriteLine()) and/or to the application console (using Console.WriteLine()). " alt="" coords="5,155,112,181"/>
-<area shape="rect" id="node4" href="$classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html" title="A logger that logs all messages to a in&#45;memory buffer of type MString. The name of the logger default..." alt="" coords="137,155,244,181"/>
-<area shape="rect" id="node5" href="$classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html" title="This is a very simple file logger for textual log outputs. The file name string provided in the const..." alt="" coords="269,155,376,181"/>
-<area shape="rect" id="node2" href="$classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="This is central class of the ALox logging implementation. It is not recommended to use this class dir..." alt="" coords="160,5,221,32"/>
+<area shape="rect" id="node3" href="$classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html" title="A logger that logs all messages to the VStudio IDE output window (using System.Diagnostics.Debug.WriteLine()) and/or to the application console (using Console.WriteLine()). " alt="" coords="5,155,116,181"/>
+<area shape="rect" id="node4" href="$classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html" title="A logger that logs all messages to a in&#45;memory buffer of type MString. The name of the logger default..." alt="" coords="140,155,251,181"/>
+<area shape="rect" id="node5" href="$classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html" title="This is a very simple file logger for textual log outputs. The file name string provided in the const..." alt="" coords="275,155,385,181"/>
+<area shape="rect" id="node2" href="$classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="This is central class of the ALox logging implementation. It is not recommended to use this class dir..." alt="" coords="164,5,227,32"/>
 </map>
