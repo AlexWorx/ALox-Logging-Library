@@ -5,10 +5,30 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>ALox C# Reference: LogDomain Class Reference</title>
+<title>ALox: LogDomain Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<!-- so strange, that doxgen does not highlight each menu item. Just some... -->
+<script>
+  $(document).ready(function() {     
+    fnameStart= window.location.href.lastIndexOf('/')
+    fnameEnd=   window.location.href.indexOf('_', fnameStart )
+    if( fnameEnd < 0 ) {
+        fnameEnd=   window.location.href.indexOf('.', fnameStart )
+    }
+    if( fnameEnd > -1 ) {
+        subString= window.location.href.substring( fnameStart, fnameEnd )
+        $('li').toArray().forEach(function(li){
+            if(     typeof li.firstChild.href != 'undefined'
+                &&  li.firstChild.href.indexOf(subString) > 0 
+                ){
+               li.classList.add('current');
+            }
+        });
+    }
+  });
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +36,6 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="cs_stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,8 +45,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">ALox C# Reference
-   &#160;<span id="projectnumber">V. 1.1.2</span>
+   <div id="projectname">ALox 
+   &#160;<span id="projectnumber">Logging for C++, C# and Java (V 1.2.0)</span>
    </div>
   </td>
  </tr>
@@ -44,9 +63,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="../index.html"><span>ALox&#160;Home</span></a></li>
       <li><a href="../faq.html"><span>FAQ</span></a></li>
       <li><a href="../manual.html"><span>Manual</span></a></li>
-      <li><a href="setup_projects_vs_cs.html"><span>VStudio&#160;Setup</span></a></li>
-      <li><a href="tutorial_cs.html"><span>Tutorial</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Class&#160;Ref.</span></a></li>
+      <li><a href="../cpp_ref/cppmainpage.html"><span>ALox&#160;for&#160;C++</span></a></li>
+      <li class="current"><a href="csmainpage.html"><span>ALox&#160;for&#160;C#</span></a></li>
+      <li><a href="../java_ref/javamainpage.html"><span>ALox&#160;for&#160;Java</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -68,8 +87,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="csmainpage.html"><span>Overview</span></a></li>
+      <li><a href="cstutorial.html"><span>Tutorial</span></a></li>
+      <li><a href="cssetup.html"><span>IDE&#160;Setup</span></a></li>
+      <li><a href="cspruning.html"><span>Pruning&#160;ALox</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Class&#160;Reference</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="classes.html"><span>Alphabetical&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Namespace&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -109,12 +139,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a17cbb6fb2ea129b0bd1d08254c3ba0ce"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a17cbb6fb2ea129b0bd1d08254c3ba0ce">LogDomain</a> (<a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a> parent, <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> name)</td></tr>
-<tr class="memdesc:a17cbb6fb2ea129b0bd1d08254c3ba0ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for domain.  <a href="#a17cbb6fb2ea129b0bd1d08254c3ba0ce">More...</a><br /></td></tr>
-<tr class="separator:a17cbb6fb2ea129b0bd1d08254c3ba0ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a012fbb0f39e57c0a44ec83dd408fcda3"><td class="memItemLeft" align="right" valign="top">override String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a012fbb0f39e57c0a44ec83dd408fcda3">ToString</a> ()</td></tr>
-<tr class="memdesc:a012fbb0f39e57c0a44ec83dd408fcda3"><td class="mdescLeft">&#160;</td><td class="mdescRight">String representation of <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html" title="Class LogDomain represents a logging Domain. Each log statement refers to such a domain which can be ...">LogDomain</a>, needed for debugger.  <a href="#a012fbb0f39e57c0a44ec83dd408fcda3">More...</a><br /></td></tr>
-<tr class="separator:a012fbb0f39e57c0a44ec83dd408fcda3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b2481d3fafb3d3c257f67111e02b151"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a4b2481d3fafb3d3c257f67111e02b151">LogDomain</a> (<a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a> parent, <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a> name)</td></tr>
+<tr class="memdesc:a4b2481d3fafb3d3c257f67111e02b151"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for domain.  <a href="#a4b2481d3fafb3d3c257f67111e02b151">More...</a><br /></td></tr>
+<tr class="separator:a4b2481d3fafb3d3c257f67111e02b151"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b35d5ba376191a0aa5b9ed52b8f05e9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a10ac165398697ce1d642d739cc3b170f">Log.DomainLevel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a6b35d5ba376191a0aa5b9ed52b8f05e9">GetLevel</a> ()</td></tr>
 <tr class="memdesc:a6b35d5ba376191a0aa5b9ed52b8f05e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the domain log level. If set to Inherit, recursion with parent domain is performed.  <a href="#a6b35d5ba376191a0aa5b9ed52b8f05e9">More...</a><br /></td></tr>
 <tr class="separator:a6b35d5ba376191a0aa5b9ed52b8f05e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -124,15 +151,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a729bb906d248e54d997101d8faf8e1c0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a729bb906d248e54d997101d8faf8e1c0">IsActive</a> (<a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log.Level</a> <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a1a9f7325c08dd31ecae733ac275a3791">level</a>)</td></tr>
 <tr class="memdesc:a729bb906d248e54d997101d8faf8e1c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if the domain is active in respect to the given <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5" title="These are the levels of log verbosity used in a log call. ">Log.Level</a> and the current domain level.  <a href="#a729bb906d248e54d997101d8faf8e1c0">More...</a><br /></td></tr>
 <tr class="separator:a729bb906d248e54d997101d8faf8e1c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abaf3a8692758ecaaa7381ad97b1b2cd5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#abaf3a8692758ecaaa7381ad97b1b2cd5">FindOrCreate</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> domainPath, bool createIfNotExistant)</td></tr>
-<tr class="memdesc:abaf3a8692758ecaaa7381ad97b1b2cd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches a domain. If the flag createIfNotExistant is set, then one or more sub domains are created as needed. If the path String starts with a domain separator character, then the search (and creation) is done starting from the root domain of this domain and not from this domain.  <a href="#abaf3a8692758ecaaa7381ad97b1b2cd5">More...</a><br /></td></tr>
-<tr class="separator:abaf3a8692758ecaaa7381ad97b1b2cd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50603924739c6bbdae7659502748cd17"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a50603924739c6bbdae7659502748cd17">FindOrCreate</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a> domainPath, bool createIfNotExistent)</td></tr>
+<tr class="memdesc:a50603924739c6bbdae7659502748cd17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches a domain. If the flag createIfNotExistent is set, then one or more sub domains are created as needed. If the path String starts with a domain separator character, then the search (and creation) is done starting from the root domain of this domain and not from this domain.  <a href="#a50603924739c6bbdae7659502748cd17">More...</a><br /></td></tr>
+<tr class="separator:a50603924739c6bbdae7659502748cd17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a3328db10c8e026e2171ea6061e020bc8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a3328db10c8e026e2171ea6061e020bc8">Name</a></td></tr>
-<tr class="memdesc:a3328db10c8e026e2171ea6061e020bc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the domain. For root domains, this is null. <a href="#a3328db10c8e026e2171ea6061e020bc8">More...</a><br /></td></tr>
-<tr class="separator:a3328db10c8e026e2171ea6061e020bc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0de551a5eb98c9fa084c954655523d7b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a0de551a5eb98c9fa084c954655523d7b">Name</a></td></tr>
+<tr class="memdesc:a0de551a5eb98c9fa084c954655523d7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the domain. For root domains, this is null. <a href="#a0de551a5eb98c9fa084c954655523d7b">More...</a><br /></td></tr>
+<tr class="separator:a0de551a5eb98c9fa084c954655523d7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf9d6758ee68e2a2a72dcb13c400bc1d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#adf9d6758ee68e2a2a72dcb13c400bc1d">Parent</a></td></tr>
 <tr class="memdesc:adf9d6758ee68e2a2a72dcb13c400bc1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The parent domain. For root domains, this is null. <a href="#adf9d6758ee68e2a2a72dcb13c400bc1d">More...</a><br /></td></tr>
 <tr class="separator:adf9d6758ee68e2a2a72dcb13c400bc1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -142,15 +169,15 @@ Public Attributes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:afb75ecb5fef3bcf61597efd190ca0114"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#afb75ecb5fef3bcf61597efd190ca0114">DomainSeparatorChars</a> = &quot;\\|/&quot;</td></tr>
+<tr class="memitem:afb75ecb5fef3bcf61597efd190ca0114"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#afb75ecb5fef3bcf61597efd190ca0114">DomainSeparatorChars</a> =&quot;\\|/&quot;</td></tr>
 <tr class="memdesc:afb75ecb5fef3bcf61597efd190ca0114"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains all characters allowed for domain separation (slash, backslash and pipe symbol)  <a href="#afb75ecb5fef3bcf61597efd190ca0114">More...</a><br /></td></tr>
 <tr class="separator:afb75ecb5fef3bcf61597efd190ca0114"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a4bdfd1d3df4067bb3896bf0efd60d9d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a4bdfd1d3df4067bb3896bf0efd60d9d2">findOrCreateInternal</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> domainPath, int dpStartIdx, bool createIfNotExistant)</td></tr>
-<tr class="memdesc:a4bdfd1d3df4067bb3896bf0efd60d9d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The internal recursive helper to implement the <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#abaf3a8692758ecaaa7381ad97b1b2cd5" title="Searches a domain. If the flag createIfNotExistant is set, then one or more sub domains are created a...">FindOrCreate()</a> interface.  <a href="#a4bdfd1d3df4067bb3896bf0efd60d9d2">More...</a><br /></td></tr>
-<tr class="separator:a4bdfd1d3df4067bb3896bf0efd60d9d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3dbd824df522f2dd394fb6c1af04134f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a3dbd824df522f2dd394fb6c1af04134f">findOrCreateInternal</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a> domainPath, int dpStartIdx, bool createIfNotExistent)</td></tr>
+<tr class="memdesc:a3dbd824df522f2dd394fb6c1af04134f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The internal recursive helper to implement the <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a50603924739c6bbdae7659502748cd17" title="Searches a domain. If the flag createIfNotExistent is set, then one or more sub domains are created a...">FindOrCreate()</a> interface.  <a href="#a3dbd824df522f2dd394fb6c1af04134f">More...</a><br /></td></tr>
+<tr class="separator:a3dbd824df522f2dd394fb6c1af04134f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -162,7 +189,7 @@ Protected Attributes</h2></td></tr>
 <div class="textblock"><p>Class <code><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html" title="Class LogDomain represents a logging Domain. Each log statement refers to such a domain which can be ...">LogDomain</a></code> represents a logging Domain. Each log statement refers to such a domain which can be defined specifically for different parts of your application like assemblies, libraries, namespaces, specific code files or even for a single log call. Domains can be created with path separators '/', for example 'COMM/SOCKET' could be the domain for log calls in a socket class, residing within a communication library. The advantage of creating paths and this way "sub domains", is that a whole bunch of logging domains can be altered (on/off) by just altering their root domain. Note: This class should not be used directly. Nevertheless the interface is kept public which is a general design decision for the classes of ALox libraries. </p>
 <hr/>
  </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a17cbb6fb2ea129b0bd1d08254c3ba0ce"></a>
+<a class="anchor" id="a4b2481d3fafb3d3c257f67111e02b151"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -175,7 +202,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a>&#160;</td>
           <td class="paramname"><em>name</em>&#160;</td>
         </tr>
         <tr>
@@ -199,21 +226,21 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="abaf3a8692758ecaaa7381ad97b1b2cd5"></a>
+<a class="anchor" id="a50603924739c6bbdae7659502748cd17"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a> FindOrCreate </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a>&#160;</td>
           <td class="paramname"><em>domainPath</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>createIfNotExistant</em>&#160;</td>
+          <td class="paramname"><em>createIfNotExistent</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -223,12 +250,12 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Searches a domain. If the flag createIfNotExistant is set, then one or more sub domains are created as needed. If the path String starts with a domain separator character, then the search (and creation) is done starting from the root domain of this domain and not from this domain. </p>
+<p>Searches a domain. If the flag createIfNotExistent is set, then one or more sub domains are created as needed. If the path String starts with a domain separator character, then the search (and creation) is done starting from the root domain of this domain and not from this domain. </p>
 <hr/>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">domainPath</td><td>Path and domain to search. </td></tr>
-    <tr><td class="paramname">createIfNotExistant</td><td>If set true, domains in the path that are not found are created. </td></tr>
+    <tr><td class="paramname">createIfNotExistent</td><td>If set true, domains in the path that are not found are created. </td></tr>
   </table>
   </dd>
 </dl>
@@ -236,7 +263,7 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a4bdfd1d3df4067bb3896bf0efd60d9d2"></a>
+<a class="anchor" id="a3dbd824df522f2dd394fb6c1af04134f"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -246,7 +273,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a> findOrCreateInternal </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a>&#160;</td>
           <td class="paramname"><em>domainPath</em>, </td>
         </tr>
         <tr>
@@ -259,7 +286,7 @@ Protected Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>createIfNotExistant</em>&#160;</td>
+          <td class="paramname"><em>createIfNotExistent</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -274,13 +301,13 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The internal recursive helper to implement the <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#abaf3a8692758ecaaa7381ad97b1b2cd5" title="Searches a domain. If the flag createIfNotExistant is set, then one or more sub domains are created a...">FindOrCreate()</a> interface. </p>
+<p>The internal recursive helper to implement the <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a50603924739c6bbdae7659502748cd17" title="Searches a domain. If the flag createIfNotExistent is set, then one or more sub domains are created a...">FindOrCreate()</a> interface. </p>
 <hr/>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">domainPath</td><td>Path to search. </td></tr>
     <tr><td class="paramname">dpStartIdx</td><td>The current scan position in the domain string. </td></tr>
-    <tr><td class="paramname">createIfNotExistant</td><td>Create domain if not found on the path. </td></tr>
+    <tr><td class="paramname">createIfNotExistent</td><td>Create domain if not found on the path. </td></tr>
   </table>
   </dd>
 </dl>
@@ -369,25 +396,6 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a012fbb0f39e57c0a44ec83dd408fcda3"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">override String ToString </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>String representation of <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html" title="Class LogDomain represents a logging Domain. Each log statement refers to such a domain which can be ...">LogDomain</a>, needed for debugger. </p>
-<hr/>
-<dl class="section return"><dt>Returns</dt><dd>A string that represents this instance. </dd></dl>
-
-</div>
-</div>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a class="anchor" id="afb75ecb5fef3bcf61597efd190ca0114"></a>
 <div class="memitem">
@@ -397,7 +405,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">String DomainSeparatorChars = &quot;\\|/&quot;</td>
+          <td class="memname">String DomainSeparatorChars =&quot;\\|/&quot;</td>
         </tr>
       </table>
   </td>
@@ -433,12 +441,12 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a3328db10c8e026e2171ea6061e020bc8"></a>
+<a class="anchor" id="a0de551a5eb98c9fa084c954655523d7b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> Name</td>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a> Name</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -482,7 +490,7 @@ Protected Attributes</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 4 2015 11:07:51 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

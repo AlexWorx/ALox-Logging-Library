@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html" title="Encapsulates information of the caller that can be collected. This is platform specific, in this case, .NET 4.5. What we currently can get from the .NET compiler, is the source file name of the calling code, the line number within the source file name and the name of the method the call is placed. We do not get the class name of the object or even its instance. " alt="" coords="5,5,81,32"/>
+<area shape="rect" id="node1" href="$interfacecom_1_1aworx_1_1util_1_1AWXUErrorHandler.html" title="Interface for AWXU error handler. The AWXU error handler is invoked on internal AWXU errors caused by..." alt="" coords="5,31,137,57"/>
+<area shape="rect" id="node2" href="$classcom_1_1aworx_1_1lox_1_1Log_1_1ALoxAWXUErrorHandler.html" title="The error handler for the AWXU package. An instance of this class will be created statically and adde..." alt="" coords="185,5,372,32"/>
+<area shape="rect" id="node3" href="$classcom_1_1aworx_1_1util_1_1ConsoleErrorHandler.html" title="The simple, default error handler, just writing the message to the console. " alt="" coords="208,56,349,83"/>
 </map>

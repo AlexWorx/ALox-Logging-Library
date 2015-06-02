@@ -5,10 +5,30 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>ALox Java Reference: Member List</title>
+<title>ALox: Member List</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<!-- so strange, that doxgen does not highlight each menu item. Just some... -->
+<script>
+  $(document).ready(function() {     
+    fnameStart= window.location.href.lastIndexOf('/')
+    fnameEnd=   window.location.href.indexOf('_', fnameStart )
+    if( fnameEnd < 0 ) {
+        fnameEnd=   window.location.href.indexOf('.', fnameStart )
+    }
+    if( fnameEnd > -1 ) {
+        subString= window.location.href.substring( fnameStart, fnameEnd )
+        $('li').toArray().forEach(function(li){
+            if(     typeof li.firstChild.href != 'undefined'
+                &&  li.firstChild.href.indexOf(subString) > 0 
+                ){
+               li.classList.add('current');
+            }
+        });
+    }
+  });
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +36,6 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="java_stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,8 +45,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">ALox Java Reference
-   &#160;<span id="projectnumber">V. 1.1.2</span>
+   <div id="projectname">ALox 
+   &#160;<span id="projectnumber">Logging for C++, C# and Java (V 1.2.0)</span>
    </div>
   </td>
  </tr>
@@ -44,9 +63,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="../index.html"><span>ALox&#160;Home</span></a></li>
       <li><a href="../faq.html"><span>FAQ</span></a></li>
       <li><a href="../manual.html"><span>Manual</span></a></li>
-      <li><a href="setup_projects_java.html"><span>IDE&#160;Setup</span></a></li>
-      <li><a href="tutorial_java.html"><span>Tutorial</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Class&#160;Ref.</span></a></li>
+      <li><a href="../cpp_ref/cppmainpage.html"><span>ALox&#160;for&#160;C++</span></a></li>
+      <li><a href="../cs_ref/csmainpage.html"><span>ALox&#160;for&#160;C#</span></a></li>
+      <li class="current"><a href="javamainpage.html"><span>ALox&#160;for&#160;Java</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -68,8 +87,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="javamainpage.html"><span>Overview</span></a></li>
+      <li><a href="javatutorial.html"><span>Tutorial</span></a></li>
+      <li><a href="javasetup.html"><span>IDE&#160;Setup</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Class&#160;Reference</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="classes.html"><span>Alphabetical&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Namespace&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -99,89 +128,74 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>This is the complete list of members for <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>, including all inherited members.</p>
 <table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a2a50afdabf5b53792436f43c0624f492">append</a>(MString ms)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a5bfcf493579adb133bacec5e88f0a171">append</a>(MString ms, int startIdx)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a1ee6f98e440a78bbbb5cdab80e95fabb">append</a>(MString ms, int startIdx, int len)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a2ce2f5cfeeb7148c970bb0cb9e29f8d3">append</a>(String s)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a44adcca284d9d0532746ea54cc3d887c">append</a>(String s, int startIdx)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a42aabedfefccf889900f038f7639e4c7">append</a>(String s, int startIdx, int len)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ad82981787f445e15309bafe3b73d67bb">append</a>(StringBuffer sb)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a7713929ab20beba77e91fdd24f44f661">append</a>(StringBuffer sb, int startIdx)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#abff13a2e95e23d02a1f5042f9aad2004">append</a>(StringBuffer sb, int startIdx, int len)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ae7c660131e7cb25fd02a34664614c06f">append</a>(StringBuilder sb)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#abe51ed3d04ad7566e000307872b564aa">append</a>(StringBuilder sb, int startIdx)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a69088e61df3e644ba234d166ef3eca96">append</a>(StringBuilder sb, int startIdx, int len)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ae698a8f4a71794a2f0f2e9a1db57544d">append</a>(CharSequence sb)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#af104a3b5dcebba9a7b8d9ba4ced948f1">append</a>(CharSequence sb, int startIdx)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#adffeec7397aa68cddf106fd9944f2c50">append</a>(CharSequence sb, int startIdx, int len)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a623b60886e43fb82de5a662b08734635">append</a>(CharSequence src)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#aab720097a259391cac20d5dc3b88055a">append</a>(CharSequence src, int regionStart)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a3b865ee3cbf7ca9d3038d58d8a0b2fc9">append</a>(CharSequence src, int regionStart, int regionLength)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a625e445cac7d220f2b76bb247ea8b860">append</a>(char c)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a5908ecb4b2f9537759dfe085416707ab">append</a>(char c, int qty)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a1ffdad8f3bc13e03c504612e4c660529">append</a>(int i, int minDigits)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a924321c546c3f11c593fb2b94724482a">append</a>(int i)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a2f49f931a3f816884c74b802211ed7c6">append</a>(double d, int minDigitsBeforeDot, int digitsAfterDot)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a6d86b0ba5b987db11ced12bfd0f427a2">appendPadCenter</a>(MString ms, int fieldSize)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a58efbc794a2309187991abea36a78c91">appendPadCenter</a>(MString ms, int fieldSize, char padChar)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a364ca9ad9632692fc1e6313def971a38">appendPadCenter</a>(String s, int fieldSize)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a916f1cc7fdd6e1f2461508732c2efc56">appendPadCenter</a>(String s, int fieldSize, char padChar)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a96f2056ef57ef69d1f5c3966c60e328d">appendPadCenter</a>(StringBuffer sb, int fieldSize)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a4736f7398efc81d86b9804b9f95eeffd">appendPadCenter</a>(StringBuffer sb, int fieldSize, char padChar)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a0daa5dc4f85565610e6135b61d02d82f">appendPadLeft</a>(MString ms, int fieldSize)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#aed317eb04bf1f314b4815435853279f2">appendPadLeft</a>(MString ms, int fieldSize, char padChar)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#aef2d8423e39b88e52a3339139d4331fc">appendPadLeft</a>(String s, int fieldSize)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a14f3651fbe621de3b9aab531e63ce4a9">appendPadLeft</a>(String s, int fieldSize, char padChar)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a061da5a410f380b64b536724a7ea6771">appendPadLeft</a>(StringBuffer sb, int fieldSize)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a7e8f71a7b7c6d902cfda4b898f75b654">appendPadLeft</a>(StringBuffer sb, int fieldSize, char padChar)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ae2100de8b9132e548b278079669b183e">appendPadRight</a>(MString ms, int fieldSize)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a923949c7eedb8ad390707f071b033771">appendPadRight</a>(MString ms, int fieldSize, char padChar)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a3eb9248094733b754fb8c3bc384de589">appendPadRight</a>(String s, int fieldSize)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ac989eab3be63ea5b1dfe7ca84173624c">appendPadRight</a>(String s, int fieldSize, char padChar)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#af66b4fcd1ab02168be70ec9b2a2cefdc">appendPadRight</a>(StringBuffer sb, int fieldSize)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#af6a8ae4e9d9d262f46d682e9e9cc9223">appendPadRight</a>(StringBuffer sb, int fieldSize, char padChar)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a8407bef70dc3483bc9b223482b0e162f">b</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a58aafa1bec9d1e812dd0d168b37ee03f">clear</a>()</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#af214887db1ff5c940a796209e4687231">compareTo</a>(CharSequence cmp)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ad95fecd8c81767b0cd6a1eab72388372">compareTo</a>(CharSequence cmp, boolean ignoreCase)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a15a4cc63cefdd926a2f7c0358b8f3ede">compareTo</a>(CharSequence cmp, boolean ignoreCase, int sStartIdx)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ae80efe75fdcb033dc6d8fdbf7306f2a5">compareTo</a>(CharSequence cmp, boolean ignoreCase, int sStartIdx, int sLen)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#aeab16cc30f29931695223b601ae1682d">compareTo</a>(CharSequence cmp, boolean ignoreCase, int sStartIdx, int sLen, int startIdx)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#af95a0dea99badea2ab30e30c3c05ce09">compareTo</a>(CharSequence cmp, boolean ignoreCase, int sStartIdx, int sLen, int startIdx, int len)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a5cfe24fea5a9f07bc3b411a5d5cf1222">containsAt</a>(CharSequence s, int pos, boolean ignoreCase)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a4fe1e46da5df87fefcacb81b6330bdc9">containsAt</a>(CharSequence s, int pos)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a40399a25a11cfdb9e26392de08bb525d">convertCase</a>(boolean toUpper)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ac789c33a97364043bb232bc1b7e27492">convertCase</a>(boolean toUpper, int substrStart)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ab316e5518910f4b8dbacef93ee704c1b">convertCase</a>(boolean toUpper, int substrStart, int substrLength)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ab0f4b2881454b063c7bb9fee6d58ded2">endsWith</a>(CharSequence s)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a1c43dcbb767f10f9a625ec20694999f6">indexOf</a>(CharSequence s, int startIdx)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a3aaa0641d23c63ae7c0b45f4b14d5016">indexOf</a>(CharSequence s)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#af79d96ac621cc3cfb5cfdbf7bcedf9ad">append</a>(double d, int minDigitsBeforeDot)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a53b717ac7c8532e829a11d05975940d2">append</a>(double d)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ae39a21fdb208da32c414578b78579aaa">b</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ae9d3221d50200a46437b1564cc3a74e7">buffer</a>()</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a58aafa1bec9d1e812dd0d168b37ee03f">clear</a>()</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#af214887db1ff5c940a796209e4687231">compareTo</a>(CharSequence cmp)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ad95fecd8c81767b0cd6a1eab72388372">compareTo</a>(CharSequence cmp, boolean ignoreCase)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a15a4cc63cefdd926a2f7c0358b8f3ede">compareTo</a>(CharSequence cmp, boolean ignoreCase, int sStartIdx)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ae80efe75fdcb033dc6d8fdbf7306f2a5">compareTo</a>(CharSequence cmp, boolean ignoreCase, int sStartIdx, int sLen)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#aeab16cc30f29931695223b601ae1682d">compareTo</a>(CharSequence cmp, boolean ignoreCase, int sStartIdx, int sLen, int startIdx)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#af95a0dea99badea2ab30e30c3c05ce09">compareTo</a>(CharSequence cmp, boolean ignoreCase, int sStartIdx, int sLen, int startIdx, int len)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#aa73f93fbcba640d7799d0af324230bcb">containsAt</a>(CharSequence needle, int pos, boolean ignoreCase)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#afbad536c565c434326108263cf5bf0b9">containsAt</a>(CharSequence needle, int pos)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a40399a25a11cfdb9e26392de08bb525d">convertCase</a>(boolean toUpper)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ac789c33a97364043bb232bc1b7e27492">convertCase</a>(boolean toUpper, int substrStart)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ab316e5518910f4b8dbacef93ee704c1b">convertCase</a>(boolean toUpper, int substrStart, int substrLength)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a25ead9653b7ba33cb4f4803d66845ab6">delete</a>(int regionStart, int regionLength)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a7e22e3b7fb7f66638d9ac205d571d10b">delete</a>(int regionStart)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#afe2c84c4ca703f13895569c3ee38606d">endsWith</a>(CharSequence needle, boolean ignoreCase)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#aed2ca8bfed43e5a557d1e472b16e5ba2">endsWith</a>(CharSequence needle)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#af6fea54bd755d54b034c24dbf0923239">ensureAllocation</a>(int minLen)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ab43ea64ac2ebc46b8d4b7a633e585d50">ensureAllocationRelative</a>(int growth)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a34c52c07602489b1a97f763b3ae1c0bf">field</a>(int size, Align alignment, char padChar, int fieldStart)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a3f5cd4ad706427939b310e2bd812ff24">field</a>(int size, Align alignment, char padChar)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a71b8ca4df04799df49079d4c6deadb6e">field</a>(int size, Align alignment)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#aa5b2ed91ccf64de417fa92cbba6fbe15">field</a>(int size)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a3753c4be5411fc4e33b64466876b8cac">field</a>()</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a1c43dcbb767f10f9a625ec20694999f6">indexOf</a>(CharSequence s, int startIdx)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a3aaa0641d23c63ae7c0b45f4b14d5016">indexOf</a>(CharSequence s)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a51210f39d2d1f501b3a7010899efa845">insert</a>(int regionStart, int regionLength, char fillChar)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a053e10b122783f204d8640c1fd9f75d2">insert</a>(int regionStart, int regionLength)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a3d0f4ae571310c6ed081daa3985ecb47">length</a>()</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a736a6ff738666fcdf1619d997ee46d5b">LogBuf</a>()</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a50732db6d20a93af8a347f35dfa9a183">LogBuf</a>(int size)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a3ffcd6c1ad5154e9396c69299ae7a95b">LogBuf</a>(MString ms)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#aef7e8b04905bd6f96b33ce2455063338">LogBuf</a>(MString ms, int startIdx)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a2f9e27d816bd65805d97d72bd6183338">LogBuf</a>(MString ms, int startIdx, int len)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a31311bbf21a0159d9807107533ce518c">LogBuf</a>(String s)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ae7ff5706960efcba4cb9f4ac17fe6011">LogBuf</a>(String s, int startIdx)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ad9cb1ff9045630c758d0d6067842cd26">LogBuf</a>(String s, int startIdx, int len)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a05ef383705e7882ba7397be0174438ab">LogBuf</a>(StringBuffer s)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#afefc3e0533d621d8fc06dd2a2cc8abdc">LogBuf</a>(StringBuffer s, int startIdx)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ac0bacdfc924cb6589e9b2fd55aef19c9">LogBuf</a>(StringBuffer s, int startIdx, int len)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ad2a66d636a4f507493fe8ed387859a0e">LogBuf</a>(CharSequence src)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a3288f79de660d09df63699edaae9d890">LogBuf</a>(CharSequence src, int regionStart)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a83e9986a295b2ff07c46f7e9dc1c793c">LogBuf</a>(CharSequence src, int regionStart, int regionLength)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#af8ab44130376a07ef17460b392f41590">newLine</a>()</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a227cfca88f09377ab8f3df308ce7bbd8">replace</a>(CharSequence searchStr, CharSequence newStr, int startIdx, int maxReplacements)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ae60b82414effca963c5f101e63a83fe0">replace</a>(CharSequence searchStr, CharSequence newStr, int startIdx)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a9f3009634c719d3158d84d94e50064ec">replace</a>(CharSequence searchStr, CharSequence newStr)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a615341186ef029de37fefdf6e9c31d01">replace</a>(CharSequence searchStr, CharSequence newStr, int startIdx, int maxReplacements, boolean ignoreCase)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a227cfca88f09377ab8f3df308ce7bbd8">replace</a>(CharSequence searchStr, CharSequence newStr, int startIdx, int maxReplacements)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ae60b82414effca963c5f101e63a83fe0">replace</a>(CharSequence searchStr, CharSequence newStr, int startIdx)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a9f3009634c719d3158d84d94e50064ec">replace</a>(CharSequence searchStr, CharSequence newStr)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a5c0963159eedf78d9dc50604bcaafe08">replaceCount</a>(CharSequence searchStr, CharSequence newStr, int startIdx, int maxReplacements, boolean ignoreCase)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ab991a6222121588e5a3f0748d1829c63">replaceCount</a>(CharSequence searchStr, CharSequence newStr, int startIdx, int maxReplacements)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a654366ab8ca12d4ef86486b50b265519">replaceCount</a>(CharSequence searchStr, CharSequence newStr, int startIdx)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#adda75690958f9a3e69f7184f9aa0b2c7">replaceCount</a>(CharSequence searchStr, CharSequence newStr)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ab316fed7f0f6497158869355aba96fbe">startsWith</a>(CharSequence s)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#aa3a8767705fdc50aa7ba23503c40ec39">tab</a>(int tabSize)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#afdb35b96fc567bed45f52c549139d7f1">tab</a>(int tabSize, int tabReference)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ad89309c646ffcc8dcf02e3ee74f9b166">tab</a>(int tabSize, int tabReference, int minPad)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a711e06286cc91a555aca689df5a4d68c">tab</a>(int tabSize, int tabReference, int minPad, char padChar)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#aeaf71297ed08b4bb022937d258607c87">setAllocation</a>(int newSize)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a0148ff46a71ba7ab7bc246ac9aa4d823">setLength</a>(int newLength)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a7ee963cfa5665aa391debc29e37e0ee8">startsWith</a>(CharSequence needle, boolean ignoreCase)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#aec9082863021ba38ed37e13662d7ba79">startsWith</a>(CharSequence needle)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#adb91a16b64ad65151028033a92e92910">tab</a>(int tabSize, int minPad, char padChar)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a348144c995e05f9459314676f8d5e98f">tab</a>(int tabSize, int minPad)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#aa3a8767705fdc50aa7ba23503c40ec39">tab</a>(int tabSize)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ad146fa8579a5f8a876c4688cc5a68520">toString</a>()</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a4be7950bca2824824c60b795beec849c">toString</a>(StringBuilder result, int regionStart, int regionLength, boolean appendMode)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 4 2015 11:07:52 for ALox Java Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

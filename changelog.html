@@ -9,6 +9,26 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<!-- so strange, that doxgen does not highlight each menu item. Just some... -->
+<script>
+  $(document).ready(function() {     
+    fnameStart= window.location.href.lastIndexOf('/')
+    fnameEnd=   window.location.href.indexOf('_', fnameStart )
+    if( fnameEnd < 0 ) {
+        fnameEnd=   window.location.href.indexOf('.', fnameStart )
+    }
+    if( fnameEnd > -1 ) {
+        subString= window.location.href.substring( fnameStart, fnameEnd )
+        $('li').toArray().forEach(function(li){
+            if(     typeof li.firstChild.href != 'undefined'
+                &&  li.firstChild.href.indexOf(subString) > 0 
+                ){
+               li.classList.add('current');
+            }
+        });
+    }
+  });
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +36,6 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="main_stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,8 +45,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1.1.2   -   Simple and powerful logging library for C# and JAVA (C++ underway...!)</span>
+   <div id="projectname">ALox 
+   &#160;<span id="projectnumber">Logging for C++, C# and Java (V 1.2.0)</span>
    </div>
   </td>
  </tr>
@@ -44,8 +63,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>ALox&#160;Home</span></a></li>
       <li><a href="faq.html"><span>FAQ</span></a></li>
       <li><a href="manual.html"><span>Manual</span></a></li>
-      <li><a href="cs_ref/index.html"><span>ALox&#160;for&#160;C#</span></a></li>
-      <li><a href="java_ref/index.html"><span>ALox&#160;for&#160;Java</span></a></li>
+      <li><a href="cpp_ref/cppmainpage.html"><span>ALox&#160;for&#160;C++</span></a></li>
+      <li><a href="cs_ref/csmainpage.html"><span>ALox&#160;for&#160;C#</span></a></li>
+      <li><a href="java_ref/javamainpage.html"><span>ALox&#160;for&#160;Java</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -85,12 +105,48 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Change Log </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Historically, there existed a kind of predecessor of this library for C++ and JAVA and was more or less maintained since the the year 1999. However this is a complete rewrite with C# and Java implementations so far. A C++ version is currently in development.</p>
+<div class="textblock"><p>Historically, there existed a kind of predecessor of this library for C++ and Java and was more or less maintained since the year 1999. However this is a complete rewrite with C# and Java implementations so far. A C++ version is currently in development.</p>
 <p>The first released version was Version 1.0.1 in <b>May 2013</b>.</p>
 <p>This change log is sorted reversely in respect to chronology.</p>
+<h2>Version 1.2.0, released June 2nd, 2015</h2>
+<ul>
+<li>ALox for C++ has arrived! Key features of this first version are:<ul>
+<li>Feature complete in respect to current C# and Java versions of ALox</li>
+<li>Linux (gcc) and Windows (Microsoft Compiler) support</li>
+<li>C++ 11 code standards. (Does not compile with C++ compilers prior to C++ 11)</li>
+<li>CMake build system support</li>
+<li>QTCreator build system</li>
+<li>Visual Studio project files</li>
+</ul>
+</li>
+<li>Changes in C# and JAVA versions:<ul>
+<li>Due to the alignment with the new C++ code base many changes occurred. Only the most important ones are listed here.</li>
+<li>Reorganization of directory structure of source code and project/build files.</li>
+<li>A huge list of changes occurred AWXU classes of both languages,<ul>
+<li>Many corrections/improvements in class MString, which was in addition renamed to AString</li>
+<li>Interface changes in Ticker and TickTime utility classes. Ticker was moved to Ticks, TickTime is now named TickWatch and both classes changed tremendously. Class TickSpan introduced in JAVA (while C# relies to built-in class).</li>
+</ul>
+</li>
+<li>Consumable source path prefix feature moved from class Lox to class TextLogger</li>
+</ul>
+</li>
+<li>Changes in ALox for C#:<ul>
+<li>Mono support and MonoDevelop project files</li>
+<li>Support for Windows Phone 8.1 was added</li>
+<li>Support for Windows Phone 7.1 was "officially" dropped. However, it should still work</li>
+<li>Unit tests were removed from the Windows Phone projects configurations. We did not find a maintainer for this.</li>
+</ul>
+</li>
+<li>Changes in ALox for Java:<ul>
+<li>Transitioned Eclipse support from Kepler to Luna</li>
+<li>Proguard 5.2 (Januar 2015) release tested</li>
+</ul>
+</li>
+<li>Various fixes in the documentation.</li>
+</ul>
 <h2>Version 1.1.2, released March 4th, 2015</h2>
 <ul>
-<li>Various bug fixes in the documentation.</li>
+<li>Various fixes in the documentation.</li>
 <li>Android fix fo LogCat output.</li>
 <li>C# Version: Support for Mono and MonoDevelop. This means, corresponding ide files (MonoDevelop) have been set up and Unit Testing now supports VStudio and NUnit Test</li>
 <li>Outlook: A C++ Version is currently in development and to be released in Q2 2015</li>
@@ -105,8 +161,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h2>Version 1.1.0, released July 31st, 2013</h2>
 <ul>
 <li>First ALox for Java Release! 100% Feature complete (as compared to actual C# Version).</li>
-<li>ALox for JAVA includes an LogCat logger for Android. This enables LogCat filtering and double-click support (jump to code line)</li>
-<li>Doxygen documentation now builds three different sites: Main, C# and JAVA. With a little doxygen manipulation, these three sites nicely integrate into each other, without much of a "media break".</li>
+<li>ALox for Java includes an LogCat logger for Android. This enables LogCat filtering and double-click support (jump to code line)</li>
+<li>Doxygen documentation now builds three different sites: Main, C# and Java. With a little doxygen manipulation, these three sites nicely integrate into each other, without much of a "media break".</li>
 <li>Added tutorials and sample projects on how to configure pruning for C# (incl. Windows Phone) and Java (inlc. Android).<br />
  Attn: The project folders and project names changed. So after doing a checkout, you have to fix your VStudio solution.<br />
  For C#, see <a href="cs_ref/setup_projects_vs_cs.html">Setting Up Visual Studio</a> <br />
@@ -117,7 +173,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </ul>
 </li>
 <li>Class <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html">TextLogger</a> was completely redesigned to be more configurable and extensible. For a complete description, see new manual chapter <a class="el" href="man_loggers.html">Details on ALox Loggers</a>.</li>
-<li>Added a MString singleton to classes <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> and <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a> that can be acquired using <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Lox.html#ab411a126ad91b1460609c37db472ea00">Log.Buf()</a> respectively <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Lox.html#ab411a126ad91b1460609c37db472ea00">Lox.Buf()</a> and is automatically released when contents gets logged. See new tutorial section <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/tutorial_cs.html#tutcs_more_logbuf">3.2 Using the log buffer singleton</a>.</li>
+<li>Added a AString singleton to classes <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> and <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a> that can be acquired using <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Lox.html#ad7d2ebe2750e7e4b2548f73d0380f651">Log.Buf()</a> respectively <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Lox.html#ad7d2ebe2750e7e4b2548f73d0380f651">Lox.Buf()</a> and is automatically released when contents gets logged. See new tutorial section <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/cstutorial.html#tutcs_more_logbuf">3.2 Using the log buffer singleton</a>.</li>
 <li>C# class <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1util_1_1ThreadLock.html">ThreadLock</a> corrected method names to follow "upper camel case".</li>
 <li>A very lot of small changes and improvements. Reviewed and extended tutorials and user manual with new chapters.</li>
 </ul>
@@ -126,8 +182,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>Java Version (including Android LogCat support) is <b>on its way</b>. It is almost "feature complete", but not in a state of being released, yet. Stay tuned!</li>
 <li>Two manual chapters written.</li>
 <li>Various internal improvements of speed and code consistence.</li>
-<li>Changed the type of parameter "msg" in all logging methods of classes Log, Lox and Logger from String (or MString) to Object. Only TextLogger will then identify different string-types (e.g. String, StringBuilder, StringBuffer, MString, CharSequence, etc.) and handle them efficiently. Unknown types are converted using their ToString() function. Other Loggers might treat them differently. This should not affect your code base in respect to using the standard logging interface.</li>
-<li><p class="startli">Introduced the new enumeration <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref/" href="../html/java_ref/enumcom_1_1aworx_1_1lox_1_1Log_1_1Scope.html">Log.Scope</a>. The scope is used by different methods as a parameter to define the applicable scope of a command. Scopes differ in different platform/languages supported by ALox. In C# the scope can be "Method" or "SourceFile" while in the upcoming JAVA version of ALox the scope "Package", "Class" and "Method" are defined. The difference is due to different mechanisms to automatically collect caller information.</p>
+<li>Changed the type of parameter "msg" in all logging methods of classes Log, Lox and Logger from String (or AString) to Object. Only TextLogger will then identify different string-types (e.g. String, StringBuilder, StringBuffer, AString, CharSequence, etc.) and handle them efficiently. Unknown types are converted using their ToString() function. Other Loggers might treat them differently. This should not affect your code base in respect to using the standard logging interface.</li>
+<li><p class="startli">Introduced the new enumeration <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref/" href="../html/java_ref/enumcom_1_1aworx_1_1lox_1_1Log_1_1Scope.html">Log.Scope</a>. The scope is used by different methods as a parameter to define the applicable scope of a command. Scopes differ in different platform/languages supported by ALox. In C# the scope can be "Method" or "SourceFile" while in the upcoming Java version of ALox the scope "Package", "Class" and "Method" are defined. The difference is due to different mechanisms to automatically collect caller information.</p>
 <p class="startli">Attn C# users: If within one source file two or more classes with equal same method names exist, then such method names share the same scope and hence are ambiguous. This is due to technical restrictions of how caller information is collected in C#/.Net.</p>
 <p class="startli">The methods affected in this release are:</p><ul>
 <li><a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Log.html#a4576b25512979ba59a7180486b18874a">Log.GetMarker</a>,</li>
@@ -136,23 +192,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </ul>
 <p class="startli">For the latter, the optional parameter "setAsDefault" was replaced by the scope and is not optional, but explicit now. For registering a Domain without setting it as the default domain, the Scope value <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref/" href="../html/java_ref/enumcom_1_1aworx_1_1lox_1_1Log_1_1Scope.html">Log.Scope.None</a> has to be given.</p>
 </li>
-<li>Parameter list of abstract function <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a1300bd920d9f44ebc751480932ed2585">TextLogger</a> got extended. Needs adaption if you derived your own TextLogger class.</li>
+<li>Parameter list of abstract function <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a0d2f1838c6403b062f5e7f481d97c51a">TextLogger</a> got extended. Needs adaption if you derived your own TextLogger class.</li>
 <li>Removed one and renamed two of the output control flags in <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a>. If you used them, you will have to make small code changes.</li>
 <li>Small changes in <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html">TextLogger</a> format strings for date and time of day.</li>
-<li>Renamed com.aworx.util.MutableString to <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1util_1_1MString.html">MString</a>. Several new methods added. (No impact on API)</li>
+<li>Renamed com.aworx.util.MutableString to <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1util_1_1AString.html">AString</a>. Several new methods added. (No impact on API)</li>
 </ul>
 <h2>Version 1.0.3, released May 27th, 2013</h2>
 <ul>
 <li>added Windows Phone 7.1 compatibility (Windows Phone 8, was already supported)</li>
 <li>minor bug fixes in code and documentation</li>
-<li><p class="startli">renamed methods <em>Log.LOG()</em>, <em>Lox.log()</em> and <em>Logger.Log()</em> to <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Log.html#af545c26975f606a7ea708d954d1c6db8">Log.Line()</a>, <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Lox.html#a92a07a47e1dc6dd3bd09428f02e4f835">Lox.Line()</a> and <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a131d672c77b9abb0fc4a5a3d23e66ccf">Logger.Line()</a>. The reason may be obvious. The reasons why they had been named as they were before, is maybe not too obvious. Some name conflicts where confusing. Now, all confusion should be gone!</p>
+<li><p class="startli">renamed methods <em>Log.LOG()</em>, <em>Lox.log()</em> and <em>Logger.Log()</em> to <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Log.html#af545c26975f606a7ea708d954d1c6db8">Log.Line()</a>, <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Lox.html#a92a07a47e1dc6dd3bd09428f02e4f835">Lox.Line()</a> and <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#ac019af89d268e470e28aa67a390fa221">Logger.Line()</a>. The reason may be obvious. The reasons why they had been named as they were before, is maybe not too obvious. Some name conflicts where confusing. Now, all confusion should be gone!</p>
 <p class="startli">Note: If you had used these methods, you have to rename them in your code accordingly.</p>
 </li>
 <li><p class="startli">Enums <em>Level</em> and <em>DomainLevel</em> stop existing several times in different namespaces. Their place is now in class Log, hence <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref/" href="../html/java_ref/enumcom_1_1aworx_1_1lox_1_1Log_1_1Level.html">Log.Level</a> and <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref/" href="../html/java_ref/enumcom_1_1aworx_1_1lox_1_1Log_1_1DomainLevel.html">Log.DomainLevel</a></p>
-<p class="startli">Note for those who are interested:* This was OK before and supported separation and avoided cyclic package references. However, with implementing the JAVA version, having multiple versions caused problems (JAVA does not support casting enum to int or enum A to enum B). While we are aware that <em>class Log</em> is not the right place in terms of code design (Logger and Lox should not <em>know</em> Log but now they use its enums heavily), but the alternatives to that would have led to either ugly calls in the <em>user code</em> or expensive enum conversion operations in the JAVA version of ALox. And both is what we wanted less than as it is now.</p>
+<p class="startli">Note for those who are interested:* This was OK before and supported separation and avoided cyclic package references. However, with implementing the Java version, having multiple versions caused problems (Java does not support casting enum to int or enum A to enum B). While we are aware that <em>class Log</em> is not the right place in terms of code design (Logger and Lox should not <em>know</em> Log but now they use its enums heavily), but the alternatives to that would have led to either ugly calls in the <em>user code</em> or expensive enum conversion operations in the Java version of ALox. And both is what we wanted less than as it is now.</p>
 <p class="startli">For all standard use of ALox (through static Log interface <em>Log</em>) this change has no impact on your code.</p>
 </li>
-<li>Added further AWorx util classes, to support code compatibility between JAVA and C# (JAVA version of ALox development is ongoing but not part of this release</li>
+<li>Added further AWorx util classes, to support code compatibility between Java and C# (Java version of ALox development is ongoing but not part of this release</li>
 </ul>
 <h2>Version 1.0.2, released May 21st, 2013</h2>
 <ul>
@@ -185,7 +241,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 4 2015 11:07:52 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

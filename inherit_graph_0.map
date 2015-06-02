@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag$classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html" title="com::aworx::lox::core\l::CallerInfo" alt="" coords="5,5,148,47"/>
+<area shape="rect" id="node1" href="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag$classaworx_1_1util_1_1AString.html" title="aworx::util::AString" alt="" coords="5,35,137,61"/>
+<area shape="rect" id="node2" href="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag$classaworx_1_1util_1_1AStringPreAlloc.html" title="AStringPreAlloc\&lt; 64 \&gt;" alt="" coords="200,5,352,32"/>
+<area shape="rect" id="node3" href="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag$classaworx_1_1util_1_1AStringPreAlloc.html" title="aworx::util::AStringPreAlloc\l\&lt; BUFFER_SIZE \&gt;" alt="" coords="185,57,367,98"/>
 </map>

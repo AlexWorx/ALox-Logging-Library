@@ -5,10 +5,30 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>ALox Java Reference: LogTools Class Reference</title>
+<title>ALox: LogTools Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<!-- so strange, that doxgen does not highlight each menu item. Just some... -->
+<script>
+  $(document).ready(function() {     
+    fnameStart= window.location.href.lastIndexOf('/')
+    fnameEnd=   window.location.href.indexOf('_', fnameStart )
+    if( fnameEnd < 0 ) {
+        fnameEnd=   window.location.href.indexOf('.', fnameStart )
+    }
+    if( fnameEnd > -1 ) {
+        subString= window.location.href.substring( fnameStart, fnameEnd )
+        $('li').toArray().forEach(function(li){
+            if(     typeof li.firstChild.href != 'undefined'
+                &&  li.firstChild.href.indexOf(subString) > 0 
+                ){
+               li.classList.add('current');
+            }
+        });
+    }
+  });
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +36,6 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="java_stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,8 +45,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">ALox Java Reference
-   &#160;<span id="projectnumber">V. 1.1.2</span>
+   <div id="projectname">ALox 
+   &#160;<span id="projectnumber">Logging for C++, C# and Java (V 1.2.0)</span>
    </div>
   </td>
  </tr>
@@ -44,9 +63,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="../index.html"><span>ALox&#160;Home</span></a></li>
       <li><a href="../faq.html"><span>FAQ</span></a></li>
       <li><a href="../manual.html"><span>Manual</span></a></li>
-      <li><a href="setup_projects_java.html"><span>IDE&#160;Setup</span></a></li>
-      <li><a href="tutorial_java.html"><span>Tutorial</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Class&#160;Ref.</span></a></li>
+      <li><a href="../cpp_ref/cppmainpage.html"><span>ALox&#160;for&#160;C++</span></a></li>
+      <li><a href="../cs_ref/csmainpage.html"><span>ALox&#160;for&#160;C#</span></a></li>
+      <li class="current"><a href="javamainpage.html"><span>ALox&#160;for&#160;Java</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -68,8 +87,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="javamainpage.html"><span>Overview</span></a></li>
+      <li><a href="javatutorial.html"><span>Tutorial</span></a></li>
+      <li><a href="javasetup.html"><span>IDE&#160;Setup</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Class&#160;Reference</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="classes.html"><span>Alphabetical&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Namespace&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -222,10 +251,10 @@ Static Protected Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-attribs"></a>
 Static Protected Attributes</h2></td></tr>
-<tr class="memitem:ab2b7fd952d42f838905b7ce560f1e68e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#ab2b7fd952d42f838905b7ce560f1e68e">toolBuf</a></td></tr>
-<tr class="separator:ab2b7fd952d42f838905b7ce560f1e68e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a570982a6045c2e2c409321b2e1a01898"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a570982a6045c2e2c409321b2e1a01898">tempBuf</a> = new <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>(512)</td></tr>
-<tr class="separator:a570982a6045c2e2c409321b2e1a01898"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accf10243655bbcecc845e197c4350e8c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#accf10243655bbcecc845e197c4350e8c">toolBuf</a></td></tr>
+<tr class="separator:accf10243655bbcecc845e197c4350e8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8bcff62308a450db0f7e00b6937a67d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#ad8bcff62308a450db0f7e00b6937a67d">tempBuf</a> = new <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a>(512)</td></tr>
+<tr class="separator:ad8bcff62308a450db0f7e00b6937a67d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a93c641104eda6fb4550ce017b73430bf"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a93c641104eda6fb4550ce017b73430bf">tempLineStartIdx</a></td></tr>
 <tr class="separator:a93c641104eda6fb4550ce017b73430bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e071e391087b62155ccd1f5b3e3ab46"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a3e071e391087b62155ccd1f5b3e3ab46">tempLineEndIdx</a></td></tr>
@@ -244,7 +273,8 @@ Static Protected Attributes</h2></td></tr>
 <tr class="separator:a1faac34f3e6f3def40a11d8b59d9b00f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Provides high level functionality for logging things like Exceptions or object instances. </p><dl class="section author"><dt>Author</dt><dd>A </dd></dl>
+<div class="textblock"><hr/>
+<p> Provides high level functionality for logging things like Exceptions or object instances. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="af4544e4fd1f72d149af6e19fc2cd1dc1"></a>
 <div class="memitem">
@@ -1710,7 +1740,7 @@ Static Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Finds the next line in <a class="el" href="classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a570982a6045c2e2c409321b2e1a01898">tempBuf</a> and stores start and end index in <a class="el" href="classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a93c641104eda6fb4550ce017b73430bf">tempLineStartIdx</a> and <a class="el" href="classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a3e071e391087b62155ccd1f5b3e3ab46">tempLineEndIdx</a>. </p>
+<p> Finds the next line in <a class="el" href="classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#ad8bcff62308a450db0f7e00b6937a67d">tempBuf</a> and stores start and end index in <a class="el" href="classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a93c641104eda6fb4550ce017b73430bf">tempLineStartIdx</a> and <a class="el" href="classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a3e071e391087b62155ccd1f5b3e3ab46">tempLineEndIdx</a>. </p>
 
 </div>
 </div>
@@ -2558,7 +2588,7 @@ Static Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a570982a6045c2e2c409321b2e1a01898"></a>
+<a class="anchor" id="ad8bcff62308a450db0f7e00b6937a67d"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -2566,7 +2596,7 @@ Static Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> tempBuf = new <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>(512)</td>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a> tempBuf = new <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a>(512)</td>
         </tr>
       </table>
   </td>
@@ -2621,7 +2651,7 @@ Static Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ab2b7fd952d42f838905b7ce560f1e68e"></a>
+<a class="anchor" id="accf10243655bbcecc845e197c4350e8c"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -2629,7 +2659,7 @@ Static Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> toolBuf</td>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a> toolBuf</td>
         </tr>
       </table>
   </td>
@@ -2649,7 +2679,7 @@ Static Protected Attributes</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 4 2015 11:07:52 for ALox Java Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

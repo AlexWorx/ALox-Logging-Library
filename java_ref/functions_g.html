@@ -5,10 +5,30 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>ALox Java Reference: Class Members</title>
+<title>ALox: Class Members</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<!-- so strange, that doxgen does not highlight each menu item. Just some... -->
+<script>
+  $(document).ready(function() {     
+    fnameStart= window.location.href.lastIndexOf('/')
+    fnameEnd=   window.location.href.indexOf('_', fnameStart )
+    if( fnameEnd < 0 ) {
+        fnameEnd=   window.location.href.indexOf('.', fnameStart )
+    }
+    if( fnameEnd > -1 ) {
+        subString= window.location.href.substring( fnameStart, fnameEnd )
+        $('li').toArray().forEach(function(li){
+            if(     typeof li.firstChild.href != 'undefined'
+                &&  li.firstChild.href.indexOf(subString) > 0 
+                ){
+               li.classList.add('current');
+            }
+        });
+    }
+  });
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +36,6 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="java_stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,8 +45,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">ALox Java Reference
-   &#160;<span id="projectnumber">V. 1.1.2</span>
+   <div id="projectname">ALox 
+   &#160;<span id="projectnumber">Logging for C++, C# and Java (V 1.2.0)</span>
    </div>
   </td>
  </tr>
@@ -44,9 +63,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="../index.html"><span>ALox&#160;Home</span></a></li>
       <li><a href="../faq.html"><span>FAQ</span></a></li>
       <li><a href="../manual.html"><span>Manual</span></a></li>
-      <li><a href="setup_projects_java.html"><span>IDE&#160;Setup</span></a></li>
-      <li><a href="tutorial_java.html"><span>Tutorial</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Class&#160;Ref.</span></a></li>
+      <li><a href="../cpp_ref/cppmainpage.html"><span>ALox&#160;for&#160;C++</span></a></li>
+      <li><a href="../cs_ref/csmainpage.html"><span>ALox&#160;for&#160;C#</span></a></li>
+      <li class="current"><a href="javamainpage.html"><span>ALox&#160;for&#160;Java</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -68,8 +87,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="javamainpage.html"><span>Overview</span></a></li>
+      <li><a href="javatutorial.html"><span>Tutorial</span></a></li>
+      <li><a href="javasetup.html"><span>IDE&#160;Setup</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Class&#160;Reference</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="classes.html"><span>Alphabetical&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Namespace&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li class="current"><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
   <div id="navrow3" class="tabs2">
@@ -82,6 +111,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow4" class="tabs3">
     <ul class="tablist">
       <li><a href="functions.html#index_["><span>[</span></a></li>
+      <li><a href="functions__.html#index__"><span>_</span></a></li>
       <li><a href="functions_a.html#index_a"><span>a</span></a></li>
       <li><a href="functions_b.html#index_b"><span>b</span></a></li>
       <li><a href="functions_c.html#index_c"><span>c</span></a></li>
@@ -124,19 +154,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <h3><a class="anchor" id="index_g"></a>- g -</h3><ul>
 <li>get()
-: <a class="el" href="classcom_1_1aworx_1_1util_1_1TickTime.html#aafbaa9527425920d5d8b4bebcc1b52f1">TickTime</a>
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1TicksSpan.html#aafbaa9527425920d5d8b4bebcc1b52f1">TicksSpan</a>
 </li>
-<li>getAverageHertz()
-: <a class="el" href="classcom_1_1aworx_1_1util_1_1TickTime.html#a211860211d10a188d68b9e2140e2b323">TickTime</a>
+<li>getAllocation()
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html#aeac4fd8cc1fe62e3e5a4cd961a30abad">AString</a>
 </li>
-<li>getAverageMillis()
-: <a class="el" href="classcom_1_1aworx_1_1util_1_1TickTime.html#aaf6deb8d992aabc669cf4267e9fc20a2">TickTime</a>
+<li>getAverage()
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1TickWatch.html#a7633e533abd202389d7caf8457d3010b">TickWatch</a>
 </li>
-<li>getAverageTicks()
-: <a class="el" href="classcom_1_1aworx_1_1util_1_1TickTime.html#a81cb93e52f174538391ce2de30e61f33">TickTime</a>
-</li>
-<li>getCumulatedTicks()
-: <a class="el" href="classcom_1_1aworx_1_1util_1_1TickTime.html#abde8cbbfb9bebc1df4342a19533f80fc">TickTime</a>
+<li>getCumulated()
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1TickWatch.html#a9b0c640d3a49abd8feb6d96670011dc0">TickWatch</a>
 </li>
 <li>getLevel()
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#acff162e8486d1c073b6ab88bf60c9c9b">LogDomain</a>
@@ -146,18 +173,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#acaa486d7048bb92b36bf103fdea4518c">Lox</a>
 </li>
 <li>getMarker()
-: <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a9f46fb193ce5ef1c300ab11e770c2995">Log</a>
-, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#ab8f5469df565f4ef0bcc50a0e13ecfdc">Lox</a>
+: <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a9e2d1be856f4a7531ba4e53b2653b292">Log</a>
+, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a36637a46434eba0c17faa8c0b0f82159">Lox</a>
 </li>
-<li>getMeasureCnt()
-: <a class="el" href="classcom_1_1aworx_1_1util_1_1TickTime.html#a2b29f44eea2803f027425da1727c06d0">TickTime</a>
+<li>getSampleCnt()
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1TickWatch.html#a5c84e42de91b0df96864db5538243ae8">TickWatch</a>
+</li>
+<li>getStartTime()
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1TickWatch.html#aac6204b073bb89fe86acb003e1097f70">TickWatch</a>
 </li>
 </ul>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 4 2015 11:07:52 for ALox Java Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

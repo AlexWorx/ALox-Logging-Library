@@ -5,10 +5,30 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>ALox Java Reference: Class Members</title>
+<title>ALox: Class Members</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<!-- so strange, that doxgen does not highlight each menu item. Just some... -->
+<script>
+  $(document).ready(function() {     
+    fnameStart= window.location.href.lastIndexOf('/')
+    fnameEnd=   window.location.href.indexOf('_', fnameStart )
+    if( fnameEnd < 0 ) {
+        fnameEnd=   window.location.href.indexOf('.', fnameStart )
+    }
+    if( fnameEnd > -1 ) {
+        subString= window.location.href.substring( fnameStart, fnameEnd )
+        $('li').toArray().forEach(function(li){
+            if(     typeof li.firstChild.href != 'undefined'
+                &&  li.firstChild.href.indexOf(subString) > 0 
+                ){
+               li.classList.add('current');
+            }
+        });
+    }
+  });
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +36,6 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="java_stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,8 +45,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">ALox Java Reference
-   &#160;<span id="projectnumber">V. 1.1.2</span>
+   <div id="projectname">ALox 
+   &#160;<span id="projectnumber">Logging for C++, C# and Java (V 1.2.0)</span>
    </div>
   </td>
  </tr>
@@ -44,9 +63,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="../index.html"><span>ALox&#160;Home</span></a></li>
       <li><a href="../faq.html"><span>FAQ</span></a></li>
       <li><a href="../manual.html"><span>Manual</span></a></li>
-      <li><a href="setup_projects_java.html"><span>IDE&#160;Setup</span></a></li>
-      <li><a href="tutorial_java.html"><span>Tutorial</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Class&#160;Ref.</span></a></li>
+      <li><a href="../cpp_ref/cppmainpage.html"><span>ALox&#160;for&#160;C++</span></a></li>
+      <li><a href="../cs_ref/csmainpage.html"><span>ALox&#160;for&#160;C#</span></a></li>
+      <li class="current"><a href="javamainpage.html"><span>ALox&#160;for&#160;Java</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -68,8 +87,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="javamainpage.html"><span>Overview</span></a></li>
+      <li><a href="javatutorial.html"><span>Tutorial</span></a></li>
+      <li><a href="javasetup.html"><span>IDE&#160;Setup</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Class&#160;Reference</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="classes.html"><span>Alphabetical&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Namespace&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li class="current"><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
   <div id="navrow3" class="tabs2">
@@ -82,6 +111,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow4" class="tabs3">
     <ul class="tablist">
       <li><a href="functions.html#index_["><span>[</span></a></li>
+      <li><a href="functions__.html#index__"><span>_</span></a></li>
       <li><a href="functions_a.html#index_a"><span>a</span></a></li>
       <li><a href="functions_b.html#index_b"><span>b</span></a></li>
       <li class="current"><a href="functions_c.html#index_c"><span>c</span></a></li>
@@ -135,19 +165,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>callerDateTimeDate
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a15c370a8d52b71bdf21b1fe8869a06fd">TextLoggerLineFormatter</a>
 </li>
+<li>CENTER
+: <a class="el" href="enumcom_1_1aworx_1_1util_1_1AString_1_1Align.html#a00f6ce13ea7d341a8ed6b99840f4bbd3">AString.Align</a>
+</li>
 <li>charAt()
-: <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a0df4313245971ee814410a5206d228ae">MString</a>
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html#a0df4313245971ee814410a5206d228ae">AString</a>
 </li>
 <li>CLASS
 : <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Log_1_1Scope.html#ad5946acbc78d91b2bd0621fbf6a3c9a9">Log.Scope</a>
 </li>
 <li>className
-: <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#afc4f959391fb840db1b65ba194052bbd">CallerInfo</a>
+: <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#a7cc5b098bd04225b9970d6fa403f9415">CallerInfo</a>
 </li>
 <li>clear()
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a58aafa1bec9d1e812dd0d168b37ee03f">LogBuf</a>
-, <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a9cc2838997e7d0381c645b2b9d7760e6">MString</a>
-, <a class="el" href="classcom_1_1aworx_1_1util_1_1TickTime.html#ac8bb3912a3ce86b15842e79d0b421204">TickTime</a>
+, <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html#a0db6c33803a57a12ce1ecc711f323003">AString</a>
+, <a class="el" href="classcom_1_1aworx_1_1util_1_1TicksSpan.html#ac8bb3912a3ce86b15842e79d0b421204">TicksSpan</a>
 </li>
 <li>closeFile()
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html#ab2ff17b940ae7aca4827d832ceeaeda4">TextFileLogger</a>
@@ -158,15 +191,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>cntLogs
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a875cc7d46740caba1725c2f6580804e2">Logger</a>
 </li>
-<li>cntMeasures
-: <a class="el" href="classcom_1_1aworx_1_1util_1_1TickTime.html#a388aae1c6d770ab01965f0d01b2fdc1a">TickTime</a>
+<li>cntSamples
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1TickWatch.html#a3203b85b99c75b91922c0147ac0ca04b">TickWatch</a>
 </li>
 <li>compareTo()
-: <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ad95fecd8c81767b0cd6a1eab72388372">LogBuf</a>
-, <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#af214887db1ff5c940a796209e4687231">MString</a>
+: <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#af214887db1ff5c940a796209e4687231">LogBuf</a>
+, <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html#ae5470400889c51add95cbe4ecd98a901">AString</a>
 </li>
 <li>consoleBuffer
-: <a class="el" href="classcom_1_1aworx_1_1lox_1_1android_1_1AndroidLogCatLogger.html#a13297cc2c876d3e5667e2c567efbb377">AndroidLogCatLogger</a>
+: <a class="el" href="classcom_1_1aworx_1_1lox_1_1android_1_1AndroidLogCatLogger.html#aa213306ef54483a407a2ea63d4b35c1e">AndroidLogCatLogger</a>
 </li>
 <li>ConsoleLogger()
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html#ad445eb256a79caeb8371bb5b7aee7a0a">ConsoleLogger</a>
@@ -176,24 +209,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#a3e37532dae663660f404efd7c15c7b6a">ThreadLock</a>
 </li>
 <li>containsAt()
-: <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a5cfe24fea5a9f07bc3b411a5d5cf1222">LogBuf</a>
-, <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a1c401cc6c6ea02fabd1504898ee3cc3a">MString</a>
+: <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#aa73f93fbcba640d7799d0af324230bcb">LogBuf</a>
+, <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html#afbad536c565c434326108263cf5bf0b9">AString</a>
 </li>
 <li>convertCase()
-: <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a40399a25a11cfdb9e26392de08bb525d">LogBuf</a>
-, <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a3e3cd5d434237e0cb37bc75f3f1dd1b5">MString</a>
+: <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ab316e5518910f4b8dbacef93ee704c1b">LogBuf</a>
+, <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html#a6d2b3a2e47896cf614702c5b319e0ccc">AString</a>
 </li>
 <li>convertObject()
-: <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html#a397c20bbd61197c1353f6a19c2b71403">TextLoggerObjectConverter</a>
+: <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html#abef6601760adb6e539753b3ee03692e5">TextLoggerObjectConverter</a>
 </li>
 <li>createDomain()
-: <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a0319dd98a95a91fdd063b2c7f506c82f">Logger</a>
+: <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#ab16e7f7343e1a3df9c9991b436c0b427">Logger</a>
+</li>
+<li>creationTime()
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1Ticks.html#a7e6a9d9318b6c12c9ff42236db016e05">Ticks</a>
 </li>
 <li>creationTimeDateMillis
-: <a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html#a8843ea79744d6cae8884ad2c81737d8c">Ticker</a>
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1Ticks.html#a8843ea79744d6cae8884ad2c81737d8c">Ticks</a>
 </li>
-<li>creationTimeSystemNanos
-: <a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html#a17c2298e03748d9bff95cdf0fb8bcc6c">Ticker</a>
+<li>creationTimeTicks
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1Ticks.html#aab50b310420b26c8aeae3f4581c5ccfd">Ticks</a>
 </li>
 <li>currentlyInMultiLineOp
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html#a8a408a0f7e8f2d08e08e1d475388107c">TextFileLogger</a>
@@ -203,7 +239,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 4 2015 11:07:52 for ALox Java Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

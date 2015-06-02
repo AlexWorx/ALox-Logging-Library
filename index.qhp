@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QtHelpProject version="1.0">
+  <namespace>com.aworx.alox</namespace>
+  <virtualFolder>alox</virtualFolder>
+  <filterSection>
+    <filterAttribute>doxygen</filterAttribute>
+    <toc>
+      <section title="ALox V 1.2.0" ref="index.html">
+        <section title="ALox Main Page" ref="index.html" />
+        <section title="FAQ" ref="faq.html" />
+        <section title="Manual" ref="manual.html">
+          <section title="man_intro" ref="man_intro.html" />
+          <section title="man_concepts" ref="man_concepts.html" />
+          <section title="man_achieving_goals" ref="man_achieving_goals.html" />
+        </section>
+        <section title="ALox for C++" ref="cpp_ref/cppmainpage.html" />
+        <section title="ALox for C#" ref="cs_ref/csmainpage.html" />
+        <section title="ALox for Java" ref="java_ref/javamainpage.html" />
+      </section>
+    </toc>
+    <keywords>
+      <keyword name="Change Log" id="Change Log" ref="changelog.html" />
+      <keyword name="FAQ - Frequently asked Questions for ALox" id="FAQ - Frequently asked Questions for ALox" ref="faq.html" />
+      <keyword name="Features and Limitations" id="Features and Limitations" ref="man_features_and_limitations.html" />
+      <keyword name="About ALox" id="About ALox" ref="man_intro.html" />
+      <keyword name="Concepts of ALox Logging" id="Concepts of ALox Logging" ref="man_concepts.html" />
+      <keyword name="Overview of the ALox architecture" id="Overview of the ALox architecture" ref="man_alox_architecture.html" />
+      <keyword name="Log Levels, Log Domains and Log Domain Levels" id="Log Levels, Log Domains and Log Domain Levels" ref="man_levelsanddomains.html" />
+      <keyword name="Details on ALox Loggers" id="Details on ALox Loggers" ref="man_loggers.html" />
+      <keyword name="How to achieve your goals with ALox" id="How to achieve your goals with ALox" ref="man_achieving_goals.html" />
+      <keyword name="Filtering Loggers" id="Filtering Loggers" ref="man_filtering_loggers.html" />
+      <keyword name="Logging in release versions of your application" id="Logging in release versions of your application" ref="man_release_logging.html" />
+      <keyword name="The field &quot;SourceCodePrefix&quot; in remote debugging environments" id="The field &quot;SourceCodePrefix&quot; in remote debugging environments" ref="man_source_code_prefix.html" />
+      <keyword name="User Manual" id="User Manual" ref="manual.html" />
+    </keywords>
+    <files>
+      <file>tabs.css</file>
+      <file>tab_a.png</file>
+      <file>tab_b.png</file>
+      <file>tab_h.png</file>
+      <file>tab_s.png</file>
+      <file>nav_h.png</file>
+      <file>nav_f.png</file>
+      <file>bc_s.png</file>
+      <file>doxygen.png</file>
+      <file>closed.png</file>
+      <file>open.png</file>
+      <file>bdwn.png</file>
+      <file>sync_on.png</file>
+      <file>sync_off.png</file>
+      <file>A-Worx-Logo.png</file>
+      <file>doc.png</file>
+      <file>folderopen.png</file>
+      <file>folderclosed.png</file>
+      <file>arrowdown.png</file>
+      <file>arrowright.png</file>
+      <file>splitbar.png</file>
+      <file>doxygen.css</file>
+      <file>search/search_l.png</file>
+      <file>search/search_m.png</file>
+      <file>search/search_r.png</file>
+      <file>search/close.png</file>
+      <file>search/mag_sel.png</file>
+      <file>search/search.css</file>
+      <file>search/search.js</file>
+      <file>changelog.html</file>
+      <file>faq.html</file>
+      <file>man_features_and_limitations.html</file>
+      <file>man_intro.html</file>
+      <file>man_concepts.html</file>
+      <file>man_alox_architecture.html</file>
+      <file>dot_inline_dotgraph_1.png</file>
+      <file>dot_inline_dotgraph_2.png</file>
+      <file>dot_inline_dotgraph_3.png</file>
+      <file>dot_inline_dotgraph_4.png</file>
+      <file>dot_inline_dotgraph_5.png</file>
+      <file>dot_inline_dotgraph_6.png</file>
+      <file>man_levelsanddomains.html</file>
+      <file>man_loggers.html</file>
+      <file>dot_inline_dotgraph_7.png</file>
+      <file>man_achieving_goals.html</file>
+      <file>man_filtering_loggers.html</file>
+      <file>man_release_logging.html</file>
+      <file>man_source_code_prefix.html</file>
+      <file>manual.html</file>
+      <file>graph_legend.png</file>
+      <file>graph_legend.html</file>
+      <file>index.html</file>
+      <file>hierarchy.html</file>
+      <file>inherits.html</file>
+      <file>inherit_graph_0.png</file>
+      <file>inherit_graph_1.png</file>
+      <file>inherit_graph_2.png</file>
+      <file>inherit_graph_3.png</file>
+      <file>inherit_graph_4.png</file>
+      <file>inherit_graph_5.png</file>
+      <file>inherit_graph_6.png</file>
+      <file>inherit_graph_7.png</file>
+      <file>inherit_graph_8.png</file>
+      <file>inherit_graph_9.png</file>
+      <file>inherit_graph_10.png</file>
+      <file>inherit_graph_11.png</file>
+      <file>inherit_graph_12.png</file>
+      <file>inherit_graph_13.png</file>
+      <file>inherit_graph_14.png</file>
+      <file>inherit_graph_15.png</file>
+      <file>inherit_graph_16.png</file>
+      <file>inherit_graph_17.png</file>
+      <file>inherit_graph_18.png</file>
+      <file>inherit_graph_19.png</file>
+      <file>inherit_graph_20.png</file>
+      <file>inherit_graph_21.png</file>
+      <file>inherit_graph_22.png</file>
+      <file>inherit_graph_23.png</file>
+      <file>inherit_graph_24.png</file>
+      <file>inherit_graph_25.png</file>
+      <file>inherit_graph_26.png</file>
+      <file>inherit_graph_27.png</file>
+      <file>inherit_graph_28.png</file>
+      <file>inherit_graph_29.png</file>
+      <file>inherit_graph_30.png</file>
+      <file>inherit_graph_31.png</file>
+      <file>inherit_graph_32.png</file>
+      <file>inherit_graph_33.png</file>
+      <file>inherit_graph_34.png</file>
+      <file>inherit_graph_35.png</file>
+      <file>inherit_graph_36.png</file>
+      <file>inherit_graph_37.png</file>
+      <file>pages.html</file>
+    </files>
+  </filterSection>
+</QtHelpProject>

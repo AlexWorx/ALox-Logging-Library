@@ -9,6 +9,26 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<!-- so strange, that doxgen does not highlight each menu item. Just some... -->
+<script>
+  $(document).ready(function() {     
+    fnameStart= window.location.href.lastIndexOf('/')
+    fnameEnd=   window.location.href.indexOf('_', fnameStart )
+    if( fnameEnd < 0 ) {
+        fnameEnd=   window.location.href.indexOf('.', fnameStart )
+    }
+    if( fnameEnd > -1 ) {
+        subString= window.location.href.substring( fnameStart, fnameEnd )
+        $('li').toArray().forEach(function(li){
+            if(     typeof li.firstChild.href != 'undefined'
+                &&  li.firstChild.href.indexOf(subString) > 0 
+                ){
+               li.classList.add('current');
+            }
+        });
+    }
+  });
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +36,6 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="main_stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,8 +45,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1.1.2   -   Simple and powerful logging library for C# and JAVA (C++ underway...!)</span>
+   <div id="projectname">ALox 
+   &#160;<span id="projectnumber">Logging for C++, C# and Java (V 1.2.0)</span>
    </div>
   </td>
  </tr>
@@ -44,8 +63,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>ALox&#160;Home</span></a></li>
       <li><a href="faq.html"><span>FAQ</span></a></li>
       <li><a href="manual.html"><span>Manual</span></a></li>
-      <li><a href="cs_ref/index.html"><span>ALox&#160;for&#160;C#</span></a></li>
-      <li><a href="java_ref/index.html"><span>ALox&#160;for&#160;Java</span></a></li>
+      <li><a href="cpp_ref/cppmainpage.html"><span>ALox&#160;for&#160;C++</span></a></li>
+      <li><a href="cs_ref/csmainpage.html"><span>ALox&#160;for&#160;C#</span></a></li>
+      <li><a href="java_ref/javamainpage.html"><span>ALox&#160;for&#160;Java</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -88,92 +108,164 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="textblock">
 <p><a href="hierarchy.html">Go to the textual class hierarchy</a></p>
 </div><table border="0" cellspacing="10" cellpadding="0">
-<tr><td><img src="inherit_graph_0.png" border="0" alt="" usemap="#com_1_1aworx_1_1lox_1_1core_1_1CallerInfo"/>
+<tr><td><img src="inherit_graph_0.png" border="0" alt="" usemap="#AStringPreAlloc_3_0164_01_4"/>
+<map name="AStringPreAlloc_3_0164_01_4" id="AStringPreAlloc_3_0164_01_4">
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:../html/cpp_ref" href="../html/cpp_ref/classaworx_1_1util_1_1AString.html" title="aworx::util::AString" alt="" coords="5,35,137,61"/><area shape="rect" id="node2" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:../html/cpp_ref" href="../html/cpp_ref/classaworx_1_1util_1_1AStringPreAlloc.html" title="AStringPreAlloc\&lt; 64 \&gt;" alt="" coords="200,5,352,32"/><area shape="rect" id="node3" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:../html/cpp_ref" href="../html/cpp_ref/classaworx_1_1util_1_1AStringPreAlloc.html" title="aworx::util::AStringPreAlloc\l\&lt; BUFFER_SIZE \&gt;" alt="" coords="185,57,367,98"/></map>
+</td></tr>
+<tr><td><img src="inherit_graph_1.png" border="0" alt="" usemap="#aworx_1_1lox_1_1core_1_1LogDomain"/>
+<map name="aworx_1_1lox_1_1core_1_1LogDomain" id="aworx_1_1lox_1_1core_1_1LogDomain">
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:../html/cpp_ref" href="../html/cpp_ref/classaworx_1_1lox_1_1core_1_1LogDomain.html" title="aworx::lox::core::LogDomain" alt="" coords="5,5,192,32"/></map>
+</td></tr>
+<tr><td><img src="inherit_graph_2.png" border="0" alt="" usemap="#aworx_1_1lox_1_1core_1_1Logger"/>
+<map name="aworx_1_1lox_1_1core_1_1Logger" id="aworx_1_1lox_1_1core_1_1Logger">
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:../html/cpp_ref" href="../html/cpp_ref/classaworx_1_1lox_1_1core_1_1Logger.html" title="aworx::lox::core::Logger" alt="" coords="5,46,167,73"/><area shape="rect" id="node2" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:../html/cpp_ref" href="../html/cpp_ref/classaworx_1_1lox_1_1core_1_1TextLogger.html" title="aworx::lox::core::TextLogger" alt="" coords="215,46,400,73"/><area shape="rect" id="node3" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:../html/cpp_ref" href="../html/cpp_ref/classaworx_1_1lox_1_1loggers_1_1ConsoleLogger.html" title="aworx::lox::loggers\l::ConsoleLogger" alt="" coords="448,5,579,47"/><area shape="rect" id="node4" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:../html/cpp_ref" href="../html/cpp_ref/classaworx_1_1lox_1_1loggers_1_1MemoryLogger.html" title="aworx::lox::loggers\l::MemoryLogger" alt="" coords="448,71,579,112"/></map>
+</td></tr>
+<tr><td><img src="inherit_graph_3.png" border="0" alt="" usemap="#aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter"/>
+<map name="aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter" id="aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter">
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:../html/cpp_ref" href="../html/cpp_ref/classaworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html" title="aworx::lox::core::TextLogger\lLineFormatter" alt="" coords="5,5,191,47"/></map>
+</td></tr>
+<tr><td><img src="inherit_graph_4.png" border="0" alt="" usemap="#aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter"/>
+<map name="aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter" id="aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter">
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:../html/cpp_ref" href="../html/cpp_ref/classaworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html" title="aworx::lox::core::TextLogger\lObjectConverter" alt="" coords="5,5,191,47"/></map>
+</td></tr>
+<tr><td><img src="inherit_graph_5.png" border="0" alt="" usemap="#aworx_1_1lox_1_1Log"/>
+<map name="aworx_1_1lox_1_1Log" id="aworx_1_1lox_1_1Log">
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:../html/cpp_ref" href="../html/cpp_ref/classaworx_1_1lox_1_1Log.html" title="aworx::lox::Log" alt="" coords="5,5,116,32"/></map>
+</td></tr>
+<tr><td><img src="inherit_graph_6.png" border="0" alt="" usemap="#aworx_1_1util_1_1AWXU"/>
+<map name="aworx_1_1util_1_1AWXU" id="aworx_1_1util_1_1AWXU">
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:../html/cpp_ref" href="../html/cpp_ref/classaworx_1_1util_1_1AWXU.html" title="aworx::util::AWXU" alt="" coords="5,5,132,32"/></map>
+</td></tr>
+<tr><td><img src="inherit_graph_7.png" border="0" alt="" usemap="#aworx_1_1util_1_1AWXUErrorHandler"/>
+<map name="aworx_1_1util_1_1AWXUErrorHandler" id="aworx_1_1util_1_1AWXUErrorHandler">
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:../html/cpp_ref" href="../html/cpp_ref/classaworx_1_1util_1_1AWXUErrorHandler.html" title="aworx::util::AWXUErrorHandler" alt="" coords="5,13,204,39"/><area shape="rect" id="node2" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:../html/cpp_ref" href="../html/cpp_ref/classaworx_1_1util_1_1ConsoleErrorHandler.html" title="aworx::util::ConsoleError\lHandler" alt="" coords="252,5,416,47"/></map>
+</td></tr>
+<tr><td><img src="inherit_graph_8.png" border="0" alt="" usemap="#aworx_1_1util_1_1Environment"/>
+<map name="aworx_1_1util_1_1Environment" id="aworx_1_1util_1_1Environment">
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:../html/cpp_ref" href="../html/cpp_ref/classaworx_1_1util_1_1Environment.html" title="aworx::util::Environment" alt="" coords="5,5,165,32"/></map>
+</td></tr>
+<tr><td><img src="inherit_graph_9.png" border="0" alt="" usemap="#aworx_1_1util_1_1Ownable"/>
+<map name="aworx_1_1util_1_1Ownable" id="aworx_1_1util_1_1Ownable">
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:../html/cpp_ref" href="../html/cpp_ref/classaworx_1_1util_1_1Ownable.html" title="aworx::util::Ownable" alt="" coords="5,56,144,83"/><area shape="rect" id="node2" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:../html/cpp_ref" href="../html/cpp_ref/classaworx_1_1lox_1_1core_1_1CallerInfo.html" title="aworx::lox::core::CallerInfo" alt="" coords="192,5,367,32"/><area shape="rect" id="node3" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:../html/cpp_ref" href="../html/cpp_ref/classaworx_1_1util_1_1ThreadLock.html" title="aworx::util::ThreadLock" alt="" coords="201,56,357,83"/><area shape="rect" id="node5" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:../html/cpp_ref" href="../html/cpp_ref/classaworx_1_1util_1_1ThreadLockNR.html" title="aworx::util::ThreadLockNR" alt="" coords="192,107,367,133"/><area shape="rect" id="node4" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:../html/cpp_ref" href="../html/cpp_ref/classaworx_1_1lox_1_1Lox.html" title="aworx::lox::Lox" alt="" coords="415,56,525,83"/></map>
+</td></tr>
+<tr><td><img src="inherit_graph_10.png" border="0" alt="" usemap="#aworx_1_1util_1_1Owner"/>
+<map name="aworx_1_1util_1_1Owner" id="aworx_1_1util_1_1Owner">
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:../html/cpp_ref" href="../html/cpp_ref/structaworx_1_1util_1_1Owner.html" title="aworx::util::Owner" alt="" coords="5,5,132,32"/></map>
+</td></tr>
+<tr><td><img src="inherit_graph_11.png" border="0" alt="" usemap="#aworx_1_1util_1_1Runnable"/>
+<map name="aworx_1_1util_1_1Runnable" id="aworx_1_1util_1_1Runnable">
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:../html/cpp_ref" href="../html/cpp_ref/classaworx_1_1util_1_1Runnable.html" title="aworx::util::Runnable" alt="" coords="5,5,148,32"/><area shape="rect" id="node2" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:../html/cpp_ref" href="../html/cpp_ref/classaworx_1_1util_1_1Thread.html" title="aworx::util::Thread" alt="" coords="196,5,324,32"/></map>
+</td></tr>
+<tr><td><img src="inherit_graph_12.png" border="0" alt="" usemap="#aworx_1_1util_1_1Ticks"/>
+<map name="aworx_1_1util_1_1Ticks" id="aworx_1_1util_1_1Ticks">
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:../html/cpp_ref" href="../html/cpp_ref/classaworx_1_1util_1_1Ticks.html" title="aworx::util::Ticks" alt="" coords="5,5,125,32"/></map>
+</td></tr>
+<tr><td><img src="inherit_graph_13.png" border="0" alt="" usemap="#aworx_1_1util_1_1TicksCalendarTime"/>
+<map name="aworx_1_1util_1_1TicksCalendarTime" id="aworx_1_1util_1_1TicksCalendarTime">
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:../html/cpp_ref" href="../html/cpp_ref/classaworx_1_1util_1_1TicksCalendarTime.html" title="aworx::util::TicksCalendarTime" alt="" coords="5,5,204,32"/></map>
+</td></tr>
+<tr><td><img src="inherit_graph_14.png" border="0" alt="" usemap="#aworx_1_1util_1_1TicksSpan"/>
+<map name="aworx_1_1util_1_1TicksSpan" id="aworx_1_1util_1_1TicksSpan">
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:../html/cpp_ref" href="../html/cpp_ref/classaworx_1_1util_1_1TicksSpan.html" title="aworx::util::TicksSpan" alt="" coords="5,5,156,32"/></map>
+</td></tr>
+<tr><td><img src="inherit_graph_15.png" border="0" alt="" usemap="#aworx_1_1util_1_1TickWatch"/>
+<map name="aworx_1_1util_1_1TickWatch" id="aworx_1_1util_1_1TickWatch">
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:../html/cpp_ref" href="../html/cpp_ref/classaworx_1_1util_1_1TickWatch.html" title="aworx::util::TickWatch" alt="" coords="5,5,156,32"/></map>
+</td></tr>
+<tr><td><img src="inherit_graph_16.png" border="0" alt="" usemap="#com_1_1aworx_1_1lox_1_1core_1_1CallerInfo"/>
 <map name="com_1_1aworx_1_1lox_1_1core_1_1CallerInfo" id="com_1_1aworx_1_1lox_1_1core_1_1CallerInfo">
-<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html" title="com::aworx::lox::core\l::CallerInfo" alt="" coords="5,5,148,47"/></map>
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html" title="com::aworx::lox::core\l::CallerInfo" alt="" coords="5,5,152,47"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_1.png" border="0" alt="" usemap="#com_1_1aworx_1_1lox_1_1core_1_1LogDomain"/>
+<tr><td><img src="inherit_graph_17.png" border="0" alt="" usemap="#com_1_1aworx_1_1lox_1_1core_1_1LogDomain"/>
 <map name="com_1_1aworx_1_1lox_1_1core_1_1LogDomain" id="com_1_1aworx_1_1lox_1_1core_1_1LogDomain">
-<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html" title="com::aworx::lox::core\l::LogDomain" alt="" coords="5,5,148,47"/></map>
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html" title="com::aworx::lox::core\l::LogDomain" alt="" coords="5,5,152,47"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_2.png" border="0" alt="" usemap="#com_1_1aworx_1_1lox_1_1core_1_1Logger"/>
+<tr><td><img src="inherit_graph_18.png" border="0" alt="" usemap="#com_1_1aworx_1_1lox_1_1core_1_1Logger"/>
 <map name="com_1_1aworx_1_1lox_1_1core_1_1Logger" id="com_1_1aworx_1_1lox_1_1core_1_1Logger">
-<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="com::aworx::lox::core\l::Logger" alt="" coords="5,104,148,145"/><area shape="rect" id="node2" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html" title="com::aworx::lox::core\l::TextLogger" alt="" coords="196,104,339,145"/><area shape="rect" id="node3" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref/" href="../html/java_ref/classcom_1_1aworx_1_1lox_1_1android_1_1AndroidLogCatLogger.html" title="com::aworx::lox::android\l::AndroidLogCatLogger" alt="" coords="387,5,549,47"/><area shape="rect" id="node4" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html" title="com::aworx::lox::loggers\l::ConsoleLogger" alt="" coords="387,71,549,112"/><area shape="rect" id="node5" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html" title="com::aworx::lox::loggers\l::MemoryLogger" alt="" coords="387,136,549,177"/><area shape="rect" id="node6" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html" title="com::aworx::lox::loggers\l::TextFileLogger" alt="" coords="387,201,549,243"/></map>
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="com::aworx::lox::core\l::Logger" alt="" coords="5,104,152,145"/><area shape="rect" id="node2" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html" title="com::aworx::lox::core\l::TextLogger" alt="" coords="200,104,347,145"/><area shape="rect" id="node3" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref/" href="../html/java_ref/classcom_1_1aworx_1_1lox_1_1android_1_1AndroidLogCatLogger.html" title="com::aworx::lox::android\l::AndroidLogCatLogger" alt="" coords="395,5,559,47"/><area shape="rect" id="node4" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html" title="com::aworx::lox::loggers\l::ConsoleLogger" alt="" coords="395,71,559,112"/><area shape="rect" id="node5" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html" title="com::aworx::lox::loggers\l::MemoryLogger" alt="" coords="395,136,559,177"/><area shape="rect" id="node6" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html" title="com::aworx::lox::loggers\l::TextFileLogger" alt="" coords="395,201,559,243"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_3.png" border="0" alt="" usemap="#com_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter"/>
+<tr><td><img src="inherit_graph_19.png" border="0" alt="" usemap="#com_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter"/>
 <map name="com_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter" id="com_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter">
 <area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html" title="com::aworx::lox::core\l::TextLoggerLineFormatter" alt="" coords="5,5,179,47"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_4.png" border="0" alt="" usemap="#com_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter"/>
+<tr><td><img src="inherit_graph_20.png" border="0" alt="" usemap="#com_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter"/>
 <map name="com_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter" id="com_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter">
-<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html" title="com::aworx::lox::core\l::TextLoggerObjectConverter" alt="" coords="5,5,193,47"/></map>
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html" title="com::aworx::lox::core\l::TextLoggerObjectConverter" alt="" coords="5,5,191,47"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_5.png" border="0" alt="" usemap="#com_1_1aworx_1_1lox_1_1Log"/>
+<tr><td><img src="inherit_graph_21.png" border="0" alt="" usemap="#com_1_1aworx_1_1lox_1_1Log"/>
 <map name="com_1_1aworx_1_1lox_1_1Log" id="com_1_1aworx_1_1lox_1_1Log">
-<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Log.html" title="com::aworx::lox::Log" alt="" coords="5,5,144,32"/></map>
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Log.html" title="com::aworx::lox::Log" alt="" coords="5,5,148,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_6.png" border="0" alt="" usemap="#com_1_1aworx_1_1lox_1_1Log_1_1DomainLevel"/>
+<tr><td><img src="inherit_graph_22.png" border="0" alt="" usemap="#com_1_1aworx_1_1lox_1_1Log_1_1DomainLevel"/>
 <map name="com_1_1aworx_1_1lox_1_1Log_1_1DomainLevel" id="com_1_1aworx_1_1lox_1_1Log_1_1DomainLevel">
-<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref/" href="../html/java_ref/enumcom_1_1aworx_1_1lox_1_1Log_1_1DomainLevel.html" title="com::aworx::lox::Log\l::DomainLevel" alt="" coords="5,5,144,47"/></map>
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref/" href="../html/java_ref/enumcom_1_1aworx_1_1lox_1_1Log_1_1DomainLevel.html" title="com::aworx::lox::Log\l::DomainLevel" alt="" coords="5,5,148,47"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_7.png" border="0" alt="" usemap="#com_1_1aworx_1_1lox_1_1Log_1_1Level"/>
+<tr><td><img src="inherit_graph_23.png" border="0" alt="" usemap="#com_1_1aworx_1_1lox_1_1Log_1_1Level"/>
 <map name="com_1_1aworx_1_1lox_1_1Log_1_1Level" id="com_1_1aworx_1_1lox_1_1Log_1_1Level">
-<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref/" href="../html/java_ref/enumcom_1_1aworx_1_1lox_1_1Log_1_1Level.html" title="com::aworx::lox::Log\l::Level" alt="" coords="5,5,144,47"/></map>
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref/" href="../html/java_ref/enumcom_1_1aworx_1_1lox_1_1Log_1_1Level.html" title="com::aworx::lox::Log\l::Level" alt="" coords="5,5,148,47"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_8.png" border="0" alt="" usemap="#com_1_1aworx_1_1lox_1_1Log_1_1Scope"/>
+<tr><td><img src="inherit_graph_24.png" border="0" alt="" usemap="#com_1_1aworx_1_1lox_1_1Log_1_1Scope"/>
 <map name="com_1_1aworx_1_1lox_1_1Log_1_1Scope" id="com_1_1aworx_1_1lox_1_1Log_1_1Scope">
-<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref/" href="../html/java_ref/enumcom_1_1aworx_1_1lox_1_1Log_1_1Scope.html" title="com::aworx::lox::Log\l::Scope" alt="" coords="5,5,144,47"/></map>
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref/" href="../html/java_ref/enumcom_1_1aworx_1_1lox_1_1Log_1_1Scope.html" title="com::aworx::lox::Log\l::Scope" alt="" coords="5,5,148,47"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_9.png" border="0" alt="" usemap="#com_1_1aworx_1_1lox_1_1LogBuf"/>
+<tr><td><img src="inherit_graph_25.png" border="0" alt="" usemap="#com_1_1aworx_1_1lox_1_1LogBuf"/>
 <map name="com_1_1aworx_1_1lox_1_1LogBuf" id="com_1_1aworx_1_1lox_1_1LogBuf">
-<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref/" href="../html/java_ref/classcom_1_1aworx_1_1lox_1_1LogBuf.html" title="com::aworx::lox::LogBuf" alt="" coords="5,5,164,32"/></map>
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref/" href="../html/java_ref/classcom_1_1aworx_1_1lox_1_1LogBuf.html" title="com::aworx::lox::LogBuf" alt="" coords="5,5,168,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_10.png" border="0" alt="" usemap="#com_1_1aworx_1_1lox_1_1Lox"/>
+<tr><td><img src="inherit_graph_26.png" border="0" alt="" usemap="#com_1_1aworx_1_1lox_1_1Lox"/>
 <map name="com_1_1aworx_1_1lox_1_1Lox" id="com_1_1aworx_1_1lox_1_1Lox">
-<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Lox.html" title="com::aworx::lox::Lox" alt="" coords="5,5,144,32"/></map>
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Lox.html" title="com::aworx::lox::Lox" alt="" coords="5,5,148,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_11.png" border="0" alt="" usemap="#com_1_1aworx_1_1lox_1_1tools_1_1json_1_1DynamicJSONDeserializer"/>
+<tr><td><img src="inherit_graph_27.png" border="0" alt="" usemap="#com_1_1aworx_1_1lox_1_1tools_1_1json_1_1DynamicJSONDeserializer"/>
 <map name="com_1_1aworx_1_1lox_1_1tools_1_1json_1_1DynamicJSONDeserializer" id="com_1_1aworx_1_1lox_1_1tools_1_1json_1_1DynamicJSONDeserializer">
-<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1tools_1_1json_1_1DynamicJSONDeserializer.html" title="com::aworx::lox::tools\l::json::DynamicJSONDeserializer" alt="" coords="5,5,221,47"/></map>
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1tools_1_1json_1_1DynamicJSONDeserializer.html" title="com::aworx::lox::tools\l::json::DynamicJSONDeserializer" alt="" coords="5,5,220,47"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_12.png" border="0" alt="" usemap="#com_1_1aworx_1_1lox_1_1tools_1_1json_1_1DynamicJSONDeserializer_1_1DynamicJsonObject"/>
+<tr><td><img src="inherit_graph_28.png" border="0" alt="" usemap="#com_1_1aworx_1_1lox_1_1tools_1_1json_1_1DynamicJSONDeserializer_1_1DynamicJsonObject"/>
 <map name="com_1_1aworx_1_1lox_1_1tools_1_1json_1_1DynamicJSONDeserializer_1_1DynamicJsonObject" id="com_1_1aworx_1_1lox_1_1tools_1_1json_1_1DynamicJSONDeserializer_1_1DynamicJsonObject">
-<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1tools_1_1json_1_1DynamicJSONDeserializer_1_1DynamicJsonObject.html" title="com::aworx::lox::tools\l::json::DynamicJSONDeserializer\l::DynamicJsonObject" alt="" coords="5,5,221,61"/></map>
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1tools_1_1json_1_1DynamicJSONDeserializer_1_1DynamicJsonObject.html" title="com::aworx::lox::tools\l::json::DynamicJSONDeserializer\l::DynamicJsonObject" alt="" coords="5,5,220,61"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_13.png" border="0" alt="" usemap="#com_1_1aworx_1_1lox_1_1tools_1_1LogTools"/>
+<tr><td><img src="inherit_graph_29.png" border="0" alt="" usemap="#com_1_1aworx_1_1lox_1_1tools_1_1LogTools"/>
 <map name="com_1_1aworx_1_1lox_1_1tools_1_1LogTools" id="com_1_1aworx_1_1lox_1_1tools_1_1LogTools">
-<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html" title="com::aworx::lox::tools\l::LogTools" alt="" coords="5,5,149,47"/></map>
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html" title="com::aworx::lox::tools\l::LogTools" alt="" coords="5,5,156,47"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_14.png" border="0" alt="" usemap="#com_1_1aworx_1_1util_1_1AWXU"/>
+<tr><td><img src="inherit_graph_30.png" border="0" alt="" usemap="#com_1_1aworx_1_1util_1_1AString"/>
+<map name="com_1_1aworx_1_1util_1_1AString" id="com_1_1aworx_1_1util_1_1AString">
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1util_1_1AString.html" title="com::aworx::util::AString" alt="" coords="5,5,171,32"/></map>
+</td></tr>
+<tr><td><img src="inherit_graph_31.png" border="0" alt="" usemap="#com_1_1aworx_1_1util_1_1AString_1_1Align"/>
+<map name="com_1_1aworx_1_1util_1_1AString_1_1Align" id="com_1_1aworx_1_1util_1_1AString_1_1Align">
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref/" href="../html/java_ref/enumcom_1_1aworx_1_1util_1_1AString_1_1Align.html" title="com::aworx::util::AString\l::Align" alt="" coords="5,5,171,47"/></map>
+</td></tr>
+<tr><td><img src="inherit_graph_32.png" border="0" alt="" usemap="#com_1_1aworx_1_1util_1_1AWXU"/>
 <map name="com_1_1aworx_1_1util_1_1AWXU" id="com_1_1aworx_1_1util_1_1AWXU">
-<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1util_1_1AWXU.html" title="com::aworx::util::AWXU" alt="" coords="5,5,160,32"/></map>
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1util_1_1AWXU.html" title="com::aworx::util::AWXU" alt="" coords="5,5,165,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_15.png" border="0" alt="" usemap="#com_1_1aworx_1_1util_1_1AWXUErrorHandler"/>
+<tr><td><img src="inherit_graph_33.png" border="0" alt="" usemap="#com_1_1aworx_1_1util_1_1AWXUErrorHandler"/>
 <map name="com_1_1aworx_1_1util_1_1AWXUErrorHandler" id="com_1_1aworx_1_1util_1_1AWXUErrorHandler">
-<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/interfacecom_1_1aworx_1_1util_1_1AWXUErrorHandler.html" title="com::aworx::util::AWXUError\lHandler" alt="" coords="5,5,188,47"/><area shape="rect" id="node2" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Log_1_1ALoxAWXUErrorHandler.html" title="com::aworx::lox::Log\l::ALoxAWXUErrorHandler" alt="" coords="236,5,407,47"/></map>
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/interfacecom_1_1aworx_1_1util_1_1AWXUErrorHandler.html" title="com::aworx::util::AWXUError\lHandler" alt="" coords="5,39,193,80"/><area shape="rect" id="node2" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Log_1_1ALoxAWXUErrorHandler.html" title="com::aworx::lox::Log\l::ALoxAWXUErrorHandler" alt="" coords="241,5,412,47"/><area shape="rect" id="node3" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1util_1_1ConsoleErrorHandler.html" title="com::aworx::util::Console\lErrorHandler" alt="" coords="242,71,411,112"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_16.png" border="0" alt="" usemap="#com_1_1aworx_1_1util_1_1MString"/>
-<map name="com_1_1aworx_1_1util_1_1MString" id="com_1_1aworx_1_1util_1_1MString">
-<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1util_1_1MString.html" title="com::aworx::util::MString" alt="" coords="5,5,167,32"/></map>
-</td></tr>
-<tr><td><img src="inherit_graph_17.png" border="0" alt="" usemap="#com_1_1aworx_1_1util_1_1ThreadLock"/>
+<tr><td><img src="inherit_graph_34.png" border="0" alt="" usemap="#com_1_1aworx_1_1util_1_1ThreadLock"/>
 <map name="com_1_1aworx_1_1util_1_1ThreadLock" id="com_1_1aworx_1_1util_1_1ThreadLock">
-<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1util_1_1ThreadLock.html" title="com::aworx::util::ThreadLock" alt="" coords="5,5,192,32"/></map>
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1util_1_1ThreadLock.html" title="com::aworx::util::ThreadLock" alt="" coords="5,5,195,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_18.png" border="0" alt="" usemap="#com_1_1aworx_1_1util_1_1Ticker"/>
-<map name="com_1_1aworx_1_1util_1_1Ticker" id="com_1_1aworx_1_1util_1_1Ticker">
-<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1util_1_1Ticker.html" title="com::aworx::util::Ticker" alt="" coords="5,5,159,32"/></map>
+<tr><td><img src="inherit_graph_35.png" border="0" alt="" usemap="#com_1_1aworx_1_1util_1_1Ticks"/>
+<map name="com_1_1aworx_1_1util_1_1Ticks" id="com_1_1aworx_1_1util_1_1Ticks">
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1util_1_1Ticks.html" title="com::aworx::util::Ticks" alt="" coords="5,5,159,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_19.png" border="0" alt="" usemap="#com_1_1aworx_1_1util_1_1TickTime"/>
-<map name="com_1_1aworx_1_1util_1_1TickTime" id="com_1_1aworx_1_1util_1_1TickTime">
-<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/structcom_1_1aworx_1_1util_1_1TickTime.html" title="com::aworx::util::TickTime" alt="" coords="5,5,177,32"/></map>
+<tr><td><img src="inherit_graph_36.png" border="0" alt="" usemap="#com_1_1aworx_1_1util_1_1TicksSpan"/>
+<map name="com_1_1aworx_1_1util_1_1TicksSpan" id="com_1_1aworx_1_1util_1_1TicksSpan">
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref/" href="../html/java_ref/classcom_1_1aworx_1_1util_1_1TicksSpan.html" title="com::aworx::util::TicksSpan" alt="" coords="5,5,188,32"/></map>
+</td></tr>
+<tr><td><img src="inherit_graph_37.png" border="0" alt="" usemap="#com_1_1aworx_1_1util_1_1TickWatch"/>
+<map name="com_1_1aworx_1_1util_1_1TickWatch" id="com_1_1aworx_1_1util_1_1TickWatch">
+<area shape="rect" id="node1" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1util_1_1TickWatch.html" title="com::aworx::util::TickWatch" alt="" coords="5,5,189,32"/></map>
 </td></tr>
 </table>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 4 2015 11:07:53 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

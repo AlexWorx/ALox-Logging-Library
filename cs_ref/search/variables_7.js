@@ -7,6 +7,6 @@ var searchData=
   ['insttypetabstop',['instTypeTabStop',['../classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a1cfe4bbb4fae0ca0db99d3fe768ffa64',1,'com::aworx::lox::tools::LogTools']]],
   ['instvaluetabstop',['instValueTabStop',['../classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#ac586537acea9202be95f5cf793324550',1,'com::aworx::lox::tools::LogTools']]],
   ['internaldomain',['InternalDomain',['../classcom_1_1aworx_1_1lox_1_1Lox.html#aed8c5ed6af267304f7aae60589a589c3',1,'com::aworx::lox::Lox']]],
-  ['internalfrequency',['InternalFrequency',['../classcom_1_1aworx_1_1util_1_1Ticker.html#ae62f17585d560a30016408f33ace2912',1,'com::aworx::util::Ticker']]],
+  ['internalfrequency',['InternalFrequency',['../classcom_1_1aworx_1_1util_1_1Ticks.html#ae62f17585d560a30016408f33ace2912',1,'com::aworx::util::Ticks']]],
   ['isdisabled',['IsDisabled',['../classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#abada4ef55f947626e50d53b5cb8a31cc',1,'com::aworx::lox::core::Logger']]]
 ];

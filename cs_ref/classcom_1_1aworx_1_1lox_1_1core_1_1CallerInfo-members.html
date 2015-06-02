@@ -5,10 +5,30 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>ALox C# Reference: Member List</title>
+<title>ALox: Member List</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<!-- so strange, that doxgen does not highlight each menu item. Just some... -->
+<script>
+  $(document).ready(function() {     
+    fnameStart= window.location.href.lastIndexOf('/')
+    fnameEnd=   window.location.href.indexOf('_', fnameStart )
+    if( fnameEnd < 0 ) {
+        fnameEnd=   window.location.href.indexOf('.', fnameStart )
+    }
+    if( fnameEnd > -1 ) {
+        subString= window.location.href.substring( fnameStart, fnameEnd )
+        $('li').toArray().forEach(function(li){
+            if(     typeof li.firstChild.href != 'undefined'
+                &&  li.firstChild.href.indexOf(subString) > 0 
+                ){
+               li.classList.add('current');
+            }
+        });
+    }
+  });
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +36,6 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="cs_stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,8 +45,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">ALox C# Reference
-   &#160;<span id="projectnumber">V. 1.1.2</span>
+   <div id="projectname">ALox 
+   &#160;<span id="projectnumber">Logging for C++, C# and Java (V 1.2.0)</span>
    </div>
   </td>
  </tr>
@@ -44,9 +63,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="../index.html"><span>ALox&#160;Home</span></a></li>
       <li><a href="../faq.html"><span>FAQ</span></a></li>
       <li><a href="../manual.html"><span>Manual</span></a></li>
-      <li><a href="setup_projects_vs_cs.html"><span>VStudio&#160;Setup</span></a></li>
-      <li><a href="tutorial_cs.html"><span>Tutorial</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Class&#160;Ref.</span></a></li>
+      <li><a href="../cpp_ref/cppmainpage.html"><span>ALox&#160;for&#160;C++</span></a></li>
+      <li class="current"><a href="csmainpage.html"><span>ALox&#160;for&#160;C#</span></a></li>
+      <li><a href="../java_ref/javamainpage.html"><span>ALox&#160;for&#160;Java</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -68,8 +87,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="csmainpage.html"><span>Overview</span></a></li>
+      <li><a href="cstutorial.html"><span>Tutorial</span></a></li>
+      <li><a href="cssetup.html"><span>IDE&#160;Setup</span></a></li>
+      <li><a href="cspruning.html"><span>Pruning&#160;ALox</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Class&#160;Reference</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="classes.html"><span>Alphabetical&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Namespace&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -99,20 +129,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>This is the complete list of members for <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a>, including all inherited members.</p>
 <table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#ad5e8a7d9f2c872ab23a2332e6583d908">ConsumableSourcePathPrefixString</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#aaa7c961bfb7548a03031f4954cc17893">GetConsumableSourcePathPrefix</a>()</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#abc72cc909922c33908e48159b106efa3">LineNumber</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#aa8885cdf3586b80bd9905b60bf9529d9">MethodName</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#a57555728289b3e873ec939e3a20bc084">Set</a>(String callerSourceFileName, int callerLineNumber, String callerMemberName, Dictionary&lt; int, String &gt; threadDictionary)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#a2728e8e0ff2895fccb263584a374f97e">SourceFileName</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#a762284c02117c5070871b37484d70b4e">ThreadID</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#a826e257cf75401d69ae22837d578d457">ThreadName</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#a094cd0d7c1114ab3989a4f3992f36dd6">TimeStamp</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#ac2edbbf8ece484cc8424036fdaadd651">ThreadName</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#a5a79026581184f7e7977b1827a104b24">TimeStamp</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 4 2015 11:07:51 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

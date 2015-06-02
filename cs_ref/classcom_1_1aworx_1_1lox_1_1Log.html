@@ -5,10 +5,30 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>ALox C# Reference: Log Class Reference</title>
+<title>ALox: Log Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<!-- so strange, that doxgen does not highlight each menu item. Just some... -->
+<script>
+  $(document).ready(function() {     
+    fnameStart= window.location.href.lastIndexOf('/')
+    fnameEnd=   window.location.href.indexOf('_', fnameStart )
+    if( fnameEnd < 0 ) {
+        fnameEnd=   window.location.href.indexOf('.', fnameStart )
+    }
+    if( fnameEnd > -1 ) {
+        subString= window.location.href.substring( fnameStart, fnameEnd )
+        $('li').toArray().forEach(function(li){
+            if(     typeof li.firstChild.href != 'undefined'
+                &&  li.firstChild.href.indexOf(subString) > 0 
+                ){
+               li.classList.add('current');
+            }
+        });
+    }
+  });
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +36,6 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="cs_stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,8 +45,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">ALox C# Reference
-   &#160;<span id="projectnumber">V. 1.1.2</span>
+   <div id="projectname">ALox 
+   &#160;<span id="projectnumber">Logging for C++, C# and Java (V 1.2.0)</span>
    </div>
   </td>
  </tr>
@@ -44,9 +63,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="../index.html"><span>ALox&#160;Home</span></a></li>
       <li><a href="../faq.html"><span>FAQ</span></a></li>
       <li><a href="../manual.html"><span>Manual</span></a></li>
-      <li><a href="setup_projects_vs_cs.html"><span>VStudio&#160;Setup</span></a></li>
-      <li><a href="tutorial_cs.html"><span>Tutorial</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Class&#160;Ref.</span></a></li>
+      <li><a href="../cpp_ref/cppmainpage.html"><span>ALox&#160;for&#160;C++</span></a></li>
+      <li class="current"><a href="csmainpage.html"><span>ALox&#160;for&#160;C#</span></a></li>
+      <li><a href="../java_ref/javamainpage.html"><span>ALox&#160;for&#160;Java</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -68,8 +87,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="csmainpage.html"><span>Overview</span></a></li>
+      <li><a href="cstutorial.html"><span>Tutorial</span></a></li>
+      <li><a href="cssetup.html"><span>IDE&#160;Setup</span></a></li>
+      <li><a href="cspruning.html"><span>Pruning&#160;ALox</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Class&#160;Reference</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="classes.html"><span>Alphabetical&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Namespace&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -109,7 +139,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log_1_1ALoxAWXUErrorHandler.html">ALoxAWXUErrorHandler</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The error handler for the util package. An instance of this class will be created statically and added to field AWXU.errorHandler.  <a href="classcom_1_1aworx_1_1lox_1_1Log_1_1ALoxAWXUErrorHandler.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The error handler for the AWXU package. An instance of this class will be created statically and added to AWXU to replace the default console error handler there.  <a href="classcom_1_1aworx_1_1lox_1_1Log_1_1ALoxAWXUErrorHandler.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
@@ -137,7 +167,7 @@ Public Types</h2></td></tr>
 <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#aaecc53892786f2fa11e682f633af84c6aad9c9150641994c9937a1bce42884a31">SourceFile</a>, 
 <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#aaecc53892786f2fa11e682f633af84c6a4c3880bb027f159e801041b1021e88e8">Method</a>
  }</td></tr>
-<tr class="memdesc:aaecc53892786f2fa11e682f633af84c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">These are definitions which are used as a parameter to certain ALox methods to determine the breadth of the scope of a setting. The definitions are platform dependent. E.g. in C# the scope can be "Method" or "SourceFile" file while in JAVA it can be "Package", "Class" or "Method". The difference is due to different mechanisms to automatically collect caller information.  <a href="classcom_1_1aworx_1_1lox_1_1Log.html#aaecc53892786f2fa11e682f633af84c6">More...</a><br /></td></tr>
+<tr class="memdesc:aaecc53892786f2fa11e682f633af84c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">These are definitions which are used as a parameter to certain ALox methods to determine the breadth of the scope of a setting. The definitions are platform dependent. E.g. in C# the scope can be "Method" or "SourceFile" file while in Java it can be "Package", "Class" or "Method". The difference is due to different mechanisms to automatically collect caller information.  <a href="classcom_1_1aworx_1_1lox_1_1Log.html#aaecc53892786f2fa11e682f633af84c6">More...</a><br /></td></tr>
 <tr class="separator:aaecc53892786f2fa11e682f633af84c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
@@ -145,14 +175,11 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a81583fc2028aa1ccb925afaa0d63a224"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a81583fc2028aa1ccb925afaa0d63a224">GetLogger</a> (String loggerName)</td></tr>
 <tr class="memdesc:a81583fc2028aa1ccb925afaa0d63a224"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve an instance of a Logger by its name. Note: This function is not automatically removed from the release code because of technical restrictions. It has to be conditionally compiled by enclosing calls to it with "#if ... #endif" statements.  <a href="#a81583fc2028aa1ccb925afaa0d63a224">More...</a><br /></td></tr>
 <tr class="separator:a81583fc2028aa1ccb925afaa0d63a224"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac929bdf5c24e7713c817f83d020d504a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#ac929bdf5c24e7713c817f83d020d504a">SetConsumableSourcePathPrefix</a> (String cspp, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
-<tr class="memdesc:ac929bdf5c24e7713c817f83d020d504a"><td class="mdescLeft">&#160;</td><td class="mdescRight">To shorten the log output the given prefix might be cut from the source file path. If this method is not invoked (or invoked with parameter 'cspp= null' at runtime), it is tried to detect this path automatically once. However, in remote debug sessions (e.g. on mobile device development) this fails. Hence, this parameter can be set 'manually' to the right prefix that is to be consumed. In this case, whenever the project is compiled on a different machine setup (with different project path), this field has to be changed. If it is not changed, there is no other problem than that the path is not shortened and the log output might get a little wide. If the output of the full path is intended, the parameter can be set to 'String.Empty'.  <a href="#ac929bdf5c24e7713c817f83d020d504a">More...</a><br /></td></tr>
-<tr class="separator:ac929bdf5c24e7713c817f83d020d504a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ab24670ee3420b26005d66c8543794b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a8ab24670ee3420b26005d66c8543794b">Buf</a> ()</td></tr>
-<tr class="memdesc:a8ab24670ee3420b26005d66c8543794b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a MString singleton (contained in the <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Lox</a> singleton), that can be reused for all basic log calls. Textual messages that are assembled from out of strings, numbers and other data, can be efficiently built by reusing this singleton. Whenever this method is called, the returned MString object gets "locked" by a corresponding ThreadLock object. Therefore it has to be used as a message within one of the log methods of this class (error(), warning(), info(), verbose(), assert() or line()) or it has to be explicitly released using <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a3d64fb6257e17b5bd2a4cfa1cba55892" title="Use this method when you want to abort a log call that you &quot;started&quot; with acquiring the internal MStr...">BufAbort()</a>. If this is not done, the object does not get released and parallel threads using this method would block! So, do not use <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a8ab24670ee3420b26005d66c8543794b" title="Returns a MString singleton (contained in the Lox singleton), that can be reused for all basic log ca...">Buf()</a> for other reasons than for creating log messages and be sure to release it "in time".  <a href="#a8ab24670ee3420b26005d66c8543794b">More...</a><br /></td></tr>
-<tr class="separator:a8ab24670ee3420b26005d66c8543794b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a853691c84a75e5f8fd4e4ef8879eca0f"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a853691c84a75e5f8fd4e4ef8879eca0f">Buf</a> ()</td></tr>
+<tr class="memdesc:a853691c84a75e5f8fd4e4ef8879eca0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a AString singleton (contained in the <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Lox</a> singleton), that can be reused for all basic log calls. Textual messages that are assembled from out of strings, numbers and other data, can be efficiently built by reusing this singleton. Whenever this method is called, the returned AString object gets "locked" by a corresponding ThreadLock object. Therefore it has to be used as a message within one of the log methods of this class (error(), warning(), info(), verbose(), assert() or line()) or it has to be explicitly released using <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a3d64fb6257e17b5bd2a4cfa1cba55892" title="Use this method when you want to abort a log call that you &quot;started&quot; with acquiring the internal AStr...">BufAbort()</a>. If this is not done, the object does not get released and parallel threads using this method would block! So, do not use <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a853691c84a75e5f8fd4e4ef8879eca0f" title="Returns a AString singleton (contained in the Lox singleton), that can be reused for all basic log ca...">Buf()</a> for other reasons than for creating log messages and be sure to release it "in time".  <a href="#a853691c84a75e5f8fd4e4ef8879eca0f">More...</a><br /></td></tr>
+<tr class="separator:a853691c84a75e5f8fd4e4ef8879eca0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d64fb6257e17b5bd2a4cfa1cba55892"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a3d64fb6257e17b5bd2a4cfa1cba55892">BufAbort</a> ()</td></tr>
-<tr class="memdesc:a3d64fb6257e17b5bd2a4cfa1cba55892"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method when you want to abort a log call that you "started" with acquiring the internal MString singleton acquired using method <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a8ab24670ee3420b26005d66c8543794b" title="Returns a MString singleton (contained in the Lox singleton), that can be reused for all basic log ca...">Buf()</a>. Use <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a3d64fb6257e17b5bd2a4cfa1cba55892" title="Use this method when you want to abort a log call that you &quot;started&quot; with acquiring the internal MStr...">BufAbort()</a> only if you did not use the acquired buffer as a parameter of a log method, because this internally releases the buf already.  <a href="#a3d64fb6257e17b5bd2a4cfa1cba55892">More...</a><br /></td></tr>
+<tr class="memdesc:a3d64fb6257e17b5bd2a4cfa1cba55892"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method when you want to abort a log call that you "started" with acquiring the internal AString singleton acquired using method <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a853691c84a75e5f8fd4e4ef8879eca0f" title="Returns a AString singleton (contained in the Lox singleton), that can be reused for all basic log ca...">Buf()</a>. Use <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a3d64fb6257e17b5bd2a4cfa1cba55892" title="Use this method when you want to abort a log call that you &quot;started&quot; with acquiring the internal AStr...">BufAbort()</a> only if you did not use the acquired buffer as a parameter of a log method, because this internally releases the buf already.  <a href="#a3d64fb6257e17b5bd2a4cfa1cba55892">More...</a><br /></td></tr>
 <tr class="separator:a3d64fb6257e17b5bd2a4cfa1cba55892"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39c0cfae2056cb6f41128c4ae5679cba"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a39c0cfae2056cb6f41128c4ae5679cba">AddLogger</a> (<a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> logger, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a10ac165398697ce1d642d739cc3b170f">DomainLevel</a> internalDomainLevel=DomainLevel.WarningsAndErrors, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
 <tr class="memdesc:a39c0cfae2056cb6f41128c4ae5679cba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a logger to the <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="This is a simple, 100% static wrapper of class Lox. In other words, this class incorporates one stati...">Log</a> interface. Each log call that is performed through this interface will be forwarded to this logger, unless filtered out with optional filter parameter. The logger will then check it's domain level against the given log level to decide whether a log should performed.  <a href="#a39c0cfae2056cb6f41128c4ae5679cba">More...</a><br /></td></tr>
@@ -164,7 +191,7 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memdesc:a77ad624cc83a2a71aa4d5ad991d811d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method disposes the internal static <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Lox</a> and with it all loggers, preferences and stuff and replaces it with a fresh one. The method was added to support clean unit testing.  <a href="#a77ad624cc83a2a71aa4d5ad991d811d7">More...</a><br /></td></tr>
 <tr class="separator:a77ad624cc83a2a71aa4d5ad991d811d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e8f1e6092851cabd2bb0e766cbfbb14"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a5e8f1e6092851cabd2bb0e766cbfbb14">RegDomain</a> (String domain, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#aaecc53892786f2fa11e682f633af84c6">Log.Scope</a> scope, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
-<tr class="memdesc:a5e8f1e6092851cabd2bb0e766cbfbb14"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method is used to define a log domain. The method is usually invoked within the same source "context" (aka, class, namespace, package, etc.) that later on uses the domain to perform log statements. Often, calls to this functions are placed in static constructors or similar code that is executed only once and very early in the lifecycle of a process.  <a href="#a5e8f1e6092851cabd2bb0e766cbfbb14">More...</a><br /></td></tr>
+<tr class="memdesc:a5e8f1e6092851cabd2bb0e766cbfbb14"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method is used to define a log domain. The method is usually invoked within the same source "context" (aka, class, namespace, package, etc.) that later on uses the domain to perform log statements. Often, calls to this functions are placed in static constructors or similar code that is executed only once and very early in the life-cycle of a process.  <a href="#a5e8f1e6092851cabd2bb0e766cbfbb14">More...</a><br /></td></tr>
 <tr class="separator:a5e8f1e6092851cabd2bb0e766cbfbb14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4288665943d2ce35935634d3930c9db1"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a4288665943d2ce35935634d3930c9db1">SetDomain</a> (String domain, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a10ac165398697ce1d642d739cc3b170f">DomainLevel</a> domainLevel, bool recursive=true, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
 <tr class="memdesc:a4288665943d2ce35935634d3930c9db1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the domain log level and (by default) all it's sub domains recursively. In the case that sub domains should be set to a different log level, then this function has to be called for such sub domains after the call to the parent domain (or recursion has to be switched off, using the parameter 'recursive'). It is not necessary to register a domain before setting its log level and log levels can be set and modified any time.  <a href="#a4288665943d2ce35935634d3930c9db1">More...</a><br /></td></tr>
@@ -314,7 +341,7 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>These are definitions which are used as a parameter to certain ALox methods to determine the breadth of the scope of a setting. The definitions are platform dependent. E.g. in C# the scope can be "Method" or "SourceFile" file while in JAVA it can be "Package", "Class" or "Method". The difference is due to different mechanisms to automatically collect caller information. </p>
+<p>These are definitions which are used as a parameter to certain ALox methods to determine the breadth of the scope of a setting. The definitions are platform dependent. E.g. in C# the scope can be "Method" or "SourceFile" file while in Java it can be "Package", "Class" or "Method". The difference is due to different mechanisms to automatically collect caller information. </p>
 <hr/>
 <p> Attn C# users: If within one source file two or more classes with equal same method names exist, then such method names share the same scope and hence are ambiguous. This is due to technical restrictions of how caller information is collected in C#/.Net. </p>
 <table class="fieldtable">
@@ -548,7 +575,7 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a8ab24670ee3420b26005d66c8543794b"></a>
+<a class="anchor" id="a853691c84a75e5f8fd4e4ef8879eca0f"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -556,7 +583,7 @@ Static Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> Buf </td>
+          <td class="memname">static <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a> Buf </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -569,7 +596,7 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Returns a MString singleton (contained in the <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Lox</a> singleton), that can be reused for all basic log calls. Textual messages that are assembled from out of strings, numbers and other data, can be efficiently built by reusing this singleton. Whenever this method is called, the returned MString object gets "locked" by a corresponding ThreadLock object. Therefore it has to be used as a message within one of the log methods of this class (error(), warning(), info(), verbose(), assert() or line()) or it has to be explicitly released using <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a3d64fb6257e17b5bd2a4cfa1cba55892" title="Use this method when you want to abort a log call that you &quot;started&quot; with acquiring the internal MStr...">BufAbort()</a>. If this is not done, the object does not get released and parallel threads using this method would block! So, do not use <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a8ab24670ee3420b26005d66c8543794b" title="Returns a MString singleton (contained in the Lox singleton), that can be reused for all basic log ca...">Buf()</a> for other reasons than for creating log messages and be sure to release it "in time". </p>
+<p>Returns a AString singleton (contained in the <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Lox</a> singleton), that can be reused for all basic log calls. Textual messages that are assembled from out of strings, numbers and other data, can be efficiently built by reusing this singleton. Whenever this method is called, the returned AString object gets "locked" by a corresponding ThreadLock object. Therefore it has to be used as a message within one of the log methods of this class (error(), warning(), info(), verbose(), assert() or line()) or it has to be explicitly released using <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a3d64fb6257e17b5bd2a4cfa1cba55892" title="Use this method when you want to abort a log call that you &quot;started&quot; with acquiring the internal AStr...">BufAbort()</a>. If this is not done, the object does not get released and parallel threads using this method would block! So, do not use <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a853691c84a75e5f8fd4e4ef8879eca0f" title="Returns a AString singleton (contained in the Lox singleton), that can be reused for all basic log ca...">Buf()</a> for other reasons than for creating log messages and be sure to release it "in time". </p>
 <hr/>
 <dl class="section return"><dt>Returns</dt><dd>The static LogBuf singleton. </dd></dl>
 
@@ -596,7 +623,7 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Use this method when you want to abort a log call that you "started" with acquiring the internal MString singleton acquired using method <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a8ab24670ee3420b26005d66c8543794b" title="Returns a MString singleton (contained in the Lox singleton), that can be reused for all basic log ca...">Buf()</a>. Use <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a3d64fb6257e17b5bd2a4cfa1cba55892" title="Use this method when you want to abort a log call that you &quot;started&quot; with acquiring the internal MStr...">BufAbort()</a> only if you did not use the acquired buffer as a parameter of a log method, because this internally releases the buf already. </p>
+<p>Use this method when you want to abort a log call that you "started" with acquiring the internal AString singleton acquired using method <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a853691c84a75e5f8fd4e4ef8879eca0f" title="Returns a AString singleton (contained in the Lox singleton), that can be reused for all basic log ca...">Buf()</a>. Use <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a3d64fb6257e17b5bd2a4cfa1cba55892" title="Use this method when you want to abort a log call that you &quot;started&quot; with acquiring the internal AStr...">BufAbort()</a> only if you did not use the acquired buffer as a parameter of a log method, because this internally releases the buf already. </p>
 <hr/>
  
 </div>
@@ -1426,7 +1453,7 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>This method is used to define a log domain. The method is usually invoked within the same source "context" (aka, class, namespace, package, etc.) that later on uses the domain to perform log statements. Often, calls to this functions are placed in static constructors or similar code that is executed only once and very early in the lifecycle of a process. </p>
+<p>This method is used to define a log domain. The method is usually invoked within the same source "context" (aka, class, namespace, package, etc.) that later on uses the domain to perform log statements. Often, calls to this functions are placed in static constructors or similar code that is executed only once and very early in the life-cycle of a process. </p>
 <hr/>
 <p> Each log statement refers to such a domain which can be used specifically for different parts of your application like assemblies, libraries, namespaces, specific code files or even for a single method. The domain name should be short, pregnant and self explaining.</p>
 <p>Domains can be created with path separators '/', for example 'COMM/SOCK' could be the domain in a socket class, residing within a communication library. The advantage of creating paths and this way "sub domains", is that a whole bunch of logging domains can be altered (on/off) by just altering the root domain.</p>
@@ -1502,64 +1529,6 @@ Static Public Attributes</h2></td></tr>
 <p>This method disposes the internal static <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html" title="This class acts as a container for Loggers and provides a convenient interface into them...">Lox</a> and with it all loggers, preferences and stuff and replaces it with a fresh one. The method was added to support clean unit testing. </p>
 <hr/>
  
-</div>
-</div>
-<a class="anchor" id="ac929bdf5c24e7713c817f83d020d504a"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static void SetConsumableSourcePathPrefix </td>
-          <td>(</td>
-          <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>cspp</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">[CallerFilePath] String&#160;</td>
-          <td class="paramname"><em>csf</em> = <code>&quot;&quot;</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">[CallerLineNumber] int&#160;</td>
-          <td class="paramname"><em>cln</em> = <code>0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">[CallerMemberName] String&#160;</td>
-          <td class="paramname"><em>cmn</em> = <code>&quot;&quot;</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>To shorten the log output the given prefix might be cut from the source file path. If this method is not invoked (or invoked with parameter 'cspp= null' at runtime), it is tried to detect this path automatically once. However, in remote debug sessions (e.g. on mobile device development) this fails. Hence, this parameter can be set 'manually' to the right prefix that is to be consumed. In this case, whenever the project is compiled on a different machine setup (with different project path), this field has to be changed. If it is not changed, there is no other problem than that the path is not shortened and the log output might get a little wide. If the output of the full path is intended, the parameter can be set to 'String.Empty'. </p>
-<hr/>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">cspp</td><td>The prefix to cut from the source file name in log outputs.</td></tr>
-    <tr><td class="paramname">csf</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
-    <tr><td class="paramname">cln</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
-    <tr><td class="paramname">cmn</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
-  </table>
-  </dd>
-</dl>
-
 </div>
 </div>
 <a class="anchor" id="a9d97d9ea1b27436cedd5195a6f2f4867"></a>
@@ -2140,7 +2109,7 @@ Static Public Attributes</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 4 2015 11:07:51 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

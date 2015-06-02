@@ -1,22 +1,5 @@
 var searchData=
 [
-  ['collections',['Collections',['../../html/cs_ref/namespaceSystem_1_1Collections.html',1,'System']]],
-  ['compilerservices',['CompilerServices',['../../html/cs_ref/namespaceSystem_1_1Runtime_1_1CompilerServices.html',1,'System::Runtime']]],
-  ['diagnostics',['Diagnostics',['../../html/cs_ref/namespaceSystem_1_1Diagnostics.html',1,'System']]],
-  ['dynamic',['Dynamic',['../../html/cs_ref/namespaceSystem_1_1Dynamic.html',1,'System']]],
-  ['generic',['Generic',['../../html/cs_ref/namespaceSystem_1_1Collections_1_1Generic.html',1,'System::Collections']]],
-  ['globalization',['Globalization',['../../html/cs_ref/namespaceSystem_1_1Globalization.html',1,'System']]],
-  ['io',['IO',['../../html/cs_ref/namespaceSystem_1_1IO.html',1,'System']]],
-  ['linq',['Linq',['../../html/cs_ref/namespaceSystem_1_1Linq.html',1,'System']]],
-  ['linq',['Linq',['../../html/cs_ref/namespaceSystem_1_1Xml_1_1Linq.html',1,'System::Xml']]],
-  ['objectmodel',['ObjectModel',['../../html/cs_ref/namespaceSystem_1_1Collections_1_1ObjectModel.html',1,'System::Collections']]],
-  ['reflection',['Reflection',['../../html/cs_ref/namespaceSystem_1_1Reflection.html',1,'System']]],
-  ['runtime',['Runtime',['../../html/cs_ref/namespaceSystem_1_1Runtime_1_1CompilerServices.html',1,'System']]],
-  ['script',['Script',['../../html/cs_ref/namespaceSystem_1_1Web_1_1Script_1_1Serialization.html',1,'System::Web']]],
-  ['serialization',['Serialization',['../../html/cs_ref/namespaceSystem_1_1Web_1_1Script_1_1Serialization.html',1,'System::Web::Script']]],
-  ['system',['System',['../../html/cs_ref/namespaceSystem.html',1,'']]],
-  ['text',['Text',['../../html/cs_ref/namespaceSystem_1_1Text.html',1,'System']]],
-  ['threading',['Threading',['../../html/cs_ref/namespaceSystem_1_1Threading.html',1,'System']]],
-  ['web',['Web',['../../html/cs_ref/namespaceSystem_1_1Web_1_1Script_1_1Serialization.html',1,'System']]],
-  ['xml',['Xml',['../../html/cs_ref/namespaceSystem_1_1Xml_1_1Linq.html',1,'System']]]
+  ['io',['io',['../../html/java_ref/namespacejava_1_1io.html',1,'java']]],
+  ['java',['java',['../../html/java_ref/namespacejava_1_1io.html',1,'']]]
 ];

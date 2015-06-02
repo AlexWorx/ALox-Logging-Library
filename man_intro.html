@@ -9,6 +9,26 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<!-- so strange, that doxgen does not highlight each menu item. Just some... -->
+<script>
+  $(document).ready(function() {     
+    fnameStart= window.location.href.lastIndexOf('/')
+    fnameEnd=   window.location.href.indexOf('_', fnameStart )
+    if( fnameEnd < 0 ) {
+        fnameEnd=   window.location.href.indexOf('.', fnameStart )
+    }
+    if( fnameEnd > -1 ) {
+        subString= window.location.href.substring( fnameStart, fnameEnd )
+        $('li').toArray().forEach(function(li){
+            if(     typeof li.firstChild.href != 'undefined'
+                &&  li.firstChild.href.indexOf(subString) > 0 
+                ){
+               li.classList.add('current');
+            }
+        });
+    }
+  });
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +36,6 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="main_stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,8 +45,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1.1.2   -   Simple and powerful logging library for C# and JAVA (C++ underway...!)</span>
+   <div id="projectname">ALox 
+   &#160;<span id="projectnumber">Logging for C++, C# and Java (V 1.2.0)</span>
    </div>
   </td>
  </tr>
@@ -44,8 +63,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>ALox&#160;Home</span></a></li>
       <li><a href="faq.html"><span>FAQ</span></a></li>
       <li><a href="manual.html"><span>Manual</span></a></li>
-      <li><a href="cs_ref/index.html"><span>ALox&#160;for&#160;C#</span></a></li>
-      <li><a href="java_ref/index.html"><span>ALox&#160;for&#160;Java</span></a></li>
+      <li><a href="cpp_ref/cppmainpage.html"><span>ALox&#160;for&#160;C++</span></a></li>
+      <li><a href="cs_ref/csmainpage.html"><span>ALox&#160;for&#160;C#</span></a></li>
+      <li><a href="java_ref/javamainpage.html"><span>ALox&#160;for&#160;Java</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -90,17 +110,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><h2>Introduction</h2>
-<p>ALox is a small and efficient software library that provides an ecosystem to support structured and organized log output.</p>
+<p>ALox is a small and efficient software library that provides an ecosystem to support structured and organized log output. ALox is available in C++, C# and JAVA on GNU/Linux, Windows, Windows Phone and Android.</p>
 <p>The library attempts to make logging as easy and lightweight as possible. One of the goals we want to achieve is that developers, once using of the library, just stop to put any temporary debug output statements into their code, but do it all with nice, readable, configurable, reusable logging statements that can be switched of and that are furthermore automatically pruned out of release versions of the application.</p>
 <p>On the other end of the list, we want to enable release logging for productive applications to collect mission critical metrics and data from <em>the field</em>. Basic support for release logging is here today already. The introduction of new features and concepts in the area of release logging will also support debug logging aspects of ALox. Therefore the natural path of evolution for the ALox project is "debug features first, release features next".</p>
-<p>This is Version 1.1.2, a maintenance release. Currently, we are working on a C++ Version of ALox. A lot of future improvements are to come. Stay tuned. If you do not want to wait, take the source and do it yourself: We hope, the simple <a class="el" href="faq.html#faq_bauhaus">Bauhaus Style</a> architecture and code style of the library allows users to easily extend it with features they need today.</p>
+<p>This is Version 1.2.0, the first version to support C++ besides C# and Java! </p>
+<p>A lot of future improvements are to come. Stay tuned. If you do not want to wait, take the source and do it yourself: We hope, the simple <a class="el" href="faq.html#faq_bauhaus">Bauhaus Style</a> architecture and code style of the library allows users to easily extend it with features they need today.</p>
 <h2>Features and Limitations</h2>
 <p>Read through the list of <a class="el" href="man_features_and_limitations.html">Features and Limitations</a> to learn what you will get and what not. </p>
 </div></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 4 2015 11:07:52 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

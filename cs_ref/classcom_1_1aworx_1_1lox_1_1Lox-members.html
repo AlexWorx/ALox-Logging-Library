@@ -5,10 +5,30 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>ALox C# Reference: Member List</title>
+<title>ALox: Member List</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<!-- so strange, that doxgen does not highlight each menu item. Just some... -->
+<script>
+  $(document).ready(function() {     
+    fnameStart= window.location.href.lastIndexOf('/')
+    fnameEnd=   window.location.href.indexOf('_', fnameStart )
+    if( fnameEnd < 0 ) {
+        fnameEnd=   window.location.href.indexOf('.', fnameStart )
+    }
+    if( fnameEnd > -1 ) {
+        subString= window.location.href.substring( fnameStart, fnameEnd )
+        $('li').toArray().forEach(function(li){
+            if(     typeof li.firstChild.href != 'undefined'
+                &&  li.firstChild.href.indexOf(subString) > 0 
+                ){
+               li.classList.add('current');
+            }
+        });
+    }
+  });
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +36,6 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="cs_stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,8 +45,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">ALox C# Reference
-   &#160;<span id="projectnumber">V. 1.1.2</span>
+   <div id="projectname">ALox 
+   &#160;<span id="projectnumber">Logging for C++, C# and Java (V 1.2.0)</span>
    </div>
   </td>
  </tr>
@@ -44,9 +63,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="../index.html"><span>ALox&#160;Home</span></a></li>
       <li><a href="../faq.html"><span>FAQ</span></a></li>
       <li><a href="../manual.html"><span>Manual</span></a></li>
-      <li><a href="setup_projects_vs_cs.html"><span>VStudio&#160;Setup</span></a></li>
-      <li><a href="tutorial_cs.html"><span>Tutorial</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Class&#160;Ref.</span></a></li>
+      <li><a href="../cpp_ref/cppmainpage.html"><span>ALox&#160;for&#160;C++</span></a></li>
+      <li class="current"><a href="csmainpage.html"><span>ALox&#160;for&#160;C#</span></a></li>
+      <li><a href="../java_ref/javamainpage.html"><span>ALox&#160;for&#160;Java</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -68,8 +87,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="csmainpage.html"><span>Overview</span></a></li>
+      <li><a href="cstutorial.html"><span>Tutorial</span></a></li>
+      <li><a href="cssetup.html"><span>IDE&#160;Setup</span></a></li>
+      <li><a href="cspruning.html"><span>Pruning&#160;ALox</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Class&#160;Reference</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="classes.html"><span>Alphabetical&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Namespace&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -102,54 +132,53 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a243fce4c26d51b58f1856ce2e57b68a9">AddLogger</a>(Logger logger, Log.DomainLevel internalDomainLevel=Log.DomainLevel.WarningsAndErrors, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a9cfead5fe6ef707a9c81fbab91b88db8">Assert</a>(bool trueOrLog, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a2b0f85b9e5c5f9102e4ee030de4978bd">Assert</a>(bool trueOrLog, String domain, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#ab411a126ad91b1460609c37db472ea00">Buf</a>()</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#ad7d2ebe2750e7e4b2548f73d0380f651">Buf</a>()</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a3474a54c9a6f9f6db081eddb91c078af">BufAbort</a>()</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a661374595beb4ef6cdcd0417c8c47f0d">caller</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a2c80e5630abe5d5042ddb4b85c0c3562">CntLogCalls</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#ad8161c647b7b5d806611c07ad2357e75">defaultDomains</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a7301773dfbda817921e99637adc6ff30">defaultDomains</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#ae6a54af27a36df2b4f1ade1c5e3a6b26">Error</a>(Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#aa175be4be1461484939e26caef684102">Error</a>(String domain, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a74ba68166dee3359939d25f87e648cbe">GetLogger</a>(String loggerName)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#aface0c1255d1c75523c654b095c2dc56">GetMarker</a>(Object[] markerPointer, Log.Scope scope, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a861890f074da5b826d5b7802c955874c">Info</a>(Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a4806ffdc267673deca9e08b9cf0b8c78">Info</a>(String domain, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#aed8c5ed6af267304f7aae60589a589c3">InternalDomain</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a5f28dc7cc5e8367ae94c0bd9ea180080">internalLog</a>(Log.Level level, MString msg)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a92a07a47e1dc6dd3bd09428f02e4f835">Line</a>(bool doLog, String domain, Log.Level level, Object msg, int indent=0, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a369c3716dd8697a8824fe3992fb39e7f">Line</a>(String domain, Log.Level level, Object msg, int indent=0, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a43d5b54bca91e52364461f111829a55d">Line</a>(Log.Level level, Object msg, int indent=0, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#ae10600cb6914f091adfbbde00bbfdcd7">Lock</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#aaf37e693e36d895e18bcc1f6037f5d9e">logBuf</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a115a099b1c0c5425cd37ec7b54056d01">logBufLock</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a833586c138334739ddad9eede52cb909">LogConfig</a>(String domain, Log.Level level, String headLine, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a117ffffe6a67d18964e60d277a17d71c">logConfigDomainRecursive</a>(LogDomain domain, int indent, String domPath, MString buf)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a0078398c1e76599b6e0852ffe2937af9">loggers</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#adeecd070b47db04dfac1b186f99a95d2">Lox</a>()</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a8f5b159dea287785d7d38be9288ab054">MapThreadName</a>(String threadName, int id=-1, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#afce4382b76f3d1cb8c951f1c6f6c11d7">markers</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a9b3c063f3323ee4d81d3887f3c62940c">RegDomain</a>(String domain, Log.Scope scope, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a0211ab31ad0b19ced6cf693f7f56e838">evaluateResultDomain</a>(String domain)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a74ba68166dee3359939d25f87e648cbe">GetLogger</a>(String loggerName)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#aface0c1255d1c75523c654b095c2dc56">GetMarker</a>(Object[] markerPointer, Log.Scope scope, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a861890f074da5b826d5b7802c955874c">Info</a>(Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a4806ffdc267673deca9e08b9cf0b8c78">Info</a>(String domain, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#aed8c5ed6af267304f7aae60589a589c3">InternalDomain</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#aa4cbc7d10fb7a53ae1b3f903512f6f75">internalLog</a>(Log.Level level, AString msg)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a92a07a47e1dc6dd3bd09428f02e4f835">Line</a>(bool doLog, String domain, Log.Level level, Object msg, int indent=0, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a369c3716dd8697a8824fe3992fb39e7f">Line</a>(String domain, Log.Level level, Object msg, int indent=0, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a43d5b54bca91e52364461f111829a55d">Line</a>(Log.Level level, Object msg, int indent=0, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#ae10600cb6914f091adfbbde00bbfdcd7">Lock</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a1c3b59e6dc2850f90df33ae9b4533334">logBuf</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a115a099b1c0c5425cd37ec7b54056d01">logBufLock</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a833586c138334739ddad9eede52cb909">LogConfig</a>(String domain, Log.Level level, String headLine, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#af8340b89f1a7166328f2954025a5f5a3">logConfigDomainRecursive</a>(LogDomain domain, int indent, String domPath, AString buf)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a0078398c1e76599b6e0852ffe2937af9">loggers</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#adeecd070b47db04dfac1b186f99a95d2">Lox</a>()</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a8f5b159dea287785d7d38be9288ab054">MapThreadName</a>(String threadName, int id=-1, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a5eab0b79172487be1b04eebcd4ed5736">markers</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a9b3c063f3323ee4d81d3887f3c62940c">RegDomain</a>(String domain, Log.Scope scope, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a7594d8f630b763d4f83ab48ad926f396">RemoveLogger</a>(Logger logger)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#af07a94c1e4cf8e5d66b6852e04b08624">RemoveLoggers</a>(String loggerFilter=null)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a53cc89ae4402b9385259e06c5fc0a546">resDomain</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a27b95a1106d1211289720ecf01db9e81">saveAndSet</a>(String csf, int cln, String cmn, bool getResDomain, String domain)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#af18033862779e2fb6758c0368290b46d">SetConsumableSourcePathPrefix</a>(String cspp, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#aa704b680934869c92c288cb9a23034f2">resDomain</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#ac19aea9f7a17923c0fe41990d701538f">SetDisabled</a>(bool disabled, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#adddbfe67bfaa5b84a9a01503fa423313">SetDomain</a>(String domain, Log.DomainLevel domainLevel, bool recursive=true, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a81953e8bd2915702eccfad989570e156">SetMarker</a>(Object marker, Log.Scope scope, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#ac4e1e9de43f94c25f2b2eb7be54f7a7a">SetStartTime</a>(DateTime?startTime=null, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a904bdd5c05e9810befbf6cbb43201923">simpleWildcardFilter</a>(Logger logger, string loggerFilter)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"><span class="mlabel">private</span><span class="mlabel">static</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#ab1e2c7dee8db47cd16ca92fb3a7ae904">tempDomain</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a0d99bb961369853273a8f67384b2c3c1">tempMS</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a9449abe368a2e9a9694a52437b02348b">ThreadDictionary</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#aaf5e3df48abc6a754ee07dd993b13d07">Verbose</a>(Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a4dbf92fb71a193b0433238cbe3052a11">Verbose</a>(String domain, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a1a33f478950a66f73f765da03857e91a">Version</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a683a6aa22be8c620d60c49267ef94e8a">Warning</a>(Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#aad904dcf59b775d6050f63d25dbce9fa">Warning</a>(String domain, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#aa5759a00fa885de0700b3ee5f8e54675">tempMS</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a9449abe368a2e9a9694a52437b02348b">ThreadDictionary</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#aaf5e3df48abc6a754ee07dd993b13d07">Verbose</a>(Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a4dbf92fb71a193b0433238cbe3052a11">Verbose</a>(String domain, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a1a33f478950a66f73f765da03857e91a">Version</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a683a6aa22be8c620d60c49267ef94e8a">Warning</a>(Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#aad904dcf59b775d6050f63d25dbce9fa">Warning</a>(String domain, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 4 2015 11:07:51 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

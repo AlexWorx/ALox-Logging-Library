@@ -5,10 +5,30 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>ALox C# Reference: TextLoggerObjectConverter Class Reference</title>
+<title>ALox: TextLoggerObjectConverter Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<!-- so strange, that doxgen does not highlight each menu item. Just some... -->
+<script>
+  $(document).ready(function() {     
+    fnameStart= window.location.href.lastIndexOf('/')
+    fnameEnd=   window.location.href.indexOf('_', fnameStart )
+    if( fnameEnd < 0 ) {
+        fnameEnd=   window.location.href.indexOf('.', fnameStart )
+    }
+    if( fnameEnd > -1 ) {
+        subString= window.location.href.substring( fnameStart, fnameEnd )
+        $('li').toArray().forEach(function(li){
+            if(     typeof li.firstChild.href != 'undefined'
+                &&  li.firstChild.href.indexOf(subString) > 0 
+                ){
+               li.classList.add('current');
+            }
+        });
+    }
+  });
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +36,6 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="cs_stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,8 +45,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">ALox C# Reference
-   &#160;<span id="projectnumber">V. 1.1.2</span>
+   <div id="projectname">ALox 
+   &#160;<span id="projectnumber">Logging for C++, C# and Java (V 1.2.0)</span>
    </div>
   </td>
  </tr>
@@ -44,9 +63,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="../index.html"><span>ALox&#160;Home</span></a></li>
       <li><a href="../faq.html"><span>FAQ</span></a></li>
       <li><a href="../manual.html"><span>Manual</span></a></li>
-      <li><a href="setup_projects_vs_cs.html"><span>VStudio&#160;Setup</span></a></li>
-      <li><a href="tutorial_cs.html"><span>Tutorial</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Class&#160;Ref.</span></a></li>
+      <li><a href="../cpp_ref/cppmainpage.html"><span>ALox&#160;for&#160;C++</span></a></li>
+      <li class="current"><a href="csmainpage.html"><span>ALox&#160;for&#160;C#</span></a></li>
+      <li><a href="../java_ref/javamainpage.html"><span>ALox&#160;for&#160;Java</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -68,8 +87,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="csmainpage.html"><span>Overview</span></a></li>
+      <li><a href="cstutorial.html"><span>Tutorial</span></a></li>
+      <li><a href="cssetup.html"><span>IDE&#160;Setup</span></a></li>
+      <li><a href="cspruning.html"><span>Pruning&#160;ALox</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Class&#160;Reference</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="classes.html"><span>Alphabetical&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Namespace&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -102,33 +132,33 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>This class is a sort of plug-in for the <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html" title="This class is a still abstract implementation of class Logger which is used as the super class for al...">TextLogger</a> class which converts a given Object into its textual representation. An internal MString singleton is used as a string buffer and returned.  
+<p>This class is a sort of plug-in for the <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html" title="This class is a still abstract implementation of class Logger which is used as the super class for al...">TextLogger</a> class which converts a given Object into its textual representation. An internal AString singleton is used as a string buffer and returned.  
  <a href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab8190be4513726c7c2c49276ab2ed3fa"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html#ab8190be4513726c7c2c49276ab2ed3fa">ConvertObject</a> (Object o)</td></tr>
-<tr class="memdesc:ab8190be4513726c7c2c49276ab2ed3fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">The conversion method.  <a href="#ab8190be4513726c7c2c49276ab2ed3fa">More...</a><br /></td></tr>
-<tr class="separator:ab8190be4513726c7c2c49276ab2ed3fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ba6332bdc61bc28bdc5c9d0106f12c4"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html#a0ba6332bdc61bc28bdc5c9d0106f12c4">ConvertObject</a> (Object o)</td></tr>
+<tr class="memdesc:a0ba6332bdc61bc28bdc5c9d0106f12c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The conversion method.  <a href="#a0ba6332bdc61bc28bdc5c9d0106f12c4">More...</a><br /></td></tr>
+<tr class="separator:a0ba6332bdc61bc28bdc5c9d0106f12c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:ac281d117b6e931783195f52f70bfa5b3"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html#ac281d117b6e931783195f52f70bfa5b3">FmtNullObject</a> = &quot;&lt;null&gt;&quot;</td></tr>
+<tr class="memitem:ac281d117b6e931783195f52f70bfa5b3"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html#ac281d117b6e931783195f52f70bfa5b3">FmtNullObject</a> =&quot;&lt;null&gt;&quot;</td></tr>
 <tr class="memdesc:ac281d117b6e931783195f52f70bfa5b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to convert null values to string representation.  <a href="#ac281d117b6e931783195f52f70bfa5b3">More...</a><br /></td></tr>
 <tr class="separator:ac281d117b6e931783195f52f70bfa5b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:abb05cbb40d212c431ab82b3718ccfa04"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html#abb05cbb40d212c431ab82b3718ccfa04">buffer</a> = new <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>( 128 )</td></tr>
-<tr class="memdesc:abb05cbb40d212c431ab82b3718ccfa04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buffer singleton to store the string representation of Objects.  <a href="#abb05cbb40d212c431ab82b3718ccfa04">More...</a><br /></td></tr>
-<tr class="separator:abb05cbb40d212c431ab82b3718ccfa04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf50e38674e1c356539d73525486b1d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html#aaf50e38674e1c356539d73525486b1d5">buffer</a> =new <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a>( 128 )</td></tr>
+<tr class="memdesc:aaf50e38674e1c356539d73525486b1d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buffer singleton to store the string representation of Objects.  <a href="#aaf50e38674e1c356539d73525486b1d5">More...</a><br /></td></tr>
+<tr class="separator:aaf50e38674e1c356539d73525486b1d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This class is a sort of plug-in for the <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html" title="This class is a still abstract implementation of class Logger which is used as the super class for al...">TextLogger</a> class which converts a given Object into its textual representation. An internal MString singleton is used as a string buffer and returned. </p>
+<div class="textblock"><p>This class is a sort of plug-in for the <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html" title="This class is a still abstract implementation of class Logger which is used as the super class for al...">TextLogger</a> class which converts a given Object into its textual representation. An internal AString singleton is used as a string buffer and returned. </p>
 <hr/>
-<p> This class might be extended to be able to handle custom objects within text loggers. This default implementation, handles objects of type <em>String</em>, <em>MString</em> and <em>StringBuilder</em>, For null values a predefined string is returned. All other Object types are converted by invoking their toString() function </p>
+<p> This class might be extended to be able to handle custom objects within text loggers. This default implementation, handles objects of type <em>String</em>, <em>AString</em> and <em>StringBuilder</em>, For null values a predefined string is returned. All other Object types are converted by invoking their toString() function </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="ab8190be4513726c7c2c49276ab2ed3fa"></a>
+<a class="anchor" id="a0ba6332bdc61bc28bdc5c9d0106f12c4"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -136,7 +166,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> ConvertObject </td>
+          <td class="memname">virtual <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a> ConvertObject </td>
           <td>(</td>
           <td class="paramtype">Object&#160;</td>
           <td class="paramname"><em>o</em></td><td>)</td>
@@ -158,12 +188,12 @@ Protected Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The filled MString singleton <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html#abb05cbb40d212c431ab82b3718ccfa04" title="Buffer singleton to store the string representation of Objects. ">buffer</a> or, in the case that the given object was of type MString already, just the object itself! </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The filled AString singleton <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html#aaf50e38674e1c356539d73525486b1d5" title="Buffer singleton to store the string representation of Objects. ">buffer</a> or, in the case that the given object was of type AString already, just the object itself! </dd></dl>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="abb05cbb40d212c431ab82b3718ccfa04"></a>
+<a class="anchor" id="aaf50e38674e1c356539d73525486b1d5"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -171,7 +201,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> buffer = new <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>( 128 )</td>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a> buffer =new <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a>( 128 )</td>
         </tr>
       </table>
   </td>
@@ -190,7 +220,7 @@ Protected Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">String FmtNullObject = &quot;&lt;null&gt;&quot;</td>
+          <td class="memname">String FmtNullObject =&quot;&lt;null&gt;&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -206,7 +236,7 @@ Protected Attributes</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 4 2015 11:07:51 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

@@ -1,3 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html" title="Provides high level functionality for logging things like Exceptions, objects and XML documents..." alt="" coords="5,5,81,32"/>
+<area shape="rect" id="node1" href="$classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="This is central class of the ALox logging implementation. It is not recommended to use this class dir..." alt="" coords="5,56,67,83"/>
+<area shape="rect" id="node2" href="$classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html" title="This class is a still abstract implementation of class Logger which is used as the super class for al..." alt="" coords="115,56,200,83"/>
+<area shape="rect" id="node3" href="$classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html" title="A logger that logs all messages to the VStudio IDE output window (using System.Diagnostics.Debug.WriteLine()) and/or to the application console (using Console.WriteLine()). " alt="" coords="248,5,356,32"/>
+<area shape="rect" id="node4" href="$classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html" title="A logger that logs all messages to a in&#45;memory buffer of type AString. The name of the logger default..." alt="" coords="248,56,356,83"/>
+<area shape="rect" id="node5" href="$classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html" title="This is a very simple file logger for textual log outputs. The file name string provided in the const..." alt="" coords="249,107,355,133"/>
 </map>

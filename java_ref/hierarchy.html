@@ -5,10 +5,30 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>ALox Java Reference: Class Hierarchy</title>
+<title>ALox: Class Hierarchy</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<!-- so strange, that doxgen does not highlight each menu item. Just some... -->
+<script>
+  $(document).ready(function() {     
+    fnameStart= window.location.href.lastIndexOf('/')
+    fnameEnd=   window.location.href.indexOf('_', fnameStart )
+    if( fnameEnd < 0 ) {
+        fnameEnd=   window.location.href.indexOf('.', fnameStart )
+    }
+    if( fnameEnd > -1 ) {
+        subString= window.location.href.substring( fnameStart, fnameEnd )
+        $('li').toArray().forEach(function(li){
+            if(     typeof li.firstChild.href != 'undefined'
+                &&  li.firstChild.href.indexOf(subString) > 0 
+                ){
+               li.classList.add('current');
+            }
+        });
+    }
+  });
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +36,6 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="java_stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,8 +45,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">ALox Java Reference
-   &#160;<span id="projectnumber">V. 1.1.2</span>
+   <div id="projectname">ALox 
+   &#160;<span id="projectnumber">Logging for C++, C# and Java (V 1.2.0)</span>
    </div>
   </td>
  </tr>
@@ -44,9 +63,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="../index.html"><span>ALox&#160;Home</span></a></li>
       <li><a href="../faq.html"><span>FAQ</span></a></li>
       <li><a href="../manual.html"><span>Manual</span></a></li>
-      <li><a href="setup_projects_java.html"><span>IDE&#160;Setup</span></a></li>
-      <li><a href="tutorial_java.html"><span>Tutorial</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Class&#160;Ref.</span></a></li>
+      <li><a href="../cpp_ref/cppmainpage.html"><span>ALox&#160;for&#160;C++</span></a></li>
+      <li><a href="../cs_ref/csmainpage.html"><span>ALox&#160;for&#160;C#</span></a></li>
+      <li class="current"><a href="javamainpage.html"><span>ALox&#160;for&#160;Java</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -68,8 +87,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="javamainpage.html"><span>Overview</span></a></li>
+      <li><a href="javatutorial.html"><span>Tutorial</span></a></li>
+      <li><a href="javasetup.html"><span>IDE&#160;Setup</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Class&#160;Reference</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="classes.html"><span>Alphabetical&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Namespace&#160;Index</span></a></li>
       <li class="current"><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -96,37 +125,40 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p><a href="inherits.html">Go to the graphical class hierarchy</a></p>
 This inheritance list is sorted roughly, but not completely, alphabetically:</div><div class="directory">
 <div class="levels">[detail level <span onclick="javascript:toggleLevel(1);">1</span><span onclick="javascript:toggleLevel(2);">2</span><span onclick="javascript:toggleLevel(3);">3</span>]</div><table class="directory">
-<tr id="row_0_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html" target="_self">AWXU</a></td><td class="desc"></td></tr>
-<tr id="row_1_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="interfacecom_1_1aworx_1_1util_1_1AWXUErrorHandler.html" target="_self">AWXUErrorHandler</a></td><td class="desc"></td></tr>
-<tr id="row_2_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html" target="_self">CallerInfo</a></td><td class="desc"></td></tr>
-<tr id="row_3_"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_3_" class="arrow" onclick="toggleFolder('3_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><b>CharSequence</b></td><td class="desc"></td></tr>
-<tr id="row_3_0_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html" target="_self">MString</a></td><td class="desc"></td></tr>
-<tr id="row_4_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Log_1_1DomainLevel.html" target="_self">Log.DomainLevel</a></td><td class="desc"></td></tr>
-<tr id="row_5_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Log_1_1Level.html" target="_self">Log.Level</a></td><td class="desc"></td></tr>
-<tr id="row_6_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" target="_self">Log</a></td><td class="desc"></td></tr>
-<tr id="row_7_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html" target="_self">LogBuf</a></td><td class="desc"></td></tr>
-<tr id="row_8_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html" target="_self">LogDomain</a></td><td class="desc"></td></tr>
-<tr id="row_9_" class="even"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_9_" class="arrow" onclick="toggleFolder('9_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" target="_self">Logger</a></td><td class="desc"></td></tr>
-<tr id="row_9_0_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span id="arr_9_0_" class="arrow" onclick="toggleFolder('9_0_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html" target="_self">TextLogger</a></td><td class="desc"></td></tr>
-<tr id="row_9_0_0_" class="even"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1lox_1_1android_1_1AndroidLogCatLogger.html" target="_self">AndroidLogCatLogger</a></td><td class="desc"></td></tr>
-<tr id="row_9_0_1_"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html" target="_self">ConsoleLogger</a></td><td class="desc"></td></tr>
-<tr id="row_9_0_2_" class="even"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html" target="_self">MemoryLogger</a></td><td class="desc"></td></tr>
-<tr id="row_9_0_3_"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html" target="_self">TextFileLogger</a></td><td class="desc"></td></tr>
-<tr id="row_10_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html" target="_self">LogTools</a></td><td class="desc"></td></tr>
-<tr id="row_11_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html" target="_self">Lox</a></td><td class="desc"></td></tr>
-<tr id="row_12_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Log_1_1Scope.html" target="_self">Log.Scope</a></td><td class="desc"></td></tr>
-<tr id="row_13_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html" target="_self">TextLoggerLineFormatter</a></td><td class="desc"></td></tr>
-<tr id="row_14_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html" target="_self">TextLoggerObjectConverter</a></td><td class="desc"></td></tr>
-<tr id="row_15_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html" target="_self">ThreadLock</a></td><td class="desc"></td></tr>
-<tr id="row_16_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html" target="_self">Ticker</a></td><td class="desc"></td></tr>
-<tr id="row_17_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1util_1_1TickTime.html" target="_self">TickTime</a></td><td class="desc"></td></tr>
+<tr id="row_0_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="enumcom_1_1aworx_1_1util_1_1AString_1_1Align.html" target="_self">AString.Align</a></td><td class="desc"></td></tr>
+<tr id="row_1_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html" target="_self">AWXU</a></td><td class="desc"></td></tr>
+<tr id="row_2_" class="even"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_2_" class="arrow" onclick="toggleFolder('2_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="interfacecom_1_1aworx_1_1util_1_1AWXUErrorHandler.html" target="_self">AWXUErrorHandler</a></td><td class="desc"></td></tr>
+<tr id="row_2_0_"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1util_1_1ConsoleErrorHandler.html" target="_self">ConsoleErrorHandler</a></td><td class="desc"></td></tr>
+<tr id="row_3_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html" target="_self">CallerInfo</a></td><td class="desc"></td></tr>
+<tr id="row_4_"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_4_" class="arrow" onclick="toggleFolder('4_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><b>CharSequence</b></td><td class="desc"></td></tr>
+<tr id="row_4_0_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html" target="_self">AString</a></td><td class="desc"></td></tr>
+<tr id="row_5_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Log_1_1DomainLevel.html" target="_self">Log.DomainLevel</a></td><td class="desc"></td></tr>
+<tr id="row_6_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Log_1_1Level.html" target="_self">Log.Level</a></td><td class="desc"></td></tr>
+<tr id="row_7_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html" target="_self">Log</a></td><td class="desc"></td></tr>
+<tr id="row_8_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html" target="_self">LogBuf</a></td><td class="desc"></td></tr>
+<tr id="row_9_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html" target="_self">LogDomain</a></td><td class="desc"></td></tr>
+<tr id="row_10_" class="even"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_10_" class="arrow" onclick="toggleFolder('10_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" target="_self">Logger</a></td><td class="desc"></td></tr>
+<tr id="row_10_0_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span id="arr_10_0_" class="arrow" onclick="toggleFolder('10_0_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html" target="_self">TextLogger</a></td><td class="desc"></td></tr>
+<tr id="row_10_0_0_" class="even"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1lox_1_1android_1_1AndroidLogCatLogger.html" target="_self">AndroidLogCatLogger</a></td><td class="desc"></td></tr>
+<tr id="row_10_0_1_"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html" target="_self">ConsoleLogger</a></td><td class="desc"></td></tr>
+<tr id="row_10_0_2_" class="even"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html" target="_self">MemoryLogger</a></td><td class="desc"></td></tr>
+<tr id="row_10_0_3_"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html" target="_self">TextFileLogger</a></td><td class="desc"></td></tr>
+<tr id="row_11_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html" target="_self">LogTools</a></td><td class="desc"></td></tr>
+<tr id="row_12_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html" target="_self">Lox</a></td><td class="desc"></td></tr>
+<tr id="row_13_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Log_1_1Scope.html" target="_self">Log.Scope</a></td><td class="desc"></td></tr>
+<tr id="row_14_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html" target="_self">TextLoggerLineFormatter</a></td><td class="desc"></td></tr>
+<tr id="row_15_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html" target="_self">TextLoggerObjectConverter</a></td><td class="desc"></td></tr>
+<tr id="row_16_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html" target="_self">ThreadLock</a></td><td class="desc"></td></tr>
+<tr id="row_17_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticks.html" target="_self">Ticks</a></td><td class="desc"></td></tr>
+<tr id="row_18_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1util_1_1TicksSpan.html" target="_self">TicksSpan</a></td><td class="desc"></td></tr>
+<tr id="row_19_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classcom_1_1aworx_1_1util_1_1TickWatch.html" target="_self">TickWatch</a></td><td class="desc"></td></tr>
 </table>
 </div><!-- directory -->
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 4 2015 11:07:52 for ALox Java Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

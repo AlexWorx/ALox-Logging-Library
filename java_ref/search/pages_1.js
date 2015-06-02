@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['java_20reference',['Java Reference',['../index.html',1,'']]]
+  ['java_20reference',['Java Reference',['../javamainpage.html',1,'']]]
 ];

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['waitaloxwarninglimit',['WaitALoxWarningLimit',['../../html/cs_ref/classcom_1_1aworx_1_1util_1_1ThreadLock.html#a09b8fc043406437eb58d55168c137af1',1,'com::aworx::util::ThreadLock::WaitALoxWarningLimit()'],['../../html/java_ref/classcom_1_1aworx_1_1util_1_1ThreadLock.html#a5c735b5a34529619a34f5ae2455d27d0',1,'com::aworx::util::ThreadLock::waitALoxWarningLimit()']]],
-  ['warning',['WARNING',['../../html/java_ref/enumcom_1_1aworx_1_1lox_1_1Log_1_1Level.html#a1dfc73ab73898d3f4f348d462a5d126a',1,'com::aworx::lox::Log::Level']]],
-  ['warnings_5fand_5ferrors',['WARNINGS_AND_ERRORS',['../../html/java_ref/enumcom_1_1aworx_1_1lox_1_1Log_1_1DomainLevel.html#a2e93b8db1cedcf3815016fe352b1b2f0',1,'com::aworx::lox::Log::DomainLevel']]]
+  ['verbose',['VERBOSE',['../../html/java_ref/enumcom_1_1aworx_1_1lox_1_1Log_1_1Level.html#a03169c2c7e2ff706233c78422b0daf3a',1,'com::aworx::lox::Log::Level']]],
+  ['verboseisdebug',['verboseIsDebug',['../../html/java_ref/classcom_1_1aworx_1_1lox_1_1android_1_1AndroidLogCatLogger.html#af4c546b140faad4e89c4ad7844c702f9',1,'com::aworx::lox::android::AndroidLogCatLogger']]],
+  ['version',['version',['../../html/java_ref/classcom_1_1aworx_1_1lox_1_1Lox.html#a9a2912077b542dacbc5d71e0b14c55b7',1,'com::aworx::lox::Lox::version()'],['../../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Lox.html#a1a33f478950a66f73f765da03857e91a',1,'com::aworx::lox::Lox::Version()'],['../../html/cpp_ref/classaworx_1_1lox_1_1Lox.html#a4d2901c4588d0015fd52285741fbc312',1,'aworx::lox::Lox::Version()']]]
 ];

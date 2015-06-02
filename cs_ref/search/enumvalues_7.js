@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['verbose',['Verbose',['../classcom_1_1aworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5ad4a9fa383ab700c5bdd6f31cf7df0faf',1,'com::aworx::lox::Log']]]
+  ['off',['Off',['../classcom_1_1aworx_1_1lox_1_1Log.html#a10ac165398697ce1d642d739cc3b170fad15305d7a4e34e02489c74a5ef542f36',1,'com::aworx::lox::Log']]]
 ];

@@ -1,18 +1,15 @@
 var searchData=
 [
-  ['length',['length',['../classcom_1_1aworx_1_1util_1_1MString.html#a9f59b34b1f25fe00023291b678246bcc',1,'com::aworx::util::MString']]],
-  ['level',['level',['../classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a1a9f7325c08dd31ecae733ac275a3791',1,'com::aworx::lox::core::LogDomain']]],
-  ['lineformatter',['lineFormatter',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#aa5e10d11120b3589e7b35e5ae709f9e5',1,'com::aworx::lox::core::TextLogger']]],
-  ['lock',['lock',['../classcom_1_1aworx_1_1lox_1_1Lox.html#a77074852c5d95a31cab43e8c85871c64',1,'com.aworx.lox.Lox.lock()'],['../classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a77074852c5d95a31cab43e8c85871c64',1,'com.aworx.lox.tools.LogTools.lock()']]],
-  ['lockcount',['lockCount',['../classcom_1_1aworx_1_1util_1_1ThreadLock.html#a7f41e1e3070abd18f7cdfdb9a95b3d9c',1,'com::aworx::util::ThreadLock']]],
-  ['logbuf',['logBuf',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#aaf37e693e36d895e18bcc1f6037f5d9e',1,'com.aworx.lox.core.TextLogger.logBuf()'],['../classcom_1_1aworx_1_1lox_1_1Log.html#a7cb12d57dc01488b568522f5a4f576e5',1,'com.aworx.lox.Log.logBuf()'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#aaf37e693e36d895e18bcc1f6037f5d9e',1,'com.aworx.lox.Lox.logBuf()']]],
-  ['logbuflock',['logBufLock',['../classcom_1_1aworx_1_1lox_1_1Log.html#a115a099b1c0c5425cd37ec7b54056d01',1,'com.aworx.lox.Log.logBufLock()'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#a115a099b1c0c5425cd37ec7b54056d01',1,'com.aworx.lox.Lox.logBufLock()']]],
-  ['loggers',['loggers',['../classcom_1_1aworx_1_1lox_1_1Lox.html#a7144a4b0aaac3ec84ce06a48b50d9911',1,'com::aworx::lox::Lox']]],
-  ['loglevelerror',['logLevelError',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#ae8322b6ecc21496710ca2c4bb50d4cec',1,'com::aworx::lox::core::TextLoggerLineFormatter']]],
-  ['loglevelinfo',['logLevelInfo',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a15ed110e8ee4220103779d9df1d1d31a',1,'com::aworx::lox::core::TextLoggerLineFormatter']]],
-  ['loglevelverbose',['logLevelVerbose',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a43bbe77b119f7f752815048f0552d6ce',1,'com::aworx::lox::core::TextLoggerLineFormatter']]],
-  ['loglevelwarning',['logLevelWarning',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a6eacb25f7d4c74adb2ada7ccbcd36f3d',1,'com::aworx::lox::core::TextLoggerLineFormatter']]],
-  ['lognumbermindigits',['logNumberMinDigits',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#ac083b4aac0faf389e3a70ef7f8212e54',1,'com::aworx::lox::core::TextLoggerLineFormatter']]],
-  ['logtag',['logTag',['../classcom_1_1aworx_1_1lox_1_1android_1_1AndroidLogCatLogger.html#ac2cdc5829603183d66f5e824ddc7af96',1,'com::aworx::lox::android::AndroidLogCatLogger']]],
-  ['lox',['LOX',['../classcom_1_1aworx_1_1lox_1_1Log.html#a9291aece8829db000d6508daa16f67fc',1,'com::aworx::lox::Log']]]
+  ['indentstring',['indentString',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#aa49de5c950d98088ddc25dbb15fe00b4',1,'com::aworx::lox::core::TextLoggerLineFormatter']]],
+  ['info',['INFO',['../enumcom_1_1aworx_1_1lox_1_1Log_1_1Level.html#ab1764b91c3b44a5988564bbfe1d6e352',1,'com::aworx::lox::Log::Level']]],
+  ['info_5fwarnings_5fand_5ferrors',['INFO_WARNINGS_AND_ERRORS',['../enumcom_1_1aworx_1_1lox_1_1Log_1_1DomainLevel.html#a9bbe14daf8eaa39934d9381b03eda2b3',1,'com::aworx::lox::Log::DomainLevel']]],
+  ['inherit',['INHERIT',['../enumcom_1_1aworx_1_1lox_1_1Log_1_1DomainLevel.html#a8771f4952654026ffa7275448f8d7f76',1,'com::aworx::lox::Log::DomainLevel']]],
+  ['instlinebeginidx',['instLineBeginIdx',['../classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#aaa958e582bb109b5cf63121eb10a194a',1,'com::aworx::lox::tools::LogTools']]],
+  ['instlinenumber',['instLineNumber',['../classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#acdb62e874751ec8a2090e30cbf1dba93',1,'com::aworx::lox::tools::LogTools']]],
+  ['instobject2linenumber',['instObject2LineNumber',['../classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a7ee8cca5af9088eb964970b254b20078',1,'com::aworx::lox::tools::LogTools']]],
+  ['insttypetabstop',['instTypeTabStop',['../classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a1cfe4bbb4fae0ca0db99d3fe768ffa64',1,'com::aworx::lox::tools::LogTools']]],
+  ['instvaluetabstop',['instValueTabStop',['../classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#ac586537acea9202be95f5cf793324550',1,'com::aworx::lox::tools::LogTools']]],
+  ['internaldomain',['internalDomain',['../classcom_1_1aworx_1_1lox_1_1Lox.html#a67901e9f160da1261843f911d9a0c7a8',1,'com::aworx::lox::Lox']]],
+  ['internalfrequency',['internalFrequency',['../classcom_1_1aworx_1_1util_1_1Ticks.html#a2a566616ba261c3beb9433771cace0d1',1,'com::aworx::util::Ticks']]],
+  ['isdisabled',['isDisabled',['../classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#ad7073fb6d6486e166ea6116e36bbecf2',1,'com::aworx::lox::core::Logger']]]
 ];

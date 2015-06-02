@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['none',['None',['../classcom_1_1aworx_1_1lox_1_1Log.html#aaecc53892786f2fa11e682f633af84c6a6adf97f83acf6453d4a6a4b1070f3754',1,'com::aworx::lox::Log']]]
+  ['left',['Left',['../classcom_1_1aworx_1_1util_1_1AString.html#ab4fc75cf20644d0e62fb0242b3e7b401a945d5e233cf7d6240f6b783b36a374ff',1,'com::aworx::util::AString']]]
 ];

@@ -5,10 +5,30 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>ALox C# Reference: Member List</title>
+<title>ALox: Member List</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<!-- so strange, that doxgen does not highlight each menu item. Just some... -->
+<script>
+  $(document).ready(function() {     
+    fnameStart= window.location.href.lastIndexOf('/')
+    fnameEnd=   window.location.href.indexOf('_', fnameStart )
+    if( fnameEnd < 0 ) {
+        fnameEnd=   window.location.href.indexOf('.', fnameStart )
+    }
+    if( fnameEnd > -1 ) {
+        subString= window.location.href.substring( fnameStart, fnameEnd )
+        $('li').toArray().forEach(function(li){
+            if(     typeof li.firstChild.href != 'undefined'
+                &&  li.firstChild.href.indexOf(subString) > 0 
+                ){
+               li.classList.add('current');
+            }
+        });
+    }
+  });
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +36,6 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="cs_stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,8 +45,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">ALox C# Reference
-   &#160;<span id="projectnumber">V. 1.1.2</span>
+   <div id="projectname">ALox 
+   &#160;<span id="projectnumber">Logging for C++, C# and Java (V 1.2.0)</span>
    </div>
   </td>
  </tr>
@@ -44,9 +63,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="../index.html"><span>ALox&#160;Home</span></a></li>
       <li><a href="../faq.html"><span>FAQ</span></a></li>
       <li><a href="../manual.html"><span>Manual</span></a></li>
-      <li><a href="setup_projects_vs_cs.html"><span>VStudio&#160;Setup</span></a></li>
-      <li><a href="tutorial_cs.html"><span>Tutorial</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Class&#160;Ref.</span></a></li>
+      <li><a href="../cpp_ref/cppmainpage.html"><span>ALox&#160;for&#160;C++</span></a></li>
+      <li class="current"><a href="csmainpage.html"><span>ALox&#160;for&#160;C#</span></a></li>
+      <li><a href="../java_ref/javamainpage.html"><span>ALox&#160;for&#160;Java</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -68,8 +87,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="csmainpage.html"><span>Overview</span></a></li>
+      <li><a href="cstutorial.html"><span>Tutorial</span></a></li>
+      <li><a href="cssetup.html"><span>IDE&#160;Setup</span></a></li>
+      <li><a href="cspruning.html"><span>Pruning&#160;ALox</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Class&#160;Reference</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="classes.html"><span>Alphabetical&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Namespace&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -104,35 +134,39 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a6baac125a9d8081f25ff930d5d90edbe">autoTabNo</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#ac8dabdb1b182d956f350c910643c9ece">AutoTabs</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a321e35a5312d2e9709fd591b7e5d54a5">callerDateTime</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a73be91892f104afd96a32ab547e2cf45">DateFormat</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a25d0a90e758eef351048c526b82ce060">dateFormatString</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#ab621f55d7a1a3c04988089afeea88208">detectDateFormatChanges</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#ae2eb584a3f8074d9b14f56741ff2b628">detectTimeOfDayFormatChanges</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#af529892abacd85c83ff6a646962fe28d">Format</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a85c8d54f584a622009048d0536f6160f">formatSB</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a64f513c6899c4fbfe76e5bbd8d5f73ab">IndentString</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a56bad526d2a9b0e8fac8774a8e81079d">LogLevelError</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a642a10ae2076aa7365fd8ac920ee9ff9">LogLevelInfo</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a3948fa2550cec5c1b96c46eaef7d1110">LogLevelVerbose</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a796b4686ca6cd82427e5026fa7a13656">LogLevelWarning</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a72c44479ec3d128c1208b49e4b8ede08">LogNumberMinDigits</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a7c695e7e6cc32592b96209dc136446b1">processVariable</a>(Logger logger, MString domain, Log.Level level, CallerInfo caller, MString buf, char[] formatString, int formatStringIdx)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">virtual</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a61ceb433642d627c2e1efce90762bb97">TimeDiffDays</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a1e9702f3330f62f91a66a8e545f48faa">TimeDiffHours</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#abcd9e4a9e53693daaa04567886a11deb">TimeDiffMicros</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a2ee9165164ad264d5880f633007629e3">TimeDiffMillis</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#ad5e8a7d9f2c872ab23a2332e6583d908">ConsumableSourcePathPrefixString</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a73be91892f104afd96a32ab547e2cf45">DateFormat</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a25d0a90e758eef351048c526b82ce060">dateFormatString</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#ab621f55d7a1a3c04988089afeea88208">detectDateFormatChanges</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#ae2eb584a3f8074d9b14f56741ff2b628">detectTimeOfDayFormatChanges</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a5f73a9d6a9bfabaa4a33c34831006d07">Format</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a85c8d54f584a622009048d0536f6160f">formatSB</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a64f513c6899c4fbfe76e5bbd8d5f73ab">IndentString</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a56bad526d2a9b0e8fac8774a8e81079d">LogLevelError</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a642a10ae2076aa7365fd8ac920ee9ff9">LogLevelInfo</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a3948fa2550cec5c1b96c46eaef7d1110">LogLevelVerbose</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a796b4686ca6cd82427e5026fa7a13656">LogLevelWarning</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a72c44479ec3d128c1208b49e4b8ede08">LogNumberMinDigits</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a5e4dbf29a625aa85301682428f2e53bd">processVariable</a>(Logger logger, AString domain, Log.Level level, CallerInfo caller, AString buf, int formatStringIdx)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a61ceb433642d627c2e1efce90762bb97">TimeDiffDays</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a1e9702f3330f62f91a66a8e545f48faa">TimeDiffHours</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#abcd9e4a9e53693daaa04567886a11deb">TimeDiffMicros</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a2ee9165164ad264d5880f633007629e3">TimeDiffMillis</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#ac72715ae7c695bbfce1fe76075a2f9a1">TimeDiffMinimum</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a1463b65c96abf24881c3c153ac0861bd">TimeDiffMins</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a45ccfa47c91e7a59015e1475d1b52dc5">TimeDiffNanos</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a6cc1e88975de4665e5ddc74e397be057">TimeDiffNone</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a5045aad5b73717f73f7adce9823085cd">TimeDiffSecs</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a37dc29c46601640c35ad51bc72b7042e">TimeElapsedDays</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#ae3289ae62c777551c12429268fea0988">TimeOfDayFormat</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#ad20e54054ee94793667818d16868ddcc">timeOfDayFormatString</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a35cf27a31e5d5ff36ea1453d6e9657e1">WriteMetaInfo</a>(Logger logger, MString buf, MString domain, Log.Level level, int indent, CallerInfo caller)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#acb45f022e4cabaceb8efa4205264b06d">writeTimeDiff</a>(MString buf, long diffMicros)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a03746cbca895f0c8ea3971b0e5e15150">WriteMetaInfo</a>(Logger logger, AString buf, AString domain, Log.Level level, int indent, CallerInfo caller)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a8e4cc4982f400a8cbb57209fb7ee224a">writeTimeDiff</a>(AString buf, long diffNanos)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html">TextLoggerLineFormatter</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">virtual</span></td></tr>
 </table></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 4 2015 11:07:51 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

@@ -5,10 +5,30 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>ALox Java Reference: AWXUErrorHandler Interface Reference</title>
+<title>ALox: AWXUErrorHandler Interface Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<!-- so strange, that doxgen does not highlight each menu item. Just some... -->
+<script>
+  $(document).ready(function() {     
+    fnameStart= window.location.href.lastIndexOf('/')
+    fnameEnd=   window.location.href.indexOf('_', fnameStart )
+    if( fnameEnd < 0 ) {
+        fnameEnd=   window.location.href.indexOf('.', fnameStart )
+    }
+    if( fnameEnd > -1 ) {
+        subString= window.location.href.substring( fnameStart, fnameEnd )
+        $('li').toArray().forEach(function(li){
+            if(     typeof li.firstChild.href != 'undefined'
+                &&  li.firstChild.href.indexOf(subString) > 0 
+                ){
+               li.classList.add('current');
+            }
+        });
+    }
+  });
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +36,6 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="java_stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,8 +45,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">ALox Java Reference
-   &#160;<span id="projectnumber">V. 1.1.2</span>
+   <div id="projectname">ALox 
+   &#160;<span id="projectnumber">Logging for C++, C# and Java (V 1.2.0)</span>
    </div>
   </td>
  </tr>
@@ -44,9 +63,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="../index.html"><span>ALox&#160;Home</span></a></li>
       <li><a href="../faq.html"><span>FAQ</span></a></li>
       <li><a href="../manual.html"><span>Manual</span></a></li>
-      <li><a href="setup_projects_java.html"><span>IDE&#160;Setup</span></a></li>
-      <li><a href="tutorial_java.html"><span>Tutorial</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Class&#160;Ref.</span></a></li>
+      <li><a href="../cpp_ref/cppmainpage.html"><span>ALox&#160;for&#160;C++</span></a></li>
+      <li><a href="../cs_ref/csmainpage.html"><span>ALox&#160;for&#160;C#</span></a></li>
+      <li class="current"><a href="javamainpage.html"><span>ALox&#160;for&#160;Java</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -68,8 +87,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="javamainpage.html"><span>Overview</span></a></li>
+      <li><a href="javatutorial.html"><span>Tutorial</span></a></li>
+      <li><a href="javasetup.html"><span>IDE&#160;Setup</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Class&#160;Reference</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="classes.html"><span>Alphabetical&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Namespace&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -99,60 +128,72 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">AWXUErrorHandler Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="dynheader">
+Inheritance diagram for AWXUErrorHandler:</div>
+<div class="dyncontent">
+<div class="center"><img src="interfacecom_1_1aworx_1_1util_1_1AWXUErrorHandler__inherit__graph.png" border="0" usemap="#AWXUErrorHandler_inherit__map" alt="Inheritance graph"/></div>
+<map name="AWXUErrorHandler_inherit__map" id="AWXUErrorHandler_inherit__map">
+<area shape="rect" id="node2" href="classcom_1_1aworx_1_1util_1_1ConsoleErrorHandler.html" title="ConsoleErrorHandler" alt="" coords="5,80,147,107"/></map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a143121b7aa73c57aed99b0d13b5b80d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacecom_1_1aworx_1_1util_1_1AWXUErrorHandler.html#a143121b7aa73c57aed99b0d13b5b80d3">error</a> (Object msg)</td></tr>
-<tr class="separator:a143121b7aa73c57aed99b0d13b5b80d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a054c4b2d956d70587cfc45b54d09d1c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacecom_1_1aworx_1_1util_1_1AWXUErrorHandler.html#a054c4b2d956d70587cfc45b54d09d1c9">warning</a> (Object msg)</td></tr>
-<tr class="separator:a054c4b2d956d70587cfc45b54d09d1c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1835cd115cf74039c546a1a840eba33"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacecom_1_1aworx_1_1util_1_1AWXUErrorHandler.html#ad1835cd115cf74039c546a1a840eba33">error</a> (String msg)</td></tr>
+<tr class="separator:ad1835cd115cf74039c546a1a840eba33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad21a54aba27387780d36fd05bae3a92"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacecom_1_1aworx_1_1util_1_1AWXUErrorHandler.html#aad21a54aba27387780d36fd05bae3a92">warning</a> (String msg)</td></tr>
+<tr class="separator:aad21a54aba27387780d36fd05bae3a92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Interface for <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html">AWXU</a> error handler. </p>
+<div class="textblock"><hr/>
+<p> Interface for <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html">AWXU</a> error handler. The <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html">AWXU</a> error handler is invoked on internal <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html">AWXU</a> errors caused by illegal arguments or other wrong <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html">AWXU</a> use. By default is a simple implementation is installed that just uses the console to print the error and warning messages to the application's standard output. Applications may implement their own <a class="el" href="interfacecom_1_1aworx_1_1util_1_1AWXUErrorHandler.html">AWXUErrorHandler</a> and attach this to <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html">AWXU</a> using <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#a81a9f423eeddba1dfc450e20e4f55903">AWXU.replaceErrorHandler</a>. Of-course, the AWXUErrorHanlder may be used also by software based on <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html">AWXU</a>. For the use, see documentation of AWXU.AcquireErrorHandler, <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#a9f6394c746fc244a92fb7c06e0c7c68c">AWXU.error</a>, AWXU.Warning and AWXU.AbortErrorHandler. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a143121b7aa73c57aed99b0d13b5b80d3"></a>
+<a class="anchor" id="ad1835cd115cf74039c546a1a840eba33"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void error </td>
           <td>(</td>
-          <td class="paramtype">Object&#160;</td>
+          <td class="paramtype">String&#160;</td>
           <td class="paramname"><em>msg</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Report an <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html">AWXU</a> Error.</p>
-<dl class="params"><dt>Parameters</dt><dd>
+<hr/>
+<p> Report an <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html">AWXU</a> Error. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">msg</td><td>The error message. </td></tr>
   </table>
   </dd>
 </dl>
 
+<p>Implemented in <a class="el" href="classcom_1_1aworx_1_1util_1_1ConsoleErrorHandler.html#ad1835cd115cf74039c546a1a840eba33">ConsoleErrorHandler</a>.</p>
+
 </div>
 </div>
-<a class="anchor" id="a054c4b2d956d70587cfc45b54d09d1c9"></a>
+<a class="anchor" id="aad21a54aba27387780d36fd05bae3a92"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void warning </td>
           <td>(</td>
-          <td class="paramtype">Object&#160;</td>
+          <td class="paramtype">String&#160;</td>
           <td class="paramname"><em>msg</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Report an <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html">AWXU</a> Error.</p>
-<dl class="params"><dt>Parameters</dt><dd>
+<hr/>
+<p> Report an <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html">AWXU</a> Warning. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">msg</td><td>The error message. </td></tr>
   </table>
   </dd>
 </dl>
+
+<p>Implemented in <a class="el" href="classcom_1_1aworx_1_1util_1_1ConsoleErrorHandler.html#aad21a54aba27387780d36fd05bae3a92">ConsoleErrorHandler</a>.</p>
 
 </div>
 </div>
@@ -163,7 +204,7 @@ Public Member Functions</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 4 2015 11:07:52 for ALox Java Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

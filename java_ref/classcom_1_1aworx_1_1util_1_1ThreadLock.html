@@ -5,10 +5,30 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>ALox Java Reference: ThreadLock Class Reference</title>
+<title>ALox: ThreadLock Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<!-- so strange, that doxgen does not highlight each menu item. Just some... -->
+<script>
+  $(document).ready(function() {     
+    fnameStart= window.location.href.lastIndexOf('/')
+    fnameEnd=   window.location.href.indexOf('_', fnameStart )
+    if( fnameEnd < 0 ) {
+        fnameEnd=   window.location.href.indexOf('.', fnameStart )
+    }
+    if( fnameEnd > -1 ) {
+        subString= window.location.href.substring( fnameStart, fnameEnd )
+        $('li').toArray().forEach(function(li){
+            if(     typeof li.firstChild.href != 'undefined'
+                &&  li.firstChild.href.indexOf(subString) > 0 
+                ){
+               li.classList.add('current');
+            }
+        });
+    }
+  });
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +36,6 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="java_stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,8 +45,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">ALox Java Reference
-   &#160;<span id="projectnumber">V. 1.1.2</span>
+   <div id="projectname">ALox 
+   &#160;<span id="projectnumber">Logging for C++, C# and Java (V 1.2.0)</span>
    </div>
   </td>
  </tr>
@@ -44,9 +63,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="../index.html"><span>ALox&#160;Home</span></a></li>
       <li><a href="../faq.html"><span>FAQ</span></a></li>
       <li><a href="../manual.html"><span>Manual</span></a></li>
-      <li><a href="setup_projects_java.html"><span>IDE&#160;Setup</span></a></li>
-      <li><a href="tutorial_java.html"><span>Tutorial</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Class&#160;Ref.</span></a></li>
+      <li><a href="../cpp_ref/cppmainpage.html"><span>ALox&#160;for&#160;C++</span></a></li>
+      <li><a href="../cs_ref/csmainpage.html"><span>ALox&#160;for&#160;C#</span></a></li>
+      <li class="current"><a href="javamainpage.html"><span>ALox&#160;for&#160;Java</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -68,8 +87,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="javamainpage.html"><span>Overview</span></a></li>
+      <li><a href="javatutorial.html"><span>Tutorial</span></a></li>
+      <li><a href="javasetup.html"><span>IDE&#160;Setup</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Class&#160;Reference</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="classes.html"><span>Alphabetical&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Namespace&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -115,19 +144,19 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:af9f5b35a212d21af601a8213ed325871"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23b477d0e2d399f75d585d154c346591"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#a23b477d0e2d399f75d585d154c346591">release</a> ()</td></tr>
 <tr class="separator:a23b477d0e2d399f75d585d154c346591"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad146fa8579a5f8a876c4688cc5a68520"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#ad146fa8579a5f8a876c4688cc5a68520">toString</a> ()</td></tr>
-<tr class="separator:ad146fa8579a5f8a876c4688cc5a68520"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a841d9290e560021e7591de61d840fa4f"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#a841d9290e560021e7591de61d840fa4f">isAcquired</a> (Thread thread)</td></tr>
+<tr class="separator:a841d9290e560021e7591de61d840fa4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a89682a610134dbf105652e33657e0ee8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#a89682a610134dbf105652e33657e0ee8">setUnsafe</a> (boolean setUnsafe)</td></tr>
 <tr class="separator:a89682a610134dbf105652e33657e0ee8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99c4577e8eea7adb5b986d8b87627a23"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#a99c4577e8eea7adb5b986d8b87627a23">IsUnsafe</a> ()</td></tr>
-<tr class="separator:a99c4577e8eea7adb5b986d8b87627a23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f4fae0b1f082007631fffc976bc8381"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#a9f4fae0b1f082007631fffc976bc8381">isUnsafe</a> ()</td></tr>
+<tr class="separator:a9f4fae0b1f082007631fffc976bc8381"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad146fa8579a5f8a876c4688cc5a68520"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#ad146fa8579a5f8a876c4688cc5a68520">toString</a> ()</td></tr>
+<tr class="separator:ad146fa8579a5f8a876c4688cc5a68520"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a35bd0b44ad22dfa9d3dee392e19bab3c"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#a35bd0b44ad22dfa9d3dee392e19bab3c">useAssertions</a> = true</td></tr>
-<tr class="separator:a35bd0b44ad22dfa9d3dee392e19bab3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c735b5a34529619a34f5ae2455d27d0"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#a5c735b5a34529619a34f5ae2455d27d0">waitALoxWarningLimit</a> = <a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html#afa6730c03c7b584a3a9a33be81ed125c">Ticker.fromMillis</a>( 1000 )</td></tr>
-<tr class="separator:a5c735b5a34529619a34f5ae2455d27d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5b12a96be437f82f5da54b813614ba7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#ae5b12a96be437f82f5da54b813614ba7">waitWarningTimeLimitInMillis</a> = 1000</td></tr>
+<tr class="separator:ae5b12a96be437f82f5da54b813614ba7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acad859886dc19036f76e572c2daf2caa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#acad859886dc19036f76e572c2daf2caa">recursionWarningThreshold</a> = 10</td></tr>
 <tr class="separator:acad859886dc19036f76e572c2daf2caa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -141,6 +170,8 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a194df7b1414f1a1181802f255faff967"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4cc9273ae9737bab384e14ef7d4b5c7a"><td class="memItemLeft" align="right" valign="top">Object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#a4cc9273ae9737bab384e14ef7d4b5c7a">mutex</a></td></tr>
 <tr class="separator:a4cc9273ae9737bab384e14ef7d4b5c7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c693612d852a9e000481199e9c24f4c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticks.html">Ticks</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#a5c693612d852a9e000481199e9c24f4c">waitTime</a> = new <a class="el" href="classcom_1_1aworx_1_1util_1_1Ticks.html">Ticks</a>()</td></tr>
+<tr class="separator:a5c693612d852a9e000481199e9c24f4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pac-methods"></a>
 Package Functions</h2></td></tr>
@@ -148,11 +179,12 @@ Package Functions</h2></td></tr>
 <tr class="separator:a3e37532dae663660f404efd7c15c7b6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This class allows <em>mutal exclusive access</em> to resources that the using software agrees on to protect with a certain instance hereof. In other words, access to certain resources of a software that has to be thread safe, can be protected if each thread (aka critical section code) uses the same <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html">ThreadLock</a> to control the access to.</p>
-<p>If a lock() is not followed by a corresponding unlock(), other threads will not be able to gain control to this object and will wait endlessly (deadlock situation). To avoid this, it is a good practice to embed pairs of lock()/unlock() calls into try/finaly statements as follows: </p><pre class="fragment">try { tl.lock(); ...critical section code .... } finally { tl.unlock() }
-</pre><p><a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html">ThreadLock</a> uses an internal counter to allow multiple calls to lock() and to be freed only when a same amount of unlock() calls are performed. This behavior can be switched off by a constructor parameter. If switched off, each recursive lock() calls will not be counted and each call to unlock() will instantly free the mutex. This mode is even less recommended than using this class in recursive mode.</p>
-<p>Furthermore, <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html">ThreadLock</a> allows to disable locking using <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#a89682a610134dbf105652e33657e0ee8">setUnsafe()</a>. The objective here is to gain execution speed, as thread synchronization causes relatively expensive system calls.</p>
-<p>Caution: Use this class with great care. Deadlocks are not easy to detect and debug. Use this class only if standard synchronization of the JAVA language seems too limited and mechanisms like the class uses internally would need to be implemented. </p>
+<div class="textblock"><hr/>
+<p> This class allows <em>mutual exclusive access</em> to resources shared by different threads. In other words, access to certain data that is accessed by different threads, can be protected if each thread (aka critical section code) uses the same <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html">ThreadLock</a> to control the access to such data.</p>
+<p>If a <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#af9f5b35a212d21af601a8213ed325871">acquire()</a> is not followed by a corresponding <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#a23b477d0e2d399f75d585d154c346591">release()</a>, other threads will not be able to gain control to this object and will wait endlessly (deadlock situation). To avoid this, it is a good practice to embed pairs of <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#af9f5b35a212d21af601a8213ed325871">acquire()</a>/release() calls into try/finally statements as follows: </p><pre class="fragment">try { tl.acquire(); ...critical section code .... } finally { tl.release() }
+</pre><p><a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html">ThreadLock</a> uses an internal counter to allow multiple calls to <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#af9f5b35a212d21af601a8213ed325871">acquire()</a> and to be freed only when a same amount of <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#a23b477d0e2d399f75d585d154c346591">release()</a> calls are performed. This behavior can be switched off by a constructor parameter. If switched off, each recursive <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#af9f5b35a212d21af601a8213ed325871">acquire()</a> call will not be counted and each call to <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#a23b477d0e2d399f75d585d154c346591">release()</a> will instantly free the mutex. This mode is not very recommended, the standard use is recursive mode.</p>
+<p>Furthermore, <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html">ThreadLock</a> allows to disable locking using <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#a89682a610134dbf105652e33657e0ee8">setUnsafe()</a>. The objective here is to gain execution speed, as thread synchronization causes relatively expensive system calls. Nevertheless, it is sometimes obvious that the same code may run in a thread safe mode one time and without thread locking the next time. Therefore, for performance critical code, it is quite useful to be able to control this behavior.</p>
+<p>Caution: Use this class with great care. Deadlocks are not easy to detect and debug. Use this class only if standard synchronization of the Java language seems too limited and mechanisms like the class uses internally would need to be implemented. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ad866d94468fb30b56fc5cf53211eb2ab"></a>
 <div class="memitem">
@@ -166,7 +198,8 @@ Package Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Create a <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html">ThreadLock</a> that allows recursion. </p>
+<hr/>
+<p> Create a <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html">ThreadLock</a> that allows recursion. </p>
 
 </div>
 </div>
@@ -183,7 +216,8 @@ Package Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Create a <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html">ThreadLock</a> that allows recursion. A warning will be given (ALox Error) when the given recursion level is reached (and each multiple of it).</p>
+<hr/>
+<p> Create a <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html">ThreadLock</a> that allows recursion. A warning will be given (<a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html">AWXU</a> Error) when the given recursion level is reached (and each multiple of it).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">recursiveMode</td><td>Flag if recursion support is on. If not, nested locks are not counted. </td></tr>
@@ -216,7 +250,8 @@ Package Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Create a <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html">ThreadLock</a> that allows recursion. A warning will be given (ALox Error) when the given recursion level is reached (and each multiple of it). In addition the lock can be initialized to be unsafe, which means the locking critical sections is disabled.</p>
+<hr/>
+<p> Create a <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html">ThreadLock</a> that allows recursion. A warning will be given (<a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html">AWXU</a> Error) when the given recursion level is reached (and each multiple of it). In addition the lock can be initialized to be unsafe, which means the locking critical sections is disabled.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">recursiveMode</td><td>Flag if recursion support is on. If not, nested locks are not counted. </td></tr>
@@ -240,7 +275,8 @@ Package Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Thread which invokes this method gets registered as the current owner of this object, until the same thread releases the ownership invoking unlock(). In the case that this object is already owned by another thread, the invoking thread is suspended until ownership can be gained. Multiple (nested) calls to this method are counted and the object is only released when the same number of unlock() calls have been made. </p>
+<hr/>
+<p> Thread which invokes this method gets registered as the current owner of this object, until the same thread releases the ownership invoking <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#a23b477d0e2d399f75d585d154c346591">release()</a>. In the case that this object is already owned by another thread, the invoking thread is suspended until ownership can be gained. Multiple (nested) calls to this method are counted and the object is only released when the same number of <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#a23b477d0e2d399f75d585d154c346591">release()</a> calls have been made. </p>
 
 </div>
 </div>
@@ -275,7 +311,8 @@ Package Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Used by the Constructors to create an instance.</p>
+<hr/>
+<p> Used by the Constructors to create an instance.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">recursiveMode</td><td>Flag if recursion support is on. If not, nested locks are not counted. </td></tr>
@@ -286,19 +323,44 @@ Package Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a99c4577e8eea7adb5b986d8b87627a23"></a>
+<a class="anchor" id="a841d9290e560021e7591de61d840fa4f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">boolean IsUnsafe </td>
+          <td class="memname">boolean isAcquired </td>
+          <td>(</td>
+          <td class="paramtype">Thread&#160;</td>
+          <td class="paramname"><em>thread</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Identifies if the provided thread is the actual owner of this <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html">ThreadLock</a>. If the parameter is omitted, then it is tested if the current thread owns this lock. Note: This method is provided mainly for debugging and implementing debug assertions into the code. It is <em>not</em> considered a good practice to use this method for implementing software logic. In contrast the software should be designed in a way, that it is always clear who owns a <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html">ThreadLock</a> or at least that acquiring a thread lock can be performed instead. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thread</td><td>The thread to test current ownership of this. If null, the ownership is evaluated for the current thread. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if this is acquired by the given (or current) thread, false if not. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9f4fae0b1f082007631fffc976bc8381"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean isUnsafe </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Query if this instance was set to unsafe mode.</p>
+<hr/>
+<p> Query if this instance was set to unsafe mode.</p>
 <dl class="section return"><dt>Returns</dt><dd>True if unsafe, false if not. </dd></dl>
 
 </div>
@@ -315,7 +377,8 @@ Package Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Releases ownership of this object. If lock() was called multiple times before, the same number of calls to this method have to be performed to release ownership. </p>
+<hr/>
+<p> Releases ownership of this object. If <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#af9f5b35a212d21af601a8213ed325871">acquire()</a> was called multiple times before, the same number of calls to this method have to be performed to release ownership. </p>
 
 </div>
 </div>
@@ -332,10 +395,11 @@ Package Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>If parameter is true, the whole locking system is disabled. The only objective here is to to gain execution speed, as thread synchronization causes relatively expensive system calls. Use this method only if you are 100% sure that your (otherwise) critical section are executed in a single threaded environment. And: "relative expensive" means: they are not really expensive. This only for the rare case that your critical section is very, very frequently executed.</p>
+<hr/>
+<p> If parameter is true, the whole locking system is disabled. The only objective here is to to gain execution speed, as thread synchronization causes relatively expensive system calls. Use this method only if you are 100% sure that your (otherwise) critical section are executed in a single threaded environment. And: "relative expensive" means: they are not really expensive. This only for the rare case that your critical section is very, very frequently executed.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">setUnsafe</td><td>true to set unsafe. </td></tr>
+    <tr><td class="paramname">setUnsafe</td><td>true to set unsafe, false to set to safe mode. </td></tr>
   </table>
   </dd>
 </dl>
@@ -354,7 +418,8 @@ Package Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns the current owner of the thread. This method should not be used to check if a lock is used or not. However, it can. But software should be designed in a way that ownership does not need to be tested. This method is build in for debugging purposes only.</p>
+<hr/>
+<p> Returns a String that represents this object. This method should only be used for debugging purposes as it is not determined that the values returned are consistent and not changed in the next moment. If the thread that currently acquired this <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html">ThreadLock</a> is deleted during the execution of this method, the method might even crash (OK, not in the Java version!) while accessing the owner thread's name property. Use with care, for debug and only if you know what your are doing.</p>
 <dl class="section return"><dt>Returns</dt><dd>A String that represents this instance. </dd></dl>
 
 </div>
@@ -377,7 +442,7 @@ Package Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Counter for the number of lock() calls of the current thread. </p>
+<p>Counter for the number of <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#af9f5b35a212d21af601a8213ed325871">acquire()</a> calls of the current thread. </p>
 
 </div>
 </div>
@@ -419,7 +484,7 @@ Package Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Counter for the number of lock() calls of the current thread. </p>
+<p>The current owner of the <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html">ThreadLock</a>. </p>
 
 </div>
 </div>
@@ -432,7 +497,7 @@ Package Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Limit of recursions. If limit is reached or a multiple of it, an error logged using ALox. </p>
+<p>Limit of recursions. If limit is reached or a multiple of it, an error is passed to the <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html">AWXU</a> error handler. Defaults is 10. </p>
 
 </div>
 </div>
@@ -457,29 +522,37 @@ Package Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a35bd0b44ad22dfa9d3dee392e19bab3c"></a>
+<a class="anchor" id="a5c693612d852a9e000481199e9c24f4c"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">boolean useAssertions = true</td>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticks.html">Ticks</a> waitTime = new <a class="el" href="classcom_1_1aworx_1_1util_1_1Ticks.html">Ticks</a>()</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>Flag to use assert() to detected misuse in debug mode. Default is on, and you should keep it on! </p>
+<p>The internal object to measure the time </p>
 
 </div>
 </div>
-<a class="anchor" id="a5c735b5a34529619a34f5ae2455d27d0"></a>
+<a class="anchor" id="ae5b12a96be437f82f5da54b813614ba7"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">long waitALoxWarningLimit = <a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html#afa6730c03c7b584a3a9a33be81ed125c">Ticker.fromMillis</a>( 1000 )</td>
+          <td class="memname">int waitWarningTimeLimitInMillis = 1000</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>This is a threshold that causes lock() to log a warning if acquiring the access using method lock() takes longer than the given number of milliseconds. To disable such messages, set this value to 0. Default is 1 second. Measured in ticks, see class <a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html">Ticker</a>. </p>
+<p>This is a threshold that causes <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#af9f5b35a212d21af601a8213ed325871">acquire()</a> to send a warning to the <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html">AWXU</a> error handler if acquiring the access takes longer than the given number of milliseconds. To disable such messages, set this value to 0. Default is 1 second. </p>
 
 </div>
 </div>
@@ -490,7 +563,7 @@ Package Functions</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 4 2015 11:07:52 for ALox Java Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

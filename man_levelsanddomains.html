@@ -9,6 +9,26 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<!-- so strange, that doxgen does not highlight each menu item. Just some... -->
+<script>
+  $(document).ready(function() {     
+    fnameStart= window.location.href.lastIndexOf('/')
+    fnameEnd=   window.location.href.indexOf('_', fnameStart )
+    if( fnameEnd < 0 ) {
+        fnameEnd=   window.location.href.indexOf('.', fnameStart )
+    }
+    if( fnameEnd > -1 ) {
+        subString= window.location.href.substring( fnameStart, fnameEnd )
+        $('li').toArray().forEach(function(li){
+            if(     typeof li.firstChild.href != 'undefined'
+                &&  li.firstChild.href.indexOf(subString) > 0 
+                ){
+               li.classList.add('current');
+            }
+        });
+    }
+  });
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +36,6 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="main_stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,8 +45,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1.1.2   -   Simple and powerful logging library for C# and JAVA (C++ underway...!)</span>
+   <div id="projectname">ALox 
+   &#160;<span id="projectnumber">Logging for C++, C# and Java (V 1.2.0)</span>
    </div>
   </td>
  </tr>
@@ -44,8 +63,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>ALox&#160;Home</span></a></li>
       <li><a href="faq.html"><span>FAQ</span></a></li>
       <li><a href="manual.html"><span>Manual</span></a></li>
-      <li><a href="cs_ref/index.html"><span>ALox&#160;for&#160;C#</span></a></li>
-      <li><a href="java_ref/index.html"><span>ALox&#160;for&#160;Java</span></a></li>
+      <li><a href="cpp_ref/cppmainpage.html"><span>ALox&#160;for&#160;C++</span></a></li>
+      <li><a href="cs_ref/csmainpage.html"><span>ALox&#160;for&#160;C#</span></a></li>
+      <li><a href="java_ref/javamainpage.html"><span>ALox&#160;for&#160;Java</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -149,7 +169,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p><br />
  Now, without using the feature of hierarchical domains, the user code that controls the level setting for the domains would set the level of the domains as follows:</p>
 <div class="fragment"><div class="line">Log.SetDomain( <span class="stringliteral">&quot;UI&quot;</span>,        Log.DomainLevel.InfoWarningsAndErrors );</div>
-<div class="line">Log.SetDomain( <span class="stringliteral">&quot;UI/MENU&quot;</span>,   Log.DomainLevel.InfoWarningsAndErrors );</div>
+<div class="line">Log.SetDomain( <span class="stringliteral">&quot;UI/MENU&quot;</span>,    Log.DomainLevel.InfoWarningsAndErrors );</div>
 <div class="line">Log.SetDomain( <span class="stringliteral">&quot;UI/DLG&quot;</span>,    Log.DomainLevel.InfoWarningsAndErrors );</div>
 </div><!-- fragment --><p>(See <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Log.html#a4288665943d2ce35935634d3930c9db1">Log.SetDomain()</a> for further reference.)*</p>
 <p>Due to the fact that the default value for the level setting of a domain is <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref/" href="../html/java_ref/enumcom_1_1aworx_1_1lox_1_1Log_1_1DomainLevel.html">Log.DomainLevel.Inherit</a>, the two sub domains of "UI" do not need to be set. They inherit the setting from their parent. It is sufficient to set just the parent domain:</p>
@@ -183,7 +203,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1><a class="anchor" id="man_levelsanddomains_default_domains"></a>
 5. Default Domains</h1>
 <p>People might argue that providing a domain name to each log statement is an overhead of typing. That is true. For this reason - and to get even more benefits - ALox provides the concept of <em>default domains</em>.</p>
-<p>Domains, when registered, can be set as the default domain for a given <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref/" href="../html/java_ref/enumcom_1_1aworx_1_1lox_1_1Log_1_1Scope.html">Log.Scope</a>. Unfortunately but naturally, the possible values for the scope are platform/language dependent. For example, in JAVA, the scope can be the whole package a class resides in, the class only or just a single method of a class. In C#, the scope can be the actual source file or the actual method within a source file. Namespaces can not be the scope in C#, due to restrictions in the way that <em>caller information</em> is collected.</p>
+<p>Domains, when registered, can be set as the default domain for a given <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref/" href="../html/java_ref/enumcom_1_1aworx_1_1lox_1_1Log_1_1Scope.html">Log.Scope</a>. Unfortunately but naturally, the possible values for the scope are platform/language dependent. For example, in Java, the scope can be the whole package a class resides in, the class only or just a single method of a class. In C#, the scope can be the actual source file or the actual method within a source file. Namespaces can not be the scope in C#, due to restrictions in the way that <em>caller information</em> is collected.</p>
 <p>Now, setting a domain as default is done by specifying a scope value other than <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref/" href="../html/java_ref/enumcom_1_1aworx_1_1lox_1_1Log_1_1Scope.html">Log.Scope.None</a> to <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Log.html#a5e8f1e6092851cabd2bb0e766cbfbb14">Log.RegDomain</a>:</p>
 <div class="fragment"><div class="line">Log.RegDomain( <span class="stringliteral">&quot;UI&quot;</span>,        Log.Scope.SourceFile );</div>
 <div class="line">Log.RegDomain( <span class="stringliteral">&quot;UI/MENU&quot;</span>,   Log.Scope.None );</div>
@@ -201,7 +221,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>It is not an error to register a domain twice. For example, if a domain should become the default domain for two different scopes, then for each scope a corresponding call to RegDomain can be placed at appropriate locations in the code.</p>
 <p>In general, the use of domain names is handled very uncritically by ALox. If a domain is used without prior registering, an internal warning message is logged, but the domain is just created on the fly and everything works nicely. On the other hand, registering a domain several times does not hurt. It is a good practice to avoid multiple registrations of domains for the same scope and the tutorials for the different languages that ALox support describe how this is done:</p>
 <ul>
-<li>For C#, see tutorial chapter <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/tutorial_cs.html#tutcs_llld_3">2.3. Where to place ALox log code</a>.</li>
+<li>For C#, see tutorial chapter <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/cstutorial.html#tutcs_llld_3">2.3. Where to place ALox log code</a>.</li>
 </ul>
 <p><br />
  </p>
@@ -218,7 +238,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <ul>
 <li>less typing and better readability</li>
 <li>the domain name can be changed in one place</li>
-<li>copy and pasting code into different "domains" does not involve updating the domain name in each log statement, as long as the the same sub domain names are wanted.</li>
+<li>copy and pasting code into different "domains" does not involve updating the domain name in each log statement, as long as the same sub domain names are wanted.</li>
 </ul>
 <p><br />
  </p>
@@ -240,7 +260,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1><a class="anchor" id="man_levelsanddomains_separating_loggers"></a>
 8. Setting Different Domain Levels on Different Loggers</h1>
 <p>We want to end this chapter, with another very important feature that the ALox logging ecosystem just "provides by design": The concept of matching <em>log levels</em> against <em>log domains</em> does not only allow us to configure the verbosity of the log output per domain. In addition, because of the simple fact that the <em>domain log level</em> setting is stored per <em>Logger</em> and not globally, ALox can be configured to have different loggers logging completely different things.</p>
-<p>As we have already seen a source sample of that provided in the tutorials (see section "Directing log output to distinct loggers" <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/tutorial_cs.html#tutcs_more_seplog">for C#</a> or <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref/" href="../html/java_ref/tutorial_java.html#tutjava_more_seplog">for Java</a>.), we want to give now a more formal description on how this is achieved:</p>
+<p>As we have already seen a source sample of that provided in the tutorials (see section "Directing log output to distinct loggers" <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/cstutorial.html#tutcs_more_seplog">for C#</a> or <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/java_ref/java_ref.tag:../html/java_ref/" href="../html/java_ref/javatutorial.html#tutjava_more_seplog">for Java</a>.), we want to give now a more formal description on how this is achieved:</p>
 <ul>
 <li>Create and add your loggers using <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Log.html#a39c0cfae2056cb6f41128c4ae5679cba">Log.AddLogger()</a></li>
 <li>For each <em>log domain</em> with log output that should go to all loggers invoke <a class="elRef" doxygen="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:../html/cs_ref/" href="../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Log.html#a4288665943d2ce35935634d3930c9db1">Log.SetDomain</a> without specifying the parameter <em>loggerFilter</em></li>
@@ -274,7 +294,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 4 2015 11:07:53 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

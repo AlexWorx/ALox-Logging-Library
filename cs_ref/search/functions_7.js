@@ -1,7 +1,19 @@
 var searchData=
 [
-  ['indexof',['IndexOf',['../classcom_1_1aworx_1_1util_1_1MString.html#aa2710664520cb638ed2c7b9abd9bd737',1,'com::aworx::util::MString']]],
+  ['indays',['InDays',['../classcom_1_1aworx_1_1util_1_1Ticks.html#ac0ca729bf15ebbd36812ba021e4030f6',1,'com::aworx::util::Ticks']]],
+  ['indexof',['IndexOf',['../classcom_1_1aworx_1_1util_1_1AString.html#ab18244625fe4fd85e4ffecc846b60163',1,'com.aworx.util.AString.IndexOf(String needle, int startIdx=0, bool ignoreCase=false)'],['../classcom_1_1aworx_1_1util_1_1AString.html#a8c012a799b9f9ffd9798f765a8c423b9',1,'com.aworx.util.AString.IndexOf(AString needle, int startIdx=0, bool ignoreCase=false)'],['../classcom_1_1aworx_1_1util_1_1AString.html#a4f588006577fd28203bbb95d6372b591',1,'com.aworx.util.AString.IndexOf(char c, int startIdx=0)']]],
+  ['indotnetdatetime',['InDotNetDateTime',['../classcom_1_1aworx_1_1util_1_1Ticks.html#a11a40cf306eeacbc141e556a77720a5d',1,'com::aworx::util::Ticks']]],
+  ['indotnetdatetimeticks',['InDotNetDateTimeTicks',['../classcom_1_1aworx_1_1util_1_1Ticks.html#a68c1488e775d89b1f808cedf68e4a3dd',1,'com::aworx::util::Ticks']]],
+  ['inepochmillis',['InEpochMillis',['../classcom_1_1aworx_1_1util_1_1Ticks.html#a85e459d680dcf74b8daa9dce9cff2559',1,'com::aworx::util::Ticks']]],
   ['info',['Info',['../classcom_1_1aworx_1_1lox_1_1Log.html#a8d4eed10072fbce336d60fd926d7c698',1,'com.aworx.lox.Log.Info(Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)'],['../classcom_1_1aworx_1_1lox_1_1Log.html#ac3b403e887df378d8bdb9c480432e4b4',1,'com.aworx.lox.Log.Info(String domain, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#a861890f074da5b826d5b7802c955874c',1,'com.aworx.lox.Lox.Info(Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#a4806ffdc267673deca9e08b9cf0b8c78',1,'com.aworx.lox.Lox.Info(String domain, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)']]],
+  ['inhertz',['InHertz',['../classcom_1_1aworx_1_1util_1_1Ticks.html#a42e86fa4185895d79e83f1a6439d440a',1,'com::aworx::util::Ticks']]],
+  ['inhours',['InHours',['../classcom_1_1aworx_1_1util_1_1Ticks.html#afab45db5919f47215a62e0b082fb123b',1,'com::aworx::util::Ticks']]],
+  ['inmicros',['InMicros',['../classcom_1_1aworx_1_1util_1_1Ticks.html#adce5eeaded1ab539742218b5a670e6ec',1,'com::aworx::util::Ticks']]],
+  ['inmillis',['InMillis',['../classcom_1_1aworx_1_1util_1_1Ticks.html#a0637e20889e3ab2b54bd5bfa3b75f1c7',1,'com::aworx::util::Ticks']]],
+  ['inminutes',['InMinutes',['../classcom_1_1aworx_1_1util_1_1Ticks.html#ad967309464305020bb8000bcf505d27e',1,'com::aworx::util::Ticks']]],
+  ['innanos',['InNanos',['../classcom_1_1aworx_1_1util_1_1Ticks.html#a4f1e90567353bd484fc252eb4c1f7b57',1,'com::aworx::util::Ticks']]],
+  ['inseconds',['InSeconds',['../classcom_1_1aworx_1_1util_1_1Ticks.html#a00fdbf4ceebb73e680f22f110139753f',1,'com::aworx::util::Ticks']]],
+  ['insert',['Insert',['../classcom_1_1aworx_1_1util_1_1AString.html#ac6d3b76cfb46bbb01fec0b19ed3e244c',1,'com::aworx::util::AString']]],
   ['instance',['Instance',['../classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a2fe80db61affa775074be23675d518ba',1,'com.aworx.lox.tools.LogTools.Instance(String domain, Log.Level level, Object o, int maxRecursion, String headline=null, int indent=0, Lox lox=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)'],['../classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#abafcf461fb3cd01cc81c14a8b9573309',1,'com.aworx.lox.tools.LogTools.Instance(Log.Level level, Object o, int maxRecursion, String headline=null, int indent=0, Lox lox=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)']]],
   ['instbeginline',['instBeginLine',['../classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a1a60fd445cafbf21819717c2b817af7f',1,'com::aworx::lox::tools::LogTools']]],
   ['instmain',['instMain',['../classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a670b8642fe3a9f4737c9e398c2050006',1,'com::aworx::lox::tools::LogTools']]],
@@ -9,8 +21,10 @@ var searchData=
   ['instrecursive',['instRecursive',['../classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#ac03b6467ac0863a99a0b52afa782fe8f',1,'com::aworx::lox::tools::LogTools']]],
   ['insttabstop',['instTabStop',['../classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a7ea8777191d09d2b9e64f2c3384ebaf8',1,'com::aworx::lox::tools::LogTools']]],
   ['insttabtypeandnewline',['instTabTypeAndNewLine',['../classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#aa64ceea3ae9af0dc33366784f0dfe0e0',1,'com::aworx::lox::tools::LogTools']]],
-  ['internallog',['internalLog',['../classcom_1_1aworx_1_1lox_1_1Lox.html#a5f28dc7cc5e8367ae94c0bd9ea180080',1,'com::aworx::lox::Lox']]],
+  ['internallog',['internalLog',['../classcom_1_1aworx_1_1lox_1_1Lox.html#aa4cbc7d10fb7a53ae1b3f903512f6f75',1,'com::aworx::lox::Lox']]],
+  ['isacquired',['IsAcquired',['../classcom_1_1aworx_1_1util_1_1ThreadLock.html#ad72deb26c6c29e26e2cedae44a7bded0',1,'com::aworx::util::ThreadLock']]],
   ['isactive',['IsActive',['../classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a729bb906d248e54d997101d8faf8e1c0',1,'com::aworx::lox::core::LogDomain']]],
+  ['isnullorempty',['IsNullOrEmpty',['../classcom_1_1aworx_1_1util_1_1AString.html#aed54c5c21ba7b689b292e15d7cee8e62',1,'com::aworx::util::AString']]],
   ['isunsafe',['IsUnsafe',['../classcom_1_1aworx_1_1util_1_1ThreadLock.html#abf2bccd9812728e715f73c27dac06614',1,'com::aworx::util::ThreadLock']]],
   ['isvaluetype',['isValueType',['../classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a5f76c7257611240fe4d94d77ef3016f4',1,'com::aworx::lox::tools::LogTools']]]
 ];

@@ -9,6 +9,26 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<!-- so strange, that doxgen does not highlight each menu item. Just some... -->
+<script>
+  $(document).ready(function() {     
+    fnameStart= window.location.href.lastIndexOf('/')
+    fnameEnd=   window.location.href.indexOf('_', fnameStart )
+    if( fnameEnd < 0 ) {
+        fnameEnd=   window.location.href.indexOf('.', fnameStart )
+    }
+    if( fnameEnd > -1 ) {
+        subString= window.location.href.substring( fnameStart, fnameEnd )
+        $('li').toArray().forEach(function(li){
+            if(     typeof li.firstChild.href != 'undefined'
+                &&  li.firstChild.href.indexOf(subString) > 0 
+                ){
+               li.classList.add('current');
+            }
+        });
+    }
+  });
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +36,6 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="main_stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,8 +45,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1.1.2   -   Simple and powerful logging library for C# and JAVA (C++ underway...!)</span>
+   <div id="projectname">ALox 
+   &#160;<span id="projectnumber">Logging for C++, C# and Java (V 1.2.0)</span>
    </div>
   </td>
  </tr>
@@ -44,8 +63,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li class="current"><a href="index.html"><span>ALox&#160;Home</span></a></li>
       <li><a href="faq.html"><span>FAQ</span></a></li>
       <li><a href="manual.html"><span>Manual</span></a></li>
-      <li><a href="cs_ref/index.html"><span>ALox&#160;for&#160;C#</span></a></li>
-      <li><a href="java_ref/index.html"><span>ALox&#160;for&#160;Java</span></a></li>
+      <li><a href="cpp_ref/cppmainpage.html"><span>ALox&#160;for&#160;C++</span></a></li>
+      <li><a href="cs_ref/csmainpage.html"><span>ALox&#160;for&#160;C#</span></a></li>
+      <li><a href="java_ref/javamainpage.html"><span>ALox&#160;for&#160;Java</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -98,10 +118,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="textblock"><h1><a class="anchor" id="mainpage_overview"></a>
 Overview</h1>
-<p>ALox is a small and efficient software library that provides an ecosystem to support structured and organized log output.</p>
+<p>ALox is a small and efficient software library that provides an ecosystem to support structured and organized log output. ALox is available in C++, C# and JAVA on GNU/Linux, Windows, Windows Phone and Android.</p>
 <p>The library attempts to make logging as easy and lightweight as possible. One of the goals we want to achieve is that developers, once making use of the library, just stop to put any temporary debug output statements into their code, but do it all with nice, readable, configurable, reusable logging statements that can be switched off and that are furthermore automatically pruned out of release versions of the application.</p>
 <p>On the other end of the list, we want to enable release logging for productive applications to collect mission critical metrics and data from <em>the field</em>. Basic support for release logging is here today already. The introduction of new features and concepts in the area of release logging will also support debug logging aspects of ALox. Therefore the natural path of evolution for the ALox project is "debug features first, release features next".</p>
-<p>This is Version 1.1.2, a maintenance release. Currently, we are working on a C++ Version of ALox. We are optimistic that the simple <a class="el" href="faq.html#faq_bauhaus">Bauhaus Style</a> architecture of the library allows you to easily use it and even to extend it with logging features you need.</p>
+<p>This is Version 1.2.0, the first release to support C++. We are optimistic that the simple <a class="el" href="faq.html#faq_bauhaus">Bauhaus Style</a> architecture of the library allows you to easily use it and even to extend it with logging features you need.</p>
 <p>We would be happy to receive your feedback and feature requests.</p>
 <h1><a class="anchor" id="mainpage_features"></a>
 Features and Limitations</h1>
@@ -122,31 +142,31 @@ How to contribute</h1>
 Copyright</h1>
 <p>ALox is open source software, can be <a href="http://github.com/AlexWorx/ALox-Logging-Library">downloaded at Github</a> and sources are published under the MIT License:</p>
 <pre class="fragment">  The MIT License (MIT)
-  Copyright (c) 2013 A-Worx GmbH
-   
-  Permission is hereby granted, free of charge, to any person obtaining a copy of 
-  this software and associated documentation files (the "Software"), to deal in the 
-  Software without restriction, including without limitation the rights to use, copy, 
-  modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, 
-  and to permit persons to whom the Software is furnished to do so, subject to the 
+  Copyright (c) 2013-2015 A-Worx GmbH
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy of
+  this software and associated documentation files (the "Software"), to deal in the
+  Software without restriction, including without limitation the rights to use, copy,
+  modify, merge, publish, distribute, sublicense, and/or sell copies of the Software,
+  and to permit persons to whom the Software is furnished to do so, subject to the
   following conditions:
-   
-  The above copyright notice and this permission notice shall be included in all 
+
+  The above copyright notice and this permission notice shall be included in all
   copies or substantial portions of the Software.
-   
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
-  INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A 
-  PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT 
-  HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION 
-  OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+  INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+  PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+  HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+  OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
   SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 </pre><h1><a class="anchor" id="mainpage_thanks"></a>
 Thanks</h1>
 <p>Our thanks go to all supporters to that helped realizing this project, especially:</p>
 <ul>
-<li>To the great team of <a href="http://anfe.ma">Anfema</a> (a great company dedicated to mobile app development) for giving ideas, motivation and for being brave enough to continuously test our early releases.</li>
+<li>To a bunch of good friends giving ideas, motivation and for being brave enough to continuously test our early releases.</li>
 <li>To the <a href="http://eclipse.org/donate/">Eclipse Foundation</a> - yes, we donated :-)</li>
-<li>To Mr. van Heesch for providing <a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a> software - yes, we donated :-) and on the same token the commercial but affordable documentation tool <a href="http://www.atomineerutils.com/">Atomineer Pro Documentation for Visual Studio</a></li>
+<li>To Mr. van Heesch for providing <a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a> software - yes, we donated :-)</li>
 <li>To Mr. Lafortune to provide <a href="http://http://proguard.sourceforge.net">ProGuard</a>.</li>
 <li>Special thanks also to C. Darwin, who created life on earth hundreds of millions of years ago, but unfortunately passed away in 1882! </li>
 </ul>
@@ -154,7 +174,7 @@ Thanks</h1>
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 4 2015 11:07:53 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

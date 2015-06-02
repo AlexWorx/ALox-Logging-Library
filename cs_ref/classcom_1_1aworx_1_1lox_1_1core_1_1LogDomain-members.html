@@ -5,10 +5,30 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>ALox C# Reference: Member List</title>
+<title>ALox: Member List</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<!-- so strange, that doxgen does not highlight each menu item. Just some... -->
+<script>
+  $(document).ready(function() {     
+    fnameStart= window.location.href.lastIndexOf('/')
+    fnameEnd=   window.location.href.indexOf('_', fnameStart )
+    if( fnameEnd < 0 ) {
+        fnameEnd=   window.location.href.indexOf('.', fnameStart )
+    }
+    if( fnameEnd > -1 ) {
+        subString= window.location.href.substring( fnameStart, fnameEnd )
+        $('li').toArray().forEach(function(li){
+            if(     typeof li.firstChild.href != 'undefined'
+                &&  li.firstChild.href.indexOf(subString) > 0 
+                ){
+               li.classList.add('current');
+            }
+        });
+    }
+  });
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +36,6 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="cs_stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,8 +45,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">ALox C# Reference
-   &#160;<span id="projectnumber">V. 1.1.2</span>
+   <div id="projectname">ALox 
+   &#160;<span id="projectnumber">Logging for C++, C# and Java (V 1.2.0)</span>
    </div>
   </td>
  </tr>
@@ -44,9 +63,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="../index.html"><span>ALox&#160;Home</span></a></li>
       <li><a href="../faq.html"><span>FAQ</span></a></li>
       <li><a href="../manual.html"><span>Manual</span></a></li>
-      <li><a href="setup_projects_vs_cs.html"><span>VStudio&#160;Setup</span></a></li>
-      <li><a href="tutorial_cs.html"><span>Tutorial</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Class&#160;Ref.</span></a></li>
+      <li><a href="../cpp_ref/cppmainpage.html"><span>ALox&#160;for&#160;C++</span></a></li>
+      <li class="current"><a href="csmainpage.html"><span>ALox&#160;for&#160;C#</span></a></li>
+      <li><a href="../java_ref/javamainpage.html"><span>ALox&#160;for&#160;Java</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -68,8 +87,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="csmainpage.html"><span>Overview</span></a></li>
+      <li><a href="cstutorial.html"><span>Tutorial</span></a></li>
+      <li><a href="cssetup.html"><span>IDE&#160;Setup</span></a></li>
+      <li><a href="cspruning.html"><span>Pruning&#160;ALox</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Class&#160;Reference</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="classes.html"><span>Alphabetical&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Namespace&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -100,22 +130,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>This is the complete list of members for <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a>, including all inherited members.</p>
 <table class="directory">
   <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#afb75ecb5fef3bcf61597efd190ca0114">DomainSeparatorChars</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#abaf3a8692758ecaaa7381ad97b1b2cd5">FindOrCreate</a>(MString domainPath, bool createIfNotExistant)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a4bdfd1d3df4067bb3896bf0efd60d9d2">findOrCreateInternal</a>(MString domainPath, int dpStartIdx, bool createIfNotExistant)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a50603924739c6bbdae7659502748cd17">FindOrCreate</a>(AString domainPath, bool createIfNotExistent)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a3dbd824df522f2dd394fb6c1af04134f">findOrCreateInternal</a>(AString domainPath, int dpStartIdx, bool createIfNotExistent)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a6b35d5ba376191a0aa5b9ed52b8f05e9">GetLevel</a>()</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a729bb906d248e54d997101d8faf8e1c0">IsActive</a>(Log.Level level)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a1a9f7325c08dd31ecae733ac275a3791">level</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a17cbb6fb2ea129b0bd1d08254c3ba0ce">LogDomain</a>(LogDomain parent, MString name)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a3328db10c8e026e2171ea6061e020bc8">Name</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a4b2481d3fafb3d3c257f67111e02b151">LogDomain</a>(LogDomain parent, AString name)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a0de551a5eb98c9fa084c954655523d7b">Name</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#adf9d6758ee68e2a2a72dcb13c400bc1d">Parent</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a6b11c04355e05570006df5aa449f62db">SetLevel</a>(Log.DomainLevel level, bool recursive)</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a376c0d4a4807be43e52cd1ad25a09ace">SubDomains</a></td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a012fbb0f39e57c0a44ec83dd408fcda3">ToString</a>()</td><td class="entry"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 4 2015 11:07:51 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

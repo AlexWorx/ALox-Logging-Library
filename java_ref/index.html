@@ -5,10 +5,30 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>ALox Java Reference: Java Reference</title>
+<title>ALox: Main Page</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<!-- so strange, that doxgen does not highlight each menu item. Just some... -->
+<script>
+  $(document).ready(function() {     
+    fnameStart= window.location.href.lastIndexOf('/')
+    fnameEnd=   window.location.href.indexOf('_', fnameStart )
+    if( fnameEnd < 0 ) {
+        fnameEnd=   window.location.href.indexOf('.', fnameStart )
+    }
+    if( fnameEnd > -1 ) {
+        subString= window.location.href.substring( fnameStart, fnameEnd )
+        $('li').toArray().forEach(function(li){
+            if(     typeof li.firstChild.href != 'undefined'
+                &&  li.firstChild.href.indexOf(subString) > 0 
+                ){
+               li.classList.add('current');
+            }
+        });
+    }
+  });
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +36,6 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="java_stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,8 +45,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">ALox Java Reference
-   &#160;<span id="projectnumber">V. 1.1.2</span>
+   <div id="projectname">ALox 
+   &#160;<span id="projectnumber">Logging for C++, C# and Java (V 1.2.0)</span>
    </div>
   </td>
  </tr>
@@ -44,9 +63,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="../index.html"><span>ALox&#160;Home</span></a></li>
       <li><a href="../faq.html"><span>FAQ</span></a></li>
       <li><a href="../manual.html"><span>Manual</span></a></li>
-      <li><a href="setup_projects_java.html"><span>IDE&#160;Setup</span></a></li>
-      <li><a href="tutorial_java.html"><span>Tutorial</span></a></li>
-      <li><a href="annotated.html"><span>Class&#160;Ref.</span></a></li>
+      <li><a href="../cpp_ref/cppmainpage.html"><span>ALox&#160;for&#160;C++</span></a></li>
+      <li><a href="../cs_ref/csmainpage.html"><span>ALox&#160;for&#160;C#</span></a></li>
+      <li><a href="javamainpage.html"><span>ALox&#160;for&#160;Java</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -83,30 +102,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Java Reference </div>  </div>
+<div class="title">ALox Documentation</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1>Welcome to ALox for Java!</h1>
-<p>This is a sub site of the ALox documentation specific to Java programming. The following information is found here:</p>
-<h2>Tutorial</h2>
-<p>If you are new to ALox, the easiest way to get familiar with it, is to walk yourself through the <a class="el" href="tutorial_java.html">ALox for Java Tutorial</a>.</p>
-<h2>Project Setup</h2>
-<p>The steps to configure Eclipse or any other JAVA IDE to support ALox is described here: <a class="el" href="setup_projects_java.html">Setup your IDE for Java Projects</a>.</p>
-<h2>ALox for Android</h2>
-<p>The Java Version is compatible with Android development and supports logging into LogCat. To stream ALox into LogCat create a logger of type <a class="el" href="classcom_1_1aworx_1_1lox_1_1android_1_1AndroidLogCatLogger.html">AndroidLogCatLogger</a> instead of type <a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html">ConsoleLogger</a> </p><pre class="fragment">Log.addLogger( new AndroidLogCatLogger("LogCat") );
-</pre><p>Attention: The normal <a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html">ConsoleLogger</a> would not produce any visible output using the Android Emulator or a debugging device.</p>
-<h2>Pruning ALox from your release code</h2>
-<p>Unlike C# (beginning in Version 5.0), JAVA does not provide a built-in mechanism to "prune" the debug log messages from the code. There are a range of tools available on the java tools market, that provide such feature (most commonly along with so called "obfuscation"). Samples of such tools will be given here in the future. (We are very thankful to receive your experience and tool description to incorporate into this documentation).</p>
-<h2>Class Reference</h2>
-<p>To browse the Java class reference, please use the page menu above.</p>
-<h2>Organization of code</h2>
-<p>In the class lists of this documentation, besides ALox you will find a bunch of classes that we call the "A-Worx Util" classes. They reside in the namespace <b>com.aworx.util</b>. Next to the provision of basic functionality, the motivation for creating util classes is to provide a similar interface to basic functionality of ALox across languages and platforms. In other word, the utility functions help ALox code to be very much alike across different languages and platforms.</p>
-<p>ALox itself consist of three namespaces. While the main classes that the user of ALox interfaces with reside in <b>com.aworx.lox</b>. Some specific loggers are found in <b>com.aworx.lox.loggers</b>. Internal classes are located in <b>com.aworx.lox.core</b>. </p>
-</div></div><!-- contents -->
+</div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 4 2015 11:07:52 for ALox Java Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

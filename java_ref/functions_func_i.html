@@ -5,10 +5,30 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>ALox Java Reference: Class Members - Functions</title>
+<title>ALox: Class Members - Functions</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<!-- so strange, that doxgen does not highlight each menu item. Just some... -->
+<script>
+  $(document).ready(function() {     
+    fnameStart= window.location.href.lastIndexOf('/')
+    fnameEnd=   window.location.href.indexOf('_', fnameStart )
+    if( fnameEnd < 0 ) {
+        fnameEnd=   window.location.href.indexOf('.', fnameStart )
+    }
+    if( fnameEnd > -1 ) {
+        subString= window.location.href.substring( fnameStart, fnameEnd )
+        $('li').toArray().forEach(function(li){
+            if(     typeof li.firstChild.href != 'undefined'
+                &&  li.firstChild.href.indexOf(subString) > 0 
+                ){
+               li.classList.add('current');
+            }
+        });
+    }
+  });
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +36,6 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="java_stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,8 +45,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">ALox Java Reference
-   &#160;<span id="projectnumber">V. 1.1.2</span>
+   <div id="projectname">ALox 
+   &#160;<span id="projectnumber">Logging for C++, C# and Java (V 1.2.0)</span>
    </div>
   </td>
  </tr>
@@ -44,9 +63,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="../index.html"><span>ALox&#160;Home</span></a></li>
       <li><a href="../faq.html"><span>FAQ</span></a></li>
       <li><a href="../manual.html"><span>Manual</span></a></li>
-      <li><a href="setup_projects_java.html"><span>IDE&#160;Setup</span></a></li>
-      <li><a href="tutorial_java.html"><span>Tutorial</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Class&#160;Ref.</span></a></li>
+      <li><a href="../cpp_ref/cppmainpage.html"><span>ALox&#160;for&#160;C++</span></a></li>
+      <li><a href="../cs_ref/csmainpage.html"><span>ALox&#160;for&#160;C#</span></a></li>
+      <li class="current"><a href="javamainpage.html"><span>ALox&#160;for&#160;Java</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -68,8 +87,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="javamainpage.html"><span>Overview</span></a></li>
+      <li><a href="javatutorial.html"><span>Tutorial</span></a></li>
+      <li><a href="javasetup.html"><span>IDE&#160;Setup</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Class&#160;Reference</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="classes.html"><span>Alphabetical&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Namespace&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li class="current"><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
   <div id="navrow3" class="tabs2">
@@ -122,19 +151,56 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 &#160;
 
 <h3><a class="anchor" id="index_i"></a>- i -</h3><ul>
+<li>inDays()
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1Ticks.html#a31c83e65e3095303c4bb97c449aa13bc">Ticks</a>
+</li>
 <li>indexOf()
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a1c43dcbb767f10f9a625ec20694999f6">LogBuf</a>
-, <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a42e25ea6c848edbbd49ee63def37b649">MString</a>
+, <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html#a3e44e1d9c56b96a7e1db0656dd3af4b6">AString</a>
 </li>
 <li>indexOfIgnoreCase()
-: <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a8f74b4b0a6c644cd3996a9fb9d2e2eed">MString</a>
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html#a8f74b4b0a6c644cd3996a9fb9d2e2eed">AString</a>
+</li>
+<li>inEpochMillis()
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1Ticks.html#a65458ace3466e99435e4e29e031ede2c">Ticks</a>
 </li>
 <li>info()
-: <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#acbf90a8c4639c26ee49091424a6b5ffb">Log</a>
+: <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a708d83da58cf7eac55373101ed7fca02">Log</a>
 , <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a43695b6a313e25c926b98f41ca74c501">Lox</a>
 </li>
+<li>inHertz()
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1Ticks.html#a79a577b2b9e92f87b0a1e0291b9bea5d">Ticks</a>
+</li>
+<li>inHours()
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1Ticks.html#a53fb0405457ab45aba7fd9b732c87d1a">Ticks</a>
+</li>
+<li>inJavaCalendar()
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1Ticks.html#a3f92554d6f535074ba4103f4f1aa6710">Ticks</a>
+</li>
+<li>inJavaDate()
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1Ticks.html#ac0004b8fdf5aa1fd59c04a7df9f7154b">Ticks</a>
+</li>
+<li>inMicros()
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1Ticks.html#aed28aba89562bc1814e57698fea06497">Ticks</a>
+</li>
+<li>inMillis()
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1Ticks.html#a17e4f6bcdde17ce19e74eedba30b7a92">Ticks</a>
+</li>
+<li>inMinutes()
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1Ticks.html#ab1b14224e582cc2128ebc93b38b26d13">Ticks</a>
+</li>
+<li>inNanos()
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1Ticks.html#af6fbe45ecb1220a3c05916838ca55e94">Ticks</a>
+</li>
+<li>inSeconds()
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1Ticks.html#acabdc79a1cf7fb62b4de583d486d26d6">Ticks</a>
+</li>
+<li>insert()
+: <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a053e10b122783f204d8640c1fd9f75d2">LogBuf</a>
+, <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html#a82435beccb0619b5b96d8df7b7a1c25d">AString</a>
+</li>
 <li>instance()
-: <a class="el" href="classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a91624d9df4759f974a7646e829171edc">LogTools</a>
+: <a class="el" href="classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a46eedcc7353667a139db8f4f70e6a20c">LogTools</a>
 </li>
 <li>instBeginLine()
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a1a60fd445cafbf21819717c2b817af7f">LogTools</a>
@@ -154,17 +220,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>instTabTypeAndNewLine()
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#acd7df3d826274b4de6bfc27f71c91168">LogTools</a>
 </li>
+<li>internalFrequency()
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1Ticks.html#a0742e4e08b37a31e44712b261429d7ab">Ticks</a>
+</li>
 <li>internalLog()
-: <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a5f28dc7cc5e8367ae94c0bd9ea180080">Lox</a>
+: <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#aa4cbc7d10fb7a53ae1b3f903512f6f75">Lox</a>
+</li>
+<li>isAcquired()
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#a841d9290e560021e7591de61d840fa4f">ThreadLock</a>
 </li>
 <li>isActive()
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a6d8ba3b2ebf63ea89e6cd80de592dcc4">LogDomain</a>
 </li>
 <li>isNullOrEmpty()
-: <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a27db2bd60df90fe3f6a20edbc0ccfc86">MString</a>
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html#a27db2bd60df90fe3f6a20edbc0ccfc86">AString</a>
 </li>
-<li>IsUnsafe()
-: <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#a99c4577e8eea7adb5b986d8b87627a23">ThreadLock</a>
+<li>isUnsafe()
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#a9f4fae0b1f082007631fffc976bc8381">ThreadLock</a>
 </li>
 <li>isWrapperType()
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a9ac188ccdcf753a6e332b18b46fddca0">LogTools</a>
@@ -174,7 +246,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 4 2015 11:07:52 for ALox Java Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

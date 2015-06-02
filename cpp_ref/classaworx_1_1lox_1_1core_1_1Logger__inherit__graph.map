@@ -1,0 +1,5 @@
+<map id="Logger" name="Logger">
+<area shape="rect" id="node2" href="$classaworx_1_1lox_1_1core_1_1TextLogger.html" title="TextLogger" alt="" coords="82,80,167,107"/>
+<area shape="rect" id="node3" href="$classaworx_1_1lox_1_1loggers_1_1ConsoleLogger.html" title="ConsoleLogger" alt="" coords="5,155,113,181"/>
+<area shape="rect" id="node4" href="$classaworx_1_1lox_1_1loggers_1_1MemoryLogger.html" title="MemoryLogger" alt="" coords="137,155,245,181"/>
+</map>

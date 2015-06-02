@@ -5,10 +5,30 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>ALox Java Reference: TextLogger Class Reference</title>
+<title>ALox: TextLogger Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<!-- so strange, that doxgen does not highlight each menu item. Just some... -->
+<script>
+  $(document).ready(function() {     
+    fnameStart= window.location.href.lastIndexOf('/')
+    fnameEnd=   window.location.href.indexOf('_', fnameStart )
+    if( fnameEnd < 0 ) {
+        fnameEnd=   window.location.href.indexOf('.', fnameStart )
+    }
+    if( fnameEnd > -1 ) {
+        subString= window.location.href.substring( fnameStart, fnameEnd )
+        $('li').toArray().forEach(function(li){
+            if(     typeof li.firstChild.href != 'undefined'
+                &&  li.firstChild.href.indexOf(subString) > 0 
+                ){
+               li.classList.add('current');
+            }
+        });
+    }
+  });
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +36,6 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="java_stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,8 +45,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">ALox Java Reference
-   &#160;<span id="projectnumber">V. 1.1.2</span>
+   <div id="projectname">ALox 
+   &#160;<span id="projectnumber">Logging for C++, C# and Java (V 1.2.0)</span>
    </div>
   </td>
  </tr>
@@ -44,9 +63,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="../index.html"><span>ALox&#160;Home</span></a></li>
       <li><a href="../faq.html"><span>FAQ</span></a></li>
       <li><a href="../manual.html"><span>Manual</span></a></li>
-      <li><a href="setup_projects_java.html"><span>IDE&#160;Setup</span></a></li>
-      <li><a href="tutorial_java.html"><span>Tutorial</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Class&#160;Ref.</span></a></li>
+      <li><a href="../cpp_ref/cppmainpage.html"><span>ALox&#160;for&#160;C++</span></a></li>
+      <li><a href="../cs_ref/csmainpage.html"><span>ALox&#160;for&#160;C#</span></a></li>
+      <li class="current"><a href="javamainpage.html"><span>ALox&#160;for&#160;Java</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -68,8 +87,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="javamainpage.html"><span>Overview</span></a></li>
+      <li><a href="javatutorial.html"><span>Tutorial</span></a></li>
+      <li><a href="javasetup.html"><span>IDE&#160;Setup</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Class&#160;Reference</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="classes.html"><span>Alphabetical&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Namespace&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -106,7 +135,7 @@ Inheritance diagram for TextLogger:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger__inherit__graph.png" border="0" usemap="#TextLogger_inherit__map" alt="Inheritance graph"/></div>
 <map name="TextLogger_inherit__map" id="TextLogger_inherit__map">
-<area shape="rect" id="node3" href="classcom_1_1aworx_1_1lox_1_1android_1_1AndroidLogCatLogger.html" title="AndroidLogCatLogger" alt="" coords="5,155,156,181"/><area shape="rect" id="node4" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html" title="ConsoleLogger" alt="" coords="180,155,291,181"/><area shape="rect" id="node5" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html" title="MemoryLogger" alt="" coords="315,155,425,181"/><area shape="rect" id="node6" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html" title="TextFileLogger" alt="" coords="450,155,559,181"/><area shape="rect" id="node2" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="271,5,333,32"/></map>
+<area shape="rect" id="node3" href="classcom_1_1aworx_1_1lox_1_1android_1_1AndroidLogCatLogger.html" title="AndroidLogCatLogger" alt="" coords="5,155,152,181"/><area shape="rect" id="node4" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html" title="ConsoleLogger" alt="" coords="177,155,285,181"/><area shape="rect" id="node5" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html" title="MemoryLogger" alt="" coords="309,155,417,181"/><area shape="rect" id="node6" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html" title="TextFileLogger" alt="" coords="441,155,548,181"/><area shape="rect" id="node2" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="265,5,327,32"/></map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -123,7 +152,7 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a927436a8c9c6474fc683bb0888f43b62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55f49a9dca5dd991ad7198b48307732b"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a55f49a9dca5dd991ad7198b48307732b">multiLineDelimiterRepl</a> = &quot;\\r&quot;</td></tr>
 <tr class="separator:a55f49a9dca5dd991ad7198b48307732b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeddddadb6299e40585333c787194c0fe"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#aeddddadb6299e40585333c787194c0fe">fmtMultiLineMsgHeadline</a> = &quot;ALox: Multi <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a9548b32ca965f5b2c9bbd82cc44cf75d">line</a> message follows: &quot;</td></tr>
+<tr class="memitem:aeddddadb6299e40585333c787194c0fe"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#aeddddadb6299e40585333c787194c0fe">fmtMultiLineMsgHeadline</a> = &quot;ALox: Multi <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a2dce807e6189d55feb7475b3d85ff1aa">line</a> message follows: &quot;</td></tr>
 <tr class="separator:aeddddadb6299e40585333c787194c0fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aecf89caaefb89a866f30dfe5c36394d1"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#aecf89caaefb89a866f30dfe5c36394d1">fmtMultiLinePrefix</a> = &quot;&gt;&gt; &quot;</td></tr>
 <tr class="separator:aecf89caaefb89a866f30dfe5c36394d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -134,10 +163,10 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a9a2326f35466e54c36c070829245c557 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a875cc7d46740caba1725c2f6580804e2 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a875cc7d46740caba1725c2f6580804e2">cntLogs</a></td></tr>
 <tr class="separator:a875cc7d46740caba1725c2f6580804e2 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0216d25a6442fb3b0ec187632a00a7c7 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1TickTime.html">TickTime</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a0216d25a6442fb3b0ec187632a00a7c7">timeOfCreation</a></td></tr>
-<tr class="separator:a0216d25a6442fb3b0ec187632a00a7c7 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a101380ea5d8e738d844f5562a39b5174 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1TickTime.html">TickTime</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a101380ea5d8e738d844f5562a39b5174">timeOfLastLog</a></td></tr>
-<tr class="separator:a101380ea5d8e738d844f5562a39b5174 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a882bb8a05cd44097f6e32eba9231d87e inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticks.html">Ticks</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a882bb8a05cd44097f6e32eba9231d87e">timeOfCreation</a></td></tr>
+<tr class="separator:a882bb8a05cd44097f6e32eba9231d87e inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a086aaa689b170f76cb4730aebbf01349 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticks.html">Ticks</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a086aaa689b170f76cb4730aebbf01349">timeOfLastLog</a></td></tr>
+<tr class="separator:a086aaa689b170f76cb4730aebbf01349 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7073fb6d6486e166ea6116e36bbecf2 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#ad7073fb6d6486e166ea6116e36bbecf2">isDisabled</a> = false</td></tr>
 <tr class="separator:ad7073fb6d6486e166ea6116e36bbecf2 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a92d0810f0bd233179da253ce5fcc4624 inherit pub_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a92d0810f0bd233179da253ce5fcc4624">rootDomain</a></td></tr>
@@ -147,40 +176,41 @@ Public Attributes</h2></td></tr>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a922bc82585360a89568276c894e3631c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a922bc82585360a89568276c894e3631c">TextLogger</a> (String <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a9a2326f35466e54c36c070829245c557">name</a>)</td></tr>
 <tr class="separator:a922bc82585360a89568276c894e3631c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1300bd920d9f44ebc751480932ed2585"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a1300bd920d9f44ebc751480932ed2585">doTextLog</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> domain, Log.Level level, <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> msg, int indent, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a> caller, int lineNumber)</td></tr>
-<tr class="separator:a1300bd920d9f44ebc751480932ed2585"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d2f1838c6403b062f5e7f481d97c51a"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a0d2f1838c6403b062f5e7f481d97c51a">doTextLog</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a> domain, Log.Level level, <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a> msg, int indent, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a> caller, int lineNumber)</td></tr>
+<tr class="separator:a0d2f1838c6403b062f5e7f481d97c51a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab090a408e4ee6f72ec11ac8d3ecea62c"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#ab090a408e4ee6f72ec11ac8d3ecea62c">notifyMultiLineOp</a> (boolean isStart)</td></tr>
 <tr class="separator:ab090a408e4ee6f72ec11ac8d3ecea62c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc9afa8c3afaaacb3c3321d58037070c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#acc9afa8c3afaaacb3c3321d58037070c">doLog</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> domain, Log.Level level, Object msgObject, int indent, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a> caller)</td></tr>
-<tr class="separator:acc9afa8c3afaaacb3c3321d58037070c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3744609850a36d0504a26479a44cb4d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#ae3744609850a36d0504a26479a44cb4d">doLog</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a> domain, Log.Level level, Object msgObject, int indent, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a> caller)</td></tr>
+<tr class="separator:ae3744609850a36d0504a26479a44cb4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></td></tr>
 <tr class="memitem:a42c27444187c8bea77c2b065a2ec183e inherit pro_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a42c27444187c8bea77c2b065a2ec183e">Logger</a> (String <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a9a2326f35466e54c36c070829245c557">name</a>)</td></tr>
 <tr class="separator:a42c27444187c8bea77c2b065a2ec183e inherit pro_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae6d2874b82786019b36b4ac8ca9c647 inherit pro_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#aae6d2874b82786019b36b4ac8ca9c647">doLog</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> domain, Log.Level level, Object msgObject, int indent, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a> caller)</td></tr>
-<tr class="separator:aae6d2874b82786019b36b4ac8ca9c647 inherit pro_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf2d4a3039b4c8e4f2f24289af899838 inherit pro_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#adf2d4a3039b4c8e4f2f24289af899838">doLog</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a> domain, Log.Level level, Object msgObject, int indent, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a> caller)</td></tr>
+<tr class="separator:adf2d4a3039b4c8e4f2f24289af899838 inherit pro_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:aaf37e693e36d895e18bcc1f6037f5d9e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#aaf37e693e36d895e18bcc1f6037f5d9e">logBuf</a> = new <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>( 256 )</td></tr>
-<tr class="separator:aaf37e693e36d895e18bcc1f6037f5d9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c3b59e6dc2850f90df33ae9b4533334"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a1c3b59e6dc2850f90df33ae9b4533334">logBuf</a> = new <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a>( 256 )</td></tr>
+<tr class="separator:a1c3b59e6dc2850f90df33ae9b4533334"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></td></tr>
-<tr class="memitem:af717d7b13f31ce14d19c3b24707f20f6 inherit pro_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#af717d7b13f31ce14d19c3b24707f20f6">tempDomainPath</a></td></tr>
-<tr class="separator:af717d7b13f31ce14d19c3b24707f20f6 inherit pro_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cc2685a7a9762a444e2a32736058c9a inherit pro_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a3cc2685a7a9762a444e2a32736058c9a">tempDomainPath</a></td></tr>
+<tr class="separator:a3cc2685a7a9762a444e2a32736058c9a inherit pro_attribs_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></td></tr>
-<tr class="memitem:a0319dd98a95a91fdd063b2c7f506c82f inherit pub_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a0319dd98a95a91fdd063b2c7f506c82f">createDomain</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> domainPath)</td></tr>
-<tr class="separator:a0319dd98a95a91fdd063b2c7f506c82f inherit pub_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a239cbe55cec8d923cc407ff5a65c2e7c inherit pub_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a239cbe55cec8d923cc407ff5a65c2e7c">findDomain</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> domainPath)</td></tr>
-<tr class="separator:a239cbe55cec8d923cc407ff5a65c2e7c inherit pub_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9548b32ca965f5b2c9bbd82cc44cf75d inherit pub_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a9548b32ca965f5b2c9bbd82cc44cf75d">line</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> domain, Log.Level level, Object msgObject, int indent, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a> caller)</td></tr>
-<tr class="separator:a9548b32ca965f5b2c9bbd82cc44cf75d inherit pub_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab16e7f7343e1a3df9c9991b436c0b427 inherit pub_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#ab16e7f7343e1a3df9c9991b436c0b427">createDomain</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a> domainPath)</td></tr>
+<tr class="separator:ab16e7f7343e1a3df9c9991b436c0b427 inherit pub_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46a8de5571bc2fb7ca7aa39bd328741c inherit pub_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html">LogDomain</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a46a8de5571bc2fb7ca7aa39bd328741c">findDomain</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a> domainPath)</td></tr>
+<tr class="separator:a46a8de5571bc2fb7ca7aa39bd328741c inherit pub_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2dce807e6189d55feb7475b3d85ff1aa inherit pub_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a2dce807e6189d55feb7475b3d85ff1aa">line</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a> domain, Log.Level level, Object msgObject, int indent, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a> caller)</td></tr>
+<tr class="separator:a2dce807e6189d55feb7475b3d85ff1aa inherit pub_methods_classcom_1_1aworx_1_1lox_1_1core_1_1Logger"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This class is a still abstract implementation of class <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> which is used as the super class for all textual <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> implementations within ALox, e.g. ConsoleLogger.</p>
+<div class="textblock"><hr/>
+<p> This class is a still abstract implementation of class <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> which is used as the super class for all textual <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> implementations within ALox, e.g. ConsoleLogger.</p>
 <p>The class uses two helper classes. One to convert the log message object into a string representation and a second to generate the textual representation of the meta information of a log call. These helpers can be extended and replaced to modify the behavior of <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html">TextLogger</a>.</p>
-<p>The final log message is then passed to the abstract method <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a1300bd920d9f44ebc751480932ed2585">doTextLog()</a>. Hence, custom <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> classes that inherited from this class instead of directly from class <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a42c27444187c8bea77c2b065a2ec183e">Logger</a>, need to implement <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a1300bd920d9f44ebc751480932ed2585">doTextLog()</a> instead of implementing <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#acc9afa8c3afaaacb3c3321d58037070c">doLog()</a>!</p>
+<p>The final log message is then passed to the abstract method <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a0d2f1838c6403b062f5e7f481d97c51a">doTextLog()</a>. Hence, custom <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> classes that inherited from this class instead of directly from class <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a42c27444187c8bea77c2b065a2ec183e">Logger</a>, need to implement <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a0d2f1838c6403b062f5e7f481d97c51a">doTextLog()</a> instead of implementing <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#ae3744609850a36d0504a26479a44cb4d">doLog()</a>!</p>
 <p>Class <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html">TextLogger</a> supports multi line log outputs. Such multi line log outputs can be configured to be logged in different ways. See <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#accadd49b1318abe7fc5b7ae8dcb0f431">multiLineMsgMode</a> for more information. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a922bc82585360a89568276c894e3631c"></a>
@@ -204,7 +234,8 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Constructs a <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html">TextLogger</a>.</p>
+<hr/>
+<p> Constructs a <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html">TextLogger</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>The name of the logger. </td></tr>
@@ -215,7 +246,7 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="acc9afa8c3afaaacb3c3321d58037070c"></a>
+<a class="anchor" id="ae3744609850a36d0504a26479a44cb4d"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -225,7 +256,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">void doLog </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a>&#160;</td>
           <td class="paramname"><em>domain</em>, </td>
         </tr>
         <tr>
@@ -264,12 +295,13 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Implementation of <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#aae6d2874b82786019b36b4ac8ca9c647">Logger.doLog()</a>. Creates all the textual information that is logged in a line before the message itself.</p>
+<hr/>
+<p> Implementation of <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#adf2d4a3039b4c8e4f2f24289af899838">Logger.doLog()</a>. Creates all the textual information that is logged in a line before the message itself.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">domain</td><td>The log domain name. If not starting with a slash ('/') this is appended to any default domain name that might have been specified for the source file. </td></tr>
     <tr><td class="paramname">level</td><td>The log level. This has been checked to be active already on this stage and is provided to be able to be logged out only. </td></tr>
-    <tr><td class="paramname">msgObject</td><td>The log message. If this is not a String (StringBuilder, MString, etc.) type, then is converted to a text using 'toString()'. </td></tr>
+    <tr><td class="paramname">msgObject</td><td>The log message. If this is not a String (StringBuilder, AString, etc.) type, then is converted to a text using 'toString()'. </td></tr>
     <tr><td class="paramname">indent</td><td>the indentation in the output. Defaults to 0. </td></tr>
     <tr><td class="paramname">caller</td><td>Once compiler generated and passed forward to here. </td></tr>
   </table>
@@ -278,7 +310,7 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a1300bd920d9f44ebc751480932ed2585"></a>
+<a class="anchor" id="a0d2f1838c6403b062f5e7f481d97c51a"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -288,7 +320,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">abstract void doTextLog </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a>&#160;</td>
           <td class="paramname"><em>domain</em>, </td>
         </tr>
         <tr>
@@ -300,7 +332,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a>&#160;</td>
           <td class="paramname"><em>msg</em>, </td>
         </tr>
         <tr>
@@ -333,7 +365,8 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>The abstract function that logs a text message to be implemented by descendants.</p>
+<hr/>
+<p> The abstract function that logs a text message to be implemented by descendants.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">domain</td><td>The log domain name. If not starting with a slash ('/') this is appended to any default domain name that might have been specified for the source file. </td></tr>
@@ -369,7 +402,9 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Abstract method to be implemented by descendants. This message is called only when multi-line messages are logged. It is called exactly once before a series of <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#acc9afa8c3afaaacb3c3321d58037070c">doLog()</a> calls of a multi-line message and exactly once after such series. The parameter isStart equals to true in the pre series call and to false in the post series call. This is useful if the writing of text includes the acquisition of system resources (e.g. opening a file).</p>
+<hr/>
+<p> Abstract method to be implemented by descendants. This message is called only when multi-line messages are logged. It is called exactly once before a series of <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#ae3744609850a36d0504a26479a44cb4d">doLog()</a> calls of a multi-line message and exactly once after such series.<br />
+ This is useful if the writing of text includes the acquisition of system resources (e.g. opening a file).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">isStart</td><td>If true, indicates the begin of a multi-line message, the end otherwise. </td></tr>
@@ -385,7 +420,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">String fmtMultiLineMsgHeadline = &quot;ALox: Multi <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a9548b32ca965f5b2c9bbd82cc44cf75d">line</a> message follows: &quot;</td>
+          <td class="memname">String fmtMultiLineMsgHeadline = &quot;ALox: Multi <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a2dce807e6189d55feb7475b3d85ff1aa">line</a> message follows: &quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -432,7 +467,7 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aaf37e693e36d895e18bcc1f6037f5d9e"></a>
+<a class="anchor" id="a1c3b59e6dc2850f90df33ae9b4533334"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -440,7 +475,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> logBuf = new <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>( 256 )</td>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a> logBuf = new <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a>( 256 )</td>
         </tr>
       </table>
   </td>
@@ -532,7 +567,7 @@ Additional Inherited Members</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 4 2015 11:07:52 for ALox Java Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

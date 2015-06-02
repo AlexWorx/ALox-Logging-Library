@@ -5,10 +5,30 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>ALox Java Reference: Class Hierarchy</title>
+<title>ALox: Class Hierarchy</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<!-- so strange, that doxgen does not highlight each menu item. Just some... -->
+<script>
+  $(document).ready(function() {     
+    fnameStart= window.location.href.lastIndexOf('/')
+    fnameEnd=   window.location.href.indexOf('_', fnameStart )
+    if( fnameEnd < 0 ) {
+        fnameEnd=   window.location.href.indexOf('.', fnameStart )
+    }
+    if( fnameEnd > -1 ) {
+        subString= window.location.href.substring( fnameStart, fnameEnd )
+        $('li').toArray().forEach(function(li){
+            if(     typeof li.firstChild.href != 'undefined'
+                &&  li.firstChild.href.indexOf(subString) > 0 
+                ){
+               li.classList.add('current');
+            }
+        });
+    }
+  });
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +36,6 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="java_stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,8 +45,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">ALox Java Reference
-   &#160;<span id="projectnumber">V. 1.1.2</span>
+   <div id="projectname">ALox 
+   &#160;<span id="projectnumber">Logging for C++, C# and Java (V 1.2.0)</span>
    </div>
   </td>
  </tr>
@@ -44,9 +63,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="../index.html"><span>ALox&#160;Home</span></a></li>
       <li><a href="../faq.html"><span>FAQ</span></a></li>
       <li><a href="../manual.html"><span>Manual</span></a></li>
-      <li><a href="setup_projects_java.html"><span>IDE&#160;Setup</span></a></li>
-      <li><a href="tutorial_java.html"><span>Tutorial</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Class&#160;Ref.</span></a></li>
+      <li><a href="../cpp_ref/cppmainpage.html"><span>ALox&#160;for&#160;C++</span></a></li>
+      <li><a href="../cs_ref/csmainpage.html"><span>ALox&#160;for&#160;C#</span></a></li>
+      <li class="current"><a href="javamainpage.html"><span>ALox&#160;for&#160;Java</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -68,8 +87,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="javamainpage.html"><span>Overview</span></a></li>
+      <li><a href="javatutorial.html"><span>Tutorial</span></a></li>
+      <li><a href="javasetup.html"><span>IDE&#160;Setup</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Class&#160;Reference</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="classes.html"><span>Alphabetical&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Namespace&#160;Index</span></a></li>
       <li class="current"><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -95,84 +124,92 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="textblock">
 <p><a href="hierarchy.html">Go to the textual class hierarchy</a></p>
 </div><table border="0" cellspacing="10" cellpadding="0">
-<tr><td><img src="inherit_graph_0.png" border="0" alt="" usemap="#AWXU"/>
+<tr><td><img src="inherit_graph_0.png" border="0" alt="" usemap="#AString"/>
+<map name="AString" id="AString">
+<area shape="rect" id="node2" href="classcom_1_1aworx_1_1util_1_1AString.html" title="AString" alt="" coords="160,5,225,32"/></map>
+</td></tr>
+<tr><td><img src="inherit_graph_1.png" border="0" alt="" usemap="#AString_8Align"/>
+<map name="AString_8Align" id="AString_8Align">
+<area shape="rect" id="node1" href="enumcom_1_1aworx_1_1util_1_1AString_1_1Align.html" title="AString.Align" alt="" coords="5,5,104,32"/></map>
+</td></tr>
+<tr><td><img src="inherit_graph_2.png" border="0" alt="" usemap="#AWXU"/>
 <map name="AWXU" id="AWXU">
-<area shape="rect" id="node1" href="classcom_1_1aworx_1_1util_1_1AWXU.html" title="AWXU" alt="" coords="5,5,67,32"/></map>
+<area shape="rect" id="node1" href="classcom_1_1aworx_1_1util_1_1AWXU.html" title="AWXU" alt="" coords="5,5,65,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_1.png" border="0" alt="" usemap="#AWXUErrorHandler"/>
+<tr><td><img src="inherit_graph_3.png" border="0" alt="" usemap="#AWXUErrorHandler"/>
 <map name="AWXUErrorHandler" id="AWXUErrorHandler">
-<area shape="rect" id="node1" href="interfacecom_1_1aworx_1_1util_1_1AWXUErrorHandler.html" title="AWXUErrorHandler" alt="" coords="5,5,140,32"/></map>
+<area shape="rect" id="node1" href="interfacecom_1_1aworx_1_1util_1_1AWXUErrorHandler.html" title="AWXUErrorHandler" alt="" coords="5,5,137,32"/><area shape="rect" id="node2" href="classcom_1_1aworx_1_1util_1_1ConsoleErrorHandler.html" title="ConsoleErrorHandler" alt="" coords="185,5,327,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_2.png" border="0" alt="" usemap="#CallerInfo"/>
+<tr><td><img src="inherit_graph_4.png" border="0" alt="" usemap="#CallerInfo"/>
 <map name="CallerInfo" id="CallerInfo">
-<area shape="rect" id="node1" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html" title="CallerInfo" alt="" coords="5,5,81,32"/></map>
+<area shape="rect" id="node1" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html" title="CallerInfo" alt="" coords="5,5,80,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_3.png" border="0" alt="" usemap="#Log"/>
+<tr><td><img src="inherit_graph_5.png" border="0" alt="" usemap="#Log"/>
 <map name="Log" id="Log">
-<area shape="rect" id="node1" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="Log" alt="" coords="5,5,49,32"/></map>
+<area shape="rect" id="node1" href="classcom_1_1aworx_1_1lox_1_1Log.html" title="Log" alt="" coords="5,5,48,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_4.png" border="0" alt="" usemap="#Log_8DomainLevel"/>
+<tr><td><img src="inherit_graph_6.png" border="0" alt="" usemap="#Log_8DomainLevel"/>
 <map name="Log_8DomainLevel" id="Log_8DomainLevel">
-<area shape="rect" id="node1" href="enumcom_1_1aworx_1_1lox_1_1Log_1_1DomainLevel.html" title="Log.DomainLevel" alt="" coords="5,5,128,32"/></map>
+<area shape="rect" id="node1" href="enumcom_1_1aworx_1_1lox_1_1Log_1_1DomainLevel.html" title="Log.DomainLevel" alt="" coords="5,5,125,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_5.png" border="0" alt="" usemap="#Log_8Level"/>
+<tr><td><img src="inherit_graph_7.png" border="0" alt="" usemap="#Log_8Level"/>
 <map name="Log_8Level" id="Log_8Level">
-<area shape="rect" id="node1" href="enumcom_1_1aworx_1_1lox_1_1Log_1_1Level.html" title="Log.Level" alt="" coords="5,5,84,32"/></map>
+<area shape="rect" id="node1" href="enumcom_1_1aworx_1_1lox_1_1Log_1_1Level.html" title="Log.Level" alt="" coords="5,5,81,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_6.png" border="0" alt="" usemap="#Log_8Scope"/>
+<tr><td><img src="inherit_graph_8.png" border="0" alt="" usemap="#Log_8Scope"/>
 <map name="Log_8Scope" id="Log_8Scope">
-<area shape="rect" id="node1" href="enumcom_1_1aworx_1_1lox_1_1Log_1_1Scope.html" title="Log.Scope" alt="" coords="5,5,91,32"/></map>
+<area shape="rect" id="node1" href="enumcom_1_1aworx_1_1lox_1_1Log_1_1Scope.html" title="Log.Scope" alt="" coords="5,5,89,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_7.png" border="0" alt="" usemap="#LogBuf"/>
+<tr><td><img src="inherit_graph_9.png" border="0" alt="" usemap="#LogBuf"/>
 <map name="LogBuf" id="LogBuf">
 <area shape="rect" id="node1" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html" title="LogBuf" alt="" coords="5,5,68,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_8.png" border="0" alt="" usemap="#LogDomain"/>
+<tr><td><img src="inherit_graph_10.png" border="0" alt="" usemap="#LogDomain"/>
 <map name="LogDomain" id="LogDomain">
-<area shape="rect" id="node1" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html" title="LogDomain" alt="" coords="5,5,95,32"/></map>
+<area shape="rect" id="node1" href="classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html" title="LogDomain" alt="" coords="5,5,92,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_9.png" border="0" alt="" usemap="#Logger"/>
+<tr><td><img src="inherit_graph_11.png" border="0" alt="" usemap="#Logger"/>
 <map name="Logger" id="Logger">
-<area shape="rect" id="node1" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="5,81,68,108"/><area shape="rect" id="node2" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html" title="TextLogger" alt="" coords="116,81,204,108"/><area shape="rect" id="node3" href="classcom_1_1aworx_1_1lox_1_1android_1_1AndroidLogCatLogger.html" title="AndroidLogCatLogger" alt="" coords="252,5,403,32"/><area shape="rect" id="node4" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html" title="ConsoleLogger" alt="" coords="272,56,383,83"/><area shape="rect" id="node5" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html" title="MemoryLogger" alt="" coords="272,107,383,133"/><area shape="rect" id="node6" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html" title="TextFileLogger" alt="" coords="273,157,382,184"/></map>
+<area shape="rect" id="node1" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="5,81,67,108"/><area shape="rect" id="node2" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html" title="TextLogger" alt="" coords="115,81,200,108"/><area shape="rect" id="node3" href="classcom_1_1aworx_1_1lox_1_1android_1_1AndroidLogCatLogger.html" title="AndroidLogCatLogger" alt="" coords="248,5,395,32"/><area shape="rect" id="node4" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html" title="ConsoleLogger" alt="" coords="267,56,375,83"/><area shape="rect" id="node5" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html" title="MemoryLogger" alt="" coords="267,107,375,133"/><area shape="rect" id="node6" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html" title="TextFileLogger" alt="" coords="268,157,375,184"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_10.png" border="0" alt="" usemap="#LogTools"/>
+<tr><td><img src="inherit_graph_12.png" border="0" alt="" usemap="#LogTools"/>
 <map name="LogTools" id="LogTools">
-<area shape="rect" id="node1" href="classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html" title="LogTools" alt="" coords="5,5,81,32"/></map>
+<area shape="rect" id="node1" href="classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html" title="LogTools" alt="" coords="5,5,79,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_11.png" border="0" alt="" usemap="#Lox"/>
+<tr><td><img src="inherit_graph_13.png" border="0" alt="" usemap="#Lox"/>
 <map name="Lox" id="Lox">
 <area shape="rect" id="node1" href="classcom_1_1aworx_1_1lox_1_1Lox.html" title="Lox" alt="" coords="5,5,48,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_12.png" border="0" alt="" usemap="#MString"/>
-<map name="MString" id="MString">
-<area shape="rect" id="node2" href="classcom_1_1aworx_1_1util_1_1MString.html" title="MString" alt="" coords="163,5,229,32"/></map>
-</td></tr>
-<tr><td><img src="inherit_graph_13.png" border="0" alt="" usemap="#TextLoggerLineFormatter"/>
+<tr><td><img src="inherit_graph_14.png" border="0" alt="" usemap="#TextLoggerLineFormatter"/>
 <map name="TextLoggerLineFormatter" id="TextLoggerLineFormatter">
-<area shape="rect" id="node1" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html" title="TextLoggerLineFormatter" alt="" coords="5,5,172,32"/></map>
+<area shape="rect" id="node1" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html" title="TextLoggerLineFormatter" alt="" coords="5,5,171,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_14.png" border="0" alt="" usemap="#TextLoggerObjectConverter"/>
+<tr><td><img src="inherit_graph_15.png" border="0" alt="" usemap="#TextLoggerObjectConverter"/>
 <map name="TextLoggerObjectConverter" id="TextLoggerObjectConverter">
-<area shape="rect" id="node1" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html" title="TextLoggerObjectConverter" alt="" coords="5,5,188,32"/></map>
+<area shape="rect" id="node1" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html" title="TextLoggerObjectConverter" alt="" coords="5,5,183,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_15.png" border="0" alt="" usemap="#ThreadLock"/>
+<tr><td><img src="inherit_graph_16.png" border="0" alt="" usemap="#ThreadLock"/>
 <map name="ThreadLock" id="ThreadLock">
-<area shape="rect" id="node1" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html" title="ThreadLock" alt="" coords="5,5,99,32"/></map>
+<area shape="rect" id="node1" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html" title="ThreadLock" alt="" coords="5,5,95,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_16.png" border="0" alt="" usemap="#Ticker"/>
-<map name="Ticker" id="Ticker">
-<area shape="rect" id="node1" href="classcom_1_1aworx_1_1util_1_1Ticker.html" title="Ticker" alt="" coords="5,5,64,32"/></map>
+<tr><td><img src="inherit_graph_17.png" border="0" alt="" usemap="#Ticks"/>
+<map name="Ticks" id="Ticks">
+<area shape="rect" id="node1" href="classcom_1_1aworx_1_1util_1_1Ticks.html" title="Ticks" alt="" coords="5,5,59,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_17.png" border="0" alt="" usemap="#TickTime"/>
-<map name="TickTime" id="TickTime">
-<area shape="rect" id="node1" href="classcom_1_1aworx_1_1util_1_1TickTime.html" title="TickTime" alt="" coords="5,5,84,32"/></map>
+<tr><td><img src="inherit_graph_18.png" border="0" alt="" usemap="#TicksSpan"/>
+<map name="TicksSpan" id="TicksSpan">
+<area shape="rect" id="node1" href="classcom_1_1aworx_1_1util_1_1TicksSpan.html" title="TicksSpan" alt="" coords="5,5,88,32"/></map>
+</td></tr>
+<tr><td><img src="inherit_graph_19.png" border="0" alt="" usemap="#TickWatch"/>
+<map name="TickWatch" id="TickWatch">
+<area shape="rect" id="node1" href="classcom_1_1aworx_1_1util_1_1TickWatch.html" title="TickWatch" alt="" coords="5,5,89,32"/></map>
 </td></tr>
 </table>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 4 2015 11:07:52 for ALox Java Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

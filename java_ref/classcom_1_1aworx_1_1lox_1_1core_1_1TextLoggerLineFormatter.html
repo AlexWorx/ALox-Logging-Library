@@ -5,10 +5,30 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>ALox Java Reference: TextLoggerLineFormatter Class Reference</title>
+<title>ALox: TextLoggerLineFormatter Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<!-- so strange, that doxgen does not highlight each menu item. Just some... -->
+<script>
+  $(document).ready(function() {     
+    fnameStart= window.location.href.lastIndexOf('/')
+    fnameEnd=   window.location.href.indexOf('_', fnameStart )
+    if( fnameEnd < 0 ) {
+        fnameEnd=   window.location.href.indexOf('.', fnameStart )
+    }
+    if( fnameEnd > -1 ) {
+        subString= window.location.href.substring( fnameStart, fnameEnd )
+        $('li').toArray().forEach(function(li){
+            if(     typeof li.firstChild.href != 'undefined'
+                &&  li.firstChild.href.indexOf(subString) > 0 
+                ){
+               li.classList.add('current');
+            }
+        });
+    }
+  });
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +36,6 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="java_stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,8 +45,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">ALox Java Reference
-   &#160;<span id="projectnumber">V. 1.1.2</span>
+   <div id="projectname">ALox 
+   &#160;<span id="projectnumber">Logging for C++, C# and Java (V 1.2.0)</span>
    </div>
   </td>
  </tr>
@@ -44,9 +63,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="../index.html"><span>ALox&#160;Home</span></a></li>
       <li><a href="../faq.html"><span>FAQ</span></a></li>
       <li><a href="../manual.html"><span>Manual</span></a></li>
-      <li><a href="setup_projects_java.html"><span>IDE&#160;Setup</span></a></li>
-      <li><a href="tutorial_java.html"><span>Tutorial</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Class&#160;Ref.</span></a></li>
+      <li><a href="../cpp_ref/cppmainpage.html"><span>ALox&#160;for&#160;C++</span></a></li>
+      <li><a href="../cs_ref/csmainpage.html"><span>ALox&#160;for&#160;C#</span></a></li>
+      <li class="current"><a href="javamainpage.html"><span>ALox&#160;for&#160;Java</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -68,8 +87,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="javamainpage.html"><span>Overview</span></a></li>
+      <li><a href="javatutorial.html"><span>Tutorial</span></a></li>
+      <li><a href="javasetup.html"><span>IDE&#160;Setup</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Class&#160;Reference</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="classes.html"><span>Alphabetical&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Namespace&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -104,8 +133,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a192fd58992fe417f2e55725737fbb281"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a192fd58992fe417f2e55725737fbb281">format</a> = new <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>( &quot;(%CF) %CM():%A9[%TE +%TI] [%t] %L [%O]: &quot;)</td></tr>
-<tr class="separator:a192fd58992fe417f2e55725737fbb281"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade879c363f20d8d0acb216f8bf40d1af"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#ade879c363f20d8d0acb216f8bf40d1af">format</a> = new <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a>( &quot;(%CF:%CL) %CM():%A8[%TE +%TI] [%t] %L [%O]: &quot;)</td></tr>
+<tr class="separator:ade879c363f20d8d0acb216f8bf40d1af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a81a1aa55e14721a198990dfe3f11eb6f"><td class="memItemLeft" align="right" valign="top">int[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a81a1aa55e14721a198990dfe3f11eb6f">autoTabs</a></td></tr>
 <tr class="separator:a81a1aa55e14721a198990dfe3f11eb6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa49de5c950d98088ddc25dbb15fe00b4"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#aa49de5c950d98088ddc25dbb15fe00b4">indentString</a> = &quot; &quot;</td></tr>
@@ -124,6 +153,14 @@ Public Attributes</h2></td></tr>
 <tr class="separator:ab07f305b621e1b1dce257bd84dd113d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada00d3322cceb4f8029c90415bece6dc"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#ada00d3322cceb4f8029c90415bece6dc">timeElapsedDays</a> = &quot; Days &quot;</td></tr>
 <tr class="separator:ada00d3322cceb4f8029c90415bece6dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fae20d2201f5614478d7059bc21a83b"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a5fae20d2201f5614478d7059bc21a83b">timeDiffMinimum</a> = 1000L</td></tr>
+<tr class="memdesc:a5fae20d2201f5614478d7059bc21a83b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum time difference to log in nanoseconds. Below that <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#ac2271bba51087e2f4eae1317b0c20cbf" title="Output for time difference if below reasonable (measurable) minimum defined in timeDiffMinimum.">timeDiffNone</a> is written. <a href="#a5fae20d2201f5614478d7059bc21a83b">More...</a><br /></td></tr>
+<tr class="separator:a5fae20d2201f5614478d7059bc21a83b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2271bba51087e2f4eae1317b0c20cbf"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#ac2271bba51087e2f4eae1317b0c20cbf">timeDiffNone</a> = &quot; 0 ns&quot;</td></tr>
+<tr class="memdesc:ac2271bba51087e2f4eae1317b0c20cbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output for time difference if below reasonable (measurable) minimum defined in <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a5fae20d2201f5614478d7059bc21a83b" title="Minimum time difference to log in nanoseconds. Below that timeDiffNone is written.">timeDiffMinimum</a>. <a href="#ac2271bba51087e2f4eae1317b0c20cbf">More...</a><br /></td></tr>
+<tr class="separator:ac2271bba51087e2f4eae1317b0c20cbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8903e256c6c43883ac7782f89af21c3e"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a8903e256c6c43883ac7782f89af21c3e">timeDiffNanos</a> = &quot; ns&quot;</td></tr>
+<tr class="separator:a8903e256c6c43883ac7782f89af21c3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab09736328de999364378426c1815de02"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#ab09736328de999364378426c1815de02">timeDiffMicros</a> = &quot; \u00B5s&quot;</td></tr>
 <tr class="separator:ab09736328de999364378426c1815de02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed18be4469f8723bc9f5b2424de8f5ff"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#aed18be4469f8723bc9f5b2424de8f5ff">timeDiffMillis</a> = &quot; ms&quot;</td></tr>
@@ -149,12 +186,12 @@ Public Attributes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:af4b23ead89f585c6aa6f53834d54cabd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#af4b23ead89f585c6aa6f53834d54cabd">writeMetaInfo</a> (<a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> logger, <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> buf, <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> domain, Log.Level level, int indent, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a> caller)</td></tr>
-<tr class="separator:af4b23ead89f585c6aa6f53834d54cabd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d055940037fdff1e6b956f93a0bc69b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a7d055940037fdff1e6b956f93a0bc69b">processVariable</a> (<a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> logger, <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> domain, Log.Level level, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a> caller, <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> buf, char[] formatString, int formatStringIdx)</td></tr>
-<tr class="separator:a7d055940037fdff1e6b956f93a0bc69b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab61a682d25d6320be877e7ae1c5252de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#ab61a682d25d6320be877e7ae1c5252de">writeTimeDiff</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> buf, long diffMicros)</td></tr>
-<tr class="separator:ab61a682d25d6320be877e7ae1c5252de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a181b52e3f4e3d6c8c9ea0ed4204b01a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a181b52e3f4e3d6c8c9ea0ed4204b01a5">writeMetaInfo</a> (<a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> logger, <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a> buf, <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a> domain, Log.Level level, int indent, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a> caller)</td></tr>
+<tr class="separator:a181b52e3f4e3d6c8c9ea0ed4204b01a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adce71ccf0811ecb4db84dab1c31ca534"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#adce71ccf0811ecb4db84dab1c31ca534">processVariable</a> (<a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> logger, <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a> domain, Log.Level level, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a> caller, <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a> buf, int formatStringIdx)</td></tr>
+<tr class="separator:adce71ccf0811ecb4db84dab1c31ca534"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76ab63afbc5db68c837d0957f1a1fee9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a76ab63afbc5db68c837d0957f1a1fee9">writeTimeDiffx</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a> buf, long diffNanos)</td></tr>
+<tr class="separator:a76ab63afbc5db68c837d0957f1a1fee9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -168,6 +205,8 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:afd9a7b449b94e4b73ee04db72e27d384"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe17394f84cf5bdb4891727e32f49300"><td class="memItemLeft" align="right" valign="top">StringBuffer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#afe17394f84cf5bdb4891727e32f49300">tempSBuf</a> = new StringBuffer()</td></tr>
 <tr class="separator:afe17394f84cf5bdb4891727e32f49300"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add986b1c980b4ef85ba51f1c2fbabf36"><td class="memItemLeft" align="right" valign="top">int[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#add986b1c980b4ef85ba51f1c2fbabf36">tempIntParameter</a> = new int[1]</td></tr>
+<tr class="separator:add986b1c980b4ef85ba51f1c2fbabf36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a80d3b9e454f65277d0245306d9abd668"><td class="memItemLeft" align="right" valign="top">FieldPosition&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a80d3b9e454f65277d0245306d9abd668">fieldPositionZero</a> = new FieldPosition( 0 )</td></tr>
 <tr class="separator:a80d3b9e454f65277d0245306d9abd668"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a917c9b55d2f0a57a7e467b01193f20f5"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a917c9b55d2f0a57a7e467b01193f20f5">defaultfmtDate</a> = &quot;yyyy-MM-dd&quot;</td></tr>
@@ -176,17 +215,19 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a7fcc81983c7adc0ded7cf48f504fe001"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6baac125a9d8081f25ff930d5d90edbe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a6baac125a9d8081f25ff930d5d90edbe">autoTabNo</a></td></tr>
 <tr class="separator:a6baac125a9d8081f25ff930d5d90edbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adedec128194bf2443775544e4ebf0b47"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1TicksSpan.html">TicksSpan</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#adedec128194bf2443775544e4ebf0b47">elapsed</a> = new <a class="el" href="classcom_1_1aworx_1_1util_1_1TicksSpan.html">TicksSpan</a>()</td></tr>
+<tr class="separator:adedec128194bf2443775544e4ebf0b47"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><hr/>
 <p> This class is a sort of plug-in for the <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html">TextLogger</a> class. Its purpose is to assemble the meta information of each log line (things like timestamps, thread information, level and domain, etc.).</p>
 <p>To manipulate the meta information log output, three options exist:</p><ul>
-<li>by just changing the <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a192fd58992fe417f2e55725737fbb281">format</a> string (at runtime).</li>
-<li>by creating a derived class that introduces a new version of method <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a7d055940037fdff1e6b956f93a0bc69b">processVariable()</a> to handle one or more format variable differently or to introduce new variables.</li>
-<li>by creating a derived class that introduces a new version of method <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#af4b23ead89f585c6aa6f53834d54cabd">writeMetaInfo()</a> to completely control the meta information output. </li>
+<li>by just changing the <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#ade879c363f20d8d0acb216f8bf40d1af">format</a> string (at runtime).</li>
+<li>by creating a derived class that introduces a new version of method <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#adce71ccf0811ecb4db84dab1c31ca534">processVariable()</a> to handle one or more format variable differently or to introduce new variables.</li>
+<li>by creating a derived class that introduces a new version of method <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a181b52e3f4e3d6c8c9ea0ed4204b01a5">writeMetaInfo()</a> to completely control the meta information output. </li>
 </ul>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a7d055940037fdff1e6b956f93a0bc69b"></a>
+<a class="anchor" id="adce71ccf0811ecb4db84dab1c31ca534"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -202,7 +243,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a>&#160;</td>
           <td class="paramname"><em>domain</em>, </td>
         </tr>
         <tr>
@@ -220,14 +261,8 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a>&#160;</td>
           <td class="paramname"><em>buf</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char[]&#160;</td>
-          <td class="paramname"><em>formatString</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -256,7 +291,6 @@ Protected Attributes</h2></td></tr>
     <tr><td class="paramname">level</td><td>The log level. This has been checked to be active already on this stage and is provided to be able to be logged out only. </td></tr>
     <tr><td class="paramname">caller</td><td>Once compiler generated and passed forward to here. </td></tr>
     <tr><td class="paramname">buf</td><td>The buffer to write meta information into. </td></tr>
-    <tr><td class="paramname">formatString</td><td>The format string that is parsed. </td></tr>
     <tr><td class="paramname">formatStringIdx</td><td>The index of the command in the format string.</td></tr>
   </table>
   </dd>
@@ -265,7 +299,7 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="af4b23ead89f585c6aa6f53834d54cabd"></a>
+<a class="anchor" id="a181b52e3f4e3d6c8c9ea0ed4204b01a5"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -281,13 +315,13 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a>&#160;</td>
           <td class="paramname"><em>buf</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a>&#160;</td>
           <td class="paramname"><em>domain</em>, </td>
         </tr>
         <tr>
@@ -321,7 +355,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Parses the <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a192fd58992fe417f2e55725737fbb281">format</a> string and logs meta information into the log buffer. </p><dl class="params"><dt>Parameters</dt><dd>
+<p> Parses the <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#ade879c363f20d8d0acb216f8bf40d1af">format</a> string and logs meta information into the log buffer. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">logger</td><td>The logger that we are embedded in. </td></tr>
     <tr><td class="paramname">buf</td><td>The buffer to write meta information into. </td></tr>
@@ -335,7 +369,7 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ab61a682d25d6320be877e7ae1c5252de"></a>
+<a class="anchor" id="a76ab63afbc5db68c837d0957f1a1fee9"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -343,16 +377,16 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void writeTimeDiff </td>
+          <td class="memname">void writeTimeDiffx </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a>&#160;</td>
           <td class="paramname"><em>buf</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">long&#160;</td>
-          <td class="paramname"><em>diffMicros</em>&#160;</td>
+          <td class="paramname"><em>diffNanos</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -366,11 +400,12 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Helper function that logs a time given difference into the given buffer in a human readable format. Works from micro seconds to days.</p>
+<hr/>
+<p> Helper function that logs a time given difference into the given buffer in a human readable format. Works from nano seconds to days.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">buf</td><td>The buffer to write the time difference representation into. </td></tr>
-    <tr><td class="paramname">diffMicros</td><td>The time difference to write in microseconds. </td></tr>
+    <tr><td class="paramname">diffNanos</td><td>The time difference to write in nanoseconds. </td></tr>
   </table>
   </dd>
 </dl>
@@ -590,6 +625,27 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="adedec128194bf2443775544e4ebf0b47"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1util_1_1TicksSpan.html">TicksSpan</a> elapsed = new <a class="el" href="classcom_1_1aworx_1_1util_1_1TicksSpan.html">TicksSpan</a>()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>A reusable object for displaying the elapsed time span </p>
+
+</div>
+</div>
 <a class="anchor" id="a80d3b9e454f65277d0245306d9abd668"></a>
 <div class="memitem">
 <div class="memproto">
@@ -611,12 +667,12 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a192fd58992fe417f2e55725737fbb281"></a>
+<a class="anchor" id="ade879c363f20d8d0acb216f8bf40d1af"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> format = new <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>( &quot;(%CF) %CM():%A9[%TE +%TI] [%t] %L [%O]: &quot;)</td>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a> format = new <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a>( &quot;(%CF:%CL) %CM():%A8[%TE +%TI] [%t] %L [%O]: &quot;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -624,6 +680,8 @@ Protected Attributes</h2></td></tr>
 <p>The string supports replacement variables that begin with a % sign</p><ul>
 <li>CF: The caller's source file name</li>
 <li>CL: The line number in the caller's source file</li>
+<li>CP: The caller's package name</li>
+<li>CC: The caller's class name</li>
 <li>CM: The caller's method name</li>
 <li>D: Date</li>
 <li>TD: Time of day</li>
@@ -633,7 +691,8 @@ Protected Attributes</h2></td></tr>
 <li>L: The log level</li>
 <li>O: <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> domain</li>
 <li>%#: The log call counter (like a line counter, but counting multi lines as one)</li>
-<li>Ax: An auto-adjusted tabulator. This grows whenever it needs, but never shrinks. The mandatory number x (a character between 0 and 9) specifies how much extra space is added when tab is adjusted </li>
+<li>An: An auto-adjusted tabulator. This grows whenever it needs, but never shrinks. The optional integer number n specifies how much extra space is added when tab is adjusted. Setting this to a higher value avoids too many adjustments at the beginning of a log session.</li>
+<li>N: The name of the logger. This might be useful if multiple loggers write to the same output stream (e.g. Console). </li>
 </ul>
 
 </div>
@@ -716,6 +775,27 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="add986b1c980b4ef85ba51f1c2fbabf36"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int [] tempIntParameter = new int[1]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Internal object to pass int parameters to methods that modify those </p>
+
+</div>
+</div>
 <a class="anchor" id="afe17394f84cf5bdb4891727e32f49300"></a>
 <div class="memitem">
 <div class="memproto">
@@ -772,7 +852,7 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Entity microseconds for time difference outputs below 1000 microseconds. </p>
+<p>Entity microseconds </p>
 
 </div>
 </div>
@@ -785,7 +865,21 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Entity milliseconds for time difference outputs below 1000 milliseconds. </p>
+<p>Entity milliseconds </p>
+
+</div>
+</div>
+<a class="anchor" id="a5fae20d2201f5614478d7059bc21a83b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">long timeDiffMinimum = 1000L</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Minimum time difference to log in nanoseconds. Below that <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#ac2271bba51087e2f4eae1317b0c20cbf" title="Output for time difference if below reasonable (measurable) minimum defined in timeDiffMinimum.">timeDiffNone</a> is written.</p>
 
 </div>
 </div>
@@ -799,6 +893,33 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Format for time difference outputs between 100s and 60 min. </p>
+
+</div>
+</div>
+<a class="anchor" id="a8903e256c6c43883ac7782f89af21c3e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String timeDiffNanos = &quot; ns&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Entity milliseconds. </p>
+
+</div>
+</div>
+<a class="anchor" id="ac2271bba51087e2f4eae1317b0c20cbf"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String timeDiffNone = &quot; 0 ns&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Output for time difference if below reasonable (measurable) minimum defined in <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a5fae20d2201f5614478d7059bc21a83b" title="Minimum time difference to log in nanoseconds. Below that timeDiffNone is written.">timeDiffMinimum</a>.</p>
 
 </div>
 </div>
@@ -861,7 +982,7 @@ Protected Attributes</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 4 2015 11:07:52 for ALox Java Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

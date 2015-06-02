@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['useassertions',['UseAssertions',['../classcom_1_1aworx_1_1util_1_1ThreadLock.html#a7b9819e5cf7944efedca64a67c5adbfc',1,'com::aworx::util::ThreadLock']]]
+  ['version',['Version',['../classcom_1_1aworx_1_1lox_1_1Lox.html#a1a33f478950a66f73f765da03857e91a',1,'com::aworx::lox::Lox']]]
 ];

@@ -5,10 +5,30 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>ALox Java Reference: LogBuf Class Reference</title>
+<title>ALox: LogBuf Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<!-- so strange, that doxgen does not highlight each menu item. Just some... -->
+<script>
+  $(document).ready(function() {     
+    fnameStart= window.location.href.lastIndexOf('/')
+    fnameEnd=   window.location.href.indexOf('_', fnameStart )
+    if( fnameEnd < 0 ) {
+        fnameEnd=   window.location.href.indexOf('.', fnameStart )
+    }
+    if( fnameEnd > -1 ) {
+        subString= window.location.href.substring( fnameStart, fnameEnd )
+        $('li').toArray().forEach(function(li){
+            if(     typeof li.firstChild.href != 'undefined'
+                &&  li.firstChild.href.indexOf(subString) > 0 
+                ){
+               li.classList.add('current');
+            }
+        });
+    }
+  });
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +36,6 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="java_stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,8 +45,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">ALox Java Reference
-   &#160;<span id="projectnumber">V. 1.1.2</span>
+   <div id="projectname">ALox 
+   &#160;<span id="projectnumber">Logging for C++, C# and Java (V 1.2.0)</span>
    </div>
   </td>
  </tr>
@@ -44,9 +63,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="../index.html"><span>ALox&#160;Home</span></a></li>
       <li><a href="../faq.html"><span>FAQ</span></a></li>
       <li><a href="../manual.html"><span>Manual</span></a></li>
-      <li><a href="setup_projects_java.html"><span>IDE&#160;Setup</span></a></li>
-      <li><a href="tutorial_java.html"><span>Tutorial</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Class&#160;Ref.</span></a></li>
+      <li><a href="../cpp_ref/cppmainpage.html"><span>ALox&#160;for&#160;C++</span></a></li>
+      <li><a href="../cs_ref/csmainpage.html"><span>ALox&#160;for&#160;C#</span></a></li>
+      <li class="current"><a href="javamainpage.html"><span>ALox&#160;for&#160;Java</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -68,8 +87,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="javamainpage.html"><span>Overview</span></a></li>
+      <li><a href="javatutorial.html"><span>Tutorial</span></a></li>
+      <li><a href="javasetup.html"><span>IDE&#160;Setup</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Class&#160;Reference</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="classes.html"><span>Alphabetical&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Namespace&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -107,130 +136,98 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a736a6ff738666fcdf1619d997ee46d5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50732db6d20a93af8a347f35dfa9a183"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a50732db6d20a93af8a347f35dfa9a183">LogBuf</a> (int size)</td></tr>
 <tr class="separator:a50732db6d20a93af8a347f35dfa9a183"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ffcd6c1ad5154e9396c69299ae7a95b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a3ffcd6c1ad5154e9396c69299ae7a95b">LogBuf</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> ms)</td></tr>
-<tr class="separator:a3ffcd6c1ad5154e9396c69299ae7a95b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef7e8b04905bd6f96b33ce2455063338"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#aef7e8b04905bd6f96b33ce2455063338">LogBuf</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> ms, int startIdx)</td></tr>
-<tr class="separator:aef7e8b04905bd6f96b33ce2455063338"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f9e27d816bd65805d97d72bd6183338"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a2f9e27d816bd65805d97d72bd6183338">LogBuf</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> ms, int startIdx, int len)</td></tr>
-<tr class="separator:a2f9e27d816bd65805d97d72bd6183338"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31311bbf21a0159d9807107533ce518c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a31311bbf21a0159d9807107533ce518c">LogBuf</a> (String s)</td></tr>
-<tr class="separator:a31311bbf21a0159d9807107533ce518c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7ff5706960efcba4cb9f4ac17fe6011"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ae7ff5706960efcba4cb9f4ac17fe6011">LogBuf</a> (String s, int startIdx)</td></tr>
-<tr class="separator:ae7ff5706960efcba4cb9f4ac17fe6011"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad9cb1ff9045630c758d0d6067842cd26"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ad9cb1ff9045630c758d0d6067842cd26">LogBuf</a> (String s, int startIdx, int len)</td></tr>
-<tr class="separator:ad9cb1ff9045630c758d0d6067842cd26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05ef383705e7882ba7397be0174438ab"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a05ef383705e7882ba7397be0174438ab">LogBuf</a> (StringBuffer s)</td></tr>
-<tr class="separator:a05ef383705e7882ba7397be0174438ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afefc3e0533d621d8fc06dd2a2cc8abdc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#afefc3e0533d621d8fc06dd2a2cc8abdc">LogBuf</a> (StringBuffer s, int startIdx)</td></tr>
-<tr class="separator:afefc3e0533d621d8fc06dd2a2cc8abdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0bacdfc924cb6589e9b2fd55aef19c9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ac0bacdfc924cb6589e9b2fd55aef19c9">LogBuf</a> (StringBuffer s, int startIdx, int len)</td></tr>
-<tr class="separator:ac0bacdfc924cb6589e9b2fd55aef19c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2a66d636a4f507493fe8ed387859a0e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ad2a66d636a4f507493fe8ed387859a0e">LogBuf</a> (CharSequence src)</td></tr>
+<tr class="separator:ad2a66d636a4f507493fe8ed387859a0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3288f79de660d09df63699edaae9d890"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a3288f79de660d09df63699edaae9d890">LogBuf</a> (CharSequence src, int regionStart)</td></tr>
+<tr class="separator:a3288f79de660d09df63699edaae9d890"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83e9986a295b2ff07c46f7e9dc1c793c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a83e9986a295b2ff07c46f7e9dc1c793c">LogBuf</a> (CharSequence src, int regionStart, int regionLength)</td></tr>
+<tr class="separator:a83e9986a295b2ff07c46f7e9dc1c793c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9d3221d50200a46437b1564cc3a74e7"><td class="memItemLeft" align="right" valign="top">char[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ae9d3221d50200a46437b1564cc3a74e7">buffer</a> ()</td></tr>
+<tr class="separator:ae9d3221d50200a46437b1564cc3a74e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d0f4ae571310c6ed081daa3985ecb47"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a3d0f4ae571310c6ed081daa3985ecb47">length</a> ()</td></tr>
+<tr class="separator:a3d0f4ae571310c6ed081daa3985ecb47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0148ff46a71ba7ab7bc246ac9aa4d823"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a0148ff46a71ba7ab7bc246ac9aa4d823">setLength</a> (int newLength)</td></tr>
+<tr class="separator:a0148ff46a71ba7ab7bc246ac9aa4d823"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeaf71297ed08b4bb022937d258607c87"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#aeaf71297ed08b4bb022937d258607c87">setAllocation</a> (int newSize)</td></tr>
+<tr class="separator:aeaf71297ed08b4bb022937d258607c87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6fea54bd755d54b034c24dbf0923239"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#af6fea54bd755d54b034c24dbf0923239">ensureAllocation</a> (int minLen)</td></tr>
+<tr class="separator:af6fea54bd755d54b034c24dbf0923239"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab43ea64ac2ebc46b8d4b7a633e585d50"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ab43ea64ac2ebc46b8d4b7a633e585d50">ensureAllocationRelative</a> (int growth)</td></tr>
+<tr class="separator:ab43ea64ac2ebc46b8d4b7a633e585d50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58aafa1bec9d1e812dd0d168b37ee03f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a58aafa1bec9d1e812dd0d168b37ee03f">clear</a> ()</td></tr>
 <tr class="separator:a58aafa1bec9d1e812dd0d168b37ee03f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a50afdabf5b53792436f43c0624f492"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a2a50afdabf5b53792436f43c0624f492">append</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> ms)</td></tr>
-<tr class="separator:a2a50afdabf5b53792436f43c0624f492"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5bfcf493579adb133bacec5e88f0a171"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a5bfcf493579adb133bacec5e88f0a171">append</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> ms, int startIdx)</td></tr>
-<tr class="separator:a5bfcf493579adb133bacec5e88f0a171"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ee6f98e440a78bbbb5cdab80e95fabb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a1ee6f98e440a78bbbb5cdab80e95fabb">append</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> ms, int startIdx, int len)</td></tr>
-<tr class="separator:a1ee6f98e440a78bbbb5cdab80e95fabb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ce2f5cfeeb7148c970bb0cb9e29f8d3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a2ce2f5cfeeb7148c970bb0cb9e29f8d3">append</a> (String s)</td></tr>
-<tr class="separator:a2ce2f5cfeeb7148c970bb0cb9e29f8d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44adcca284d9d0532746ea54cc3d887c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a44adcca284d9d0532746ea54cc3d887c">append</a> (String s, int startIdx)</td></tr>
-<tr class="separator:a44adcca284d9d0532746ea54cc3d887c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a42aabedfefccf889900f038f7639e4c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a42aabedfefccf889900f038f7639e4c7">append</a> (String s, int startIdx, int len)</td></tr>
-<tr class="separator:a42aabedfefccf889900f038f7639e4c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad82981787f445e15309bafe3b73d67bb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ad82981787f445e15309bafe3b73d67bb">append</a> (StringBuffer sb)</td></tr>
-<tr class="separator:ad82981787f445e15309bafe3b73d67bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7713929ab20beba77e91fdd24f44f661"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a7713929ab20beba77e91fdd24f44f661">append</a> (StringBuffer sb, int startIdx)</td></tr>
-<tr class="separator:a7713929ab20beba77e91fdd24f44f661"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abff13a2e95e23d02a1f5042f9aad2004"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#abff13a2e95e23d02a1f5042f9aad2004">append</a> (StringBuffer sb, int startIdx, int len)</td></tr>
-<tr class="separator:abff13a2e95e23d02a1f5042f9aad2004"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7c660131e7cb25fd02a34664614c06f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ae7c660131e7cb25fd02a34664614c06f">append</a> (StringBuilder sb)</td></tr>
-<tr class="separator:ae7c660131e7cb25fd02a34664614c06f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe51ed3d04ad7566e000307872b564aa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#abe51ed3d04ad7566e000307872b564aa">append</a> (StringBuilder sb, int startIdx)</td></tr>
-<tr class="separator:abe51ed3d04ad7566e000307872b564aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69088e61df3e644ba234d166ef3eca96"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a69088e61df3e644ba234d166ef3eca96">append</a> (StringBuilder sb, int startIdx, int len)</td></tr>
-<tr class="separator:a69088e61df3e644ba234d166ef3eca96"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae698a8f4a71794a2f0f2e9a1db57544d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ae698a8f4a71794a2f0f2e9a1db57544d">append</a> (CharSequence sb)</td></tr>
-<tr class="separator:ae698a8f4a71794a2f0f2e9a1db57544d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af104a3b5dcebba9a7b8d9ba4ced948f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#af104a3b5dcebba9a7b8d9ba4ced948f1">append</a> (CharSequence sb, int startIdx)</td></tr>
-<tr class="separator:af104a3b5dcebba9a7b8d9ba4ced948f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adffeec7397aa68cddf106fd9944f2c50"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#adffeec7397aa68cddf106fd9944f2c50">append</a> (CharSequence sb, int startIdx, int len)</td></tr>
-<tr class="separator:adffeec7397aa68cddf106fd9944f2c50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25ead9653b7ba33cb4f4803d66845ab6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a25ead9653b7ba33cb4f4803d66845ab6">delete</a> (int regionStart, int regionLength)</td></tr>
+<tr class="separator:a25ead9653b7ba33cb4f4803d66845ab6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e22e3b7fb7f66638d9ac205d571d10b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a7e22e3b7fb7f66638d9ac205d571d10b">delete</a> (int regionStart)</td></tr>
+<tr class="separator:a7e22e3b7fb7f66638d9ac205d571d10b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51210f39d2d1f501b3a7010899efa845"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a51210f39d2d1f501b3a7010899efa845">insert</a> (int regionStart, int regionLength, char fillChar)</td></tr>
+<tr class="separator:a51210f39d2d1f501b3a7010899efa845"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a053e10b122783f204d8640c1fd9f75d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a053e10b122783f204d8640c1fd9f75d2">insert</a> (int regionStart, int regionLength)</td></tr>
+<tr class="separator:a053e10b122783f204d8640c1fd9f75d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8ab44130376a07ef17460b392f41590"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#af8ab44130376a07ef17460b392f41590">newLine</a> ()</td></tr>
+<tr class="separator:af8ab44130376a07ef17460b392f41590"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb91a16b64ad65151028033a92e92910"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#adb91a16b64ad65151028033a92e92910">tab</a> (int tabSize, int minPad, char padChar)</td></tr>
+<tr class="separator:adb91a16b64ad65151028033a92e92910"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34c52c07602489b1a97f763b3ae1c0bf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a34c52c07602489b1a97f763b3ae1c0bf">field</a> (int size, <a class="el" href="enumcom_1_1aworx_1_1util_1_1AString_1_1Align.html">Align</a> alignment, char padChar, int fieldStart)</td></tr>
+<tr class="separator:a34c52c07602489b1a97f763b3ae1c0bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f5cd4ad706427939b310e2bd812ff24"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a3f5cd4ad706427939b310e2bd812ff24">field</a> (int size, <a class="el" href="enumcom_1_1aworx_1_1util_1_1AString_1_1Align.html">Align</a> alignment, char padChar)</td></tr>
+<tr class="separator:a3f5cd4ad706427939b310e2bd812ff24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71b8ca4df04799df49079d4c6deadb6e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a71b8ca4df04799df49079d4c6deadb6e">field</a> (int size, <a class="el" href="enumcom_1_1aworx_1_1util_1_1AString_1_1Align.html">Align</a> alignment)</td></tr>
+<tr class="separator:a71b8ca4df04799df49079d4c6deadb6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5b2ed91ccf64de417fa92cbba6fbe15"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#aa5b2ed91ccf64de417fa92cbba6fbe15">field</a> (int size)</td></tr>
+<tr class="separator:aa5b2ed91ccf64de417fa92cbba6fbe15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3753c4be5411fc4e33b64466876b8cac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a3753c4be5411fc4e33b64466876b8cac">field</a> ()</td></tr>
+<tr class="separator:a3753c4be5411fc4e33b64466876b8cac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a623b60886e43fb82de5a662b08734635"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a623b60886e43fb82de5a662b08734635">append</a> (CharSequence src)</td></tr>
+<tr class="separator:a623b60886e43fb82de5a662b08734635"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab720097a259391cac20d5dc3b88055a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#aab720097a259391cac20d5dc3b88055a">append</a> (CharSequence src, int regionStart)</td></tr>
+<tr class="separator:aab720097a259391cac20d5dc3b88055a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b865ee3cbf7ca9d3038d58d8a0b2fc9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a3b865ee3cbf7ca9d3038d58d8a0b2fc9">append</a> (CharSequence src, int regionStart, int regionLength)</td></tr>
+<tr class="separator:a3b865ee3cbf7ca9d3038d58d8a0b2fc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a625e445cac7d220f2b76bb247ea8b860"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a625e445cac7d220f2b76bb247ea8b860">append</a> (char c)</td></tr>
 <tr class="separator:a625e445cac7d220f2b76bb247ea8b860"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5908ecb4b2f9537759dfe085416707ab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a5908ecb4b2f9537759dfe085416707ab">append</a> (char c, int qty)</td></tr>
 <tr class="separator:a5908ecb4b2f9537759dfe085416707ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2100de8b9132e548b278079669b183e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ae2100de8b9132e548b278079669b183e">appendPadRight</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> ms, int fieldSize)</td></tr>
-<tr class="separator:ae2100de8b9132e548b278079669b183e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a923949c7eedb8ad390707f071b033771"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a923949c7eedb8ad390707f071b033771">appendPadRight</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> ms, int fieldSize, char padChar)</td></tr>
-<tr class="separator:a923949c7eedb8ad390707f071b033771"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3eb9248094733b754fb8c3bc384de589"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a3eb9248094733b754fb8c3bc384de589">appendPadRight</a> (String s, int fieldSize)</td></tr>
-<tr class="separator:a3eb9248094733b754fb8c3bc384de589"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac989eab3be63ea5b1dfe7ca84173624c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ac989eab3be63ea5b1dfe7ca84173624c">appendPadRight</a> (String s, int fieldSize, char padChar)</td></tr>
-<tr class="separator:ac989eab3be63ea5b1dfe7ca84173624c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af66b4fcd1ab02168be70ec9b2a2cefdc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#af66b4fcd1ab02168be70ec9b2a2cefdc">appendPadRight</a> (StringBuffer sb, int fieldSize)</td></tr>
-<tr class="separator:af66b4fcd1ab02168be70ec9b2a2cefdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6a8ae4e9d9d262f46d682e9e9cc9223"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#af6a8ae4e9d9d262f46d682e9e9cc9223">appendPadRight</a> (StringBuffer sb, int fieldSize, char padChar)</td></tr>
-<tr class="separator:af6a8ae4e9d9d262f46d682e9e9cc9223"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0daa5dc4f85565610e6135b61d02d82f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a0daa5dc4f85565610e6135b61d02d82f">appendPadLeft</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> ms, int fieldSize)</td></tr>
-<tr class="separator:a0daa5dc4f85565610e6135b61d02d82f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed317eb04bf1f314b4815435853279f2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#aed317eb04bf1f314b4815435853279f2">appendPadLeft</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> ms, int fieldSize, char padChar)</td></tr>
-<tr class="separator:aed317eb04bf1f314b4815435853279f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef2d8423e39b88e52a3339139d4331fc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#aef2d8423e39b88e52a3339139d4331fc">appendPadLeft</a> (String s, int fieldSize)</td></tr>
-<tr class="separator:aef2d8423e39b88e52a3339139d4331fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14f3651fbe621de3b9aab531e63ce4a9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a14f3651fbe621de3b9aab531e63ce4a9">appendPadLeft</a> (String s, int fieldSize, char padChar)</td></tr>
-<tr class="separator:a14f3651fbe621de3b9aab531e63ce4a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a061da5a410f380b64b536724a7ea6771"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a061da5a410f380b64b536724a7ea6771">appendPadLeft</a> (StringBuffer sb, int fieldSize)</td></tr>
-<tr class="separator:a061da5a410f380b64b536724a7ea6771"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e8f71a7b7c6d902cfda4b898f75b654"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a7e8f71a7b7c6d902cfda4b898f75b654">appendPadLeft</a> (StringBuffer sb, int fieldSize, char padChar)</td></tr>
-<tr class="separator:a7e8f71a7b7c6d902cfda4b898f75b654"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d86b0ba5b987db11ced12bfd0f427a2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a6d86b0ba5b987db11ced12bfd0f427a2">appendPadCenter</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> ms, int fieldSize)</td></tr>
-<tr class="separator:a6d86b0ba5b987db11ced12bfd0f427a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58efbc794a2309187991abea36a78c91"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a58efbc794a2309187991abea36a78c91">appendPadCenter</a> (<a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> ms, int fieldSize, char padChar)</td></tr>
-<tr class="separator:a58efbc794a2309187991abea36a78c91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a364ca9ad9632692fc1e6313def971a38"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a364ca9ad9632692fc1e6313def971a38">appendPadCenter</a> (String s, int fieldSize)</td></tr>
-<tr class="separator:a364ca9ad9632692fc1e6313def971a38"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a916f1cc7fdd6e1f2461508732c2efc56"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a916f1cc7fdd6e1f2461508732c2efc56">appendPadCenter</a> (String s, int fieldSize, char padChar)</td></tr>
-<tr class="separator:a916f1cc7fdd6e1f2461508732c2efc56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a96f2056ef57ef69d1f5c3966c60e328d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a96f2056ef57ef69d1f5c3966c60e328d">appendPadCenter</a> (StringBuffer sb, int fieldSize)</td></tr>
-<tr class="separator:a96f2056ef57ef69d1f5c3966c60e328d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4736f7398efc81d86b9804b9f95eeffd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a4736f7398efc81d86b9804b9f95eeffd">appendPadCenter</a> (StringBuffer sb, int fieldSize, char padChar)</td></tr>
-<tr class="separator:a4736f7398efc81d86b9804b9f95eeffd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ffdad8f3bc13e03c504612e4c660529"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a1ffdad8f3bc13e03c504612e4c660529">append</a> (int i, int minDigits)</td></tr>
 <tr class="separator:a1ffdad8f3bc13e03c504612e4c660529"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a924321c546c3f11c593fb2b94724482a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a924321c546c3f11c593fb2b94724482a">append</a> (int i)</td></tr>
 <tr class="separator:a924321c546c3f11c593fb2b94724482a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f49f931a3f816884c74b802211ed7c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a2f49f931a3f816884c74b802211ed7c6">append</a> (double d, int minDigitsBeforeDot, int digitsAfterDot)</td></tr>
 <tr class="separator:a2f49f931a3f816884c74b802211ed7c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af79d96ac621cc3cfb5cfdbf7bcedf9ad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#af79d96ac621cc3cfb5cfdbf7bcedf9ad">append</a> (double d, int minDigitsBeforeDot)</td></tr>
+<tr class="separator:af79d96ac621cc3cfb5cfdbf7bcedf9ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53b717ac7c8532e829a11d05975940d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a53b717ac7c8532e829a11d05975940d2">append</a> (double d)</td></tr>
+<tr class="separator:a53b717ac7c8532e829a11d05975940d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a348144c995e05f9459314676f8d5e98f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a348144c995e05f9459314676f8d5e98f">tab</a> (int tabSize, int minPad)</td></tr>
+<tr class="separator:a348144c995e05f9459314676f8d5e98f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa3a8767705fdc50aa7ba23503c40ec39"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#aa3a8767705fdc50aa7ba23503c40ec39">tab</a> (int tabSize)</td></tr>
 <tr class="separator:aa3a8767705fdc50aa7ba23503c40ec39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afdb35b96fc567bed45f52c549139d7f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#afdb35b96fc567bed45f52c549139d7f1">tab</a> (int tabSize, int tabReference)</td></tr>
-<tr class="separator:afdb35b96fc567bed45f52c549139d7f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad89309c646ffcc8dcf02e3ee74f9b166"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ad89309c646ffcc8dcf02e3ee74f9b166">tab</a> (int tabSize, int tabReference, int minPad)</td></tr>
-<tr class="separator:ad89309c646ffcc8dcf02e3ee74f9b166"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a711e06286cc91a555aca689df5a4d68c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a711e06286cc91a555aca689df5a4d68c">tab</a> (int tabSize, int tabReference, int minPad, char padChar)</td></tr>
-<tr class="separator:a711e06286cc91a555aca689df5a4d68c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8ab44130376a07ef17460b392f41590"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#af8ab44130376a07ef17460b392f41590">newLine</a> ()</td></tr>
-<tr class="separator:af8ab44130376a07ef17460b392f41590"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5cfe24fea5a9f07bc3b411a5d5cf1222"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a5cfe24fea5a9f07bc3b411a5d5cf1222">containsAt</a> (CharSequence s, int pos, boolean ignoreCase)</td></tr>
-<tr class="separator:a5cfe24fea5a9f07bc3b411a5d5cf1222"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fe1e46da5df87fefcacb81b6330bdc9"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a4fe1e46da5df87fefcacb81b6330bdc9">containsAt</a> (CharSequence s, int pos)</td></tr>
-<tr class="separator:a4fe1e46da5df87fefcacb81b6330bdc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab316fed7f0f6497158869355aba96fbe"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ab316fed7f0f6497158869355aba96fbe">startsWith</a> (CharSequence s)</td></tr>
-<tr class="separator:ab316fed7f0f6497158869355aba96fbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0f4b2881454b063c7bb9fee6d58ded2"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ab0f4b2881454b063c7bb9fee6d58ded2">endsWith</a> (CharSequence s)</td></tr>
-<tr class="separator:ab0f4b2881454b063c7bb9fee6d58ded2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa73f93fbcba640d7799d0af324230bcb"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#aa73f93fbcba640d7799d0af324230bcb">containsAt</a> (CharSequence needle, int pos, boolean ignoreCase)</td></tr>
+<tr class="separator:aa73f93fbcba640d7799d0af324230bcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbad536c565c434326108263cf5bf0b9"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#afbad536c565c434326108263cf5bf0b9">containsAt</a> (CharSequence needle, int pos)</td></tr>
+<tr class="separator:afbad536c565c434326108263cf5bf0b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ee963cfa5665aa391debc29e37e0ee8"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a7ee963cfa5665aa391debc29e37e0ee8">startsWith</a> (CharSequence needle, boolean ignoreCase)</td></tr>
+<tr class="separator:a7ee963cfa5665aa391debc29e37e0ee8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec9082863021ba38ed37e13662d7ba79"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#aec9082863021ba38ed37e13662d7ba79">startsWith</a> (CharSequence needle)</td></tr>
+<tr class="separator:aec9082863021ba38ed37e13662d7ba79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe2c84c4ca703f13895569c3ee38606d"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#afe2c84c4ca703f13895569c3ee38606d">endsWith</a> (CharSequence needle, boolean ignoreCase)</td></tr>
+<tr class="separator:afe2c84c4ca703f13895569c3ee38606d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed2ca8bfed43e5a557d1e472b16e5ba2"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#aed2ca8bfed43e5a557d1e472b16e5ba2">endsWith</a> (CharSequence needle)</td></tr>
+<tr class="separator:aed2ca8bfed43e5a557d1e472b16e5ba2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c43dcbb767f10f9a625ec20694999f6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a1c43dcbb767f10f9a625ec20694999f6">indexOf</a> (CharSequence s, int startIdx)</td></tr>
 <tr class="separator:a1c43dcbb767f10f9a625ec20694999f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3aaa0641d23c63ae7c0b45f4b14d5016"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a3aaa0641d23c63ae7c0b45f4b14d5016">indexOf</a> (CharSequence s)</td></tr>
 <tr class="separator:a3aaa0641d23c63ae7c0b45f4b14d5016"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c0963159eedf78d9dc50604bcaafe08"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a5c0963159eedf78d9dc50604bcaafe08">replaceCount</a> (CharSequence searchStr, CharSequence newStr, int startIdx, int maxReplacements, boolean ignoreCase)</td></tr>
+<tr class="separator:a5c0963159eedf78d9dc50604bcaafe08"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab991a6222121588e5a3f0748d1829c63"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ab991a6222121588e5a3f0748d1829c63">replaceCount</a> (CharSequence searchStr, CharSequence newStr, int startIdx, int maxReplacements)</td></tr>
 <tr class="separator:ab991a6222121588e5a3f0748d1829c63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a654366ab8ca12d4ef86486b50b265519"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a654366ab8ca12d4ef86486b50b265519">replaceCount</a> (CharSequence searchStr, CharSequence newStr, int startIdx)</td></tr>
 <tr class="separator:a654366ab8ca12d4ef86486b50b265519"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adda75690958f9a3e69f7184f9aa0b2c7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#adda75690958f9a3e69f7184f9aa0b2c7">replaceCount</a> (CharSequence searchStr, CharSequence newStr)</td></tr>
 <tr class="separator:adda75690958f9a3e69f7184f9aa0b2c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a615341186ef029de37fefdf6e9c31d01"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a615341186ef029de37fefdf6e9c31d01">replace</a> (CharSequence searchStr, CharSequence newStr, int startIdx, int maxReplacements, boolean ignoreCase)</td></tr>
+<tr class="separator:a615341186ef029de37fefdf6e9c31d01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a227cfca88f09377ab8f3df308ce7bbd8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a227cfca88f09377ab8f3df308ce7bbd8">replace</a> (CharSequence searchStr, CharSequence newStr, int startIdx, int maxReplacements)</td></tr>
 <tr class="separator:a227cfca88f09377ab8f3df308ce7bbd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae60b82414effca963c5f101e63a83fe0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ae60b82414effca963c5f101e63a83fe0">replace</a> (CharSequence searchStr, CharSequence newStr, int startIdx)</td></tr>
@@ -257,14 +254,17 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ab316e5518910f4b8dbacef93ee704c1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad146fa8579a5f8a876c4688cc5a68520"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ad146fa8579a5f8a876c4688cc5a68520">toString</a> ()</td></tr>
 <tr class="separator:ad146fa8579a5f8a876c4688cc5a68520"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4be7950bca2824824c60b795beec849c"><td class="memItemLeft" align="right" valign="top">StringBuilder&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a4be7950bca2824824c60b795beec849c">toString</a> (StringBuilder result, int regionStart, int regionLength, boolean appendMode)</td></tr>
+<tr class="separator:a4be7950bca2824824c60b795beec849c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a8407bef70dc3483bc9b223482b0e162f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a8407bef70dc3483bc9b223482b0e162f">b</a></td></tr>
-<tr class="separator:a8407bef70dc3483bc9b223482b0e162f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae39a21fdb208da32c414578b78579aaa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ae39a21fdb208da32c414578b78579aaa">b</a></td></tr>
+<tr class="separator:ae39a21fdb208da32c414578b78579aaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This class encapsulates a MString and mimics the interface into it. The reason to have this, is to allow a java byte code tool to prune all code related to this class. Hence, for debug logging an instance of this class can be filled and logged and the appropriate byte code tool can be configured to prune this code away.</p>
+<div class="textblock"><hr/>
+<p> This class encapsulates a AString and mimics the interface into it. The reason to have this, is to allow a java byte code tool to prune all code related to this class. Hence, for debug logging an instance of this class can be filled and logged and the appropriate byte code tool can be configured to prune this code away.</p>
 <p>Class <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> provides a static instance of <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a>, accessible in a thread safe way, through method <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a53c5060b0096f40c1001f96ff7ba80de">Log.buf()</a>. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a736a6ff738666fcdf1619d997ee46d5b"></a>
@@ -279,7 +279,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Constructor without specific Buffer size, default buffer size to 1 kb. </p>
+<hr/>
+<p> Constructor without specific Buffer size. </p>
 
 </div>
 </div>
@@ -296,7 +297,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Constructor with specific Buffer size .</p>
+<hr/>
+<p> Constructor with specific Buffer size .</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">size</td><td>The initial size of the internal buffer </td></tr>
@@ -306,44 +308,45 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a3ffcd6c1ad5154e9396c69299ae7a95b"></a>
+<a class="anchor" id="ad2a66d636a4f507493fe8ed387859a0e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td>
-          <td class="paramname"><em>ms</em></td><td>)</td>
+          <td class="paramtype">CharSequence&#160;</td>
+          <td class="paramname"><em>src</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Constructor copying a MString.</p>
+<hr/>
+<p> Constructor copying a CharSequence.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ms</td><td>The source MString to copy from. </td></tr>
+    <tr><td class="paramname">src</td><td>The source AString to copy from. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="aef7e8b04905bd6f96b33ce2455063338"></a>
+<a class="anchor" id="a3288f79de660d09df63699edaae9d890"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td>
-          <td class="paramname"><em>ms</em>, </td>
+          <td class="paramtype">CharSequence&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>startIdx</em>&#160;</td>
+          <td class="paramname"><em>regionStart</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -352,38 +355,39 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Constructor copying a substring of a MString.</p>
+<hr/>
+<p> Constructor copying a substring of a CharSequence.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ms</td><td>The source MString to copy from. </td></tr>
-    <tr><td class="paramname">startIdx</td><td>The start index in s to append. Defaults to 0. </td></tr>
+    <tr><td class="paramname">src</td><td>The source CharSequence to copy from. </td></tr>
+    <tr><td class="paramname">regionStart</td><td>The start index in src to append. Defaults to 0. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="a2f9e27d816bd65805d97d72bd6183338"></a>
+<a class="anchor" id="a83e9986a295b2ff07c46f7e9dc1c793c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td>
-          <td class="paramname"><em>ms</em>, </td>
+          <td class="paramtype">CharSequence&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>startIdx</em>, </td>
+          <td class="paramname"><em>regionStart</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>len</em>&#160;</td>
+          <td class="paramname"><em>regionLength</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -392,208 +396,13 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Constructor copying a substring of a MString.</p>
+<hr/>
+<p> Constructor copying a substring of a CharSequence.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ms</td><td>The source MString to copy from. </td></tr>
-    <tr><td class="paramname">startIdx</td><td>The start index in s to append. Defaults to 0. </td></tr>
-    <tr><td class="paramname">len</td><td>The maximum length of the substring in s to append. Defaults to Integer.MAX_VALUE. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a31311bbf21a0159d9807107533ce518c"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> </td>
-          <td>(</td>
-          <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>s</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Constructor copying String.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">s</td><td>The source String to copy from. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="ae7ff5706960efcba4cb9f4ac17fe6011"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> </td>
-          <td>(</td>
-          <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>s</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>startIdx</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Constructor copying a substring of a String.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">s</td><td>The source String to copy from. </td></tr>
-    <tr><td class="paramname">startIdx</td><td>The start index in s to append. Defaults to 0. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="ad9cb1ff9045630c758d0d6067842cd26"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> </td>
-          <td>(</td>
-          <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>s</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>startIdx</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>len</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Constructor copying a substring of a String.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">s</td><td>The source String to copy from. </td></tr>
-    <tr><td class="paramname">startIdx</td><td>The start index in s to append. Defaults to 0. </td></tr>
-    <tr><td class="paramname">len</td><td>The maximum length of the substring in s to append. Defaults to Integer.MAX_VALUE. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a05ef383705e7882ba7397be0174438ab"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> </td>
-          <td>(</td>
-          <td class="paramtype">StringBuffer&#160;</td>
-          <td class="paramname"><em>s</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Constructor copying a StringBuffer.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">s</td><td>The source StringBuffer to copy from. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="afefc3e0533d621d8fc06dd2a2cc8abdc"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> </td>
-          <td>(</td>
-          <td class="paramtype">StringBuffer&#160;</td>
-          <td class="paramname"><em>s</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>startIdx</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Constructor copying a substring of a StringBuffer.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">s</td><td>The source StringBuffer to copy from. </td></tr>
-    <tr><td class="paramname">startIdx</td><td>The start index in s to append. Defaults to 0. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="ac0bacdfc924cb6589e9b2fd55aef19c9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> </td>
-          <td>(</td>
-          <td class="paramtype">StringBuffer&#160;</td>
-          <td class="paramname"><em>s</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>startIdx</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>len</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Constructor copying a substring of a StringBuffer.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">s</td><td>The source StringBuffer to copy from. </td></tr>
-    <tr><td class="paramname">startIdx</td><td>The start index in s to append. Defaults to 0. </td></tr>
-    <tr><td class="paramname">len</td><td>The maximum length of the substring in s to append. Defaults to Integer.MAX_VALUE. </td></tr>
+    <tr><td class="paramname">src</td><td>The source CharSequence to copy from. </td></tr>
+    <tr><td class="paramname">regionStart</td><td>The start index in s to append. Defaults to 0. </td></tr>
+    <tr><td class="paramname">regionLength</td><td>The maximum length of the substring in src to append. Defaults to Integer.MAX_VALUE. </td></tr>
   </table>
   </dd>
 </dl>
@@ -601,411 +410,7 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a2a50afdabf5b53792436f43c0624f492"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> append </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td>
-          <td class="paramname"><em>ms</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Append another MString.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ms</td><td>The MString to append.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a5bfcf493579adb133bacec5e88f0a171"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> append </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td>
-          <td class="paramname"><em>ms</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>startIdx</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Append a substring of another MString.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ms</td><td>The MString to append. </td></tr>
-    <tr><td class="paramname">startIdx</td><td>The index in ms to start from.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a1ee6f98e440a78bbbb5cdab80e95fabb"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> append </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td>
-          <td class="paramname"><em>ms</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>startIdx</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>len</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Append a substring of another MString.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ms</td><td>The MString to append. </td></tr>
-    <tr><td class="paramname">startIdx</td><td>The index in ms to start from. </td></tr>
-    <tr><td class="paramname">len</td><td>The maximum length of the substring in ms to append. Defaults to Integer.MAX_VALUE.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a2ce2f5cfeeb7148c970bb0cb9e29f8d3"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> append </td>
-          <td>(</td>
-          <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>s</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Append a String.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">s</td><td>The String to append.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a44adcca284d9d0532746ea54cc3d887c"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> append </td>
-          <td>(</td>
-          <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>s</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>startIdx</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Append a substring of a String.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">s</td><td>The String to append. </td></tr>
-    <tr><td class="paramname">startIdx</td><td>The start index in s to append.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a42aabedfefccf889900f038f7639e4c7"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> append </td>
-          <td>(</td>
-          <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>s</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>startIdx</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>len</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Append a substring of a String.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">s</td><td>The String to append. </td></tr>
-    <tr><td class="paramname">startIdx</td><td>The index in s to start with. </td></tr>
-    <tr><td class="paramname">len</td><td>The maximum length of the substring in s to append..</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ad82981787f445e15309bafe3b73d67bb"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> append </td>
-          <td>(</td>
-          <td class="paramtype">StringBuffer&#160;</td>
-          <td class="paramname"><em>sb</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Append a StringBuffer.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">sb</td><td>The StringBuffer to append.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a7713929ab20beba77e91fdd24f44f661"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> append </td>
-          <td>(</td>
-          <td class="paramtype">StringBuffer&#160;</td>
-          <td class="paramname"><em>sb</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>startIdx</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Append a substring of a StringBuffer.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">sb</td><td>The StringBuffer to append. </td></tr>
-    <tr><td class="paramname">startIdx</td><td>The index in sb to start from.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="abff13a2e95e23d02a1f5042f9aad2004"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> append </td>
-          <td>(</td>
-          <td class="paramtype">StringBuffer&#160;</td>
-          <td class="paramname"><em>sb</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>startIdx</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>len</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Append a substring of a StringBuffer.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">sb</td><td>The StringBuffer to append. </td></tr>
-    <tr><td class="paramname">startIdx</td><td>The start index in sb start from. </td></tr>
-    <tr><td class="paramname">len</td><td>The maximum length of the substring in sb to append.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ae7c660131e7cb25fd02a34664614c06f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> append </td>
-          <td>(</td>
-          <td class="paramtype">StringBuilder&#160;</td>
-          <td class="paramname"><em>sb</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Append a StringBuilder.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">sb</td><td>The StringBuilder to append.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="abe51ed3d04ad7566e000307872b564aa"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> append </td>
-          <td>(</td>
-          <td class="paramtype">StringBuilder&#160;</td>
-          <td class="paramname"><em>sb</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>startIdx</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Append a substring of a StringBuilder.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">sb</td><td>The StringBuilder to append. </td></tr>
-    <tr><td class="paramname">startIdx</td><td>The index in sb to start from.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a69088e61df3e644ba234d166ef3eca96"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> append </td>
-          <td>(</td>
-          <td class="paramtype">StringBuilder&#160;</td>
-          <td class="paramname"><em>sb</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>startIdx</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>len</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Append a substring of a StringBuilder.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">sb</td><td>The StringBuilder to append. </td></tr>
-    <tr><td class="paramname">startIdx</td><td>The start index in sb start from. </td></tr>
-    <tr><td class="paramname">len</td><td>The maximum length of the substring in sb to append.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ae698a8f4a71794a2f0f2e9a1db57544d"></a>
+<a class="anchor" id="a623b60886e43fb82de5a662b08734635"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -1013,15 +418,16 @@ Public Attributes</h2></td></tr>
           <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> append </td>
           <td>(</td>
           <td class="paramtype">CharSequence&#160;</td>
-          <td class="paramname"><em>sb</em></td><td>)</td>
+          <td class="paramname"><em>src</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Append a CharSequence.</p>
+<hr/>
+<p> Append a CharSequence.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">sb</td><td>The CharSequence to append.</td></tr>
+    <tr><td class="paramname">src</td><td>The CharSequence to append.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1029,7 +435,7 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="af104a3b5dcebba9a7b8d9ba4ced948f1"></a>
+<a class="anchor" id="aab720097a259391cac20d5dc3b88055a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -1037,13 +443,13 @@ Public Attributes</h2></td></tr>
           <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> append </td>
           <td>(</td>
           <td class="paramtype">CharSequence&#160;</td>
-          <td class="paramname"><em>sb</em>, </td>
+          <td class="paramname"><em>src</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>startIdx</em>&#160;</td>
+          <td class="paramname"><em>regionStart</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1052,11 +458,12 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Append a substring of a CharSequence.</p>
+<hr/>
+<p> Append a substring of a CharSequence.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">sb</td><td>The CharSequence to append. </td></tr>
-    <tr><td class="paramname">startIdx</td><td>The index in sb to start from.</td></tr>
+    <tr><td class="paramname">src</td><td>The CharSequence to append. </td></tr>
+    <tr><td class="paramname">regionStart</td><td>The index in ms to start from.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1064,7 +471,7 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="adffeec7397aa68cddf106fd9944f2c50"></a>
+<a class="anchor" id="a3b865ee3cbf7ca9d3038d58d8a0b2fc9"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -1072,19 +479,19 @@ Public Attributes</h2></td></tr>
           <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> append </td>
           <td>(</td>
           <td class="paramtype">CharSequence&#160;</td>
-          <td class="paramname"><em>sb</em>, </td>
+          <td class="paramname"><em>src</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>startIdx</em>, </td>
+          <td class="paramname"><em>regionStart</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>len</em>&#160;</td>
+          <td class="paramname"><em>regionLength</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1093,12 +500,13 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Append a substring of a CharSequence.</p>
+<hr/>
+<p> Append a substring of a CharSequence.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">sb</td><td>The CharSequence to append. </td></tr>
-    <tr><td class="paramname">startIdx</td><td>The start index in sb start from. </td></tr>
-    <tr><td class="paramname">len</td><td>The maximum length of the substring in sb to append.</td></tr>
+    <tr><td class="paramname">src</td><td>The CharSequence to append. </td></tr>
+    <tr><td class="paramname">regionStart</td><td>The index in src to start from. </td></tr>
+    <tr><td class="paramname">regionLength</td><td>The maximum length of the substring in src to append. Defaults to Integer.MAX_VALUE.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1119,7 +527,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Append the given character.</p>
+<hr/>
+<p> Append the given character.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">c</td><td>The character to append.</td></tr>
@@ -1153,7 +562,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Append the given character repeatedly.</p>
+<hr/>
+<p> Append the given character repeatedly.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">c</td><td>The character to append. </td></tr>
@@ -1188,7 +598,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Append the given unsigned 32-Bit integer value using a minimum number of digits.</p>
+<hr/>
+<p> Append the given unsigned 32-Bit integer value using a minimum number of digits.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">i</td><td>The integer value to append. </td></tr>
@@ -1213,7 +624,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Append the given unsigned 32-Bit integer value.</p>
+<hr/>
+<p> Append the given unsigned 32-Bit integer value.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">i</td><td>The integer value to append. </td></tr>
@@ -1253,12 +665,13 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Append the given double value using the minimum digits before and after the given number of digits after dot.</p>
+<hr/>
+<p> Append the given double value using the minimum digits before and after the given number of digits after dot.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">d</td><td>the integer value to append. </td></tr>
-    <tr><td class="paramname">minDigitsBeforeDot</td><td>The minimum number of digits write before the dot. If the number has less digits than minDigits, then trailing '0's are added. </td></tr>
-    <tr><td class="paramname">digitsAfterDot</td><td>The exact number of digits written after the dot.</td></tr>
+    <tr><td class="paramname">minDigitsBeforeDot</td><td>The minimum number of digits write before the dot. If the number has less digits than minDigits, then trailing '0's. are added. Defaults to 0. </td></tr>
+    <tr><td class="paramname">digitsAfterDot</td><td>The exact number of digits written after the dot. Defaults to 5.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1266,21 +679,21 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a6d86b0ba5b987db11ced12bfd0f427a2"></a>
+<a class="anchor" id="af79d96ac621cc3cfb5cfdbf7bcedf9ad"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> appendPadCenter </td>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> append </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td>
-          <td class="paramname"><em>ms</em>, </td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>d</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>fieldSize</em>&#160;</td>
+          <td class="paramname"><em>minDigitsBeforeDot</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1289,11 +702,12 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Append the given MString and add surrounding padding spaces.</p>
+<hr/>
+<p> Append the given double value using the minimum digits before and a fixed number of five digits after dot.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ms</td><td>The MString to append. </td></tr>
-    <tr><td class="paramname">fieldSize</td><td>The minimum number of characters to append.</td></tr>
+    <tr><td class="paramname">d</td><td>the integer value to append. </td></tr>
+    <tr><td class="paramname">minDigitsBeforeDot</td><td>The minimum number of digits write before the dot. If the number has less digits than minDigits, then trailing '0's. are added. Defaults to 0.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1301,41 +715,24 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a58efbc794a2309187991abea36a78c91"></a>
+<a class="anchor" id="a53b717ac7c8532e829a11d05975940d2"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> appendPadCenter </td>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> append </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td>
-          <td class="paramname"><em>ms</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>d</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>fieldSize</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>padChar</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Append the given MString and add surrounding padding characters.</p>
+<hr/>
+<p> Append the given double value using a fixed number of five digits after dot.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ms</td><td>The MString to append. </td></tr>
-    <tr><td class="paramname">fieldSize</td><td>The minimum number of characters to append. </td></tr>
-    <tr><td class="paramname">padChar</td><td>The character to surround the Mutable string with. Defaults to ' ' (space).</td></tr>
+    <tr><td class="paramname">d</td><td>The double value to append.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1343,619 +740,21 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a364ca9ad9632692fc1e6313def971a38"></a>
+<a class="anchor" id="ae9d3221d50200a46437b1564cc3a74e7"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> appendPadCenter </td>
+          <td class="memname">char [] buffer </td>
           <td>(</td>
-          <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>s</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>fieldSize</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Append the given String and add surrounding padding spaces.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">s</td><td>the string to append. </td></tr>
-    <tr><td class="paramname">fieldSize</td><td>The minimum number of characters to append.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a916f1cc7fdd6e1f2461508732c2efc56"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> appendPadCenter </td>
-          <td>(</td>
-          <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>s</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>fieldSize</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>padChar</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Append the given String and add surrounding padding characters.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">s</td><td>the string to append. </td></tr>
-    <tr><td class="paramname">fieldSize</td><td>The minimum number of characters to append. </td></tr>
-    <tr><td class="paramname">padChar</td><td>The character to surround the Mutable string with. Defaults to ' ' (space).</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a96f2056ef57ef69d1f5c3966c60e328d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> appendPadCenter </td>
-          <td>(</td>
-          <td class="paramtype">StringBuffer&#160;</td>
-          <td class="paramname"><em>sb</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>fieldSize</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Append the given StringBuffer and add surrounding padding spaces.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">sb</td><td>the StringBuffer to append. </td></tr>
-    <tr><td class="paramname">fieldSize</td><td>The minimum number of characters to append.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a4736f7398efc81d86b9804b9f95eeffd"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> appendPadCenter </td>
-          <td>(</td>
-          <td class="paramtype">StringBuffer&#160;</td>
-          <td class="paramname"><em>sb</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>fieldSize</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>padChar</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Append the given StringBuffer and add surrounding padding characters.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">sb</td><td>the StringBuffer to append. </td></tr>
-    <tr><td class="paramname">fieldSize</td><td>The minimum number of characters to append. </td></tr>
-    <tr><td class="paramname">padChar</td><td>The character to surround the Mutable string with. Defaults to ' ' (space).</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a0daa5dc4f85565610e6135b61d02d82f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> appendPadLeft </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td>
-          <td class="paramname"><em>ms</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>fieldSize</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Append the given MString and add padding spaces behind the string.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ms</td><td>The string to append. </td></tr>
-    <tr><td class="paramname">fieldSize</td><td>The minimum number of characters to append.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="aed317eb04bf1f314b4815435853279f2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> appendPadLeft </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td>
-          <td class="paramname"><em>ms</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>fieldSize</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>padChar</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Append the given MString and add padding characters behind the string.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ms</td><td>The string to append. </td></tr>
-    <tr><td class="paramname">fieldSize</td><td>The minimum number of characters to append. </td></tr>
-    <tr><td class="paramname">padChar</td><td>The character to add to the right of the given string src. Defaults to ' ' (space).</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="aef2d8423e39b88e52a3339139d4331fc"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> appendPadLeft </td>
-          <td>(</td>
-          <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>s</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>fieldSize</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Append the given String and add padding spaces behind the string.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">s</td><td>The string to append. </td></tr>
-    <tr><td class="paramname">fieldSize</td><td>The minimum number of characters to append.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a14f3651fbe621de3b9aab531e63ce4a9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> appendPadLeft </td>
-          <td>(</td>
-          <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>s</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>fieldSize</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>padChar</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Append the given String and add padding characters behind the string.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">s</td><td>The String to append. </td></tr>
-    <tr><td class="paramname">fieldSize</td><td>The minimum number of characters to append. </td></tr>
-    <tr><td class="paramname">padChar</td><td>The character to add to the right of the given string src. Defaults to ' ' (space).</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a061da5a410f380b64b536724a7ea6771"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> appendPadLeft </td>
-          <td>(</td>
-          <td class="paramtype">StringBuffer&#160;</td>
-          <td class="paramname"><em>sb</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>fieldSize</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Append the given StringBuffer and add padding spaces behind the string.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">sb</td><td>The StringBuffer to append. </td></tr>
-    <tr><td class="paramname">fieldSize</td><td>The minimum number of characters to append.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a7e8f71a7b7c6d902cfda4b898f75b654"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> appendPadLeft </td>
-          <td>(</td>
-          <td class="paramtype">StringBuffer&#160;</td>
-          <td class="paramname"><em>sb</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>fieldSize</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>padChar</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Append the given StringBuffer and add padding characters behind the string.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">sb</td><td>The StringBuffer to append. </td></tr>
-    <tr><td class="paramname">fieldSize</td><td>The minimum number of characters to append. </td></tr>
-    <tr><td class="paramname">padChar</td><td>The character to add to the right of the given string src. Defaults to ' ' (space).</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ae2100de8b9132e548b278079669b183e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> appendPadRight </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td>
-          <td class="paramname"><em>ms</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>fieldSize</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Append padding spaces and append the given MString.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ms</td><td>The MString to append. </td></tr>
-    <tr><td class="paramname">fieldSize</td><td>The minimum number of characters to append.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a923949c7eedb8ad390707f071b033771"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> appendPadRight </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a>&#160;</td>
-          <td class="paramname"><em>ms</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>fieldSize</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>padChar</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Append padding characters and append the given MString.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ms</td><td>The MString to append. </td></tr>
-    <tr><td class="paramname">fieldSize</td><td>The minimum number of characters to append. </td></tr>
-    <tr><td class="paramname">padChar</td><td>The character to add to the right of the given string src. Defaults to ' ' (space).</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a3eb9248094733b754fb8c3bc384de589"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> appendPadRight </td>
-          <td>(</td>
-          <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>s</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>fieldSize</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Append padding spaces and append the given String.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">s</td><td>The String to append. </td></tr>
-    <tr><td class="paramname">fieldSize</td><td>The minimum number of characters to append.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ac989eab3be63ea5b1dfe7ca84173624c"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> appendPadRight </td>
-          <td>(</td>
-          <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>s</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>fieldSize</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>padChar</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Append padding characters and append the given String.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">s</td><td>The String to append. </td></tr>
-    <tr><td class="paramname">fieldSize</td><td>The minimum number of characters to append. </td></tr>
-    <tr><td class="paramname">padChar</td><td>The character to add to the right of the given string src. Defaults to ' ' (space).</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="af66b4fcd1ab02168be70ec9b2a2cefdc"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> appendPadRight </td>
-          <td>(</td>
-          <td class="paramtype">StringBuffer&#160;</td>
-          <td class="paramname"><em>sb</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>fieldSize</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Append padding spaces and append the given StringBuffer.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">sb</td><td>The StringBuffer to append. </td></tr>
-    <tr><td class="paramname">fieldSize</td><td>The minimum number of characters to append.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="af6a8ae4e9d9d262f46d682e9e9cc9223"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> appendPadRight </td>
-          <td>(</td>
-          <td class="paramtype">StringBuffer&#160;</td>
-          <td class="paramname"><em>sb</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>fieldSize</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>padChar</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Append padding characters and append the given StringBuffer.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">sb</td><td>The StringBuffer to append. </td></tr>
-    <tr><td class="paramname">fieldSize</td><td>The minimum number of characters to append. </td></tr>
-    <tr><td class="paramname">padChar</td><td>The character to add to the right of the given string src. Defaults to ' ' (space).</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
+<hr/>
+<p> The internal buffer character array. This may, but should not be accessed directly. In case of external modifications be sure to adjust the length of this AString using <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a0148ff46a71ba7ab7bc246ac9aa4d823">setLength</a>.</p>
+<dl class="section return"><dt>Returns</dt><dd>The internal buffer array. </dd></dl>
 
 </div>
 </div>
@@ -1971,7 +770,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Clear the Buffer (just sets Length to 0)</p>
+<hr/>
+<p> Clear the Buffer (just sets Length to 0)</p>
 <dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
 
 </div>
@@ -1989,10 +789,11 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Compares a given string (or part of it) with the contents of this. If the optionally given substring start indices and lengths parameters are out of bounds, they are corrected. This could lead to unwanted results in some cases.</p>
+<hr/>
+<p> Compares a given string (or part of it) with the contents of this. If the optionally given substring start indices and lengths parameters are out of bounds, they are corrected. This could lead to unwanted results in some cases.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">cmp</td><td>An object of type String, StringBuffer or MString that is compared to this.</td></tr>
+    <tr><td class="paramname">cmp</td><td>An object of type String, StringBuffer or AString that is compared to this.</td></tr>
   </table>
   </dd>
 </dl>
@@ -2023,10 +824,11 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Compares a given string (or part of it) with the contents of this. If the optionally given substring start indices and lengths parameters are out of bounds, they are corrected. This could lead to unwanted results in some cases.</p>
+<hr/>
+<p> Compares a given string (or part of it) with the contents of this. If the optionally given substring start indices and lengths parameters are out of bounds, they are corrected. This could lead to unwanted results in some cases.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">cmp</td><td>An object of type String, StringBuffer or MString that is compared to this. </td></tr>
+    <tr><td class="paramname">cmp</td><td>An object of type String, StringBuffer or AString that is compared to this. </td></tr>
     <tr><td class="paramname">ignoreCase</td><td>If true, the compare is case insensitive. Optional and defaults to false.</td></tr>
   </table>
   </dd>
@@ -2064,10 +866,11 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Compares a given string (or part of it) with the contents of this. If the optionally given substring start indices and lengths parameters are out of bounds, they are corrected. This could lead to unwanted results in some cases.</p>
+<hr/>
+<p> Compares a given string (or part of it) with the contents of this. If the optionally given substring start indices and lengths parameters are out of bounds, they are corrected. This could lead to unwanted results in some cases.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">cmp</td><td>An object of type String, StringBuffer or MString that is compared to this. </td></tr>
+    <tr><td class="paramname">cmp</td><td>An object of type String, StringBuffer or AString that is compared to this. </td></tr>
     <tr><td class="paramname">ignoreCase</td><td>If true, the compare is case insensitive. Optional and defaults to false. </td></tr>
     <tr><td class="paramname">sStartIdx</td><td>The start of the substring within the given string that is to be compared to this. Defaults to 0.</td></tr>
   </table>
@@ -2112,10 +915,11 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Compares a given string (or part of it) with the contents of this. If the optionally given substring start indices and lengths parameters are out of bounds, they are corrected. This could lead to unwanted results in some cases.</p>
+<hr/>
+<p> Compares a given string (or part of it) with the contents of this. If the optionally given substring start indices and lengths parameters are out of bounds, they are corrected. This could lead to unwanted results in some cases.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">cmp</td><td>An object of type String, StringBuffer or MString that is compared to this. </td></tr>
+    <tr><td class="paramname">cmp</td><td>An object of type String, StringBuffer or AString that is compared to this. </td></tr>
     <tr><td class="paramname">ignoreCase</td><td>If true, the compare is case insensitive. Optional and defaults to false. </td></tr>
     <tr><td class="paramname">sStartIdx</td><td>The start of the substring within the given string that is to be compared to this. Defaults to 0. </td></tr>
     <tr><td class="paramname">sLen</td><td>The length of the substring within the given string that is to be compared to this. Defaults to Integer.MAX_VALUE.</td></tr>
@@ -2167,10 +971,11 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Compares a given string (or part of it) with the contents of this. If the optionally given substring start indices and lengths parameters are out of bounds, they are corrected. This could lead to unwanted results in some cases.</p>
+<hr/>
+<p> Compares a given string (or part of it) with the contents of this. If the optionally given substring start indices and lengths parameters are out of bounds, they are corrected. This could lead to unwanted results in some cases.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">cmp</td><td>An object of type String, StringBuffer or MString that is compared to this. </td></tr>
+    <tr><td class="paramname">cmp</td><td>An object of type String, StringBuffer or AString that is compared to this. </td></tr>
     <tr><td class="paramname">ignoreCase</td><td>If true, the compare is case insensitive. Optional and defaults to false. </td></tr>
     <tr><td class="paramname">sStartIdx</td><td>The start of the substring within the given string that is to be compared to this. Defaults to 0. </td></tr>
     <tr><td class="paramname">sLen</td><td>The length of the substring within the given string that is to be compared to this. Defaults to Integer.MAX_VALUE. </td></tr>
@@ -2229,10 +1034,11 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Compares a given string (or part of it) with the contents of this. If the optionally given substring start indices and lengths parameters are out of bounds, they are corrected. This could lead to unwanted results in some cases.</p>
+<hr/>
+<p> Compares a given string (or part of it) with the contents of this. If the optionally given substring start indices and lengths parameters are out of bounds, they are corrected. This could lead to unwanted results in some cases.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">cmp</td><td>An object of type String, StringBuffer or MString that is compared to this. </td></tr>
+    <tr><td class="paramname">cmp</td><td>An object of type String, StringBuffer or AString that is compared to this. </td></tr>
     <tr><td class="paramname">ignoreCase</td><td>If true, the compare is case insensitive. Optional and defaults to false. </td></tr>
     <tr><td class="paramname">sStartIdx</td><td>The start of the substring within the given string that is to be compared to this. Defaults to 0. </td></tr>
     <tr><td class="paramname">sLen</td><td>The length of the substring within the given string that is to be compared to this. Defaults to Integer.MAX_VALUE. </td></tr>
@@ -2245,7 +1051,7 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a5cfe24fea5a9f07bc3b411a5d5cf1222"></a>
+<a class="anchor" id="aa73f93fbcba640d7799d0af324230bcb"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -2253,7 +1059,7 @@ Public Attributes</h2></td></tr>
           <td class="memname">boolean containsAt </td>
           <td>(</td>
           <td class="paramtype">CharSequence&#160;</td>
-          <td class="paramname"><em>s</em>, </td>
+          <td class="paramname"><em>needle</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -2274,10 +1080,11 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Checks if the given String is located at the given position.</p>
+<hr/>
+<p> Checks if the given String is located at the given position.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">s</td><td>The string to search. </td></tr>
+    <tr><td class="paramname">needle</td><td>The string to search. </td></tr>
     <tr><td class="paramname">pos</td><td>The to look at. </td></tr>
     <tr><td class="paramname">ignoreCase</td><td>If true, the compare is case insensitive. Optional and defaults to false.</td></tr>
   </table>
@@ -2287,7 +1094,7 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a4fe1e46da5df87fefcacb81b6330bdc9"></a>
+<a class="anchor" id="afbad536c565c434326108263cf5bf0b9"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -2295,7 +1102,7 @@ Public Attributes</h2></td></tr>
           <td class="memname">boolean containsAt </td>
           <td>(</td>
           <td class="paramtype">CharSequence&#160;</td>
-          <td class="paramname"><em>s</em>, </td>
+          <td class="paramname"><em>needle</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -2310,10 +1117,11 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Checks if the given String is located at the given position.</p>
+<hr/>
+<p> Checks if the given String is located at the given position.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">s</td><td>The string to search. </td></tr>
+    <tr><td class="paramname">needle</td><td>The string to search. </td></tr>
     <tr><td class="paramname">pos</td><td>The to look at.</td></tr>
   </table>
   </dd>
@@ -2335,7 +1143,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Converts all or a region of characters in the Buffer to upper or to lower case.</p>
+<hr/>
+<p> Converts all or a region of characters in the Buffer to upper or to lower case.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">toUpper</td><td>If true, conversion to upper case is performed, to lower else.</td></tr>
@@ -2369,7 +1178,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Converts all or a region of characters in the Buffer to upper or to lower case.</p>
+<hr/>
+<p> Converts all or a region of characters in the Buffer to upper or to lower case.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">toUpper</td><td>If true, conversion to upper case is performed, to lower else. </td></tr>
@@ -2410,7 +1220,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Converts all or a region of characters in the Buffer to upper or to lower case.</p>
+<hr/>
+<p> Converts all or a region of characters in the Buffer to upper or to lower case.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">toUpper</td><td>If true, conversion to upper case is performed, to lower else. </td></tr>
@@ -2423,7 +1234,68 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ab0f4b2881454b063c7bb9fee6d58ded2"></a>
+<a class="anchor" id="a25ead9653b7ba33cb4f4803d66845ab6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> delete </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>regionStart</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>regionLength</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Deletes a region from the Buffer. Note: To delete all contents use <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a58aafa1bec9d1e812dd0d168b37ee03f">clear</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">regionStart</td><td>The start of the region to delete. </td></tr>
+    <tr><td class="paramname">regionLength</td><td>The length of the region to delete. Defaults to Integer.MAX_VALUE.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>'*this' to allow concatenated calls. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a7e22e3b7fb7f66638d9ac205d571d10b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> delete </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>regionStart</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Deletes the end of the Buffer starting at the given index. Note: To delete all contents use <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a58aafa1bec9d1e812dd0d168b37ee03f">clear</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">regionStart</td><td>The start of the region to delete.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="afe2c84c4ca703f13895569c3ee38606d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -2431,19 +1303,275 @@ Public Attributes</h2></td></tr>
           <td class="memname">boolean endsWith </td>
           <td>(</td>
           <td class="paramtype">CharSequence&#160;</td>
-          <td class="paramname"><em>s</em></td><td>)</td>
+          <td class="paramname"><em>needle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">boolean&#160;</td>
+          <td class="paramname"><em>ignoreCase</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Checks if this MString ends with the given sequence.</p>
+<hr/>
+<p> Checks if this AString ends with the given sequence.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">s</td><td>The String to search. If s is null or empty, false is returned.</td></tr>
+    <tr><td class="paramname">needle</td><td>The CharSequence to search. If s is null or empty, false is returned. </td></tr>
+    <tr><td class="paramname">ignoreCase</td><td>If true, the compare is case insensitive. Optional and defaults to false.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if this starts with the given sequence, false if not. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aed2ca8bfed43e5a557d1e472b16e5ba2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean endsWith </td>
+          <td>(</td>
+          <td class="paramtype">CharSequence&#160;</td>
+          <td class="paramname"><em>needle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Checks if this AString ends with the given sequence.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">needle</td><td>The String to search. If s is null or empty, false is returned.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if this starts with the given sequence, false if not. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af6fea54bd755d54b034c24dbf0923239"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ensureAllocation </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>minLen</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Ensures that the capacity of the internal buffer meets or exceeds the given value.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">minLen</td><td>The minimum length. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ab43ea64ac2ebc46b8d4b7a633e585d50"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ensureAllocationRelative </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>growth</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Ensures that the capacity of the internal buffer meets or exceeds the actual length plus the given growth value.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">growth</td><td>The desired growth of length. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a34c52c07602489b1a97f763b3ae1c0bf"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> field </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="enumcom_1_1aworx_1_1util_1_1AString_1_1Align.html">Align</a>&#160;</td>
+          <td class="paramname"><em>alignment</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>padChar</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>fieldStart</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> If invoked without parameters, the start of a field is marked at the current end of the string. Otherwise the end of a field is set and the contents between the field start marker and the current end of the string is aligned within the field using the given pad character. Note: To implement nested fields, the outer fields have to be set by providing the start marker by using the parameter fieldStart. Hence, only the starting points of the most inner fields can be set using this method without parameters.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>The field size in relation to the starting index of the field, defined either by using Field() prior to this invocation or by providing the parameter fieldStart. The field gets filled with the given pad character to meet the size while the content gets aligned left, right or centered. If the content exceeds the size, then no alignment takes place. </td></tr>
+    <tr><td class="paramname">alignment</td><td>The alignment of the contents within the field. Defaults to <a class="el" href="enumcom_1_1aworx_1_1util_1_1AString_1_1Align.html#a2d192e0d040aa72b0c0e855aaf9462e5">AString.Align.RIGHT</a>. Other options are <a class="el" href="enumcom_1_1aworx_1_1util_1_1AString_1_1Align.html#a2349c85ca7362adcde4c67fbd81a4432">AString.Align.LEFT</a> and <a class="el" href="enumcom_1_1aworx_1_1util_1_1AString_1_1Align.html#a00f6ce13ea7d341a8ed6b99840f4bbd3">AString.Align.CENTER</a>. </td></tr>
+    <tr><td class="paramname">padChar</td><td>The character used to fill the field up to its size. Defaults to ' ' (space). </td></tr>
+    <tr><td class="paramname">fieldStart</td><td>This parameter, if given, overwrites the start index of the field. The invocation of field can be omitted, when this value is explicitly provided. Defaults to Integer.MAX_VALUE. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a3f5cd4ad706427939b310e2bd812ff24"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> field </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="enumcom_1_1aworx_1_1util_1_1AString_1_1Align.html">Align</a>&#160;</td>
+          <td class="paramname"><em>alignment</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>padChar</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Closes and formats a field of the given size. Contents is aligned as specified. The Field is fill with the character provided. See variants of this method for more information.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>The field size in relation to the starting index of the field, defined either by using Field() prior to this invocation or by providing the parameter fieldStart. The field gets filled with the given pad character to meet the size while the content gets aligned left, right or centered. If the content exceeds the size, then no alignment takes place. </td></tr>
+    <tr><td class="paramname">alignment</td><td>The alignment of the contents within the field. Defaults to <a class="el" href="enumcom_1_1aworx_1_1util_1_1AString_1_1Align.html#a2d192e0d040aa72b0c0e855aaf9462e5">AString.Align.RIGHT</a>. Other options are <a class="el" href="enumcom_1_1aworx_1_1util_1_1AString_1_1Align.html#a2349c85ca7362adcde4c67fbd81a4432">AString.Align.LEFT</a> and <a class="el" href="enumcom_1_1aworx_1_1util_1_1AString_1_1Align.html#a00f6ce13ea7d341a8ed6b99840f4bbd3">AString.Align.CENTER</a>. </td></tr>
+    <tr><td class="paramname">padChar</td><td>The character used to fill the field up to its size. Defaults to ' ' (space). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a71b8ca4df04799df49079d4c6deadb6e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> field </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="enumcom_1_1aworx_1_1util_1_1AString_1_1Align.html">Align</a>&#160;</td>
+          <td class="paramname"><em>alignment</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Closes and formats a field of the given size. Contents is aligned as specified. The Field is fill with spaces to reach the size. See variants of this method for more information.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>The field size in relation to the starting index of the field, defined by using Field() prior to this invocation. </td></tr>
+    <tr><td class="paramname">alignment</td><td>The alignment of the contents within the field. Defaults to <a class="el" href="enumcom_1_1aworx_1_1util_1_1AString_1_1Align.html#a2d192e0d040aa72b0c0e855aaf9462e5">AString.Align.RIGHT</a>. Other options are <a class="el" href="enumcom_1_1aworx_1_1util_1_1AString_1_1Align.html#a2349c85ca7362adcde4c67fbd81a4432">AString.Align.LEFT</a> and <a class="el" href="enumcom_1_1aworx_1_1util_1_1AString_1_1Align.html#a00f6ce13ea7d341a8ed6b99840f4bbd3">AString.Align.CENTER</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aa5b2ed91ccf64de417fa92cbba6fbe15"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> field </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Closes and formats a field of the given size. Contents is aligned right. The Field is fill with spaces to reach the size. See variants of this method for more information.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>The field size in relation to the starting index of the field, defined by using Field() prior to this invocation. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a3753c4be5411fc4e33b64466876b8cac"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> field </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Marks the start of a field. See variants of this method for more information. </p><dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
 
 </div>
 </div>
@@ -2470,7 +1598,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Search the given String in the Buffer starting at a given position.</p>
+<hr/>
+<p> Search the given String in the Buffer starting at a given position.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>The string to search. </td></tr>
@@ -2495,7 +1624,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Search the given String in the Buffer.</p>
+<hr/>
+<p> Search the given String in the Buffer.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>The string to search. </td></tr>
@@ -2503,6 +1633,102 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>-1 if the String is not found. Otherwise the index of first occurrence. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a51210f39d2d1f501b3a7010899efa845"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> insert </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>regionStart</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>regionLength</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>fillChar</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Inserts a region into the Buffer. The region gets filled with the given character.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">regionStart</td><td>The start of the region to insert. If this is out of the string bounds (hence less than 0 or greater then <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a3d0f4ae571310c6ed081daa3985ecb47">length</a>, nothing is done. </td></tr>
+    <tr><td class="paramname">regionLength</td><td>The length of the region to insert. </td></tr>
+    <tr><td class="paramname">fillChar</td><td>(Optional) The character to fill the new region with. Defaults to ' ' (space).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a053e10b122783f204d8640c1fd9f75d2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> insert </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>regionStart</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>regionLength</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Inserts a region into the Buffer. The region gets filled with spaces (' ').</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">regionStart</td><td>The start of the region to insert. If this is out of the string bounds (hence less than 0 or greater then <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a3d0f4ae571310c6ed081daa3985ecb47">length</a>, nothing is done. </td></tr>
+    <tr><td class="paramname">regionLength</td><td>The length of the region to insert.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>'*this' to allow concatenated calls. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a3d0f4ae571310c6ed081daa3985ecb47"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int length </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Gets the length of the sequence. </p><dl class="section return"><dt>Returns</dt><dd>The length of the sequence. </dd></dl>
 
 </div>
 </div>
@@ -2518,7 +1744,65 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Appends platform specific new line character(s). ( "\\r\\n", "\\r", etc.)</p>
+<hr/>
+<p> Appends platform specific new line character(s). ( "\\r\\n", "\\r", etc.). The new length of the string is recorded as the reference position for <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#adb91a16b64ad65151028033a92e92910">tab</a>.</p>
+<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a615341186ef029de37fefdf6e9c31d01"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> replace </td>
+          <td>(</td>
+          <td class="paramtype">CharSequence&#160;</td>
+          <td class="paramname"><em>searchStr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CharSequence&#160;</td>
+          <td class="paramname"><em>newStr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>startIdx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>maxReplacements</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">boolean&#160;</td>
+          <td class="paramname"><em>ignoreCase</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Replace one more more occurrences of a string by another string. To receive the number of Replacements, see alternative method <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a5c0963159eedf78d9dc50604bcaafe08">replaceCount()</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">searchStr</td><td>The CharSequence to be replaced. </td></tr>
+    <tr><td class="paramname">newStr</td><td>The replacement string. </td></tr>
+    <tr><td class="paramname">startIdx</td><td>The index where the search starts. Optional and defaults to 0. </td></tr>
+    <tr><td class="paramname">maxReplacements</td><td>The maximum number of replacements to perform. Optional and defaults to Integer.MAX_VALUE . </td></tr>
+    <tr><td class="paramname">ignoreCase</td><td>If true, a case insensitive search is performed. Defaults to false.</td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
 
 </div>
@@ -2558,7 +1842,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Replace one more more occurrences of a string by another string. To receive the number of replacements, see alternative method <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ab991a6222121588e5a3f0748d1829c63">replaceCount()</a>.</p>
+<hr/>
+<p> Replace one more more occurrences of a string by another string. To receive the number of Replacements, see alternative method <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a5c0963159eedf78d9dc50604bcaafe08">replaceCount()</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">searchStr</td><td>The string to be replaced. </td></tr>
@@ -2601,7 +1886,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Replace one more more occurrences of a string by another string. To receive the number of replacements, see alternative method <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ab991a6222121588e5a3f0748d1829c63">replaceCount()</a>.</p>
+<hr/>
+<p> Replace one more more occurrences of a string by another string. To receive the number of Replacements, see alternative method <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a5c0963159eedf78d9dc50604bcaafe08">replaceCount()</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">searchStr</td><td>The string to be replaced. </td></tr>
@@ -2637,11 +1923,69 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Replace one more more occurrences of a string by another string. To receive the number of replacements, see alternative method <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#ab991a6222121588e5a3f0748d1829c63">replaceCount()</a>.</p>
+<hr/>
+<p> Replace one more more occurrences of a string by another string. To receive the number of Replacements, see alternative method <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a5c0963159eedf78d9dc50604bcaafe08">replaceCount()</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">searchStr</td><td>The string to be replaced. </td></tr>
     <tr><td class="paramname">newStr</td><td>The replacement string.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of replacements that where performed. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5c0963159eedf78d9dc50604bcaafe08"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int replaceCount </td>
+          <td>(</td>
+          <td class="paramtype">CharSequence&#160;</td>
+          <td class="paramname"><em>searchStr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CharSequence&#160;</td>
+          <td class="paramname"><em>newStr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>startIdx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>maxReplacements</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">boolean&#160;</td>
+          <td class="paramname"><em>ignoreCase</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Replace one more more occurrences of a string by another string. Returns the number of replacements. Use <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a615341186ef029de37fefdf6e9c31d01">replace()</a> to allow concatenated operations.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">searchStr</td><td>The CharSequence to be replaced. </td></tr>
+    <tr><td class="paramname">newStr</td><td>The replacement string. </td></tr>
+    <tr><td class="paramname">startIdx</td><td>The index where the search starts. Optional and defaults to 0. </td></tr>
+    <tr><td class="paramname">maxReplacements</td><td>The maximum number of replacements to perform. Optional and defaults to Integer.MAX_VALUE . </td></tr>
+    <tr><td class="paramname">ignoreCase</td><td>If true, a case insensitive search is performed. Defaults to false.</td></tr>
   </table>
   </dd>
 </dl>
@@ -2684,7 +2028,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Replace one more more occurrences of a string by another string. Returns the number of replacements. Use <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a227cfca88f09377ab8f3df308ce7bbd8">replace()</a> to allow concatenated operations.</p>
+<hr/>
+<p> Replace one more more occurrences of a string by another string. Returns the number of replacements. Use <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a615341186ef029de37fefdf6e9c31d01">replace()</a> to allow concatenated operations.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">searchStr</td><td>The string to be replaced. </td></tr>
@@ -2727,7 +2072,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Replace one more more occurrences of a string by another string. Returns the number of replacements. Use <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a227cfca88f09377ab8f3df308ce7bbd8">replace()</a> to allow concatenated operations.</p>
+<hr/>
+<p> Replace one more more occurrences of a string by another string. Returns the number of replacements. Use <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a615341186ef029de37fefdf6e9c31d01">replace()</a> to allow concatenated operations.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">searchStr</td><td>The string to be replaced. </td></tr>
@@ -2763,7 +2109,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Replace one more more occurrences of a string by another string. Returns the number of replacements. Use <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a227cfca88f09377ab8f3df308ce7bbd8">replace()</a> to allow concatenated operations.</p>
+<hr/>
+<p> Replace one more more occurrences of a string by another string. Returns the number of replacements. Use <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#a615341186ef029de37fefdf6e9c31d01">replace()</a> to allow concatenated operations.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">searchStr</td><td>The string to be replaced. </td></tr>
@@ -2775,7 +2122,56 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ab316fed7f0f6497158869355aba96fbe"></a>
+<a class="anchor" id="aeaf71297ed08b4bb022937d258607c87"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setAllocation </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>newSize</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Resizes the internal buffer to meet exactly the given size. Attn: If the current string represented by this instance is larger, the string is cut. This method is deemed for internal use or very special situations when used from outside.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newSize</td><td>The new size for the allocation buffer. If -1 is given, the current length of the AString is used. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a0148ff46a71ba7ab7bc246ac9aa4d823"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int setLength </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>newLength</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Set the actual length of the stored string. The string can only be shortened. To increase the length, use one of the Append methods, e.g. Append( char, int ). To change the internal allocation size, see <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#aeaf71297ed08b4bb022937d258607c87">setAllocation</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newLength</td><td>The new length of the AString. Must be smaller than the current length.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The new length of the string represented by this. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a7ee963cfa5665aa391debc29e37e0ee8"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -2783,15 +2179,27 @@ Public Attributes</h2></td></tr>
           <td class="memname">boolean startsWith </td>
           <td>(</td>
           <td class="paramtype">CharSequence&#160;</td>
-          <td class="paramname"><em>s</em></td><td>)</td>
+          <td class="paramname"><em>needle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">boolean&#160;</td>
+          <td class="paramname"><em>ignoreCase</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Checks if this MString starts with the given sequence.</p>
+<hr/>
+<p> Checks if this AString starts with the given sequence.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">s</td><td>The String to search. If s is null or empty, false is returned.</td></tr>
+    <tr><td class="paramname">needle</td><td>The CharSequence to search. If s is null or empty, false is returned. </td></tr>
+    <tr><td class="paramname">ignoreCase</td><td>If true, the compare is case insensitive. Optional and defaults to false.</td></tr>
   </table>
   </dd>
 </dl>
@@ -2799,31 +2207,32 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aa3a8767705fdc50aa7ba23503c40ec39"></a>
+<a class="anchor" id="aec9082863021ba38ed37e13662d7ba79"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> tab </td>
+          <td class="memname">boolean startsWith </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>tabSize</em></td><td>)</td>
+          <td class="paramtype">CharSequence&#160;</td>
+          <td class="paramname"><em>needle</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Go to the next tab stop by filling in pad characters repeatedly.</p>
+<hr/>
+<p> Checks if this AString starts with the given sequence.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">tabSize</td><td>The tab positions are multiples of this parameter.</td></tr>
+    <tr><td class="paramname">needle</td><td>The String to search. If s is null or empty, false is returned.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true if this starts with the given sequence, false if not. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="afdb35b96fc567bed45f52c549139d7f1"></a>
+<a class="anchor" id="adb91a16b64ad65151028033a92e92910"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -2832,89 +2241,6 @@ Public Attributes</h2></td></tr>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>tabSize</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>tabReference</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Go to the next tab stop by filling in pad characters repeatedly.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">tabSize</td><td>The tab positions are multiples of this parameter. </td></tr>
-    <tr><td class="paramname">tabReference</td><td>The tab reference position. has to be smaller than Length. Defaults to 0 (beginning of Buffer). For buffers with multiple lines, this parameter has to be set.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ad89309c646ffcc8dcf02e3ee74f9b166"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> tab </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>tabSize</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>tabReference</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>minPad</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Go to the next tab stop by filling in pad characters repeatedly.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">tabSize</td><td>The tab positions are multiples of this parameter. </td></tr>
-    <tr><td class="paramname">tabReference</td><td>The tab reference position. has to be smaller than Length. Defaults to 0 (beginning of Buffer). For buffers with multiple lines, this parameter has to be set. </td></tr>
-    <tr><td class="paramname">minPad</td><td>The minimum pad characters to add.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a711e06286cc91a555aca689df5a4d68c"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> tab </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>tabSize</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>tabReference</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -2935,13 +2261,73 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Go to the next tab stop by filling in pad characters repeatedly.</p>
+<hr/>
+<p> Go to the next tab stop by filling in pad characters repeatedly. The tab position is relative to the starting of the current line (if subsequent calls to <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#af8ab44130376a07ef17460b392f41590">newLine</a> where performed). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tabSize</td><td>The tab positions are multiples of this parameter. </td></tr>
+    <tr><td class="paramname">minPad</td><td>(Optional) The minimum pad characters to add. Defaults to 1. </td></tr>
+    <tr><td class="paramname">padChar</td><td>(Optional) The character to insert to reach the tag position. Defaults to ' ' (space).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a348144c995e05f9459314676f8d5e98f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> tab </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tabSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>minPad</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Go to the next tab stop by filling in spaces repeatedly. The tab position is relative to the starting of the current line (if subsequent calls to <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#af8ab44130376a07ef17460b392f41590">newLine</a> where performed).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tabSize</td><td>The tab positions are multiples of this parameter. </td></tr>
-    <tr><td class="paramname">tabReference</td><td>The tab reference position. has to be smaller than Length. Defaults to 0 (beginning of Buffer). For buffers with multiple lines, this parameter has to be set. </td></tr>
-    <tr><td class="paramname">minPad</td><td>The minimum pad characters to add. </td></tr>
-    <tr><td class="paramname">padChar</td><td>The character to add to the right of the given string src. Defaults to ' ' (space).</td></tr>
+    <tr><td class="paramname">minPad</td><td>The minimum pad characters to add. Defaults to 1.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>'this' to allow concatenated calls. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aa3a8767705fdc50aa7ba23503c40ec39"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> tab </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tabSize</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Go to the next tab stop by filling in spaces repeatedly. A minimum of one space is inserted. The tab position is relative to the starting of the current line (if subsequent calls to <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html#af8ab44130376a07ef17460b392f41590">newLine</a> where performed).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tabSize</td><td>The tab positions are multiples of this parameter.</td></tr>
   </table>
   </dd>
 </dl>
@@ -2961,22 +2347,74 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Converts the MString into a String.</p>
+<hr/>
+<p> Converts the <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> into a String.</p>
 <dl class="section return"><dt>Returns</dt><dd>A string that represents this object. </dd></dl>
 
 </div>
 </div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a8407bef70dc3483bc9b223482b0e162f"></a>
+<a class="anchor" id="a4be7950bca2824824c60b795beec849c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a> b</td>
+          <td class="memname">StringBuilder toString </td>
+          <td>(</td>
+          <td class="paramtype">StringBuilder&#160;</td>
+          <td class="paramname"><em>result</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>regionStart</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>regionLength</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">boolean&#160;</td>
+          <td class="paramname"><em>appendMode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The encapsulated MString </p>
+<hr/>
+<p> Copies a region of the contents of this AString into the given StringBuilder.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">result</td><td>A result StringBuilder to copy the specified region into. </td></tr>
+    <tr><td class="paramname">regionStart</td><td>The start index of the region to be copied. </td></tr>
+    <tr><td class="paramname">regionLength</td><td>The maximum length of the region to be copied. </td></tr>
+    <tr><td class="paramname">appendMode</td><td>If true, any contents in the result is preserved. Otherwise such content gets replaced. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The (modified) result that was provided (for concatenation of calls). </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="ae39a21fdb208da32c414578b78579aaa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a> b</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> The encapsulated AString </p>
 
 </div>
 </div>
@@ -2987,7 +2425,7 @@ Public Attributes</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 4 2015 11:07:52 for ALox Java Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

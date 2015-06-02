@@ -1,10 +1,18 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
 <tagfile>
   <compound kind="file">
+    <name>AString.cs</name>
+    <path>/home/a/mnt/dev/Dev/A-Worx/ALox/src/cs.aworx.util/</path>
+    <filename>AString_8cs</filename>
+    <class kind="class">com::aworx::util::AString</class>
+    <namespace>com::aworx::util</namespace>
+  </compound>
+  <compound kind="file">
     <name>AWXU.cs</name>
     <path>/home/a/mnt/dev/Dev/A-Worx/ALox/src/cs.aworx.util/</path>
     <filename>AWXU_8cs</filename>
     <class kind="interface">com::aworx::util::AWXUErrorHandler</class>
+    <class kind="class">com::aworx::util::ConsoleErrorHandler</class>
     <class kind="class">com::aworx::util::AWXU</class>
     <namespace>com::aworx::util</namespace>
   </compound>
@@ -21,6 +29,31 @@
     <filename>ConsoleLogger_8cs</filename>
     <class kind="class">com::aworx::lox::loggers::ConsoleLogger</class>
     <namespace>com::aworx::lox::loggers</namespace>
+  </compound>
+  <compound kind="file">
+    <name>csmacros.dox</name>
+    <path>/home/a/mnt/dev/Dev/A-Worx/ALox/src/docs/ALox.CS/</path>
+    <filename>csmacros_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>csmainpage.dox</name>
+    <path>/home/a/mnt/dev/Dev/A-Worx/ALox/src/docs/ALox.CS/</path>
+    <filename>csmainpage_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>cspruning.dox</name>
+    <path>/home/a/mnt/dev/Dev/A-Worx/ALox/src/docs/ALox.CS/</path>
+    <filename>cspruning_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>cssetup.dox</name>
+    <path>/home/a/mnt/dev/Dev/A-Worx/ALox/src/docs/ALox.CS/</path>
+    <filename>cssetup_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>cstutorial.dox</name>
+    <path>/home/a/mnt/dev/Dev/A-Worx/ALox/src/docs/ALox.CS/</path>
+    <filename>cstutorial_8dox</filename>
   </compound>
   <compound kind="file">
     <name>DynamicJSONDeserializer.cs</name>
@@ -67,23 +100,11 @@
     <namespace>com::aworx::lox</namespace>
   </compound>
   <compound kind="file">
-    <name>MainPage_CS.dox</name>
-    <path>/home/a/mnt/dev/Dev/A-Worx/ALox/src/docs/ALox.CS/</path>
-    <filename>MainPage__CS_8dox</filename>
-  </compound>
-  <compound kind="file">
     <name>MemoryLogger.cs</name>
     <path>/home/a/mnt/dev/Dev/A-Worx/ALox/src/cs.alox/loggers/</path>
     <filename>MemoryLogger_8cs</filename>
     <class kind="class">com::aworx::lox::loggers::MemoryLogger</class>
     <namespace>com::aworx::lox::loggers</namespace>
-  </compound>
-  <compound kind="file">
-    <name>MString.cs</name>
-    <path>/home/a/mnt/dev/Dev/A-Worx/ALox/src/cs.aworx.util/</path>
-    <filename>MString_8cs</filename>
-    <class kind="class">com::aworx::util::MString</class>
-    <namespace>com::aworx::util</namespace>
   </compound>
   <compound kind="file">
     <name>TextFileLogger.cs</name>
@@ -121,22 +142,12 @@
     <namespace>com::aworx::util</namespace>
   </compound>
   <compound kind="file">
-    <name>Ticker.cs</name>
+    <name>Ticks.cs</name>
     <path>/home/a/mnt/dev/Dev/A-Worx/ALox/src/cs.aworx.util/</path>
-    <filename>Ticker_8cs</filename>
-    <class kind="class">com::aworx::util::Ticker</class>
-    <class kind="struct">com::aworx::util::TickTime</class>
+    <filename>Ticks_8cs</filename>
+    <class kind="class">com::aworx::util::Ticks</class>
+    <class kind="class">com::aworx::util::TickWatch</class>
     <namespace>com::aworx::util</namespace>
-  </compound>
-  <compound kind="file">
-    <name>Tutorial.CS.dox</name>
-    <path>/home/a/mnt/dev/Dev/A-Worx/ALox/src/docs/ALox.CS/</path>
-    <filename>Tutorial_8CS_8dox</filename>
-  </compound>
-  <compound kind="file">
-    <name>VStudioSetup_CS.dox</name>
-    <path>/home/a/mnt/dev/Dev/A-Worx/ALox/src/docs/ALox.CS/</path>
-    <filename>VStudioSetup__CS_8dox</filename>
   </compound>
   <compound kind="class">
     <name>com::aworx::lox::Log::ALoxAWXUErrorHandler</name>
@@ -146,32 +157,526 @@
       <type>void</type>
       <name>error</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log_1_1ALoxAWXUErrorHandler.html</anchorfile>
-      <anchor>a143121b7aa73c57aed99b0d13b5b80d3</anchor>
-      <arglist>(Object msg)</arglist>
+      <anchor>a74c12b83f77afd7a3307672a7a530116</anchor>
+      <arglist>(string msg)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>warning</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log_1_1ALoxAWXUErrorHandler.html</anchorfile>
-      <anchor>a054c4b2d956d70587cfc45b54d09d1c9</anchor>
-      <arglist>(Object msg)</arglist>
+      <anchor>a285583ea2eab432357bb3eb9d3553be5</anchor>
+      <arglist>(string msg)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>com::aworx::util::AString</name>
+    <filename>classcom_1_1aworx_1_1util_1_1AString.html</filename>
+    <member kind="enumeration">
+      <type></type>
+      <name>Align</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>ab4fc75cf20644d0e62fb0242b3e7b401</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>AString</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>a0b7e6f9a4638528a39ba8d41a9edca55</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>AString</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>aa96fbd724b1775e840ceaf97495cc280</anchor>
+      <arglist>(int size)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>AString</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>ab33094f9b33daa0c1eaee59d7cd0c1ff</anchor>
+      <arglist>(AString src, int regionStart=0, int regionLength=int.MaxValue)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>AString</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>a3ff52dbe81c441479c27e22adfdd3e7b</anchor>
+      <arglist>(String src, int regionStart=0, int regionLength=int.MaxValue)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>AString</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>ab08786c133bbed8861ea8e27bf27b30b</anchor>
+      <arglist>(StringBuilder src, int regionStart=0, int regionLength=int.MaxValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>char[]</type>
+      <name>Buffer</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>ad69b5cb760dc02917a5493fe8f9f7cb4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>Length</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>ad2cc1673d4ad954556c5356c3ad51550</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>SetLength</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>a61e8aa44b25c72e5a3f07105d2baff7a</anchor>
+      <arglist>(int newLength)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>GetAllocation</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>aceecf9edcf1826ce2bd4bf636ff7a4ed</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetAllocation</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>af3cfdcb8f47057f88570b1c6d956e86a</anchor>
+      <arglist>(int newSize=-1)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>EnsureAllocation</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>ac9ad1aeb7c5920c8693e0d746988311b</anchor>
+      <arglist>(int minLen)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>EnsureAllocationRelative</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>a317a232f7b91caaa97a59bbe2f66864c</anchor>
+      <arglist>(int growth)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>Clear</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>a34dd5d801f01e4f8d9f6a4cb435da6e1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>Delete</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>a8c5ba7abc3c9da86dcb72df05a9ac922</anchor>
+      <arglist>(int regionStart, int regionLength=int.MaxValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>Insert</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>ac6d3b76cfb46bbb01fec0b19ed3e244c</anchor>
+      <arglist>(int regionStart, int regionLength, char fillChar= &apos; &apos;)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>Fill</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>af77d9de906f5b567030539460fe43089</anchor>
+      <arglist>(char c, int regionStart=0, int regionLength=int.MaxValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>NewLine</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>ae4d8039a4afab89516c88e089848836f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>Tab</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>ae57517ec09a0139179d941f5552fabba</anchor>
+      <arglist>(int tabSize, int minPad=1, char tabChar= &apos; &apos;)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>Append</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>a900c2555bad7184c7c43be214d133df8</anchor>
+      <arglist>(AString src, int regionStart=0, int regionLength=int.MaxValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>Append</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>ab292e06afd67e200954207659ea0775a</anchor>
+      <arglist>(String src, int regionStart=int.MinValue, int regionLength=int.MaxValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>Append</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>a20c3701b321cb3dacddf3e161b3fbaf0</anchor>
+      <arglist>(StringBuilder src, int regionStart=int.MinValue, int regionLength=int.MaxValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>Append</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>a430b50a11d014f869354cb9ac6539a30</anchor>
+      <arglist>(char c)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>Append</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>a7dc3091d9744236a48499316afc057cb</anchor>
+      <arglist>(char c, int qty)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>Append</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>aa848afd0928435fd341db0c9476ee891</anchor>
+      <arglist>(int i, int minDigits=1)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>Append</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>aa74acbe9fdcb2340d12ebd6c663a4374</anchor>
+      <arglist>(uint i, int minDigits=1)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>Append</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>a35d4aa67b5a201d1f71c6e5ce55d8e97</anchor>
+      <arglist>(double d, int minDigitsBeforeDot=0, int digitsAfterDot=5)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>Field</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>a7ce0df22fc43e0bd7aa09c285a3dba7e</anchor>
+      <arglist>(int size=-1, Align alignment=Align.Right, char padChar= &apos; &apos;, int fieldStart=int.MaxValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>ContainsAt</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>af04d5d8b28a5486aadc3ce2ff8fa9ca1</anchor>
+      <arglist>(String needle, int pos, bool ignoreCase=false)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>ContainsAt</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>a3fbcfbd52f454249a417c047d65996e3</anchor>
+      <arglist>(AString needle, int pos, bool ignoreCase=false)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>StartsWith</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>a153f5dbe385451c2ef556e4e519b3429</anchor>
+      <arglist>(String needle, bool ignoreCase=false)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>StartsWith</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>acb88859ecf28923f5bbada35bae9e78a</anchor>
+      <arglist>(AString needle, bool ignoreCase=false)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>EndsWith</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>adfbb8fc24c48a82b3f1e0fa2a7072686</anchor>
+      <arglist>(String needle, bool ignoreCase=false)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>EndsWith</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>a1b10ee693f9c52f207e708bb676842c8</anchor>
+      <arglist>(AString needle, bool ignoreCase=false)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>IndexOf</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>ab18244625fe4fd85e4ffecc846b60163</anchor>
+      <arglist>(String needle, int startIdx=0, bool ignoreCase=false)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>IndexOf</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>a8c012a799b9f9ffd9798f765a8c423b9</anchor>
+      <arglist>(AString needle, int startIdx=0, bool ignoreCase=false)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>IndexOf</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>a4f588006577fd28203bbb95d6372b591</anchor>
+      <arglist>(char c, int startIdx=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>ReplaceCount</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>a5308c963d749729a33ec401af68985dc</anchor>
+      <arglist>(String searchStr, String newStr, int startIdx=0, int maxReplacements=int.MaxValue, bool ignoreCase=false)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>ReplaceCount</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>ad4c17d7aa48e8290115b4cc420f16527</anchor>
+      <arglist>(AString searchStr, AString newStr, int startIdx=0, int maxReplacements=int.MaxValue, bool ignoreCase=false)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>Replace</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>ab2f6028d74ab9607ec1234470789765b</anchor>
+      <arglist>(String searchStr, String newStr, int startIdx=0, int maxReplacements=int.MaxValue, bool ignoreCase=false)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>CompareTo</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>a25001023f92fd27749a1fd6e0100e16a</anchor>
+      <arglist>(Object compareString, bool ignoreCase=false, int compareStringRegionStart=0, int compareStringRegionLength=int.MaxValue, int regionStart=0, int regionLength=int.MaxValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>ConvertCase</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>a30e2a2e5ef5e5250522913d59d1cc130</anchor>
+      <arglist>(bool toUpper, int substrStart=0, int substrLength=int.MaxValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>override String</type>
+      <name>ToString</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>a012fbb0f39e57c0a44ec83dd408fcda3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>string</type>
+      <name>ToString</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>a281ea2c92f6f2ea2a6462632839d7a74</anchor>
+      <arglist>(int regionStart, int regionLength=int.MaxValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>StringBuilder</type>
+      <name>ToString</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>ab22dacb61e02eb73fd322e12d0cdb7d8</anchor>
+      <arglist>(StringBuilder result, int regionStart, int regionLength=int.MaxValue, bool appendMode=false)</arglist>
+    </member>
+    <member kind="function">
+      <type>StringBuilder</type>
+      <name>ToString</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>a46eae5029a45000196e12faca04c37eb</anchor>
+      <arglist>(StringBuilder result, bool appendMode=false)</arglist>
+    </member>
+    <member kind="function">
+      <type>long</type>
+      <name>ToLong</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>a51e09f4346db472b5e97b73d33427651</anchor>
+      <arglist>(ref int idx)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>ToInt</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>a2d996a79ece03b9fc5d66eb74bc14bef</anchor>
+      <arglist>(ref int idx)</arglist>
+    </member>
+    <member kind="function">
+      <type>override int</type>
+      <name>GetHashCode</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>a77e1afa2b6dee1ed3640da81d7407b42</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>override bool</type>
+      <name>Equals</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>aa68c8f722eb155e6928f0f0200df28d2</anchor>
+      <arglist>(Object o)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static bool</type>
+      <name>IsNullOrEmpty</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>aed54c5c21ba7b689b292e15d7cee8e62</anchor>
+      <arglist>(AString ms)</arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static String</type>
+      <name>NEWLINE</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>a48d5ec6061d7631c1714c0973519c1ba</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static bool</type>
+      <name>AWXU_OTW_SetLength</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>ac5edd7c976952f3be7827c0e5eb8d1a1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected" static="yes">
+      <type>static bool</type>
+      <name>adjustRegion</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>ae0e8a89c6cd3f2d68a5eca7c27242b55</anchor>
+      <arglist>(int referenceLength, ref int regionStart, ref int regionLength)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>char[]</type>
+      <name>buffer</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>a8317b33b8c004741d95935199d964be9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>length</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>a9f59b34b1f25fe00023291b678246bcc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>tabReference</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>ad464d10c2231d8bbfa23f5dcaa15af92</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>fieldReference</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>a3f9db4d35ad598af0040026b2b59afa4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>hash</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>a6656561117ec1ab686401179004f53ba</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static char[]</type>
+      <name>nullBuffer</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AString.html</anchorfile>
+      <anchor>a394a75663e7baf383ec7b96a6fdca2ec</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>com::aworx::util::AWXU</name>
     <filename>classcom_1_1aworx_1_1util_1_1AWXU.html</filename>
     <member kind="function" static="yes">
-      <type>static void</type>
-      <name>Sleep</name>
+      <type>static bool</type>
+      <name>AcquireErrorHandler</name>
       <anchorfile>classcom_1_1aworx_1_1util_1_1AWXU.html</anchorfile>
-      <anchor>a3c3079a3bc112d999cfdb967f02875ec</anchor>
+      <anchor>a5540d24ea459e6f23c431fc9b08a937a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Error</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AWXU.html</anchorfile>
+      <anchor>a06ec5ce88f8dd994e4ef1847ba489cf7</anchor>
+      <arglist>(string msg)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Warning</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AWXU.html</anchorfile>
+      <anchor>a75706ac6e98cc6658ea5a706255721bd</anchor>
+      <arglist>(string msg)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>AbortErrorHandler</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AWXU.html</anchorfile>
+      <anchor>a889208c324e7901d252838370c413e22</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static AWXUErrorHandler</type>
+      <name>ReplaceErrorHandler</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AWXU.html</anchorfile>
+      <anchor>aabe9c0d1188ef6094e37d2ae96b99c15</anchor>
+      <arglist>(AWXUErrorHandler newErrorHandler)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>SleepMillis</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AWXU.html</anchorfile>
+      <anchor>a56b63ce54d6e27bb1d57a4ddbabfaba2</anchor>
       <arglist>(int millisecs)</arglist>
     </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>SleepMicros</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AWXU.html</anchorfile>
+      <anchor>ac05c5caf38ac3e7b07c8d7ff38f269d1</anchor>
+      <arglist>(long microsecs)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>SleepNanos</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AWXU.html</anchorfile>
+      <anchor>aba575f2ec01b01d870fb04cdc7f649ca</anchor>
+      <arglist>(long nanosecs)</arglist>
+    </member>
     <member kind="variable" static="yes">
+      <type>static bool</type>
+      <name>HaltOnError</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AWXU.html</anchorfile>
+      <anchor>aaa5d96026d2a9009538182741b707aed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static bool</type>
+      <name>HaltOnWarning</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AWXU.html</anchorfile>
+      <anchor>a57c82f739172de9fc0058f43d6e3f3ed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private" static="yes">
       <type>static AWXUErrorHandler</type>
       <name>errorHandler</name>
       <anchorfile>classcom_1_1aworx_1_1util_1_1AWXU.html</anchorfile>
       <anchor>a310f9753e567021a3074e649210d8c18</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private" static="yes">
+      <type>static ThreadLock</type>
+      <name>tlock</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1AWXU.html</anchorfile>
+      <anchor>a9f13b52477628a14988d737de3191334</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -182,15 +687,15 @@
       <type>void</type>
       <name>error</name>
       <anchorfile>interfacecom_1_1aworx_1_1util_1_1AWXUErrorHandler.html</anchorfile>
-      <anchor>a143121b7aa73c57aed99b0d13b5b80d3</anchor>
-      <arglist>(Object msg)</arglist>
+      <anchor>a74c12b83f77afd7a3307672a7a530116</anchor>
+      <arglist>(string msg)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>warning</name>
       <anchorfile>interfacecom_1_1aworx_1_1util_1_1AWXUErrorHandler.html</anchorfile>
-      <anchor>a054c4b2d956d70587cfc45b54d09d1c9</anchor>
-      <arglist>(Object msg)</arglist>
+      <anchor>a285583ea2eab432357bb3eb9d3553be5</anchor>
+      <arglist>(string msg)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -202,20 +707,6 @@
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
       <anchor>a57555728289b3e873ec939e3a20bc084</anchor>
       <arglist>(String callerSourceFileName, int callerLineNumber, String callerMemberName, Dictionary&lt; int, String &gt; threadDictionary)</arglist>
-    </member>
-    <member kind="function">
-      <type>String</type>
-      <name>GetConsumableSourcePathPrefix</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>aaa7c961bfb7548a03031f4954cc17893</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>MethodName</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>aa8885cdf3586b80bd9905b60bf9529d9</anchor>
-      <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
@@ -232,17 +723,17 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>TickTime</type>
-      <name>TimeStamp</name>
+      <type>String</type>
+      <name>MethodName</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>a094cd0d7c1114ab3989a4f3992f36dd6</anchor>
+      <anchor>aa8885cdf3586b80bd9905b60bf9529d9</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>MString</type>
-      <name>ThreadName</name>
+      <type>Ticks</type>
+      <name>TimeStamp</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>a826e257cf75401d69ae22837d578d457</anchor>
+      <anchor>a5a79026581184f7e7977b1827a104b24</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -253,11 +744,30 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>String</type>
-      <name>ConsumableSourcePathPrefixString</name>
+      <type>AString</type>
+      <name>ThreadName</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>ad5e8a7d9f2c872ab23a2332e6583d908</anchor>
+      <anchor>ac2edbbf8ece484cc8424036fdaadd651</anchor>
       <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>com::aworx::util::ConsoleErrorHandler</name>
+    <filename>classcom_1_1aworx_1_1util_1_1ConsoleErrorHandler.html</filename>
+    <base>com::aworx::util::AWXUErrorHandler</base>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>error</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1ConsoleErrorHandler.html</anchorfile>
+      <anchor>a750fc87f18f5042fecc64c4c313a065f</anchor>
+      <arglist>(string msg)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>warning</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1ConsoleErrorHandler.html</anchorfile>
+      <anchor>ab6974fcc16839c36e83769a26ba2511f</anchor>
+      <arglist>(string msg)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -273,13 +783,6 @@
     </member>
     <member kind="variable">
       <type>bool</type>
-      <name>EnableVSDebugConsole</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html</anchorfile>
-      <anchor>aa8fbde711ff2895904643515cd565a8f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>bool</type>
       <name>EnableAppConsole</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html</anchorfile>
       <anchor>afebe821fecca4fbd3778cb0227fd9a32</anchor>
@@ -289,22 +792,15 @@
       <type>override void</type>
       <name>doTextLog</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html</anchorfile>
-      <anchor>af8da5b301accf1a23758a98b88f222d0</anchor>
-      <arglist>(MString domain, Log.Level level, MString msg, int indent, CallerInfo caller, int lineNumber)</arglist>
+      <anchor>a9f4d4817f9f3191f4a2a26c96fea0bdb</anchor>
+      <arglist>(AString domain, Log.Level level, AString msg, int indent, CallerInfo caller, int lineNumber)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>override void</type>
       <name>notifyMultiLineOp</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html</anchorfile>
-      <anchor>a9bf7948c6fc37e6d55d77759c532f241</anchor>
-      <arglist>(bool start)</arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>MString</type>
-      <name>consoleBuffer</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html</anchorfile>
-      <anchor>a13297cc2c876d3e5667e2c567efbb377</anchor>
-      <arglist></arglist>
+      <anchor>a54d60a19ba6e0e1577a6c064010867eb</anchor>
+      <arglist>(bool isStart)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -412,17 +908,10 @@
       <arglist>(String loggerName)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static void</type>
-      <name>SetConsumableSourcePathPrefix</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>ac929bdf5c24e7713c817f83d020d504a</anchor>
-      <arglist>(String cspp, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static MString</type>
+      <type>static AString</type>
       <name>Buf</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a8ab24670ee3420b26005d66c8543794b</anchor>
+      <anchor>a853691c84a75e5f8fd4e4ef8879eca0f</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
@@ -615,15 +1104,8 @@
       <type></type>
       <name>LogDomain</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html</anchorfile>
-      <anchor>a17cbb6fb2ea129b0bd1d08254c3ba0ce</anchor>
-      <arglist>(LogDomain parent, MString name)</arglist>
-    </member>
-    <member kind="function">
-      <type>override String</type>
-      <name>ToString</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html</anchorfile>
-      <anchor>a012fbb0f39e57c0a44ec83dd408fcda3</anchor>
-      <arglist>()</arglist>
+      <anchor>a4b2481d3fafb3d3c257f67111e02b151</anchor>
+      <arglist>(LogDomain parent, AString name)</arglist>
     </member>
     <member kind="function">
       <type>Log.DomainLevel</type>
@@ -650,14 +1132,14 @@
       <type>LogDomain</type>
       <name>FindOrCreate</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html</anchorfile>
-      <anchor>abaf3a8692758ecaaa7381ad97b1b2cd5</anchor>
-      <arglist>(MString domainPath, bool createIfNotExistant)</arglist>
+      <anchor>a50603924739c6bbdae7659502748cd17</anchor>
+      <arglist>(AString domainPath, bool createIfNotExistent)</arglist>
     </member>
     <member kind="variable">
-      <type>MString</type>
+      <type>AString</type>
       <name>Name</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html</anchorfile>
-      <anchor>a3328db10c8e026e2171ea6061e020bc8</anchor>
+      <anchor>a0de551a5eb98c9fa084c954655523d7b</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -685,8 +1167,8 @@
       <type>LogDomain</type>
       <name>findOrCreateInternal</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html</anchorfile>
-      <anchor>a4bdfd1d3df4067bb3896bf0efd60d9d2</anchor>
-      <arglist>(MString domainPath, int dpStartIdx, bool createIfNotExistant)</arglist>
+      <anchor>a3dbd824df522f2dd394fb6c1af04134f</anchor>
+      <arglist>(AString domainPath, int dpStartIdx, bool createIfNotExistent)</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>Log.DomainLevel</type>
@@ -703,22 +1185,22 @@
       <type>LogDomain</type>
       <name>CreateDomain</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>a5e24dffed44ef22b05a1491799053a31</anchor>
-      <arglist>(MString domainPath)</arglist>
+      <anchor>a36bb3f3fcd86d27b33bb15a10d7ea2a0</anchor>
+      <arglist>(AString domainPath)</arglist>
     </member>
     <member kind="function">
       <type>LogDomain</type>
       <name>FindDomain</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>a8ecd4ffbcef16d4aac7e29db3afa92b3</anchor>
-      <arglist>(MString domainPath)</arglist>
+      <anchor>a0e80243afc18de83b86f1c600dcbc826</anchor>
+      <arglist>(AString domainPath)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual void</type>
       <name>Line</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>a131d672c77b9abb0fc4a5a3d23e66ccf</anchor>
-      <arglist>(MString domain, Log.Level level, Object msgObject, int indent, CallerInfo caller)</arglist>
+      <anchor>ac019af89d268e470e28aa67a390fa221</anchor>
+      <arglist>(AString domain, Log.Level level, Object msgObject, int indent, CallerInfo caller)</arglist>
     </member>
     <member kind="variable">
       <type>String</type>
@@ -735,17 +1217,17 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>TickTime</type>
+      <type>Ticks</type>
       <name>TimeOfCreation</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>ae8f7ba7f8c77976fc229f260ba44717b</anchor>
+      <anchor>a42eaec371b1994c77f5497d4213d1183</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>TickTime</type>
+      <type>Ticks</type>
       <name>TimeOfLastLog</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>a1c081cd8e1cc313de5c7e64d27e975be</anchor>
+      <anchor>a00e19a7e5a1a93ab45e5895a67e6e2eb</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -773,14 +1255,14 @@
       <type>abstract void</type>
       <name>doLog</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>aae6d2874b82786019b36b4ac8ca9c647</anchor>
-      <arglist>(MString domain, Log.Level level, Object msgObject, int indent, CallerInfo caller)</arglist>
+      <anchor>adf2d4a3039b4c8e4f2f24289af899838</anchor>
+      <arglist>(AString domain, Log.Level level, Object msgObject, int indent, CallerInfo caller)</arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>MString</type>
+      <type>AString</type>
       <name>tempDomainPath</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>af717d7b13f31ce14d19c3b24707f20f6</anchor>
+      <anchor>a3cc2685a7a9762a444e2a32736058c9a</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -955,6 +1437,20 @@
       <anchor>a45adaa09fbb02529d24d98b541412995</anchor>
       <arglist></arglist>
     </member>
+    <member kind="variable" static="yes">
+      <type>static int</type>
+      <name>instValueTabStop</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>ac586537acea9202be95f5cf793324550</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static int</type>
+      <name>instTypeTabStop</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>a1cfe4bbb4fae0ca0db99d3fe768ffa64</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function" protection="protected" static="yes">
       <type>static void</type>
       <name>exception</name>
@@ -1026,31 +1522,17 @@
       <arglist>(XElement xe, String headLine, int indent)</arglist>
     </member>
     <member kind="variable" protection="protected" static="yes">
-      <type>static int</type>
-      <name>instValueTabStop</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>ac586537acea9202be95f5cf793324550</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected" static="yes">
-      <type>static int</type>
-      <name>instTypeTabStop</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>a1cfe4bbb4fae0ca0db99d3fe768ffa64</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected" static="yes">
-      <type>static MString</type>
+      <type>static AString</type>
       <name>toolBuf</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>ab2b7fd952d42f838905b7ce560f1e68e</anchor>
+      <anchor>accf10243655bbcecc845e197c4350e8c</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected" static="yes">
-      <type>static MString</type>
+      <type>static AString</type>
       <name>tempBuf</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>a570982a6045c2e2c409321b2e1a01898</anchor>
+      <anchor>ad8bcff62308a450db0f7e00b6937a67d</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected" static="yes">
@@ -1093,10 +1575,10 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>MString</type>
+      <type>AString</type>
       <name>Buf</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ab411a126ad91b1460609c37db472ea00</anchor>
+      <anchor>ad7d2ebe2750e7e4b2548f73d0380f651</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
@@ -1122,17 +1604,17 @@
     </member>
     <member kind="function">
       <type>void</type>
+      <name>RemoveLogger</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a7594d8f630b763d4f83ab48ad926f396</anchor>
+      <arglist>(Logger logger)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
       <name>RemoveLoggers</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
       <anchor>af07a94c1e4cf8e5d66b6852e04b08624</anchor>
       <arglist>(String loggerFilter=null)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>SetConsumableSourcePathPrefix</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>af18033862779e2fb6758c0368290b46d</anchor>
-      <arglist>(String cspp, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -1318,24 +1800,24 @@
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
-      <name>saveAndSet</name>
+      <name>evaluateResultDomain</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a27b95a1106d1211289720ecf01db9e81</anchor>
-      <arglist>(String csf, int cln, String cmn, bool getResDomain, String domain)</arglist>
+      <anchor>a0211ab31ad0b19ced6cf693f7f56e838</anchor>
+      <arglist>(String domain)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>internalLog</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a5f28dc7cc5e8367ae94c0bd9ea180080</anchor>
-      <arglist>(Log.Level level, MString msg)</arglist>
+      <anchor>aa4cbc7d10fb7a53ae1b3f903512f6f75</anchor>
+      <arglist>(Log.Level level, AString msg)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>logConfigDomainRecursive</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a117ffffe6a67d18964e60d277a17d71c</anchor>
-      <arglist>(LogDomain domain, int indent, String domPath, MString buf)</arglist>
+      <anchor>af8340b89f1a7166328f2954025a5f5a3</anchor>
+      <arglist>(LogDomain domain, int indent, String domPath, AString buf)</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>List&lt; Logger &gt;</type>
@@ -1345,17 +1827,17 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>Dictionary&lt; MString, MString &gt;</type>
+      <type>Dictionary&lt; AString, AString &gt;</type>
       <name>defaultDomains</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ad8161c647b7b5d806611c07ad2357e75</anchor>
+      <anchor>a7301773dfbda817921e99637adc6ff30</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>Dictionary&lt; MString, Object &gt;</type>
+      <type>Dictionary&lt; AString, Object &gt;</type>
       <name>markers</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>afce4382b76f3d1cb8c951f1c6f6c11d7</anchor>
+      <anchor>a5eab0b79172487be1b04eebcd4ed5736</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -1366,17 +1848,17 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>MString</type>
+      <type>AString</type>
       <name>resDomain</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a53cc89ae4402b9385259e06c5fc0a546</anchor>
+      <anchor>aa704b680934869c92c288cb9a23034f2</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>MString</type>
+      <type>AString</type>
       <name>logBuf</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>aaf37e693e36d895e18bcc1f6037f5d9e</anchor>
+      <anchor>a1c3b59e6dc2850f90df33ae9b4533334</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -1387,17 +1869,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>MString</type>
-      <name>tempDomain</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ab1e2c7dee8db47cd16ca92fb3a7ae904</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>MString</type>
+      <type>AString</type>
       <name>tempMS</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a0d99bb961369853273a8f67384b2c3c1</anchor>
+      <anchor>aa5759a00fa885de0700b3ee5f8e54675</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" protection="private" static="yes">
@@ -1420,18 +1895,18 @@
       <arglist>(String name=&quot;MEMORY&quot;)</arglist>
     </member>
     <member kind="variable">
-      <type>MString</type>
+      <type>AString</type>
       <name>Buffer</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html</anchorfile>
-      <anchor>a4c4401d5279509f8e691416e41478f8c</anchor>
+      <anchor>a9043e12d24b528046939fc31395d2d66</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" protection="protected">
       <type>override void</type>
       <name>doTextLog</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html</anchorfile>
-      <anchor>af8da5b301accf1a23758a98b88f222d0</anchor>
-      <arglist>(MString domain, Log.Level level, MString msg, int indent, CallerInfo caller, int lineNumber)</arglist>
+      <anchor>a9f4d4817f9f3191f4a2a26c96fea0bdb</anchor>
+      <arglist>(AString domain, Log.Level level, AString msg, int indent, CallerInfo caller, int lineNumber)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>override void</type>
@@ -1439,318 +1914,6 @@
       <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html</anchorfile>
       <anchor>a54d60a19ba6e0e1577a6c064010867eb</anchor>
       <arglist>(bool isStart)</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>com::aworx::util::MString</name>
-    <filename>classcom_1_1aworx_1_1util_1_1MString.html</filename>
-    <member kind="function">
-      <type></type>
-      <name>MString</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>a677e5696d36925a2de6542b24769bad3</anchor>
-      <arglist>(int size=1024)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>MString</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>ac2c6bb3b70df59497307419594375261</anchor>
-      <arglist>(MString ms, int startIdx=0, int length=int.MaxValue)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>MString</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>a5454bc7d31e76688e091b799f3e945c7</anchor>
-      <arglist>(String s, int startIdx=0, int length=int.MaxValue)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>MString</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>a03c01231cd81a0968dec95f6805a0176</anchor>
-      <arglist>(StringBuilder sb, int startIdx=0, int length=int.MaxValue)</arglist>
-    </member>
-    <member kind="function">
-      <type>MString</type>
-      <name>Clear</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>a8cca8f037a58d8c902e5c62fdf268981</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>MString</type>
-      <name>Append</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>a2b494452543a0937c2aa02e610dfd338</anchor>
-      <arglist>(MString ms)</arglist>
-    </member>
-    <member kind="function">
-      <type>MString</type>
-      <name>Append</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>a520924c33e02c369a79bc3505d6b1bb9</anchor>
-      <arglist>(MString ms, int startIdx, int msLen=int.MaxValue)</arglist>
-    </member>
-    <member kind="function">
-      <type>MString</type>
-      <name>Append</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>a255a3c5a6dde8a5bce0f51a045a80813</anchor>
-      <arglist>(String s)</arglist>
-    </member>
-    <member kind="function">
-      <type>MString</type>
-      <name>Append</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>a8db3b5f44d23f46dd59309a110841d1b</anchor>
-      <arglist>(String s, int startIdx, int length=int.MaxValue)</arglist>
-    </member>
-    <member kind="function">
-      <type>MString</type>
-      <name>Append</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>a60c5ff3d1af6da3e81fe56119377f800</anchor>
-      <arglist>(StringBuilder sb)</arglist>
-    </member>
-    <member kind="function">
-      <type>MString</type>
-      <name>Append</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>a7dc5aa41678b73f5804ec1b495b75398</anchor>
-      <arglist>(StringBuilder sb, int startIdx, int length=int.MaxValue)</arglist>
-    </member>
-    <member kind="function">
-      <type>MString</type>
-      <name>Append</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>ab21f5f86df669f0764c1e809968f36b3</anchor>
-      <arglist>(char c)</arglist>
-    </member>
-    <member kind="function">
-      <type>MString</type>
-      <name>Append</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>aa74042969432bcba1ad07be703692a3d</anchor>
-      <arglist>(char c, int qty)</arglist>
-    </member>
-    <member kind="function">
-      <type>MString</type>
-      <name>AppendPadRight</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>ae3f1df70f14511e2196ab4ebd9df1d9b</anchor>
-      <arglist>(MString ms, int fieldSize, char padChar= &apos; &apos;)</arglist>
-    </member>
-    <member kind="function">
-      <type>MString</type>
-      <name>AppendPadRight</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>aa804784ef5abf7b2df579f6a9b8994a2</anchor>
-      <arglist>(String s, int fieldSize, char padChar= &apos; &apos;)</arglist>
-    </member>
-    <member kind="function">
-      <type>MString</type>
-      <name>AppendPadRight</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>a0c6136699e7412180f3238ddcde5963f</anchor>
-      <arglist>(StringBuilder sb, int fieldSize, char padChar= &apos; &apos;)</arglist>
-    </member>
-    <member kind="function">
-      <type>MString</type>
-      <name>AppendPadLeft</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>a1deadd1a0c9e01f3ffa2b762297bbafe</anchor>
-      <arglist>(MString ms, int fieldSize, char padChar= &apos; &apos;)</arglist>
-    </member>
-    <member kind="function">
-      <type>MString</type>
-      <name>AppendPadLeft</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>a184ddcabc8947e76d0129e51b800a00c</anchor>
-      <arglist>(String s, int fieldSize, char padChar= &apos; &apos;)</arglist>
-    </member>
-    <member kind="function">
-      <type>MString</type>
-      <name>AppendPadLeft</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>a40135beebc742845318f70ac5e0fcb05</anchor>
-      <arglist>(StringBuilder sb, int fieldSize, char padChar= &apos; &apos;)</arglist>
-    </member>
-    <member kind="function">
-      <type>MString</type>
-      <name>AppendPadCenter</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>ac49b2542c49346829b394546bcb88ccb</anchor>
-      <arglist>(MString ms, int fieldSize, char padChar= &apos; &apos;)</arglist>
-    </member>
-    <member kind="function">
-      <type>MString</type>
-      <name>AppendPadCenter</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>a5bc8655f7f7805b80cded28287e49e90</anchor>
-      <arglist>(String s, int fieldSize, char padChar= &apos; &apos;)</arglist>
-    </member>
-    <member kind="function">
-      <type>MString</type>
-      <name>AppendPadCenter</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>a75db68195c39e6202687a00b048ab6f7</anchor>
-      <arglist>(StringBuilder sb, int fieldSize, char padChar= &apos; &apos;)</arglist>
-    </member>
-    <member kind="function">
-      <type>MString</type>
-      <name>Append</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>ac7733a055bde0c69bc0889a23d0b9773</anchor>
-      <arglist>(int i, int minDigits=1)</arglist>
-    </member>
-    <member kind="function">
-      <type>MString</type>
-      <name>Append</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>a9dd94ce7f8ddc5d9c8ed9e9dff03c5fa</anchor>
-      <arglist>(uint i, int minDigits=1)</arglist>
-    </member>
-    <member kind="function">
-      <type>MString</type>
-      <name>Append</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>a7c99caa08088a638cc06399a858fbeee</anchor>
-      <arglist>(double d, int minDigitsBeforeDot, int digitsAfterDot)</arglist>
-    </member>
-    <member kind="function">
-      <type>MString</type>
-      <name>Tab</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>adf7a4fc76ea4d91409928eab07f47fb0</anchor>
-      <arglist>(int tabSize, int tabReference=0, int minPad=1, char padChar= &apos; &apos;)</arglist>
-    </member>
-    <member kind="function">
-      <type>MString</type>
-      <name>NewLine</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>a07dec05976504a20ae6efd7b3f326327</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>ContainsAt</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>a15774fb77e5efd8bfb44bc2dad2a9c40</anchor>
-      <arglist>(String s, int pos, bool ignoreCase=false)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>StartsWith</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>a333af236691b446f1c84a9b9d5275908</anchor>
-      <arglist>(String s)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>EndsWith</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>a1d79da29d0eb3a40d4d8bb0479a64c9a</anchor>
-      <arglist>(String s)</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>IndexOf</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>aa2710664520cb638ed2c7b9abd9bd737</anchor>
-      <arglist>(String s, int startIdx=0)</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>ReplaceCount</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>a54ab85639d2a852e05a354727b78cb26</anchor>
-      <arglist>(String searchStr, String newStr, int startIdx=0, int maxReplacements=int.MaxValue)</arglist>
-    </member>
-    <member kind="function">
-      <type>MString</type>
-      <name>Replace</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>aef0aea1110eb6583bbdb021b1b32055b</anchor>
-      <arglist>(String searchStr, String newStr, int startIdx=0, int maxReplacements=int.MaxValue)</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>CompareTo</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>a308cbb147b4dc0a8ed794f84cc711a7c</anchor>
-      <arglist>(Object cmp, bool ignoreCase=false, int sStartIdx=0, int sLen=int.MaxValue, int startIdx=0, int len=int.MaxValue)</arglist>
-    </member>
-    <member kind="function">
-      <type>MString</type>
-      <name>ConvertCase</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>a064324913d1c968daaa9fbd8014ccf6b</anchor>
-      <arglist>(bool toUpper, int substrStart=0, int substrLength=int.MaxValue)</arglist>
-    </member>
-    <member kind="function">
-      <type>override String</type>
-      <name>ToString</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>a012fbb0f39e57c0a44ec83dd408fcda3</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>string</type>
-      <name>ToString</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>aaf2616ca6994c68d4e2cfaf97a257ee2</anchor>
-      <arglist>(int startIdx, int length=int.MaxValue)</arglist>
-    </member>
-    <member kind="function">
-      <type>override int</type>
-      <name>GetHashCode</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>a77e1afa2b6dee1ed3640da81d7407b42</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>override bool</type>
-      <name>Equals</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>aa68c8f722eb155e6928f0f0200df28d2</anchor>
-      <arglist>(Object o)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>EnsureCapacity</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>a1f729f876453fd5421e70846f5da8e44</anchor>
-      <arglist>(int minLen)</arglist>
-    </member>
-    <member kind="variable">
-      <type>char[]</type>
-      <name>Buffer</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>a0668121df5dd78af062bdddc4abedc9b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>Length</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>a9fde862c8bc443d7a6872a487ec265a3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>Hash</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>afbe49f33f22436054a3e57f77cec849f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>bool</type>
-      <name>adjustRangeAndTestIfEmpty</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1MString.html</anchorfile>
-      <anchor>a70dc2e03ea9a1abfd185447e170023fb</anchor>
-      <arglist>(int referenceLen, ref int startIdx, ref int len)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -1782,8 +1945,8 @@
       <type>override void</type>
       <name>doTextLog</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html</anchorfile>
-      <anchor>af8da5b301accf1a23758a98b88f222d0</anchor>
-      <arglist>(MString domain, Log.Level level, MString msg, int indent, CallerInfo caller, int lineNumber)</arglist>
+      <anchor>a9f4d4817f9f3191f4a2a26c96fea0bdb</anchor>
+      <arglist>(AString domain, Log.Level level, AString msg, int indent, CallerInfo caller, int lineNumber)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
@@ -1892,8 +2055,8 @@
       <type>abstract void</type>
       <name>doTextLog</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>a1300bd920d9f44ebc751480932ed2585</anchor>
-      <arglist>(MString domain, Log.Level level, MString msg, int indent, CallerInfo caller, int lineNumber)</arglist>
+      <anchor>a0d2f1838c6403b062f5e7f481d97c51a</anchor>
+      <arglist>(AString domain, Log.Level level, AString msg, int indent, CallerInfo caller, int lineNumber)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="pure">
       <type>abstract void</type>
@@ -1906,14 +2069,14 @@
       <type>override void</type>
       <name>doLog</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>af95411fc4b7545a2f5c660bc51159245</anchor>
-      <arglist>(MString domain, Log.Level level, Object msgObject, int indent, CallerInfo caller)</arglist>
+      <anchor>a3f2a29817947567c9a29c42d196a0599</anchor>
+      <arglist>(AString domain, Log.Level level, Object msgObject, int indent, CallerInfo caller)</arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>MString</type>
+      <type>AString</type>
       <name>logBuf</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html</anchorfile>
-      <anchor>aaf37e693e36d895e18bcc1f6037f5d9e</anchor>
+      <anchor>a1c3b59e6dc2850f90df33ae9b4533334</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -1924,14 +2087,21 @@
       <type>virtual void</type>
       <name>WriteMetaInfo</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
-      <anchor>a35cf27a31e5d5ff36ea1453d6e9657e1</anchor>
-      <arglist>(Logger logger, MString buf, MString domain, Log.Level level, int indent, CallerInfo caller)</arglist>
+      <anchor>a03746cbca895f0c8ea3971b0e5e15150</anchor>
+      <arglist>(Logger logger, AString buf, AString domain, Log.Level level, int indent, CallerInfo caller)</arglist>
     </member>
     <member kind="variable">
-      <type>MString</type>
+      <type>AString</type>
       <name>Format</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
-      <anchor>af529892abacd85c83ff6a646962fe28d</anchor>
+      <anchor>a5f73a9d6a9bfabaa4a33c34831006d07</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>ConsumableSourcePathPrefixString</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>ad5e8a7d9f2c872ab23a2332e6583d908</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -2005,6 +2175,27 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
+      <type>long</type>
+      <name>TimeDiffMinimum</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>ac72715ae7c695bbfce1fe76075a2f9a1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>TimeDiffNone</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>a6cc1e88975de4665e5ddc74e397be057</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>TimeDiffNanos</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
+      <anchor>a45ccfa47c91e7a59015e1475d1b52dc5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
       <type>String</type>
       <name>TimeDiffMillis</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
@@ -2064,15 +2255,15 @@
       <type>virtual int</type>
       <name>processVariable</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
-      <anchor>a7c695e7e6cc32592b96209dc136446b1</anchor>
-      <arglist>(Logger logger, MString domain, Log.Level level, CallerInfo caller, MString buf, char[] formatString, int formatStringIdx)</arglist>
+      <anchor>a5e4dbf29a625aa85301682428f2e53bd</anchor>
+      <arglist>(Logger logger, AString domain, Log.Level level, CallerInfo caller, AString buf, int formatStringIdx)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>writeTimeDiff</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html</anchorfile>
-      <anchor>acb45f022e4cabaceb8efa4205264b06d</anchor>
-      <arglist>(MString buf, long diffMicros)</arglist>
+      <anchor>a8e4cc4982f400a8cbb57209fb7ee224a</anchor>
+      <arglist>(AString buf, long diffNanos)</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>StringBuilder</type>
@@ -2128,10 +2319,10 @@
     <name>com::aworx::lox::core::TextLoggerObjectConverter</name>
     <filename>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html</filename>
     <member kind="function" virtualness="virtual">
-      <type>virtual MString</type>
+      <type>virtual AString</type>
       <name>ConvertObject</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html</anchorfile>
-      <anchor>ab8190be4513726c7c2c49276ab2ed3fa</anchor>
+      <anchor>a0ba6332bdc61bc28bdc5c9d0106f12c4</anchor>
       <arglist>(Object o)</arglist>
     </member>
     <member kind="variable">
@@ -2142,10 +2333,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>MString</type>
+      <type>AString</type>
       <name>buffer</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html</anchorfile>
-      <anchor>abb05cbb40d212c431ab82b3718ccfa04</anchor>
+      <anchor>aaf50e38674e1c356539d73525486b1d5</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -2174,11 +2365,11 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>override String</type>
-      <name>ToString</name>
+      <type>bool</type>
+      <name>IsAcquired</name>
       <anchorfile>classcom_1_1aworx_1_1util_1_1ThreadLock.html</anchorfile>
-      <anchor>a012fbb0f39e57c0a44ec83dd408fcda3</anchor>
-      <arglist>()</arglist>
+      <anchor>ad72deb26c6c29e26e2cedae44a7bded0</anchor>
+      <arglist>(Thread thread=null)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -2194,18 +2385,18 @@
       <anchor>abf2bccd9812728e715f73c27dac06614</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>UseAssertions</name>
+    <member kind="function">
+      <type>override String</type>
+      <name>ToString</name>
       <anchorfile>classcom_1_1aworx_1_1util_1_1ThreadLock.html</anchorfile>
-      <anchor>a7b9819e5cf7944efedca64a67c5adbfc</anchor>
-      <arglist></arglist>
+      <anchor>a012fbb0f39e57c0a44ec83dd408fcda3</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="variable">
-      <type>long</type>
-      <name>WaitALoxWarningLimit</name>
+      <type>int</type>
+      <name>waitWarningTimeLimitInMillis</name>
       <anchorfile>classcom_1_1aworx_1_1util_1_1ThreadLock.html</anchorfile>
-      <anchor>a09b8fc043406437eb58d55168c137af1</anchor>
+      <anchor>ae5b12a96be437f82f5da54b813614ba7</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -2243,306 +2434,425 @@
       <anchor>a4cc9273ae9737bab384e14ef7d4b5c7a</anchor>
       <arglist></arglist>
     </member>
+    <member kind="variable" protection="protected">
+      <type>Ticks</type>
+      <name>waitTime</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1ThreadLock.html</anchorfile>
+      <anchor>a5c693612d852a9e000481199e9c24f4c</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="class">
-    <name>com::aworx::util::Ticker</name>
-    <filename>classcom_1_1aworx_1_1util_1_1Ticker.html</filename>
-    <member kind="function" static="yes">
-      <type>static long</type>
-      <name>Now</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticker.html</anchorfile>
-      <anchor>ae68dc4a5a8a0d674950150fde5739e5c</anchor>
+    <name>com::aworx::util::Ticks</name>
+    <filename>classcom_1_1aworx_1_1util_1_1Ticks.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>Ticks</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>a1c1ae3d4574882f05f5fa9586e7f1fec</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function" static="yes">
-      <type>static long</type>
+    <member kind="function">
+      <type></type>
+      <name>Ticks</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>a18820450ce6a2a21df681272634d8692</anchor>
+      <arglist>(Ticks copy)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Ticks</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>aef9b19bc13c2cf1232cf9af34334351f</anchor>
+      <arglist>(long ticks)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Set</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>a614cfe7992438ee53cfd9440848c39e7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Set</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>acb7a9f15371bc4845a75a1f8445526b0</anchor>
+      <arglist>(Ticks other)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetRaw</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>a281237e70c41ecdfe31a5606f958b75b</anchor>
+      <arglist>(long value)</arglist>
+    </member>
+    <member kind="function">
+      <type>long</type>
+      <name>Raw</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>a3429aac21c056be13621ca4395005863</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
       <name>Add</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticker.html</anchorfile>
-      <anchor>a2ceae5c36e7ba0e6ae7851dd21347afd</anchor>
-      <arglist>(long ticks, int days, int hours, int minutes, int seconds)</arglist>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>a22a9dbaffec3fa638c13c5ae2e8a3a5b</anchor>
+      <arglist>(Ticks other)</arglist>
     </member>
-    <member kind="function" static="yes">
-      <type>static long</type>
-      <name>ToMillis</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticker.html</anchorfile>
-      <anchor>a1b8d0141a03d582c7a3854804d6792ef</anchor>
-      <arglist>(long ticks)</arglist>
+    <member kind="function">
+      <type>void</type>
+      <name>Add</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>a9773a1eac7cae145f7bc6eec351002a9</anchor>
+      <arglist>(long value)</arglist>
     </member>
-    <member kind="function" static="yes">
-      <type>static long</type>
-      <name>ToMicros</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticker.html</anchorfile>
-      <anchor>a2150323c4282cd75791ceaa5ebda0a93</anchor>
-      <arglist>(long ticks)</arglist>
+    <member kind="function">
+      <type>void</type>
+      <name>Sub</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>ac7271304a608df437b10f55b199d7620</anchor>
+      <arglist>(Ticks other)</arglist>
     </member>
-    <member kind="function" static="yes">
-      <type>static long</type>
-      <name>ToNanos</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticker.html</anchorfile>
-      <anchor>a5ec078aefbcdf96e4394c90919ac7a21</anchor>
-      <arglist>(long ticks)</arglist>
+    <member kind="function">
+      <type>void</type>
+      <name>Sub</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>ab06385075254ed0028784791e11ec98d</anchor>
+      <arglist>(long value)</arglist>
     </member>
-    <member kind="function" static="yes">
-      <type>static long</type>
+    <member kind="function">
+      <type>Ticks</type>
+      <name>Age</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>afc3ea69a2be2bc54667e14ba3fa8cb83</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>Ticks</type>
+      <name>Age</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>a0653eecc5886c1614182009ab1f0411e</anchor>
+      <arglist>(Ticks result)</arglist>
+    </member>
+    <member kind="function">
+      <type>Ticks</type>
+      <name>Since</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>a21a035ee27f1d1285dfb841cf5baee33</anchor>
+      <arglist>(Ticks olderTime)</arglist>
+    </member>
+    <member kind="function">
+      <type>Ticks</type>
+      <name>Since</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>a890e162fd09c78184e455b1cf86c8b12</anchor>
+      <arglist>(Ticks olderTime, Ticks result)</arglist>
+    </member>
+    <member kind="function">
+      <type>long</type>
+      <name>InDays</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>ac0ca729bf15ebbd36812ba021e4030f6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>long</type>
+      <name>InHours</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>afab45db5919f47215a62e0b082fb123b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>long</type>
+      <name>InMinutes</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>ad967309464305020bb8000bcf505d27e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>long</type>
+      <name>InSeconds</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>a00fdbf4ceebb73e680f22f110139753f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>long</type>
+      <name>InMillis</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>a0637e20889e3ab2b54bd5bfa3b75f1c7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>long</type>
+      <name>InMicros</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>adce5eeaded1ab539742218b5a670e6ec</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>long</type>
+      <name>InNanos</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>a4f1e90567353bd484fc252eb4c1f7b57</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>InHertz</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>a42e86fa4185895d79e83f1a6439d440a</anchor>
+      <arglist>(int nDigitsPrec=-1)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>FromDays</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>a161ed9398d1cfa08d4db4ed330d98e66</anchor>
+      <arglist>(long days)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>FromHours</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>a7c61485aae63d42e28e02cbb7e548824</anchor>
+      <arglist>(long hours)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>FromMinutes</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>ac9abb0aba8d40ab4c30e8404bd097c84</anchor>
+      <arglist>(long mins)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>FromSeconds</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>a16278993f4c841d6865347c7996dbd0e</anchor>
+      <arglist>(long secs)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
       <name>FromMillis</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticker.html</anchorfile>
-      <anchor>ab80965005ac6ffa5c7b676f60abf9bc1</anchor>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>a022a14bbe8bd29a52672af28f19977c0</anchor>
       <arglist>(long millis)</arglist>
     </member>
-    <member kind="function" static="yes">
-      <type>static long</type>
+    <member kind="function">
+      <type>void</type>
       <name>FromMicros</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticker.html</anchorfile>
-      <anchor>af0da9284c84b48770e00a3c49fcec905</anchor>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>a1ea53a33f84438a1785ee2bca6af3be8</anchor>
       <arglist>(long micros)</arglist>
     </member>
-    <member kind="function" static="yes">
-      <type>static long</type>
+    <member kind="function">
+      <type>void</type>
       <name>FromNanos</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticker.html</anchorfile>
-      <anchor>a43b1f0d145027ca85981416e3063b4c6</anchor>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>a2ca7dc68b5aa84ca5c8cc4423e0ac7f2</anchor>
       <arglist>(long nanos)</arglist>
     </member>
-    <member kind="function" static="yes">
-      <type>static long</type>
-      <name>ToEpochMillis</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticker.html</anchorfile>
-      <anchor>a7bdeea953ac7baf70f9a23bbb9325226</anchor>
-      <arglist>(long ticks)</arglist>
+    <member kind="function">
+      <type>long</type>
+      <name>InEpochMillis</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>a85e459d680dcf74b8daa9dce9cff2559</anchor>
+      <arglist>()</arglist>
     </member>
-    <member kind="function" static="yes">
-      <type>static long</type>
-      <name>FromEpochMillis</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticker.html</anchorfile>
-      <anchor>a45d3916fd9a582e8c6f724ad818882bb</anchor>
+    <member kind="function">
+      <type>void</type>
+      <name>SetFromEpochMillis</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>a06233899624699b39c51da54e1aff1cb</anchor>
       <arglist>(long epochMillis)</arglist>
     </member>
-    <member kind="function" static="yes">
-      <type>static long</type>
-      <name>ToDotNetDateTimeTicks</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticker.html</anchorfile>
-      <anchor>a64ee953996464063037bb75ffe9b1ca8</anchor>
-      <arglist>(long ticks)</arglist>
+    <member kind="function">
+      <type>long</type>
+      <name>InDotNetDateTimeTicks</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>a68c1488e775d89b1f808cedf68e4a3dd</anchor>
+      <arglist>()</arglist>
     </member>
-    <member kind="function" static="yes">
-      <type>static long</type>
-      <name>FromDotNetDateTime</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticker.html</anchorfile>
-      <anchor>a4be41b088fb34facde4f0220237bf7a6</anchor>
+    <member kind="function">
+      <type>void</type>
+      <name>SetFromDotNetDateTime</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>a0a406c24298e2473e4751b7bb7c3e5b6</anchor>
       <arglist>(DateTime dateTime)</arglist>
     </member>
-    <member kind="function" static="yes">
-      <type>static DateTime</type>
-      <name>ToDotNetDateTime</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticker.html</anchorfile>
-      <anchor>ac12ba2167a5b57acd90ddbccbd9ca39b</anchor>
-      <arglist>(long ticks)</arglist>
+    <member kind="function">
+      <type>DateTime</type>
+      <name>InDotNetDateTime</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>a11a40cf306eeacbc141e556a77720a5d</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static readonly long</type>
       <name>InternalFrequency</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticker.html</anchorfile>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
       <anchor>ae62f17585d560a30016408f33ace2912</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable" protection="private" static="yes">
-      <type>static readonly long</type>
-      <name>creationTimeTicks</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticker.html</anchorfile>
-      <anchor>a4ca94541f535289b6d50b0eaf9469c11</anchor>
+    <member kind="variable" static="yes">
+      <type>static readonly Ticks</type>
+      <name>CreationTime</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>ab4e057eeeb0ecf2494933081c666ea43</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>long</type>
+      <name>ticks</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>af0b811e653c51fb98ab202e920af2afe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Ticks</type>
+      <name>tempTicks</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
+      <anchor>aa1dd788b63c8e4884ff445d813c1a61c</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private" static="yes">
       <type>static readonly long</type>
       <name>dateTimeTicks19700101</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticker.html</anchorfile>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
       <anchor>a9fece05bed075816cf25a02b44f72b57</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private" static="yes">
       <type>static readonly Stopwatch</type>
       <name>creationTimeStopWatch</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticker.html</anchorfile>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
       <anchor>a58d43e7232052f1601bc2914babafb17</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private" static="yes">
       <type>static readonly double</type>
       <name>convSWToDT</name>
-      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticker.html</anchorfile>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1Ticks.html</anchorfile>
       <anchor>ad91e3ebd169964f5636d6d006cd445fb</anchor>
       <arglist></arglist>
     </member>
   </compound>
-  <compound kind="struct">
-    <name>com::aworx::util::TickTime</name>
-    <filename>structcom_1_1aworx_1_1util_1_1TickTime.html</filename>
+  <compound kind="class">
+    <name>com::aworx::util::TickWatch</name>
+    <filename>classcom_1_1aworx_1_1util_1_1TickWatch.html</filename>
     <member kind="function">
       <type></type>
-      <name>TickTime</name>
-      <anchorfile>structcom_1_1aworx_1_1util_1_1TickTime.html</anchorfile>
-      <anchor>a9022faaf91a176798aee31f833e37e86</anchor>
-      <arglist>(long otherTicks)</arglist>
+      <name>TickWatch</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1TickWatch.html</anchorfile>
+      <anchor>ae5d46be41414c0e48a9611ce08084a50</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type></type>
-      <name>TickTime</name>
-      <anchorfile>structcom_1_1aworx_1_1util_1_1TickTime.html</anchorfile>
-      <anchor>a172fa05048e619c3b735cc621440fcfb</anchor>
-      <arglist>(TickTime copy)</arglist>
+      <name>TickWatch</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1TickWatch.html</anchorfile>
+      <anchor>a3cf738e64a14fafa681509173e5fe3ca</anchor>
+      <arglist>(TickWatch copy)</arglist>
+    </member>
+    <member kind="function">
+      <type>Ticks</type>
+      <name>GetStartTime</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1TickWatch.html</anchorfile>
+      <anchor>abf86508e29c6aa06ee78ea52cf8d36e1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Start</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1TickWatch.html</anchorfile>
+      <anchor>a07aaf1227e4d645f15e0a964f54ef291</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetStartTime</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1TickWatch.html</anchorfile>
+      <anchor>aae02d04b5b8ef03807a1ec27d7d64dfd</anchor>
+      <arglist>(Ticks t)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Reset</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1TickWatch.html</anchorfile>
+      <anchor>a372de693ad40b3f42839c8ec6ac845f4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>Ticks</type>
+      <name>Sample</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1TickWatch.html</anchorfile>
+      <anchor>a1552464b5f8a4c192c3679db8a08b6e3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>GetSampleCnt</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1TickWatch.html</anchorfile>
+      <anchor>a8f2deb29070eb959107e5d9ad3584635</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>Ticks</type>
+      <name>GetCumulated</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1TickWatch.html</anchorfile>
+      <anchor>afa26a288553e5b8e69116f085d320564</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>Ticks</type>
+      <name>GetAverage</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1TickWatch.html</anchorfile>
+      <anchor>ae29a8f1f9e654fdc5c28964f8612086f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>Ticks</type>
+      <name>GetAverage</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1TickWatch.html</anchorfile>
+      <anchor>a0c306dab7a7ec5014a827facc40369d1</anchor>
+      <arglist>(Ticks result)</arglist>
     </member>
     <member kind="function">
       <type>override String</type>
       <name>ToString</name>
-      <anchorfile>structcom_1_1aworx_1_1util_1_1TickTime.html</anchorfile>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1TickWatch.html</anchorfile>
       <anchor>a012fbb0f39e57c0a44ec83dd408fcda3</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function">
-      <type>long</type>
-      <name>Get</name>
-      <anchorfile>structcom_1_1aworx_1_1util_1_1TickTime.html</anchorfile>
-      <anchor>a348b9c9e3aab0c6071a141554ee8d729</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>SetTo</name>
-      <anchorfile>structcom_1_1aworx_1_1util_1_1TickTime.html</anchorfile>
-      <anchor>adaff9e91bf2bf109eb4238a7c6fb9ffe</anchor>
-      <arglist>(long value)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>SetToNow</name>
-      <anchorfile>structcom_1_1aworx_1_1util_1_1TickTime.html</anchorfile>
-      <anchor>aaa9eaa4f0de081c6f34ff9557cc04e62</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>Clear</name>
-      <anchorfile>structcom_1_1aworx_1_1util_1_1TickTime.html</anchorfile>
-      <anchor>aa71d36872f416feaa853788a7a7a7ef8</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>long</type>
-      <name>Age</name>
-      <anchorfile>structcom_1_1aworx_1_1util_1_1TickTime.html</anchorfile>
-      <anchor>a8e3b061c8b57d726eb28ab802ba726a7</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>long</type>
-      <name>AgeInMillis</name>
-      <anchorfile>structcom_1_1aworx_1_1util_1_1TickTime.html</anchorfile>
-      <anchor>ad21421ac0f41df34b00002b86d883907</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>long</type>
-      <name>AgeInMicros</name>
-      <anchorfile>structcom_1_1aworx_1_1util_1_1TickTime.html</anchorfile>
-      <anchor>a58635ae65c671f1a689a6cdca1d03b3a</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>long</type>
-      <name>Span</name>
-      <anchorfile>structcom_1_1aworx_1_1util_1_1TickTime.html</anchorfile>
-      <anchor>a64970dbde62343cdb925ad205a6843c5</anchor>
-      <arglist>(TickTime newerTime)</arglist>
-    </member>
-    <member kind="function">
-      <type>long</type>
-      <name>SpanInMillis</name>
-      <anchorfile>structcom_1_1aworx_1_1util_1_1TickTime.html</anchorfile>
-      <anchor>a5a92e041a09e093bd25a65cc79b804f4</anchor>
-      <arglist>(TickTime newerTime)</arglist>
-    </member>
-    <member kind="function">
-      <type>long</type>
-      <name>SpanInMicros</name>
-      <anchorfile>structcom_1_1aworx_1_1util_1_1TickTime.html</anchorfile>
-      <anchor>a3595f896b2be83effc753c5ba84d70d3</anchor>
-      <arglist>(TickTime newerTime)</arglist>
-    </member>
-    <member kind="function">
-      <type>long</type>
-      <name>Measure</name>
-      <anchorfile>structcom_1_1aworx_1_1util_1_1TickTime.html</anchorfile>
-      <anchor>ab716e107dfc0bc62866ea53ebf9412a1</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>GetMeasureCnt</name>
-      <anchorfile>structcom_1_1aworx_1_1util_1_1TickTime.html</anchorfile>
-      <anchor>a5118e8ba97392f0a502bb6071186e10f</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>long</type>
-      <name>GetCumulatedTicks</name>
-      <anchorfile>structcom_1_1aworx_1_1util_1_1TickTime.html</anchorfile>
-      <anchor>a52a71158995d35b07a879b442c315487</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>long</type>
-      <name>GetAverageTicks</name>
-      <anchorfile>structcom_1_1aworx_1_1util_1_1TickTime.html</anchorfile>
-      <anchor>a1fa5274db867ca0238223d0465cc231b</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>long</type>
-      <name>GetAverageMillis</name>
-      <anchorfile>structcom_1_1aworx_1_1util_1_1TickTime.html</anchorfile>
-      <anchor>a7f8b18091f0a38864a5ae2d90db80549</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>double</type>
-      <name>GetAverageHertz</name>
-      <anchorfile>structcom_1_1aworx_1_1util_1_1TickTime.html</anchorfile>
-      <anchor>ab9c98526d11ded6856ba63b379255411</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>DateTime</type>
-      <name>ToDotNetDateTime</name>
-      <anchorfile>structcom_1_1aworx_1_1util_1_1TickTime.html</anchorfile>
-      <anchor>a1ed0e80fff0f351f58bf0b310320c2c9</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>FromDotNetDateTimee</name>
-      <anchorfile>structcom_1_1aworx_1_1util_1_1TickTime.html</anchorfile>
-      <anchor>a906085461ef493a2183d9b319e30db02</anchor>
-      <arglist>(DateTime dotNetDateTime)</arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>long</type>
+    <member kind="variable" protection="protected">
+      <type>Ticks</type>
       <name>ticks</name>
-      <anchorfile>structcom_1_1aworx_1_1util_1_1TickTime.html</anchorfile>
-      <anchor>af0b811e653c51fb98ab202e920af2afe</anchor>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1TickWatch.html</anchorfile>
+      <anchor>aabd9cf330dbc0de48dee7e2f32be3776</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable" protection="private">
-      <type>long</type>
-      <name>sum</name>
-      <anchorfile>structcom_1_1aworx_1_1util_1_1TickTime.html</anchorfile>
-      <anchor>ad21ee1949296449cb2806778a7fc94de</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
+    <member kind="variable" protection="protected">
       <type>int</type>
-      <name>cntMeasures</name>
-      <anchorfile>structcom_1_1aworx_1_1util_1_1TickTime.html</anchorfile>
-      <anchor>a388aae1c6d770ab01965f0d01b2fdc1a</anchor>
+      <name>cntSamples</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1TickWatch.html</anchorfile>
+      <anchor>a3203b85b99c75b91922c0147ac0ca04b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Ticks</type>
+      <name>sum</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1TickWatch.html</anchorfile>
+      <anchor>ac78b14fce693b96514184f5ecb99f5fa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Ticks</type>
+      <name>tempTicks</name>
+      <anchorfile>classcom_1_1aworx_1_1util_1_1TickWatch.html</anchorfile>
+      <anchor>aa1dd788b63c8e4884ff445d813c1a61c</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -2597,12 +2907,13 @@
   <compound kind="namespace">
     <name>com::aworx::util</name>
     <filename>namespacecom_1_1aworx_1_1util.html</filename>
+    <class kind="class">com::aworx::util::AString</class>
     <class kind="class">com::aworx::util::AWXU</class>
     <class kind="interface">com::aworx::util::AWXUErrorHandler</class>
-    <class kind="class">com::aworx::util::MString</class>
+    <class kind="class">com::aworx::util::ConsoleErrorHandler</class>
     <class kind="class">com::aworx::util::ThreadLock</class>
-    <class kind="class">com::aworx::util::Ticker</class>
-    <class kind="struct">com::aworx::util::TickTime</class>
+    <class kind="class">com::aworx::util::Ticks</class>
+    <class kind="class">com::aworx::util::TickWatch</class>
   </compound>
   <compound kind="namespace">
     <name>System</name>
@@ -2665,52 +2976,65 @@
     <filename>namespaceSystem_1_1Xml_1_1Linq.html</filename>
   </compound>
   <compound kind="page">
-    <name>tutorial_cs</name>
-    <title>ALox for C# Tutorial</title>
-    <filename>tutorial_cs</filename>
-    <docanchor file="tutorial_cs" title="1. Hello ALox">tutcs_hello_alox</docanchor>
-    <docanchor file="tutorial_cs" title="1.1 Create a tutorial project or equip your current project with ALox">tutcs_createproject</docanchor>
-    <docanchor file="tutorial_cs" title="1.2. Create an instance of class &quot;ConsoleLogger&quot;">tutcs_ha1</docanchor>
-    <docanchor file="tutorial_cs" title="1.3. Add code to create and set a *log domain*">tutcs_ha_3</docanchor>
-    <docanchor file="tutorial_cs" title="1.4. Add log code">tutcs_ha_4</docanchor>
-    <docanchor file="tutorial_cs" title="1.5. Run your application within visual studio">tutcs_ha_5</docanchor>
-    <docanchor file="tutorial_cs" title="1.6. Build Release Version">tutcs_ha_6</docanchor>
-    <docanchor file="tutorial_cs" title="2. Log levels and log domains">tutcs_llld</docanchor>
-    <docanchor file="tutorial_cs" title="2.1. Log code with different log levels">tutcs_llld_1</docanchor>
-    <docanchor file="tutorial_cs" title="2.2. Default domains">tutcs_llld_2</docanchor>
-    <docanchor file="tutorial_cs" title="2.3. Where to place ALox log code">tutcs_llld_3</docanchor>
-    <docanchor file="tutorial_cs" title="3. Some more Details">tutcs_more</docanchor>
-    <docanchor file="tutorial_cs" title="3.1 Stop reading here?">tutcs_more_1</docanchor>
-    <docanchor file="tutorial_cs" title="3.2 Using the log buffer singleton">tutcs_more_logbuf</docanchor>
-    <docanchor file="tutorial_cs" title="3.3 Conditional logging">tutcs_more_conditional</docanchor>
-    <docanchor file="tutorial_cs" title="3.4 LogTools: Log complex things easily">tutcs_more_logtools</docanchor>
-    <docanchor file="tutorial_cs" title="3.4.1 Instance(): Log any object recursively">tutcs_more_logtools_instance</docanchor>
-    <docanchor file="tutorial_cs" title="3.4.2 Exception(): Log an exception recursively (with inner exceptions)">tutcs_more_logtools_exception</docanchor>
-    <docanchor file="tutorial_cs" title="3.4.3 XML(): Log out an XML document or element">tutcs_more_logtools_xml</docanchor>
-    <docanchor file="tutorial_cs" title="3.5 Indentation">tutcs_more_indentation</docanchor>
-    <docanchor file="tutorial_cs" title="3.6 Directing log output to distinct loggers">tutcs_more_seplog</docanchor>
-    <docanchor file="tutorial_cs" title="3.7 ALox configuration and internal log messages">tutcs_more_config</docanchor>
-    <docanchor file="tutorial_cs" title="Further reading">tutcs_end</docanchor>
+    <name>csmacros</name>
+    <title>Conditional Compilation Symbols</title>
+    <filename>csmacros</filename>
+    <docanchor file="csmacros" title="Conditional Compilation Symbols">csmacros_conditional_compile_symbols</docanchor>
   </compound>
   <compound kind="page">
-    <name>setup_projects_vs_cs</name>
-    <title>Setup Visual Studio for C# Projects</title>
-    <filename>setup_projects_vs_cs</filename>
-    <docanchor file="setup_projects_vs_cs" title="1. Setting Up Visual Studio">setup_projects_vs_cs_intro</docanchor>
-    <docanchor file="setup_projects_vs_cs" title="1.1. Download">setup_projects_vs_cs_download</docanchor>
-    <docanchor file="setup_projects_vs_cs" title="1.2. Add one of the following projects into your solution">setup_projects_vs_cs_addprojects</docanchor>
-    <docanchor file="setup_projects_vs_cs" title="1.3 Alternatively: Adding source code to your project">setup_projects_vs_cs_adding_source</docanchor>
-    <docanchor file="setup_projects_vs_cs" title="1.4 Configure your project properties">setup_projects_vs_cs_configure</docanchor>
-    <docanchor file="setup_projects_vs_cs" title="1.5 Test your setup">setup_projects_vs_cs_testnow</docanchor>
-    <docanchor file="setup_projects_vs_cs" title="2. Conditional Compilation Symbols">setup_projects_vs_cs_conditional_compile_symbols</docanchor>
-    <docanchor file="setup_projects_vs_cs" title="3. Pruning ALox">setup_projects_vs_cs_pruning</docanchor>
-    <docanchor file="setup_projects_vs_cs" title="3.1 What is Pruning?">setup_projects_vs_cs_pruning_what_is_pruning</docanchor>
-    <docanchor file="setup_projects_vs_cs" title="3.1 How Pruning in ALox for C# works">setup_projects_vs_cs_pruning_how</docanchor>
-    <docanchor file="setup_projects_vs_cs" title="3.1 Mission accomplished: Perfect Auto Pruning with ALox!">setup_projects_vs_cs_pruning_result</docanchor>
-  </compound>
-  <compound kind="page">
-    <name>index</name>
+    <name>csmainpage</name>
     <title>C# Reference</title>
-    <filename>index</filename>
+    <filename>csmainpage</filename>
+  </compound>
+  <compound kind="page">
+    <name>cspruning</name>
+    <title>Pruning ALox Code from Release Builts</title>
+    <filename>cspruning</filename>
+    <docanchor file="cspruning" title="1. What is Pruning?">cssetup_pruning_what_is_pruning</docanchor>
+    <docanchor file="cspruning" title="2. How Pruning in ALox for C# works">cssetup_pruning_how</docanchor>
+    <docanchor file="cspruning" title="3. Mission accomplished: Perfect Auto Pruning with ALox!">cssetup_pruning_result</docanchor>
+  </compound>
+  <compound kind="page">
+    <name>cssetup</name>
+    <title>IDE setup ALox for C#</title>
+    <filename>cssetup</filename>
+    <docanchor file="cssetup" title="1. Introduction">cssetup_1</docanchor>
+    <docanchor file="cssetup" title="2. Download">cssetup_vs_download</docanchor>
+    <docanchor file="cssetup" title="3. Set up the Built System">cssetup_setup</docanchor>
+    <docanchor file="cssetup" title="3.1. Add existing ALox library project to your solution">cssetup_addproject</docanchor>
+    <docanchor file="cssetup" title="3.2. Set build dependency">cssetup_builddependency</docanchor>
+    <docanchor file="cssetup" title="3.3. Reference the ALox library from within your project">cssetup_referencealox</docanchor>
+    <docanchor file="cssetup" title="3.4. Alternatively: Working with the sources">cssetup_using_sources</docanchor>
+    <docanchor file="cssetup" title="4. Conditional Compilation Symbols">cssetup_condcompsym</docanchor>
+    <docanchor file="cssetup" title="5. Test your setup">cssetup_testsetup</docanchor>
+    <docanchor file="cssetup" title="6. Wrap up">cssetup_wrapup</docanchor>
+  </compound>
+  <compound kind="page">
+    <name>cstutorial</name>
+    <title>ALox for C# Tutorial</title>
+    <filename>cstutorial</filename>
+    <docanchor file="cstutorial" title="1. Hello ALox">tutcs_hello_alox</docanchor>
+    <docanchor file="cstutorial" title="1.1 Create a tutorial project or equip your current project with ALox">tutcs_createproject</docanchor>
+    <docanchor file="cstutorial" title="1.2. Create an instance of class &quot;ConsoleLogger&quot;">tutcs_ha1</docanchor>
+    <docanchor file="cstutorial" title="1.3. Add code to create and set a *log domain*">tutcs_ha_3</docanchor>
+    <docanchor file="cstutorial" title="1.4. Add log code">tutcs_ha_4</docanchor>
+    <docanchor file="cstutorial" title="1.5. Run your application within your IDE">tutcs_ha_5</docanchor>
+    <docanchor file="cstutorial" title="1.6. Build a release version">tutcs_ha_6</docanchor>
+    <docanchor file="cstutorial" title="2. Log levels and log domains">tutcs_llld</docanchor>
+    <docanchor file="cstutorial" title="2.1. Log code with different log levels">tutcs_llld_1</docanchor>
+    <docanchor file="cstutorial" title="2.2. Default domains">tutcs_llld_2</docanchor>
+    <docanchor file="cstutorial" title="2.3. Where to place ALox log code">tutcs_llld_3</docanchor>
+    <docanchor file="cstutorial" title="3. Some more Details">tutcs_more</docanchor>
+    <docanchor file="cstutorial" title="3.1 Stop reading here?">tutcs_more_1</docanchor>
+    <docanchor file="cstutorial" title="3.2 Using the log buffer singleton">tutcs_more_logbuf</docanchor>
+    <docanchor file="cstutorial" title="3.3 Conditional logging">tutcs_more_conditional</docanchor>
+    <docanchor file="cstutorial" title="3.4 LogTools: Log complex things easily">tutcs_more_logtools</docanchor>
+    <docanchor file="cstutorial" title="3.4.1 Instance(): Log any object recursively">tutcs_more_logtools_instance</docanchor>
+    <docanchor file="cstutorial" title="3.4.2 Exception(): Log an exception recursively (with inner exceptions)">tutcs_more_logtools_exception</docanchor>
+    <docanchor file="cstutorial" title="3.4.3 XML(): Log out an XML document or element">tutcs_more_logtools_xml</docanchor>
+    <docanchor file="cstutorial" title="3.5 Indentation">tutcs_more_indentation</docanchor>
+    <docanchor file="cstutorial" title="3.6 Directing log output to distinct loggers">tutcs_more_seplog</docanchor>
+    <docanchor file="cstutorial" title="3.7 ALox configuration and internal log messages">tutcs_more_config</docanchor>
+    <docanchor file="cstutorial" title="Further reading">tutcs_end</docanchor>
   </compound>
 </tagfile>

@@ -5,10 +5,30 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>ALox C# Reference: Package com.aworx.util</title>
+<title>ALox: Package com.aworx.util</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<!-- so strange, that doxgen does not highlight each menu item. Just some... -->
+<script>
+  $(document).ready(function() {     
+    fnameStart= window.location.href.lastIndexOf('/')
+    fnameEnd=   window.location.href.indexOf('_', fnameStart )
+    if( fnameEnd < 0 ) {
+        fnameEnd=   window.location.href.indexOf('.', fnameStart )
+    }
+    if( fnameEnd > -1 ) {
+        subString= window.location.href.substring( fnameStart, fnameEnd )
+        $('li').toArray().forEach(function(li){
+            if(     typeof li.firstChild.href != 'undefined'
+                &&  li.firstChild.href.indexOf(subString) > 0 
+                ){
+               li.classList.add('current');
+            }
+        });
+    }
+  });
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +36,6 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="cs_stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,8 +45,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">ALox C# Reference
-   &#160;<span id="projectnumber">V. 1.1.2</span>
+   <div id="projectname">ALox 
+   &#160;<span id="projectnumber">Logging for C++, C# and Java (V 1.2.0)</span>
    </div>
   </td>
  </tr>
@@ -44,9 +63,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="../index.html"><span>ALox&#160;Home</span></a></li>
       <li><a href="../faq.html"><span>FAQ</span></a></li>
       <li><a href="../manual.html"><span>Manual</span></a></li>
-      <li><a href="setup_projects_vs_cs.html"><span>VStudio&#160;Setup</span></a></li>
-      <li><a href="tutorial_cs.html"><span>Tutorial</span></a></li>
-      <li><a href="annotated.html"><span>Class&#160;Ref.</span></a></li>
+      <li><a href="../cpp_ref/cppmainpage.html"><span>ALox&#160;for&#160;C++</span></a></li>
+      <li class="current"><a href="csmainpage.html"><span>ALox&#160;for&#160;C#</span></a></li>
+      <li><a href="../java_ref/javamainpage.html"><span>ALox&#160;for&#160;Java</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -64,6 +83,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
           </span>
         </div>
       </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="csmainpage.html"><span>Overview</span></a></li>
+      <li><a href="cstutorial.html"><span>Tutorial</span></a></li>
+      <li><a href="cssetup.html"><span>IDE&#160;Setup</span></a></li>
+      <li><a href="cspruning.html"><span>Pruning&#160;ALox</span></a></li>
+      <li><a href="annotated.html"><span>Class&#160;Reference</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -95,30 +123,33 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html">AString</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A mutable string, that provides public access to its internal buffer and fields. First of all, the existence of this class is motivated to reach a certain level of compatibility between source code that uses the <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html" title="Static methods and fields A-Worx Utility library. ">AWXU</a> library across different languages (currently Java, C# and C++) that all share a similar <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html" title="A mutable string, that provides public access to its internal buffer and fields. First of all...">AString</a> class.  <a href="classcom_1_1aworx_1_1util_1_1AString.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html">AWXU</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static methods and fields A-Worx Utility library.  <a href="classcom_1_1aworx_1_1util_1_1AWXU.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacecom_1_1aworx_1_1util_1_1AWXUErrorHandler.html">AWXUErrorHandler</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface for <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html" title="Static methods and fields A-Worx Utility library. ">AWXU</a> error handler.  <a href="interfacecom_1_1aworx_1_1util_1_1AWXUErrorHandler.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface for <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html" title="Static methods and fields A-Worx Utility library. ">AWXU</a> error handler. The <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html" title="Static methods and fields A-Worx Utility library. ">AWXU</a> error handler is invoked on internal <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html" title="Static methods and fields A-Worx Utility library. ">AWXU</a> errors caused by illegal arguments or other wrong <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html" title="Static methods and fields A-Worx Utility library. ">AWXU</a> use. By default is a simple implementation is installed that just uses standard output to print the error and warning messages to the application's console. Applications may implement their own <a class="el" href="interfacecom_1_1aworx_1_1util_1_1AWXUErrorHandler.html" title="Interface for AWXU error handler. The AWXU error handler is invoked on internal AWXU errors caused by...">AWXUErrorHandler</a> and attach this to <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html" title="Static methods and fields A-Worx Utility library. ">AWXU</a> using <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#aabe9c0d1188ef6094e37d2ae96b99c15" title="Replaces the current (if any) error handler singleton by the one provided. If a different error handl...">AWXU.ReplaceErrorHandler</a>. Of-course, the AWXUErrorHanlder may be used also by software based on <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html" title="Static methods and fields A-Worx Utility library. ">AWXU</a>. For the use, see documentation of <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#a5540d24ea459e6f23c431fc9b08a937a" title="Returns true, if an error handler singleton was set. In this case, an internal mutex remains locked...">AWXU.AcquireErrorHandler</a>, <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#a06ec5ce88f8dd994e4ef1847ba489cf7" title="Forwards the given message to the current error handler in place. The default error handler of AWXU w...">AWXU.Error</a>, <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#a75706ac6e98cc6658ea5a706255721bd" title="Forwards the given message to the current error handler in place. The default error handler of AWXU w...">AWXU.Warning</a> and <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#a889208c324e7901d252838370c413e22" title="Releases the internal mutex which gets acquired calling AcquireErrorHandler. This method can be used ...">AWXU.AbortErrorHandler</a>.  <a href="interfacecom_1_1aworx_1_1util_1_1AWXUErrorHandler.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html">MString</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A mutable string, that provides public access to its internal buffer and fields and does not implement thread synchronization. Unfortunately, the given C#/JAVA StringBuilder/Buffer classes are "sealed" and do not provide direct access to the internal buffer. Hence, to avoid conversion to new immutable strings in certain situations, we rebuild a portion of the StringBuilder functionality here. More complex functions, like C# Format() operations are not supported and remain the domain of String and StringBuffer classes.  <a href="classcom_1_1aworx_1_1util_1_1MString.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1ConsoleErrorHandler.html">ConsoleErrorHandler</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The simple, default error handler, just writing the message to the console.  <a href="classcom_1_1aworx_1_1util_1_1ConsoleErrorHandler.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html">ThreadLock</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class allows <em>mutual exclusive access</em> to resources that the using software agrees on to protect with a certain instance hereof. In other words, access to certain resources of a software that has to be thread safe, can be protected if each thread (aka critical section code) uses the same <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html" title="This class allows mutual exclusive access to resources that the using software agrees on to protect w...">ThreadLock</a> to control the access to.  <a href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class allows <em>mutual exclusive access</em> to resources shared by different threads. In other words, access to certain data that is accessed by different threads, can be protected if each thread (aka critical section code) uses the same <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html" title="This class allows mutual exclusive access to resources shared by different threads. In other words, access to certain data that is accessed by different threads, can be protected if each thread (aka critical section code) uses the same ThreadLock to control the access to such data. ">ThreadLock</a> to control the access to such data.  <a href="classcom_1_1aworx_1_1util_1_1ThreadLock.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html">Ticker</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class provides a pure static interface into system dependent time values (usually 64 bit tick counters) that we call <em>ticks</em>. Ticks and this class allow to store and calculate time values in an efficient and highly accurate way.  <a href="classcom_1_1aworx_1_1util_1_1Ticker.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1Ticks.html">Ticks</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class provides an interface into system dependent time values (usually 64 bit tick counters) that we call <em>ticks</em>. <a class="el" href="classcom_1_1aworx_1_1util_1_1Ticks.html" title="This class provides an interface into system dependent time values (usually 64 bit tick counters) tha...">Ticks</a> allow to store and calculate time values in an efficient and highly accurate way. Such time values may represent points in time as well as time span. It is up to the user of this class to determine what type of time value is stored. It is recommended to use class <a class="el" href="classcom_1_1aworx_1_1util_1_1TickWatch.html" title="This class encapsulates a system dependent time value (Ticks) and provides some basic interface for m...">TickWatch</a> rather than this low level interface.  <a href="classcom_1_1aworx_1_1util_1_1Ticks.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcom_1_1aworx_1_1util_1_1TickTime.html">TickTime</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class encapsulates a system dependent time value (ticks) and uses the static class <a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html" title="This class provides a pure static interface into system dependent time values (usually 64 bit tick co...">Ticker</a> to get and manipulate it. See class <a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html" title="This class provides a pure static interface into system dependent time values (usually 64 bit tick co...">Ticker</a> to learn about system dependent time values (ticks) and their usage.  <a href="structcom_1_1aworx_1_1util_1_1TickTime.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1TickWatch.html">TickWatch</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class encapsulates a system dependent time value (<a class="el" href="classcom_1_1aworx_1_1util_1_1Ticks.html" title="This class provides an interface into system dependent time values (usually 64 bit tick counters) tha...">Ticks</a>) and provides some basic interface for measuring time spans, including multiple samples and their average.  <a href="classcom_1_1aworx_1_1util_1_1TickWatch.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 4 2015 11:07:52 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

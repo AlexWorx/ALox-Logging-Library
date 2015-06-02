@@ -9,6 +9,26 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<!-- so strange, that doxgen does not highlight each menu item. Just some... -->
+<script>
+  $(document).ready(function() {     
+    fnameStart= window.location.href.lastIndexOf('/')
+    fnameEnd=   window.location.href.indexOf('_', fnameStart )
+    if( fnameEnd < 0 ) {
+        fnameEnd=   window.location.href.indexOf('.', fnameStart )
+    }
+    if( fnameEnd > -1 ) {
+        subString= window.location.href.substring( fnameStart, fnameEnd )
+        $('li').toArray().forEach(function(li){
+            if(     typeof li.firstChild.href != 'undefined'
+                &&  li.firstChild.href.indexOf(subString) > 0 
+                ){
+               li.classList.add('current');
+            }
+        });
+    }
+  });
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +36,6 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="main_stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,8 +45,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1.1.2   -   Simple and powerful logging library for C# and JAVA (C++ underway...!)</span>
+   <div id="projectname">ALox 
+   &#160;<span id="projectnumber">Logging for C++, C# and Java (V 1.2.0)</span>
    </div>
   </td>
  </tr>
@@ -44,8 +63,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>ALox&#160;Home</span></a></li>
       <li><a href="faq.html"><span>FAQ</span></a></li>
       <li><a href="manual.html"><span>Manual</span></a></li>
-      <li><a href="cs_ref/index.html"><span>ALox&#160;for&#160;C#</span></a></li>
-      <li><a href="java_ref/index.html"><span>ALox&#160;for&#160;Java</span></a></li>
+      <li><a href="cpp_ref/cppmainpage.html"><span>ALox&#160;for&#160;C++</span></a></li>
+      <li><a href="cs_ref/csmainpage.html"><span>ALox&#160;for&#160;C#</span></a></li>
+      <li><a href="java_ref/javamainpage.html"><span>ALox&#160;for&#160;Java</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -89,20 +109,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Features and Limitations </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><ul>
-<li>Available for C# (.Net, Windows Phone 7.1 - 8.0) and Java (with explicit Android extensions). Other languages/platforms to come.</li>
-<li>Simple programming interface, easy to learn.</li>
+<div class="textblock"><h6></h6>
+<ul>
+<li>Available for C++ (Version 2011 needed), C# (.Net, Windows Phone 7.1 - 8.1) and Java (with explicit Android support and extensions).</li>
+<li>Config/Testing/Setup support for CMake, Eclipse, Visual Studio, QT Creator, Mono Develop in combination with GNU/Linux, Windows, Windows Phone and Android. (Not all language/platform combinations tested). Porting to other platforms should be easy.</li>
+<li>Simple programming interface, easy to learn. Dedicated C++, C# and Java specific tutorials.</li>
 <li>Very fast implementation to minimize runtime overhead of logging.</li>
 <li>Automatic removal (pruning) of debug log statements from release code mostly without the need of preprocessor if/endif code cluttering. Optionally also automatic pruning of release log statements.</li>
-<li>Automatic collection and logging of information about the entity that invoked a log statements. Each log line is "clickable" in your IDE. Such clicks open the corresponding source code and line number that performed the log.</li>
+<li>Automatic collection and logging of information about the entity that invoked a log statements. Each log line is "clickable" in your IDE (Currently Visual Studio and Eclipse, other IDEs may work or need plug-ins that might be provided here some day.). Such clicks open the corresponding source code and line number that performed the log.</li>
 <li>API design follows concept of "tolerance", using default values, auto-creation of missing objects, etc. to minimize intrusiveness of ALox in respect to cluttering your code and what you need to make it really work.</li>
-<li>Release logging, side-by-side to (prunable) debug logging (optionally: also pruning of release log code)</li>
+<li>Release logging, side-by-side to (pruneable) debug logging (optionally: also pruning of release log code)</li>
 <li>Multiple parallel log streams, e.g. for logging to the console and in parallel into a file.</li>
-<li>Extensible for custom log targets, which enables dedicated "data drains" (e.g. databases or a internet services) and custom output formatting.</li>
+<li>Extensible for custom log targets, which enables dedicated "data drains" (e.g. databases or Internet services) and custom output formatting.</li>
 <li>Abstract (extensible) TextLogger with automatically adjusted column widths displaying various collected attributes of a log entry. This allows to grasp interesting parts of a log output at a glimpse. Log format customizable by simple string definition.</li>
 <li><em>Log domains</em> allow the classification of different log statements into user defined topics. Such domains can be controlled at runtime to allow the programmer to concentrate on the area of current interest. Log domains are hierarchically organized what allows to control a whole "tree" of domains with only one line of code.</li>
 <li>Conditional logging, similar to assertions.</li>
-<li>LogTools for automated:<ul>
+<li>LogTools (in C# and Java) for automated:<ul>
 <li>Logging of objects using reflection with variable recursion depth and detection of cyclic references, invoked with one line of code.</li>
 <li>Logging Exceptions, inner exceptions,</li>
 <li>XML documents All with one line of code.</li>
@@ -112,7 +134,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </ul>
 <h3>Future work (and therefore today's limitations)</h3>
 <ul>
-<li>Today, the ALox logging ecosystem is available for C# and JAVA only. C++ and Objective-C are planned. C++ is next!</li>
+<li>Plug-ins for QT Creator and Eclipse (CDT) for dedicated ALox log output windows.</li>
 <li>File loggers (easy, will come very soon, with pretty neat features)</li>
 <li>HTTP/SOAP/REST loggers (send us your proposals for the right standards/backends to support first!)</li>
 <li>Thread tools for analysis and assertions</li>
@@ -123,7 +145,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 4 2015 11:07:52 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

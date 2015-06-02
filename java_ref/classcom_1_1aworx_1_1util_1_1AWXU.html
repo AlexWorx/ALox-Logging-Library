@@ -5,10 +5,30 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>ALox Java Reference: AWXU Class Reference</title>
+<title>ALox: AWXU Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<!-- so strange, that doxgen does not highlight each menu item. Just some... -->
+<script>
+  $(document).ready(function() {     
+    fnameStart= window.location.href.lastIndexOf('/')
+    fnameEnd=   window.location.href.indexOf('_', fnameStart )
+    if( fnameEnd < 0 ) {
+        fnameEnd=   window.location.href.indexOf('.', fnameStart )
+    }
+    if( fnameEnd > -1 ) {
+        subString= window.location.href.substring( fnameStart, fnameEnd )
+        $('li').toArray().forEach(function(li){
+            if(     typeof li.firstChild.href != 'undefined'
+                &&  li.firstChild.href.indexOf(subString) > 0 
+                ){
+               li.classList.add('current');
+            }
+        });
+    }
+  });
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +36,6 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="java_stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,8 +45,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">ALox Java Reference
-   &#160;<span id="projectnumber">V. 1.1.2</span>
+   <div id="projectname">ALox 
+   &#160;<span id="projectnumber">Logging for C++, C# and Java (V 1.2.0)</span>
    </div>
   </td>
  </tr>
@@ -44,9 +63,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="../index.html"><span>ALox&#160;Home</span></a></li>
       <li><a href="../faq.html"><span>FAQ</span></a></li>
       <li><a href="../manual.html"><span>Manual</span></a></li>
-      <li><a href="setup_projects_java.html"><span>IDE&#160;Setup</span></a></li>
-      <li><a href="tutorial_java.html"><span>Tutorial</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Class&#160;Ref.</span></a></li>
+      <li><a href="../cpp_ref/cppmainpage.html"><span>ALox&#160;for&#160;C++</span></a></li>
+      <li><a href="../cs_ref/csmainpage.html"><span>ALox&#160;for&#160;C#</span></a></li>
+      <li class="current"><a href="javamainpage.html"><span>ALox&#160;for&#160;Java</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -68,8 +87,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="javamainpage.html"><span>Overview</span></a></li>
+      <li><a href="javatutorial.html"><span>Tutorial</span></a></li>
+      <li><a href="javasetup.html"><span>IDE&#160;Setup</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Class&#160;Reference</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="classes.html"><span>Alphabetical&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Namespace&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -95,6 +124,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="classcom_1_1aworx_1_1util_1_1AWXU-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">AWXU Class Reference</div>  </div>
@@ -103,18 +133,42 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a681128635e507f1fc14c07e7541123d2"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#a681128635e507f1fc14c07e7541123d2">sleep</a> (int millisecs)</td></tr>
-<tr class="separator:a681128635e507f1fc14c07e7541123d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5b3f6eb21da30f903d9acb7a2f77af9"><td class="memItemLeft" align="right" valign="top">static boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#ad5b3f6eb21da30f903d9acb7a2f77af9">acquireErrorHandler</a> ()</td></tr>
+<tr class="separator:ad5b3f6eb21da30f903d9acb7a2f77af9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f6394c746fc244a92fb7c06e0c7c68c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#a9f6394c746fc244a92fb7c06e0c7c68c">error</a> (String msg)</td></tr>
+<tr class="separator:a9f6394c746fc244a92fb7c06e0c7c68c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a9472710c1053e0b98f7f4faa48da68"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#a6a9472710c1053e0b98f7f4faa48da68">warning</a> (String msg)</td></tr>
+<tr class="separator:a6a9472710c1053e0b98f7f4faa48da68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14a14a681a7762c0512a9639480047f8"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#a14a14a681a7762c0512a9639480047f8">abortErrorHandler</a> ()</td></tr>
+<tr class="separator:a14a14a681a7762c0512a9639480047f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81a9f423eeddba1dfc450e20e4f55903"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="interfacecom_1_1aworx_1_1util_1_1AWXUErrorHandler.html">AWXUErrorHandler</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#a81a9f423eeddba1dfc450e20e4f55903">replaceErrorHandler</a> (<a class="el" href="interfacecom_1_1aworx_1_1util_1_1AWXUErrorHandler.html">AWXUErrorHandler</a> newErrorHandler)</td></tr>
+<tr class="separator:a81a9f423eeddba1dfc450e20e4f55903"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbd1afce84112c5a5b085586afcf7ff5"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#acbd1afce84112c5a5b085586afcf7ff5">sleepMillis</a> (int millisecs)</td></tr>
+<tr class="separator:acbd1afce84112c5a5b085586afcf7ff5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6782d4dee54d5f911a4354da3eb3f24"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#af6782d4dee54d5f911a4354da3eb3f24">sleepMicros</a> (long microsecs)</td></tr>
+<tr class="separator:af6782d4dee54d5f911a4354da3eb3f24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf74d000ba9b2b39cbffaa8d09b38cad"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#aaf74d000ba9b2b39cbffaa8d09b38cad">sleepNanos</a> (long nanosecs)</td></tr>
+<tr class="separator:aaf74d000ba9b2b39cbffaa8d09b38cad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:a310f9753e567021a3074e649210d8c18"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="interfacecom_1_1aworx_1_1util_1_1AWXUErrorHandler.html">AWXUErrorHandler</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#a310f9753e567021a3074e649210d8c18">errorHandler</a> = null</td></tr>
+<tr class="memitem:a11cbc146958a86e6c25bc423054e365b"><td class="memItemLeft" align="right" valign="top">static boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#a11cbc146958a86e6c25bc423054e365b">haltOnError</a> = true</td></tr>
+<tr class="separator:a11cbc146958a86e6c25bc423054e365b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77cb7512239265f151b094ebcf2406a1"><td class="memItemLeft" align="right" valign="top">static boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#a77cb7512239265f151b094ebcf2406a1">haltOnWarning</a> = true</td></tr>
+<tr class="separator:a77cb7512239265f151b094ebcf2406a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:a310f9753e567021a3074e649210d8c18"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="interfacecom_1_1aworx_1_1util_1_1AWXUErrorHandler.html">AWXUErrorHandler</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#a310f9753e567021a3074e649210d8c18">errorHandler</a> = new <a class="el" href="classcom_1_1aworx_1_1util_1_1ConsoleErrorHandler.html">ConsoleErrorHandler</a>()</td></tr>
 <tr class="separator:a310f9753e567021a3074e649210d8c18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f13b52477628a14988d737de3191334"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html">ThreadLock</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#a9f13b52477628a14988d737de3191334">tlock</a> = new <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html">ThreadLock</a>()</td></tr>
+<tr class="separator:a9f13b52477628a14988d737de3191334"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Static methods and fields A-Worx Utility library. </p>
+<div class="textblock"><hr/>
+<p> Static methods and fields A-Worx Utility library. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a681128635e507f1fc14c07e7541123d2"></a>
+<a class="anchor" id="a14a14a681a7762c0512a9639480047f8"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -122,7 +176,155 @@ Static Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static void sleep </td>
+          <td class="memname">static void abortErrorHandler </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Releases the internal mutex which gets acquired calling <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#ad5b3f6eb21da30f903d9acb7a2f77af9">acquireErrorHandler</a>. This method can be used to avoid calling <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#a6a9472710c1053e0b98f7f4faa48da68">warning</a> or <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#a9f6394c746fc244a92fb7c06e0c7c68c">error</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="ad5b3f6eb21da30f903d9acb7a2f77af9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static boolean acquireErrorHandler </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Returns true, if an error handler singleton was set. In this case, an internal mutex remains locked. A subsequent call to error or <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#a6a9472710c1053e0b98f7f4faa48da68">warning</a> will release the mutex. Alternatively, <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#a14a14a681a7762c0512a9639480047f8">abortErrorHandler</a> has to be called. The reason for this design is, that the assembly of a merely complex error string should happen only if an error handler is available. The usual way to use the error handler is:<br />
+if ( <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#ad5b3f6eb21da30f903d9acb7a2f77af9">AWXU.acquireErrorHandler()</a> ) <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#a9f6394c746fc244a92fb7c06e0c7c68c">AWXU.error</a>( ... );<br />
+ In the case that no error handler is available, false is returned and the internal mutex is not acquired and must not be released. </p><dl class="section return"><dt>Returns</dt><dd>true if successful. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9f6394c746fc244a92fb7c06e0c7c68c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void error </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Forwards the given error message to the current error handler in place. The default error handler of <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html">AWXU</a> will print the message on the process console. Furthermore, in debug execution the flag HaltOnError is checked. If this is set the program halts or suspends into the debugger (platform and language specific).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>The error message. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a81a9f423eeddba1dfc450e20e4f55903"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="interfacecom_1_1aworx_1_1util_1_1AWXUErrorHandler.html">AWXUErrorHandler</a> replaceErrorHandler </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="interfacecom_1_1aworx_1_1util_1_1AWXUErrorHandler.html">AWXUErrorHandler</a>&#160;</td>
+          <td class="paramname"><em>newErrorHandler</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Replaces the current (if any) error handler singleton by the one provided. If a different error handler was set before, the former one, will be returned (e.g. for deletion). If null is provided, the error handler will be unset.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newErrorHandler</td><td>The error handler to set. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The former error handler. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af6782d4dee54d5f911a4354da3eb3f24"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void sleepMicros </td>
+          <td>(</td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>microsecs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> This is calling Thread.sleep() and catching any exception. If the <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html">AWXU</a> Error handler is set, its <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#a6a9472710c1053e0b98f7f4faa48da68">warning()</a> method is invoked should an exception be thrown. Variants of this method are <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#acbd1afce84112c5a5b085586afcf7ff5">sleepMillis</a> and <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#aaf74d000ba9b2b39cbffaa8d09b38cad">sleepNanos</a>. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">microsecs</td><td>Sleep time in microseconds. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="acbd1afce84112c5a5b085586afcf7ff5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void sleepMillis </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>millisecs</em></td><td>)</td>
@@ -135,10 +337,75 @@ Static Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>This is calling Thread.Sleep() and catching any exception.</p>
+<hr/>
+<p> This is calling Thread.sleep() and catching any exception. If the <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html">AWXU</a> Error handler is set, its <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#a6a9472710c1053e0b98f7f4faa48da68">warning()</a> method is invoked should an exception be thrown. Variants of this method are <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#af6782d4dee54d5f911a4354da3eb3f24">sleepMicros</a> and <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#aaf74d000ba9b2b39cbffaa8d09b38cad">sleepNanos</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">millisecs</td><td>Time of the hold in milliseconds. </td></tr>
+    <tr><td class="paramname">millisecs</td><td>Sleep time in milliseconds. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aaf74d000ba9b2b39cbffaa8d09b38cad"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void sleepNanos </td>
+          <td>(</td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>nanosecs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> This is calling Thread.sleep() and catching any exception. If the <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html">AWXU</a> Error handler is set, its <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#a6a9472710c1053e0b98f7f4faa48da68">warning()</a> method is invoked should an exception be thrown. Variants of this method are <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#acbd1afce84112c5a5b085586afcf7ff5">sleepMillis</a> and <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#aaf74d000ba9b2b39cbffaa8d09b38cad">sleepNanos</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nanosecs</td><td>Sleep time in nanoseconds. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a6a9472710c1053e0b98f7f4faa48da68"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void warning </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Forwards the given message to the current error handler in place. The default error handler of <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html">AWXU</a> will print the message on the process console. Furthermore, in debug execution the flag HaltOnWarning is checked. If this is set the program halts or suspends into the debugger (platform and language specific).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>The warning message. </td></tr>
   </table>
   </dd>
 </dl>
@@ -154,7 +421,28 @@ Static Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="interfacecom_1_1aworx_1_1util_1_1AWXUErrorHandler.html">AWXUErrorHandler</a> errorHandler = null</td>
+          <td class="memname"><a class="el" href="interfacecom_1_1aworx_1_1util_1_1AWXUErrorHandler.html">AWXUErrorHandler</a> errorHandler = new <a class="el" href="classcom_1_1aworx_1_1util_1_1ConsoleErrorHandler.html">ConsoleErrorHandler</a>()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The error handler singleton. Defaults to ConsoleErrorHandler() </p>
+
+</div>
+</div>
+<a class="anchor" id="a11cbc146958a86e6c25bc423054e365b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean haltOnError = true</td>
         </tr>
       </table>
   </td>
@@ -163,7 +451,49 @@ Static Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>The error handler singleton. This can be set statically from outside to enable the report of A-Worx util errors and warnings. </p>
+<p>Flag, which if set to true, causes calls to <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#a9f6394c746fc244a92fb7c06e0c7c68c">error</a> to halt program execution. Can be set at runtime by just overwriting the value. If !NDEBUG this 'assert(false)'. If NDEBUG, this defaults to false. </p>
+
+</div>
+</div>
+<a class="anchor" id="a77cb7512239265f151b094ebcf2406a1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean haltOnWarning = true</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Flag, which if set to true, causes calls to <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html#a6a9472710c1053e0b98f7f4faa48da68">warning</a> to halt program execution. Can be set at runtime by just overwriting the value. If !NDEBUG this 'assert(false)'. If NDEBUG, this defaults to false. </p>
+
+</div>
+</div>
+<a class="anchor" id="a9f13b52477628a14988d737de3191334"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html">ThreadLock</a> tlock = new <a class="el" href="classcom_1_1aworx_1_1util_1_1ThreadLock.html">ThreadLock</a>()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Provides mutual exclusive access to some inner <a class="el" href="classcom_1_1aworx_1_1util_1_1AWXU.html">AWXU</a> data. </p>
 
 </div>
 </div>
@@ -174,7 +504,7 @@ Static Public Attributes</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 4 2015 11:07:52 for ALox Java Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['fieldreference',['fieldReference',['../classcom_1_1aworx_1_1util_1_1AString.html#a3f9db4d35ad598af0040026b2b59afa4',1,'com::aworx::util::AString']]],
   ['filename',['fileName',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html#a3a5f56162810aa1e371620c4c18cc82a',1,'com::aworx::lox::loggers::TextFileLogger']]],
   ['fmtexcnull',['FmtExcNull',['../classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#aa8eaf49e43df1021c2d606be3fa2a105',1,'com::aworx::lox::tools::LogTools']]],
   ['fmtinstarraypostfix',['FmtInstArrayPostfix',['../classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a589175368d4447e9e299a6772c2de1d0',1,'com::aworx::lox::tools::LogTools']]],
@@ -20,6 +21,6 @@ var searchData=
   ['fmtmultilinepostfix',['FmtMultiLinePostfix',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#ae0ab1101cb40bf899cb8fb9ef26fb29f',1,'com::aworx::lox::core::TextLogger']]],
   ['fmtmultilineprefix',['FmtMultiLinePrefix',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a74da3f13d354d7b4b31aa8fefa7e7115',1,'com::aworx::lox::core::TextLogger']]],
   ['fmtnullobject',['FmtNullObject',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html#ac281d117b6e931783195f52f70bfa5b3',1,'com::aworx::lox::core::TextLoggerObjectConverter']]],
-  ['format',['Format',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#af529892abacd85c83ff6a646962fe28d',1,'com::aworx::lox::core::TextLoggerLineFormatter']]],
+  ['format',['Format',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a5f73a9d6a9bfabaa4a33c34831006d07',1,'com::aworx::lox::core::TextLoggerLineFormatter']]],
   ['formatsb',['formatSB',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a85c8d54f584a622009048d0536f6160f',1,'com::aworx::lox::core::TextLoggerLineFormatter']]]
 ];

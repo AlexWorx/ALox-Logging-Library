@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['warning',['Warning',['../classcom_1_1aworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5a0eaadb4fcb48a0a0ed7bc9868be9fbaa',1,'com::aworx::lox::Log']]],
-  ['warningsanderrors',['WarningsAndErrors',['../classcom_1_1aworx_1_1lox_1_1Log.html#a10ac165398697ce1d642d739cc3b170fac97dda1f78d8fbb5a4f489ab1b51ff4d',1,'com::aworx::lox::Log']]]
+  ['right',['Right',['../classcom_1_1aworx_1_1util_1_1AString.html#ab4fc75cf20644d0e62fb0242b3e7b401a92b09c7c48c520c3c55e497875da437c',1,'com::aworx::util::AString']]]
 ];

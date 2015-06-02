@@ -1,0 +1,6 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classaworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="5,31,67,57"/>
+<area shape="rect" id="node2" href="$classaworx_1_1lox_1_1core_1_1TextLogger.html" title="TextLogger" alt="" coords="115,31,200,57"/>
+<area shape="rect" id="node3" href="$classaworx_1_1lox_1_1loggers_1_1ConsoleLogger.html" title="ConsoleLogger" alt="" coords="248,5,356,32"/>
+<area shape="rect" id="node4" href="$classaworx_1_1lox_1_1loggers_1_1MemoryLogger.html" title="MemoryLogger" alt="" coords="248,56,356,83"/>
+</map>

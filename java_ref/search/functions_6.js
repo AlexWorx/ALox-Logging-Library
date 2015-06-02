@@ -1,12 +1,14 @@
 var searchData=
 [
-  ['finddomain',['findDomain',['../classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a239cbe55cec8d923cc407ff5a65c2e7c',1,'com::aworx::lox::core::Logger']]],
-  ['findorcreate',['findOrCreate',['../classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a0b41e0a6c5ca2c5d3a6e9ef780f979ed',1,'com::aworx::lox::core::LogDomain']]],
-  ['findorcreateinternal',['findOrCreateInternal',['../classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#ae3d3e3f7f93758c28f1d33a9d8b2493e',1,'com::aworx::lox::core::LogDomain']]],
-  ['fromepochmillis',['fromEpochMillis',['../classcom_1_1aworx_1_1util_1_1Ticker.html#a1b13194fceedc227d1c20fb9d8a6cdf2',1,'com::aworx::util::Ticker']]],
-  ['fromjavacalendar',['fromJavaCalendar',['../classcom_1_1aworx_1_1util_1_1Ticker.html#a8d734b8327d43ad654119dbbfb1e6000',1,'com.aworx.util.Ticker.fromJavaCalendar()'],['../classcom_1_1aworx_1_1util_1_1TickTime.html#a50aec3c06b9c2b9feb37474c9927c241',1,'com.aworx.util.TickTime.fromJavaCalendar()']]],
-  ['fromjavadate',['fromJavaDate',['../classcom_1_1aworx_1_1util_1_1Ticker.html#a1769d8785b2654e8d67700c4d498a664',1,'com.aworx.util.Ticker.fromJavaDate()'],['../classcom_1_1aworx_1_1util_1_1TickTime.html#a7068a160754ab2fe6fe3fe924783b580',1,'com.aworx.util.TickTime.fromJavaDate()']]],
-  ['frommicros',['fromMicros',['../classcom_1_1aworx_1_1util_1_1Ticker.html#aef62101f449515145c8d4385dcc05dba',1,'com::aworx::util::Ticker']]],
-  ['frommillis',['fromMillis',['../classcom_1_1aworx_1_1util_1_1Ticker.html#afa6730c03c7b584a3a9a33be81ed125c',1,'com::aworx::util::Ticker']]],
-  ['fromnanos',['fromNanos',['../classcom_1_1aworx_1_1util_1_1Ticker.html#ae6b08512aeb2693b992a65b5cf5024f9',1,'com::aworx::util::Ticker']]]
+  ['field',['field',['../classcom_1_1aworx_1_1lox_1_1LogBuf.html#a34c52c07602489b1a97f763b3ae1c0bf',1,'com.aworx.lox.LogBuf.field(int size, Align alignment, char padChar, int fieldStart)'],['../classcom_1_1aworx_1_1lox_1_1LogBuf.html#a3f5cd4ad706427939b310e2bd812ff24',1,'com.aworx.lox.LogBuf.field(int size, Align alignment, char padChar)'],['../classcom_1_1aworx_1_1lox_1_1LogBuf.html#a71b8ca4df04799df49079d4c6deadb6e',1,'com.aworx.lox.LogBuf.field(int size, Align alignment)'],['../classcom_1_1aworx_1_1lox_1_1LogBuf.html#aa5b2ed91ccf64de417fa92cbba6fbe15',1,'com.aworx.lox.LogBuf.field(int size)'],['../classcom_1_1aworx_1_1lox_1_1LogBuf.html#a3753c4be5411fc4e33b64466876b8cac',1,'com.aworx.lox.LogBuf.field()'],['../classcom_1_1aworx_1_1util_1_1AString.html#afd5174af4cc071e667dc6ee3e6621cbd',1,'com.aworx.util.AString.field(int size, Align alignment, char padChar, int fieldStart)'],['../classcom_1_1aworx_1_1util_1_1AString.html#abee12fcb31084ac139c811b798b56406',1,'com.aworx.util.AString.field(int size, Align alignment, char padChar)'],['../classcom_1_1aworx_1_1util_1_1AString.html#ace4d0b653d5db9aaa7fbecd2e362124c',1,'com.aworx.util.AString.field(int size, Align alignment)'],['../classcom_1_1aworx_1_1util_1_1AString.html#a9ca0ea9aeb6ab9339bedb2b8900abe15',1,'com.aworx.util.AString.field(int size)'],['../classcom_1_1aworx_1_1util_1_1AString.html#a9a5bbd3f19ce22f9a3eb7bb97cbfc876',1,'com.aworx.util.AString.field()']]],
+  ['finddomain',['findDomain',['../classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a46a8de5571bc2fb7ca7aa39bd328741c',1,'com::aworx::lox::core::Logger']]],
+  ['findorcreate',['findOrCreate',['../classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a3f34e492c870cfbd5e0fea1769c688cf',1,'com::aworx::lox::core::LogDomain']]],
+  ['findorcreateinternal',['findOrCreateInternal',['../classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a28eb4ca536755157d39e23097e61fc42',1,'com::aworx::lox::core::LogDomain']]],
+  ['fromdays',['fromDays',['../classcom_1_1aworx_1_1util_1_1Ticks.html#a2d20bcf1761291874076e150957a5500',1,'com::aworx::util::Ticks']]],
+  ['fromhours',['fromHours',['../classcom_1_1aworx_1_1util_1_1Ticks.html#a6b2453859c45ec2a69983d0b34e797cf',1,'com::aworx::util::Ticks']]],
+  ['frommicros',['fromMicros',['../classcom_1_1aworx_1_1util_1_1Ticks.html#a8c0ad762d66b492b0d1bc532b064ca06',1,'com::aworx::util::Ticks']]],
+  ['frommillis',['fromMillis',['../classcom_1_1aworx_1_1util_1_1Ticks.html#a1b5e918c13dfc2dc9d38829c43670a7d',1,'com::aworx::util::Ticks']]],
+  ['fromminutes',['fromMinutes',['../classcom_1_1aworx_1_1util_1_1Ticks.html#a7a9234bd9da2c2f05389fce562adbfbd',1,'com::aworx::util::Ticks']]],
+  ['fromnanos',['fromNanos',['../classcom_1_1aworx_1_1util_1_1Ticks.html#a6742ae6be5de8f22df74d85905ada516',1,'com::aworx::util::Ticks']]],
+  ['fromseconds',['fromSeconds',['../classcom_1_1aworx_1_1util_1_1Ticks.html#ad8e78b2ed8acd9880415ce2ed60598d5',1,'com::aworx::util::Ticks']]]
 ];

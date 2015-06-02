@@ -5,10 +5,30 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>ALox C# Reference: Class Members</title>
+<title>ALox: Class Members</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<!-- so strange, that doxgen does not highlight each menu item. Just some... -->
+<script>
+  $(document).ready(function() {     
+    fnameStart= window.location.href.lastIndexOf('/')
+    fnameEnd=   window.location.href.indexOf('_', fnameStart )
+    if( fnameEnd < 0 ) {
+        fnameEnd=   window.location.href.indexOf('.', fnameStart )
+    }
+    if( fnameEnd > -1 ) {
+        subString= window.location.href.substring( fnameStart, fnameEnd )
+        $('li').toArray().forEach(function(li){
+            if(     typeof li.firstChild.href != 'undefined'
+                &&  li.firstChild.href.indexOf(subString) > 0 
+                ){
+               li.classList.add('current');
+            }
+        });
+    }
+  });
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +36,6 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="cs_stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,8 +45,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">ALox C# Reference
-   &#160;<span id="projectnumber">V. 1.1.2</span>
+   <div id="projectname">ALox 
+   &#160;<span id="projectnumber">Logging for C++, C# and Java (V 1.2.0)</span>
    </div>
   </td>
  </tr>
@@ -44,9 +63,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="../index.html"><span>ALox&#160;Home</span></a></li>
       <li><a href="../faq.html"><span>FAQ</span></a></li>
       <li><a href="../manual.html"><span>Manual</span></a></li>
-      <li><a href="setup_projects_vs_cs.html"><span>VStudio&#160;Setup</span></a></li>
-      <li><a href="tutorial_cs.html"><span>Tutorial</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Class&#160;Ref.</span></a></li>
+      <li><a href="../cpp_ref/cppmainpage.html"><span>ALox&#160;for&#160;C++</span></a></li>
+      <li class="current"><a href="csmainpage.html"><span>ALox&#160;for&#160;C#</span></a></li>
+      <li><a href="../java_ref/javamainpage.html"><span>ALox&#160;for&#160;Java</span></a></li>
       <li><a href="https://github.com/AlexWorx/ALox-Logging-Library"><span>Download</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -68,8 +87,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="csmainpage.html"><span>Overview</span></a></li>
+      <li><a href="cstutorial.html"><span>Tutorial</span></a></li>
+      <li><a href="cssetup.html"><span>IDE&#160;Setup</span></a></li>
+      <li><a href="cspruning.html"><span>Pruning&#160;ALox</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Class&#160;Reference</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="classes.html"><span>Alphabetical&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Namespace&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li class="current"><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
   <div id="navrow3" class="tabs2">
@@ -101,7 +131,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions_r.html#index_r"><span>r</span></a></li>
       <li><a href="functions_s.html#index_s"><span>s</span></a></li>
       <li><a href="functions_t.html#index_t"><span>t</span></a></li>
-      <li><a href="functions_u.html#index_u"><span>u</span></a></li>
       <li><a href="functions_v.html#index_v"><span>v</span></a></li>
       <li><a href="functions_w.html#index_w"><span>w</span></a></li>
       <li><a href="functions_x.html#index_x"><span>x</span></a></li>
@@ -132,9 +161,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>callerDateTime
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a321e35a5312d2e9709fd591b7e5d54a5">TextLoggerLineFormatter</a>
 </li>
+<li>Center
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html#ab4fc75cf20644d0e62fb0242b3e7b401a4f1f6016fc9f3f2353c0cc7c67b292bd">AString</a>
+</li>
 <li>Clear()
-: <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a8cca8f037a58d8c902e5c62fdf268981">MString</a>
-, <a class="el" href="structcom_1_1aworx_1_1util_1_1TickTime.html#aa71d36872f416feaa853788a7a7a7ef8">TickTime</a>
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html#a34dd5d801f01e4f8d9f6a4cb435da6e1">AString</a>
 </li>
 <li>closeFile()
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html#ab2ff17b940ae7aca4827d832ceeaeda4">TextFileLogger</a>
@@ -145,41 +176,38 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>CntLogs
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a7859d287690c28acd561a307d23679bf">Logger</a>
 </li>
-<li>cntMeasures
-: <a class="el" href="structcom_1_1aworx_1_1util_1_1TickTime.html#a388aae1c6d770ab01965f0d01b2fdc1a">TickTime</a>
+<li>cntSamples
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1TickWatch.html#a3203b85b99c75b91922c0147ac0ca04b">TickWatch</a>
 </li>
 <li>CompareTo()
-: <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a308cbb147b4dc0a8ed794f84cc711a7c">MString</a>
-</li>
-<li>consoleBuffer
-: <a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html#a13297cc2c876d3e5667e2c567efbb377">ConsoleLogger</a>
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html#a25001023f92fd27749a1fd6e0100e16a">AString</a>
 </li>
 <li>ConsoleLogger()
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html#ab424eff3af16ee9c77c6a57547d1753d">ConsoleLogger</a>
 </li>
 <li>ConsumableSourcePathPrefixString
-: <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#ad5e8a7d9f2c872ab23a2332e6583d908">CallerInfo</a>
+: <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#ad5e8a7d9f2c872ab23a2332e6583d908">TextLoggerLineFormatter</a>
 </li>
 <li>ContainsAt()
-: <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a15774fb77e5efd8bfb44bc2dad2a9c40">MString</a>
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html#af04d5d8b28a5486aadc3ce2ff8fa9ca1">AString</a>
 </li>
 <li>ConvertCase()
-: <a class="el" href="classcom_1_1aworx_1_1util_1_1MString.html#a064324913d1c968daaa9fbd8014ccf6b">MString</a>
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1AString.html#a30e2a2e5ef5e5250522913d59d1cc130">AString</a>
 </li>
 <li>ConvertObject()
-: <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html#ab8190be4513726c7c2c49276ab2ed3fa">TextLoggerObjectConverter</a>
+: <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html#a0ba6332bdc61bc28bdc5c9d0106f12c4">TextLoggerObjectConverter</a>
 </li>
 <li>convSWToDT
-: <a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html#ad91e3ebd169964f5636d6d006cd445fb">Ticker</a>
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1Ticks.html#ad91e3ebd169964f5636d6d006cd445fb">Ticks</a>
 </li>
 <li>CreateDomain()
-: <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a5e24dffed44ef22b05a1491799053a31">Logger</a>
+: <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a36bb3f3fcd86d27b33bb15a10d7ea2a0">Logger</a>
+</li>
+<li>CreationTime
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1Ticks.html#ab4e057eeeb0ecf2494933081c666ea43">Ticks</a>
 </li>
 <li>creationTimeStopWatch
-: <a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html#a58d43e7232052f1601bc2914babafb17">Ticker</a>
-</li>
-<li>creationTimeTicks
-: <a class="el" href="classcom_1_1aworx_1_1util_1_1Ticker.html#a4ca94541f535289b6d50b0eaf9469c11">Ticker</a>
+: <a class="el" href="classcom_1_1aworx_1_1util_1_1Ticks.html#a58d43e7232052f1601bc2914babafb17">Ticks</a>
 </li>
 <li>currentlyInMultiLineOp
 : <a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html#a79360590a52ab99fa5ca7bd3e679fef5">TextFileLogger</a>
@@ -189,7 +217,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 4 2015 11:07:52 for ALox C# Reference by &#160;<a href="http://www.doxygen.org/index.html">
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
