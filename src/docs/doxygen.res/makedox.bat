@@ -1,8 +1,11 @@
+@echo *** Creating C++ site ***
+doxygen.exe cpp.doxyfile
+
 @echo *** Creating C# site ***
-doxygen.exe Doxyfile.forCS
+doxygen.exe cs.doxyfile
 
 @echo *** Creating JAVA site ***
-doxygen.exe Doxyfile.forJAVA
+doxygen.exe java.doxyfile
 
 @echo *** Creating main site ***
-doxygen.exe Doxyfile
+doxygen.exe doxyfile

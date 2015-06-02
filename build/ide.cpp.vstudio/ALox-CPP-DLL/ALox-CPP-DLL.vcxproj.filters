@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src.util">
+      <UniqueIdentifier>{89e68b08-2208-4f16-9744-5ffc227793d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="msvc_files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{f80572d9-94a0-409c-8d8c-f67455a6a6ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\core">
+      <UniqueIdentifier>{00907134-7864-4c41-94d5-79bca0a76479}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\loggers">
+      <UniqueIdentifier>{eb8e5f3a-b431-40bd-9907-9e2ed0b00b04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\alox">
+      <UniqueIdentifier>{c86a9bfb-cfb7-4dc4-8709-130d927fd18b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src.util\awxu">
+      <UniqueIdentifier>{b037e066-3913-408d-8b08-336bc554b911}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\src\cpp.aworx.util\awxu.hpp">
+      <Filter>src.util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\cpp.aworx.util\environment.hpp">
+      <Filter>src.util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\cpp.aworx.util\thread.hpp">
+      <Filter>src.util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\cpp.aworx.util\threadlock.hpp">
+      <Filter>src.util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\cpp.aworx.util\astring.hpp">
+      <Filter>src.util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\cpp.alox\core\textlogger.hpp">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\cpp.alox\core\callerinfo.hpp">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\cpp.alox\core\logdomain.hpp">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\cpp.alox\core\logger.hpp">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\cpp.alox\loggers\memorylogger.hpp">
+      <Filter>src\loggers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\cpp.alox\loggers\consolelogger.hpp">
+      <Filter>src\loggers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\cpp.alox\alox.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\cpp.aworx.util\stdafx_awxu.h">
+      <Filter>src.util</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>msvc_files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\cpp.aworx.util\ticks.hpp">
+      <Filter>src.util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\cpp.alox\alox_memory_logger.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\cpp.alox\alox_console_logger.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\cpp.alox\alox\log.hpp">
+      <Filter>src\alox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\cpp.alox\alox\lox.hpp">
+      <Filter>src\alox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\cpp.alox\alox\alox_macros.hpp">
+      <Filter>src\alox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\cpp.aworx.util\awxu\awxu_macros.hpp">
+      <Filter>src.util\awxu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\cpp.alox\alox\alox_symbols.hpp">
+      <Filter>src\alox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\cpp.aworx.util\awxu\awxu_symbols.hpp">
+      <Filter>src.util\awxu</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\cpp.aworx.util\awxu.cpp">
+      <Filter>src.util</Filter>
+    </ClCompile>
+    <ClCompile Include="ALox-CPP-DLL.cpp">
+      <Filter>msvc_files</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>msvc_files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cpp.aworx.util\astring.cpp">
+      <Filter>src.util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cpp.aworx.util\thread.cpp">
+      <Filter>src.util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cpp.aworx.util\environment.cpp">
+      <Filter>src.util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cpp.aworx.util\threadlock.cpp">
+      <Filter>src.util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cpp.alox\core\callerinfo.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cpp.alox\core\logdomain.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cpp.alox\core\logger.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cpp.alox\core\textlogger.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cpp.alox\loggers\consolelogger.cpp">
+      <Filter>src\loggers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cpp.alox\loggers\memorylogger.cpp">
+      <Filter>src\loggers</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx_awxu.cpp">
+      <Filter>msvc_files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cpp.aworx.util\ticks.cpp">
+      <Filter>src.util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cpp.alox\alox\log.cpp">
+      <Filter>src\alox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cpp.alox\alox\lox.cpp">
+      <Filter>src\alox</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

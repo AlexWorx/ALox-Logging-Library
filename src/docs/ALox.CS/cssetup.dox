@@ -1,0 +1,252 @@
+﻿// #################################################################################################
+//  Documentation - ALox Logging Library
+//
+//  (c) 2013-2015 A-Worx GmbH, Germany
+//  Published under MIT License (Open Source License, see LICENSE.txt)
+// #################################################################################################
+
+/**
+\page cssetup         IDE setup ALox for C#
+
+\tableofcontents
+
+# 1. Introduction # {#cssetup_1}
+
+To use ALox, you need to
+- compile the ALox library and
+- configure your project to use the library.
+
+Altogether this should not be too difficult to set up and this does not differ from the use of
+other C# libraries.
+\note There is no NuGet packaged distribution of ALox for C# available today.
+
+Currently, ALox provides ready to use IDE projects for
+- <em>Mono Develop</em> and
+- <em>Microsoft Visual Studio</em>.
+
+If you compile your C# code with a different build system, all you need to know is two things:
+- the list of source files and
+- which \ref csmacros need to be set on compilation of debug and release configurations.
+
+<br>
+# 2. Download #      {#cssetup_vs_download}
+Unpack the ALox distribution (e.g. as zip) from
+[Alox at GitHub](https://github.com/AlexWorx/ALox-Logging-Library)
+and move all its contents to a place where you commonly store 3rd party libraries your projects
+are using.
+
+In this tutorial, we call this folder the <b><em>ALOX_LIB_PATH</em></b>. After downloading and unpacking ALox
+within the folder  *ALOX_LIB_PATH* you should find at least the following subfolders:
+
+        ALOX_LIB_PATH\src
+        ALOX_LIB_PATH\build
+        ALOX_LIB_PATH\html
+
+<br>
+# 3. Set up the Built System # {#cssetup_setup}
+
+As mentioned above, for <em>Mono Develop</em> and <em>Visual Studio</em> pre-configured projects exists.
+
+\note The <em>Mono Develop</em> projects have been created using V. 5.9 of the IDE
+
+\note Microsoft claims that <em>Visual Studio</em> enables "round trip engineering" between <em>Visual Studio</em>
+versions 2010, 2012 and 2013. We have not tested ALox with VS 2010, however, 2012 and 2013 both
+work well within our installation.
+
+You have to add the library projects to the *solution* that includes the project you want to
+equip with ALox.<p>
+
+If you do not actually have a C# project (or do not want to touch it now), there are
+ready to use sample solutions for Mono Develop and Microsoft Visual Studio available. They
+are found in:
+
+        ALOX_LIB_PATH/build/ide.cs.monodevelop/Solution/ALox-CS.Mono.sln
+
+respectively:
+
+        ALOX_LIB_PATH/build/ide.cs.vstudio/Solution/ALox-CS.VStudio.sln
+
+## 3.1. Add existing ALox library project to your solution ##    {#cssetup_addproject}
+
+Choose the right class library project that fits well to your own project target and platform.<p>
+The projects for __Mono Develop__ are found in:
+
+        ALOX_LIB_PATH/build/ide.cs.monodevelop/ALox-CS.xxx-DLL-xxx
+
+Your, choices are:
+<table border="1" >
+    <tr><th><center>Project Name</center>           </th>   <th><center>Description</center></th>  </tr>
+
+    <tr><td>ALox-CS-.Net45-DLL               </td>   <td>For .Net 4.5 projects that do *not* use ALox release logging</tr>
+    <tr><td>ALox-CS-.Net45-DLL-Release-Log   </td>   <td>For .Net 4.5 projects that intent to use ALox release logging (besides debug logging)</tr>
+</table>
+
+
+The projects for __Visual Studio__ are found in:
+
+        ALOX_LIB_PATH\build\ide.cs.vstudio\ALox-CS.xxx-DLL-xxx
+
+Your, choices are:
+
+
+<table border="1" >
+    <tr><th><center>Project Name</center>           </th>   <th><center>Description</center></th>  </tr>
+
+    <tr><td>ALox-CS-.Net45-DLL               </td>   <td>For .Net 4.5 projects that do *not* use ALox release logging</tr>
+    <tr><td>ALox-CS-.Net45-DLL-Release-Log   </td>   <td>For .Net 4.5 projects that intent to use ALox release logging (besides debug logging)</tr>
+    <tr><td>ALox-CS-.WP80-DLL                </td>   <td>For windows Phone 8 projects that do *not* use ALox release logging</tr>
+    <tr><td>ALox-CS-.WP80-DLL-Release-Log    </td>   <td>For windows Phone 8 projects that intent to use ALox release logging (besides debug logging)</tr>
+</table>
+
+
+\note
+If you do not know the difference between debug and release logging, [see the FAQ](../faq.html#faq_debug_vs_release_logging)
+\par
+
+\note
+The difference between the project versions with or without the release logging options are:
+
+\note
+- Those projects named *ALox-CS-???-DLL-Release-Log* have the \ref csmacros *ALOX_REL_LOG* set in their
+  release configuration.
+- Due to this, ALox features are still included in the release version of these projects' assemblies.
+  (Only, class [Log](@ref #com::aworx::lox::Log) gets its  interface replaced by thin
+  stub methods in release mode.).
+- The size of the release assembly slightly increases if you use the release log enabled projects.
+- Temporary or long-term pruning of the release log statements in your code is still enabled
+  when you use the release log versions of the library!<br>
+  Therefore: Only, if you never want to use release logging, choose the smaller library that
+  only enables debug logging.
+<p>
+
+
+\note The windows phone projects should support the Windows Phone 8.1 as well.
+Until ALox Version 1.1.2, support for Windows Phone 7.1 was officially provided.
+Due to problems in installing and  testing this outdated platform, support was dropped.
+Nevertheless, there are still the appropriate \ref csmacros_conditional_compile_symbols
+in the C# source files.
+Although not tested, we are optimistic that this platform still compiles nicely.
+So, if you are in need for Windows Phone 7.1 logging, have a try.
+
+<br>
+Sounds complicated, but isn't! Just go with the release-log enabled version for now!
+Because the size of the release assembly is very small anyhow (as of ALox V.1.1.0 it is 25kb without release
+logging vs. 49kb including release logging) you can easily choose the "Release-Log" version of your platform.
+
+\par
+\note
+If there is no appropriate predefined project available for you, skip steps 2 and 3 and continue reading
+below at \ref cssetup_using_sources!
+
+Go ahead and add the project that suit you to your solution!
+
+
+## 3.2. Set build dependency##    {#cssetup_builddependency}
+
+Set a build dependency from your project to the just added *ALox-CS-DLL* project. If you do
+not know how to do that, consult your IDEs manual. In <em>Visual Studio</em> 2013 the steps (roughly) are:
+
+   - right click your project in solution explorer
+   - choose context menu **Project dependencies...**
+   - tick the checkbox for the *ALox-CS-DLL* project.
+
+
+## 3.3. Reference the ALox library from within your project ##    {#cssetup_referencealox}
+Add the ALox-CS-DLL project as a reference to your project. If you do
+not know how to do that, consult your IDEs manual. In <em>Visual Studio</em> 2013 the steps (roughly) are:
+
+   - right click your project in solution explorer
+   - choose context menu **Add reference...**
+   - on the left side choose "Solution" and "Projects"
+   - tick the checkbox for the *ALox-CS-DLL* project.
+
+
+## 3.4. Alternatively: Working with the sources ## {#cssetup_using_sources}
+If
+- there is no appropriate predefined project for your target and platform or
+- for any reason you want to setup your own library project for ALox or
+- for any reason you want to compile ALox directly within your project
+
+the sources of ALox are found in the following two folders and their subfolders:
+
+   - \c ALOX_LIB_PATH/src/cs.alox
+   - \c ALOX_LIB_PATH/src/cs.aworx.util
+
+Unit tests (which do not belong into the library) are found in:
+   - \c ALOX_LIB_PATH/src/cs.alox.unittests
+   - \c ALOX_LIB_PATH/src/cs.aworx.util.unittests
+
+
+
+# 4. Conditional Compilation Symbols# {#cssetup_condcompsym}
+
+Now, as ALox is a part of your IDEs solution or build system, the final step is to
+set compilation symbols within your own project (!), hence the one that is supposed to use ALox.
+Different settings are needed for the debug and release configurations.
+
+Please find an overview over all compilation symbols introduced by ALox here: \ref csmacros.
+
+The following step by step guide examples this for __Visual Studio__:
+\note In addition, the right system libraries may have to be chosen to successfully compile ALox
+and your project!
+
+- Open your projects' properties and:
+ - choose "Debug" as the **Configuration** you want to modify.
+ - In the 'Build' section add  **ALOX_DEBUG** to the list of *conditional compilation symbols* (separated from existing symbols by a semicolon).
+ - Make sure that the checkbox "Define DEBUG constant" is checked (this is the default).
+ - For windows phone projects, also add either **ALOX_WP71** or **ALOX_WP8** to that list depending on what platform
+   you are targeting. <br>
+   _Note:_ Besides other minor changes, this disables a feature to recursively log an object using reflection, because
+   reflection operations are not supported (permitted!) on the Windows Phone platform.
+ - If you want to use ALox for release logging (see [FAQ](../faq.html#faq_debug_vs_release_logging)) then you do
+   the same for the "Release" configuration. But, instead of **ALOX_DEBUG** please specify **ALOX_REL_LOG**.
+ \par
+- Now close the project properties and continue with adjusting the references of your project:
+ - In Solution Explorer, right-click the "References" folder in your project
+ - choose "Add Reference..."
+ - In the now open dialog navigate to section "Assemblies" and here choose "Framework".
+
+   Make sure that you have ticked the check boxes for:
+
+   - System.Xml.Linq library (you can avoid this by setting the *conditional compilation symbol*  **ALOX_NO_XML**, see above)
+   - For Windows Phone 7.1 projects: "Microsoft.Phone" (not needed for Windows Phone 8)
+
+ \par
+- For Windows Phone 7.1 projects (not needed for Windows Phone 8) you need to download and install the
+  <a href="http://nuget.org/packages/Microsoft.Bcl/">Microsoft BCL Portability Pack</a>
+  Using the NuGet package manager as described on the libraries' page. This should be a matter of just a minute.
+
+# 5. Test your setup #  {#cssetup_testsetup}
+
+To test your setup, add minimum ALox functionality to your project as described in the first chapter
+of \ref cstutorial into your main method or anywhere you think it is appropriate:
+
+\snippet cs.alox.unittests/Tests_Tutorial.cs        Tut_Hello_ALox
+
+You are set if:
+- your project compiles and runs without error
+- you see the log output when running the debug version
+- you do not see the log output when running the release version
+
+<br>
+# 6. Wrap up #  {#cssetup_wrapup}
+
+Let's wrap up what was said:
+- You can use predefined library projects for IDEs *Mono Develop* and *Visual Studio*
+- You can incorporate ALox sources into a library project you create with any other build system
+  or platform you use
+- Alternatively, you can include ALox sources directly into your project (not recommended)
+- You have to reference the ALox library from you project
+- You have to understand and set \ref csmacros for your project, separately for debug and
+  release configuration.
+
+Once you are set, make sure to read:
+
+- \ref cstutorial
+- A short chapter \ref cspruning that describes how pruning debug log statements from the
+  code is implemented in ALox for C#. This is needed to understand how to use ALox without getting
+  compilation errors in debug and release versions.
+- Some further info about ALox features and its architecture in [ALox User Manual](../manual.html)
+- The  [C# Class Reference](annotated.html).
+
+*/

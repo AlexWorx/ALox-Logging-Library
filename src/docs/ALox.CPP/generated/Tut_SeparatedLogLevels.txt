@@ -1,0 +1,8 @@
+src/cpp.alox.unittests/tests_alox_tutorial.cpp(372):TestBody() [00:00.000 +004 µs] [MAIN]       [RESULT]: MyLog 1 output:
+src/cpp.alox.unittests/tests_alox_tutorial.cpp(373):TestBody() [00:00.000 +---   ] [MAIN]       [RESULT]: >> [ALOX]: Lox::RegDomain(): Replacing default Domain "" by "DOM" as default for scope "METHOD".
+                                                                                                          >> [DOM ]: This goes to all loggers
+                                                                                                          >> [DOM/SUB1]: This goes to MyLog1 exclusively
+src/cpp.alox.unittests/tests_alox_tutorial.cpp(374):TestBody() [00:00.000 +---   ] [MAIN]       [RESULT]: MyLog 2 output:
+src/cpp.alox.unittests/tests_alox_tutorial.cpp(375):TestBody() [00:00.000 +---   ] [MAIN]       [RESULT]: >> [ALOX]: Lox::RegDomain(): Replacing default Domain "" by "DOM" as default for scope "METHOD".
+                                                                                                          >> [DOM ]: This goes to all loggers
+                                                                                                          >> [DOM/SUB2]: This goes to MyLog2 exclusively

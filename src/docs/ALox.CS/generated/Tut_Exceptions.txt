@@ -1,0 +1,12 @@
+src/cs.alox.unittests/Tests_Tutorial.cs(313):Tut_Exception() [00:00.000 +038 µs] [TestRunnerThread(10)] [WRN] [MYDOM]: >> Logging an exception: 
+                                                                                                                       >>   Type:       System.Exception
+                                                                                                                       >>   Message:    TestException Message
+                                                                                                                       >>   HResult:    0x80131500
+                                                                                                                       >>   Inner:   
+                                                                                                                       >>     Type:       System.Exception
+                                                                                                                       >>     Message:    InnerException Message
+                                                                                                                       >>     HResult:    0x80131500
+                                                                                                                       >>     Inner:   
+                                                                                                                       >>       Type:       System.Exception
+                                                                                                                       >>       Message:    Inner, inner Exception
+                                                                                                                       >>       HResult:    0x80131500

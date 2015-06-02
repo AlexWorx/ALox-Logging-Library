@@ -1,0 +1,3 @@
+src/cs.alox.unittests/Tests_Tutorial.cs(118):Tut_LogLevels() [00:00.000 +038 µs] [TestRunnerThread(10)] [ERR] [APP]: A severe error happened :-(
+src/cs.alox.unittests/Tests_Tutorial.cs(119):Tut_LogLevels() [00:00.000 +141 µs] [TestRunnerThread(10)] [WRN] [APP]: This is a warning :-/ Maybe an error follows?
+src/cs.alox.unittests/Tests_Tutorial.cs(120):Tut_LogLevels() [00:00.000 +140 µs] [TestRunnerThread(10)]       [APP]: Just for your further information!

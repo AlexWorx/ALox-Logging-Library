@@ -1,0 +1,35 @@
+>> Actual Thread:                                                    {Thread}
+>> <01>  name:                         "main"                        {[C}
+>> <02>  priority:                     5                             {Integer}
+>> <03>  threadQ:                      <null>
+>> <04>  eetop:                        139998418472960               {Long}
+>> <05>  single_step:                  false                         {Boolean}
+>> <06>  daemon:                       false                         {Boolean}
+>> <07>  stillborn:                    false                         {Boolean}
+>> <08>  target:                       <null>
+>> <09>  group:                                                      {ThreadGroup}
+>> <10>    name:                       "main"                        {String}
+>> <11>    maxPriority:                10                            {Integer}
+>> <12>    destroyed:                  false                         {Boolean}
+>> <13>    daemon:                     false                         {Boolean}
+>> <14>    vmAllowSuspension:          false                         {Boolean}
+>> <15>    nUnstartedThreads:          0                             {Integer}
+>> <16>    nthreads:                   2                             {Integer}
+>> <17>    threads:                    (MAX REC) @254ce181           {[Ljava.lang.Thread;}
+>> <18>    ngroups:                    0                             {Integer}
+>> <19>    groups:                     <null>
+>> <20>  contextClassLoader:                                         {sun.misc.Launcher$AppClassLoader}
+>> <21>  inheritedAccessControlContext:                              {java.security.AccessControlContext}
+>> <22>    context:                    <null>
+>> <23>    isPrivileged:               false                         {Boolean}
+>> <24>    isAuthorized:               true                          {Boolean}
+>> <25>    privilegedContext:          <null>
+>> <26>    combiner:                   <null>
+>> <27>  threadLocals:                                               {ThreadLocal$ThreadLocalMap}
+>> <28>    table:                      (MAX REC) @67ce0f36           {[Ljava.lang.ThreadLocal$ThreadLocalMap$Entry;}
+>> <29>    size:                       6                             {Integer}
+>> <30>    threshold:                  10                            {Integer}
+>> <31>  inheritableThreadLocals:                                    {ThreadLocal$ThreadLocalMap}
+...
+...
+...

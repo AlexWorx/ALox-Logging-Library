@@ -1,0 +1,4 @@
+src/cpp.alox.unittests/tests_alox_tutorial.cpp(155):TestBody() [00:00.000 +004 µs] [UnitTest] [WRN] [ALOX]: Lox::RegDomain(): Replacing default Domain "" by "APP" as default for scope "SOURCE_FILE".
+src/cpp.alox.unittests/tests_alox_tutorial.cpp(158):TestBody() [00:00.000 +001 µs] [UnitTest] [ERR] [APP ]: A severe error happened :-(
+src/cpp.alox.unittests/tests_alox_tutorial.cpp(159):TestBody() [00:00.000 +---   ] [UnitTest] [WRN] [APP ]: This is a warning :-/ Maybe an error follows?
+src/cpp.alox.unittests/tests_alox_tutorial.cpp(160):TestBody() [00:00.000 +---   ] [UnitTest]       [APP ]: Just for your further information!

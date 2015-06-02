@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{2C2C70DA-BC59-49F0-9C1B-2DB5BB2CD50E}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>ALoxCPPDLL</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(ProjectDir);$(ProjectDir)/../../../src/cpp.aworx.util;$(ProjectDir)/../../../src/cpp.alox;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(ProjectDir);$(ProjectDir)/../../../src/cpp.aworx.util;$(ProjectDir)/../../../src/cpp.alox;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>EnableAllWarnings</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>AWXU_DLL_EXPORTS;ALOX_DLL_EXPORTS;AWORX_VSTUDIO_ON;WIN32;_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <DisableSpecificWarnings>4652;4711</DisableSpecificWarnings>
+      <PrecompiledHeaderFile>stdafx_awxu.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>EnableAllWarnings</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>AWXU_DLL_EXPORTS;ALOX_DLL_EXPORTS;AWORX_VSTUDIO_ON;WIN32;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <DisableSpecificWarnings>4652;4711</DisableSpecificWarnings>
+      <PrecompiledHeaderFile>stdafx_awxu.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\src\cpp.alox\alox.hpp" />
+    <ClInclude Include="..\..\..\src\cpp.alox\alox\alox_macros.hpp" />
+    <ClInclude Include="..\..\..\src\cpp.alox\alox\alox_symbols.hpp" />
+    <ClInclude Include="..\..\..\src\cpp.alox\alox\log.hpp" />
+    <ClInclude Include="..\..\..\src\cpp.alox\alox\lox.hpp" />
+    <ClInclude Include="..\..\..\src\cpp.alox\alox_console_logger.hpp" />
+    <ClInclude Include="..\..\..\src\cpp.alox\alox_memory_logger.hpp" />
+    <ClInclude Include="..\..\..\src\cpp.alox\core\callerinfo.hpp" />
+    <ClInclude Include="..\..\..\src\cpp.alox\core\logdomain.hpp" />
+    <ClInclude Include="..\..\..\src\cpp.alox\core\logger.hpp" />
+    <ClInclude Include="..\..\..\src\cpp.alox\core\textlogger.hpp" />
+    <ClInclude Include="..\..\..\src\cpp.alox\loggers\consolelogger.hpp" />
+    <ClInclude Include="..\..\..\src\cpp.alox\loggers\memorylogger.hpp" />
+    <ClInclude Include="..\..\..\src\cpp.aworx.util\astring.hpp" />
+    <ClInclude Include="..\..\..\src\cpp.aworx.util\awxu.hpp" />
+    <ClInclude Include="..\..\..\src\cpp.aworx.util\awxu\awxu_macros.hpp" />
+    <ClInclude Include="..\..\..\src\cpp.aworx.util\awxu\awxu_symbols.hpp" />
+    <ClInclude Include="..\..\..\src\cpp.aworx.util\environment.hpp" />
+    <ClInclude Include="..\..\..\src\cpp.aworx.util\stdafx_awxu.h" />
+    <ClInclude Include="..\..\..\src\cpp.aworx.util\thread.hpp" />
+    <ClInclude Include="..\..\..\src\cpp.aworx.util\threadlock.hpp" />
+    <ClInclude Include="..\..\..\src\cpp.aworx.util\ticks.hpp" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\cpp.alox\alox\log.cpp" />
+    <ClCompile Include="..\..\..\src\cpp.alox\alox\lox.cpp" />
+    <ClCompile Include="..\..\..\src\cpp.alox\core\callerinfo.cpp" />
+    <ClCompile Include="..\..\..\src\cpp.alox\core\logdomain.cpp" />
+    <ClCompile Include="..\..\..\src\cpp.alox\core\logger.cpp" />
+    <ClCompile Include="..\..\..\src\cpp.alox\core\textlogger.cpp" />
+    <ClCompile Include="..\..\..\src\cpp.alox\loggers\consolelogger.cpp" />
+    <ClCompile Include="..\..\..\src\cpp.alox\loggers\memorylogger.cpp" />
+    <ClCompile Include="..\..\..\src\cpp.aworx.util\astring.cpp" />
+    <ClCompile Include="..\..\..\src\cpp.aworx.util\awxu.cpp" />
+    <ClCompile Include="..\..\..\src\cpp.aworx.util\environment.cpp" />
+    <ClCompile Include="..\..\..\src\cpp.aworx.util\thread.cpp" />
+    <ClCompile Include="..\..\..\src\cpp.aworx.util\threadlock.cpp" />
+    <ClCompile Include="..\..\..\src\cpp.aworx.util\ticks.cpp" />
+    <ClCompile Include="ALox-CPP-DLL.cpp" />
+    <ClCompile Include="dllmain.cpp">
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</CompileAsManaged>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Level3</WarningLevel>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Level3</WarningLevel>
+    </ClCompile>
+    <ClCompile Include="stdafx_awxu.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Level4</WarningLevel>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Level4</WarningLevel>
+    </ClCompile>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

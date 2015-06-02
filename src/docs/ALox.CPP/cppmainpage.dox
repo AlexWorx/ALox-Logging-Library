@@ -1,0 +1,97 @@
+// #################################################################################################
+//  Documentation - ALox Logging Library
+//
+//  (c) 2013-2015 A-Worx GmbH, Germany
+//  Published under MIT License (Open Source License, see LICENSE.txt)
+// #################################################################################################
+
+
+// The following defines are purely symbols passed to the compiler. Therefore, their definitions
+// do not appear in the source code (just their use). This is why we have to "define" them here
+// to be known by doxygen. (yes, this is a little funny)
+
+#define AWORX_GTEST_ON
+#define AWORX_QTCREATOR_ON
+#define AWORX_VSTUDIO_ON
+
+#define AWXU_DEBUG_ON
+#define AWXU_DEBUG_OFF
+#define AWXU_DEBUG_ASTRING_ON
+#define AWXU_FEAT_THREADS_ON
+#define AWXU_FEAT_THREADS_OFF
+
+#define ALOX_DLL_EXPORTS
+#define AWXU_DLL_EXPORTS
+#define ALOX_DBG_LOG_ON
+#define ALOX_DBG_LOG_OFF
+#define ALOX_REL_LOG_ON
+#define ALOX_REL_LOG_OFF
+#define ALOX_REL_LOG_CI
+#define ALOX_DBG_LOG_CI_ON
+#define ALOX_DBG_LOG_CI_OFF
+#define ALOX_REL_LOG_CI_ON
+#define ALOX_REL_LOG_CI_OFF
+
+/**
+\page cppmainpage    C++ Reference
+
+
+# Welcome to ALox for C++! #
+
+This part of the ALox Logging library documentation is specific to its C++ Implementation.<br>
+\note ALox for C++ uses (and requires) an C++ 11 compiler. On platforms that do not support C++ 11
+ALox will not compile.
+
+The following information is found in the C++ sub pages:
+
+
+## Tutorial ##
+Walk yourself through the \ref cpptutorial. This is allows you a fast overview and intro
+if you are new to ALox.
+
+## IDE / Built System Setup ##
+The C++ Version got tested on the following platform combinations:
+- CMake 3.2 on GNU/Linux (Arch Linux), with GNU Compiler Collection 5.1
+- QT Creator V. 3.4 on GNU/Linux (Arch Linux), with GNU Compiler Collection 5.1
+- Visual Studio 2013 on Microsoft Windows 8.1
+
+Check out \ref cppsetup for details of how to compile and use ALox in your C++ environment.
+
+## ALox Macro Language  ##
+After working yourself through the tutorial and after having set up your projects to use
+ALox, it is recommended to read some information about <em>preprocessor macros</em> that
+form the 'highest' level API into ALox.
+Such information is provided here: \ref cppprepro_4  "C++ Macros"
+
+## More to read   ##
+Consult the general (language agnostic) [ALox User Manual](../manual.html) for in-depth information
+on various topics.
+
+## Class Reference ##
+
+To browse the class reference, please use the page menu above.
+
+## Organization of code ##
+
+In the class lists of this documentation, besides ALox you will find a few classes that we
+call the "A-Worx Util" classes or AWXU. They reside in the namespace:
+- #aworx::util
+
+Next to the provision of basic functionality, the motivation for creating util classes is to
+provide a similar interface to basic functionality of ALox across languages and platforms.
+In other word, the utility functions help ALox code to be very much alike across different
+languages and platforms.
+
+ALox itself consist of three namespaces.
+The main classes that the user of ALox interfaces with reside in:
+- #aworx::lox
+
+Some specific loggers are found in:
+- #aworx::lox::loggers
+
+Internal classes are located in
+- #aworx::lox::core
+
+*/
+
+*/

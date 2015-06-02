@@ -1,9 +1,8 @@
-﻿// #################################################################################################
-//  ALox - Logging in Bauhaus Style!
+// #################################################################################################
+//  Documentation - ALox Logging Library
 //
-//  (c) 2013 A-Worx GmbH, Published under the The MIT License (Open Source License, see LICENSE.txt)
-//  
-//  File:	04.Man.ALox architecture.dox                                          ALox Documentation
+//  (c) 2013-2015 A-Worx GmbH, Germany
+//  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
 
 /**
@@ -29,16 +28,16 @@ Lets start with two namespaces:
 
 - **com.aworx.lox**<br>
   In namespace *com.aworx.lox* the central class is [Lox](@ref #com.aworx.lox.Lox) which acts as a
-  container for the loggers, manages a set of different settings and prvides the user 
+  container for the loggers, manages a set of different settings and prvides the user
   interface (API) into ALox release logging.<br>
   In addtion you will find class [Log](@ref #com.aworx.lox.Log) which is a static interface
   into one dedicated *Lox* instance and this is all about debug logging.
   (For information about the terms debug and release logging, see \ref faq_debug_vs_release_logging.)
 
-Now, namespace *com.aworx.lox* knows namespace *com.aworx.lox.core* (but not vice versa): 
-  
+Now, namespace *com.aworx.lox* knows namespace *com.aworx.lox.core* (but not vice versa):
+
 \dot
-digraph G 
+digraph G
 {
     node [shape=plaintext, fontsize="10", fontname="Courier"]
 
@@ -50,7 +49,7 @@ digraph G
                            <TR><TD                              >...</TD></TR>
               </TABLE>>];
 
-    core    [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0"> 
+    core    [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
                            <TR><TD PORT="first" BGCOLOR="gray"  ><b>com.aworx.lox.core</b></TD></TR>
                            <TR><TD                              >class LogDomain</TD></TR>
                            <TR><TD                              >class CallerInfo</TD></TR>
@@ -66,22 +65,22 @@ digraph G
 The third namespace is:
 
 - **com.aworx.loggers**<br>
-  Namespace *com.aworx.lox.loggers* provide ready to use *Logger* types, e.g. 
+  Namespace *com.aworx.lox.loggers* provide ready to use *Logger* types, e.g.
   [ConsoleLogger](@ref #com.aworx.lox.loggers.ConsoleLogger) or
   [MemoryLogger](@ref #com.aworx.lox.loggers.MemoryLogger).
 
 Neither *com.aworx.lox.core* nor *com.aworx.lox* know about this namespace. Of-course, *com.aworx.lox.loggers* knows about *com.aworx.lox.core*.
 This makes sense, because instances of *Lox* get instances of abstract type *Logger* attached.
 All that class *Lox* knows is that they are derived from class *Logger* in namespace *com.aworx.lox.core*.
-This allows you to create your own loggers. 
+This allows you to create your own loggers.
 
-Let's imagine you are using ALox from within your own namespace *yournamespace* and you have 
-created your own *Logger* class, residing in namespace *yourloggers*. 
+Let's imagine you are using ALox from within your own namespace *yournamespace* and you have
+created your own *Logger* class, residing in namespace *yourloggers*.
 This then looks as follows:
 
 
 \dot
-digraph G 
+digraph G
 {
     node [shape=plaintext, fontsize="10", fontname="Courier"]
 
@@ -138,18 +137,18 @@ is that you need to include namespaces *com.aworx.lox* and *com.aworx.lox.logger
 
 Finally, there is a "underlying" namespace called *com.aworx.util*. This is pure, basic
 utility code. Some of the classes are just faster versions (more Bauhaus!) than equivalent
-existing system classes. Others do exist only to enable ALox code to look the same 
+existing system classes. Others do exist only to enable ALox code to look the same
 across languages and platforms. Of-course, you can read the reference documentation
 and you might use them somewhere, but this is not what we intended here. There are many
 other libraries existing that are much more complete and standard. Again, we are building upon
-them, only because we really think it makes our life easier in respect to porting ALox 
+them, only because we really think it makes our life easier in respect to porting ALox
 and because it makes your logging life just faster.
 
 As you might guess, all other three packages build on *util*, so the graph is:
 
 
 \dot
-digraph G 
+digraph G
 {
     node [shape=plaintext, fontsize="10", fontname="Courier"]
 
@@ -179,7 +178,7 @@ digraph G
 
     util [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
                            <TR><TD PORT="first" BGCOLOR="gray"  ><b>com.aworx.util</b></TD></TR>
-                           <TR><TD                              >class MString</TD></TR>
+                           <TR><TD                              >class AString</TD></TR>
                            <TR><TD                              >class TickTime</TD></TR>
                            <TR><TD                              >class ThreadLock</TD></TR>
                            <TR><TD                              >...</TD></TR>
@@ -196,7 +195,7 @@ digraph G
 
 \note
 Every rule has an exclamation, so we admit: we broke the "a package that is known by another does not know that other"
-intentionally by adding the enums 
+intentionally by adding the enums
 [Log.Level](@ref #com.aworx.lox.Log.Level),
 [Log.DomainLevel](@ref #com.aworx.lox.Log.Level) and
 [Log.Scope](@ref #com.aworx.lox.Log.Level) to class *Log* in namespace *com.aworx.lox*. They absolutely should
@@ -211,10 +210,10 @@ and can be the IDE console, the terminal console, a file, a web service or anyth
 data streams. The abstract class [Logger] (@ref #com.aworx.lox.core.Logger) represents
 such log stream. While some implementations of class Logger are provided with the ALox package,
 the system allows custom implementations of Loggers that log information to any 'data drain' in
-any format you like. 
+any format you like.
 
 \dot
-digraph logger 
+digraph logger
 {
     node [shape=record, fontname=Courier,   fontsize=12];
     edge [shape=record, fontname=Helvetica, fontsize=10];
@@ -231,7 +230,7 @@ digraph logger
 An application that supports different loggers at once, might decide to log only a subset
 of the log messages to each of the loggers. To achieve this, each Logger allows to configure
 log domain levels separately. The same log domain can be enabled in one Logger, but disabled
-in another Logger. 
+in another Logger.
 
 (For more information see chapter \ref man_loggers.)
 
@@ -244,10 +243,10 @@ to be invoked.<br>
 To achieve both (have a convenient interface and dispatch log messages to more than one Logger), ALox
 provides class [Lox] (@ref #com.aworx.lox.Lox). It acts as a container for all Loggers that
 are created during the lifecycle of an application. In rare cases of complex logging scenarios, even
-multiple instances of that class might be created with different Loggers contained. 
+multiple instances of that class might be created with different Loggers contained.
 
 \dot
-digraph example 
+digraph example
 {
     node [shape=record, fontname=Courier,   fontsize=12];
     edge [shape=record, fontname=Helvetica, fontsize=10];
@@ -262,10 +261,10 @@ digraph example
 Various methods of class Lox provide an optional parameter to filter the command to certain Loggers
 only. The standard use of such filters is to apply different log domain settings to different Loggers
 contained in the Lox instance. Once the domain levels are properly set, log messages are automatically
-appearing in the right loggers (none, some or all) depending on the log domain and log level specified in 
+appearing in the right loggers (none, some or all) depending on the log domain and log level specified in
 the log statement. However, there is also the possibility to filter log statements directly against Logger
 names. For standard scenarios this is not recommended, because the flexibility to add new Loggers
-(for new log formats or log message data drains) might be lost. 
+(for new log formats or log message data drains) might be lost.
 
 
 <br>
@@ -283,7 +282,7 @@ class Lox. In other words, class Log creates and holds exactly one static instan
 mimics the complete interface of that instance into corresponding static methods.
 
 \dot
-digraph example 
+digraph example
 {
     node [shape=record, fontname=Courier,   fontsize=12];
     edge [shape=record, fontname=Helvetica, fontsize=10];
@@ -300,13 +299,13 @@ digraph example
 \enddot
 
 The assumption (restriction) that is taken here, is that debug logging is implemented by using
-only one Lox. This should be sufficient for most scenarios, because, as described above, within that Lox 
-instance various Loggers with own log domain settings will provide a lot of flexibility to log different 
+only one Lox. This should be sufficient for most scenarios, because, as described above, within that Lox
+instance various Loggers with own log domain settings will provide a lot of flexibility to log different
 types of messages within a complex software into different streams and manipulate the verbosity for
 each stream accordingly.
 
-Depending on the platform and language, ALox provides a feature to automatically prune all statements 
-that are deemed to be debug logging. 
+Depending on the platform and language, ALox provides a feature to automatically prune all statements
+that are deemed to be debug logging.
 
 
 <br>
@@ -316,11 +315,11 @@ The following summarizes the takeaways of this chapter:
 - ALox is split in three namespaces, where two of them need to be referenced in your ALox enabled code,
   namely *com.aworx.lox" and *com.aworx.lox.loggers*.
 
-- To implement own log data streams (data drains to log into, like databases, web services, etc.) 
+- To implement own log data streams (data drains to log into, like databases, web services, etc.)
   and your own log formats, custom implementations of class [Logger](@ref #com.aworx.lox.core.Logger) can be
   created.
 
-- For debug logging, class [Log](@ref #com.aworx.lox.Log) is the right interface in ALox (and an extremely 
+- For debug logging, class [Log](@ref #com.aworx.lox.Log) is the right interface in ALox (and an extremely
   simple way as well). All invocations related to class Log get easily pruned from your code.
 
 - To implement release logging (e.g. to send error states or usage info of a mobile app to a server)

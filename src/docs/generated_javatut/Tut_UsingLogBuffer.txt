@@ -1,6 +1,0 @@
-(Tests_Tutorial.java:448) Tut_UsingLogBuffer(): [00:00.000 +455 µs] [main(1)]       [LOGBUF]: Hallo Buf!. This is only one string. Not useful to use the buf, however...
-(Tests_Tutorial.java:449) Tut_UsingLogBuffer(): [00:00.000 +041 µs] [main(1)]       [LOGBUF]: This is a 5-digtit rep of 42: 00042
-(Tests_Tutorial.java:450) Tut_UsingLogBuffer(): [00:00.000 +054 µs] [main(1)]       [LOGBUF]: $$$ALL UPPER CASE AND STARS REPLACED BY DOLLAR SIGNS $$$
-(Tests_Tutorial.java:474) Tut_UsingLogBuffer(): [00:00.000 +037 µs] [main(1)]       [LOGBUF]: Let's create an internal error by accessing the buffer twice:
-(ThreadLock.java:180) acquire():                [00:00.000 +053 µs] [main(1)] [***] [ AWXU ]: Logger 'CONSOLE': log domain 'AWXU' not found. Created. Inherited domain level is: All 
-(ThreadLock.java:180) acquire():                [00:00.000 +053 µs] [main(1)] [WRN] [ AWXU ]: ThreadLock.lock() Warning: Recursion depth 2. To prevent this, change ThreadSafe.recursionWarningThreshold or fix your code.

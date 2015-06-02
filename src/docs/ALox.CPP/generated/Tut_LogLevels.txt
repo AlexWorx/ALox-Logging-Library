@@ -1,0 +1,3 @@
+src/cpp.alox.unittests/tests_alox_tutorial.cpp(131):TestBody() [00:00.000 +004 µs] [UnitTest] [ERR] [APP]: A severe error happened :-(
+src/cpp.alox.unittests/tests_alox_tutorial.cpp(132):TestBody() [00:00.000 +---   ] [UnitTest] [WRN] [APP]: This is a warning :-/ Maybe an error follows?
+src/cpp.alox.unittests/tests_alox_tutorial.cpp(133):TestBody() [00:00.000 +---   ] [UnitTest]       [APP]: Just for your further information!

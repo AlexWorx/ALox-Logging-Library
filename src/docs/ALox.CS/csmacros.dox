@@ -1,0 +1,69 @@
+﻿// #################################################################################################
+//  Documentation - ALox Logging Library
+//
+//  (c) 2013-2015 A-Worx GmbH, Germany
+//  Published under MIT License (Open Source License, see LICENSE.txt)
+// #################################################################################################
+
+/**
+\page csmacros        Conditional Compilation Symbols
+
+\tableofcontents
+
+# Conditional Compilation Symbols #  {#csmacros_conditional_compile_symbols}
+
+In section \ref cssetup we have learned about some conditional
+compilation symbols already. The following gives the complete list of such symbols
+introduced by ALox for C#:
+
+- **ALOX_DEBUG**<br>
+  Enable debug logging. This should be set in the *Debug configuration* of your projects. Otherwise,
+  not log output is generated if using the static interface of class [Log](@ref #com::aworx::lox::Log).
+
+- **ALOX_REL_LOG**<br>
+  To enable release logging. This should only be set in the *Release configuration* of your projects
+  if you are using release logging with class [Lox](@ref #com::aworx::lox::Log).  If you do not
+  use release logging features of ALox, this symbol should not be set to minimize the code that
+  the ALox classes add to your executables.
+  And, even if you do use release logging, but you want to (temporarily) disable and prune it, then unset this
+  symbol. On recompile, also your release logging code will disappear.
+
+- **ALOX_WP71**<br>
+  To compile ALox for Windows Phone 7.1 projects. This should be set in the Debug and Release
+  configuration of your projects Windows Phone 7.1 projects.
+  In addition to some compatibility changes in the code, this symbol also activates **ALOX_NO_REFLECTION**,
+  hence the LogTools.Instance method is not available in Windows Phone projects. (This is due to security
+  restrictions in the Windows Phone system architecture).
+
+- **ALOX_WP8**<br>
+  To compile ALox for Windows Phone 8 projects. This should be set in the Debug and Release
+  configuration of your projects Windows Phone 8.x projects.
+  In addition to some compatibility changes in the code, this symbol also activates **ALOX_NO_REFLECTION**,
+  hence the LogTools.Instance method is not available in Windows Phone projects. (This is due to security
+  restrictions in the Windows Phone system architecture).
+
+- **ALOX_NO_REFLECTION**<br>
+  This symbol deactivates the use of reflection in class [LogTools](@ref #com::aworx::lox::tools::LogTools).
+  This is useful for target platforms that do not allow instance inspection using reflection techniques.
+  The method [LogTools.Instance](@ref #com::aworx::lox::tools::LogTools::Instance) will be available
+  but just convert your object into readable text using *ToString()*.
+
+- **ALOX_NO_XML**<br>
+  This symbol deactivates the use of *System.Xml.Linq* library in class [LogTools](@ref #com::aworx::lox::tools::LogTools).
+  This is useful for target platforms that do not support this library.
+  The method [LogTools.XML](@ref #com::aworx::lox::tools::LogTools::XML) will not be available however.
+
+- **ALOX_NO_CONSOLE**<br>
+  This symbol deactivates the use of *Console.WriteLine()* calls in class [ConsoleLogger](@ref #com::aworx::lox::loggers::ConsoleLogger).
+  If this is set, the flag [ConsoleLogger.EnableAppConsole](@ref #com::aworx::lox::loggers::ConsoleLogger::EnableAppConsole)
+  becomes unavailable. The output of [ConsoleLogger](@ref #com::aworx::lox::loggers::ConsoleLogger)
+  will go exclusively to System.Diagnostics.Debug.WriteLine().
+
+- **ALOX_NO_THREADS**<br>
+  This symbol deactivates any mechanisms to protect ALox logging in multi-threaded environments. Use this
+  symbol only if you are sure to operate single threaded. (Even if your application does not create a new thread
+  directly, e.g. UI driven applications are generally multi threaded. The advantage of using this
+  compile symbol is to increase ALox performance by around 8% (when logging in-memory). For console logging the
+  performance gain is much less. So, only in very critical situations this symbol should be used.
+
+*/

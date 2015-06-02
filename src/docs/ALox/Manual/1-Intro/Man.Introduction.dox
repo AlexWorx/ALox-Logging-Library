@@ -1,20 +1,18 @@
-﻿\~Comment
 // #################################################################################################
-//  ALox - Logging in Bauhaus Style!
+//  Documentation - ALox Logging Library
 //
-//  (c) 2013 A-Worx GmbH, Published under the The MIT License (Open Source License, see LICENSE.txt)
-//  
-//  File:	02.1.Man.Introduction.dox                                             ALox Documentation
+//  (c) 2013-2015 A-Worx GmbH, Germany
+//  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
-\~
+
 
 /**
 \page man_intro         About ALox
 
 ## Introduction ##
 
-ALox is a small and efficient software library that provides an ecosystem to support structured and organized 
-log output.
+ALox is a small and efficient software library that provides an ecosystem to support structured and organized
+log output. ALox is available in C++, C# and JAVA on GNU/Linux, Windows, Windows Phone and Android.
 
 The library attempts to make logging as easy and lightweight as possible. One of the goals
 we want to achieve is that developers, once using  of the library, just stop to put any temporary debug output
@@ -28,10 +26,10 @@ Basic support for release logging is here today already. The introduction of new
 in the area of release logging will also support debug logging aspects of ALox. Therefore the natural path
 of evolution for the ALox project is "debug features first, release features next".
 
-This is Version 1.1.2, a maintenance release. Currently, we are working on a C++ Version of ALox.
-A lot of future improvements are to come. 
+This is Version 1.2.0, the first version to support C++ besides C# and Java! <p>
+A lot of future improvements are to come.
 Stay tuned. If you do not want to wait, take the source and do  it yourself: We hope, the simple [Bauhaus Style](\ref faq_bauhaus)
-architecture and code style  of the library allows users to easily extend it with features they 
+architecture and code style  of the library allows users to easily extend it with features they
 need today.
 
 ## Features and Limitations ##

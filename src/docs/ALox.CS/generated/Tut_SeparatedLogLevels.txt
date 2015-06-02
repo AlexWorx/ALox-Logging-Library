@@ -1,0 +1,5 @@
+      [DOM]: Domain= DOM      -> This goes to all loggers
+      [DOM/CON]: Domain= DOM/CON  -> This goes to ConsoleLogger exclusively
+      [DOM/CON]: Here comes the contents of MemoryLogger:
+>>       [DOM]: Domain= DOM      -> This goes to all loggers
+>>       [DOM/MEM]: Domain= DOM/MEM  -> This goes to MemoryLogger exclusively

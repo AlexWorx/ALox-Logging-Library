@@ -1,70 +1,72 @@
-﻿// #################################################################################################
-//  ALox - Logging in Bauhaus Style!
+﻿/// #################################################################################################
+//  Documentation - ALox Logging Library
 //
-//  (c) 2013 A-Worx GmbH, Published under the The MIT License (Open Source License, see LICENSE.txt)
-//  
-//  File:	02.2.Man.Features and Limitations.dox                                 ALox Documentation
+//  (c) 2013-2015 A-Worx GmbH, Germany
+//  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
 
 /**
 \page man_features_and_limitations      Features and Limitations
 
 
-- Available for C# (.Net, Windows Phone 7.1 - 8.0) and Java (with explicit Android extensions).
-  Other languages/platforms to come.
+- Available for C++ (Version 2011 needed),  C# (.Net, Windows Phone 7.1 - 8.1) and Java
+  (with explicit Android support and extensions).
 
-- Simple programming interface, easy to learn.
+- Config/Testing/Setup support for CMake, Eclipse, Visual Studio, QT Creator, Mono Develop in
+  combination with GNU/Linux, Windows, Windows Phone and Android. (Not all language/platform
+  combinations tested). Porting to other platforms should be easy.
 
-- Very fast implementation to minimize runtime overhead of logging. 
+- Simple programming interface, easy to learn. Dedicated C++, C# and Java specific tutorials.
+
+- Very fast implementation to minimize runtime overhead of logging.
 
 - Automatic removal (pruning) of debug log statements from release code
   mostly without the need of preprocessor if/endif code cluttering. Optionally also automatic
   pruning of release log statements.
 
-- Automatic collection and logging of information about the entity that invoked a log statements. 
-  Each log line is "clickable" in your IDE. Such clicks open the corresponding 
-  source code and line number that performed the log. 
+- Automatic collection and logging of information about the entity that invoked a log statements.
+  Each log line is "clickable" in your IDE (Currently Visual Studio and Eclipse, other IDEs
+  may work or need plug-ins that might be provided here some day.).
+  Such clicks open the corresponding source code and line number that performed the log.
 
 - API design follows concept of "tolerance", using default values, auto-creation of missing
-  objects, etc. to minimize intrusiveness of ALox in respect to cluttering your code and what you 
+  objects, etc. to minimize intrusiveness of ALox in respect to cluttering your code and what you
   need to make it really work.
 
-- Release logging, side-by-side to (prunable) debug logging (optionally: also pruning of release log code)
+- Release logging, side-by-side to (pruneable) debug logging (optionally: also pruning of release log code)
 
 - Multiple parallel log streams, e.g. for logging to the console and in parallel into a file.
 
-- Extensible for custom log targets, which enables dedicated "data drains" (e.g. databases or 
-  a internet services) and custom output formatting.
-  
+- Extensible for custom log targets, which enables dedicated "data drains" (e.g. databases or
+  Internet services) and custom output formatting.
+
 - Abstract (extensible) TextLogger with automatically adjusted column widths displaying various collected
   attributes of a log entry. This allows to grasp interesting parts of a log output at a glimpse.
   Log format customizable by simple string definition.
 
-- *Log domains* allow the classification of different log statements into user defined 
-  topics. Such domains can be controlled at runtime to allow the programmer to 
+- *Log domains* allow the classification of different log statements into user defined
+  topics. Such domains can be controlled at runtime to allow the programmer to
   concentrate on the area of current interest.
   Log domains are hierarchically organized what allows to control a whole "tree" of domains
-  with only one line of code. 
+  with only one line of code.
 
 - Conditional logging, similar to assertions.
 
-- LogTools for automated:
+- LogTools (in C# and Java) for automated:
   - Logging of objects using reflection with variable recursion depth and detection of cyclic
     references, invoked with one line of code.
-  - Logging Exceptions, inner exceptions, 
+  - Logging Exceptions, inner exceptions,
   - XML documents
   All with one line of code.
 
-- Code markers for debug logging (auto pruned) to allow back tracing of conditions that happened 
-  previous to a log statement. (This is useful for example within exception handlers.) 
-
+- Code markers for debug logging (auto pruned) to allow back tracing of conditions that happened
+  previous to a log statement. (This is useful for example within exception handlers.)
 
 
 
 ### Future work (and therefore today's limitations) ###
 
-- Today, the ALox logging ecosystem is available for C# and JAVA only. C++ and Objective-C are planned.
-  C++ is next!
+- Plug-ins for QT Creator and Eclipse (CDT) for dedicated ALox log output windows.
 
 - File loggers (easy, will come very soon, with pretty neat features)
 

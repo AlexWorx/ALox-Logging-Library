@@ -1,8 +1,11 @@
+echo "*** Creating C++ site ***"
+doxygen cpp.doxyfile
+
 echo "*** Creating C# site ***"
-doxygen Doxyfile.forCS
+doxygen cs.doxyfile
 
 echo "*** Creating JAVA site ***"
-doxygen Doxyfile.forJAVA
+doxygen java.doxyfile
 
 echo "*** Creating main site ***"
-doxygen Doxyfile
+doxygen doxyfile

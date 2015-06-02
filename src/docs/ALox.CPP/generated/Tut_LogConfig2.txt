@@ -1,0 +1,14 @@
+src/cpp.alox.unittests/tests_alox_tutorial.cpp(481):TestBody() [00:00.000 +004 µs] [MAIN]       [CONFIG]: MyLog 1 output:
+src/cpp.alox.unittests/tests_alox_tutorial.cpp(452):TestBody() [00:00.000 +001 µs] [MAIN]       [ALOX]: Lox.AddLogger(): Logger "MyLog1" added. Internal Domain Level set to: ALL.
+src/cpp.alox.unittests/tests_alox_tutorial.cpp(453):TestBody() [00:00.000 +---   ] [MAIN]       [ALOX]: Lox.AddLogger(): Logger "MyLog2" added. Internal Domain Level set to: WARNINGS_AND_ERRORS.
+[ALOX]: Lox::RegDomain(): Domain "DOM" created in logger: MyLog1.
+[ALOX]: Lox::RegDomain(): Domain "DOM" created in logger: MyLog2.
+[ALOX]: Lox::RegDomain(): Replacing default Domain "" by "DOM" as default for scope "METHOD".
+[ALOX]: Lox::RegDomain(): Domain "DOM/SUB1" created in logger: MyLog1.
+[ALOX]: Lox::RegDomain(): Domain "DOM/SUB1" created in logger: MyLog2.
+[ALOX]: Lox::RegDomain(): Domain "DOM/SUB2" created in logger: MyLog1.
+[ALOX]: Lox::RegDomain(): Domain "DOM/SUB2" created in logger: MyLog2.
+[ALOX]: Lox::SetDomain(): Domain "DOM" log level set to "ALL" for logger "MyLog1".
+[ALOX]: Lox::SetDomain(): Domain "DOM" log level set to "ALL" for logger "MyLog2".
+[ALOX]: Lox::SetDomain(): Domain "DOM/SUB1" log level set to "OFF" for logger "MyLog2".
+[ALOX]: Lox::SetDomain(): Domain "DOM/SUB2" log level set to "OFF" for logger "MyLog1".

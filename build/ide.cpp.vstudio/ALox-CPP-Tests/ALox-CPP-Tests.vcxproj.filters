@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="msvc_files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="tests.aworx.util">
+      <UniqueIdentifier>{49aa8898-6cee-4544-8138-d73215dd4eea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tests.alox">
+      <UniqueIdentifier>{c9dae3c9-33d1-4ee1-a88f-8490de9c3baa}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="targetver.h">
+      <Filter>msvc_files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\cpp.aworx.util.unittests\awx_unittests.hpp">
+      <Filter>tests.aworx.util</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\cpp.aworx.util.unittests\tests_awx_util_astring.cpp">
+      <Filter>tests.aworx.util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cpp.aworx.util.unittests\tests_awx_util_threads.cpp">
+      <Filter>tests.aworx.util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cpp.aworx.util.unittests\tests_awx_util_ticktime.cpp">
+      <Filter>tests.aworx.util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cpp.aworx.util.unittests\awx_unittests.cpp">
+      <Filter>tests.aworx.util</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx_alox_unittests.cpp">
+      <Filter>msvc_files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cpp.alox.unittests\tests_alox_tutorial.cpp">
+      <Filter>tests.alox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cpp.alox.unittests\tests_alox.cpp">
+      <Filter>tests.alox</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

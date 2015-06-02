@@ -1,0 +1,3 @@
+src/cpp.alox.unittests/tests_alox_tutorial.cpp(271):TestBody() [00:00.000 +004 µs] [MAIN] [WRN] [ALOX]: Lox::RegDomain(): Replacing default Domain "" by "DB_QUERIES" as default for scope "SOURCE_FILE".
+src/cpp.alox.unittests/tests_alox_tutorial.cpp(278):TestBody() [00:00.000 +005 µs] [MAIN]       [DB_QUERIES]: There are 3 users in the database
+src/cpp.alox.unittests/tests_alox_tutorial.cpp(284):TestBody() [00:00.000 +---   ] [MAIN] [***] [DB_QUERIES]: The users are: Lisa John Joe 

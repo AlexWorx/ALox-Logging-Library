@@ -1,0 +1,35 @@
+>> Actual Thread:                                                    {Thread}
+>> <01>  Internal:                                                   {InternalThread}
+>> <02>    lock_thread_id:             0                             {Int32}
+>> <03>    system_thread_handle:       1055                          {IntPtr}
+>> <04>    cached_culture_info:        <null>
+>> <05>    name:                       140503415547232               {IntPtr}
+>> <06>    name_len:                   16                            {Int32}
+>> <07>    state:                      Background                    {ThreadState}
+>> <08>    abort_exc:                  <null>
+>> <09>    abort_state_handle:         0                             {Int32}
+>> <10>    thread_id:                  140503695316736               {Int64}
+>> <11>    start_notify:               0                             {IntPtr}
+>> <12>    stack_ptr:                  140503695314496               {IntPtr}
+>> <13>    static_data:                1879051440                    {UIntPtr}
+>> <14>    jit_data:                   140503144206528               {IntPtr}
+>> <15>    runtime_thread_info:        140503144204512               {IntPtr}
+>> <16>    current_appcontext:         (MAX REC) ContextID: 0        {Context}
+>> <17>    pending_exception:          <null>
+>> <18>    root_domain_thread:         (MAX REC)                     {Thread}
+>> <19>    _serialized_principal:      <null>
+>> <20>    _serialized_principal_version: 0                          {Int32}
+>> <21>    appdomain_refs:             140503144205312               {IntPtr}
+>> <22>    interruption_requested:     0                             {Int32}
+>> <23>    suspend_event:              0                             {IntPtr}
+>> <24>    suspended_event:            0                             {IntPtr}
+>> <25>    resume_event:               0                             {IntPtr}
+>> <26>    synch_cs:                   140503415547280               {IntPtr}
+>> <27>    threadpool_thread:          False                         {Boolean}
+>> <28>    thread_dump_requested:      False                         {Boolean}
+>> <29>    thread_interrupt_requested: False                         {Boolean}
+>> <30>    end_stack:                  0                             {IntPtr}
+>> <31>    stack_size:                 0                             {Int32}
+...
+...
+...

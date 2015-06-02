@@ -1,3 +1,9 @@
+// #################################################################################################
+//  com.aworx.lox.loggers - ALox Logging Library
+//
+//  (c) 2013-2015 A-Worx GmbH, Germany
+//  Published under MIT License (Open Source License, see LICENSE.txt)
+// #################################################################################################
 package com.aworx.lox.loggers;
 
 import java.io.Console;
@@ -5,16 +11,16 @@ import java.io.Console;
 import com.aworx.lox.Log;
 import com.aworx.lox.core.CallerInfo;
 import com.aworx.lox.core.TextLogger;
-import com.aworx.util.MString;
+import com.aworx.util.AString;
 
-/**********************************************************************************************//**
- * A logger that logs all messages to the JAVA console using System.out or alternatively 
+/** ************************************************************************************************
+ * A logger that logs all messages to the Java console using System.out or alternatively
  * System.console(). The latter is used if a) the flag #useJAVA6ConsoleIfAvailable is set to
- * true (defaults to true) and b) the system console is available. 
- * 
+ * true (defaults to true) and b) the system console is available.
+ *
  * The name of the logger defaults to "CONSOLE". In the Eclipse IDE, log lines are double-clickable
  * to jump directly to the source code that generated the log.
- * 
+ *
  * The constructor sets the level of the root domain, and as such the level of all 'unknown'
  * domains that inherit from root domain to 'All'. This is because this class represents a logger
  * that logs into the developer's IDE, and hence just wants to fetch all log domains that the
@@ -23,35 +29,35 @@ import com.aworx.util.MString;
  **************************************************************************************************/
 public class ConsoleLogger extends TextLogger
 {
-	/** Enables logging to *System.console()* if such console is available. This might result in a 
-	 * different character encoding (typically on Windows machines). */
-	public		boolean			useJAVA6ConsoleIfAvailable		=true;
+    /** Enables logging to *System.console()* if such console is available. This might result in a
+     * different character encoding (typically on Windows machines). */
+    public    boolean            useJAVA6ConsoleIfAvailable        =true;
 
-    /**********************************************************************************************//**
+    /** ********************************************************************************************
      * Creates a ConsoleLogger with the given name.
      *
      * @param name  The name of the logger, defaults to "CONSOLE".
-     **************************************************************************************************/
-	public ConsoleLogger( String	name )
-	{
-		super( name );
+     **********************************************************************************************/
+    public    ConsoleLogger( String    name )
+    {
+        super( name );
 
-		// set default domain level to all: As a app console logger/IDE logger we want to fetch all we can
-		rootDomain.setLevel( Log.DomainLevel.ALL, false );
-	}
+        // set default domain level to all: As a app console logger/IDE logger we want to fetch all we can
+        rootDomain.setLevel( Log.DomainLevel.ALL, false );
+    }
 
-    /**********************************************************************************************//**
+    /** ********************************************************************************************
      * Creates a ConsoleLogger with the name "CONSOLE".
-     **************************************************************************************************/
-	public ConsoleLogger( )
-	{
-		super( "CONSOLE" );
+     **********************************************************************************************/
+    public    ConsoleLogger( )
+    {
+        super( "CONSOLE" );
 
-		// set default domain level to all: As a app console logger/IDE logger we want to fetch all we can
-		rootDomain.setLevel( Log.DomainLevel.ALL, false );
-	}
+        // set default domain level to all: As a app console logger/IDE logger we want to fetch all we can
+        rootDomain.setLevel( Log.DomainLevel.ALL, false );
+    }
 
-    /**********************************************************************************************//**
+    /** ********************************************************************************************
      * The implementation of the abstract method of parent class TextLogger. Logs messages to the
      * application console.
      *
@@ -65,28 +71,29 @@ public class ConsoleLogger extends TextLogger
      * @param caller        Once compiler generated and passed forward to here.
      * @param lineNumber    The line number of a multi-line message, starting with 0. For single line
      *                      messages this is -1.
-     **************************************************************************************************/
-	@Override protected void doTextLog( MString		domain,		Log.Level	level, 
-										MString		msg,		int			indent,
-										CallerInfo	caller, 	int			lineNumber )
-	{
-		// write to console or System.out
-		Console con= null;
-		if ( useJAVA6ConsoleIfAvailable && (con= System.console()) != null )
-			con.writer().println( msg.toString() );
-		else
-			System.out  .println( msg.toString() );
-	}
-	
-	/**********************************************************************************************//**
-	 * Empty implementation, not needed for this class
-	 *
-	 * @param start void    
-	 **************************************************************************************************/
-	@Override protected void notifyMultiLineOp (boolean start)
-	{
-	} 
-	
+     **********************************************************************************************/
+    @Override
+    protected void doTextLog( AString       domain,     Log.Level    level,
+                              AString       msg,        int          indent,
+                              CallerInfo    caller,     int          lineNumber)
+    {
+        // write to console or System.out
+        Console con= null;
+        if ( useJAVA6ConsoleIfAvailable && (con= System.console()) != null )
+            con.writer().println( msg.toString() );
+        else
+            System.out  .println( msg.toString() );
+    }
+
+    /** ********************************************************************************************
+     * Empty implementation, not needed for this class
+     *
+     * @param start void
+     **********************************************************************************************/
+    @Override protected void notifyMultiLineOp (boolean start)
+    {
+    }
+
 
 
 //#endif // ALOX_DEBUG || ALOX_REL_LOG

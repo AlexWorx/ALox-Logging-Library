@@ -1,9 +1,8 @@
-﻿// #################################################################################################
-//  ALox - Logging in Bauhaus Style!
+// #################################################################################################
+//  Documentation - ALox Logging Library
 //
-//  (c) 2013 A-Worx GmbH, Published under the The MIT License (Open Source License, see LICENSE.txt)
-//  
-//  File:    04.Man.ALox architecture.dox                                          ALox Documentation
+//  (c) 2013-2015 A-Worx GmbH, Germany
+//  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
 
 /**
@@ -11,20 +10,20 @@
 
 \tableofcontents
 
-   
+
 # 1. Class Logger # {#man_loggers_logger}
 
-Please make sure that you have read \ref man_alox_architecture, an introduction into the software 
+Please make sure that you have read \ref man_alox_architecture, an introduction into the software
 architecture of ALox. The abstract class [Logger](@ref #com.aworx.lox.core.Logger)
 is of-course a central piece. With the abstraction of the [Logger](@ref #com.aworx.lox.core.Logger) class and the concept of having
-multiple instances of derived classes of type [Logger](@ref #com.aworx.lox.core.Logger) managed and contained by class 
+multiple instances of derived classes of type [Logger](@ref #com.aworx.lox.core.Logger) managed and contained by class
 [Lox](@ref #com.aworx.lox.Lox), the following obvious goals have been reached:
 
-- Allow one log message to go in parallel into different log streams 
+- Allow one log message to go in parallel into different log streams
 - Allow the control (filtering) of such messages per log stream
 - Allow the extension of the ALox logging ecosystem with custom log streams (log targets).
 
-While all ALox code tries to be short and simple, class [Logger](@ref #com.aworx.lox.core.Logger) is particularly simple! 
+While all ALox code tries to be short and simple, class [Logger](@ref #com.aworx.lox.core.Logger) is particularly simple!
 So, let us quickly walk through the class by looking at its members.
 
 \note
@@ -36,8 +35,8 @@ its members, nor follows many other of these nice oo patterns. See \ref faq_bauh
 There are just a few fields in class [Logger](@ref #com.aworx.lox.core.Logger):
 
 ### 1.1.1 Logger.Name ### {#man_loggers_logger_fields_name}
-Class [Logger](@ref #com.aworx.lox.core.Logger) has a public name member. The *Logger* name is set by the user 
-of ALox in the moment a new [Logger](@ref #com.aworx.lox.core.Logger) is created. The name is not used 
+Class [Logger](@ref #com.aworx.lox.core.Logger) has a public name member. The *Logger* name is set by the user
+of ALox in the moment a new [Logger](@ref #com.aworx.lox.core.Logger) is created. The name is not used
 internally but only provided to be used by classes managing multiple loggers (which is class [Lox](@ref #com.aworx.lox.Lox)
 and its static counterpart[Log](@ref #com.aworx.lox.Log)).
 Many ALox interface methods provide an (optional) parameter *loggerFilter* which is used
@@ -47,8 +46,8 @@ to filter loggers by their user-given name.
 These are two time stamps that contain the time of the creation of the *Logger* (or the
 time this timestamp was reset to) and the time of the last log. These two members
 are normally used to calculate the elapsed time (the cumulated time an application is running)
-and the time difference between two log calls. The latter is especially interesting for 
-log outputs on a debug console, as it allows to get for a first quick impression about your 
+and the time difference between two log calls. The latter is especially interesting for
+log outputs on a debug console, as it allows to get for a first quick impression about your
 software's performance, lock states, bottlenecks, etc.
 
 ### 1.1.3 Logger.CntLogs ### {#man_loggers_logger_fields_CntLogs}
@@ -58,7 +57,7 @@ to output with each log line.
 
 ### 1.1.4 Logger.IsDisabled ### {#man_loggers_logger_fields_IsDisabled}
 This is a boolean flag that, if set to true, prevents any further logging into this
-*Logger*. Class [Logger](@ref #com.aworx.lox.core.Logger) simply checks against this flag 
+*Logger*. Class [Logger](@ref #com.aworx.lox.core.Logger) simply checks against this flag
 and dismisses any log invocations. Consider this flag being a red button.
 
 ### 1.1.5 Logger.RootDomain ### {#man_loggers_logger_fields_RootDomain}
@@ -67,56 +66,56 @@ which is the root of the hierarchically organized *log domains*. Each *log domai
 with a [Logger](@ref #com.aworx.lox.core.Logger) is stored in this tree. This allows the *domain level*
 setting to be specific to each of your [Logger](@ref #com.aworx.lox.core.Logger) instances. In other
 words, a *log domain* can be 'active' in respect to a certain *log level* in one Logger, while it is
-inactive in respect to the same *log level* in a different Logger. 
+inactive in respect to the same *log level* in a different Logger.
 
 \note
 Furthermore, it is important to understand that domains that have no specific *domain level* setting,
-inherit the setting from their parent domain, ultimately the 
+inherit the setting from their parent domain, ultimately the
 [Logger.RootDomain](@ref #com.aworx.lox.core.Logger.RootDomain). As a consequence, the root domain
-determines the *domain level* setting  of "unknown" domains! Unknown domains are those which have not 
-been registered or set explicitly (or have been registered or set before a specific 
-[Logger](@ref #com.aworx.lox.core.Logger) was created). 
+determines the *domain level* setting  of "unknown" domains! Unknown domains are those which have not
+been registered or set explicitly (or have been registered or set before a specific
+[Logger](@ref #com.aworx.lox.core.Logger) was created).
 There are use cases for loggers that might want to catch everything, known or not, and there are
-other uses cases where a *Logger* is deemed to receive messages of just a very particular set of 
+other uses cases where a *Logger* is deemed to receive messages of just a very particular set of
 _log domains_. The use of [LogDomain.SetLevel()](@ref #com.aworx.lox.core.LogDomain.SetLevel) to manipulate
-the [Logger.RootDomain](@ref #com.aworx.lox.core.Logger.RootDomain) allows to control such behavior. 
+the [Logger.RootDomain](@ref #com.aworx.lox.core.Logger.RootDomain) allows to control such behavior.
 
 ## 1.2 Methods of class Logger ## {#man_loggers_logger_methods}
 The methods of class [Logger](@ref #com.aworx.lox.core.Logger) are quickly described (and do not
-deserve sub chapters even). 
+deserve sub chapters even).
 \note
 None of the methods of class Logger is intended to be invoked by a user of ALox
-directly. The use of these methods are controlled by class 
+directly. The use of these methods are controlled by class
 [Lox](@ref #com.aworx.lox.Lox) and its static counterpart
 [Log](@ref #com.aworx.lox.Log).
 
 Besides the constructer, which just initializes some default values for the Loggers' fields, there
-are two methods on domains, 
-- [Logger.CreateDomain()](@ref #com.aworx.lox.core.Logger.CreateDomain) and 
-- [Logger.FindDomain()](@ref #com.aworx.lox.core.Logger.FindDomain) 
+are two methods on domains,
+- [Logger.CreateDomain()](@ref #com.aworx.lox.core.Logger.CreateDomain) and
+- [Logger.FindDomain()](@ref #com.aworx.lox.core.Logger.FindDomain)
 
-that do what their name says. Then there is the important and central method 
+that do what their name says. Then there is the important and central method
 [Logger.Line()](@ref #com.aworx.lox.core.Logger.Line) to have a message logged by the Logger.
-This message internally checks the domain level against the given level, if okay, increases the 
+This message internally checks the domain level against the given level, if okay, increases the
 log counter and after the message was logged, sets the timestamp of the last log call to 'now'.
 For logging the message, the abstract method
-[Logger.doLog()](@ref #com.aworx.lox.core.Logger.doLog) is invoked. 
+[Logger.doLog()](@ref #com.aworx.lox.core.Logger.doLog) is invoked.
 
-This means, that derived classes only need to implement the abstract method  
+This means, that derived classes only need to implement the abstract method
 [Logger.doLog()](@ref #com.aworx.lox.core.Logger.doLog) and within that message no checks or
 anything needs to happen, apart from logging the given object.
 
 ## 1.3 Implementing your own *Logger* ## {#man_loggers_logger_customloggers}
-As an experienced programmer after reading the previous sections, it is certainly fully obvious 
-to you which steps need to be taken to create your own variation of class 
+As an experienced programmer after reading the previous sections, it is certainly fully obvious
+to you which steps need to be taken to create your own variation of class
 [Logger](@ref #com.aworx.lox.core.Logger) that directs your objects to log into
 a certain data drain in a specific format. Nevertheless, let us quickly name these steps
 explicitly:
 
-- create your own class derived from class [Logger](@ref #com.aworx.lox.core.Logger) 
+- create your own class derived from class [Logger](@ref #com.aworx.lox.core.Logger)
 - implement the abstract method [Logger.doLog()](@ref #com.aworx.lox.core.Logger.doLog) by
   converting and streaming the given object into whatever and to wherever you want
-- In your application add an instance of your own custom Logger to your 
+- In your application add an instance of your own custom Logger to your
   [Lox](@ref #com.aworx.lox.Lox), respectively its static counterpart
   [Log](@ref #com.aworx.lox.Log).
 
@@ -127,24 +126,24 @@ through this chapter.
 
 When you think about debug log output you think about logging textual messages that
 get displayed on your debug console. We think the use of any logging ecosystem for this
-simple purpose should be mandatory to all software projects that goes beyond one or two 
+simple purpose should be mandatory to all software projects that goes beyond one or two
 pages of code!
 
-While ALox wants to be a perfect tool for quick, easy and comfortable debug logging, 
+While ALox wants to be a perfect tool for quick, easy and comfortable debug logging,
 the goals of ALox go beyond that. This is why ALox logging interface methods
-are not restricted to Strings but accept any object to be passed to any derived 
+are not restricted to Strings but accept any object to be passed to any derived
 Logger type.
 
 It is very important to understand this. The result is twofold:
 
-- For debug logging, any object that is logged needs to get converted into a textual 
+- For debug logging, any object that is logged needs to get converted into a textual
   representation (a human readable format).
 - Custom Logger types are enabled to log data of an application in a very custom
   way, as these Loggers get the original object passed.
-  
+
 The class [TextLogger](@ref #com.aworx.lox.core.TextLogger) which is described in
 this chapter is exactly about the first thing: Log any object that is passed to it
-as a textual representation, hence into a character stream. 
+as a textual representation, hence into a character stream.
 All of the provided ALox Loggers that produce text output, derive from this base
 class instead of deriving directly from Logger. Among these classes are
 [ConsoleLogger](@ref #com.aworx.lox.loggers.ConsoleLogger) and
@@ -171,19 +170,19 @@ digraph TextLoggers
 
 \note
 Of-course you can also derive your own *Logger* types that without using the ALox TextLogger class
-and still do pure textual logging. 
+and still do pure textual logging.
 
 ## 2.1 Helper classes for TextLogger ## {#man_loggers_textlogger_helpers}
-Class [TextLogger](@ref #com.aworx.lox.core.TextLogger) contains two helper classes as public fields. 
+Class [TextLogger](@ref #com.aworx.lox.core.TextLogger) contains two helper classes as public fields.
 The advantage of this approach is that the references to these helper classes can be replaced at runtime
-by your own tailored versions of these helpers and this way you can change the default behavior of class TextLogger. 
+by your own tailored versions of these helpers and this way you can change the default behavior of class TextLogger.
 
 The helper classes are the described in the following two paragraphs.
 
 ### 2.1.1 Class TextLoggerLineFormatter ### {#man_loggers_textlogger_TextLoggerLineFormatter}
-Class [TextLoggerLineFormatter](@ref #com.aworx.lox.core.TextLoggerLineFormatter) is used by 
+Class [TextLoggerLineFormatter](@ref #com.aworx.lox.core.TextLoggerLineFormatter) is used by
 class [TextLogger](@ref #com.aworx.lox.core.TextLogger) to  assemble the meta
-information of each log line, which incorporates things like date and time, thread information, 
+information of each log line, which incorporates things like date and time, thread information,
 log level and log domain.
 
 TextLoggerLineFormatter provides a public format string that defines the log line. A sample
@@ -191,7 +190,7 @@ of such format string is:
 
     "%CF(%CL):%CM()%A3[%DD] [%TD] [%TE +%TI] [%t] %L [%O] <%#>: "
 
-As you see, the format string contains variables, marked by a leading '%' sign. 
+As you see, the format string contains variables, marked by a leading '%' sign.
 The set of these format variables available are:
 
 - %CF: The caller's source file name.
@@ -200,7 +199,7 @@ The set of these format variables available are:
 - %D:  The date the log call was invoked.
 - %TD: Time of day the log call was invoked.
 - %TE: Time elapsed since the Logger was created or it's timer was reset.
-- %TI: Time elapsed since the last log call. Note: You might realize, that these time values do not 
+- %TI: Time elapsed since the last log call. Note: You might realize, that these time values do not
        sum up correctly.  This is not only because of rounding errors, but also because the time between the "end" of the
        last log call and the "beginning" of this log call is measured. This has the advantage that a quite accurate
        value of "elapsed time since the last log call" is displayed and hence a very good performance
@@ -210,14 +209,14 @@ The set of these format variables available are:
        exposes four public string definitions.
 - %O:  The *log domain* name.
 - %#:  The log call counter (like a line counter, but counting multi-line log output as one).
-- %Ax: An auto-adjusted tabulator. This grows whenever it needs to grow, but never 
+- %Ax: An auto-adjusted tabulator. This grows whenever it needs to grow, but never
        shrinks. The mandatory number x (a character between 0 and 9) specifies how much extra
        space is added when tab is adjusted. This is useful to achieve very clean column formatting.
 
 \note
 The variables for the caller information vary across languages and platforms. For details
 see class TextLoggerLineFormatter in the reference section of your programming language of choice.
-\par 
+\par
 \note
 With class *TextLogger*, the meta information always prepends the log message itself
 and therefore, the message itself is not provided as a format string variable.
@@ -227,30 +226,30 @@ Changing the format string [TextLoggerLineFormatter.Format](@ref #com.aworx.lox.
 provides an easy way to change the look of your log output. For example, if you are not interested
 in thread information, just remove the "[%t] " part from the original string.
 
-If you want to modify the output of a certain variable or if you want to add your own variables, 
-you can derive your on implementation of *TextLoggerLineFormatter* and overwrite the virtual method 
+If you want to modify the output of a certain variable or if you want to add your own variables,
+you can derive your on implementation of *TextLoggerLineFormatter* and overwrite the virtual method
 [TextLoggerLineFormatter.processVariable ](@ref #com.aworx.lox.core.TextLoggerLineFormatter.processVariable ).
-Within the implementation, just fetch your own variables and/or modify existing and call the original method 
-for the rest that you do not want to modify. 
+Within the implementation, just fetch your own variables and/or modify existing and call the original method
+for the rest that you do not want to modify.
 
 Finally, if you really want to customize the logging of meta information in the class *TextLogger* completely
-and maybe do not want to even rely on a format string, then feel free to derive your on implementation 
-of *TextLoggerLineFormatter* and overwrite the virtual method 
+and maybe do not want to even rely on a format string, then feel free to derive your on implementation
+of *TextLoggerLineFormatter* and overwrite the virtual method
 [TextLoggerLineFormatter.WriteMetaInfo ](@ref #com.aworx.lox.core.TextLoggerLineFormatter.WriteMetaInfo)!
 
 ### 2.1.2 Class TextLoggerObjectConverter ### {#man_loggers_textlogger_TextLoggerObjectConverter}
-Class [TextLoggerObjectConverter](@ref #com.aworx.lox.core.TextLoggerObjectConverter) is used by 
+Class [TextLoggerObjectConverter](@ref #com.aworx.lox.core.TextLoggerObjectConverter) is used by
 class [TextLogger](@ref #com.aworx.lox.core.TextLogger) to convert the *message object* that gets passed
 by the user through the ALox API to the *Logger* to a String representation. If you look at the code, you
-see that the default implementation handles objects of type *String*, *MString* and *StringBuilder. In 
+see that the default implementation handles objects of type *String*, *AString* and *StringBuilder. In
 addition null values get translated to a (configurable) string constant.
-All other objects are translated using their *ToString()* method. 
+All other objects are translated using their *ToString()* method.
 
 Now, if you want to provide a custom log format for your own classes, you might not want to overload the
-*ToString()* methods of these classes, because this is considered debug code that does not belong 
-to your core classes! The solution is to create a class derived from 
+*ToString()* methods of these classes, because this is considered debug code that does not belong
+to your core classes! The solution is to create a class derived from
 [TextLoggerObjectConverter](@ref #com.aworx.lox.core.TextLoggerObjectConverter) and provide a special
-treatment for your classes. Just attach your custom [TextLoggerObjectConverter](@ref #com.aworx.lox.core.TextLoggerObjectConverter) 
+treatment for your classes. Just attach your custom [TextLoggerObjectConverter](@ref #com.aworx.lox.core.TextLoggerObjectConverter)
 to the field [TextLogger.ObjectConverter](@ref #com.aworx.lox.core.TextLogger.ObjectConverter) after
 you created a Logger of type [TextLogger](@ref #com.aworx.lox.core.TextLogger).
 
@@ -259,20 +258,20 @@ As long as you are using only one instance of class [Lox](@ref #com.aworx.lox.Lo
 either one for release logging or the one that is incorporated statically in the interface [Log](@ref #com.aworx.lox.Log),
 you can share the same instance of your [TextLoggerObjectConverter](@ref #com.aworx.lox.core.TextLoggerObjectConverter)
 between different instances of type [TextLogger](@ref #com.aworx.lox.core.TextLogger).
-However, if you equip two *TextLoggers* with custom *TextLoggerObjectConverter* objects and attach these Loggers to 
-two different instances of *Lox*, you have to provide separated instances to achieve safeness in respect to 
-multi-threaded access! The advantage of sharing one 
+However, if you equip two *TextLoggers* with custom *TextLoggerObjectConverter* objects and attach these Loggers to
+two different instances of *Lox*, you have to provide separated instances to achieve safeness in respect to
+multi-threaded access! The advantage of sharing one
 [TextLoggerObjectConverter](@ref #com.aworx.lox.core.TextLoggerObjectConverter) between multiple *Loggers*
-is minimal either way and just about some memory allocation for the internal conversion buffer. 
+is minimal either way and just about some memory allocation for the internal conversion buffer.
 
 \par
 \note
-For the logging of complex objects using reflection, there is no need to derive your own  
-[TextLoggerObjectConverter](@ref #com.aworx.lox.core.TextLoggerObjectConverter). In class 
-[LogTools](@ref #com.aworx.lox.tools.LogTools) you will find a tool function that recursively 
-and prettily dumps out instances of any class using reflection. 
+For the logging of complex objects using reflection, there is no need to derive your own
+[TextLoggerObjectConverter](@ref #com.aworx.lox.core.TextLoggerObjectConverter). In class
+[LogTools](@ref #com.aworx.lox.tools.LogTools) you will find a tool function that recursively
+and prettily dumps out instances of any class using reflection.
 See [LogTools.Instance()](@ref #com.aworx.lox.tools.LogTools.Instance) for further information.
-  
+
 ## 2.2 The multi-line features of class TextLogger ## {#man_loggers_textlogger_multiline}
 Class [TextLogger](@ref #com.aworx.lox.core.TextLogger) provides a feature to log a message
 into multiple lines. This is useful for example, if you want to log a string that contains XML text.
@@ -280,25 +279,25 @@ Instead of one very wide log line, *TextLogger* can be configured to separate th
 lines in a very controlled way.
 
 The way how multi-line output is formatted is configured by the field
-[TextLogger.MultiLineMsgMode](@ref #com.aworx.lox.core.TextLogger.MultiLineMsgMode). 
+[TextLogger.MultiLineMsgMode](@ref #com.aworx.lox.core.TextLogger.MultiLineMsgMode).
 The following modes are available:
 
 - 0: Multi-line mode off<br>
-  In this mode, the text is not split into multiple lines. However, certain log streams, for example 
+  In this mode, the text is not split into multiple lines. However, certain log streams, for example
   a system console window, will split the msg autonomously if the message contains line end characters
-  (CR, LF or CRLF). 
-  Therefore, it is recommended to set the fields 
+  (CR, LF or CRLF).
+  Therefore, it is recommended to set the fields
   [TextLogger.MultiLineDelimiter](@ref #com.aworx.lox.core.TextLogger.MultiLineDelimiter)
   [TextLogger.MultiLineDelimiterRepl](@ref #com.aworx.lox.core.TextLogger.MultiLineDelimiterRepl)
-  in a way that your log file does not get cluttered. 
+  in a way that your log file does not get cluttered.
 - 1: Multiline mode with all meta information in each log line<br>
 - 2: Multiline mode with blanked meta information starting with second log line.<br>
   This is the default.
   Looking at a log it gets easily obvious that which lines belong to a multi-line log. We think this
   is the best one for debug window purposes!
-- 3: Multiline mode with with a configurable (defined in 
+- 3: Multiline mode with with a configurable (defined in
   [TextLogger.FmtMultiLineMsgHeadline](@ref #com.aworx.lox.core.TextLogger.FmtMultiLineMsgHeadline)
-  headline message in the first log line.<br> All text lines of the multi-line text is logged starting 
+  headline message in the first log line.<br> All text lines of the multi-line text is logged starting
   in column zero.
 - 4: Multiline mode that purely logs all text lines of the multi-line text starting in column zero.
   Therefore, in this mode no meta information about the log is displayed. This mode is useful
@@ -311,75 +310,75 @@ While it implements the abstract interface [Logger.doLog()](@ref #com.aworx.lox.
 of class *Logger*, it introduces a new abstract interface method in turn! This method is called
 [TextLogger.doTextLog()](@ref #com.aworx.lox.core.TextLogger.doTextLog). *TextLogger* takes
 care to build the complete textual representation of the log line, including meta information
-and the log message itself. 
+and the log message itself.
 
 Now, the only thing that a simple derivate of *TextLogger* needs to do is write this buffer
-to its final destination. 
+to its final destination.
 
 # 3. Logger implementations provided by ALox # {#man_loggers_implementations}
-In this quite early state of the ALox ecosystem development, there are not too many 
+In this quite early state of the ALox ecosystem development, there are not too many
 Loggers existing, yet. However, for debug logging purposes we are set and of-course, you are
 free to implement your custom *Logger* (and send it back to us! :-).
 
-While the abstract classes *Logger* and *TextLogger* are located in the namespace (package) 
+While the abstract classes *Logger* and *TextLogger* are located in the namespace (package)
 "com.aworx.lox.core", the Logger implementations are found in package "com.aworx.lox.loggers".
 
 ## 3.1 ConsoleLogger ## {#man_loggers_implementations_ConsoleLogger}
-For debugging purposes (remember: ALox is designed to support both, debug and release logging, 
-see \ref faq_debug_vs_release_logging), the most important *Logger* implementation is of-course class 
+For debugging purposes (remember: ALox is designed to support both, debug and release logging,
+see \ref faq_debug_vs_release_logging), the most important *Logger* implementation is of-course class
 [ConsoleLogger](@ref #com.aworx.lox.loggers.ConsoleLogger) which logs to an application console
-window and/or into your IDE output window. 
+window and/or into your IDE output window.
 This class by nature varies from between languages and IDEs. The goal is to provide specific
 versions of that Logger for different IDEs that allow "clickable" log lines, which means, a mouse click
 on a log line in the output window of your IDE will open the source file and mark the line number
 where your exactly this log line was generated. This is extremely useful in debugging scenarios.
 
-Check your language specific class reference manual (or the source code) to see which loggers 
+Check your language specific class reference manual (or the source code) to see which loggers
 are provided for your platform. For example, Android mobile application developers will happily
 find a Logger called *AndroidLogCatLogger* that synergizes with the Android logging system "LogCat".
 And yes, also LogCat log lines become magically clickable (tested in Eclipse)!
-            
+
 ## 3.2 MemoryLogger ## {#man_loggers_implementations_MemoryLogger}
 The class [MemoryLogger](@ref #com.aworx.lox.loggers.MemoryLogger) is really the simplest *Logger*
 you can think about (look at the code!). It uses an internal buffer of type
-[MString](@ref #com.aworx.util.MString) und just appends each log entry to this buffer, separated
-by a [MString.NewLine()](@ref #com.aworx.util.MString.NewLine) sequence.
+[AString](@ref #com.aworx.util.AString) und just appends each log entry to this buffer, separated
+by a [AString.NewLine()](@ref #com.aworx.util.AString.NewLine) sequence.
 
-As *MemoryLogger* does not log to the console or any other slow thing, is extremely fast. We 
+As *MemoryLogger* does not log to the console or any other slow thing, is extremely fast. We
 measured more than 200.000 log entries per second on a Notebook (equipped with an Intel(R) Core(TM) i7 CPU @2.8GHz)
 while running an application (and ALox) in debug mode!
 
 This gives an indication that the ALox ecosystem in combination with its MemoryLogger is extremely
-useful in performance critical sections of your code. If you would do 100 log entries per second, 
+useful in performance critical sections of your code. If you would do 100 log entries per second,
 the performance loss for your application would be a maximum of 0.05%. (Yes, that is why
 we love Bauhaus coding style.)
 
 # 3. Summary and outlook # {#man_loggers_summary}
 
 The following summarizes the takeaways of this chapter:
-- We learned about class *Logger* and its simple structure and few fields. 
-- Class *TextLogger* was introduced an explained in detail. We learned that TextLogger aims 
+- We learned about class *Logger* and its simple structure and few fields.
+- Class *TextLogger* was introduced an explained in detail. We learned that TextLogger aims
   to be the abstract parent class of all *Logger* types that log messages in a human readable
-  fashion. 
+  fashion.
 - We saw how the output format of class *TextLogger* can be manipulated without introducing
   new code and also, more complex but powerful, with introducing new code.
 - Then we looked at the currently existing Logger types in the ALox ecosystem.
 
 As ALox is still in a quite early state, the number of provided *Logger* types is limited.
 The most urgent *Logger* expected in future versions is of course a *FileLogger* to make
-log output persistent and basically transportable. We will equip the *FileLogger* with the 
+log output persistent and basically transportable. We will equip the *FileLogger* with the
 optional feature to create new files each time an application is started and also to
 optionally delete outdated log files automatically. This will be useful for debug logging
 and release logging as well. (See \ref faq_debug_vs_release_logging.)
 
-For release logging (especially on mobile devices with limited persistent memory), a 
+For release logging (especially on mobile devices with limited persistent memory), a
 binary file logger is planned. We think, log files can be compressed heavily using
-incremental timestamps, a caller info dictionary, etc. Of-course this would need a tool 
+incremental timestamps, a caller info dictionary, etc. Of-course this would need a tool
 to read the binary files back in. We would be thankful to the community to contribute!
 
 Other ideas are *Logger* typs that encapsulate other *Logger* instances. For example a *Logger* type that
 lazily collects and schedules log requests into a background thread. The idea is to just provide
 the "final" *Logger* to such lazy *Logger* and hence, it would be possible to put just any
-existing *Logger* into lazy mode. 
+existing *Logger* into lazy mode.
 
 */

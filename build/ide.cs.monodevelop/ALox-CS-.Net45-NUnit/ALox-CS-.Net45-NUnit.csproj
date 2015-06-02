@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{02F564D1-4867-4018-8430-1A3DF92ABF2D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ALoxCS.Net45NUnit</RootNamespace>
+    <AssemblyName>ALox-CS-.Net45-NUnit</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;AWORX_MONO_DEVELOP;ALOX_DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <DefineConstants>AWORX_MONO_DEVELOP</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web.Extensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\src\cs.aworx.util.unittests\Test_ThreadLock.cs">
+      <Link>tests.aworx.util\Test_ThreadLock.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src\cs.aworx.util.unittests\Test_AString.cs">
+      <Link>tests.aworx.util\Test_AString.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src\cs.alox.unittests\Tests_Log.cs">
+      <Link>tests.alox\Tests_Log.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src\cs.alox.unittests\Tests_Tutorial.cs">
+      <Link>tests.alox\Tests_Tutorial.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src\cs.aworx.util.unittests\Test_Ticks.cs">
+      <Link>tests.aworx.util\Test_Ticks.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ALox-CS-.Net45-DLL\ALox-CS-.Net45-DLL.csproj">
+      <Project>{4A3FA177-8BBA-4DB8-9F8F-B5A7C7FE8F13}</Project>
+      <Name>ALox-CS-.Net45-DLL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="tests.aworx.util\" />
+    <Folder Include="tests.alox\" />
+  </ItemGroup>
+</Project>
