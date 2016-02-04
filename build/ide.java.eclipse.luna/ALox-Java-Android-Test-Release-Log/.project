@@ -3,6 +3,7 @@
 	<name>ALox-Java-Android-Test-Release-Log</name>
 	<comment></comment>
 	<projects>
+		<project>ALox-Java-Android</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -7,8 +7,8 @@
     <ProjectGuid>{FEC499F1-05FE-429D-87A2-9352FFD29F12}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ALox_CS_Test_Perf</RootNamespace>
-    <AssemblyName>ALox-CS-Test-Perf</AssemblyName>
+    <RootNamespace>ALox_CS_Samples</RootNamespace>
+    <AssemblyName>ALox-CS-Samples</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -32,8 +32,10 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;ALOX_DEBUG;AWORX_VSTUDIO</DefineConstants>
+    <BaseIntermediateOutputPath>..\..\_builds_\ide.cs.vstudio\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Configuration)\</IntermediateOutputPath>
+    <OutputPath>..\..\_builds_\ide.cs.vstudio\ALox-CS-.Net45-DLL-Tests\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;ALIB_VSTUDIO;ALOX_DBG_LOG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -41,8 +43,10 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <BaseIntermediateOutputPath>..\..\_builds_\ide.cs.vstudio\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Configuration)\</IntermediateOutputPath>
+    <OutputPath>..\..\_builds_\ide.cs.vstudio\ALox-CS-.Net45-DLL-Tests\Release\</OutputPath>
+    <DefineConstants>TRACE;ALIB_VSTUDIO;ALOX_REL_LOG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -55,34 +59,58 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\src\cs.alox.unittests\Tests_Log.cs">
-      <Link>tests.alox\Tests_Log.cs</Link>
+    <Compile Include="..\..\..\src.cs\alib.unittests\UnitTests.cs">
+      <Link>ut.AWorx.Lib\UnitTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src\cs.alox.unittests\Tests_Tutorial.cs">
-      <Link>tests.alox\Tests_Tutorial.cs</Link>
+    <Compile Include="..\..\..\src.cs\alib.unittests\UT_alib_config.cs">
+      <Link>ut.AWorx.Lib\UT_alib_config.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src\cs.aworx.util.unittests\Test_AString.cs">
-      <Link>tests.aworx.util\Test_AString.cs</Link>
+    <Compile Include="..\..\..\src.cs\alib.unittests\UT_alib_strings_AString.cs">
+      <Link>ut.AWorx.Lib\UT_alib_strings_AString.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src\cs.aworx.util.unittests\Test_ThreadLock.cs">
-      <Link>tests.aworx.util\Test_ThreadLock.cs</Link>
+    <Compile Include="..\..\..\src.cs\alib.unittests\UT_alib_strings_AStringAndSubstring.cs">
+      <Link>ut.AWorx.Lib\UT_alib_strings_AStringAndSubstring.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src\cs.aworx.util.unittests\Test_Ticks.cs">
-      <Link>tests.aworx.util\Test_Ticks.cs</Link>
+    <Compile Include="..\..\..\src.cs\alib.unittests\UT_alib_strings_Substring.cs">
+      <Link>ut.AWorx.Lib\UT_alib_strings_Substring.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src\cs.samples\SimpleTests.cs">
-      <Link>SimpleTests.cs</Link>
+    <Compile Include="..\..\..\src.cs\alib.unittests\UT_alib_strings_Tokenizer.cs">
+      <Link>ut.AWorx.Lib\UT_alib_strings_Tokenizer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib.unittests\UT_alib_threads.cs">
+      <Link>ut.AWorx.Lib\UT_alib_threads.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib.unittests\UT_alib_time.cs">
+      <Link>ut.AWorx.Lib\UT_alib_time.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox.samples\ALoxSamples.cs">
+      <Link>ALoxSamples.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox.unittests\UT_alox_documentation_samples.cs">
+      <Link>ut.ALox\UT_alox_documentation_samples.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox.unittests\UT_alox_loggers.cs">
+      <Link>ut.ALox\UT_alox_loggers.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox.unittests\UT_alox_logtools.cs">
+      <Link>ut.ALox\UT_alox_logtools.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox.unittests\UT_alox_log_dbg.cs">
+      <Link>ut.ALox\UT_alox_log_dbg.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox.unittests\UT_alox_log_rel.cs">
+      <Link>ut.ALox\UT_alox_log_rel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox.unittests\UT_alox_tutorial.cs">
+      <Link>ut.ALox\UT_alox_tutorial.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox.unittests\UT_alox_tutorial_minimum.cs">
+      <Link>ut.ALox\UT_alox_tutorial_minimum.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ALox-CS-.Net45-DLL\ALox-CS-.Net45-DLL.csproj">
-      <Project>{4a3fa177-8bba-4db8-9f8f-b5a7c7fe8f13}</Project>
-      <Name>ALox-CS-.Net45-DLL</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
@@ -103,6 +131,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ALox-CS-.Net45-DLL-Release-Log\ALox-CS-.Net45-DLL-Release-Log.csproj">
+      <Project>{e8e5d176-ece6-4757-931a-fcead361f8c7}</Project>
+      <Name>ALox-CS-.Net45-DLL-Release-Log</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

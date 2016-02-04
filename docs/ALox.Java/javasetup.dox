@@ -1,0 +1,434 @@
+// #################################################################################################
+//  Documentation - ALox Logging Library
+//
+//  (c) 2013-2016 A-Worx GmbH, Germany
+//  Published under MIT License (Open Source License, see LICENSE.txt)
+// #################################################################################################
+
+/**
+\page javasetup         Setup your IDE for Java Projects
+
+\tableofcontents
+
+
+# 1. Setting up your IDE # {#javasetup_1}
+
+To use ALox logging in your Java project, some few preparatory steps have to be taken.
+
+Currently, there is no binary distribution of ALox for Java available. Therefore, the way to incorporate
+ALox into your project is to include the sources. There are two options:
+
+- add one of the existing ALox class library projects (Eclipse) to your solution, or
+- add ALox sources directly to your project.
+
+\note
+If you do not actually have a Java project (or do not want to touch one now) and you just want to
+have a first look into ALox, then create a new Java project in your IDE.
+Be sure to create an executable and that the typical "hello world" sample prints to the console.
+
+## 1.1 Download ##  {#javasetup_download}
+Unpack the ALox distribution (e.g. as zip) from [Alox at GitHub](https://github.com/AlexWorx/ALox-Logging-Library)
+and move all its contents to a place where you safely store 3rd party libraries.
+
+We call this folder the *ALOX_LIB_PATH*. Within the folder you should find at least the following subfolders:
+
+        ALOX_LIB_PATH\src.java
+        ALOX_LIB_PATH\build
+        ALOX_LIB_PATH\html
+
+
+
+<br>
+## 1.2. For Eclipse Users: Link one of the following projects into your solution ## {#javasetup_eclipse}
+
+To incorporate ALox into Eclipse, you will find the following ready to use projects in *ALOX_LIB_PATH*:
+
+- Eclipse V.4.4 (Luna) project, standard (Desktop) Java with Java compiler 1.6
+
+        ALOXLIBPATH/build/ide.java.eclipse.luna/ALox-Java-1.6
+
+
+- Eclipse V.4.4 (Luna) project for Android development
+
+        ALOXLIBPATH/build/ide.java.eclipse.luna/ALox-Java-Android
+
+
+If there is no appropriate predefined project available for you, skip the next section and continue reading
+\ref javasetup_addingsource.
+
+Otherwise, its just two quick steps:
+
+__Step 1:__ Import the predefined project into your eclipse workspace. Steps are:
+
+- Open Eclipse with the workspace that contains the project(s) that you want to enrich with ALox logging
+- In Eclipse main menu, choose "File" / "Import"
+- From the dialog choose "General" / "Existing Projects into Workspace"
+- Press next and provide the root directory as appropriate (see list above)
+- Continue the Wizard as needed.
+
+You should have the project now incorporated into your workspace without any compiler errors.
+
+\note
+The Java sources were coded using Eclipse with quite a high warning level setting. This led to
+the need to add some code annotations to suppress some warnings. If your Eclipse warning level setting
+is lower but now you get warnings on unnecessary code annotations (because the suppress warnings are
+not necessary in your environment), you can get rid of these messages by opening the Eclipse
+Preferences "Window/Preferences", Section "Java/Compiler/Errors/Warnings". Here, in the "Annotations"
+section, set "Unused '@SuppressWarnings' token:" to "Ignore".
+
+
+__Step 2:__ Set a build dependency from your project to the just added *ALox-Java-xxx* project. Steps are:
+
+   - right click your project in Eclipse "Project Explorer" and choose "Properties"
+   - In section "Java Build Path" go to the tab named "Projects"
+   - Press the "Add..." button and tick "ALox-Java"
+   - For the Android projects: Also set the ALox project for Android as a library in the "Android" section
+     of the project properties.
+
+## 1.3 Alternatively: Adding source code to your project ## {#javasetup_addingsource}
+If there is no pre-defined project provided that suits your IDE (or needs), then you might want to add
+the ALox source code directly to your project or to a library  project that you may want to create to
+separate the ALox code from your code. It should be fairly easy. The Java sources found in:
+
+        ALOXLIBPATH/src.java/alib
+        ALOXLIBPATH/src.java/alox
+
+need to be compiled into your project.<br>
+\note
+It is a good idea, to not copy the code, but to add the sources as links to their original place
+where you unpacked ALox. In Eclipse (Luna), linking source folders is found under "Project Properties",
+"Java Build Path", tab "Source" and then button "Link Source".
+The advantage of linking the source folders is that updating the source (e.g. with Git) updates
+them in your projects as well. Furthermore, if you might want to push your fixes or improvements to
+us using Git, the sources in the original folder need to be modified by you.
+
+
+For **Android**, ALox provides a dedicated logger class that supports Android LogCat outputs. Therefore, to
+support Android projects, this logger class has to be added to your Android project (or
+Android ALox library project)
+into your project. For Android, in addition add folder:
+
+        ALOXLIBPATH/src.java/alox.android
+
+To stream ALox logging into LogCat create a logger of type [AndroidLogCatLogger](@ref com.aworx.lox.android.AndroidLogCatLogger)
+instead of type [ConsoleLogger](@ref com.aworx.lox.loggers.ConsoleLogger) as follows:
+
+\code{.cs}
+    Log.addLogger( new AndroidLogCatLogger() );
+\endcode
+
+Attention: The normal [ConsoleLogger](@ref com.aworx.lox.loggers.ConsoleLogger) will not produce
+any visible output using the Android Emulator or a debugging device.
+
+
+## 1.4 Test your setup ##  {#javasetup_testnow}
+
+To test your setup, add minimum ALox functionality to your project as described in the first chapter
+of \ref javatutorial into your main method or anywhere you think it is appropriate:
+
+\snippet ut_com_aworx_lox/UT_alox_tutorial.java        Tut_Hello_ALox
+
+
+# 2. Pruning ALox Code in Java#  {#javasetup_pruning}
+## 2.1 What is Pruning? ##  {#javasetup_pruning_what_is_pruning}
+
+What we mean with the term "pruning" is the automatic removal of the (debug) logging code from
+your release executable (or library) that is ready for deployment. The goals that motivate
+for auto pruning are:
+
+- Maximize execution speed of your code, because all log statements are pruned.
+- Minimize the footprint of your code.
+- Keep the console clean in the release version of your console application.
+- Hide your software secrets, by removing all textual strings from your executable or library
+  that includes debug messages.
+
+Furthermore, if you are using ALox as well for release log outputs, then the above
+stays true for all of your debug log statements, while all release log statements remain.
+
+## 2.1 How Pruning in ALox for Java works ##  {#javasetup_pruning_basics}
+
+Unfortunately, Java does not provide conditional compiler statements. (For example, the languages
+C, C++ and C# allow \c \#if \c ... \c \#endif statements and C#, since Version 5, supports methods to be
+annotated to be pruned, which is very handy!)<br>
+Therefore, in Java we have to work with a tool that operates on the compiled class files and prunes
+everything that the tool is configured for in a separated release build step.<br>
+For this manual, we decided to work with [ProGuard](http://proguard.sourceforge.net).
+The advantages that *ProGuard* offers are:
+
+- It is open source and free to use.
+- Well established in the industry and incorporated into various professional development platforms. It is also
+  a part of the Android SDK. Therefore, Android developers have *ProGuard* already installed
+  on their developer machines.
+- Besides pruning, *ProGuard* can be configured to obfuscate your code (see [ProGuard FAQ](http://proguard.sourceforge.net/#FAQ.html)).
+- Pruning is a part of the *ProGuard* optimization feature and these optimizations are very
+  effective and beneficial for the performance of your application and the size (footprint) of your
+  executable or library.
+
+The disadvantages are:
+- A separated release built step has to be incorporated into your build process.
+- Due to the optimization features of *ProGuard*, the resulting code has to be tested extensively.
+  (Sometimes *ProGuard* can corrupt your executable.)
+- If you choose to also obfuscate your code (not needed for pruning!) then debugging the release
+  versions of your software gets very tough. Also stack traces from exceptions are only readable
+  using a dedicated *ProGuard* tool.
+
+
+
+## 2.2 What to Prune ##  {#javasetup_pruning_breadth}
+
+There are two possible configurations that differ in the breadth of pruning:
+- _Pruning with release logging enabled_<br>
+  This is the configuration you need if just your debug log statements are to be
+  pruned. Use this, if you use ALox to perform some release logging.
+- _Pruning all ALox code_<br>
+  This is the configuration you need to prune just all ALox code out of your
+  library or executable. Use this, if you exclusively use ALox for debug logging
+  purposes.
+
+
+\note
+For quick information on the terms "debug and release logging", [read the FAQ](../faq.html#faq_debug_vs_release_logging).
+<br>
+\par
+\note
+For debug logging, you should build your message strings using class
+[LogBuf](@ref com::aworx::lox::LogBuf) and preferably the singleton of that acquired with method
+[Log.buf()](@ref com::aworx::lox::Log::buf). <br>
+See \ref tutjava_more_logbuf "Using the log buffer singleton" for more information on how to use this.<br>
+Otherwise some remainders of unused strings and string concatenation code might remain. This is because
+ProGuard removes the method calls but not ultimately all parameter creation code of such method invocations.
+Using class *LogBuf* you are sure that this gets pruned.<br>
+While class *LogBuf* is only available in ALox for Java, your logging code will look the same as in other
+environments, because *LogBuf* mimics the interface of class
+[AString](@ref com::aworx::lib::strings::AString).
+
+
+## 2.3.1 ProGuard configuration for different platforms##  {#javasetup_pruning_proguard_platforms}
+
+Depending on your Java target platform, choose one of the following subchapters to read further:
+
+- \ref javasetup_pruning_proguard_config_standard     "Standard Java, desktop and libraries"
+- \ref javasetup_pruning_proguard_config_android      "Android Apps"
+
+\note The configuration provided here was tested with
+- ProGuard Version 4.11, release, Dec. 2013
+- ProGuard Version 5.2, released Jan 2015
+
+## 2.3.1 ProGuard configuration for standard Java ##  {#javasetup_pruning_proguard_config_standard}
+
+In the distribution folder of ALox, you will find a sample project in subfolder:
+
+        ALOX_LIB_PATH/build/ide.java.eclipse.luna/ALox-Java-1.6-Test
+
+
+Within this folder, you will find the different *ProGuard* sample configuration files:
+- For pruning just the debug logging statements and enable release logging:
+
+        proguard-prune-alox-debug.pro
+
+- For pruning ALox completely:
+
+        proguard-prune-alox-all.pro
+
+
+Both files have the same start:
+
+\snippet "../build/ide.java.eclipse.luna/ALox-Java-1.6-Test/proguard-prune-alox-debug.pro"        DOXYGEN_PROGUARD_CONFIG
+
+
+For your own projects, you have to modify the first lines starting with
+
+        -injars...
+
+to include your project code and library projects
+Then, the configuration that only prunes debug logging but leaves release logging in,
+continues as follows:
+
+\snippet "../build/ide.java.eclipse.luna/ALox-Java-1.6-Test/proguard-prune-alox-debug.pro"        DOXYGEN_PROGUARD_CONFIG_DBG
+
+The other configuration file, that prunes just all ALox stuff continues like this:
+
+\snippet "../build/ide.java.eclipse.luna/ALox-Java-1.6-Test/proguard-prune-alox-all.pro"        DOXYGEN_PROGUARD_CONFIG_ALL
+
+Both files then continue with other default *ProGuard* configuration code.
+
+\note
+You can configure *ProGuard* the way you prefer, however, you must not disable the *optimization* step, as
+this is where *ProGuard* prunes ALox!
+
+\par
+\note
+_ProGuard_ supports *Ant Tasks* and *Gradle Tasks*. See the corresponding *ProGuard* documentation
+for details.
+
+__That all, you are set!__
+
+The test project distributed with ALox can be easily used to see what is happening
+using *ProGuard*. Go ahead as follows:
+- Add the following two projects to Eclipse (or compile them with your favorite IDE):
+
+        ALOX_LIB_PATH/build/ide.java.eclipse.luna/ALox-Java-1.6_ (if not done, yet)
+        ALOX_LIB_PATH/build/ide.java.eclipse.luna/ALox-Java-1.6-Test
+
+- Make sure you have *ProGuard* installed (if you have Android SDK installed, you have *ProGuard*!)<br>
+  It may be necessary to set the \c PROGUARD_HOME environment variable to the *ProGuard* path, e.g.
+
+        PROGUARD_HOME=c:\\usr\\Dev\\Android\\android-sdk\\tools\\proguard
+
+- Open a command prompt (Windows) respectively a shell window (Linux)<br>
+  It may be necessary to set the \c JAVA_HOME environment variable to your Java JDK or JRE, e.g.
+
+        JAVA_HOME=C:\\Program Files\\Java\\jre6 (Windows OS)
+        JAVA_HOME=/lib/jvm/java-7-openjdk/jre/  (Arch Linux)
+
+- cd into:
+
+        ALOX_LIB_PATH/build/ide.java.eclipse.luna/ALox-Java-1.6-Test
+
+
+- Launch
+
+        ./start-SimpleTests.[sh|bat]
+
+  and check the un-pruned output of the test
+- Launch
+
+        ./proguard.prune-alox-debug.[sh|bat]
+        ./start-SimpleTests-Pruned.[sh|bat]
+
+and check the output of the test with debug logging pruned
+- Launch
+
+        ./proguard.prune-alox-all.[sh|bat]
+        ./start-SimpleTests-Pruned.[sh|bat]
+
+and check the output of the test with all logging pruned
+
+\note
+  If you look into the script files that invoke *ProGuard*
+  (\c proguard.prune-alox-debug.[sh|bat] and \c proguard.prune-alox-all.[sh|bat])
+  you will see that the Java runtime library is passed as another parameter. This parameter might
+  be moved into the \c *.pro configuration files as well. To have them here, seems more appropriate,
+  as this way, the current Java environment activated on your machine is used.
+
+## 2.3.1 ProGuard configuration for Android ##  {#javasetup_pruning_proguard_config_android}
+
+As *ProGuard* is a part of the Android SDK, there is plenty of documentation and help found
+in the internet on how to configure *ProGuard* and how the post compilation step is
+included into the build system. A good start to read more deatils on this is found here:
+[http://developer.android.com/tools/help/proguard.html](http://developer.android.com/tools/help/proguard.html).
+
+But the setup if fairly easy! On a fresh, new Android project (in Eclipse) the steps that have to be taken are the following:
+
+- We start editing the file \c project.properties, found the root folder of your Eclipse
+  project. At the end of the file, add the following lines:
+  <br><br>
+  \code
+    # proguard
+    proguard.config=${sdk.dir}/tools/proguard/proguard-android-optimize.txt:proguard-project.txt
+  \endcode
+  <br>
+  _Note: While the Android SDK documentation (see link above) does not really talk to much about
+  it, the SDK provides an extended basic configuration file for *ProGuard*, that enables optimization
+  of class files, hence enables pruning of ALox._
+  <br><br>
+
+- Next, we edit the file \c proguard-project.txt, also found the root folder of your Eclipse
+  project.<br>
+  - If you want to enable release logging,  at the end of the file, add the following lines:
+    <br><br>
+    \code
+      # Pruning ALox debug logging (release logging stays in)
+      -assumenosideeffects    class   com.aworx.lox.Log       { <methods>;  <fields>; }
+      -assumenosideeffects    class   com.aworx.lox.LogBuf    { <methods>;  <fields>; }
+    \endcode
+    <br>
+
+  - Alternatively, if you want to disable release logging (prune all ALox logging from your code), at the end of the file,
+    add the following lines:
+    <br><br>
+    \code
+      # Pruning ALox completely (release logging as well as debug logging)
+      -assumenosideeffects    class   com.aworx.lox.**        { <methods>;  <fields>; }
+    \endcode
+
+\note
+Of-course you can also leave debug logging enabled in your release android app and still use *ProGuard* as intended
+by the Android SDK. For this, just do not put any of the above lines in the proguard-project.txt file.
+
+__This is all you need to do!__
+
+When "exporting" your application into an APK file, ALox gets automatically pruned
+by *ProGuard* and the Android SDK build process.
+
+ALox provides a preconfigured sample project for Android:
+
+Add the two following two projects to Eclipse (or compile them with your favorite IDE):
+  - _ALOX_LIB_PATH/build/ide.java.eclipse.luna/ALox-Java-Android (if not done, yet)
+  - _ALOX_LIB_PATH/build/ide.java.eclipse.luna/ALox-Java-Android-Test-Release-Log
+
+You can *export* the APK file of the latter project in two variants: with release
+logging enabled or disabled. Modify \c proguard-project.txt accordingly and see
+what happens when you launch the APK on your device.
+
+Also, you might want to have a quick look this projects sample code found in:
+
+\code
+    ALOX_LIB_PATH/build/ide.java.eclipse.luna/ALox-Java-Android-Test-Release-Log/src/com/aworx/alox_java_android_test_release_log/ALoxJavaAndroidTestReleaseLog.java
+\endcode
+
+to get a first understanding of ALox release logging.
+
+## 2.4 Obfuscating the code ##  {#javasetup_pruning_obfuscating}
+
+As mentioned already, *ProGuard* provides an optional feature to obfuscate your code.
+Again, this is only optional and obfuscation has benefits but also some disadvantages.
+In respect to ALox, obfuscation introduces one little difficulty related
+to all methods that work with the "caller scope". Most remarkably, most default domain
+setting will stop working, because packages, class names and file names get mangled
+heavily.<br>
+The implication is, that any release logging statements (debug log is not affected as
+this is either way pruned from your release binaries) must not use default domains.
+In other words, for each invocation of a log call (again, only of release logging!)
+the domain name has to be explicitly set.
+
+For release logging in combination with obfuscation, you might want to suppress the
+output of caller information in the log line (see
+[TextLogger.metaInfo](@ref com::aworx::lox::core::textlogger::TextLogger::metaInfo) for
+information on how to do that).
+
+On the same token, the methods
+[Lox.setMarker()](@ref com::aworx::lox::Lox::setMarker) and
+[Lox.getMarker()](@ref com::aworx::lox::Lox::getMarker) will not work properly
+if you obfuscate. This is also not a severe restriction, as these function have been introduced
+to ALox to support debug logging code and hence are good to be pruned!
+For release logging, similar functionality can be included directly into the code.
+
+Finally, it is obvious that [LogToools.instance()](@ref com::aworx::lox::tools::LogTools::instance) will
+not show readable results when your classes become obfuscated.
+
+## 2.5 Mission accomplished: Perfect Auto Pruning of ALox code! ##  {#javasetup_pruning_result}
+
+The result of the things said above incorporate **six great news** for you:
+
+1. You can safely use all methods of classes *Log* and *LogTools* without any special treatment for pruning within your code.
+2. The impact of using ALox debug log statements in respect to execution speed in the release version of your application
+   is exactly ZERO, because the methods do not make it into your release executable!
+3. The impact of using ALox in respect to the footprint of your executable extremely small (all that remains are
+   some empty classes with a few stubs). This remains true, even if thousands of new features would come in future
+   versions of ALox!
+4. All debug log statements, including all textual messages you are adding to your log calls, are completely
+   pruned from the release executable! Your "debug secrets" can not be reverse engineered, they are just gone!
+5. Even if you mix debug and release logging features of ALox the above stays true, except that the footprint
+   of the ALox library is a little higher (e.g. it is 50kb in V1.1.0) !
+
+\note
+This is all true for Java. For other platforms check out platform specific sections of ALox pruning techniques.
+
+\par
+
+\note
+The Android SDK documentation suggests to "remove all your logging code" releasing an Android app.
+From now on you can just ignore this advice!
+
+*/

@@ -8,63 +8,101 @@
     <RootNamespace>ALoxCS.Net45NUnit</RootNamespace>
     <AssemblyName>ALox-CS-.Net45-NUnit</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <ReleaseVersion>1.3</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;AWORX_MONO_DEVELOP;ALOX_DEBUG</DefineConstants>
+    <BaseIntermediateOutputPath>..\..\_builds_\ide.cs.monodevelop\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Configuration)\</IntermediateOutputPath>
+    <OutputPath>..\..\_builds_\ide.cs.monodevelop\ALox-CS-.Net45-NUnit\bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;ALIB_MONO_DEVELOP;ALOX_DBG_LOG;ALOX_REL_LOG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
+    <BaseIntermediateOutputPath>..\..\_builds_\ide.cs.monodevelop\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Configuration)\</IntermediateOutputPath>
+    <OutputPath>..\..\_builds_\ide.cs.monodevelop\ALox-CS-.Net45-NUnit\bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <DefineConstants>AWORX_MONO_DEVELOP</DefineConstants>
+    <DefineConstants>ALIB_MONO_DEVELOP;ALOX_REL_LOG;</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="nunit.framework">
-      <HintPath>..\..\..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="nunit.framework">
+      <HintPath>..\Solution\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\src\cs.aworx.util.unittests\Test_ThreadLock.cs">
-      <Link>tests.aworx.util\Test_ThreadLock.cs</Link>
+    <Compile Include="..\..\..\src.cs\alib.unittests\UnitTests.cs">
+      <Link>ut.ALib\UnitTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src\cs.aworx.util.unittests\Test_AString.cs">
-      <Link>tests.aworx.util\Test_AString.cs</Link>
+    <Compile Include="..\..\..\src.cs\alib.unittests\UT_alib_config.cs">
+      <Link>ut.ALib\UT_alib_config.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src\cs.alox.unittests\Tests_Log.cs">
-      <Link>tests.alox\Tests_Log.cs</Link>
+    <Compile Include="..\..\..\src.cs\alib.unittests\UT_alib_strings_AString.cs">
+      <Link>ut.ALib\UT_alib_strings_AString.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src\cs.alox.unittests\Tests_Tutorial.cs">
-      <Link>tests.alox\Tests_Tutorial.cs</Link>
+    <Compile Include="..\..\..\src.cs\alib.unittests\UT_alib_threads.cs">
+      <Link>ut.ALib\UT_alib_threads.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src\cs.aworx.util.unittests\Test_Ticks.cs">
-      <Link>tests.aworx.util\Test_Ticks.cs</Link>
+    <Compile Include="..\..\..\src.cs\alib.unittests\UT_alib_time.cs">
+      <Link>ut.ALib\UT_alib_time.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox.unittests\UT_alox_documentation_samples.cs">
+      <Link>ut.ALox\UT_alox_documentation_samples.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox.unittests\UT_alox_log_dbg.cs">
+      <Link>ut.ALox\UT_alox_log_dbg.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox.unittests\UT_alox_log_rel.cs">
+      <Link>ut.ALox\UT_alox_log_rel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox.unittests\UT_alox_loggers.cs">
+      <Link>ut.ALox\UT_alox_loggers.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox.unittests\UT_alox_logtools.cs">
+      <Link>ut.ALox\UT_alox_logtools.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox.unittests\UT_alox_tutorial.cs">
+      <Link>ut.ALox\UT_alox_tutorial.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib.unittests\UT_alib_strings_Substring.cs">
+      <Link>ut.ALib\UT_alib_strings_Substring.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib.unittests\UT_alib_strings_Tokenizer.cs">
+      <Link>ut.ALib\UT_alib_strings_Tokenizer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib.unittests\UT_alib_strings_AStringAndSubstring.cs">
+      <Link>ut.ALib\UT_alib_strings_AStringAndSubstring.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox.unittests\UT_alox_tutorial_minimum.cs">
+      <Link>ut.ALox\UT_alox_tutorial_minimum.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox.unittests\UT_alox_usermanual.cs">
+      <Link>ut.ALox\UT_alox_usermanual.cs</Link>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <Folder Include="ut.ALox\" />
+    <Folder Include="ut.ALib\" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ALox-CS-.Net45-DLL\ALox-CS-.Net45-DLL.csproj">
-      <Project>{4A3FA177-8BBA-4DB8-9F8F-B5A7C7FE8F13}</Project>
-      <Name>ALox-CS-.Net45-DLL</Name>
+    <ProjectReference Include="..\ALox-CS-.Net45-DLL-Release-Log\ALox-CS-.Net45-DLL-ReleaseLog.csproj">
+      <Project>{E8E5D176-ECE6-4757-931A-FCEAD361F8C7}</Project>
+      <Name>ALox-CS-.Net45-DLL-ReleaseLog</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="tests.aworx.util\" />
-    <Folder Include="tests.alox\" />
   </ItemGroup>
 </Project>

@@ -16,14 +16,14 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>java.alox.unittests</name>
+			<name>java.alib.unittests</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/src/java.alox.unittests</locationURI>
+			<locationURI>PARENT-3-PROJECT_LOC/src.java/alib.unittests</locationURI>
 		</link>
 		<link>
-			<name>java.aworx.util.unittests</name>
+			<name>java.alox.unittests</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/src/java.aworx.util.unittests</locationURI>
+			<locationURI>PARENT-3-PROJECT_LOC/src.java/alox.unittests</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

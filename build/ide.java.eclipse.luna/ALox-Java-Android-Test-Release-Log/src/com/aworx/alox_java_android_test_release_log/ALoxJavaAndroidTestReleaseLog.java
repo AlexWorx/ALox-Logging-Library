@@ -1,7 +1,7 @@
 // #################################################################################################
 //  com.aworx.alox_java_android_test_release_log  - ALox Logging Library
 //
-//  (c) 2013-2015 A-Worx GmbH, Germany
+//  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
 package com.aworx.alox_java_android_test_release_log;
@@ -16,7 +16,8 @@ import com.aworx.lox.*;
 import com.aworx.lox.tools.LogTools;
 import com.aworx.lox.android.AndroidLogCatLogger;
 import com.aworx.lox.loggers.MemoryLogger;
-import com.aworx.util.AString;
+import com.aworx.lib.strings.AString;
+import com.aworx.lib.strings.CString;
 
 public class ALoxJavaAndroidTestReleaseLog extends Activity
 {
@@ -36,17 +37,19 @@ public class ALoxJavaAndroidTestReleaseLog extends Activity
 
         // add and configure a memory logger
         MemoryLogger ml=           new MemoryLogger();
-        ml.lineFormatter.format=   new AString( "[%TE]%L[%O]: ");
-        lox.addLogger( ml,   Log.DomainLevel.ALL );
+        ml.metaInfo.format=   new AString( "[%TE]%L[%O]: ");
+        ml.setDomain( lox.internalDomain, Log.DomainLevel.ALL );
+        lox.addLogger( ml );
 
         // add and configure a log cat logger
         AndroidLogCatLogger lcl= new AndroidLogCatLogger();
-        lox.addLogger( lcl,  Log.DomainLevel.ALL );
+        lcl.setDomain( lox.internalDomain, Log.DomainLevel.ALL );
+        lox.addLogger( lcl );
 
         // We do not work with default domains, as we will obfuscate the code.
         // Obfuscated code and release logging does not allow default domains, because
         // the rely on caller information and reasonable package, class and method names
-        lox.regDomain( "RelLog",    Log.Scope.NONE );
+        lox.setDomain( "RelLog",    Log.Scope.NONE );
         lox.setDomain( "RelLog",    Log.DomainLevel.ALL  );
 
         // all log invocations provide the "domain" parameter explicitly to be safe when
@@ -69,10 +72,10 @@ public class ALoxJavaAndroidTestReleaseLog extends Activity
         logOutput.setMovementMethod(new ScrollingMovementMethod());
 
         // copy the memory logger's output to the view
-        if ( ml.buffer.length() > 0 )
-            logOutput.setText( ml.buffer.toString() );
+        if ( ml.memoryLog.length() > 0 )
+            logOutput.setText( ml.memoryLog.toString() );
         else
-            logOutput.setText( "No output" + AString.NEWLINE + "obiously ALox was" + AString.NEWLINE + "fully pruned!" );
+            logOutput.setText( "No output" + CString.NEW_LINE_CHARS + "obiously ALox was" + CString.NEW_LINE_CHARS + "fully pruned!" );
 
 
     }

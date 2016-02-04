@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle( "ALox C# - DLL" )]
 [assembly: AssemblyDescription( "Logging and Utility classes of A-Worx GmbH" )]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCopyright( "Written 2013-2015 by A-Worx GmbH, MIT License" )]
+[assembly: AssemblyCopyright( "Written 2013-2016 by A-Worx GmbH, MIT License" )]
 [assembly: AssemblyProduct( "ALox_CS_NET45_DLL" )]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -29,5 +29,5 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion( "1.2.0.0" )]
-[assembly: AssemblyFileVersion( "1.2.0.0" )]
+[assembly: AssemblyVersion( "1602.0" )]
+[assembly: AssemblyFileVersion( "1602.0" )]

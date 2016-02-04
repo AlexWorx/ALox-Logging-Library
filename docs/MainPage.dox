@@ -1,0 +1,113 @@
+// #################################################################################################
+//  Documentation - ALox Logging Library
+//
+//  (c) 2013-2016 A-Worx GmbH, Germany
+//  Published under MIT License (Open Source License, see LICENSE.txt)
+// #################################################################################################
+
+/**
+\mainpage    ALox Main Page
+
+\tableofcontents
+
+\section mainpage_overview        Overview
+
+
+ALox is a small and efficient software library that provides an ecosystem to support structured and
+organized log output.
+
+ALox is available as
+[ALox for C++ 11](http://alexworx.github.io/ALox-Logging-Library/cpp_ref/cppmainpage.html),
+[ALox for C#](http://alexworx.github.io/ALox-Logging-Library/cs_ref/csmainpage.html) and
+[ALox for Java](http://alexworx.github.io/ALox-Logging-Library/java_ref/javamainpage.html).
+
+To reach this goal, ALox is featured by **ALib** (see ALib for
+[C++](http://alexworx.github.io/ALox-Logging-Library/cpp_ref/namespaceaworx_1_1lib.html),
+[C#](http://alexworx.github.io/ALox-Logging-Library/cs_ref/namespacecs_1_1aworx_1_1lib.html),
+[Java](http://alexworx.github.io/ALox-Logging-Library/java_ref/namespacecom_1_1aworx_1_1lib.html)),
+which is a basic utility library that among other goals
+provides *'source-compatible'* types for the three languages.
+
+ALox attempts to make logging as easy and lightweight as possible. We want you to **stop adding
+temporary debug output lines** into your code. Instead, write (with less effort!) short, nice
+and readable *ALox statements* that live in your code as if they were comment lines. Let ALox do
+the rest: Add meta information to the output, format the output, filter output based on verbosity
+level and based on your current topic of interest. Finally, get it all *pruned* out of your
+release executable, same as your source comments.
+
+On the other end of the list, ALox  enables **release logging** for productive applications
+to collect mission critical **metrics from the field**.
+
+This is **Version 1602**, the first release to colorful logging and persistent configuration.
+We are optimistic that the simple [Bauhaus Style](\ref faq_bauhaus) architecture of the library allows you
+to easily use it and even to extend it with logging features you need.
+
+We would be happy to receive your feedback and feature requests.
+
+
+\section mainpage_features        Features and Limitations
+
+To get an overview about what ALox offers, read \ref man_features_and_limitations.
+
+
+\section mainpage_documentation   Documentation
+
+In the main menu of this site (see top of the page) you will find a general manual that introduces
+into the concepts and architecture of ALox. In addition, there are platform (programming language)
+specific tutorials and class references available.
+
+\section mainpage_faq            FAQ
+This is the \ref faq
+
+\section mainpage_changelog      Version history
+A version history is provided in the \ref changelog.
+
+
+\section mainpage_contribution    How to contribute
+
+If you want to contribute by adding functionality or repairing bugs, please use
+Github standard procedures.
+For other types of contribution or questions, please contact <b>alox at a-worx dotcom</b>.
+
+\section mainpage_copyright        Copyright
+
+
+ALox is open source software, can be [downloaded at Github](http://github.com/AlexWorx/ALox-Logging-Library)
+and sources are published under the MIT License:
+
+\verbatim
+  The MIT License (MIT)
+  Copyright (c) 2013-2016 A-Worx GmbH
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy of
+  this software and associated documentation files (the "Software"), to deal in the
+  Software without restriction, including without limitation the rights to use, copy,
+  modify, merge, publish, distribute, sublicense, and/or sell copies of the Software,
+  and to permit persons to whom the Software is furnished to do so, subject to the
+  following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+  INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+  PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+  HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+  OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+\endverbatim
+
+
+\section mainpage_thanks        Thanks
+
+Our thanks go to all supporters to that help realizing this project, and to things we are
+heavily using here, especially:
+
+- To a bunch of good friends giving ideas, motivation and for being brave enough to continuously test our early releases.
+- To Mr. van Heesch for providing [Doxygen](http://www.stack.nl/~dimitri/doxygen/) software.
+- To Mr. Lafortune to provide [ProGuard](http://http://proguard.sourceforge.net).
+- To the [Eclipse Foundation](http://eclipse.org/donate/), GNU/Linux community... just all other of
+  these millions of supporters of *free software*.
+- Special thanks also to C. Darwin, who created life on earth hundreds of millions of years ago,
+  but unfortunately passed away in 1882!
+*/

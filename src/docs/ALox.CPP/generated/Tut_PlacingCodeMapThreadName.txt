@@ -1,1 +1,0 @@
-src/cpp.alox.unittests/tests_alox_tutorial.cpp(228):TestBody() [00:00.000 +006 µs] [BKGRND]       [APP]: Hello ALox

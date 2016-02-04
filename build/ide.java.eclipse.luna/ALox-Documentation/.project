@@ -20,9 +20,24 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>src</name>
+			<name>docs</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/src</locationURI>
+			<locationURI>PARENT-3-PROJECT_LOC/docs</locationURI>
+		</link>
+		<link>
+			<name>src/src.cpp</name>
+			<type>2</type>
+			<locationURI>PARENT-3-PROJECT_LOC/src.cpp</locationURI>
+		</link>
+		<link>
+			<name>src/src.cs</name>
+			<type>2</type>
+			<locationURI>PARENT-3-PROJECT_LOC/src.cs</locationURI>
+		</link>
+		<link>
+			<name>src/src.java</name>
+			<type>2</type>
+			<locationURI>PARENT-3-PROJECT_LOC/src.java</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

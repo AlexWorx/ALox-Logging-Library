@@ -5,9 +5,10 @@
 #  Published under MIT License (Open Source License, see LICENSE.txt)
 # #################################################################################################
 
+#![DOXYGEN_PROGUARD_CONFIG]
 ### input/output ###
--injars ..\ALox-Java-1.6\bin
--injars bin (tests/com/aworx/lox/*.*)
+-injars ../ALox-Java-1.6/bin
+-injars bin/ALoxSamples.class 
 -outjars bin.pruned
 
 ### for testing ###
@@ -17,15 +18,28 @@
 
 -optimizationpasses 5
 
-# Keep - class SimpleTests
--keepclasseswithmembers public class tests.com.aworx.lox.SimpleTests
+-keepclasseswithmembers public class ALoxSamples
 {
     public static void main(java.lang.String[]);
 }
 
+# Pruning AWorx Library assertions and debug messages
+-assumenosideeffects    class   com.aworx.lib.ALIB
+ {
+     void ERROR         ( java.lang.String ) ;
+     void WARNING       ( java.lang.String ) ;
+     void ASSERT        ( boolean ) ;
+     void ASSERT_ERROR  ( boolean, java.lang.String ) ;
+     void ASSERT_WARNING( boolean, java.lang.String ) ;
+ }
+#![DOXYGEN_PROGUARD_CONFIG]
+
+#![DOXYGEN_PROGUARD_CONFIG_DBG]
 # Pruning ALOX debug logging (release logging stays in)
 -assumenosideeffects    class   com.aworx.lox.Log       { <methods>;  <fields>; }
 -assumenosideeffects    class   com.aworx.lox.LogBuf    { <methods>;  <fields>; }
+#![DOXYGEN_PROGUARD_CONFIG_DBG]
+
 
 ################## Standard Proguard stuff ######################-
 

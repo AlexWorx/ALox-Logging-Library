@@ -1,151 +1,313 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="src.util">
-      <UniqueIdentifier>{89e68b08-2208-4f16-9744-5ffc227793d1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="msvc_files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="src">
+    <Filter Include="alox">
       <UniqueIdentifier>{f80572d9-94a0-409c-8d8c-f67455a6a6ad}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\core">
+    <Filter Include="alox\core">
       <UniqueIdentifier>{00907134-7864-4c41-94d5-79bca0a76479}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\loggers">
+    <Filter Include="alox\loggers">
       <UniqueIdentifier>{eb8e5f3a-b431-40bd-9907-9e2ed0b00b04}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\alox">
+    <Filter Include="alox\internals">
       <UniqueIdentifier>{c86a9bfb-cfb7-4dc4-8709-130d927fd18b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src.util\awxu">
-      <UniqueIdentifier>{b037e066-3913-408d-8b08-336bc554b911}</UniqueIdentifier>
+    <Filter Include="alox\core\textlogger">
+      <UniqueIdentifier>{7f2d51ab-b77a-4f2b-b6d6-fe3eaacedea8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="alib">
+      <UniqueIdentifier>{89e68b08-2208-4f16-9744-5ffc227793d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="alib\config">
+      <UniqueIdentifier>{4069b20a-de2a-4d03-bc43-08a9007fe5bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="alib\system">
+      <UniqueIdentifier>{66c3d0dc-94a9-4a95-9e86-f022b0a1182d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="alib\threads">
+      <UniqueIdentifier>{4331bcde-f990-4969-9675-760e84493bea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="alib\strings">
+      <UniqueIdentifier>{d7438995-edce-421d-b33b-ba9fd49e76f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="alib\time">
+      <UniqueIdentifier>{e166e740-81d8-435a-8cba-abb9021e767b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="alib\core">
+      <UniqueIdentifier>{3aa9e7d7-5a7f-47df-8146-c9a3f2319e22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="alib\compatibility">
+      <UniqueIdentifier>{c0d27242-d598-4f3d-aa47-f620b3f8efde}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\src\cpp.aworx.util\awxu.hpp">
-      <Filter>src.util</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\cpp.aworx.util\environment.hpp">
-      <Filter>src.util</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\cpp.aworx.util\thread.hpp">
-      <Filter>src.util</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\cpp.aworx.util\threadlock.hpp">
-      <Filter>src.util</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\cpp.aworx.util\astring.hpp">
-      <Filter>src.util</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\cpp.alox\core\textlogger.hpp">
-      <Filter>src\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\cpp.alox\core\callerinfo.hpp">
-      <Filter>src\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\cpp.alox\core\logdomain.hpp">
-      <Filter>src\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\cpp.alox\core\logger.hpp">
-      <Filter>src\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\cpp.alox\loggers\memorylogger.hpp">
-      <Filter>src\loggers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\cpp.alox\loggers\consolelogger.hpp">
-      <Filter>src\loggers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\cpp.alox\alox.hpp">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\cpp.aworx.util\stdafx_awxu.h">
-      <Filter>src.util</Filter>
-    </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>msvc_files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\cpp.aworx.util\ticks.hpp">
-      <Filter>src.util</Filter>
+    <ClInclude Include="..\..\..\src.cpp\alib\config\plugins.hpp">
+      <Filter>alib\config</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\cpp.alox\alox_memory_logger.hpp">
-      <Filter>src</Filter>
+    <ClInclude Include="..\..\..\src.cpp\alib\config\configuration.hpp">
+      <Filter>alib\config</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\cpp.alox\alox_console_logger.hpp">
-      <Filter>src</Filter>
+    <ClInclude Include="..\..\..\src.cpp\alib\config\inifile.hpp">
+      <Filter>alib\config</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\cpp.alox\alox\log.hpp">
-      <Filter>src\alox</Filter>
+    <ClInclude Include="..\..\..\src.cpp\alib\core\symbols.hpp">
+      <Filter>alib\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\cpp.alox\alox\lox.hpp">
-      <Filter>src\alox</Filter>
+    <ClInclude Include="..\..\..\src.cpp\alib\core\enums.hpp">
+      <Filter>alib\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\cpp.alox\alox\alox_macros.hpp">
-      <Filter>src\alox</Filter>
+    <ClInclude Include="..\..\..\src.cpp\alib\core\macros.hpp">
+      <Filter>alib\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\cpp.aworx.util\awxu\awxu_macros.hpp">
-      <Filter>src.util\awxu</Filter>
+    <ClInclude Include="..\..\..\src.cpp\alib\core\ownable.hpp">
+      <Filter>alib\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\cpp.alox\alox\alox_symbols.hpp">
-      <Filter>src\alox</Filter>
+    <ClInclude Include="..\..\..\src.cpp\alib\system\directory.hpp">
+      <Filter>alib\system</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\cpp.aworx.util\awxu\awxu_symbols.hpp">
-      <Filter>src.util\awxu</Filter>
+    <ClInclude Include="..\..\..\src.cpp\alib\threads\threadlock.hpp">
+      <Filter>alib\threads</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\threads\thread.hpp">
+      <Filter>alib\threads</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\time\ticks.hpp">
+      <Filter>alib\time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\stdafx_alib.h">
+      <Filter>alib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\alib.hpp">
+      <Filter>alib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alox\core\textlogger\textlogger.hpp">
+      <Filter>alox\core\textlogger</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alox\internals\alox_symbols.hpp">
+      <Filter>alox\internals</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alox\internals\alox_macros.hpp">
+      <Filter>alox\internals</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alox\loggers\windowsconsolelogger.hpp">
+      <Filter>alox\loggers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alox\loggers\ansilogger.hpp">
+      <Filter>alox\loggers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alox\loggers\consolelogger.hpp">
+      <Filter>alox\loggers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alox\loggers\memorylogger.hpp">
+      <Filter>alox\loggers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alox\loggers\vstudiologger.hpp">
+      <Filter>alox\loggers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alox\lox.hpp">
+      <Filter>alox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alox\alox.hpp">
+      <Filter>alox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alox\alox_console_loggers.hpp">
+      <Filter>alox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alox\log.hpp">
+      <Filter>alox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alox\core\logger.hpp">
+      <Filter>alox\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alox\core\callerinfo.hpp">
+      <Filter>alox\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\tokenizer.hpp">
+      <Filter>alib\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\applyformat.hpp">
+      <Filter>alib\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\applyto.hpp">
+      <Filter>alib\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\as.hpp">
+      <Filter>alib\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\asprealloc.hpp">
+      <Filter>alib\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\asterminatable.hpp">
+      <Filter>alib\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\cstring.hpp">
+      <Filter>alib\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\namespace.hpp">
+      <Filter>alib\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\numberformat.hpp">
+      <Filter>alib\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\compatibility\std_string.hpp">
+      <Filter>alib\compatibility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\compatibility\std_iostream.hpp">
+      <Filter>alib\compatibility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\assubstring.hpp">
+      <Filter>alib\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\asalloc.hpp">
+      <Filter>alib\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\core\report.hpp">
+      <Filter>alib\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\core\util.hpp">
+      <Filter>alib\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\core\ns_aworx.hpp">
+      <Filter>alib\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\system\system.hpp">
+      <Filter>alib\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\system\process.hpp">
+      <Filter>alib\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alox\core\textlogger\plaintextlogger.hpp">
+      <Filter>alox\core\textlogger</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alox\loggers\textfilelogger.hpp">
+      <Filter>alox\loggers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alox\core\domain.hpp">
+      <Filter>alox\core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\src\cpp.aworx.util\awxu.cpp">
-      <Filter>src.util</Filter>
-    </ClCompile>
     <ClCompile Include="ALox-CPP-DLL.cpp">
       <Filter>msvc_files</Filter>
     </ClCompile>
     <ClCompile Include="dllmain.cpp">
       <Filter>msvc_files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\cpp.aworx.util\astring.cpp">
-      <Filter>src.util</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\cpp.aworx.util\thread.cpp">
-      <Filter>src.util</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\cpp.aworx.util\environment.cpp">
-      <Filter>src.util</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\cpp.aworx.util\threadlock.cpp">
-      <Filter>src.util</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\cpp.alox\core\callerinfo.cpp">
-      <Filter>src\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\cpp.alox\core\logdomain.cpp">
-      <Filter>src\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\cpp.alox\core\logger.cpp">
-      <Filter>src\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\cpp.alox\core\textlogger.cpp">
-      <Filter>src\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\cpp.alox\loggers\consolelogger.cpp">
-      <Filter>src\loggers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\cpp.alox\loggers\memorylogger.cpp">
-      <Filter>src\loggers</Filter>
-    </ClCompile>
-    <ClCompile Include="stdafx_awxu.cpp">
+    <ClCompile Include="stdafx_alox.cpp">
       <Filter>msvc_files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\cpp.aworx.util\ticks.cpp">
-      <Filter>src.util</Filter>
+    <ClCompile Include="..\..\..\src.cpp\alib\config\configuration.cpp">
+      <Filter>alib\config</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\cpp.alox\alox\log.cpp">
-      <Filter>src\alox</Filter>
+    <ClCompile Include="..\..\..\src.cpp\alib\config\inifile.cpp">
+      <Filter>alib\config</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\cpp.alox\alox\lox.cpp">
-      <Filter>src\alox</Filter>
+    <ClCompile Include="..\..\..\src.cpp\alib\config\plugins.cpp">
+      <Filter>alib\config</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\core\alib.cpp">
+      <Filter>alib\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\system\directory.cpp">
+      <Filter>alib\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\threads\thread.cpp">
+      <Filter>alib\threads</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\threads\threadlock.cpp">
+      <Filter>alib\threads</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\time\ticks.cpp">
+      <Filter>alib\time</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alox\core\textlogger\textlogger.cpp">
+      <Filter>alox\core\textlogger</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alox\loggers\ansilogger.cpp">
+      <Filter>alox\loggers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alox\loggers\consolelogger.cpp">
+      <Filter>alox\loggers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alox\loggers\vstudiologger.cpp">
+      <Filter>alox\loggers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alox\loggers\windowsconsolelogger.cpp">
+      <Filter>alox\loggers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alox\alox.cpp">
+      <Filter>alox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alox\log.cpp">
+      <Filter>alox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alox\lox.cpp">
+      <Filter>alox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alox\core\callerinfo.cpp">
+      <Filter>alox\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alox\core\logger.cpp">
+      <Filter>alox\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\applyformat.cpp">
+      <Filter>alib\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\applyto.cpp">
+      <Filter>alib\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\as.cpp">
+      <Filter>alib\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\asterminatable.cpp">
+      <Filter>alib\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\cstring.cpp">
+      <Filter>alib\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\numberformat.cpp">
+      <Filter>alib\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\tokenizer.cpp">
+      <Filter>alib\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\compatibility\std_iostream.cpp">
+      <Filter>alib\compatibility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\assubstring.cpp">
+      <Filter>alib\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\asalloc.cpp">
+      <Filter>alib\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\core\report.cpp">
+      <Filter>alib\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\core\util.cpp">
+      <Filter>alib\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\system\process.cpp">
+      <Filter>alib\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\system\system.cpp">
+      <Filter>alib\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alox\core\textlogger\plaintextlogger.cpp">
+      <Filter>alox\core\textlogger</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alox\loggers\textfilelogger.cpp">
+      <Filter>alox\loggers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alox\core\domain.cpp">
+      <Filter>alox\core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

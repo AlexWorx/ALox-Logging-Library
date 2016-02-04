@@ -7,17 +7,20 @@
     <ProjectGuid>{4A3FA177-8BBA-4DB8-9F8F-B5A7C7FE8F13}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Util_CS___DLL</RootNamespace>
-    <AssemblyName>AWorx-Util-CS</AssemblyName>
+    <RootNamespace>ALox_CS_Net45_DLL</RootNamespace>
+    <AssemblyName>ALox-CS-.Net45-DLL</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <ReleaseVersion>1.3</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;AWORX_MONO_DEVELOP;ALOX_DEBUG</DefineConstants>
+    <BaseIntermediateOutputPath>..\..\_builds_\ide.cs.monodevelop\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Configuration)\</IntermediateOutputPath>
+    <OutputPath>..\..\_builds_\ide.cs.monodevelop\ALox-CS-.Net45-DLL\bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;ALOX_DBG_LOG;ALIB_MONO_DEVELOP;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -25,8 +28,10 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;AWORX_MONO_DEVELOP</DefineConstants>
+    <BaseIntermediateOutputPath>..\..\_builds_\ide.cs.monodevelop\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Configuration)\</IntermediateOutputPath>
+    <OutputPath>..\..\_builds_\ide.cs.monodevelop\ALox-CS-.Net45-DLL\bin\Release\</OutputPath>
+    <DefineConstants>TRACE;ALIB_MONO_DEVELOP</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -38,57 +43,108 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\src\cs.alox\core\CallerInfo.cs">
-      <Link>src\core\CallerInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\src\cs.alox\core\LogDomain.cs">
-      <Link>src\core\LogDomain.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\src\cs.alox\core\Logger.cs">
-      <Link>src\core\Logger.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\src\cs.alox\core\TextLogger.cs">
-      <Link>src\core\TextLogger.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\src\cs.alox\core\TextLoggerLineFormatter.cs">
-      <Link>src\core\TextLoggerLineFormatter.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\src\cs.alox\core\TextLoggerObjectConverter.cs">
-      <Link>src\core\TextLoggerObjectConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\src\cs.alox\Log.cs">
-      <Link>src\Log.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\src\cs.alox\loggers\ConsoleLogger.cs">
-      <Link>src\loggers\ConsoleLogger.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\src\cs.alox\loggers\MemoryLogger.cs">
-      <Link>src\loggers\MemoryLogger.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\src\cs.alox\loggers\TextFileLogger.cs">
-      <Link>src\loggers\TextFileLogger.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\src\cs.alox\Lox.cs">
-      <Link>src\Lox.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\src\cs.alox\tools\json\DynamicJSONDeserializer.cs">
-      <Link>src\tools\json\DynamicJSONDeserializer.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\src\cs.alox\tools\LogTools.cs">
-      <Link>src\tools\LogTools.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\src\cs.aworx.util\AWXU.cs">
-      <Link>src.util\AWXU.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\src\cs.aworx.util\AString.cs">
-      <Link>src.util\AString.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\src\cs.aworx.util\ThreadLock.cs">
-      <Link>src.util\ThreadLock.cs</Link>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="..\..\..\src\cs.aworx.util\Ticks.cs">
-      <Link>src.util\Ticks.cs</Link>
+    <Compile Include="..\..\..\src.cs\alib\ALib.cs">
+      <Link>ALib\ALib.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\Enums.cs">
+      <Link>ALib\Enums.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\Report.cs">
+      <Link>ALib\Report.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\ReportWriter.cs">
+      <Link>ALib\ReportWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\Util.cs">
+      <Link>ALib\Util.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\time\Ticks.cs">
+      <Link>ALib\time\Ticks.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\threads\ThreadLock.cs">
+      <Link>ALib\threads\ThreadLock.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\strings\AString.cs">
+      <Link>ALib\strings\AString.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\strings\CString.cs">
+      <Link>ALib\strings\CString.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\strings\NumberFormat.cs">
+      <Link>ALib\strings\NumberFormat.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\strings\Substring.cs">
+      <Link>ALib\strings\Substring.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\strings\Tokenizer.cs">
+      <Link>ALib\strings\Tokenizer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\config\Configuration.cs">
+      <Link>ALib\config\Configuration.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\config\ConfigurationPlugin.cs">
+      <Link>ALib\config\ConfigurationPlugin.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\config\IniFile.cs">
+      <Link>ALib\config\IniFile.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox\tools\json\DynamicJSONDeserializer.cs">
+      <Link>ALox\tools\json\DynamicJSONDeserializer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox\tools\LogTools.cs">
+      <Link>ALox\tools\LogTools.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox\loggers\AnsiLogger.cs">
+      <Link>ALox\loggers\AnsiLogger.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox\loggers\CLRDebuggerLogger.cs">
+      <Link>ALox\loggers\CLRDebuggerLogger.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox\loggers\ColorConsoleLogger.cs">
+      <Link>ALox\loggers\ColorConsoleLogger.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox\loggers\ConsoleLogger.cs">
+      <Link>ALox\loggers\ConsoleLogger.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox\loggers\MemoryLogger.cs">
+      <Link>ALox\loggers\MemoryLogger.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox\loggers\TextFileLogger.cs">
+      <Link>ALox\loggers\TextFileLogger.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox\core\CallerInfo.cs">
+      <Link>ALox\core\CallerInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox\core\Logger.cs">
+      <Link>ALox\core\Logger.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox\core\textlogger\AutoSizes.cs">
+      <Link>ALox\core\textlogger\AutoSizes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox\core\textlogger\MetaInfo.cs">
+      <Link>ALox\core\textlogger\MetaInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox\core\textlogger\ObjectConverter.cs">
+      <Link>ALox\core\textlogger\ObjectConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox\core\textlogger\TextLogger.cs">
+      <Link>ALox\core\textlogger\TextLogger.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox\ESC.cs">
+      <Link>ALox\ESC.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox\Log.cs">
+      <Link>ALox\Log.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox\Lox.cs">
+      <Link>ALox\Lox.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox\core\textlogger\PlainTextLogger.cs">
+      <Link>ALox\core\textlogger\PlainTextLogger.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox\core\Domain.cs">
+      <Link>ALox\core\Domain.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup />
@@ -109,4 +165,13 @@
     <Message Text="Removing Doxygen generated files..." />
     <RemoveDir Directories="$(ProjectDir)doc\html;$(ProjectDir)doc\latex" />
   </Target>
+  <ItemGroup>
+    <Folder Include="ALox\core\textlogger\" />
+    <Folder Include="ALox\loggers\" />
+    <Folder Include="ALox\tools\json\" />
+    <Folder Include="ALib\strings\" />
+    <Folder Include="ALib\threads\" />
+    <Folder Include="ALib\config\" />
+    <Folder Include="ALib\time\" />
+  </ItemGroup>
 </Project>

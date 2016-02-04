@@ -1,0 +1,28 @@
+// #################################################################################################
+//  Documentation - ALox Logging Library
+//
+//  (c) 2013-2016 A-Worx GmbH, Germany
+//  Published under MIT License (Open Source License, see LICENSE.txt)
+// #################################################################################################
+
+/**
+\page man_concepts        Concepts of ALox Logging
+
+Within this chapter an in-depth view into several concepts of ALox logging is provided.
+This chapter is of interest for ALox users who want to maximize the benefits of ALox, apart from
+standard debug log output.
+
+\note <b>Differences of ALox for C++, C# and Java</b>:<br>
+      As ALox is available for C++, C# and Java, the class and member names within this document
+      may vary a little per language. Especially the class **Log** has no interface in C++ while
+      in C# and Java its' interface is a copy of that of class **Lox**, made for pruning the code.
+      In contrast, in C++ the macros Log_xxx and Lox_xxx are used to provide pruned and non-pruned
+      access to methods of class Lox. Please remember this, when reading this manual and translate
+      the references used herein to the right ones of the language of your choice.
+
+
+- \subpage man_alox_architecture
+- \subpage man_levelsanddomains
+- \subpage man_loggers
+
+*/

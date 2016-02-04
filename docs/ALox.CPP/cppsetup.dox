@@ -1,0 +1,400 @@
+// #################################################################################################
+//  Documentation - ALox Logging Library
+//
+//  (c) 2013-2016 A-Worx GmbH, Germany
+//  Published under MIT License (Open Source License, see LICENSE.txt)
+// #################################################################################################
+
+/**
+\page cppsetup      IDE/Build system Setup
+
+\tableofcontents
+
+# 1. Introduction # {#cppsetup_1}
+
+To use ALox, you need to
+- compile the ALox library and
+- configure your project to use the library.
+
+\note Visual Studio users under Windows might have a quick start by doing the
+\ref cppsetup_download "download"
+and then using the pre-configured sample solution as described in \ref cppsetup_vstudio.
+
+Altogether this should not be too difficult to set up and this does not differ from the use of
+other C++ libraries.
+
+Currently, ALox provides ready to use project files for
+- <em>CMake</em>.
+- <em>QT Creator</em> (through its great CMake support).
+- <em>Microsoft Visual Studio</em>.
+
+If you compile your C++ code with a different build system/IDE, all you need to know is two things:
+- the list of source files and
+- which \ref cppprepro_compsymbols "Compilation Symbols"
+  need to be set on compilation of debug and release configurations.
+
+__Important Note:__<br>
+To keep this document simple in language, the following terms are used:
+- *project*: A source code entity defined in an IDE or other build system. Could be a library, an
+  executable or other entity.
+- *solution*: A 'container' defined in an IDE or other build system that comprises a set of
+  projects that belong together.
+
+As a sample: using CMake, the solution would be the <em>CMakeLists.txt</em> file, and the projects would
+be the targets within such file.
+
+<br>
+# 2. Download #      {#cppsetup_download}
+Unpack the ALox distribution (e.g. as zip) from
+[Alox at GitHub](https://github.com/AlexWorx/ALox-Logging-Library)
+and move all its contents to a place where you commonly store 3rd party libraries your projects
+are using.
+
+In this tutorial, we call this folder the <b><em>ALOX_LIB_PATH</em></b>.
+After downloading and unpacking ALox within the folder *ALOX_LIB_PATH* you should find at least
+the following subfolders:
+
+        ALOX_LIB_PATH\src.cpp
+        ALOX_LIB_PATH\build
+        ALOX_LIB_PATH\html
+
+<br>
+# 3. Set up the Built System # {#cppsetup_setup}
+
+Depending on the platform and build system you are using, this setup tutorial provides you
+the following options of where to continue reading:
+
+- If you are using CMake, read \ref cppsetup_cmake
+- If you are using QT Creator, continue with \ref cppsetup_qtcreator
+- If you are using Microsoft Visual Studio, next is \ref cppsetup_vstudio
+
+You are still here? OK, no worries. ALox is not too hard to compile from scratch.<br>
+The sources of ALox are found in the following two folders and their sub-folders:
+
+        ALOX_LIB_PATH/src.cpp/alib
+        ALOX_LIB_PATH/src.cpp/alox
+
+Optionally, the unit tests (which do not belong into the library) are found in:
+
+        ALOX_LIB_PATH/src.cpp/alib.unittests
+        ALOX_LIB_PATH/src.cpp/alox.unittests
+
+All you need to do is to setup a library project with the ALox sources and link your own project
+to that library.<p>
+Both, the ALox library and your project might need to pass define symbols to the C++ compiler.
+Be sure to read about the \ref cppprepro carefully if you setup a project from scratch. To test
+your setup, continue reading here:
+\ref cppsetup_testsetup "Test your setup".
+
+
+## 3.1. Using ALox with CMake##    {#cppsetup_cmake}
+
+This CMake configuration was used and tested only with CMake 3.4.2 on GNU/Linux (Arch Linux),
+with GNU Compiler Collection 5.3. We hope you do not run into too much trouble on other platforms.
+
+As ALox builds upon \ref aworx::lib "ALib", there are two CMake files that configure both
+libraries. These files are
+
+        ALOX_LIB_PATH/build/cmake.cpp/ALib_Base.cmake
+        ALOX_LIB_PATH/build/cmake.cpp/ALox_Base.cmake
+
+The second includes the first automatically, therefore only \e ALox_Base.cmake needs to
+be included from any project's CMake file. Before inclusion, CMake variable \e ALOX_BASE_DIR has
+to be set. In addition library features can be defined prior to including the file. These
+features are set trough CMake by passing corresponding preprocessor symbols to the compiler
+as specified in the ALib/ALox documentation here:
+\ref cppprepro "Compilation Symbols".
+
+The following snippet may be copied to your own CMake file, the only thing that has to be
+changed is the path (this snippet is taken from a sample project that resides in a sub-folder,
+therefore the \e "../../..").
+
+\snippet "../../build/cmake.cpp/alox.samples/CMakeLists.txt"        DOXYGEN_CMAKE_INCLUDE
+
+
+With this, some CMake variables (objects) are defined and along with that one target, named
+\b ALox_StaticLib. This target contains some \e PUBLIC CMake settings, which are \e 'inherited' to
+targets that add \e ALox_StaticLib as a link library.
+
+Now, all that is needed is to add the library to your own CMake target, as shown in the
+following sample:
+\snippet "../../build/cmake.cpp/alox.samples/CMakeLists.txt"        DOXYGEN_CMAKE_SAMPLE_TARGET
+
+Notes:
+- The include directory for ALib/ALox header files 'inherited' from the target \e ALox_StaticLib
+  is set to
+
+        ALOX_LIB_PATH/src.cpp/
+
+  This means that in your projects' source code, header files have to be included using the
+  prefixes \e 'alib/' and \e 'alox/', for example, the main header files are included as:
+
+        #include "alib/alib.hpp"
+        #include "alox/alox.hpp"
+
+  This is to avoid any collisions with your own or other libraries header file names.
+
+- The variables \e AWORX_COMPILE_FLAGS and \e AWORX_LINK_FLAGS define C++ compiler and linker
+  options for target \e ALox_StaticLib. Of-course, for your target, you can use your own options.
+  Here, we are reusing them, as this snippet comes from an ALox sample project.
+
+- When \ref cppprepro "Compilation Symbol" \e ALIB_FEAT_THREADS is \e On (the default), then
+  the following CMake commands are executed in CMake script \e ALib_Base.cmake:
+  \snippet "../../build/cmake.cpp/ALib_Base.cmake"        DOXYGEN_CMAKE_FIND_THREADS
+  Therefore, when adding \e ALIB_EXTERNAL_LIBS with CMake command \e target_link_libraries,
+  multi-threading support is already added to your target.<br>
+  In the current version of ALib/ALox, no other external library dependencies are set and this is
+  very unlikely to change in the future. This means that CMake variable \e ALOX_EXTERNAL_LIBS which is also
+  added in the snippet above to the target, is empty and provided only for completeness.
+
+
+
+<b>To build the sample project, perform the following steps:</b>
+
+- open a console window and cd into directory:
+
+        ALOX_LIB_PATH/build/cmake.cpp/alox.samples/
+
+- create two sub-directories from here, one named *debug* and the other *release*
+- cd into directory *debug* and type
+
+        cmake ..
+
+- once cmake has run, type
+
+        make
+
+The compiled sample executable should have been created and you can start it with
+
+        ./SampleDebugLogAndReleaseLog
+
+When you run it, the output should contain the following lines:
+
+\verbatim
+cout: Do some debug logging:
+src.cpp/alox.samples/debug_and_release_log/debug_and_release_log.cpp(30):helloWorldDebugLog() [00:00.000 +049 µs] [MAIN] [NULL] (001): Hello ALox, this is debug logging
+cout: Do some release logging:
+[00:00.000 +029 µs] [MAIN]       [A_DOMAIN] (001): Hello ALox, this is release logging
+\endverbatim
+
+
+For a <b>release build</b>, the steps are the same with one important exclamation.
+After you cd into the 'release' folder, the cmake command is:
+
+        cmake -DCMAKE_BUILD_TYPE=Release ..
+
+instead of just *cmake ..*. (The *CMAKE_BUILD_TYPE* is set to *Debug* by default.)<br>
+
+When you run the executable, the output should contain the following lines:
+
+\verbatim
+cout: Do some debug logging:
+cout: should not have logged something (this is the release version)
+
+cout: Do some release logging:
+[00:00.000 +010 µs] [MAIN]       [SIMPLE]: Hello ALox, this is release logging
+\endverbatim
+
+As you can see, the release version is missing the debug log output.
+
+You have successfully compiled ALox and a sample project on your platform. Now it is
+your task to configure your own project that is supposed to use ALox accordingly.
+
+When you're done, you can go ahead and \ref cppsetup_testsetup "test your setup"!
+
+
+<b>Compiling the unit tests:</b>
+
+Compiling the unit tests is similar to the steps described above. The project location is
+
+ALOX_LIB_PATH/build/cmake.cpp/unittests/
+
+For the unit tests, \e Google \e gtest and \e gmock libraries get downloaded (once) and Incorporated
+as source projects within the binary folder. This means:
+ - these libraries do not need to be installed anywhere else on the system
+ - these libraries get deleted and recompiled when deleting the binary folder
+   ("debug" respectively "release").
+ - for the download and setup of these libraries, a quick macro is used
+   (see file DownloadOnceAndAddAsSourceProject.cmake). This macro downloads the source zip-files
+   only once and stores them within the main CMake build folder. Hence, even after a
+   "make clean", these sources will not be downloaded twice.
+
+<b>Other Notes on CMake:</b>
+
+- To analyze compiler and linker flags, do a manual build from the shell as follows:
+
+        make VERBOSE=1 |grep "/usr/bin/c++"
+
+  (this is not ALox specific, just a reminder, might look different depending on your setup)
+- Do not hesitate to open and read the CMake files
+
+        ALOX_LIB_PATH/build/cmake.cpp/ALib_Base.cmake
+        ALOX_LIB_PATH/build/cmake.cpp/ALox_Base.cmake
+
+  They are well documented and may contain some first hints if problems arise.
+- Currently, there is no 'installable' version available of ALib/ALox. To avoid compiling
+  the library with your project, you have to compile the project found in:
+
+        ALOX_LIB_PATH/build/cmake.cpp/alox.lib/
+
+  and include the library to your CMake project \e 'manually'
+
+- The library names get some name extensions depending on the \ref cppprepro "Compilation Symbols"
+  chosen. It is important to not link compilation units with mixed compilation symbols.
+  ALib/ALox have a built-in mechanism to detect such misconfigurations which are automatically
+  invoked with method  \ref aworx::lox::Log::Init "Log::Init" (also in release-builds).
+
+  Refer to
+  \ref aworx::lib::ALIB::VerifyCompilationFlags "ALIB::VerifyCompilationFlags" and
+  \ref aworx::lox::Log::checkLibraryVersions "Log::checkLibraryVersions" for more information.
+
+## 3.2. Using ALox with QT Creator##    {#cppsetup_qtcreator}
+<em>QT Creator</em> has a built in CMake support which works really well (tested version is 3.6).
+Should you have problems in setting up ALox with <em>QT Creator</em>, it is advised to have
+a try on the CMake setup first. In this case, follow the instructions of the previous
+chapter \ref cppsetup_cmake.
+If this succeeds, you will know that your platform and CMake prerequisites are met.
+
+In menu \e File of <em>QT Creator</em> and choose <em>Open File or Project...</em> and
+select the file:
+
+        ALOX_LIB_PATH/build/cmake.cpp/alox.samples/CMakeLists.txt
+
+Follow the project setup as <em>QT Creator</em> documentation suggests.
+When the CMake run dialog appears, for debug builds, no arguments need to be passed. For release
+builds, provide
+
+        -DCMAKE_BUILD_TYPE=Release
+
+as the CMake Arguments
+
+The ALox sample project is now ready to be build in <em>QT Creator</em>
+
+When you run it, the output should contain the following lines:
+
+\verbatim
+cout: Do some debug logging:
+src.cpp/alox.samples/ALoxSamples.cpp(32):DebugLog() [00:00.000 +049 µs] [MAIN] [NULL] (001): Hello ALox, this is debug logging
+cout: Do some release logging:
+[00:00.000 +029 µs] [MAIN]       [A_DOMAIN] (001): Hello ALox, this is release logging
+\endverbatim
+
+For a <b>release build</b>, the output should contain the following lines:
+
+\verbatim
+cout: Do some debug logging:
+cout: should not have logged something (this is the release version)
+
+cout: Do some release logging:
+[00:00.000 +010 µs] [MAIN]       [SIMPLE]: Hello ALox, this is release logging
+\endverbatim
+
+You are set! You have successfully compiled ALox and a sample project on your platform.
+Now it is your task to configure your own project in <em>QT Creator</em>, that is supposed to
+use ALox accordingly. For details on how to configure your CMake file, see previous section
+\ref cppsetup_cmake.
+
+When you're done, you can go ahead and \ref cppsetup_testsetup "test your setup"!
+
+## 3.3. Using ALox with Visual Studio##    {#cppsetup_vstudio}
+
+When you are new to ALox and you just want to play around with it a bit, the easiest thing
+is to open the Visual studio solution found in
+
+        ALOX_LIB_PATH/build/ide.cpp.vstudio/Solution/ALox-CPP.sln
+
+You are set! For example you could walk through the \ref cpptutorial by adding the tutorial
+code to the main() function of the project *ALox-CPP-Sample-DebugAndReleaseLog*.
+
+
+
+## 3.3.1 Open provided DLL project##    {#cppsetup_vstudio1}
+ALox provides a Visual Studio project that compiles ALox into a DLL.
+The projects is located in:
+
+        ALOX_LIB_PATH/build/ide.cpp.vstudio/ALox-CPP-DLL/
+
+Add this project to your solution.
+
+## 3.3.2. Set build dependency##    {#cppsetup_vstudio2}
+
+Set a build dependency from your project to the just added *ALox-CPP-DLL* project.
+If you do not know how to do that, consult the <em>Visual Studio</em> manual.
+In Version 2013 the steps (roughly) are:
+
+   - right click your project in solution explorer
+   - choose context menu **Build Dependencies / Project dependencies...**
+   - tick the check box for the *ALox-CPP-DLL* project.
+
+
+## 3.3.3. Reference the ALox library from within your project ##    {#cppsetup_vstudio3}
+Add the ALox-CP-DLL project as a reference to your project. If you do
+not know how to do that, consult your IDEs manual.
+In Version 2013 the steps (roughly) are:
+
+   - right click your project in solution explorer
+   - choose context menu **Add / References...**
+   - on the bottom of the dialog box that appeared click <em>Add New Reference...</em>
+   - on the left side of the dialog box that appeared choose <em>Solution</em> and <em>Projects</em>
+   - tick the check box for the *ALox-CPP-DLL* project.
+
+## 3.3.4. Add the ALox include directory to your project ##    {#cppsetup_vstudio4}
+The C++ compiler needs to know about the directory where the ALox headers
+reside.
+
+   - \c ALOX_LIB_PATH/src.cpp
+
+In Version 2013 the steps (roughly) are:
+   - right click your project in solution explorer
+   - choose **Properties**
+   - on the top of the dialog box that appeared choose **All Configurations**
+   - on the left side of the dialog box that appeared choose
+     **Configuration Properties** and **VC++ Directories**
+   - add the full path of the directory listed above, separated by a semicolon,
+     to the list under <em>Include Directories</em>
+
+That's it for Visual Studio users. Go ahead and
+\ref cppsetup_testsetup "test your setup"!
+
+\note
+When using ALox in a Microsoft Windows software, it may be important to
+include <em>windows.h</em> prior to any ALox header file. The reason is, that ALib
+(used by ALox) includes <em>windows.h</em> unless it was included already. When ALib
+library includes <em>windows.h</em>, it uses some defines like <em>WIN32_LEAN_AND_MEAN</em>
+or <em>NOGDI</em> to minimize the impact of that huge header file. If <em>windows.h</em>
+is included prior to including ALox (AWorx library), it is up to the embedding application
+which level of windows functionality is needed.
+<br>
+
+
+# 4. Test your setup #  {#cppsetup_testsetup}
+
+To test your setup, add minimum ALox functionality to your project (as described in the first
+chapter of \ref cpptutorial) into your main method or anywhere you think it is appropriate:
+
+\snippet ut_alox_tutorial.cpp        Tut_Understanding_ALox_All
+
+You are set if:
+- your project compiles and runs without error
+- you see the log output when running the debug version
+- you do not see the log output when running the release version
+
+# 5. Wrap up #  {#cppsetup_wrapup}
+
+Let's wrap up what was said:
+- You can use predefined library projects for *CMake*, and IDEs *QT* and *Visual Studio*
+- You can incorporate ALox sources into a library project you create with any other build system
+  or platform you use
+- Alternatively, you can include ALox sources directly into your project (not recommended)
+- You have to reference the ALox library from your project
+
+Once you are set, make sure to read:
+
+- \ref cpptutorial
+- A short chapter \ref cppprepro_macros that describes how pruning debug log statements from the
+  code is implemented in ALox for C++. This is needed to understand how to use ALox without getting
+  compilation errors in release versions while debug compiles fine.
+- Some further info about ALox features and its architecture in [ALox User Manual](../manual.html)
+- The  [C++ Class Reference](annotated.html).
+
+*/

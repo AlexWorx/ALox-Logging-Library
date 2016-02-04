@@ -32,19 +32,19 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>java.alib</name>
+			<type>2</type>
+			<locationURI>PARENT-3-PROJECT_LOC/src.java/alib</locationURI>
+		</link>
+		<link>
 			<name>java.alox</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/src/java.alox</locationURI>
+			<locationURI>PARENT-3-PROJECT_LOC/src.java/alox</locationURI>
 		</link>
 		<link>
-			<name>java.android.alox</name>
+			<name>java.alox.android</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/src/java.android.alox</locationURI>
-		</link>
-		<link>
-			<name>java.aworx.util</name>
-			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/src/java.aworx.util</locationURI>
+			<locationURI>PARENT-3-PROJECT_LOC/src.java/alox.android</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

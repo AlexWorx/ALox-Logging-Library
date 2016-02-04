@@ -1,3 +1,0 @@
-src/cs.alox.unittests/Tests_Tutorial.cs(151):Tut_DefaultDomains() [00:00.000 +050 µs] [TestRunnerThread(10)] [ERR] [APP]: A severe error happened :-(
-src/cs.alox.unittests/Tests_Tutorial.cs(152):Tut_DefaultDomains() [00:00.000 +173 µs] [TestRunnerThread(10)] [WRN] [APP]: This is a warning :-/ Maybe an error follows?
-src/cs.alox.unittests/Tests_Tutorial.cs(153):Tut_DefaultDomains() [00:00.000 +150 µs] [TestRunnerThread(10)]       [APP]: Just for your further information!

@@ -1,31 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{2C2C70DA-BC59-49F0-9C1B-2DB5BB2CD50E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>ALoxCPPDLL</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -35,33 +57,73 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir);$(ProjectDir)/../../../src/cpp.aworx.util;$(ProjectDir)/../../../src/cpp.alox;$(IncludePath)</IncludePath>
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IncludePath>$(ProjectDir);$(ProjectDir)/../../../src.cpp;$(ProjectDir)/../../../src.cpp/alox;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)..\..\_builds_\ide.cpp.vstudio\bin_$(Platform)_$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\_builds_\ide.cpp.vstudio\tmp_$(Platform)_$(Configuration)_$(ProjectName)\</IntDir>
+    <TargetName>ALox_$(Platform)_$(Configuration)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(ProjectDir);$(ProjectDir)/../../../src.cpp;$(ProjectDir)/../../../src.cpp/alox;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)..\..\_builds_\ide.cpp.vstudio\bin_$(Platform)_$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\_builds_\ide.cpp.vstudio\tmp_$(Platform)_$(Configuration)_$(ProjectName)\</IntDir>
+    <TargetName>ALox_$(Platform)_$(Configuration)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir);$(ProjectDir)/../../../src/cpp.aworx.util;$(ProjectDir)/../../../src/cpp.alox;$(IncludePath)</IncludePath>
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IncludePath>$(ProjectDir);$(ProjectDir)/../../../src.cpp;$(ProjectDir)/../../../src.cpp/alox;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)..\..\_builds_\ide.cpp.vstudio\bin_$(Platform)_$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\_builds_\ide.cpp.vstudio\tmp_$(Platform)_$(Configuration)_$(ProjectName)\</IntDir>
+    <TargetName>ALox_$(Platform)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(ProjectDir);$(ProjectDir)/../../../src.cpp;$(ProjectDir)/../../../src.cpp/alox;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)..\..\_builds_\ide.cpp.vstudio\bin_$(Platform)_$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\_builds_\ide.cpp.vstudio\tmp_$(Platform)_$(Configuration)_$(ProjectName)\</IntDir>
+    <TargetName>ALox_$(Platform)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>EnableAllWarnings</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>AWXU_DLL_EXPORTS;ALOX_DLL_EXPORTS;AWORX_VSTUDIO_ON;WIN32;_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ALIB_DLL_EXPORTS;ALOX_DLL_EXPORTS;ALIB_VSTUDIO_ON;WIN32;_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <DisableSpecificWarnings>4652;4711</DisableSpecificWarnings>
-      <PrecompiledHeaderFile>stdafx_awxu.h</PrecompiledHeaderFile>
+      <DisableSpecificWarnings>4652;4711;4458;4459</DisableSpecificWarnings>
+      <PrecompiledHeaderFile>alib/stdafx_alib.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>EnableAllWarnings</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>ALIB_DLL_EXPORTS;ALOX_DLL_EXPORTS;ALIB_VSTUDIO_ON;WIN32;_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <DisableSpecificWarnings>4652;4711;4458;4459</DisableSpecificWarnings>
+      <PrecompiledHeaderFile>alib/stdafx_alib.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <TargetMachine>NotSet</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -71,10 +133,29 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>AWXU_DLL_EXPORTS;ALOX_DLL_EXPORTS;AWORX_VSTUDIO_ON;WIN32;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ALIB_DLL_EXPORTS;ALOX_DLL_EXPORTS;ALIB_VSTUDIO_ON;WIN32;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <DisableSpecificWarnings>4652;4711</DisableSpecificWarnings>
-      <PrecompiledHeaderFile>stdafx_awxu.h</PrecompiledHeaderFile>
+      <DisableSpecificWarnings>4652;4711;4458;4459</DisableSpecificWarnings>
+      <PrecompiledHeaderFile>alib/stdafx_alib.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>EnableAllWarnings</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>ALIB_DLL_EXPORTS;ALOX_DLL_EXPORTS;ALIB_VSTUDIO_ON;WIN32;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <DisableSpecificWarnings>4652;4711;4458;4459</DisableSpecificWarnings>
+      <PrecompiledHeaderFile>alib/stdafx_alib.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -84,61 +165,120 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\src\cpp.alox\alox.hpp" />
-    <ClInclude Include="..\..\..\src\cpp.alox\alox\alox_macros.hpp" />
-    <ClInclude Include="..\..\..\src\cpp.alox\alox\alox_symbols.hpp" />
-    <ClInclude Include="..\..\..\src\cpp.alox\alox\log.hpp" />
-    <ClInclude Include="..\..\..\src\cpp.alox\alox\lox.hpp" />
-    <ClInclude Include="..\..\..\src\cpp.alox\alox_console_logger.hpp" />
-    <ClInclude Include="..\..\..\src\cpp.alox\alox_memory_logger.hpp" />
-    <ClInclude Include="..\..\..\src\cpp.alox\core\callerinfo.hpp" />
-    <ClInclude Include="..\..\..\src\cpp.alox\core\logdomain.hpp" />
-    <ClInclude Include="..\..\..\src\cpp.alox\core\logger.hpp" />
-    <ClInclude Include="..\..\..\src\cpp.alox\core\textlogger.hpp" />
-    <ClInclude Include="..\..\..\src\cpp.alox\loggers\consolelogger.hpp" />
-    <ClInclude Include="..\..\..\src\cpp.alox\loggers\memorylogger.hpp" />
-    <ClInclude Include="..\..\..\src\cpp.aworx.util\astring.hpp" />
-    <ClInclude Include="..\..\..\src\cpp.aworx.util\awxu.hpp" />
-    <ClInclude Include="..\..\..\src\cpp.aworx.util\awxu\awxu_macros.hpp" />
-    <ClInclude Include="..\..\..\src\cpp.aworx.util\awxu\awxu_symbols.hpp" />
-    <ClInclude Include="..\..\..\src\cpp.aworx.util\environment.hpp" />
-    <ClInclude Include="..\..\..\src\cpp.aworx.util\stdafx_awxu.h" />
-    <ClInclude Include="..\..\..\src\cpp.aworx.util\thread.hpp" />
-    <ClInclude Include="..\..\..\src\cpp.aworx.util\threadlock.hpp" />
-    <ClInclude Include="..\..\..\src\cpp.aworx.util\ticks.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\alib.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\compatibility\std_iostream.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\compatibility\std_string.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\config\configuration.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\config\inifile.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\config\plugins.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\core\enums.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\core\macros.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\core\ns_aworx.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\core\ownable.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\core\report.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\core\symbols.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\core\util.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\stdafx_alib.h" />
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\applyformat.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\applyto.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\as.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\asalloc.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\asprealloc.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\assubstring.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\asterminatable.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\cstring.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\namespace.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\numberformat.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\tokenizer.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\system\directory.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\system\process.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\system\system.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\threads\thread.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\threads\threadlock.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\time\ticks.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alox\alox.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alox\alox_console_loggers.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alox\core\callerinfo.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alox\core\domain.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alox\core\logger.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alox\core\textlogger\plaintextlogger.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alox\core\textlogger\textlogger.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alox\internals\alox_macros.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alox\internals\alox_symbols.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alox\log.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alox\loggers\ansilogger.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alox\loggers\consolelogger.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alox\loggers\memorylogger.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alox\loggers\textfilelogger.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alox\loggers\vstudiologger.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alox\loggers\windowsconsolelogger.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alox\lox.hpp" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\src\cpp.alox\alox\log.cpp" />
-    <ClCompile Include="..\..\..\src\cpp.alox\alox\lox.cpp" />
-    <ClCompile Include="..\..\..\src\cpp.alox\core\callerinfo.cpp" />
-    <ClCompile Include="..\..\..\src\cpp.alox\core\logdomain.cpp" />
-    <ClCompile Include="..\..\..\src\cpp.alox\core\logger.cpp" />
-    <ClCompile Include="..\..\..\src\cpp.alox\core\textlogger.cpp" />
-    <ClCompile Include="..\..\..\src\cpp.alox\loggers\consolelogger.cpp" />
-    <ClCompile Include="..\..\..\src\cpp.alox\loggers\memorylogger.cpp" />
-    <ClCompile Include="..\..\..\src\cpp.aworx.util\astring.cpp" />
-    <ClCompile Include="..\..\..\src\cpp.aworx.util\awxu.cpp" />
-    <ClCompile Include="..\..\..\src\cpp.aworx.util\environment.cpp" />
-    <ClCompile Include="..\..\..\src\cpp.aworx.util\thread.cpp" />
-    <ClCompile Include="..\..\..\src\cpp.aworx.util\threadlock.cpp" />
-    <ClCompile Include="..\..\..\src\cpp.aworx.util\ticks.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\compatibility\std_iostream.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\config\configuration.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\config\inifile.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\config\plugins.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\core\alib.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\core\report.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\core\util.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\applyformat.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\applyto.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\as.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\asalloc.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\assubstring.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\asterminatable.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\cstring.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\numberformat.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\tokenizer.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\system\directory.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\system\process.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\system\system.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\threads\thread.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\threads\threadlock.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\time\ticks.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alox\alox.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alox\core\callerinfo.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alox\core\domain.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alox\core\logger.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alox\core\textlogger\plaintextlogger.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alox\core\textlogger\textlogger.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alox\log.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alox\loggers\ansilogger.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alox\loggers\consolelogger.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alox\loggers\textfilelogger.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alox\loggers\vstudiologger.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alox\loggers\windowsconsolelogger.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alox\lox.cpp" />
     <ClCompile Include="ALox-CPP-DLL.cpp" />
     <ClCompile Include="dllmain.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</CompileAsManaged>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</CompileAsManaged>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</CompileAsManaged>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
       <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Level3</WarningLevel>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Level3</WarningLevel>
       <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Level3</WarningLevel>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Level3</WarningLevel>
     </ClCompile>
-    <ClCompile Include="stdafx_awxu.cpp">
+    <ClCompile Include="stdafx_alox.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Level4</WarningLevel>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Level4</WarningLevel>
       <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Level4</WarningLevel>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Level4</WarningLevel>
     </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

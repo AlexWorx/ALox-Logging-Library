@@ -1,2 +1,0 @@
-(Tests_Tutorial.java:148) Tut_DefaultDomains(): [00:00.000 +239 µs] [main(1)] [***] [APP]: Logger 'CONSOLE': log domain 'APP' not found. Created. Inherited domain level is: All 
-(Tests_Tutorial.java:148) Tut_DefaultDomains(): [00:00.000 +239 µs] [main(1)]       [APP]: Hallo ALox

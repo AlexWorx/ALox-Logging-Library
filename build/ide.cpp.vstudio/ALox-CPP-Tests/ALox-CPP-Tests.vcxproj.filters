@@ -5,42 +5,84 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="tests.aworx.util">
-      <UniqueIdentifier>{49aa8898-6cee-4544-8138-d73215dd4eea}</UniqueIdentifier>
-    </Filter>
     <Filter Include="tests.alox">
       <UniqueIdentifier>{c9dae3c9-33d1-4ee1-a88f-8490de9c3baa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tests.alib">
+      <UniqueIdentifier>{49aa8898-6cee-4544-8138-d73215dd4eea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tests.alib\docsamples">
+      <UniqueIdentifier>{ebfc101c-8e0a-4579-b396-b19f09dd3b52}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
       <Filter>msvc_files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\cpp.aworx.util.unittests\awx_unittests.hpp">
-      <Filter>tests.aworx.util</Filter>
+    <ClInclude Include="..\..\..\src.cpp\alib.unittests\aworx_unittests.hpp">
+      <Filter>tests.alib</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\src\cpp.aworx.util.unittests\tests_awx_util_astring.cpp">
-      <Filter>tests.aworx.util</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\cpp.aworx.util.unittests\tests_awx_util_threads.cpp">
-      <Filter>tests.aworx.util</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\cpp.aworx.util.unittests\tests_awx_util_ticktime.cpp">
-      <Filter>tests.aworx.util</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\cpp.aworx.util.unittests\awx_unittests.cpp">
-      <Filter>tests.aworx.util</Filter>
-    </ClCompile>
     <ClCompile Include="stdafx_alox_unittests.cpp">
       <Filter>msvc_files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\cpp.alox.unittests\tests_alox_tutorial.cpp">
+    <ClCompile Include="..\..\..\src.cpp\alib.unittests\aworx_unittests.cpp">
+      <Filter>tests.alib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_alox_tutorial.cpp">
       <Filter>tests.alox</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\cpp.alox.unittests\tests_alox.cpp">
+    <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_alox_documentation_samples.cpp">
       <Filter>tests.alox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_alox_log_dbg.cpp">
+      <Filter>tests.alox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_alox_log_rel.cpp">
+      <Filter>tests.alox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_alox_loggers.cpp">
+      <Filter>tests.alox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_time.cpp">
+      <Filter>tests.alib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_config.cpp">
+      <Filter>tests.alib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_strings_astring.cpp">
+      <Filter>tests.alib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_strings_basic.cpp">
+      <Filter>tests.alib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_strings_numberformat.cpp">
+      <Filter>tests.alib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_strings_tokenizer.cpp">
+      <Filter>tests.alib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_system_environment.cpp">
+      <Filter>tests.alib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_threads.cpp">
+      <Filter>tests.alib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib.unittests\docsamples\DOX_ALIB_TOKENIZER.cpp">
+      <Filter>tests.alib\docsamples</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib.unittests\docsamples\DOX_ALIB_APPLYTO.cpp">
+      <Filter>tests.alib\docsamples</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib.unittests\docsamples\DOX_ALIB_ASTRING.cpp">
+      <Filter>tests.alib\docsamples</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib.unittests\docsamples\DOX_ALIB_TOAS.cpp">
+      <Filter>tests.alib\docsamples</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_alox_tutorial_minimum.cpp">
+      <Filter>tests.alib</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

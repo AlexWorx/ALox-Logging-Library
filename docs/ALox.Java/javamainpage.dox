@@ -1,0 +1,75 @@
+// #################################################################################################
+//  Documentation - ALox Logging Library
+//
+//  (c) 2013-2016 A-Worx GmbH, Germany
+//  Published under MIT License (Open Source License, see LICENSE.txt)
+// #################################################################################################
+
+/**
+\page javamainpage    Java Reference
+
+
+# Welcome to ALox for Java! #
+
+This part of the ALox Logging library documentation is specific to its Java Implementation.<br>
+The following information is found here:
+
+## Tutorial ##
+If you are new to ALox, the easiest way to get familiar with it, is to walk yourself
+through the \ref javatutorial.
+
+## Project Setup ##
+The steps to configure Eclipse or any other Java IDE to support ALox is described
+here: \ref javasetup.
+
+## ALox for Android ##
+
+The Java Version is compatible with Android development and supports logging into LogCat.
+To stream ALox into LogCat create a logger of type [AndroidLogCatLogger](@ref com.aworx.lox.android.AndroidLogCatLogger)
+instead of type [ConsoleLogger](@ref com.aworx.lox.loggers.ConsoleLogger)
+
+    Log.addLogger( new AndroidLogCatLogger("LogCat") );
+
+Attention: The normal [ConsoleLogger](@ref com.aworx.lox.loggers.ConsoleLogger) would not produce any visible output using
+the Android Emulator or a debugging device.
+
+## Pruning ALox from your release code ##
+Unlike C# (beginning in Version 5.0), Java does not provide a built-in mechanism to "prune" the debug log messages
+from the code. There are a range of tools available on the java tools market, that provide such feature (most
+commonly along with so called "obfuscation"). Samples of such tools will be given here in the future. (We are
+very thankful to receive your experience and tool description to incorporate into this documentation).
+
+## More to read   ##
+Consult the general (language agnostic) [ALox User Manual](../manual.html) for in-depth information
+on various topics.
+
+## Class Reference ##
+
+To browse the Java class reference, please use the page menu above.
+
+## Organization of code ##
+
+In the class lists of this documentation, besides ALox you will find a few classes that we
+call the "A-Worx Util" classes. They reside in the namespace:
+- **com.aworx**
+
+Next to the provision of basic functionality, the motivation for creating util classes is to
+provide a similar interface to basic functionality of ALox across languages and platforms.
+In other word, the utility functions help ALox code to be very much alike across different
+languages and platforms
+
+ALox itself consist of three namespaces.
+The main classes that the user of ALox interfaces with reside in:
+- **com.aworx.lox**
+
+Some specific loggers are found in:
+- **com.aworx.lox.loggers**
+
+Internal classes are located in:
+- **com.aworx.lox.core**
+
+
+
+
+
+*/

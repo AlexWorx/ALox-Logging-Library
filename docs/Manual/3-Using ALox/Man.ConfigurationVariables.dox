@@ -1,0 +1,335 @@
+// #################################################################################################
+//  Documentation - ALox Logging Library
+//
+//  (c) 2013-2016 A-Worx GmbH, Germany
+//  Published under MIT License (Open Source License, see LICENSE.txt)
+// #################################################################################################
+
+// To link here from sub-dox:  [ALox Configuration Variables](../group__GrpALoxConfigVars.html)
+
+/** @file */ //<- needed for Doxygen include
+
+
+// the variable 'declarations' to be read by doxygen (doxygen is sometimes funny)
+Configuration Variable ALIB_RTE;
+Configuration Variable ALIB_LOCALE;
+Configuration Variable ALIB_HAS_CONSOLE_WINDOW;
+Configuration Variable ALIB_WAIT_FOR_KEY_PRESS_ON_TERMINATION;
+
+Configuration Variable ALOX_CL_MODE;
+Configuration Variable ALOX_CL_LIGHT_BACKGROUND;
+Configuration Variable ALOX_CL_USE_SYSTEM_OUT_PRINT;
+Configuration Variable ALOX_CL_WINDOWS_CODE_PAGE;
+Configuration Variable ALOX_CL_NO_ADDITONAL_IDE_LOGGER;
+Configuration Variable ALOX_CL_AUTO_SIZES;
+Configuration Variable ALOX_CL_AUTO_SIZES_IDE_LOGGER;
+
+//##################################################################################################
+// GrpALoxConfigVars
+//##################################################################################################
+/**
+@defgroup GrpALoxConfigVars ALox Configuration Variables
+
+<b>AWorx Configuration System</b><p>
+Trough the use of class
+<b>Configuration</b>
+ ([C++] (@ref #aworx::lib::config::Configuration),
+  [C#]  (@ref #cs::aworx::lib::config::Configuration),
+  [JAVA](@ref #com::aworx::lib::config::Configuration))
+and its plug-in concept, ALox and the AWorx Library itself access configuration variables to
+manipulate the behavior of the libraries. Configuration data can be provided in configuration files,
+by setting environment variables, providing command line parameters or by any custom mechanism.
+If the same variable appears twice, different priorities defined which configuration is used.
+By default, a command line parameter has highest priority (and overwrites other configuration
+values) while environment variables have second highest priority. The least priority have
+configuration files, where a distinction could be made between user specific configuration and
+system wide configuration. To properly initialize the configuration system, it is necessary to invoke
+<b>Log::[Init|init]</b>
+ ([C++] (@ref #aworx::lox::Log::Init),
+  [C#]  (@ref #cs::aworx::lox::Log::Init),
+  [JAVA](@ref #com::aworx::lox::Log::init))
+in the bootstrap section of any code entity that uses ALIB/ALox libraries.<br>
+Default priorities can be changed and configuration data sources can be added.
+
+\note For more information about the configuration capabilities of the AWorx library, see
+documentation of namespace
+<b>[com::|cs::] %aworx::lib::config</b>
+ ([C++] (@ref #aworx::lib::config),
+  [C#]  (@ref #cs::aworx::lib::config),
+  [JAVA](@ref #com::aworx::lib::config))
+
+<br>
+<p>
+
+<b>Variable Categories and Variable names</b><p>
+Configuration variables are defined by a variable category and a variable name. For command
+line parameters and environment variables, the category and name are concatenated to a single
+word with an underscore character between. For other configuration plug-ins, this might be
+different. For example the provided ini-File parser class
+<b>IniFile</b>
+ ([C++] (@ref #aworx::lib::config::IniFile),
+  [C#]  (@ref #cs::aworx::lib::config::IniFile),
+  [JAVA](@ref #com::aworx::lib::config::IniFile))
+supports a section name (defined in brackets) which would correspond to the variable category.
+Inside the section, the variable name would appear without the variable category prefixed to the
+name.
+<p>
+By default, the category is named
+- <em>ALIB</em> for all variables introduced by the AWorx library, and
+- <em>ALOX</em> for all variables introduced by ALox.
+
+These category names can be overwritten to avoid conflicts between applications (especially
+in respect to environment variables). Both categories can also be set to the same value, as
+ALIB and ALox will not share a variable name. The fields to set are:
+<b>ALIB::[C|c]onfigCategoryName</b>
+ ([C++] (@ref #aworx::lib::ALIB::ConfigCategoryName),
+  [C#]  (@ref #cs::aworx::lib::ALIB::ConfigCategoryName),
+  [JAVA](@ref #com::aworx::lib::ALIB::configCategoryName))
+and
+<b>Log::[C|c]onfigCategoryName</b>
+ ([C++] (@ref #aworx::lox::Log::ConfigCategoryName),
+  [C#]  (@ref #cs::aworx::lox::Log::ConfigCategoryName),
+  [JAVA](@ref #com::aworx::lox::Log::configCategoryName))
+
+For example, if both category names were set to the name "MYAPP", then the variables
+\ref ALIB_HAS_CONSOLE_WINDOW and \ref ALOX_CL_MODE would be named
+<em>MYAPP_HAS_CONSOLE_WINDOW</em> and  <em>MYAPP_CL_MODE</em>.
+
+The overwriting of the category names has to be made prior to invoking the initialization methods
+of the libraries,
+<b>ALIB::[I|i]nit</b>
+ ([C++] (@ref #aworx::lib::ALIB::Init),
+  [C#]  (@ref #cs::aworx::lib::ALIB::Init),
+  [JAVA](@ref #com::aworx::lib::ALIB::init))
+and
+<b>Log::[I|i]nit</b>
+ ([C++] (@ref #aworx::lox::Log::Init),
+  [C#]  (@ref #cs::aworx::lox::Log::Init),
+  [JAVA](@ref #com::aworx::lox::Log::init))
+
+because, already here, configuration variables are read.
+
+<b>Language/Platform specifics</b><p>
+Configuration variables listed here, their availability and their possible values might be specific to
+the used platform and programming language. If so, their documentation will hint to
+such differences.
+
+<b>Default values</b><p>
+ALox and the AWorx library are designed to run fine without setting configuration variables wherever
+this is possible.
+Nevertheless, these variables provide an additional way to tweak ALox and overwrite the default
+behavior.
+
+<b>Boolean variables</b><p>
+This documentation uses the term <em>boolean variables</em> for those variables that are evaluated
+using method
+<b>Configuration::IsTrue</b>
+ ([C++] (@ref #aworx::lib::config::Configuration::IsTrue),
+  [C#]  (@ref #cs::aworx::lib::config::Configuration::IsTrue),
+  [JAVA](@ref #com::aworx::lib::config::Configuration::isTrue)).
+
+
+\note Setting environment variables is platform specific and is not part of this documentation. To
+get an overview, refer to [Wikipedia](https://en.wikipedia.org/wiki/Environment_variable).<p>
+
+
+@{
+*/
+
+// ------------------------------------- ALIB variables -------------------------------------------
+
+/**
+\var  ALIB_RTE
+<em>Availability: C++</em><p>
+Overwrites the runtime environment returned by in method
+[System::RTE] (@ref #aworx::lib::system::System::RTE).
+If this variable is set, then no auto detection of the environment is performed,
+unless its value is "auto".
+
+
+Possible values are:
+<table>
+  <tr> <th>Value</th>             <th>Value returned by System::RTE</th>
+  <tr> <td>auto</td>        <td> </td>Auto detect (same as if variable was not set).</tr>
+  <tr> <td>none</td>        <td> </td>RuntimeEnvironment::UNKNOWN</tr>
+  <tr> <td>eclipse</td>     <td> </td>RuntimeEnvironment::ECLIPSE_CDT</tr>
+  <tr> <td>qtcreator</td>   <td> </td>RuntimeEnvironment::QT_CREATOR</tr>
+  <tr> <td>vstudio</td>     <td> </td>RuntimeEnvironment::VSTUDIO</tr>
+  <tr> <td>shell</td>       <td> </td>RuntimeEnvironment::SHELL</tr>
+  <tr> <td>desktop</td>     <td> </td>RuntimeEnvironment::DESKTOP</tr>
+  <tr> <td>device</td>      <td> </td>RuntimeEnvironment::MOBILE_DEVICE</tr>
+</table>
+
+*/
+
+/**
+\var  ALIB_LOCALE
+<em>Availability: C++ (GLIBC version only).</em><p>
+This variable is evaluated within [ALIB::Init] (@ref #aworx::lib::ALIB::Init). The behavior is
+as follows:
+- if not set, the environment variables <em>LANG</em> and <em>LANGUAGE</em> are evaluated and
+  if set, their value is passed to glibc method <em>setlocale()</em>.
+- if set to "none", the invocation of setlocale() is suppressed.
+- if set to anything different than "none", the value is passed to glibc method <em>setlocale()</em>.
+
+The right definition of the locale is important, when using AString methods for converting
+multi-byte character strings to wide character strings.
+*/
+
+
+/**
+\var  ALIB_HAS_CONSOLE_WINDOW
+
+<em>Availability: C++</em><p>
+This boolean configuration variable overwrites the value determined in method
+\ref  aworx::lib::system::System::HasConsoleWindow "System::HasConsoleWindow".
+*/
+
+/**
+\var  ALIB_WAIT_FOR_KEY_PRESS_ON_TERMINATION
+<em>Availability: C++, C#.</em><p>
+This boolean variable is evaluated within
+<b>ALIB::Init</b>
+ ([C++] (@ref #aworx::lib::ALIB::Init),
+  [C#]  (@ref #cs::aworx::lib::ALIB::Init)).
+
+If set, it overrules the default behavior of detecting an appropriate value for field
+<b>ALIB::WaitForKeyPressOnTermination</b>
+ ([C++] (@ref #aworx::lib::ALIB::WaitForKeyPressOnTermination),
+  [C#]  (@ref #cs::aworx::lib::ALIB::WaitForKeyPressOnTermination)).
+*/
+
+
+
+// -------------------------------------- ALOX variables -------------------------------------------
+/**
+\var  ALOX_CL_USE_SYSTEM_OUT_PRINT
+<em>Availability: Java.</em><p>
+This boolean variable is evaluated within the constructor of class
+[ConsoleLogger] (@ref #com::aworx::lox::loggers::ConsoleLogger). By default, this class
+invokes <em>System.console()</em> to receive a console class object. Only if this fails, the
+output is performed using <em>System.out.print()</em>.
+
+Setting this variable, this behavior can be suppressed.
+
+*/
+
+
+/**
+\var  ALOX_CL_MODE
+Defines what type of console logger will be created by method
+<b>Log::CreateConsoleLogger</b>
+ ([C++] (@ref #aworx::lox::Lox::CreateConsoleLogger),
+  [C#]  (@ref #cs::aworx::lox::Lox::CreateConsoleLogger),
+  [JAVA](@ref #com::aworx::lox::Lox::createConsoleLogger)) which is also used by
+<b>Log::AddDebugLogger</b>
+ ([C++] (@ref #aworx::lox::Log::AddDebugLogger),
+  [C#]  (@ref #cs::aworx::lox::Log::AddDebugLogger),
+  [JAVA](@ref #com::aworx::lox::Log::addDebugLogger)).
+
+Possible values are:
+<table>
+  <tr> <td>default</td> <td>No influence, same as if variable was not set (auto detection mechanism applies). </td></tr>
+  <tr> <td>plain</td>   <td>Plain text logger of type
+                             <b>ConsoleLogger</b>
+                            ([C++] (@ref #aworx::lox::loggers::ConsoleLogger),
+                             [C#]  (@ref #cs::aworx::lox::loggers::ConsoleLogger),
+                             [JAVA](@ref #com::aworx::lox::loggers::ConsoleLogger)) is created </td></tr>
+
+  <tr> <td>ANSI</td>    <td>A logger of type
+                           <b>AnsiLogger</b>
+                            ([C++] (@ref #aworx::lox::loggers::AnsiLogger),
+                             [C#]  (@ref #cs::aworx::lox::loggers::AnsiLogger),
+                             [JAVA](@ref #com::aworx::lox::loggers::AnsiLogger)) is created </td></tr>
+  <tr> <td>Windows</td>    <td>In C++, a logger of type [WindowsConsoleLogger] (@ref #aworx::lox::loggers::WindowsConsoleLogger)
+                               is created.<br>
+                               In C#, a logger of type [ColorConsoleLogger] (@ref #cs::aworx::lox::loggers::ColorConsoleLogger)
+                               is created.
+                               (It is advisable to use this value when in Windows operating
+                               system, while using ANSI for colorful output under Linux/Mono.)<br>
+                               In Java, this value is not supported.<br>
+                            </td></tr>
+</table>
+
+*/
+
+
+/**
+\var  ALOX_CL_LIGHT_BACKGROUND
+Evaluated by class
+<b>AnsiLogger</b>
+ ([C++] (@ref #aworx::lox::loggers::AnsiLogger),
+  [C#]  (@ref #cs::aworx::lox::loggers::AnsiLogger),
+  [JAVA](@ref #com::aworx::lox::loggers::AnsiLogger)) to manipulate field
+<b>AnsiLogger::IsBackgroundLight</b>
+ ([C++] (@ref #aworx::lox::loggers::AnsiLogger::IsBackgroundLight),
+  [C#]  (@ref #cs::aworx::lox::loggers::AnsiLogger::IsBackgroundLight),
+  [JAVA](@ref #com::aworx::lox::loggers::AnsiLogger::isBackgroundLight)).
+*/
+
+
+
+
+/**
+\var  ALOX_CL_NO_ADDITONAL_IDE_LOGGER
+<em>Availability: C#, C++ under Windows/Visual Studio</em><p>
+Boolean variable that is evaluated in method
+<b>Log::AddDebugLogger</b>
+ ([C++] (@ref #aworx::lox::Log::AddDebugLogger),
+  [C#]  (@ref #cs::aworx::lox::Log::AddDebugLogger)).
+If not set, when debugging, an additional logger supporting the log output of the IDE is created.
+Such loggers currently are:
+
+- [C#:   CLRDebuggerLogger] (@ref #cs::aworx::lox::loggers::CLRDebuggerLogger)
+- [C#++: VStudioLogger]     (@ref #aworx::lox::loggers::VStudioLogger)
+
+This variable can be used to suppress this.
+*/
+
+/**
+\var  ALOX_CL_WINDOWS_CODE_PAGE
+<em>Availability: C++ on Windows operating system only.</em><p>
+Evaluated once in the constructor of class
+[WindowsConsoleLogger] (@ref #aworx::lox::loggers::WindowsConsoleLogger).
+Overwrites the default value of field
+[WindowsConsoleLogger::CodePage] (@ref #aworx::lox::loggers::WindowsConsoleLogger::CodePage).
+For possible values refer to
+[Microsoft documentation] (https://msdn.microsoft.com/EN-US/library/windows/desktop/dd317756%28v=vs.85%29.aspx).
+*/
+
+
+/**
+\var  ALOX_CL_AUTO_SIZES
+This variable is used by methods
+<b>Log::AddDebugLogger</b>
+ ([C++] (@ref #aworx::lox::Log::AddDebugLogger),
+  [C#]  (@ref #cs::aworx::lox::Log::AddDebugLogger),
+  [JAVA](@ref #com::aworx::lox::Log::addDebugLogger))   and
+<b>Log::RemoveDebugLogger</b>
+ ([C++] (@ref #aworx::lox::Log::RemoveDebugLogger),
+  [C#]  (@ref #cs::aworx::lox::Log::RemoveDebugLogger),
+  [JAVA](@ref #com::aworx::lox::Log::removeDebugLogger)) to store and receive the automatically
+adjusted tabulator positions and field sizes of the debug logger to preserve them across debug
+sessions.
+*/
+
+/**
+\var  ALOX_CL_AUTO_SIZES_IDE_LOGGER
+This variable is used by methods
+<b>Log::AddDebugLogger</b>
+ ([C++] (@ref #aworx::lox::Log::AddDebugLogger),
+  [C#]  (@ref #cs::aworx::lox::Log::AddDebugLogger),
+  [JAVA](@ref #com::aworx::lox::Log::addDebugLogger))   and
+<b>Log::RemoveDebugLogger</b>
+ ([C++] (@ref #aworx::lox::Log::RemoveDebugLogger),
+  [C#]  (@ref #cs::aworx::lox::Log::RemoveDebugLogger),
+  [JAVA](@ref #com::aworx::lox::Log::removeDebugLogger)) to store and receive the automatically
+adjusted tabulator positions and field sizes of the extra (IDE dependent) debug logger to preserve
+them across debug sessions.
+
+*/
+
+/**  @}  */
+
+
+

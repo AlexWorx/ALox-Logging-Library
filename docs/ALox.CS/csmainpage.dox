@@ -1,0 +1,70 @@
+// #################################################################################################
+//  Documentation - ALox Logging Library
+//
+//  (c) 2013-2016 A-Worx GmbH, Germany
+//  Published under MIT License (Open Source License, see LICENSE.txt)
+// #################################################################################################
+
+/**
+\page csmainpage    C# Reference
+
+
+# Welcome to ALox for C#! #
+
+This part of the ALox Logging library documentation is specific to its C# Implementation.<br>
+The following information is found here:
+
+## Tutorial ##
+Walk yourself through the \ref cstutorial. This is allows you a fast overview and intro
+if you are new to ALox.
+
+## IDE / Built System Setup ##
+The C# Version has been developed and tested on the operating systems
+- GNU/Linux (using Mono)
+- Windows 7, 8
+- Windows Phone 7, 8<p>
+Therefore, it should be compatible with your C# environment.
+
+Project files for the IDEs:
+- Mono Develop
+- Microsoft Visual Studio <p>
+are provided.
+
+Check out \ref cssetup for details of how to compile and setup ALox.
+
+
+## Pruning Debug Logging Statements   ##
+After working yourself through the tutorial and after having set up your projects to use
+ALox, it is recommended to read some information about <em>pruning</em>.
+Such information is provided here: \ref cspruning
+
+## More to read   ##
+Consult the general (language agnostic) [ALox User Manual](../manual.html) for in-depth information
+on various topics.
+
+## Class Reference ##
+
+To browse the class reference, please use the page menu above.
+
+## Organization of code ##
+
+In the class lists of this documentation, besides ALox you will find a few classes that we
+call the "A-Worx Util" classes or ALIB. They reside in the namespace:
+- #cs.aworx
+
+Next to the provision of basic functionality, the motivation for creating util classes is to
+provide a similar interface to basic functionality of ALox across languages and platforms.
+In other word, the utility functions help ALox code to be very much alike across different
+languages and platforms.
+
+ALox itself consist of three namespaces.
+The main classes that the user of ALox interfaces with reside in:
+- #cs.aworx.lox
+
+Some specific loggers are found in:
+- #cs.aworx.lox.loggers
+
+Internal classes are located in
+- #cs.aworx.lox.core
+
+*/
