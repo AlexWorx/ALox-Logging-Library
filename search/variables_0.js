@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['_5fadjustedregionlength',['_adjustedRegionLength',['../../html/java_ref/classcom_1_1aworx_1_1util_1_1AString.html#a69945236b8412497dcf113d6e6f9042c',1,'com::aworx::util::AString']]],
-  ['_5fadjustedregionstart',['_adjustedRegionStart',['../../html/java_ref/classcom_1_1aworx_1_1util_1_1AString.html#a5f2122d855b7fbef168162c61c7b02c8',1,'com::aworx::util::AString']]],
-  ['_5fapiinitializer',['_apiInitializer',['../../html/cpp_ref/classaworx_1_1lox_1_1core_1_1Logger.html#aaa96ca32f5b8d83954f9d77629c1b036',1,'aworx::lox::core::Logger::_apiInitializer()'],['../../html/cpp_ref/classaworx_1_1lox_1_1Lox.html#aaa96ca32f5b8d83954f9d77629c1b036',1,'aworx::lox::Lox::_apiInitializer()']]]
+  ['_5fadjustedregion',['_adjustedRegion',['java_ref/classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a58c71d9931ad65b662ab447868c9c8ec',1,'com::aworx::lib::strings::AString::_adjustedRegion()'],['java_ref/classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a58c71d9931ad65b662ab447868c9c8ec',1,'com::aworx::lib::strings::Substring::_adjustedRegion()']]],
+  ['_5fapiinitializer',['_apiInitializer',['cpp_ref/classaworx_1_1lox_1_1core_1_1Logger.html#aaa96ca32f5b8d83954f9d77629c1b036',1,'aworx::lox::core::Logger']]],
+  ['_5fsysinfo_5fhasconsolewindow',['_sysInfo_HasConsoleWindow',['cs_ref/classcs_1_1aworx_1_1lib_1_1ALIB.html#a37da3179172bfa1af08eeb3a044f6959',1,'cs::aworx::lib::ALIB']]]
 ];

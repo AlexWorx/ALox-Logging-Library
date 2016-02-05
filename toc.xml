@@ -4,9 +4,10 @@
   <topic label="Manual" href="manual.html">
     <topic label="man_intro" href="man_intro.html"/>
     <topic label="man_concepts" href="man_concepts.html"/>
-    <topic label="man_achieving_goals" href="man_achieving_goals.html"/>
+    <topic label="man_achieving_goals" href="@ref man_achieving_goals"/>
   </topic>
   <topic label="ALox for C++" href="cpp_ref/cppmainpage.html"/>
   <topic label="ALox for C#" href="cs_ref/csmainpage.html"/>
   <topic label="ALox for Java" href="java_ref/javamainpage.html"/>
+  <topic label="Tools" href="tools.html"/>
 </toc>

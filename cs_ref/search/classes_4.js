@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['memorylogger',['MemoryLogger',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html',1,'com::aworx::lox::loggers']]]
+  ['inifile',['IniFile',['../classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html',1,'cs::aworx::lib::config']]]
 ];

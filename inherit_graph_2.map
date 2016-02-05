@@ -1,6 +1,6 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag$classaworx_1_1lox_1_1core_1_1Logger.html" title="aworx::lox::core::Logger" alt="" coords="5,46,167,73"/>
-<area shape="rect" id="node2" href="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag$classaworx_1_1lox_1_1core_1_1TextLogger.html" title="aworx::lox::core::TextLogger" alt="" coords="215,46,400,73"/>
-<area shape="rect" id="node3" href="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag$classaworx_1_1lox_1_1loggers_1_1ConsoleLogger.html" title="aworx::lox::loggers\l::ConsoleLogger" alt="" coords="448,5,579,47"/>
-<area shape="rect" id="node4" href="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag$classaworx_1_1lox_1_1loggers_1_1MemoryLogger.html" title="aworx::lox::loggers\l::MemoryLogger" alt="" coords="448,71,579,112"/>
+<area shape="rect" id="node1" href="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag$classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html" title="aworx::lib::config\l::ConfigurationPlugIn" alt="" coords="5,71,149,112"/>
+<area shape="rect" id="node2" href="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag$classaworx_1_1lib_1_1config_1_1CommandLinePlugIn.html" title="aworx::lib::config\l::CommandLinePlugIn" alt="" coords="197,5,348,47"/>
+<area shape="rect" id="node3" href="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag$classaworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html" title="aworx::lib::config\l::EnvironmentPlugIn" alt="" coords="203,71,343,112"/>
+<area shape="rect" id="node4" href="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag$classaworx_1_1lib_1_1config_1_1IniFile.html" title="aworx::lib::config\l::IniFile" alt="" coords="212,136,333,177"/>
 </map>

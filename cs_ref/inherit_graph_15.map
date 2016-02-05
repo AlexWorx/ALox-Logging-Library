@@ -1,3 +1,12 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classcom_1_1aworx_1_1util_1_1TickWatch.html" title="This class encapsulates a system dependent time value (Ticks) and provides some basic interface for m..." alt="" coords="5,5,89,32"/>
+<area shape="rect" id="node1" href="$classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="5,183,67,209"/>
+<area shape="rect" id="node2" href="$classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html" title="TextLogger" alt="" coords="115,183,201,209"/>
+<area shape="rect" id="node3" href="$classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html" title="PlainTextLogger" alt="" coords="261,107,377,133"/>
+<area shape="rect" id="node8" href="$classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html" title="AnsiLogger" alt="" coords="276,183,363,209"/>
+<area shape="rect" id="node10" href="$classcs_1_1aworx_1_1lox_1_1loggers_1_1ColorConsoleLogger.html" title="ColorConsoleLogger" alt="" coords="249,233,389,260"/>
+<area shape="rect" id="node4" href="$classcs_1_1aworx_1_1lox_1_1loggers_1_1CLRDebuggerLogger.html" title="CLRDebuggerLogger" alt="" coords="437,5,581,32"/>
+<area shape="rect" id="node5" href="$classcs_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html" title="ConsoleLogger" alt="" coords="455,56,564,83"/>
+<area shape="rect" id="node6" href="$classcs_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html" title="MemoryLogger" alt="" coords="455,107,563,133"/>
+<area shape="rect" id="node7" href="$classcs_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html" title="TextFileLogger" alt="" coords="455,157,563,184"/>
+<area shape="rect" id="node9" href="$classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiConsoleLogger.html" title="AnsiConsoleLogger" alt="" coords="442,208,577,235"/>
 </map>

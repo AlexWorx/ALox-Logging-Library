@@ -1,3 +1,8 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classaworx_1_1util_1_1AWXU.html" title="AWXU" alt="" coords="5,5,65,32"/>
+<area shape="rect" id="node1" href="$classaworx_1_1lib_1_1strings_1_1AS.html" title="AS" alt="" coords="5,31,45,57"/>
+<area shape="rect" id="node4" href="$classaworx_1_1lib_1_1strings_1_1ASSubstring.html" title="ASSubstring" alt="" coords="103,5,198,32"/>
+<area shape="rect" id="node5" href="$classaworx_1_1lib_1_1strings_1_1ASTerminatable.html" title="ASTerminatable" alt="" coords="93,56,208,83"/>
+<area shape="rect" id="node2" href="$classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html" title="ASPreAlloc\&lt; TCapacity \&gt;" alt="" coords="451,81,624,108"/>
+<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1strings_1_1ASLiteral.html" title="ASLiteral\&lt; TLength \&gt;" alt="" coords="256,31,403,57"/>
+<area shape="rect" id="node6" href="$classaworx_1_1lib_1_1strings_1_1ASAlloc.html" title="ASAlloc" alt="" coords="295,81,364,108"/>
 </map>

@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['aloxawxuerrorhandler',['ALoxAWXUErrorHandler',['../classcom_1_1aworx_1_1lox_1_1Log_1_1ALoxAWXUErrorHandler.html',1,'com::aworx::lox::Log']]],
-  ['astring',['AString',['../classcom_1_1aworx_1_1util_1_1AString.html',1,'com::aworx::util']]],
-  ['awxu',['AWXU',['../classcom_1_1aworx_1_1util_1_1AWXU.html',1,'com::aworx::util']]],
-  ['awxuerrorhandler',['AWXUErrorHandler',['../interfacecom_1_1aworx_1_1util_1_1AWXUErrorHandler.html',1,'com::aworx::util']]]
+  ['alib',['ALIB',['../classcs_1_1aworx_1_1lib_1_1ALIB.html',1,'cs::aworx::lib']]],
+  ['aloxreportwriter',['ALoxReportWriter',['../classcs_1_1aworx_1_1lox_1_1Log_1_1ALoxReportWriter.html',1,'cs::aworx::lox::Log']]],
+  ['ansiconsolelogger',['AnsiConsoleLogger',['../classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiConsoleLogger.html',1,'cs::aworx::lox::loggers']]],
+  ['ansilogger',['AnsiLogger',['../classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html',1,'cs::aworx::lox::loggers']]],
+  ['astring',['AString',['../classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html',1,'cs::aworx::lib::strings']]],
+  ['autosizes',['AutoSizes',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html',1,'cs::aworx::lox::core::textlogger']]]
 ];

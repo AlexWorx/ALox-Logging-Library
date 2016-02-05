@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['overview_20of_20the_20alox_20architecture',['Overview of the ALox architecture',['../man_alox_architecture.html',1,'man_concepts']]]
+  ['pruning_20alox_20code_20in_20c_23_20from_20release_20builts',['Pruning ALox Code in C# from Release Builts',['cs_ref/cspruning.html',1,'']]]
 ];

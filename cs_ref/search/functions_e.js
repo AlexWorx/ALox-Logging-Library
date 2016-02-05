@@ -1,25 +1,5 @@
 var searchData=
 [
-  ['sample',['Sample',['../classcom_1_1aworx_1_1util_1_1TickWatch.html#a1552464b5f8a4c192c3679db8a08b6e3',1,'com::aworx::util::TickWatch']]],
-  ['serialize',['Serialize',['../classcom_1_1aworx_1_1lox_1_1tools_1_1json_1_1DynamicJSONDeserializer.html#a115cd59bd1cbe0bfeba59015090b8fa2',1,'com::aworx::lox::tools::json::DynamicJSONDeserializer']]],
-  ['set',['Set',['../classcom_1_1aworx_1_1util_1_1Ticks.html#a614cfe7992438ee53cfd9440848c39e7',1,'com.aworx.util.Ticks.Set()'],['../classcom_1_1aworx_1_1util_1_1Ticks.html#acb7a9f15371bc4845a75a1f8445526b0',1,'com.aworx.util.Ticks.Set(Ticks other)'],['../classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#a57555728289b3e873ec939e3a20bc084',1,'com.aworx.lox.core.CallerInfo.Set()']]],
-  ['setallocation',['SetAllocation',['../classcom_1_1aworx_1_1util_1_1AString.html#af3cfdcb8f47057f88570b1c6d956e86a',1,'com::aworx::util::AString']]],
-  ['setdisabled',['SetDisabled',['../classcom_1_1aworx_1_1lox_1_1Log.html#a9d97d9ea1b27436cedd5195a6f2f4867',1,'com.aworx.lox.Log.SetDisabled()'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#ac19aea9f7a17923c0fe41990d701538f',1,'com.aworx.lox.Lox.SetDisabled()']]],
-  ['setdomain',['SetDomain',['../classcom_1_1aworx_1_1lox_1_1Log.html#a4288665943d2ce35935634d3930c9db1',1,'com.aworx.lox.Log.SetDomain()'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#adddbfe67bfaa5b84a9a01503fa423313',1,'com.aworx.lox.Lox.SetDomain()']]],
-  ['setfromdotnetdatetime',['SetFromDotNetDateTime',['../classcom_1_1aworx_1_1util_1_1Ticks.html#a0a406c24298e2473e4751b7bb7c3e5b6',1,'com::aworx::util::Ticks']]],
-  ['setfromepochmillis',['SetFromEpochMillis',['../classcom_1_1aworx_1_1util_1_1Ticks.html#a06233899624699b39c51da54e1aff1cb',1,'com::aworx::util::Ticks']]],
-  ['setlength',['SetLength',['../classcom_1_1aworx_1_1util_1_1AString.html#a61e8aa44b25c72e5a3f07105d2baff7a',1,'com::aworx::util::AString']]],
-  ['setlevel',['SetLevel',['../classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a6b11c04355e05570006df5aa449f62db',1,'com::aworx::lox::core::LogDomain']]],
-  ['setmarker',['SetMarker',['../classcom_1_1aworx_1_1lox_1_1Log.html#ad302d68c6786a82d3c21eb749fb40015',1,'com.aworx.lox.Log.SetMarker()'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#a81953e8bd2915702eccfad989570e156',1,'com.aworx.lox.Lox.SetMarker()']]],
-  ['setraw',['SetRaw',['../classcom_1_1aworx_1_1util_1_1Ticks.html#a281237e70c41ecdfe31a5606f958b75b',1,'com::aworx::util::Ticks']]],
-  ['setstarttime',['SetStartTime',['../classcom_1_1aworx_1_1util_1_1TickWatch.html#aae02d04b5b8ef03807a1ec27d7d64dfd',1,'com.aworx.util.TickWatch.SetStartTime()'],['../classcom_1_1aworx_1_1lox_1_1Log.html#a1bd69f9755411a857b06d5cd5bf4be69',1,'com.aworx.lox.Log.SetStartTime()'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#ac4e1e9de43f94c25f2b2eb7be54f7a7a',1,'com.aworx.lox.Lox.SetStartTime()']]],
-  ['setunsafe',['SetUnsafe',['../classcom_1_1aworx_1_1util_1_1ThreadLock.html#ae8c3cd592757e0998048abf426d2412c',1,'com::aworx::util::ThreadLock']]],
-  ['simplewildcardfilter',['simpleWildcardFilter',['../classcom_1_1aworx_1_1lox_1_1Lox.html#a904bdd5c05e9810befbf6cbb43201923',1,'com::aworx::lox::Lox']]],
-  ['since',['Since',['../classcom_1_1aworx_1_1util_1_1Ticks.html#a21a035ee27f1d1285dfb841cf5baee33',1,'com.aworx.util.Ticks.Since(Ticks olderTime)'],['../classcom_1_1aworx_1_1util_1_1Ticks.html#a890e162fd09c78184e455b1cf86c8b12',1,'com.aworx.util.Ticks.Since(Ticks olderTime, Ticks result)']]],
-  ['sleepmicros',['SleepMicros',['../classcom_1_1aworx_1_1util_1_1AWXU.html#ac05c5caf38ac3e7b07c8d7ff38f269d1',1,'com::aworx::util::AWXU']]],
-  ['sleepmillis',['SleepMillis',['../classcom_1_1aworx_1_1util_1_1AWXU.html#a56b63ce54d6e27bb1d57a4ddbabfaba2',1,'com::aworx::util::AWXU']]],
-  ['sleepnanos',['SleepNanos',['../classcom_1_1aworx_1_1util_1_1AWXU.html#aba575f2ec01b01d870fb04cdc7f649ca',1,'com::aworx::util::AWXU']]],
-  ['start',['Start',['../classcom_1_1aworx_1_1util_1_1TickWatch.html#a07aaf1227e4d645f15e0a964f54ef291',1,'com::aworx::util::TickWatch']]],
-  ['startswith',['StartsWith',['../classcom_1_1aworx_1_1util_1_1AString.html#a153f5dbe385451c2ef556e4e519b3429',1,'com.aworx.util.AString.StartsWith(String needle, bool ignoreCase=false)'],['../classcom_1_1aworx_1_1util_1_1AString.html#acb88859ecf28923f5bbada35bae9e78a',1,'com.aworx.util.AString.StartsWith(AString needle, bool ignoreCase=false)']]],
-  ['sub',['Sub',['../classcom_1_1aworx_1_1util_1_1Ticks.html#ac7271304a608df437b10f55b199d7620',1,'com.aworx.util.Ticks.Sub(Ticks other)'],['../classcom_1_1aworx_1_1util_1_1Ticks.html#ab06385075254ed0028784791e11ec98d',1,'com.aworx.util.Ticks.Sub(long value)']]]
+  ['plaintextlogger',['PlainTextLogger',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html#a49d9615d6a1b2c20bd5024dcc4689832',1,'cs::aworx::lox::core::textlogger::PlainTextLogger']]],
+  ['processvariable',['processVariable',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a29295bc9771428483565ee6cb928b31c',1,'cs::aworx::lox::core::textlogger::MetaInfo']]]
 ];

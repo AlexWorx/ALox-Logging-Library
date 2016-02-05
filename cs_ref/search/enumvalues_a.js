@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['verbose',['Verbose',['../classcom_1_1aworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5ad4a9fa383ab700c5bdd6f31cf7df0faf',1,'com::aworx::lox::Log']]]
+  ['recursive',['Recursive',['../namespacecs_1_1aworx_1_1lib_1_1enums.html#a00fc859257c8f09ff9198dde28121961a556c3dd912453ae5cb3095cd5054e6f4',1,'cs::aworx::lib::enums']]],
+  ['right',['Right',['../namespacecs_1_1aworx_1_1lib_1_1enums.html#acdfaca60ec19c0265bac2692d7982726a92b09c7c48c520c3c55e497875da437c',1,'cs::aworx::lib::enums']]]
 ];

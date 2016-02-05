@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['pruning_20alox_20code_20from_20release_20builts',['Pruning ALox Code from Release Builts',['../../html/cs_ref/cspruning.html',1,'']]]
+  ['setup_20your_20ide_20for_20java_20projects',['Setup your IDE for Java Projects',['java_ref/javasetup.html',1,'']]]
 ];

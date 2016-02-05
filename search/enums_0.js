@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['align',['Align',['../../html/cs_ref/classcom_1_1aworx_1_1util_1_1AString.html#ab4fc75cf20644d0e62fb0242b3e7b401',1,'com::aworx::util::AString::Align()'],['../../html/cpp_ref/classaworx_1_1util_1_1AString.html#ab4fc75cf20644d0e62fb0242b3e7b401',1,'aworx::util::AString::Align()']]]
+  ['alignment',['Alignment',['cs_ref/namespacecs_1_1aworx_1_1lib_1_1enums.html#acdfaca60ec19c0265bac2692d7982726',1,'cs::aworx::lib::enums::Alignment()'],['cpp_ref/namespaceaworx_1_1lib_1_1enums.html#acdfaca60ec19c0265bac2692d7982726',1,'aworx::lib::enums::Alignment()']]]
 ];

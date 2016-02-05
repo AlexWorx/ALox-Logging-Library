@@ -1,6 +1,0 @@
-<map id="Logger" name="Logger">
-<area shape="rect" id="node2" href="$classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html" title="This class is a still abstract implementation of class Logger which is used as the super class for al..." alt="" coords="149,80,234,107"/>
-<area shape="rect" id="node3" href="$classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html" title="A logger that logs all messages to the VStudio IDE output window (using System.Diagnostics.Debug.WriteLine()) and/or to the application console (using Console.WriteLine()). " alt="" coords="5,155,113,181"/>
-<area shape="rect" id="node4" href="$classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html" title="A logger that logs all messages to a in&#45;memory buffer of type AString. The name of the logger default..." alt="" coords="137,155,245,181"/>
-<area shape="rect" id="node5" href="$classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html" title="This is a very simple file logger for textual log outputs. The file name string provided in the const..." alt="" coords="270,155,377,181"/>
-</map>

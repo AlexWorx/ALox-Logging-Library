@@ -1,6 +1,21 @@
 var searchData=
 [
   ['b',['b',['../classcom_1_1aworx_1_1lox_1_1LogBuf.html#ae39a21fdb208da32c414578b78579aaa',1,'com::aworx::lox::LogBuf']]],
-  ['buffer',['buffer',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html#aaf50e38674e1c356539d73525486b1d5',1,'com.aworx.lox.core.TextLoggerObjectConverter.buffer()'],['../classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html#aaf50e38674e1c356539d73525486b1d5',1,'com.aworx.lox.loggers.MemoryLogger.buffer()'],['../classcom_1_1aworx_1_1util_1_1AString.html#a8317b33b8c004741d95935199d964be9',1,'com.aworx.util.AString.buffer()']]],
+  ['begin',['BEGIN',['../enumcom_1_1aworx_1_1lib_1_1enums_1_1Phase.html#ab7d38c077c3a810a9443b7af1d93fb7a',1,'com::aworx::lib::enums::Phase']]],
+  ['bg_5fblack',['BG_BLACK',['../classcom_1_1aworx_1_1lox_1_1ESC.html#aa22085594ccd9e68ab5324ded0136243',1,'com::aworx::lox::ESC']]],
+  ['bg_5fblue',['BG_BLUE',['../classcom_1_1aworx_1_1lox_1_1ESC.html#a7835b854b505d0d8ebcd98ebf51336c3',1,'com::aworx::lox::ESC']]],
+  ['bg_5fcyan',['BG_CYAN',['../classcom_1_1aworx_1_1lox_1_1ESC.html#a06a7b41df8232b026bf398423b77bb75',1,'com::aworx::lox::ESC']]],
+  ['bg_5fgray',['BG_GRAY',['../classcom_1_1aworx_1_1lox_1_1ESC.html#ab2eaa689748c4ac55acdcab9d74f9299',1,'com::aworx::lox::ESC']]],
+  ['bg_5fgreen',['BG_GREEN',['../classcom_1_1aworx_1_1lox_1_1ESC.html#abcb396f3a17b00c37ec974da0263224d',1,'com::aworx::lox::ESC']]],
+  ['bg_5fmagenta',['BG_MAGENTA',['../classcom_1_1aworx_1_1lox_1_1ESC.html#ac64d11dc9fa8aab1018a96d636ba3703',1,'com::aworx::lox::ESC']]],
+  ['bg_5fred',['BG_RED',['../classcom_1_1aworx_1_1lox_1_1ESC.html#a33ebb1e35a083237691b39af4776d659',1,'com::aworx::lox::ESC']]],
+  ['bg_5freset',['BG_RESET',['../classcom_1_1aworx_1_1lox_1_1ESC.html#a8758280b82fa540209ecfb994dd103aa',1,'com::aworx::lox::ESC']]],
+  ['bg_5fwhite',['BG_WHITE',['../classcom_1_1aworx_1_1lox_1_1ESC.html#a471f771dbfe58ff095c559c46732e29a',1,'com::aworx::lox::ESC']]],
+  ['bg_5fyellow',['BG_YELLOW',['../classcom_1_1aworx_1_1lox_1_1ESC.html#a2eb083e3fbf84a08e6ac7303cff2289d',1,'com::aworx::lox::ESC']]],
+  ['black',['BLACK',['../classcom_1_1aworx_1_1lox_1_1ESC.html#a3618e0d1ad7e1ae75b6c709d5ddb3749',1,'com::aworx::lox::ESC']]],
+  ['blue',['BLUE',['../classcom_1_1aworx_1_1lox_1_1ESC.html#aa009a309d65226d49084eaad4a189511',1,'com::aworx::lox::ESC']]],
+  ['bold',['BOLD',['../classcom_1_1aworx_1_1lox_1_1ESC.html#a7a5a68a05e3c2d92a2284e7d489d9645',1,'com::aworx::lox::ESC']]],
+  ['buf',['buf',['../classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a9998f6d669c822c8daab53c6c541ca0b',1,'com::aworx::lib::strings::Substring']]],
+  ['buffer',['buffer',['../classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a8317b33b8c004741d95935199d964be9',1,'com.aworx.lib.strings.AString.buffer()'],['../classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html#aaf50e38674e1c356539d73525486b1d5',1,'com.aworx.lox.core.textlogger.ObjectConverter.buffer()']]],
   ['bw',['bw',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html#a2e57480b2872e7896cb15daa72559449',1,'com::aworx::lox::loggers::TextFileLogger']]]
 ];

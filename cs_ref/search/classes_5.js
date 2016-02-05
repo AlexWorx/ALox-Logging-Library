@@ -1,10 +1,7 @@
 var searchData=
 [
-  ['textfilelogger',['TextFileLogger',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html',1,'com::aworx::lox::loggers']]],
-  ['textlogger',['TextLogger',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html',1,'com::aworx::lox::core']]],
-  ['textloggerlineformatter',['TextLoggerLineFormatter',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html',1,'com::aworx::lox::core']]],
-  ['textloggerobjectconverter',['TextLoggerObjectConverter',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html',1,'com::aworx::lox::core']]],
-  ['threadlock',['ThreadLock',['../classcom_1_1aworx_1_1util_1_1ThreadLock.html',1,'com::aworx::util']]],
-  ['ticks',['Ticks',['../classcom_1_1aworx_1_1util_1_1Ticks.html',1,'com::aworx::util']]],
-  ['tickwatch',['TickWatch',['../classcom_1_1aworx_1_1util_1_1TickWatch.html',1,'com::aworx::util']]]
+  ['log',['Log',['../classcs_1_1aworx_1_1lox_1_1Log.html',1,'cs::aworx::lox']]],
+  ['logger',['Logger',['../classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html',1,'cs::aworx::lox::core']]],
+  ['logtools',['LogTools',['../classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html',1,'cs::aworx::lox::tools']]],
+  ['lox',['Lox',['../classcs_1_1aworx_1_1lox_1_1Lox.html',1,'cs::aworx::lox']]]
 ];

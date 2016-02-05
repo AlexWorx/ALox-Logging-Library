@@ -1,13 +1,18 @@
 var searchData=
 [
-  ['caller',['caller',['../classcom_1_1aworx_1_1lox_1_1Lox.html#a661374595beb4ef6cdcd0417c8c47f0d',1,'com::aworx::lox::Lox']]],
-  ['callerdatetime',['callerDateTime',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a321e35a5312d2e9709fd591b7e5d54a5',1,'com::aworx::lox::core::TextLoggerLineFormatter']]],
-  ['cntlogcalls',['CntLogCalls',['../classcom_1_1aworx_1_1lox_1_1Lox.html#a2c80e5630abe5d5042ddb4b85c0c3562',1,'com::aworx::lox::Lox']]],
-  ['cntlogs',['CntLogs',['../classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a7859d287690c28acd561a307d23679bf',1,'com::aworx::lox::core::Logger']]],
-  ['cntsamples',['cntSamples',['../classcom_1_1aworx_1_1util_1_1TickWatch.html#a3203b85b99c75b91922c0147ac0ca04b',1,'com::aworx::util::TickWatch']]],
-  ['consumablesourcepathprefixstring',['ConsumableSourcePathPrefixString',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#ad5e8a7d9f2c872ab23a2332e6583d908',1,'com::aworx::lox::core::TextLoggerLineFormatter']]],
-  ['convswtodt',['convSWToDT',['../classcom_1_1aworx_1_1util_1_1Ticks.html#ad91e3ebd169964f5636d6d006cd445fb',1,'com::aworx::util::Ticks']]],
-  ['creationtime',['CreationTime',['../classcom_1_1aworx_1_1util_1_1Ticks.html#ab4e057eeeb0ecf2494933081c666ea43',1,'com::aworx::util::Ticks']]],
-  ['creationtimestopwatch',['creationTimeStopWatch',['../classcom_1_1aworx_1_1util_1_1Ticks.html#a58d43e7232052f1601bc2914babafb17',1,'com::aworx::util::Ticks']]],
-  ['currentlyinmultilineop',['currentlyInMultiLineOp',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html#a79360590a52ab99fa5ca7bd3e679fef5',1,'com::aworx::lox::loggers::TextFileLogger']]]
+  ['bg_5fblack',['BG_BLACK',['../classcs_1_1aworx_1_1lox_1_1ESC.html#ad9f97de8fc4bcd75284217f1f6a08a67',1,'cs::aworx::lox::ESC']]],
+  ['bg_5fblue',['BG_BLUE',['../classcs_1_1aworx_1_1lox_1_1ESC.html#a4fcb8a63c23e04d6e0cc62b8ecb768d4',1,'cs::aworx::lox::ESC']]],
+  ['bg_5fcyan',['BG_CYAN',['../classcs_1_1aworx_1_1lox_1_1ESC.html#aadc6a2490dd073d14a1e4c6a89a2fd00',1,'cs::aworx::lox::ESC']]],
+  ['bg_5fgray',['BG_GRAY',['../classcs_1_1aworx_1_1lox_1_1ESC.html#a5880784c4b76758c370e2e185843b293',1,'cs::aworx::lox::ESC']]],
+  ['bg_5fgreen',['BG_GREEN',['../classcs_1_1aworx_1_1lox_1_1ESC.html#aeb4ee4a8fa304f618d371bf3cb9f2cfa',1,'cs::aworx::lox::ESC']]],
+  ['bg_5fmagenta',['BG_MAGENTA',['../classcs_1_1aworx_1_1lox_1_1ESC.html#ae060bbe66b4b4f7d862864c129da46c4',1,'cs::aworx::lox::ESC']]],
+  ['bg_5fred',['BG_RED',['../classcs_1_1aworx_1_1lox_1_1ESC.html#a5a7b9bb740d3d57bef2eb0ed7fc43244',1,'cs::aworx::lox::ESC']]],
+  ['bg_5freset',['BG_RESET',['../classcs_1_1aworx_1_1lox_1_1ESC.html#a23cb0fc00083aca1cb08c85b63bb072f',1,'cs::aworx::lox::ESC']]],
+  ['bg_5fwhite',['BG_WHITE',['../classcs_1_1aworx_1_1lox_1_1ESC.html#a530f160d98731a247fb64399147d6f4d',1,'cs::aworx::lox::ESC']]],
+  ['bg_5fyellow',['BG_YELLOW',['../classcs_1_1aworx_1_1lox_1_1ESC.html#a5543908493d3a333e5045d18d8805952',1,'cs::aworx::lox::ESC']]],
+  ['black',['BLACK',['../classcs_1_1aworx_1_1lox_1_1ESC.html#aad038c9271b9cacb5fc354d9e0c790a3',1,'cs::aworx::lox::ESC']]],
+  ['blue',['BLUE',['../classcs_1_1aworx_1_1lox_1_1ESC.html#a482bba397389d91be57d6e0605f9f162',1,'cs::aworx::lox::ESC']]],
+  ['bold',['BOLD',['../classcs_1_1aworx_1_1lox_1_1ESC.html#a79517c1ad930e5746fa9b41936adbea6',1,'cs::aworx::lox::ESC']]],
+  ['buf',['Buf',['../classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a6a6be65c62f7ad0671d250f11c8564bf',1,'cs::aworx::lib::strings::Substring']]],
+  ['buffer',['buffer',['../classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#a8317b33b8c004741d95935199d964be9',1,'cs.aworx.lib.strings.AString.buffer()'],['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html#aaf50e38674e1c356539d73525486b1d5',1,'cs.aworx.lox.core.textlogger.ObjectConverter.buffer()']]]
 ];

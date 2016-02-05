@@ -1,26 +1,6 @@
 var searchData=
 [
-  ['indays',['InDays',['../classaworx_1_1util_1_1Ticks.html#a9397bc3e901c7e8e901763a554fdcbc8',1,'aworx::util::Ticks']]],
-  ['indexof',['IndexOf',['../classaworx_1_1util_1_1AString.html#ada854f4a920822f20a97149c5629afbe',1,'aworx::util::AString::IndexOf(const char *haystack, int haystackLen, const char *needle, int needleLen, int startIdx=0, bool ignoreCase=false)'],['../classaworx_1_1util_1_1AString.html#a2cb4afcd9544bac1c3f0e27b547f0aa6',1,'aworx::util::AString::IndexOf(const AString &amp;needle, int startIdx=0, bool ignoreCase=false) const '],['../classaworx_1_1util_1_1AString.html#a4ae5df998ac177f5adc51ba86c2618a7',1,'aworx::util::AString::IndexOf(const std::string &amp;needle, int startIdx=0, bool ignoreCase=false) const '],['../classaworx_1_1util_1_1AString.html#a329b980963683dbdf11ff71482eb940a',1,'aworx::util::AString::IndexOf(const char *needle, int startIdx=0, bool ignoreCase=false) const '],['../classaworx_1_1util_1_1AString.html#a4f588006577fd28203bbb95d6372b591',1,'aworx::util::AString::IndexOf(char c, int startIdx=0)']]],
-  ['inepochseconds',['InEpochSeconds',['../classaworx_1_1util_1_1Ticks.html#ad96f1b87ddca623ddecf2821280bfcb2',1,'aworx::util::Ticks']]],
-  ['infiletime',['InFileTime',['../classaworx_1_1util_1_1Ticks.html#a7652457ae7270efc6bf690749d33591a',1,'aworx::util::Ticks::InFileTime(LPFILETIME result) const '],['../classaworx_1_1util_1_1Ticks.html#acdae4d42392c73b212de70baff472b29',1,'aworx::util::Ticks::InFileTime(ULARGE_INTEGER &amp;result) const ']]],
-  ['info',['Info',['../classaworx_1_1lox_1_1Lox.html#a9078b290ca9b7deb95df3e50a2b6824d',1,'aworx::lox::Lox::Info(const util::AString &amp;msg, int indent=0)'],['../classaworx_1_1lox_1_1Lox.html#acab3da05f3ded4916807f173de3274c4',1,'aworx::lox::Lox::Info(const char *domain, const util::AString &amp;msg, int indent=0)'],['../classaworx_1_1lox_1_1Lox.html#aa7aab72b2f79cb499bf988bce33e483f',1,'aworx::lox::Lox::Info(std::string &amp;msg, int indent=0)'],['../classaworx_1_1lox_1_1Lox.html#a2aec7231604d55e242feaeb9e94e2909',1,'aworx::lox::Lox::Info(const char *domain, std::string &amp;msg, int indent=0)'],['../classaworx_1_1lox_1_1Lox.html#a117214c834eafe83d3922952ce58461c',1,'aworx::lox::Lox::Info(const char *msg, int indent=0)'],['../classaworx_1_1lox_1_1Lox.html#a796f3faf05d773690daa7dde68c7096e',1,'aworx::lox::Lox::Info(const char *domain, const char *msg, int indent=0)']]],
-  ['inhertz',['InHertz',['../classaworx_1_1util_1_1Ticks.html#a88db94a7906cff1e3ec57007436cf8b2',1,'aworx::util::Ticks']]],
-  ['inhours',['InHours',['../classaworx_1_1util_1_1Ticks.html#a2584f400808d42f731209def0908aa93',1,'aworx::util::Ticks']]],
-  ['init',['Init',['../classaworx_1_1util_1_1AWXU.html#a1e3b6d38df0786ccf7f938d60e386aae',1,'aworx::util::AWXU']]],
-  ['initalox',['InitALox',['../classaworx_1_1lox_1_1Log.html#adf5526722711e47984a1b7fb93b219ce',1,'aworx::lox::Log']]],
-  ['inmicros',['InMicros',['../classaworx_1_1util_1_1Ticks.html#ad52e8866e8e98cbbde6fe8322fe126e6',1,'aworx::util::Ticks']]],
-  ['inmillis',['InMillis',['../classaworx_1_1util_1_1Ticks.html#a7781a8fbfebb3b1fcde30dc08c665245',1,'aworx::util::Ticks']]],
-  ['inminutes',['InMinutes',['../classaworx_1_1util_1_1Ticks.html#a34b63b0c6af9441239b5de19502ba9e0',1,'aworx::util::Ticks']]],
-  ['innanos',['InNanos',['../classaworx_1_1util_1_1Ticks.html#a57fa6b33e83e04e3f39df8293855ab5b',1,'aworx::util::Ticks']]],
-  ['inseconds',['InSeconds',['../classaworx_1_1util_1_1Ticks.html#a598e222338b0c08ceccb5479a5ac9429',1,'aworx::util::Ticks']]],
-  ['insert',['Insert',['../classaworx_1_1util_1_1AString.html#aedf02927501b408253a5f0af532962b3',1,'aworx::util::AString']]],
-  ['insystemtime',['InSystemTime',['../classaworx_1_1util_1_1Ticks.html#a50db6fc95cddfc99239625df38d8a700',1,'aworx::util::Ticks']]],
-  ['internalfrequency',['InternalFrequency',['../classaworx_1_1util_1_1Ticks.html#af3517d9cd90fd195ce3c876c0dc1b848',1,'aworx::util::Ticks']]],
-  ['internallog',['internalLog',['../classaworx_1_1lox_1_1Lox.html#a38ac8435abca79b681a002702880b495',1,'aworx::lox::Lox']]],
-  ['isacquired',['IsAcquired',['../classaworx_1_1util_1_1ThreadLock.html#aec22b72d4f4c52f3dc81d9c8653e91dd',1,'aworx::util::ThreadLock']]],
-  ['isactive',['IsActive',['../classaworx_1_1lox_1_1core_1_1LogDomain.html#a9a7f61a789b52e689f56f0f53ceb449b',1,'aworx::lox::core::LogDomain']]],
-  ['isalive',['IsAlive',['../classaworx_1_1util_1_1Thread.html#aed968892a37acc82e42dc5631873763a',1,'aworx::util::Thread']]],
-  ['isnullorempty',['IsNullOrEmpty',['../classaworx_1_1util_1_1AString.html#ad4cb4393e5a101150a2c7573a63d66e3',1,'aworx::util::AString::IsNullOrEmpty(const std::string *s)'],['../classaworx_1_1util_1_1AString.html#aee8ab00e07a50823c18a186295f5a283',1,'aworx::util::AString::IsNullOrEmpty(const AString *ms)'],['../classaworx_1_1util_1_1AString.html#a1ded951d5392202545223646fd90cff9',1,'aworx::util::AString::IsNullOrEmpty(const char *cs)']]],
-  ['isunsafe',['IsUnsafe',['../classaworx_1_1util_1_1ThreadLockNR.html#abf2bccd9812728e715f73c27dac06614',1,'aworx::util::ThreadLockNR::IsUnsafe()'],['../classaworx_1_1util_1_1ThreadLock.html#abf2bccd9812728e715f73c27dac06614',1,'aworx::util::ThreadLock::IsUnsafe()']]]
+  ['hasconsolewindow',['HasConsoleWindow',['../classaworx_1_1lib_1_1system_1_1System.html#a62821694d315ff9e9b417531bce97ce6',1,'aworx::lib::system::System']]],
+  ['hasinternalbuffer',['HasInternalBuffer',['../classaworx_1_1lib_1_1strings_1_1ASAlloc.html#a799c4f153843f7dbba7fe16cf9bfc457',1,'aworx::lib::strings::ASAlloc']]],
+  ['hasnext',['HasNext',['../classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a3551d22502a58cdc93b15d14f3fb87c2',1,'aworx::lib::strings::Tokenizer']]]
 ];

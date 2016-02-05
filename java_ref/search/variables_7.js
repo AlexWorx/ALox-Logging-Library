@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['haltonerror',['haltOnError',['../classcom_1_1aworx_1_1util_1_1AWXU.html#a11cbc146958a86e6c25bc423054e365b',1,'com::aworx::util::AWXU']]],
-  ['haltonwarning',['haltOnWarning',['../classcom_1_1aworx_1_1util_1_1AWXU.html#a77cb7512239265f151b094ebcf2406a1',1,'com::aworx::util::AWXU']]],
-  ['hash',['hash',['../classcom_1_1aworx_1_1util_1_1AString.html#a6656561117ec1ab686401179004f53ba',1,'com::aworx::util::AString']]],
-  ['hours',['hours',['../classcom_1_1aworx_1_1util_1_1TicksSpan.html#af23005df06fc3cd4264e5eee2dfa2f8c',1,'com::aworx::util::TicksSpan']]]
+  ['global',['global',['../classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a57b001277f79d9f58dd266598d107317',1,'com::aworx::lib::strings::NumberFormat']]],
+  ['gray',['GRAY',['../classcom_1_1aworx_1_1lox_1_1ESC.html#a12c742caa4e5eaeb267d3622b4d06ca5',1,'com::aworx::lox::ESC']]],
+  ['green',['GREEN',['../classcom_1_1aworx_1_1lox_1_1ESC.html#a1642635e9fb63c809d8b96eba585f4ca',1,'com::aworx::lox::ESC']]]
 ];

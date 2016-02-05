@@ -1,4 +1,0 @@
-<map id="AWXUErrorHandler" name="AWXUErrorHandler">
-<area shape="rect" id="node2" href="$classcom_1_1aworx_1_1lox_1_1Log_1_1ALoxAWXUErrorHandler.html" title="The error handler for the AWXU package. An instance of this class will be created statically and adde..." alt="" coords="5,80,192,107"/>
-<area shape="rect" id="node3" href="$classcom_1_1aworx_1_1util_1_1ConsoleErrorHandler.html" title="The simple, default error handler, just writing the message to the console. " alt="" coords="216,80,357,107"/>
-</map>

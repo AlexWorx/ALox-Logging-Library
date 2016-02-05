@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['warning',['WARNING',['../classaworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5a059e9861e0400dfbe05c98a841f3f96b',1,'aworx::lox::Log']]],
-  ['warnings_5fand_5ferrors',['WARNINGS_AND_ERRORS',['../classaworx_1_1lox_1_1Log.html#a10ac165398697ce1d642d739cc3b170face948b1e2bf728769120ded409b6d3f4',1,'aworx::lox::Log']]]
+  ['never',['Never',['../namespaceaworx_1_1lib_1_1enums.html#a55781bd0c78c4e5d47ce433f4eeeee85a6e7b34fa59e1bd229b207892956dc41c',1,'aworx::lib::enums']]],
+  ['none',['None',['../classaworx_1_1lox_1_1Log.html#aaecc53892786f2fa11e682f633af84c6a6adf97f83acf6453d4a6a4b1070f3754',1,'aworx::lox::Log::None()'],['../namespaceaworx_1_1lib_1_1enums.html#aeae0c2d4659a32ef54bd221d1a3da4e6a6adf97f83acf6453d4a6a4b1070f3754',1,'aworx::lib::enums::None()']]]
 ];

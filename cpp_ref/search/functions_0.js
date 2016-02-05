@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['_5fawxu_5fdestruct_5flib_5fthread',['_awxu_destruct_lib_thread',['../classaworx_1_1util_1_1Thread.html#a81de88b0a41099613372d99dea3f4267',1,'aworx::util::Thread']]],
-  ['_5fawxu_5fdestruct_5flib_5fticks',['_awxu_destruct_lib_ticks',['../classaworx_1_1util_1_1Ticks.html#aff513137ba46a2ec5ed7b8cef1a6825b',1,'aworx::util::Ticks']]],
-  ['_5fawxu_5finit_5flib_5fthread',['_awxu_init_lib_thread',['../classaworx_1_1util_1_1Thread.html#afa0a63f7d4be1064802e8f1ab8ba35cf',1,'aworx::util::Thread']]],
-  ['_5fawxu_5finit_5flib_5fticks',['_awxu_init_lib_ticks',['../classaworx_1_1util_1_1Ticks.html#a6c7f9a355252d829fccc782280246acd',1,'aworx::util::Ticks']]]
+  ['_5f',['_',['../classaworx_1_1lib_1_1strings_1_1ASAlloc.html#a7d1b2ede295754fcb3ea39e2681a6de6',1,'aworx::lib::strings::ASAlloc::_()'],['../classaworx_1_1lib_1_1strings_1_1ASAlloc.html#aefd4424048be8d9fce5bef95d3d0eb37',1,'aworx::lib::strings::ASAlloc::_(const T &amp;src)'],['../classaworx_1_1lib_1_1strings_1_1ASAlloc.html#ad9033b6f935b840edb855ecba2ec3579',1,'aworx::lib::strings::ASAlloc::_(const AS &amp;src, int regionStart, int regionLength=CString::MaxLen)']]],
+  ['_5fdbgcheck',['_dbgCheck',['../classaworx_1_1lib_1_1strings_1_1ASAlloc.html#a8747c38ac0ef9f863ede544d51ff6721',1,'aworx::lib::strings::ASAlloc::_dbgCheck()'],['../classaworx_1_1lib_1_1strings_1_1ASTerminatable.html#a8747c38ac0ef9f863ede544d51ff6721',1,'aworx::lib::strings::ASTerminatable::_dbgCheck()']]],
+  ['_5finit_5falib',['_Init_ALib',['../classaworx_1_1lib_1_1threads_1_1Thread.html#a003163fa39a645018d798dc5f78d1489',1,'aworx::lib::threads::Thread::_Init_ALib()'],['../classaworx_1_1lib_1_1time_1_1Ticks.html#a003163fa39a645018d798dc5f78d1489',1,'aworx::lib::time::Ticks::_Init_ALib()']]],
+  ['_5fterminate_5falib',['_Terminate_ALib',['../classaworx_1_1lib_1_1threads_1_1Thread.html#accd9bab0730ee5dd06545352ca0346f2',1,'aworx::lib::threads::Thread::_Terminate_ALib()'],['../classaworx_1_1lib_1_1time_1_1Ticks.html#accd9bab0730ee5dd06545352ca0346f2',1,'aworx::lib::time::Ticks::_Terminate_ALib()']]]
 ];

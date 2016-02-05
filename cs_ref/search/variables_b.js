@@ -1,5 +1,22 @@
 var searchData=
 [
-  ['objectconverter',['ObjectConverter',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a4659dec01dc35beaed57a1d13fb3a60c',1,'com::aworx::lox::core::TextLogger']]],
-  ['owner',['owner',['../classcom_1_1aworx_1_1util_1_1ThreadLock.html#a194df7b1414f1a1181802f255faff967',1,'com::aworx::util::ThreadLock']]]
+  ['magenta',['MAGENTA',['../classcs_1_1aworx_1_1lox_1_1ESC.html#aabdeecbbe0dc98a98b3a3b1a4fa7a29b',1,'cs::aworx::lox::ESC']]],
+  ['markers',['markers',['../classcs_1_1aworx_1_1lox_1_1Lox.html#a5eab0b79172487be1b04eebcd4ed5736',1,'cs::aworx::lox::Lox']]],
+  ['memorylog',['MemoryLog',['../classcs_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html#ab885e710ebb2c0ae44ee92604a4d56f8',1,'cs::aworx::lox::loggers::MemoryLogger']]],
+  ['metainfo',['MetaInfo',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#adf1921db321da434a7a254222c174398',1,'cs::aworx::lox::core::textlogger::TextLogger']]],
+  ['methodname',['MethodName',['../classcs_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#aa8885cdf3586b80bd9905b60bf9529d9',1,'cs::aworx::lox::core::CallerInfo']]],
+  ['minintegraldigits',['MinIntegralDigits',['../classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a722a7a5cfeadae332ec66b2c79e9c116',1,'cs::aworx::lib::strings::NumberFormat']]],
+  ['msgcolorerror',['MsgColorError',['../classcs_1_1aworx_1_1lox_1_1loggers_1_1ColorConsoleLogger.html#a416902153f9088373986780731b6c9f2',1,'cs::aworx::lox::loggers::ColorConsoleLogger']]],
+  ['msgcolorinfo',['MsgColorInfo',['../classcs_1_1aworx_1_1lox_1_1loggers_1_1ColorConsoleLogger.html#a437aaf846a3ef2dea352c8bafe45f396',1,'cs::aworx::lox::loggers::ColorConsoleLogger']]],
+  ['msgcolorverbose',['MsgColorVerbose',['../classcs_1_1aworx_1_1lox_1_1loggers_1_1ColorConsoleLogger.html#a4327a1fd6973ad9b7d99cc742c9a5a64',1,'cs::aworx::lox::loggers::ColorConsoleLogger']]],
+  ['msgcolorwarning',['MsgColorWarning',['../classcs_1_1aworx_1_1lox_1_1loggers_1_1ColorConsoleLogger.html#a3bfc428813fc814d5e48948585e0c50c',1,'cs::aworx::lox::loggers::ColorConsoleLogger']]],
+  ['msgpostfix',['MsgPostfix',['../classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#abf0b7aeabf626699ea5547c4c112c1ea',1,'cs::aworx::lox::loggers::AnsiLogger']]],
+  ['msgprefixerror',['MsgPrefixError',['../classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#a7576c4768fda16421e817896836e568f',1,'cs::aworx::lox::loggers::AnsiLogger']]],
+  ['msgprefixinfo',['MsgPrefixInfo',['../classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#aa6f1bc914355fe8d17d8ca1a3d642eed',1,'cs::aworx::lox::loggers::AnsiLogger']]],
+  ['msgprefixverbose',['MsgPrefixVerbose',['../classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#adfbbaceadd0848bac5de58dd675fd735',1,'cs::aworx::lox::loggers::AnsiLogger']]],
+  ['msgprefixwarning',['MsgPrefixWarning',['../classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#ad9cc2acc0ffe4f4ab09344dacb4c4396',1,'cs::aworx::lox::loggers::AnsiLogger']]],
+  ['multilinedelimiter',['MultiLineDelimiter',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#aba58580b1670dbfb1caf21f47d0d53de',1,'cs::aworx::lox::core::textlogger::TextLogger']]],
+  ['multilinedelimiterrepl',['MultiLineDelimiterRepl',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a957ed4611b87bdf193ad2c3f848a451c',1,'cs::aworx::lox::core::textlogger::TextLogger']]],
+  ['multilinemsgmode',['MultiLineMsgMode',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a95ea94dee572eaac760d028ddcf3cf65',1,'cs::aworx::lox::core::textlogger::TextLogger']]],
+  ['mutex',['mutex',['../classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#a4cc9273ae9737bab384e14ef7d4b5c7a',1,'cs::aworx::lib::threads::ThreadLock']]]
 ];

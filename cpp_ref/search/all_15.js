@@ -1,17 +1,15 @@
 var searchData=
 [
-  ['_7eastring',['~AString',['../classaworx_1_1util_1_1AString.html#aa83fa296890941b4c9e9b5c6deeb6ad4',1,'aworx::util::AString']]],
-  ['_7econsolelogger',['~ConsoleLogger',['../classaworx_1_1lox_1_1loggers_1_1ConsoleLogger.html#adcc137c2937923375e6de33b3fcd2338',1,'aworx::lox::loggers::ConsoleLogger']]],
-  ['_7elogdomain',['~LogDomain',['../classaworx_1_1lox_1_1core_1_1LogDomain.html#a6a7d23c09a897856f06c1ec87cfda918',1,'aworx::lox::core::LogDomain']]],
-  ['_7elogger',['~Logger',['../classaworx_1_1lox_1_1core_1_1Logger.html#a0d77f27eb95c246d555904aaf08018eb',1,'aworx::lox::core::Logger']]],
-  ['_7elox',['~Lox',['../classaworx_1_1lox_1_1Lox.html#a8df22829cdb5cad1db7f72bb0b068d5b',1,'aworx::lox::Lox']]],
-  ['_7ememorylogger',['~MemoryLogger',['../classaworx_1_1lox_1_1loggers_1_1MemoryLogger.html#a93c809b5a2cffd8cb244a0f4a6e9ec6c',1,'aworx::lox::loggers::MemoryLogger']]],
-  ['_7eowner',['~Owner',['../structaworx_1_1util_1_1Owner.html#ac22eca8fa24d998053adc01cde626b52',1,'aworx::util::Owner']]],
-  ['_7erunnable',['~Runnable',['../classaworx_1_1util_1_1Runnable.html#a93a94435fb3d643aacf328fcc497d9ab',1,'aworx::util::Runnable']]],
-  ['_7etextlogger',['~TextLogger',['../classaworx_1_1lox_1_1core_1_1TextLogger.html#aaa18c56d081d6d2bce737e506613fc03',1,'aworx::lox::core::TextLogger']]],
-  ['_7etextloggerlineformatter',['~TextLoggerLineFormatter',['../classaworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a470524c78f8bd9f67168beb18c8ab2d9',1,'aworx::lox::core::TextLoggerLineFormatter']]],
-  ['_7etextloggerobjectconverter',['~TextLoggerObjectConverter',['../classaworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html#a3da559d8bab9e6745fdb9ed9bdb5d03f',1,'aworx::lox::core::TextLoggerObjectConverter']]],
-  ['_7ethread',['~Thread',['../classaworx_1_1util_1_1Thread.html#a87a9c69a69ee4b13cb1ec5772f6d32ad',1,'aworx::util::Thread']]],
-  ['_7ethreadlock',['~ThreadLock',['../classaworx_1_1util_1_1ThreadLock.html#a62d4d1d8df991fec098bbd8d5f19e34b',1,'aworx::util::ThreadLock']]],
-  ['_7ethreadlocknr',['~ThreadLockNR',['../classaworx_1_1util_1_1ThreadLockNR.html#a8a678665ea50f12830f296ef03eda4d8',1,'aworx::util::ThreadLockNR']]]
+  ['value',['Value',['../classaworx_1_1lib_1_1config_1_1IniFile_1_1Variable.html#aaadcdd81806203a103169225c3079f43',1,'aworx::lib::config::IniFile::Variable::Value()'],['../classaworx_1_1lib_1_1strings_1_1Format_1_1Int32.html#a01571c420f280137c16d319178731da5',1,'aworx::lib::strings::Format::Int32::value()'],['../classaworx_1_1lib_1_1strings_1_1Format_1_1UInt32.html#ae7f66047e6e39ba2bb6af8b95f00d1dd',1,'aworx::lib::strings::Format::UInt32::value()'],['../classaworx_1_1lib_1_1strings_1_1Format_1_1Int64.html#ac072af30c4ffbc834bb4c681f6ecb514',1,'aworx::lib::strings::Format::Int64::value()'],['../classaworx_1_1lib_1_1strings_1_1Format_1_1UInt64.html#a4e630859cc0e2a22bd6acf39a6a8e218',1,'aworx::lib::strings::Format::UInt64::value()'],['../classaworx_1_1lib_1_1strings_1_1Format_1_1Double.html#aee90379adb0307effb138f4871edbc5c',1,'aworx::lib::strings::Format::Double::value()']]],
+  ['values',['values',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html#ad80b3fe86185c92f73dddc2805963dc0',1,'aworx::lox::core::textlogger::AutoSizes']]],
+  ['variable',['Variable',['../classaworx_1_1lib_1_1config_1_1IniFile_1_1Variable.html',1,'aworx::lib::config::IniFile']]],
+  ['variables',['Variables',['../classaworx_1_1lib_1_1config_1_1IniFile_1_1Section.html#a738ca476f47674d8516d09e15ce172de',1,'aworx::lib::config::IniFile::Section']]],
+  ['vbuffer',['vbuffer',['../classaworx_1_1lib_1_1strings_1_1AS.html#ab060ffba71bd8a3d7067a38950b39a82',1,'aworx::lib::strings::AS::vbuffer()'],['../classaworx_1_1lib_1_1strings_1_1ASAlloc.html#a39184b93936d495a501cbea28e12495e',1,'aworx::lib::strings::ASAlloc::VBuffer()']]],
+  ['verbose',['Verbose',['../classaworx_1_1lox_1_1Lox.html#af6093dbce9dbbeffcf76362b4abacac8',1,'aworx::lox::Lox::Verbose(const TString &amp;msg, int indent=0)'],['../classaworx_1_1lox_1_1Lox.html#a19d5d602e061c3bffafbe24730ed277c',1,'aworx::lox::Lox::Verbose(const TString &amp;domain, const TString &amp;msg, int indent=0)'],['../classaworx_1_1lox_1_1Lox.html#a7de4de50bb74004025ca67dc8ad0bcd4',1,'aworx::lox::Lox::Verbose(void *msgObject, int msgType, int indent=0)'],['../classaworx_1_1lox_1_1Lox.html#a40ea941f26bcba6258584ccde996411f',1,'aworx::lox::Lox::Verbose(const TString &amp;domain, void *msgObject, int msgType, int indent=0)'],['../classaworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5ad4a9fa383ab700c5bdd6f31cf7df0faf',1,'aworx::lox::Log::Verbose()']]],
+  ['verifycompilationflags',['VerifyCompilationFlags',['../classaworx_1_1lib_1_1ALIB.html#a6924a062cb4b36d1cffa928296525365',1,'aworx::lib::ALIB::VerifyCompilationFlags()'],['../classaworx_1_1lox_1_1Log.html#a6924a062cb4b36d1cffa928296525365',1,'aworx::lox::Log::VerifyCompilationFlags()']]],
+  ['version',['Version',['../classaworx_1_1lib_1_1ALIB.html#a8d88b5f159f3cd597cdd92f942340024',1,'aworx::lib::ALIB::Version()'],['../classaworx_1_1lox_1_1Log.html#a8d88b5f159f3cd597cdd92f942340024',1,'aworx::lox::Log::Version()']]],
+  ['vstudio',['VStudio',['../classaworx_1_1lib_1_1system_1_1System.html#aeae50cdd350e3deaae33d2900b0a72f2a9da6f898a198b78810f6ad36fb83064e',1,'aworx::lib::system::System']]],
+  ['vstudiologger',['VStudioLogger',['../classaworx_1_1lox_1_1loggers_1_1VStudioLogger.html',1,'aworx::lox::loggers']]],
+  ['vstudiologger',['VStudioLogger',['../classaworx_1_1lox_1_1loggers_1_1VStudioLogger.html#aeee499182934b2b2708e1647818b62b1',1,'aworx::lox::loggers::VStudioLogger']]],
+  ['vstudiologger_2ehpp',['vstudiologger.hpp',['../vstudiologger_8hpp.html',1,'']]]
 ];

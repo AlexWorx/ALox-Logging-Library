@@ -1,12 +1,15 @@
 var searchData=
 [
-  ['getallocation',['GetAllocation',['../classcom_1_1aworx_1_1util_1_1AString.html#aceecf9edcf1826ce2bd4bf636ff7a4ed',1,'com::aworx::util::AString']]],
-  ['getaverage',['GetAverage',['../classcom_1_1aworx_1_1util_1_1TickWatch.html#ae29a8f1f9e654fdc5c28964f8612086f',1,'com.aworx.util.TickWatch.GetAverage()'],['../classcom_1_1aworx_1_1util_1_1TickWatch.html#a0c306dab7a7ec5014a827facc40369d1',1,'com.aworx.util.TickWatch.GetAverage(Ticks result)']]],
-  ['getcumulated',['GetCumulated',['../classcom_1_1aworx_1_1util_1_1TickWatch.html#afa26a288553e5b8e69116f085d320564',1,'com::aworx::util::TickWatch']]],
-  ['gethashcode',['GetHashCode',['../classcom_1_1aworx_1_1util_1_1AString.html#a77e1afa2b6dee1ed3640da81d7407b42',1,'com::aworx::util::AString']]],
-  ['getlevel',['GetLevel',['../classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#a6b35d5ba376191a0aa5b9ed52b8f05e9',1,'com::aworx::lox::core::LogDomain']]],
-  ['getlogger',['GetLogger',['../classcom_1_1aworx_1_1lox_1_1Log.html#a81583fc2028aa1ccb925afaa0d63a224',1,'com.aworx.lox.Log.GetLogger()'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#a74ba68166dee3359939d25f87e648cbe',1,'com.aworx.lox.Lox.GetLogger()']]],
-  ['getmarker',['GetMarker',['../classcom_1_1aworx_1_1lox_1_1Log.html#a4576b25512979ba59a7180486b18874a',1,'com.aworx.lox.Log.GetMarker()'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#aface0c1255d1c75523c654b095c2dc56',1,'com.aworx.lox.Lox.GetMarker()']]],
-  ['getsamplecnt',['GetSampleCnt',['../classcom_1_1aworx_1_1util_1_1TickWatch.html#a8f2deb29070eb959107e5d9ad3584635',1,'com::aworx::util::TickWatch']]],
-  ['getstarttime',['GetStartTime',['../classcom_1_1aworx_1_1util_1_1TickWatch.html#abf86508e29c6aa06ee78ea52cf8d36e1',1,'com::aworx::util::TickWatch']]]
+  ['field',['Field',['../classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#a804d1f7748d98951e31c93829aeeb5fe',1,'cs::aworx::lib::strings::AString']]],
+  ['find',['Find',['../classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#aec4b8a62a68d36086748848daaa311fb',1,'cs::aworx::lox::core::Domain']]],
+  ['findrecursive',['findRecursive',['../classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#aaff461fc11e5cfa90c7a349137bc7574',1,'cs::aworx::lox::core::Domain']]],
+  ['floattostring',['FloatToString',['../classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#af2bb503687edf4c1c96cd641fccc1b70',1,'cs::aworx::lib::strings::NumberFormat']]],
+  ['fromdays',['FromDays',['../classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html#a161ed9398d1cfa08d4db4ed330d98e66',1,'cs::aworx::lib::time::Ticks']]],
+  ['fromhours',['FromHours',['../classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html#a7c61485aae63d42e28e02cbb7e548824',1,'cs::aworx::lib::time::Ticks']]],
+  ['frommicros',['FromMicros',['../classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html#a1ea53a33f84438a1785ee2bca6af3be8',1,'cs::aworx::lib::time::Ticks']]],
+  ['frommillis',['FromMillis',['../classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html#a022a14bbe8bd29a52672af28f19977c0',1,'cs::aworx::lib::time::Ticks']]],
+  ['fromminutes',['FromMinutes',['../classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html#ac9abb0aba8d40ab4c30e8404bd097c84',1,'cs::aworx::lib::time::Ticks']]],
+  ['fromnanos',['FromNanos',['../classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html#a2ca7dc68b5aa84ca5c8cc4423e0ac7f2',1,'cs::aworx::lib::time::Ticks']]],
+  ['fromseconds',['FromSeconds',['../classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html#a16278993f4c841d6865347c7996dbd0e',1,'cs::aworx::lib::time::Ticks']]],
+  ['fromstring',['FromString',['../classcs_1_1aworx_1_1lox_1_1tools_1_1json_1_1DynamicJSONDeserializer.html#ae8ed5a6a4f77379a35ea093f0cdf50d5',1,'cs::aworx::lox::tools::json::DynamicJSONDeserializer']]]
 ];

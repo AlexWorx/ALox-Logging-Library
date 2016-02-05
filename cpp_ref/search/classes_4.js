@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['memorylogger',['MemoryLogger',['../classaworx_1_1lox_1_1loggers_1_1MemoryLogger.html',1,'aworx::lox::loggers']]]
+  ['field',['Field',['../classaworx_1_1lib_1_1strings_1_1Format_1_1Field.html',1,'aworx::lib::strings::Format']]],
+  ['format',['Format',['../classaworx_1_1lib_1_1strings_1_1Format.html',1,'aworx::lib::strings']]]
 ];

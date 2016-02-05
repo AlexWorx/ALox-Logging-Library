@@ -1,11 +1,20 @@
 var searchData=
 [
-  ['dateformat',['DateFormat',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a73be91892f104afd96a32ab547e2cf45',1,'com::aworx::lox::core::TextLoggerLineFormatter']]],
-  ['dateformatstring',['dateFormatString',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a25d0a90e758eef351048c526b82ce060',1,'com::aworx::lox::core::TextLoggerLineFormatter']]],
-  ['datetimeticks19700101',['dateTimeTicks19700101',['../classcom_1_1aworx_1_1util_1_1Ticks.html#a9fece05bed075816cf25a02b44f72b57',1,'com::aworx::util::Ticks']]],
-  ['defaultdomains',['defaultDomains',['../classcom_1_1aworx_1_1lox_1_1Lox.html#a7301773dfbda817921e99637adc6ff30',1,'com::aworx::lox::Lox']]],
-  ['detectdateformatchanges',['detectDateFormatChanges',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#ab621f55d7a1a3c04988089afeea88208',1,'com::aworx::lox::core::TextLoggerLineFormatter']]],
-  ['detecttimeofdayformatchanges',['detectTimeOfDayFormatChanges',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#ae2eb584a3f8074d9b14f56741ff2b628',1,'com::aworx::lox::core::TextLoggerLineFormatter']]],
-  ['dictionary',['Dictionary',['../classcom_1_1aworx_1_1lox_1_1tools_1_1json_1_1DynamicJSONDeserializer_1_1DynamicJsonObject.html#a0ecddbd2f0dd3f9e45aea60eb4e4fe53',1,'com::aworx::lox::tools::json::DynamicJSONDeserializer::DynamicJsonObject']]],
-  ['domainseparatorchars',['DomainSeparatorChars',['../classcom_1_1aworx_1_1lox_1_1core_1_1LogDomain.html#afb75ecb5fef3bcf61597efd190ca0114',1,'com::aworx::lox::core::LogDomain']]]
+  ['caller',['caller',['../classcs_1_1aworx_1_1lox_1_1Lox.html#a661374595beb4ef6cdcd0417c8c47f0d',1,'cs::aworx::lox::Lox']]],
+  ['callerdatetime',['callerDateTime',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a321e35a5312d2e9709fd591b7e5d54a5',1,'cs::aworx::lox::core::textlogger::MetaInfo']]],
+  ['cmdlinecp',['CmdLineCP',['../classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#aeab3fc98a76ae513a4527528bd9ed304',1,'cs::aworx::lib::config::Configuration']]],
+  ['cntlogcalls',['CntLogCalls',['../classcs_1_1aworx_1_1lox_1_1Lox.html#a2c80e5630abe5d5042ddb4b85c0c3562',1,'cs::aworx::lox::Lox']]],
+  ['cntlogs',['CntLogs',['../classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html#a7859d287690c28acd561a307d23679bf',1,'cs::aworx::lox::core::Logger']]],
+  ['cntsamples',['cntSamples',['../classcs_1_1aworx_1_1lib_1_1time_1_1TickWatch.html#a3203b85b99c75b91922c0147ac0ca04b',1,'cs::aworx::lib::time::TickWatch']]],
+  ['commentchars',['commentChars',['../classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html#a389d30df43a408ed82b7c48feb49dc08',1,'cs::aworx::lib::config::IniFile']]],
+  ['comments',['Comments',['../classcs_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Variable.html#a13a7dbf15cba4c8849fdd8044b185475',1,'cs.aworx.lib.config.IniFile.Variable.Comments()'],['../classcs_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Section.html#a13a7dbf15cba4c8849fdd8044b185475',1,'cs.aworx.lib.config.IniFile.Section.Comments()']]],
+  ['config',['Config',['../classcs_1_1aworx_1_1lib_1_1ALIB.html#a34430993f800b3bc4571bd4b9a6d9184',1,'cs::aworx::lib::ALIB']]],
+  ['configcategoryname',['ConfigCategoryName',['../classcs_1_1aworx_1_1lib_1_1ALIB.html#affcf83e8b52935dd94b74c1a47cf7e0a',1,'cs.aworx.lib.ALIB.ConfigCategoryName()'],['../classcs_1_1aworx_1_1lox_1_1Log.html#affcf83e8b52935dd94b74c1a47cf7e0a',1,'cs.aworx.lox.Log.ConfigCategoryName()']]],
+  ['consumablesourcepathprefixstring',['ConsumableSourcePathPrefixString',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ad5e8a7d9f2c872ab23a2332e6583d908',1,'cs::aworx::lox::core::textlogger::MetaInfo']]],
+  ['contents',['Contents',['../classcs_1_1aworx_1_1lib_1_1Report_1_1Message.html#a879ba4d7413f0b6f7fa64331b41eed8f',1,'cs::aworx::lib::Report::Message']]],
+  ['convswtodt',['convSWToDT',['../classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html#ad91e3ebd169964f5636d6d006cd445fb',1,'cs::aworx::lib::time::Ticks']]],
+  ['creationtime',['CreationTime',['../classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html#ab4e057eeeb0ecf2494933081c666ea43',1,'cs::aworx::lib::time::Ticks']]],
+  ['creationtimestopwatch',['creationTimeStopWatch',['../classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html#a58d43e7232052f1601bc2914babafb17',1,'cs::aworx::lib::time::Ticks']]],
+  ['currentlyinmultilineop',['currentlyInMultiLineOp',['../classcs_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html#a79360590a52ab99fa5ca7bd3e679fef5',1,'cs::aworx::lox::loggers::TextFileLogger']]],
+  ['cyan',['CYAN',['../classcs_1_1aworx_1_1lox_1_1ESC.html#ae0400fcaf5cf17323f855100b495c9a7',1,'cs::aworx::lox::ESC']]]
 ];

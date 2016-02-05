@@ -1,0 +1,11 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="5,69,67,96"/>
+<area shape="rect" id="node2" href="$classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html" title="TextLogger" alt="" coords="115,69,201,96"/>
+<area shape="rect" id="node3" href="$classcom_1_1aworx_1_1lox_1_1android_1_1AndroidLogCatLogger.html" title="AndroidLogCatLogger" alt="" coords="249,19,396,45"/>
+<area shape="rect" id="node4" href="$classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html" title="PlainTextLogger" alt="" coords="265,69,381,96"/>
+<area shape="rect" id="node8" href="$classcom_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html" title="AnsiLogger" alt="" coords="279,132,366,159"/>
+<area shape="rect" id="node5" href="$classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html" title="ConsoleLogger" alt="" coords="457,5,566,32"/>
+<area shape="rect" id="node6" href="$classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html" title="MemoryLogger" alt="" coords="457,56,565,83"/>
+<area shape="rect" id="node7" href="$classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html" title="TextFileLogger" alt="" coords="457,107,565,133"/>
+<area shape="rect" id="node9" href="$classcom_1_1aworx_1_1lox_1_1loggers_1_1AnsiConsoleLogger.html" title="AnsiConsoleLogger" alt="" coords="444,157,579,184"/>
+</map>

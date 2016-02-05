@@ -1,21 +1,8 @@
 var searchData=
 [
-  ['textfilelogger',['TextFileLogger',['../../html/cs_ref/classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html',1,'com::aworx::lox::loggers']]],
-  ['textlogger',['TextLogger',['../../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html',1,'com::aworx::lox::core']]],
-  ['textlogger',['TextLogger',['../../html/cpp_ref/classaworx_1_1lox_1_1core_1_1TextLogger.html',1,'aworx::lox::core']]],
-  ['textloggerlineformatter',['TextLoggerLineFormatter',['../../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html',1,'com::aworx::lox::core']]],
-  ['textloggerlineformatter',['TextLoggerLineFormatter',['../../html/cpp_ref/classaworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html',1,'aworx::lox::core']]],
-  ['textloggerobjectconverter',['TextLoggerObjectConverter',['../../html/cpp_ref/classaworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html',1,'aworx::lox::core']]],
-  ['textloggerobjectconverter',['TextLoggerObjectConverter',['../../html/cs_ref/classcom_1_1aworx_1_1lox_1_1core_1_1TextLoggerObjectConverter.html',1,'com::aworx::lox::core']]],
-  ['thread',['Thread',['../../html/cpp_ref/classaworx_1_1util_1_1Thread.html',1,'aworx::util']]],
-  ['threadlock',['ThreadLock',['../../html/cpp_ref/classaworx_1_1util_1_1ThreadLock.html',1,'aworx::util']]],
-  ['threadlock',['ThreadLock',['../../html/cs_ref/classcom_1_1aworx_1_1util_1_1ThreadLock.html',1,'com::aworx::util']]],
-  ['threadlocknr',['ThreadLockNR',['../../html/cpp_ref/classaworx_1_1util_1_1ThreadLockNR.html',1,'aworx::util']]],
-  ['ticks',['Ticks',['../../html/cs_ref/classcom_1_1aworx_1_1util_1_1Ticks.html',1,'com::aworx::util']]],
-  ['ticks',['Ticks',['../../html/cpp_ref/classaworx_1_1util_1_1Ticks.html',1,'aworx::util']]],
-  ['tickscalendartime',['TicksCalendarTime',['../../html/cpp_ref/classaworx_1_1util_1_1TicksCalendarTime.html',1,'aworx::util']]],
-  ['ticksspan',['TicksSpan',['../../html/cpp_ref/classaworx_1_1util_1_1TicksSpan.html',1,'aworx::util']]],
-  ['ticksspan',['TicksSpan',['../../html/java_ref/classcom_1_1aworx_1_1util_1_1TicksSpan.html',1,'com::aworx::util']]],
-  ['tickwatch',['TickWatch',['../../html/cpp_ref/classaworx_1_1util_1_1TickWatch.html',1,'aworx::util']]],
-  ['tickwatch',['TickWatch',['../../html/cs_ref/classcom_1_1aworx_1_1util_1_1TickWatch.html',1,'com::aworx::util']]]
+  ['objectconverter',['ObjectConverter',['cpp_ref/classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html',1,'aworx::lox::core::textlogger']]],
+  ['objectconverter',['ObjectConverter',['java_ref/classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html',1,'com::aworx::lox::core::textlogger']]],
+  ['objectconverter',['ObjectConverter',['cs_ref/classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html',1,'cs::aworx::lox::core::textlogger']]],
+  ['ownable',['Ownable',['cpp_ref/classaworx_1_1lib_1_1Ownable.html',1,'aworx::lib']]],
+  ['owner',['Owner',['cpp_ref/structaworx_1_1lib_1_1Owner.html',1,'aworx::lib']]]
 ];

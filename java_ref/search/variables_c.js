@@ -1,7 +1,22 @@
 var searchData=
 [
-  ['objectconverter',['objectConverter',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#aa9c3f8373c25b01fd386dc0ea32636db',1,'com::aworx::lox::core::TextLogger']]],
-  ['off',['OFF',['../enumcom_1_1aworx_1_1lox_1_1Log_1_1DomainLevel.html#aba437f58ad654d395b18d209a1a8c21c',1,'com::aworx::lox::Log::DomainLevel']]],
-  ['omittablepackageprefix',['omittablePackagePrefix',['../classcom_1_1aworx_1_1lox_1_1Lox.html#a429a66aafea0971f02f2f5ccf21ca0d1',1,'com::aworx::lox::Lox']]],
-  ['owner',['owner',['../classcom_1_1aworx_1_1util_1_1ThreadLock.html#a194df7b1414f1a1181802f255faff967',1,'com::aworx::util::ThreadLock']]]
+  ['magenta',['MAGENTA',['../classcom_1_1aworx_1_1lox_1_1ESC.html#a72a55535169df8d5df8463347afdfeb3',1,'com::aworx::lox::ESC']]],
+  ['markers',['markers',['../classcom_1_1aworx_1_1lox_1_1Lox.html#a07103df900206725ba6a7613514d3fff',1,'com::aworx::lox::Lox']]],
+  ['memorylog',['memoryLog',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html#a0312ccbe897a3ab9e9972f93c9051bd2',1,'com::aworx::lox::loggers::MemoryLogger']]],
+  ['metainfo',['metaInfo',['../classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#aad96483110212e8fa0d6a9490fcd2e02',1,'com::aworx::lox::core::textlogger::TextLogger']]],
+  ['method',['METHOD',['../enumcom_1_1aworx_1_1lox_1_1Log_1_1Scope.html#a980085812d120b3761817608d332fecd',1,'com::aworx::lox::Log::Scope']]],
+  ['methodname',['methodName',['../classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#adb209f246d40ce3b523787fc7776c0f3',1,'com::aworx::lox::core::CallerInfo']]],
+  ['microseconds',['microseconds',['../classcom_1_1aworx_1_1lib_1_1time_1_1TickSpan.html#a324b0c623036a5fa4c1f5066517bc69e',1,'com::aworx::lib::time::TickSpan']]],
+  ['milliseconds',['milliseconds',['../classcom_1_1aworx_1_1lib_1_1time_1_1TickSpan.html#a5849f804fcf2677de863d9704d3ea272',1,'com::aworx::lib::time::TickSpan']]],
+  ['minintegraldigits',['minIntegralDigits',['../classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a3a3f94ed362a99c89069cee309c4034c',1,'com::aworx::lib::strings::NumberFormat']]],
+  ['minutes',['minutes',['../classcom_1_1aworx_1_1lib_1_1time_1_1TickSpan.html#ab693b677bdc9ded12b06daf49778101c',1,'com::aworx::lib::time::TickSpan']]],
+  ['msgpostfix',['msgPostfix',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#aab88fc2e5d38dcc2b8501a5f1179c866',1,'com::aworx::lox::loggers::AnsiLogger']]],
+  ['msgprefixerror',['msgPrefixError',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#a413ad8cdae9ccaf78e01c7b9cf5798bc',1,'com::aworx::lox::loggers::AnsiLogger']]],
+  ['msgprefixinfo',['msgPrefixInfo',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#a8e5fcf3acbeda155a1bd4edd645af953',1,'com::aworx::lox::loggers::AnsiLogger']]],
+  ['msgprefixverbose',['msgPrefixVerbose',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#ac20adf47729abb63742ad1fda168fb58',1,'com::aworx::lox::loggers::AnsiLogger']]],
+  ['msgprefixwarning',['msgPrefixWarning',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#afbdb675784edc454f561636e1fbb6dbb',1,'com::aworx::lox::loggers::AnsiLogger']]],
+  ['multilinedelimiter',['multiLineDelimiter',['../classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a927436a8c9c6474fc683bb0888f43b62',1,'com::aworx::lox::core::textlogger::TextLogger']]],
+  ['multilinedelimiterrepl',['multiLineDelimiterRepl',['../classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a55f49a9dca5dd991ad7198b48307732b',1,'com::aworx::lox::core::textlogger::TextLogger']]],
+  ['multilinemsgmode',['multiLineMsgMode',['../classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#accadd49b1318abe7fc5b7ae8dcb0f431',1,'com::aworx::lox::core::textlogger::TextLogger']]],
+  ['mutex',['mutex',['../classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#a4cc9273ae9737bab384e14ef7d4b5c7a',1,'com::aworx::lib::threads::ThreadLock']]]
 ];

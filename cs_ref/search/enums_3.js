@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['scope',['Scope',['../classcom_1_1aworx_1_1lox_1_1Log.html#aaecc53892786f2fa11e682f633af84c6',1,'com::aworx::lox::Log']]]
+  ['inclusion',['Inclusion',['../namespacecs_1_1aworx_1_1lib_1_1enums.html#a217539925b78b2eed40ae7817d5bee52',1,'cs::aworx::lib::enums']]]
 ];

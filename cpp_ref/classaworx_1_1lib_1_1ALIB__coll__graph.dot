@@ -1,0 +1,39 @@
+digraph "ALIB"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="ALIB",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Lock" ,fontname="Helvetica"];
+  Node2 [label="ThreadLockNR",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html"];
+  Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Ownable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1Ownable.html"];
+  Node4 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" ConfigCategoryName" ,fontname="Helvetica"];
+  Node4 [label="AS",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1AS.html"];
+  Node5 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Config" ,fontname="Helvetica"];
+  Node5 [label="Configuration",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1config_1_1Configuration.html"];
+  Node6 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="ThreadLock",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1threads_1_1ThreadLock.html"];
+  Node3 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" owner" ,fontname="Helvetica"];
+  Node7 [label="Thread",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1threads_1_1Thread.html"];
+  Node8 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" plugins" ,fontname="Helvetica"];
+  Node8 [label="vector\< PrioAndPlugin \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node9 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" NumberFormat" ,fontname="Helvetica"];
+  Node9 [label="NumberFormat",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1NumberFormat.html"];
+  Node9 -> Node9 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Global" ,fontname="Helvetica"];
+  Node10 -> Node9 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" DecimalPointCharacters\nDecimalExponentSeparator" ,fontname="Helvetica"];
+  Node10 [label="ASTerminatable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1ASTerminatable.html"];
+  Node4 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" TrueValues" ,fontname="Helvetica"];
+  Node11 [label="vector\< strings::AS \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node4 -> Node11 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" elements" ,fontname="Helvetica"];
+  Node12 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" envCP" ,fontname="Helvetica"];
+  Node12 [label="EnvironmentPlugIn",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html"];
+  Node13 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="ConfigurationPlugIn",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html"];
+  Node5 -> Node13 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Parent" ,fontname="Helvetica"];
+  Node14 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" cmdLineCP" ,fontname="Helvetica"];
+  Node14 [label="CommandLinePlugIn",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1config_1_1CommandLinePlugIn.html"];
+  Node13 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

@@ -1,16 +1,13 @@
 var searchData=
 [
-  ['lazyflagthreadnameandid',['lazyFlagThreadNameAndID',['../classaworx_1_1lox_1_1core_1_1CallerInfo.html#a92cdf9ddc997d5c1e065702682511453',1,'aworx::lox::core::CallerInfo']]],
-  ['length',['length',['../classaworx_1_1util_1_1AString.html#a9f59b34b1f25fe00023291b678246bcc',1,'aworx::util::AString']]],
-  ['level',['level',['../classaworx_1_1lox_1_1core_1_1LogDomain.html#a7dc431275952481e05cbb37a1115fafb',1,'aworx::lox::core::LogDomain']]],
-  ['lineformatter',['LineFormatter',['../classaworx_1_1lox_1_1core_1_1TextLogger.html#a14846fc3443c4a72d4f4b086c20f845d',1,'aworx::lox::core::TextLogger']]],
-  ['linenumber',['LineNumber',['../classaworx_1_1lox_1_1core_1_1CallerInfo.html#abc72cc909922c33908e48159b106efa3',1,'aworx::lox::core::CallerInfo']]],
-  ['lockcount',['lockCount',['../classaworx_1_1util_1_1ThreadLock.html#a7f41e1e3070abd18f7cdfdb9a95b3d9c',1,'aworx::util::ThreadLock']]],
-  ['logbuf',['logBuf',['../classaworx_1_1lox_1_1core_1_1TextLogger.html#a60717f23d7e75ca5d11cab431e69485f',1,'aworx::lox::core::TextLogger']]],
-  ['loggers',['loggers',['../classaworx_1_1lox_1_1Lox.html#a8af08b7d47cdaedadac30275031331eb',1,'aworx::lox::Lox']]],
-  ['loglevelerror',['LogLevelError',['../classaworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a9319b85100217c7c27320e46bc2f6301',1,'aworx::lox::core::TextLoggerLineFormatter']]],
-  ['loglevelinfo',['LogLevelInfo',['../classaworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a02fdeb1a688ca299622da93912d405d3',1,'aworx::lox::core::TextLoggerLineFormatter']]],
-  ['loglevelverbose',['LogLevelVerbose',['../classaworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#aaae29dfe7ab2394d8f0785849cb7de55',1,'aworx::lox::core::TextLoggerLineFormatter']]],
-  ['loglevelwarning',['LogLevelWarning',['../classaworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a3246d986fb0fd00a46f2d585cab94638',1,'aworx::lox::core::TextLoggerLineFormatter']]],
-  ['lognumbermindigits',['LogNumberMinDigits',['../classaworx_1_1lox_1_1core_1_1TextLoggerLineFormatter.html#a72c44479ec3d128c1208b49e4b8ede08',1,'aworx::lox::core::TextLoggerLineFormatter']]]
+  ['id',['id',['../classaworx_1_1lib_1_1threads_1_1Thread.html#a7441ef0865bcb3db9b8064dd7375c1ea',1,'aworx::lib::threads::Thread']]],
+  ['initialized',['initialized',['../classaworx_1_1lib_1_1ALIB.html#aedeffc7d23da25d52b9a50045189fe2b',1,'aworx::lib::ALIB']]],
+  ['internaldomain',['InternalDomain',['../classaworx_1_1lox_1_1Lox.html#a9bccc0d3300ad844c867a263e6e3e8bd',1,'aworx::lox::Lox']]],
+  ['isaliveflag',['isAliveFlag',['../classaworx_1_1lib_1_1threads_1_1Thread.html#a56a0c2524b8071ee7d9447a62d83ce32',1,'aworx::lib::threads::Thread']]],
+  ['isbackgroundlight',['IsBackgroundLight',['../classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html#ab9537e130d3c02801775f8c1941eb9a3',1,'aworx::lox::loggers::AnsiLogger::IsBackgroundLight()'],['../classaworx_1_1lox_1_1loggers_1_1WindowsConsoleLogger.html#ab9537e130d3c02801775f8c1941eb9a3',1,'aworx::lox::loggers::WindowsConsoleLogger::IsBackgroundLight()']]],
+  ['isdisabled',['IsDisabled',['../classaworx_1_1lox_1_1core_1_1Logger.html#abada4ef55f947626e50d53b5cb8a31cc',1,'aworx::lox::core::Logger']]],
+  ['iseof',['IsEOF',['../classaworx_1_1lib_1_1strings_1_1ReadLineFromIStream.html#ade6dbc4e4f8e0b45e0fbe023f5ed8ddd',1,'aworx::lib::strings::ReadLineFromIStream']]],
+  ['isinitialized',['isInitialized',['../classaworx_1_1lox_1_1Log.html#a1fdc2bf5595c2e64dc06d987769834eb',1,'aworx::lox::Log']]],
+  ['istream',['istream',['../classaworx_1_1lib_1_1strings_1_1ReadLineFromIStream.html#a6727ff65df9fd553e1eca11c56a803c0',1,'aworx::lib::strings::ReadLineFromIStream']]],
+  ['italics',['ITALICS',['../classaworx_1_1lox_1_1ESC.html#ac3756a927764ac88ff640c5e594ad58e',1,'aworx::lox::ESC']]]
 ];

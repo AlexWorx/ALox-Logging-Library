@@ -1,0 +1,11 @@
+<map id="TextLogger" name="TextLogger">
+<area shape="rect" id="node3" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html" title="PlainTextLogger" alt="" coords="267,155,383,181"/>
+<area shape="rect" id="node8" href="$classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html" title="AnsiLogger" alt="" coords="483,155,570,181"/>
+<area shape="rect" id="node10" href="$classaworx_1_1lox_1_1loggers_1_1WindowsConsoleLogger.html" title="WindowsConsoleLogger" alt="" coords="595,155,757,181"/>
+<area shape="rect" id="node2" href="$classaworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="496,5,557,32"/>
+<area shape="rect" id="node4" href="$classaworx_1_1lox_1_1loggers_1_1ConsoleLogger.html" title="ConsoleLogger" alt="" coords="5,229,115,256"/>
+<area shape="rect" id="node5" href="$classaworx_1_1lox_1_1loggers_1_1MemoryLogger.html" title="MemoryLogger" alt="" coords="139,229,247,256"/>
+<area shape="rect" id="node6" href="$classaworx_1_1lox_1_1loggers_1_1TextFileLogger.html" title="TextFileLogger" alt="" coords="271,229,379,256"/>
+<area shape="rect" id="node7" href="$classaworx_1_1lox_1_1loggers_1_1VStudioLogger.html" title="VStudioLogger" alt="" coords="404,229,511,256"/>
+<area shape="rect" id="node9" href="$classaworx_1_1lox_1_1loggers_1_1AnsiConsoleLogger.html" title="AnsiConsoleLogger" alt="" coords="535,229,670,256"/>
+</map>

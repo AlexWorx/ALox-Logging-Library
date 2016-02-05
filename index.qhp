@@ -1,37 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QtHelpProject version="1.0">
-  <namespace>com.aworx.alox</namespace>
+  <namespace>aworx.alox</namespace>
   <virtualFolder>alox</virtualFolder>
   <filterSection>
     <filterAttribute>doxygen</filterAttribute>
     <toc>
-      <section title="ALox V 1.2.0" ref="index.html">
+      <section title="ALox V. 1602" ref="index.html">
         <section title="ALox Main Page" ref="index.html" />
         <section title="FAQ" ref="faq.html" />
         <section title="Manual" ref="manual.html">
           <section title="man_intro" ref="man_intro.html" />
           <section title="man_concepts" ref="man_concepts.html" />
-          <section title="man_achieving_goals" ref="man_achieving_goals.html" />
+          <section title="man_achieving_goals" ref="@ref man_achieving_goals" />
         </section>
         <section title="ALox for C++" ref="cpp_ref/cppmainpage.html" />
         <section title="ALox for C#" ref="cs_ref/csmainpage.html" />
         <section title="ALox for Java" ref="java_ref/javamainpage.html" />
+        <section title="Tools" ref="tools.html" />
       </section>
     </toc>
     <keywords>
-      <keyword name="Change Log" id="Change Log" ref="changelog.html" />
-      <keyword name="FAQ - Frequently asked Questions for ALox" id="FAQ - Frequently asked Questions for ALox" ref="faq.html" />
       <keyword name="Features and Limitations" id="Features and Limitations" ref="man_features_and_limitations.html" />
       <keyword name="About ALox" id="About ALox" ref="man_intro.html" />
       <keyword name="Concepts of ALox Logging" id="Concepts of ALox Logging" ref="man_concepts.html" />
       <keyword name="Overview of the ALox architecture" id="Overview of the ALox architecture" ref="man_alox_architecture.html" />
       <keyword name="Log Levels, Log Domains and Log Domain Levels" id="Log Levels, Log Domains and Log Domain Levels" ref="man_levelsanddomains.html" />
       <keyword name="Details on ALox Loggers" id="Details on ALox Loggers" ref="man_loggers.html" />
-      <keyword name="How to achieve your goals with ALox" id="How to achieve your goals with ALox" ref="man_achieving_goals.html" />
       <keyword name="Filtering Loggers" id="Filtering Loggers" ref="man_filtering_loggers.html" />
       <keyword name="Logging in release versions of your application" id="Logging in release versions of your application" ref="man_release_logging.html" />
       <keyword name="The field &quot;SourceCodePrefix&quot; in remote debugging environments" id="The field &quot;SourceCodePrefix&quot; in remote debugging environments" ref="man_source_code_prefix.html" />
+      <keyword name="ALox Feature References" id="ALox Feature References" ref="man_using_alox.html" />
       <keyword name="User Manual" id="User Manual" ref="manual.html" />
+      <keyword name="Change Log" id="Change Log" ref="changelog.html" />
+      <keyword name="FAQ - Frequently asked Questions for ALox" id="FAQ - Frequently asked Questions for ALox" ref="faq.html" />
+      <keyword name="Tools for ALox" id="Tools for ALox" ref="tools.html" />
+      <keyword name="ALox Configuration Variables" id="ALox Configuration Variables" ref="group__GrpALoxConfigVars.html" />
+      <keyword name="ALIB_RTE" id="GrpALoxConfigVars::ALIB_RTE" ref="group__GrpALoxConfigVars.html#gac62abc7811e32bb6329a151fe9ba8881" />
+      <keyword name="ALIB_LOCALE" id="GrpALoxConfigVars::ALIB_LOCALE" ref="group__GrpALoxConfigVars.html#ga3ba85db0d6d1aff71681e17a2cfb5b3a" />
+      <keyword name="ALIB_HAS_CONSOLE_WINDOW" id="GrpALoxConfigVars::ALIB_HAS_CONSOLE_WINDOW" ref="group__GrpALoxConfigVars.html#ga0609e3155155dd75380c499571325be9" />
+      <keyword name="ALIB_WAIT_FOR_KEY_PRESS_ON_TERMINATION" id="GrpALoxConfigVars::ALIB_WAIT_FOR_KEY_PRESS_ON_TERMINATION" ref="group__GrpALoxConfigVars.html#gaac16e99e1b4bed45a52496151369cb7d" />
+      <keyword name="ALOX_CL_USE_SYSTEM_OUT_PRINT" id="GrpALoxConfigVars::ALOX_CL_USE_SYSTEM_OUT_PRINT" ref="group__GrpALoxConfigVars.html#ga5f2113b6b70395a4525d15caf9570ebf" />
+      <keyword name="ALOX_CL_MODE" id="GrpALoxConfigVars::ALOX_CL_MODE" ref="group__GrpALoxConfigVars.html#gacde01d2dcff943938be2d1765d6be0a6" />
+      <keyword name="ALOX_CL_LIGHT_BACKGROUND" id="GrpALoxConfigVars::ALOX_CL_LIGHT_BACKGROUND" ref="group__GrpALoxConfigVars.html#ga1a3ef5eedee620187682a9a58e7095ef" />
+      <keyword name="ALOX_CL_NO_ADDITONAL_IDE_LOGGER" id="GrpALoxConfigVars::ALOX_CL_NO_ADDITONAL_IDE_LOGGER" ref="group__GrpALoxConfigVars.html#ga8b4885e122015c7e39d464d4b04f6860" />
+      <keyword name="ALOX_CL_WINDOWS_CODE_PAGE" id="GrpALoxConfigVars::ALOX_CL_WINDOWS_CODE_PAGE" ref="group__GrpALoxConfigVars.html#gaf69e3dc1c89ca54b34f87555a7895d67" />
+      <keyword name="ALOX_CL_AUTO_SIZES" id="GrpALoxConfigVars::ALOX_CL_AUTO_SIZES" ref="group__GrpALoxConfigVars.html#ga80ec619c8caed15ce24a33ba792aa30c" />
+      <keyword name="ALOX_CL_AUTO_SIZES_IDE_LOGGER" id="GrpALoxConfigVars::ALOX_CL_AUTO_SIZES_IDE_LOGGER" ref="group__GrpALoxConfigVars.html#ga9163d73fe57e1ebbea8947e432bb042a" />
     </keywords>
     <files>
       <file>tabs.css</file>
@@ -48,14 +62,8 @@
       <file>bdwn.png</file>
       <file>sync_on.png</file>
       <file>sync_off.png</file>
-      <file>A-Worx-Logo.png</file>
-      <file>doc.png</file>
-      <file>folderopen.png</file>
-      <file>folderclosed.png</file>
-      <file>arrowdown.png</file>
-      <file>arrowright.png</file>
-      <file>splitbar.png</file>
       <file>doxygen.css</file>
+      <file>aworx_stylesheet.css</file>
       <file>search/search_l.png</file>
       <file>search/search_m.png</file>
       <file>search/search_r.png</file>
@@ -63,69 +71,156 @@
       <file>search/mag_sel.png</file>
       <file>search/search.css</file>
       <file>search/search.js</file>
-      <file>changelog.html</file>
-      <file>faq.html</file>
       <file>man_features_and_limitations.html</file>
       <file>man_intro.html</file>
       <file>man_concepts.html</file>
       <file>man_alox_architecture.html</file>
-      <file>dot_inline_dotgraph_1.png</file>
-      <file>dot_inline_dotgraph_2.png</file>
-      <file>dot_inline_dotgraph_3.png</file>
-      <file>dot_inline_dotgraph_4.png</file>
-      <file>dot_inline_dotgraph_5.png</file>
-      <file>dot_inline_dotgraph_6.png</file>
+      <file>dot_inline_dotgraph_1.svg</file>
+      <file>dot_inline_dotgraph_2.svg</file>
+      <file>dot_inline_dotgraph_3.svg</file>
+      <file>dot_inline_dotgraph_4.svg</file>
+      <file>dot_inline_dotgraph_5.svg</file>
+      <file>dot_inline_dotgraph_6.svg</file>
       <file>man_levelsanddomains.html</file>
       <file>man_loggers.html</file>
-      <file>dot_inline_dotgraph_7.png</file>
-      <file>man_achieving_goals.html</file>
+      <file>dot_inline_dotgraph_7.svg</file>
       <file>man_filtering_loggers.html</file>
       <file>man_release_logging.html</file>
       <file>man_source_code_prefix.html</file>
+      <file>man_using_alox.html</file>
       <file>manual.html</file>
-      <file>graph_legend.png</file>
+      <file>changelog.html</file>
+      <file>faq.html</file>
+      <file>tools.html</file>
+      <file>group__GrpALoxConfigVars.html</file>
+      <file>graph_legend.svg</file>
       <file>graph_legend.html</file>
       <file>index.html</file>
+      <file>modules.html</file>
       <file>hierarchy.html</file>
       <file>inherits.html</file>
-      <file>inherit_graph_0.png</file>
-      <file>inherit_graph_1.png</file>
-      <file>inherit_graph_2.png</file>
-      <file>inherit_graph_3.png</file>
-      <file>inherit_graph_4.png</file>
-      <file>inherit_graph_5.png</file>
-      <file>inherit_graph_6.png</file>
-      <file>inherit_graph_7.png</file>
-      <file>inherit_graph_8.png</file>
-      <file>inherit_graph_9.png</file>
-      <file>inherit_graph_10.png</file>
-      <file>inherit_graph_11.png</file>
-      <file>inherit_graph_12.png</file>
-      <file>inherit_graph_13.png</file>
-      <file>inherit_graph_14.png</file>
-      <file>inherit_graph_15.png</file>
-      <file>inherit_graph_16.png</file>
-      <file>inherit_graph_17.png</file>
-      <file>inherit_graph_18.png</file>
-      <file>inherit_graph_19.png</file>
-      <file>inherit_graph_20.png</file>
-      <file>inherit_graph_21.png</file>
-      <file>inherit_graph_22.png</file>
-      <file>inherit_graph_23.png</file>
-      <file>inherit_graph_24.png</file>
-      <file>inherit_graph_25.png</file>
-      <file>inherit_graph_26.png</file>
-      <file>inherit_graph_27.png</file>
-      <file>inherit_graph_28.png</file>
-      <file>inherit_graph_29.png</file>
-      <file>inherit_graph_30.png</file>
-      <file>inherit_graph_31.png</file>
-      <file>inherit_graph_32.png</file>
-      <file>inherit_graph_33.png</file>
-      <file>inherit_graph_34.png</file>
-      <file>inherit_graph_35.png</file>
-      <file>inherit_graph_36.png</file>
-      <file>inherit_graph_37.png</file>
+      <file>inherit_graph_0.svg</file>
+      <file>inherit_graph_1.svg</file>
+      <file>inherit_graph_2.svg</file>
+      <file>inherit_graph_3.svg</file>
+      <file>inherit_graph_4.svg</file>
+      <file>inherit_graph_5.svg</file>
+      <file>inherit_graph_6.svg</file>
+      <file>inherit_graph_7.svg</file>
+      <file>inherit_graph_8.svg</file>
+      <file>inherit_graph_9.svg</file>
+      <file>inherit_graph_10.svg</file>
+      <file>inherit_graph_11.svg</file>
+      <file>inherit_graph_12.svg</file>
+      <file>inherit_graph_13.svg</file>
+      <file>inherit_graph_14.svg</file>
+      <file>inherit_graph_15.svg</file>
+      <file>inherit_graph_16.svg</file>
+      <file>inherit_graph_17.svg</file>
+      <file>inherit_graph_18.svg</file>
+      <file>inherit_graph_19.svg</file>
+      <file>inherit_graph_20.svg</file>
+      <file>inherit_graph_21.svg</file>
+      <file>inherit_graph_22.svg</file>
+      <file>inherit_graph_23.svg</file>
+      <file>inherit_graph_24.svg</file>
+      <file>inherit_graph_25.svg</file>
+      <file>inherit_graph_26.svg</file>
+      <file>inherit_graph_27.svg</file>
+      <file>inherit_graph_28.svg</file>
+      <file>inherit_graph_29.svg</file>
+      <file>inherit_graph_30.svg</file>
+      <file>inherit_graph_31.svg</file>
+      <file>inherit_graph_32.svg</file>
+      <file>inherit_graph_33.svg</file>
+      <file>inherit_graph_34.svg</file>
+      <file>inherit_graph_35.svg</file>
+      <file>inherit_graph_36.svg</file>
+      <file>inherit_graph_37.svg</file>
+      <file>inherit_graph_38.svg</file>
+      <file>inherit_graph_39.svg</file>
+      <file>inherit_graph_40.svg</file>
+      <file>inherit_graph_41.svg</file>
+      <file>inherit_graph_42.svg</file>
+      <file>inherit_graph_43.svg</file>
+      <file>inherit_graph_44.svg</file>
+      <file>inherit_graph_45.svg</file>
+      <file>inherit_graph_46.svg</file>
+      <file>inherit_graph_47.svg</file>
+      <file>inherit_graph_48.svg</file>
+      <file>inherit_graph_49.svg</file>
+      <file>inherit_graph_50.svg</file>
+      <file>inherit_graph_51.svg</file>
+      <file>inherit_graph_52.svg</file>
+      <file>inherit_graph_53.svg</file>
+      <file>inherit_graph_54.svg</file>
+      <file>inherit_graph_55.svg</file>
+      <file>inherit_graph_56.svg</file>
+      <file>inherit_graph_57.svg</file>
+      <file>inherit_graph_58.svg</file>
+      <file>inherit_graph_59.svg</file>
+      <file>inherit_graph_60.svg</file>
+      <file>inherit_graph_61.svg</file>
+      <file>inherit_graph_62.svg</file>
+      <file>inherit_graph_63.svg</file>
+      <file>inherit_graph_64.svg</file>
+      <file>inherit_graph_65.svg</file>
+      <file>inherit_graph_66.svg</file>
+      <file>inherit_graph_67.svg</file>
+      <file>inherit_graph_68.svg</file>
+      <file>inherit_graph_69.svg</file>
+      <file>inherit_graph_70.svg</file>
+      <file>inherit_graph_71.svg</file>
+      <file>inherit_graph_72.svg</file>
+      <file>inherit_graph_73.svg</file>
+      <file>inherit_graph_74.svg</file>
+      <file>inherit_graph_75.svg</file>
+      <file>inherit_graph_76.svg</file>
+      <file>inherit_graph_77.svg</file>
+      <file>inherit_graph_78.svg</file>
+      <file>inherit_graph_79.svg</file>
+      <file>inherit_graph_80.svg</file>
+      <file>inherit_graph_81.svg</file>
+      <file>inherit_graph_82.svg</file>
+      <file>inherit_graph_83.svg</file>
+      <file>inherit_graph_84.svg</file>
+      <file>inherit_graph_85.svg</file>
+      <file>inherit_graph_86.svg</file>
+      <file>inherit_graph_87.svg</file>
+      <file>inherit_graph_88.svg</file>
+      <file>inherit_graph_89.svg</file>
+      <file>inherit_graph_90.svg</file>
+      <file>inherit_graph_91.svg</file>
+      <file>inherit_graph_92.svg</file>
+      <file>inherit_graph_93.svg</file>
+      <file>inherit_graph_94.svg</file>
+      <file>inherit_graph_95.svg</file>
+      <file>inherit_graph_96.svg</file>
+      <file>inherit_graph_97.svg</file>
+      <file>inherit_graph_98.svg</file>
+      <file>inherit_graph_99.svg</file>
+      <file>inherit_graph_100.svg</file>
+      <file>inherit_graph_101.svg</file>
+      <file>inherit_graph_102.svg</file>
+      <file>inherit_graph_103.svg</file>
+      <file>inherit_graph_104.svg</file>
+      <file>inherit_graph_105.svg</file>
+      <file>inherit_graph_106.svg</file>
+      <file>inherit_graph_107.svg</file>
+      <file>inherit_graph_108.svg</file>
+      <file>inherit_graph_109.svg</file>
+      <file>inherit_graph_110.svg</file>
+      <file>inherit_graph_111.svg</file>
+      <file>inherit_graph_112.svg</file>
+      <file>inherit_graph_113.svg</file>
+      <file>inherit_graph_114.svg</file>
+      <file>inherit_graph_115.svg</file>
+      <file>inherit_graph_116.svg</file>
+      <file>inherit_graph_117.svg</file>
+      <file>inherit_graph_118.svg</file>
+      <file>inherit_graph_119.svg</file>
+      <file>inherit_graph_120.svg</file>
+      <file>inherit_graph_121.svg</file>
       <file>pages.html</file>
     </files>
   </filterSection>

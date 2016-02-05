@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['log',['Log',['../classaworx_1_1lox_1_1Log.html',1,'aworx::lox']]],
-  ['logdomain',['LogDomain',['../classaworx_1_1lox_1_1core_1_1LogDomain.html',1,'aworx::lox::core']]],
-  ['logger',['Logger',['../classaworx_1_1lox_1_1core_1_1Logger.html',1,'aworx::lox::core']]],
-  ['lox',['Lox',['../classaworx_1_1lox_1_1Lox.html',1,'aworx::lox']]]
+  ['environmentplugin',['EnvironmentPlugIn',['../classaworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html',1,'aworx::lib::config']]],
+  ['esc',['ESC',['../classaworx_1_1lox_1_1ESC.html',1,'aworx::lox']]]
 ];

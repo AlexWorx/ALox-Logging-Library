@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['error',['ERROR',['../../html/cpp_ref/classaworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5abb1ca97ec761fc37101737ba0aa2e7c5',1,'aworx::lox::Log']]],
-  ['errors',['ERRORS',['../../html/cpp_ref/classaworx_1_1lox_1_1Log.html#a10ac165398697ce1d642d739cc3b170fa6f3a603fac4d817f1848c3173b243b57',1,'aworx::lox::Log']]]
+  ['center',['Center',['cs_ref/namespacecs_1_1aworx_1_1lib_1_1enums.html#acdfaca60ec19c0265bac2692d7982726a4f1f6016fc9f3f2353c0cc7c67b292bd',1,'cs::aworx::lib::enums::Center()'],['cpp_ref/namespaceaworx_1_1lib_1_1enums.html#acdfaca60ec19c0265bac2692d7982726a4f1f6016fc9f3f2353c0cc7c67b292bd',1,'aworx::lib::enums::Center()']]],
+  ['clear',['Clear',['cs_ref/namespacecs_1_1aworx_1_1lib_1_1enums.html#a9345007d67faa05253932092d54d10d4adc30bc0c7914db5918da4263fce93ad2',1,'cs::aworx::lib::enums::Clear()'],['cpp_ref/namespaceaworx_1_1lib_1_1enums.html#a9345007d67faa05253932092d54d10d4adc30bc0c7914db5918da4263fce93ad2',1,'aworx::lib::enums::Clear()']]],
+  ['current',['Current',['cpp_ref/classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0a222a267cc5778206b253be35ee3ddab5',1,'aworx::lib::system::Directory']]]
 ];

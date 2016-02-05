@@ -1,0 +1,10 @@
+<map id="TextLogger" name="TextLogger">
+<area shape="rect" id="node3" href="$classcom_1_1aworx_1_1lox_1_1android_1_1AndroidLogCatLogger.html" title="AndroidLogCatLogger" alt="" coords="5,155,152,181"/>
+<area shape="rect" id="node4" href="$classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html" title="PlainTextLogger" alt="" coords="177,155,293,181"/>
+<area shape="rect" id="node8" href="$classcom_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html" title="AnsiLogger" alt="" coords="393,155,479,181"/>
+<area shape="rect" id="node2" href="$classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="204,5,265,32"/>
+<area shape="rect" id="node5" href="$classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html" title="ConsoleLogger" alt="" coords="9,229,119,256"/>
+<area shape="rect" id="node6" href="$classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html" title="MemoryLogger" alt="" coords="143,229,251,256"/>
+<area shape="rect" id="node7" href="$classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html" title="TextFileLogger" alt="" coords="275,229,383,256"/>
+<area shape="rect" id="node9" href="$classcom_1_1aworx_1_1lox_1_1loggers_1_1AnsiConsoleLogger.html" title="AnsiConsoleLogger" alt="" coords="407,229,542,256"/>
+</map>

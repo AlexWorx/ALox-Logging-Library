@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['setup_20your_20ide_20for_20java_20projects',['Setup your IDE for Java Projects',['../../html/java_ref/javasetup.html',1,'']]]
+  ['the_20field_20_22sourcecodeprefix_22_20in_20remote_20debugging_20environments',['The field &quot;SourceCodePrefix&quot; in remote debugging environments',['../man_source_code_prefix.html',1,'man_using_alox']]],
+  ['tools_20for_20alox',['Tools for ALox',['../tools.html',1,'']]]
 ];

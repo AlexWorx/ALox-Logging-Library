@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['center',['CENTER',['../../html/cpp_ref/classaworx_1_1util_1_1AString.html#ab4fc75cf20644d0e62fb0242b3e7b401ac397289ee45877be0cd49811fe245b4e',1,'aworx::util::AString']]]
+  ['begin',['Begin',['cs_ref/namespacecs_1_1aworx_1_1lib_1_1enums.html#ae1c5184dc404edf057ed537bcfddef84a1a06729125544cab7cee73195fc044f0',1,'cs::aworx::lib::enums::Begin()'],['cpp_ref/namespaceaworx_1_1lib_1_1enums.html#ae1c5184dc404edf057ed537bcfddef84a1a06729125544cab7cee73195fc044f0',1,'aworx::lib::enums::Begin()']]]
 ];

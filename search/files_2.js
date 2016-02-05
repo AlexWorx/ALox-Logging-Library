@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['dynamicjsondeserializer_2ecs',['DynamicJSONDeserializer.cs',['../../html/cs_ref/DynamicJSONDeserializer_8cs.html',1,'']]]
+  ['directory_2ehpp',['directory.hpp',['cpp_ref/directory_8hpp.html',1,'']]],
+  ['domain_2ehpp',['domain.hpp',['cpp_ref/domain_8hpp.html',1,'']]]
 ];

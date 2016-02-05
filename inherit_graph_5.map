@@ -1,3 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="/home/a/mnt/dev/Dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag$classaworx_1_1lox_1_1Log.html" title="aworx::lox::Log" alt="" coords="5,5,116,32"/>
+<area shape="rect" id="node1" href="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag$classaworx_1_1lib_1_1Ownable.html" title="aworx::lib::Ownable" alt="" coords="5,75,143,102"/>
+<area shape="rect" id="node2" href="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag$classaworx_1_1lib_1_1threads_1_1ThreadLock.html" title="aworx::lib::threads\l::ThreadLock" alt="" coords="191,35,320,76"/>
+<area shape="rect" id="node5" href="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag$classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html" title="aworx::lib::threads\l::ThreadLockNR" alt="" coords="191,100,320,141"/>
+<area shape="rect" id="node3" href="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag$classaworx_1_1lib_1_1config_1_1Configuration.html" title="aworx::lib::config\l::Configuration" alt="" coords="368,5,489,47"/>
+<area shape="rect" id="node4" href="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag$classaworx_1_1lox_1_1Lox.html" title="aworx::lox::Lox" alt="" coords="373,71,484,98"/>
 </map>

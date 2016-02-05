@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['scope',['Scope',['../../html/cs_ref/classcom_1_1aworx_1_1lox_1_1Log.html#aaecc53892786f2fa11e682f633af84c6',1,'com::aworx::lox::Log::Scope()'],['../../html/cpp_ref/classaworx_1_1lox_1_1Log.html#aaecc53892786f2fa11e682f633af84c6',1,'aworx::lox::Log::Scope()']]]
+  ['inclusion',['Inclusion',['cs_ref/namespacecs_1_1aworx_1_1lib_1_1enums.html#a217539925b78b2eed40ae7817d5bee52',1,'cs::aworx::lib::enums::Inclusion()'],['cpp_ref/namespaceaworx_1_1lib_1_1enums.html#a217539925b78b2eed40ae7817d5bee52',1,'aworx::lib::enums::Inclusion()']]]
 ];

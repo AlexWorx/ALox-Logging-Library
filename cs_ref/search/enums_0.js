@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['align',['Align',['../classcom_1_1aworx_1_1util_1_1AString.html#ab4fc75cf20644d0e62fb0242b3e7b401',1,'com::aworx::util::AString']]]
+  ['alignment',['Alignment',['../namespacecs_1_1aworx_1_1lib_1_1enums.html#acdfaca60ec19c0265bac2692d7982726',1,'cs::aworx::lib::enums']]]
 ];

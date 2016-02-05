@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['off',['Off',['../classcom_1_1aworx_1_1lox_1_1Log.html#a10ac165398697ce1d642d739cc3b170fad15305d7a4e34e02489c74a5ef542f36',1,'com::aworx::lox::Log']]]
+  ['method',['Method',['../classcs_1_1aworx_1_1lox_1_1Log.html#aaecc53892786f2fa11e682f633af84c6a4c3880bb027f159e801041b1021e88e8',1,'cs::aworx::lox::Log']]]
 ];

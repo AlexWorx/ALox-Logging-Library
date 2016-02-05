@@ -1,18 +1,10 @@
 var searchData=
 [
-  ['raw',['Raw',['../classcom_1_1aworx_1_1util_1_1Ticks.html#a3429aac21c056be13621ca4395005863',1,'com::aworx::util::Ticks']]],
-  ['recursionwarningthreshold',['RecursionWarningThreshold',['../classcom_1_1aworx_1_1util_1_1ThreadLock.html#a2b35011c911bf00d065eba8af27620a7',1,'com::aworx::util::ThreadLock']]],
-  ['recursivemode',['recursiveMode',['../classcom_1_1aworx_1_1util_1_1ThreadLock.html#a1ea15561e57893d4e2a4a16a366cdb68',1,'com::aworx::util::ThreadLock']]],
-  ['regdomain',['RegDomain',['../classcom_1_1aworx_1_1lox_1_1Log.html#a5e8f1e6092851cabd2bb0e766cbfbb14',1,'com.aworx.lox.Log.RegDomain()'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#a9b3c063f3323ee4d81d3887f3c62940c',1,'com.aworx.lox.Lox.RegDomain()']]],
-  ['release',['Release',['../classcom_1_1aworx_1_1util_1_1ThreadLock.html#a94c93747c8daa99d65c2a04c6be0748c',1,'com::aworx::util::ThreadLock']]],
-  ['removelogger',['RemoveLogger',['../classcom_1_1aworx_1_1lox_1_1Lox.html#a7594d8f630b763d4f83ab48ad926f396',1,'com::aworx::lox::Lox']]],
-  ['removeloggers',['RemoveLoggers',['../classcom_1_1aworx_1_1lox_1_1Log.html#a853059201cdf7a94f49da10501e6d013',1,'com.aworx.lox.Log.RemoveLoggers()'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#af07a94c1e4cf8e5d66b6852e04b08624',1,'com.aworx.lox.Lox.RemoveLoggers()']]],
-  ['replace',['Replace',['../classcom_1_1aworx_1_1util_1_1AString.html#ab2f6028d74ab9607ec1234470789765b',1,'com::aworx::util::AString']]],
-  ['replacecount',['ReplaceCount',['../classcom_1_1aworx_1_1util_1_1AString.html#a5308c963d749729a33ec401af68985dc',1,'com.aworx.util.AString.ReplaceCount(String searchStr, String newStr, int startIdx=0, int maxReplacements=int.MaxValue, bool ignoreCase=false)'],['../classcom_1_1aworx_1_1util_1_1AString.html#ad4c17d7aa48e8290115b4cc420f16527',1,'com.aworx.util.AString.ReplaceCount(AString searchStr, AString newStr, int startIdx=0, int maxReplacements=int.MaxValue, bool ignoreCase=false)']]],
-  ['replaceerrorhandler',['ReplaceErrorHandler',['../classcom_1_1aworx_1_1util_1_1AWXU.html#aabe9c0d1188ef6094e37d2ae96b99c15',1,'com::aworx::util::AWXU']]],
-  ['replacements',['Replacements',['../classcom_1_1aworx_1_1lox_1_1core_1_1TextLogger.html#a26fadf1d9e7165180f210156799fdd22',1,'com::aworx::lox::core::TextLogger']]],
-  ['resdomain',['resDomain',['../classcom_1_1aworx_1_1lox_1_1Lox.html#aa704b680934869c92c288cb9a23034f2',1,'com::aworx::lox::Lox']]],
-  ['reset',['Reset',['../classcom_1_1aworx_1_1util_1_1TickWatch.html#a372de693ad40b3f42839c8ec6ac845f4',1,'com.aworx.util.TickWatch.Reset()'],['../classcom_1_1aworx_1_1lox_1_1Log.html#a77ad624cc83a2a71aa4d5ad991d811d7',1,'com.aworx.lox.Log.Reset()']]],
-  ['right',['Right',['../classcom_1_1aworx_1_1util_1_1AString.html#ab4fc75cf20644d0e62fb0242b3e7b401a92b09c7c48c520c3c55e497875da437c',1,'com::aworx::util::AString']]],
-  ['rootdomain',['RootDomain',['../classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a46ee964173efe1f2b01121d11d91f597',1,'com::aworx::lox::core::Logger']]]
+  ['objectconverter',['ObjectConverter',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html',1,'cs::aworx::lox::core::textlogger']]],
+  ['objectconverter',['ObjectConverter',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#aaf08965c7f26235af09debd323433507',1,'cs::aworx::lox::core::textlogger::TextLogger']]],
+  ['off',['Off',['../classcs_1_1aworx_1_1lox_1_1Log.html#a10ac165398697ce1d642d739cc3b170fad15305d7a4e34e02489c74a5ef542f36',1,'cs.aworx.lox.Log.Off()'],['../namespacecs_1_1aworx_1_1lib_1_1enums.html#a9f3c28a2cb05bdcc618b542e49bfda3fad15305d7a4e34e02489c74a5ef542f36',1,'cs.aworx.lib.enums.Off()']]],
+  ['ok',['OK',['../classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html#a67a0db04d321a74b7e7fcfd3f1a3f70bae0aa021e21dddbd6d8cecec71e9cf564',1,'cs::aworx::lib::config::IniFile']]],
+  ['on',['On',['../namespacecs_1_1aworx_1_1lib_1_1enums.html#a9f3c28a2cb05bdcc618b542e49bfda3fa521c36a31c2762741cf0f8890cbe05e3',1,'cs::aworx::lib::enums']]],
+  ['openfile',['openFile',['../classcs_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html#acd0224d6aee829fc45210f977168abb4',1,'cs::aworx::lox::loggers::TextFileLogger']]],
+  ['owner',['owner',['../classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#a194df7b1414f1a1181802f255faff967',1,'cs::aworx::lib::threads::ThreadLock']]]
 ];

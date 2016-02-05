@@ -1,0 +1,25 @@
+digraph "Graphical Class Hierarchy"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Logger",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lox_1_1core_1_1Logger.html"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="TextLogger",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html"];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="PlainTextLogger",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html"];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="ConsoleLogger",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lox_1_1loggers_1_1ConsoleLogger.html"];
+  Node3 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="MemoryLogger",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lox_1_1loggers_1_1MemoryLogger.html"];
+  Node3 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="TextFileLogger",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lox_1_1loggers_1_1TextFileLogger.html"];
+  Node3 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="VStudioLogger",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lox_1_1loggers_1_1VStudioLogger.html"];
+  Node2 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="AnsiLogger",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html"];
+  Node8 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="AnsiConsoleLogger",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lox_1_1loggers_1_1AnsiConsoleLogger.html"];
+  Node2 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="WindowsConsoleLogger",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lox_1_1loggers_1_1WindowsConsoleLogger.html"];
+}
