@@ -4,20 +4,20 @@
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
-/** @file */ // Hello Doxyen
+/** @file */ // Hello Doxygen
 
 // check for alib.hpp already there but not us
-#if !defined (HPP_AWORX_LIB_ALIB)
+#if !defined (HPP_ALIB_ALIB)
     #error "include \"alib/alib.hpp\" before including this header"
 #endif
-#if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_AWORX_LIB_STRINGS_NUMBERFORMAT)
+#if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_ALIB_STRINGS_NUMBERFORMAT)
     #error "Header already included"
 #endif
 
 // then, set include guard
-#ifndef HPP_AWORX_LIB_STRINGS_NUMBERFORMAT
+#ifndef HPP_ALIB_STRINGS_NUMBERFORMAT
 #if !defined( IS_DOXYGEN_PARSER)
-#define HPP_AWORX_LIB_STRINGS_NUMBERFORMAT 1
+#define HPP_ALIB_STRINGS_NUMBERFORMAT 1
 #endif
 
 // #################################################################################################
@@ -62,8 +62,8 @@ namespace                   strings {
  *
  * \note The method interface of this class is quite rudimentary. Therefore, it is advisable to
  *       use more user friendly classes as
- *       \ref aworx::lib::strings::ASAlloc       "AString" or
- *       \ref aworx::lib::strings::ASSubstring   "Substring",
+ *       \ref aworx::lib::strings::AString       "AString" or
+ *       \ref aworx::lib::strings::Substring   "Substring",
  *       which provide methods that accept a configured instance of this class as parameter and do
  *       the conversion internally.
  **********************************************************************************************/
@@ -89,7 +89,7 @@ class NumberFormat
      *  The field defaults to '.'. By invoking #SetFromLocale(), the current locale's setting is
      *  determined.
      */
-    char           DecimalPointCharacter                                                = '.';
+    char           DecimalPointCharacter                                                      = '.';
 
     /**
      *  Defines all characters that will be accepted by #StringToFloat as the separator
@@ -102,7 +102,7 @@ class NumberFormat
      *  Note: In addition to the characters provided in this field, method StringToFloat accepts
      *  the single character set in #DecimalPointCharacter as well.
      */
-    ASTerminatable DecimalPointCharacters                                              = ".,";
+    TString DecimalPointCharacters                                                    = ".,";
 
     /**
      *  Defines the decimal exponent symbol of string representations of floating point numbers
@@ -111,7 +111,7 @@ class NumberFormat
      *  set in this field.<br>
      *  Defaults to 'E'.
      */
-    ASTerminatable DecimalExponentSeparator                                             = "E";
+    TString DecimalExponentSeparator                                                   = "E";
 
     /**
      *  Determines if positive exponent values are prepended with an explicit '+' character when
@@ -120,7 +120,7 @@ class NumberFormat
      *  plus sign.<br>
      *  Defaults to \c false, as some systems will not accept a plus sign on the exponent value.
      */
-    bool           WriteExponentPlusSign                                                = false;
+    bool           WriteExponentPlusSign                                                    = false;
 
     /**
      * Defines the minimum digits written for the integral part when converting a floating point
@@ -199,7 +199,7 @@ class NumberFormat
      *          first character behind any found long number.
      ******************************************************************************************/
     ALIB_API
-    int64_t   StringToInteger( const AS& src, int& idx );
+    int64_t   StringToInteger( const String& src, int& idx );
 
     /** ****************************************************************************************
      *  Converts the given unsigned 64 bit integer value to a string representation.<br>
@@ -268,10 +268,15 @@ class NumberFormat
      *         point to the first character behind any found number.
      ******************************************************************************************/
     ALIB_API
-    double StringToFloat( const AS& src, int& idx );
+    double StringToFloat( const String& src, int& idx );
 };
 
 
-}}} // namespace aworx::lib::strings
+}} // namespace lib::strings
 
-#endif // HPP_AWORX_LIB_STRINGS_NUMBERFORMAT
+/** Type alias name in namespace #aworx. */
+using     NumberFormat=     aworx::lib::strings::NumberFormat;
+
+}  // namespace aworx
+
+#endif // HPP_ALIB_STRINGS_NUMBERFORMAT

@@ -4,26 +4,26 @@
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
-/** @file */ // Hello Doxyen
+/** @file */ // Hello Doxygen
 
 // check for alib.hpp already there but not us
-#if !defined (HPP_AWORX_LIB_ALIB)
+#if !defined (HPP_ALIB_ALIB)
     #error "include \"alib/alib.hpp\" before including this header"
 #endif
-#if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_AWORX_LIB_STRINGS_ASSUBSTRING)
+#if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_ALIB_STRINGS_ASSUBSTRING)
     #error "Header already included"
 #endif
 
 // Due to our blocker above, this include will never be executed. But having it, allows IDEs
 // (e.g. QTCreator) to read the symbols when opening this file
-#if !defined (HPP_AWORX_LIB_ALIB)
+#if !defined (HPP_ALIB_ALIB)
     #include "alib/alib.hpp"
 #endif
 
 // then, set include guard
-#ifndef HPP_AWORX_LIB_STRINGS_ASSUBSTRING
+#ifndef HPP_ALIB_STRINGS_ASSUBSTRING
 #if !defined( IS_DOXYGEN_PARSER)
-    #define HPP_AWORX_LIB_STRINGS_ASSUBSTRING 1
+    #define HPP_ALIB_STRINGS_ASSUBSTRING 1
 #endif
 
 // conditional expression is constant for using our constant template parameters to select
@@ -51,43 +51,37 @@ class Tokenizer;
  * Objects of this class will not manipulate the underlying data.
  * In particular, there is no terminating zero written.
  *
- * \note This class \b %ASSubstring, when used in source code as well as in documentations, is
- *       mostly referred to using the synonym '<b>%Substring</b>'. For more information about the
- *       synonymous names of ALib string classes, refer to
- *       \ref alib_namespace_strings_class_overview "String Classes Overview" and
- *       \ref CPP_AWORX_NS_SHORTCUTS "Type Shortcuts in the aworx Namespace".
- *
  * Unlike in the \e C# and \e Java versions of ALib, the represented region is defined
- * by the protected fields inherited from class #AS.
- * The difference to base class \ref aworx::lib::strings::AS "AS" is, that class \b %Substring
+ * by the protected fields inherited from class #String.
+ * The difference to base class \ref aworx::lib::strings::String "String" is, that class \b %Substring
  * allows to change the buffer's start and its length.  Otherwise, this class has the
  * very same lightweight nature and performance as its base.
  * In general, while working with a \b %Substring, the size of it should shrink, e.g. by trimming,
  * but should not grow.
  *
  * Like base class
- * \ref aworx::lib::strings::AS "AS", the class can not, and therefore does not, verify that the
+ * \ref aworx::lib::strings::String "String", the class can not, and therefore does not, verify that the
  * underlying buffer is still allocated or contains termination characters within the region
  * (which would be is against the rules).
  * It is up to the user of this class to make sure the buffer stays intact until any referencing
  * object of this type is destructed (or just is not used any more).
  *
  * Objects of this class can be reused by freshly initializing them using of method
- * #Set(const AS&) and #Set(const AS&,int,int).
+ * #Set(const String&) and #Set(const String&,int,int).
  *
  *<p>
  * \note To generate \b %Substring objects which are separated by a delimiter character within a
  *       character array, use class
  *       \ref aworx::lib::strings::Tokenizer "Tokenizer".
  **************************************************************************************************/
-class ASSubstring : public AS
+class Substring : public String
 {
     /** ############################################################################################
      * @name Constructors
      ##@{ ########################################################################################*/
 
     public:
-        using AS::AS;
+        using String::String;
 
     /** ############################################################################################
      * @name Set Data
@@ -101,7 +95,7 @@ class ASSubstring : public AS
          * @return \c *this to allow concatenated calls.
          ******************************************************************************************/
         inline
-        ASSubstring&  Set( const AS& src )
+        Substring&  Set( const String& src )
         {
             buffer=   src.Buffer();
             length=   src.Length();
@@ -110,7 +104,7 @@ class ASSubstring : public AS
 
         /** ****************************************************************************************
          * Sets this object to represent the given region of an
-         * \ref aworx::lib::strings::AS "AS" object. The region is
+         * \ref aworx::lib::strings::String "String" object. The region is
          * checked (and adjusted) to be between 0 and \p as length.
          *
          * \note When using the non-checking version, parameter \p regionLength must be set
@@ -118,14 +112,14 @@ class ASSubstring : public AS
          *
          * @tparam TCheck       Chooses checking or non-checking implementation. Defaults to true.
          * @param src           The source string to set the region from (allowed to be same).
-         * @param regionStart   The start of the region within the given \b %AS.
-         * @param regionLength  The length of the region within the given \b %AS.
+         * @param regionStart   The start of the region within the given \b %String.
+         * @param regionLength  The length of the region within the given \b %String.
          *                      Defaults to CString::MaxLen.
          * @return \c *this to allow concatenated calls.
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        ASSubstring&  Set( const AS& src, int regionStart, int regionLength= CString::MaxLen )
+        Substring&  Set( const String& src, int regionStart, int regionLength= CString::MaxLen )
         {
             if (TCheck)
                 src.AdjustRegion( regionStart, regionLength );
@@ -148,7 +142,7 @@ class ASSubstring : public AS
          * @return \c *this to allow concatenated calls.
          ******************************************************************************************/
         inline
-        ASSubstring&  SetNull()
+        Substring&  SetNull()
         {
             buffer=  nullptr;
             length=  0;
@@ -160,7 +154,7 @@ class ASSubstring : public AS
          * @return \c *this to allow concatenated calls.
          ******************************************************************************************/
         inline
-        ASSubstring&  Clear()
+        Substring&  Clear()
         {
             length=  0;
             return *this;
@@ -174,8 +168,8 @@ class ASSubstring : public AS
          *   an one-time warning is issued. The warning occurs only once for the first
          *   occurrence of an invocation of this method with such wrong parameter.
          *   To enable/disable this warning use macros
-         *   - \ref ALIB_WARN_ONCE_PER_TYPE_ENABLE(AS, SetLengthLonger) and
-         *   - \ref ALIB_WARN_ONCE_PER_TYPE_DISABLE(AS, SetLengthLonger).
+         *   - \ref ALIB_WARN_ONCE_PER_TYPE_ENABLE(String, SetLengthLonger) and
+         *   - \ref ALIB_WARN_ONCE_PER_TYPE_DISABLE(String, SetLengthLonger).
          *
          * The non-checking version does not do any checks but just applies the new length.
          *
@@ -213,11 +207,11 @@ class ASSubstring : public AS
          * Moves the start to the first character not found given \p whiteSpaces.
          *
          * @param whiteSpaces  The characters used for trimming.
-         *                     Defaults to  \ref aworx::lib::strings::DefaultWhitespaces
+         *                     Defaults to  \ref aworx::DefaultWhitespaces
          * @return \c true if empty after the operation.
          ******************************************************************************************/
         inline
-        bool        TrimStart( const ASTerminatable& whiteSpaces = DefaultWhitespaces )
+        bool        TrimStart( const TString& whiteSpaces = DefaultWhitespaces )
         {
             if ( length > 0 )
             {
@@ -239,11 +233,11 @@ class ASSubstring : public AS
          * Moves the start to the first character not found given \p whiteSpaces.
          *
          * @param whiteSpaces  The characters used for trimming.
-         *                     Defaults to  \ref aworx::lib::strings::DefaultWhitespaces
+         *                     Defaults to  \ref aworx::DefaultWhitespaces
          * @return \c true if empty after the operation.
          ******************************************************************************************/
         inline
-        bool        TrimEnd( const ASTerminatable& whiteSpaces = DefaultWhitespaces )
+        bool        TrimEnd( const TString& whiteSpaces = DefaultWhitespaces )
         {
             length= CString::LastIndexOfAny(                 buffer,
                                                              length - 1,
@@ -259,10 +253,10 @@ class ASSubstring : public AS
          * Invokes #TrimStart and #TrimEnd .
          *
          * @param whiteSpaces  The characters used for trimming.
-         *                     Defaults to  \ref aworx::lib::strings::DefaultWhitespaces
+         *                     Defaults to  \ref aworx::DefaultWhitespaces
          * @return \c true if empty after the operation.
          ******************************************************************************************/
-        bool  Trim( const ASTerminatable& whiteSpaces = DefaultWhitespaces )
+        bool  Trim( const TString& whiteSpaces = DefaultWhitespaces )
         {
             if ( TrimStart( whiteSpaces ) )
                 return true;
@@ -548,7 +542,7 @@ class ASSubstring : public AS
          *         string was cut.
          ******************************************************************************************/
         inline
-        bool        Consume( const AS& consumable, enums::Whitespaces trimBeforeConsume= enums::Whitespaces::Keep )
+        bool        Consume( const String& consumable, enums::Whitespaces trimBeforeConsume= enums::Whitespaces::Keep )
         {
             if ( trimBeforeConsume == enums::Whitespaces::Trim )
                 TrimStart();
@@ -573,7 +567,7 @@ class ASSubstring : public AS
          *         string was cut.
          ******************************************************************************************/
         inline
-        bool        ConsumeFromEnd( const AS& consumable, enums::Whitespaces trimBeforeConsume= enums::Whitespaces::Keep )
+        bool        ConsumeFromEnd( const String& consumable, enums::Whitespaces trimBeforeConsume= enums::Whitespaces::Keep )
         {
             if ( trimBeforeConsume == enums::Whitespaces::Trim )
                 TrimEnd();
@@ -647,12 +641,12 @@ class ASSubstring : public AS
          *
          * @param whitespaces  The whitespaces used to trim the substring at the front before
          *                     reading the value.
-         *                     Defaults to  \ref aworx::lib::strings::DefaultWhitespaces
+         *                     Defaults to  \ref aworx::DefaultWhitespaces
          * @param[out] result  A reference to the result value.
          *
          * @return  \c true if an integer was found and, \c false otherwise.
          ******************************************************************************************/
-        bool     ConsumeInteger( int32_t& result, const ASTerminatable& whitespaces = DefaultWhitespaces )
+        bool     ConsumeInteger( int32_t& result, const TString& whitespaces = DefaultWhitespaces )
         {
             int64_t result64;
             bool    returnValue= ConsumeLong( result64, whitespaces );
@@ -679,12 +673,12 @@ class ASSubstring : public AS
          * @param[out] result  A reference to the result value.
          * @param whitespaces  White space characters used to trim the substring at the front
          *                     before reading the value.
-         *                     Defaults to  \ref aworx::lib::strings::DefaultWhitespaces
+         *                     Defaults to  \ref aworx::DefaultWhitespaces
          *
          * @return  \c true if an integer was found and, \c false otherwise.
          ******************************************************************************************/
         ALIB_API
-        bool   ConsumeLong( int64_t& result, const ASTerminatable& whitespaces =DefaultWhitespaces );
+        bool   ConsumeLong( int64_t& result, const TString& whitespaces =DefaultWhitespaces );
 
         /** ****************************************************************************************
          * Reads a floating point number from this object. If successful, the front of
@@ -715,20 +709,20 @@ class ASSubstring : public AS
          *                     Optional and defaults to nullptr.
          * @param whitespaces  White space characters used to trim the substring at the front
          *                     before reading the value.
-         *                     Defaults to  \ref aworx::lib::strings::DefaultWhitespaces
+         *                     Defaults to  \ref aworx::DefaultWhitespaces
          *
          * @return  \c true if a number was found and, \c false otherwise.
          ******************************************************************************************/
         ALIB_API
-        bool  ConsumeFloat( double& result,
-                            strings::NumberFormat* numberFormat     =nullptr,
-                            const ASTerminatable&  whitespaces      =DefaultWhitespaces   );
+        bool  ConsumeFloat( double&         result,
+                            NumberFormat*   numberFormat     =nullptr,
+                            const TString   whitespaces      =DefaultWhitespaces   );
 
 
         /** ****************************************************************************************
          * Splits this substring into two parts. What remains in this object is the region
          * from 0 to \p position.
-         * \p target receives the rest. If \p separatorWidth is given, this is substracted from
+         * \p target receives the rest. If \p separatorWidth is given, this is subtracted from
          * the front of \p target.
          *
          * @tparam TCheck  Defaults to \c true which is the normal invocation mode.
@@ -765,15 +759,19 @@ class ASSubstring : public AS
             return *this;
         }
 
-}; // class ASSubstring
+}; // class Substring
 
-}}} // namespace aworx::lib::strings
+}} // namespace lib::strings
 
+/** Type alias name in namespace #aworx. */
+using     Substring =    lib::strings::Substring;
+
+} // namespace aworx
 
 #if defined(_MSC_VER)
     #pragma warning( pop )
 #endif
-#endif // HPP_AWORX_LIB_STRINGS_ASSUBSTRING
+#endif // HPP_ALIB_STRINGS_ASSUBSTRING
 
 
 

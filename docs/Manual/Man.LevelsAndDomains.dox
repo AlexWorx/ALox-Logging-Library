@@ -459,5 +459,9 @@ So, let us summarize the takeaways of this chapter and repeat quickly what we le
 - The parameter *loggerFilter* of method *Log.SetDomain()* allows to separate log messages of certain log domains
   into different log streams.
 
+<p>
+
+--------------------------------------------------------------------
+Next chapter: \ref man_loggers
 
 */

@@ -4,27 +4,30 @@
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
-/** @file */ // Hello Doxyen
+/** @file */ // Hello Doxygen
 
 // check for alib.hpp already there but not us
-#if !defined (HPP_AWORX_LIB_ALIB)
+#if !defined (HPP_ALIB_ALIB)
     #error "include \"alib/alib.hpp\" before including this header"
 #endif
-#if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_AWORX_LIB_CONFIG_INI_FILE)
+#if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_ALIB_CONFIG_INI_FILE)
     #error "Header already included"
 #endif
 
 // then, set include guard
-#ifndef HPP_AWORX_LIB_CONFIG_INI_FILE
+#ifndef HPP_ALIB_CONFIG_INI_FILE
 #if !defined( IS_DOXYGEN_PARSER)
-#define HPP_AWORX_LIB_CONFIG_INI_FILE 1
+#define HPP_ALIB_CONFIG_INI_FILE 1
 #endif
 
 
 // #################################################################################################
 // includes
 // #################################################################################################
-#if !defined (HPP_AWORX_LIB_CONFIG_CONFIGURATION)
+#if !defined (HPP_ALIB_STRINGS_ASSUBSTRING)
+    #include "alib/strings/substring.hpp"
+#endif
+#if !defined (HPP_ALIB_CONFIG_CONFIGURATION)
     #include "alib/config/configuration.hpp"
 #endif
 
@@ -37,7 +40,7 @@
 // #################################################################################################
 // forwards
 // #################################################################################################
-namespace aworx { namespace lib { namespace strings { class ASSubstring; } } }
+namespace aworx { namespace lib { namespace strings { class Substring; } } }
 
 
 namespace aworx {
@@ -423,11 +426,16 @@ namespace                   config {
          *  @param target    The AString that gets the converted result appended.
          ******************************************************************************************/
         ALIB_API
-        void removeEscapeSequences( strings::ASSubstring& value, AString& target );
+        void removeEscapeSequences( strings::Substring& value, AString& target );
 
 };
 
 
-}}}  // namespace aworx::lib::config
+}} // namespace lib::config
 
-#endif // HPP_AWORX_LIB_CONFIG_INI_FILE
+/** Type alias name in namespace #aworx. */
+using     IniFile=       aworx::lib::config::IniFile;
+
+}  // namespace aworx
+
+#endif // HPP_ALIB_CONFIG_INI_FILE

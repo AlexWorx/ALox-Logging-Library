@@ -4,20 +4,20 @@
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
-/** @file */ // Hello Doxyen
+/** @file */ // Hello Doxygen
 
 // check for alib.hpp already there but not us
-#if !defined (HPP_AWORX_LIB_ALIB)
+#if !defined (HPP_ALIB_ALIB)
     #error "include \"alib/alib.hpp\" before including this header"
 #endif
-#if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_AWORX_LIB_TIME)
+#if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_ALIB_TIME)
     #error "Header already included"
 #endif
 
 // then, set include guard
-#ifndef HPP_AWORX_LIB_TIME
+#ifndef HPP_ALIB_TIME
 #if !defined( IS_DOXYGEN_PARSER)
-#define HPP_AWORX_LIB_TIME 1
+#define HPP_ALIB_TIME 1
 #endif
 
 
@@ -25,8 +25,8 @@
 // #################################################################################################
 // includes
 // #################################################################################################
-#if !defined (HPP_AWORX_LIB_STRINGS_ASSUBSTRING)
-    #include "alib/strings/assubstring.hpp"
+#if !defined (HPP_ALIB_STRINGS_ASSUBSTRING)
+    #include "alib/strings/substring.hpp"
 #endif
 #if !defined (_GLIBCXX_CTIME) && !defined(_CTIME_)
     #include <ctime>
@@ -1011,6 +1011,20 @@ class TicksCalendarTime
                         lib::enums::CurrentData targetData= lib::enums::CurrentData::Keep  );
 };
 
-}}} // namespace aworx::lib::system
+}} // namespace lib::time
 
-#endif // HPP_AWORX_LIB_StopWatch
+/** Type alias name in namespace #aworx. */
+using     Ticks=                aworx::lib::time::Ticks;
+
+/** Type alias name in namespace #aworx. */
+using     TickSpan=             aworx::lib::time::TickSpan;
+
+/** Type alias name in namespace #aworx. */
+using     TickWatch=            aworx::lib::time::TickWatch;
+
+/** Type alias name in namespace #aworx. */
+using     TicksCalendarTime=    aworx::lib::time::TicksCalendarTime;
+
+}  // namespace aworx
+
+#endif // HPP_ALIB_StopWatch

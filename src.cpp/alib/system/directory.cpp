@@ -26,8 +26,6 @@
 
 
 using namespace std;
-using namespace aworx::lib::strings;
-using namespace aworx::lib::enums;
 
 namespace aworx {
 namespace           lib {
@@ -141,7 +139,7 @@ bool Directory::CurrentDirectory( AString& target )
     return true;
 }
 
-bool Directory::Exists( const ASTerminatable& path )
+bool Directory::Exists( const TString& path )
 {
     #if defined (__GLIBC__)
         DIR* dir= opendir( path.ToCString() );
@@ -166,7 +164,7 @@ bool Directory::Exists( const ASTerminatable& path )
     #endif
 }
 
-Result Directory::Create( const ASTerminatable& path )
+Result Directory::Create( const TString& path )
 {
     #if defined (__GLIBC__)
 

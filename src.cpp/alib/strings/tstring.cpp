@@ -7,11 +7,11 @@
 #include "alib/stdafx_alib.h"
 
 
-#if !defined (HPP_AWORX_LIB_STRINGS_ASSUBSTRING)
-    #include "alib/strings/assubstring.hpp"
+#if !defined (HPP_ALIB_STRINGS_ASSUBSTRING)
+    #include "alib/strings/substring.hpp"
 #endif
 
-#if !defined (HPP_AWORX_LIB_STRINGS_NUMBERFORMAT)
+#if !defined (HPP_ALIB_STRINGS_NUMBERFORMAT)
     #include "alib/strings/numberformat.hpp"
 #endif
 
@@ -34,7 +34,6 @@
 #endif
 
 using namespace std;
-using namespace aworx::lib::enums;
 
 
 namespace aworx {
@@ -44,7 +43,7 @@ namespace                   strings {
 
 
 // *************************************************************************************************
-// AS::_dbgCheck()
+// String::_dbgCheck()
 // *************************************************************************************************
 #if defined(ALIB_DEBUG_STRINGS) && !defined( IS_DOXYGEN_PARSER )
 
@@ -52,9 +51,9 @@ namespace                   strings {
         #pragma message "Compiler symbol ALIB_DEBUG_STRINGS_ON set, while ALIB_DEBUG is off. Is this really wanted?"
     #endif
 
-    void ASTerminatable::_dbgCheck() const
+    void TString::_dbgCheck() const
     {
-        AS::_dbgCheck();
+        String::_dbgCheck();
 
         ALIB_ASSERT_ERROR(      buffer == nullptr
                                 ||  debugIsTerminated <= 0
@@ -66,7 +65,7 @@ namespace                   strings {
 
 
 
-int64_t    ASTerminatable::ToLong( int  startIdx, int* newIdx, const ASTerminatable* whitespaces )
+int64_t    TString::ToLong( int  startIdx, int* newIdx, const TString* whitespaces )
 const
 {
     // initialize output variable newIdx
@@ -93,10 +92,10 @@ const
     return retval;
 }
 
-double    ASTerminatable::ToFloat(  int                     startIdx,
-                                    int*                    newIdx,
-                                    NumberFormat*           numberFormat,
-                                    const ASTerminatable*   whitespaces        )
+double    TString::ToFloat(  int              startIdx,
+                             int*             newIdx,
+                             NumberFormat*    numberFormat,
+                             const TString*   whitespaces        )
 const
 {
     // initialize output variable newIdx

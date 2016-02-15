@@ -131,7 +131,7 @@ def getASString(d, strObject):
     return  asBuffer
 
 #----- String  ------
-def qdump__aworx__lib__strings__AS(d, value):
+def qdump__aworx__lib__strings__String(d, value):
     try:
         asBuffer= getASString( d, value )
         d.putValue( "[" + str(value["length"]) + r"] \"" + asBuffer + r"\"" )
@@ -146,11 +146,11 @@ def qdump__aworx__lib__strings__AS(d, value):
     return
 
 #----- Substring  ------
-def qdump__aworx__lib__strings__ASSubstring(d, value):
-    return qdump__aworx__lib__strings__AS(d, value)
+def qdump__aworx__lib__strings__Substring(d, value):
+    return qdump__aworx__lib__strings__String(d, value)
 
 #----- TString  ------
-def qdump__aworx__lib__strings__ASTerminatable(d, value):
+def qdump__aworx__lib__strings__TString(d, value):
     try:
         asBuffer= getASString( d, value )
         d.putValue( "T[" + str(value["length"]) + r"] \"" + asBuffer + r"\""   )
@@ -167,7 +167,7 @@ def qdump__aworx__lib__strings__ASTerminatable(d, value):
     return
 
 #----- AString  ------
-def qdump__aworx__lib__strings__ASAlloc(d, value):
+def qdump__aworx__lib__strings__AString(d, value):
     try:
         asBuffer= getASString( d, value )
         d.putValue( "[" + str(value["length"]) +"/" + str(value["capacity"]) + r"] \"" + asBuffer + r"\"" )
@@ -185,12 +185,12 @@ def qdump__aworx__lib__strings__ASAlloc(d, value):
 
 
 #----- ASPreAlloc  ------
-def qdump__aworx__lib__strings__ASPreAlloc(d, value):
-    return qdump__aworx__lib__strings__ASAlloc(d, value)
+def qdump__aworx__lib__strings__PreallocatedString(d, value):
+    return qdump__aworx__lib__strings__AString(d, value)
 
 
 #----- StringLiteral  ------
-def qdump__aworx__lib__strings__ASLiteral(d, value):
+def qdump__aworx__lib__strings__StringLiteral(d, value):
     try:
         d.putValue( "Lit<" + str(value["length"]) + r">: \"" + getASString( d, value ) + r"\"" )
 

@@ -4,22 +4,22 @@
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
-/** @file */ // Hello Doxyen
+/** @file */ // Hello Doxygen
 
 // to preserve the right order, we are not includable directly from outside.
-#if !defined(FROM_HPP_AWORX_LIB_ALIB) || defined(HPP_AWORX_LIB_STRINGS_ASTERMINATABLE)
+#if !defined(FROM_HPP_ALIB_ALIB) || defined(HPP_ALIB_STRINGS_ASTERMINATABLE)
     #error "include alib/alib.hpp instead of this header"
 #endif
 
 // Due to our blocker above, this include will never be executed. But having it, allows IDEs
 // (e.g. QTCreator) to read the symbols when opening this file
-#if !defined (HPP_AWORX_LIB_ALIB)
+#if !defined (HPP_ALIB_ALIB)
     #include "alib/alib.hpp"
 #endif
 
 // then, set include guard
-#ifndef HPP_AWORX_LIB_STRINGS_ASTERMINATABLE
-#define HPP_AWORX_LIB_STRINGS_ASTERMINATABLE 1
+#ifndef HPP_ALIB_STRINGS_ASTERMINATABLE
+#define HPP_ALIB_STRINGS_ASTERMINATABLE 1
 
 
 // conditional expression is constant for using our constant template parameters to select
@@ -38,13 +38,13 @@
  * @addtogroup GrpALibStringsMacros
  * @{ \def  ALIB_STRING_DBG_UNTERMINATE
  *  This macro serves for debugging the development (and potentially the use) of
- *  derived classes, eg. class \ref aworx::lib::strings::ASAlloc "AString".
+ *  derived classes, eg. class \ref aworx::lib::strings::AString "AString".
  *  It is active only when compiler symbol \ref ALIB_DEBUG_STRINGS is set. When active,
  *  whenever the contents of an %AString instance is modified, the buffer is explicitly
  *  "unterminated" by writing a value of '\\1' at the termination position and the state is
  *  stored in field
- *  \ref aworx::lib::strings::ASTerminatable::debugIsTerminated "debugIsTerminated"
- *  \ref aworx::lib::strings::ASTerminatable::_dbgCheck "_dbgCheck".<br>
+ *  \ref aworx::lib::strings::TString::debugIsTerminated "debugIsTerminated"
+ *  \ref aworx::lib::strings::TString::_dbgCheck "_dbgCheck".<br>
  *  Doing this, will also hint to buffers that reside in non-writable memory, hence
  *  it will hint to buffers that may not be used with this class.
  * @}
@@ -59,7 +59,7 @@
 {                                                                    \
     if ( (astring).Buffer() != nullptr )                             \
         (astring).VBuffer()[ (astring).Length()  + offset ]= '\1';   \
-    ((ASTerminatable&)(astring)).debugIsTerminated= 0;               \
+    ((TString&)(astring)).debugIsTerminated= 0;               \
 }
 
 //--- normal mode ---
@@ -81,26 +81,26 @@ namespace                   strings {
  *
  * For all user defined string types (from an ALib perspective external types), which
  * - implement  template functions
- *   \ref aworx::lib::strings::ToAS(const TString) "ToAS(const TString)"
+ *   \ref aworx::lib::strings::ToString(const TString) "ToString(const TString)"
  *   to be able to serve as a string argument for implicit construction of class
- *   \ref aworx::lib::strings::AS "AS"
- * - and which do not provide a terminated buffer in that <em>ToAS</em> method
+ *   \ref aworx::lib::strings::String "String"
+ * - and which do not provide a terminated buffer in that <em>ToString</em> method
  * - and which should in addition be suitable to serve as string argument to implicit constructor
- *   of class  \ref aworx::lib::strings::ASTerminatable "ASTerminatable"
+ *   of class  \ref aworx::lib::strings::TString "TString"
  *
  * a specialization of this struct (that simply is derived from <em>std::true_type</em>)
  * has to be provided.
  *
  * When this is done, the capacity for the termination character '\0' has to be available
  * in the buffer that is passed in function
- * \ref aworx::lib::strings::ToAS(const TString) "ToAS( const TString )".
+ * \ref aworx::lib::strings::ToString(const TString) "ToString( const TString )".
  * In other words, their buffer needs to be writable and at least one character longer than
  * their content length.
  *
  * \note
  *  If (user defined) objects are terminated already when passed to the constructor of
- *  ASTerminatable, then this template is <b>not</b> needed to be defined.<br>
- *  For example, the implementation of method <em>ToAS</em> for type <em>std::string</em>
+ *  TString, then this template is <b>not</b> needed to be defined.<br>
+ *  For example, the implementation of method <em>ToString</em> for type <em>std::string</em>
  *  returns <em>std::string::c_str()</em>. This way, the string returned is well terminated and
  *  there is no need to partially specialize this struct for type <em>std::string</em>.
  **************************************************************************************************/
@@ -109,22 +109,18 @@ template<typename Type> struct  IsTerminatable : public std::false_type { };
 
 /** ************************************************************************************************
  * This class specializes class
- * \ref aworx::lib::strings::AS "AS" to represent zero terminated or zero terminatable strings.
- * The advantage of zero terminated strings are that certain algorithms might be implemented in
- * a more efficiently. Hence, various functions and methods of ALib require a const reference
- * to an object of this type instead to an object of class \b %AS.
- *
- * \note This class \b %ASTerminatable, when used in source code as well as in documentations, is
- *       mostly referred to using the synonym '<b>%TString</b>'. For more information about the
- *       synonymous names of ALib string classes, refer to
- *       \ref alib_namespace_strings_class_overview "String Classes Overview" and
- *       \ref CPP_AWORX_NS_SHORTCUTS "Type Shortcuts in the aworx Namespace".
+ * \ref aworx::lib::strings::String "String" to represent zero terminated or more precisely
+ * zero \e terminatable strings.
+ * Zero terminated strings are especially needed when string data has to be passed to system
+ * functions. Also, some efficient algorithms (platfrom dependent and mostly written in assembly
+ * language) exist.  Hence, various functions and methods of ALib require a const reference
+ * to an object of this type \b %TString instead to an object of class \b %String.
  *
  * <b>Implicit construction</b><p>
  * This class hides its parents' constructors and re-implements the template meta
  * programming based "all-for-one" constructor
- * \ref aworx::lib::strings::AS::AS(const  T&) "AS(const  T&)" by introducing
- * \ref aworx::lib::strings::ASTerminatable::ASTerminatable(const  T&) "ASTerminatable(const  T&)".
+ * \ref aworx::lib::strings::String::String(const  T&) "String(const  T&)" by introducing
+ * \ref aworx::lib::strings::TString::TString(const  T&) "TString(const  T&)".
  *
  * As it is not possible to implement compile time assertions for the save provision of
  * terminatable types (without taking serious restrictions into account), this constructor
@@ -145,50 +141,50 @@ template<typename Type> struct  IsTerminatable : public std::false_type { };
  *   objects of type <em>std::strings</em> or ALib's \b %AString,
  *   are well suited to implicitly construct respectively directly serve as objects of this class,
  *   objects of type
- *   \ref aworx::lib::strings::AS "AS" itself and espcially of type
- *   \ref aworx::lib::strings::ASSubstring "ASSubstring" are not.
+ *   \ref aworx::lib::strings::String "String" itself and espcially of type
+ *   \ref aworx::lib::strings::Substring "Substring" are not.
  *   Therefore the latter are accepted only if they are terminated already.
  *   But obviously, this is especially unlikely for objects of type
- *   \ref aworx::lib::strings::ASSubstring "ASSubstring".
+ *   \ref aworx::lib::strings::Substring "Substring".
  *
  *  \note
  *   Therefore, for example to pass a <em>Substring</em>
  *   as a parameter to functions accepting only terminatable strings, it is possible to
  *   wrap them into temporary objects of type
- *   \ref aworx::lib::strings::ASAlloc "AString" or, if maximum size is known at compile time,
+ *   \ref aworx::lib::strings::AString "AString" or, if maximum size is known at compile time,
  *   of type
- *   \ref aworx::lib::strings::ASPreAlloc "ASPreAlloc".
+ *   \ref aworx::lib::strings::PreallocatedString "PreallocatedString".
  *   Of-course, a performance drawback (for creating the temporary copy of the contents) has to
  *   be taken into account.
  *
  *  \note
- *   Alternatively, class \b %Substring and class \b %AS provide some useful
+ *   Alternatively, class \b %Substring and class \b %String provide some useful
  *   implementations of slightly slower versions of some of the methods introduced this class.
  *   It has to be considered case by case which option is the best in respect to performance and
  *   memory use.
  *
  * <b>Constant Nature</b><p>
  * Same as parent class
- * \ref aworx::lib::strings::AS "AS", this class is not copying the data of the provided
+ * \ref aworx::lib::strings::String "String", this class is not copying the data of the provided
  * source. It is designed preliminary to offer a fast but convenient (by implicit conversion)
- * type for function parameters that require terminated cstring buffers. As with parent class \b %AS,
+ * type for function parameters that require terminated cstring buffers. As with parent class \b %String,
  * the life-time of objects of this class is considerably short.<br>
- * Only derived class \ref aworx::lib::strings::ASAlloc "AString" and its different
+ * Only derived class \ref aworx::lib::strings::AString "AString" and its different
  * further specializations will copy the buffer and always include space for the termination
  * character in their buffers' capacity.
  *
  * <b>Parsing Numbers</b><p>
  * This class provides methods for parsing integer and floating point data.
- * For implementation performance reasons, those are <em>not</em> provided by parent class \b %AS
+ * For implementation performance reasons, those are <em>not</em> provided by parent class \b %String
  * which does not guarantee zero terminated strings. If parsing has to be done on non-zero
  * terminated string data, consider using a slightly slower variant of the parsing methods which
- * are found in class \ref aworx::lib::strings::ASSubstring "ASSubstring".<br>
+ * are found in class \ref aworx::lib::strings::Substring "Substring".<br>
  * It is rather more efficient, to instantiate a local Substring object that just wraps an
- * unterminated string of type \b %AS and use its parsing interface, than copying the
+ * unterminated string of type \b %String and use its parsing interface, than copying the
  * unterminated data into a terminatable string variant (e.g. \b %AString) and to use the
  * interface provided herein.
  **************************************************************************************************/
-class ASTerminatable : public AS
+class TString : public String
 {
     /** ############################################################################################
      * @name Debug methods
@@ -204,7 +200,7 @@ class ASTerminatable : public AS
 
         /**
          * This field serves for debugging the development (and potentially the use) of
-         * derived classes, eg. class \ref aworx::lib::strings::ASAlloc "AString".
+         * derived classes, eg. class \ref aworx::lib::strings::AString "AString".
          * It is available only when compiler symbol \ref ALIB_DEBUG_STRINGS is set. When active,
          * whenever the contents of an \b %AString instance is modified, the buffer is explicitly
          * "unterminated" by writing a value of '\\1' at the termination position and the state is
@@ -233,32 +229,32 @@ class ASTerminatable : public AS
          * @param contentLength   The length of the content in the given buffer.
          ******************************************************************************************/
         constexpr
-        ASTerminatable( const char* buffer, int contentLength )
-        : AS( buffer, contentLength )
+        TString( const char* buffer, int contentLength )
+        : String( buffer, contentLength )
         {}
 
 
     public:
 
         /** ****************************************************************************************
-         * Default constructor creating a \e nulled \b %ASTerminatable.
+         * Default constructor creating a \e nulled \b %TString.
          ******************************************************************************************/
         constexpr
-        ASTerminatable()
-        : AS()
+        TString()
+        : String()
         {}
 
         /** ****************************************************************************************
          *  This constructor overloads the powerful templated constructor
-         *  \ref aworx::lib::strings::AS::AS(const T&) "AS::AS(const T&)".
+         *  \ref aworx::lib::strings::String::String(const T&) "String::String(const T&)".
          *  In addition to invoking that, it is asserted that the given value is terminated or
          *  type T is terminatable. For more information see this classes' general description.
          *
          * @param src  The string to represent by this object.
          ******************************************************************************************/
         template <typename T>
-        ASTerminatable(const  T& src )
-        : AS(src)
+        TString(const  T& src )
+        : String(src)
         {
             ALIB_ASSERT_ERROR(      IsTerminatable  < typename std::remove_cv
                                                         < typename std::remove_pointer<T>::type>::type>::value
@@ -274,12 +270,12 @@ class ASTerminatable : public AS
     public:
         /** ****************************************************************************************
          * Reads a character at a given index.<br> Overwrites
-         * \ref aworx::lib::strings::AS::operator[] "AS::operator[]" to change the debug assertion
+         * \ref aworx::lib::strings::String::operator[] "String::operator[]" to change the debug assertion
          * to allow inclusion of the termination character.
          *
          * \attention
          *   No parameter check is performed (other than an assertions in debug-compilation of ALib).
-         *   See \ref aworx::lib::strings::AS::operator[] "AS::operator[]" for details.
+         *   See \ref aworx::lib::strings::String::operator[] "String::operator[]" for details.
          *
          * @param   op    The index of the character within this objects' buffer.
          * @returns If the character contained at index \p op.
@@ -313,7 +309,7 @@ class ASTerminatable : public AS
 
                 #if defined(ALIB_DEBUG_STRINGS)
                     // cast to non-const...hey its for good 8-)
-                    ((ASTerminatable*)this)->debugIsTerminated= 1;
+                    ((TString*)this)->debugIsTerminated= 1;
                 #endif
             }
         }
@@ -323,7 +319,7 @@ class ASTerminatable : public AS
      * @name Character and String Search
      ##@{ ########################################################################################*/
 
-        using AS::IndexOf;
+        using String::IndexOf;
 
         /** ****************************************************************************************
          *  Search the given terminatable string in this object.
@@ -332,14 +328,14 @@ class ASTerminatable : public AS
          *   Parameter \p needle is required to be terminated or terminatable, the same as this
          *   object is.
          *   For non-terminatable string types (e.g. those of type
-         *   \ref aworx::lib::strings::ASSubstring "ASSubstring"), a less performant implementation
-         *   of this method is available through class \b %AS with:
-         *   \ref aworx::lib::strings::AS::IndexOf "IndexOf".<br>
+         *   \ref aworx::lib::strings::Substring "Substring"), a less performant implementation
+         *   of this method is available through class \b %String with:
+         *   \ref aworx::lib::strings::String::IndexOf "IndexOf".<br>
          *
          * @tparam TCheck      Defaults to \c true which is the normal invocation mode.
          *                     If \c <false\> is added to the method name, no parameter checks are
          *                     performed and the needle must not be empty.
-         * @param needle       The AS to search for.
+         * @param needle       The String to search for.
          * @param startIdx     The index to start the search at. Optional and defaults to 0.
          * @param sensitivity  Case sensitivity of the comparison.
          *                     Optional and defaults to Case::Sensitive.
@@ -348,7 +344,7 @@ class ASTerminatable : public AS
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        int    IndexOf( const ASTerminatable&  needle,
+        int    IndexOf( const TString&  needle,
                               int              startIdx= 0,
                               enums::Case      sensitivity=  enums::Case::Sensitive )
         const
@@ -382,7 +378,7 @@ class ASTerminatable : public AS
                     return  foundAt != nullptr ?  (int) (foundAt - buffer)  :   -1;
                 }
                 else
-                    // there is no strcasestr in windows, we use the slower AS version, non-checking
+                    // there is no strcasestr in windows, we use the slower String version, non-checking
                     return IndexOfAS<false>( needle, startIdx , enums::Case::Ignore );
             #endif
         }
@@ -392,16 +388,16 @@ class ASTerminatable : public AS
          * included in a given set of characters.
          *
          * This method searches forwards. For backwards search, see
-         * \ref aworx::lib::strings::AS::LastIndexOfAny "AS::LastIndexOfAny".
+         * \ref aworx::lib::strings::String::LastIndexOfAny "String::LastIndexOfAny".
          *
          *
          * \note This method reimplements method
-         *       \ref aworx::lib::strings::AS::IndexOf "AS::IndexOf" of parent class.
+         *       \ref aworx::lib::strings::String::IndexOf "String::IndexOf" of parent class.
          *       This implementation however needs (beside the fact that this is a zero terminatable)
          *       a zero-terminatable string for the needles.
          *       If no zero-terminatable needles are available, parent method accepting non-zero
          *       terminated needles needs to be invoked. This is possible, for example
-         *       by writing e.g. <em>mystring.AS::IndexOf()</em>.
+         *       by writing e.g. <em>mystring.String::IndexOf()</em>.
          *
          * @tparam TCheck   Defaults to \c true which is the normal invocation mode.
          *                  If \c <false\> is added to the method name, no parameter checks are
@@ -421,7 +417,7 @@ class ASTerminatable : public AS
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        int            IndexOfAny( const ASTerminatable& needles, enums::Inclusion inclusion, int startIdx= 0 )
+        int            IndexOfAny( const TString& needles, enums::Inclusion inclusion, int startIdx= 0 )
         const
         {
             if (TCheck)
@@ -512,7 +508,7 @@ class ASTerminatable : public AS
          * This way, the optionally provided index can be used to check if parsing succeeded.
          *
          * \note For converting non-zero terminated strings, see class
-         *       \ref aworx::lib::strings::ASSubstring "ASSubstring".
+         *       \ref aworx::lib::strings::Substring "Substring".
          *
          * @param startIdx     The start index from where the integer value is tried to be parsed.
          *                     Optional and defaults to 0.
@@ -523,14 +519,14 @@ class ASTerminatable : public AS
          * @param whitespaces  White space characters used to trim the substring at the front
          *                     before reading the value.
          *                     Defaults to nullptr, which causes the method to use
-         *                     \ref aworx::lib::strings::DefaultWhitespaces.
+         *                     \ref aworx::DefaultWhitespaces.
          *
          * @return  The parsed value. In addition, the parameter \p newIdx is set to point
          *          to the first character behind any found integer number.
          ******************************************************************************************/
         ALIB_API
-        int64_t        ToLong( int   startIdx= 0,  int* newIdx= nullptr,
-                               const ASTerminatable*   whitespaces   = nullptr ) const;
+        int64_t        ToLong( int startIdx =0, int* newIdx= nullptr,
+                               const TString* whitespaces =nullptr ) const;
 
         /** ****************************************************************************************
          * Reads a 32-bit integer from this object at the given position.
@@ -543,7 +539,7 @@ class ASTerminatable : public AS
          * This way, the optionally provided index can be used to check if parsing succeeded.
          *
          * \note For converting non-zero terminated strings, see class
-         *       \ref aworx::lib::strings::ASSubstring "ASSubstring".
+         *       \ref aworx::lib::strings::Substring "Substring".
          *
          * @param startIdx     The start index from where the integer value is tried to be parsed.
          *                     Optional and defaults to 0.
@@ -553,14 +549,14 @@ class ASTerminatable : public AS
          * @param whitespaces  White space characters used to trim the substring at the front
          *                     before reading the value.
          *                     Defaults to nullptr, which causes the method to use
-         *                     \ref aworx::lib::strings::DefaultWhitespaces.
+         *                     \ref aworx::DefaultWhitespaces.
          *
          * @return  The parsed value. In addition, the output parameter \p newIdx is set to point
          *          to the first character behind any found integer number.
          ******************************************************************************************/
         inline
         int32_t        ToInt( int  startIdx= 0,  int* newIdx= nullptr,
-                              const ASTerminatable*   whitespaces = nullptr  ) const
+                              const TString*   whitespaces = nullptr  ) const
         {
             return (int32_t) ToLong( startIdx, newIdx, whitespaces );
         }
@@ -582,7 +578,7 @@ class ASTerminatable : public AS
          * the output parameter is set to the original start index.
          *
          * \note For converting non-zero terminated strings, see class
-         *       \ref aworx::lib::strings::ASSubstring "ASSubstring".
+         *       \ref aworx::lib::strings::Substring "Substring".
          *
          * @param startIdx     The start index from where the float value is tried to be read.
          *                     Defaults to 0.
@@ -595,24 +591,29 @@ class ASTerminatable : public AS
          * @param whitespaces  White space characters used to trim the substring at the front
          *                     before reading the value.
          *                     Defaults to nullptr, which causes the method to use
-         *                     \ref aworx::lib::strings::DefaultWhitespaces.
+         *                     \ref aworx::DefaultWhitespaces.
          *
          * @return  The parsed value. In addition, on success, the output parameter \p newIdx is set
          *          to point to the first character behind any found float number.
          ******************************************************************************************/
         ALIB_API
-        double         ToFloat( int                     startIdx        = 0,
-                                int*                    newIdx          = nullptr,
-                                strings::NumberFormat*  numberFormat    = nullptr,
-                                const ASTerminatable*   whitespaces     = nullptr    )   const;
+        double         ToFloat( int             startIdx        =0,
+                                int*            newIdx          =nullptr,
+                                NumberFormat*   numberFormat    =nullptr,
+                                const TString*  whitespaces     =nullptr    )   const;
 
-}; // class ASTerminatable
+}; // class TString
 
 
 
-}}} // namespace aworx::lib::strings
+}} // namespace lib::strings
+
+/** Type alias name in namespace #aworx. */
+using     TString   =       aworx::lib::strings::TString;
+
+} // namespace aworx
 
 #if defined(_MSC_VER)
     #pragma warning( pop )
 #endif
-#endif // HPP_AWORX_LIB_STRINGS_ASTERMINATABLE
+#endif // HPP_ALIB_STRINGS_ASTERMINATABLE

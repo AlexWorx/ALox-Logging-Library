@@ -389,7 +389,7 @@ namespace ut_cs_aworx_lib
     #endif
     public void IndexOfString()
     {
-        // search nullptr, empty string
+        // search null, empty string
         {
             tIndexOfString(  "abcd abcd",  null     ,     0  , Case.Sensitive,   0  );
             tIndexOfString(  "abcd abcd",  null     ,     5  , Case.Sensitive,   5  );

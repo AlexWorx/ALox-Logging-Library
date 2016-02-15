@@ -16,9 +16,6 @@
 #include <fstream>
 #include <algorithm>
 using namespace std;
-using namespace aworx::lib::enums;
-using namespace aworx::lib::strings;
-using namespace aworx::lib::system;
 
 namespace aworx {
 namespace           lib {
@@ -263,7 +260,7 @@ bool  IniFile::Save( const String& pcategory,  const String& name, const String&
 #if !defined(IS_DOXYGEN_PARSER)
 bool startsWithCommentSymbol( Substring& subs )
 {
-    int i= AS("#;/").IndexOf( subs.CharAtStart() );
+    int i= String("#;/").IndexOf( subs.CharAtStart() );
     return      ( i >= 0 && i < 2)
             ||  ( i == 2 && subs[1] == '/'  );
 }
@@ -289,7 +286,7 @@ IniFile::Status  IniFile::ReadFile()
 
     LinesWithReadErrors.clear();
 
-    ReadLineFromIStream readOp= ReadLineFromIStream( file );
+    lib::strings::ReadLineFromIStream readOp= lib::strings::ReadLineFromIStream( file );
 
     while( !readOp.IsEOF )
     {

@@ -128,20 +128,20 @@ public class ThreadLock
      *  number of Release() calls have been made.
      **********************************************************************************************/
     public void Acquire()
+    {
+        // are we in unsafe mode?
+        if ( mutex == null )
         {
-            // are we in unsafe mode?
-            if ( mutex == null )
-            {
-                // we are still increasing the lockCount
-                lockCount=  lockMode == LockMode.Recursive ? lockCount + 1
-                                                           : 1;
+            // we are still increasing the lockCount
+            lockCount=  lockMode == LockMode.Recursive ? lockCount + 1
+                                                       : 1;
 
-                // reached warning limit
-                if ( lockCount <= 0 )
-                    ALIB.ERROR( "Unsafe mode: Counter invalid (<= 0): This should never happen. Set lock to safe mode!" );
+            // reached warning limit
+            if ( lockCount <= 0 )
+                ALIB.ERROR( "Unsafe mode: Counter invalid (<= 0): This should never happen. Set lock to safe mode!" );
 
-                else if ( lockCount % RecursionWarningThreshold == 0 )
-                    ALIB.WARNING( "Recursion depth " + lockCount + ". To prevent this, change ThreadSafe.recursionWarningThreshold or fix your code!");
+            else if ( lockCount % RecursionWarningThreshold == 0 )
+                ALIB.WARNING( "Recursion depth " + lockCount + ". To prevent this, change ThreadSafe.recursionWarningThreshold or fix your code!");
 
             // end of unsafe version of this method
             return;

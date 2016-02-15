@@ -24,16 +24,13 @@ using namespace std;
 using namespace ut_aworx;
 
 using namespace aworx;
-using namespace aworx::lib;
-using namespace aworx::lib::enums;
-using namespace aworx::lox;
-using namespace aworx::lox::core::textlogger;
-using namespace aworx::lox::loggers;
-
 
 namespace ut_alox {
 
 #if defined (ALOX_REL_LOG)
+
+    Lox releaseLox;
+    #define LOX_LOX releaseLox
 
     /** ********************************************************************************************
      * loggers used
@@ -62,7 +59,7 @@ namespace ut_alox {
 
     void   clearCreateAndAddLoggers_rel_log( bool memoryLogger= false, bool consoleLogger= true)
     {
-        Log::relLox->RemoveLoggers();
+        LOX_LOX.RemoveLoggers();
 
         if ( consoleLogger )
         {
@@ -88,7 +85,7 @@ UT_CLASS()
     UT_METHOD(Lox_TestLogLevelSetting)
 
         clearCreateAndAddLoggers_rel_log( true );
-        Lox_SetDomain( LOG_REL_LOX.InternalDomain, Log::DomainLevel::Off, "MEMORY" );
+        Lox_SetDomain( LOX_LOX.InternalDomain, Log::DomainLevel::Off, "MEMORY" );
 
         Lox_SetDomain( "TLLS_DF", Log::Scope::Method );
 
@@ -385,12 +382,12 @@ UT_CLASS()
 
         Lox_Info ( "S-TIME", "This is the first log with normal start time" );
 
-        Lox_Prune( time::Ticks newTime;                       )
-        Lox_Prune( time::Ticks sub(0); sub.FromMinutes(20);   )
+        Lox_Prune( Ticks newTime;                       )
+        Lox_Prune( Ticks sub(0); sub.FromMinutes(20);   )
         Lox_Prune( newTime.Sub ( sub );                 )
         Lox_SetStartTime( newTime, nullptr )
         Lox_Info ( "S-TIME", "Starttime set to 20 minutes ago" );
-        Lox_SetStartTime( time::Ticks(),  nullptr )
+        Lox_SetStartTime( Ticks(),  nullptr )
         Lox_Info ( "S-TIME", "Starttime set to 'now'" );
 
         deleteLoggers_rel_log();

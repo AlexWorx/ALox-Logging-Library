@@ -4,16 +4,16 @@
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
-/** @file */ // Hello Doxyen
+/** @file */ // Hello Doxygen
 
 // to preserve the right order, we are not includable directly from outside.
-#if !defined(FROM_HPP_AWORX_LIB_ALIB) || defined(HPP_AWORX_LIB_ALIB_MACROS)
+#if !defined(FROM_HPP_ALIB_ALIB) || defined(HPP_ALIB_ALIB_MACROS)
     #error "include alib/alib.hpp instead of this header"
 #endif
 
 
-#ifndef HPP_AWORX_LIB_ALIB_MACROS
-#define HPP_AWORX_LIB_ALIB_MACROS 1
+#ifndef HPP_ALIB_ALIB_MACROS
+#define HPP_ALIB_ALIB_MACROS 1
 
 
 // #################################################################################################
@@ -23,7 +23,7 @@
 
 #if !defined( IS_DOXYGEN_PARSER )
 
-#define     ALIB_VERSION_VERYFIER              1601
+#define     ALIB_VERSION_VERYFIER              1602
 
 #if defined(ALIB_DEBUG)
     #define ALIB_DEBUG_VFYBIT                  +(1 << 0)
@@ -147,9 +147,9 @@
  * be changed to provide other standard information.<p>
  */
 
-#define ALIB_SRC_INFO_PARAMS_DECL   const aworx::lib::strings::ASTerminatable& file,   \
-                                    int                                        line,   \
-                                    const aworx::lib::strings::ASTerminatable& func,
+#define ALIB_SRC_INFO_PARAMS_DECL   const aworx::lib::strings::TString& file,  \
+                                    int                                 line,  \
+                                    const aworx::lib::strings::TString& func,
 
 #if defined( __GNUC__ )
     #define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, __func__
@@ -211,8 +211,8 @@
  *  \def  ALIB_ERROR_AS
  *  Invokes \ref aworx::lib::Report::DoReport "Report::DoReport".<br>
  *  This macro is pruned from release code.<br>
- *  This macro variant having the postfix <em>_AS</em> in its name, creates a
- *  \ref aworx::lib::strings::ASPreAlloc "String512". Parameter \p msg can consist of sequences of
+ *  This macro variant, suffixed <em>_AS</em>, creates a
+ *  \ref aworx::lib::strings::PreallocatedString "String512". Parameter \p msg can consist of sequences of
  *  strings and values concatenated using <em>operator<<</em>.
  *
  *
@@ -223,8 +223,8 @@
  *  \def  ALIB_WARNING_AS
  *  Invokes \ref aworx::lib::Report::DoReport "Report::DoReport".<br>
  *  This macro is pruned from release code.<br>
- *  This macro variant having the postfix <em>_AS</em> in its name, creates a
- *  \ref aworx::lib::strings::ASPreAlloc "String512". Parameter \p msg can consist of sequences of
+ *  This macro variant, suffixed <em>_AS</em>, creates a
+ *  \ref aworx::lib::strings::PreallocatedString "String512". Parameter \p msg can consist of sequences of
  *  strings and values concatenated using <em>operator<<</em>.
  *
  *
@@ -244,8 +244,8 @@
  *  If given condition is \c false, method
  *  \ref aworx::lib::Report::DoReport "Report::DoReport" gets invoked with the given message.<br>
  *  This macro is pruned from release code.<br>
- *  This macro variant having the postfix <em>_AS</em> in its name, creates a
- *  \ref aworx::lib::strings::ASPreAlloc "String512". Parameter \p msg can consist of sequences of
+ *  This macro variant, suffixed <em>_AS</em>, creates a
+ *  \ref aworx::lib::strings::PreallocatedString "String512". Parameter \p msg can consist of sequences of
  *  strings and values concatenated using <em>operator<<</em>.
  *
  *
@@ -258,8 +258,8 @@
  *  If given condition is \c false, method
  *  \ref aworx::lib::Report::DoReport "Report::DoReport" gets invoked with the given message.<br>
  *  This macro is pruned from release code.<br>
- *  This macro variant having the postfix <em>_AS</em> in its name, creates a
- *  \ref aworx::lib::strings::ASPreAlloc "String512". Parameter \p msg can consist of sequences of
+ *  This macro variant, suffixed <em>_AS</em>, creates a
+ *  \ref aworx::lib::strings::PreallocatedString "String512". Parameter \p msg can consist of sequences of
  *  strings and values concatenated using <em>operator<<</em>.
  *
  *
@@ -580,4 +580,4 @@
 
 
 
-#endif // HPP_AWORX_LIB_ALIB_MACROS
+#endif // HPP_ALIB_ALIB_MACROS

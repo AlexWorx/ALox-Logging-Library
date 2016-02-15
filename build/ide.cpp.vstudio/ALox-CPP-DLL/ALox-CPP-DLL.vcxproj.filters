@@ -130,44 +130,11 @@
     <ClInclude Include="..\..\..\src.cpp\alox\core\callerinfo.hpp">
       <Filter>alox\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\tokenizer.hpp">
-      <Filter>alib\strings</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\applyformat.hpp">
-      <Filter>alib\strings</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\applyto.hpp">
-      <Filter>alib\strings</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\as.hpp">
-      <Filter>alib\strings</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\asprealloc.hpp">
-      <Filter>alib\strings</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\asterminatable.hpp">
-      <Filter>alib\strings</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\cstring.hpp">
-      <Filter>alib\strings</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\namespace.hpp">
-      <Filter>alib\strings</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\numberformat.hpp">
-      <Filter>alib\strings</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src.cpp\alib\compatibility\std_string.hpp">
       <Filter>alib\compatibility</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src.cpp\alib\compatibility\std_iostream.hpp">
       <Filter>alib\compatibility</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\assubstring.hpp">
-      <Filter>alib\strings</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alib\strings\asalloc.hpp">
-      <Filter>alib\strings</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src.cpp\alib\core\report.hpp">
       <Filter>alib\core</Filter>
@@ -192,6 +159,42 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src.cpp\alox\core\domain.hpp">
       <Filter>alox\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\strings_namespace_documentation.hpp">
+      <Filter>alib\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\string.hpp">
+      <Filter>alib\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\tokenizer.hpp">
+      <Filter>alib\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\tstring.hpp">
+      <Filter>alib\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\substring.hpp">
+      <Filter>alib\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\astring.hpp">
+      <Filter>alib\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\stringliteral.hpp">
+      <Filter>alib\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\applyformat.hpp">
+      <Filter>alib\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\preallocatedstring.hpp">
+      <Filter>alib\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\numberformat.hpp">
+      <Filter>alib\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\applyto.hpp">
+      <Filter>alib\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\strings\cstring.hpp">
+      <Filter>alib\strings</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -258,35 +261,8 @@
     <ClCompile Include="..\..\..\src.cpp\alox\core\logger.cpp">
       <Filter>alox\core</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\applyformat.cpp">
-      <Filter>alib\strings</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\applyto.cpp">
-      <Filter>alib\strings</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\as.cpp">
-      <Filter>alib\strings</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\asterminatable.cpp">
-      <Filter>alib\strings</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\cstring.cpp">
-      <Filter>alib\strings</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\numberformat.cpp">
-      <Filter>alib\strings</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\tokenizer.cpp">
-      <Filter>alib\strings</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src.cpp\alib\compatibility\std_iostream.cpp">
       <Filter>alib\compatibility</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\assubstring.cpp">
-      <Filter>alib\strings</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\asalloc.cpp">
-      <Filter>alib\strings</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src.cpp\alib\core\report.cpp">
       <Filter>alib\core</Filter>
@@ -308,6 +284,33 @@
     </ClCompile>
     <ClCompile Include="..\..\..\src.cpp\alox\core\domain.cpp">
       <Filter>alox\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\applyto.cpp">
+      <Filter>alib\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\astring.cpp">
+      <Filter>alib\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\cstring.cpp">
+      <Filter>alib\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\substring.cpp">
+      <Filter>alib\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\tokenizer.cpp">
+      <Filter>alib\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\tstring.cpp">
+      <Filter>alib\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\applyformat.cpp">
+      <Filter>alib\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\numberformat.cpp">
+      <Filter>alib\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\strings\string.cpp">
+      <Filter>alib\strings</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

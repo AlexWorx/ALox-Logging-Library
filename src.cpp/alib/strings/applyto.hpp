@@ -7,29 +7,29 @@
 /**@file*///<- needed for Doxygen include of the typedefs at the end of the file
 
 // to preserve the right order, we are not includable directly from outside.
-#if !defined(FROM_HPP_AWORX_LIB_ALIB) || defined(HPP_AWORX_LIB_STRINGS_APPLYTO)
+#if !defined(FROM_HPP_ALIB_ALIB) || defined(HPP_ALIB_STRINGS_APPLYTO)
     #error "include alib/alib.hpp instead of this header"
 #endif
 
 // Due to our blocker above, this include will never be executed. But having it, allows IDEs
 // (e.g. QTCreator) to read the symbols when opening this file
-#if !defined (HPP_AWORX_LIB_ALIB)
+#if !defined (HPP_ALIB_ALIB)
     #include "alib/alib.hpp"
 #endif
 
 // then, set include guard
-#ifndef HPP_AWORX_LIB_STRINGS_APPLYTO
-#define HPP_AWORX_LIB_STRINGS_APPLYTO 1
+#ifndef HPP_ALIB_STRINGS_APPLYTO
+#define HPP_ALIB_STRINGS_APPLYTO 1
 
 
 // This is for testing internal include order, see stdafx_alib.h
-#if defined(HPP_AWORX_LIB_STRINGS_NUMBERFORMAT)
+#if defined(HPP_ALIB_STRINGS_NUMBERFORMAT)
     #error "ALib Include order error"
 #endif
-#if defined(HPP_AWORX_LIB_STRINGS_TOKENIZER)
+#if defined(HPP_ALIB_STRINGS_TOKENIZER)
     #error "ALib Include order error"
 #endif
-#if defined(HPP_AWORX_LIB_STRINGS_ASSUBSTRING)
+#if defined(HPP_ALIB_STRINGS_ASSUBSTRING)
     #error "ALib Include order error"
 #endif
 
@@ -60,7 +60,7 @@ namespace                   strings {
      * \ref ApplyTo<T> for custom types, this class has to be specialized as well.
      * Otherwise, a compile time assertion (<em>static_assert</em>) will fail whenever an object
      * of the type is appended to an object of type
-     * \ref aworx::lib::strings::ASAlloc "AString".
+     * \ref aworx::lib::strings::AString "AString".
      *
      * Definition has to be made as follows:
     \verbatim
@@ -78,14 +78,14 @@ namespace                   strings {
     /** ********************************************************************************************
      * This template function supports applying 'external' user defined types
      * to objects of type
-     * \ref aworx::lib::strings::ASAlloc "AString". It has a central role for using ALib in a
+     * \ref aworx::lib::strings::AString "AString". It has a central role for using ALib in a
      * \ref aworx::lib "non intrusive" way, by allowing to pass external string types just as
      * the are when appending them to objects of type %AString. Furthermore, a list of built-in
      * operations on objects of type %AString are implemented using the mechanism provided with
      * this function and new, custom operations might be defined.
      *
      * Partially specialized versions of this method are invoked by method
-     * \ref aworx::lib::strings::ASAlloc::Apply "AString::Apply"
+     * \ref aworx::lib::strings::AString::Apply "AString::Apply"
      * with template parameter \p src.
      *
      * To restrict the need for specializations of this method to a single variant of the external type,
@@ -99,7 +99,7 @@ namespace                   strings {
      *    implementations of \b %ApplyTo have to cast the given const reference to a
      *    non-const reference. This is considered a good practice, as the const specifier
      *    most probably was added by the TMP operations of method
-     *    \ref aworx::lib::strings::ASAlloc::Apply "AString::Apply" anyhow only for the reason
+     *    \ref aworx::lib::strings::AString::Apply "AString::Apply" anyhow only for the reason
      *    to have one single template specialization per type.
      *
      * The implementation itself may do 'whatever' is wanted' with the %AString provided in
@@ -118,14 +118,14 @@ namespace                   strings {
      * apply an object. See \ref alib_namespace_strings_nonchecking for more information.
      *
      * For basic user defined string types that get adopted to ALib string system using function
-     * <em>ToAS</em>, it is advisable to also generate
+     * <em>ToString</em>, it is advisable to also generate
      * a specialization of this function and of struct <em>%IsApplicable</em>. Therefore, the sample
-     * provided with method <em>ToAS</em> demonstrates also this function. See template function
-     *\ref aworx::lib::strings::ToAS(const TString) "ToAS" for that sample.
+     * provided with method <em>ToString</em> demonstrates also this function. See template function
+     *\ref aworx::lib::strings::ToString(const TString) "ToString" for that sample.
      *
      * Built-in specializations of this function and according type definitions exist,
      * as listed in reference documentation of class
-     * \ref aworx::lib::strings::ASAlloc "AString".
+     * \ref aworx::lib::strings::AString "AString".
      * As a sample, one type and according specialization is class
      * \ref aworx::lib::strings::Format::Field "Format::Field". The invocation is simple
      * and nicely readable:
@@ -156,7 +156,7 @@ namespace                   strings {
      *          a non zero, positive value has to be returned) and -1 if the object \p src
      *          which is to be applied represented a \e nulled object.
      *          Returning -1 causes the AString to be \e nulled if the apply operation was invoked through
-     *          \ref aworx::lib::strings::ASAlloc::operator= "AString assignment operator".
+     *          \ref aworx::lib::strings::AString::operator= "AString assignment operator".
      *
      *          If nothing is supposed to be append, this method must return 0.
      *
@@ -174,19 +174,19 @@ namespace                   strings {
                       typename std::remove_const    < T >::type>::type>::type>::type;
 
         static_assert(
-                std::is_pod      <      TPlain > ::value
-            ||  std::is_base_of  <AS,   TPlain > ::value
+                std::is_pod      <        TPlain > ::value
+            ||  std::is_base_of  <String, TPlain > ::value
             ||  IsApplicable <const TPlain&> ::value
         , "ALib: T is not a known type to append to AString. Implement ApplyTo<T>() to enable conversion.");
 
         // fetch AStrings
-        if ( std::is_base_of<AS, typename std::remove_reference<T>::type>::value )
+        if ( std::is_base_of<String, typename std::remove_reference<T>::type>::value )
         {
 
-            if( ((AS&)src).IsNull() )
+            if( ((String&)src).IsNull() )
                 return -1;
-             target.Append<false>( ((AS&)src).Buffer(), ((AS&)src).Length() );
-             return ((AS&)src).Length();
+             target.Append<false>( ((String&)src).Buffer(), ((String&)src).Length() );
+             return ((String&)src).Length();
         }
 
         ALIB_DEBUG_CODE( target.Apply("ApplyTo<Unknown Type>") );
@@ -213,12 +213,12 @@ namespace                   strings {
     template<typename T>  inline int ApplyTo_NC( AString& target, const T src )
     {
         // fetch AStrings
-        if ( std::is_base_of<AS, typename std::remove_reference<T>::type>::value )
+        if ( std::is_base_of<String, typename std::remove_reference<T>::type>::value )
         {
-            ALIB_ASSERT_ERROR( ((AS&)src).IsNotNull(),  "Nulled AS object passed to NC method" )
+            ALIB_ASSERT_ERROR( ((String&)src).IsNotNull(),  "Nulled String object passed to NC method" )
 
-            target.Append<false>( ((AS&)src).Buffer(), ((AS&)src).Length() );
-            return ((AS&)src).Length();
+            target.Append<false>( ((String&)src).Buffer(), ((String&)src).Length() );
+            return ((String&)src).Length();
         }
 
         // by default use non checking apply
@@ -525,4 +525,4 @@ namespace                   strings {
 #if defined(_MSC_VER)
     #pragma warning( pop )
 #endif
-#endif // HPP_AWORX_LIB_STRINGS_APPLYTO
+#endif // HPP_ALIB_STRINGS_APPLYTO

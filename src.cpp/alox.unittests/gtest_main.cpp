@@ -15,7 +15,7 @@
 
 
 using namespace std;
-using namespace aworx::lib::strings;
+using namespace aworx;
 
 
 int main( int argc, char **argv )

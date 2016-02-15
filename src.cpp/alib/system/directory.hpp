@@ -4,43 +4,25 @@
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
-/** @file */ // Hello Doxyen
+/** @file */ // Hello Doxygen
 
 // check for alib.hpp already there but not us
-#if !defined (HPP_AWORX_LIB_ALIB)
+#if !defined (HPP_ALIB_ALIB)
     #error "include \"alib/alib.hpp\" before including this header"
 #endif
-#if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_AWORX_LIB_SYSTEM_DIRECTORY)
+#if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_ALIB_SYSTEM_DIRECTORY)
     #error "Header already included"
 #endif
 
 // then, set include guard
-#ifndef HPP_AWORX_LIB_SYSTEM_DIRECTORY
+#ifndef HPP_ALIB_SYSTEM_DIRECTORY
 #if !defined( IS_DOXYGEN_PARSER)
-#define HPP_AWORX_LIB_SYSTEM_DIRECTORY 1
+#define HPP_ALIB_SYSTEM_DIRECTORY 1
 #endif
 
 namespace aworx {
 namespace           lib {
 namespace                   system {
-
-
-
-// #############################################################################################
-// Namespace Constants
-// #############################################################################################
-
-/// The standard path separator character. ( '\\' on windows platform, '/' else.)
-const char    PathSeparator    =
-                                                                    #if defined( _WIN32 )
-                                                                        '\\';
-                                                                    #else
-                                                                        '/';
-                                                                    #endif
-
-// #################################################################################################
-// class Directory
-// #################################################################################################
 
 /** ************************************************************************************************
  *  Represents a directory (folder) in a file system.
@@ -165,8 +147,28 @@ class Directory
          *          but other errors might occur as well (OS dependent).
          ******************************************************************************************/
         ALIB_API static enums::Result   Create( const TString& path );
-};
+}; //class Directory
 
-}}}  // namespace aworx::lib::system
+}} // namespace lib::system
 
-#endif // HPP_AWORX_LIB_SYSTEM_DIRECTORY
+/** Type alias name in namespace #aworx. */
+using     Directory=       aworx::lib::system::Directory;
+
+/**
+ * The standard path separator character. Defaults to '\\' on Windows OS, '/' else.
+ * Note: Available only with including "alib/system/directory.hpp"
+ */
+const char    PathSeparator
+#if defined(IS_DOXYGEN_PARSER)
+    ;
+#else
+    =
+                                                                    #if defined( _WIN32 )
+                                                                        '\\';
+                                                                    #else
+                                                                        '/';
+                                                                    #endif
+#endif
+}  // namespace aworx
+
+#endif // HPP_ALIB_SYSTEM_DIRECTORY

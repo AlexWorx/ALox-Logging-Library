@@ -112,19 +112,19 @@ public static class Log
     // #############################################################################################
 
         /**
-         * The version of ALox. The version number follows the scheme YYMM (2-digit year, 2-digit month)
-         * of the initial release date.
+         * The version of ALox. The version number follows the scheme YYMM (2-digit year,
+         * 2-digit month) of the initial release date.
          * Besides this version number, field #Revision indicates if this is a revised version
          * of a former release.
          */
-        public static readonly int                   Version                                =1601;
+        public static readonly int                   Version                                  =1602;
 
         /**
          * The revision number of this release. Each ALox #Version is initially released as
          * revision \e 0. Pure maintenance releases that do not change the interface of ALox
          * are holding the same #Version but an increased number in this field.
          */
-        public static readonly int                   Revision                                =0;
+        public static readonly int                   Revision                                    =1;
 
         /**
          * The name of the configuration category of configuration variables used by ALox.<br>
@@ -134,7 +134,7 @@ public static class Log
          * bootstrap code, before the invocation of #Init.<br>
          * See also \ref cs::aworx::lib::ALIB::ConfigCategoryName "ALIB.ConfigCategoryName".
          */
-        public  static String         ConfigCategoryName                                  ="ALOX";
+        public  static String         ConfigCategoryName                                    ="ALOX";
 
     // #############################################################################################
     // Library initialization

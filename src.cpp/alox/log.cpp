@@ -10,11 +10,11 @@
     #include "alox/alox.hpp"
 #endif
 
-#if !defined (HPP_AWORX_LIB_CONFIG_CONFIGURATION)
+#if !defined (HPP_ALIB_CONFIG_CONFIGURATION)
     #include "alib/config/configuration.hpp"
 #endif
 
-#if !defined (HPP_AWORX_LIB_SYSTEM_SYSTEMINFO)
+#if !defined (HPP_ALIB_SYSTEM_SYSTEMINFO)
     #include "alib/system/system.hpp"
 #endif
 
@@ -27,22 +27,13 @@
 
 using namespace std;
 using namespace aworx;
-using namespace aworx::lib;
-using namespace aworx::lib::enums;
-using namespace aworx::lib::system;
-using namespace aworx::lib::strings;
-using namespace aworx::lox;
 using namespace aworx::lox::core;
-using namespace aworx::lox::core::textlogger;
-using namespace aworx::lox::loggers;
-
-
 
 // #################################################################################################
 // Static fields
 // #################################################################################################
 const int            Log::Version=                                            ALIB_VERSION_VERYFIER;
-const int            Log::Revision=                                                               0;
+const int            Log::Revision=                                                               1;
 const uint32_t       Log::CompilationFlags=                             ALOX_COMPATIBILITY_VERYFIER;
 const uint32_t       Log::ALibCompilationFlags=                         ALIB_COMPATIBILITY_VERYFIER;
 std::pair <const char*, uint32_t> Log::CompilationFlagMeanings[]=
@@ -57,27 +48,22 @@ std::pair <const char*, uint32_t> Log::CompilationFlagMeanings[]=
 // The lox singletons for debug and release logging
 #if defined(ALOX_DBG_LOG)
     Lox  Log::defaultDbgLox;
-    Lox* Log::lox=    &Log::defaultDbgLox;
-#endif
-
-#if defined(ALOX_REL_LOG)
-    Lox  Log::defaultRelLox;
-    Lox* Log::relLox= &Log::defaultRelLox;
+    Lox* Log::LOX=    &Log::defaultDbgLox;
 #endif
 
 // #################################################################################################
 // ALoxReportWriter
 // #################################################################################################
-    ReportWriter*   Log::OrigReportWriter    = nullptr;
-ALoxReportWriter*   Log::DebugReportWriter   = nullptr;
+    lib::ReportWriter*   Log::OrigReportWriter    = nullptr;
+lox::ALoxReportWriter*   Log::DebugReportWriter   = nullptr;
 
-ALoxReportWriter::ALoxReportWriter ( Lox* lox )
+lox::ALoxReportWriter::ALoxReportWriter ( Lox* lox )
 {
     this->lox= lox;
     lox->Verbose( lox->InternalDomain, "ALoxReportWriter set" );
 }
 
-void ALoxReportWriter::Report( const Report::Message& report )
+void lox::ALoxReportWriter::Report( const lib::Report::Message& report )
 {
     #if defined( ALIB_DEBUG )
         lox->AcquireAndSetCI( report.File, report.Line, report.Func );
@@ -177,16 +163,12 @@ bool Log::initInternal( Inclusion environment, int argc, void** argv, bool wArgs
 void Log::TerminationCleanUp()
 {
     #if defined(ALOX_DBG_LOG)
-        if ( lox != nullptr && lox != &defaultDbgLox )
-            delete lox;
+        if ( LOX != nullptr && LOX != &defaultDbgLox )
+            delete LOX;
         if ( DebugLogger != nullptr )
             delete DebugLogger;
     #endif
 
-    #if defined(ALOX_REL_LOG)
-        if ( relLox != nullptr  && relLox != &defaultRelLox )
-            delete relLox;
-    #endif
     ALIB::TerminationCleanUp();
 }
 
@@ -225,7 +207,7 @@ void Log::TerminationCleanUp()
 
             // replace ALibs' ReportWriter by an ALox ReportWriter
             if ( replaceDefaultReportWriter )
-                OrigReportWriter= Report::GetDefault().ReplaceReportWriter( DebugReportWriter= new ALoxReportWriter( lox ), false );
+                OrigReportWriter= lib::Report::GetDefault().ReplaceReportWriter( DebugReportWriter= new ALoxReportWriter( lox ), false );
             else
                 DebugReportWriter= nullptr;
 
@@ -241,7 +223,7 @@ void Log::TerminationCleanUp()
         // replace the report writer (if we replaced it before)
         if ( DebugReportWriter != nullptr )
         {
-            Report::GetDefault().ReplaceReportWriter( OrigReportWriter, false );
+            lib::Report::GetDefault().ReplaceReportWriter( OrigReportWriter, false );
             delete DebugReportWriter;
             DebugReportWriter=  nullptr;
             OrigReportWriter=   nullptr;

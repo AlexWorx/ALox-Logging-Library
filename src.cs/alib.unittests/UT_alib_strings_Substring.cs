@@ -455,7 +455,7 @@ public void FrontEnd()
             UT_EQ(   -1 ,  subs.IndexOf( 'd', 9    ) );
         }
 
-        // search nullptr, empty string
+        // search null, empty string
         subs.Set( "abc@" +   "abcd abcd" + "abc@de", 4, 9 );
         {
             UT_EQ(  0 ,  subs.IndexOf( (AString) null       ) );

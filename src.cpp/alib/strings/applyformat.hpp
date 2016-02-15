@@ -7,7 +7,7 @@
 /**@file*///<- needed for Doxygen include of the typedefs at the end of the file
 
 // to preserve the right order, we are not includable directly from outside.
-#if !defined(FROM_HPP_AWORX_LIB_ALIB) || defined(HPP_AWORX_LIB_STRINGS_APPLY_FORMAT)
+#if !defined(FROM_HPP_ALIB_ALIB) || defined(HPP_ALIB_STRINGS_APPLY_FORMAT)
     #error "include alib/alib.hpp instead of this header"
 #endif
 
@@ -18,18 +18,18 @@
 #endif
 
 // then, set include guard
-#ifndef HPP_AWORX_LIB_STRINGS_APPLY_FORMAT
-#define HPP_AWORX_LIB_STRINGS_APPLY_FORMAT 1
+#ifndef HPP_ALIB_STRINGS_APPLY_FORMAT
+#define HPP_ALIB_STRINGS_APPLY_FORMAT 1
 
 
 // This is for testing internal include order, see stdafx_alib.h
-#if defined(HPP_AWORX_LIB_STRINGS_NUMBERFORMAT)
+#if defined(HPP_ALIB_STRINGS_NUMBERFORMAT)
     #error "ALib Include order error"
 #endif
-#if defined(HPP_AWORX_LIB_STRINGS_TOKENIZER)
+#if defined(HPP_ALIB_STRINGS_TOKENIZER)
     #error "ALib Include order error"
 #endif
-#if defined(HPP_AWORX_LIB_STRINGS_ASSUBSTRING)
+#if defined(HPP_ALIB_STRINGS_ASSUBSTRING)
     #error "ALib Include order error"
 #endif
 
@@ -60,7 +60,7 @@ namespace                   strings {
 
         /** ****************************************************************************************
          * Parameter class used for \e application to objects of type
-         * \ref aworx::lib::strings::ASAlloc "AString" with
+         * \ref aworx::lib::strings::AString "AString" with
          * \ref aworx::lib::strings::ApplyTo(AString&, const Format::Tab&) "corresponding specialization"
          *  of template function
          * \ref aworx::lib::strings::ApplyTo "ApplyTo".
@@ -113,7 +113,7 @@ namespace                   strings {
 
         /** ****************************************************************************************
          * Parameter class used for \e application to objects of type
-         * \ref aworx::lib::strings::ASAlloc "AString" with
+         * \ref aworx::lib::strings::AString "AString" with
          * \ref aworx::lib::strings::ApplyTo(AString&, const Format::Field&) "corresponding specialization"
          *  of template function
          * \ref aworx::lib::strings::ApplyTo "ApplyTo".
@@ -129,7 +129,7 @@ namespace                   strings {
         class Field
         {
             public:
-            const AS&          contents;   ///< the contents of the field.
+            const String&      contents;   ///< the contents of the field.
             int                width;      ///< the width of the field.
             enums::Alignment   alignment;  ///< the alignment of the contents within the field.
             char               padChar;    ///< the characters used for padding the contents within the field.
@@ -150,7 +150,7 @@ namespace                   strings {
              * @param padChar   The character used to fill the field up to its size.
              *                  Defaults to ' ' (space).
              */
-            Field(  const AS&         contents,
+            Field(  const String&     contents,
                     int               width,
                     enums::Alignment  alignment  =enums::Alignment::Right,
                     char              padChar    = ' '                    )
@@ -161,7 +161,7 @@ namespace                   strings {
 
         /** ****************************************************************************************
          * Parameter class used for \e application to objects of type
-         * \ref aworx::lib::strings::ASAlloc "AString" with
+         * \ref aworx::lib::strings::AString "AString" with
          * \ref aworx::lib::strings::ApplyTo(AString&, const Format::Int32&) "corresponding specialization"
          *  of template function
          * \ref aworx::lib::strings::ApplyTo "ApplyTo".<p>
@@ -188,7 +188,7 @@ namespace                   strings {
 
         /** ****************************************************************************************
          * Parameter class used for \e application to objects of type
-         * \ref aworx::lib::strings::ASAlloc "AString" with
+         * \ref aworx::lib::strings::AString "AString" with
          * \ref aworx::lib::strings::ApplyTo(AString&, const Format::UInt32&) "corresponding specialization"
          *  of template function
          * \ref aworx::lib::strings::ApplyTo "ApplyTo".<p>
@@ -216,7 +216,7 @@ namespace                   strings {
 
         /** ****************************************************************************************
          * Parameter class used for \e application to objects of type
-         * \ref aworx::lib::strings::ASAlloc "AString" with
+         * \ref aworx::lib::strings::AString "AString" with
          * \ref aworx::lib::strings::ApplyTo(AString&, const Format::Int64&) "corresponding specialization"
          *  of template function
          * \ref aworx::lib::strings::ApplyTo "ApplyTo".<p>
@@ -243,7 +243,7 @@ namespace                   strings {
 
         /** ****************************************************************************************
          * Parameter class used for \e application to objects of type
-         * \ref aworx::lib::strings::ASAlloc "AString" with
+         * \ref aworx::lib::strings::AString "AString" with
          * \ref aworx::lib::strings::ApplyTo(AString&, const Format::UInt64&) "corresponding specialization"
          *  of template function
          * \ref aworx::lib::strings::ApplyTo "ApplyTo".<p>
@@ -268,7 +268,7 @@ namespace                   strings {
 
         /** ****************************************************************************************
          * Parameter class used for \e application to objects of type
-         * \ref aworx::lib::strings::ASAlloc "AString" with
+         * \ref aworx::lib::strings::AString "AString" with
          * \ref aworx::lib::strings::ApplyTo(AString&, const Format::Double&) "corresponding specialization"
          *  of template function
          * \ref aworx::lib::strings::ApplyTo "ApplyTo".<p>
@@ -624,6 +624,15 @@ namespace                   strings {
         {  return  ApplyTo<const Format::Double&>( target, Format::Double( value, nullptr ) );  }
     #endif
 
-}}} // namespace aworx::lib::strings
+}} // namespace lib::strings
 
-#endif // HPP_AWORX_LIB_STRINGS_APPLY_FORMAT
+/** Type alias name in namespace #aworx. */
+using Format =    aworx::lib::strings::Format;
+
+} // namespace aworx
+
+
+
+
+
+#endif // HPP_ALIB_STRINGS_APPLY_FORMAT

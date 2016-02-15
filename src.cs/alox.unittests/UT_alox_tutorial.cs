@@ -588,10 +588,7 @@ public void Tut_UsingLogBuffer()
     #endif
     //! [Tut_UsingLogBuffer2]
 
-    bool oldHaltOnError=    Report.GetDefault().HaltOnError;
-    bool oldHaltOnWarning=  Report.GetDefault().HaltOnWarning;
-    Report.GetDefault().HaltOnError=
-    Report.GetDefault().HaltOnWarning= false;
+    Report.GetDefault().PushHaltFlags( false, false );
 
     //! [Tut_UsingLogBuffer3]
     // causing trouble
@@ -600,8 +597,7 @@ public void Tut_UsingLogBuffer()
     Log.Buf();
     //! [Tut_UsingLogBuffer3]
 
-    Report.GetDefault().HaltOnError=      oldHaltOnError;
-    Report.GetDefault().HaltOnWarning=    oldHaltOnWarning;
+    Report.GetDefault().PopHaltFlags();
 
     // END OF TUTORIAL
     tutLog.MemoryLog.SearchAndReplace( "Tutlog", "CONSOLE" );

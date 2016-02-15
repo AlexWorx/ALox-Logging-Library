@@ -4,21 +4,21 @@
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
-/** @file */ // Hello Doxyen
+/** @file */ // Hello Doxygen
 
 // to preserve the right order, we are not includable directly from outside.
-#if !defined(FROM_HPP_AWORX_LIB_ALIB) || defined(HPP_AWORX_LIB_ENUMS)
+#if !defined(FROM_HPP_ALIB_ALIB) || defined(HPP_ALIB_ENUMS)
     #error "include alib/alib.hpp instead of this header"
 #endif
 
 // Due to our blocker above, this include will never be executed. But having it, allows IDEs
 // (e.g. QTCreator) to read the symbols when opening this file
-#if !defined (HPP_AWORX_LIB_ALIB)
+#if !defined (HPP_ALIB_ALIB)
     #include "alib/alib.hpp"
 #endif
 
-#ifndef HPP_AWORX_LIB_ENUMS
-#define HPP_AWORX_LIB_ENUMS 1
+#ifndef HPP_ALIB_ENUMS
+#define HPP_ALIB_ENUMS 1
 
 namespace aworx {
 namespace           lib {
@@ -195,6 +195,52 @@ enum class Result
 
 };
 
-}}} // namespace aworx::lib::enums
 
-#endif // HPP_AWORX_LIB_ENUMS
+
+}} // namespace lib::enums
+
+/** Type alias name in namespace #aworx. */
+using     Switch=           aworx::lib::enums::Switch;
+
+/** Type alias name in namespace #aworx. */
+using     Case=             aworx::lib::enums::Case;
+
+/** Type alias name in namespace #aworx. */
+using     Alignment=        aworx::lib::enums::Alignment;
+
+/** Type alias name in namespace #aworx. */
+using     Inclusion=        aworx::lib::enums::Inclusion;
+
+/** Type alias name in namespace #aworx. */
+using     CurrentData=      aworx::lib::enums::CurrentData;
+
+/** Type alias name in namespace #aworx. */
+using     Safeness=         aworx::lib::enums::Safeness;
+
+/** Type alias name in namespace #aworx. */
+using     Responsibility=   aworx::lib::enums::Responsibility;
+
+/** Type alias name in namespace #aworx. */
+using     Timezone=         aworx::lib::enums::Timezone;
+
+/** Type alias name in namespace #aworx. */
+using     LockMode=         aworx::lib::enums::LockMode;
+
+/** Type alias name in namespace #aworx. */
+using     Whitespaces=      aworx::lib::enums::Whitespaces;
+
+/** Type alias name in namespace #aworx. */
+using     Create=           aworx::lib::enums::Create;
+
+/** Type alias name in namespace #aworx. */
+using     Propagation=      aworx::lib::enums::Propagation;
+
+/** Type alias name in namespace #aworx. */
+using     Phase=            aworx::lib::enums::Phase;
+
+/** Type alias name in namespace #aworx. */
+using     Result=           aworx::lib::enums::Result;
+
+}  // namespace aworx
+
+#endif // HPP_ALIB_ENUMS

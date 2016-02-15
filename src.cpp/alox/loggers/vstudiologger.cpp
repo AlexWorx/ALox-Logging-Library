@@ -8,19 +8,19 @@
 
 #if defined(ALIB_VSTUDIO) && defined(ALIB_DEBUG)
 
-#if !defined (HPP_AWORX_LIB_ALIB)
+#if !defined (HPP_ALIB_ALIB)
     #include "alib/alib.hpp"
 #endif
 
-#if !defined (HPP_AWORX_LIB_CONFIG_CONFIGURATION)
+#if !defined (HPP_ALIB_CONFIG_CONFIGURATION)
     #include "alib/config/configuration.hpp"
 #endif
 
-#if !defined (HPP_AWORX_LIB_STRINGS_TOKENIZER)
+#if !defined (HPP_ALIB_STRINGS_TOKENIZER)
     #include "alib/strings/tokenizer.hpp"
 #endif
 
-#if !defined (HPP_AWORX_LIB_SYSTEM_SYSTEMINFO)
+#if !defined (HPP_ALIB_SYSTEM_SYSTEMINFO)
     #include "alib/system/system.hpp"
 #endif
 
@@ -37,13 +37,7 @@
 
 using namespace std;
 using namespace aworx;
-using namespace aworx::lib;
-using namespace aworx::lib::enums;
-using namespace aworx::lib::system;
-using namespace aworx::lib::strings;
-using namespace aworx::lox;
 using namespace aworx::lox::core;
-using namespace aworx::lox::loggers;
 
 
 // #################################################################################################

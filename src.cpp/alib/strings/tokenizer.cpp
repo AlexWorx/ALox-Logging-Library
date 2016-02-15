@@ -8,7 +8,7 @@
 
 #include "alib/alib.hpp"
 
-#if !defined (HPP_AWORX_LIB_STRINGS_TOKENIZER)
+#if !defined (HPP_ALIB_STRINGS_TOKENIZER)
     #include "alib/strings/tokenizer.hpp"
 #endif
 
@@ -24,14 +24,13 @@
 #endif
 
 using namespace std;
-using namespace aworx::lib::strings;
 
 namespace aworx {
 namespace           lib {
 namespace                   strings {
 
 
-ASSubstring&    Tokenizer::Next( enums::Whitespaces trimming, char newDelim )
+Substring&    Tokenizer::Next( enums::Whitespaces trimming, char newDelim )
 {
     if ( Rest.IsNull() )
     {

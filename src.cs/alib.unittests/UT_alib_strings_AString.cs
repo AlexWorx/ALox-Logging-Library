@@ -601,18 +601,14 @@ namespace ut_cs_aworx_lib
 
                 asize= ms.Capacity();
 
-                bool oldHaltOnError=    Report.GetDefault().HaltOnError;
-                bool oldHaltOnWarning=  Report.GetDefault().HaltOnWarning;
-                Report.GetDefault().HaltOnError=
-                Report.GetDefault().HaltOnWarning=    false;
+                Report.GetDefault().PushHaltFlags( false, false );
                     Console.WriteLine( "A warning should follow" );
                     ms.SetLength(20);               UT_EQ    ( ms.Length(), 10 );     UT_EQ  ( ms.Capacity(), asize );    UT_EQ( ms, "0123456789" );
 
                     ms.SetLength(5);                UT_EQ    ( ms.Length(), 5 );      UT_EQ  ( ms.Capacity(), asize );    UT_EQ( ms, "01234" );
                     ms.SetBuffer(3);            UT_EQ    ( ms.Length(), 3 );      UT_EQ  ( ms.Capacity(), 3  );       UT_EQ( ms, "012" );
                     ms._("ABC");               UT_EQ    ( ms.Length(), 6 );      UT_TRUE( ms.Capacity() >= 6);       UT_EQ( ms, "012ABC" );
-                Report.GetDefault().HaltOnError=      oldHaltOnError;
-                Report.GetDefault().HaltOnWarning=    oldHaltOnWarning;
+                Report.GetDefault().PopHaltFlags();
             }
         }
 
@@ -806,7 +802,7 @@ namespace ut_cs_aworx_lib
             AString ms= new AString();
             int result;
 
-            // replace nullptr
+            // SearchAndReplace null
             ms.Clear()._("Hello");
             {
                 String s= null;
@@ -815,7 +811,6 @@ namespace ut_cs_aworx_lib
                 ms.SearchAndReplace( s,     "xx" );     UT_EQ( ms, "Heo" );
             }
 
-            // replaceCount nullptr
             ms.Clear()._("Hello");
             {
                 result= ms.SearchAndReplace( (AString) null,        (AString) null );        UT_EQ( ms, "Hello" );      UT_EQ( 0, result );
@@ -830,7 +825,7 @@ namespace ut_cs_aworx_lib
                 result= ms.SearchAndReplace( (String) null,          "xx"    );              UT_EQ( ms, "Heo" );        UT_EQ( 0, result );
             }
 
-            // replace
+            // SearchAndReplace
             ms.Clear()._("Hello W!");
             {
 

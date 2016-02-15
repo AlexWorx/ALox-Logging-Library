@@ -6,12 +6,11 @@
 // #################################################################################################
 #include "alib/stdafx_alib.h"
 
-#if !defined (HPP_AWORX_LIB_THREADS_THREAD)
+#if !defined (HPP_ALIB_THREADS_THREAD)
     #include "thread.hpp"
 #endif
 
 using namespace std;
-using namespace aworx::lib::strings;
 
 namespace aworx {
 namespace           lib {

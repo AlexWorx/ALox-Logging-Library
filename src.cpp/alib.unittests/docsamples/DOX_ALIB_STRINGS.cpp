@@ -14,15 +14,14 @@
 
 #include "alib/alib.hpp"
 
-// get support for  ostream operator<<() on AS objects
+// get support for  ostream operator<<() on String objects
 #include "alib/compatibility/std_iostream.hpp"
 #include "alib/compatibility/std_string.hpp"
-#include "alib/strings/assubstring.hpp"
+#include "alib/strings/substring.hpp"
 #include "aworx_unittests.hpp"
 
 using namespace std;
-using namespace aworx::lib;
-using namespace aworx::lib::strings;
+using namespace aworx;
 
 //##################################################################################################
 // SAMPLE code of Non-Checking method variants
@@ -78,7 +77,7 @@ TakeStrings( "Str1", aworx::AString("Str2"), "Str3" ); // OK, AString explicit, 
 //! [DOX_ALIB_STRINGS_ASPREALLOC_MEMBER]
 class MyClass
 {
-    ASPreAlloc<20>      name=      "(none)";
+    aworx::PAString<20> name=  "(none)";
 };
 //! [DOX_ALIB_STRINGS_ASPREALLOC_MEMBER]
 
@@ -86,9 +85,9 @@ class MyClass
 void ASLiteral1()
 {
 //! [DOX_ALIB_STRINGS_LITERAL_1]
-aworx::StringLiteral<3> litA= "123";
-aworx::StringLiteral<5> litB= "MAGIC";
-aworx::StringLiteral<1> litC= "x";
+aworx::SLiteral<3> litA= "123";
+aworx::SLiteral<5> litB= "MAGIC";
+aworx::SLiteral<1> litC= "x";
 //! [DOX_ALIB_STRINGS_LITERAL_1]
 (void)litA;
 (void)litB;
@@ -99,7 +98,7 @@ aworx::AString ASLiteral2()
 {
 //! [DOX_ALIB_STRINGS_LITERAL_2]
 char carr[4] {"123"};
-aworx::StringLiteral<3> variableLit= carr;
+aworx::SLiteral<3> variableLit= carr;
 aworx::AString          as( variableLit );
 
 carr[0]= '4';

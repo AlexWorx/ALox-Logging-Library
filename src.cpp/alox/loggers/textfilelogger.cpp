@@ -6,7 +6,7 @@
 // #################################################################################################
 #include "alib/stdafx_alib.h"
 
-#if !defined (HPP_AWORX_LIB_ALIB)
+#if !defined (HPP_ALIB_ALIB)
     #include "alib/alib.hpp"
 #endif
 
@@ -18,10 +18,6 @@
 
 using namespace std;
 using namespace aworx;
-using namespace aworx::lib::enums;
-using namespace aworx::lib::strings;
-using namespace aworx::lox::loggers;
-
 
 void TextFileLogger::openFile()
 {
@@ -74,6 +70,6 @@ bool TextFileLogger::notifyLogOp( Phase phase )
 
 int TextFileLogger::doLogSubstring( const AString& buffer, int start, int length )
 {
-    *os << AS( buffer, start, length );
+    *os << String( buffer, start, length );
     return lib::strings::CString::LengthWhenConvertedToWChar( buffer.Buffer() + start, length );
 }

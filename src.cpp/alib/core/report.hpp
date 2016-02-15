@@ -4,22 +4,22 @@
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
-/** @file */ // Hello Doxyen
+/** @file */ // Hello Doxygen
 
 // to preserve the right order, we are not includable directly from outside.
-#if !defined(FROM_HPP_AWORX_LIB_ALIB) || defined(HPP_AWORX_LIB_REPORT)
+#if !defined(FROM_HPP_ALIB_ALIB) || defined(HPP_ALIB_REPORT)
     #error "include alib/alib.hpp instead of this header"
 #endif
 
 // Due to our blocker above, this include will never be executed. But having it, allows IDEs
 // (e.g. QTCreator) to read the symbols when opening this file
-#if !defined (HPP_AWORX_LIB_ALIB)
+#if !defined (HPP_ALIB_ALIB)
     #include "alib/alib.hpp"
 #endif
 
 // then, set include guard
-#ifndef HPP_AWORX_LIB_REPORT
-#define HPP_AWORX_LIB_REPORT 1
+#ifndef HPP_ALIB_REPORT
+#define HPP_ALIB_REPORT 1
 
 
 namespace aworx {
@@ -30,8 +30,8 @@ namespace           lib {
 // forwards
 // #################################################################################################
 namespace threads { class ThreadLockNR;     }
-namespace strings { class ASTerminatable;   }
-namespace strings { class ASAlloc;   }
+namespace strings { class TString;   }
+namespace strings { class AString;   }
 class ReportWriter;
 class ConsoleReportWriter;
 
@@ -39,19 +39,19 @@ class ConsoleReportWriter;
 /** ************************************************************************************************
  * This class provides a simple facility to collect what is called a \e 'report'.
  * Reports are maintenance messages, similar to error messages, but is not aiming to replace
- * and error handling.
+ * any sort of error handling.
  * (Sending a \e 'report' usually precedes raising an error.)
- * Also, \e 'reports' are not replacing any debug or release logging facility, which is not
- * part of ALib. Much more, logging libraries (like \e ALox Logging Library, which
- * builds on ALib, does) might provide a derived object of type
+ * Also, \e reports are not replacing any debug or release logging facility, which is not
+ * part of ALib. Much more, logging libraries might provide a derived object of type
  * \ref aworx::lib::ReportWriter "ReportWriter" to plug into ALib report facility.
- * This way, the concepts of logging and reports get unified.
+ * This way, the concepts of logging and reports get unified. (As a sample,
+ * <em>ALox Logging Library </em> which builds on ALib does so.)
  *
  * While a process can create different objects of this class, usually, the default instance,
  * received by
  * \ref aworx::lib::Report::GetDefault "GetDefault".
  * is sufficient and all warnings and errors will be directed to this one. ALib itself directs
- * all messages to the default instance.
+ * all internal reports to the default instance.
  *
  * This class uses a singleton of type
  * \ref aworx::lib::ReportWriter "ReportWriter" to actually write the reports. By default, an
@@ -59,10 +59,9 @@ class ConsoleReportWriter;
  * \ref aworx::lib::ConsoleReportWriter "ConsoleReportWriter" is attached.
  *
  * The reporting method,
- * \ref aworx::lib::Report::DoReport "DoReport" will check the public flag
- * \ref aworx::lib::Report.HaltOnError "HaltOnError" respectively
- * \ref aworx::lib::Report.HaltOnWarning "HaltOnWarning",
- * which if \c true, causes the method to invoke \e assert(). Such assertions are effective
+ * \ref aworx::lib::Report::DoReport "DoReport" will check the flags provided with
+ * \ref aworx::lib::Report::PushHaltFlags "PushHaltFlags"
+ * which causes the method to invoke \e assert(). Such assertions are effective
  * only in the debug compilation of the library/executable. Custom \e 'ReportWriters' might
  * take action (e.g. for security reasons) and e.g. terminate the application also in
  * release compilations.
@@ -78,7 +77,8 @@ class ConsoleReportWriter;
  *
  * The use of the macros is recommended. For convenience, in debug compilations of the library/
  * executable, these macros provide the file name,line number and method name of the invocation
- * source, which can be used by more sophisticated \ref aworx::lib::ReportWriter "ReportWriter".
+ * source, which can be used by more sophisticated versions of attached
+ * \ref aworx::lib::ReportWriter "ReportWriter".
  **************************************************************************************************/
 class Report
 {
@@ -87,20 +87,22 @@ class Report
     // #############################################################################################
     public:
 
-        /** A report message.  */
+        /** ****************************************************************************************
+         * A report message.
+         ******************************************************************************************/
         class Message
         {
             public:
 
             #if defined(ALIB_DEBUG)
                 /** The file name that reported.  */
-                const strings::ASTerminatable&   File;
+                const strings::TString&   File;
 
                 /** The line number in the source file that reported.  */
                 int                              Line;
 
                 /** The function/method name that reported.  */
-                const strings::ASTerminatable&   Func;
+                const strings::TString&   Func;
             #endif
 
             /** The message type. '0' indicates \e 'severe' errors. Others are warnings and may be
@@ -109,13 +111,13 @@ class Report
             int                                  Type;
 
             /** The message.  */
-            const strings::ASTerminatable&       Contents;
+            const strings::TString&       Contents;
 
             /** Constructs a message.
              * @param type The message type.
              * @param msg  The message.
              */
-            Message( ALIB_DBG_SRC_INFO_PARAMS_DECL   int type, const strings::ASTerminatable& msg );
+            Message( ALIB_DBG_SRC_INFO_PARAMS_DECL   int type, const strings::TString& msg );
         };
 
     // #############################################################################################
@@ -137,24 +139,18 @@ class Report
         /** A Lock to protect against multihreaded calls. */
         threads::ThreadLockNR*  lock;
 
+        /**
+         * A stack of integers. The topmost value is used to decide, whether program execution is
+         * halted on message of type 'error' (type 0, bit 0) or of type 'warning' (type > 0, bit 1).
+         * Can be set at runtime by just overwriting the value.
+         */
+        std::stack<int>         haltAfterReport;
+
     // #############################################################################################
     // Public fields
     // #############################################################################################
     public:
 
-        /** ****************************************************************************************
-         * Flag, which if set to \c true, causes calls to #DoReport with report type \e '0'
-         * to halt program execution by calling <em>assert(false)</em>.
-         * Can be set at runtime by just overwriting the value.
-         ******************************************************************************************/
-        bool                    HaltOnError                                                   =true;
-
-        /** ****************************************************************************************
-         * Flag, which if set to \c true, causes calls to #DoReport with report type not equal to
-         * \e '0' to halt program execution by calling <em>assert(false)</em>.
-         * Can be set at runtime by just overwriting the value.
-         ******************************************************************************************/
-        bool                    HaltOnWarning                                                =false;
 
     // #############################################################################################
     // constructor/destructor
@@ -190,11 +186,12 @@ class Report
          * Reports the given message to the current
          * \ref aworx::lib::ReportWriter "ReportWriter" in place. The default \b ReportWriter
          * will print the message on the process console. Furthermore, in debug
-         * execution the flag #HaltOnError, respectively #HaltOnWarning, is checked.
-         * If this is set the program halts or suspends into the debugger
+         * execution the flags provided with #PushHaltFlags is checked.
+         * If this is set for the type of message, the program halts or suspends into the debugger
          * (platform and language specific).
          *
-         * If parameter \p is '0', the report is considered a \e severe error, otherwise a warning.
+         * If parameter \p type is '0', the report is considered a \e severe error, otherwise
+         * a warning.
          * User defined implementations of class \e %ReportWriter may interpret this field
          * arbitrarily.
          *
@@ -203,8 +200,25 @@ class Report
          ******************************************************************************************/
         ALIB_API
         void     DoReport( ALIB_DBG_SRC_INFO_PARAMS_DECL
-                           int                            type,
-                           const strings::ASTerminatable& msg  );
+                           int                     type,
+                           const strings::TString& msg  );
+
+        /** ****************************************************************************************
+         * Writes new values to the internal flags that decide if calls to #DoReport with
+         * report type \e '0' (errors), respectively report type '>0' (warnings) cause
+         * to halt program execution by calling <em>assert(false)</em>.
+         * The previous values can be restored using #PopHaltFlags.
+         * @param haltOnErrors      Specifies if halting on errors is wanted.
+         * @param haltOnWarnings    Specifies if halting on warnings is wanted.
+         ******************************************************************************************/
+        ALIB_API
+        void     PushHaltFlags( bool haltOnErrors, bool haltOnWarnings );
+
+        /** ****************************************************************************************
+         * Restores the previous values after an invocation to #PushHaltFlags.
+         ******************************************************************************************/
+        ALIB_API
+        void     PopHaltFlags();
 };// class Report
 
 
@@ -251,4 +265,4 @@ class ConsoleReportWriter : public ReportWriter
 
 }} // namespace aworx::lib
 
-#endif // HPP_AWORX_LIB_REPORT
+#endif // HPP_ALIB_REPORT

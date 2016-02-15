@@ -4,27 +4,27 @@
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
-/** @file */ // Hello Doxyen
+/** @file */ // Hello Doxygen
 
 // check for alib.hpp already there but not us
-#if !defined (HPP_AWORX_LIB_ALIB)
+#if !defined (HPP_ALIB_ALIB)
     #error "include \"alib/alib.hpp\" before including this header"
 #endif
-#if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_AWORX_LIB_CONFIG_CONFIGURATION)
+#if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_ALIB_CONFIG_CONFIGURATION)
     #error "Header already included"
 #endif
 
 // then, set include guard
-#ifndef HPP_AWORX_LIB_CONFIG_CONFIGURATION
+#ifndef HPP_ALIB_CONFIG_CONFIGURATION
 #if !defined( IS_DOXYGEN_PARSER)
-#define HPP_AWORX_LIB_CONFIG_CONFIGURATION 1
+#define HPP_ALIB_CONFIG_CONFIGURATION 1
 #endif
 
 // #################################################################################################
 // includes
 // #################################################################################################
 
-#if !defined (HPP_AWORX_LIB_THREADS_THREADLOCK)
+#if !defined (HPP_ALIB_THREADS_THREADLOCK)
     #include "alib/threads/threadlock.hpp"
 #endif
 
@@ -132,7 +132,7 @@ class Configuration : public threads::ThreadLock
          *
          *  Application specific values (e.g. localization languages) might be added by publicly
          *  accessing this field and adding new values (or removing existing).                    */
-        std::vector<strings::AS>            TrueValues;
+        std::vector<String>                 TrueValues;
 
         /** The configuration plug-in for command line parameters. Created in the constructor.
          *  Provided as public field here, for flexibility. Please note:
@@ -358,8 +358,13 @@ class Configuration : public threads::ThreadLock
                              const String& name,
                              double        value,
                              const String& comments=  nullptr         );
-};
+}; // class Configuration
 
-}}}  // namespace aworx::lib::config
+}} // namespace lib::config
 
-#endif // HPP_AWORX_LIB_CONFIG_CONFIGURATION
+/** Type alias name in namespace #aworx. */
+using     Configuration=       aworx::lib::config::Configuration;
+
+}  // namespace aworx
+
+#endif // HPP_ALIB_CONFIG_CONFIGURATION

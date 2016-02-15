@@ -154,14 +154,14 @@ public abstract class Log
          * Besides this version number, field #revision indicates if this is a revised version
          * of a former release.
          */
-        public static final int         version                                               =1601;
+        public static final int         version                                               =1602;
 
         /**
          * The revision number of this release. Each ALox #version is initially released as
          * revision \e 0. Pure maintenance releases that do not change the interface of ALox
          * are holding the same #version but an increased number in this field.
          */
-        public static final int         revision                                                 =0;
+        public static final int         revision                                                 =1;
 
         /// This is a static singleton of type class Lox which is used for standard
         /// debug logging statements.

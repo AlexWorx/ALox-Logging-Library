@@ -19,7 +19,7 @@ The library attempts to make __debug logging__ as easy and lightweight as possib
 we want to achieve is that developers, once using  of the library, just stop to put any temporary
 debug output statements into their code, but do it all with nice, readable, configurable, reusable
 logging statements that can be temporarily or long-term switched off and that are furthermore
-automatically pruned out of release versions of the application.
+automatically <em>pruned</em> out of release versions of the application.
 
 On the other end of the list, we want to enable __release logging__ for applications in production
 systems (release versions) to collect mission critical metrics and data from *the field*.
@@ -34,8 +34,10 @@ with MIT license terms, otherwise please do not send anything)
 We hope, the simple [Bauhaus Style](\ref faq_bauhaus)
 architecture and code style  of the library allows users to easily extend ALox.
 
-## Features and Limitations ##
-Read through the list of \subpage man_features_and_limitations to learn what you will get and what not.
+<p>
+
+--------------------------------------------------------------------
+Next chapter: \ref man_features_and_limitations
 
 */
 

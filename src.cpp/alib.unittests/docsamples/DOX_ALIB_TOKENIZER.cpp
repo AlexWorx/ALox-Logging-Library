@@ -17,8 +17,6 @@
 #include <iomanip>
 
 using namespace std;
-using namespace aworx::lib;
-using namespace aworx::lib::strings;
 
 namespace ut_aworx {
 
@@ -40,7 +38,7 @@ void documentationSampleTokenizer(ALIBUnitTesting& ut)
     aworx::String data=  "test;  abc ; 1,2 , 3 ; xyz ; including;separator";
 
     // create tokenizer on data with ';' as delimiter
-    Tokenizer tokens( data, ';' );
+    aworx::Tokenizer tokens( data, ';' );
 
     // read tokens
     cout << tokens.Next() << endl; // will print "test"
@@ -48,7 +46,7 @@ void documentationSampleTokenizer(ALIBUnitTesting& ut)
     cout << tokens.Next() << endl; // will print "1,2 , 3"
 
     // tokenize actual (third) token (nested tokenizer)
-    Tokenizer subTokens( tokens.Actual,  ',');
+    aworx::Tokenizer subTokens( tokens.Actual,  ',');
     cout << subTokens.Next();
 
     while( subTokens.HasNext() )

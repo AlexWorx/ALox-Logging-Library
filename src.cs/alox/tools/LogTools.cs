@@ -29,17 +29,17 @@ using cs.aworx.lox.core;
 #endif
 
 /** ************************************************************************************************
- *  This is the C# namespace for classes that provide tools and extensions to the 
+ *  This is the C# namespace for classes that provide tools and extensions to the
  *  <em>%ALox Logging Library</em>.
- *  
+ *
  *  Developed by A-Worx GmbH and published under the MIT license.
  **************************************************************************************************/
 namespace cs.aworx.lox.tools {
 
 /** ************************************************************************************************
- * 
+ *
  *    Provides high level functionality for logging things like Exceptions, objects and XML documents.
- * 
+ *
  **************************************************************************************************/
 public class LogTools
 {
@@ -55,33 +55,33 @@ public class LogTools
         /// Prefix for instance line numbers
         public static    String            FmtInstLineNoPrefix                  ="<";
 
-        /// Postfix for instance line numbers
-        public static    String            FmtInstLineNoPostfix                 =">";
+        /// Suffix for instance line numbers
+        public static    String            FmtInstLineNoSuffix                  =">";
 
         /// The String to log out if a given object instance equals null
         public static    String            FmtInstNull                          ="<null>";
 
         /// Prefix before logging out a string representation of a member because recursion limit was
-        /// reached. 
+        /// reached.
         public static    String            FmtInstRecursionLimit                ="(MAX REC) ";
 
-        /// Prefix before logging out a cyclic reference line number. 
+        /// Prefix before logging out a cyclic reference line number.
         public static    String            FmtInstCycRefPrefix                  ="(Cyclic ref., see line <";
 
-        /// Prefix before logging size of an IEnumberable. 
+        /// Prefix before logging size of an IEnumberable.
         public static    String            FmtInstIEnumerablePrefix             ="IEnumerable, size= ";
 
-        /// Postfix after logging IEnumberable. 
-        public static    String            FmtInstIEnumerablePostfix            ="";
+        /// Suffix after logging IEnumberable.
+        public static    String            FmtInstIEnumerableSuffix             ="";
 
-        /// Prefix before logging size of an IEnumberable. 
+        /// Prefix before logging size of an IEnumberable.
         public static    String            FmtInstArrayPrefix                   ="array[";
 
-        /// Postfix after logging IEnumberable. 
-        public static    String            FmtInstArrayPostfix                  ="]";
+        /// Suffix after logging IEnumberable.
+        public static    String            FmtInstArraySuffix                   ="]";
 
-        /// Postfix after logging out a cyclic reference line number. 
-        public static    String            FmtInstCycRefPostfix                 =">)";
+        /// Suffix after logging out a cyclic reference line number.
+        public static    String            FmtInstCycRefSuffix                  =">)";
 
         /// Indent String for instance lines
         public static    String            FmtInstNoAccessToValue               ="<no access>" ;
@@ -89,8 +89,8 @@ public class LogTools
         /// Prefix for type names
         public static    String            FmtInstTypePrefix                    ="{";
 
-        /// Postfix for type names
-        public static    String            FmtInstTypePostfix                   ="}";
+        /// Suffix for type names
+        public static    String            FmtInstTypeSuffix                   ="}";
 
         /// Indent String for instance lines
         public static    String            FmtInstIndent                        ="  ";
@@ -123,7 +123,7 @@ public class LogTools
         /// Instance index of beginning of line in toolBuf.
         protected static int                        instLineBeginIdx;
 
-        /**  
+        /**
          *  This is the ThreadLock (mutex) which each method of this class uses to lock resources, e.g.
          *  the toolBuf
          *  */
@@ -138,10 +138,10 @@ public class LogTools
 
 
     /** ********************************************************************************************
-     * 
+     *
      *  Log an exception including inner exceptions recursively. Note: Calls to this  method are
      *  automatically removed from release code.
-     * 
+     *
      * @param domain     The log domain name. </param>
      * @param level      The log level. </param>
      * @param e          The Exception to log. </param>
@@ -188,10 +188,10 @@ public class LogTools
     }
 
     /** ********************************************************************************************
-     * 
+     *
      *  Log an exception including inner exceptions recursively. Default domain of file is used with
      *  Log.Level.Error. Note: Calls to this  method are automatically removed from release code.
-     * 
+     *
      * @param level      The log level. </param>
      * @param e          The Exception to log. </param>
      * @param headline   (Optional) A headline string to precede the exception with. </param>
@@ -216,10 +216,10 @@ public class LogTools
     }
 
     /** ********************************************************************************************
-     * 
+     *
      *  Log an exception including inner exceptions recursively. Default domain of file is used with
      *  Log.Level.Error. Note: Calls to this  method are automatically removed from release code.
-     * 
+     *
      * @param e          The Exception to log. </param>
      * @param headline   (Optional) A headline string to precede the exception with. </param>
      * @param indent     (Optional) the indentation in the output (recursively increased).
@@ -242,7 +242,7 @@ public class LogTools
     }
 
     /** ********************************************************************************************
-     * Uses reflection to log an object. 
+     * Uses reflection to log an object.
      * @param domain         The log domain name. </param>
      * @param level          The log level. </param>
      * @param o              The object to be logged. </param>
@@ -293,7 +293,7 @@ public class LogTools
     }
 
     /** ********************************************************************************************
-     * Uses reflection to log an object. 
+     * Uses reflection to log an object.
      * @param level            The log level. </param>
      * @param o                The object to be logged. </param>
      * @param maxRecursion     The maximum depth of recursion for logging nested object. </param>
@@ -321,9 +321,9 @@ public class LogTools
 
     #if  !ALOX_NO_XML
         /** ****************************************************************************************
-         * 
+         *
          *  Log a XML document. Note: Calls to this method are automatically removed from release code.
-         * 
+         *
          * @param domain     The log domain name. </param>
          * @param level      The log level. </param>
          * @param xDocument  the XML document to be logged. </param>
@@ -365,9 +365,9 @@ public class LogTools
         }
 
         /** ****************************************************************************************
-         * 
+         *
          *  Log a XML document. Note: Calls to this method are automatically removed from release code.
-         * 
+         *
          * @param level      The log level. </param>
          * @param xDocument  the XML document to be logged. </param>
          * @param headLine   The headline to log. </param>
@@ -391,9 +391,9 @@ public class LogTools
         }
 
         /** ****************************************************************************************
-         * 
+         *
          *  Log a XML element. Note: Calls to this method are automatically removed from release code.
-         * 
+         *
          * @param domain     The log domain name. </param>
          * @param level      The log level. </param>
          * @param xElement   the answer node of the XML tree to be logged. </param>
@@ -441,9 +441,9 @@ public class LogTools
         }
 
         /** ****************************************************************************************
-         * 
+         *
          *  Log a XML element. Note: Calls to this method are automatically removed from release code.
-         * 
+         *
          * @param level        The log level. </param>
          * @param xElement     the answer node of the XML tree to be logged. </param>
          * @param headLine     The head line. </param>
@@ -474,7 +474,7 @@ public class LogTools
         // #############################################################################################
 
         /** ****************************************************************************************
-         * Logs an exception. 
+         * Logs an exception.
          * @param e          The exception to log. </param>
          * @param headline   An optional headline string preceding the exception. </param>
          * @param indent     The indentation in the output (recursively increased). If set to -1
@@ -504,7 +504,7 @@ public class LogTools
             // log exception details
                                           { toolBuf.InsertChars( ' ',  indent * 2 )._( "Type:       ")._(e.GetType().ToString()              ).NewLine(); }
                                           { toolBuf.InsertChars( ' ',  indent * 2 )._( "Message:    ")._(e.Message                           ).NewLine(); }
-            #if !ALOX_WP71                       
+            #if !ALOX_WP71
               if ( e.HelpLink   != null)  { toolBuf.InsertChars( ' ',  indent * 2 )._( "HelpLink:   ")._(e.HelpLink                          ).NewLine(); }
               if ( e.Source     != null)  { toolBuf.InsertChars( ' ',  indent * 2 )._( "Source:     ")._(e.Source                            ).NewLine(); }
               if ( e.HResult    != 0)     { toolBuf.InsertChars( ' ',  indent * 2 )._( "HResult:    ")._(String.Format("0x{0:X08}",e.HResult)).NewLine(); }
@@ -527,7 +527,7 @@ public class LogTools
         #if !(ALOX_WP71 || ALOX_WP8 || ALOX_NO_REFLECTION)
 
             /** ************************************************************************************
-             * Logs the header and invokes instRecursive() 
+             * Logs the header and invokes instRecursive()
              * @param o               The object to be logged. </param>
              * @param maxRecursion    The maximum depth of recursion for logging nested object. </param>
              * @param headLine        The headline to log. </param>
@@ -555,9 +555,9 @@ public class LogTools
             }
 
             /** ************************************************************************************
-             * Recursively log an instance using reflection. 
+             * Recursively log an instance using reflection.
              * @param inst            The element. </param>
-             * @param maxRecursion    The maximum depth of recursion for logging nested 
+             * @param maxRecursion    The maximum depth of recursion for logging nested
              *                               object. </param>
              * @param indent          The indentation in the output (recursively increased).
              *                               </param>
@@ -612,7 +612,7 @@ public class LogTools
                                ._( "KeyValuePair<")._( instKeyType   != null ? instKeyType  .Name : "null" )
                                ._(            ", ")._( instValueType != null ? instValueType.Name : "null" )
                                ._(             ">")
-                               ._( FmtInstTypePostfix );
+                               ._( FmtInstTypeSuffix );
 
                         instNewLine();
                     }
@@ -663,7 +663,7 @@ public class LogTools
                 {
                     toolBuf._( FmtInstCycRefPrefix )
                            ._( lineNumber, 2 )
-                           ._( FmtInstCycRefPostfix );
+                           ._( FmtInstCycRefSuffix );
                     instTabTypeAndNewLine ( inst.GetType() );
                     return;
                 }
@@ -688,7 +688,7 @@ public class LogTools
                         if ( i != qtyDim - 1 )
                             toolBuf._( ',' );
                     }
-                    toolBuf._( FmtInstArrayPostfix );
+                    toolBuf._( FmtInstArraySuffix );
                     instTabTypeAndNewLine( type );
 
                     // calc 'magnitudes' of dimensions
@@ -726,7 +726,7 @@ public class LogTools
                     int qtyObjects= enumerableElement.Cast<object>().Count();
 
                     // log headline and start new line
-                    toolBuf._( FmtInstIEnumerablePrefix )._( qtyObjects )._( FmtInstIEnumerablePostfix );
+                    toolBuf._( FmtInstIEnumerablePrefix )._( qtyObjects )._( FmtInstIEnumerableSuffix );
                     instTabTypeAndNewLine( type );
 
                     // loop over all objects
@@ -790,15 +790,15 @@ public class LogTools
             }
 
             /** ************************************************************************************
-             * 
-             *  Detects if the given object is of value type. Special treatment is given to 
-             *  KeyValuePair&lt;,&gt;. C# treat them as a value type that causes some irritation 
+             *
+             *  Detects if the given object is of value type. Special treatment is given to
+             *  KeyValuePair&lt;,&gt;. C# treat them as a value type that causes some irritation
              *  sometimes.
-             * 
+             *
              * @param o        The object to be tested. </param>
-             * @param type     The type of the object (needed outside, therefore passed here 
+             * @param type     The type of the object (needed outside, therefore passed here
              *                        to avoid double creation). </param>
-             * @return  the value (if given object is of value type) or null otherwise. 
+             * @return  the value (if given object is of value type) or null otherwise.
              **************************************************************************************/
             protected static bool isValueType( Object o, Type type )
             {
@@ -863,7 +863,7 @@ public class LogTools
             }
 
             /** ************************************************************************************
-             * Adds a new line to the buffer and increases line number counter. 
+             * Adds a new line to the buffer and increases line number counter.
              **************************************************************************************/
             protected static void instNewLine()
             {
@@ -872,23 +872,23 @@ public class LogTools
             }
 
             /** ************************************************************************************
-             * 
+             *
              *  Appends line number (format defined in fields #FmtInstLineNoPrefix and
-             *  #FmtInstLineNoPostfix) and then adds indent characters (defined in field
+             *  #FmtInstLineNoSuffix) and then adds indent characters (defined in field
              *  #FmtInstIndent).
-             * 
+             *
              * @param indent     The indentation of the line. </param>
              **************************************************************************************/
             protected static void instBeginLine( int indent )
             {
                 instLineBeginIdx=    toolBuf.Length();
-                toolBuf._( FmtInstLineNoPrefix )._( instLineNumber, 2 )._( FmtInstLineNoPostfix );
+                toolBuf._( FmtInstLineNoPrefix )._( instLineNumber, 2 )._( FmtInstLineNoSuffix );
                 for ( int i= indent; i > 0; i-- )
                     toolBuf._( FmtInstIndent );
             }
 
             /** ************************************************************************************
-             * Appends spaces to move to the given tabStop (but at least one). 
+             * Appends spaces to move to the given tabStop (but at least one).
              * @param tabStop     The tab stop position to go to </param>
              **************************************************************************************/
             protected static void instTabStop( int tabStop )
@@ -898,7 +898,7 @@ public class LogTools
 
 
             /** ************************************************************************************
-             * Appends type information at the end of the line and starts a new line. 
+             * Appends type information at the end of the line and starts a new line.
              * @param type     The type to append in the log  </param>
              **************************************************************************************/
             protected static void instTabTypeAndNewLine( Type type )
@@ -906,7 +906,7 @@ public class LogTools
                 if ( type != null )
                 {
                     do    { toolBuf._( ' ' ); } while ( toolBuf.Length() <= instLineBeginIdx + instTypeTabStop  );
-                    toolBuf._( FmtInstTypePrefix )._( type.Name )._( FmtInstTypePostfix );
+                    toolBuf._( FmtInstTypePrefix )._( type.Name )._( FmtInstTypeSuffix );
                 }
                 instNewLine();
             }
@@ -917,7 +917,7 @@ public class LogTools
         #if !ALOX_NO_XML
 
             /** ************************************************************************************
-             * Dump a XML document into our Buffer. 
+             * Dump a XML document into our Buffer.
              * @param xDocument      The XDocument to be logged. </param>
              * @param headLine       The headline to log. </param>
              **************************************************************************************/
@@ -939,7 +939,7 @@ public class LogTools
             }
 
             /** ************************************************************************************
-             * Internal function for logging an XElement. 
+             * Internal function for logging an XElement.
              * @param xe           The XElement to log. </param>
              * @param headLine     The headline to log. </param>
              * @param indent       The indentation to Log. </param>

@@ -119,10 +119,10 @@ public abstract class TextLogger extends Logger
         public    String                    fmtMultiLinePrefix           = ">> ";
 
         /**
-         *  Postfix for multi line messages. This is also used if multi line messages logging is switched off
+         *  Suffix for multi line messages. This is also used if multi line messages logging is switched off
          *  (MultiLineMsgMode == 0) but replacing of a set MultiLineDelimiter takes place.
          */
-        public    String                    fmtMultiLinePostfix          = null;
+        public    String                    fmtMultiLineSuffix          = null;
 
         /** The character(s) used for indentation. */
         public    String                    fmtIndentString              = "  ";
@@ -315,7 +315,7 @@ public abstract class TextLogger extends Logger
                 {
                     logBuf._( fmtMultiLinePrefix );
                       logBuf._NC( msgBuf );
-                    logBuf._( fmtMultiLinePostfix );
+                    logBuf._( fmtMultiLineSuffix );
                 }
 
                 // now do the logging by calling our derived classes' doLog
@@ -418,7 +418,7 @@ public abstract class TextLogger extends Logger
                 // append message
                 logBuf._( fmtMultiLinePrefix );
                   logBuf._NC( msgBuf, actStart, actEnd - actStart  );
-                logBuf._( fmtMultiLinePostfix );
+                logBuf._( fmtMultiLineSuffix );
                 doTextLog( domain, level, logBuf, indent, multiLineMsgMode != 4 ? caller : null, lineNo );
 
                 // next

@@ -21,7 +21,7 @@ import com.aworx.lox.core.CallerInfo;
 import com.aworx.lox.core.textlogger.TextLogger;
 
 /** ************************************************************************************************
- *  A logger that logs all messages to the System.IO.TextWriter instance provided in the constructor.
+ *  A logger that logs all messages to the <em>PrintStream</em> instance provided in the constructor.
  *  The name of the logger defaults to "ANSI_LOGGER".
  *
  *  ALox text logger escape sequences (see class \ref aworx::lox::ESC "ESC")
@@ -44,7 +44,7 @@ import com.aworx.lox.core.textlogger.TextLogger;
  *  \ref aworx::lox::ESC "ESC".
  *  For example ESC does not provide all ANSI colors and no blinking. On the other hand,
  *  ANSI does not allow to reset the style without resetting the colors.
- *  Of-course, it is no problem to log other ANSI codes directly into a %AnsiLogger.
+ *  Of-course, it is no problem to log other ANSI codes directly into an \b %AnsiLogger.
  *  In this case, other Loggers that might be attached to the same Lox and that do not
  *  support ANSI must be equipped with corresponding replacement information.
  *  In other words: To support the same log output into different loggers, it is
@@ -159,7 +159,7 @@ public class AnsiLogger extends TextLogger
         public      String                  msgPrefixVerbose;
 
         /** Characters  placed at the end of each line (e.g. used to reset colors and styles).*/
-        public      String                  msgPostfix               = ANSI_RESET;
+        public      String                  msgSuffix               = ANSI_RESET;
 
 
     // #############################################################################################
@@ -391,7 +391,7 @@ public class AnsiLogger extends TextLogger
         } // write loop
 
 
-        out.println(msgPostfix);
+        out.println(msgSuffix);
     }
 
     /** ********************************************************************************************

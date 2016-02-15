@@ -378,18 +378,12 @@ class AloxTests
                   + "error/warning reporter. If this is a debug compiliation, let's have a try and\n"
                   + "create an ALib error:"  );
 
-        // must be done only in debug compiles
-        //#if ALOX_DBG_LOG
-            Report.GetDefault().HaltOnError= false;
-
-            {
+            Report.GetDefault().PushHaltFlags( false, false );
                 AString illegalAccess= new AString(10);
                 illegalAccess._("1234");
                 illegalAccess.SetCharAt_NC(5, '5');
-            }
+            Report.GetDefault().PopHaltFlags();
 
-            Report.GetDefault().HaltOnError= true;
-        //#endif
         Log.Info( "Note the domain 'REPORT' used by ALib reporter." );
 
         Log.RemoveDebugLogger();

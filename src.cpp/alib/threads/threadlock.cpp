@@ -7,25 +7,21 @@
 #include "alib/stdafx_alib.h"
 
 
-#if !defined (HPP_AWORX_LIB_THREADS_THREADLOCK)
+#if !defined (HPP_ALIB_THREADS_THREADLOCK)
     #include "alib/threads/threadlock.hpp"
 #endif
 
 
-#if !defined (HPP_AWORX_LIB_STRINGS_ASTRING)
+#if !defined (HPP_ALIB_STRINGS_ASTRING)
     #include "alib/strings/asalloc.hpp"
 #endif
 
-#if !defined (HPP_AWORX_LIB_TIME)
+#if !defined (HPP_ALIB_TIME)
     #include "alib/time/ticks.hpp"
 #endif
 
 
 using namespace std;
-using namespace aworx::lib::time;
-using namespace aworx::lib::strings;
-using namespace aworx::lib::enums;
-
 
 namespace aworx {
 namespace           lib {

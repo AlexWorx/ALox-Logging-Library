@@ -62,16 +62,12 @@ public class ALoxSamples
                   + "error/warning reporter. If this is a debug compiliation, let's have a try and\n"
                   + "create an ALib error:"  );
 
-        // must be done only in debug compiles
-            Report.getDefault().haltOnError= false;
-
-            {
-                AString illegalAccess= new AString(10);
-                illegalAccess._()._("1234");
-                illegalAccess.setCharAt_NC( 5, '5' );
-            }
-
-            Report.getDefault().haltOnError= true;
+        Report.getDefault().pushHaltFlags(false, false);
+            AString illegalAccess= new AString(10);
+            illegalAccess._()._("1234");
+            illegalAccess.setCharAt_NC( 5, '5' );
+        Report.getDefault().popHaltFlags();
+        
         Log.info( "Note the domain 'REPORT' used by ALib reporter." );
 
         Log.removeDebugLogger();
@@ -349,8 +345,7 @@ public class ALoxSamples
     void aworxLibraryDebugCodePruning()
     {
         ReportWriter oldReportWriter=  Report.getDefault().replaceWriter( new ConsoleReportWriter() );
-        boolean      oldHaltOnError=   Report.getDefault().haltOnError;   Report.getDefault().haltOnError=   false;
-        boolean      oldHaltOnWarning= Report.getDefault().haltOnWarning; Report.getDefault().haltOnWarning= false;
+        Report.getDefault().pushHaltFlags(false, false);
 
             String appear=    "This message should appear in pruned version";
             String notAppear= "This message should NOT appear in pruned version";
@@ -364,8 +359,7 @@ public class ALoxSamples
             ALIB.ASSERT_ERROR  ( false, notAppear );
             ALIB.ASSERT_WARNING( false, notAppear );
 
-        Report.getDefault().haltOnError=   oldHaltOnError;
-        Report.getDefault().haltOnWarning= oldHaltOnWarning;
+        Report.getDefault().popHaltFlags();
 
         Report.getDefault().replaceWriter( oldReportWriter );
     }

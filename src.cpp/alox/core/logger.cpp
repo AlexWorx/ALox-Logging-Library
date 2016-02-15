@@ -14,10 +14,6 @@
 
 using namespace std;
 using namespace aworx;
-using namespace aworx::lib;
-using namespace aworx::lib::enums;
-using namespace aworx::lib::strings;
-using namespace aworx::lox;
 using namespace aworx::lox::core;
 
 // #################################################################################################

@@ -13,6 +13,8 @@ using System.Threading;
 using cs.aworx.lib.threads;
 using cs.aworx.lib.config;
 using cs.aworx.lib.time;
+using System.Collections.Generic;
+using cs.aworx.lib.enums;
 
 namespace cs.aworx.lib {
 
@@ -20,15 +22,16 @@ namespace cs.aworx.lib {
 /** ************************************************************************************************
  * This class provides a simple facility to collect what is called a \e 'report'.
  * Reports are maintenance messages, similar to error messages, but is not aiming to replace
- * and error handling.
+ * any sort of error handling.
  * (Sending a \e 'report' usually precedes raising an error.)
- * Also, \e 'reports' are not replacing any debug or release logging facility, which is not
- * part of ALib. Much more, logging libraries (like \e ALox Logging Library, which
- * builds on ALib, does) might provide a derived object of type
- * \ref aworx::lib::ReportWriter "ReportWriter" to plug into the ALib report facility.
- * This way, the concepts of logging and reports get unified.
+ * Also, \e reports are not replacing any debug or release logging facility, which is not
+ * part of ALib. Much more, logging libraries might provide a derived object of type
+ * \ref cs::aworx::lib::ReportWriter "ReportWriter" to plug into ALib report facility.
+ * This way, the concepts of logging and reports get unified. (As a sample,
+ * <em>ALox Logging Library </em> which builds on ALib does so.)
  *
- * While a process can createe different objects of this class, usually, the default instance,
+ *
+ * While a process can create different objects of this class, usually, the default instance,
  * received by
  * \ref cs::aworx::lib::Report::GetDefault "GetDefault".
  * is sufficient and all warnings and errors will be directed to this one. ALib itself directs
@@ -40,13 +43,12 @@ namespace cs.aworx.lib {
  * \ref cs::aworx::lib::ConsoleReportWriter "ConsoleReportWriter" is attached.
  *
  * The reporting method,
- * \ref cs::aworx::lib::Report::DoReport "DoReport" will check the public flag
- * \ref cs::aworx::lib::Report.HaltOnError "HaltOnError" respectively
- * \ref cs::aworx::lib::Report.HaltOnWarning "HaltOnWarning",
- * which if \c true, causes the method to invoke \e assert(). Such assertions are effective
- * only in the debug compilation of the library/executable. Custom \e 'ReportWriters' might
- * take action (e.g. for security reasons) and e.g. terminate the application also in
- * release compilations.
+ * \ref cs::aworx::lib::Report::DoReport "DoReport" will check the flags provided with
+ * \ref aworx::lib::Report::PushHaltFlags "PushHaltFlags"
+ * which causes the method to invoke <em>System.Diagnostics.Debug.Assert</em>.
+ * Such assertions are effective only in the debug compilation of the library/executable.
+ * Custom \e 'ReportWriters' might take action (e.g. for security reasons) and e.g. terminate
+ * the application also in release compilations.
  *
  * To simplify things, a set of static methods are defined in class
  * \ref cs::aworx::lib::ALIB "ALIB" wich are deemed to be
@@ -111,44 +113,34 @@ public class Report
         protected static  Report            defaultReport                            =new Report();
 
         /** This is a flag that avoids recursion. Recursion might occur when a more sophisticated
-         * report writer sends a report (e.g. an ALIB Error or Warning). Recursive calls are 
+         * report writer sends a report (e.g. an ALIB Error or Warning). Recursive calls are
          * rejected without further notice.
          */
-        protected         bool              recursionBlocker                              = false;
+        protected         bool              recursionBlocker                                = false;
 
         /** A Lock to protect against multihreaded calls.     */
-        protected         ThreadLock        Lock
-                                                            #if ALOX_NO_THREADS // ->unsafe
-                                                                      =new ThreadLock( true, true );
-                                                            #else
-                                                                      =new ThreadLock();
-                                                            #endif
-    
+        protected         ThreadLock        Lock                                  =new ThreadLock();
 
-    // #############################################################################################
-    // public fields
-    // #############################################################################################
-
-        /**
-         * Flag, which if set to true, causes calls to #DoReport with report type \e '0'
-         * to halt program execution if executed in debugger.
+         /**
+         * A stack of integers. The topmost value is used to decide, whether program execution is
+         * halted on message of type 'error' (type 0, bit 0) or of type 'warning' (type > 0, bit 1).
          * Can be set at runtime by just overwriting the value.
-         * Defaults to true
          */
-        public     bool                     HaltOnError                                       =true;
-
-        /**
-         * Flag, which if set to true, causes calls to #DoReport with report type not equal to
-         * \e '0' to halt program execution if executed in debugger.
-         * Can be set at runtime by just overwriting the value.
-         * Defaults to true
-         */
-        public     bool                     HaltOnWarning                                    =false;
+        public          Stack<int>          haltAfterReport                      = new Stack<int>();
 
 
     // #############################################################################################
     // Interface
     // #############################################################################################
+
+        /** ****************************************************************************************
+         * Constructor
+         ******************************************************************************************/
+        public Report()
+        {
+            PushHaltFlags( true,  false );
+        }
+
         /** ****************************************************************************************
          * Receives the default report object used by ALib and processes that rely on ALib.
          * @returns The default \b Report.
@@ -174,11 +166,53 @@ public class Report
         }
 
         /** ****************************************************************************************
+         * Writes new values to the internal flags that decide if calls to #DoReport with
+         * report type \e '0' (errors), respectively report type '>0' (warnings) cause
+         * to halt program execution by calling <em>assert(false)</em>.
+         * The previous values can be restored using #PopHaltFlags.
+         * @param haltOnErrors      Specifies if halting on errors is wanted.
+         * @param haltOnWarnings    Specifies if halting on warnings is wanted.
+         ******************************************************************************************/
+        public void PushHaltFlags( bool haltOnErrors, bool haltOnWarnings )
+        {
+            try { Lock.Acquire();
+                haltAfterReport.Push(    (haltOnErrors   ? 1 : 0)
+                                       + (haltOnWarnings ? 2 : 0));
+            } finally { Lock.Release(); }
+        }
+
+        /** ****************************************************************************************
+         * Restores the previous values after an invocation to #PushHaltFlags.
+         ******************************************************************************************/
+        public void PopHaltFlags()
+        {
+            #if DEBUG
+                bool stackEmptyError;
+            #endif
+
+            try { Lock.Acquire();
+                haltAfterReport.Pop();
+
+                #if DEBUG
+                    stackEmptyError= haltAfterReport.Count == 0;
+                #endif
+            } finally { Lock.Release(); }
+
+            #if DEBUG
+                if ( stackEmptyError )
+                {
+                    PushHaltFlags( true, true );
+                    ALIB.ERROR( "Stack empty, too many pop operations" );
+                }
+            #endif
+        }
+
+        /** ****************************************************************************************
          * Reports the given message to the current
          * \ref aworx::lib::ReportWriter "ReportWriter" in place. The default \b ReportWriter
          * will print the message on the process console. Furthermore, in debug
-         * execution the flag #HaltOnError, respectively #HaltOnWarning, is checked.
-         * If this is set the program halts or suspends into the debugger
+         * execution the flags provided with #PushHaltFlags is checked.
+         * If this is set for the type of message, the program halts or suspends into the debugger
          * (platform and language specific).
          *
          * If parameter \p is '0', the report is considered a \e severe error, otherwise a warning.
@@ -203,13 +237,15 @@ public class Report
                 recursionBlocker= true;
                     Message message= new Message( type, msg, csf, cln, cmn );
                     writer.Report( message );
-        
-                    System.Diagnostics.Debug.Assert( !(     (type == 0 && HaltOnError)
-                                                         || (type != 0 && HaltOnWarning)
+                    int haltFlags= haltAfterReport.Peek();
+                    System.Diagnostics.Debug.Assert( !(    (type == 0 && ( (haltFlags & 1) != 0) )
+                                                        || (type != 0 && ( (haltFlags & 2) != 0) )
                                                       ),  msg );
                 recursionBlocker= false;
             } finally { Lock.Release(); }
         }
+
+
 }// class ReportWriter
 
 

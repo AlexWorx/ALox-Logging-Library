@@ -31,9 +31,7 @@ namespace std { stringstream testOutputStream1; }
 #include <iomanip>
 
 using namespace std;
-using namespace aworx::lib;
-using namespace aworx::lib::strings;
-
+using namespace aworx;
 
 //
 // user defined string class sample
@@ -59,16 +57,16 @@ namespace myns
 //
 namespace aworx { namespace lib { namespace strings {
 
-    // specialize ToASDefined, to enable static_assert in AS construction to success for MyString class
-    template<> struct              ToASDefined <const myns::MyString&> : public std::true_type {};
+    // specialize ToStringDefined, to enable static_assert in String construction to success for MyString class
+    template<> struct              ToStringDefined <const myns::MyString&> : public std::true_type {};
 
-    // the two implementations of ToAS. One for providing the buffer, one for the length
-    template<> inline  const char* ToAS        <const myns::MyString&>( const myns::MyString& src )
+    // the two implementations of ToString. One for providing the buffer, one for the length
+    template<> inline  const char* ToString        <const myns::MyString&>( const myns::MyString& src )
     {
         return  src.GetMyBuffer();
     }
 
-    template<> inline  int         ToAS        <const myns::MyString&>( const myns::MyString& src )
+    template<> inline  int         ToString        <const myns::MyString&>( const myns::MyString& src )
     {
         return  src.GetMyLength();
     }
@@ -90,11 +88,10 @@ namespace aworx { namespace lib { namespace strings {
 }}} // namespace aworx::lib::strings
 
 //
-// Defining a test method that takes a const reference to AS
+// Defining a test method that takes a const reference to String
 //
-using namespace aworx::lib::strings;
 
-void Print( const AS& text )
+void Print( const aworx::String& text )
 {
     std::cout << "Print: " << text << std::endl;
 }
@@ -133,15 +130,13 @@ void MyFunction()
 #undef cout
 namespace std { stringstream testOutputStream2; }
 #define cout testOutputStream2
-#undef HPP_AWORX_LIB_COMPATIBILITY_STD_IOSTREAM // be
+#undef HPP_ALIB_COMPATIBILITY_STD_IOSTREAM // be
 
 //----------- Now to the unit tests -------------
 #include "aworx_unittests.hpp"
 #include "alib/strings/tokenizer.hpp"
 #include "alib/strings/numberformat.hpp"
 #include "alib/system/directory.hpp"
-
-using namespace aworx::lib::system;
 
 namespace ut_aworx {
 

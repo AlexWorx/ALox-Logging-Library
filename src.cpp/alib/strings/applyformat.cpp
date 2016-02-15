@@ -8,14 +8,13 @@
 
 #include "alib/alib.hpp"
 
-#if !defined (HPP_AWORX_LIB_STRINGS_NUMBERFORMAT)
+#if !defined (HPP_ALIB_STRINGS_NUMBERFORMAT)
     #include "alib/strings/numberformat.hpp"
 #endif
 
 
 
 using namespace std;
-using namespace aworx::lib::enums;
 
 namespace aworx {
 namespace           lib {

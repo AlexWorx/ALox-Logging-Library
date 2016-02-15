@@ -96,89 +96,90 @@ namespace       lox {
  * defined with this class will be concatenated to log strings like that:
  *
  * \snippet "ut_alox_documentation_samples.cpp"     DOX_ALOX_ESC
- *
- * \note To use the sequences <em>ESC::XYZ</em> like in the sample above this, you have to place
- *       an using statement in  your source code file:
- *       \snippet "ut_alox_documentation_samples.cpp"     DOX_ALOX_ESC_USING
  **************************************************************************************************/
 class ESC
 {
     public:
     #if defined(_MSC_VER)
     // MSC  (as of 12/2015):
-    // C4579: in-class initialization for type 'const aworx::StringLiteral<10>'
+    // C4579: in-class initialization for type 'const aworx::SLiteral<10>'
     // is not yet implemented; static member will remain uninitialized at runtime but
     // use in constant-expressions is supported
 
-    ALIB_API static     StringLiteral<3>  RED                    ; ///< Select red color for foreground.
-    ALIB_API static     StringLiteral<3>  GREEN                  ; ///< Select green color for foreground.
-    ALIB_API static     StringLiteral<3>  YELLOW                 ; ///< Select yellow color for foreground.
-    ALIB_API static     StringLiteral<3>  BLUE                   ; ///< Select blue color for foreground.
-    ALIB_API static     StringLiteral<3>  MAGENTA                ; ///< Select magenta color for foreground.
-    ALIB_API static     StringLiteral<3>  CYAN                   ; ///< Select cyan color for foreground.
-    ALIB_API static     StringLiteral<3>  BLACK                  ; ///< Select black color for foreground.
-    ALIB_API static     StringLiteral<3>  WHITE                  ; ///< Select white color for foreground.
-    ALIB_API static     StringLiteral<3>  GRAY                   ; ///< Select gray color for foreground.
-    ALIB_API static     StringLiteral<3>  FG_RESET               ; ///< Select std color for foreground.
+    ALIB_API static     SLiteral<3>  RED                    ; ///< Select red color for foreground.
+    ALIB_API static     SLiteral<3>  GREEN                  ; ///< Select green color for foreground.
+    ALIB_API static     SLiteral<3>  YELLOW                 ; ///< Select yellow color for foreground.
+    ALIB_API static     SLiteral<3>  BLUE                   ; ///< Select blue color for foreground.
+    ALIB_API static     SLiteral<3>  MAGENTA                ; ///< Select magenta color for foreground.
+    ALIB_API static     SLiteral<3>  CYAN                   ; ///< Select cyan color for foreground.
+    ALIB_API static     SLiteral<3>  BLACK                  ; ///< Select black color for foreground.
+    ALIB_API static     SLiteral<3>  WHITE                  ; ///< Select white color for foreground.
+    ALIB_API static     SLiteral<3>  GRAY                   ; ///< Select gray color for foreground.
+    ALIB_API static     SLiteral<3>  FG_RESET               ; ///< Select std color for foreground.
 
-    ALIB_API static     StringLiteral<3>  BG_RED                 ; ///< Select red color for background.
-    ALIB_API static     StringLiteral<3>  BG_GREEN               ; ///< Select green color for background.
-    ALIB_API static     StringLiteral<3>  BG_YELLOW              ; ///< Select yellow color for background.
-    ALIB_API static     StringLiteral<3>  BG_BLUE                ; ///< Select blue color for background.
-    ALIB_API static     StringLiteral<3>  BG_MAGENTA             ; ///< Select blue color for background.
-    ALIB_API static     StringLiteral<3>  BG_CYAN                ; ///< Select blue color for background.
-    ALIB_API static     StringLiteral<3>  BG_BLACK               ; ///< Select red color for background.
-    ALIB_API static     StringLiteral<3>  BG_WHITE               ; ///< Select blue color for background.
-    ALIB_API static     StringLiteral<3>  BG_GRAY                ; ///< Select gray color for background.
-    ALIB_API static     StringLiteral<3>  BG_RESET               ; ///< Select std color for background.
+    ALIB_API static     SLiteral<3>  BG_RED                 ; ///< Select red color for background.
+    ALIB_API static     SLiteral<3>  BG_GREEN               ; ///< Select green color for background.
+    ALIB_API static     SLiteral<3>  BG_YELLOW              ; ///< Select yellow color for background.
+    ALIB_API static     SLiteral<3>  BG_BLUE                ; ///< Select blue color for background.
+    ALIB_API static     SLiteral<3>  BG_MAGENTA             ; ///< Select blue color for background.
+    ALIB_API static     SLiteral<3>  BG_CYAN                ; ///< Select blue color for background.
+    ALIB_API static     SLiteral<3>  BG_BLACK               ; ///< Select red color for background.
+    ALIB_API static     SLiteral<3>  BG_WHITE               ; ///< Select blue color for background.
+    ALIB_API static     SLiteral<3>  BG_GRAY                ; ///< Select gray color for background.
+    ALIB_API static     SLiteral<3>  BG_RESET               ; ///< Select std color for background.
 
-    ALIB_API static     StringLiteral<3>  BOLD                   ; ///< Select bold font style.
-    ALIB_API static     StringLiteral<3>  ITALICS                ; ///< Select italics font style.
-    ALIB_API static     StringLiteral<3>  STYLE_RESET            ; ///< Select standard font style.
-    ALIB_API static     StringLiteral<3>  RESET                  ; ///< Reset color and style.
+    ALIB_API static     SLiteral<3>  BOLD                   ; ///< Select bold font style.
+    ALIB_API static     SLiteral<3>  ITALICS                ; ///< Select italics font style.
+    ALIB_API static     SLiteral<3>  STYLE_RESET            ; ///< Select standard font style.
+    ALIB_API static     SLiteral<3>  RESET                  ; ///< Reset color and style.
 
-    ALIB_API static     StringLiteral<3>  URL_START              ; ///< Mark the start of an URL.
-    ALIB_API static     StringLiteral<3>  URL_END                ; ///< Mark the end of an URL.
-    ALIB_API static     StringLiteral<3>  TAB                    ; ///< Go to next tab. Usually, text loggers will increase the tab position automatically.
+    ALIB_API static     SLiteral<3>  URL_START              ; ///< Mark the start of an URL.
+    ALIB_API static     SLiteral<3>  URL_END                ; ///< Mark the end of an URL.
+    ALIB_API static     SLiteral<3>  TAB                    ; ///< Go to next tab. Usually, text loggers will increase the tab position automatically.
 
-    ALIB_API static     StringLiteral<3>  EOMETA                 ; ///< End of meta information in log string
+    ALIB_API static     SLiteral<3>  EOMETA                 ; ///< End of meta information in log string
 
     #else
-    static constexpr    StringLiteral<3>  RED        { "\033c0" }; ///< Select red color for foreground.
-    static constexpr    StringLiteral<3>  GREEN      { "\033c1" }; ///< Select green color for foreground.
-    static constexpr    StringLiteral<3>  YELLOW     { "\033c2" }; ///< Select yellow color for foreground.
-    static constexpr    StringLiteral<3>  BLUE       { "\033c3" }; ///< Select blue color for foreground.
-    static constexpr    StringLiteral<3>  MAGENTA    { "\033c4" }; ///< Select magenta color for foreground.
-    static constexpr    StringLiteral<3>  CYAN       { "\033c5" }; ///< Select cyan color for foreground.
-    static constexpr    StringLiteral<3>  BLACK      { "\033c6" }; ///< Select black color for foreground.
-    static constexpr    StringLiteral<3>  WHITE      { "\033c7" }; ///< Select white color for foreground.
-    static constexpr    StringLiteral<3>  GRAY       { "\033c8" }; ///< Select gray color for foreground.
-    static constexpr    StringLiteral<3>  FG_RESET   { "\033c9" }; ///< Select std color for foreground.
+    static constexpr    SLiteral<3>  RED        { "\033c0" }; ///< Select red color for foreground.
+    static constexpr    SLiteral<3>  GREEN      { "\033c1" }; ///< Select green color for foreground.
+    static constexpr    SLiteral<3>  YELLOW     { "\033c2" }; ///< Select yellow color for foreground.
+    static constexpr    SLiteral<3>  BLUE       { "\033c3" }; ///< Select blue color for foreground.
+    static constexpr    SLiteral<3>  MAGENTA    { "\033c4" }; ///< Select magenta color for foreground.
+    static constexpr    SLiteral<3>  CYAN       { "\033c5" }; ///< Select cyan color for foreground.
+    static constexpr    SLiteral<3>  BLACK      { "\033c6" }; ///< Select black color for foreground.
+    static constexpr    SLiteral<3>  WHITE      { "\033c7" }; ///< Select white color for foreground.
+    static constexpr    SLiteral<3>  GRAY       { "\033c8" }; ///< Select gray color for foreground.
+    static constexpr    SLiteral<3>  FG_RESET   { "\033c9" }; ///< Select std color for foreground.
 
-    static constexpr    StringLiteral<3>  BG_RED     { "\033C0" }; ///< Select red color for background.
-    static constexpr    StringLiteral<3>  BG_GREEN   { "\033C1" }; ///< Select green color for background.
-    static constexpr    StringLiteral<3>  BG_YELLOW  { "\033C2" }; ///< Select yellow color for background.
-    static constexpr    StringLiteral<3>  BG_BLUE    { "\033C3" }; ///< Select blue color for background.
-    static constexpr    StringLiteral<3>  BG_MAGENTA { "\033C4" }; ///< Select blue color for background.
-    static constexpr    StringLiteral<3>  BG_CYAN    { "\033C5" }; ///< Select blue color for background.
-    static constexpr    StringLiteral<3>  BG_BLACK   { "\033C6" }; ///< Select red color for background.
-    static constexpr    StringLiteral<3>  BG_WHITE   { "\033C7" }; ///< Select blue color for background.
-    static constexpr    StringLiteral<3>  BG_GRAY    { "\033C8" }; ///< Select gray color for background.
-    static constexpr    StringLiteral<3>  BG_RESET   { "\033C9" }; ///< Select std color for background.
+    static constexpr    SLiteral<3>  BG_RED     { "\033C0" }; ///< Select red color for background.
+    static constexpr    SLiteral<3>  BG_GREEN   { "\033C1" }; ///< Select green color for background.
+    static constexpr    SLiteral<3>  BG_YELLOW  { "\033C2" }; ///< Select yellow color for background.
+    static constexpr    SLiteral<3>  BG_BLUE    { "\033C3" }; ///< Select blue color for background.
+    static constexpr    SLiteral<3>  BG_MAGENTA { "\033C4" }; ///< Select blue color for background.
+    static constexpr    SLiteral<3>  BG_CYAN    { "\033C5" }; ///< Select blue color for background.
+    static constexpr    SLiteral<3>  BG_BLACK   { "\033C6" }; ///< Select red color for background.
+    static constexpr    SLiteral<3>  BG_WHITE   { "\033C7" }; ///< Select blue color for background.
+    static constexpr    SLiteral<3>  BG_GRAY    { "\033C8" }; ///< Select gray color for background.
+    static constexpr    SLiteral<3>  BG_RESET   { "\033C9" }; ///< Select std color for background.
 
-    static constexpr    StringLiteral<3>  BOLD       { "\033sB" }; ///< Select bold font style.
-    static constexpr    StringLiteral<3>  ITALICS    { "\033sI" }; ///< Select italics font style.
-    static constexpr    StringLiteral<3>  STYLE_RESET{ "\033sr" }; ///< Select standard font style.
-    static constexpr    StringLiteral<3>  RESET      { "\033sa" }; ///< Reset color and style.
+    static constexpr    SLiteral<3>  BOLD       { "\033sB" }; ///< Select bold font style.
+    static constexpr    SLiteral<3>  ITALICS    { "\033sI" }; ///< Select italics font style.
+    static constexpr    SLiteral<3>  STYLE_RESET{ "\033sr" }; ///< Select standard font style.
+    static constexpr    SLiteral<3>  RESET      { "\033sa" }; ///< Reset color and style.
 
-    static constexpr    StringLiteral<3>  URL_START  { "\033lS" }; ///< Mark the start of an URL.
-    static constexpr    StringLiteral<3>  URL_END    { "\033lE" }; ///< Mark the end of an URL.
-    static constexpr    StringLiteral<3>  TAB        { "\033t0" }; ///< Go to next tab. Usually, text loggers will increase the tab position automatically.
+    static constexpr    SLiteral<3>  URL_START  { "\033lS" }; ///< Mark the start of an URL.
+    static constexpr    SLiteral<3>  URL_END    { "\033lE" }; ///< Mark the end of an URL.
+    static constexpr    SLiteral<3>  TAB        { "\033t0" }; ///< Go to next tab. Usually, text loggers will increase the tab position automatically.
 
-    static constexpr    StringLiteral<3>  EOMETA     { "\033A0" }; ///< End of meta information in log string
+    static constexpr    SLiteral<3>  EOMETA     { "\033A0" }; ///< End of meta information in log string
 
     #endif
 };
 
-}} // namespace aworx.lox
+} // namespace lox
+
+/** Type alias name in namespace #aworx. */
+using     ESC=           aworx::lox::ESC;
+
+}  // namespace aworx
 #endif // HPP_ALOX

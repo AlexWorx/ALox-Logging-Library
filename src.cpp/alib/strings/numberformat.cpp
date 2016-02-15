@@ -8,11 +8,11 @@
 
 #include "alib/alib.hpp"
 
-#if !defined (HPP_AWORX_LIB_STRINGS_NUMBERFORMAT)
+#if !defined (HPP_ALIB_STRINGS_NUMBERFORMAT)
     #include "alib/strings/numberformat.hpp"
 #endif
 
-#if !defined (HPP_AWORX_LIB_STRINGS_ASTRING)
+#if !defined (HPP_ALIB_STRINGS_ASTRING)
     #include "alib/strings/asalloc.hpp"
 #endif
 #include <clocale>
@@ -67,7 +67,7 @@ NumberFormat                NumberFormat::Global;
 //  Integer conversion
 // #################################################################################################
 
-int64_t NumberFormat::StringToInteger( const AS& src, int& idx )
+int64_t NumberFormat::StringToInteger( const String& src, int& idx )
 {
     int64_t retVal=    0;
 
@@ -426,7 +426,7 @@ int NumberFormat::FloatToString( double value,  char* buffer, int idx )
     return idx;
 }
 
-double NumberFormat::StringToFloat( const AS& src, int& startIdx )
+double NumberFormat::StringToFloat( const String& src, int& startIdx )
 {
     // checks
     if( startIdx < 0 || startIdx >= src.Length() )
@@ -455,7 +455,7 @@ double NumberFormat::StringToFloat( const AS& src, int& startIdx )
 
         {
             int intIdx= 0;
-            retval= (double) StringToInteger( AS(buf, (int) (bufEnd - buf) ), intIdx );
+            retval= (double) StringToInteger( String(buf, (int) (bufEnd - buf) ), intIdx );
             buf+= intIdx;
         }
 
@@ -478,7 +478,7 @@ double NumberFormat::StringToFloat( const AS& src, int& startIdx )
          &&  *buf >= '0'  &&  *buf <= '9' )
     {
         int intIdx= 0;
-        double intValue= (double) StringToInteger( AS(buf, (int)( bufEnd - buf ) ), intIdx );
+        double intValue= (double) StringToInteger( String(buf, (int)( bufEnd - buf ) ), intIdx );
         buf+= intIdx;
         retval+= ( intValue / pow( 10, intIdx ) );
     }
@@ -502,7 +502,7 @@ double NumberFormat::StringToFloat( const AS& src, int& startIdx )
         if (eSepFound)
         {
             int intIdx= 0;
-            int exp= (int) StringToInteger( AS(buf, (int)( bufEnd - buf ) ), intIdx );
+            int exp= (int) StringToInteger( String(buf, (int)( bufEnd - buf ) ), intIdx );
             buf+= intIdx;
             retval*= pow( 10, exp );
         }

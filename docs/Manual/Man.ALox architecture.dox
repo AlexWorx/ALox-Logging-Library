@@ -412,4 +412,9 @@ The following summarizes the takeaways of this chapter:
    ALox are named Log_xxx for debug logging and Lox_xxx for release logging. Hence, the
    logging statements look very similar in C++, C# and Java versions of ALox.)
 
+<p>
+
+--------------------------------------------------------------------
+Next chapter: \ref man_levelsanddomains
+
 */

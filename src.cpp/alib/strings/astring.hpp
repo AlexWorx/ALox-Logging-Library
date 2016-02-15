@@ -7,19 +7,19 @@
 /**@file*///<- needed for Doxygen include of the typedefs at the end of the file
 
 // to preserve the right order, we are not includable directly from outside.
-#if !defined(FROM_HPP_AWORX_LIB_ALIB) || defined(HPP_AWORX_LIB_STRINGS_ASTRING)
+#if !defined(FROM_HPP_ALIB_ALIB) || defined(HPP_ALIB_STRINGS_ASTRING)
     #error "include alib/alib.hpp instead of this header"
 #endif
 
 // Due to our blocker above, this include will never be executed. But having it, allows IDEs
 // (e.g. QTCreator) to read the symbols when opening this file
-#if !defined (HPP_AWORX_LIB_ALIB)
+#if !defined (HPP_ALIB_ALIB)
     #include "alib/alib.hpp"
 #endif
 
 // then, set include guard
-#ifndef HPP_AWORX_LIB_STRINGS_ASTRING
-#define HPP_AWORX_LIB_STRINGS_ASTRING 1
+#ifndef HPP_ALIB_STRINGS_ASTRING
+#define HPP_ALIB_STRINGS_ASTRING 1
 
 
 #if !defined (_STDLIB_H) && !defined(_INC_STDLIB)
@@ -43,22 +43,16 @@ namespace                   strings {
 // #################################################################################################
 // forwards
 // #################################################################################################
-class ASAlloc;
-template<typename T>   int ApplyTo   ( ASAlloc& , const T );
-template<typename T>   int ApplyTo_NC( ASAlloc& , const T );
+class AString;
+template<typename T>   int ApplyTo   ( AString& , const T );
+template<typename T>   int ApplyTo_NC( AString& , const T );
 
 
 
 /** ************************************************************************************************
  * Specializes class
- * \ref aworx::lib::strings::ASTerminatable "ASTerminatable" to implement mutable, non-constant
+ * \ref aworx::lib::strings::TString "TString" to implement mutable, non-constant
  * strings using writable buffer memory.
- *
- * \note This class \b %ASAlloc, when used in source code as well as in documentations, is
- *       mostly referred to using the synonym '<b>%AString</b>'. For more information about the
- *       synonymous names of ALib string classes, refer to
- *       \ref alib_namespace_strings_class_overview "String Classes Overview" and
- *       \ref CPP_AWORX_NS_SHORTCUTS "Type Shortcuts in the aworx Namespace".
  *
  * There are two possible types of buffers:
  * - <b>Internal buffers</b><br>
@@ -78,21 +72,21 @@ template<typename T>   int ApplyTo_NC( ASAlloc& , const T );
  *   the first operation that writes data into the object. Alternatively, an external buffer
  *   can be set before such operation is invoked.
  * - <b>Construction with initial capacity</b><br>
- *   With constructor #ASAlloc(int), an initial length can be provided. This construction
+ *   With constructor #AString(int), an initial length can be provided. This construction
  *   variant should be used, if the maximum length the object that will be reached during its
  *   lifetime is predictable, because it avoids iterative, increasing buffer allocations that
  *   otherwise would be performed until that size is reached once.
  *   Furthermore there are constructors
  * - <b>Construction with external buffers</b><br>
- *   With constructor #ASAlloc(char*, int), an external buffer is set. This constructor is
+ *   With constructor #AString(char*, int), an external buffer is set. This constructor is
  *   protected and therefore accessible by derived classes' constructors only.
  *   This is to avoid an otherwise likely common misunderstanding  that this constructor would
  *   copy the contents of a provided cstring. For users of this class, the alternative to this
  *   constructor is using a combination of the default constructor and method #SetBuffer which
  *   has exactly the same effect.
  * - <b>Construction with strings</b><br>
- *   Constructors #ASAlloc(const T&), ASAlloc(const AS&, int, int=) and copy constructor
- *   #ASAlloc(const ASAlloc&) will allocate an internal buffer of the capacity needed
+ *   Constructors #AString(const T&), AString(const String&, int, int=) and copy constructor
+ *   #AString(const AString&) will allocate an internal buffer of the capacity needed
  *   and copy the contents of the given string type.
  *
  * Destruction will free internally allocated buffers.
@@ -104,16 +98,16 @@ template<typename T>   int ApplyTo_NC( ASAlloc& , const T );
  * \anchor alib_namespace_strings_astring_move
  *<b>Move constructor and move assignment</b><p>
  * This class provides a (noexcept) move constructor which grabs the buffer of a given movable
- * \b %ASAlloc, as long as this given object does not use an external buffer. In the latter case, the
+ * \b %AString, as long as this given object does not use an external buffer. In the latter case, the
  * contents is copied like in the copy constructor.<br>
  * This class does not provide a move assignment operator. The rational for this is that normally
- * a "more temporary" ASAlloc would be assigned to a "less temporary" one. In this case, it would
+ * a "more temporary" AString would be assigned to a "less temporary" one. In this case, it would
  * be not helpful to replace the allocated storage, each time.
  * \note
- *   In general, while assignment of other objects of type \b %ASAlloc is possible through
- *   #operator=(const ASAlloc&), the advised code style is to use a combination of #Clear and
+ *   In general, while assignment of other objects of type \b %AString is possible through
+ *   #operator=(const AString&), the advised code style is to use a combination of #Clear and
  *   append \ref _ "_()" (e.g. <em>myString._()._(otherString)</em>) to do the assignment instead.
- *   This leads to exactly the same result as long as the \b %ASAlloc that is assigned is not \e nulled.<br>
+ *   This leads to exactly the same result as long as the \b %AString that is assigned is not \e nulled.<br>
  * \note
  *   In the case that it is \e nulled, using the assignment operator will set this object also
  *   to \e nulled state, hence dispose any currently allocated buffer. This, for most cases is not
@@ -121,8 +115,8 @@ template<typename T>   int ApplyTo_NC( ASAlloc& , const T );
  *
  * \anchor alib_namespace_strings_astring_write_access
  * <b>Write Access to the Buffer</b><p>
- * Parent class \ref aworx::lib::strings::AS "AS" holds its protected field
- * \ref aworx::lib::strings::AS::buffer "AS::buffer" in an anonymous C++ union of two pointers,
+ * Parent class \ref aworx::lib::strings::String "String" holds its protected field
+ * \ref aworx::lib::strings::String::buffer "String::buffer" in an anonymous C++ union of two pointers,
  * one typed <em>const char*</em> and the other <em>char*</em>.
  * This class exposes the non-constant buffer pointer of that union with method #VBuffer.
  * This allows users of this class to <em>freely</em> operate on the buffer with any <em>C</em>
@@ -131,31 +125,31 @@ template<typename T>   int ApplyTo_NC( ASAlloc& , const T );
  *
  * In addition to this, a bunch of methods allow the modification of characters.
  * #operator[] is returning a reference to a char in contrast to the same operator defined
- * in class \b %AS. This allows assignments of values when using an object with this operator as
+ * in class \b %String. This allows assignments of values when using an object with this operator as
  * an lvalue.
  *
  * \anchor  alib_namespace_strings_astring_nullable
  * <b>Nullable AStrings</b><p>
  * As discussed in the namespace documentation (\ref alib_namespace_strings_nullable)
  * parent class
- * \ref aworx::lib::strings::AS "AS" provides an interface to detect <em>\e nulled</em> objects.
- * This concept is duly implemented in this class. An object of type #ASAlloc is <em>\e nulled</em>
+ * \ref aworx::lib::strings::String "String" provides an interface to detect <em>\e nulled</em> objects.
+ * This concept is duly implemented in this class. An object of type #AString is <em>\e nulled</em>
  * when no internal buffer is allocated or external buffer is set.
  *
  * If default constructed, constructed  with zero size, a null pointer, or any other string type
  * object which is \e nulled, no buffer is created and hence the new object is in <em>\e nulled</em>
  * state and inherited method
- * aworx::lib::strings::AS::IsNull "IsNull" will return \c true for that object.
- * Consequently, it makes a difference if an \b %ASAlloc is constructed using <em>ASAlloc()</em> or
- * <em>ASAlloc(\"\")</em>.
+ * aworx::lib::strings::String::IsNull "IsNull" will return \c true for that object.
+ * Consequently, it makes a difference if an \b %AString is constructed using <em>AString()</em> or
+ * <em>AString(\"\")</em>.
  * This allows to differentiate between \e nulled AStrings and empty \b %AStrings, which is quite handy
  * in certain situations. An object that was filled already can be reset to represent null by
  * either assigning a nullptr, by invoking
  * \ref SetBuffer "SetBuffer(0)" or by invoking #SetNull on the
  * instance. (See also methods #IsNull, #IsNotNull and #Capacity.)
  * The methods #Equals, #CompareTo and the overloaded comparison #operator== and
- * #operator!= allow nullptr comparisons. e.g. a <em>\e nulled</em> \b %ASAlloc equals to another
- * <em>\e nulled</em> \b %ASAlloc but not to an empty but not <em>\e nulled</em> ASAlloc.
+ * #operator!= allow nullptr comparisons. e.g. a <em>\e nulled</em> \b %AString equals to another
+ * <em>\e nulled</em> \b %AString but not to an empty but not <em>\e nulled</em> AString.
  *
  * To make this more clear, note the following <b>sample code</b> which does not throw an assertion:
  * \snippet "DOX_ALIB_ASTRING.cpp"    DOX_ALIB_ASTRING_NULLED
@@ -166,7 +160,7 @@ template<typename T>   int ApplyTo_NC( ASAlloc& , const T );
  *     using one of the assignment operators (#operator=). No check for <em>\e nulled</em> string
  *     is needed when appending them to an object of this type.
  *
- *   - Even if an \b %ASAlloc object is \e nulled, inherited method #ToCString will return a
+ *   - Even if an \b %AString object is \e nulled, inherited method #ToCString will return a
  *     (zero terminated) valid empty <em>char*</em>.
  *     This has the advantage that in many situations the null-state is not
  *     needed to be handled (for those cases where the difference between a \e nulled and an empty
@@ -179,10 +173,10 @@ template<typename T>   int ApplyTo_NC( ASAlloc& , const T );
  * '<em>application</em>' of non-string types allows flexible and well readable code design.
  *
  * The central mechanism used to apply arbitrary types is similar to what is used by class
- * \ref aworx::lib::strings::AS "AS" and the partially specialized template function
- * \ref aworx::lib::strings::ToAS "ToAS".
+ * \ref aworx::lib::strings::String "String" and the partially specialized template function
+ * \ref aworx::lib::strings::ToString "ToString".
  * By implementing a new specialization of partially specialized template
- *  - function \ref aworx::lib::strings::ApplyTo( ASAlloc& target, const T src ) "ApplyTo" and
+ *  - function \ref aworx::lib::strings::ApplyTo( AString& target, const T src ) "ApplyTo" and
  *  - class \ref aworx::lib::strings::IsApplicable "IsApplicable"
  *
  * it is possible to apply objects of 'external', user defined types to objects of this class.
@@ -190,14 +184,14 @@ template<typename T>   int ApplyTo_NC( ASAlloc& , const T );
  * These partly specialized templates are used by this classes' method #Apply. Because this
  * method, although declared <em>public</em>, has a more internal character, in standard
  * situations its invocation is performed indirectly through methods:
- * - Constructor #ASAlloc(const T&)
+ * - Constructor #AString(const T&)
  * - Operator operator <<(const T&)
  * - Method #_(const T&) (which is a synonym for <em>operator << </em> but allowing non-checked invocations)
  * - Operator operator=(const T&)
  *
  * \anchor alib_namespace_strings_astring_application_vs_interface
  * <b>Application Instead of Explicit Interface Methods</b><p>
- * Various methods that exist in the implementations of class \b %ASAlloc in different programming
+ * Various methods that exist in the implementations of class \b %AString in different programming
  * languages versions of ALib, are missing in this C++ implementation.
  * Here, they have been replaced by  the concept of <em>applying</em> types.
  * The following provides a list of predefined applicable types found in ALib:
@@ -208,7 +202,7 @@ template<typename T>   int ApplyTo_NC( ASAlloc& , const T );
  *   types. They will be converted to encoded multi-byte character strings according
  *   to the currently set locale and appended. (See
  *   \ref aworx::lib::ALIB::Init "ALIB::Init" for more information about setting locale and
- *   \ref aworx::lib::strings::AS::ToWString "AS::ToWString" for converting in the other
+ *   \ref aworx::lib::strings::String::ToWString "String::ToWString" for converting in the other
  *   direction.)
  * - Plain types <em>int32_t</em>, <em>uint32_t</em>, <em>int64_t</em>, <em>uint64_t</em>,
  *   <em>float</em> and <em>double</em>. Their value will be converted to
@@ -230,7 +224,7 @@ template<typename T>   int ApplyTo_NC( ASAlloc& , const T );
  * The following insert, delete and replace operations are provided:
  * - #InsertAt To insert a string at an arbitrary position.
  * - #InsertChars To insert a quantity of characters at an arbitrary position.
- * - \ref ReplaceSubstring(const AS&, int,int) "ReplaceSubstring" To replace a substring with a new string .
+ * - \ref ReplaceSubstring(const String&, int,int) "ReplaceSubstring" To replace a substring with a new string .
  * - \ref ReplaceRegion(char, int,int) "ReplaceRegion" To replace a substring with a given character.
  * - #SearchAndReplace to search all occurrences of a substring and replace by a different string.
  * - #Delete To delete an arbitrary  substring.
@@ -238,7 +232,7 @@ template<typename T>   int ApplyTo_NC( ASAlloc& , const T );
  * - #DeleteEnd To delete n characters from the end.
  *
  **************************************************************************************************/
-class ASAlloc : public ASTerminatable
+class AString : public TString
 {
     // #############################################################################################
     // friends
@@ -246,7 +240,7 @@ class ASAlloc : public ASTerminatable
 
         // this is (unfortunately) needed to allow him stealing our buffer in the move constructor
         // of our new friend
-        template <const int TCapacity> friend class ASPreAlloc;
+        template <const int TCapacity> friend class PreallocatedString;
 
     /** ############################################################################################
      * @name Debug Features
@@ -284,7 +278,7 @@ class ASAlloc : public ASTerminatable
          *  instance gets replaced by a new allocation. This normally shall not
          *  happen, but still might be wanted or at least taken into account.
          *
-         *  E.g. for \ref aworx::lib::strings::ASPreAlloc "ASPreAlloc" objects, that
+         *  E.g. for \ref aworx::lib::strings::PreallocatedString "PreallocatedString" objects, that
          *  sometimes may grow more than average, this warning may be disabled after creation
          *  of an instance.
          *
@@ -318,7 +312,7 @@ class ASAlloc : public ASTerminatable
 
     protected:
         /** ****************************************************************************************
-         * Constructs an \b %ASAlloc with the given external buffer.
+         * Constructs an \b %AString with the given external buffer.
          * The given buffers' life-cycle is considered to be managed externally.<br>
          * This constructor is protected and provided for derived classes that dispose about
          * their own buffer.
@@ -334,8 +328,8 @@ class ASAlloc : public ASTerminatable
          * @param extBufferSize   The capacity of the given buffer.
          ******************************************************************************************/
         constexpr
-        explicit ASAlloc( char* extBuffer, int extBufferSize )
-        : ASTerminatable( extBuffer, 0)
+        explicit AString( char* extBuffer, int extBufferSize )
+        : TString( extBuffer, 0)
         , capacity  (- (extBufferSize - 1))
         {}
 
@@ -344,12 +338,12 @@ class ASAlloc : public ASTerminatable
      ##@{ ########################################################################################*/
     public:
         /** ****************************************************************************************
-         *   Constructs an empty, \e nulled \b %ASAlloc (does not allocate a buffer).
+         *   Constructs an empty, \e nulled \b %AString (does not allocate a buffer).
          ******************************************************************************************/
         explicit
         constexpr
-        ASAlloc()
-        : ASTerminatable()
+        AString()
+        : TString()
         , capacity  (0)
         {}
 
@@ -357,15 +351,15 @@ class ASAlloc : public ASTerminatable
          * Constructor allocating a specific given buffer size
          * (plus one for a potential termination character).
          *
-         *  \note This constructor is useful for \b %ASAlloc objects whose minimum future string length
+         *  \note This constructor is useful for \b %AString objects whose minimum future string length
          *        is predictable to avoid recurring incremental allocations up to the known
          *        minimum size.
          *
          * @param initialCapacity  The size of the buffer that is allocated.
          ******************************************************************************************/
         explicit
-        ASAlloc( int initialCapacity )
-        : ASTerminatable()
+        AString( int initialCapacity )
+        : TString()
         , capacity  (0)
         {
             SetBuffer( initialCapacity );
@@ -376,8 +370,8 @@ class ASAlloc : public ASTerminatable
          * @param copy The object to copy.
          ******************************************************************************************/
         explicit
-        ASAlloc( const ASAlloc& copy)
-        : ASTerminatable()
+        AString( const AString& copy)
+        : TString()
         , capacity  (0)
         {
             Apply( copy );
@@ -389,8 +383,8 @@ class ASAlloc : public ASTerminatable
          * for details.
          * @param move The object to move.
          ******************************************************************************************/
-        ASAlloc(ASAlloc&& move) noexcept
-        : ASTerminatable()
+        AString(AString&& move) noexcept
+        : TString()
         {
             // given move object has external buffer: we have to copy
             if ( !move.HasInternalBuffer() )
@@ -429,8 +423,8 @@ class ASAlloc : public ASTerminatable
          ******************************************************************************************/
         template <class T>
         explicit
-        ASAlloc (const  T& src )
-        : ASTerminatable()
+        AString (const  T& src )
+        : TString()
         , capacity  (0)
         {
             Apply( src );
@@ -438,24 +432,24 @@ class ASAlloc : public ASTerminatable
 
         /** ****************************************************************************************
          *  Constructor copying a region of an
-         * \ref aworx::lib::strings::AS "AS".
-         * @param src          The reference to the the \b %AS to copy from.
+         * \ref aworx::lib::strings::String "String".
+         * @param src          The reference to the the \b %String to copy from.
          * @param regionStart  The start of the region in \p src to append.
          * @param regionLength The length of the region in \p src to append.
          *                     Defaults to CString::MaxLen.
          ******************************************************************************************/
         explicit
-        ASAlloc(const AS& src, int regionStart, int regionLength= CString::MaxLen )
-        : ASTerminatable()
+        AString(const String& src, int regionStart, int regionLength= CString::MaxLen )
+        : TString()
         , capacity  (0)
         {
             _<true>( src, regionStart, regionLength );
         }
 
         /** ****************************************************************************************
-         *  Destructs an \b %ASAlloc object
+         *  Destructs an \b %AString object
          ******************************************************************************************/
-        ~ASAlloc() noexcept
+        ~AString() noexcept
         {
             ALIB_STRING_DBG_CHK(this)
             if ( HasInternalBuffer() )
@@ -478,7 +472,7 @@ class ASAlloc : public ASTerminatable
          * @param  copy  The object to copy the contents from.
          * @return \c *this to allow concatenated calls.
          ******************************************************************************************/
-        ASAlloc& operator= (const ASAlloc&  copy)
+        AString& operator= (const AString&  copy)
         {
             if ( copy.IsNull() )
             {
@@ -507,7 +501,7 @@ class ASAlloc : public ASTerminatable
          * @return    \c *this to allow concatenated calls.
          ******************************************************************************************/
         template <class T>
-        ASAlloc& operator= (const  T& op )
+        AString& operator= (const  T& op )
         {
             Clear();
             if ( Apply<true>( op ) < 0 )
@@ -537,11 +531,11 @@ class ASAlloc : public ASTerminatable
          *    internally managed and it has the same size than what is requested.
          *  - In the C++ version of ALib, the \c true allocation size is + 1 of what is given
          *    in parameter \p newSize. This is is to duly apply to a constraint given by parent
-         *    #ASTerminatable.
+         *    #TString.
          *
          *  \note Any methods of this class that extend the length of the string represented, will
          *        invoke this method if the current buffer size is not sufficient.
-         *        If a future string length of an \b %ASAlloc is predictable, then it is advisable
+         *        If a future string length of an \b %AString is predictable, then it is advisable
          *        to allocate such size prior to start appending the data to avoid recurring
          *        allocations (performance optimization).
          *  <p>
@@ -606,8 +600,8 @@ class ASAlloc : public ASTerminatable
          * a one time warning is issued. The warning occurs only once for the first
          * occurrence of an invocation of this method with such wrong parameter.
          * To enable/disable this warning use macros
-         * - \ref ALIB_WARN_ONCE_PER_TYPE_ENABLE(AS, SetLengthLonger) or
-         * - \ref ALIB_WARN_ONCE_PER_TYPE_DISABLE(AS, SetLengthLonger).
+         * - \ref ALIB_WARN_ONCE_PER_TYPE_ENABLE(String, SetLengthLonger) or
+         * - \ref ALIB_WARN_ONCE_PER_TYPE_DISABLE(String, SetLengthLonger).
          *
          * The <em>non-checking</em> version may be used to increase the length. Here, an
          * assertion is only raised, when the length is negative or greater than the
@@ -622,7 +616,7 @@ class ASAlloc : public ASTerminatable
          * @tparam TCheck    Defaults to \c true which is the normal invocation mode.
          *                   If \c \<false\> is added to the method name, no parameter checks are
          *                   performed.
-         * @param newLength  The new length of the \b %ASAlloc. Must be between 0 and the current
+         * @param newLength  The new length of the \b %AString. Must be between 0 and the current
          *                   length.
          ******************************************************************************************/
         template <bool TCheck= true>
@@ -643,7 +637,7 @@ class ASAlloc : public ASTerminatable
                 // in the non-checking version, the debug check must be done only after setting the
                 // length.
                 ALIB_ASSERT_ERROR( newLength >= 0 && newLength <= Capacity(),
-                   (ASAlloc("NC: Length out of range. capacity=") << capacity
+                   (AString("NC: Length out of range. capacity=") << capacity
                                           <<  ", newLength="  << newLength)        )
                 length= newLength;
                 ALIB_STRING_DBG_UNTERMINATE(*this, 0)
@@ -726,9 +720,9 @@ class ASAlloc : public ASTerminatable
          *  given as \c Responsibility::KeepWithSender (and not automatically replaced, yet,
          *  because it became too small) then \c false is returned.
          *  \note Derived class
-         *        \ref aworx::lib::strings::ASPreAlloc "ASPreAlloc" will report \c false here.
+         *        \ref aworx::lib::strings::PreallocatedString "PreallocatedString" will report \c false here.
          *        This sounds wrong on the first sight, as the buffer is allocated by an 'internal'
-         *        member. But from an ASAlloc's perspective, class <em>ASPreAlloc</em> works on
+         *        member. But from an AString's perspective, class <em>PreallocatedString</em> works on
          *        an 'external' buffer.
          *
          * @return \c true if the buffer is internally allocated and will be deleted with the
@@ -771,7 +765,7 @@ class ASAlloc : public ASTerminatable
          * \note
          *   The C++ language would allow to declare this method const, as it does not
          *   manipulate the data of the class itself but a character in the buffer pointer.<br>
-         *   In exclamation cases, to manipulate the contents of <em>const %ASAlloc</em>, use
+         *   In exclamation cases, to manipulate the contents of <em>const %AString</em>, use
          *   method VBuffer() like in the following sample:
          *   \snippet "DOX_ALIB_ASTRING.cpp" DOX_ALIB_ASTRING_MODIFY_CONST_BUFFER
          *   <p>
@@ -801,7 +795,7 @@ class ASAlloc : public ASTerminatable
         /** ****************************************************************************************
          * Provides read/write access to single characters.
          * Overwrites
-         * \ref aworx::lib::strings::AS::operator[] "AS::operator[]"
+         * \ref aworx::lib::strings::String::operator[] "String::operator[]"
          * returning a reference to a char which allows assignments of values when using an
          * object with this operator as lvalue.
          *
@@ -835,7 +829,7 @@ class ASAlloc : public ASTerminatable
          * @return \c *this to allow concatenated calls.
          ******************************************************************************************/
         inline
-        ASAlloc&    Clear()
+        AString&    Clear()
         {
             ALIB_STRING_DBG_CHK(this)
 
@@ -850,7 +844,7 @@ class ASAlloc : public ASTerminatable
          * @return \c *this to allow concatenated calls.
          ******************************************************************************************/
         inline
-        ASAlloc&    _()
+        AString&    _()
         {
             ALIB_STRING_DBG_CHK(this)
 
@@ -865,16 +859,16 @@ class ASAlloc : public ASTerminatable
          *
          * \note
          *   To insert a string with replacing a different one at the same time, use
-         *   \ref ReplaceSubstring(const AS&,int,int) "ReplaceSubstring(src, pos, regionLength)".
+         *   \ref ReplaceSubstring(const String&,int,int) "ReplaceSubstring(src, pos, regionLength)".
          *
          * @tparam TCheck   Chooses checking or non-checking implementation. Defaults to true.
-         * @param  src      The \b %AS to insert.
+         * @param  src      The \b %String to insert.
          * @param  pos      The position to insert \p src.
          * @return \c *this to allow concatenated calls.
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        ASAlloc&   InsertAt( const AS& src, int pos )
+        AString&   InsertAt( const String& src, int pos )
         {
             ALIB_STRING_DBG_CHK(this)
             int srcLength= src.Length();
@@ -915,7 +909,7 @@ class ASAlloc : public ASTerminatable
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        ASAlloc&   InsertChars( char c, int qty, int pos= CString::MaxLen )
+        AString&   InsertChars( char c, int qty, int pos= CString::MaxLen )
         {
             if (pos == CString::MaxLen )
                 pos= length;
@@ -963,7 +957,7 @@ class ASAlloc : public ASTerminatable
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        ASAlloc&   ReplaceSubstring( const AS& src, int regionStart, int regionLength )
+        AString&   ReplaceSubstring( const String& src, int regionStart, int regionLength )
         {
             ALIB_STRING_DBG_CHK(this)
             int srcLength= src.Length();
@@ -1015,7 +1009,7 @@ class ASAlloc : public ASTerminatable
          * \note
          *   To replace a region with a single character (by shrinking the region to this character)
          *   use
-         *   \ref ReplaceSubstring(const AS&,int,int) "ReplaceSubstring( String(c), regionStart, regionLength)".
+         *   \ref ReplaceSubstring(const String&,int,int) "ReplaceSubstring( String(c), regionStart, regionLength)".
          *
          * The non-checking version does not adjust the region.
          *
@@ -1027,7 +1021,7 @@ class ASAlloc : public ASTerminatable
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        ASAlloc&   ReplaceRegion( char c, int regionStart, int regionLength )
+        AString&   ReplaceRegion( char c, int regionStart, int regionLength )
         {
             if( TCheck )
             {
@@ -1054,7 +1048,7 @@ class ASAlloc : public ASTerminatable
          *
          *  The non-checking version (\p TCheck = \c false) still allows to leave parameter
          *  \p regionLength as default (respectively allows the sum of parameters
-         *  \p regionStart and \p regionLength to be longer than the length of this \b %ASAlloc).
+         *  \p regionStart and \p regionLength to be longer than the length of this \b %AString).
          *   In this case, this string is cut starting from index \p regionStart.
          *
          * \note See also methods #Clear, #DeleteStart and #DeleteEnd.
@@ -1068,7 +1062,7 @@ class ASAlloc : public ASTerminatable
          ******************************************************************************************/
         template <bool TCheck= true >
         inline
-        ASAlloc&    Delete( int regionStart, int regionLength= CString::MaxLen  )
+        AString&    Delete( int regionStart, int regionLength= CString::MaxLen  )
         {
             ALIB_STRING_DBG_CHK(this)
 
@@ -1128,7 +1122,7 @@ class ASAlloc : public ASTerminatable
          ******************************************************************************************/
         template <bool TCheck= true >
         inline
-        ASAlloc&                 DeleteStart( int regionLength )
+        AString&                 DeleteStart( int regionLength )
         {
             ALIB_STRING_DBG_CHK(this)
 
@@ -1167,7 +1161,7 @@ class ASAlloc : public ASTerminatable
          ******************************************************************************************/
         template <bool TCheck= true >
         inline
-        ASAlloc&                DeleteEnd( int regionLength  )
+        AString&                DeleteEnd( int regionLength  )
         {
             ALIB_STRING_DBG_CHK(this)
 
@@ -1203,7 +1197,7 @@ class ASAlloc : public ASTerminatable
          * @return  \c *this to allow concatenated calls.
          ******************************************************************************************/
         ALIB_API
-        ASAlloc& Trim( const ASTerminatable& trimChars= DefaultWhitespaces );
+        AString& Trim( const TString& trimChars= DefaultWhitespaces );
 
         /** ****************************************************************************************
          * All characters defined in given set at, left of and right of the given index
@@ -1216,7 +1210,7 @@ class ASAlloc : public ASTerminatable
          * @return  \c *this to allow concatenated calls.
          ******************************************************************************************/
         ALIB_API
-        ASAlloc& TrimAt( int index, const ASTerminatable& trimChars= DefaultWhitespaces );
+        AString& TrimAt( int index, const TString& trimChars= DefaultWhitespaces );
 
         /** ****************************************************************************************
          * All characters defined in given set are removed at the beginning of this string.
@@ -1228,7 +1222,7 @@ class ASAlloc : public ASTerminatable
          * @return  \c *this to allow concatenated calls.
          ******************************************************************************************/
         inline
-        ASAlloc& TrimStart( const ASTerminatable& trimChars= DefaultWhitespaces )
+        AString& TrimStart( const TString& trimChars= DefaultWhitespaces )
         {
             return TrimAt( 0, trimChars );
         }
@@ -1243,7 +1237,7 @@ class ASAlloc : public ASTerminatable
          * @return  \c *this to allow concatenated calls.
          ******************************************************************************************/
         inline
-        ASAlloc& TrimEnd( const ASTerminatable& trimChars= DefaultWhitespaces )
+        AString& TrimEnd( const TString& trimChars= DefaultWhitespaces )
         {
             return TrimAt( length - 1, trimChars );
         }
@@ -1266,7 +1260,7 @@ class ASAlloc : public ASTerminatable
          ******************************************************************************************/
         template <bool TCheck= true >
         inline
-        ASAlloc& Append( const char* src, int srcLength )
+        AString& Append( const char* src, int srcLength )
         {
             ALIB_STRING_DBG_CHK(this)
 
@@ -1306,27 +1300,27 @@ class ASAlloc : public ASTerminatable
          *  - If a pointer type is detected and value is nullptr, nothing is done and -1 is returned.
          *    This allows the caller to react on nullptr values (e.g. the assignment operator,
          *    would set this object to \e nulled state if -1 was returned).
-         *  - If a reference or pointer type of ASLiteral<TLength> or a character string literal
+         *  - If a reference or pointer type of StringLiteral<TLength> or a character string literal
          *    (respectively a fixed size char array) is provided, its contents is appended
-         *    to this \b %ASAlloc and the appended length is returned. (The append operation in this case
+         *    to this \b %AString and the appended length is returned. (The append operation in this case
          *    is implemented using fast inline method
-         *    \ref aworx::lib::strings::ASLiteral::Copy "ASLiteral::Copy")
+         *    \ref aworx::lib::strings::StringLiteral::Copy "StringLiteral::Copy")
          *  - If above is \c false, using TMP mechanics, the given parameter \p src of type \p T
          *    is converted into a const reference of the original type.<br>
          *    E.g. if a <em>std::string* src</em> was given, it is converted to
          *    <em>const std::string& src</em>.
          *  - This const reference is then passed to partially implemented template function
-         *    \ref ApplyTo(ASAlloc& , const T).<br>
+         *    \ref ApplyTo(AString& , const T).<br>
          *  - If a matching (partially implemented) template method is found, this method
          *    defines what 'applying' of an object of this type means.
          *  - The default implementation of
-         *    \ref ApplyTo(ASAlloc&,const T) determines if \p src is of type AS or derived
-         *    from that. If yes, the contents of such \b %AS is appended.
-         *  - Furthermore, the default implementation determines if an AS was constructible from
+         *    \ref ApplyTo(AString&,const T) determines if \p src is of type String or derived
+         *    from that. If yes, the contents of such \b %String is appended.
+         *  - Furthermore, the default implementation determines if an String was constructible from
          *    the given \p src object (using TMP 'method'
-         *    \ref aworx::lib::strings::ToASDefined "ToASDefined".
+         *    \ref aworx::lib::strings::ToStringDefined "ToStringDefined".
          *
-         *  See \ref ApplyTo( ASAlloc&,const T) for information on how to implement
+         *  See \ref ApplyTo( AString&,const T) for information on how to implement
          *  a supporting template method to allow the application of user defined types.
          *
          *  \note A static assertion tries to detect unsupported types at compile time. However,
@@ -1336,7 +1330,7 @@ class ASAlloc : public ASTerminatable
          * <b>Usage</b><p>
          *  This method not directly used by standard user code. However, indirectly it is used
          *  through:
-         *  - constructor ASAlloc(const T& src)
+         *  - constructor AString(const T& src)
          *  - assignment \ref operator=(const T& src)
          *  - apply operator <<(const T& src).
          *  - apply method _(const T& src)
@@ -1352,7 +1346,7 @@ class ASAlloc : public ASTerminatable
          * If template parameter \p TCheck is provided as \c false on invocation, two things are
          * omitted:
          * - There is no check for nullptr objects (attention!)
-         * - If this is a \e nulled \b %ASAlloc object, and the length of the given parameter \p src
+         * - If this is a \e nulled \b %AString object, and the length of the given parameter \p src
          *   to append is zero (e.g. an empty string), this object would not loose
          *   its \e nulled state. In other words, \e nulled strings keep being \e nulled if empty objects
          *   are appended when invocating this method with \p TCheck= \c false.<p>
@@ -1384,7 +1378,7 @@ class ASAlloc : public ASTerminatable
          * @return -1 if the given object represents a \e nulled string. Otherwise 0 or positive
          *         value is returned (indicating the number of characters that were appended,
          *         but not necessarily correct). Depends on the implementation of the template
-         *         method \ref ApplyTo( ASAlloc&,const T) which is invoked in turn.
+         *         method \ref ApplyTo( AString&,const T) which is invoked in turn.
          ******************************************************************************************/
         template <bool TCheck= true, class T>
         int Apply(const  T& src )
@@ -1432,7 +1426,7 @@ class ASAlloc : public ASTerminatable
                     {
                         ALIB_DEBUG_CODE( int error= GetLastError(); )
                         ALIB_WARNING_AS(
-                           "ASAlloc: Cannot convert wide character string to UTF-8. (Error: "
+                           "AString: Cannot convert wide character string to UTF-8. (Error: "
                             << (   error == ERROR_INSUFFICIENT_BUFFER    ? "ERROR_INSUFFICIENT_BUFFER"
                                 :  error == ERROR_INVALID_FLAGS          ? "ERROR_INVALID_FLAGS."
                                 :  error == ERROR_INVALID_PARAMETER      ? "ERROR_INVALID_PARAMETER"
@@ -1464,7 +1458,7 @@ class ASAlloc : public ASTerminatable
                         typename std::remove_const  < T >::type>::type>::type;
             //ALIB::dbgTMPShowTypeInDebugger<TPod>();
 
-            //---------- ASLiteral or string literal (or to be precise: char array of known length)? ----------
+            //---------- StringLiteral or string literal (or to be precise: char array of known length)? ----------
             if ( TMPLiteral<TPod>::Length >= 0 )
             {
                 constexpr int TLength= TMPLiteral<TPod>::Length;
@@ -1473,7 +1467,7 @@ class ASAlloc : public ASTerminatable
                 {
                     EnsureRemainingCapacity( (int) TLength );
 
-                    ASLiteral<TLength>::Copy(
+                    StringLiteral<TLength>::Copy(
                             vbuffer + length,
                             TMPLiteral<TPod>::Buffer(  std::is_pointer<T>::value ? (void*) (*((T**) &src))
                                                                                  : (void*) &src )         );
@@ -1573,22 +1567,22 @@ class ASAlloc : public ASTerminatable
          * @return   \c *this to allow concatenated calls.
          ******************************************************************************************/
         template <bool TCheck= true, class T >
-        ASAlloc& _(const  T& src )
+        AString& _(const  T& src )
         {
             Apply<TCheck>( src );
             return *this;
         }
 
         /** ****************************************************************************************
-         * Invokes #Append on a region of a reference of \ref aworx::lib::strings::AS "AS".
-         * Accepts various types for \p src, due to the flexibility of class \b %AS to implicitly
+         * Invokes #Append on a region of a reference of \ref aworx::lib::strings::String "String".
+         * Accepts various types for \p src, due to the flexibility of class \b %String to implicitly
          * construct.
          *
          * \note When using the non-checking version, parameter \p regionLength must be set
          *       explicitly to the correct value (instead of using the default value).
          *
          * @tparam TCheck        Chooses checking or non-checking implementation. Defaults to true.
-         * @param  src           The \b %AS to append.
+         * @param  src           The \b %String to append.
          * @param  regionStart   The start of the region in src to append.
          * @param  regionLength  The maximum length of the region in src to append.
          *                       Defaults to CString::MaxLen
@@ -1597,7 +1591,7 @@ class ASAlloc : public ASTerminatable
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        ASAlloc& _( const AS& src, int regionStart, int regionLength =CString::MaxLen )
+        AString& _( const String& src, int regionStart, int regionLength =CString::MaxLen )
         {
             if (TCheck)
             {
@@ -1639,7 +1633,7 @@ class ASAlloc : public ASTerminatable
          ******************************************************************************************/
         template <class T>
         inline
-        ASAlloc& operator<< (const  T& op )
+        AString& operator<< (const  T& op )
         {
             Apply<true>(op);
             return *this;
@@ -1647,12 +1641,12 @@ class ASAlloc : public ASTerminatable
 
         /** ****************************************************************************************
          *  Appends platform specific new line character(s) by appending literal string
-         *  \ref aworx::lib::strings::NewLine "NewLine".
+         *  \ref aworx::NewLine "NewLine".
          * @return \c *this to allow concatenated calls.
          ******************************************************************************************/
-        ASAlloc&          NewLine()
+        AString&          NewLine()
         {
-            return _<false>( strings::NewLine );
+            return _<false>( aworx::NewLine );
         }
 
     /** ############################################################################################
@@ -1661,7 +1655,7 @@ class ASAlloc : public ASTerminatable
 
         /** ****************************************************************************************
          * Replaces one or more occurrences of a terminatable string (
-         * \ref aworx::lib::strings::ASTerminatable "ASTerminatable") by a replacement string.
+         * \ref aworx::lib::strings::TString "TString") by a replacement string.
          *
          *
          * @param needle           The terminatable string to be replaced.
@@ -1675,15 +1669,15 @@ class ASAlloc : public ASTerminatable
          * @return The number of replacements that where performed.
          ******************************************************************************************/
         ALIB_API
-        int SearchAndReplace( const ASTerminatable& needle,
-                              const AS&             replacement,
+        int SearchAndReplace( const TString& needle,
+                              const String&         replacement,
                               int                   startIdx            = 0,
                               int                   maxReplacements     = CString::MaxLen,
                               enums::Case           sensitivity         = enums::Case::Sensitive );
 
         /** ****************************************************************************************
          * Replaces one or more occurrences of a terminatable string (
-         * \ref aworx::lib::strings::ASTerminatable "ASTerminatable") by a replacement string.
+         * \ref aworx::lib::strings::TString "TString") by a replacement string.
          * \note The difference to #SearchAndReplace is that this method returns \b *this to allow
          *       concatenated calls.
          *
@@ -1699,11 +1693,11 @@ class ASAlloc : public ASTerminatable
          * @return \c *this to allow concatenated calls.
          ******************************************************************************************/
         inline
-        ASAlloc& SearchAndReplaceAll( const ASTerminatable& needle,
-                                      const AS&             replacement,
-                                      int                   startIdx            = 0,
-                                      int                   maxReplacements     = CString::MaxLen,
-                                      enums::Case           sensitivity         = enums::Case::Sensitive )
+        AString& SearchAndReplaceAll( const TString   needle,
+                                      const String&   replacement,
+                                      int             startIdx            = 0,
+                                      int             maxReplacements     = CString::MaxLen,
+                                      enums::Case     sensitivity         = enums::Case::Sensitive )
         {
             SearchAndReplace( needle, replacement, startIdx, maxReplacements, sensitivity );
             return *this;
@@ -1719,7 +1713,7 @@ class ASAlloc : public ASTerminatable
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        ASAlloc& ToUpper( int regionStart= 0, int regionLength= CString::MaxLen )
+        AString& ToUpper( int regionStart= 0, int regionLength= CString::MaxLen )
         {
             if( TCheck )
             {
@@ -1758,7 +1752,7 @@ class ASAlloc : public ASTerminatable
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        ASAlloc& ToLower( int regionStart= 0, int regionLength= CString::MaxLen )
+        AString& ToLower( int regionStart= 0, int regionLength= CString::MaxLen )
         {
             if( TCheck )
             {
@@ -1788,7 +1782,7 @@ class ASAlloc : public ASTerminatable
 
 
 
-}; // class ASAlloc
+}; // class AString
 
 // #################################################################################################
 // Namespace methods
@@ -1798,18 +1792,23 @@ class ASAlloc : public ASTerminatable
      * arbitrary type if it is allowed in the case that they are not terminated,
      * to write termination character '\0' into their character buffer at the first position after
      * their last character.
-     * This implementation inherits from std::true_type for the type ASAlloc
+     * This implementation inherits from std::true_type for the type AString
      * as this class always reserves one character in its buffers' capacity.
      *
      * @returns \c true.
      **********************************************************************************************/
-    template<>   struct  IsTerminatable<ASAlloc>   : public std::true_type { };
+    template<>   struct  IsTerminatable<AString>   : public std::true_type { };
 
 
-}}} // namespace aworx::lib::strings
+}} // namespace lib::strings
+
+/** Type alias name in namespace #aworx. */
+using     AString   =       aworx::lib::strings::AString;
+
+} // namespace aworx
 
 
 #if defined(_MSC_VER)
     #pragma warning( pop )
 #endif
-#endif // HPP_AWORX_LIB_STRINGS_ASTRING
+#endif // HPP_ALIB_STRINGS_ASTRING

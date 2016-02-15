@@ -29,9 +29,6 @@
 
 using namespace std;
 using namespace aworx;
-using namespace aworx::lib;
-using namespace aworx::lib::enums;
-using namespace aworx::lib::strings;
 
 namespace ut_aworx {
 
@@ -520,7 +517,7 @@ UT_METHOD( Append )
 
     // Substring
     {
-        AString ms;  ASSubstring ssNull; ASSubstring ssEmpty("");  ASSubstring t( "01234" );
+        AString ms;  Substring ssNull; Substring ssEmpty("");  Substring t( "01234" );
 
         ms= ssNull;                UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
         ms= ssEmpty;               UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNotNull() );
@@ -707,10 +704,7 @@ UT_METHOD( CapacityLength )
 
         as= ms.Capacity();
 
-        bool oldHaltOnError=    Report::GetDefault().HaltOnError;
-        bool oldHaltOnWarning=  Report::GetDefault().HaltOnWarning;
-        Report::GetDefault().HaltOnError=
-        Report::GetDefault().HaltOnWarning=    false;
+        lib::Report::GetDefault().PushHaltFlags( false, false );
             UT_PRINT( "A warning should follow" );
             ms.SetLength(20);                    UT_EQ( ms.Length(), 10 );    UT_EQ  ( ms.Capacity(), as );    UT_EQ( ms, "0123456789" );
 
@@ -728,8 +722,7 @@ UT_METHOD( CapacityLength )
             UT_PRINT( "No (second) warning should follow" );
             ms.SetLength(11);                    UT_EQ( ms.Length(), 10 );    UT_EQ  ( ms.Capacity(), as );    UT_EQ( ms, "0123456789" );
 
-        Report::GetDefault().HaltOnError=      oldHaltOnError;
-        Report::GetDefault().HaltOnWarning=    oldHaltOnWarning;
+        lib::Report::GetDefault().PopHaltFlags();
 
         ms.SetLength(5);                         UT_EQ( ms.Length(),  5 );    UT_EQ  ( ms.Capacity(), as );    UT_EQ( ms, "01234"      );
         ms.SetBuffer(3);                         UT_EQ( ms.Length(),  3 );    UT_EQ  ( ms.Capacity(), 3  );    UT_EQ( ms, "012"        );
@@ -756,10 +749,7 @@ UT_METHOD( CapacityLength )
         sMS1.SetBuffer( (char*) &stackCA1, 5 );
         sMS1._("ABC");                 UT_TRUE ( sMS1.Buffer() == (char*) &stackCA1 );  UT_EQ( sMS1, "ABC" );
 
-        bool oldHaltOnError=    Report::GetDefault().HaltOnError;
-        bool oldHaltOnWarning=  Report::GetDefault().HaltOnWarning;
-        Report::GetDefault().HaltOnError=
-        Report::GetDefault().HaltOnWarning=    false;
+        lib::Report::GetDefault().PushHaltFlags( false, false );
             char stackCA2[5];
             AString sMS2;
             sMS2.SetBuffer( (char*) &stackCA2, 5 );
@@ -767,7 +757,7 @@ UT_METHOD( CapacityLength )
             UT_PRINT( "A warning should follow" );
             sMS2._("ABC");                UT_TRUE ( sMS2.Buffer() != (char*) &stackCA2 );  UT_EQ( sMS2, "ABCABC" );
 
-            ASPreAlloc<(size_t) 5> msS;
+            PAString<(size_t) 5> msS;
             const char* orig= msS.Buffer();
             msS._("ABC");                 UT_TRUE ( msS.Buffer() == orig );  UT_EQ( msS, "ABC" );
             UT_PRINT( "A warning should follow" );
@@ -782,8 +772,7 @@ UT_METHOD( CapacityLength )
             ms64._( '@' );
             UT_TRUE ( ms64 != orig );
             UT_TRUE ( ms64.SearchAndReplace( "@", "X" ) == 64 );
-        Report::GetDefault().HaltOnError=      oldHaltOnError;
-        Report::GetDefault().HaltOnWarning=    oldHaltOnWarning;
+        lib::Report::GetDefault().PopHaltFlags();
     }
 }
 
@@ -891,7 +880,7 @@ UT_METHOD( SearchAndReplace )
 
     // search characters
     {
-        AS ms("abcd abcd");
+        String ms("abcd abcd");
         result= ms.IndexOf       ( '@', -5  );   UT_EQ(    -1,  result );
         result= ms.IndexOf       ( '@'      );   UT_EQ(    -1,  result );
         result= ms.IndexOf       ( '@', 5   );   UT_EQ(    -1,  result );
@@ -1034,7 +1023,7 @@ UT_METHOD( SearchAndReplace )
     // ------------------ search one of several characters ------------------
     // non static version
     {
-        AS ms("abcd abcde");
+        String ms("abcd abcde");
 
         // search one of
         int l= ms.Length();
@@ -1125,10 +1114,10 @@ UT_METHOD( SearchAndReplace )
         result= ms.LastIndexOfAny<false>    ( "a"    , Inclusion::Exclude,  0   );    UT_EQ(  -1, result );
     }
 
-    // ------------------ search one of several characters ASTerminatable version  ------------------
+    // ------------------ search one of several characters TString version  ------------------
     // non static version
     {
-        ASTerminatable ms("abcd abcde");
+        TString ms("abcd abcde");
         // search one of
         result= ms.IndexOfAny       ( ""       , Inclusion::Include      );    UT_EQ(  -1, result );
         result= ms.IndexOfAny       ( "x"      , Inclusion::Include      );    UT_EQ(  -1, result );
@@ -1558,15 +1547,15 @@ UT_METHOD( Compare )
                                 UT_TRUE  ( ms.Equals( string("AB" ))     )
 
     // equals AString
-    ms.Clear()._( "" );         UT_TRUE  ( ms.Equals( AS(""  ))   )
-                                UT_FALSE ( ms.Equals( AS("a" ))   )
+    ms.Clear()._( "" );         UT_TRUE  ( ms.Equals( String(""  ))   )
+                                UT_FALSE ( ms.Equals( String("a" ))   )
 
-    ms.Clear()._( "AB" );       UT_FALSE ( ms.Equals( AS(""  ))   )
-                                UT_FALSE ( ms.Equals( AS("ab"))   )
-                                UT_FALSE ( ms.Equals( AS("A" ))   )
-                                UT_FALSE ( ms.Equals( AS("B" ))   )
-                                UT_TRUE  ( ms.Equals( AS("AB"))   )
-                                UT_TRUE  ( ms.Equals( AS("AB"))   )
+    ms.Clear()._( "AB" );       UT_FALSE ( ms.Equals( String(""  ))   )
+                                UT_FALSE ( ms.Equals( String("ab"))   )
+                                UT_FALSE ( ms.Equals( String("A" ))   )
+                                UT_FALSE ( ms.Equals( String("B" ))   )
+                                UT_TRUE  ( ms.Equals( String("AB"))   )
+                                UT_TRUE  ( ms.Equals( String("AB"))   )
 }
 
 //---------------------------------------------------------------------------------------------------------

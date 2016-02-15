@@ -4,7 +4,7 @@
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
-/** @file */ // Hello Doxyen
+/** @file */ // Hello Doxygen
 
 // include ALox main header first...
 #if !defined (HPP_ALOX)
@@ -15,6 +15,11 @@
 #ifndef HPP_ALOX_LOG
 #define HPP_ALOX_LOG 1
 
+// Due to our blocker above, this include will never be executed. But having it, allows IDEs
+// (e.g. QTCreator) to read the symbols when opening this file
+#if !defined (HPP_ALOX)
+    #include "alox/alox.hpp"
+#endif
 
 
 namespace aworx {
@@ -247,22 +252,7 @@ class Log
          *  This is a singleton static object of type class Lox which is provided for standard
          *  debug logging statements.
          ******************************************************************************************/
-        ALOX_API static Lox*    lox;
-    #endif
-
-    #if defined(ALOX_REL_LOG)
-    protected:
-        /** ****************************************************************************************
-         *  This is a singleton static object of type class Lox which provided for standard
-         *  release logging statements.
-         ******************************************************************************************/
-        ALOX_API static Lox     defaultRelLox;
-    public:
-        /** ****************************************************************************************
-         *  This is a singleton static object of type class Lox which provided for standard
-         *  release logging statements.
-         ******************************************************************************************/
-        ALOX_API static Lox*    relLox;
+        ALOX_API static Lox*    LOX;
     #endif
 
 
@@ -467,6 +457,11 @@ class Log
 }; // LOG
 
 
-}} // namespace
+} // namespace lox
+
+/** Type alias name in namespace #aworx. */
+using     Log=           aworx::lox::Log;
+
+}  // namespace aworx
 
 #endif // HPP_ALOX_LOG

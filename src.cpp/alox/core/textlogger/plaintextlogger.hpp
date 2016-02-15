@@ -4,7 +4,7 @@
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
-/** @file */ // Hello Doxyen
+/** @file */ // Hello Doxygen
 
 // include ALox main header first...
 #if !defined (HPP_ALOX)
@@ -27,7 +27,7 @@
 // #################################################################################################
 // forwards
 // #################################################################################################
-namespace aworx { namespace lib { namespace strings { class ASSubstring; } } }
+namespace aworx { namespace lib { namespace strings { class Substring; } } }
 
 namespace aworx {
 namespace           lox {

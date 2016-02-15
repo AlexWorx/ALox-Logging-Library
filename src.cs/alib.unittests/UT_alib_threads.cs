@@ -44,10 +44,7 @@ namespace ut_cs_aworx_lib
         #endif
         public void ThreadLock_SimpleTests()
         {
-            bool oldHaltOnError=    Report.GetDefault().HaltOnError;
-            bool oldHaltOnWarning=  Report.GetDefault().HaltOnWarning;
-            Report.GetDefault().HaltOnError=
-            Report.GetDefault().HaltOnWarning=    false;
+            Report.GetDefault().PushHaltFlags( false, false );
 
             Log.Reset();
             Log.AddLogger( new ConsoleLogger() );
@@ -114,8 +111,7 @@ namespace ut_cs_aworx_lib
             Log.Info("One warning should come now: ");
             aLock.Release();                UT_TRUE (  aLock.ToString().StartsWith("Unlocked") );
 
-            Report.GetDefault().HaltOnError=      oldHaltOnError;
-            Report.GetDefault().HaltOnWarning=    oldHaltOnWarning;
+            Report.GetDefault().PopHaltFlags();
         }
 
         #if ALIB_MONO_DEVELOP

@@ -27,7 +27,7 @@ So, with one line of code we get a log statement that incorporates:
 - The source file, line number and method, which - depending on the IDE you use - is 'clickable' which
   means a click in the output window opens the source file and highlights the line where the
   log statement sits.
-- The time that was passed since the process started (here 00:00.000 which means below a millisecond)
+- The time that passed since the process started (here 00:00.000 which means below a millisecond)
 - The time that passed since the last log line: 152 microseconds. This information is handy for
   a first impression on the execution speed of your methods.
 - The name of the thread executing the log (automatically identified as the main thread in this case)
@@ -37,7 +37,7 @@ So, with one line of code we get a log statement that incorporates:
 
 And: In the release build of your software, this line of code is completely pruned away. Also,
 in debug versions you can disable them selectively, not only by their level, but also ... well, this
-is where above "NULL" comes in..., let's forget this again. What we want to say here: you can
+is where above "NULL" comes in..., let's forget this for a moment. What we want to say here: you can
 keep your debug log statements in your code forever!
 
 Well, if you think this is nice, continue reading. There is a lot more to come. But we
@@ -76,7 +76,7 @@ container for all debug logging output. Macros of this type will be pruned in re
 statement can be included in the log output
 So, when you see the line
 
-Log_Info( "Hello ALox" )
+        Log_Info( "Hello ALox" )
 
 This means that method
 [Info](@ref #aworx::lox::Lox::Info) is invoked on the predefined singleton of class \b Lox which
@@ -110,9 +110,13 @@ To include all headers necessary for this tutorial, add the following statements
 
 \snippet ut_alox_tutorial.cpp        Tut_include_statement
 
-And below that, let's add a bunch of using statements to your source file:
+And add a statement to use namespace %aworx to your source file:
 
 \snippet ut_alox_tutorial.cpp        Tut_using_statement
+
+\note Although ALib and ALox are organized in several sub-namespaces below #aworx::lib respectively
+      aworx::lox, it is enough in most cases to just <em>'use'</em> namespace \b %aworx. The design and
+      reason behind is explained in the documentation \ref aworx "namespace aworx".
 
 
 ## 2.2. Create an instance of class "Logger" ##  {#tutcpp_ha1}
@@ -519,15 +523,15 @@ pretty neat features. Here we go!
 In many occasions, a log message consists of a string that is assembled from strings and
 values. Creating such strings is time consuming and slows down the execution speed of your program.
 Usually, when strings are concatenated, memory allocations are performed.
-We want to avoid such allocations and therefore, ALox exports the ALib
-class [AString](@ref aworx::lib::strings::ASAlloc). AString manages an internal, heap allocated
+We want to avoid such allocations and therefore, we use ALib
+class [AString](@ref aworx::lib::strings::AString). AString manages an internal, heap allocated
 buffer and provides various methods and overloaded operators to append values.<p>
 
 As we want to avoid just *all* allocations on the memory heap, AString is extended by template class
-[ASPreAlloc<size_t>](@ref aworx::lib::strings::ASPreAlloc), which allocates the amount of string buffer
+[PreallocatedString<size_t>](@ref aworx::lib::strings::PreallocatedString), which allocates the amount of string buffer
 space provided in the template parameter 'internally'.
 
-\note Internally here means: If class *ASPreAlloc<size_t>* is allocated on the stack, also its buffer resides
+\note Internally here means: If class *PreallocatedString<size_t>* is allocated on the stack, also its buffer resides
 on the stack. If allocated in the heap using the new() operator, then the buffer memory is a part of the
 heap allocation of the class itself. In other words: in the latter case, only one heap allocation is
 performed while in the stack allocation case, no heap allocation is performed.
@@ -562,7 +566,7 @@ The log output could look as follows:
 As you see in the sample, we chose two different sizes for the string class, 64 and 256.
 The rules for choosing those are as follows:
 - first of all: if a size is too small for the string to be written, this is *not* serious.
-[ASPreAlloc<size_t>](@ref aworx::lib::strings::ASPreAlloc)
+[PreallocatedString<size_t>](@ref aworx::lib::strings::PreallocatedString)
 will just allocate heap memory to perform all operations.
 So, all we are talking here is performance optimization.
 - second of all: If a preallocated is chosen too big, this also does not hurt, because all it
@@ -697,7 +701,7 @@ Some further quick remarks on the code:
 
 - [MemoryLogger.MemoryLog](@ref #aworx::lox::loggers::MemoryLogger::MemoryLog) provides public access to its data.
 See class
-[AString](@ref #aworx::lib::strings::ASAlloc) for more information.
+[AString](@ref #aworx::lib::strings::AString) for more information.
 
 - As you can see from the output, the two log lines contained in the
 [MemoryLogger](@ref #aworx::lox::loggers::MemoryLogger) are logged into two separated lines by the
@@ -784,7 +788,7 @@ for example (the base class of all console loggers of ALox) adds two spaces per 
 \ref aworx::lox::core::textlogger::TextLogger::FmtIndentString "TextLogger::FmtIndentString").
 
 Furthermore, when building the output using class
-[AString]          (@ref #aworx::lib::strings::ASAlloc),
+[AString]          (@ref #aworx::lib::strings::AString),
 simple mechanism to use tabulators and aligned fields are provided.
 See classes
 [Format::Tab]      (@ref #aworx::lib::strings::Format::Tab) and

@@ -408,7 +408,7 @@ In the <em>C++ version</em> of ALib, things are a little more complicated but fo
 which is logging strings, things sort out nicely. Here, the log object is defined as a <em>void*</em>
 and is accompanied by an \e int value that defines the objects' type. There is only one type
 predefined (type value \e '0') and this is type
-\ref aworx::lib::strings::ASTerminatable "aworx::TString". Class
+\ref aworx::lib::strings::TString "aworx::TString". Class
 \ref aworx::lox::Lox "Lox" provides overloaded methods for either logging such strings or
 for logging arbitrary objects of type <em>void*</em>. The good news is, that \b aworx::TString
 is implicitly created from standard C++ string types like <em>char*</em> or <em>std::string</em>
@@ -592,5 +592,10 @@ Other ideas are *Logger* types that encapsulate other *Logger* instances. For ex
 type that lazily collects and schedules log requests into a background thread.
 The idea is to just provide the "final" *Logger* to such lazy *Logger* and hence,it would be
 possible to put just any existing *Logger* into lazy mode.
+
+<p>
+
+--------------------------------------------------------------------
+Next chapter: \ref man_debug_and_release_logging
 
 */

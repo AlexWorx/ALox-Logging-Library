@@ -7,8 +7,8 @@
 #include "alib/stdafx_alib.h"
 #include "domain.hpp"
 
-#if !defined (HPP_AWORX_LIB_STRINGS_ASSUBSTRING)
-    #include "alib/strings/assubstring.hpp"
+#if !defined (HPP_ALIB_STRINGS_ASSUBSTRING)
+    #include "alib/strings/substring.hpp"
 #endif
 
 #if !defined(_GLIBCXX_IOSTREAM) && !defined(_IOSTREAM_)
@@ -21,9 +21,6 @@
 
 
 using namespace aworx;
-using namespace aworx::lib;
-using namespace aworx::lib::enums;
-using namespace aworx::lox;
 using namespace aworx::lox::core;
 
 

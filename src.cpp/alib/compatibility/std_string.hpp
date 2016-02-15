@@ -4,19 +4,19 @@
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
-/** @file */ // Hello Doxyen
+/** @file */ // Hello Doxygen
 
 // check for alib.hpp already there but not us
-#if !defined (HPP_AWORX_LIB_ALIB)
+#if !defined (HPP_ALIB_ALIB)
     #error "include \"alib/alib.hpp\" before including this header"
 #endif
-#if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_AWORX_LIB_COMPATIBILITY_STD_STRING)
+#if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_ALIB_COMPATIBILITY_STD_STRING)
     #error "Header already included"
 #endif
 
-#ifndef HPP_AWORX_LIB_COMPATIBILITY_STD_STRING
+#ifndef HPP_ALIB_COMPATIBILITY_STD_STRING
 #if !defined( IS_DOXYGEN_PARSER)
-#define HPP_AWORX_LIB_COMPATIBILITY_STD_STRING 1
+#define HPP_ALIB_COMPATIBILITY_STD_STRING 1
 #endif
 #include <string>
 
@@ -31,31 +31,31 @@ namespace                   strings {
 
     /** ********************************************************************************************
      * Specialization of TMP 'function' (struct)
-     * \ref aworx::lib::strings::ToASDefined "ToASDefined" for type \b std::string.
-     * See \ref aworx::lib::strings::ToASDefined "ToASDefined" for more information
+     * \ref aworx::lib::strings::ToStringDefined "ToStringDefined" for type \b std::string.
+     * See \ref aworx::lib::strings::ToStringDefined "ToStringDefined" for more information
      **********************************************************************************************/
-    template<>   struct               ToASDefined<const std::string&>   : public std::true_type {};
+    template<>   struct               ToStringDefined<const std::string&>   : public std::true_type {};
 
     /** ********************************************************************************************
      * Specialization of template function
-     * \ref aworx::lib::strings::ToAS "ToAS" for type \b std::string.
+     * \ref aworx::lib::strings::ToString "ToString" for type \b std::string.
      *
      * @param  src The source string to take the buffer from.
      * @return The value of  <em>src.c_str()</em>.
      **********************************************************************************************/
-    template<>   inline   const char* ToAS        <const std::string&>( const std::string& src )
+    template<>   inline   const char* ToString        <const std::string&>( const std::string& src )
     {
         return  src.c_str();
     }
 
     /** ********************************************************************************************
      * Specialization of template function
-     * \ref aworx::lib::strings::ToAS "ToAS" for type \b std::string.
+     * \ref aworx::lib::strings::ToString "ToString" for type \b std::string.
      *
      * @param  src The source string to take the length from.
      * @return The length of \p src.
      **********************************************************************************************/
-    template<>   inline   int         ToAS        <const std::string&>( const std::string& src )
+    template<>   inline   int         ToString        <const std::string&>( const std::string& src )
     {
         return (int) src.length();
     }
@@ -95,10 +95,10 @@ namespace                   strings {
     }
 
     /** ********************************************************************************************
-     *  Copies or appends a region of a given \ref aworx::lib::strings::AS "AS" into a std::string.
-     *  The region is adjusted to the length of the %AS.
+     *  Copies or appends a region of a given \ref aworx::lib::strings::String "String" into a std::string.
+     *  The region is adjusted to the length of the %String.
      *
-     * @param as            The \ref aworx::lib::strings::AS "AS" to convert into a std::string.
+     * @param as            The \ref aworx::lib::strings::String "String" to convert into a std::string.
      * @param target        A result std::string to copy the specified region into.
      * @param regionStart   The start index of the region to be copied.
      * @param regionLength  The maximum length of the region to be copied.
@@ -109,7 +109,7 @@ namespace                   strings {
      * @return The (modified) std::string& result that was provided (for concatenation of calls).
      **********************************************************************************************/
     inline
-    std::string& ToStdString( const AS&          as,
+    std::string& ToStdString( const String&      as,
                               std::string&       target,
                               int                regionStart,
                               int                regionLength    = CString::MaxLen,
@@ -128,11 +128,11 @@ namespace                   strings {
     }
 
     /** ********************************************************************************************
-     *  Copies a region of a given \ref aworx::lib::strings::AS "AS" into a std::string which
+     *  Copies a region of a given \ref aworx::lib::strings::String "String" into a std::string which
      *  is created.
-     *  The region is adjusted to the length of the %AS.
+     *  The region is adjusted to the length of the %String.
      *
-     * @param as            The \ref aworx::lib::strings::AS "AS" to convert into a std::string.
+     * @param as            The \ref aworx::lib::strings::String "String" to convert into a std::string.
      * @param regionStart   The start index of the region in this to create the std::string from.
      * @param regionLength  The maximum length of the region to be copied.
      *                      Defaults to CString::MaxLen.
@@ -140,7 +140,7 @@ namespace                   strings {
      * @return A string that represents the specified sub region of this object.
      **********************************************************************************************/
     inline
-    std::string  ToStdString( const AS& as, int regionStart, int regionLength= CString::MaxLen )
+    std::string  ToStdString( const String& as, int regionStart, int regionLength= CString::MaxLen )
     {
         std::string retval;
         ToStdString( as, retval, regionStart, regionLength);
@@ -148,29 +148,29 @@ namespace                   strings {
     }
 
     /** ********************************************************************************************
-     *  Copies the contents of a given \ref aworx::lib::strings::AS "AS" into the given std::string.
+     *  Copies the contents of a given \ref aworx::lib::strings::String "String" into the given std::string.
      *
-     * @param as            The \ref aworx::lib::strings::AS "AS" to convert into a std::string.
+     * @param as            The \ref aworx::lib::strings::String "String" to convert into a std::string.
      * @return A std::string that represents this object.
      **********************************************************************************************/
     inline
-    std::string  ToStdString( const AS& as )
+    std::string  ToStdString( const String& as )
     {
         return ToStdString( as, 0, as.Length() );
     }
 
 
     /** ********************************************************************************************
-     *  Copies the contents of a given \ref aworx::lib::strings::AS "AS" into the given std::string.
+     *  Copies the contents of a given \ref aworx::lib::strings::String "String" into the given std::string.
      *
-     * @param as           The \ref aworx::lib::strings::AS "AS" to convert into a std::string.
-     * @param target       A target std::string to copy the contents of this %AS into.
+     * @param as           The \ref aworx::lib::strings::String "String" to convert into a std::string.
+     * @param target       A target std::string to copy the contents of this %String into.
      * @param targetData   If \c CurrentData::Keep, parameter \p target is not cleared before
      *                     the result is written. Defaults to \c CurrentData::Clear.
      * @return The (modified) result that was provided (for concatenation of calls).
      **********************************************************************************************/
     inline
-    std::string& ToStdString( const AS&          as,
+    std::string& ToStdString( const String&      as,
                               std::string&       target,
                               enums::CurrentData targetData = enums::CurrentData::Clear )
     {
@@ -178,4 +178,4 @@ namespace                   strings {
     }
 }}}
 
-#endif // HPP_AWORX_LIB_COMPATIBILITY_STD_STRING
+#endif // HPP_ALIB_COMPATIBILITY_STD_STRING

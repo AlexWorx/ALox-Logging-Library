@@ -4,22 +4,22 @@
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
-/** @file */ // Hello Doxyen
+/** @file */ // Hello Doxygen
 
 // to preserve the right order, we are not includable directly from outside.
-#if !defined(FROM_HPP_AWORX_LIB_ALIB) || defined(HPP_AWORX_LIB_STRINGS_AS)
+#if !defined(FROM_HPP_ALIB_ALIB) || defined(HPP_ALIB_STRINGS_AS)
     #error "include alib/alib.hpp instead of this header"
 #endif
 
 // Due to our blocker above, this include will never be executed. But having it, allows IDEs
 // (e.g. QTCreator) to read the symbols when opening this file
-#if !defined (HPP_AWORX_LIB_ALIB)
+#if !defined (HPP_ALIB_ALIB)
     #include "alib/alib.hpp"
 #endif
 
 // then, set include guard
-#ifndef HPP_AWORX_LIB_STRINGS_AS
-#define HPP_AWORX_LIB_STRINGS_AS 1
+#ifndef HPP_ALIB_STRINGS_AS
+#define HPP_ALIB_STRINGS_AS 1
 
 // #################################################################################################
 // includes
@@ -47,9 +47,9 @@
  * @addtogroup GrpALibStringsMacros
  * @{ \def  ALIB_STRING_DBG_CHK
  *  Simple macro that just invokes method _dbgCheck(), which is defined for classes
- *  \ref aworx::lib::strings::AS              "AS",
- *  \ref aworx::lib::strings::ASTerminatable  "ASTerminatable" and
- *  \ref aworx::lib::strings::ASAlloc "AString".
+ *  \ref aworx::lib::strings::String   "String",
+ *  \ref aworx::lib::strings::TString  "TString" and
+ *  \ref aworx::lib::strings::AString "AString".
  *  It is active only when compiler symbol \ref ALIB_DEBUG_STRINGS is set.
  *  The macro is placed in almost every method.
  * @}
@@ -72,7 +72,7 @@ namespace                   strings {
 // #################################################################################################
 // forwards
 // #################################################################################################
-class AS;
+class String;
 class NumberFormat;
 
 // We are including this header before we include headers for class Report. Therefore, we have to
@@ -85,39 +85,39 @@ class NumberFormat;
 
 /** ********************************************************************************************
  * This is a TMP (template meta programming) 'class' which defaults the question
- * <c>ToASDefined<T>::value</c> to \c false for every type.<br>
+ * <c>ToStringDefined<T>::value</c> to \c false for every type.<br>
  * When implementing specializations of template function
- * \ref aworx::lib::strings::ToAS(const TString) "ToAS" for custom types, this class has to
+ * \ref aworx::lib::strings::ToString(const TString) "ToString" for custom types, this class has to
  * be specialized as well.
  * Otherwise, a compile time assertion (<em>static_assert</em>) will fail whenever the type
  * is used to implicitly construct an
- * \ref aworx::lib::strings::AS "AS" providing that type.
+ * \ref aworx::lib::strings::String "String" providing that type.
  *
  * Definition has to be made as follows:
 \verbatim
-    template<>  struct ToASDefined<T> : public std::true_type {};
+    template<>  struct ToStringDefined<T> : public std::true_type {};
 \endverbatim
  * where T is the type that is to be defined given as a const reference.
  * For example, in the ALib support header file <em>"alib/compatibility/std_string.hpp"</em>,
  * for class <em>std::string</em>, the definition looks as follows:
 \verbatim
-    template<>  struct ToASDefined<const std::string&> : public std::true_type {};
+    template<>  struct ToStringDefined<const std::string&> : public std::true_type {};
 \endverbatim
  * \see For more information and a sample refer to
- *  \ref aworx::lib::strings::ToAS(const TString) "ToAS".
+ *  \ref aworx::lib::strings::ToString(const TString) "ToString".
  * **********************************************************************************************/
-template<typename Type>  struct ToASDefined     : public std::false_type{};
+template<typename Type>  struct ToStringDefined     : public std::false_type{};
 
 
 /** ********************************************************************************************
  * This template function supports converting 'external' <em>user defined</em>
  * to ALib string
- * \ref aworx::lib::strings::AS "AS". It has a central role for using ALib in a
+ * \ref aworx::lib::strings::String "String". It has a central role for using ALib in a
  * \ref aworx::lib "non intrusive" way, by allowing to pass external string types just as
  * the are when invoking ALib functions and methods.
  *
  * Partially specialized versions of this method are invoked by constructor
- * \ref aworx::lib::strings::AS::AS(const T&) "AS(const T&)"
+ * \ref aworx::lib::strings::String::String(const T&) "String(const T&)"
  * with template parameters \p TString and \p TReturn set to receive a pointer to the
  * character buffer and the length of the external string type.
  *
@@ -125,29 +125,29 @@ template<typename Type>  struct ToASDefined     : public std::false_type{};
  * specializations of this method to a single variant of the external type, \p TSTring will
  * always be a "constant reference". As an example, if the external type was
  * '<em>class MyString></em>' and a non-constant pointer to an object of that type was used to
- * construct an %AS, the template parameter \p TString would be '<em>const MyString &</em>'.
+ * construct an %String, the template parameter \p TString would be '<em>const MyString &</em>'.
  *
  * The second type that is given in parameter \p TReturn has two possible values when invoked
- * from the constructor r of class %AS:
+ * from the constructor r of class %String:
  * - '<em>const char*</em>' for returning the string buffer
  * - '<em>int</em>' for returning the strings length
  *
- * This way, exactly two specializations of this template method <em>ToAS</em> have to be
+ * This way, exactly two specializations of this template method <em>ToString</em> have to be
  * provided when using ALib with external types: Both with \p TString being a constant reference
  * to the user defined type, one with \p TReturn being <em>int</em>, the other with \p TReturn
  * being <em>const char*</em>.
  *
  * Finally, for allowing static (compile time) assertions when user code tries to provide arbitrary
  * types to
- * \ref aworx::lib::strings::AS::AS(const T&) "AS(const T&)" that are not supported with
+ * \ref aworx::lib::strings::String::String(const T&) "String(const T&)" that are not supported with
  * specializations of this method, it is necessary to implement
- * \ref aworx::lib::strings::ToASDefined "ToASDefined" for the external type as well.
+ * \ref aworx::lib::strings::ToStringDefined "ToStringDefined" for the external type as well.
  *
  * The following sample demonstrates this. Please note, that the sample in addition
  * provides an implementation of
  * \ref aworx::lib::strings::ApplyTo "ApplyTo". This is a similar mechanism for 'applying' user defined
  * string types to class
- * \ref aworx::lib::strings::ASAlloc "AString". The general term '<em>applying to</em>' for external string
+ * \ref aworx::lib::strings::AString "AString". The general term '<em>applying to</em>' for external string
  * types normally is implemented in a way that it means '<em>append to</em>'.
  *
  * \snippet "DOX_ALIB_TOAS.cpp"     DOX_ALIB_TOAS
@@ -172,18 +172,18 @@ template<typename TPlain>   inline void TellMeThe_TPlain_Type()
         ||  (    std::is_array < TPlain >::value
               && std::is_same<char,  typename std::remove_extent<TPlain>::type >::value )
 
-        // another AS
-        ||  std::is_base_of <AS    ,            TPlain >::value
+        // another String
+        ||  std::is_base_of <String,            TPlain >::value
 
-        // External type with defined ToAS method?
-        ||  ToASDefined     <          const    TPlain&>::value
+        // External type with defined ToString method?
+        ||  ToStringDefined     <          const    TPlain&>::value
 
     , "!!!!!!!!!! Your compiler speaking... !!!!!!!!!!!!" );
 
 }
 */
 
-template<typename TString, typename TReturn>   inline TReturn ToAS( const TString )
+template<typename TString, typename TReturn>   inline TReturn ToString( const TString )
 {
     // prevent invoking us with unknown types
     static_assert(      std::is_same< int        , TReturn >::value
@@ -208,13 +208,13 @@ template<typename TString, typename TReturn>   inline TReturn ToAS( const TStrin
         ||  (    std::is_array < TPlain >::value
               && std::is_same<char,  typename std::remove_extent<TPlain>::type >::value )
 
-        // another AS
-        ||  std::is_base_of <AS    ,            TPlain >::value
+        // another String
+        ||  std::is_base_of <String,            TPlain >::value
 
-        // External type wiht defined ToAS method?
-        ||  ToASDefined     <          const    TPlain&>::value
+        // External type wiht defined ToString method?
+        ||  ToStringDefined     <          const    TPlain&>::value
 
-    , "ALib: Unknown type to construct AS. Implement ToAS() to support implicit conversions." );
+    , "ALib: Unknown type to construct String. Implement ToString() to support implicit conversions." );
 
 
     // should never happen, because of static assert above
@@ -227,12 +227,6 @@ template<typename TString, typename TReturn>   inline TReturn ToAS( const TStrin
  * This class is the base class of all ALib string classes. It represents a character string
  * whose data is allocated outside the scope of objects of this class.
  *
- * \note This class \b %AS, when used in source code as well as in documentations, is mostly
- *       referred to using the synonym '<b>%String</b>'. For more information about the
- *       synonymous names of ALib string classes, refer to
- *       \ref alib_namespace_strings_class_overview "String Classes Overview" and
- *       \ref CPP_AWORX_NS_SHORTCUTS "Type Shortcuts in the aworx Namespace".
- *
  * Once constructed, objects
  * of this class are immutable. This means, there is no interface to change their buffer or length
  * during their lifetime, which normally is rather volatile.
@@ -242,16 +236,16 @@ template<typename TString, typename TReturn>   inline TReturn ToAS( const TStrin
  *
  * <b>Templated Construction</b><br>
  * What makes this class very flexible, is the constructor variant
- * \ref aworx::lib::strings::AS::AS(const T&) "AS(const T&)".
+ * \ref aworx::lib::strings::String::String(const T&) "String(const T&)".
  * This template method internally uses so called
  * <em>template meta programming</em> to detect known types and, and
  * to convert them to constant references of those. They are then passed to template methods
- * \ref aworx::lib::strings::ToAS "ToAS" that simply return a pointer to the external types' buffer
+ * \ref aworx::lib::strings::ToString "ToString" that simply return a pointer to the external types' buffer
  * and length. This way, objects of this class can be implicitly constructed from just anything that
  * 'smells' like a string.<br>
- * For more information on how to make %AS support to implicitly construct from user defined types,
+ * For more information on how to make %String support to implicitly construct from user defined types,
  * see namespace template function
- * \ref aworx::lib::strings::ToAS "ToAS".
+ * \ref aworx::lib::strings::ToString "ToString".
  *
  * This class provides compiler defined copy and move constructors and assignment operators.
  * Once and object is constructed, methods #Buffer and #Length allow read access to the contents.
@@ -259,10 +253,10 @@ template<typename TString, typename TReturn>   inline TReturn ToAS( const TStrin
  * <b>Null-State</b><br> \anchor CPP_STRINGS_AS_NULLSTATE
  * Objects of this class can be \e nulled which means that it is a difference whether they are
  * representing an empty string or a null pointer. As objects are immutable, this is decided
- * on construction: once an %AS is null, it will remain null.
- * In other words, it makes a difference if an %AS is constructed using
- * - <em>%AS()</em>, which creates a \e nulled object, method #IsNull will give \c true, or
- * - <em>%AS("")</em>, which creates an empty object. Method #IsNull will give \c false while
+ * on construction: once an %String is null, it will remain null.
+ * In other words, it makes a difference if an %String is constructed using
+ * - <em>%String()</em>, which creates a \e nulled object, method #IsNull will give \c true, or
+ * - <em>%String("")</em>, which creates an empty object. Method #IsNull will give \c false while
  *   method #IsEmpty will give \c true
  *
  * <b>Non-checking Method Variants</b><br> \anchor CPP_STRINGS_AS_NC
@@ -273,10 +267,10 @@ template<typename TString, typename TReturn>   inline TReturn ToAS( const TStrin
  * \note Almost all methods of this class are declared <em>inline</em>.
  *
  * <p>
- * \note The immutable nature of %AS is lifted by derived types. While class
- *       \ref aworx::lib::strings::ASSubstring "Substring" allows to change the start and
+ * \note The immutable nature of %String is lifted by derived types. While class
+ *       \ref aworx::lib::strings::Substring "Substring" allows to change the start and
  *       length of the string represented, class
- *       \ref aworx::lib::strings::ASAlloc "AString" holds a copy of the data and allows to
+ *       \ref aworx::lib::strings::AString "AString" holds a copy of the data and allows to
  *       modify the contents. Field #buffer of this class is declared
  *       as an anonymous union of a <em>const char*</em> and a <em>char*</em> but the latter is
  *       not exposed. It might be exposed by derived classes (and is by class \p %AString).
@@ -285,7 +279,7 @@ template<typename TString, typename TReturn>   inline TReturn ToAS( const TStrin
  * \note For an introduction into the ALib string classes see
  *       \ref aworx::lib::strings "namespace strings"
  **************************************************************************************************/
-class AS
+class String
 {
     // #############################################################################################
     // Debug warnings
@@ -325,7 +319,7 @@ class AS
              * has to be declared here, because it constitutes an anonymous union with field
              * #buffer.
              * Derived classes might use and expose this field, like e.g. class
-             * \ref aworx::lib::strings::ASAlloc "AString" does.
+             * \ref aworx::lib::strings::AString "AString" does.
              */
                    char*  vbuffer;
     #endif
@@ -344,9 +338,9 @@ class AS
      public:
 
         /** ****************************************************************************************
-         * Constructs a \e nulled %AS
+         * Constructs a \e nulled %String
          ******************************************************************************************/
-        constexpr AS()                      : buffer(nullptr)
+        constexpr String()                      : buffer(nullptr)
                                             , length(0)                                           {}
 
         /** ****************************************************************************************
@@ -359,19 +353,19 @@ class AS
          * @param contentLength   The length of the content in the given buffer.
          ******************************************************************************************/
         constexpr
-        AS( const char* buffer, int contentLength ) : buffer(buffer)
+        String( const char* buffer, int contentLength ) : buffer(buffer)
                                                     , length(contentLength )
         {}
 
         /** ****************************************************************************************
-         *  Constructs this object to represent a region of another %AS (respectively a region
-         *  of any string object whose type implicitly constructs a temporary %AS).<br>
+         *  Constructs this object to represent a region of another %String (respectively a region
+         *  of any string object whose type implicitly constructs a temporary %String).<br>
          *  The region is adjusted to  [0 ... <em>as.Length()</em>].
          *  @param src           The src from that we will represent a region.
-         *  @param regionStart   The start of the region within the given %AS.
-         *  @param regionLength  The length of the region within the given %AS.
+         *  @param regionStart   The start of the region within the given %String.
+         *  @param regionLength  The length of the region within the given %String.
          ******************************************************************************************/
-        AS(  const AS& src, int regionStart, int regionLength )
+        String(  const String& src, int regionStart, int regionLength )
         {
             src.AdjustRegion( regionStart, regionLength );
             buffer= src.buffer + regionStart;
@@ -381,14 +375,14 @@ class AS
         /** ****************************************************************************************
          *  Templated constructors for different types. This constructor uses some template meta
          *  programming to provide maximum flexibility to implicitly embed the data of any string
-         *  type in an object of type %AS.
+         *  type in an object of type %String.
          *
          *  This constructor accepts the following types:
-         *  - <em>nullptr</em> (creates a \e nulled %AS).
+         *  - <em>nullptr</em> (creates a \e nulled %String).
          *  - <em>[const] char*</em>
-         *  - Classes derived from %AS.
+         *  - Classes derived from %String.
          *  - User defined (external types). See documentation of
-         *    \ref aworx::lib::strings::ToAS "ToAS" on how to add support for implicit conversion
+         *    \ref aworx::lib::strings::ToString "ToString" on how to add support for implicit conversion
          *    of user defined types with this constructor.
          *  - std::string (as just one case/sample of user defined external types,
          *    provided by ALib already).
@@ -401,13 +395,13 @@ class AS
          *
          *  \see For more information, see
          *  \ref aworx::lib::strings "namespace documentation" and template
-         *  function \ref aworx::lib::strings::ToAS "ToAS".
+         *  function \ref aworx::lib::strings::ToString "ToString".
          *
          * @param src  The source of template type T to take the buffer and length from.
          ******************************************************************************************/
         template <typename T>
         constexpr
-        AS(const  T& src )
+        String(const  T& src )
         : buffer(
                    // nullptr ?
                    std::is_same<T, decltype(nullptr)>::value
@@ -421,9 +415,9 @@ class AS
 
                    // Reference type?
                    :!std::is_pointer<T>::value
-                   ? ( std::is_base_of<AS, T  >::value
-                       ?  ((AS*) &src)->buffer
-                       :  ToAS<typename std::add_const<T>::type &, const char*>( (typename std::add_const<T>::type &) src )
+                   ? ( std::is_base_of<String, T  >::value
+                       ?  ((String*) &src)->buffer
+                       :  ToString<typename std::add_const<T>::type &, const char*>( (typename std::add_const<T>::type &) src )
                      )
 
                    // nullptr ?
@@ -435,13 +429,13 @@ class AS
                    ?  *((char**) &src)
 
                    // Pointer type
-                   : std::is_convertible<T, const AS*  >::value
-                       ?  (*(AS**) &src)->buffer
-                       :  ToAS<typename std::add_const<typename std::remove_pointer<T>::type>::type &, const char*>(
+                   : std::is_convertible<T, const String*  >::value
+                       ?  (*(String**) &src)->buffer
+                       :  ToString<typename std::add_const<typename std::remove_pointer<T>::type>::type &, const char*>(
                                      *(typename std::add_const<typename std::remove_pointer<T>::type>::type *&)  src )
                 )
 
-        , length(  
+        , length(
                    // nullptr ?
                    std::is_same<T, decltype(nullptr)>::value
                    ? 0
@@ -453,9 +447,9 @@ class AS
 
                    // Reference type?
                    :!std::is_pointer<T>::value
-                   ? ( std::is_base_of<AS, T  >::value
-                       ?  ((AS*) &src)->length
-                       :  ToAS<typename std::add_const<T>::type &, int>( (typename std::add_const<T>::type &) src )
+                   ? ( std::is_base_of<String, T  >::value
+                       ?  ((String*) &src)->length
+                       :  ToString<typename std::add_const<T>::type &, int>( (typename std::add_const<T>::type &) src )
                      )
 
                    // nullptr ?
@@ -467,14 +461,14 @@ class AS
                    ?  (int) strlen(*((char**) &src))
 
                    // Pointer type
-                   : std::is_convertible<T, const AS*  >::value
-                       ?  (*(AS**) &src)->length
-                       :  ToAS<typename std::add_const<typename std::remove_pointer<T>::type>::type &, int>(
+                   : std::is_convertible<T, const String*  >::value
+                       ?  (*(String**) &src)->length
+                       :  ToString<typename std::add_const<typename std::remove_pointer<T>::type>::type &, int>(
                              *(typename std::add_const<typename std::remove_pointer<T>::type>::type *&)  src )
                 )
         {
             static_assert( std::is_same<T, char>::value == false,
-                           "ALib AS (aka aworx::String) can't be constructed with type 'char'." );
+                           "ALib String (aka aworx::String) can't be constructed with type 'char'." );
         }
 
     /** ############################################################################################
@@ -564,7 +558,7 @@ class AS
          * @tparam TCheck  Defaults to \c true which is the normal invocation mode.
          *                 If \c \<false\> is added to the method name, no check for an empty
          *                 or \e nulled object is performed.
-         * @return The first character in the %AS.
+         * @return The first character in the %String.
          *         If this instance's length is zero,  '\0' is returned.
          ******************************************************************************************/
         template <bool TCheck= true>
@@ -576,7 +570,7 @@ class AS
                                    :  '\0';
             #if defined(ALIB_DEBUG)
                 if( length <= 0 )
-                    dbgAStringAlibError( "Non checking invocation on Empy AS" );
+                    dbgAStringAlibError( "Non checking invocation on Empy String" );
             #endif
 
             return  *(buffer);
@@ -590,7 +584,7 @@ class AS
          *                 If \c \<false\> is added to the method name, no check for an empty
          *                 or \e nulled object is performed.
          *
-         * @return The last character in the %AS.
+         * @return The last character in the %String.
          *         If this instance's length is zero,  '\0' is returned.
          ******************************************************************************************/
         template <bool TCheck= true>
@@ -603,7 +597,7 @@ class AS
 
             #if defined(ALIB_DEBUG)
                 if( length <= 0 )
-                    dbgAStringAlibError( "Non checking invocation on Empy AS" );
+                    dbgAStringAlibError( "Non checking invocation on Empy String" );
             #endif
 
             return  *(buffer + length - 1);
@@ -640,16 +634,16 @@ class AS
      ##@{ ########################################################################################*/
 
         /** ****************************************************************************************
-         * Compares this with given %AS.
+         * Compares this with given %String.
          * \c true is returned if both are \e nulled or empty. If only one is \e nulled, \c false is returned.
          *
-         * @param needle        An %AS that is compared to this.
+         * @param needle        An %String that is compared to this.
          * @param sensitivity   Determines if comparison is case sensitive (the default) or not.
          *
-         * @return    \c true, if contents of this and the given %AS are equal.
+         * @return    \c true, if contents of this and the given %String are equal.
          ******************************************************************************************/
         inline
-        bool Equals( const AS& needle, enums::Case sensitivity =enums::Case::Sensitive )
+        bool Equals( const String& needle, enums::Case sensitivity =enums::Case::Sensitive )
         const
         {
             ALIB_STRING_DBG_CHK(this)
@@ -666,7 +660,7 @@ class AS
         }
 
         /** ****************************************************************************************
-         * Returns \c true, if the given %AS is found at the given position.
+         * Returns \c true, if the given %String is found at the given position.
          *
          *  \note The following rules apply
          *        - If \p pos is out of range or \p needle is \e nulled, \c false is returned.
@@ -683,7 +677,7 @@ class AS
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        bool ContainsAt( const AS& needle, int pos, enums::Case sensitivity =enums::Case::Sensitive )
+        bool ContainsAt( const String& needle, int pos, enums::Case sensitivity =enums::Case::Sensitive )
         const
         {
             int cmpLength= needle.length;
@@ -720,7 +714,7 @@ class AS
          * @return \c true if \p needle is found at the start of this, \c false otherwise. *
          ******************************************************************************************/
         inline
-        bool StartsWith( const AS& needle, enums::Case sensitivity =enums::Case::Sensitive )
+        bool StartsWith( const String& needle, enums::Case sensitivity =enums::Case::Sensitive )
         const
         {
             int cmpLength= needle.length;
@@ -743,7 +737,7 @@ class AS
          * @return \c true if \p needle is found at the end of this, \c false otherwise. *
          ******************************************************************************************/
         inline
-        bool EndsWith( const AS& needle, enums::Case sensitivity =enums::Case::Sensitive )
+        bool EndsWith( const String& needle, enums::Case sensitivity =enums::Case::Sensitive )
         const
         {
             int cmpLength= needle.length;
@@ -758,7 +752,7 @@ class AS
         }
 
         /** ****************************************************************************************
-         * Compares this with another %AS.
+         * Compares this with another %String.
          *
          * @tparam TCheck      Defaults to \c true which is the normal invocation mode.
          *                     If \c \<false\> is added to the method name, no check for \e nulled
@@ -775,7 +769,7 @@ class AS
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        int CompareTo(  const AS&  needle, enums::Case sensitivity =enums::Case::Sensitive )
+        int CompareTo(  const String&  needle, enums::Case sensitivity =enums::Case::Sensitive )
         const
         {
             // check null arguments
@@ -800,7 +794,7 @@ class AS
 
 
         /** ****************************************************************************************
-         * Compares this with a region of another %AS.
+         * Compares this with a region of another %String.
          *
          * @tparam TCheck         Defaults to \c true which is the normal invocation mode.
          *                        If \c \<false\> is added to the method name, no check for a \e nulled
@@ -824,7 +818,7 @@ class AS
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        int CompareTo(  const AS&   needle,
+        int CompareTo(  const String&   needle,
                         enums::Case sensitivity,
                         int         cmpRegionStart,
                         int         cmpRegionLength  =CString::MaxLen
@@ -833,7 +827,7 @@ class AS
         {
             if ( TCheck )
             {
-                AS cmpSub( needle.buffer, 0);
+                String cmpSub( needle.buffer, 0);
                 needle.AdjustRegion( cmpRegionStart, cmpRegionLength );
                 cmpSub.buffer+=   cmpRegionStart;
                 cmpSub.length=    cmpRegionLength;
@@ -841,11 +835,11 @@ class AS
                 return CompareTo( cmpSub, sensitivity );
             }
             else
-                return CompareTo<false>( AS( needle.buffer + cmpRegionStart, cmpRegionLength ), sensitivity );
+                return CompareTo<false>( String( needle.buffer + cmpRegionStart, cmpRegionLength ), sensitivity );
         }
 
         /** ****************************************************************************************
-         * Compares a region of this object with a region of another %AS.
+         * Compares a region of this object with a region of another %String.
          *
          * @tparam TCheck         Defaults to \c true which is the normal invocation mode.
          *                        If \c \<false\> is added to the method name, no check for a \e nulled
@@ -873,7 +867,7 @@ class AS
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        int CompareTo(  const AS&   needle,
+        int CompareTo(  const String&   needle,
                         enums::Case sensitivity,
                         int         cmpRegionStart,
                         int         cmpRegionLength,
@@ -884,17 +878,17 @@ class AS
         {
             if ( TCheck )
             {
-                AS cmpSub( needle.buffer, 0);
+                String cmpSub( needle.buffer, 0);
                 needle.AdjustRegion( cmpRegionStart, cmpRegionLength );
                 cmpSub.buffer+=   cmpRegionStart;
                 cmpSub.length=    cmpRegionLength;
 
                 AdjustRegion( regionStart, regionLength );
-                return AS( buffer + regionStart, regionLength ).CompareTo( cmpSub, sensitivity );
+                return String( buffer + regionStart, regionLength ).CompareTo( cmpSub, sensitivity );
             }
             else
-                return AS( buffer + regionStart, regionLength )
-                        .CompareTo<false>( AS( needle.buffer + cmpRegionStart, cmpRegionLength ),
+                return String( buffer + regionStart, regionLength )
+                        .CompareTo<false>( String( needle.buffer + cmpRegionStart, cmpRegionLength ),
                                            sensitivity );
 
         }
@@ -905,7 +899,7 @@ class AS
          * @param op The string to compare this string with.
          * @returns \c true if this is lexically smaler then \p op, \c false otherwise.
          */
-        bool     operator<  (const AS& op) const { return CompareTo( op ) <  0 ;  }
+        bool     operator<  (const String& op) const { return CompareTo( op ) <  0 ;  }
 
         /**
          * Uses method #CompareTo with parameter \p op to perform a lexical comparison.
@@ -913,7 +907,7 @@ class AS
          * @param op The string to compare this string with.
          * @returns \c true if this is lexically greater then \p op, \c false otherwise.
          */
-        bool     operator>  (const AS& op) const { return CompareTo( op ) >  0 ;  }
+        bool     operator>  (const String& op) const { return CompareTo( op ) >  0 ;  }
 
         /**
          * Uses method #Equals with parameter \p op to test on equality.
@@ -921,7 +915,7 @@ class AS
          * @param op The string to compare this string with.
          * @returns \c true if the strings are equal, \c false otherwise.
          */
-        bool     operator== (const AS& op) const { return Equals( op );  }
+        bool     operator== (const String& op) const { return Equals( op );  }
 
         /**
          * Uses method #Equals with parameter \p op to test on equality.
@@ -929,7 +923,7 @@ class AS
          * @param op The string to compare this string with.
          * @returns \c true if the strings are equal, \c false otherwise.
          */
-        bool     operator!= (const AS& op) const { return !Equals( op ) != 0 ;  }
+        bool     operator!= (const String& op) const { return !Equals( op ) != 0 ;  }
 
     /** ############################################################################################
      * @name Search
@@ -1077,9 +1071,9 @@ class AS
          * Returns the index of the first character which is included, respectively <em>not</em>
          * included in a given set of characters.
          *
-         * \note In derived class \b %ASTerminatable (aka TString), a  faster version (using
+         * \note In derived class \b %TString (aka TString), a  faster version (using
          *       \e std::strpbrk() respectively \e std::strspn()) is available. So, if performance
-         *       is important, it might be advisable to copy this \b %AS (and the needles) to a
+         *       is important, it might be advisable to copy this \b %String (and the needles) to a
          *       terminatable buffer.
          *
          * This method searches forwards. For backwards search, see #LastIndexOf.
@@ -1102,7 +1096,7 @@ class AS
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        int            IndexOfAny( const AS& needles, enums::Inclusion inclusion, int startIdx= 0 )
+        int            IndexOfAny( const String& needles, enums::Inclusion inclusion, int startIdx= 0 )
         const
         {
             if (TCheck)
@@ -1151,7 +1145,7 @@ class AS
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        int    LastIndexOfAny( const AS& needles, enums::Inclusion inclusion, int startIdx= CString::MaxLen )
+        int    LastIndexOfAny( const String& needles, enums::Inclusion inclusion, int startIdx= CString::MaxLen )
         const
         {
             if (TCheck)
@@ -1175,13 +1169,13 @@ class AS
         }
 
         /** ****************************************************************************************
-         * Searches the given (unterminated) %AS in the Buffer.
+         * Searches the given (unterminated) %String in the Buffer.
          *
          * If this string and string \p needle \p needle are known to be zero-terminated,
          * it is advisable to use the faster implementation of this method,
-         * \ref aworx::lib::strings::ASTerminatable::IndexOf "ASTerminatable::IndexOf".<br>
+         * \ref aworx::lib::strings::TString::IndexOf "TString::IndexOf".<br>
          * This method is useful for example to search needles of type
-         * \ref aworx::lib::strings::ASSubstring "ASSubstring" (which are not terminatable).
+         * \ref aworx::lib::strings::Substring "Substring" (which are not terminatable).
          *
          * @tparam TCheck      Defaults to \c true which is the normal invocation mode.
          *                     If \c \<false\> is added to the method name, parameter \p startIdx
@@ -1195,7 +1189,7 @@ class AS
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        int            IndexOfAS( const AS&   needle,
+        int            IndexOfAS( const String&   needle,
                                   int         startIdx= 0,
                                   enums::Case sensitivity=  enums::Case::Sensitive )
         const
@@ -1258,10 +1252,10 @@ class AS
          * \note
          * - For the reverse action, namely to convert wide characters to multi-byte characters,
          *   use class
-         *   \ref aworx::lib::strings::ASAlloc        "AString" with template method
-         *   \ref aworx::lib::strings::ASAlloc::Apply "AString::Apply" e.g.
+         *   \ref aworx::lib::strings::AString        "AString" with template method
+         *   \ref aworx::lib::strings::AString::Apply "AString::Apply" e.g.
          *   by using operator
-         *   \ref aworx::lib::strings::ASAlloc::operator<<(const T&) "AString::operator<<(const T&)"
+         *   \ref aworx::lib::strings::AString::operator<<(const T&) "AString::operator<<(const T&)"
          *   with T being <em>[const] wchar_t*</em>.
          * - On Linux, it might be necessary to invoke std function <em>setlocale()</em> once,
          *   prior to using this method.
@@ -1301,11 +1295,38 @@ class AS
             return CString::AdjustRegion( length, regionStart, regionLength );
         }
 
-}; // class %AS
+}; // class %String
 
-}}} // namespace aworx::lib::strings
+}} // namespace lib::strings
+
+
+/** Type alias name in namespace #aworx. */
+using     String    =       aworx::lib::strings::String;
+
+// #################################################################################################
+// aworx namespace string singletons
+// #################################################################################################
+/**
+ * A constant \e nulled ALib string.
+ * E.g. useful to provide as parameter to methods or to use as default value for method
+ * parameters.
+ * @return A constant \e nulled ALib string.
+ */
+constexpr lib::strings::String   NullString;
+
+/**
+ * A constant empty (but not \e nulled) ALib string
+ * E.g. useful to provide as parameter to methods or to use as default value for method
+ * parameters.
+ * @return A constant empty (but not \e nulled) ALib string.
+ */
+constexpr lib::strings::String   EmptyString {"", 0};
+
+
+} // namespace aworx
+
 
 #if defined(_MSC_VER)
     #pragma warning( pop )
 #endif
-#endif // HPP_AWORX_LIB_STRINGS_AS
+#endif // HPP_ALIB_STRINGS_AS

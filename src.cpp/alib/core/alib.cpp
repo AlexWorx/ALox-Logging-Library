@@ -6,7 +6,7 @@
 // #################################################################################################
 #include "alib/stdafx_alib.h"
 
-#if !defined (HPP_AWORX_LIB_ALIB)
+#if !defined (HPP_ALIB_ALIB)
     #include "alib/alib.hpp"
 #endif
 
@@ -21,12 +21,6 @@
 #include <iomanip>
 
 using namespace std;
-using namespace aworx::lib::enums;
-using namespace aworx::lib::system;
-using namespace aworx::lib::threads;
-using namespace aworx::lib::config;
-using namespace aworx::lib::strings;
-using namespace aworx::lib::time;
 
 namespace aworx {
 namespace           lib {
@@ -37,11 +31,11 @@ namespace           lib {
 // #################################################################################################
 const uint32_t       ALIB::CompilationFlags=                            ALIB_COMPATIBILITY_VERYFIER;
 const int            ALIB::Version=                                     ALIB_VERSION_VERYFIER;
-const int            ALIB::Revision=                                    0;
+const int            ALIB::Revision=                                    1;
 
 
 bool                 ALIB::initialized                                                     =false;
-strings::AS          ALIB::ConfigCategoryName                                              ="ALIB";
+String               ALIB::ConfigCategoryName                                              ="ALIB";
 Configuration*       ALIB::Config                                                          =nullptr;
 
 bool                 ALIB::WaitForKeyPressOnTermination                                    =false;
@@ -140,7 +134,7 @@ void ALIB::Init( Inclusion environment, int argc, void **argv, bool wArgs )
     #endif
 
     // set the system's locale as the default for our static default number format
-    NumberFormat::Global.SetFromLocale();
+    strings::NumberFormat::Global.SetFromLocale();
 
 
     // --- determine if we want to wait for a keypress upon termination ---

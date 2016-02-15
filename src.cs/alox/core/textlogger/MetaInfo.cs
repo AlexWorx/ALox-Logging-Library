@@ -18,7 +18,7 @@ using cs.aworx.lib;
 using cs.aworx.lox;
 using cs.aworx.lox.core;
 
-namespace cs.aworx.lox.core.textlogger 
+namespace cs.aworx.lox.core.textlogger
 {
 
 /** ************************************************************************************************
@@ -39,7 +39,7 @@ public class MetaInfo
     // #############################################################################################
 
         /**
-         * 
+         *
          *  The line format specifies the (automated) log output that is prepended to each log line before
          *  the log message itself.
          *
@@ -61,14 +61,14 @@ public class MetaInfo
          *         Setting this to a higher value avoids too many adjustments at the beginning of a log session.
          *  - %N:  The name of the logger. This might be useful if multiple loggers write to the same
          *           output stream (e.g. Console).
-         * 
+         *
          */
         //public AString  Format= new AString( "%CF(%CL):%CM()%A3[%DD] [%TD] [%TE +%TI] [%t] %L [%O] <%#>: ");
         public            AString            Format    = new AString( "%CF(%CL):%CM()%A5[%TE +%TI] [%t] %L [%O]: ");
 
 
         /**
-         * 
+         *
          *  To shorten the log output the given prefix might be cut from the source file path.
          *  If this field is left to 'null' (or set to null at runtime), it is tried to detect this path
          *  automatically once. However, in remote debug sessions (e.g. on mobile device development)
@@ -77,7 +77,7 @@ public class MetaInfo
          *  different project path), this field has to be changed. If it is not changed, there is no
          *  other problem than that the path is not shortened and the log output might get a little wide.
          *  If the output of the full path is intended, the parameter can be set to 'String.Empty'.
-         * 
+         *
          */
         public         String                   ConsumableSourcePathPrefixString;
 
@@ -154,10 +154,10 @@ public class MetaInfo
         /// The .Net format string built at runtime to {0:FmtTimeOfDay}.
         protected        String            timeOfDayFormatString;
 
-        /// A singleton DateTime object shared between different format variables during one invocation. 
+        /// A singleton DateTime object shared between different format variables during one invocation.
         protected        DateTime?         callerDateTime;
 
-        /// Tokenizer used in #Write. 
+        /// Tokenizer used in #Write.
         protected        Tokenizer         tok=                         new Tokenizer();
 
 
@@ -188,21 +188,21 @@ public class MetaInfo
 
         // loop/switch over content specified in configuration array
         tok.Set( Format, '%' );
-        
+
         while ( true )
         {
             // get next and log substring between commands
             if ( tok.Next(Whitespaces.Keep).IsNotEmpty() )
                 buffer._( tok.Actual );
-    
+
             // previous next did not find a delimiter
             if ( !tok.HasNext() )
                 break;
-    
+
             // process the found variable
             qtyTabStops+= processVariable( logger, domain, level, caller, buffer, tok.Rest );
         }
-        
+
         return qtyTabStops;
     }
 
@@ -222,7 +222,7 @@ public class MetaInfo
      *
      * @return The number of tab sequences that were written (by adding ESC::TAB to the buffer).
      **********************************************************************************************/
-    protected virtual int processVariable( TextLogger logger, AString domain, Log.Level level, 
+    protected virtual int processVariable( TextLogger logger, AString domain, Log.Level level,
                                            CallerInfo caller, AString dest, Substring variable )
     {
         // process commands
@@ -430,7 +430,7 @@ public class MetaInfo
                 extraSpace= Math.Min( extraSpace, 10 + ('Z'-'A') );
                 char escNo= extraSpace < 10 ?   (char) ( '0' + extraSpace )
                                             :   (char) ( 'A' + extraSpace );
-    
+
                 dest._( "\x1Bt" )._( escNo );
             }
             return 1;
@@ -449,10 +449,10 @@ public class MetaInfo
 
 
     /** ********************************************************************************************
-     * 
+     *
      *  Helper function that logs a time given difference into the given buffer in a human readable
      *  format. Works from micro seconds to days.
-     * 
+     *
      * @param buf         The buffer to write the time difference representation into. </param>
      * @param diffNanos     The time difference to write in nanoseconds.     </param>
      **********************************************************************************************/

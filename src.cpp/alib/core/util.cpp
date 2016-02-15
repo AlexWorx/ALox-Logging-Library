@@ -6,7 +6,7 @@
 // #################################################################################################
 #include "alib/stdafx_alib.h"
 
-#if !defined (HPP_AWORX_LIB_ALIB)
+#if !defined (HPP_ALIB_ALIB)
     #include "alib/alib.hpp"
 #endif
 
@@ -17,7 +17,6 @@
 
 
 using namespace std;
-using namespace aworx::lib::strings;
 
 namespace aworx {
 namespace           lib {

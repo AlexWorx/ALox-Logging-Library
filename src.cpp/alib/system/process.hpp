@@ -4,20 +4,20 @@
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
-/** @file */ // Hello Doxyen
+/** @file */ // Hello Doxygen
 
 // check for alib.hpp already there but not us
-#if !defined (HPP_AWORX_LIB_ALIB)
+#if !defined (HPP_ALIB_ALIB)
     #error "include \"alib/alib.hpp\" before including this header"
 #endif
-#if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_AWORX_LIB_SYSTEM_PROCESSINFO)
+#if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_ALIB_SYSTEM_PROCESSINFO)
     #error "Header already included"
 #endif
 
 // then, set include guard
-#ifndef HPP_AWORX_LIB_SYSTEM_PROCESSINFO
+#ifndef HPP_ALIB_SYSTEM_PROCESSINFO
 #if !defined( IS_DOXYGEN_PARSER)
-#define HPP_AWORX_LIB_SYSTEM_PROCESSINFO 1
+#define HPP_ALIB_SYSTEM_PROCESSINFO 1
 #endif
 
 namespace aworx {
@@ -161,6 +161,11 @@ class ProcessInfo
         }
 };
 
-}}}  // namespace aworx::lib::system
+}} // namespace lib::system
 
-#endif // HPP_AWORX_LIB_SYSTEM_PROCESSINFO
+/** Type alias name in namespace #aworx. */
+using     ProcessInfo=       aworx::lib::system::ProcessInfo;
+
+}  // namespace aworx
+
+#endif // HPP_ALIB_SYSTEM_PROCESSINFO

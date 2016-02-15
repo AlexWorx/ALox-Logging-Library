@@ -8,11 +8,11 @@
 
 #include "alib/alib.hpp"
 
-#if !defined (HPP_AWORX_LIB_STRINGS_ASSUBSTRING)
-    #include "alib/strings/assubstring.hpp"
+#if !defined (HPP_ALIB_STRINGS_ASSUBSTRING)
+    #include "alib/strings/substring.hpp"
 #endif
 
-#if !defined (HPP_AWORX_LIB_STRINGS_NUMBERFORMAT)
+#if !defined (HPP_ALIB_STRINGS_NUMBERFORMAT)
     #include "alib/strings/numberformat.hpp"
 #endif
 
@@ -55,10 +55,10 @@ namespace                   strings {
 
 #if !defined( IS_DOXYGEN_PARSER )
 
-    ALIB_WARN_ONCE_PER_TYPE_DEFINE( AS, SetLengthLonger , true);
+    ALIB_WARN_ONCE_PER_TYPE_DEFINE( String, SetLengthLonger , true);
 
     // *********************************************************************************************
-    // _alibWarning/Error (we can't use ALib macros in AS header, yet)
+    // _alibWarning/Error (we can't use ALib macros in String header, yet)
     // *********************************************************************************************
     #if defined(ALIB_DEBUG)
         void dbgAStringAlibWarning( const char* msg ) { ALIB_WARNING( msg ); }
@@ -67,7 +67,7 @@ namespace                   strings {
 #endif // IS_DOXYGEN_PARSER
 
 // *************************************************************************************************
-// AS::_dbgCheck()
+// String::_dbgCheck()
 // *************************************************************************************************
 #if defined(ALIB_DEBUG_STRINGS) && !defined( IS_DOXYGEN_PARSER )
 
@@ -77,7 +77,7 @@ namespace                   strings {
 
     bool _astringCheckReported= false;
 
-    void AS::_dbgCheck() const
+    void String::_dbgCheck() const
     {
         // write to the console once that we are debugging AString
         if ( !_astringCheckReported)
@@ -106,7 +106,7 @@ namespace                   strings {
 // Conversion
 // ####################################################################################################
 
-int  AS::ToWString( wchar_t*  destBuffer,    int  destCapacity,
+int  String::ToWString( wchar_t*  destBuffer,    int  destCapacity,
                     int       regionStart,   int  regionLength        )
 const
 {

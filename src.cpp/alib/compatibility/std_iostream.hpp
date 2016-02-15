@@ -4,19 +4,19 @@
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
-/** @file */ // Hello Doxyen
+/** @file */ // Hello Doxygen
 
 // check for alib.hpp already there but not us
-#if !defined (HPP_AWORX_LIB_ALIB)
+#if !defined (HPP_ALIB_ALIB)
     #error "include \"alib/alib.hpp\" before including this header"
 #endif
-#if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_AWORX_LIB_COMPATIBILITY_STD_IOSTREAM)
+#if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_ALIB_COMPATIBILITY_STD_IOSTREAM)
     #error "Header already included"
 #endif
 
-#ifndef HPP_AWORX_LIB_COMPATIBILITY_STD_IOSTREAM
+#ifndef HPP_ALIB_COMPATIBILITY_STD_IOSTREAM
 #if !defined( IS_DOXYGEN_PARSER)
-#define HPP_AWORX_LIB_COMPATIBILITY_STD_IOSTREAM 1
+#define HPP_ALIB_COMPATIBILITY_STD_IOSTREAM 1
 #endif
 
 // #################################################################################################
@@ -28,7 +28,7 @@
 #endif
 
 // #################################################################################################
-// AS / AString IO
+// String / AString IO
 // #################################################################################################
 
 namespace aworx {
@@ -38,7 +38,7 @@ namespace                   strings {
 
     /** ****************************************************************************************
      * Parameter class which is \e 'applicable' to objects of type
-     * \ref aworx::lib::strings::ASAlloc "AString" with
+     * \ref aworx::lib::strings::AString "AString" with
      * \ref aworx::lib::strings::ApplyTo(AString&, const ReadLineFromIStream&) "corresponding specialization"
      *  of template function
      * \ref aworx::lib::strings::ApplyTo "ApplyTo".<p>
@@ -121,9 +121,9 @@ namespace                   strings {
     #endif
 
     /** ********************************************************************************************
-     * Copies the contents of the given %AS to into the std::ostream given as reference.
-     * @param  stream The ostream object to write the given  AS into.
-     * @param  string The AS to write into the given ostream.
+     * Copies the contents of the given %String to into the std::ostream given as reference.
+     * @param  stream The ostream object to write the given  String into.
+     * @param  string The String to write into the given ostream.
      * @returns The ostream to allow concatenated operations.
      **********************************************************************************************/
     inline std::ostream& operator<<( std::ostream& stream, const String& string )
@@ -133,9 +133,9 @@ namespace                   strings {
     }
 
     /** ********************************************************************************************
-     * Copies the contents of the given %AS to into the std::ostream given as pointer.
-     * @param  stream The ostream object to write the given  AS into.
-     * @param  string The AS to write into the given ostream.
+     * Copies the contents of the given %String to into the std::ostream given as pointer.
+     * @param  stream The ostream object to write the given  String into.
+     * @param  string The String to write into the given ostream.
      * @returns The ostream to allow concatenated operations.
      **********************************************************************************************/
     inline std::ostream* operator<<( std::ostream* stream, const String& string )
@@ -175,4 +175,4 @@ namespace                   strings {
 
 }}}
 
-#endif // HPP_AWORX_LIB_COMPATIBILITY_STD_IOSTREAM
+#endif // HPP_ALIB_COMPATIBILITY_STD_IOSTREAM

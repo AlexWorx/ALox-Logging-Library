@@ -5,10 +5,10 @@
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
 #include "alib/stdafx_alib.h"
-#if !defined (HPP_AWORX_LIB_STRINGS_TOKENIZER)
+#if !defined (HPP_ALIB_STRINGS_TOKENIZER)
     #include "alib/strings/tokenizer.hpp"
 #endif
-#if !defined (HPP_AWORX_LIB_SYSTEM_DIRECTORY)
+#if !defined (HPP_ALIB_SYSTEM_DIRECTORY)
     #include "alib/system/directory.hpp"
 #endif
 
@@ -27,18 +27,12 @@
 #endif
 
 using namespace std;
-using namespace aworx;
-using namespace aworx::lib;
-using namespace aworx::lib::enums;
-using namespace aworx::lib::strings;
-using namespace aworx::lox;
-using namespace aworx::lox::core;
-using namespace aworx::lox::core::textlogger;
 
 // For code compatibility with ALox Java/C++
 #define _NC _<false>
 
 
+namespace aworx { namespace lox { namespace core { namespace textlogger {
 
 // #################################################################################################
 // ObjectConverter
@@ -118,7 +112,7 @@ void    AutoSizes::Export( AString& target  )
         target.DeleteEnd<false>(4);
 }
 
-void    AutoSizes::Import( const String& sourceString, enums::CurrentData session  )
+void    AutoSizes::Import( const String& sourceString, CurrentData session  )
 {
     Substring source(sourceString);
     Reset();
@@ -131,8 +125,8 @@ void    AutoSizes::Import( const String& sourceString, enums::CurrentData sessio
         if ( origLength == source.Length() )
             break;
 
-        values       .emplace_back( session == enums::CurrentData::Clear ? sessionValue : value       );
-        sessionValues.emplace_back( session == enums::CurrentData::Clear ? 0            : sessionValue );
+        values       .emplace_back( session == CurrentData::Clear ? sessionValue : value       );
+        sessionValues.emplace_back( session == CurrentData::Clear ? 0            : sessionValue );
     }
 }
 
@@ -159,7 +153,7 @@ int MetaInfo::Write( TextLogger& logger, AString& buf, const TString& domain, Lo
         int idx= format.IndexOf( '%' );
         if ( idx >= 0 )
         {
-            format.Consume<false>( idx, buf, 1, enums::CurrentData::Keep );
+            format.Consume<false>( idx, buf, 1, CurrentData::Keep );
             qtyTabStops+= processVariable( logger, domain, level, caller, buf, format );
         }
         else
@@ -191,7 +185,7 @@ int MetaInfo::processVariable( TextLogger&        logger,
             // add source file including path
             if ( s == 'F' )
             {
-                const ASTerminatable& sourceFileName=        caller->SourceFileName;
+                const TString& sourceFileName=  caller->SourceFileName;
                 if ( sourceFileName.IsNotNull() )
                 {
                     // detect cutable prefix from the file name path and current working directory
@@ -203,7 +197,7 @@ int MetaInfo::processVariable( TextLogger&        logger,
                         String256 currentDir;
                         ALIB_WARN_ONCE_PER_INSTANCE_DISABLE( currentDir,  ReplaceExternalBuffer );
 
-                        system::Directory::CurrentDirectory( currentDir );
+                        Directory::CurrentDirectory( currentDir );
                         sourceFileName.Terminate();
                         // Get the prefix that is the same in both paths
                         int i= 0;
@@ -243,10 +237,10 @@ int MetaInfo::processVariable( TextLogger&        logger,
             // add source file excluding path
             else if ( s == 'f' )
             {
-                const AS& sourceFileName=   caller->SourceFileName;
+                const String& sourceFileName=   caller->SourceFileName;
                 if ( sourceFileName.IsNotNull() )
                 {
-                    int appendStart=  sourceFileName.LastIndexOf( system::PathSeparator ) + 1;
+                    int appendStart=  sourceFileName.LastIndexOf( PathSeparator ) + 1;
                     buf._NC( sourceFileName, appendStart, sourceFileName.Length() - appendStart );
                 }
                 else
@@ -316,7 +310,7 @@ int MetaInfo::processVariable( TextLogger&        logger,
             // %TE: Time Elapsed
             else if ( s == 'E' )
             {
-                time::TickSpan elapsed( caller->TimeStamp, logger.TimeOfCreation );
+                TickSpan elapsed( caller->TimeStamp, logger.TimeOfCreation );
 
                 if ( elapsed.Days  > 0 )    buf._NC( elapsed.Days  )._NC( TimeElapsedDays );
                 if ( elapsed.Hours > 0 )    buf._NC( elapsed.Hours )._NC( ':' );
@@ -663,7 +657,7 @@ void TextLogger::doLog( const TString&  domain,     Log::Level    level,
         {
             logBuf._NC( FmtMultiLinePrefix );
             logBuf._NC( msgBuf );
-            logBuf._NC( FmtMultiLinePostfix );
+            logBuf._NC( FmtMultiLineSuffix );
         }
 
         // now do the logging by calling our derived classes' doTextLog
@@ -763,7 +757,7 @@ void TextLogger::doLog( const TString&  domain,     Log::Level    level,
         // append message and do the log
         logBuf._NC( FmtMultiLinePrefix );
           logBuf._NC( msgBuf,  actStart, actEnd - actStart  );
-        logBuf._NC( FmtMultiLinePostfix );
+        logBuf._NC( FmtMultiLineSuffix );
         doTextLog( domain, level, logBuf, indent, MultiLineMsgMode != 4 ? caller : nullptr, lineNo );
 
         // next
@@ -775,4 +769,6 @@ void TextLogger::doLog( const TString&  domain,     Log::Level    level,
     if ( lineNo > 0 )
         notifyMultiLineOp( Phase::End );
 }
+
+}}}}//namespace aworx::lox::core::textlogger
 

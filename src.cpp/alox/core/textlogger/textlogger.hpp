@@ -4,7 +4,7 @@
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
-/** @file */ // Hello Doxyen
+/** @file */ // Hello Doxygen
 
 // include ALox main header first...
 #if !defined (HPP_ALOX)
@@ -27,7 +27,7 @@
 // #################################################################################################
 // forwards
 // #################################################################################################
-namespace aworx { namespace lib { namespace strings { class ASSubstring; } } }
+namespace aworx { namespace lib { namespace strings { class Substring; } } }
 
 namespace aworx {
 namespace           lox {
@@ -46,7 +46,7 @@ namespace                           textlogger{
  *
  *  This class might be extended to be able to handle custom objects within text loggers.
  *  This default implementation, only handles objects of type
- *  \ref aworx::lib::strings::ASTerminatable "aworx::TString".
+ *  \ref aworx::lib::strings::TString "aworx::TString".
  *  For nullptr and nulled \b %TStrings a configurable string message is returned.
  *
  *  While other ALox implementations, like ALox for C# or ALox for Java use the 'runtime type
@@ -159,10 +159,10 @@ class AutoSizes
 
         /** ****************************************************************************************
          * Imports values from the given
-         * \ref aworx::lib::strings::AS "AS" by parsing it. The numbers in the string have
+         * \ref aworx::lib::strings::String "String" by parsing it. The numbers in the string have
          * to be separated by ' ' characters (space).
          *
-         * @param source    The \b %AS that is parsed for the numbers
+         * @param source    The \b %String that is parsed for the numbers
          * @param session   If \c CurrentData::Clear, which is the default, the current values
          *                  are taken from the last session stored and the sessions data is set to 0.
          *                  If \c CurrentData::Keep, both, current values and
@@ -174,7 +174,7 @@ class AutoSizes
         /** ****************************************************************************************
          *  Exports the current session values by converting the stored numbers to a string
          *  representation and appending them to the given
-         *  \ref aworx::lib::strings::ASAlloc "AString" object.
+         *  \ref aworx::lib::strings::AString "AString" object.
          *  The numbers in the string will be separated by ' ' characters (space).
          *
          * @param target       The \b %AString to receive the our values
@@ -266,7 +266,7 @@ class MetaInfo
         /**
          *  To shorten the log output the given prefix might be cut from the source file path.
          *  If this
-         *  \ref aworx::lib::strings::ASAlloc "AString" is \e nulled, it is tried to
+         *  \ref aworx::lib::strings::AString "AString" is \e nulled, it is tried to
          *  detect this path automatically once.<p>
          *  However, in various debug sessions (e.g. remote debugging) this might fail.
          *  Hence, this parameter can be set 'manually' to the right prefix that is to be consumed.
@@ -392,7 +392,7 @@ class MetaInfo
          *  Processes the next command found in the format string, by writing formatted information
          *  into the given buffer.
          *  The given
-         *  \ref aworx::lib::strings::ASSubstring "ASSubstring" holds the next command.
+         *  \ref aworx::lib::strings::Substring "Substring" holds the next command.
          *  When method the returns, the command is cut from the front.
          *
          * @param logger       The logger that we are embedded in.
@@ -537,12 +537,12 @@ class TextLogger : public Logger
         String16                        FmtMultiLinePrefix                                   =">> ";
 
         /**
-         *  Postfix for multi line messages. This is also used if multi line messages logging is
+         *  Suffix for multi line messages. This is also used if multi line messages logging is
          *  switched off (MultiLineMsgMode == 0) but replacing of a set MultiLineDelimiter
          *  takes place.
          * Defaults to "".
          */
-        String16                        FmtMultiLinePostfix                                     ="";
+        String16                        FmtMultiLineSuffix                                      ="";
 
         /**
          * The characters  used for indentation.
@@ -656,6 +656,11 @@ class TextLogger : public Logger
 
 }; // class TextLogger
 
-}}}} // namespace
+}}} // namespace lox::core::textlogger
+
+/** Type alias name in namespace #aworx. */
+using     TextLogger=       aworx::lox::core::textlogger::TextLogger;
+
+}  // namespace aworx
 
 #endif // HPP_ALOX_CORE_TEXTLOGGER_TEXTLOGGER

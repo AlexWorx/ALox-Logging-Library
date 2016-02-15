@@ -4,7 +4,7 @@
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
-/** @file */ // Hello Doxyen
+/** @file */ // Hello Doxygen
 
 // include ALox main header first...
 #if !defined (HPP_ALOX)
@@ -40,7 +40,7 @@ class MemoryLogger : public aworx::lox::core::textlogger::PlainTextLogger
         /**
          *  The logging Buffer. This can be accessed publicly and hence used as preferred.
          *  Especially, the whole log can easily be cleared using
-         *  \ref aworx::lib::strings::ASAlloc::Clear "AString.Clear".
+         *  \ref aworx::lib::strings::AString::Clear "AString.Clear".
          *  In multi-threaded environments, \c Lox interfaces' mutex should be acquired
          *  before accessing this buffer. The initial size of the buffer is 8kb.
          */
@@ -126,7 +126,12 @@ class MemoryLogger : public aworx::lox::core::textlogger::PlainTextLogger
 
 }; // class MemoryLogger
 
-}}} // namespace
+}} // namespace lox::loggers
+
+/** Type alias name in namespace #aworx. */
+using     MemoryLogger=           aworx::lox::loggers::MemoryLogger;
+
+}  // namespace aworx
 
 #endif // HPP_ALOX_MEMORY_LOGGER
 

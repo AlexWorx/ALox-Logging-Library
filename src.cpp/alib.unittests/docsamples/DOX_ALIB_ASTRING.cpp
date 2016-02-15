@@ -19,7 +19,7 @@ std::stringstream testOutputStream;
 //! [DOX_ALIB_ASTRING_FORMAT]
 #include "alib/alib.hpp"
 
-// get support for  ostream operator<<() on AS objects
+// get support for  ostream operator<<() on String objects
 #include "alib/compatibility/std_iostream.hpp"
 #include "alib/compatibility/std_string.hpp"
 
@@ -27,10 +27,6 @@ std::stringstream testOutputStream;
 
 using namespace std;
 using namespace aworx;
-using namespace aworx::lib;
-using namespace aworx::lib::enums;
-using namespace aworx::lib::strings;
-using namespace aworx::lib::system;
 
 void PrintResult()
 {

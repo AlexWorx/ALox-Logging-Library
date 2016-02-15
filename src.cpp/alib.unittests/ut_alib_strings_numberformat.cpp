@@ -6,10 +6,10 @@
 // #################################################################################################
 #include "alib/stdafx_alib.h"
 
-#if !defined (HPP_AWORX_LIB_STRINGS)
+#if !defined (HPP_ALIB_STRINGS)
     #include "alib/strings/tokenizer.hpp"
 #endif
-#if !defined (HPP_AWORX_LIB_STRINGS_NUMBERFORMAT)
+#if !defined (HPP_ALIB_STRINGS_NUMBERFORMAT)
     #include "alib/strings/numberformat.hpp"
 #endif
 
@@ -27,9 +27,6 @@
 
 using namespace std;
 using namespace aworx;
-using namespace aworx::lib;
-using namespace aworx::lib::strings;
-
 
 namespace ut_aworx {
 

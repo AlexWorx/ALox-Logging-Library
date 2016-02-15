@@ -25,12 +25,6 @@
 #include <algorithm>
 
 using namespace aworx;
-using namespace aworx::lib;
-using namespace aworx::lib::enums;
-using namespace aworx::lib::strings;
-using namespace aworx::lib::config;
-using namespace aworx::lib::system;
-using namespace aworx::lox;
 using namespace std;
 
 
@@ -40,7 +34,7 @@ using namespace std;
 bool     DebugMode;
 IniFile* Inifile;
 AString  FileName;
-String   NewFileNamePostFix= ".corrected.dot";
+String   NewFileNameSuffix= ".corrected.dot";
 
 // #################################################################################################
 // Simple data structurs
@@ -200,7 +194,7 @@ int ReadFile()
         return -1;
     }
 
-    ReadLineFromIStream readOp= ReadLineFromIStream( file );
+    lib::strings::ReadLineFromIStream readOp= lib::strings::ReadLineFromIStream( file );
     while( !readOp.IsEOF )
     {
         dotFile.Lines.emplace_back( Line() );
@@ -363,7 +357,7 @@ bool WriteFile()
     ofstream* file= nullptr;
     if (!DebugMode)
     {
-        FileName._(NewFileNamePostFix);
+        FileName._(NewFileNameSuffix);
         file= new ofstream( FileName.ToCString() );
         if ( !file->is_open() )
         {
@@ -421,7 +415,7 @@ bool WriteFile()
     // check
     if (!nodesAndLinksWritten)
     {
-        FileName.DeleteEnd( NewFileNamePostFix.Length() );
+        FileName.DeleteEnd( NewFileNameSuffix.Length() );
         cerr << "Error: Nodes and Links not written: " << FileName << endl;
     }
     else
@@ -477,14 +471,12 @@ int main(int argc, char *argv[])
                                                            :  Log::DomainLevel::WarningsAndErrors );
 
     Log_Prune( if ( DebugMode ) )
-        Log_SetDomain( "DOXGRAPH", Log::DomainLevel::All);
+    Log_SetDomain( "DOXGRAPH", Log::DomainLevel::All);
 
 
     if (!DebugMode )
     {
-        Report::GetDefault().HaltOnError=
-        Report::GetDefault().HaltOnWarning=  false;
-
+        lib::Report::GetDefault().PushHaltFlags( false, false );
         FileName= argv[1];
     }
     else

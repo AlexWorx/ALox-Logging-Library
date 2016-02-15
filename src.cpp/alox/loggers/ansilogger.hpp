@@ -4,7 +4,7 @@
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
-/** @file */ // Hello Doxyen
+/** @file */ // Hello Doxygen
 
 // include ALox main header first...
 #if !defined (HPP_ALOX)
@@ -33,46 +33,46 @@ namespace       lox {
 namespace           loggers{
 
 /** ************************************************************************************************
- *  A logger that logs all messages to the basic_ostream instance provided in the constructor.
- *  The name of the logger defaults to "ANSI_LOGGER".
+ * A logger that logs all messages to the <em>std::basic_ostream</em> instance provided in the
+ * constructor. The name of the logger defaults to "ANSI_LOGGER".
  *
- *  ALox text logger escape sequences (see class \ref aworx::lox::ESC "ESC")
- *  are translated to ANSI escape sequences.
- *  Support for ANSI escape sequences (also referred to as <em>VT100 terminal emulation</em>)
- *  is available on most unix terminal windows. Besides text colors, bold and italics font style
- *  can be set.
- *  ANSI escape sequences are also available in various IDE output windows.
+ * ALox text logger escape sequences (see class \ref aworx::lox::ESC "ESC")
+ * are translated to ANSI escape sequences.
+ * Support for ANSI escape sequences (also referred to as <em>VT100 terminal emulation</em>)
+ * is available on most unix terminal windows. Besides text colors, bold and italics font style
+ * can be set.
+ * ANSI escape sequences are also available in various IDE output windows.
  *
- *  Foreground and background colors are set to be either light/dark or dark/light. This improves
- *  the readability of log output a lot. However, the right setting for this is dependent on
- *  the color scheme of final output device (window). To manipulate the right setting, see field
- *  #IsBackgroundLight and also configuration variable
- *  [ALOX_CL_LIGHT_BACKGROUND](../group__GrpALoxConfigVars.html).
+ * Foreground and background colors are set to be either light/dark or dark/light. This improves
+ * the readability of log output a lot. However, the right setting for this is dependent on
+ * the color scheme of final output device (window). To manipulate the right setting, see field
+ * #IsBackgroundLight and also configuration variable
+ * [ALOX_CL_LIGHT_BACKGROUND](../group__GrpALoxConfigVars.html).
  *
- *  In the constructor, a default format string and some other definitions in member
- *  \ref MetaInfo get set to include ESC Escape Sequences.
- *  Of-course, these publicly accessible format attributes can be customized after creation.
+ * In the constructor, a default format string and some other definitions in member
+ * \ref MetaInfo get set to include ESC Escape Sequences.
+ * Of-course, these publicly accessible format attributes can be customized after creation.
  *
- *  \note Instead of using ANSI sequences in the format strings directly, which would lower the
- *  runtime cost a little, ESC sequences are used because this way the light/dark color
- *  selection, which depends on the field #IsBackgroundLight is performed correctly.
+ * \note Instead of using ANSI sequences in the format strings directly, which would lower the
+ * runtime cost a little, ESC sequences are used because this way the light/dark color
+ * selection, which depends on the field #IsBackgroundLight is performed correctly.
  *
- *  There is not 100% match between the ANSI sequences and the definitions in
- *  \ref aworx::lox::ESC "ESC".
- *  For example ESC does not provide all ANSI colors and no blinking. On the other hand,
- *  ANSI does not allow to reset the style without resetting the colors.
- *  Of-course, it is no problem to log other ANSI codes directly into a %AnsiLogger.
- *  In this case, other Loggers that might be attached to the same Lox and that do not
- *  support ANSI must be equipped with corresponding replacement information.
- *  In other words: To support the same log output into different loggers, it is
- *  recommended to use \ref aworx::lox::ESC "ESC"  sequences instead of
- *  directly using ANSI codes.
+ * There is not 100% match between the ANSI sequences and the definitions in
+ * \ref aworx::lox::ESC "ESC".
+ * For example ESC does not provide all ANSI colors and no blinking. On the other hand,
+ * ANSI does not allow to reset the style without resetting the colors.
+ * Of-course, it is no problem to log other ANSI codes directly into an \b %AnsiLogger.
+ * In this case, other Loggers that might be attached to the same Lox and that do not
+ * support ANSI must be equipped with corresponding replacement information.
+ * In other words: To support the same log output into different loggers, it is
+ * recommended to use \ref aworx::lox::ESC "ESC"  sequences instead of
+ * directly using ANSI codes.
  *
- *  The ANSI codes used by this class are exposed through a list of fields.
- *  They might be useful for manipulating the attributes of the \ref MetaInfo
- *  member, which of-course might contain native ANSI sequences.
- *  (In contrast to the log messages themselves, this meta information is specific to a logger
- *  instance and this way it does not need to be replaced in other loggers).
+ * The ANSI codes used by this class are exposed through a list of fields.
+ * They might be useful for manipulating the attributes of the \ref MetaInfo
+ * member, which of-course might contain native ANSI sequences.
+ * (In contrast to the log messages themselves, this meta information is specific to a logger
+ * instance and this way it does not need to be replaced in other loggers).
  **************************************************************************************************/
 class AnsiLogger : public aworx::lox::core::textlogger::TextLogger
 {
@@ -82,100 +82,100 @@ class AnsiLogger : public aworx::lox::core::textlogger::TextLogger
     public:
     #if defined(_MSC_VER)
     // MSC  (as of 12/2015):
-    // C4579: in-class initialization for type 'const aworx::StringLiteral<10>'
+    // C4579: in-class initialization for type 'const aworx::SLiteral<10>'
     // is not yet implemented; static member will remain uninitialized at runtime but
     // use in constant-expressions is supported
-    ALIB_API static     StringLiteral<5>  ANSI_RED              ; ///< Select red as foreground color
-    ALIB_API static     StringLiteral<5>  ANSI_GREEN            ; ///< Select green as foreground color
-    ALIB_API static     StringLiteral<5>  ANSI_YELLOW           ; ///< Select yellow as foreground color
-    ALIB_API static     StringLiteral<5>  ANSI_BLUE             ; ///< Select blue as foreground color
-    ALIB_API static     StringLiteral<5>  ANSI_MAGENTA          ; ///< Select magenta as foreground color
-    ALIB_API static     StringLiteral<5>  ANSI_CYAN             ; ///< Select cyan as foreground color
-    ALIB_API static     StringLiteral<5>  ANSI_BLACK            ; ///< Select black as foreground color
-    ALIB_API static     StringLiteral<10> ANSI_WHITE            ; ///< Select white as foreground color
-    ALIB_API static     StringLiteral<11> ANSI_GRAY             ; ///< Select gray as foreground color
-    ALIB_API static     StringLiteral<5>  ANSI_STD_COL          ; ///< Select standard foreground color
+    ALIB_API static     SLiteral<5>  ANSI_RED              ; ///< Select red as foreground color
+    ALIB_API static     SLiteral<5>  ANSI_GREEN            ; ///< Select green as foreground color
+    ALIB_API static     SLiteral<5>  ANSI_YELLOW           ; ///< Select yellow as foreground color
+    ALIB_API static     SLiteral<5>  ANSI_BLUE             ; ///< Select blue as foreground color
+    ALIB_API static     SLiteral<5>  ANSI_MAGENTA          ; ///< Select magenta as foreground color
+    ALIB_API static     SLiteral<5>  ANSI_CYAN             ; ///< Select cyan as foreground color
+    ALIB_API static     SLiteral<5>  ANSI_BLACK            ; ///< Select black as foreground color
+    ALIB_API static     SLiteral<10> ANSI_WHITE            ; ///< Select white as foreground color
+    ALIB_API static     SLiteral<11> ANSI_GRAY             ; ///< Select gray as foreground color
+    ALIB_API static     SLiteral<5>  ANSI_STD_COL          ; ///< Select standard foreground color
 
-    ALIB_API static     StringLiteral<5>  ANSI_BG_RED           ; ///< Select red as background color
-    ALIB_API static     StringLiteral<5>  ANSI_BG_GREEN         ; ///< Select green as background color
-    ALIB_API static     StringLiteral<5>  ANSI_BG_YELLOW        ; ///< Select yellow as background color
-    ALIB_API static     StringLiteral<5>  ANSI_BG_BLUE          ; ///< Select blue as background color
-    ALIB_API static     StringLiteral<5>  ANSI_BG_MAGENTA       ; ///< Select magenta as background color
-    ALIB_API static     StringLiteral<5>  ANSI_BG_CYAN          ; ///< Select cyan as background color
-    ALIB_API static     StringLiteral<5>  ANSI_BG_BLACK         ; ///< Select black as background color
-    ALIB_API static     StringLiteral<10> ANSI_BG_WHITE         ; ///< Select white as background color
-    ALIB_API static     StringLiteral<11> ANSI_BG_GRAY          ; ///< Select gray as background color
-    ALIB_API static     StringLiteral<5>  ANSI_BG_STD_COL       ; ///< Select standard background color
+    ALIB_API static     SLiteral<5>  ANSI_BG_RED           ; ///< Select red as background color
+    ALIB_API static     SLiteral<5>  ANSI_BG_GREEN         ; ///< Select green as background color
+    ALIB_API static     SLiteral<5>  ANSI_BG_YELLOW        ; ///< Select yellow as background color
+    ALIB_API static     SLiteral<5>  ANSI_BG_BLUE          ; ///< Select blue as background color
+    ALIB_API static     SLiteral<5>  ANSI_BG_MAGENTA       ; ///< Select magenta as background color
+    ALIB_API static     SLiteral<5>  ANSI_BG_CYAN          ; ///< Select cyan as background color
+    ALIB_API static     SLiteral<5>  ANSI_BG_BLACK         ; ///< Select black as background color
+    ALIB_API static     SLiteral<10> ANSI_BG_WHITE         ; ///< Select white as background color
+    ALIB_API static     SLiteral<11> ANSI_BG_GRAY          ; ///< Select gray as background color
+    ALIB_API static     SLiteral<5>  ANSI_BG_STD_COL       ; ///< Select standard background color
 
-    ALIB_API static     StringLiteral<10> ANSI_LIGHT_RED        ; ///< Select light red as foreground color
-    ALIB_API static     StringLiteral<10> ANSI_LIGHT_GREEN      ; ///< Select light green as foreground color
-    ALIB_API static     StringLiteral<10> ANSI_LIGHT_YELLOW     ; ///< Select light yellow as foreground color
-    ALIB_API static     StringLiteral<10> ANSI_LIGHT_BLUE       ; ///< Select light blue as foreground color
-    ALIB_API static     StringLiteral<10> ANSI_LIGHT_MAGENTA    ; ///< Select light magenta as foreground color
-    ALIB_API static     StringLiteral<10> ANSI_LIGHT_CYAN       ; ///< Select light cyan as foreground color
-    ALIB_API static     StringLiteral<11> ANSI_LIGHT_GRAY       ; ///< Select light gray as foreground color
-    ALIB_API static     StringLiteral<5>  ANSI_LIGHT_STD_COL    ; ///< Select standard foreground color
+    ALIB_API static     SLiteral<10> ANSI_LIGHT_RED        ; ///< Select light red as foreground color
+    ALIB_API static     SLiteral<10> ANSI_LIGHT_GREEN      ; ///< Select light green as foreground color
+    ALIB_API static     SLiteral<10> ANSI_LIGHT_YELLOW     ; ///< Select light yellow as foreground color
+    ALIB_API static     SLiteral<10> ANSI_LIGHT_BLUE       ; ///< Select light blue as foreground color
+    ALIB_API static     SLiteral<10> ANSI_LIGHT_MAGENTA    ; ///< Select light magenta as foreground color
+    ALIB_API static     SLiteral<10> ANSI_LIGHT_CYAN       ; ///< Select light cyan as foreground color
+    ALIB_API static     SLiteral<11> ANSI_LIGHT_GRAY       ; ///< Select light gray as foreground color
+    ALIB_API static     SLiteral<5>  ANSI_LIGHT_STD_COL    ; ///< Select standard foreground color
 
-    ALIB_API static     StringLiteral<10> ANSI_BG_LIGHT_RED     ; ///< Select light red as background color
-    ALIB_API static     StringLiteral<10> ANSI_BG_LIGHT_GREEN   ; ///< Select light green as background color
-    ALIB_API static     StringLiteral<10> ANSI_BG_LIGHT_YELLOW  ; ///< Select light yellow as background color
-    ALIB_API static     StringLiteral<10> ANSI_BG_LIGHT_BLUE    ; ///< Select light blue as background color
-    ALIB_API static     StringLiteral<10> ANSI_BG_LIGHT_MAGENTA ; ///< Select light magenta as background color
-    ALIB_API static     StringLiteral<10> ANSI_BG_LIGHT_CYAN    ; ///< Select light cyan as background color
-    ALIB_API static     StringLiteral<11> ANSI_BG_LIGHT_GRAY    ; ///< Select light gray as background color
-    ALIB_API static     StringLiteral<5>  ANSI_BG_LIGHT_STD_COL ; ///< Select standard background color
+    ALIB_API static     SLiteral<10> ANSI_BG_LIGHT_RED     ; ///< Select light red as background color
+    ALIB_API static     SLiteral<10> ANSI_BG_LIGHT_GREEN   ; ///< Select light green as background color
+    ALIB_API static     SLiteral<10> ANSI_BG_LIGHT_YELLOW  ; ///< Select light yellow as background color
+    ALIB_API static     SLiteral<10> ANSI_BG_LIGHT_BLUE    ; ///< Select light blue as background color
+    ALIB_API static     SLiteral<10> ANSI_BG_LIGHT_MAGENTA ; ///< Select light magenta as background color
+    ALIB_API static     SLiteral<10> ANSI_BG_LIGHT_CYAN    ; ///< Select light cyan as background color
+    ALIB_API static     SLiteral<11> ANSI_BG_LIGHT_GRAY    ; ///< Select light gray as background color
+    ALIB_API static     SLiteral<5>  ANSI_BG_LIGHT_STD_COL ; ///< Select standard background color
 
-    ALIB_API static     StringLiteral<4>  ANSI_BOLD             ; ///< Select bold font style
-    ALIB_API static     StringLiteral<4>  ANSI_ITALICS          ; ///< Select italics font style
-    ALIB_API static     StringLiteral<4>  ANSI_STD_STYLE        ; ///< Select standard font style
-    ALIB_API static     StringLiteral<4>  ANSI_RESET            ; ///< Reset colors and font style
+    ALIB_API static     SLiteral<4>  ANSI_BOLD             ; ///< Select bold font style
+    ALIB_API static     SLiteral<4>  ANSI_ITALICS          ; ///< Select italics font style
+    ALIB_API static     SLiteral<4>  ANSI_STD_STYLE        ; ///< Select standard font style
+    ALIB_API static     SLiteral<4>  ANSI_RESET            ; ///< Reset colors and font style
 
     #else
 
-    static constexpr    StringLiteral<5>  ANSI_RED              { "\033[31m"       };
-    static constexpr    StringLiteral<5>  ANSI_GREEN            { "\033[32m"       };
-    static constexpr    StringLiteral<5>  ANSI_YELLOW           { "\033[33m"       };
-    static constexpr    StringLiteral<5>  ANSI_BLUE             { "\033[34m"       };
-    static constexpr    StringLiteral<5>  ANSI_MAGENTA          { "\033[35m"       };
-    static constexpr    StringLiteral<5>  ANSI_CYAN             { "\033[36m"       };
-    static constexpr    StringLiteral<5>  ANSI_BLACK            { "\033[30m"       };
-    static constexpr    StringLiteral<10> ANSI_WHITE            { "\033[38;5;15m"  };
-    static constexpr    StringLiteral<11> ANSI_GRAY             { "\033[38;5;240m" };
-    static constexpr    StringLiteral<5>  ANSI_STD_COL          { "\033[39m"       };
+    static constexpr    SLiteral<5>  ANSI_RED              { "\033[31m"       };
+    static constexpr    SLiteral<5>  ANSI_GREEN            { "\033[32m"       };
+    static constexpr    SLiteral<5>  ANSI_YELLOW           { "\033[33m"       };
+    static constexpr    SLiteral<5>  ANSI_BLUE             { "\033[34m"       };
+    static constexpr    SLiteral<5>  ANSI_MAGENTA          { "\033[35m"       };
+    static constexpr    SLiteral<5>  ANSI_CYAN             { "\033[36m"       };
+    static constexpr    SLiteral<5>  ANSI_BLACK            { "\033[30m"       };
+    static constexpr    SLiteral<10> ANSI_WHITE            { "\033[38;5;15m"  };
+    static constexpr    SLiteral<11> ANSI_GRAY             { "\033[38;5;240m" };
+    static constexpr    SLiteral<5>  ANSI_STD_COL          { "\033[39m"       };
 
-    static constexpr    StringLiteral<5>  ANSI_BG_RED           { "\033[41m"       };
-    static constexpr    StringLiteral<5>  ANSI_BG_GREEN         { "\033[42m"       };
-    static constexpr    StringLiteral<5>  ANSI_BG_YELLOW        { "\033[43m"       };
-    static constexpr    StringLiteral<5>  ANSI_BG_BLUE          { "\033[44m"       };
-    static constexpr    StringLiteral<5>  ANSI_BG_MAGENTA       { "\033[45m"       };
-    static constexpr    StringLiteral<5>  ANSI_BG_CYAN          { "\033[46m"       };
-    static constexpr    StringLiteral<5>  ANSI_BG_BLACK         { "\033[40m"       };
-    static constexpr    StringLiteral<10> ANSI_BG_WHITE         { "\033[48;5;15m"  };
-    static constexpr    StringLiteral<11> ANSI_BG_GRAY          { "\033[48;5;240m" };
-    static constexpr    StringLiteral<5>  ANSI_BG_STD_COL       { "\033[49m"       };
+    static constexpr    SLiteral<5>  ANSI_BG_RED           { "\033[41m"       };
+    static constexpr    SLiteral<5>  ANSI_BG_GREEN         { "\033[42m"       };
+    static constexpr    SLiteral<5>  ANSI_BG_YELLOW        { "\033[43m"       };
+    static constexpr    SLiteral<5>  ANSI_BG_BLUE          { "\033[44m"       };
+    static constexpr    SLiteral<5>  ANSI_BG_MAGENTA       { "\033[45m"       };
+    static constexpr    SLiteral<5>  ANSI_BG_CYAN          { "\033[46m"       };
+    static constexpr    SLiteral<5>  ANSI_BG_BLACK         { "\033[40m"       };
+    static constexpr    SLiteral<10> ANSI_BG_WHITE         { "\033[48;5;15m"  };
+    static constexpr    SLiteral<11> ANSI_BG_GRAY          { "\033[48;5;240m" };
+    static constexpr    SLiteral<5>  ANSI_BG_STD_COL       { "\033[49m"       };
 
-    static constexpr    StringLiteral<10> ANSI_LIGHT_RED        { "\033[38;5;09m"  };
-    static constexpr    StringLiteral<10> ANSI_LIGHT_GREEN      { "\033[38;5;10m"  };
-    static constexpr    StringLiteral<10> ANSI_LIGHT_YELLOW     { "\033[38;5;11m"  };
-    static constexpr    StringLiteral<10> ANSI_LIGHT_BLUE       { "\033[38;5;12m"  };
-    static constexpr    StringLiteral<10> ANSI_LIGHT_MAGENTA    { "\033[38;5;13m"  };
-    static constexpr    StringLiteral<10> ANSI_LIGHT_CYAN       { "\033[38;5;14m"  };
-    static constexpr    StringLiteral<11> ANSI_LIGHT_GRAY       { "\033[38;5;250m" };
-    static constexpr    StringLiteral<5>  ANSI_LIGHT_STD_COL    { "\033[39m"       };
+    static constexpr    SLiteral<10> ANSI_LIGHT_RED        { "\033[38;5;09m"  };
+    static constexpr    SLiteral<10> ANSI_LIGHT_GREEN      { "\033[38;5;10m"  };
+    static constexpr    SLiteral<10> ANSI_LIGHT_YELLOW     { "\033[38;5;11m"  };
+    static constexpr    SLiteral<10> ANSI_LIGHT_BLUE       { "\033[38;5;12m"  };
+    static constexpr    SLiteral<10> ANSI_LIGHT_MAGENTA    { "\033[38;5;13m"  };
+    static constexpr    SLiteral<10> ANSI_LIGHT_CYAN       { "\033[38;5;14m"  };
+    static constexpr    SLiteral<11> ANSI_LIGHT_GRAY       { "\033[38;5;250m" };
+    static constexpr    SLiteral<5>  ANSI_LIGHT_STD_COL    { "\033[39m"       };
 
-    static constexpr    StringLiteral<10> ANSI_BG_LIGHT_RED     { "\033[48;5;09m"  };
-    static constexpr    StringLiteral<10> ANSI_BG_LIGHT_GREEN   { "\033[48;5;10m"  };
-    static constexpr    StringLiteral<10> ANSI_BG_LIGHT_YELLOW  { "\033[48;5;11m"  };
-    static constexpr    StringLiteral<10> ANSI_BG_LIGHT_BLUE    { "\033[48;5;12m"  };
-    static constexpr    StringLiteral<10> ANSI_BG_LIGHT_MAGENTA { "\033[48;5;13m"  };
-    static constexpr    StringLiteral<10> ANSI_BG_LIGHT_CYAN    { "\033[48;5;14m"  };
-    static constexpr    StringLiteral<11> ANSI_BG_LIGHT_GRAY    { "\033[48;5;250m" };
-    static constexpr    StringLiteral<5>  ANSI_BG_LIGHT_STD_COL { "\033[49m"       };
+    static constexpr    SLiteral<10> ANSI_BG_LIGHT_RED     { "\033[48;5;09m"  };
+    static constexpr    SLiteral<10> ANSI_BG_LIGHT_GREEN   { "\033[48;5;10m"  };
+    static constexpr    SLiteral<10> ANSI_BG_LIGHT_YELLOW  { "\033[48;5;11m"  };
+    static constexpr    SLiteral<10> ANSI_BG_LIGHT_BLUE    { "\033[48;5;12m"  };
+    static constexpr    SLiteral<10> ANSI_BG_LIGHT_MAGENTA { "\033[48;5;13m"  };
+    static constexpr    SLiteral<10> ANSI_BG_LIGHT_CYAN    { "\033[48;5;14m"  };
+    static constexpr    SLiteral<11> ANSI_BG_LIGHT_GRAY    { "\033[48;5;250m" };
+    static constexpr    SLiteral<5>  ANSI_BG_LIGHT_STD_COL { "\033[49m"       };
 
-    static constexpr    StringLiteral<4>  ANSI_BOLD             { "\033[1m"        };
-    static constexpr    StringLiteral<4>  ANSI_ITALICS          { "\033[3m"        };
-    static constexpr    StringLiteral<4>  ANSI_STD_STYLE        { "\033[0m"        };
-    static constexpr    StringLiteral<4>  ANSI_RESET            { "\033[0m"        };
+    static constexpr    SLiteral<4>  ANSI_BOLD             { "\033[1m"        };
+    static constexpr    SLiteral<4>  ANSI_ITALICS          { "\033[3m"        };
+    static constexpr    SLiteral<4>  ANSI_STD_STYLE        { "\033[0m"        };
+    static constexpr    SLiteral<4>  ANSI_RESET            { "\033[0m"        };
     #endif
 
 
@@ -211,19 +211,19 @@ class AnsiLogger : public aworx::lox::core::textlogger::TextLogger
 
 
         /** Characters  placed at the beginning of a log line with level 'Error'.*/
-        lib::strings::AS     MsgPrefixError;
+        lib::strings::String MsgPrefixError;
 
         /** Characters  placed at the beginning of a log line with level 'Warning'.*/
-        lib::strings::AS     MsgPrefixWarning;
+        lib::strings::String MsgPrefixWarning;
 
         /** Characters  placed at the beginning of a log line with level 'Info'.*/
-        lib::strings::AS     MsgPrefixInfo                   = "";
+        lib::strings::String MsgPrefixInfo                   = "";
 
         /** Characters  placed at the beginning of a log line with level 'Verbose'.*/
-        lib::strings::AS     MsgPrefixVerbose;
+        lib::strings::String MsgPrefixVerbose;
 
         /** Characters  placed at the end of each line (e.g. used to reset colors and styles).*/
-        lib::strings::AS     MsgPostfix                      = ANSI_RESET;
+        lib::strings::String MsgSuffix                      = ANSI_RESET;
 
 
     // #############################################################################################
@@ -332,7 +332,15 @@ class AnsiConsoleLogger : public AnsiLogger
 }; // class AnsiConsoleLogger
 
 
-}}} // namespace
+}} // namespace lox::loggers
+
+/** Type alias name in namespace #aworx. */
+using     AnsiLogger=           aworx::lox::loggers::AnsiLogger;
+
+/** Type alias name in namespace #aworx. */
+using     AnsiConsoleLogger=    aworx::lox::loggers::AnsiConsoleLogger;
+
+}  // namespace aworx
 
 #endif // HPP_ALOX_ANSI_LOGGER
 

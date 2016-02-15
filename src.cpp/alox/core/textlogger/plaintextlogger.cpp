@@ -5,10 +5,10 @@
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
 #include "alib/stdafx_alib.h"
-#if !defined (HPP_AWORX_LIB_STRINGS_TOKENIZER)
+#if !defined (HPP_ALIB_STRINGS_TOKENIZER)
     #include "alib/strings/tokenizer.hpp"
 #endif
-#if !defined (HPP_AWORX_LIB_SYSTEM_DIRECTORY)
+#if !defined (HPP_ALIB_SYSTEM_DIRECTORY)
     #include "alib/system/directory.hpp"
 #endif
 
@@ -23,10 +23,6 @@
 
 using namespace std;
 using namespace aworx;
-using namespace aworx::lib;
-using namespace aworx::lib::enums;
-using namespace aworx::lib::strings;
-using namespace aworx::lox;
 using namespace aworx::lox::core;
 using namespace aworx::lox::core::textlogger;
 
@@ -77,7 +73,7 @@ void PlainTextLogger::doTextLog( const TString&           ,   Log::Level  ,
 
                 if ( tabStop > column )
                 {
-                    const AString& spaces= Util::GetSpaces();
+                    const AString& spaces= lib::Util::GetSpaces();
                     int spacesLength= spaces.Length();
                     int qty= tabStop - column;
                     while ( qty > 0 )

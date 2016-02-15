@@ -8,11 +8,11 @@
 
 #include "alib/alib.hpp"
 
-#if !defined (HPP_AWORX_LIB_STRINGS_ASSUBSTRING)
-    #include "alib/strings/assubstring.hpp"
+#if !defined (HPP_ALIB_STRINGS_ASSUBSTRING)
+    #include "alib/strings/substring.hpp"
 #endif
 
-#if !defined (HPP_AWORX_LIB_STRINGS_NUMBERFORMAT)
+#if !defined (HPP_ALIB_STRINGS_NUMBERFORMAT)
     #include "alib/strings/numberformat.hpp"
 #endif
 
@@ -28,7 +28,6 @@
 #endif
 
 using namespace std;
-using namespace aworx::lib::strings;
 
 namespace aworx {
 namespace           lib {
@@ -39,7 +38,7 @@ namespace                   strings {
 // #################################################################################################
 // Substring
 // #################################################################################################
-bool   ASSubstring::ConsumeLong( int64_t& result, const ASTerminatable& whitespaces )
+bool   Substring::ConsumeLong( int64_t& result, const TString& whitespaces )
 {
     if (length <= 0 )
     {
@@ -65,9 +64,9 @@ bool   ASSubstring::ConsumeLong( int64_t& result, const ASTerminatable& whitespa
     return true;
 }
 
-bool    ASSubstring::ConsumeFloat( double&                  result,
-                                   NumberFormat*            numberFormat,
-                                   const ASTerminatable&    whitespaces    )
+bool    Substring::ConsumeFloat( double&          result,
+                                 NumberFormat*    numberFormat,
+                                 const TString    whitespaces    )
 {
     if (length <= 0 )
     {

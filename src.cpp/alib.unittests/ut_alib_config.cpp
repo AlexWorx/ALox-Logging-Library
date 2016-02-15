@@ -8,15 +8,15 @@
 
 #include "alib/alib.hpp"
 
-#if !defined (HPP_AWORX_LIB_CONFIG_INI_FILE)
+#if !defined (HPP_ALIB_CONFIG_INI_FILE)
     #include "alib/config/inifile.hpp"
 #endif
 
-#if !defined (HPP_AWORX_LIB_STRINGS_ASTRING)
+#if !defined (HPP_ALIB_STRINGS_ASTRING)
     #include "alib/strings/asalloc.hpp"
 #endif
 
-#if !defined (HPP_AWORX_LIB_SYSTEM_DIRECTORY)
+#if !defined (HPP_ALIB_SYSTEM_DIRECTORY)
     #include "alib/system/directory.hpp"
 #endif
 
@@ -30,10 +30,6 @@
 
 using namespace std;
 using namespace aworx;
-using namespace aworx::lib;
-using namespace aworx::lib::enums;
-using namespace aworx::lib::strings;
-using namespace aworx::lib::config;
 
 namespace ut_aworx {
 
@@ -176,7 +172,7 @@ UT_METHOD(IniFiles)
    ;
 
     AString fileName;
-    system::Directory::CurrentDirectory( fileName );
+    Directory::CurrentDirectory( fileName );
     fileName._("/unittest_testiniFile.cfg");
 
     // write sample config file

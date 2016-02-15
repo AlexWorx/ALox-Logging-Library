@@ -19,12 +19,6 @@
 
 using namespace std;
 using namespace aworx;
-using namespace aworx::lib;
-using namespace aworx::lib::enums;
-using namespace aworx::lib::time;
-using namespace aworx::lox;
-using namespace aworx::lox::core::textlogger;
-using namespace aworx::lox::loggers;
 
 void DebugLog()
 {
@@ -44,6 +38,9 @@ void DebugLog()
 void ReleaseLog()
 {
     cout << "cout: Do some release logging:" <<  endl;
+
+    Lox_Prune( Lox lox; )
+    #define LOX_LOX lox
 
     // let the system choose an appropriate console logger
     Lox_Prune( TextLogger* releaseLogger= Lox::CreateConsoleLogger(); )
@@ -146,8 +143,11 @@ void PerformanceTest()
 // #################################################################################################
 void PerformanceTestRL()
 {
+    Lox_Prune( Lox lox; )
+    #define LOX_LOX lox
+
     aworx::lox::core::textlogger::TextLogger*    releaseLogger= Lox::CreateConsoleLogger();
-    releaseLogger->SetDomain( LOG_REL_LOX.InternalDomain, Log::DomainLevel::WarningsAndErrors );
+    releaseLogger->SetDomain( LOX_LOX.InternalDomain, Log::DomainLevel::WarningsAndErrors );
     Lox_AddLogger( releaseLogger );
     // to align all samples nicely, we are manually adding the autosizes from the config.
     // This is not needed for standard applications that create one debug logger at the start and
@@ -319,17 +319,13 @@ void SampleALibReport()
 
     // must be done only in debug compiles
     #if defined(ALIB_DEBUG)
-    bool haltOnErrorOrig=    Report::GetDefault().HaltOnError;
-    bool haltOnWarningOrig=  Report::GetDefault().HaltOnWarning;
-    Report::GetDefault().HaltOnError=   false;
-    Report::GetDefault().HaltOnWarning= false;
+
+    lib::Report::GetDefault().PushHaltFlags( false, false );
 
         ALIB_ERROR(   "This is an error report!" );
         ALIB_WARNING( "And this is a warning!"   );
 
-
-    Report::GetDefault().HaltOnError  = haltOnErrorOrig;
-    Report::GetDefault().HaltOnWarning= haltOnWarningOrig;
+    lib::Report::GetDefault().PopHaltFlags();
 
     #endif
     Log_Info( "Note the domain 'REPORT' used by ALib reporter." );
@@ -339,7 +335,7 @@ void SampleALibReport()
 int main( int argc, char *argv[] )
 {
     Log::Init( Inclusion::Include, argc, (void**) argv );
-    config::IniFile iniFile;
+    IniFile iniFile;
     ALIB::Config->InsertPlugin( &iniFile, 30 );
 
 

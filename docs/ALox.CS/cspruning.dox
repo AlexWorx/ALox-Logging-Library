@@ -13,18 +13,8 @@
 
 # 1. What is Pruning? #  {#cssetup_pruning_what_is_pruning}
 
-What we mean with the term "pruning" is the automatic removal of the (debug) logging code from
-your release binaries when they are ready for deployment. The goals that motivate
-for auto pruning are:
-
-- Maximize execution speed of your code, because all log statements are pruned.
-- Minimize the footprint of your code.
-- Keep the console clean in the release version of your console application.
-- Hide your software secrets, by removing all textual strings from your executable or library
-  that includes debug messages.
-
-Furthermore, if you are using ALox as well for release log outputs, then the above
-stays true for all of your debug log statements, while all release log statements remain.
+An introduction to the concept of pruning is given in
+[FAQ: What is Pruning?](../faq.html#faq_pruning).
 
 # 2. How Pruning in ALox for C# works #  {#cssetup_pruning_how}
 

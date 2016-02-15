@@ -17,9 +17,6 @@
 
 using namespace std;
 using namespace aworx;
-using namespace aworx::lib;
-using namespace aworx::lib::enums;
-using namespace aworx::lib::strings;
 
 namespace ut_aworx {
 
@@ -32,10 +29,10 @@ UT_CLASS()
 //---------------------------------------------------------------------------------------------------------
 //--- Tokenizer
 //---------------------------------------------------------------------------------------------------------
-void tokenizerTest( const char* inputString, ASAlloc& res, char delim, char newDelim,
+void tokenizerTest( const char* inputString, AString& res, char delim, char newDelim,
                     Whitespaces trim, int inpStart= -1, int inpEnd= -1  )
 {
-    ASSubstring inp( inputString );
+    Substring inp( inputString );
     if ( inpStart < 0 )  inpStart= 0;
     if ( inpEnd   < 0 )  inpEnd=   inp.Length() - 1;
     inp.Set( inp, inpStart, inpEnd-inpStart +1 );
@@ -54,14 +51,14 @@ void tokenizerTest( const char* inputString, ASAlloc& res, char delim, char newD
 
 UT_METHOD( Tokenize )
 
-    ASAlloc as;
-    ASAlloc res;
+    AString as;
+    AString res;
 
     // tokenizing empty string
     as.Clear()._( "" );
     res.Clear();
     {
-        Tokenizer tok( as, ',' );           UT_EQ( true,  tok.HasNext() );
+        Tokenizer tok( as, ',' );  UT_EQ( true,  tok.HasNext() );
         res._( tok.Next() );                UT_EQ( "", res );
     }
 

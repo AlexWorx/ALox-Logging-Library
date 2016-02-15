@@ -6,7 +6,7 @@
 // #################################################################################################
 #include "alib/stdafx_alib.h"
 #include "alib/config/configuration.hpp"
-#include "alib/strings/assubstring.hpp"
+#include "alib/strings/substring.hpp"
 #include "alib/system/system.hpp"
 
 
@@ -15,9 +15,6 @@
 #endif
 
 using namespace std;
-using namespace aworx::lib::enums;
-using namespace aworx::lib::system;
-using namespace aworx::lib::strings;
 
 namespace aworx {
 namespace           lib {
@@ -27,7 +24,7 @@ namespace                   config {
 // ConfigurationPlugIn
 // #################################################################################################
 
-bool  ConfigurationPlugIn::Get( const AS& category, const AS& name,  int32_t& target )
+bool  ConfigurationPlugIn::Get( const String& category, const String& name,  int32_t& target )
 {
     target= 0;
     String64 value;
@@ -38,7 +35,7 @@ bool  ConfigurationPlugIn::Get( const AS& category, const AS& name,  int32_t& ta
     return true;
 }
 
-bool  ConfigurationPlugIn::Get( const AS& category, const AS& name,  double& target )
+bool  ConfigurationPlugIn::Get( const String& category, const String& name,  double& target )
 {
     target= 0.0;
     String64 value;
@@ -50,16 +47,16 @@ bool  ConfigurationPlugIn::Get( const AS& category, const AS& name,  double& tar
 }
 
 
-bool  ConfigurationPlugIn::Save( const AS& category, const AS& name,
-                                 int            value,    const AS& comments  )
+bool  ConfigurationPlugIn::Save( const String& category, const String& name,
+                                 int            value,    const String& comments  )
 {
     String32 valueString;
     valueString._( value );
     return Save( category, name, valueString, comments, '\0' );
 }
 
-bool  ConfigurationPlugIn::Save( const AS& category, const AS& name,
-                                 double         value,    const AS& comments  )
+bool  ConfigurationPlugIn::Save( const String& category, const String& name,
+                                 double         value,    const String& comments  )
 {
     String64 valueString;
     valueString._( Format::Double(value, Parent != nullptr ? &Parent->NumberFormat : &NumberFormat::Global)  );
@@ -78,7 +75,7 @@ CommandLinePlugIn::CommandLinePlugIn( int argc, void **argv, bool wArgs )
     this->wArgs=    wArgs;
 }
 
-bool  CommandLinePlugIn::Get( const AS& category, const AS& name, AString& target )
+bool  CommandLinePlugIn::Get( const String& category, const String& name, AString& target )
 {
     // assemble option name as CATEGORY_NAME
     String128 category_name;
@@ -129,7 +126,7 @@ EnvironmentPlugIn::EnvironmentPlugIn()
 {
 }
 
-bool  EnvironmentPlugIn::Get( const AS& category, const AS& name, AString& target )
+bool  EnvironmentPlugIn::Get( const String& category, const String& name, AString& target )
 {
     String128 category_name;
     if ( category.IsNotEmpty() )

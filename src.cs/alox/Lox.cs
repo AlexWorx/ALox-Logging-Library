@@ -17,11 +17,11 @@ using cs.aworx.lib.threads;
 using cs.aworx.lib.time;
 using cs.aworx.lib.strings;
 using cs.aworx.lox.core.textlogger;
+using System.Diagnostics;
+using System.Globalization;
 
 #if (!ALOX_NO_THREADS)
     using System.Threading;
-using System.Globalization;
-using System.Diagnostics;
 #endif
 
 /** ************************************************************************************************
@@ -75,11 +75,11 @@ public class Lox
          * performance. This is really a very seldom case, and it is better to be kept in safe mode.
          */
         public                 ThreadLock               Lock
-                                                            #if ALOX_NO_THREADS // ->unsafe
-                                                                      =new ThreadLock( true, true );
-                                                            #else
-                                                                      =new ThreadLock();
-                                                            #endif
+                                        #if ALOX_NO_THREADS
+                                            =new ThreadLock( LockMode.Recursive, Safeness.Unsafe );
+                                        #else
+                                            =new ThreadLock();
+                                        #endif
 
         /**
          * This is the log domain name used by this class. By manipulating this Domains log level, the
@@ -971,6 +971,7 @@ public class Lox
                 }
 
                 // thread mappings
+                #if !ALOX_NO_THREADS
                 if ( ThreadDictionary.Count > 0 )  buf.NewLine();
                 buf._NC( "Named Threads:   " )._( ThreadDictionary.Count ).NewLine();
                 foreach ( int key in ThreadDictionary.Keys )
@@ -979,6 +980,7 @@ public class Lox
                                    ._('\"')._( ThreadDictionary[key] ) ._('\"');
                     buf.NewLine();
                 }
+                #endif
 
                 // default domains
                 if ( defaultDomains.Count > 0 ) buf.NewLine();

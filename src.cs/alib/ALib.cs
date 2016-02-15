@@ -68,14 +68,14 @@ public static class ALIB
          * Besides this version number, field #Revision indicates if this is a revised version
          * of a former release.
          */
-        public static readonly  int                    Version                              =1601;
+        public static readonly  int                    Version                              =1602;
 
         /**
          * The revision number of this release. Each ALib #Version is initially released as
          * revision \e 0. Pure bug-fix releases that do not change the interface of ALib
          * are holding the same #Version but an increased number in this field.
          */
-        public static readonly  int                    Revision                                =0;
+        public static readonly  int                    Revision                                =1;
 
         /**
          * This is a general mutex that is used by ALib internally but also may be used from outside

@@ -4,7 +4,7 @@
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
-/** @file */ // Hello Doxyen
+/** @file */ // Hello Doxygen
 
 // include ALox main header first...
 #if !defined (HPP_ALOX)
@@ -112,7 +112,12 @@ class ConsoleLogger : public aworx::lox::core::textlogger::PlainTextLogger
 }; // class ConsoleLogger
 
 
-}}} // namespace
+}} // namespace lox::loggers
+
+/** Type alias name in namespace #aworx. */
+using     ConsoleLogger=           aworx::lox::loggers::ConsoleLogger;
+
+}  // namespace aworx
 
 #endif // HPP_ALOX_CONSOLE_LOGGER
 

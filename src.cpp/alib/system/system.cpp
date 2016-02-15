@@ -6,7 +6,7 @@
 // #################################################################################################
 #include "alib/stdafx_alib.h"
 
-#if !defined (HPP_AWORX_LIB_ALIB)
+#if !defined (HPP_ALIB_ALIB)
     #include "alib/alib.hpp"
 #endif
 
@@ -25,10 +25,6 @@
 #endif
 
 using namespace std;
-using namespace aworx::lib::enums;
-using namespace aworx::lib::system;
-using namespace aworx::lib::config;
-using namespace aworx::lib::strings;
 
 namespace aworx {
 namespace           lib {
@@ -208,7 +204,7 @@ bool System::GetVariable( const TString&  name,
         while ( *envv )
         {
             const char* actVar=   *envv;
-            if (     0 == CString::strncasecmp( name.Buffer(), actVar, name.Length() )
+            if (     0 == lib::strings::CString::strncasecmp( name.Buffer(), actVar, name.Length() )
                  &&  *(actVar + name.Length()) == '='
                )
             {

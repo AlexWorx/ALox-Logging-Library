@@ -4,22 +4,22 @@
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
-/** @file */ // Hello Doxyen
+/** @file */ // Hello Doxygen
 
 // to preserve the right order, we are not includable directly from outside.
-#if !defined(FROM_HPP_AWORX_LIB_ALIB) || defined(HPP_AWORX_LIB_STRINGS_ASLITERAL)
+#if !defined(FROM_HPP_ALIB_ALIB) || defined(HPP_ALIB_STRINGS_ASLITERAL)
     #error "include alib/alib.hpp instead of this header"
 #endif
 
 // Due to our blocker above, this include will never be executed. But having it, allows IDEs
 // (e.g. QTCreator) to read the symbols when opening this file
-#if !defined (HPP_AWORX_LIB_ALIB)
+#if !defined (HPP_ALIB_ALIB)
     #include "alib/alib.hpp"
 #endif
 
 // then, set include guard
-#ifndef HPP_AWORX_LIB_STRINGS_ASLITERAL
-#define HPP_AWORX_LIB_STRINGS_ASLITERAL 1
+#ifndef HPP_ALIB_STRINGS_ASLITERAL
+#define HPP_ALIB_STRINGS_ASLITERAL 1
 
 // #################################################################################################
 // includes
@@ -46,21 +46,21 @@ namespace                   strings {
 
 
 /** ************************************************************************************************
- * This templated class is a specialization of class #ASTerminatable which has a fixed length.
+ * This templated class is a specialization of class #TString which has a fixed length.
  * Functions that accept such objects as a parameter can rely
  * at compile time on the constant length of the string and optimize their performance
  * accordingly. <br>
  * For example, template method
- * \ref aworx::lib::strings::ASAlloc::operator<<(const T&  op) "AString::operator<<(const T&)"
+ * \ref aworx::lib::strings::AString::operator<<(const T&  op) "AString::operator<<(const T&)"
  * which internally makes use of template method
- * \ref aworx::lib::strings::ASAlloc::Apply "AString::Apply" will append
+ * \ref aworx::lib::strings::AString::Apply "AString::Apply" will append
  * ASLiterals (up to a certain amount of characters) without doing a copy loop.
  *
  * The class is useful to assign string literals to objects, including their lengths and pass
  * them around, hence the name.<br>
  *
- * \note This class \b %ASLiteral, when used in source code as well as in documentations, is
- *       mostly referred to using the synonym '<b>%StringLiteral</b>'. For more information about
+ * \note This class \b %StringLiteral, when used in source code as well as in documentations, is
+ *       oftenly referred to using the synonym '<b>%SLiteral</b>'. For more information about
  *       the synonymous names of ALib string classes, refer to
  *       \ref alib_namespace_strings_class_overview "String Classes Overview" and
  *       \ref CPP_AWORX_NS_SHORTCUTS "Type Shortcuts in the aworx Namespace".
@@ -68,7 +68,7 @@ namespace                   strings {
  * @tparam TLength The length of the represented string.
 ***************************************************************************************************/
 template<size_t TLength>
-class ASLiteral : public ASTerminatable
+class StringLiteral : public TString
 {
     public:
     /** ********************************************************************************************
@@ -78,8 +78,8 @@ class ASLiteral : public ASTerminatable
      * @tparam TCapacity  The capacity of the given buffer. The length of this string is set
      *         to this value -1.
      **********************************************************************************************/
-    constexpr ASLiteral( const char (&src)[TLength + 1]  )
-    : ASTerminatable( src, TLength )
+    constexpr StringLiteral( const char (&src)[TLength + 1]  )
+    : TString( src, TLength )
     {}
 
     /** ********************************************************************************************
@@ -138,7 +138,7 @@ class ASLiteral : public ASTerminatable
 * Template meta programming (TMP) helper class to get the buffer and (constant) length
 * of a string literal.
 * Specializations exist for C++ string literals and ALib type
-* \ref aworx::lib::strings::ASLiteral "ASLiteral.
+* \ref aworx::lib::strings::StringLiteral "StringLiteral.
 *
 * \note This struct is of internal nature. For standard use of ALib strings, there is no
 *       no need to know about it.<br>
@@ -146,7 +146,7 @@ class ASLiteral : public ASTerminatable
 *       ALib users might want to implement a specialization for that type.
 *       The benefit lies in a performance gain. For example, appending types (of smaller sizes)
 *       to objects of type
-*       \ref aworx::lib::strings::ASAlloc "AString" does not invoke memcpy() by inlining the
+*       \ref aworx::lib::strings::AString "AString" does not invoke memcpy() by inlining the
 *       right number of single copy commands.
 ***********************************************************************************************/
 template<typename TLiteral>        struct TMPLiteral
@@ -161,10 +161,10 @@ template<typename TLiteral>        struct TMPLiteral
 };
 
 #if !defined( IS_DOXYGEN_PARSER )
-    template<size_t TLength>    struct TMPLiteral<ASLiteral<TLength>>
+    template<size_t TLength>    struct TMPLiteral<StringLiteral<TLength>>
     {
         enum      { Length= TLength      };
-        static const char* Buffer(void* o) { return ((AS*) o)->Buffer(); }
+        static const char* Buffer(void* o) { return ((String*) o)->Buffer(); }
     };
 
     template<size_t TCapacity>  struct TMPLiteral<char [TCapacity]>
@@ -177,9 +177,34 @@ template<typename TLiteral>        struct TMPLiteral
 
 
 
-}}} // namespace aworx::lib::strings
+}} // namespace lib::strings
+
+
+/** Type alias name in namespace #aworx. */
+template<size_t TLength>
+using     SLiteral  =        aworx::lib::strings::StringLiteral<TLength>;
+
+// #################################################################################################
+// aworx namespace string singletons
+// #################################################################################################
+
+/** The system depended new line character code(s). */
+#ifdef __unix__
+    constexpr static       lib::strings::StringLiteral<1>   NewLine { "\n" };
+#elif defined(_WIN32)
+    constexpr static       lib::strings::StringLiteral<2>   NewLine { "\r\n" };
+#else
+    #warning "Warning: Unknown Platform"
+#endif
+
+/** Characters that are usually ignored or trimmed. */
+constexpr     static       lib::strings::StringLiteral<4>   DefaultWhitespaces { " \n\r\t" };
+
+} // namespace aworx
+
+
 
 #if defined(_MSC_VER)
     #pragma warning( pop )
 #endif
-#endif // HPP_AWORX_LIB_STRINGS_ASLITERAL
+#endif // HPP_ALIB_STRINGS_ASLITERAL

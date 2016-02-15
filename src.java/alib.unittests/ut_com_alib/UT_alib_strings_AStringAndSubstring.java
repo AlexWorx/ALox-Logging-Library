@@ -361,7 +361,7 @@ public class UT_alib_strings_AStringAndSubstring extends UnitTest
     @Test
     public void IndexOfString()
     {
-        // search nullptr, empty string
+        // search null, empty string
         {
             tIndexOfString(  "abcd abcd",  null     ,     0  , Case.SENSITIVE,   0  );
             tIndexOfString(  "abcd abcd",  null     ,     5  , Case.SENSITIVE,   5  );

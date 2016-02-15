@@ -91,9 +91,9 @@ As stated above, ALox volunteers to separate everything that is related to the C
 into three different categories. This section is about symbols that can be passed to the compiler.<p>
 
 <b>Naming</b><br>
-Many of the symbols are named using a postfix <em>_ON</em> or <em>_OFF</em> what indicates
+Many of the symbols are named using suffixex <em>_ON</em> or <em>_OFF</em> what indicates
 that they can be used to switch a code selection symbol (see next sections) which is named
-the same but excluding the postfix, on or off. As a sample, the <em>compilation symbols</em>
+the same but excluding the suffix. As a sample, the <em>compilation symbols</em>
 \ref ALOX_DBG_LOG_ON and \ref ALOX_DBG_LOG_OFF are controlling the definition of
 the <em>code selection symbol</em> \ref ALOX_DBG_LOG.<p>
 
@@ -133,8 +133,8 @@ The compilation symbols for ALox and ALib are listed here:
 
 These symbols are mostly derived (by the ALib/ALox header files) from the
 <b>Compilation Symbols </b>(\ref GrpALibCompilerSymbols "ALib", \ref GrpALoxCompilerSymbols "ALox")
-discussed in the previous section and, their naming oftenly corresponds to these, excluding the
-postfix <em>_ON</em> and <em>_OFF</em>.<p>
+discussed in the previous section and, their naming oftenly corresponds to these, excluding
+suffixes <em>_ON</em> and <em>_OFF</em>.<p>
 These symbols must not be passed to the compiler and must not be set manually from within code
 entities that use ALox libraries. They can be used in code entities that use ALox to select code
 depending on the same settings of the ALox library compilation.
@@ -169,8 +169,9 @@ exclusively to select code variations depending on the library build configurati
 The code selection mainly achieves:
 
 - **Pruning of log code**<br>
-Using the logging macros provided allows to selectively removing all \e debug or
-<em>release logging</em> invocations from the code.<br>
+Using the logging macros provided, allows to selectively remove all \e <em>debug logging</em> or
+<em>release logging</em> invocations from the code. (For an explanation of the concept of
+'\e pruning', see [What is Pruning?](../faq.html#faq_pruning).)<br>
 To configure logging (e.g. create certain loggers, configure the log output, etc.) the macro
 #Log_Prune and #Lox_Prune are provided (which are empty, hence remove all enclosed code on request).
 
@@ -181,9 +182,9 @@ ALox uses built-in standard preprocessor symbols like  "__FILE__" and "__LINE__"
 information about the position of logging statement within the source. Especially for release
 logging, one problematic fact is that such logging source information could disclose internals
 if the release software unit was reverse engineered. Therefore, the use of source information
-is configurable.<br>
-Also, hiding the use of the built-in symbols, using dedicated ALox specific macros, reliefs the
-source code lot of clutter and overhead.
+is configurable and disabled by default.<br>
+Also, hiding the use of the built-in symbols by using dedicated ALox macros, reliefs the
+source code from a lot of clutter and overhead.
 
 \note
 We think, from the fact that source code editors which color C++ macros specifically, a next
@@ -195,13 +196,13 @@ all log lines shine in their own preprocessor color.
 Other language implementations of ALox (<em>ALox for C#</em> and <em>ALox for Java</em>) implement
 pruning with different, language specific mechanisms. In C++, by providing not only a set
 of macros to implement debug logging, but also one for release logging, one of the differences
-to such other ALox implementations is, that this allows to prune release logging from the code
-the same as to prune debug logging. This extra flexibility is not provided with the other
+to such other ALox implementations is, that this allows to prune <em>release logging</em> from the code
+the same as to prune <em>debug logging</em>. This extra flexibility is not provided with the other
 implementations by default, but might be achieved by adding language specific extensions by
 the user of the libraries.<br>
 It might be important to understand the difference: When release
 logging is just \e disabled, the code for release logging still remains in the binaries,
-which has an impact on their size and (a marginal) impact on their speed.
+which has an impact on their size and an (probably marginal) impact on their speed.
 In addition it is possibility to reverse engineer such binaries and learn about internals of the
 software (should someone do so).<br>
 In this respect, ALox for C++ is the most flexible implementation of ALox as two different release

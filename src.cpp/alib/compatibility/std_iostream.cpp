@@ -12,7 +12,6 @@
 
 
 using namespace std;
-using namespace aworx::lib::enums;
 
 namespace aworx {
 namespace           lib {

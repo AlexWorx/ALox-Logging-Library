@@ -6,7 +6,7 @@
 // #################################################################################################
 #include "alib/stdafx_alib.h"
 
-#if !defined (HPP_AWORX_LIB_SYSTEM_PROCESSINFO)
+#if !defined (HPP_ALIB_SYSTEM_PROCESSINFO)
     #include "alib/system/process.hpp"
 #endif
 
@@ -23,8 +23,6 @@
 #endif
 
 using namespace std;
-using namespace aworx::lib::strings;
-using namespace aworx::lib::enums;
 
 namespace aworx {
 namespace           lib {
@@ -71,7 +69,7 @@ ProcessInfo    ProcessInfo::current;
         return true;
     }
 
-    bool ProcessInfo::get( const AS& pid )
+    bool ProcessInfo::get( const String& pid )
     {
         // use current thread if no PID given
         String32 newPID;
@@ -118,7 +116,7 @@ ProcessInfo    ProcessInfo::current;
 
 #elif defined (_WIN32)
 
-    bool ProcessInfo::get( const AS& pid )
+    bool ProcessInfo::get( const String& pid )
     {
         // get pid
         if (pid  != nullptr )

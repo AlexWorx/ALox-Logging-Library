@@ -8,15 +8,15 @@
 
 #include "alib/alib.hpp"
 
-#if !defined (HPP_AWORX_LIB_TIME)
+#if !defined (HPP_ALIB_TIME)
     #include "alib/time/ticks.hpp"
 #endif
 
-#if !defined (HPP_AWORX_LIB_STRINGS_ASTRING)
+#if !defined (HPP_ALIB_STRINGS_ASTRING)
     #include "alib/strings/asalloc.hpp"
 #endif
 
-#if !defined (HPP_AWORX_LIB_THREADS_THREADLOCK)
+#if !defined (HPP_ALIB_THREADS_THREADLOCK)
     #include "alib/threads/threadlock.hpp"
 #endif
 
@@ -27,10 +27,6 @@
 
 using namespace std;
 using namespace aworx;
-using namespace aworx::lib;
-using namespace aworx::lib::enums;
-using namespace aworx::lib::strings;
-using namespace aworx::lib::threads;
 
 namespace ut_aworx {
 
@@ -165,10 +161,7 @@ UT_METHOD( ThreadSimple )
 //---------------------------------------------------------------------------------------------------------
 UT_METHOD( ThreadLockSimple )
 
-    bool oldHaltOnError=    Report::GetDefault().HaltOnError;
-    bool oldHaltOnWarning=  Report::GetDefault().HaltOnWarning;
-    Report::GetDefault().HaltOnError=
-    Report::GetDefault().HaltOnWarning=    false;
+    lib::Report::GetDefault().PushHaltFlags( false, false );
 
     // lock a recursive lock
     {
@@ -233,8 +226,7 @@ UT_METHOD( ThreadLockSimple )
         aLock.Release();                UT_EQ ( 0, aLock.IsAcquired() );
     }
 
-    Report::GetDefault().HaltOnError=      oldHaltOnError;
-    Report::GetDefault().HaltOnWarning=    oldHaltOnWarning;
+    lib::Report::GetDefault().PopHaltFlags();
 }
 
 //---------------------------------------------------------------------------------------------------------
@@ -242,10 +234,7 @@ UT_METHOD( ThreadLockSimple )
 //---------------------------------------------------------------------------------------------------------
 UT_METHOD( ThreadLockThreaded )
 
-    bool oldHaltOnError=    Report::GetDefault().HaltOnError;
-    bool oldHaltOnWarning=  Report::GetDefault().HaltOnWarning;
-    Report::GetDefault().HaltOnError=
-    Report::GetDefault().HaltOnWarning=    false;
+    lib::Report::GetDefault().PushHaltFlags( false, false );
 
         ThreadLock aLock;
         Test_ThreadLock_SharedInt* shared= new Test_ThreadLock_SharedInt();
@@ -277,8 +266,7 @@ UT_METHOD( ThreadLockThreaded )
         delete t;
         delete shared;
 
-    Report::GetDefault().HaltOnError=      oldHaltOnError;
-    Report::GetDefault().HaltOnWarning=    oldHaltOnWarning;
+    lib::Report::GetDefault().PopHaltFlags();
 }
 
 
@@ -328,7 +316,7 @@ UT_METHOD( LockSpeedTest )
     int        rrepeats=       3;
 
 
-    time::Ticks stopwatch;
+    Ticks stopwatch;
     for ( int run= 1; run <= rrepeats; run ++)
     {
         UT_PRINT( "Run " << run << '/' << rrepeats );

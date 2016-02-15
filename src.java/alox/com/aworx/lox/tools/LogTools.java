@@ -45,8 +45,8 @@ public abstract class LogTools
         /** Prefix for instance line numbers */
         public static    String            fmtInstLineNoPrefix           = "<";
 
-        /** Postfix for instance line numbers */
-        public static    String            fmtInstLineNoPostfix          = ">";
+        /** Suffix for instance line numbers */
+        public static    String            fmtInstLineNoSuffix           = ">";
 
         /** The String to log out if a given object instance equals null */
         public static    String            fmtInstNull                    = "<null>";
@@ -60,18 +60,18 @@ public abstract class LogTools
         /**  Prefix before logging size of an IEnumberable. */
         public static    String            fmtInstIterablePrefix         = "Iterable, size= ";
 
-        /**  Postfix after logging IEnumberable. */
-        public static    String            fmtInstIterablePostfix        = "";
+        /**  Suffix after logging IEnumberable. */
+        public static    String            fmtInstIterableSuffix         = "";
 
         /**  Prefix before logging size of an IEnumberable. */
         public static    String            fmtInstArrayPrefix            = "array[";
 
-        /**  Postfix after logging IEnumberable. */
-        public static    String            fmtInstArrayPostfix           = "]";
+        /**  Suffix after logging IEnumberable. */
+        public static    String            fmtInstArraySuffix            = "]";
 
 
-        /** Postfix after logging out a cyclic reference line number. */
-        public static    String            fmtInstCycRefPostfix          = ">)";
+        /** Suffix after logging out a cyclic reference line number. */
+        public static    String            fmtInstCycRefSuffix           = ">)";
 
         /** Indent String for instance lines */
         public static    String            FmtInstNoAccessToValue        = "<no access>" ;
@@ -79,8 +79,8 @@ public abstract class LogTools
         /** Prefix for type names */
         public static    String            fmtInstTypePrefix            = "{";
 
-        /** Postfix for type names */
-        public static    String            fmtInstTypePostfix            = "}";
+        /** Suffix for type names */
+        public static    String            fmtInstTypeSuffix            = "}";
 
         /** Indent String for instance lines */
         public static    String            fmtInstIndent                = "  ";
@@ -682,7 +682,7 @@ public abstract class LogTools
         {
             toolBuf ._( fmtInstCycRefPrefix )
                     ._( lineNumber.intValue(), 2 )
-                    ._( fmtInstCycRefPostfix );
+                    ._( fmtInstCycRefSuffix );
             instTabTypeAndNewLine( inst.getClass() );
             return;
         }
@@ -695,7 +695,7 @@ public abstract class LogTools
             // get array length from fields"length()"
             int qtyObjects= Array.getLength( inst );
 
-            toolBuf._( fmtInstArrayPrefix )._( qtyObjects )._( fmtInstArrayPostfix );
+            toolBuf._( fmtInstArrayPrefix )._( qtyObjects )._( fmtInstArraySuffix );
             instTabTypeAndNewLine( type );
 
             // loop over all objects
@@ -730,7 +730,7 @@ public abstract class LogTools
             }
 
             // log headline and start new line
-            toolBuf._( fmtInstIterablePrefix )._( qtyObjects )._( fmtInstIterablePostfix );
+            toolBuf._( fmtInstIterablePrefix )._( qtyObjects )._( fmtInstIterableSuffix );
             instTabTypeAndNewLine( type );
 
             // loop over all objects
@@ -809,7 +809,7 @@ public abstract class LogTools
     }
 
     /** ********************************************************************************************
-     *  Appends line number (format defined in fields #fmtInstLineNoPrefix and #fmtInstLineNoPostfix)
+     *  Appends line number (format defined in fields #fmtInstLineNoPrefix and #fmtInstLineNoSuffix)
      *  and then adds indent characters (defined in field #fmtInstIndent).
      *
      * @param indent    The indentation of the line.
@@ -817,7 +817,7 @@ public abstract class LogTools
     protected static void instBeginLine( int indent )
     {
         instLineBeginIdx= toolBuf.length();
-        toolBuf._( fmtInstLineNoPrefix )._( instLineNumber, 2 )._( fmtInstLineNoPostfix );
+        toolBuf._( fmtInstLineNoPrefix )._( instLineNumber, 2 )._( fmtInstLineNoSuffix );
         for ( int i= indent; i > 0; i-- )
             toolBuf._( fmtInstIndent );
     }
@@ -846,7 +846,7 @@ public abstract class LogTools
             else if (typeStr.startsWith( "java.util." ))    typeStr= typeStr.substring( 10 );
 
             do    { toolBuf._( ' ' ); } while ( toolBuf.length() <= instLineBeginIdx + instTypeTabStop  );
-            toolBuf._( fmtInstTypePrefix )._( typeStr )._( fmtInstTypePostfix );
+            toolBuf._( fmtInstTypePrefix )._( typeStr )._( fmtInstTypeSuffix );
         }
         instNewLine();
     }

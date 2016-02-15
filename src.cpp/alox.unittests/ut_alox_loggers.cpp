@@ -24,10 +24,6 @@ using namespace std;
 using namespace ut_aworx;
 
 using namespace aworx;
-using namespace aworx::lib;
-using namespace aworx::lox;
-using namespace aworx::lox::core;
-using namespace aworx::lox::loggers;
 
 
 namespace ut_alox {
@@ -113,10 +109,10 @@ UT_CLASS()
                                     << ">>>" << ESC::BLACK   << ESC::BG_BLACK   << "BLACK"      << ESC::RESET << "<<<"
                                     );
 
-            Log_Prune( Logger* acl= nullptr; )    Log_GetLogger( acl, "ANSI_CONSOLE" );
+            Log_Prune( lox::core::Logger* acl= nullptr; )    Log_GetLogger( acl, "ANSI_CONSOLE" );
             Log_Prune( if ( acl != nullptr )  ((AnsiConsoleLogger*)    acl) ->IsBackgroundLight= !((AnsiConsoleLogger*)    acl) ->IsBackgroundLight; )
             #if defined(_WIN32 )
-            Log_Prune( Logger* wcl= nullptr; )    Log_GetLogger( wcl, "WINDOWS_CONSOLE" );
+            Log_Prune( lox::core::Logger* wcl= nullptr; )    Log_GetLogger( wcl, "WINDOWS_CONSOLE" );
             Log_Prune( if ( wcl != nullptr )  ((WindowsConsoleLogger*) wcl) ->IsBackgroundLight= !((WindowsConsoleLogger*) wcl) ->IsBackgroundLight; )
             #endif
 

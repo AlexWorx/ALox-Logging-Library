@@ -2,7 +2,6 @@
 Please find all about the **ALox Logging Library**, including
 
 * **Tutorials**
-* **Tutorials**
 * **User manual**
 * **Reference documentation**
 * **FAQ** and the
@@ -45,7 +44,7 @@ On the other end of the list, ALox  enables **release logging** for productive a
 
 * Very **fast** to minimize runtime overhead of logging (We just broke our former record and did 1 million log lines in a second, including meta information. This was of-course the C++ version doing release logging on release executable).
 
- * Automatic removal, aka **'pruning'**,  of *debug-log* statements from release code mostly without the need of preprocessor if/endif code  cluttering. Optionally also automatic pruning of *release-log* statements. (In Java: implemented using [Proguard](http://proguard.sourceforge.net), with provision of ready to use configuration files.
+* Automatic removal, aka **'pruning'**,  of *debug-log* statements from release code mostly without the need of preprocessor if/endif code  cluttering. Optionally also automatic pruning of *release-log* statements. (In Java: implemented using [Proguard](http://proguard.sourceforge.net), with provision of ready to use configuration files.
 
 * Multiple **parallel log streams** with different *filters* and verbosity levels, e.g. for logging to the console and in parallel into a file.
 
@@ -60,7 +59,7 @@ On the other end of the list, ALox  enables **release logging** for productive a
 
 * **LogTools** (in C# and Java) for
 
-     * Recursive **logging of complex types** with one line of code using *class inspection/reflection*. Variable recursion depth and detection of cyclic references.
+    * Recursive **logging of complex types** with one line of code using *class inspection/reflection*. Variable recursion depth and detection of cyclic references.
     * Logging **Exceptions** (recursively with inner exceptions)
     * Logging **XML trees**
 

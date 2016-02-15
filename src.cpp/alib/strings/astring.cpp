@@ -8,11 +8,11 @@
 
 #include "alib/alib.hpp"
 
-#if !defined (HPP_AWORX_LIB_STRINGS_ASSUBSTRING)
-    #include "alib/strings/assubstring.hpp"
+#if !defined (HPP_ALIB_STRINGS_ASSUBSTRING)
+    #include "alib/strings/substring.hpp"
 #endif
 
-#if !defined (HPP_AWORX_LIB_STRINGS_NUMBERFORMAT)
+#if !defined (HPP_ALIB_STRINGS_NUMBERFORMAT)
     #include "alib/strings/numberformat.hpp"
 #endif
 
@@ -35,7 +35,6 @@
 #endif
 
 using namespace std;
-using namespace aworx::lib::enums;
 
 
 namespace aworx {
@@ -47,7 +46,7 @@ namespace                   strings {
 // #################################################################################################
 
 // *************************************************************************************************
-// ASAlloc::_dbgCheck()
+// AString::_dbgCheck()
 // *************************************************************************************************
 #if defined(ALIB_DEBUG_STRINGS) && !defined( IS_DOXYGEN_PARSER )
 
@@ -55,9 +54,9 @@ namespace                   strings {
         #pragma message "Compiler symbol ALIB_DEBUG_STRINGS_ON set, while ALIB_DEBUG is off. Is this really wanted?"
     #endif
 
-    void ASAlloc::_dbgCheck() const
+    void AString::_dbgCheck() const
     {
-        ASTerminatable::_dbgCheck();
+        TString::_dbgCheck();
         int capacity= Capacity();
 
         ALIB_ASSERT_ERROR(      buffer != nullptr
@@ -101,7 +100,7 @@ namespace                   strings {
 // Allocation
 // ####################################################################################################
 
-void ASAlloc::SetBuffer( int newSize )
+void AString::SetBuffer( int newSize )
 {
     ALIB_STRING_DBG_CHK(this)
 
@@ -132,7 +131,7 @@ void ASAlloc::SetBuffer( int newSize )
     }
 
     ALIB_WARN_ONCE_IF( capacity < 0,
-                      "ASAlloc::SetAllocation(): replacing an external buffer. This may not be wanted.",
+                      "AString::SetAllocation(): replacing an external buffer. This may not be wanted.",
                       *this, ReplaceExternalBuffer )
 
     // create new Buffer
@@ -178,12 +177,12 @@ void ASAlloc::SetBuffer( int newSize )
 
 
 
-void ASAlloc::SetBuffer( char* extBuffer, int extBufferSize, int extLength,
+void AString::SetBuffer( char* extBuffer, int extBufferSize, int extLength,
                          Responsibility responsibility  )
 {
     ALIB_ASSERT_ERROR(       !(extBufferSize == 0 && extBuffer != nullptr)
                            &&    !(extBufferSize != 0 && extBuffer == nullptr) ,
-                      "ASAlloc::SetBuffer(): Given buffer is nullptr while given alloc size is not 0 (or vice versa)" );
+                      "AString::SetBuffer(): Given buffer is nullptr while given alloc size is not 0 (or vice versa)" );
 
     // delete any existing
     if ( capacity > 0 )
@@ -240,7 +239,7 @@ void ASAlloc::SetBuffer( char* extBuffer, int extBufferSize, int extLength,
 // Trim
 // #############################################################################################
 
-ASAlloc& ASAlloc::TrimAt( int index, const ASTerminatable& trimChars )
+AString& AString::TrimAt( int index, const TString& trimChars )
 {
     if ( index < 0 || index >= length || trimChars.IsEmpty() )
          return *this;
@@ -256,7 +255,7 @@ ASAlloc& ASAlloc::TrimAt( int index, const ASTerminatable& trimChars )
     return *this;
 }
 
-ASAlloc& ASAlloc::Trim( const ASTerminatable& trimChars )
+AString& AString::Trim( const TString& trimChars )
 {
     // check
     if (length == 0 || trimChars.IsEmpty() )
@@ -282,11 +281,11 @@ ASAlloc& ASAlloc::Trim( const ASTerminatable& trimChars )
 // #################################################################################################
 //  Replace()
 // #################################################################################################
-int ASAlloc::SearchAndReplace(  const ASTerminatable&  needle,
-                                const AS&              replacement,
-                                int                    startIdx,
-                                int                    maxReplacements,
-                                Case                   sensitivity        )
+int AString::SearchAndReplace(  const TString&  needle,
+                                const String&   replacement,
+                                int             startIdx,
+                                int             maxReplacements,
+                                Case            sensitivity        )
 {
     ALIB_STRING_DBG_CHK(this)
 

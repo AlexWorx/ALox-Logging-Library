@@ -22,7 +22,7 @@
 
 - Log lines **'clickable' in IDE** to jump to the corresponding source code line (depending on IDE).
 
-- Automatic collection of **meta information** like time stamp, time-difference to previous log, executing thread, caller information (source file, line number, class, method, etc.), domain (the 'topic' of the log output)
+- Automatic collection of **meta information** like time stamp, time-difference to previous log, executing thread, caller information (source file, line number, class, method, etc.), domain (the 'topic' of the log output).
 
 - **Hierarchical 'Log-Domains'**, (like for example "MYAPP/UI", "MYAPP/DATABASE" that allow the classification of different log statements into user defined topics. Such domains can be controlled (recursively) at runtime to allow the programmer to concentrate on the area of current interest.
 
@@ -74,6 +74,11 @@
 - Thread tools for analysis and assertions
 
 - More on performance logging
+
+<p>
+
+--------------------------------------------------------------------
+Next chapter: \ref man_alox_architecture
 
 
 */

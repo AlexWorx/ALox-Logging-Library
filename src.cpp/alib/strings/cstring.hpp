@@ -4,22 +4,22 @@
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
-/** @file */ // Hello Doxyen
+/** @file */ // Hello Doxygen
 
 // to preserve the right order, we are not includable directly from outside.
-#if !defined(FROM_HPP_AWORX_LIB_ALIB) || defined(HPP_AWORX_LIB_STRINGS_CSTRING)
+#if !defined(FROM_HPP_ALIB_ALIB) || defined(HPP_ALIB_STRINGS_CSTRING)
     #error "include alib/alib.hpp instead of this header"
 #endif
 
 // Due to our blocker above, this include will never be executed. But having it, allows IDEs
 // (e.g. QTCreator) to read the symbols when opening this file
-#if !defined (HPP_AWORX_LIB_ALIB)
+#if !defined (HPP_ALIB_ALIB)
     #include "alib/alib.hpp"
 #endif
 
 // then, set include guard
-#ifndef HPP_AWORX_LIB_STRINGS_CSTRING
-#define HPP_AWORX_LIB_STRINGS_CSTRING 1
+#ifndef HPP_ALIB_STRINGS_CSTRING
+#define HPP_ALIB_STRINGS_CSTRING 1
 
 // #################################################################################################
 // includes
@@ -32,8 +32,8 @@ namespace aworx {
 namespace           lib {
 namespace                   strings {
 
-class AS;
-class ASTerminatable;
+class String;
+class TString;
 
 /** ************************************************************************************************
  *  This inner class of AString provides static methods working with zero-terminated character
@@ -158,7 +158,7 @@ class CString
          *
          * This method searches up to a given maximum index. For a search to the end of the
          * zero terminated string, use faster method provided with class
-         * \ref aworx::lib::strings::ASTerminatable "ASTerminatable".
+         * \ref aworx::lib::strings::TString "TString".
 
          * @param haystack        Pointer to the start of the string.
          * @param haystackLength  The length of the string or the maximum position to search.
@@ -214,4 +214,4 @@ class CString
 
 }}} // namespace aworx::lib::strings
 
-#endif // HPP_AWORX_LIB_STRINGS_CSTRING
+#endif // HPP_ALIB_STRINGS_CSTRING

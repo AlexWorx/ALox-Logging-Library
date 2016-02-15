@@ -6,7 +6,7 @@
 // #################################################################################################
 #include "alib/stdafx_alib.h"
 
-#if !defined (HPP_AWORX_LIB_ALIB)
+#if !defined (HPP_ALIB_ALIB)
     #include "alib/alib.hpp"
 #endif
 
@@ -18,15 +18,7 @@
 #include "alib/core/util.hpp"
 
 using namespace std;
-using namespace aworx::lib;
-using namespace aworx::lib::enums;
-using namespace aworx::lib::strings;
-using namespace aworx::lib::system;
-using namespace aworx::lox;
 using namespace aworx::lox::core;
-using namespace aworx::lox::loggers;
-
-
 
 namespace aworx {
 namespace       lox {
@@ -37,99 +29,99 @@ namespace           loggers{
 // #################################################################################################
  #if defined(_MSC_VER)
 // MSC  (as of 12/2015):
-// C4579: in-class initialization for type 'const aworx::StringLiteral<10>'
+// C4579: in-class initialization for type 'const aworx::SLiteral<10>'
 // is not yet implemented; static member will remain uninitialized at runtime but
 // use in constant-expressions is supported
-          StringLiteral<5>   AnsiLogger::ANSI_RED              { "\033[31m"       }; ///< Select red as foreground color
-          StringLiteral<5>   AnsiLogger::ANSI_GREEN            { "\033[32m"       }; ///< Select green as foreground color
-          StringLiteral<5>   AnsiLogger::ANSI_YELLOW           { "\033[33m"       }; ///< Select yellow as foreground color
-          StringLiteral<5>   AnsiLogger::ANSI_BLUE             { "\033[34m"       }; ///< Select blue as foreground color
-          StringLiteral<5>   AnsiLogger::ANSI_MAGENTA          { "\033[35m"       }; ///< Select magenta as foreground color
-          StringLiteral<5>   AnsiLogger::ANSI_CYAN             { "\033[36m"       }; ///< Select cyan as foreground color
-          StringLiteral<5>   AnsiLogger::ANSI_BLACK            { "\033[30m"       }; ///< Select black as foreground color
-          StringLiteral<10>  AnsiLogger::ANSI_WHITE            { "\033[38;5;15m"  }; ///< Select white as foreground color
-          StringLiteral<11>  AnsiLogger::ANSI_GRAY             { "\033[38;5;240m" }; ///< Select gray as foreground color
-          StringLiteral<5>   AnsiLogger::ANSI_STD_COL          { "\033[39m"       }; ///< Select standard foreground color
+          SLiteral<5>   AnsiLogger::ANSI_RED              { "\033[31m"       }; ///< Select red as foreground color
+          SLiteral<5>   AnsiLogger::ANSI_GREEN            { "\033[32m"       }; ///< Select green as foreground color
+          SLiteral<5>   AnsiLogger::ANSI_YELLOW           { "\033[33m"       }; ///< Select yellow as foreground color
+          SLiteral<5>   AnsiLogger::ANSI_BLUE             { "\033[34m"       }; ///< Select blue as foreground color
+          SLiteral<5>   AnsiLogger::ANSI_MAGENTA          { "\033[35m"       }; ///< Select magenta as foreground color
+          SLiteral<5>   AnsiLogger::ANSI_CYAN             { "\033[36m"       }; ///< Select cyan as foreground color
+          SLiteral<5>   AnsiLogger::ANSI_BLACK            { "\033[30m"       }; ///< Select black as foreground color
+          SLiteral<10>  AnsiLogger::ANSI_WHITE            { "\033[38;5;15m"  }; ///< Select white as foreground color
+          SLiteral<11>  AnsiLogger::ANSI_GRAY             { "\033[38;5;240m" }; ///< Select gray as foreground color
+          SLiteral<5>   AnsiLogger::ANSI_STD_COL          { "\033[39m"       }; ///< Select standard foreground color
 
-          StringLiteral<5>   AnsiLogger::ANSI_BG_RED           { "\033[41m"       }; ///< Select red as background color
-          StringLiteral<5>   AnsiLogger::ANSI_BG_GREEN         { "\033[42m"       }; ///< Select green as background color
-          StringLiteral<5>   AnsiLogger::ANSI_BG_YELLOW        { "\033[43m"       }; ///< Select yellow as background color
-          StringLiteral<5>   AnsiLogger::ANSI_BG_BLUE          { "\033[44m"       }; ///< Select blue as background color
-          StringLiteral<5>   AnsiLogger::ANSI_BG_MAGENTA       { "\033[45m"       }; ///< Select magenta as background color
-          StringLiteral<5>   AnsiLogger::ANSI_BG_CYAN          { "\033[46m"       }; ///< Select cyan as background color
-          StringLiteral<5>   AnsiLogger::ANSI_BG_BLACK         { "\033[40m"       }; ///< Select black as background color
-          StringLiteral<10>  AnsiLogger::ANSI_BG_WHITE         { "\033[48;5;15m"  }; ///< Select white as background color
-          StringLiteral<11>  AnsiLogger::ANSI_BG_GRAY          { "\033[48;5;240m" }; ///< Select gray as background color
-          StringLiteral<5>   AnsiLogger::ANSI_BG_STD_COL       { "\033[49m"       }; ///< Select standard background color
+          SLiteral<5>   AnsiLogger::ANSI_BG_RED           { "\033[41m"       }; ///< Select red as background color
+          SLiteral<5>   AnsiLogger::ANSI_BG_GREEN         { "\033[42m"       }; ///< Select green as background color
+          SLiteral<5>   AnsiLogger::ANSI_BG_YELLOW        { "\033[43m"       }; ///< Select yellow as background color
+          SLiteral<5>   AnsiLogger::ANSI_BG_BLUE          { "\033[44m"       }; ///< Select blue as background color
+          SLiteral<5>   AnsiLogger::ANSI_BG_MAGENTA       { "\033[45m"       }; ///< Select magenta as background color
+          SLiteral<5>   AnsiLogger::ANSI_BG_CYAN          { "\033[46m"       }; ///< Select cyan as background color
+          SLiteral<5>   AnsiLogger::ANSI_BG_BLACK         { "\033[40m"       }; ///< Select black as background color
+          SLiteral<10>  AnsiLogger::ANSI_BG_WHITE         { "\033[48;5;15m"  }; ///< Select white as background color
+          SLiteral<11>  AnsiLogger::ANSI_BG_GRAY          { "\033[48;5;240m" }; ///< Select gray as background color
+          SLiteral<5>   AnsiLogger::ANSI_BG_STD_COL       { "\033[49m"       }; ///< Select standard background color
 
-          StringLiteral<10>  AnsiLogger::ANSI_LIGHT_RED        { "\033[38;5;09m"  }; ///< Select light red as foreground color
-          StringLiteral<10>  AnsiLogger::ANSI_LIGHT_GREEN      { "\033[38;5;10m"  }; ///< Select light green as foreground color
-          StringLiteral<10>  AnsiLogger::ANSI_LIGHT_YELLOW     { "\033[38;5;11m"  }; ///< Select light yellow as foreground color
-          StringLiteral<10>  AnsiLogger::ANSI_LIGHT_BLUE       { "\033[38;5;12m"  }; ///< Select light blue as foreground color
-          StringLiteral<10>  AnsiLogger::ANSI_LIGHT_MAGENTA    { "\033[38;5;13m"  }; ///< Select light magenta as foreground color
-          StringLiteral<10>  AnsiLogger::ANSI_LIGHT_CYAN       { "\033[38;5;14m"  }; ///< Select light cyan as foreground color
-          StringLiteral<11>  AnsiLogger::ANSI_LIGHT_GRAY       { "\033[38;5;250m" }; ///< Select light gray as foreground color
-          StringLiteral<5>   AnsiLogger::ANSI_LIGHT_STD_COL    { "\033[39m"       }; ///< Select standard foreground color
+          SLiteral<10>  AnsiLogger::ANSI_LIGHT_RED        { "\033[38;5;09m"  }; ///< Select light red as foreground color
+          SLiteral<10>  AnsiLogger::ANSI_LIGHT_GREEN      { "\033[38;5;10m"  }; ///< Select light green as foreground color
+          SLiteral<10>  AnsiLogger::ANSI_LIGHT_YELLOW     { "\033[38;5;11m"  }; ///< Select light yellow as foreground color
+          SLiteral<10>  AnsiLogger::ANSI_LIGHT_BLUE       { "\033[38;5;12m"  }; ///< Select light blue as foreground color
+          SLiteral<10>  AnsiLogger::ANSI_LIGHT_MAGENTA    { "\033[38;5;13m"  }; ///< Select light magenta as foreground color
+          SLiteral<10>  AnsiLogger::ANSI_LIGHT_CYAN       { "\033[38;5;14m"  }; ///< Select light cyan as foreground color
+          SLiteral<11>  AnsiLogger::ANSI_LIGHT_GRAY       { "\033[38;5;250m" }; ///< Select light gray as foreground color
+          SLiteral<5>   AnsiLogger::ANSI_LIGHT_STD_COL    { "\033[39m"       }; ///< Select standard foreground color
 
-          StringLiteral<10>  AnsiLogger::ANSI_BG_LIGHT_RED     { "\033[48;5;09m"  }; ///< Select light red as background color
-          StringLiteral<10>  AnsiLogger::ANSI_BG_LIGHT_GREEN   { "\033[48;5;10m"  }; ///< Select light green as background color
-          StringLiteral<10>  AnsiLogger::ANSI_BG_LIGHT_YELLOW  { "\033[48;5;11m"  }; ///< Select light yellow as background color
-          StringLiteral<10>  AnsiLogger::ANSI_BG_LIGHT_BLUE    { "\033[48;5;12m"  }; ///< Select light blue as background color
-          StringLiteral<10>  AnsiLogger::ANSI_BG_LIGHT_MAGENTA { "\033[48;5;13m"  }; ///< Select light magenta as background color
-          StringLiteral<10>  AnsiLogger::ANSI_BG_LIGHT_CYAN    { "\033[48;5;14m"  }; ///< Select light cyan as background color
-          StringLiteral<11>  AnsiLogger::ANSI_BG_LIGHT_GRAY    { "\033[48;5;250m" }; ///< Select light gray as background color
-          StringLiteral<5>   AnsiLogger::ANSI_BG_LIGHT_STD_COL { "\033[49m"       }; ///< Select standard background color
+          SLiteral<10>  AnsiLogger::ANSI_BG_LIGHT_RED     { "\033[48;5;09m"  }; ///< Select light red as background color
+          SLiteral<10>  AnsiLogger::ANSI_BG_LIGHT_GREEN   { "\033[48;5;10m"  }; ///< Select light green as background color
+          SLiteral<10>  AnsiLogger::ANSI_BG_LIGHT_YELLOW  { "\033[48;5;11m"  }; ///< Select light yellow as background color
+          SLiteral<10>  AnsiLogger::ANSI_BG_LIGHT_BLUE    { "\033[48;5;12m"  }; ///< Select light blue as background color
+          SLiteral<10>  AnsiLogger::ANSI_BG_LIGHT_MAGENTA { "\033[48;5;13m"  }; ///< Select light magenta as background color
+          SLiteral<10>  AnsiLogger::ANSI_BG_LIGHT_CYAN    { "\033[48;5;14m"  }; ///< Select light cyan as background color
+          SLiteral<11>  AnsiLogger::ANSI_BG_LIGHT_GRAY    { "\033[48;5;250m" }; ///< Select light gray as background color
+          SLiteral<5>   AnsiLogger::ANSI_BG_LIGHT_STD_COL { "\033[49m"       }; ///< Select standard background color
 
-          StringLiteral<4>   AnsiLogger::ANSI_BOLD             { "\033[1m"        }; ///< Select bold font style
-          StringLiteral<4>   AnsiLogger::ANSI_ITALICS          { "\033[3m"        }; ///< Select italics font style
-          StringLiteral<4>   AnsiLogger::ANSI_STD_STYLE        { "\033[0m"        }; ///< Select standard font style
-          StringLiteral<4>   AnsiLogger::ANSI_RESET            { "\033[0m"        }; ///< Reset colors and font style
+          SLiteral<4>   AnsiLogger::ANSI_BOLD             { "\033[1m"        }; ///< Select bold font style
+          SLiteral<4>   AnsiLogger::ANSI_ITALICS          { "\033[3m"        }; ///< Select italics font style
+          SLiteral<4>   AnsiLogger::ANSI_STD_STYLE        { "\033[0m"        }; ///< Select standard font style
+          SLiteral<4>   AnsiLogger::ANSI_RESET            { "\033[0m"        }; ///< Reset colors and font style
 
 #else
-constexpr StringLiteral<5>   AnsiLogger::ANSI_RED             ;
-constexpr StringLiteral<5>   AnsiLogger::ANSI_GREEN           ;
-constexpr StringLiteral<5>   AnsiLogger::ANSI_YELLOW          ;
-constexpr StringLiteral<5>   AnsiLogger::ANSI_BLUE            ;
-constexpr StringLiteral<5>   AnsiLogger::ANSI_MAGENTA         ;
-constexpr StringLiteral<5>   AnsiLogger::ANSI_CYAN            ;
-constexpr StringLiteral<5>   AnsiLogger::ANSI_BLACK           ;
-constexpr StringLiteral<10>  AnsiLogger::ANSI_WHITE           ;
-constexpr StringLiteral<11>  AnsiLogger::ANSI_GRAY            ;
-constexpr StringLiteral<5>   AnsiLogger::ANSI_STD_COL         ;
+constexpr SLiteral<5>   AnsiLogger::ANSI_RED             ;
+constexpr SLiteral<5>   AnsiLogger::ANSI_GREEN           ;
+constexpr SLiteral<5>   AnsiLogger::ANSI_YELLOW          ;
+constexpr SLiteral<5>   AnsiLogger::ANSI_BLUE            ;
+constexpr SLiteral<5>   AnsiLogger::ANSI_MAGENTA         ;
+constexpr SLiteral<5>   AnsiLogger::ANSI_CYAN            ;
+constexpr SLiteral<5>   AnsiLogger::ANSI_BLACK           ;
+constexpr SLiteral<10>  AnsiLogger::ANSI_WHITE           ;
+constexpr SLiteral<11>  AnsiLogger::ANSI_GRAY            ;
+constexpr SLiteral<5>   AnsiLogger::ANSI_STD_COL         ;
 
-constexpr StringLiteral<5>   AnsiLogger::ANSI_BG_RED          ;
-constexpr StringLiteral<5>   AnsiLogger::ANSI_BG_GREEN        ;
-constexpr StringLiteral<5>   AnsiLogger::ANSI_BG_YELLOW       ;
-constexpr StringLiteral<5>   AnsiLogger::ANSI_BG_BLUE         ;
-constexpr StringLiteral<5>   AnsiLogger::ANSI_BG_MAGENTA      ;
-constexpr StringLiteral<5>   AnsiLogger::ANSI_BG_CYAN         ;
-constexpr StringLiteral<5>   AnsiLogger::ANSI_BG_BLACK        ;
-constexpr StringLiteral<10>  AnsiLogger::ANSI_BG_WHITE        ;
-constexpr StringLiteral<11>  AnsiLogger::ANSI_BG_GRAY         ;
-constexpr StringLiteral<5>   AnsiLogger::ANSI_BG_STD_COL      ;
+constexpr SLiteral<5>   AnsiLogger::ANSI_BG_RED          ;
+constexpr SLiteral<5>   AnsiLogger::ANSI_BG_GREEN        ;
+constexpr SLiteral<5>   AnsiLogger::ANSI_BG_YELLOW       ;
+constexpr SLiteral<5>   AnsiLogger::ANSI_BG_BLUE         ;
+constexpr SLiteral<5>   AnsiLogger::ANSI_BG_MAGENTA      ;
+constexpr SLiteral<5>   AnsiLogger::ANSI_BG_CYAN         ;
+constexpr SLiteral<5>   AnsiLogger::ANSI_BG_BLACK        ;
+constexpr SLiteral<10>  AnsiLogger::ANSI_BG_WHITE        ;
+constexpr SLiteral<11>  AnsiLogger::ANSI_BG_GRAY         ;
+constexpr SLiteral<5>   AnsiLogger::ANSI_BG_STD_COL      ;
 
-constexpr StringLiteral<10>  AnsiLogger::ANSI_LIGHT_RED       ;
-constexpr StringLiteral<10>  AnsiLogger::ANSI_LIGHT_GREEN     ;
-constexpr StringLiteral<10>  AnsiLogger::ANSI_LIGHT_YELLOW    ;
-constexpr StringLiteral<10>  AnsiLogger::ANSI_LIGHT_BLUE      ;
-constexpr StringLiteral<10>  AnsiLogger::ANSI_LIGHT_MAGENTA   ;
-constexpr StringLiteral<10>  AnsiLogger::ANSI_LIGHT_CYAN      ;
-constexpr StringLiteral<11>  AnsiLogger::ANSI_LIGHT_GRAY      ;
-constexpr StringLiteral<5>   AnsiLogger::ANSI_LIGHT_STD_COL   ;
+constexpr SLiteral<10>  AnsiLogger::ANSI_LIGHT_RED       ;
+constexpr SLiteral<10>  AnsiLogger::ANSI_LIGHT_GREEN     ;
+constexpr SLiteral<10>  AnsiLogger::ANSI_LIGHT_YELLOW    ;
+constexpr SLiteral<10>  AnsiLogger::ANSI_LIGHT_BLUE      ;
+constexpr SLiteral<10>  AnsiLogger::ANSI_LIGHT_MAGENTA   ;
+constexpr SLiteral<10>  AnsiLogger::ANSI_LIGHT_CYAN      ;
+constexpr SLiteral<11>  AnsiLogger::ANSI_LIGHT_GRAY      ;
+constexpr SLiteral<5>   AnsiLogger::ANSI_LIGHT_STD_COL   ;
 
-constexpr StringLiteral<10>  AnsiLogger::ANSI_BG_LIGHT_RED    ;
-constexpr StringLiteral<10>  AnsiLogger::ANSI_BG_LIGHT_GREEN  ;
-constexpr StringLiteral<10>  AnsiLogger::ANSI_BG_LIGHT_YELLOW ;
-constexpr StringLiteral<10>  AnsiLogger::ANSI_BG_LIGHT_BLUE   ;
-constexpr StringLiteral<10>  AnsiLogger::ANSI_BG_LIGHT_MAGENTA;
-constexpr StringLiteral<10>  AnsiLogger::ANSI_BG_LIGHT_CYAN   ;
-constexpr StringLiteral<11>  AnsiLogger::ANSI_BG_LIGHT_GRAY   ;
-constexpr StringLiteral<5>   AnsiLogger::ANSI_BG_LIGHT_STD_COL;
+constexpr SLiteral<10>  AnsiLogger::ANSI_BG_LIGHT_RED    ;
+constexpr SLiteral<10>  AnsiLogger::ANSI_BG_LIGHT_GREEN  ;
+constexpr SLiteral<10>  AnsiLogger::ANSI_BG_LIGHT_YELLOW ;
+constexpr SLiteral<10>  AnsiLogger::ANSI_BG_LIGHT_BLUE   ;
+constexpr SLiteral<10>  AnsiLogger::ANSI_BG_LIGHT_MAGENTA;
+constexpr SLiteral<10>  AnsiLogger::ANSI_BG_LIGHT_CYAN   ;
+constexpr SLiteral<11>  AnsiLogger::ANSI_BG_LIGHT_GRAY   ;
+constexpr SLiteral<5>   AnsiLogger::ANSI_BG_LIGHT_STD_COL;
 
-constexpr StringLiteral<4>   AnsiLogger::ANSI_BOLD            ;
-constexpr StringLiteral<4>   AnsiLogger::ANSI_ITALICS         ;
-constexpr StringLiteral<4>   AnsiLogger::ANSI_STD_STYLE       ;
-constexpr StringLiteral<4>   AnsiLogger::ANSI_RESET           ;
+constexpr SLiteral<4>   AnsiLogger::ANSI_BOLD            ;
+constexpr SLiteral<4>   AnsiLogger::ANSI_ITALICS         ;
+constexpr SLiteral<4>   AnsiLogger::ANSI_STD_STYLE       ;
+constexpr SLiteral<4>   AnsiLogger::ANSI_RESET           ;
 #endif
 
 // #################################################################################################
@@ -225,7 +217,7 @@ void AnsiLogger::doTextLog( const    TString&           ,    Log::Level  level,
                 continue;
             }
 
-            int wCharLength= CString::LengthWhenConvertedToWChar( actual.Buffer(), actual.Length() );
+            int wCharLength= lib::strings::CString::LengthWhenConvertedToWChar( actual.Buffer(), actual.Length() );
             column+= wCharLength >= 0 ? wCharLength : actual.Length();
 
             actual.SetLength<false>( actual.Length() + idx + 2 );
@@ -240,7 +232,7 @@ void AnsiLogger::doTextLog( const    TString&           ,    Log::Level  level,
             if ( actual.IsNotEmpty() )
             {
                 oStream->write( actual.Buffer(), actual.Length() );
-                column+= CString::LengthWhenConvertedToWChar( actual.Buffer(), actual.Length() );
+                column+= lib::strings::CString::LengthWhenConvertedToWChar( actual.Buffer(), actual.Length() );
             }
         }
 
@@ -267,7 +259,7 @@ void AnsiLogger::doTextLog( const    TString&           ,    Log::Level  level,
             // add light
             colNo+=  (isForeGround ? !IsBackgroundLight : IsBackgroundLight )  ? 20 : 0;
 
-            AS ansiCol;
+            String ansiCol;
             switch( colNo)
             {
                 case  0: ansiCol= AnsiLogger::ANSI_RED              ; break;
@@ -344,13 +336,13 @@ void AnsiLogger::doTextLog( const    TString&           ,    Log::Level  level,
             int qtySpaces= tabStop - column;
             if( qtySpaces > 0 )
             {
-                Util::WriteSpaces( cout, qtySpaces );
+                lib::Util::WriteSpaces( cout, qtySpaces );
                 column+= qtySpaces;
             }
 
             if ( endOfMeta )
             {
-                AS msgPrefix;
+                String msgPrefix;
                 switch ( level )
                 {
                     case Log::Level::Verbose:   msgPrefix= MsgPrefixVerbose;     break;
@@ -383,7 +375,7 @@ void AnsiLogger::doTextLog( const    TString&           ,    Log::Level  level,
     } // write loop
 
 
-    (*oStream) << MsgPostfix << endl;
+    (*oStream) << MsgSuffix << endl;
 }
 
 // #################################################################################################

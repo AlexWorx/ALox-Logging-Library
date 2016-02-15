@@ -9,11 +9,11 @@
 #include "alib/alib.hpp"
 #include "alib/compatibility/std_string.hpp"
 
-#if !defined (HPP_AWORX_LIB_TIME)
+#if !defined (HPP_ALIB_TIME)
     #include "alib/time/ticks.hpp"
 #endif
 
-#if !defined (HPP_AWORX_LIB_STRINGS_ASTRING)
+#if !defined (HPP_ALIB_STRINGS_ASTRING)
     #include "alib/strings/asalloc.hpp"
 #endif
 
@@ -23,10 +23,6 @@
 
 using namespace std;
 using namespace aworx;
-using namespace aworx::lib;
-using namespace aworx::lib::enums;
-using namespace aworx::lib::strings;
-using namespace aworx::lib::time;
 
 namespace ut_aworx {
 

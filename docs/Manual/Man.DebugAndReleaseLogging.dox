@@ -1,0 +1,190 @@
+// #################################################################################################
+//  Documentation - ALox Logging Library
+//
+//  (c) 2013-2016 A-Worx GmbH, Germany
+//  Published under MIT License (Open Source License, see LICENSE.txt)
+// #################################################################################################
+
+/**
+\page man_debug_and_release_logging   Differences of Debug- and Release-Logging
+
+The ALox
+<b>tutorials</b>
+([C++] (@ref cpptutorial),
+[C#]  (@ref cstutorial),
+[JAVA](@ref javatutorial)) and most sample code provide information about <em>debug logging</em>.
+The main goal of this chapter is to explain how to implement <em>release logging</em>. This might be
+easiest to explain when comparing both types of logging and listing the differences.
+(For a general definition see \ref faq_debug_vs_release_logging).
+
+As previous chapters described, any logging with ALox is roughly performed as follows:
+- A dedicated instance of class
+  <b>Lox</b>
+    ([C++](@ref aworx::lox::Lox),
+    [C#]  (@ref cs::aworx::lox::Lox),
+    [JAVA](@ref com::aworx::lox::Lox)) is created.
+- This \b %Lox object is configured, mainly by populating it with one or more <em>Loggers</em> which get
+  <em>log domain levels</em> set for different <em>log domains</em>.
+- Then, anywhere in the source code, <em>log statements</em> which perform the logging exclusively
+  through the interface of that dedicated object of class \b Lox are inserted.
+
+## Debug Logging ##
+Now, with <em>debug logging</em>, there are some specialties that do not apply in release logging:
+1. A dedicated, pre-created, static object of class \b %Lox is provided for the purpose
+   of <em>debug logging</em>, which is publicly accessible from virtually anywhere in the code (including
+   external library components).
+
+2. For being able to
+   \b prune
+     ([C++] (@ref cppprepro_macros),
+      [C#]  (@ref cspruning) and
+      [Java](@ref javasetup_pruning))
+   <em>debug logging</em> statements from the code, the interface
+   to this dedicated \b %Lox singleton is slightly different than just using the interface of
+   the \b Lox object itself:
+   - in Java and C# Versions of ALox, class \b %Log is wrapping all access to the dedicated, static
+     'debug Lox' by mimicking the interface methods of class \b Lox. All interface methods that
+     are copied are the same in respect to method names and parameters, the only difference is that
+     they are static and just forward the parameters to the static debug-Lox object.
+   - In C++, an own set of preprocessor macros each type of logging exist
+     (\ref GrpMacrosDebugLog and \ref GrpMacrosReleaseLog).
+     The almost only difference is, that those macros used for <em>debug logging</em>
+     (that log into the debug-Lox singleton and get pruned in release compilations),
+     are prefixed <em>Log_</em>, while those that are used for release logging are prefixed <em>Lox_</em>.
+
+3. For convenience, ALox does not only provide a pre-configured \b Lox singleton for <em>debug logging</em>,
+   but it also creates an appropriate debug logger (or even two of them for certain IDEs) in the case
+   that no other \e Logger was explicitly created prior to invoking the first log call.<br>
+   This way, ALox allows to just start using <em>debug logging</em> with no <em>'bootstrap efforts'</em>
+   as shown in
+   <b>Tutorial: Hello ALox</b>
+    ([C++](@ref cpptutorial),
+    [C#]  (@ref cstutorial),
+    [JAVA](@ref javatutorial))..
+
+
+## Release Logging ##
+From the previous discussion about the specialties of <em>debug logging</em>, we can now quite easily
+identify how release logging differs and derive a guideline on how to implement it:
+
+1. An object of type
+   <b>Lox</b>
+    ([C++](@ref aworx::lox::Lox),
+    [C#]  (@ref cs::aworx::lox::Lox),
+    [JAVA](@ref com::aworx::lox::Lox)) has to be created.
+    (In more complex scenarios two or even more of such objects might be created
+   and used for different use cases of <em>release logging</em>.)<br>
+   It has to be assured that each code
+   entity that should be enabled perform <em>release logging</em> on this \b Lox object has propper
+   access to it.
+
+2. One or more objects of (abstract) type
+   <b>Logger</b>
+    ([C++](@ref aworx::lox::core::Logger),
+    [C#]  (@ref cs::aworx::lox::core::Logger),
+    [JAVA](@ref com::aworx::lox::core::Logger)) have to be created and attached to the
+   release-Lox object(s), usually with setting the right <em>domain levels</em> for different
+   <em>log domains</em>.<br>
+   (Both actions are usually performed at the beginning of the life-cycle of a software process, what
+   we call the <em>bootstrapping section</em> of a software.)
+
+3. The interface of the lox object itself is directly used for logging. The log statements work
+   and look similar to <em>debug logging</em>, because as already explained above:
+   - in Java and C# versions of ALox, the <em>debug logging</em> interface of class
+     <b>Log</b>
+        ([C++](@ref aworx::lox::Log),
+        [C#]  (@ref cs::aworx::lox::Log),
+        [JAVA](@ref com::aworx::lox::Log)) simply mimics the original interface of class
+     <b>Lox</b>
+        ([C++](@ref aworx::lox::Lox),
+        [C#]  (@ref cs::aworx::lox::Lox),
+        [JAVA](@ref com::aworx::lox::Lox)), while
+   - In C++, an own set of preprocessor macros each type of logging exist that differ only in their
+     prefixes <em>Log_</em> and <em>Lox_</em> (\ref GrpMacrosDebugLog and \ref GrpMacrosReleaseLog).
+     \note In C++, each code entity has to set the preprocessor macro \ref LOX_LOX prior to using
+           <em>release logging</em> macros. This can be done in a general header file of the software,
+           (e.g. the same that exposes the release-Lox object to that source), or, in more complex
+           scenarios with more than one release-Lox object, at any other appropriate source location.
+
+<p>
+## Further Thoughts ##
+
+### Pruning Release Logging ###
+Probably just because it was easy to implement (!), the C++ version of ALox supports the optional
+pruning of <em>release logging</em> statements as well (see \ref ALOX_REL_LOG).
+This might sound confusing in the first moment, but it allows to create different
+versions of release-executables, which is not completely uncommon. It is optional and just provides
+a next level of flexibility to adopt ALox to complex use cases.
+
+Although (to keep it simple) not provided with the ALox library, the same can be achieved in the
+other flavors of ALox quite easily.<br>
+
+For \ref csmainpage "ALox for C#", the recipe looks like this:
+- Create a copy of class \ref cs::aworx::lox::Log "Log", e.g. naming it \b RLog.
+- Remove redundant things, e.g. the enum declarations, ALox version number, etc.
+- Replace the compiler symbol of lines
+
+        [Conditional("ALOX_DBG_LOG")]
+
+  With a different, new symbol, e.g. ALOX_REL_LOG
+- Use this class for <em>release  logging</em> the same as class \b Log is used for debug logging.
+- Add or remove the new compiler symbol to different release configurations of your C# project
+
+For \ref javamainpage "ALox for Java", the recipe looks similar:
+- Create a copy of class \ref com::aworx::lox::Log "Log", e.g. naming it \b RLog.
+- Remove redundant things, e.g. the enum declarations, ALox version number, etc.
+- Use this class for <em>release  logging</em> the same as class \b Log is used for debug logging.
+- Maintain an alternative configuration for your
+  \ref javasetup_pruning_basics 'tool used for obfuscation'
+  to either prune this class (and all invocation on objects of it) or not.
+
+### More Complex Use Cases ###
+ALox allows to be used in various fashions. By having the concept of different \b Loggers aggregated
+in one or more \b Lox objects, using an hierarchical structure of <em>log domains</em>, which by
+default inherit their <em>domain level</em> from their parent domain
+(and this way automatically adjust to probably unknown sub-domains), we think that a good
+balance of "ease of use" and "unlimited extensibility" was found with the ALox architecture.
+
+The simple and common scenarios incorporate:
+- Debug logging with
+    - An appropriate <b>Console Logger</b> and probably an IDE specific logger when run in
+      an debugger
+    - Optionally a simple text logger that allows to review the output of 'historic' debug sessions
+    - A few root-level log domains like "UI", "TCPIP", "DB", "IO", etc. having a maximum of one
+      sub domains
+- Optionally release logging e.g. for collecting severe errors or collecting statistical summaries
+  from 'the field'
+
+These scenarios can be addressed with a few lines of \e bootstrap code and a little discipline
+when inserting the log statements.
+
+Various ways of matching use cases of complex scenarios with ALox exist.
+By purpose (to keep things simple) ALox is not providing extended classes, for example to
+allow pruning release logging as explained in the 'recipes' of the previous paragraph.
+However, once the basic concepts of ALox are understood, it is easy to build such extensions,
+tailored to the complex case itself.
+
+
+### Using ALox and Libraries ###
+Using ALox with libraries, is basically the same as using ALox in a single code entity. However,
+we recommend the following principles:
+- For <em>release  logging</em>, a library should provide an initialization method that receives a reference
+  to the dedicated release-Lox instance it is supposed to log into. If such object is not
+  provided (which means the library is not duly initialized), the library should use ALox
+  <em>debug logging</em> to notify that.
+- A library should not create and set any \b Loggers by itself. The creation of \b Loggers should
+  generally be controlled by the main source entity of a process.
+- A library should document which <em>log domains</em> it is using. Furthermore it is helpful to
+  also disclose which <em>log levels</em> are used in which domain and maybe roughly what log output
+  might be expected. This is especially important for rather uncommon log messages, like severe
+  warnings and errors.
+- A library should expose a root-level <em>log domain</em> with optionally different sub-domains.
+- A library should (by nature of all library code) make thoughtful and reasonable use of
+  <em>log levels</em> and <em>log domains</em>. This allows to control the verbosity of the library
+  in granular way.
+
+<p>
+
+--------------------------------------------------------------------
+Next chapter: \ref GrpALoxConfigVars
+*/

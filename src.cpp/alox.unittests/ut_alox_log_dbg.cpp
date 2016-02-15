@@ -25,12 +25,7 @@ using namespace std;
 using namespace ut_aworx;
 
 using namespace aworx;
-using namespace aworx::lib;
-using namespace aworx::lib::enums;
-using namespace aworx::lib::strings;
-using namespace aworx::lox;
 using namespace aworx::lox::core::textlogger;
-using namespace aworx::lox::loggers;
 
 
 namespace ut_alox {
@@ -42,10 +37,10 @@ namespace ut_alox {
         public:       void    t(AString& buf, int64_t diff)     { writeTimeDiff( buf, diff ); }
     };
 
-    class TThread : public threads::Thread
+    class TThread : public Thread
     {
         public: TThread( const String& name, int cntLoops, int sleepMicros )
-                : threads::Thread( name )
+                : Thread( name )
                 {
                     this->cntLoops=     cntLoops;
                     this->sleepMicros=  sleepMicros;
@@ -91,12 +86,12 @@ namespace ut_alox {
     void   clearCreateAndAddLoggers_dbg_log( bool memoryLogger= false, bool consoleLogger= true)
     {
         if( Log::DebugLogger )
-            Log::RemoveDebugLogger(Log::lox);
-        Log::lox->RemoveLoggers();
+            Log::RemoveDebugLogger(Log::LOX);
+        Log::LOX->RemoveLoggers();
 
         if ( consoleLogger )
         {
-            Log_Prune( Log::AddDebugLogger( Log::lox, false ); )
+            Log_Prune( Log::AddDebugLogger( Log::LOX, false ); )
             Log_RemoveLogger( Log::DebugLogger );
             Log_AddLogger( Log::DebugLogger );
         }
@@ -617,9 +612,9 @@ UT_CLASS()
 
 //        Log::DebugLogger->MetaInfo->MsgPrefixInfo=   "$$$";
 //        Log::DebugLogger->MetaInfo->MsgPrefixInfo=   ESC::MAGENTA;
-//        Log::DebugLogger->MetaInfo->MsgPostfix=      "###";
-//        Log::DebugLogger->MetaInfo->MsgPostfix=      ESC::FG_RESET;
-        Log::DebugLogger->FmtMultiLinePostfix=            "<<";
+//        Log::DebugLogger->MetaInfo->MsgSuffix=       "###";
+//        Log::DebugLogger->MetaInfo->MsgSuffix=       ESC::FG_RESET;
+        Log::DebugLogger->FmtMultiLineSuffix=            "<<";
 
         Log_SetDomain( "MLine", Log::Scope::Method );
         Log_SetDomain( "MLine", Log::DomainLevel::All );
@@ -677,12 +672,12 @@ UT_CLASS()
 
         Log_Info ( "S-TIME", "This is the first log with normal start time" );
 
-        Log_Prune( time::Ticks newTime;                       )
-        Log_Prune( time::Ticks sub(0); sub.FromMinutes(20);   )
+        Log_Prune( Ticks newTime;                       )
+        Log_Prune( Ticks sub(0); sub.FromMinutes(20);   )
         Log_Prune( newTime.Sub ( sub );                 )
         Log_SetStartTime( newTime, nullptr )
         Log_Info ( "S-TIME", "Starttime set to 20 minutes ago" );
-        Log_SetStartTime( time::Ticks(),  nullptr )
+        Log_SetStartTime( Ticks(),  nullptr )
         Log_Info ( "S-TIME", "Starttime set to 'now'" );
 
         deleteLoggers_dbg_log();
@@ -696,7 +691,7 @@ UT_CLASS()
         clearCreateAndAddLoggers_dbg_log();
 
         Log_SetDomain( "DISABLE", Log::DomainLevel::All );
-        Log_Prune( Log::DebugLogger->SetDomain( Log::lox->InternalDomain, Log::DomainLevel::All); )
+        Log_Prune( Log::DebugLogger->SetDomain( Log::LOX->InternalDomain, Log::DomainLevel::All); )
         auto cntLogs= Log::DebugLogger->CntLogs;
         Log_Info ( "DISABLE", "This message should appear" );       UT_EQ( cntLogs + 1, Log::DebugLogger->CntLogs );
         Log_SetLogger( Switch::Off, "NOMATCH" );

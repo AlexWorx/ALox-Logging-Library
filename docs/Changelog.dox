@@ -16,6 +16,61 @@ The first released version was Version 1.0.1 in **May 2013**.
 This change log is sorted reversely in respect to chronology.
 
 \~Comment ####################################################################################### \~
+\~Comment #############################  V. 1602  Revision 1 #################################### \~
+\~Comment ####################################################################################### \~
+## Version 1602, Revision 1, released February 15th, 2016 ##
+This is a revision of version 1602, with minimal impact on standard ALox user code.
+
+<b> General changes</b>
+- The previous release, V.1602 R.0, unfortunately identifies itself as V.1601 R.0. This release
+  properly reports V.1602 R.1.
+
+- The C++ version of underlying ALib extended the concept of
+  \e mirroring ALib classes into namespace \ref aworx "aworx".
+  This led to the nice consequence, that all string classes inside the namespace
+  \ref aworx::lib::strings now use the same name as their 'mirror' type provided in namespace
+  \ref aworx "aworx". (Previously, they were using a non-generic name which was chosen for extra
+  safety against collisions).
+
+  Furthermore, this concept was adopted to other namespaces of ALib and to ALox as well.
+  This way, when using ALib and/or ALox it is now sufficient to add only one using statement to
+  the source code, which is
+
+        using aworx;
+
+  More information about the concept of 'mirroring' type names in to namespace \b %aworx is given in
+  the documentation of \ref aworx "C++ namespace aworx".
+
+- The word '<em>postfix</em>' was replaced by '<em>suffix</em>' within identifiers and documentation as
+  this seems the more common and proper English term.
+
+- Minor other fixes in the documentation
+
+<b> Changes in ALib (the utility library that ALox builds on)</b>
+- Removed public flags \b HaltOnError and \b HaltOnWarning in class \b Report and replaced their
+  functionality by providing new methods
+  <b>Report::PushHaltFlags</b>
+    ([C++] (@ref #aworx::lib::Report::PushHaltFlags),
+     [C#]  (@ref #cs::aworx::lib::Report::PushHaltFlags),
+     [JAVA](@ref #com::aworx::lib::Report::pushHaltFlags)) and
+  <b>Report::PopHaltFlags</b>
+    ([C++] (@ref #aworx::lib::Report::PopHaltFlags),
+     [C#]  (@ref #cs::aworx::lib::Report::PopHaltFlags),
+     [JAVA](@ref #com::aworx::lib::Report::popHaltFlags)).
+
+
+<b> Changes in ALox</b>
+- User manual restructured and extended by chapter \"\ref man_debug_and_release_logging\".
+
+- C++ version:
+    - Renamed debug \b %Lox singleton of C++ version in class \b %Log from \b %lox to \b LOX to
+      align with C# and Java versions.
+    - Removed release \b %Lox singleton in class \b %Log to align with C# and Java versions.
+
+- C# version:
+    - Fixed usage of compiler symbol \b ALOX_NO_THREADS.
+
+\~Comment ####################################################################################### \~
 \~Comment #############################  V. 1602  ############################################### \~
 \~Comment ####################################################################################### \~
 
@@ -25,7 +80,7 @@ This change log is sorted reversely in respect to chronology.
 <b> General changes </b><p>
 This is a major update. A lot, if not all was touched. The good news is that the logging interface
 itself did only change slightly for Java and C# versions. In C++ the macros were renamed because
-we started using 'variadic macros' instead of postfix'ed 'overloads'. This makes ALox C++ even
+we started using 'variadic macros' instead of 'suffixed overloads'. This makes ALox C++ even
 more code-compatible to C#/Java versions.
 Therefore, very simple code changes (mostly renaming) should be needed to adopt this release.
 
@@ -34,11 +89,11 @@ More important general changes are:
 -  Changed version scheme from major.minor to a nowadays common YYMM format. Hence this is version
   \b 1602. In addition each version has a revision number for updates without interface changes.
   ALib (formerly named AWXU) and ALox have separated version fields found in
-   <b>ALIB.Version</b>
+  <b>ALIB.Version</b>
   ([C++] (@ref #aworx::lib::ALIB::Version),
    [C#]  (@ref #cs::aworx::lib::ALIB::Version),
    [JAVA](@ref #com::aworx::lib::ALIB::version)) and
-   <b>Log.Version</b>
+  <b>Log.Version</b>
   ([C++] (@ref #aworx::lox::Log::Version),
    [C#]  (@ref #cs::aworx::lox::Log::Version),
    [JAVA](@ref #com::aworx::lox::Log::version)). It is expected that these two different version

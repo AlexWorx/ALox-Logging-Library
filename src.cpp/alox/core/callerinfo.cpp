@@ -14,8 +14,6 @@
 
 using namespace std;
 using namespace aworx;
-using namespace aworx::lib;
-using namespace aworx::lib::strings;
 using namespace aworx::lox::core;
 
 
@@ -59,7 +57,7 @@ void CallerInfo::AcquireAndSet ( const TString& sourceFileName, int lineNumber, 
             lazyFlagThreadNameAndID= true;
 
             // get current thread
-            threads::Thread* thread=    threads::Thread::CurrentThread();
+            Thread* thread=  Thread::CurrentThread();
             threadID=        thread->GetId();
 
             // do we have a dictionary entry?

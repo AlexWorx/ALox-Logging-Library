@@ -21,7 +21,7 @@ namespace std { stringstream applyto_os; }
 #include "alib/alib.hpp"
 #include "alib/time/ticks.hpp"
 
-// get support for  ostream operator<<() on AS objects
+// get support for  ostream operator<<() on String objects
 #include "alib/compatibility/std_string.hpp"
 #include "alib/compatibility/std_iostream.hpp"
 
@@ -29,10 +29,7 @@ namespace std { stringstream applyto_os; }
 #include <iomanip>
 
 using namespace std;
-using namespace aworx::lib;
-using namespace aworx::lib::enums;
-using namespace aworx::lib::strings;
-using namespace aworx::lib::time;
+using namespace aworx;
 
 // Partial template function implementation of ApplyTo for objects of type class Ticks
 // (has to be declared in namespace aworx::lib::strings)

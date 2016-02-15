@@ -16,7 +16,7 @@
 //! [Tut_include_statement]
 
 
-#if !defined (HPP_AWORX_LIB_SYSTEM_DIRECTORY)
+#if !defined (HPP_ALIB_SYSTEM_DIRECTORY)
     #include "alib/system/directory.hpp"
 #endif
 
@@ -37,10 +37,6 @@ using namespace ut_aworx;
 //! [Tut_using_statement]
 using namespace std;
 using namespace aworx;
-using namespace aworx::lib;
-using namespace aworx::lib::enums;
-using namespace aworx::lox;
-using namespace aworx::lox::loggers;
 //! [Tut_using_statement]
 
 

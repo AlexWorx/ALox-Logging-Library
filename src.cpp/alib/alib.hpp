@@ -4,10 +4,10 @@
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
-/** @file */ // Hello Doxyen
+/** @file */ // Hello Doxygen
 
-#ifndef HPP_AWORX_LIB_ALIB
-#define HPP_AWORX_LIB_ALIB 1
+#ifndef HPP_ALIB_ALIB
+#define HPP_ALIB_ALIB 1
 
 // compiler check
 #if defined(__GNUC__)
@@ -26,15 +26,15 @@
 // accordingly.
 // #################################################################################################
 
-#define FROM_HPP_AWORX_LIB_ALIB
+#define FROM_HPP_ALIB_ALIB
 
-#if defined(HPP_AWORX_LIB_ALIB_CONDCOMPILE)
+#if defined(HPP_ALIB_ALIB_CONDCOMPILE)
     #error "aworx_condcomp.hpp must not be included manually. Include alib.hpp instead"
 #endif
 #include "alib/core/symbols.hpp"
 
 
-#if defined(HPP_AWORX_LIB_ALIB_MACROS)
+#if defined(HPP_ALIB_ALIB_MACROS)
     #error "aworx_macros.hpp must not be included manually. Include alib.hpp instead"
 #endif
 
@@ -100,6 +100,7 @@
 // #################################################################################################
 #include <type_traits>
 #include <utility>
+#include <stack>
 
 // #################################################################################################
 // Include those ALib core headers which are needed before the definition of class ALIB
@@ -107,10 +108,8 @@
 #include "alib/core/enums.hpp"
 #include "alib/core/report.hpp"
 #include "alib/strings/cstring.hpp"
-#include "alib/strings/as.hpp"
+#include "alib/strings/string.hpp"
 
-// Include header of base namespace "aworx"
-#include "alib/core/ns_aworx.hpp"
 
 // #################################################################################################
 // std::/stl fixes
@@ -123,11 +122,74 @@
 #endif
 
 
-// #################################################################################################
-// Documentation of namespace "aworx::lib"
-// #################################################################################################
+/**
+ * This is the outer C++ namespace for all classes published by A-Worx GmbH, Germany. <p>
+ * \note While the Java language strongly proposes to use the complete 'reverse domain' name
+ * and therefore Java code published by A-Worx GmbH resides in namespace <em>com.aworx</em>,
+ * for C# we replaced the prefix <em>com.</em> with <em>cs.</em>, which leads to <em>cs.aworx</em>.<br>
+ * This was needed for having classes with the same names existing in C++, C# and Java not collide
+ * within the Doxygen documentation system.
+ *
+ * As far as it is planned today, there is nothing inside this namespace but other namespaces
+ * and - and this is true only for the  \e C++ side of things - type definitions used as
+ * shortcuts.
+ *
+ *  \anchor CPP_AWORX_NS_SHORTCUTS
+ * <b>Type Shortcuts in the C++ Namespace \"aworx\"</b><p>
+ * ALib and other libraries of A-Worx, \e \"mirror\" most classes into <b>namespace aworx</b>
+ * with using statements. For example, by having
+\verbatim
+using  String =  aworx::lib::strings::String;
+\endverbatim
+ * stated within <b>namespace aworx</b> in the header file of class \b String, this class is
+ * made available with just adding
+\verbatim
+using  aworx;
+\endverbatim
+to a source code. This is convenient when ALib is \e used, and also convenient for the classes
+of ALib itself and for 'sibling' libraries that reside underneath <b>namespace aworx</b>, for example
+logging library \e ALox with <b>namespace aworx::lox</b>. Such classes may refer to all
+mirrored classes in their (external!) header files without providing any namespace, because in C++,
+code that is located inside a namespace 'sees' all types defined in parent namespaces.<br>
+Therefore, header files become clear and simple without explicit namespace names.
 
-namespace           aworx {
+In contrast to this, C++ sources that are \"\e using\" a sub-namespace do \b not automatically
+'see' classes in parent namespaces. This is an important difference (and great design of the C++
+language) that we are leveraging with this concept.
+
+Unfortunately, with template classes this mechanism has a limit. It is not allowed to use the
+same type name for the mirrored classes. Therefore, for example class
+\ref aworx::lib::strings::PreallocatedString "PreallocatedString<int TCapacity>" gets mirrored to
+\b %PAString as follows:
+\verbatim
+template<int TCapacity>
+using PAString= aworx::lib::strings::PreallocatedString<TCapacity>;
+\endverbatim
+ *
+ * To summarize, the effect of mirroring the main interface classes is as follows:
+ * - Inside header files of sub-namespaces (and their sub-namespaces) of \e aworx, e.g. \e aworx::lib and \e aworx::lox,
+ *   these names are visible and used.
+ * - Inside external header files, they are not visible but might be quite shortly accessed
+ *   using namespace prefix \b aworx::.
+ * - Inside external cpp files, if no collision with other libraries or local classes exist,
+ *   all types of all A-Worx libraries used, can be made visible with one single using statement for
+ *   namespace \b aworx. Should collisions occur, then still selected classes of A-Worx libraries
+ *   that do not collide can be made visible by choosing the complete namespace name for the
+ *   \e using statement.
+ * - The mirrored class names appear only in this <b>namespace aworx</b>, if the corresponding
+ *   header file of the original class is included in a compilation unit.
+ *
+ * <b>Domain-Specific Constants and Variables</b><p>
+ * Similar to the concept of mirroring important interface classes into this <b>namespace aworx</b>
+ * (which is described in the previous paragraph), it is also agreed to place important global
+ * constants here. The impact and benefits are quite the same.<br>
+ * As a sample, see
+ * \ref aworx::PathSeparator which appears in this namespace as soon as header
+ * "alib/system/directory.hpp" is included.
+ *
+ */
+
+ namespace           aworx {
 
 /**
  *  This is the C++ namespace for core utility classes developed by A-Worx GmbH, Germany,
@@ -241,7 +303,7 @@ class ALIB
          * respect to environment variable settings). Changes should be placed at very initial
          * bootstrap code, before the invocation of #Init.
          */
-        ALIB_API static    strings::AS                    ConfigCategoryName;
+        ALIB_API static    strings::String                ConfigCategoryName;
 
         /**
         * If \c true, within #TerminationCleanUp, it is waited for a key press in the console
@@ -372,18 +434,28 @@ class ALIB
 
 };// class ALIB
 
-}} // namespace aworx::lib
+} // namespace aworx::lib
+
+/** Type alias name in namespace #aworx. */
+using ALIB =    aworx::lib::ALIB;
+
+} // namespace aworx
+
 
 
 // #################################################################################################
-// Includes of header files which must always be present.
-// (...and which must not be included directly. Therefore all headers listed here, have an include
-// prevention #error set, based on FROM_HPP_AWORX_LIB_ALIB and their own include guard
+// ALib does not work without strings. So, we include them
+// (String.hpp is already included, prior to ALIB class declaration)
 // #################################################################################################
+#include "alib/strings/tstring.hpp"
+#include "alib/strings/stringliteral.hpp"
+#include "alib/strings/astring.hpp"
+#include "alib/strings/preallocatedstring.hpp"
+#include "alib/strings/applyto.hpp"
+#include "alib/strings/applyformat.hpp"
 
-#include "alib/strings/namespace.hpp"
 
 // disallow others to include our headers directly
-#undef FROM_HPP_AWORX_LIB_ALIB
+#undef FROM_HPP_ALIB_ALIB
 
-#endif // HPP_AWORX_LIB_ALIB
+#endif // HPP_ALIB_ALIB

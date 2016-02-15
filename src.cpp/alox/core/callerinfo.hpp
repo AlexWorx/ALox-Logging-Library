@@ -4,7 +4,7 @@
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
-/** @file */ // Hello Doxyen
+/** @file */ // Hello Doxygen
 
 // include ALox main header first...
 #if !defined (HPP_ALOX)
@@ -18,11 +18,11 @@
 // #################################################################################################
 // includes
 // #################################################################################################
-#if !defined (HPP_AWORX_LIB_TIME)
+#if !defined (HPP_ALIB_TIME)
     #include "alib/time/ticks.hpp"
 #endif
 
-#if !defined (HPP_AWORX_LIB_THREADS_THREAD)
+#if !defined (HPP_ALIB_THREADS_THREAD)
     #include "thread.hpp"
 #endif
 

@@ -8,19 +8,19 @@
 
 #include "alib/alib.hpp"
 
-#if !defined (HPP_AWORX_LIB_SYSTEM_ENVIRONMENT)
+#if !defined (HPP_ALIB_SYSTEM_ENVIRONMENT)
     #include "alib/system/system.hpp"
 #endif
 
-#if !defined (HPP_AWORX_LIB_SYSTEM_PROCESSINFO)
+#if !defined (HPP_ALIB_SYSTEM_PROCESSINFO)
     #include "alib/system/process.hpp"
 #endif
 
-#if !defined (HPP_AWORX_LIB_SYSTEM_DIRECTORY)
+#if !defined (HPP_ALIB_SYSTEM_DIRECTORY)
     #include "alib/system/directory.hpp"
 #endif
 
-#if !defined (HPP_AWORX_LIB_STRINGS_ASTRING)
+#if !defined (HPP_ALIB_STRINGS_ASTRING)
     #include "alib/strings/asalloc.hpp"
 #endif
 
@@ -31,10 +31,6 @@
 
 using namespace std;
 using namespace aworx;
-using namespace aworx::lib;
-using namespace aworx::lib::enums;
-using namespace aworx::lib::strings;
-using namespace aworx::lib::system;
 
 namespace ut_aworx {
 
@@ -49,8 +45,8 @@ UT_METHOD(CurrentDir)
 
     UT_PRINT(""); UT_PRINT( "### Environment::CurrentWorkingDir###" );
 
-    aworx::String512 cwd;
-    system::Directory::CurrentDirectory( cwd );
+    String512 cwd;
+    Directory::CurrentDirectory( cwd );
     UT_PRINT("The working directory is:" );
     UT_PRINT(cwd);
     UT_TRUE( cwd.IsNotEmpty() );

@@ -23,14 +23,7 @@
 
 using namespace std;
 using namespace aworx;
-using namespace aworx::lib;
-using namespace aworx::lib::enums;
-using namespace aworx::lib::system;
-using namespace aworx::lib::strings;
-using namespace aworx::lox;
 using namespace aworx::lox::core;
-using namespace aworx::lox::core::textlogger;
-using namespace aworx::lox::loggers;
 
 // For code compatibility with ALox Java/C++
 #define _NC _<false>
@@ -316,7 +309,7 @@ void Lox::SetLogger( Switch newState, const String& loggerFilter )
 #if defined (__GLIBCXX__)
     void Lox::SetStartTime( time_t startTime, const String& loggerFilter )
     {
-        time::Ticks t(0);
+        Ticks t(0);
         t.SetFromEpochSeconds( startTime );
         SetStartTime( t, loggerFilter );
     }
@@ -324,7 +317,7 @@ void Lox::SetLogger( Switch newState, const String& loggerFilter )
 #elif defined( _WIN32 )
     void Lox::SetStartTime( LPFILETIME startTime, const String& loggerFilter )
     {
-        time::Ticks t(0);
+        Ticks t(0);
         t.SetFromFileTime( startTime );
         SetStartTime( t, loggerFilter );
     }
@@ -332,7 +325,7 @@ void Lox::SetLogger( Switch newState, const String& loggerFilter )
     #pragma message ("Unknown Platform in file: " __FILE__ )
 #endif
 
-void Lox::SetStartTime( time::Ticks  startTime, const String& loggerFilter )
+void Lox::SetStartTime( Ticks startTime, const String& loggerFilter )
 {
     OWN(*this);
 
@@ -347,7 +340,7 @@ void Lox::SetStartTime( time::Ticks  startTime, const String& loggerFilter )
     }
     else
     {
-        time::TicksCalendarTime ct( startTime );
+        TicksCalendarTime ct( startTime );
         ct.Format( "yyyy-MM-dd HH:mm:ss", startTimeString );
     }
 
@@ -379,9 +372,9 @@ void Lox::SetStartTime( time::Ticks  startTime, const String& loggerFilter )
         String origThreadName;
         if ( id == 0 )
         {
-            threads::Thread* t= threads::Thread::CurrentThread();
-            id=              t->GetId();
-            origThreadName=  t->GetName();
+            Thread*         t= Thread::CurrentThread();
+            id=             t->GetId();
+            origThreadName= t->GetName();
         }
 
         // add entry
@@ -480,7 +473,7 @@ void Lox::LogConfig( const String&    domain,
     {
         for( auto& p : ALIB::CompilationFlagMeanings )
         {
-            buf << "  " << Format::Field( String32() << p.first << ':', 20, enums::Alignment::Left )
+            buf << "  " << Format::Field( String32() << p.first << ':', 20, Alignment::Left )
                 << (ALIB::CompilationFlags & p.second  ? " On" : " Off")
                 << NewLine;
         }
@@ -490,7 +483,7 @@ void Lox::LogConfig( const String&    domain,
     {
         for( auto& p : Log::CompilationFlagMeanings )
         {
-            buf << "  " << Format::Field( p.first, 20, enums::Alignment::Left ) << ':'
+            buf << "  " << Format::Field( p.first, 20, Alignment::Left ) << ':'
                 << (Log::CompilationFlags & p.second  ? " On" : " Off")
                 << NewLine;
         }
@@ -522,7 +515,7 @@ void Lox::LogConfig( const String&    domain,
     buf._NC( "Named Threads:   " )._NC( threadDictionary.size() ).NewLine();
     for ( auto pair : threadDictionary )
     {
-        buf._NC( "  " ) << Format::Field( String32() << '(' << pair.first << "):", 7, enums::Alignment::Left )
+        buf._NC( "  " ) << Format::Field( String32() << '(' << pair.first << "):", 7, Alignment::Left )
                         << '\"' << pair.second << '\"';
         buf.NewLine();
     }
@@ -577,7 +570,7 @@ void Lox::Line( bool            doLog,
 
     // auto-initialization of debug loggers
     #if defined( ALOX_DBG_LOG )
-        if( loggers.size() == 0 && this == Log::lox )
+        if( loggers.size() == 0 && this == Log::LOX )
             Log::AddDebugLogger( this, true );
     #endif
 

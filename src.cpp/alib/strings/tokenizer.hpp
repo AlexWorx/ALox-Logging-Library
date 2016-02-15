@@ -4,27 +4,27 @@
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
-/** @file */ // Hello Doxyen
+/** @file */ // Hello Doxygen
 
 // check for alib.hpp already there but not us
-#if !defined (HPP_AWORX_LIB_ALIB)
+#if !defined (HPP_ALIB_ALIB)
     #error "include \"alib/alib.hpp\" before including this header"
 #endif
-#if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_AWORX_LIB_STRINGS_TOKENIZER)
+#if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_ALIB_STRINGS_TOKENIZER)
     #error "Header already included"
 #endif
 
 // then, set include guard
-#ifndef HPP_AWORX_LIB_STRINGS_TOKENIZER
+#ifndef HPP_ALIB_STRINGS_TOKENIZER
 #if !defined( IS_DOXYGEN_PARSER)
-#define HPP_AWORX_LIB_STRINGS_TOKENIZER 1
+#define HPP_ALIB_STRINGS_TOKENIZER 1
 #endif
 
 // #################################################################################################
 // includes
 // #################################################################################################
-#if !defined (HPP_AWORX_LIB_STRINGS_ASSUBSTRING)
-    #include "alib/strings/assubstring.hpp"
+#if !defined (HPP_ALIB_STRINGS_ASSUBSTRING)
+    #include "alib/strings/substring.hpp"
 #endif
 
 #if !defined (_GLIBCXX_IOSFWD ) && !defined(_IOSFWD_)
@@ -38,7 +38,7 @@ namespace                   strings {
 /** ************************************************************************************************
  * This class operates on strings which contains data separated by a delimiter character.
  * It identifies the substrings between the delimiters as \e tokens of type
- * \ref aworx::lib::strings::ASSubstring "ASSubstring". After an instance of this class is constructed,
+ * \ref aworx::lib::strings::Substring "Substring". After an instance of this class is constructed,
  * three methods are available:
  * - #HasNext: Indicates if there are further tokens available.
  * - #Next: Sets field #Actual (which is of type Substring) to reference the next token and
@@ -52,7 +52,7 @@ namespace                   strings {
  *   After this method was invoked, #HasNext() will return \c false.
  *
  * After a token was retrieved, it might be modified using the interface of class
- * \ref aworx::lib::strings::ASSubstring "ASSubstring" as the tokenizer does not rely on the bounds of
+ * \ref aworx::lib::strings::Substring "Substring" as the tokenizer does not rely on the bounds of
  * the current token when receiving the next. Furthermore, even field #Rest is allowed
  * to be changed using the interface of \b %Substring if it seems appropriate. The effect is the
  * same as if method #Set was invoked to apply a different source string.
@@ -76,22 +76,22 @@ class Tokenizer
     // #############################################################################################
     public:
         /**
-         *  A \ref aworx::lib::strings::ASSubstring "ASSubstring" that represents the part of
+         *  A \ref aworx::lib::strings::Substring "Substring" that represents the part of
          *  the underlying data that has not been tokenized, yet.
          *  It is allowed to manipulate this public field, which has a similar effect as
          *  using method #Set.<br>
          */
-        ASSubstring    Rest;
+        Substring    Rest;
 
         /**
          *  The actual token, which is returned with every invocation of #Next() or #Rest().
          *  It is allowed to manipulate this field any time.<br>
          */
-        ASSubstring    Actual;
+        Substring    Actual;
 
         /**
          * The white spaces characters used to trim the tokens.
-         * Defaults to  \ref aworx::lib::strings::DefaultWhitespaces
+         * Defaults to  \ref aworx::DefaultWhitespaces
          */
         String16       Whitespaces                                            = DefaultWhitespaces;
 
@@ -115,7 +115,7 @@ class Tokenizer
          * @param  delim  The delimiter that separates the tokens. Can be changed with every
          *                next token.
          ******************************************************************************************/
-        Tokenizer( const AS& src, char delim )
+        Tokenizer( const String& src, char delim )
         : Rest(src)
         {
             this->delim=    delim;
@@ -132,7 +132,7 @@ class Tokenizer
          * @param  delim  The delimiter that separates the tokens. Can be changed with every
          *                next token.
          ******************************************************************************************/
-        void Set( const AS& src, char delim )
+        void Set( const String& src, char delim )
         {
             Rest.Set( src );
             this->delim=  delim;
@@ -142,8 +142,8 @@ class Tokenizer
         /** ****************************************************************************************
          * Returns the next token, which is afterwards also available through field #Actual.
          * If no further token  was available, the returned
-         * \ref aworx::lib::strings::ASSubstring "Substring" will be \e nulled.
-         * (see \ref aworx::lib::strings::AS::IsNull "String::IsNull").
+         * \ref aworx::lib::strings::Substring "Substring" will be \e nulled.
+         * (see \ref aworx::lib::strings::String::IsNull "String::IsNull").
          * To prevent this, the availability of a next token should be
          * checked using method #HasNext().
          *
@@ -158,7 +158,7 @@ class Tokenizer
          * @return \c true if a next token was available, \c false if not.
          ******************************************************************************************/
         ALIB_API
-        ASSubstring&  Next( enums::Whitespaces trimming= enums::Whitespaces::Trim, char newDelim= '\0' );
+        Substring&  Next( enums::Whitespaces trimming= enums::Whitespaces::Trim, char newDelim= '\0' );
 
         /** ****************************************************************************************
          * Returns the currently remaining string (without searching for further delimiter
@@ -169,7 +169,7 @@ class Tokenizer
          *                   Defaults to \c Whitespaces.Trim.
          * @return The rest of the original source string, which was not returned by #Next(), yet.
          ******************************************************************************************/
-        ASSubstring&  GetRest( enums::Whitespaces trimming= enums::Whitespaces::Trim )
+        Substring&  GetRest( enums::Whitespaces trimming= enums::Whitespaces::Trim )
         {
             // set start, end and end of tokenizer
             Actual=  Rest;
@@ -188,6 +188,11 @@ class Tokenizer
 
 }; // class Tokenizer
 
-}}} // namespace aworx::lib::strings
+}} // namespace lib::strings
 
-#endif // HPP_AWORX_LIB_STRINGS_STRINGS
+/** Type alias name in namespace #aworx. */
+using     Tokenizer=     aworx::lib::strings::Tokenizer;
+
+}  // namespace aworx
+
+#endif // HPP_ALIB_STRINGS_STRINGS

@@ -4,7 +4,7 @@
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
-/** @file */ // Hello Doxyen
+/** @file */ // Hello Doxygen
 
 // include ALox main header first...
 #if !defined (HPP_ALOX)
@@ -18,7 +18,7 @@
 // #################################################################################################
 // includes
 // #################################################################################################
-#if !defined (HPP_AWORX_LIB_THREADS_THREADLOCK)
+#if !defined (HPP_ALIB_THREADS_THREADLOCK)
     #include "alib/threads/threadlock.hpp"
 #endif
 
@@ -72,7 +72,7 @@ namespace  core   {
  * \e void* are logged. Together with the pointer, a type information has to be provided.
  *
  * The default type '0' is the only predefined type that ALox comes with and indicates
- * \ref aworx::lib::strings::ASTerminatable "ALib TString". Due to the flexible and
+ * \ref aworx::lib::strings::TString "ALib TString". Due to the flexible and
  * implicit conversion of user defined string types, almost anything that is a string can be passed
  * to be logged. (For more information on string handling in ALib, see \ref aworx::lib::strings).
  *
@@ -1166,8 +1166,13 @@ class Lox     : public aworx::lib::threads::ThreadLock
         void            logConfigDomainRecursive( core::Domain& domain, int indent, AString& domPath, AString& buffer );
 
 }; // class Lox
-}} // namespace
 
+} // namespace lox
+
+/** Type alias name in namespace #aworx. */
+using     Lox=           aworx::lox::Lox;
+
+}  // namespace aworx
 
 
 #endif // HPP_ALOX_LOX

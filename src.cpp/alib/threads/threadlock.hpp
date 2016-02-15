@@ -4,26 +4,26 @@
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
-/** @file */ // Hello Doxyen
+/** @file */ // Hello Doxygen
 
 // check for alib.hpp already there but not us
-#if !defined (HPP_AWORX_LIB_ALIB)
+#if !defined (HPP_ALIB_ALIB)
     #error "include \"alib/alib.hpp\" before including this header"
 #endif
-#if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_AWORX_LIB_THREADS_THREADLOCK)
+#if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_ALIB_THREADS_THREADLOCK)
     #error "Header already included"
 #endif
 
 // Due to our blocker above, this include will never be executed. But having it, allows IDEs
 // (e.g. QTCreator) to read the symbols when opening this file
-#if !defined (HPP_AWORX_LIB_ALIB)
+#if !defined (HPP_ALIB_ALIB)
     #include "alib/alib.hpp"
 #endif
 
 // then, set include guard
-#ifndef HPP_AWORX_LIB_THREADS_THREADLOCK
+#ifndef HPP_ALIB_THREADS_THREADLOCK
 #if !defined( IS_DOXYGEN_PARSER)
-#define HPP_AWORX_LIB_THREADS_THREADLOCK 1
+#define HPP_ALIB_THREADS_THREADLOCK 1
 #endif
 
 // #################################################################################################
@@ -337,6 +337,11 @@ class ThreadLock : public Ownable
 }; // class ThreadLock
 
 
-}}}  // namespace aworx::lib::threads
+}} // namespace lib::threads
 
-#endif // HPP_AWORX_LIB_THREADS_THREADLOCK
+/** Type alias name in namespace #aworx. */
+using     ThreadLock= aworx::lib::threads::ThreadLock;
+
+}  // namespace aworx
+
+#endif // HPP_ALIB_THREADS_THREADLOCK

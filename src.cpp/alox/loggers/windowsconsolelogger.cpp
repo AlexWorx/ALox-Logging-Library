@@ -9,15 +9,15 @@
 
 #if defined( _WIN32 )
 
-#if !defined (HPP_AWORX_LIB_ALIB)
+#if !defined (HPP_ALIB_ALIB)
     #include "alib/alib.hpp"
 #endif
 
-#if !defined (HPP_AWORX_LIB_CONFIG_CONFIGURATION)
+#if !defined (HPP_ALIB_CONFIG_CONFIGURATION)
     #include "alib/config/configuration.hpp"
 #endif
 
-#if !defined (HPP_AWORX_LIB_STRINGS_TOKENIZER)
+#if !defined (HPP_ALIB_STRINGS_TOKENIZER)
     #include "alib/strings/tokenizer.hpp"
 #endif
 
@@ -34,12 +34,7 @@
 
 using namespace std;
 using namespace aworx;
-using namespace aworx::lib;
-using namespace aworx::lib::enums;
-using namespace aworx::lib::strings;
-using namespace aworx::lox;
 using namespace aworx::lox::core;
-using namespace aworx::lox::loggers;
 
 
 
@@ -163,7 +158,7 @@ void WindowsConsoleLogger::doTextLog( const    TString&           ,    Log::Leve
         if ( msgParts.Next( Whitespaces::Keep ).IsNotEmpty() )
         {
             WriteFile( H, actual.Buffer(), actual.Length(), &ignore, NULL );
-            column+= CString::LengthWhenConvertedToWChar( actual.Buffer(), actual.Length() );
+            column+= lib::strings::CString::LengthWhenConvertedToWChar( actual.Buffer(), actual.Length() );
         }
 
         if ( !msgParts.HasNext() )
@@ -227,7 +222,7 @@ void WindowsConsoleLogger::doTextLog( const    TString&           ,    Log::Leve
             if( qtySpaces > 0 )
             {
                 column+= qtySpaces;
-                const AString& spaces= Util::GetSpaces();
+                const AString& spaces= lib::Util::GetSpaces();
                 int spacesLength= spaces.Length();
                 while ( qtySpaces > 0 )
                 {

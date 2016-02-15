@@ -10,7 +10,7 @@
 // Before including this header, the prepro variable "TESTCLASSNAME" has to be defined
 
 #include "alib/stdafx_alib.h"
-#include "alib/strings/assubstring.hpp"
+#include "alib/strings/substring.hpp"
 #include "alib/system/directory.hpp"
 #include "alib/compatibility/std_iostream.hpp"
 
@@ -18,12 +18,7 @@
 
 using namespace std;
 using namespace aworx;
-using namespace aworx::lib;
-using namespace aworx::lib::enums;
-using namespace aworx::lib::strings;
-using namespace aworx::lib::system;
-using namespace aworx::lox;
-using namespace aworx::lox::loggers;
+using namespace aworx::lox::core;
 
 namespace ut_aworx {
 
@@ -59,7 +54,7 @@ ALIBUnitTesting::ALIBUnitTesting( const String& domain, const String& testName)
 
     lox.SetDomain( domain, Log::DomainLevel::All );
 
-    origReportWriter=  Report::GetDefault().ReplaceReportWriter( this, false );
+    origReportWriter=  lib::Report::GetDefault().ReplaceReportWriter( this, false );
 }
 
 ALIBUnitTesting::~ALIBUnitTesting()
@@ -69,7 +64,7 @@ ALIBUnitTesting::~ALIBUnitTesting()
     utl->AutoSizes.Export( LastAutoSizes );
 
     delete utl;
-    Report::GetDefault().ReplaceReportWriter( origReportWriter, false );
+    lib::Report::GetDefault().ReplaceReportWriter( origReportWriter, false );
 };
 
 
@@ -148,9 +143,9 @@ void ALIBUnitTesting::WriteResultFile(const String& name, const String& outputRa
 // Error/Warning
 // #################################################################################################
 #if defined( ALIB_DEBUG )
-    void ALIBUnitTesting::Report  ( const Report::Message& msg ) {  Print( msg.File, msg.Line, msg.Func , msg.Type == 0 ? 2 : 1, msg.Contents );  }
+    void ALIBUnitTesting::Report  ( const lib::Report::Message& msg ) {  Print( msg.File, msg.Line, msg.Func , msg.Type == 0 ? 2 : 1, msg.Contents );  }
 #else
-    void ALIBUnitTesting::Report  ( const Report::Message& msg ) {  Print( nullptr,0,nullptr,             msg.Type == 0 ? 2 : 1, msg.Contents );  }
+    void ALIBUnitTesting::Report  ( const lib::Report::Message& msg ) {  Print( nullptr,0,nullptr,             msg.Type == 0 ? 2 : 1, msg.Contents );  }
 #endif
 
 #if defined ( ALIB_VSTUDIO )
@@ -169,9 +164,9 @@ void ALIBUnitTesting::WriteResultFile(const String& name, const String& outputRa
             delete[] wCharBuffer;
     }
 
-    void VStudioUnitTestLogger::doTextLog( const TString&       domain, Log::Level     level,
-                                           AString&             msg,    int            indent,
-                                           core::CallerInfo*    caller, int            lineNumber )
+    void VStudioUnitTestLogger::doTextLog( const TString& domain, Log::Level     level,
+                                           AString&       msg,    int            indent,
+                                           CallerInfo*    caller, int            lineNumber )
 
     {
         MemoryLogger::doTextLog( domain, level, msg, indent, caller, lineNumber );

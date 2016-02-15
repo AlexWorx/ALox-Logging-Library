@@ -22,16 +22,7 @@
 using namespace std;
 using namespace ut_aworx;
 
-using namespace aworx::lib;
-using namespace aworx::lib::strings;
-
-//! [DOX_ALOX_ESC_USING]
-using namespace aworx::lox;
-//! [DOX_ALOX_ESC_USING]
-
-using namespace aworx::lox::core;
-using namespace aworx::lox::loggers;
-
+using namespace aworx;
 
 namespace ut_alox {
 
@@ -46,7 +37,7 @@ void docSampleESC()
 {
 
 //! [DOX_ALOX_ESC]
-Log_Info( aworx::String32( "The result is ") << ESC::RED << "42" )
+Log_Info( String32( "The result is ") << ESC::RED << "42" )
  //! [DOX_ALOX_ESC]
 }
 

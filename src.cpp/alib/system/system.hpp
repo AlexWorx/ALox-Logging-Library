@@ -4,21 +4,21 @@
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
-/** @file */ // Hello Doxyen
+/** @file */ // Hello Doxygen
 
 
 // check for alib.hpp already there but not us
-#if !defined (HPP_AWORX_LIB_ALIB)
+#if !defined (HPP_ALIB_ALIB)
     #error "include \"alib/alib.hpp\" before including this header"
 #endif
-#if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_AWORX_LIB_SYSTEM_SYSTEMINFO)
+#if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_ALIB_SYSTEM_SYSTEMINFO)
     #error "Header already included"
 #endif
 
 // then, set include guard
-#ifndef HPP_AWORX_LIB_SYSTEM_SYSTEMINFO
+#ifndef HPP_ALIB_SYSTEM_SYSTEMINFO
 #if !defined( IS_DOXYGEN_PARSER)
-#define HPP_AWORX_LIB_SYSTEM_SYSTEMINFO 1
+#define HPP_ALIB_SYSTEM_SYSTEMINFO 1
 #endif
 
 namespace aworx {
@@ -146,6 +146,11 @@ class System
 
 };// class System
 
-}}} // namespace aworx::lib::system
+}} // namespace lib::system
 
-#endif // HPP_AWORX_LIB_SYSTEM_SYSTEMINFO
+/** Type alias name in namespace #aworx. */
+using     System=       aworx::lib::system::System;
+
+}  // namespace aworx
+
+#endif // HPP_ALIB_SYSTEM_SYSTEMINFO

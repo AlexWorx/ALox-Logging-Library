@@ -27,27 +27,26 @@ the main menu of this book (above). They are:
 - [ALox for C#](cs_ref/csmainpage.html)
 - [ALox for Java](java_ref/javamainpage.html)
 
+\note <b>Differences of ALox for C++, C# and Java</b>:<br>
+      As ALox is available for C++, C# and Java, the class and member names within this document
+      may vary a little per language. Especially the class **Log** has no interface in C++ while
+      in C# and Java its' interface is a copy of that of class **Lox**, made for pruning the code.
+      In contrast, in C++ the macros Log_xxx and Lox_xxx are used to provide pruned and non-pruned
+      access to methods of class Lox. Please remember this, when reading this manual and translate
+      the references used herein to the right ones of the language of your choice.
+
+
 <P>
 
 # Contents #
 
-- \subpage man_intro
-  - \ref man_features_and_limitations
-<br>
-<br>
-- \subpage man_concepts
-  - \ref man_alox_architecture
-  - \ref man_levelsanddomains
-  - \ref man_loggers
-<br>
-<br>
-
-- \subpage man_using_alox
-  - \ref GrpALoxConfigVars
-  - \ref man_filtering_loggers  (not written yet)
-  - \ref man_source_code_prefix (not written yet)
-  - \ref man_release_logging (not written yet)
-<br>
-<br>
+1. \ref man_intro
+2. \ref man_features_and_limitations
+3. \ref man_alox_architecture
+4. \ref man_levelsanddomains
+5. \ref man_loggers
+6. \ref man_debug_and_release_logging
+7. \ref GrpALoxConfigVars
 
 */
+

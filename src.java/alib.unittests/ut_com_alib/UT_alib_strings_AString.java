@@ -679,7 +679,7 @@ public class UT_alib_strings_AString extends UnitTest
         int result;
 
 
-        // replace nullptr
+        // searchAndReplace null
         ms._()._("Hello");
         {
             ms.searchAndReplace( null, null );   UT_EQ( ms, "Hello" );
@@ -687,7 +687,6 @@ public class UT_alib_strings_AString extends UnitTest
             ms.searchAndReplace( null, "xx" );   UT_EQ( ms, "Heo" );
         }
 
-        // replaceCount nullptr
         ms._()._("Hello");
         {
             result= ms.searchAndReplace( null, null );  UT_EQ( ms, "Hello" );  UT_EQ( 0, result );
@@ -695,7 +694,7 @@ public class UT_alib_strings_AString extends UnitTest
             result= ms.searchAndReplace( null, "xx" );  UT_EQ( ms, "Heo"   );  UT_EQ( 0, result );
         }
 
-        // replace
+        // searchAndReplace
         ms._()._("Hello W!");
         {
             result= ms.searchAndReplace( "W!",    "world!"  );    UT_EQ( ms, "Hello world!"   );    UT_EQ( 1, result );

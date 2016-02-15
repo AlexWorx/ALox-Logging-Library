@@ -29,9 +29,7 @@
 
 using namespace std;
 using namespace aworx;
-using namespace aworx::lib;
-using namespace aworx::lib::enums;
-using namespace aworx::lib::strings;
+
 
 namespace ut_aworx {
 
@@ -39,11 +37,11 @@ namespace ut_aworx {
 UT_CLASS()
 
 //---------------------------------------------------------------------------------------------------------
-//--- Test ASSubstring
+//--- Test Substring
 //---------------------------------------------------------------------------------------------------------
-void substringConstruction( const char* inputString, ASAlloc& res, bool trim )
+void substringConstruction( const char* inputString, AString& res, bool trim )
 {
-    ASSubstring subs( inputString );
+    Substring subs( inputString );
     if (trim)
         subs.Trim();
     res.Clear()._(subs);
@@ -51,8 +49,8 @@ void substringConstruction( const char* inputString, ASAlloc& res, bool trim )
 
 UT_METHOD( Constructor )
 
-    ASAlloc as;
-    ASAlloc res;
+    AString as;
+    AString res;
 
     substringConstruction( "a"        , res, false ); UT_EQ( "a",        res );
     substringConstruction( " a"       , res, false ); UT_EQ( " a",       res );
@@ -72,13 +70,13 @@ UT_METHOD( Constructor )
     {
         {
             as= "xy xz abc xy";
-            ASSubstring subs;
+            Substring subs;
             (subs= as).Trim( "xy ");
             res= subs;
             UT_EQ( "z abc", res );
         }
         {
-            ASSubstring subs( "xy xz abc xy" );
+            Substring subs( "xy xz abc xy" );
             subs.TrimStart( "xy " );
             subs.TrimEnd( "xy " );
             res= subs;
@@ -89,19 +87,19 @@ UT_METHOD( Constructor )
     // test other constructors
     {
         {
-            ASSubstring null;
+            Substring null;
             UT_EQ( true,      null.IsEmpty() );
             UT_EQ( true,      null.IsNull()  );
         }
 
         {
-            ASSubstring subs( " const char* " );
+            Substring subs( " const char* " );
             subs.Trim();
             res= subs;
             UT_EQ( "const char*", res );
         }
         {
-            ASSubstring subs( "const char* ", 0, 5);
+            Substring subs( "const char* ", 0, 5);
             subs.Trim();
             res= subs;
             UT_EQ( "const", res );
@@ -109,17 +107,17 @@ UT_METHOD( Constructor )
 
         {
             String64 astr( " astring ");
-            ASSubstring subs( astr);
+            Substring subs( astr);
             subs.Trim();
             res= subs;
             UT_EQ( "astring", res );
 
-            ASSubstring subs2( astr, 2, 3 );
+            Substring subs2( astr, 2, 3 );
             subs2.Trim();
             res= subs2;
             UT_EQ( "str", res );
 
-            ASSubstring subs3( astr, 20, 3 );
+            Substring subs3( astr, 20, 3 );
             subs3.Trim();
             res= subs3;
             UT_TRUE(  subs3.IsEmpty() );
@@ -132,7 +130,7 @@ UT_METHOD( Operators )
 
 
     String32 as;
-    ASSubstring subs( " word   " );
+    Substring subs( " word   " );
     subs.Trim();
     as << subs << '@' << subs;
 
@@ -150,14 +148,14 @@ UT_METHOD( Operators )
 UT_METHOD( CharAt)
     // empty substring
     {
-        ASSubstring subs;
+        Substring subs;
         UT_EQ(  '\0',      subs.CharAtStart() );
         UT_EQ(  '\0',      subs.CharAtEnd() );
     }
 
     // Consume/PopLast
     {
-        ASSubstring subs("abcde");
+        Substring subs("abcde");
         UT_EQ('a',      subs.CharAtStart()           );
         UT_EQ('e',      subs.CharAtEnd ()            );
         UT_EQ('a',      subs.CharAtStart<false>()    );
@@ -175,7 +173,7 @@ UT_METHOD( CharAt)
 
     // Delete first
     {
-        ASSubstring subs("1234567890");
+        Substring subs("1234567890");
         subs.Consume<false>        (2)     ;UT_TRUE( strncmp( subs.Buffer(), "34567890" , subs.Length() )==0 );
         subs.ConsumeFromEnd <false>(3)     ;UT_TRUE( strncmp( subs.Buffer(), "34567"    , subs.Length() )==0 );
         subs.Consume               (2)     ;UT_TRUE( strncmp( subs.Buffer(), "567890"   , subs.Length() )==0 );
@@ -197,7 +195,7 @@ UT_METHOD( ConsumeNumbers )
 
     // ConsumeInteger()
     {
-        ASSubstring subs;
+        Substring subs;
         int result;
                                    UT_EQ( false,  subs.ConsumeInteger( result                ) );   UT_EQ(       0,  result );
         subs= ""                 ; UT_EQ( false,  subs.ConsumeInteger( result                ) );   UT_EQ(       0,  result );
@@ -219,7 +217,7 @@ UT_METHOD( ConsumeNumbers )
 
     // ConsumeFloat()
     {
-        ASSubstring subs;
+        Substring subs;
         double result;
                                    UT_EQ( false,  subs.ConsumeFloat  ( result                ) );   UT_EQ(      0.,  result );
         subs= ""                 ; UT_EQ( false,  subs.ConsumeFloat  ( result                ) );   UT_EQ(      0.,  result );

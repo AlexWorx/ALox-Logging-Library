@@ -61,14 +61,14 @@ namespace cs.aworx.lib.strings  {
  *  the region. In this case, the checks are redundant.
  *
  *  For avoiding unnecessary checks, various methods are provided by %AString that omit such checks.
- *  These methods share the same name as the standard one, with the postfix "NC" appended (NC
+ *  These methods share the same name as the standard one, with the suffix "_NC" appended (NC
  *  stands for "no checks").
  *
  *  In the sample above, if the calling code was sure about the parameters \p regionStart and
  *  \p regionLength being in the bounds of \p src, method
  *  \ref _NC( AString src, int regionStart, int regionLength ) can be used.
  *
- *  \attention The following rules apply to all methods with postfix <em>_NC</em>:
+ *  \attention The following rules apply to all methods which suffixed by <em>_NC</em>:
  *  - Parameters are not checked for being null.
  *  - Index, size, length, region start/end and other parameters are not checked to be correct
  *  - If parameters are incorrect, the result of the methods is undefined

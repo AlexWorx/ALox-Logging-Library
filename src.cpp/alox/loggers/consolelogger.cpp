@@ -6,7 +6,7 @@
 // #################################################################################################
 #include "alib/stdafx_alib.h"
 
-#if !defined (HPP_AWORX_LIB_ALIB)
+#if !defined (HPP_ALIB_ALIB)
     #include "alib/alib.hpp"
 #endif
 
@@ -18,10 +18,6 @@
 
 using namespace std;
 using namespace aworx;
-using namespace aworx::lib::enums;
-using namespace aworx::lib::strings;
-using namespace aworx::lox::loggers;
-
 
 bool ConsoleLogger::notifyLogOp( Phase phase )
 {
@@ -32,6 +28,6 @@ bool ConsoleLogger::notifyLogOp( Phase phase )
 
 int ConsoleLogger::doLogSubstring( const AString& buffer, int start, int length )
 {
-    cout << AS( buffer, start, length );
+    cout << String( buffer, start, length );
     return lib::strings::CString::LengthWhenConvertedToWChar( buffer.Buffer() + start, length );
 }

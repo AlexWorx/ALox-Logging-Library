@@ -17,16 +17,16 @@ ALox is a small and efficient software library that provides an ecosystem to sup
 organized log output.
 
 ALox is available as
-[ALox for C++ 11](http://alexworx.github.io/ALox-Logging-Library/cpp_ref/cppmainpage.html),
-[ALox for C#](http://alexworx.github.io/ALox-Logging-Library/cs_ref/csmainpage.html) and
-[ALox for Java](http://alexworx.github.io/ALox-Logging-Library/java_ref/javamainpage.html).
+- [ALox for C++ 11](http://alexworx.github.io/ALox-Logging-Library/cpp_ref/cppmainpage.html),
+- [ALox for C#](http://alexworx.github.io/ALox-Logging-Library/cs_ref/csmainpage.html) and
+- [ALox for Java](http://alexworx.github.io/ALox-Logging-Library/java_ref/javamainpage.html).
 
-To reach this goal, ALox is featured by **ALib** (see ALib for
+To reach this goal, ALox is featured by **ALib**, which is a basic utility library that among other
+goals provides <em>\"source-compatible\"</em> types for the three languages.
+(See ALib for
 [C++](http://alexworx.github.io/ALox-Logging-Library/cpp_ref/namespaceaworx_1_1lib.html),
 [C#](http://alexworx.github.io/ALox-Logging-Library/cs_ref/namespacecs_1_1aworx_1_1lib.html),
-[Java](http://alexworx.github.io/ALox-Logging-Library/java_ref/namespacecom_1_1aworx_1_1lib.html)),
-which is a basic utility library that among other goals
-provides *'source-compatible'* types for the three languages.
+[Java](http://alexworx.github.io/ALox-Logging-Library/java_ref/namespacecom_1_1aworx_1_1lib.html).)
 
 ALox attempts to make logging as easy and lightweight as possible. We want you to **stop adding
 temporary debug output lines** into your code. Instead, write (with less effort!) short, nice
@@ -68,9 +68,11 @@ A version history is provided in the \ref changelog.
 If you want to contribute by adding functionality or repairing bugs, please use
 Github standard procedures.
 For other types of contribution or questions, please contact <b>alox at a-worx dotcom</b>.
+\note We would be especially happy to find support for creating a 4th version of ALib and ALox,
+      supporting the Apple/iOS language [Swift](https://developer.apple.com/swift)!
+
 
 \section mainpage_copyright        Copyright
-
 
 ALox is open source software, can be [downloaded at Github](http://github.com/AlexWorx/ALox-Logging-Library)
 and sources are published under the MIT License:

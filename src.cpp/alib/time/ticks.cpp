@@ -6,9 +6,9 @@
 // #################################################################################################
 
 #include "alib/stdafx_alib.h"
-#include "alib/strings/assubstring.hpp"
+#include "alib/strings/substring.hpp"
 
-#if !defined (HPP_AWORX_LIB_TIME)
+#if !defined (HPP_ALIB_TIME)
     #include "alib/time/ticks.hpp"
 #endif
 
@@ -21,8 +21,6 @@
 
 
 using namespace std;
-using namespace aworx::lib::strings;
-using namespace aworx::lib::enums;
 
 namespace aworx {
 namespace           lib {

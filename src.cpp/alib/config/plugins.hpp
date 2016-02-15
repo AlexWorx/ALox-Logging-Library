@@ -4,20 +4,20 @@
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
-/** @file */ // Hello Doxyen
+/** @file */ // Hello Doxygen
 
 // check for alib.hpp already there but not us
-#if !defined (HPP_AWORX_LIB_ALIB)
+#if !defined (HPP_ALIB_ALIB)
     #error "include \"alib/alib.hpp\" before including this header"
 #endif
-#if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_AWORX_LIB_CONFIG_PLUGINS)
+#if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_ALIB_CONFIG_PLUGINS)
     #error "Header already included"
 #endif
 
 // then, set include guard
-#ifndef HPP_AWORX_LIB_CONFIG_PLUGINS
+#ifndef HPP_ALIB_CONFIG_PLUGINS
 #if !defined( IS_DOXYGEN_PARSER)
-#define HPP_AWORX_LIB_CONFIG_PLUGINS 1
+#define HPP_ALIB_CONFIG_PLUGINS 1
 #endif
 
 namespace aworx {
@@ -279,4 +279,4 @@ class EnvironmentPlugIn : public ConfigurationPlugIn
 
 }}}  // namespace aworx::lib::config
 
-#endif // HPP_AWORX_LIB_CONFIG_PLUGINS
+#endif // HPP_ALIB_CONFIG_PLUGINS
