@@ -5,5 +5,6 @@ var searchData=
   ['thread_2ehpp',['thread.hpp',['../thread_8hpp.html',1,'']]],
   ['threadlock_2ehpp',['threadlock.hpp',['../threadlock_8hpp.html',1,'']]],
   ['ticks_2ehpp',['ticks.hpp',['../ticks_8hpp.html',1,'']]],
-  ['tokenizer_2ehpp',['tokenizer.hpp',['../tokenizer_8hpp.html',1,'']]]
+  ['tokenizer_2ehpp',['tokenizer.hpp',['../tokenizer_8hpp.html',1,'']]],
+  ['tstring_2ehpp',['tstring.hpp',['../tstring_8hpp.html',1,'']]]
 ];

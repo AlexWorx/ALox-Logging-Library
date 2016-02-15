@@ -2,7 +2,7 @@ var searchData=
 [
   ['_7eansiconsolelogger',['~AnsiConsoleLogger',['cpp_ref/classaworx_1_1lox_1_1loggers_1_1AnsiConsoleLogger.html#a4c8b0a449e4f27c7f745201dd0a7bdde',1,'aworx::lox::loggers::AnsiConsoleLogger']]],
   ['_7eansilogger',['~AnsiLogger',['cpp_ref/classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html#ad6ebe5d417530b986e219b6a9225459b',1,'aworx::lox::loggers::AnsiLogger']]],
-  ['_7easalloc',['~ASAlloc',['cpp_ref/classaworx_1_1lib_1_1strings_1_1ASAlloc.html#aa0373d9928777ea07116cd3a746aab28',1,'aworx::lib::strings::ASAlloc::~ASAlloc() noexcept'],['cpp_ref/classaworx_1_1lib_1_1strings_1_1ASAlloc.html#aa0373d9928777ea07116cd3a746aab28',1,'aworx::lib::strings::ASAlloc::~ASAlloc() noexcept']]],
+  ['_7eastring',['~AString',['cpp_ref/classaworx_1_1lib_1_1strings_1_1AString.html#ab93ea5df790ecc39b4f09e84cbd9805c',1,'aworx::lib::strings::AString::~AString() noexcept'],['cpp_ref/classaworx_1_1lib_1_1strings_1_1AString.html#ab93ea5df790ecc39b4f09e84cbd9805c',1,'aworx::lib::strings::AString::~AString() noexcept']]],
   ['_7ecommandlineplugin',['~CommandLinePlugIn',['cpp_ref/classaworx_1_1lib_1_1config_1_1CommandLinePlugIn.html#a8adb5a21052bd527334cdf67115f1d33',1,'aworx::lib::config::CommandLinePlugIn']]],
   ['_7econfiguration',['~Configuration',['cpp_ref/classaworx_1_1lib_1_1config_1_1Configuration.html#a09dcd47e8d29f55ef5515d6413d42d16',1,'aworx::lib::config::Configuration']]],
   ['_7econfigurationplugin',['~ConfigurationPlugIn',['cpp_ref/classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html#acc4f693e1c9d021c6a8ca052bb151863',1,'aworx::lib::config::ConfigurationPlugIn']]],

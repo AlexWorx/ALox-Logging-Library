@@ -5,12 +5,12 @@
   <filterSection>
     <filterAttribute>doxygen</filterAttribute>
     <toc>
-      <section title="ALox V. 1602" ref="index.html">
+      <section title="ALox V. 1602 R. 1" ref="index.html">
         <section title="ALox Main Page" ref="index.html" />
         <section title="FAQ" ref="faq.html" />
         <section title="Manual" ref="manual.html">
           <section title="man_intro" ref="man_intro.html" />
-          <section title="man_concepts" ref="man_concepts.html" />
+          <section title="man_concepts" ref="@ref man_concepts" />
           <section title="man_achieving_goals" ref="@ref man_achieving_goals" />
         </section>
         <section title="ALox for C++" ref="cpp_ref/cppmainpage.html" />
@@ -20,16 +20,12 @@
       </section>
     </toc>
     <keywords>
+      <keyword name="Overview of the ALox architecture" id="Overview of the ALox architecture" ref="man_alox_architecture.html" />
+      <keyword name="Differences of Debug- and Release-Logging" id="Differences of Debug- and Release-Logging" ref="man_debug_and_release_logging.html" />
       <keyword name="Features and Limitations" id="Features and Limitations" ref="man_features_and_limitations.html" />
       <keyword name="About ALox" id="About ALox" ref="man_intro.html" />
-      <keyword name="Concepts of ALox Logging" id="Concepts of ALox Logging" ref="man_concepts.html" />
-      <keyword name="Overview of the ALox architecture" id="Overview of the ALox architecture" ref="man_alox_architecture.html" />
       <keyword name="Log Levels, Log Domains and Log Domain Levels" id="Log Levels, Log Domains and Log Domain Levels" ref="man_levelsanddomains.html" />
       <keyword name="Details on ALox Loggers" id="Details on ALox Loggers" ref="man_loggers.html" />
-      <keyword name="Filtering Loggers" id="Filtering Loggers" ref="man_filtering_loggers.html" />
-      <keyword name="Logging in release versions of your application" id="Logging in release versions of your application" ref="man_release_logging.html" />
-      <keyword name="The field &quot;SourceCodePrefix&quot; in remote debugging environments" id="The field &quot;SourceCodePrefix&quot; in remote debugging environments" ref="man_source_code_prefix.html" />
-      <keyword name="ALox Feature References" id="ALox Feature References" ref="man_using_alox.html" />
       <keyword name="User Manual" id="User Manual" ref="manual.html" />
       <keyword name="Change Log" id="Change Log" ref="changelog.html" />
       <keyword name="FAQ - Frequently asked Questions for ALox" id="FAQ - Frequently asked Questions for ALox" ref="faq.html" />
@@ -71,9 +67,6 @@
       <file>search/mag_sel.png</file>
       <file>search/search.css</file>
       <file>search/search.js</file>
-      <file>man_features_and_limitations.html</file>
-      <file>man_intro.html</file>
-      <file>man_concepts.html</file>
       <file>man_alox_architecture.html</file>
       <file>dot_inline_dotgraph_1.svg</file>
       <file>dot_inline_dotgraph_2.svg</file>
@@ -81,13 +74,12 @@
       <file>dot_inline_dotgraph_4.svg</file>
       <file>dot_inline_dotgraph_5.svg</file>
       <file>dot_inline_dotgraph_6.svg</file>
+      <file>man_debug_and_release_logging.html</file>
+      <file>man_features_and_limitations.html</file>
+      <file>man_intro.html</file>
       <file>man_levelsanddomains.html</file>
       <file>man_loggers.html</file>
       <file>dot_inline_dotgraph_7.svg</file>
-      <file>man_filtering_loggers.html</file>
-      <file>man_release_logging.html</file>
-      <file>man_source_code_prefix.html</file>
-      <file>man_using_alox.html</file>
       <file>manual.html</file>
       <file>changelog.html</file>
       <file>faq.html</file>
@@ -221,6 +213,10 @@
       <file>inherit_graph_119.svg</file>
       <file>inherit_graph_120.svg</file>
       <file>inherit_graph_121.svg</file>
+      <file>inherit_graph_122.svg</file>
+      <file>inherit_graph_123.svg</file>
+      <file>inherit_graph_124.svg</file>
+      <file>inherit_graph_125.svg</file>
       <file>pages.html</file>
     </files>
   </filterSection>

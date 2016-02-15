@@ -11,10 +11,10 @@
 <polygon fill="white" stroke="none" points="-4,4 -4,-35 139,-35 139,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<g id="a_node1"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html" target="_top" xlink:title="aworx::lox::core::textlogger\l::MetaInfo">
+<g id="a_node1"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html" target="_top" xlink:title="aworx::lox::core::textlogger\l::ObjectConverter">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-30.5 135,-30.5 135,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">aworx::lox::core::textlogger</text>
-<text text-anchor="middle" x="67.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">::MetaInfo</text>
+<text text-anchor="middle" x="67.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">::ObjectConverter</text>
 </a>
 </g>
 </g>

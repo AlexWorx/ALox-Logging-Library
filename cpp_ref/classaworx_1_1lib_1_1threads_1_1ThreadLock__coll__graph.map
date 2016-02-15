@@ -1,8 +1,8 @@
 <map id="ThreadLock" name="ThreadLock">
-<area shape="rect" id="node2" href="$classaworx_1_1lib_1_1Ownable.html" title="Ownable" alt="" coords="364,5,437,32"/>
-<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1threads_1_1Thread.html" title="Thread" alt="" coords="369,85,432,112"/>
-<area shape="rect" id="node4" href="$classaworx_1_1lib_1_1threads_1_1Runnable.html" title="Runnable" alt="" coords="149,43,226,69"/>
-<area shape="rect" id="node5" href="$classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html" title="ASPreAlloc\&lt; 64 \&gt;" alt="" coords="124,105,251,132"/>
-<area shape="rect" id="node6" href="$classaworx_1_1lib_1_1strings_1_1ASAlloc.html" title="ASAlloc" alt="" coords="5,105,75,132"/>
-<area shape="rect" id="node8" title="STL class. " alt="" coords="158,156,217,183"/>
+<area shape="rect" id="node2" href="$classaworx_1_1lib_1_1Ownable.html" title="Ownable" alt="" coords="361,5,435,32"/>
+<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1threads_1_1Thread.html" title="Thread" alt="" coords="367,85,429,112"/>
+<area shape="rect" id="node4" href="$classaworx_1_1lib_1_1threads_1_1Runnable.html" title="Runnable" alt="" coords="145,39,223,65"/>
+<area shape="rect" id="node5" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\l\&lt; 64 \&gt;" alt="" coords="120,94,248,135"/>
+<area shape="rect" id="node6" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="5,101,71,128"/>
+<area shape="rect" id="node8" title="STL class. " alt="" coords="155,160,213,187"/>
 </map>

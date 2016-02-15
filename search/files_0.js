@@ -8,10 +8,5 @@ var searchData=
   ['ansilogger_2ehpp',['ansilogger.hpp',['cpp_ref/ansilogger_8hpp.html',1,'']]],
   ['applyformat_2ehpp',['applyformat.hpp',['cpp_ref/applyformat_8hpp.html',1,'']]],
   ['applyto_2ehpp',['applyto.hpp',['cpp_ref/applyto_8hpp.html',1,'']]],
-  ['as_2ehpp',['as.hpp',['cpp_ref/as_8hpp.html',1,'']]],
-  ['asalloc_2ehpp',['asalloc.hpp',['cpp_ref/asalloc_8hpp.html',1,'']]],
-  ['asliteral_2ehpp',['asliteral.hpp',['cpp_ref/asliteral_8hpp.html',1,'']]],
-  ['asprealloc_2ehpp',['asprealloc.hpp',['cpp_ref/asprealloc_8hpp.html',1,'']]],
-  ['assubstring_2ehpp',['assubstring.hpp',['cpp_ref/assubstring_8hpp.html',1,'']]],
-  ['asterminatable_2ehpp',['asterminatable.hpp',['cpp_ref/asterminatable_8hpp.html',1,'']]]
+  ['astring_2ehpp',['astring.hpp',['cpp_ref/astring_8hpp.html',1,'']]]
 ];

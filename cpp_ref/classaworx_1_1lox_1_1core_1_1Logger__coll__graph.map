@@ -1,7 +1,7 @@
 <map id="Logger" name="Logger">
-<area shape="rect" id="node2" href="$classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html" title="ASPreAlloc\&lt; 32 \&gt;" alt="" coords="147,171,274,197"/>
-<area shape="rect" id="node6" href="$classaworx_1_1lox_1_1core_1_1Domain.html" title="Domain" alt="" coords="279,261,345,288"/>
-<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1strings_1_1ASAlloc.html" title="ASAlloc" alt="" coords="199,81,268,108"/>
-<area shape="rect" id="node4" href="$classaworx_1_1lib_1_1strings_1_1ASTerminatable.html" title="ASTerminatable" alt="" coords="227,5,341,32"/>
-<area shape="rect" id="node5" href="$classaworx_1_1lib_1_1time_1_1Ticks.html" title="Ticks" alt="" coords="95,261,150,288"/>
+<area shape="rect" id="node2" href="$classaworx_1_1lib_1_1time_1_1Ticks.html" title="Ticks" alt="" coords="5,276,60,303"/>
+<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\l\&lt; 32 \&gt;" alt="" coords="186,171,314,212"/>
+<area shape="rect" id="node6" href="$classaworx_1_1lox_1_1core_1_1Domain.html" title="Domain" alt="" coords="318,276,385,303"/>
+<area shape="rect" id="node4" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="240,81,305,108"/>
+<area shape="rect" id="node5" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="291,5,355,32"/>
 </map>

@@ -9,6 +9,6 @@ var searchData=
   ['isapplicable',['IsApplicable',['cpp_ref/structaworx_1_1lib_1_1strings_1_1IsApplicable.html',1,'aworx::lib::strings']]],
   ['isapplicable_3c_20const_20std_3a_3astring_20_26_20_3e',['IsApplicable&lt; const std::string &amp; &gt;',['cpp_ref/structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01std_1_1string_01_6_01_4.html',1,'aworx::lib::strings']]],
   ['isterminatable',['IsTerminatable',['cpp_ref/structaworx_1_1lib_1_1strings_1_1IsTerminatable.html',1,'aworx::lib::strings']]],
-  ['isterminatable_3c_20asalloc_20_3e',['IsTerminatable&lt; ASAlloc &gt;',['cpp_ref/structaworx_1_1lib_1_1strings_1_1IsTerminatable_3_01ASAlloc_01_4.html',1,'aworx::lib::strings']]],
-  ['isterminatable_3c_20asprealloc_3c_20tcapacity_20_3e_20_3e',['IsTerminatable&lt; ASPreAlloc&lt; TCapacity &gt; &gt;',['cpp_ref/structaworx_1_1lib_1_1strings_1_1IsTerminatable_3_01ASPreAlloc_3_01TCapacity_01_4_01_4.html',1,'aworx::lib::strings']]]
+  ['isterminatable_3c_20astring_20_3e',['IsTerminatable&lt; AString &gt;',['cpp_ref/structaworx_1_1lib_1_1strings_1_1IsTerminatable_3_01AString_01_4.html',1,'aworx::lib::strings']]],
+  ['isterminatable_3c_20preallocatedstring_3c_20tcapacity_20_3e_20_3e',['IsTerminatable&lt; PreallocatedString&lt; TCapacity &gt; &gt;',['cpp_ref/structaworx_1_1lib_1_1strings_1_1IsTerminatable_3_01PreallocatedString_3_01TCapacity_01_4_01_4.html',1,'aworx::lib::strings']]]
 ];

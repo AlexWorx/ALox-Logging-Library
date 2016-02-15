@@ -16,9 +16,9 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="classaworx_1_1lib_1_1strings_1_1ASTerminatable.html" target="_top" xlink:title="ASTerminatable">
-<polygon fill="white" stroke="black" points="3,-89.5 3,-108.5 89,-108.5 89,-89.5 3,-89.5"/>
-<text text-anchor="middle" x="46" y="-96.5" font-family="Helvetica,sans-Serif" font-size="10.00">ASTerminatable</text>
+<g id="a_node2"><a xlink:href="classaworx_1_1lib_1_1strings_1_1TString.html" target="_top" xlink:title="TString">
+<polygon fill="white" stroke="black" points="22,-89.5 22,-108.5 70,-108.5 70,-89.5 22,-89.5"/>
+<text text-anchor="middle" x="46" y="-96.5" font-family="Helvetica,sans-Serif" font-size="10.00">TString</text>
 </a>
 </g>
 </g>
@@ -32,9 +32,9 @@
 </g>
 <!-- Node3 -->
 <g id="node3" class="node"><title>Node3</title>
-<g id="a_node3"><a xlink:href="classaworx_1_1lib_1_1strings_1_1AS.html" target="_top" xlink:title="AS">
-<polygon fill="white" stroke="black" points="31,-146.5 31,-165.5 61,-165.5 61,-146.5 31,-146.5"/>
-<text text-anchor="middle" x="46" y="-153.5" font-family="Helvetica,sans-Serif" font-size="10.00">AS</text>
+<g id="a_node3"><a xlink:href="classaworx_1_1lib_1_1strings_1_1String.html" target="_top" xlink:title="String">
+<polygon fill="white" stroke="black" points="25,-146.5 25,-165.5 67,-165.5 67,-146.5 25,-146.5"/>
+<text text-anchor="middle" x="46" y="-153.5" font-family="Helvetica,sans-Serif" font-size="10.00">String</text>
 </a>
 </g>
 </g>

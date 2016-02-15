@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1602</span>
+   &#160;<span id="projectnumber">V. 1602 R. 1</span>
    </div>
   </td>
  </tr>
@@ -138,46 +138,45 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Collaboration diagram for Tokenizer:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lib_1_1strings_1_1Tokenizer__coll__graph.svg" width="222" height="408"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lib_1_1strings_1_1Tokenizer__coll__graph.svg" width="219" height="423"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
-<p> This class operates on strings which contains data separated by a delimiter character. It identifies the substrings between the delimiters as <em>tokens</em> of type <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASSubstring.html">ASSubstring</a>. After an instance of this class is constructed, three methods are available:</p><ul>
+<p> This class operates on strings which contains data separated by a delimiter character. It identifies the substrings between the delimiters as <em>tokens</em> of type <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>. After an instance of this class is constructed, three methods are available:</p><ul>
 <li><a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a3551d22502a58cdc93b15d14f3fb87c2">HasNext</a>: Indicates if there are further tokens available.</li>
-<li><a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#aec29e9f7fa2c7d5d832674393be39cbb">Next</a>: Sets field <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#af12981021000f5c7c10a4f9566191f4b">Actual</a> (which is of type Substring) to reference the next token and returns it.<br />
+<li><a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a55ffaac69d1ce7232db83470a8390db8">Next</a>: Sets field <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a2eefe9530c5f2042ddfa20e26b34328b">Actual</a> (which is of type <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>) to reference the next token and returns it.<br />
  With each call to Next, a different delimiter can be provided, which then serves as the delimiter for this and subsequent tokens.<br />
  The returned token by default will be trimmed according to the current trimable characters.</li>
-<li><a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a110a475ccae8a2ff41a9c985c6fd02f6">Rest</a>: Like <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#aec29e9f7fa2c7d5d832674393be39cbb">Next</a>, however returns the complete remaining region without searching for further delimiters (and tokens).<br />
+<li><a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a5c8c6045e5fe301e78496fd5e9c7bfab">Rest</a>: Like <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a55ffaac69d1ce7232db83470a8390db8">Next</a>, however returns the complete remaining region without searching for further delimiters (and tokens).<br />
  After this method was invoked, <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a3551d22502a58cdc93b15d14f3fb87c2">HasNext()</a> will return <code>false</code>.</li>
 </ul>
-<p>After a token was retrieved, it might be modified using the interface of class <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASSubstring.html">ASSubstring</a> as the tokenizer does not rely on the bounds of the current token when receiving the next. Furthermore, even field <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a110a475ccae8a2ff41a9c985c6fd02f6">Rest</a> is allowed to be changed using the interface of <b>Substring</b> if it seems appropriate. The effect is the same as if method <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a0db72e60497efe368680315f3a14af54">Set</a> was invoked to apply a different source string.</p>
-<p>Objects of this class can be reused by freshly initializing them using method <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a0db72e60497efe368680315f3a14af54">Set</a>.</p>
+<p>After a token was retrieved, it might be modified using the interface of class <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> as the tokenizer does not rely on the bounds of the current token when receiving the next. Furthermore, even field <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a5c8c6045e5fe301e78496fd5e9c7bfab">Rest</a> is allowed to be changed using the interface of <b>Substring</b> if it seems appropriate. The effect is the same as if method <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a77fcc3c671e0e6e80d1c1007ef2f69d6">Set</a> was invoked to apply a different source string.</p>
+<p>Objects of this class can be reused by freshly initializing them using method <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a77fcc3c671e0e6e80d1c1007ef2f69d6">Set</a>.</p>
 <p><b>Sample code</b>:<br />
  The following code sample shows how to tokenize a string:</p>
-<div class="fragment"><div class="line">    <span class="comment">// data string to tokenize</span></div><div class="line">    <a class="code" href="classaworx_1_1lib_1_1strings_1_1AS.html">aworx::String</a> data=  <span class="stringliteral">&quot;test;  abc ; 1,2 , 3 ; xyz ; including;separator&quot;</span>;</div><div class="line"></div><div class="line">    <span class="comment">// create tokenizer on data with &#39;;&#39; as delimiter</span></div><div class="line">    <a class="code" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a8e0b4e86c2ce04a29c48aab6a9f77c8e">Tokenizer</a> tokens( data, <span class="charliteral">&#39;;&#39;</span> );</div><div class="line"></div><div class="line">    <span class="comment">// read tokens</span></div><div class="line">    cout &lt;&lt; tokens.Next() &lt;&lt; endl; <span class="comment">// will print &quot;test&quot;</span></div><div class="line">    cout &lt;&lt; tokens.Next() &lt;&lt; endl; <span class="comment">// will print &quot;abc&quot;</span></div><div class="line">    cout &lt;&lt; tokens.Next() &lt;&lt; endl; <span class="comment">// will print &quot;1,2 , 3&quot;</span></div><div class="line"></div><div class="line">    <span class="comment">// tokenize actual (third) token (nested tokenizer)</span></div><div class="line">    <a class="code" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a8e0b4e86c2ce04a29c48aab6a9f77c8e">Tokenizer</a> subTokens( tokens.Actual,  <span class="charliteral">&#39;,&#39;</span>);</div><div class="line">    cout &lt;&lt; subTokens.Next();</div><div class="line"></div><div class="line">    <span class="keywordflow">while</span>( subTokens.HasNext() )</div><div class="line">        cout &lt;&lt; <span class="charliteral">&#39;~&#39;</span> &lt;&lt; subTokens.Next();</div><div class="line"></div><div class="line">    cout &lt;&lt; endl;</div><div class="line"></div><div class="line">    <span class="comment">// continue with the main tokenizer</span></div><div class="line">    cout &lt;&lt; tokens.Next() &lt;&lt; endl; <span class="comment">// will print &quot;xyz&quot;</span></div><div class="line"></div><div class="line">    <span class="comment">// grab the rest, as we know that the last token might include our separator character</span></div><div class="line">    cout &lt;&lt; tokens.GetRest()      &lt;&lt; endl; <span class="comment">// will print &quot;including;separator&quot;</span></div></div><!-- fragment --><p> The output will be:</p>
+<div class="fragment"><div class="line">    <span class="comment">// data string to tokenize</span></div><div class="line">    <a class="code" href="classaworx_1_1lib_1_1strings_1_1String.html">aworx::String</a> data=  <span class="stringliteral">&quot;test;  abc ; 1,2 , 3 ; xyz ; including;separator&quot;</span>;</div><div class="line"></div><div class="line">    <span class="comment">// create tokenizer on data with &#39;;&#39; as delimiter</span></div><div class="line">    <a class="code" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html">aworx::Tokenizer</a> tokens( data, <span class="charliteral">&#39;;&#39;</span> );</div><div class="line"></div><div class="line">    <span class="comment">// read tokens</span></div><div class="line">    cout &lt;&lt; tokens.Next() &lt;&lt; endl; <span class="comment">// will print &quot;test&quot;</span></div><div class="line">    cout &lt;&lt; tokens.Next() &lt;&lt; endl; <span class="comment">// will print &quot;abc&quot;</span></div><div class="line">    cout &lt;&lt; tokens.Next() &lt;&lt; endl; <span class="comment">// will print &quot;1,2 , 3&quot;</span></div><div class="line"></div><div class="line">    <span class="comment">// tokenize actual (third) token (nested tokenizer)</span></div><div class="line">    <a class="code" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html">aworx::Tokenizer</a> subTokens( tokens.Actual,  <span class="charliteral">&#39;,&#39;</span>);</div><div class="line">    cout &lt;&lt; subTokens.Next();</div><div class="line"></div><div class="line">    <span class="keywordflow">while</span>( subTokens.HasNext() )</div><div class="line">        cout &lt;&lt; <span class="charliteral">&#39;~&#39;</span> &lt;&lt; subTokens.Next();</div><div class="line"></div><div class="line">    cout &lt;&lt; endl;</div><div class="line"></div><div class="line">    <span class="comment">// continue with the main tokenizer</span></div><div class="line">    cout &lt;&lt; tokens.Next() &lt;&lt; endl; <span class="comment">// will print &quot;xyz&quot;</span></div><div class="line"></div><div class="line">    <span class="comment">// grab the rest, as we know that the last token might include our separator character</span></div><div class="line">    cout &lt;&lt; tokens.GetRest()      &lt;&lt; endl; <span class="comment">// will print &quot;including;separator&quot;</span></div></div><!-- fragment --><p> The output will be:</p>
 <div class="fragment"><div class="line">test</div><div class="line">abc</div><div class="line">1,2 , 3</div><div class="line">1~2~3</div><div class="line">xyz</div><div class="line">including;separator</div></div><!-- fragment --></div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Fields</h2></td></tr>
-<tr class="memitem:af12981021000f5c7c10a4f9566191f4b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1strings_1_1ASSubstring.html">ASSubstring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#af12981021000f5c7c10a4f9566191f4b">Actual</a></td></tr>
-<tr class="separator:af12981021000f5c7c10a4f9566191f4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a110a475ccae8a2ff41a9c985c6fd02f6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1strings_1_1ASSubstring.html">ASSubstring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a110a475ccae8a2ff41a9c985c6fd02f6">Rest</a></td></tr>
-<tr class="separator:a110a475ccae8a2ff41a9c985c6fd02f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade1a53d31b95db4ed98b03ff74a8b472"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#acbea83160c272e842de487ed7aa0caab">String16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#ade1a53d31b95db4ed98b03ff74a8b472">Whitespaces</a> = <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a883f1244d6fd8d7f4615d647fa388d04">DefaultWhitespaces</a></td></tr>
+<tr class="memitem:a2eefe9530c5f2042ddfa20e26b34328b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a2eefe9530c5f2042ddfa20e26b34328b">Actual</a></td></tr>
+<tr class="separator:a2eefe9530c5f2042ddfa20e26b34328b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c8c6045e5fe301e78496fd5e9c7bfab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a5c8c6045e5fe301e78496fd5e9c7bfab">Rest</a></td></tr>
+<tr class="separator:a5c8c6045e5fe301e78496fd5e9c7bfab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade1a53d31b95db4ed98b03ff74a8b472"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a148a217c34a72b4360462205858b8f0e">String16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#ade1a53d31b95db4ed98b03ff74a8b472">Whitespaces</a> = <a class="el" href="namespaceaworx.html#a5feaaf6a8fb11e8ebbb0013ec9f27b01">DefaultWhitespaces</a></td></tr>
 <tr class="separator:ade1a53d31b95db4ed98b03ff74a8b472"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Methods</h2></td></tr>
-<tr class="memitem:a8e0b4e86c2ce04a29c48aab6a9f77c8e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a8e0b4e86c2ce04a29c48aab6a9f77c8e">Tokenizer</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1AS.html">AS</a> &amp;src, char <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#ab56c67e0ed9605b4078e2135f791c4ed">delim</a>)</td></tr>
-<tr class="separator:a8e0b4e86c2ce04a29c48aab6a9f77c8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a201c3ca43bbcfa71f05f2f16e74250c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1strings_1_1ASSubstring.html">ASSubstring</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a201c3ca43bbcfa71f05f2f16e74250c0">GetRest</a> (<a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ad4a46f9fb632511f6be7c53e05f330f7">enums::Whitespaces</a> trimming=<a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ad4a46f9fb632511f6be7c53e05f330f7a1fc5884251ca9f20a4fd5f79a458f94f">enums::Whitespaces::Trim</a>)</td></tr>
-<tr class="separator:a201c3ca43bbcfa71f05f2f16e74250c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac02aa3ab5a834c7357ef278512efa27e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#ac02aa3ab5a834c7357ef278512efa27e">Tokenizer</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;src, char <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#ab56c67e0ed9605b4078e2135f791c4ed">delim</a>)</td></tr>
+<tr class="separator:ac02aa3ab5a834c7357ef278512efa27e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8bca63647be16f18c25123486a41d19"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#ad8bca63647be16f18c25123486a41d19">GetRest</a> (<a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ad4a46f9fb632511f6be7c53e05f330f7">enums::Whitespaces</a> trimming=<a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ad4a46f9fb632511f6be7c53e05f330f7a1fc5884251ca9f20a4fd5f79a458f94f">enums::Whitespaces::Trim</a>)</td></tr>
+<tr class="separator:ad8bca63647be16f18c25123486a41d19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3551d22502a58cdc93b15d14f3fb87c2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a3551d22502a58cdc93b15d14f3fb87c2">HasNext</a> ()</td></tr>
 <tr class="separator:a3551d22502a58cdc93b15d14f3fb87c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec29e9f7fa2c7d5d832674393be39cbb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASSubstring.html">ASSubstring</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#aec29e9f7fa2c7d5d832674393be39cbb">Next</a> (<a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ad4a46f9fb632511f6be7c53e05f330f7">enums::Whitespaces</a> trimming=<a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ad4a46f9fb632511f6be7c53e05f330f7a1fc5884251ca9f20a4fd5f79a458f94f">enums::Whitespaces::Trim</a>, char newDelim= '\0')</td></tr>
-<tr class="separator:aec29e9f7fa2c7d5d832674393be39cbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0db72e60497efe368680315f3a14af54"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a0db72e60497efe368680315f3a14af54">Set</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1AS.html">AS</a> &amp;src, char <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#ab56c67e0ed9605b4078e2135f791c4ed">delim</a>)</td></tr>
-<tr class="separator:a0db72e60497efe368680315f3a14af54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55ffaac69d1ce7232db83470a8390db8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a55ffaac69d1ce7232db83470a8390db8">Next</a> (<a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ad4a46f9fb632511f6be7c53e05f330f7">enums::Whitespaces</a> trimming=<a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ad4a46f9fb632511f6be7c53e05f330f7a1fc5884251ca9f20a4fd5f79a458f94f">enums::Whitespaces::Trim</a>, char newDelim= '\0')</td></tr>
+<tr class="separator:a55ffaac69d1ce7232db83470a8390db8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77fcc3c671e0e6e80d1c1007ef2f69d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a77fcc3c671e0e6e80d1c1007ef2f69d6">Set</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;src, char <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#ab56c67e0ed9605b4078e2135f791c4ed">delim</a>)</td></tr>
+<tr class="separator:a77fcc3c671e0e6e80d1c1007ef2f69d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Fields</h2></td></tr>
@@ -185,7 +184,7 @@ Protected Fields</h2></td></tr>
 <tr class="separator:ab56c67e0ed9605b4078e2135f791c4ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a8e0b4e86c2ce04a29c48aab6a9f77c8e"></a>
+<a class="anchor" id="ac02aa3ab5a834c7357ef278512efa27e"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -195,7 +194,7 @@ Protected Fields</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html">Tokenizer</a> </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classaworx_1_1lib_1_1strings_1_1AS.html">AS</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;&#160;</td>
           <td class="paramname"><em>src</em>, </td>
         </tr>
         <tr>
@@ -229,7 +228,7 @@ Protected Fields</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a201c3ca43bbcfa71f05f2f16e74250c0"></a>
+<a class="anchor" id="ad8bca63647be16f18c25123486a41d19"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -237,7 +236,7 @@ Protected Fields</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classaworx_1_1lib_1_1strings_1_1ASSubstring.html">ASSubstring</a>&amp; GetRest </td>
+          <td class="memname"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>&amp; GetRest </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ad4a46f9fb632511f6be7c53e05f330f7">enums::Whitespaces</a>&#160;</td>
           <td class="paramname"><em>trimming</em> = <code><a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ad4a46f9fb632511f6be7c53e05f330f7a1fc5884251ca9f20a4fd5f79a458f94f">enums::Whitespaces::Trim</a></code></td><td>)</td>
@@ -251,13 +250,13 @@ Protected Fields</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Returns the currently remaining string (without searching for further delimiter characters). After this call <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a3551d22502a58cdc93b15d14f3fb87c2">HasNext</a> will return <code>false</code> and <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#aec29e9f7fa2c7d5d832674393be39cbb">Next</a> will return a <em>nulled</em> Substring. </p><dl class="params"><dt>Parameters</dt><dd>
+<p> Returns the currently remaining string (without searching for further delimiter characters). After this call <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a3551d22502a58cdc93b15d14f3fb87c2">HasNext</a> will return <code>false</code> and <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a55ffaac69d1ce7232db83470a8390db8">Next</a> will return a <em>nulled</em> <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">trimming</td><td>Determines if the token is trimmed in respect to the white space characters defined in field <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#ade1a53d31b95db4ed98b03ff74a8b472">Whitespaces</a>. Defaults to <code>Whitespaces.Trim</code>. </td></tr>
+    <tr><td class="paramname">trimming</td><td>Determines if the token is trimmed in respect to the white space characters defined in field <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#ade1a53d31b95db4ed98b03ff74a8b472">Whitespaces</a>. Defaults to <code><a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ad4a46f9fb632511f6be7c53e05f330f7a1fc5884251ca9f20a4fd5f79a458f94f" title="Trim whitespaces away. ">Whitespaces.Trim</a></code>. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The rest of the original source string, which was not returned by <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#aec29e9f7fa2c7d5d832674393be39cbb">Next()</a>, yet. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The rest of the original source string, which was not returned by <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a55ffaac69d1ce7232db83470a8390db8">Next()</a>, yet. </dd></dl>
 
 </div>
 </div>
@@ -282,16 +281,16 @@ Protected Fields</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> If this returns <code>true</code>, a call to <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#aec29e9f7fa2c7d5d832674393be39cbb">Next</a> will be successful and will return a Substring which is not <em>nulled</em>. </p><dl class="section return"><dt>Returns</dt><dd><code>true</code> if a next token is available. </dd></dl>
+<p> If this returns <code>true</code>, a call to <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a55ffaac69d1ce7232db83470a8390db8">Next</a> will be successful and will return a <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> which is not <em>nulled</em>. </p><dl class="section return"><dt>Returns</dt><dd><code>true</code> if a next token is available. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="aec29e9f7fa2c7d5d832674393be39cbb"></a>
+<a class="anchor" id="a55ffaac69d1ce7232db83470a8390db8"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classaworx_1_1lib_1_1strings_1_1ASSubstring.html">ASSubstring</a> &amp; Next </td>
+          <td class="memname"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> &amp; Next </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ad4a46f9fb632511f6be7c53e05f330f7">enums::Whitespaces</a>&#160;</td>
           <td class="paramname"><em>trimming</em> = <code><a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ad4a46f9fb632511f6be7c53e05f330f7a1fc5884251ca9f20a4fd5f79a458f94f">enums::Whitespaces::Trim</a></code>, </td>
@@ -310,11 +309,11 @@ Protected Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Returns the next token, which is afterwards also available through field <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#af12981021000f5c7c10a4f9566191f4b">Actual</a>. If no further token was available, the returned <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASSubstring.html">Substring</a> will be <em>nulled</em>. (see <a class="el" href="classaworx_1_1lib_1_1strings_1_1AS.html#a055d87b78f69c9d039b7e12ead7aa6b6">String::IsNull</a>). To prevent this, the availability of a next token should be checked using method <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a3551d22502a58cdc93b15d14f3fb87c2">HasNext()</a>.</p>
+<p> Returns the next token, which is afterwards also available through field <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a2eefe9530c5f2042ddfa20e26b34328b">Actual</a>. If no further token was available, the returned <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> will be <em>nulled</em>. (see <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a055d87b78f69c9d039b7e12ead7aa6b6">String::IsNull</a>). To prevent this, the availability of a next token should be checked using method <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a3551d22502a58cdc93b15d14f3fb87c2">HasNext()</a>.</p>
 <p>For clarification, see the explanation and sample code in this classes documentation.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">trimming</td><td>Determines if the token is trimmed in respect to the white space characters defined in field <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#ade1a53d31b95db4ed98b03ff74a8b472">Whitespaces</a>. Defaults to <code>Whitespaces.Trim</code>. </td></tr>
+    <tr><td class="paramname">trimming</td><td>Determines if the token is trimmed in respect to the white space characters defined in field <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#ade1a53d31b95db4ed98b03ff74a8b472">Whitespaces</a>. Defaults to <code><a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ad4a46f9fb632511f6be7c53e05f330f7a1fc5884251ca9f20a4fd5f79a458f94f" title="Trim whitespaces away. ">Whitespaces.Trim</a></code>. </td></tr>
     <tr><td class="paramname">newDelim</td><td>The delimiter separates the tokens. Defaults to 0, which keeps the current delimiter intact. However, it a new delimiter can be provided for every next token. </td></tr>
   </table>
   </dd>
@@ -323,7 +322,7 @@ Protected Fields</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a0db72e60497efe368680315f3a14af54"></a>
+<a class="anchor" id="a77fcc3c671e0e6e80d1c1007ef2f69d6"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -333,7 +332,7 @@ Protected Fields</h2></td></tr>
         <tr>
           <td class="memname">void Set </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classaworx_1_1lib_1_1strings_1_1AS.html">AS</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;&#160;</td>
           <td class="paramname"><em>src</em>, </td>
         </tr>
         <tr>
@@ -367,16 +366,16 @@ Protected Fields</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="af12981021000f5c7c10a4f9566191f4b"></a>
+<a class="anchor" id="a2eefe9530c5f2042ddfa20e26b34328b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classaworx_1_1lib_1_1strings_1_1ASSubstring.html">ASSubstring</a> Actual</td>
+          <td class="memname"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> Actual</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The actual token, which is returned with every invocation of <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#aec29e9f7fa2c7d5d832674393be39cbb">Next()</a> or <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a110a475ccae8a2ff41a9c985c6fd02f6">Rest()</a>. It is allowed to manipulate this field any time.<br />
+<p>The actual token, which is returned with every invocation of <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a55ffaac69d1ce7232db83470a8390db8">Next()</a> or <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a5c8c6045e5fe301e78496fd5e9c7bfab">Rest()</a>. It is allowed to manipulate this field any time.<br />
  </p>
 
 </div>
@@ -402,16 +401,16 @@ Protected Fields</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a110a475ccae8a2ff41a9c985c6fd02f6"></a>
+<a class="anchor" id="a5c8c6045e5fe301e78496fd5e9c7bfab"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classaworx_1_1lib_1_1strings_1_1ASSubstring.html">ASSubstring</a> Rest</td>
+          <td class="memname"><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> Rest</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>A <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASSubstring.html">ASSubstring</a> that represents the part of the underlying data that has not been tokenized, yet. It is allowed to manipulate this public field, which has a similar effect as using method <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a0db72e60497efe368680315f3a14af54">Set</a>.<br />
+<p>A <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> that represents the part of the underlying data that has not been tokenized, yet. It is allowed to manipulate this public field, which has a similar effect as using method <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a77fcc3c671e0e6e80d1c1007ef2f69d6">Set</a>.<br />
  </p>
 
 </div>
@@ -421,11 +420,11 @@ Protected Fields</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceaworx.html#acbea83160c272e842de487ed7aa0caab">String16</a> Whitespaces = <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a883f1244d6fd8d7f4615d647fa388d04">DefaultWhitespaces</a></td>
+          <td class="memname"><a class="el" href="namespaceaworx.html#a148a217c34a72b4360462205858b8f0e">String16</a> <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ad4a46f9fb632511f6be7c53e05f330f7">Whitespaces</a> = <a class="el" href="namespaceaworx.html#a5feaaf6a8fb11e8ebbb0013ec9f27b01">DefaultWhitespaces</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The white spaces characters used to trim the tokens. Defaults to <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a883f1244d6fd8d7f4615d647fa388d04">aworx::lib::strings::DefaultWhitespaces</a> </p>
+<p>The white spaces characters used to trim the tokens. Defaults to <a class="el" href="namespaceaworx.html#a5feaaf6a8fb11e8ebbb0013ec9f27b01">aworx::DefaultWhitespaces</a> </p>
 
 </div>
 </div>
@@ -437,7 +436,7 @@ Protected Fields</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 5 2016 10:32:54 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Feb 15 2016 11:32:19 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

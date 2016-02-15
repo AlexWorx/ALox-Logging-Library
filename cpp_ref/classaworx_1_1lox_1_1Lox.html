@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1602</span>
+   &#160;<span id="projectnumber">V. 1602 R. 1</span>
    </div>
   </td>
  </tr>
@@ -141,14 +141,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Inheritance diagram for Lox:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lox_1_1Lox__inherit__graph.svg" width="102" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lox_1_1Lox__inherit__graph.svg" width="102" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for Lox:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lox_1_1Lox__coll__graph.svg" width="1850" height="792"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lox_1_1Lox__coll__graph.svg" width="1766" height="792"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
@@ -163,7 +161,7 @@ Collaboration diagram for Lox:</div>
 <p><a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> inherits ThreadLock. Each <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> method uses this mutex. If thread safeness is not needed for the logging system (see user manual) the mutex can be switched of using <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7ba75d036f96e4ea3d2b451677bdeba5">ThreadLock::SetMode</a>. The goal here would be to increase logging performance. This is really a very seldom case when performance is absolutely key, and it is better to be kept in safe mode.</p>
 <p><b>'Loggable Objects' in <em>ALox for C++</em></b><br />
  While other ALox implementations, like ALox for C# or ALox for Java use the 'runtime type information' feature of their underlying programming language to identify any object type, this is not possible in standard C++. Therefore, in ALox for C++ objects of type <em>void*</em> are logged. Together with the pointer, a type information has to be provided.</p>
-<p>The default type '0' is the only predefined type that ALox comes with and indicates <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASTerminatable.html">ALib TString</a>. Due to the flexible and implicit conversion of user defined string types, almost anything that is a string can be passed to be logged. (For more information on string handling in ALib, see <a class="el" href="namespaceaworx_1_1lib_1_1strings.html">aworx::lib::strings</a>).</p>
+<p>The default type '0' is the only predefined type that ALox comes with and indicates <a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html">ALib TString</a>. Due to the flexible and implicit conversion of user defined string types, almost anything that is a string can be passed to be logged. (For more information on string handling in ALib, see <a class="el" href="namespaceaworx_1_1lib_1_1strings.html">aworx::lib::strings</a>).</p>
 <p>The use of custom types (in combination with custom logger implementations or custom <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html">textlogger::ObjectConverter</a> types allows to dispatch just any other data to their log destination. </p>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -172,9 +170,9 @@ Public Fields</h2></td></tr>
 <tr class="separator:a2c80e5630abe5d5042ddb4b85c0c3562"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaaef02f6a1dff7969d2fa1e39a7b9755"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#aaaef02f6a1dff7969d2fa1e39a7b9755">ErrIfNoDefaultDomain</a> = 10</td></tr>
 <tr class="separator:aaaef02f6a1dff7969d2fa1e39a7b9755"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9bccc0d3300ad844c867a263e6e3e8bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a9bccc0d3300ad844c867a263e6e3e8bd">InternalDomain</a> =&quot;ALOX&quot;</td></tr>
+<tr class="memitem:a9bccc0d3300ad844c867a263e6e3e8bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a9bccc0d3300ad844c867a263e6e3e8bd">InternalDomain</a> =&quot;ALOX&quot;</td></tr>
 <tr class="separator:a9bccc0d3300ad844c867a263e6e3e8bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b898840bc3c6004def2f687caa4acb9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a1b898840bc3c6004def2f687caa4acb9">NullDomain</a> =&quot;NULL&quot;</td></tr>
+<tr class="memitem:a1b898840bc3c6004def2f687caa4acb9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a1b898840bc3c6004def2f687caa4acb9">NullDomain</a> =&quot;NULL&quot;</td></tr>
 <tr class="separator:a1b898840bc3c6004def2f687caa4acb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_attribs_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classaworx_1_1lib_1_1threads_1_1ThreadLock')"><img src="closed.png" alt="-"/>&#160;Public Fields inherited from <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a></td></tr>
 <tr class="memitem:a2b35011c911bf00d065eba8af27620a7 inherit pub_attribs_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a2b35011c911bf00d065eba8af27620a7">RecursionWarningThreshold</a> =10</td></tr>
@@ -184,7 +182,7 @@ Public Fields</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Public Static Methods</h2></td></tr>
-<tr class="memitem:ae92c4ae884c3cd723deb9b5e8d27b6ac"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">core::textlogger::TextLogger</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#ae92c4ae884c3cd723deb9b5e8d27b6ac">CreateConsoleLogger</a> (const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;name=nullptr)</td></tr>
+<tr class="memitem:ae92c4ae884c3cd723deb9b5e8d27b6ac"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">core::textlogger::TextLogger</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#ae92c4ae884c3cd723deb9b5e8d27b6ac">CreateConsoleLogger</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;name=nullptr)</td></tr>
 <tr class="separator:ae92c4ae884c3cd723deb9b5e8d27b6ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -195,89 +193,89 @@ Public Methods</h2></td></tr>
 <tr class="separator:a8df22829cdb5cad1db7f72bb0b068d5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:affeac79a4a864890b2e1862d388bfad3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#affeac79a4a864890b2e1862d388bfad3">Acquire</a> ()</td></tr>
 <tr class="separator:affeac79a4a864890b2e1862d388bfad3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56aa4e48e2328746639c63a9b9af2fb9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a56aa4e48e2328746639c63a9b9af2fb9">AcquireAndSetCI</a> (const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;file, int line, const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;func)</td></tr>
+<tr class="memitem:a56aa4e48e2328746639c63a9b9af2fb9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a56aa4e48e2328746639c63a9b9af2fb9">AcquireAndSetCI</a> (const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;file, int line, const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;func)</td></tr>
 <tr class="separator:a56aa4e48e2328746639c63a9b9af2fb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd300988900048304b481573883406d8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#abd300988900048304b481573883406d8">AddLogger</a> (<a class="el" href="classaworx_1_1lox_1_1core_1_1Logger.html">core::Logger</a> *logger)</td></tr>
 <tr class="separator:abd300988900048304b481573883406d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3499398cbeb8d1a26f5eea3399514111"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a3499398cbeb8d1a26f5eea3399514111">Assert</a> (bool cond, const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;msg, int indent=0)</td></tr>
+<tr class="memitem:a3499398cbeb8d1a26f5eea3399514111"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a3499398cbeb8d1a26f5eea3399514111">Assert</a> (bool cond, const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;msg, int indent=0)</td></tr>
 <tr class="separator:a3499398cbeb8d1a26f5eea3399514111"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25747e65a604090e40b91fccea0023d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a25747e65a604090e40b91fccea0023d0">Assert</a> (bool cond, const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;domain, const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;msg, int indent=0)</td></tr>
+<tr class="memitem:a25747e65a604090e40b91fccea0023d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a25747e65a604090e40b91fccea0023d0">Assert</a> (bool cond, const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;domain, const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;msg, int indent=0)</td></tr>
 <tr class="separator:a25747e65a604090e40b91fccea0023d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ede60be7decfe6038d3a7e24798967d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a4ede60be7decfe6038d3a7e24798967d">Assert</a> (bool cond, void *msgObject, int msgType, int indent=0)</td></tr>
 <tr class="separator:a4ede60be7decfe6038d3a7e24798967d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea4c583aaf831207900eed3bba5b4d6e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#aea4c583aaf831207900eed3bba5b4d6e">Assert</a> (bool cond, const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;domain, void *msgObject, int msgType, int indent=0)</td></tr>
+<tr class="memitem:aea4c583aaf831207900eed3bba5b4d6e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#aea4c583aaf831207900eed3bba5b4d6e">Assert</a> (bool cond, const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;domain, void *msgObject, int msgType, int indent=0)</td></tr>
 <tr class="separator:aea4c583aaf831207900eed3bba5b4d6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3dab1b8384cf49f26424e34436c5b744"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a3dab1b8384cf49f26424e34436c5b744">Error</a> (const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;msg, int indent=0)</td></tr>
+<tr class="memitem:a3dab1b8384cf49f26424e34436c5b744"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a3dab1b8384cf49f26424e34436c5b744">Error</a> (const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;msg, int indent=0)</td></tr>
 <tr class="separator:a3dab1b8384cf49f26424e34436c5b744"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab5b4330eb329275e5b8a47988ca1dd6f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#ab5b4330eb329275e5b8a47988ca1dd6f">Error</a> (const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;domain, const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;msg, int indent=0)</td></tr>
+<tr class="memitem:ab5b4330eb329275e5b8a47988ca1dd6f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#ab5b4330eb329275e5b8a47988ca1dd6f">Error</a> (const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;domain, const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;msg, int indent=0)</td></tr>
 <tr class="separator:ab5b4330eb329275e5b8a47988ca1dd6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a019fa45a1dcc075e3719d74ecb6c55f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a019fa45a1dcc075e3719d74ecb6c55f5">Error</a> (void *msgObject, int msgType, int indent=0)</td></tr>
 <tr class="separator:a019fa45a1dcc075e3719d74ecb6c55f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb3563a6edb68e3726b76510179e3853"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#afb3563a6edb68e3726b76510179e3853">Error</a> (const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;domain, void *msgObject, int msgType, int indent=0)</td></tr>
+<tr class="memitem:afb3563a6edb68e3726b76510179e3853"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#afb3563a6edb68e3726b76510179e3853">Error</a> (const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;domain, void *msgObject, int msgType, int indent=0)</td></tr>
 <tr class="separator:afb3563a6edb68e3726b76510179e3853"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a829395dc991b4aed5a09ef5aa77e3e12"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> <a class="el" href="classaworx_1_1lox_1_1core_1_1Logger.html">core::Logger</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a829395dc991b4aed5a09ef5aa77e3e12">GetLogger</a> (const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;loggerName)</td></tr>
+<tr class="memitem:a829395dc991b4aed5a09ef5aa77e3e12"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> <a class="el" href="classaworx_1_1lox_1_1core_1_1Logger.html">core::Logger</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a829395dc991b4aed5a09ef5aa77e3e12">GetLogger</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;loggerName)</td></tr>
 <tr class="separator:a829395dc991b4aed5a09ef5aa77e3e12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c0a8913fff2143fb1eb6d2b86098933"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a5c0a8913fff2143fb1eb6d2b86098933">GetMarker</a> (<a class="el" href="classaworx_1_1lox_1_1Log.html#aaecc53892786f2fa11e682f633af84c6">Log::Scope</a> scope)</td></tr>
 <tr class="separator:a5c0a8913fff2143fb1eb6d2b86098933"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad52f89dd7d537db1a1bf70eb5b1c9ae0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#ad52f89dd7d537db1a1bf70eb5b1c9ae0">Info</a> (const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;msg, int indent=0)</td></tr>
+<tr class="memitem:ad52f89dd7d537db1a1bf70eb5b1c9ae0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#ad52f89dd7d537db1a1bf70eb5b1c9ae0">Info</a> (const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;msg, int indent=0)</td></tr>
 <tr class="separator:ad52f89dd7d537db1a1bf70eb5b1c9ae0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af38603caa1098e01c8fb24237ad6827d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#af38603caa1098e01c8fb24237ad6827d">Info</a> (const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;domain, const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;msg, int indent=0)</td></tr>
+<tr class="memitem:af38603caa1098e01c8fb24237ad6827d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#af38603caa1098e01c8fb24237ad6827d">Info</a> (const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;domain, const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;msg, int indent=0)</td></tr>
 <tr class="separator:af38603caa1098e01c8fb24237ad6827d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5d7977c90da70a522134f43afa647b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#ae5d7977c90da70a522134f43afa647b4">Info</a> (void *msgObject, int msgType, int indent=0)</td></tr>
 <tr class="separator:ae5d7977c90da70a522134f43afa647b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39e67f909bd052a39ceeb0a198f5f2cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a39e67f909bd052a39ceeb0a198f5f2cc">Info</a> (const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;domain, void *msgObject, int msgType, int indent=0)</td></tr>
+<tr class="memitem:a39e67f909bd052a39ceeb0a198f5f2cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a39e67f909bd052a39ceeb0a198f5f2cc">Info</a> (const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;domain, void *msgObject, int msgType, int indent=0)</td></tr>
 <tr class="separator:a39e67f909bd052a39ceeb0a198f5f2cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a36309b70ccb095ea31e0a428111a4d2a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a36309b70ccb095ea31e0a428111a4d2a">Line</a> (bool doLog, const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;domain, <a class="el" href="classaworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log::Level</a> level, const void *msgObject, int msgType, int indent=0, const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;loggerFilter=nullptr)</td></tr>
+<tr class="memitem:a36309b70ccb095ea31e0a428111a4d2a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a36309b70ccb095ea31e0a428111a4d2a">Line</a> (bool doLog, const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;domain, <a class="el" href="classaworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log::Level</a> level, const void *msgObject, int msgType, int indent=0, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;loggerFilter=nullptr)</td></tr>
 <tr class="separator:a36309b70ccb095ea31e0a428111a4d2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa51041fd6646711c6d13f84d7bc9259f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#aa51041fd6646711c6d13f84d7bc9259f">Line</a> (const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;domain, <a class="el" href="classaworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log::Level</a> level, const void *msgObject, int msgType, int indent=0, const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;loggerFilter=nullptr)</td></tr>
+<tr class="memitem:aa51041fd6646711c6d13f84d7bc9259f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#aa51041fd6646711c6d13f84d7bc9259f">Line</a> (const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;domain, <a class="el" href="classaworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log::Level</a> level, const void *msgObject, int msgType, int indent=0, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;loggerFilter=nullptr)</td></tr>
 <tr class="separator:aa51041fd6646711c6d13f84d7bc9259f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb594bf91110eb9584dd472d2e15c21a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#aeb594bf91110eb9584dd472d2e15c21a">Line</a> (<a class="el" href="classaworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log::Level</a> level, const void *msgObject, int msgType, int indent=0, const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;loggerFilter=nullptr)</td></tr>
+<tr class="memitem:aeb594bf91110eb9584dd472d2e15c21a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#aeb594bf91110eb9584dd472d2e15c21a">Line</a> (<a class="el" href="classaworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log::Level</a> level, const void *msgObject, int msgType, int indent=0, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;loggerFilter=nullptr)</td></tr>
 <tr class="separator:aeb594bf91110eb9584dd472d2e15c21a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ecb5f8a2a72316617ea48e6bcf695d4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a5ecb5f8a2a72316617ea48e6bcf695d4">LogConfig</a> (const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;domain, <a class="el" href="classaworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log::Level</a> level, const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;headLine, const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;loggerFilter=nullptr)</td></tr>
+<tr class="memitem:a5ecb5f8a2a72316617ea48e6bcf695d4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a5ecb5f8a2a72316617ea48e6bcf695d4">LogConfig</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;domain, <a class="el" href="classaworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log::Level</a> level, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;headLine, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;loggerFilter=nullptr)</td></tr>
 <tr class="separator:a5ecb5f8a2a72316617ea48e6bcf695d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3911541857ea84938dede341ceb64ddd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a3911541857ea84938dede341ceb64ddd">MapThreadName</a> (const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;threadName, int id=0)</td></tr>
+<tr class="memitem:a3911541857ea84938dede341ceb64ddd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a3911541857ea84938dede341ceb64ddd">MapThreadName</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;threadName, int id=0)</td></tr>
 <tr class="separator:a3911541857ea84938dede341ceb64ddd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a84a1506acc1e04455ebc3bc724265872"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a84a1506acc1e04455ebc3bc724265872">Release</a> ()</td></tr>
 <tr class="separator:a84a1506acc1e04455ebc3bc724265872"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d6901dfd4853b8287bede398b6d4c86"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a9d6901dfd4853b8287bede398b6d4c86">RemoveLogger</a> (const <a class="el" href="classaworx_1_1lox_1_1core_1_1Logger.html">core::Logger</a> *logger)</td></tr>
 <tr class="separator:a9d6901dfd4853b8287bede398b6d4c86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a394e92d4075de2a50b6fc0b5658500ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a394e92d4075de2a50b6fc0b5658500ac">RemoveLoggers</a> (const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;loggerFilter=nullptr)</td></tr>
+<tr class="memitem:a394e92d4075de2a50b6fc0b5658500ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a394e92d4075de2a50b6fc0b5658500ac">RemoveLoggers</a> (const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;loggerFilter=nullptr)</td></tr>
 <tr class="separator:a394e92d4075de2a50b6fc0b5658500ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a372de693ad40b3f42839c8ec6ac845f4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a372de693ad40b3f42839c8ec6ac845f4">Reset</a> ()</td></tr>
 <tr class="separator:a372de693ad40b3f42839c8ec6ac845f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0676d6fc6dd68d7c2c0ca49ab8abe630"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a0676d6fc6dd68d7c2c0ca49ab8abe630">SetDomain</a> (const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;domain, <a class="el" href="classaworx_1_1lox_1_1Log.html#aaecc53892786f2fa11e682f633af84c6">Log::Scope</a> scope=<a class="el" href="classaworx_1_1lox_1_1Log.html#aaecc53892786f2fa11e682f633af84c6a6adf97f83acf6453d4a6a4b1070f3754">Log::Scope::None</a>)</td></tr>
+<tr class="memitem:a0676d6fc6dd68d7c2c0ca49ab8abe630"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a0676d6fc6dd68d7c2c0ca49ab8abe630">SetDomain</a> (const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;domain, <a class="el" href="classaworx_1_1lox_1_1Log.html#aaecc53892786f2fa11e682f633af84c6">Log::Scope</a> scope=<a class="el" href="classaworx_1_1lox_1_1Log.html#aaecc53892786f2fa11e682f633af84c6a6adf97f83acf6453d4a6a4b1070f3754">Log::Scope::None</a>)</td></tr>
 <tr class="separator:a0676d6fc6dd68d7c2c0ca49ab8abe630"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1812ac9849649157cf391d03e4af86cb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a1812ac9849649157cf391d03e4af86cb">SetDomain</a> (const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;domain, <a class="el" href="classaworx_1_1lox_1_1Log.html#a10ac165398697ce1d642d739cc3b170f">Log::DomainLevel</a> domainLevel, const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;loggerFilter=nullptr, <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#aeae0c2d4659a32ef54bd221d1a3da4e6">lib::enums::Propagation</a> propagation=<a class="el" href="namespaceaworx_1_1lib_1_1enums.html#aeae0c2d4659a32ef54bd221d1a3da4e6aa9857b4deb35c57d5753f94fa00a028e">lib::enums::Propagation::ToDescendants</a>)</td></tr>
+<tr class="memitem:a1812ac9849649157cf391d03e4af86cb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a1812ac9849649157cf391d03e4af86cb">SetDomain</a> (const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;domain, <a class="el" href="classaworx_1_1lox_1_1Log.html#a10ac165398697ce1d642d739cc3b170f">Log::DomainLevel</a> domainLevel, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;loggerFilter=nullptr, <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#aeae0c2d4659a32ef54bd221d1a3da4e6">lib::enums::Propagation</a> propagation=<a class="el" href="namespaceaworx_1_1lib_1_1enums.html#aeae0c2d4659a32ef54bd221d1a3da4e6aa9857b4deb35c57d5753f94fa00a028e">lib::enums::Propagation::ToDescendants</a>)</td></tr>
 <tr class="separator:a1812ac9849649157cf391d03e4af86cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4cf6388b847550f8b6b318b55efa35ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a4cf6388b847550f8b6b318b55efa35ee">SetDomain</a> (const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;domain, <a class="el" href="classaworx_1_1lox_1_1Log.html#aaecc53892786f2fa11e682f633af84c6">Log::Scope</a> scope, <a class="el" href="classaworx_1_1lox_1_1Log.html#a10ac165398697ce1d642d739cc3b170f">Log::DomainLevel</a> domainLevel, const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;loggerFilter=nullptr)</td></tr>
+<tr class="memitem:a4cf6388b847550f8b6b318b55efa35ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a4cf6388b847550f8b6b318b55efa35ee">SetDomain</a> (const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;domain, <a class="el" href="classaworx_1_1lox_1_1Log.html#aaecc53892786f2fa11e682f633af84c6">Log::Scope</a> scope, <a class="el" href="classaworx_1_1lox_1_1Log.html#a10ac165398697ce1d642d739cc3b170f">Log::DomainLevel</a> domainLevel, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;loggerFilter=nullptr)</td></tr>
 <tr class="separator:a4cf6388b847550f8b6b318b55efa35ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8546fd2c39a9ee72596df9a57cd82083"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a8546fd2c39a9ee72596df9a57cd82083">SetDomain</a> (const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;domain, <a class="el" href="classaworx_1_1lox_1_1Log.html#a10ac165398697ce1d642d739cc3b170f">Log::DomainLevel</a> domainLevel, <a class="el" href="classaworx_1_1lox_1_1Log.html#aaecc53892786f2fa11e682f633af84c6">Log::Scope</a> scope)</td></tr>
+<tr class="memitem:a8546fd2c39a9ee72596df9a57cd82083"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a8546fd2c39a9ee72596df9a57cd82083">SetDomain</a> (const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;domain, <a class="el" href="classaworx_1_1lox_1_1Log.html#a10ac165398697ce1d642d739cc3b170f">Log::DomainLevel</a> domainLevel, <a class="el" href="classaworx_1_1lox_1_1Log.html#aaecc53892786f2fa11e682f633af84c6">Log::Scope</a> scope)</td></tr>
 <tr class="separator:a8546fd2c39a9ee72596df9a57cd82083"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af59433acecdc611018aad891528e1efa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#af59433acecdc611018aad891528e1efa">SetLogger</a> (<a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a9f3c28a2cb05bdcc618b542e49bfda3f">lib::enums::Switch</a> newState, const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;loggerFilter)</td></tr>
+<tr class="memitem:af59433acecdc611018aad891528e1efa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#af59433acecdc611018aad891528e1efa">SetLogger</a> (<a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a9f3c28a2cb05bdcc618b542e49bfda3f">lib::enums::Switch</a> newState, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;loggerFilter)</td></tr>
 <tr class="separator:af59433acecdc611018aad891528e1efa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a848fdd8b93afc2b2c89d526d4d128e3e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a848fdd8b93afc2b2c89d526d4d128e3e">SetMarker</a> (void *marker, <a class="el" href="classaworx_1_1lox_1_1Log.html#aaecc53892786f2fa11e682f633af84c6">Log::Scope</a> scope)</td></tr>
 <tr class="separator:a848fdd8b93afc2b2c89d526d4d128e3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae31d4b72ea1bc7513fd341b6dc99053f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#ae31d4b72ea1bc7513fd341b6dc99053f">SetStartTime</a> (<a class="el" href="classaworx_1_1lib_1_1time_1_1Ticks.html">lib::time::Ticks</a> startTime=<a class="el" href="classaworx_1_1lib_1_1time_1_1Ticks.html">lib::time::Ticks</a>(0), const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;loggerFilter=nullptr)</td></tr>
+<tr class="memitem:ae31d4b72ea1bc7513fd341b6dc99053f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#ae31d4b72ea1bc7513fd341b6dc99053f">SetStartTime</a> (<a class="el" href="classaworx_1_1lib_1_1time_1_1Ticks.html">lib::time::Ticks</a> startTime=<a class="el" href="classaworx_1_1lib_1_1time_1_1Ticks.html">lib::time::Ticks</a>(0), const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;loggerFilter=nullptr)</td></tr>
 <tr class="separator:ae31d4b72ea1bc7513fd341b6dc99053f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac47e41fa26b09d46e609ad195632b6a4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#ac47e41fa26b09d46e609ad195632b6a4">SetStartTime</a> (time_t startTime, const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;loggerFilter=nullptr)</td></tr>
+<tr class="memitem:ac47e41fa26b09d46e609ad195632b6a4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#ac47e41fa26b09d46e609ad195632b6a4">SetStartTime</a> (time_t startTime, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;loggerFilter=nullptr)</td></tr>
 <tr class="separator:ac47e41fa26b09d46e609ad195632b6a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc65c39a68e3170106a30e13b4006c98"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#afc65c39a68e3170106a30e13b4006c98">SetStartTime</a> (LPFILETIME startTime, const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;loggerFilter=nullptr)</td></tr>
+<tr class="memitem:afc65c39a68e3170106a30e13b4006c98"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#afc65c39a68e3170106a30e13b4006c98">SetStartTime</a> (LPFILETIME startTime, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;loggerFilter=nullptr)</td></tr>
 <tr class="separator:afc65c39a68e3170106a30e13b4006c98"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6093dbce9dbbeffcf76362b4abacac8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#af6093dbce9dbbeffcf76362b4abacac8">Verbose</a> (const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;msg, int indent=0)</td></tr>
+<tr class="memitem:af6093dbce9dbbeffcf76362b4abacac8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#af6093dbce9dbbeffcf76362b4abacac8">Verbose</a> (const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;msg, int indent=0)</td></tr>
 <tr class="separator:af6093dbce9dbbeffcf76362b4abacac8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19d5d602e061c3bffafbe24730ed277c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a19d5d602e061c3bffafbe24730ed277c">Verbose</a> (const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;domain, const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;msg, int indent=0)</td></tr>
+<tr class="memitem:a19d5d602e061c3bffafbe24730ed277c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a19d5d602e061c3bffafbe24730ed277c">Verbose</a> (const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;domain, const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;msg, int indent=0)</td></tr>
 <tr class="separator:a19d5d602e061c3bffafbe24730ed277c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7de4de50bb74004025ca67dc8ad0bcd4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a7de4de50bb74004025ca67dc8ad0bcd4">Verbose</a> (void *msgObject, int msgType, int indent=0)</td></tr>
 <tr class="separator:a7de4de50bb74004025ca67dc8ad0bcd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40ea941f26bcba6258584ccde996411f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a40ea941f26bcba6258584ccde996411f">Verbose</a> (const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;domain, void *msgObject, int msgType, int indent=0)</td></tr>
+<tr class="memitem:a40ea941f26bcba6258584ccde996411f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a40ea941f26bcba6258584ccde996411f">Verbose</a> (const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;domain, void *msgObject, int msgType, int indent=0)</td></tr>
 <tr class="separator:a40ea941f26bcba6258584ccde996411f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab00a8f8c882ff229ed5ff26ab1f5633d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#ab00a8f8c882ff229ed5ff26ab1f5633d">Warning</a> (const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;msg, int indent=0)</td></tr>
+<tr class="memitem:ab00a8f8c882ff229ed5ff26ab1f5633d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#ab00a8f8c882ff229ed5ff26ab1f5633d">Warning</a> (const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;msg, int indent=0)</td></tr>
 <tr class="separator:ab00a8f8c882ff229ed5ff26ab1f5633d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5b1f5ef4329394a8f3d25d701ca2fe3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#af5b1f5ef4329394a8f3d25d701ca2fe3">Warning</a> (const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;domain, const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;msg, int indent=0)</td></tr>
+<tr class="memitem:af5b1f5ef4329394a8f3d25d701ca2fe3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#af5b1f5ef4329394a8f3d25d701ca2fe3">Warning</a> (const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;domain, const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;msg, int indent=0)</td></tr>
 <tr class="separator:af5b1f5ef4329394a8f3d25d701ca2fe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9945acd645dbaa0d59128d3c8b4fb94"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#ac9945acd645dbaa0d59128d3c8b4fb94">Warning</a> (void *msgObject, int msgType, int indent=0)</td></tr>
 <tr class="separator:ac9945acd645dbaa0d59128d3c8b4fb94"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7e139392e7c429aff8f1045e302792d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#ae7e139392e7c429aff8f1045e302792d">Warning</a> (const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;domain, void *msgObject, int msgType, int indent=0)</td></tr>
+<tr class="memitem:ae7e139392e7c429aff8f1045e302792d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#ae7e139392e7c429aff8f1045e302792d">Warning</a> (const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;domain, void *msgObject, int msgType, int indent=0)</td></tr>
 <tr class="separator:ae7e139392e7c429aff8f1045e302792d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock')"><img src="closed.png" alt="-"/>&#160;Public Methods inherited from <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a></td></tr>
 <tr class="memitem:a2aa8bcb0a11b134d79fdfa97c2219719 inherit pub_methods_classaworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a2aa8bcb0a11b134d79fdfa97c2219719">ThreadLock</a> (<a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a00fc859257c8f09ff9198dde28121961">enums::LockMode</a> <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a5df502d54adfe465de472847d8dc6588">lockMode</a>=<a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a00fc859257c8f09ff9198dde28121961a556c3dd912453ae5cb3095cd5054e6f4">enums::LockMode::Recursive</a>, <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a8c800527afe0a8a6c71ae4cceda6bf9d">enums::Safeness</a> safeness=<a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a8c800527afe0a8a6c71ae4cceda6bf9dac6eea0560cd6f377e78dff2c85cc9122">enums::Safeness::Safe</a>)</td></tr>
@@ -296,7 +294,7 @@ Protected Fields</h2></td></tr>
 <tr class="memitem:a3f03380b7450165d47b292ccd8ad86ff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lox_1_1core_1_1CallerInfo.html">core::CallerInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a3f03380b7450165d47b292ccd8ad86ff">callerInfo</a></td></tr>
 <tr class="separator:a3f03380b7450165d47b292ccd8ad86ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d0d0993e720ea4eaadcc4e1debd8f7d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1d0d0993e720ea4eaadcc4e1debd8f7d"></a>
-std::map&lt; <a class="el" href="namespaceaworx.html#a5878d649ed3cc544cbd74721f95da495">AString</a>, <a class="el" href="namespaceaworx.html#a5878d649ed3cc544cbd74721f95da495">AString</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a1d0d0993e720ea4eaadcc4e1debd8f7d">defaultDomains</a></td></tr>
+std::map&lt; <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a>, <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a1d0d0993e720ea4eaadcc4e1debd8f7d">defaultDomains</a></td></tr>
 <tr class="memdesc:a1d0d0993e720ea4eaadcc4e1debd8f7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional default domains for a source file. <br /></td></tr>
 <tr class="separator:a1d0d0993e720ea4eaadcc4e1debd8f7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8af08b7d47cdaedadac30275031331eb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8af08b7d47cdaedadac30275031331eb"></a>
@@ -304,11 +302,11 @@ std::vector&lt; <a class="el" href="classaworx_1_1lox_1_1core_1_1Logger.html">co
 <tr class="memdesc:a8af08b7d47cdaedadac30275031331eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">The loggers. At least one logger (e.g. ConsoleLogger) needs to be created. <br /></td></tr>
 <tr class="separator:a8af08b7d47cdaedadac30275031331eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95a2ae400c6a2ca0bbb66ac4dcec4020"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a95a2ae400c6a2ca0bbb66ac4dcec4020"></a>
-std::map&lt; <a class="el" href="namespaceaworx.html#a5878d649ed3cc544cbd74721f95da495">AString</a>, void * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a95a2ae400c6a2ca0bbb66ac4dcec4020">markers</a></td></tr>
+std::map&lt; <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a>, void * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a95a2ae400c6a2ca0bbb66ac4dcec4020">markers</a></td></tr>
 <tr class="memdesc:a95a2ae400c6a2ca0bbb66ac4dcec4020"><td class="mdescLeft">&#160;</td><td class="mdescRight">Code markers. <br /></td></tr>
 <tr class="separator:a95a2ae400c6a2ca0bbb66ac4dcec4020"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa704b680934869c92c288cb9a23034f2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa704b680934869c92c288cb9a23034f2"></a>
-<a class="el" href="namespaceaworx.html#a5878d649ed3cc544cbd74721f95da495">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#aa704b680934869c92c288cb9a23034f2">resDomain</a></td></tr>
+<a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#aa704b680934869c92c288cb9a23034f2">resDomain</a></td></tr>
 <tr class="memdesc:aa704b680934869c92c288cb9a23034f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The resulting domain name. <br /></td></tr>
 <tr class="separator:aa704b680934869c92c288cb9a23034f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6840265f2a87f2c836f0661ab90fb188"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lox_1_1core_1_1CallerInfo.html#a99735dc703a3e0c252ea69a22c1687d2">core::CallerInfo::ThreadDictionary</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a6840265f2a87f2c836f0661ab90fb188">threadDictionary</a></td></tr>
@@ -327,16 +325,16 @@ std::map&lt; <a class="el" href="namespaceaworx.html#a5878d649ed3cc544cbd74721f9
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-methods"></a>
 Protected Static Methods</h2></td></tr>
-<tr class="memitem:a7f1ea36a1e2ce90d2ced8b3e5fa71084"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a7f1ea36a1e2ce90d2ced8b3e5fa71084">simpleWildcardFilter</a> (<a class="el" href="classaworx_1_1lox_1_1core_1_1Logger.html">core::Logger</a> *logger, const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;loggerFilter)</td></tr>
+<tr class="memitem:a7f1ea36a1e2ce90d2ced8b3e5fa71084"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a7f1ea36a1e2ce90d2ced8b3e5fa71084">simpleWildcardFilter</a> (<a class="el" href="classaworx_1_1lox_1_1core_1_1Logger.html">core::Logger</a> *logger, const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;loggerFilter)</td></tr>
 <tr class="separator:a7f1ea36a1e2ce90d2ced8b3e5fa71084"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Methods</h2></td></tr>
-<tr class="memitem:a4b3ab93a52d93d663c9898504ff53c90"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a4b3ab93a52d93d663c9898504ff53c90">evaluateResultDomain</a> (const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;domain)</td></tr>
+<tr class="memitem:a4b3ab93a52d93d663c9898504ff53c90"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a4b3ab93a52d93d663c9898504ff53c90">evaluateResultDomain</a> (const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;domain)</td></tr>
 <tr class="separator:a4b3ab93a52d93d663c9898504ff53c90"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2788f89cf43423ca779ccfb931574e96"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a2788f89cf43423ca779ccfb931574e96">internalLog</a> (<a class="el" href="classaworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log::Level</a> level, const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;msg)</td></tr>
+<tr class="memitem:a2788f89cf43423ca779ccfb931574e96"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a2788f89cf43423ca779ccfb931574e96">internalLog</a> (<a class="el" href="classaworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log::Level</a> level, const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;msg)</td></tr>
 <tr class="separator:a2788f89cf43423ca779ccfb931574e96"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69162739e7506f8e9e806bf52fa4672b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a69162739e7506f8e9e806bf52fa4672b">logConfigDomainRecursive</a> (<a class="el" href="classaworx_1_1lox_1_1core_1_1Domain.html">core::Domain</a> &amp;domain, int indent, <a class="el" href="namespaceaworx.html#a5878d649ed3cc544cbd74721f95da495">AString</a> &amp;domPath, <a class="el" href="namespaceaworx.html#a5878d649ed3cc544cbd74721f95da495">AString</a> &amp;buffer)</td></tr>
+<tr class="memitem:a69162739e7506f8e9e806bf52fa4672b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Lox.html#a69162739e7506f8e9e806bf52fa4672b">logConfigDomainRecursive</a> (<a class="el" href="classaworx_1_1lox_1_1core_1_1Domain.html">core::Domain</a> &amp;domain, int indent, <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &amp;domPath, <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &amp;buffer)</td></tr>
 <tr class="separator:a69162739e7506f8e9e806bf52fa4672b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -428,7 +426,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="memname">void AcquireAndSetCI </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
           <td class="paramname"><em>file</em>, </td>
         </tr>
         <tr>
@@ -440,7 +438,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
           <td class="paramname"><em>func</em>&#160;</td>
         </tr>
         <tr>
@@ -510,7 +508,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
           <td class="paramname"><em>msg</em>, </td>
         </tr>
         <tr>
@@ -561,13 +559,13 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
           <td class="paramname"><em>domain</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
           <td class="paramname"><em>msg</em>, </td>
         </tr>
         <tr>
@@ -677,7 +675,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
           <td class="paramname"><em>domain</em>, </td>
         </tr>
         <tr>
@@ -734,9 +732,9 @@ Protected Methods</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a> * CreateConsoleLogger </td>
+          <td class="memname"><a class="el" href="namespaceaworx.html#a8d1a5942495395f77e31bb5d451c332b">TextLogger</a> * CreateConsoleLogger </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
           <td class="paramname"><em>name</em> = <code>nullptr</code></td><td>)</td>
           <td></td>
         </tr>
@@ -777,7 +775,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="memname">void Error </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
           <td class="paramname"><em>msg</em>, </td>
         </tr>
         <tr>
@@ -821,13 +819,13 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="memname">void Error </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
           <td class="paramname"><em>domain</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
           <td class="paramname"><em>msg</em>, </td>
         </tr>
         <tr>
@@ -923,7 +921,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="memname">void Error </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
           <td class="paramname"><em>domain</em>, </td>
         </tr>
         <tr>
@@ -981,7 +979,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="memname">void evaluateResultDomain </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
           <td class="paramname"><em>domain</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1010,7 +1008,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="classaworx_1_1lox_1_1core_1_1Logger.html">Logger</a> * GetLogger </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
           <td class="paramname"><em>loggerName</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1065,7 +1063,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="memname">void Info </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
           <td class="paramname"><em>msg</em>, </td>
         </tr>
         <tr>
@@ -1109,13 +1107,13 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="memname">void Info </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
           <td class="paramname"><em>domain</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
           <td class="paramname"><em>msg</em>, </td>
         </tr>
         <tr>
@@ -1212,7 +1210,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="memname">void Info </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
           <td class="paramname"><em>domain</em>, </td>
         </tr>
         <tr>
@@ -1276,7 +1274,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
           <td class="paramname"><em>msg</em>&#160;</td>
         </tr>
         <tr>
@@ -1316,7 +1314,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
           <td class="paramname"><em>domain</em>, </td>
         </tr>
         <tr>
@@ -1346,7 +1344,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
           <td class="paramname"><em>loggerFilter</em> = <code>nullptr</code>&#160;</td>
         </tr>
         <tr>
@@ -1383,7 +1381,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="memname">void Line </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
           <td class="paramname"><em>domain</em>, </td>
         </tr>
         <tr>
@@ -1413,7 +1411,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
           <td class="paramname"><em>loggerFilter</em> = <code>nullptr</code>&#160;</td>
         </tr>
         <tr>
@@ -1478,7 +1476,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
           <td class="paramname"><em>loggerFilter</em> = <code>nullptr</code>&#160;</td>
         </tr>
         <tr>
@@ -1515,7 +1513,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="memname">void LogConfig </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
           <td class="paramname"><em>domain</em>, </td>
         </tr>
         <tr>
@@ -1527,13 +1525,13 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
           <td class="paramname"><em>headLine</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
           <td class="paramname"><em>loggerFilter</em> = <code>nullptr</code>&#160;</td>
         </tr>
         <tr>
@@ -1579,13 +1577,13 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespaceaworx.html#a5878d649ed3cc544cbd74721f95da495">AString</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &amp;&#160;</td>
           <td class="paramname"><em>domPath</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespaceaworx.html#a5878d649ed3cc544cbd74721f95da495">AString</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &amp;&#160;</td>
           <td class="paramname"><em>buffer</em>&#160;</td>
         </tr>
         <tr>
@@ -1620,7 +1618,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="memname">void MapThreadName </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
           <td class="paramname"><em>threadName</em>, </td>
         </tr>
         <tr>
@@ -1706,7 +1704,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="memname">int RemoveLoggers </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
           <td class="paramname"><em>loggerFilter</em> = <code>nullptr</code></td><td>)</td>
           <td></td>
         </tr>
@@ -1751,7 +1749,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="memname">void SetDomain </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
           <td class="paramname"><em>domain</em>, </td>
         </tr>
         <tr>
@@ -1788,7 +1786,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="memname">void SetDomain </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
           <td class="paramname"><em>domain</em>, </td>
         </tr>
         <tr>
@@ -1800,7 +1798,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
           <td class="paramname"><em>loggerFilter</em> = <code>nullptr</code>, </td>
         </tr>
         <tr>
@@ -1823,7 +1821,7 @@ Protected Methods</h2></td></tr>
     <tr><td class="paramname">domain</td><td>If this is nullptr, the default domain is used. If this is starting with a swung dash ('~') this is interpreted a sub domain to the default domain of the scope. For other values, the default domain is ignored (regardless if this is starting with a slash or not). </td></tr>
     <tr><td class="paramname">domainLevel</td><td>The domains log level to be set. </td></tr>
     <tr><td class="paramname">loggerFilter</td><td>(Optional) A filter for the loggers to be affected. This parameter enables different loggers to have different domains and log levels. A simple string compare without case sensitivity is performed. An asterisk ('*') at the beginning or end of the string is used as a wildcard. Leave to <em>nullptr</em> if all loggers should be affected. Use this parameter only in more complex logging scenarios. </td></tr>
-    <tr><td class="paramname">propagation</td><td>(Optional) If <code>Propagation::ToDescendants</code>, which is the default, the level is set for all sub-domains recursively. If <code>Propagation::None</code>, then only this domain is changed. </td></tr>
+    <tr><td class="paramname">propagation</td><td>(Optional) If <code>Propagation::ToDescendants</code>, which is the default, the level is set for all sub-domains recursively. If <code><a class="el" href="namespaceaworx_1_1lib_1_1enums.html#aeae0c2d4659a32ef54bd221d1a3da4e6a6adf97f83acf6453d4a6a4b1070f3754" title="Do not propagate changes. ">Propagation::None</a></code>, then only this domain is changed. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1840,7 +1838,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="memname">void SetDomain </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
           <td class="paramname"><em>domain</em>, </td>
         </tr>
         <tr>
@@ -1858,7 +1856,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
           <td class="paramname"><em>loggerFilter</em> = <code>nullptr</code>&#160;</td>
         </tr>
         <tr>
@@ -1899,7 +1897,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="memname">void SetDomain </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
           <td class="paramname"><em>domain</em>, </td>
         </tr>
         <tr>
@@ -1953,7 +1951,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
           <td class="paramname"><em>loggerFilter</em>&#160;</td>
         </tr>
         <tr>
@@ -1967,7 +1965,7 @@ Protected Methods</h2></td></tr>
 <p> This method is used to disable (and enable again) one or more loggers completely without touching the log levels of the domains and hence without the need to restore such log levels later.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">newState</td><td>If <code>Switch::Off</code>, the logger(s) will be completely disabled, if <code>Switch::On</code>, the normal, domain specific log levels will be applied for log decisions. </td></tr>
+    <tr><td class="paramname">newState</td><td>If <code><a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a9f3c28a2cb05bdcc618b542e49bfda3fad15305d7a4e34e02489c74a5ef542f36" title="Switch it off, switched off, etc. ">Switch::Off</a></code>, the logger(s) will be completely disabled, if <code>Switch::On</code>, the normal, domain specific log levels will be applied for log decisions. </td></tr>
     <tr><td class="paramname">loggerFilter</td><td>A filter for the loggers to be affected. A simple string compare (case insensitiv) is performed. An asterisk ('*') at the beginning or end of the string can be used for 'globbing'. If <em>nullptr</em>, all loggers will be switched. </td></tr>
   </table>
   </dd>
@@ -2026,7 +2024,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
           <td class="paramname"><em>loggerFilter</em> = <code>nullptr</code>&#160;</td>
         </tr>
         <tr>
@@ -2061,7 +2059,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
           <td class="paramname"><em>loggerFilter</em> = <code>nullptr</code>&#160;</td>
         </tr>
         <tr>
@@ -2096,7 +2094,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
           <td class="paramname"><em>loggerFilter</em> = <code>nullptr</code>&#160;</td>
         </tr>
         <tr>
@@ -2134,7 +2132,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> &amp;&#160;</td>
           <td class="paramname"><em>loggerFilter</em>&#160;</td>
         </tr>
         <tr>
@@ -2172,7 +2170,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="memname">void Verbose </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
           <td class="paramname"><em>msg</em>, </td>
         </tr>
         <tr>
@@ -2216,13 +2214,13 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="memname">void Verbose </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
           <td class="paramname"><em>domain</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
           <td class="paramname"><em>msg</em>, </td>
         </tr>
         <tr>
@@ -2318,7 +2316,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="memname">void Verbose </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
           <td class="paramname"><em>domain</em>, </td>
         </tr>
         <tr>
@@ -2376,7 +2374,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="memname">void Warning </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
           <td class="paramname"><em>msg</em>, </td>
         </tr>
         <tr>
@@ -2420,13 +2418,13 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="memname">void Warning </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
           <td class="paramname"><em>domain</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
           <td class="paramname"><em>msg</em>, </td>
         </tr>
         <tr>
@@ -2522,7 +2520,7 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="memname">void Warning </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
           <td class="paramname"><em>domain</em>, </td>
         </tr>
         <tr>
@@ -2623,7 +2621,7 @@ Protected Methods</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> InternalDomain =&quot;ALOX&quot;</td>
+          <td class="memname"><a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> InternalDomain =&quot;ALOX&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2636,7 +2634,7 @@ Protected Methods</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> NullDomain =&quot;NULL&quot;</td>
+          <td class="memname"><a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> NullDomain =&quot;NULL&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2673,7 +2671,7 @@ Protected Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 5 2016 10:32:54 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Feb 15 2016 11:32:19 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

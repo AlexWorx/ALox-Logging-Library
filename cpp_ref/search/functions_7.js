@@ -9,12 +9,12 @@ var searchData=
   ['getlogger',['GetLogger',['../classaworx_1_1lox_1_1Lox.html#a829395dc991b4aed5a09ef5aa77e3e12',1,'aworx::lox::Lox']]],
   ['getmarker',['GetMarker',['../classaworx_1_1lox_1_1Lox.html#a5c0a8913fff2143fb1eb6d2b86098933',1,'aworx::lox::Lox']]],
   ['getname',['GetName',['../classaworx_1_1lib_1_1threads_1_1Thread.html#a3b994abc1d545e8f442b3cffc69f170d',1,'aworx::lib::threads::Thread']]],
-  ['getrest',['GetRest',['../classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a201c3ca43bbcfa71f05f2f16e74250c0',1,'aworx::lib::strings::Tokenizer']]],
+  ['getrest',['GetRest',['../classaworx_1_1lib_1_1strings_1_1Tokenizer.html#ad8bca63647be16f18c25123486a41d19',1,'aworx::lib::strings::Tokenizer']]],
   ['getsamplecnt',['GetSampleCnt',['../classaworx_1_1lib_1_1time_1_1TickWatch.html#a8f2deb29070eb959107e5d9ad3584635',1,'aworx::lib::time::TickWatch']]],
   ['getspaces',['GetSpaces',['../classaworx_1_1lib_1_1Util.html#a887f6daaa639283cba0d5d5eb6ce5aba',1,'aworx::lib::Util']]],
   ['getstarttime',['GetStartTime',['../classaworx_1_1lib_1_1time_1_1TickWatch.html#ac2383605393294fea20913084f176fde',1,'aworx::lib::time::TickWatch']]],
   ['getstatfield',['getStatField',['../classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a98338111ca0a208ada56d8e901e1fdd7',1,'aworx::lib::system::ProcessInfo']]],
   ['getthreadnameandid',['getThreadNameAndID',['../classaworx_1_1lox_1_1core_1_1CallerInfo.html#a073a52e5c8441631bb198ee3eea5a597',1,'aworx::lox::core::CallerInfo']]],
   ['getvariable',['GetVariable',['../classaworx_1_1lib_1_1system_1_1System.html#a7bd3327e84e88d8704a95585c57ee7ed',1,'aworx::lib::system::System']]],
-  ['growbufferatleastby',['GrowBufferAtLeastBy',['../classaworx_1_1lib_1_1strings_1_1ASAlloc.html#a3fc410cc4cccd79e66c2f7491bce4bd3',1,'aworx::lib::strings::ASAlloc']]]
+  ['growbufferatleastby',['GrowBufferAtLeastBy',['../classaworx_1_1lib_1_1strings_1_1AString.html#a3fc410cc4cccd79e66c2f7491bce4bd3',1,'aworx::lib::strings::AString']]]
 ];

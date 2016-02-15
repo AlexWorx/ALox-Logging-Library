@@ -1,7 +1,7 @@
 <map id="Thread" name="Thread">
-<area shape="rect" id="node2" href="$classaworx_1_1lib_1_1threads_1_1Runnable.html" title="Runnable" alt="" coords="313,5,390,32"/>
-<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html" title="ASPreAlloc\&lt; 64 \&gt;" alt="" coords="288,68,415,95"/>
-<area shape="rect" id="node4" href="$classaworx_1_1lib_1_1strings_1_1ASAlloc.html" title="ASAlloc" alt="" coords="169,68,239,95"/>
-<area shape="rect" id="node5" href="$classaworx_1_1lib_1_1strings_1_1ASTerminatable.html" title="ASTerminatable" alt="" coords="5,68,120,95"/>
-<area shape="rect" id="node7" title="STL class. " alt="" coords="322,119,381,145"/>
+<area shape="rect" id="node2" href="$classaworx_1_1lib_1_1threads_1_1Runnable.html" title="Runnable" alt="" coords="259,5,336,32"/>
+<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\l\&lt; 64 \&gt;" alt="" coords="233,61,361,102"/>
+<area shape="rect" id="node4" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="119,68,184,95"/>
+<area shape="rect" id="node5" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="5,68,69,95"/>
+<area shape="rect" id="node7" title="STL class. " alt="" coords="268,127,327,153"/>
 </map>

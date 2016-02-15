@@ -1,5 +1,5 @@
 <map id="ObjectConverter" name="ObjectConverter">
-<area shape="rect" id="node2" href="$classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html" title="ASPreAlloc\&lt; 64 \&gt;" alt="" coords="5,157,132,184"/>
-<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1strings_1_1ASAlloc.html" title="ASAlloc" alt="" coords="34,81,103,108"/>
-<area shape="rect" id="node4" href="$classaworx_1_1lib_1_1strings_1_1ASTerminatable.html" title="ASTerminatable" alt="" coords="11,5,126,32"/>
+<area shape="rect" id="node2" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\l\&lt; 64 \&gt;" alt="" coords="5,157,133,199"/>
+<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="37,81,102,108"/>
+<area shape="rect" id="node4" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="37,5,101,32"/>
 </map>

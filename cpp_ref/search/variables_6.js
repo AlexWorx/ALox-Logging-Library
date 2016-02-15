@@ -1,13 +1,13 @@
 var searchData=
 [
-  ['fg_5freset',['FG_RESET',['../classaworx_1_1lox_1_1ESC.html#a38657b656a956ed9223ab85b3e00937b',1,'aworx::lox::ESC']]],
-  ['file',['File',['../classaworx_1_1lib_1_1Report_1_1Message.html#ae3b802a523b8040532b4e65a62458ff1',1,'aworx::lib::Report::Message']]],
+  ['fg_5freset',['FG_RESET',['../classaworx_1_1lox_1_1ESC.html#a54cca82e07ebd6c5b7e91b1b4c5d02d7',1,'aworx::lox::ESC']]],
+  ['file',['File',['../classaworx_1_1lib_1_1Report_1_1Message.html#ab4336abc4c74ecd888729fd0af580e53',1,'aworx::lib::Report::Message']]],
   ['filecomments',['FileComments',['../classaworx_1_1lib_1_1config_1_1IniFile.html#a83074eb05e084e3cc5d0f9f3bb78f01b',1,'aworx::lib::config::IniFile']]],
   ['filename',['FileName',['../classaworx_1_1lib_1_1config_1_1IniFile.html#a8bea19241a8e12acb6725e40dd6f2d74',1,'aworx::lib::config::IniFile::FileName()'],['../classaworx_1_1lox_1_1loggers_1_1TextFileLogger.html#a15b92b72838ed16c47a44702bce981c8',1,'aworx::lox::loggers::TextFileLogger::FileName()']]],
   ['fmtindentstring',['FmtIndentString',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a62494b942e4f6e70bf8f80fa1a3a5223',1,'aworx::lox::core::textlogger::TextLogger']]],
   ['fmtmultilinemsgheadline',['FmtMultiLineMsgHeadline',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#ab0cf10ab98ce4ece873b70d4577ca035',1,'aworx::lox::core::textlogger::TextLogger']]],
-  ['fmtmultilinepostfix',['FmtMultiLinePostfix',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#ae4e90041230421832bff40fe3ff57d25',1,'aworx::lox::core::textlogger::TextLogger']]],
   ['fmtmultilineprefix',['FmtMultiLinePrefix',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a6a0f47a82a9e2018d42acdc864eaeb76',1,'aworx::lox::core::textlogger::TextLogger']]],
+  ['fmtmultilinesuffix',['FmtMultiLineSuffix',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a32162368e4bed2b7fa666fd77a62a245',1,'aworx::lox::core::textlogger::TextLogger']]],
   ['fmtnullobject',['FmtNullObject',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html#af8fbc61a0701e45601ee9355a2d6675a',1,'aworx::lox::core::textlogger::ObjectConverter']]],
   ['fmtunknownobject',['FmtUnknownObject',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html#a132ed009c6e3362a54e052134a602cfc',1,'aworx::lox::core::textlogger::ObjectConverter']]],
   ['forcescientificformat',['ForceScientificFormat',['../classaworx_1_1lib_1_1strings_1_1NumberFormat.html#ae4968ebb3e654b4b07f58e13d2786dae',1,'aworx::lib::strings::NumberFormat']]],
@@ -15,5 +15,5 @@ var searchData=
   ['formatwarning',['FormatWarning',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a9b4dcaaa0d0c31151f28626b539b2c78',1,'aworx::lox::core::textlogger::MetaInfo']]],
   ['fractionaldigits',['FractionalDigits',['../classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a6c90dcda5ed7d0ecdbc8ec0aa9c76ac3',1,'aworx::lib::strings::NumberFormat']]],
   ['frequency',['frequency',['../classaworx_1_1lib_1_1time_1_1Ticks.html#a91344eb48cdbf17a21a6b6b4509894b7',1,'aworx::lib::time::Ticks']]],
-  ['func',['Func',['../classaworx_1_1lib_1_1Report_1_1Message.html#a14bbc45cd50e31a0457a9c9fe0c9c073',1,'aworx::lib::Report::Message']]]
+  ['func',['Func',['../classaworx_1_1lib_1_1Report_1_1Message.html#a2b44f701383104187505a36037238027',1,'aworx::lib::Report::Message']]]
 ];

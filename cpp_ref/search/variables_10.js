@@ -9,7 +9,7 @@ var searchData=
   ['stat',['Stat',['../classaworx_1_1lib_1_1system_1_1ProcessInfo.html#aa1d0ce36cf7d7f9338610388ff42fa29',1,'aworx::lib::system::ProcessInfo']]],
   ['statpgrp',['statPGRP',['../classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a9dd69d834742023497d9c6f3eeaf3f82',1,'aworx::lib::system::ProcessInfo']]],
   ['statstate',['StatState',['../classaworx_1_1lib_1_1system_1_1ProcessInfo.html#aa313b8c5a87a49b703b0887651b1eef7',1,'aworx::lib::system::ProcessInfo']]],
-  ['style_5freset',['STYLE_RESET',['../classaworx_1_1lox_1_1ESC.html#af76abaa902cea3372f5981d2dbb5d306',1,'aworx::lox::ESC']]],
+  ['style_5freset',['STYLE_RESET',['../classaworx_1_1lox_1_1ESC.html#a68e36419790bb4e6f1a6aa6148ae1984',1,'aworx::lox::ESC']]],
   ['subdomains',['SubDomains',['../classaworx_1_1lox_1_1core_1_1Domain.html#a45607390dc4f3ea0f79c1ee1a08a777b',1,'aworx::lox::core::Domain']]],
   ['sum',['sum',['../classaworx_1_1lib_1_1time_1_1TickWatch.html#ac78b14fce693b96514184f5ecb99f5fa',1,'aworx::lib::time::TickWatch']]]
 ];

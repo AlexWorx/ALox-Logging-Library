@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1602</span>
+   &#160;<span id="projectnumber">V. 1602 R. 1</span>
    </div>
   </td>
  </tr>
@@ -115,8 +115,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#namespaces">Nested namespaces</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
-<a href="#var-members">Variables</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">aworx Namespace Reference</div>  </div>
 </div><!--header-->
@@ -124,17 +123,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="details" id="details"></a><h2 class="groupheader">Namespace Description</h2>
 <div class="textblock"><p>This is the outer C++ namespace for all classes published by A-Worx GmbH, Germany. </p>
 <dl class="section note"><dt>Note</dt><dd>While the Java language strongly proposes to use the complete 'reverse domain' name and therefore Java code published by A-Worx GmbH resides in namespace <em>com.aworx</em>, for C# we replaced the prefix <em>com.</em> with <em>cs.</em>, which leads to <em>cs.aworx</em>.<br />
- This is for having classes with the same names existing in C++, C# and Java not collide within the Doxygen documentation system.</dd></dl>
+ This was needed for having classes with the same names existing in C++, C# and Java not collide within the Doxygen documentation system.</dd></dl>
 <p>As far as it is planned today, there is nothing inside this namespace but other namespaces and - and this is true only for the <em>C++</em> side of things - type definitions used as shortcuts.</p>
-<p><a class="anchor" id="CPP_AWORX_NS_SHORTCUTS"></a> <b>Type Shortcuts in the aworx Namespace</b></p>
-<p>Introducing new names without good reasons should in general by avoided as it <em>pollutes</em> any namespace. Furthermore it should be avoided to use identifier names that are so general that conflicts are foreseeable. However, in this namespace <em><a class="el" href="namespaceaworx.html">aworx</a></em> there is an exclamation. It introduces <em>shortcut types</em> only for the sake of making the code more readable. And, even more, those shortcuts are allowed to have quite general names. For example, the following type is defined: </p><pre class="fragment">using  String =  aworx::lib::strings::AS;
-</pre><p> The impact of this is as follows:</p><ul>
+<p><a class="anchor" id="CPP_AWORX_NS_SHORTCUTS"></a> <b>Type Shortcuts in the C++ Namespace "aworx"</b></p>
+<p>ALib and other libraries of A-Worx, <em>"mirror"</em> most classes into <b>namespace aworx</b> with using statements. For example, by having </p><pre class="fragment">using  String =  aworx::lib::strings::String;
+</pre><p> stated within <b>namespace aworx</b> in the header file of class <b>String</b>, this class is made available with just adding </p><pre class="fragment">using  aworx;
+</pre><p> to a source code. This is convenient when ALib is <em>used</em>, and also convenient for the classes of ALib itself and for 'sibling' libraries that reside underneath <b>namespace aworx</b>, for example logging library <em>ALox</em> with <b>namespace <a class="el" href="namespaceaworx_1_1lox.html">aworx::lox</a></b>. Such classes may refer to all mirrored classes in their (external!) header files without providing any namespace, because in C++, code that is located inside a namespace 'sees' all types defined in parent namespaces.<br />
+ Therefore, header files become clear and simple without explicit namespace names.</p>
+<p>In contrast to this, C++ sources that are "<em>using"</em> a sub-namespace do <b>not</b> automatically 'see' classes in parent namespaces. This is an important difference (and great design of the C++ language) that we are leveraging with this concept.</p>
+<p>Unfortunately, with template classes this mechanism has a limit. It is not allowed to use the same type name for the mirrored classes. Therefore, for example class <a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">PreallocatedString&lt;int TCapacity&gt;</a> gets mirrored to <b>PAString</b> as follows: </p><pre class="fragment">template&lt;int TCapacity&gt;
+using PAString= aworx::lib::strings::PreallocatedString&lt;TCapacity&gt;;
+</pre><p>To summarize, the effect of mirroring the main interface classes is as follows:</p><ul>
 <li>Inside header files of sub-namespaces (and their sub-namespaces) of <em>aworx</em>, e.g. <em><a class="el" href="namespaceaworx_1_1lib.html">aworx::lib</a></em> and <em><a class="el" href="namespaceaworx_1_1lox.html">aworx::lox</a></em>, these names are visible and used.</li>
-<li>Inside external header files, they are not visible but might be quite shortly accessed using postfix <em>aworx:</em>:.</li>
-<li>Inside cpp files that use aworx libraries they are <em>not</em> visible, even if a using statement for the corresponding namespace is added</li>
+<li>Inside external header files, they are not visible but might be quite shortly accessed using namespace prefix <b>aworx:</b>:.</li>
+<li>Inside external cpp files, if no collision with other libraries or local classes exist, all types of all A-Worx libraries used, can be made visible with one single using statement for namespace <b>aworx</b>. Should collisions occur, then still selected classes of A-Worx libraries that do not collide can be made visible by choosing the complete namespace name for the <em>using</em> statement.</li>
+<li>The mirrored class names appear only in this <b>namespace aworx</b>, if the corresponding header file of the original class is included in a compilation unit.</li>
 </ul>
-<p>As a sample, in a source file which includes ALib and 'uses' the <em>strings</em> namespace by having statement </p><pre class="fragment">using  aworx::lib::strings;
-</pre><p> defined, still type alias <em>String</em> is not visible and therefore does not collide with any other identifier that is named "String". </p>
+<p><b>Domain-Specific Constants and Variables</b></p>
+<p>Similar to the concept of mirroring important interface classes into this <b>namespace aworx</b> (which is described in the previous paragraph), it is also agreed to place important global constants here. The impact and benefits are quite the same.<br />
+ As a sample, see <a class="el" href="namespaceaworx.html#a081742a3398152ceb8694674ffd21c37">aworx::PathSeparator</a> which appears in this namespace as soon as header "alib/system/directory.hpp" is included. </p>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Nested namespaces</h2></td></tr>
@@ -145,155 +152,811 @@ Nested namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a5878d649ed3cc544cbd74721f95da495"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a5878d649ed3cc544cbd74721f95da495">AString</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASAlloc.html">aworx::lib::strings::ASAlloc</a></td></tr>
-<tr class="separator:a5878d649ed3cc544cbd74721f95da495"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b602fe268f8de37e14430b7e646cd0f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1AS.html">aworx::lib::strings::AS</a></td></tr>
-<tr class="separator:a1b602fe268f8de37e14430b7e646cd0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb9edf26ef4b9c245c5a95bb13f41dcf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abb9edf26ef4b9c245c5a95bb13f41dcf"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#abb9edf26ef4b9c245c5a95bb13f41dcf">String128</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html">aworx::lib::strings::ASPreAlloc</a>&lt; 128 &gt;</td></tr>
-<tr class="memdesc:abb9edf26ef4b9c245c5a95bb13f41dcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">A shortcut to <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html">ASPreAlloc</a> providing an internal preallocated buffer of size 128. <br /></td></tr>
-<tr class="separator:abb9edf26ef4b9c245c5a95bb13f41dcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acbea83160c272e842de487ed7aa0caab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acbea83160c272e842de487ed7aa0caab"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#acbea83160c272e842de487ed7aa0caab">String16</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html">aworx::lib::strings::ASPreAlloc</a>&lt; 16 &gt;</td></tr>
-<tr class="memdesc:acbea83160c272e842de487ed7aa0caab"><td class="mdescLeft">&#160;</td><td class="mdescRight">A shortcut to <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html">ASPreAlloc</a> providing an internal preallocated buffer of size 16. <br /></td></tr>
-<tr class="separator:acbea83160c272e842de487ed7aa0caab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd9946aad9d9041ea509a3bced22e283"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acd9946aad9d9041ea509a3bced22e283"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#acd9946aad9d9041ea509a3bced22e283">String1K</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html">aworx::lib::strings::ASPreAlloc</a>&lt; 1024 &gt;</td></tr>
-<tr class="memdesc:acd9946aad9d9041ea509a3bced22e283"><td class="mdescLeft">&#160;</td><td class="mdescRight">A shortcut to <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html">ASPreAlloc</a> providing an internal preallocated buffer of size 1024. <br /></td></tr>
-<tr class="separator:acd9946aad9d9041ea509a3bced22e283"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81ae91cb74396a4fc28abd35ed7ff052"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a81ae91cb74396a4fc28abd35ed7ff052"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a81ae91cb74396a4fc28abd35ed7ff052">String256</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html">aworx::lib::strings::ASPreAlloc</a>&lt; 256 &gt;</td></tr>
-<tr class="memdesc:a81ae91cb74396a4fc28abd35ed7ff052"><td class="mdescLeft">&#160;</td><td class="mdescRight">A shortcut to <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html">ASPreAlloc</a> providing an internal preallocated buffer of size 256. <br /></td></tr>
-<tr class="separator:a81ae91cb74396a4fc28abd35ed7ff052"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3dee8b08186b18ae10ef7bb0a41e650"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af3dee8b08186b18ae10ef7bb0a41e650"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#af3dee8b08186b18ae10ef7bb0a41e650">String2K</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html">aworx::lib::strings::ASPreAlloc</a>&lt; 2048 &gt;</td></tr>
-<tr class="memdesc:af3dee8b08186b18ae10ef7bb0a41e650"><td class="mdescLeft">&#160;</td><td class="mdescRight">A shortcut to <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html">ASPreAlloc</a> providing an internal preallocated buffer of size 2048. <br /></td></tr>
-<tr class="separator:af3dee8b08186b18ae10ef7bb0a41e650"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a557200d216efbde6004a5eea849b86"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8a557200d216efbde6004a5eea849b86"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a8a557200d216efbde6004a5eea849b86">String32</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html">aworx::lib::strings::ASPreAlloc</a>&lt; 32 &gt;</td></tr>
-<tr class="memdesc:a8a557200d216efbde6004a5eea849b86"><td class="mdescLeft">&#160;</td><td class="mdescRight">A shortcut to <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html">ASPreAlloc</a> providing an internal preallocated buffer of size 32. <br /></td></tr>
-<tr class="separator:a8a557200d216efbde6004a5eea849b86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab35934f523d9f334a8310ea3384d3d67"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab35934f523d9f334a8310ea3384d3d67"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#ab35934f523d9f334a8310ea3384d3d67">String4K</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html">aworx::lib::strings::ASPreAlloc</a>&lt; 4096 &gt;</td></tr>
-<tr class="memdesc:ab35934f523d9f334a8310ea3384d3d67"><td class="mdescLeft">&#160;</td><td class="mdescRight">A shortcut to <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html">ASPreAlloc</a> providing an internal preallocated buffer of size 4096. <br /></td></tr>
-<tr class="separator:ab35934f523d9f334a8310ea3384d3d67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc3e452a4a1195b67d5a8121fd9ea8ce"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afc3e452a4a1195b67d5a8121fd9ea8ce"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#afc3e452a4a1195b67d5a8121fd9ea8ce">String512</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html">aworx::lib::strings::ASPreAlloc</a>&lt; 512 &gt;</td></tr>
-<tr class="memdesc:afc3e452a4a1195b67d5a8121fd9ea8ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">A shortcut to <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html">ASPreAlloc</a> providing an internal preallocated buffer of size 512. <br /></td></tr>
-<tr class="separator:afc3e452a4a1195b67d5a8121fd9ea8ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad16dfdce0f76423f90dcf6821f8b4a7e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad16dfdce0f76423f90dcf6821f8b4a7e"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#ad16dfdce0f76423f90dcf6821f8b4a7e">String64</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html">aworx::lib::strings::ASPreAlloc</a>&lt; 64 &gt;</td></tr>
-<tr class="memdesc:ad16dfdce0f76423f90dcf6821f8b4a7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">A shortcut to <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html">ASPreAlloc</a> providing an internal preallocated buffer of size 64. <br /></td></tr>
-<tr class="separator:ad16dfdce0f76423f90dcf6821f8b4a7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a639c84da3f1fd25fe67d734809c35992"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a639c84da3f1fd25fe67d734809c35992"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a639c84da3f1fd25fe67d734809c35992">String8</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html">aworx::lib::strings::ASPreAlloc</a>&lt; 8 &gt;</td></tr>
-<tr class="memdesc:a639c84da3f1fd25fe67d734809c35992"><td class="mdescLeft">&#160;</td><td class="mdescRight">A shortcut to <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html">ASPreAlloc</a> providing an internal preallocated buffer of size 8. <br /></td></tr>
-<tr class="separator:a639c84da3f1fd25fe67d734809c35992"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25a9748ddb0997bcedc38913800a9352"><td class="memTemplParams" colspan="2">template&lt;size_t TLength&gt; </td></tr>
-<tr class="memitem:a25a9748ddb0997bcedc38913800a9352"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a25a9748ddb0997bcedc38913800a9352">StringLiteral</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASLiteral.html">aworx::lib::strings::ASLiteral</a>&lt; TLength &gt;</td></tr>
-<tr class="separator:a25a9748ddb0997bcedc38913800a9352"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a020f593b093787650587801352ccddd3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a020f593b093787650587801352ccddd3">Substring</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASSubstring.html">aworx::lib::strings::ASSubstring</a></td></tr>
-<tr class="separator:a020f593b093787650587801352ccddd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2de28a17dc8f201aaa9a8bfa637500a5"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASTerminatable.html">aworx::lib::strings::ASTerminatable</a></td></tr>
-<tr class="separator:a2de28a17dc8f201aaa9a8bfa637500a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc2895fe34753aa1cd88ed8845fbd88b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#afc2895fe34753aa1cd88ed8845fbd88b">ALIB</a> = <a class="el" href="classaworx_1_1lib_1_1ALIB.html">aworx::lib::ALIB</a></td></tr>
+<tr class="separator:afc2895fe34753aa1cd88ed8845fbd88b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96dde4be24b9217d6bef30b22d7dfd4c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a96dde4be24b9217d6bef30b22d7dfd4c">Alignment</a> = <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#acdfaca60ec19c0265bac2692d7982726">aworx::lib::enums::Alignment</a></td></tr>
+<tr class="separator:a96dde4be24b9217d6bef30b22d7dfd4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ea18f3cfd0faa27d99ecc1c9532b445"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a1ea18f3cfd0faa27d99ecc1c9532b445">AnsiConsoleLogger</a> = <a class="el" href="classaworx_1_1lox_1_1loggers_1_1AnsiConsoleLogger.html">aworx::lox::loggers::AnsiConsoleLogger</a></td></tr>
+<tr class="separator:a1ea18f3cfd0faa27d99ecc1c9532b445"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbcb9cbc8853ce81a9d690e2a8923889"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#afbcb9cbc8853ce81a9d690e2a8923889">AnsiLogger</a> = <a class="el" href="classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html">aworx::lox::loggers::AnsiLogger</a></td></tr>
+<tr class="separator:afbcb9cbc8853ce81a9d690e2a8923889"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51ace28d988aa0a7ab391f6aaec35f60"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">aworx::lib::strings::AString</a></td></tr>
+<tr class="separator:a51ace28d988aa0a7ab391f6aaec35f60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac497730bb253c7efcfee90f6de02a0ba"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#ac497730bb253c7efcfee90f6de02a0ba">Case</a> = <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ab9aab17a5e54a8bae6915bc24db13a17">aworx::lib::enums::Case</a></td></tr>
+<tr class="separator:ac497730bb253c7efcfee90f6de02a0ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b321d2f72b975b304aa678e20344e7a"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a9b321d2f72b975b304aa678e20344e7a">Configuration</a> = <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html">aworx::lib::config::Configuration</a></td></tr>
+<tr class="separator:a9b321d2f72b975b304aa678e20344e7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfbbfc11d98646c37dbf27e3ede11644"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#acfbbfc11d98646c37dbf27e3ede11644">ConsoleLogger</a> = <a class="el" href="classaworx_1_1lox_1_1loggers_1_1ConsoleLogger.html">aworx::lox::loggers::ConsoleLogger</a></td></tr>
+<tr class="separator:acfbbfc11d98646c37dbf27e3ede11644"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9b7ef57f8fb67372f77ff485e3087d7"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#ae9b7ef57f8fb67372f77ff485e3087d7">Create</a> = <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a55781bd0c78c4e5d47ce433f4eeeee85">aworx::lib::enums::Create</a></td></tr>
+<tr class="separator:ae9b7ef57f8fb67372f77ff485e3087d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cd9fd65cae399a824854fa2ea3b8bfc"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a8cd9fd65cae399a824854fa2ea3b8bfc">CurrentData</a> = <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a9345007d67faa05253932092d54d10d4">aworx::lib::enums::CurrentData</a></td></tr>
+<tr class="separator:a8cd9fd65cae399a824854fa2ea3b8bfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae59166dff4149598acd5f636fe6760d8"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#ae59166dff4149598acd5f636fe6760d8">Directory</a> = <a class="el" href="classaworx_1_1lib_1_1system_1_1Directory.html">aworx::lib::system::Directory</a></td></tr>
+<tr class="separator:ae59166dff4149598acd5f636fe6760d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41196e8ca29644376437095a102ad9ec"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a41196e8ca29644376437095a102ad9ec">ESC</a> = <a class="el" href="classaworx_1_1lox_1_1ESC.html">aworx::lox::ESC</a></td></tr>
+<tr class="separator:a41196e8ca29644376437095a102ad9ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed5a5fab6b4a0c81a5a231f6d0379d41"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#aed5a5fab6b4a0c81a5a231f6d0379d41">Format</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1Format.html">aworx::lib::strings::Format</a></td></tr>
+<tr class="separator:aed5a5fab6b4a0c81a5a231f6d0379d41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3771c700d4232fb5b8a10510e088274"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#af3771c700d4232fb5b8a10510e088274">Inclusion</a> = <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a217539925b78b2eed40ae7817d5bee52">aworx::lib::enums::Inclusion</a></td></tr>
+<tr class="separator:af3771c700d4232fb5b8a10510e088274"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef31dd55ee6403c15d9ba93325d3333d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#aef31dd55ee6403c15d9ba93325d3333d">IniFile</a> = <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html">aworx::lib::config::IniFile</a></td></tr>
+<tr class="separator:aef31dd55ee6403c15d9ba93325d3333d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acae7a6e21dc6155b5f1b7c932fb8aa34"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#acae7a6e21dc6155b5f1b7c932fb8aa34">LockMode</a> = <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a00fc859257c8f09ff9198dde28121961">aworx::lib::enums::LockMode</a></td></tr>
+<tr class="separator:acae7a6e21dc6155b5f1b7c932fb8aa34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d8a9ca518e5abc7446b6a753e2b7ae6"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a5d8a9ca518e5abc7446b6a753e2b7ae6">Log</a> = <a class="el" href="classaworx_1_1lox_1_1Log.html">aworx::lox::Log</a></td></tr>
+<tr class="separator:a5d8a9ca518e5abc7446b6a753e2b7ae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf1258bbd9cf9772a1559f4ceb37fde4"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#abf1258bbd9cf9772a1559f4ceb37fde4">Lox</a> = <a class="el" href="classaworx_1_1lox_1_1Lox.html">aworx::lox::Lox</a></td></tr>
+<tr class="separator:abf1258bbd9cf9772a1559f4ceb37fde4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff4e02a238ba03a98be3dd17d783f336"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#aff4e02a238ba03a98be3dd17d783f336">MemoryLogger</a> = <a class="el" href="classaworx_1_1lox_1_1loggers_1_1MemoryLogger.html">aworx::lox::loggers::MemoryLogger</a></td></tr>
+<tr class="separator:aff4e02a238ba03a98be3dd17d783f336"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4105ad142b7282bab44c0f051d36e350"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a4105ad142b7282bab44c0f051d36e350">NumberFormat</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html">aworx::lib::strings::NumberFormat</a></td></tr>
+<tr class="separator:a4105ad142b7282bab44c0f051d36e350"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10e9458c58956ec05a324232fc1cc9e4"><td class="memTemplParams" colspan="2">template&lt;int TCapacity&gt; </td></tr>
+<tr class="memitem:a10e9458c58956ec05a324232fc1cc9e4"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a10e9458c58956ec05a324232fc1cc9e4">PAString</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">aworx::lib::strings::PreallocatedString</a>&lt; TCapacity &gt;</td></tr>
+<tr class="separator:a10e9458c58956ec05a324232fc1cc9e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac87fae76a49419f75db6b44011acc407"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#ac87fae76a49419f75db6b44011acc407">Phase</a> = <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ae1c5184dc404edf057ed537bcfddef84">aworx::lib::enums::Phase</a></td></tr>
+<tr class="separator:ac87fae76a49419f75db6b44011acc407"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8644368b56cf61a16e37300584a1d4e2"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a8644368b56cf61a16e37300584a1d4e2">ProcessInfo</a> = <a class="el" href="classaworx_1_1lib_1_1system_1_1ProcessInfo.html">aworx::lib::system::ProcessInfo</a></td></tr>
+<tr class="separator:a8644368b56cf61a16e37300584a1d4e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6becd7c5957b9924c08b78079a67c5b4"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a6becd7c5957b9924c08b78079a67c5b4">Propagation</a> = <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#aeae0c2d4659a32ef54bd221d1a3da4e6">aworx::lib::enums::Propagation</a></td></tr>
+<tr class="separator:a6becd7c5957b9924c08b78079a67c5b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8c1565886f17d3b3262d8454ae546de"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#ad8c1565886f17d3b3262d8454ae546de">Responsibility</a> = <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ab5305b978950ba3946cf79a4bccbf7af">aworx::lib::enums::Responsibility</a></td></tr>
+<tr class="separator:ad8c1565886f17d3b3262d8454ae546de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bb37c2c22c2eb85510445d1b9d11f19"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a0bb37c2c22c2eb85510445d1b9d11f19">Result</a> = <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a28287671eaf7406afd604bd055ba4066">aworx::lib::enums::Result</a></td></tr>
+<tr class="separator:a0bb37c2c22c2eb85510445d1b9d11f19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af259362a7fa123eef74daaf4036e02a5"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#af259362a7fa123eef74daaf4036e02a5">Runnable</a> = <a class="el" href="classaworx_1_1lib_1_1threads_1_1Runnable.html">aworx::lib::threads::Runnable</a></td></tr>
+<tr class="separator:af259362a7fa123eef74daaf4036e02a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae44933ed0bc5c2462dce430a034dd6b0"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#ae44933ed0bc5c2462dce430a034dd6b0">Safeness</a> = <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a8c800527afe0a8a6c71ae4cceda6bf9d">aworx::lib::enums::Safeness</a></td></tr>
+<tr class="separator:ae44933ed0bc5c2462dce430a034dd6b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af631a26bf70ad6d6143973fadf779747"><td class="memTemplParams" colspan="2">template&lt;size_t TLength&gt; </td></tr>
+<tr class="memitem:af631a26bf70ad6d6143973fadf779747"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#af631a26bf70ad6d6143973fadf779747">SLiteral</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1StringLiteral.html">aworx::lib::strings::StringLiteral</a>&lt; TLength &gt;</td></tr>
+<tr class="separator:af631a26bf70ad6d6143973fadf779747"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad13481d84c6e592a41d07c64f747c95d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">aworx::lib::strings::String</a></td></tr>
+<tr class="separator:ad13481d84c6e592a41d07c64f747c95d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2841f1443c3b2f3d6066d5774cf69dbc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2841f1443c3b2f3d6066d5774cf69dbc"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a2841f1443c3b2f3d6066d5774cf69dbc">String128</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">aworx::lib::strings::PreallocatedString</a>&lt; 128 &gt;</td></tr>
+<tr class="memdesc:a2841f1443c3b2f3d6066d5774cf69dbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type alias name for <a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">PreallocatedString&lt;128&gt;</a>. <br /></td></tr>
+<tr class="separator:a2841f1443c3b2f3d6066d5774cf69dbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a148a217c34a72b4360462205858b8f0e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a148a217c34a72b4360462205858b8f0e"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a148a217c34a72b4360462205858b8f0e">String16</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">aworx::lib::strings::PreallocatedString</a>&lt; 16 &gt;</td></tr>
+<tr class="memdesc:a148a217c34a72b4360462205858b8f0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type alias name for <a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">PreallocatedString&lt;16&gt;</a>. <br /></td></tr>
+<tr class="separator:a148a217c34a72b4360462205858b8f0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82395a8f3fac47787ebe8749679a2796"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a82395a8f3fac47787ebe8749679a2796"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a82395a8f3fac47787ebe8749679a2796">String1K</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">aworx::lib::strings::PreallocatedString</a>&lt; 1024 &gt;</td></tr>
+<tr class="memdesc:a82395a8f3fac47787ebe8749679a2796"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type alias name for <a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">PreallocatedString&lt;1024&gt;</a>. <br /></td></tr>
+<tr class="separator:a82395a8f3fac47787ebe8749679a2796"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a152f787b6dac47dd3f94ae5ebf1ece53"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a152f787b6dac47dd3f94ae5ebf1ece53"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a152f787b6dac47dd3f94ae5ebf1ece53">String256</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">aworx::lib::strings::PreallocatedString</a>&lt; 256 &gt;</td></tr>
+<tr class="memdesc:a152f787b6dac47dd3f94ae5ebf1ece53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type alias name for <a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">PreallocatedString&lt;256&gt;</a>. <br /></td></tr>
+<tr class="separator:a152f787b6dac47dd3f94ae5ebf1ece53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76f69ad445caecfbf03351c884637b09"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a76f69ad445caecfbf03351c884637b09"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a76f69ad445caecfbf03351c884637b09">String2K</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">aworx::lib::strings::PreallocatedString</a>&lt; 2048 &gt;</td></tr>
+<tr class="memdesc:a76f69ad445caecfbf03351c884637b09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type alias name for <a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">PreallocatedString&lt;2048&gt;</a>. <br /></td></tr>
+<tr class="separator:a76f69ad445caecfbf03351c884637b09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a221752691fb92bcd592c045d6c368289"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a221752691fb92bcd592c045d6c368289"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a221752691fb92bcd592c045d6c368289">String32</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">aworx::lib::strings::PreallocatedString</a>&lt; 32 &gt;</td></tr>
+<tr class="memdesc:a221752691fb92bcd592c045d6c368289"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type alias name for <a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">PreallocatedString&lt;32&gt;</a>. <br /></td></tr>
+<tr class="separator:a221752691fb92bcd592c045d6c368289"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a772f06f37ace5e2b2eb8cafc0c859c44"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a772f06f37ace5e2b2eb8cafc0c859c44"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a772f06f37ace5e2b2eb8cafc0c859c44">String4K</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">aworx::lib::strings::PreallocatedString</a>&lt; 4096 &gt;</td></tr>
+<tr class="memdesc:a772f06f37ace5e2b2eb8cafc0c859c44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type alias name for <a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">PreallocatedString&lt;4096&gt;</a>. <br /></td></tr>
+<tr class="separator:a772f06f37ace5e2b2eb8cafc0c859c44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af634b7550d8a316ce3cf3fb6f9e86079"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af634b7550d8a316ce3cf3fb6f9e86079"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#af634b7550d8a316ce3cf3fb6f9e86079">String512</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">aworx::lib::strings::PreallocatedString</a>&lt; 512 &gt;</td></tr>
+<tr class="memdesc:af634b7550d8a316ce3cf3fb6f9e86079"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type alias name for <a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">PreallocatedString&lt;512&gt;</a>. <br /></td></tr>
+<tr class="separator:af634b7550d8a316ce3cf3fb6f9e86079"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2fdc487456a994238ba4284b3859c41"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac2fdc487456a994238ba4284b3859c41"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#ac2fdc487456a994238ba4284b3859c41">String64</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">aworx::lib::strings::PreallocatedString</a>&lt; 64 &gt;</td></tr>
+<tr class="memdesc:ac2fdc487456a994238ba4284b3859c41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type alias name for <a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">PreallocatedString&lt;64&gt;</a>. <br /></td></tr>
+<tr class="separator:ac2fdc487456a994238ba4284b3859c41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab35696c2e8d79567a528a4b6da788eb3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab35696c2e8d79567a528a4b6da788eb3"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#ab35696c2e8d79567a528a4b6da788eb3">String8</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">aworx::lib::strings::PreallocatedString</a>&lt; 8 &gt;</td></tr>
+<tr class="memdesc:ab35696c2e8d79567a528a4b6da788eb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type alias name for <a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">PreallocatedString&lt;8&gt;</a>. <br /></td></tr>
+<tr class="separator:ab35696c2e8d79567a528a4b6da788eb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aade494154da29084f1e59cfa2f83a23b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#aade494154da29084f1e59cfa2f83a23b">Substring</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html">lib::strings::Substring</a></td></tr>
+<tr class="separator:aade494154da29084f1e59cfa2f83a23b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbc3fd675117881e7c7aebcd1058ad03"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#abbc3fd675117881e7c7aebcd1058ad03">Switch</a> = <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a9f3c28a2cb05bdcc618b542e49bfda3f">aworx::lib::enums::Switch</a></td></tr>
+<tr class="separator:abbc3fd675117881e7c7aebcd1058ad03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea0af9d6b00ede1a16d0af24fdaeebe0"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#aea0af9d6b00ede1a16d0af24fdaeebe0">System</a> = <a class="el" href="classaworx_1_1lib_1_1system_1_1System.html">aworx::lib::system::System</a></td></tr>
+<tr class="separator:aea0af9d6b00ede1a16d0af24fdaeebe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae64ac3b33c7c180e92559a869977fda0"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#ae64ac3b33c7c180e92559a869977fda0">TextFileLogger</a> = <a class="el" href="classaworx_1_1lox_1_1loggers_1_1TextFileLogger.html">aworx::lox::loggers::TextFileLogger</a></td></tr>
+<tr class="separator:ae64ac3b33c7c180e92559a869977fda0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d1a5942495395f77e31bb5d451c332b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a8d1a5942495395f77e31bb5d451c332b">TextLogger</a> = <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">aworx::lox::core::textlogger::TextLogger</a></td></tr>
+<tr class="separator:a8d1a5942495395f77e31bb5d451c332b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42fe02133ffe8b203c4aa204d2114d49"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a42fe02133ffe8b203c4aa204d2114d49">Thread</a> = <a class="el" href="classaworx_1_1lib_1_1threads_1_1Thread.html">aworx::lib::threads::Thread</a></td></tr>
+<tr class="separator:a42fe02133ffe8b203c4aa204d2114d49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad941b2cb61bade9aa2478dd063154d33"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#ad941b2cb61bade9aa2478dd063154d33">ThreadLock</a> = <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html">aworx::lib::threads::ThreadLock</a></td></tr>
+<tr class="separator:ad941b2cb61bade9aa2478dd063154d33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb7e18c3a3777faf17dde8a543e30a27"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#adb7e18c3a3777faf17dde8a543e30a27">ThreadLockNR</a> = <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html">aworx::lib::threads::ThreadLockNR</a></td></tr>
+<tr class="separator:adb7e18c3a3777faf17dde8a543e30a27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad270463709a4ae7e7098df40e803e458"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#ad270463709a4ae7e7098df40e803e458">Ticks</a> = <a class="el" href="classaworx_1_1lib_1_1time_1_1Ticks.html">aworx::lib::time::Ticks</a></td></tr>
+<tr class="separator:ad270463709a4ae7e7098df40e803e458"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0607ccd659418fa7cb9922b2c4ba5f1d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a0607ccd659418fa7cb9922b2c4ba5f1d">TicksCalendarTime</a> = <a class="el" href="classaworx_1_1lib_1_1time_1_1TicksCalendarTime.html">aworx::lib::time::TicksCalendarTime</a></td></tr>
+<tr class="separator:a0607ccd659418fa7cb9922b2c4ba5f1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b85567c52aa0abc2531be7a2a7f887f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a7b85567c52aa0abc2531be7a2a7f887f">TickSpan</a> = <a class="el" href="classaworx_1_1lib_1_1time_1_1TickSpan.html">aworx::lib::time::TickSpan</a></td></tr>
+<tr class="separator:a7b85567c52aa0abc2531be7a2a7f887f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d4926218d664dabc231ce5cf0c19afc"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a4d4926218d664dabc231ce5cf0c19afc">TickWatch</a> = <a class="el" href="classaworx_1_1lib_1_1time_1_1TickWatch.html">aworx::lib::time::TickWatch</a></td></tr>
+<tr class="separator:a4d4926218d664dabc231ce5cf0c19afc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d6766c28e92b7f6ec8f96383455acdc"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a5d6766c28e92b7f6ec8f96383455acdc">Timezone</a> = <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a9b1d8f31e178e17a8fef3a9e94bc4b2c">aworx::lib::enums::Timezone</a></td></tr>
+<tr class="separator:a5d6766c28e92b7f6ec8f96383455acdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a605604b4e10ad391819f94254f1727b7"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a605604b4e10ad391819f94254f1727b7">Tokenizer</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html">aworx::lib::strings::Tokenizer</a></td></tr>
+<tr class="separator:a605604b4e10ad391819f94254f1727b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af01fde7c67b5f30027a4135222bbde31"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> = <a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html">aworx::lib::strings::TString</a></td></tr>
+<tr class="separator:af01fde7c67b5f30027a4135222bbde31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a747899e07def7493ae65c9569a5dc879"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a747899e07def7493ae65c9569a5dc879">VStudioLogger</a> = <a class="el" href="classaworx_1_1lox_1_1loggers_1_1VStudioLogger.html">aworx::lox::loggers::VStudioLogger</a></td></tr>
+<tr class="separator:a747899e07def7493ae65c9569a5dc879"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c07eb477a798a2088b4619390c54e72"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a0c07eb477a798a2088b4619390c54e72">Whitespaces</a> = <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ad4a46f9fb632511f6be7c53e05f330f7">aworx::lib::enums::Whitespaces</a></td></tr>
+<tr class="separator:a0c07eb477a798a2088b4619390c54e72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad427fd161e0ad8bd4c8835c5a643cc3f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#ad427fd161e0ad8bd4c8835c5a643cc3f">WindowsConsoleLogger</a> = <a class="el" href="classaworx_1_1lox_1_1loggers_1_1WindowsConsoleLogger.html">aworx::lox::loggers::WindowsConsoleLogger</a></td></tr>
+<tr class="separator:ad427fd161e0ad8bd4c8835c5a643cc3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a6d6180d70c719442ba8b7a120689b9ce"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a6d6180d70c719442ba8b7a120689b9ce">NullString</a></td></tr>
-<tr class="separator:a6d6180d70c719442ba8b7a120689b9ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:ae8312c2e2a7a26985be3500c40599b61"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#ae8312c2e2a7a26985be3500c40599b61">EmptyString</a> (&quot;&quot;, 0)</td></tr>
-<tr class="separator:ae8312c2e2a7a26985be3500c40599b61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5feaaf6a8fb11e8ebbb0013ec9f27b01"><td class="memItemLeft" align="right" valign="top">static constexpr <a class="el" href="classaworx_1_1lib_1_1strings_1_1StringLiteral.html">lib::strings::StringLiteral</a>&lt; 4 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a5feaaf6a8fb11e8ebbb0013ec9f27b01">DefaultWhitespaces</a> { &quot; \n\r\t&quot; }</td></tr>
+<tr class="separator:a5feaaf6a8fb11e8ebbb0013ec9f27b01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3372961a8fb9d30455267babb4e6c26c"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">lib::strings::String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a3372961a8fb9d30455267babb4e6c26c">EmptyString</a> {&quot;&quot;, 0}</td></tr>
+<tr class="separator:a3372961a8fb9d30455267babb4e6c26c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca82326cfe712c18f9adb9f560a28553"><td class="memItemLeft" align="right" valign="top">static constexpr <a class="el" href="classaworx_1_1lib_1_1strings_1_1StringLiteral.html">lib::strings::StringLiteral</a>&lt; 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#aca82326cfe712c18f9adb9f560a28553">NewLine</a> { &quot;\n&quot; }</td></tr>
+<tr class="separator:aca82326cfe712c18f9adb9f560a28553"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1ed6dcfbe4628dccefbdb5633b1bf01"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">lib::strings::String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#ab1ed6dcfbe4628dccefbdb5633b1bf01">NullString</a></td></tr>
+<tr class="separator:ab1ed6dcfbe4628dccefbdb5633b1bf01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a081742a3398152ceb8694674ffd21c37"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a081742a3398152ceb8694674ffd21c37">PathSeparator</a></td></tr>
+<tr class="separator:a081742a3398152ceb8694674ffd21c37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
-<a class="anchor" id="a5878d649ed3cc544cbd74721f95da495"></a>
+<a class="anchor" id="afc2895fe34753aa1cd88ed8845fbd88b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespaceaworx.html#a5878d649ed3cc544cbd74721f95da495">AString</a> =  <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASAlloc.html">aworx::lib::strings::ASAlloc</a></td>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#afc2895fe34753aa1cd88ed8845fbd88b">ALIB</a> =  <a class="el" href="classaworx_1_1lib_1_1ALIB.html">aworx::lib::ALIB</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Type shortcut visible only in sub namespaces. </p>
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
 
 </div>
 </div>
-<a class="anchor" id="a1b602fe268f8de37e14430b7e646cd0f"></a>
+<a class="anchor" id="a96dde4be24b9217d6bef30b22d7dfd4c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> =  <a class="el" href="classaworx_1_1lib_1_1strings_1_1AS.html">aworx::lib::strings::AS</a></td>
+          <td class="memname">using <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#acdfaca60ec19c0265bac2692d7982726">Alignment</a> =  <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#acdfaca60ec19c0265bac2692d7982726">aworx::lib::enums::Alignment</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Type shortcut visible only in sub namespaces. </p>
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
 
 </div>
 </div>
-<a class="anchor" id="a25a9748ddb0997bcedc38913800a9352"></a>
+<a class="anchor" id="a1ea18f3cfd0faa27d99ecc1c9532b445"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespaceaworx.html#a25a9748ddb0997bcedc38913800a9352">StringLiteral</a> =  <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASLiteral.html">aworx::lib::strings::ASLiteral</a>&lt;TLength&gt;</td>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#a1ea18f3cfd0faa27d99ecc1c9532b445">AnsiConsoleLogger</a> =  <a class="el" href="classaworx_1_1lox_1_1loggers_1_1AnsiConsoleLogger.html">aworx::lox::loggers::AnsiConsoleLogger</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Type shortcut visible only in sub namespaces. </p>
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
 
 </div>
 </div>
-<a class="anchor" id="a020f593b093787650587801352ccddd3"></a>
+<a class="anchor" id="afbcb9cbc8853ce81a9d690e2a8923889"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespaceaworx.html#a020f593b093787650587801352ccddd3">Substring</a> =  <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASSubstring.html">aworx::lib::strings::ASSubstring</a></td>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#afbcb9cbc8853ce81a9d690e2a8923889">AnsiLogger</a> =  <a class="el" href="classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html">aworx::lox::loggers::AnsiLogger</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Type shortcut visible only in sub namespaces. </p>
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
 
 </div>
 </div>
-<a class="anchor" id="a2de28a17dc8f201aaa9a8bfa637500a5"></a>
+<a class="anchor" id="a51ace28d988aa0a7ab391f6aaec35f60"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespaceaworx.html#a2de28a17dc8f201aaa9a8bfa637500a5">TString</a> =  <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASTerminatable.html">aworx::lib::strings::ASTerminatable</a></td>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> =  <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">aworx::lib::strings::AString</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Type shortcut visible only in sub namespaces. </p>
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
 
 </div>
 </div>
-<h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="ae8312c2e2a7a26985be3500c40599b61"></a>
+<a class="anchor" id="ac497730bb253c7efcfee90f6de02a0ba"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> aworx::EmptyString </td>
-          <td>(</td>
-          <td class="paramtype">&quot;&quot;&#160;</td>
-          <td class="paramname">, </td>
+          <td class="memname">using <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ab9aab17a5e54a8bae6915bc24db13a17">Case</a> =  <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ab9aab17a5e54a8bae6915bc24db13a17">aworx::lib::enums::Case</a></td>
         </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a9b321d2f72b975b304aa678e20344e7a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
         <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">0&#160;</td>
-          <td class="paramname">&#160;</td>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#a9b321d2f72b975b304aa678e20344e7a">Configuration</a> =  <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html">aworx::lib::config::Configuration</a></td>
         </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="acfbbfc11d98646c37dbf27e3ede11644"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
         <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#acfbbfc11d98646c37dbf27e3ede11644">ConsoleLogger</a> =  <a class="el" href="classaworx_1_1lox_1_1loggers_1_1ConsoleLogger.html">aworx::lox::loggers::ConsoleLogger</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="ae9b7ef57f8fb67372f77ff485e3087d7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a55781bd0c78c4e5d47ce433f4eeeee85">Create</a> =  <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a55781bd0c78c4e5d47ce433f4eeeee85">aworx::lib::enums::Create</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a8cd9fd65cae399a824854fa2ea3b8bfc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a9345007d67faa05253932092d54d10d4">CurrentData</a> =  <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a9345007d67faa05253932092d54d10d4">aworx::lib::enums::CurrentData</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="ae59166dff4149598acd5f636fe6760d8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#ae59166dff4149598acd5f636fe6760d8">Directory</a> =  <a class="el" href="classaworx_1_1lib_1_1system_1_1Directory.html">aworx::lib::system::Directory</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a41196e8ca29644376437095a102ad9ec"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#a41196e8ca29644376437095a102ad9ec">ESC</a> =  <a class="el" href="classaworx_1_1lox_1_1ESC.html">aworx::lox::ESC</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="aed5a5fab6b4a0c81a5a231f6d0379d41"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#aed5a5fab6b4a0c81a5a231f6d0379d41">Format</a> =  <a class="el" href="classaworx_1_1lib_1_1strings_1_1Format.html">aworx::lib::strings::Format</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="af3771c700d4232fb5b8a10510e088274"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a217539925b78b2eed40ae7817d5bee52">Inclusion</a> =  <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a217539925b78b2eed40ae7817d5bee52">aworx::lib::enums::Inclusion</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="aef31dd55ee6403c15d9ba93325d3333d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#aef31dd55ee6403c15d9ba93325d3333d">IniFile</a> =  <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html">aworx::lib::config::IniFile</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="acae7a6e21dc6155b5f1b7c932fb8aa34"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a00fc859257c8f09ff9198dde28121961">LockMode</a> =  <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a00fc859257c8f09ff9198dde28121961">aworx::lib::enums::LockMode</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a5d8a9ca518e5abc7446b6a753e2b7ae6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#a5d8a9ca518e5abc7446b6a753e2b7ae6">Log</a> =  <a class="el" href="classaworx_1_1lox_1_1Log.html">aworx::lox::Log</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="abf1258bbd9cf9772a1559f4ceb37fde4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#abf1258bbd9cf9772a1559f4ceb37fde4">Lox</a> =  <a class="el" href="classaworx_1_1lox_1_1Lox.html">aworx::lox::Lox</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="aff4e02a238ba03a98be3dd17d783f336"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#aff4e02a238ba03a98be3dd17d783f336">MemoryLogger</a> =  <a class="el" href="classaworx_1_1lox_1_1loggers_1_1MemoryLogger.html">aworx::lox::loggers::MemoryLogger</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a4105ad142b7282bab44c0f051d36e350"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#a4105ad142b7282bab44c0f051d36e350">NumberFormat</a> =  <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html">aworx::lib::strings::NumberFormat</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a10e9458c58956ec05a324232fc1cc9e4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#a10e9458c58956ec05a324232fc1cc9e4">PAString</a> =  <a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">aworx::lib::strings::PreallocatedString</a>&lt;TCapacity&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="ac87fae76a49419f75db6b44011acc407"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ae1c5184dc404edf057ed537bcfddef84">Phase</a> =  <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ae1c5184dc404edf057ed537bcfddef84">aworx::lib::enums::Phase</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a8644368b56cf61a16e37300584a1d4e2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#a8644368b56cf61a16e37300584a1d4e2">ProcessInfo</a> =  <a class="el" href="classaworx_1_1lib_1_1system_1_1ProcessInfo.html">aworx::lib::system::ProcessInfo</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a6becd7c5957b9924c08b78079a67c5b4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#aeae0c2d4659a32ef54bd221d1a3da4e6">Propagation</a> =  <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#aeae0c2d4659a32ef54bd221d1a3da4e6">aworx::lib::enums::Propagation</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="ad8c1565886f17d3b3262d8454ae546de"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ab5305b978950ba3946cf79a4bccbf7af">Responsibility</a> =  <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ab5305b978950ba3946cf79a4bccbf7af">aworx::lib::enums::Responsibility</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a0bb37c2c22c2eb85510445d1b9d11f19"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a28287671eaf7406afd604bd055ba4066">Result</a> =  <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a28287671eaf7406afd604bd055ba4066">aworx::lib::enums::Result</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="af259362a7fa123eef74daaf4036e02a5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#af259362a7fa123eef74daaf4036e02a5">Runnable</a> =  <a class="el" href="classaworx_1_1lib_1_1threads_1_1Runnable.html">aworx::lib::threads::Runnable</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="ae44933ed0bc5c2462dce430a034dd6b0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a8c800527afe0a8a6c71ae4cceda6bf9d">Safeness</a> =  <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a8c800527afe0a8a6c71ae4cceda6bf9d">aworx::lib::enums::Safeness</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="af631a26bf70ad6d6143973fadf779747"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#af631a26bf70ad6d6143973fadf779747">SLiteral</a> =  <a class="el" href="classaworx_1_1lib_1_1strings_1_1StringLiteral.html">aworx::lib::strings::StringLiteral</a>&lt;TLength&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="ad13481d84c6e592a41d07c64f747c95d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> =  <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">aworx::lib::strings::String</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="aade494154da29084f1e59cfa2f83a23b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#aade494154da29084f1e59cfa2f83a23b">Substring</a> =  <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html">lib::strings::Substring</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="abbc3fd675117881e7c7aebcd1058ad03"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a9f3c28a2cb05bdcc618b542e49bfda3f">Switch</a> =  <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a9f3c28a2cb05bdcc618b542e49bfda3f">aworx::lib::enums::Switch</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="aea0af9d6b00ede1a16d0af24fdaeebe0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#aea0af9d6b00ede1a16d0af24fdaeebe0">System</a> =  <a class="el" href="classaworx_1_1lib_1_1system_1_1System.html">aworx::lib::system::System</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="ae64ac3b33c7c180e92559a869977fda0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#ae64ac3b33c7c180e92559a869977fda0">TextFileLogger</a> =  <a class="el" href="classaworx_1_1lox_1_1loggers_1_1TextFileLogger.html">aworx::lox::loggers::TextFileLogger</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a8d1a5942495395f77e31bb5d451c332b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#a8d1a5942495395f77e31bb5d451c332b">TextLogger</a> =  <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">aworx::lox::core::textlogger::TextLogger</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a42fe02133ffe8b203c4aa204d2114d49"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#a42fe02133ffe8b203c4aa204d2114d49">Thread</a> =  <a class="el" href="classaworx_1_1lib_1_1threads_1_1Thread.html">aworx::lib::threads::Thread</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="ad941b2cb61bade9aa2478dd063154d33"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#ad941b2cb61bade9aa2478dd063154d33">ThreadLock</a> =  <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html">aworx::lib::threads::ThreadLock</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="adb7e18c3a3777faf17dde8a543e30a27"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#adb7e18c3a3777faf17dde8a543e30a27">ThreadLockNR</a> =  <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html">aworx::lib::threads::ThreadLockNR</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="ad270463709a4ae7e7098df40e803e458"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#ad270463709a4ae7e7098df40e803e458">Ticks</a> =  <a class="el" href="classaworx_1_1lib_1_1time_1_1Ticks.html">aworx::lib::time::Ticks</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a0607ccd659418fa7cb9922b2c4ba5f1d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#a0607ccd659418fa7cb9922b2c4ba5f1d">TicksCalendarTime</a> =  <a class="el" href="classaworx_1_1lib_1_1time_1_1TicksCalendarTime.html">aworx::lib::time::TicksCalendarTime</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a7b85567c52aa0abc2531be7a2a7f887f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#a7b85567c52aa0abc2531be7a2a7f887f">TickSpan</a> =  <a class="el" href="classaworx_1_1lib_1_1time_1_1TickSpan.html">aworx::lib::time::TickSpan</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a4d4926218d664dabc231ce5cf0c19afc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#a4d4926218d664dabc231ce5cf0c19afc">TickWatch</a> =  <a class="el" href="classaworx_1_1lib_1_1time_1_1TickWatch.html">aworx::lib::time::TickWatch</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a5d6766c28e92b7f6ec8f96383455acdc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a9b1d8f31e178e17a8fef3a9e94bc4b2c">Timezone</a> =  <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a9b1d8f31e178e17a8fef3a9e94bc4b2c">aworx::lib::enums::Timezone</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a605604b4e10ad391819f94254f1727b7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#a605604b4e10ad391819f94254f1727b7">Tokenizer</a> =  <a class="el" href="classaworx_1_1lib_1_1strings_1_1Tokenizer.html">aworx::lib::strings::Tokenizer</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="af01fde7c67b5f30027a4135222bbde31"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> =  <a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html">aworx::lib::strings::TString</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a747899e07def7493ae65c9569a5dc879"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#a747899e07def7493ae65c9569a5dc879">VStudioLogger</a> =  <a class="el" href="classaworx_1_1lox_1_1loggers_1_1VStudioLogger.html">aworx::lox::loggers::VStudioLogger</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a0c07eb477a798a2088b4619390c54e72"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ad4a46f9fb632511f6be7c53e05f330f7">Whitespaces</a> =  <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ad4a46f9fb632511f6be7c53e05f330f7">aworx::lib::enums::Whitespaces</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="ad427fd161e0ad8bd4c8835c5a643cc3f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx.html#ad427fd161e0ad8bd4c8835c5a643cc3f">WindowsConsoleLogger</a> =  <a class="el" href="classaworx_1_1lox_1_1loggers_1_1WindowsConsoleLogger.html">aworx::lox::loggers::WindowsConsoleLogger</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type alias name in namespace <a class="el" href="namespaceaworx.html">aworx</a>. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="a5feaaf6a8fb11e8ebbb0013ec9f27b01"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classaworx_1_1lib_1_1strings_1_1StringLiteral.html">lib::strings::StringLiteral</a>&lt;4&gt; DefaultWhitespaces { &quot; \n\r\t&quot; }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Characters that are usually ignored or trimmed. </p>
+
+</div>
+</div>
+<a class="anchor" id="a3372961a8fb9d30455267babb4e6c26c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">lib::strings::String</a> EmptyString {&quot;&quot;, 0}</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -301,13 +964,33 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a class="anchor" id="a6d6180d70c719442ba8b7a120689b9ce"></a>
+<a class="anchor" id="aca82326cfe712c18f9adb9f560a28553"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classaworx_1_1lib_1_1strings_1_1StringLiteral.html">lib::strings::StringLiteral</a>&lt;1&gt; NewLine { &quot;\n&quot; }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The system depended new line character code(s). </p>
+
+</div>
+</div>
+<a class="anchor" id="ab1ed6dcfbe4628dccefbdb5633b1bf01"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr <a class="el" href="namespaceaworx.html#a1b602fe268f8de37e14430b7e646cd0f">String</a> NullString</td>
+          <td class="memname">constexpr <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">lib::strings::String</a> NullString</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -315,11 +998,24 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a081742a3398152ceb8694674ffd21c37"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char PathSeparator</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The standard path separator character. Defaults to '\' on Windows OS, '/' else. Note: Available only with including "alib/system/directory.hpp" </p>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 5 2016 10:32:54 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Feb 15 2016 11:32:18 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1602</span>
+   &#160;<span id="projectnumber">V. 1602 R. 1</span>
    </div>
   </td>
  </tr>
@@ -137,13 +137,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Collaboration diagram for ReadLineFromIStream:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lib_1_1strings_1_1ReadLineFromIStream__coll__graph.svg" width="164" height="279"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lib_1_1strings_1_1ReadLineFromIStream__coll__graph.svg" width="164" height="279"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
-<p> Parameter class which is <em>'applicable'</em> to objects of type <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASAlloc.html">AString</a> with <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">corresponding specialization</a> of template function <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">ApplyTo</a>.</p>
-<p>Reads a line of text from a <b>std::istream</b> and appends it to the target AString.<br />
+<p> Parameter class which is <em>'applicable'</em> to objects of type <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> with <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">corresponding specialization</a> of template function <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">ApplyTo</a>.</p>
+<p>Reads a line of text from a <b>std::istream</b> and appends it to the target <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a>.<br />
  While, of-course, this class can be created 'inline' like most <em>ApplyTo parameter classes</em>, if a series of lines are to be read from a an <b>std::istream</b>, a local object of this type might be created before the read loop and used inside. In this case, the 'output parameter' <a class="el" href="classaworx_1_1lib_1_1strings_1_1ReadLineFromIStream.html#ade6dbc4e4f8e0b45e0fbe023f5ed8ddd">IsEOF</a>, can be used e.g. as a loop criteria. </p><dl class="section see"><dt>See also</dt><dd><ul>
 <li><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a357b7d2e804cb32ac765641afa415eee">operator&gt;&gt;(std::istream&amp;, AString&amp;)</a> and <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a7c480abd39fa10f40a8af566cf1f4dda">operator&lt;&lt;(ostream&amp; os, const String&amp; as)</a></li>
 <li>For a sample, refer to source code of ALib class <b>IniFile</b>, method <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a39a807ecf078c69a8437db857dd0aeaa">IniFile::ReadFile</a>. </li>
@@ -216,7 +215,7 @@ Public Methods</h2></td></tr>
 <p> Constructs this <em>ApplyTo parameter class</em>. Reads a line of text from a <b>std::istream</b>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">istream</td><td>The input stream to read from. </td></tr>
-    <tr><td class="paramname">targetData</td><td>If <code>CurrentData::Keep</code>, the target <code>AString</code> is not cleared before the read operation is performed. Defaults to <code>CurrentData::Clear</code>. </td></tr>
+    <tr><td class="paramname">targetData</td><td>If <code>CurrentData::Keep</code>, the target <code>AString</code> is not cleared before the read operation is performed. Defaults to <code><a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a9345007d67faa05253932092d54d10d4adc30bc0c7914db5918da4263fce93ad2" title="Chooses to clear existing data. ">CurrentData::Clear</a></code>. </td></tr>
     <tr><td class="paramname">bufferSize</td><td>The amount of characters that the buffer is increased while reading parts of the line. Defaults to 256 characters. </td></tr>
     <tr><td class="paramname">maxLineWidth</td><td>The maximum length of a single line to be read. Longer lines get truncated. Defaults to 4096 characters. </td></tr>
   </table>
@@ -298,7 +297,7 @@ Public Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 5 2016 10:32:54 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Feb 15 2016 11:32:19 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

@@ -1,3 +1,12 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag$classaworx_1_1lox_1_1core_1_1Domain.html" title="aworx::lox::core::Domain" alt="" coords="5,5,173,32"/>
+<area shape="rect" id="node1" href="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag$classaworx_1_1lox_1_1core_1_1Logger.html" title="aworx::lox::core::Logger" alt="" coords="5,241,168,267"/>
+<area shape="rect" id="node2" href="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag$classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html" title="aworx::lox::core::textlogger\l::TextLogger" alt="" coords="216,233,396,275"/>
+<area shape="rect" id="node3" href="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag$classaworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html" title="aworx::lox::core::textlogger\l::PlainTextLogger" alt="" coords="444,136,624,177"/>
+<area shape="rect" id="node8" href="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag$classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html" title="aworx::lox::loggers\l::AnsiLogger" alt="" coords="468,233,600,275"/>
+<area shape="rect" id="node10" href="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag$classaworx_1_1lox_1_1loggers_1_1WindowsConsoleLogger.html" title="aworx::lox::loggers\l::WindowsConsoleLogger" alt="" coords="449,299,619,340"/>
+<area shape="rect" id="node4" href="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag$classaworx_1_1lox_1_1loggers_1_1ConsoleLogger.html" title="aworx::lox::loggers\l::ConsoleLogger" alt="" coords="677,5,809,47"/>
+<area shape="rect" id="node5" href="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag$classaworx_1_1lox_1_1loggers_1_1MemoryLogger.html" title="aworx::lox::loggers\l::MemoryLogger" alt="" coords="677,71,809,112"/>
+<area shape="rect" id="node6" href="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag$classaworx_1_1lox_1_1loggers_1_1TextFileLogger.html" title="aworx::lox::loggers\l::TextFileLogger" alt="" coords="677,136,809,177"/>
+<area shape="rect" id="node7" href="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag$classaworx_1_1lox_1_1loggers_1_1VStudioLogger.html" title="aworx::lox::loggers\l::VStudioLogger" alt="" coords="677,201,809,243"/>
+<area shape="rect" id="node9" href="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag$classaworx_1_1lox_1_1loggers_1_1AnsiConsoleLogger.html" title="aworx::lox::loggers\l::AnsiConsoleLogger" alt="" coords="672,267,815,308"/>
 </map>

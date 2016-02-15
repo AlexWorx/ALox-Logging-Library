@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1602</span>
+   &#160;<span id="projectnumber">V. 1602 R. 1</span>
    </div>
   </td>
  </tr>
@@ -133,14 +133,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="asliteral_8hpp_source.html">asliteral.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="stringliteral_8hpp_source.html">stringliteral.hpp</a>&gt;</code></p>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><h3>template&lt;typename TLiteral&gt;<br />
 struct aworx::lib::strings::TMPLiteral&lt; TLiteral &gt;</h3>
 
 <hr/>
-<p> Template meta programming (TMP) helper class to get the buffer and (constant) length of a string literal. Specializations exist for C++ string literals and ALib type <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASLiteral.html">ASLiteral.</a> </p><dl class="section note"><dt>Note</dt><dd>This struct is of internal nature. For standard use of ALib strings, there is no no need to know about it.<br />
- However, if user defined string types exist which have a length known at compile time, ALib users might want to implement a specialization for that type. The benefit lies in a performance gain. For example, appending types (of smaller sizes) to objects of type <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASAlloc.html">AString</a> does not invoke memcpy() by inlining the right number of single copy commands. </dd></dl>
+<p> Template meta programming (TMP) helper class to get the buffer and (constant) length of a string literal. Specializations exist for C++ string literals and ALib type <a class="el" href="classaworx_1_1lib_1_1strings_1_1StringLiteral.html">StringLiteral.</a> </p><dl class="section note"><dt>Note</dt><dd>This struct is of internal nature. For standard use of ALib strings, there is no no need to know about it.<br />
+ However, if user defined string types exist which have a length known at compile time, ALib users might want to implement a specialization for that type. The benefit lies in a performance gain. For example, appending types (of smaller sizes) to objects of type <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> does not invoke memcpy() by inlining the right number of single copy commands. </dd></dl>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -181,13 +181,13 @@ Public Static Methods</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li><a class="el" href="asliteral_8hpp_source.html">asliteral.hpp</a></li>
+<li><a class="el" href="stringliteral_8hpp_source.html">stringliteral.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 5 2016 10:32:54 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Feb 15 2016 11:32:19 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

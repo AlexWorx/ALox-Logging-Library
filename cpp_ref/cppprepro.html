@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1602</span>
+   &#160;<span id="projectnumber">V. 1602 R. 1</span>
    </div>
   </td>
  </tr>
@@ -175,7 +175,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 3. Compilation Symbols</h1>
 <p>As stated above, ALox volunteers to separate everything that is related to the C++ preprocessor into three different categories. This section is about symbols that can be passed to the compiler.</p>
 <p><b>Naming</b><br />
- Many of the symbols are named using a postfix <em>_ON</em> or <em>_OFF</em> what indicates that they can be used to switch a code selection symbol (see next sections) which is named the same but excluding the postfix, on or off. As a sample, the <em>compilation symbols</em> <a class="el" href="group__GrpALoxCompilerSymbols.html#ga1d6b17b1dc814c44f312baf8d6f56688">ALOX_DBG_LOG_ON</a> and <a class="el" href="group__GrpALoxCompilerSymbols.html#gaf2de46ee4b30ee640266f7ac5de25bb9">ALOX_DBG_LOG_OFF</a> are controlling the definition of the <em>code selection symbol</em> <a class="el" href="group__GrpALoxCodeSelectorSymbols.html#ga2c6ba32fb7e34be7cee2100578b84a6e">ALOX_DBG_LOG</a>.</p>
+ Many of the symbols are named using suffixex <em>_ON</em> or <em>_OFF</em> what indicates that they can be used to switch a code selection symbol (see next sections) which is named the same but excluding the suffix. As a sample, the <em>compilation symbols</em> <a class="el" href="group__GrpALoxCompilerSymbols.html#ga1d6b17b1dc814c44f312baf8d6f56688">ALOX_DBG_LOG_ON</a> and <a class="el" href="group__GrpALoxCompilerSymbols.html#gaf2de46ee4b30ee640266f7ac5de25bb9">ALOX_DBG_LOG_OFF</a> are controlling the definition of the <em>code selection symbol</em> <a class="el" href="group__GrpALoxCodeSelectorSymbols.html#ga2c6ba32fb7e34be7cee2100578b84a6e">ALOX_DBG_LOG</a>.</p>
 <p><b>Default values</b><br />
  If no compilation symbols are given, appropriate default values are chosen by ALox headers. Some of these default values refer to the somehow standard symbols <em>NDEBUG</em>, <em>DEBUG</em> and <em>_DEBUG</em> used by other libraries. These default settings include:</p>
 <ul>
@@ -198,7 +198,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  </p>
 <h1><a class="anchor" id="cppprepro_code_selection_symbols"></a>
 4. Code Selection Symbols</h1>
-<p>These symbols are mostly derived (by the ALib/ALox header files) from the <b>Compilation Symbols </b>(<a class="el" href="group__GrpALibCompilerSymbols.html">ALib</a>, <a class="el" href="group__GrpALoxCompilerSymbols.html">ALox</a>) discussed in the previous section and, their naming oftenly corresponds to these, excluding the postfix <em>_ON</em> and <em>_OFF</em>.</p>
+<p>These symbols are mostly derived (by the ALib/ALox header files) from the <b>Compilation Symbols </b>(<a class="el" href="group__GrpALibCompilerSymbols.html">ALib</a>, <a class="el" href="group__GrpALoxCompilerSymbols.html">ALox</a>) discussed in the previous section and, their naming oftenly corresponds to these, excluding suffixes <em>_ON</em> and <em>_OFF</em>.</p>
 <p>These symbols must not be passed to the compiler and must not be set manually from within code entities that use ALox libraries. They can be used in code entities that use ALox to select code depending on the same settings of the ALox library compilation. (Besides ALox specific symbols of that type, of-course, also platform specific symbols are used to select code, e.g. <em>__GNUC__</em>, <em>__GLIBCXX__</em>, <em>_MSC_VER</em>, <em>_WIN32</em>, etc.).</p>
 <p>Code selection symbols could be used to implement ALox logging using pairs of </p><pre class="fragment">#if defined(ALOX_XYZ_SYMBOL)
 #endif
@@ -214,17 +214,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>The code selection mainly achieves:</p>
 <ul>
 <li><b>Pruning of log code</b><br />
- Using the logging macros provided allows to selectively removing all <em>debug</em> or <em>release logging</em> invocations from the code.<br />
+ Using the logging macros provided, allows to selectively remove all <em><em>debug</em> logging</em> or <em>release logging</em> invocations from the code. (For an explanation of the concept of '<em>pruning'</em>, see <a href="../faq.html#faq_pruning">What is Pruning?</a>.)<br />
  To configure logging (e.g. create certain loggers, configure the log output, etc.) the macro <a class="el" href="group__GrpMacrosDebugLog.html#ga7dbb7427d18d49e2dd87d5f2d2036e0b">Log_Prune</a> and <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a> are provided (which are empty, hence remove all enclosed code on request).</li>
 </ul>
 <ul>
 <li><b>Adding caller information</b><br />
- ALox uses built-in standard preprocessor symbols like "__FILE__" and "__LINE__" to provide information about the position of logging statement within the source. Especially for release logging, one problematic fact is that such logging source information could disclose internals if the release software unit was reverse engineered. Therefore, the use of source information is configurable.<br />
- Also, hiding the use of the built-in symbols, using dedicated ALox specific macros, reliefs the source code lot of clutter and overhead.</li>
+ ALox uses built-in standard preprocessor symbols like "__FILE__" and "__LINE__" to provide information about the position of logging statement within the source. Especially for release logging, one problematic fact is that such logging source information could disclose internals if the release software unit was reverse engineered. Therefore, the use of source information is configurable and disabled by default.<br />
+ Also, hiding the use of the built-in symbols by using dedicated ALox macros, reliefs the source code from a lot of clutter and overhead.</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>We think, from the fact that source code editors which color C++ macros specifically, a next small benefit is seen when looking at the source code: Similar to colored comment lines, all log lines shine in their own preprocessor color.</dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Other language implementations of ALox (<em>ALox for C#</em> and <em>ALox for Java</em>) implement pruning with different, language specific mechanisms. In C++, by providing not only a set of macros to implement debug logging, but also one for release logging, one of the differences to such other ALox implementations is, that this allows to prune release logging from the code the same as to prune debug logging. This extra flexibility is not provided with the other implementations by default, but might be achieved by adding language specific extensions by the user of the libraries.<br />
- It might be important to understand the difference: When release logging is just <em>disabled</em>, the code for release logging still remains in the binaries, which has an impact on their size and (a marginal) impact on their speed. In addition it is possibility to reverse engineer such binaries and learn about internals of the software (should someone do so).<br />
+<dl class="section note"><dt>Note</dt><dd>Other language implementations of ALox (<em>ALox for C#</em> and <em>ALox for Java</em>) implement pruning with different, language specific mechanisms. In C++, by providing not only a set of macros to implement debug logging, but also one for release logging, one of the differences to such other ALox implementations is, that this allows to prune <em>release logging</em> from the code the same as to prune <em>debug logging</em>. This extra flexibility is not provided with the other implementations by default, but might be achieved by adding language specific extensions by the user of the libraries.<br />
+ It might be important to understand the difference: When release logging is just <em>disabled</em>, the code for release logging still remains in the binaries, which has an impact on their size and an (probably marginal) impact on their speed. In addition it is possibility to reverse engineer such binaries and learn about internals of the software (should someone do so).<br />
  In this respect, ALox for C++ is the most flexible implementation of ALox as two different release builds are possible: such with release logging incorporated and such with release logging pruned.</dd></dl>
 <h2><a class="anchor" id="cppprepro_42"></a>
 5.2. ALox Logging Macros</h2>
@@ -251,7 +251,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 5 2016 10:32:54 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Feb 15 2016 11:32:18 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

@@ -1,3 +1,11 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="/home/a/mnt/dev/A-Worx/ALox/html/java_ref/java_ref.tag$classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html" title="com::aworx::lox::core\l::Domain" alt="" coords="5,5,153,47"/>
+<area shape="rect" id="node1" href="/home/a/mnt/dev/A-Worx/ALox/html/java_ref/java_ref.tag$classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="com::aworx::lox::core\l::Logger" alt="" coords="5,88,153,129"/>
+<area shape="rect" id="node2" href="/home/a/mnt/dev/A-Worx/ALox/html/java_ref/java_ref.tag$classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html" title="com::aworx::lox::core\l::textlogger::TextLogger" alt="" coords="201,88,361,129"/>
+<area shape="rect" id="node3" href="/home/a/mnt/dev/A-Worx/ALox/html/java_ref/java_ref.tag$classcom_1_1aworx_1_1lox_1_1android_1_1AndroidLogCatLogger.html" title="com::aworx::lox::android\l::AndroidLogCatLogger" alt="" coords="421,23,587,64"/>
+<area shape="rect" id="node4" href="/home/a/mnt/dev/A-Worx/ALox/html/java_ref/java_ref.tag$classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html" title="com::aworx::lox::core\l::textlogger::PlainTextLogger" alt="" coords="409,88,599,129"/>
+<area shape="rect" id="node8" href="/home/a/mnt/dev/A-Worx/ALox/html/java_ref/java_ref.tag$classcom_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html" title="com::aworx::lox::loggers\l::AnsiLogger" alt="" coords="421,169,587,211"/>
+<area shape="rect" id="node5" href="/home/a/mnt/dev/A-Worx/ALox/html/java_ref/java_ref.tag$classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html" title="com::aworx::lox::loggers\l::ConsoleLogger" alt="" coords="647,5,812,47"/>
+<area shape="rect" id="node6" href="/home/a/mnt/dev/A-Worx/ALox/html/java_ref/java_ref.tag$classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html" title="com::aworx::lox::loggers\l::MemoryLogger" alt="" coords="647,71,812,112"/>
+<area shape="rect" id="node7" href="/home/a/mnt/dev/A-Worx/ALox/html/java_ref/java_ref.tag$classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html" title="com::aworx::lox::loggers\l::TextFileLogger" alt="" coords="647,136,812,177"/>
+<area shape="rect" id="node9" href="/home/a/mnt/dev/A-Worx/ALox/html/java_ref/java_ref.tag$classcom_1_1aworx_1_1lox_1_1loggers_1_1AnsiConsoleLogger.html" title="com::aworx::lox::loggers\l::AnsiConsoleLogger" alt="" coords="647,201,812,243"/>
 </map>

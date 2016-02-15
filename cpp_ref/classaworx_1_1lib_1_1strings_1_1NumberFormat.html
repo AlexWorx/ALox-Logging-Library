@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1602</span>
+   &#160;<span id="projectnumber">V. 1602 R. 1</span>
    </div>
   </td>
  </tr>
@@ -138,8 +138,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Collaboration diagram for NumberFormat:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lib_1_1strings_1_1NumberFormat__coll__graph.svg" width="228" height="218"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lib_1_1strings_1_1NumberFormat__coll__graph.svg" width="226" height="218"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
@@ -152,7 +151,7 @@ Collaboration diagram for NumberFormat:</div>
 </ul>
 <p>As an example, when writing float data into a configuration file, class <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a> ignores the systems locale setting and writes all data using '.' as decimal separator. When reading values, both ' . ' and ' , ' are accepted. While loosing the possibility to read configuration data that uses a "thousand separator" which is generally the opposite of the decimal separator (opposite here means it is a ',' when decimal separator is a '.' and vice versa), what is gained is that floats are read without throwing exceptions regardless of the locale that was set when they were written. Therefore configuration files are consistent and readable across all software installations.</p>
 <p>Instances created, have default values set, independent from the current locale setting of the system. To initialize this classes fields to reflect the current locale, invoke <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a286f8e0f3c8b0faa574522a25fbb0912">SetFromLocale()</a>.</p>
-<dl class="section note"><dt>Note</dt><dd>The method interface of this class is quite rudimentary. Therefore, it is advisable to use more user friendly classes as <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASAlloc.html">AString</a> or <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASSubstring.html">Substring</a>, which provide methods that accept a configured instance of this class as parameter and do the conversion internally. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The method interface of this class is quite rudimentary. Therefore, it is advisable to use more user friendly classes as <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> or <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>, which provide methods that accept a configured instance of this class as parameter and do the conversion internally. </dd></dl>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Public Static Fields</h2></td></tr>
@@ -161,12 +160,12 @@ Public Static Fields</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Fields</h2></td></tr>
-<tr class="memitem:a7d522765b039da87634a1ff4c05edca0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1strings_1_1ASTerminatable.html">ASTerminatable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a7d522765b039da87634a1ff4c05edca0">DecimalExponentSeparator</a> = &quot;E&quot;</td></tr>
-<tr class="separator:a7d522765b039da87634a1ff4c05edca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a522f4eafcaecbe8d0653d5ca4a33a9b4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html">TString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a522f4eafcaecbe8d0653d5ca4a33a9b4">DecimalExponentSeparator</a> = &quot;E&quot;</td></tr>
+<tr class="separator:a522f4eafcaecbe8d0653d5ca4a33a9b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac69a618985c8aa8fdec834264d317b54"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#ac69a618985c8aa8fdec834264d317b54">DecimalPointCharacter</a> = '.'</td></tr>
 <tr class="separator:ac69a618985c8aa8fdec834264d317b54"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79ad4feac81e7c3f18e72411402bce6f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1strings_1_1ASTerminatable.html">ASTerminatable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a79ad4feac81e7c3f18e72411402bce6f">DecimalPointCharacters</a> = &quot;.,&quot;</td></tr>
-<tr class="separator:a79ad4feac81e7c3f18e72411402bce6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a786b45246188c9d3c25e80fede6de8b4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html">TString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a786b45246188c9d3c25e80fede6de8b4">DecimalPointCharacters</a> = &quot;.,&quot;</td></tr>
+<tr class="separator:a786b45246188c9d3c25e80fede6de8b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4968ebb3e654b4b07f58e13d2786dae"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#ae4968ebb3e654b4b07f58e13d2786dae">ForceScientificFormat</a> = false</td></tr>
 <tr class="separator:ae4968ebb3e654b4b07f58e13d2786dae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6c90dcda5ed7d0ecdbc8ec0aa9c76ac3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a6c90dcda5ed7d0ecdbc8ec0aa9c76ac3">FractionalDigits</a> = -1</td></tr>
@@ -184,10 +183,10 @@ Public Methods</h2></td></tr>
 <tr class="separator:a2d7340075d3cacbd41d9fc16c968c217"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a286f8e0f3c8b0faa574522a25fbb0912"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a286f8e0f3c8b0faa574522a25fbb0912">SetFromLocale</a> ()</td></tr>
 <tr class="separator:a286f8e0f3c8b0faa574522a25fbb0912"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc58da979de8d98200f0aca32cade7fe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#adc58da979de8d98200f0aca32cade7fe">StringToFloat</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1AS.html">AS</a> &amp;src, int &amp;idx)</td></tr>
-<tr class="separator:adc58da979de8d98200f0aca32cade7fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab6dcba8a338af34f962ab45b9beaa65"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> int64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#aab6dcba8a338af34f962ab45b9beaa65">StringToInteger</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1AS.html">AS</a> &amp;src, int &amp;idx)</td></tr>
-<tr class="separator:aab6dcba8a338af34f962ab45b9beaa65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a207b4a145cc239c0724a12de60ba558d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a207b4a145cc239c0724a12de60ba558d">StringToFloat</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;src, int &amp;idx)</td></tr>
+<tr class="separator:a207b4a145cc239c0724a12de60ba558d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91f18c4d647fe4d49f6e286fa785bc5c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> int64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a91f18c4d647fe4d49f6e286fa785bc5c">StringToInteger</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;src, int &amp;idx)</td></tr>
+<tr class="separator:a91f18c4d647fe4d49f6e286fa785bc5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a50a4acaac277fd7236485b928f5ec1c3"></a>
@@ -221,7 +220,7 @@ Public Methods</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Appends the given double value as string representation.</p>
-<p>This method supports to write a variable or fixed number of digits for the integral and the fractional part of the provided value, or in <em>scientific notation</em>. In <em>scientific notation</em>, the value is multiplied with a power of 10 so that the integral part of the number falls into the range of 0 and 9. Then, the the negative value of the exponent of this multiplicand is appended, separated by the string defined in <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a7d522765b039da87634a1ff4c05edca0">DecimalExponentSeparator</a>.</p>
+<p>This method supports to write a variable or fixed number of digits for the integral and the fractional part of the provided value, or in <em>scientific notation</em>. In <em>scientific notation</em>, the value is multiplied with a power of 10 so that the integral part of the number falls into the range of 0 and 9. Then, the the negative value of the exponent of this multiplicand is appended, separated by the string defined in <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a522f4eafcaecbe8d0653d5ca4a33a9b4">DecimalExponentSeparator</a>.</p>
 <p>The output format is dependent on various settings provided in the fields of this class.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -303,14 +302,14 @@ Public Methods</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="adc58da979de8d98200f0aca32cade7fe"></a>
+<a class="anchor" id="a207b4a145cc239c0724a12de60ba558d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">double StringToFloat </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classaworx_1_1lib_1_1strings_1_1AS.html">AS</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;&#160;</td>
           <td class="paramname"><em>src</em>, </td>
         </tr>
         <tr>
@@ -341,14 +340,14 @@ Public Methods</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aab6dcba8a338af34f962ab45b9beaa65"></a>
+<a class="anchor" id="a91f18c4d647fe4d49f6e286fa785bc5c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">int64_t StringToInteger </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classaworx_1_1lib_1_1strings_1_1AS.html">AS</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;&#160;</td>
           <td class="paramname"><em>src</em>, </td>
         </tr>
         <tr>
@@ -380,17 +379,17 @@ Public Methods</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a7d522765b039da87634a1ff4c05edca0"></a>
+<a class="anchor" id="a522f4eafcaecbe8d0653d5ca4a33a9b4"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classaworx_1_1lib_1_1strings_1_1ASTerminatable.html">ASTerminatable</a> DecimalExponentSeparator = &quot;E&quot;</td>
+          <td class="memname"><a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html">TString</a> DecimalExponentSeparator = &quot;E&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Defines the decimal exponent symbol of string representations of floating point numbers when written or parsed in scientific notation by methods <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#adc58da979de8d98200f0aca32cade7fe">StringToFloat</a> and <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a50a4acaac277fd7236485b928f5ec1c3">FloatToString</a>.<br />
- Method <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#adc58da979de8d98200f0aca32cade7fe">StringToFloat</a> accepts characters 'e' and 'E' in addition to the character set in this field.<br />
+<p>Defines the decimal exponent symbol of string representations of floating point numbers when written or parsed in scientific notation by methods <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a207b4a145cc239c0724a12de60ba558d">StringToFloat</a> and <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a50a4acaac277fd7236485b928f5ec1c3">FloatToString</a>.<br />
+ Method <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a207b4a145cc239c0724a12de60ba558d">StringToFloat</a> accepts characters 'e' and 'E' in addition to the character set in this field.<br />
  Defaults to 'E'. </p>
 
 </div>
@@ -404,21 +403,21 @@ Public Methods</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Defines the decimal point character when converting a floating point number to a string representation with method <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a50a4acaac277fd7236485b928f5ec1c3">FloatToString</a>. Also, method <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#adc58da979de8d98200f0aca32cade7fe">StringToFloat</a> accepts the character provided in this field aside to those provided in <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a79ad4feac81e7c3f18e72411402bce6f">DecimalPointCharacters</a>.<br />
+<p>Defines the decimal point character when converting a floating point number to a string representation with method <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a50a4acaac277fd7236485b928f5ec1c3">FloatToString</a>. Also, method <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a207b4a145cc239c0724a12de60ba558d">StringToFloat</a> accepts the character provided in this field aside to those provided in <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a786b45246188c9d3c25e80fede6de8b4">DecimalPointCharacters</a>.<br />
  The field defaults to '.'. By invoking <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a286f8e0f3c8b0faa574522a25fbb0912">SetFromLocale()</a>, the current locale's setting is determined. </p>
 
 </div>
 </div>
-<a class="anchor" id="a79ad4feac81e7c3f18e72411402bce6f"></a>
+<a class="anchor" id="a786b45246188c9d3c25e80fede6de8b4"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classaworx_1_1lib_1_1strings_1_1ASTerminatable.html">ASTerminatable</a> DecimalPointCharacters = &quot;.,&quot;</td>
+          <td class="memname"><a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html">TString</a> DecimalPointCharacters = &quot;.,&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Defines all characters that will be accepted by <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#adc58da979de8d98200f0aca32cade7fe">StringToFloat</a> as the separator of integral and fractional part of the value read.<br />
+<p>Defines all characters that will be accepted by <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a207b4a145cc239c0724a12de60ba558d">StringToFloat</a> as the separator of integral and fractional part of the value read.<br />
  Defaults to ".,".<br />
  The advantage of allowing both common symbols is that standard numbers are accepted independent of the current locale setting. However, the thousand separator commonly is the opposite of the 'dot' standard. This class does not support parsing or writing values with thousand separators anyhow. Therefore, accepting both here is no limitation.<br />
  Note: In addition to the characters provided in this field, method StringToFloat accepts the single character set in <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#ac69a618985c8aa8fdec834264d317b54">DecimalPointCharacter</a> as well. </p>
@@ -506,7 +505,7 @@ Public Methods</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Determines if positive exponent values are prepended with an explicit '+' character when written using <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a50a4acaac277fd7236485b928f5ec1c3">FloatToString</a>.<br />
- Independently from this setting, method <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#adc58da979de8d98200f0aca32cade7fe">StringToFloat</a> always accepts such optional plus sign.<br />
+ Independently from this setting, method <a class="el" href="classaworx_1_1lib_1_1strings_1_1NumberFormat.html#a207b4a145cc239c0724a12de60ba558d">StringToFloat</a> always accepts such optional plus sign.<br />
  Defaults to <code>false</code>, as some systems will not accept a plus sign on the exponent value. </p>
 
 </div>
@@ -519,7 +518,7 @@ Public Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 5 2016 10:32:54 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Feb 15 2016 11:32:19 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

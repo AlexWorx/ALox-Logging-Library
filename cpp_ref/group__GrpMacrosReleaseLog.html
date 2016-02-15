@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1602</span>
+   &#160;<span id="projectnumber">V. 1602 R. 1</span>
    </div>
   </td>
  </tr>
@@ -120,51 +120,52 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>The macros listed here, are provided to place release log statements within source code using ALox. Besides that, macros controlling and setting preferences for ALox exists.</p>
-<p>The exclusive use of these macros should be sufficient to support most of common release logging statements with ALox. Should some functionality be not available easily using the macros, of-course, the normal C++ API of ALox can be used in parallel to using the macros. Code that is using the C++ API has to be enclosed by<br />
+<p>The exclusive use of these macros should be sufficient to support most of common release logging statements with ALox. Should some functionality be not available easily using the macros, of-course, the normal C++ API of ALox can be used in parallel to using the macros. Code that is using the C++ API might be enclosed by<br />
  </p><pre class="fragment">#if defined(ALOX_REL_LOG)
    ...
 #endif
-</pre><p> lines, to remove them when compiling a release version of the software unit with pruned release log macros. (Such compilation would be made by passing <a class="el" href="group__GrpALoxCompilerSymbols.html#gae77944a12e0a9b9bc2657cb7298d70f4">ALOX_REL_LOG_OFF</a> to the compiler and could be useful in certain situations.) </p>
+</pre><p> lines, to remove them when compiling a release version of the software unit with pruned release log macros. Alternatively, such code might be embedded in macro <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>. (Such compilation would be made by passing <a class="el" href="group__GrpALoxCompilerSymbols.html#gae77944a12e0a9b9bc2657cb7298d70f4">ALOX_REL_LOG_OFF</a> to the compiler and could be useful in certain situations.) </p>
+<p>Prior to using the macros, each code entity has to set the preprocessor macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga1f170b96d3ead37b7f530134e64bf121">LOX_LOX</a> This can be done in a general header file of the software, (e.g. the same that exposes the release-Lox object to that source), or, in more complex scenarios with more than one release-Lox object, at any other appropriate source location.</p>
 <p>All macro names are prefixed with the term <b>Lox_</b>. This implies that they are macros to implement <em>release logging</em>. In contrast to this, a set of similar macros exists for <em>debug logging</em> (see <a class="el" href="group__GrpMacrosDebugLog.html">ALox Macros For Debug Logging</a>). Those are prefixed <b>Log_</b>. </p><dl class="section note"><dt>Note</dt><dd>The choice of the prefixes <b>Log_</b> and <b>Lox_</b> was made to provide maximum source code compatibility of <em>ALox for C++</em> log lines in comparison to other ALox implementations in other programming languages, which provide a class Log as a kind of 'mirror' class of class Lox. Invocations to class Log get pruned in these languages. </dd></dl>
-<p>Most macros make use of the macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#gab014491c0aaaceaa1ef1a7d679a8d3e0">LOG_REL_LOX</a>, which references a singleton object of class <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> that is used for all release logging. This singleton concept covers most uses cases for release logging. If more flexibility is wanted, then either the macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#gab014491c0aaaceaa1ef1a7d679a8d3e0">LOG_REL_LOX</a> might be changed for different compilation units or the ALox C++ API might be used instead of the macros listed here. </p>
+<p>Most macros make use of the macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga1f170b96d3ead37b7f530134e64bf121">LOX_LOX</a>, which references a singleton object of class <a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> that is used for all release logging. This singleton concept covers most uses cases for release logging. If more flexibility is wanted, then either the macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga1f170b96d3ead37b7f530134e64bf121">LOX_LOX</a> might be changed for different compilation units or the ALox C++ API might be used instead of the macros listed here. </p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:gac3806ad5dcf0f48b170f79069369f380"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#gac3806ad5dcf0f48b170f79069369f380">Lox_AddLogger</a>(...)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_PREFIX.AddLogger    ( __VA_ARGS__ );  <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> ) }</td></tr>
+<tr class="memitem:gac3806ad5dcf0f48b170f79069369f380"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#gac3806ad5dcf0f48b170f79069369f380">Lox_AddLogger</a>(...)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_ACQUIRE.AddLogger    ( __VA_ARGS__ );  <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> ) }</td></tr>
 <tr class="separator:gac3806ad5dcf0f48b170f79069369f380"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4d9961312aab181a28b21724c3809184"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#ga4d9961312aab181a28b21724c3809184">Lox_Assert</a>(...)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_PREFIX.Assert       ( __VA_ARGS__);    <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> ) }</td></tr>
+<tr class="memitem:ga4d9961312aab181a28b21724c3809184"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#ga4d9961312aab181a28b21724c3809184">Lox_Assert</a>(...)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_ACQUIRE.Assert       ( __VA_ARGS__);    <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> ) }</td></tr>
 <tr class="separator:ga4d9961312aab181a28b21724c3809184"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5fa12e4bc99fd2ebed4fe90729f54a03"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#ga5fa12e4bc99fd2ebed4fe90729f54a03">Lox_Error</a>(...)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_PREFIX.Error        ( __VA_ARGS__ );   <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> ) }</td></tr>
+<tr class="memitem:ga5fa12e4bc99fd2ebed4fe90729f54a03"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#ga5fa12e4bc99fd2ebed4fe90729f54a03">Lox_Error</a>(...)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_ACQUIRE.Error        ( __VA_ARGS__ );   <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> ) }</td></tr>
 <tr class="separator:ga5fa12e4bc99fd2ebed4fe90729f54a03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8536e68dcdee27e1d3463687d42ee6ed"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#ga8536e68dcdee27e1d3463687d42ee6ed">Lox_GetLogger</a>(identifier,  name)&#160;&#160;&#160;<a class="el" href="group__GrpMacrosDebugLog.html#ga7dbb7427d18d49e2dd87d5f2d2036e0b">Log_Prune</a>( LOG_REL_LOX.AcquireAndSetCI( <a class="el" href="group__GrpALibMacros.html#gab1836c6de18fd089b123e40e22472f4d">ALIB_SRC_INFO_PARAMS</a> ); identifier= LOG_REL_LOX.GetLogger ( name ); <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> )</td></tr>
+<tr class="memitem:ga8536e68dcdee27e1d3463687d42ee6ed"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#ga8536e68dcdee27e1d3463687d42ee6ed">Lox_GetLogger</a>(identifier,  name)&#160;&#160;&#160;<a class="el" href="group__GrpMacrosDebugLog.html#ga7dbb7427d18d49e2dd87d5f2d2036e0b">Log_Prune</a>( LOX_LOX.AcquireAndSetCI( <a class="el" href="group__GrpALibMacros.html#gab1836c6de18fd089b123e40e22472f4d">ALIB_SRC_INFO_PARAMS</a> ); identifier= LOX_LOX.GetLogger ( name ); <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> )</td></tr>
 <tr class="separator:ga8536e68dcdee27e1d3463687d42ee6ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaac5f1d37b8f195a7d387d4bf59f9b7c0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#gaac5f1d37b8f195a7d387d4bf59f9b7c0">Lox_GetMarker</a>(marker,  scope)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOG_REL_LOX.AcquireAndSetCI( <a class="el" href="group__GrpALibMacros.html#gab1836c6de18fd089b123e40e22472f4d">ALIB_SRC_INFO_PARAMS</a> ); marker= LOG_REL_LOX.GetMarker ( scope ); <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> ) }</td></tr>
+<tr class="memitem:gaac5f1d37b8f195a7d387d4bf59f9b7c0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#gaac5f1d37b8f195a7d387d4bf59f9b7c0">Lox_GetMarker</a>(marker,  scope)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_LOX.AcquireAndSetCI( <a class="el" href="group__GrpALibMacros.html#gab1836c6de18fd089b123e40e22472f4d">ALIB_SRC_INFO_PARAMS</a> ); marker= LOX_LOX.GetMarker ( scope ); <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> ) }</td></tr>
 <tr class="separator:gaac5f1d37b8f195a7d387d4bf59f9b7c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga28233c29442a3ae8996d32b5078537d9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#ga28233c29442a3ae8996d32b5078537d9">Lox_Info</a>(...)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_PREFIX.Info         ( __VA_ARGS__ );   <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> ) }</td></tr>
+<tr class="memitem:ga28233c29442a3ae8996d32b5078537d9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#ga28233c29442a3ae8996d32b5078537d9">Lox_Info</a>(...)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_ACQUIRE.Info         ( __VA_ARGS__ );   <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> ) }</td></tr>
 <tr class="separator:ga28233c29442a3ae8996d32b5078537d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga97a2c77a1cef79dc8dd295153ea2347e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#ga97a2c77a1cef79dc8dd295153ea2347e">Lox_Line</a>(...)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_PREFIX.Line         ( __VA_ARGS__ );   <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> ) }</td></tr>
+<tr class="memitem:ga97a2c77a1cef79dc8dd295153ea2347e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#ga97a2c77a1cef79dc8dd295153ea2347e">Lox_Line</a>(...)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_ACQUIRE.Line         ( __VA_ARGS__ );   <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> ) }</td></tr>
 <tr class="separator:ga97a2c77a1cef79dc8dd295153ea2347e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0578fb3bfeb63ea05db9c34bc1a0d07d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#ga0578fb3bfeb63ea05db9c34bc1a0d07d">Lox_LogConfig</a>(...)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_PREFIX.LogConfig    ( __VA_ARGS__ );   <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> ) }</td></tr>
+<tr class="memitem:ga0578fb3bfeb63ea05db9c34bc1a0d07d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#ga0578fb3bfeb63ea05db9c34bc1a0d07d">Lox_LogConfig</a>(...)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_ACQUIRE.LogConfig    ( __VA_ARGS__ );   <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> ) }</td></tr>
 <tr class="separator:ga0578fb3bfeb63ea05db9c34bc1a0d07d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga089dc860d3f28c5cf30b661f2877462a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#ga089dc860d3f28c5cf30b661f2877462a">Lox_MapThreadName</a>(threadName)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_PREFIX.MapThreadName( threadName );    <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> ) }</td></tr>
+<tr class="memitem:ga089dc860d3f28c5cf30b661f2877462a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#ga089dc860d3f28c5cf30b661f2877462a">Lox_MapThreadName</a>(threadName)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_ACQUIRE.MapThreadName( threadName );    <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> ) }</td></tr>
 <tr class="separator:ga089dc860d3f28c5cf30b661f2877462a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga04158d8131eba14e98f93e433b6325d2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>(releaseLogCode)&#160;&#160;&#160;releaseLogCode</td></tr>
 <tr class="separator:ga04158d8131eba14e98f93e433b6325d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga321e65d2004cef126220b042fc95e03b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#ga321e65d2004cef126220b042fc95e03b">Lox_RemoveLogger</a>(logger)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_PREFIX.RemoveLogger ( logger );  <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> ) }</td></tr>
+<tr class="memitem:ga321e65d2004cef126220b042fc95e03b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#ga321e65d2004cef126220b042fc95e03b">Lox_RemoveLogger</a>(logger)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_ACQUIRE.RemoveLogger ( logger );  <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> ) }</td></tr>
 <tr class="separator:ga321e65d2004cef126220b042fc95e03b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa493b652d1b9a0d3bca8662603f5e199"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#gaa493b652d1b9a0d3bca8662603f5e199">Lox_RemoveLoggers</a>(filter)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_PREFIX.RemoveLoggers( filter );  <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> ) }</td></tr>
+<tr class="memitem:gaa493b652d1b9a0d3bca8662603f5e199"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#gaa493b652d1b9a0d3bca8662603f5e199">Lox_RemoveLoggers</a>(filter)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_ACQUIRE.RemoveLoggers( filter );  <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> ) }</td></tr>
 <tr class="separator:gaa493b652d1b9a0d3bca8662603f5e199"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga7e1bc971e6cd3b071fbc928a7d46fae9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#ga7e1bc971e6cd3b071fbc928a7d46fae9">Lox_SetDomain</a>(...)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_PREFIX.SetDomain    ( __VA_ARGS__ );   <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> ) }</td></tr>
+<tr class="memitem:ga7e1bc971e6cd3b071fbc928a7d46fae9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#ga7e1bc971e6cd3b071fbc928a7d46fae9">Lox_SetDomain</a>(...)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_ACQUIRE.SetDomain    ( __VA_ARGS__ );   <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> ) }</td></tr>
 <tr class="separator:ga7e1bc971e6cd3b071fbc928a7d46fae9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae6103e5556647a551bb2d78afb60522d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#gae6103e5556647a551bb2d78afb60522d">Lox_SetLogger</a>(enable,  filter)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_PREFIX.SetLogger    ( enable, filter); <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> ) }</td></tr>
+<tr class="memitem:gae6103e5556647a551bb2d78afb60522d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#gae6103e5556647a551bb2d78afb60522d">Lox_SetLogger</a>(enable,  filter)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_ACQUIRE.SetLogger    ( enable, filter); <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> ) }</td></tr>
 <tr class="separator:gae6103e5556647a551bb2d78afb60522d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gacea507bfcbffd40425f919f17a36fb9f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#gacea507bfcbffd40425f919f17a36fb9f">Lox_SetMarker</a>(marker,  scope)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_PREFIX.SetMarker    ( marker, scope );  <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> ) }</td></tr>
+<tr class="memitem:gacea507bfcbffd40425f919f17a36fb9f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#gacea507bfcbffd40425f919f17a36fb9f">Lox_SetMarker</a>(marker,  scope)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_ACQUIRE.SetMarker    ( marker, scope );  <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> ) }</td></tr>
 <tr class="separator:gacea507bfcbffd40425f919f17a36fb9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4ce0c3ef52fd3806ee4e99f8c44e8179"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#ga4ce0c3ef52fd3806ee4e99f8c44e8179">Lox_SetStartTime</a>(time,  filter)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_PREFIX.SetStartTime ( time, filter );  <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> ) }</td></tr>
+<tr class="memitem:ga4ce0c3ef52fd3806ee4e99f8c44e8179"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#ga4ce0c3ef52fd3806ee4e99f8c44e8179">Lox_SetStartTime</a>(time,  filter)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_ACQUIRE.SetStartTime ( time, filter );  <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> ) }</td></tr>
 <tr class="separator:ga4ce0c3ef52fd3806ee4e99f8c44e8179"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gacbfc03392b8a4f79d0bcb46bc2825d31"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#gacbfc03392b8a4f79d0bcb46bc2825d31">Lox_Verbose</a>(...)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_PREFIX.Verbose      ( __VA_ARGS__ );   <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> ) }</td></tr>
+<tr class="memitem:gacbfc03392b8a4f79d0bcb46bc2825d31"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#gacbfc03392b8a4f79d0bcb46bc2825d31">Lox_Verbose</a>(...)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_ACQUIRE.Verbose      ( __VA_ARGS__ );   <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> ) }</td></tr>
 <tr class="separator:gacbfc03392b8a4f79d0bcb46bc2825d31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf2a9706a6b6c48b69cc10ae1d65d9379"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#gaf2a9706a6b6c48b69cc10ae1d65d9379">Lox_Warning</a>(...)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_PREFIX.Warning      ( __VA_ARGS__ );   <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> ) }</td></tr>
+<tr class="memitem:gaf2a9706a6b6c48b69cc10ae1d65d9379"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpMacrosReleaseLog.html#gaf2a9706a6b6c48b69cc10ae1d65d9379">Lox_Warning</a>(...)&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_ACQUIRE.Warning      ( __VA_ARGS__ );   <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> ) }</td></tr>
 <tr class="separator:gaf2a9706a6b6c48b69cc10ae1d65d9379"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
@@ -177,11 +178,11 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>...</em></td><td>)</td>
-          <td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_PREFIX.AddLogger    ( __VA_ARGS__ );  <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> ) }</td>
+          <td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_ACQUIRE.AddLogger    ( __VA_ARGS__ );  <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> ) }</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#abd300988900048304b481573883406d8">Lox::AddLogger</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#gab014491c0aaaceaa1ef1a7d679a8d3e0">LOG_REL_LOX</a>. </p>
+<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#abd300988900048304b481573883406d8">Lox::AddLogger</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga1f170b96d3ead37b7f530134e64bf121">LOX_LOX</a>. </p>
 
 </div>
 </div>
@@ -194,11 +195,11 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>...</em></td><td>)</td>
-          <td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_PREFIX.Assert       ( __VA_ARGS__);    <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> ) }</td>
+          <td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_ACQUIRE.Assert       ( __VA_ARGS__);    <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> ) }</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#a3499398cbeb8d1a26f5eea3399514111">Lox::Assert</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#gab014491c0aaaceaa1ef1a7d679a8d3e0">LOG_REL_LOX</a>. </p>
+<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#a3499398cbeb8d1a26f5eea3399514111">Lox::Assert</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga1f170b96d3ead37b7f530134e64bf121">LOX_LOX</a>. </p>
 
 </div>
 </div>
@@ -211,11 +212,11 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>...</em></td><td>)</td>
-          <td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_PREFIX.Error        ( __VA_ARGS__ );   <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> ) }</td>
+          <td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_ACQUIRE.Error        ( __VA_ARGS__ );   <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> ) }</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#a3dab1b8384cf49f26424e34436c5b744">Lox::Error</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#gab014491c0aaaceaa1ef1a7d679a8d3e0">LOG_REL_LOX</a>. </p>
+<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#a3dab1b8384cf49f26424e34436c5b744">Lox::Error</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga1f170b96d3ead37b7f530134e64bf121">LOX_LOX</a>. </p>
 
 </div>
 </div>
@@ -238,11 +239,11 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="group__GrpMacrosDebugLog.html#ga7dbb7427d18d49e2dd87d5f2d2036e0b">Log_Prune</a>( LOG_REL_LOX.AcquireAndSetCI( <a class="el" href="group__GrpALibMacros.html#gab1836c6de18fd089b123e40e22472f4d">ALIB_SRC_INFO_PARAMS</a> ); identifier= LOG_REL_LOX.GetLogger ( name ); <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> )</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="group__GrpMacrosDebugLog.html#ga7dbb7427d18d49e2dd87d5f2d2036e0b">Log_Prune</a>( LOX_LOX.AcquireAndSetCI( <a class="el" href="group__GrpALibMacros.html#gab1836c6de18fd089b123e40e22472f4d">ALIB_SRC_INFO_PARAMS</a> ); identifier= LOX_LOX.GetLogger ( name ); <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> )</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#a829395dc991b4aed5a09ef5aa77e3e12">Lox::GetLogger</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#gab014491c0aaaceaa1ef1a7d679a8d3e0">LOG_REL_LOX</a>. </p>
+<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#a829395dc991b4aed5a09ef5aa77e3e12">Lox::GetLogger</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga1f170b96d3ead37b7f530134e64bf121">LOX_LOX</a>. </p>
 
 </div>
 </div>
@@ -265,11 +266,11 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOG_REL_LOX.AcquireAndSetCI( <a class="el" href="group__GrpALibMacros.html#gab1836c6de18fd089b123e40e22472f4d">ALIB_SRC_INFO_PARAMS</a> ); marker= LOG_REL_LOX.GetMarker ( scope ); <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> ) }</td>
+          <td></td><td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_LOX.AcquireAndSetCI( <a class="el" href="group__GrpALibMacros.html#gab1836c6de18fd089b123e40e22472f4d">ALIB_SRC_INFO_PARAMS</a> ); marker= LOX_LOX.GetMarker ( scope ); <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> ) }</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#a5c0a8913fff2143fb1eb6d2b86098933">Lox::GetMarker</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#gab014491c0aaaceaa1ef1a7d679a8d3e0">LOG_REL_LOX</a>. </p><dl class="section attention"><dt>Attention</dt><dd>If <a class="el" href="group__GrpALoxCodeSelectorSymbols.html#ga4b0e38e300ec824146da5e868f2c6290">ALOX_REL_LOG_CI</a> is not set, which is the default for release logging statements, code markers can not be used.<br />
+<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#a5c0a8913fff2143fb1eb6d2b86098933">Lox::GetMarker</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga1f170b96d3ead37b7f530134e64bf121">LOX_LOX</a>. </p><dl class="section attention"><dt>Attention</dt><dd>If <a class="el" href="group__GrpALoxCodeSelectorSymbols.html#ga4b0e38e300ec824146da5e868f2c6290">ALOX_REL_LOG_CI</a> is not set, which is the default for release logging statements, code markers can not be used.<br />
  If markers should be supported in release logging, the software entity has to be compiled with precompiler symbol <a class="el" href="group__GrpALoxCompilerSymbols.html#ga85c683ba401d4c9216c96a9a17a9e9a9">ALOX_REL_LOG_CI_ON</a>. Note that one effect of setting this symbol is, that information on source code paths and file names, as well as method names make their way into the release executable. This may not be wanted.<br />
  </dd></dl>
 
@@ -284,11 +285,11 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>...</em></td><td>)</td>
-          <td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_PREFIX.Info         ( __VA_ARGS__ );   <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> ) }</td>
+          <td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_ACQUIRE.Info         ( __VA_ARGS__ );   <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> ) }</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#ad52f89dd7d537db1a1bf70eb5b1c9ae0">Lox::Info</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#gab014491c0aaaceaa1ef1a7d679a8d3e0">LOG_REL_LOX</a>. </p>
+<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#ad52f89dd7d537db1a1bf70eb5b1c9ae0">Lox::Info</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga1f170b96d3ead37b7f530134e64bf121">LOX_LOX</a>. </p>
 
 </div>
 </div>
@@ -301,11 +302,11 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>...</em></td><td>)</td>
-          <td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_PREFIX.Line         ( __VA_ARGS__ );   <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> ) }</td>
+          <td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_ACQUIRE.Line         ( __VA_ARGS__ );   <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> ) }</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#a36309b70ccb095ea31e0a428111a4d2a">Lox::Line</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#gab014491c0aaaceaa1ef1a7d679a8d3e0">LOG_REL_LOX</a>. </p>
+<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#a36309b70ccb095ea31e0a428111a4d2a">Lox::Line</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga1f170b96d3ead37b7f530134e64bf121">LOX_LOX</a>. </p>
 
 </div>
 </div>
@@ -318,11 +319,11 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>...</em></td><td>)</td>
-          <td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_PREFIX.LogConfig    ( __VA_ARGS__ );   <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> ) }</td>
+          <td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_ACQUIRE.LogConfig    ( __VA_ARGS__ );   <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> ) }</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#a5ecb5f8a2a72316617ea48e6bcf695d4">Lox::LogConfig</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#gab014491c0aaaceaa1ef1a7d679a8d3e0">LOG_REL_LOX</a>. </p>
+<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#a5ecb5f8a2a72316617ea48e6bcf695d4">Lox::LogConfig</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga1f170b96d3ead37b7f530134e64bf121">LOX_LOX</a>. </p>
 
 </div>
 </div>
@@ -335,11 +336,11 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">threadName</td><td>)</td>
-          <td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_PREFIX.MapThreadName( threadName );    <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> ) }</td>
+          <td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_ACQUIRE.MapThreadName( threadName );    <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> ) }</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#a3911541857ea84938dede341ceb64ddd">Lox::MapThreadName</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#gab014491c0aaaceaa1ef1a7d679a8d3e0">LOG_REL_LOX</a>. </p>
+<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#a3911541857ea84938dede341ceb64ddd">Lox::MapThreadName</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga1f170b96d3ead37b7f530134e64bf121">LOX_LOX</a>. </p>
 
 </div>
 </div>
@@ -371,11 +372,11 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">logger</td><td>)</td>
-          <td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_PREFIX.RemoveLogger ( logger );  <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> ) }</td>
+          <td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_ACQUIRE.RemoveLogger ( logger );  <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> ) }</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#a394e92d4075de2a50b6fc0b5658500ac">Lox::RemoveLoggers</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#gab014491c0aaaceaa1ef1a7d679a8d3e0">LOG_REL_LOX</a>. </p>
+<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#a394e92d4075de2a50b6fc0b5658500ac">Lox::RemoveLoggers</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga1f170b96d3ead37b7f530134e64bf121">LOX_LOX</a>. </p>
 
 </div>
 </div>
@@ -388,11 +389,11 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">filter</td><td>)</td>
-          <td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_PREFIX.RemoveLoggers( filter );  <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> ) }</td>
+          <td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_ACQUIRE.RemoveLoggers( filter );  <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> ) }</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#a394e92d4075de2a50b6fc0b5658500ac">Lox::RemoveLoggers</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#gab014491c0aaaceaa1ef1a7d679a8d3e0">LOG_REL_LOX</a>. </p>
+<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#a394e92d4075de2a50b6fc0b5658500ac">Lox::RemoveLoggers</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga1f170b96d3ead37b7f530134e64bf121">LOX_LOX</a>. </p>
 
 </div>
 </div>
@@ -405,11 +406,11 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>...</em></td><td>)</td>
-          <td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_PREFIX.SetDomain    ( __VA_ARGS__ );   <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> ) }</td>
+          <td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_ACQUIRE.SetDomain    ( __VA_ARGS__ );   <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> ) }</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#a0676d6fc6dd68d7c2c0ca49ab8abe630">Lox::SetDomain</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#gab014491c0aaaceaa1ef1a7d679a8d3e0">LOG_REL_LOX</a>. </p><dl class="section attention"><dt>Attention</dt><dd>If <a class="el" href="group__GrpALoxCodeSelectorSymbols.html#ga4b0e38e300ec824146da5e868f2c6290">ALOX_REL_LOG_CI</a> is not set, which is the default for release logging statements, the overloaded version of the method that takes a scope parameter method will log a warning and will not be effective if parameter scope is not equal to Log::Scope.None.<br />
+<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#a0676d6fc6dd68d7c2c0ca49ab8abe630">Lox::SetDomain</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga1f170b96d3ead37b7f530134e64bf121">LOX_LOX</a>. </p><dl class="section attention"><dt>Attention</dt><dd>If <a class="el" href="group__GrpALoxCodeSelectorSymbols.html#ga4b0e38e300ec824146da5e868f2c6290">ALOX_REL_LOG_CI</a> is not set, which is the default for release logging statements, the overloaded version of the method that takes a scope parameter method will log a warning and will not be effective if parameter scope is not equal to Log::Scope.None.<br />
  In release logging it is advised to provide a domain name explicitly with every release log call.<br />
  If default domains should be supported, the software entity has to be compiled with precompiler symbol <a class="el" href="group__GrpALoxCompilerSymbols.html#ga85c683ba401d4c9216c96a9a17a9e9a9">ALOX_REL_LOG_CI_ON</a>. Note that one effect of setting this symbol is, that information on source code paths and file names, as well as method names make their way into the release executable. This may not be wanted. </dd></dl>
 
@@ -434,11 +435,11 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_PREFIX.SetLogger    ( enable, filter); <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> ) }</td>
+          <td></td><td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_ACQUIRE.SetLogger    ( enable, filter); <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> ) }</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#af59433acecdc611018aad891528e1efa">Lox::SetLogger</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#gab014491c0aaaceaa1ef1a7d679a8d3e0">LOG_REL_LOX</a>. </p>
+<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#af59433acecdc611018aad891528e1efa">Lox::SetLogger</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga1f170b96d3ead37b7f530134e64bf121">LOX_LOX</a>. </p>
 
 </div>
 </div>
@@ -461,11 +462,11 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_PREFIX.SetMarker    ( marker, scope );  <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> ) }</td>
+          <td></td><td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_ACQUIRE.SetMarker    ( marker, scope );  <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> ) }</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#a848fdd8b93afc2b2c89d526d4d128e3e">Lox::SetMarker</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#gab014491c0aaaceaa1ef1a7d679a8d3e0">LOG_REL_LOX</a>. </p><dl class="section attention"><dt>Attention</dt><dd>If <a class="el" href="group__GrpALoxCodeSelectorSymbols.html#ga4b0e38e300ec824146da5e868f2c6290">ALOX_REL_LOG_CI</a> is not set, which is the default for release logging statements, code markers can not be used.<br />
+<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#a848fdd8b93afc2b2c89d526d4d128e3e">Lox::SetMarker</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga1f170b96d3ead37b7f530134e64bf121">LOX_LOX</a>. </p><dl class="section attention"><dt>Attention</dt><dd>If <a class="el" href="group__GrpALoxCodeSelectorSymbols.html#ga4b0e38e300ec824146da5e868f2c6290">ALOX_REL_LOG_CI</a> is not set, which is the default for release logging statements, code markers can not be used.<br />
  If markers should be supported in release logging, the software entity has to be compiled with precompiler symbol <a class="el" href="group__GrpALoxCompilerSymbols.html#ga85c683ba401d4c9216c96a9a17a9e9a9">ALOX_REL_LOG_CI_ON</a>. Note that one effect of setting this symbol is, that information on source code paths and file names, as well as method names make their way into the release executable. This may not be wanted.<br />
  </dd></dl>
 
@@ -490,11 +491,11 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_PREFIX.SetStartTime ( time, filter );  <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> ) }</td>
+          <td></td><td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_ACQUIRE.SetStartTime ( time, filter );  <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> ) }</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#ae31d4b72ea1bc7513fd341b6dc99053f">Lox::SetStartTime</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#gab014491c0aaaceaa1ef1a7d679a8d3e0">LOG_REL_LOX</a>. </p>
+<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#ae31d4b72ea1bc7513fd341b6dc99053f">Lox::SetStartTime</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga1f170b96d3ead37b7f530134e64bf121">LOX_LOX</a>. </p>
 
 </div>
 </div>
@@ -507,11 +508,11 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>...</em></td><td>)</td>
-          <td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_PREFIX.Verbose      ( __VA_ARGS__ );   <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> ) }</td>
+          <td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_ACQUIRE.Verbose      ( __VA_ARGS__ );   <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> ) }</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#af6093dbce9dbbeffcf76362b4abacac8">Lox::Verbose</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#gab014491c0aaaceaa1ef1a7d679a8d3e0">LOG_REL_LOX</a>. </p>
+<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#af6093dbce9dbbeffcf76362b4abacac8">Lox::Verbose</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga1f170b96d3ead37b7f530134e64bf121">LOX_LOX</a>. </p>
 
 </div>
 </div>
@@ -524,11 +525,11 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>...</em></td><td>)</td>
-          <td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_PREFIX.Warning      ( __VA_ARGS__ );   <a class="el" href="group__GrpALoxMacrosLowLevel.html#gad7b0252385be7787e0e08c7ea0582ce0">LOX_POSTFIX</a> ) }</td>
+          <td>&#160;&#160;&#160;{ <a class="el" href="group__GrpMacrosReleaseLog.html#ga04158d8131eba14e98f93e433b6325d2">Lox_Prune</a>( LOX_ACQUIRE.Warning      ( __VA_ARGS__ );   <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2ef98e816bdf36da37bb9bddbdfd635f">LOX_RELEASE</a> ) }</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#ab00a8f8c882ff229ed5ff26ab1f5633d">Lox::Warning</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#gab014491c0aaaceaa1ef1a7d679a8d3e0">LOG_REL_LOX</a>. </p>
+<p>Invokes <a class="el" href="classaworx_1_1lox_1_1Lox.html#ab00a8f8c882ff229ed5ff26ab1f5633d">Lox::Warning</a> on the object of type class Lox defined in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga1f170b96d3ead37b7f530134e64bf121">LOX_LOX</a>. </p>
 
 </div>
 </div>
@@ -536,7 +537,7 @@ Macros</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 5 2016 10:32:54 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Feb 15 2016 11:32:18 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

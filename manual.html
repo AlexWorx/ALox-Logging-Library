@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1602</span>
+   &#160;<span id="projectnumber">V. 1602 R. 1</span>
    </div>
   </td>
  </tr>
@@ -115,37 +115,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li><a href="cs_ref/csmainpage.html">ALox for C#</a></li>
 <li><a href="java_ref/javamainpage.html">ALox for Java</a></li>
 </ul>
+<dl class="section note"><dt>Note</dt><dd><b>Differences of ALox for C++, C# and Java</b>:<br />
+ As ALox is available for C++, C# and Java, the class and member names within this document may vary a little per language. Especially the class <b>Log</b> has no interface in C++ while in C# and Java its' interface is a copy of that of class <b>Lox</b>, made for pruning the code. In contrast, in C++ the macros Log_xxx and Lox_xxx are used to provide pruned and non-pruned access to methods of class Lox. Please remember this, when reading this manual and translate the references used herein to the right ones of the language of your choice.</dd></dl>
 <h1>Contents</h1>
-<ul>
-<li><a class="el" href="man_intro.html">About ALox</a><ul>
-<li><a class="el" href="man_features_and_limitations.html">Features and Limitations</a> <br />
- <br />
-</li>
-</ul>
-</li>
-<li><a class="el" href="man_concepts.html">Concepts of ALox Logging</a><ul>
+<ol type="1">
+<li><a class="el" href="man_intro.html">About ALox</a></li>
+<li><a class="el" href="man_features_and_limitations.html">Features and Limitations</a></li>
 <li><a class="el" href="man_alox_architecture.html">Overview of the ALox architecture</a></li>
 <li><a class="el" href="man_levelsanddomains.html">Log Levels, Log Domains and Log Domain Levels</a></li>
-<li><a class="el" href="man_loggers.html">Details on ALox Loggers</a> <br />
- <br />
-</li>
-</ul>
-</li>
-<li><a class="el" href="man_using_alox.html">ALox Feature References</a><ul>
-<li><a class="el" href="group__GrpALoxConfigVars.html">ALox Configuration Variables</a></li>
-<li><a class="el" href="man_filtering_loggers.html">Filtering Loggers</a> (not written yet)</li>
-<li><a class="el" href="man_source_code_prefix.html">The field "SourceCodePrefix" in remote debugging environments</a> (not written yet)</li>
-<li><a class="el" href="man_release_logging.html">Logging in release versions of your application</a> (not written yet) <br />
- <br />
- </li>
-</ul>
-</li>
-</ul>
+<li><a class="el" href="man_loggers.html">Details on ALox Loggers</a></li>
+<li><a class="el" href="man_debug_and_release_logging.html">Differences of Debug- and Release-Logging</a></li>
+<li><a class="el" href="group__GrpALoxConfigVars.html">ALox Configuration Variables</a> </li>
+</ol>
 </div></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 5 2016 10:32:59 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Feb 15 2016 11:32:21 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

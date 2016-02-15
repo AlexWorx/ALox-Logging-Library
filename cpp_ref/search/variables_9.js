@@ -9,5 +9,5 @@ var searchData=
   ['iseof',['IsEOF',['../classaworx_1_1lib_1_1strings_1_1ReadLineFromIStream.html#ade6dbc4e4f8e0b45e0fbe023f5ed8ddd',1,'aworx::lib::strings::ReadLineFromIStream']]],
   ['isinitialized',['isInitialized',['../classaworx_1_1lox_1_1Log.html#a1fdc2bf5595c2e64dc06d987769834eb',1,'aworx::lox::Log']]],
   ['istream',['istream',['../classaworx_1_1lib_1_1strings_1_1ReadLineFromIStream.html#a6727ff65df9fd553e1eca11c56a803c0',1,'aworx::lib::strings::ReadLineFromIStream']]],
-  ['italics',['ITALICS',['../classaworx_1_1lox_1_1ESC.html#ac3756a927764ac88ff640c5e594ad58e',1,'aworx::lox::ESC']]]
+  ['italics',['ITALICS',['../classaworx_1_1lox_1_1ESC.html#a720d5fb808c384fa2d54e4a675b66c6e',1,'aworx::lox::ESC']]]
 ];

@@ -5,6 +5,7 @@ digraph "log.hpp"
   Node1 [label="log.hpp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
   Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 [label="alox.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$alox_8hpp.html"];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node3 [label="alox_console_loggers.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$alox__console__loggers_8hpp.html"];
   Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];

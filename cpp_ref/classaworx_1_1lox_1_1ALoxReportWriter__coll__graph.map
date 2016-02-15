@@ -1,14 +1,14 @@
 <map id="ALoxReportWriter" name="ALoxReportWriter">
-<area shape="rect" id="node2" href="$classaworx_1_1lib_1_1ReportWriter.html" title="ReportWriter" alt="" coords="1409,324,1505,351"/>
-<area shape="rect" id="node3" href="$classaworx_1_1lox_1_1Lox.html" title="Lox" alt="" coords="1436,375,1479,401"/>
-<area shape="rect" id="node4" href="$classaworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="1177,56,1268,83"/>
-<area shape="rect" id="node5" href="$classaworx_1_1lib_1_1Ownable.html" title="Ownable" alt="" coords="823,5,897,32"/>
-<area shape="rect" id="node6" href="$classaworx_1_1lib_1_1threads_1_1Thread.html" title="Thread" alt="" coords="829,56,891,83"/>
-<area shape="rect" id="node8" href="$classaworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="829,347,891,373"/>
-<area shape="rect" id="node9" href="$classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html" title="ASPreAlloc\&lt; 32 \&gt;" alt="" coords="452,392,579,419"/>
-<area shape="rect" id="node10" href="$classaworx_1_1lib_1_1strings_1_1ASAlloc.html" title="ASAlloc" alt="" coords="259,392,328,419"/>
-<area shape="rect" id="node11" href="$classaworx_1_1lib_1_1strings_1_1ASTerminatable.html" title="ASTerminatable" alt="" coords="95,189,209,216"/>
-<area shape="rect" id="node17" href="$classaworx_1_1lox_1_1core_1_1CallerInfo.html" title="CallerInfo" alt="" coords="1183,216,1262,243"/>
-<area shape="rect" id="node12" href="$classaworx_1_1lib_1_1strings_1_1AS.html" title="AS" alt="" coords="5,136,45,163"/>
-<area shape="rect" id="node13" href="$classaworx_1_1lib_1_1time_1_1Ticks.html" title="Ticks" alt="" coords="488,277,543,304"/>
+<area shape="rect" id="node2" href="$classaworx_1_1lib_1_1ReportWriter.html" title="ReportWriter" alt="" coords="1372,327,1468,353"/>
+<area shape="rect" id="node3" href="$classaworx_1_1lox_1_1Lox.html" title="Lox" alt="" coords="1399,377,1441,404"/>
+<area shape="rect" id="node4" href="$classaworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="1140,56,1231,83"/>
+<area shape="rect" id="node5" href="$classaworx_1_1lib_1_1Ownable.html" title="Ownable" alt="" coords="786,5,859,32"/>
+<area shape="rect" id="node6" href="$classaworx_1_1lib_1_1threads_1_1Thread.html" title="Thread" alt="" coords="791,56,854,83"/>
+<area shape="rect" id="node8" href="$classaworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="792,339,853,365"/>
+<area shape="rect" id="node9" href="$classaworx_1_1lib_1_1time_1_1Ticks.html" title="Ticks" alt="" coords="450,324,505,351"/>
+<area shape="rect" id="node17" href="$classaworx_1_1lox_1_1core_1_1CallerInfo.html" title="CallerInfo" alt="" coords="1146,277,1225,304"/>
+<area shape="rect" id="node10" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\l\&lt; 32 \&gt;" alt="" coords="413,391,541,433"/>
+<area shape="rect" id="node11" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="224,457,289,484"/>
+<area shape="rect" id="node12" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="111,179,175,205"/>
+<area shape="rect" id="node13" href="$classaworx_1_1lib_1_1strings_1_1String.html" title="String" alt="" coords="5,213,61,240"/>
 </map>

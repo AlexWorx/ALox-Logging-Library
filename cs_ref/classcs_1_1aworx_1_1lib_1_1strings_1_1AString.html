@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1602</span>
+   &#160;<span id="projectnumber">V. 1602 R. 1</span>
    </div>
   </td>
  </tr>
@@ -143,9 +143,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p><b>Non-checking methods</b></p>
 <p>In general, AString methods are internally checking the provided parameters. For example, method <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#a47326ffd04c7a2fb6d4658401b2512b7">_</a>( <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> src, int regionStart, int regionLength = int.MaxValue) is adjusting the provided region information to fit to the size of the provided AString.<br />
  Chances are high, that the code invoking this method "knows" about the correctness of the region. In this case, the checks are redundant.</p>
-<p>For avoiding unnecessary checks, various methods are provided by AString that omit such checks. These methods share the same name as the standard one, with the postfix "NC" appended (NC stands for "no checks").</p>
+<p>For avoiding unnecessary checks, various methods are provided by AString that omit such checks. These methods share the same name as the standard one, with the suffix "_NC" appended (NC stands for "no checks").</p>
 <p>In the sample above, if the calling code was sure about the parameters <code>regionStart</code> and <code>regionLength</code> being in the bounds of <code>src</code>, method <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#a7e2f603873c045e66305817610772c47">_NC( AString src, int regionStart, int regionLength )</a> can be used.</p>
-<dl class="section attention"><dt>Attention</dt><dd>The following rules apply to all methods with postfix <em>_NC</em>:<ul>
+<dl class="section attention"><dt>Attention</dt><dd>The following rules apply to all methods which suffixed by <em>_NC</em>:<ul>
 <li>Parameters are not checked for being null.</li>
 <li>Index, size, length, region start/end and other parameters are not checked to be correct</li>
 <li>If parameters are incorrect, the result of the methods is undefined and in debug compilations an assertion may be raised.</li>
@@ -4702,7 +4702,7 @@ Character access</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 5 2016 10:32:56 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Feb 15 2016 11:32:19 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

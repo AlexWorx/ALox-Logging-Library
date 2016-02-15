@@ -519,13 +519,6 @@
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>msgPostfix</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>aab88fc2e5d38dcc2b8501a5f1179c866</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
       <name>msgPrefixError</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
       <anchor>a413ad8cdae9ccaf78e01c7b9cf5798bc</anchor>
@@ -550,6 +543,13 @@
       <name>msgPrefixWarning</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
       <anchor>afbdb675784edc454f561636e1fbb6dbb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>msgSuffix</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
+      <anchor>a9044757d6630385d974814cde7e519af</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -5122,13 +5122,6 @@
     </member>
     <member kind="variable" static="yes">
       <type>static String</type>
-      <name>fmtInstArrayPostfix</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>a1986f836d10cbdeae28a51a600f4f830</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static String</type>
       <name>fmtInstArrayPrefix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
       <anchor>ac31532e5ddf448a45d274b9804f7da32</anchor>
@@ -5136,9 +5129,9 @@
     </member>
     <member kind="variable" static="yes">
       <type>static String</type>
-      <name>fmtInstCycRefPostfix</name>
+      <name>fmtInstArraySuffix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>a3e59f9e1612dd0790a17437ec412edbf</anchor>
+      <anchor>a1a9f33a9c0c727b854f9b9e76b5f4675</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
@@ -5150,16 +5143,16 @@
     </member>
     <member kind="variable" static="yes">
       <type>static String</type>
-      <name>fmtInstIndent</name>
+      <name>fmtInstCycRefSuffix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>a3cba09b083e1c4c9531791e6bc24b54a</anchor>
+      <anchor>a4aca681a99833c09970ba6702b19bcde</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static String</type>
-      <name>fmtInstIterablePostfix</name>
+      <name>fmtInstIndent</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>ad26cae72fda492503609c596930f04a0</anchor>
+      <anchor>a3cba09b083e1c4c9531791e6bc24b54a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
@@ -5171,9 +5164,9 @@
     </member>
     <member kind="variable" static="yes">
       <type>static String</type>
-      <name>fmtInstLineNoPostfix</name>
+      <name>fmtInstIterableSuffix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>aaed3474ebecc6243c9d252b360f273a4</anchor>
+      <anchor>a894862928224404965e6c27ec2939181</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
@@ -5181,6 +5174,13 @@
       <name>fmtInstLineNoPrefix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
       <anchor>a498f4459ff785bf0a24247bc19c7c55b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static String</type>
+      <name>fmtInstLineNoSuffix</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
+      <anchor>a4cd5ff31b25d48f7be4932c72e40b5e0</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
@@ -5206,16 +5206,16 @@
     </member>
     <member kind="variable" static="yes">
       <type>static String</type>
-      <name>fmtInstTypePostfix</name>
+      <name>fmtInstTypePrefix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>aa4a744d0f803fe83885f6cd05a18c721</anchor>
+      <anchor>a86ef37db49c5ccdf1f39b25e1968142a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static String</type>
-      <name>fmtInstTypePrefix</name>
+      <name>fmtInstTypeSuffix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>a86ef37db49c5ccdf1f39b25e1968142a</anchor>
+      <anchor>a5cec99488c4b0abb37895fe747109d8b</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
@@ -6616,20 +6616,6 @@
     <name>com::aworx::lib::Report</name>
     <filename>classcom_1_1aworx_1_1lib_1_1Report.html</filename>
     <class kind="class">com::aworx::lib::Report::Message</class>
-    <member kind="variable">
-      <type>boolean</type>
-      <name>haltOnError</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1Report.html</anchorfile>
-      <anchor>a11cbc146958a86e6c25bc423054e365b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>boolean</type>
-      <name>haltOnWarning</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1Report.html</anchorfile>
-      <anchor>a77cb7512239265f151b094ebcf2406a1</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="function" static="yes">
       <type>static Report</type>
       <name>getDefault</name>
@@ -6638,11 +6624,32 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
+      <type></type>
+      <name>Report</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1Report.html</anchorfile>
+      <anchor>a62bc0d20ce17d1ee1289cfccd4c0ce68</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
       <type>synchronized void</type>
       <name>doReport</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1Report.html</anchorfile>
       <anchor>ad886f5fb2f514b91100d3dcefbd7aee4</anchor>
       <arglist>(int type, String msg)</arglist>
+    </member>
+    <member kind="function">
+      <type>synchronized void</type>
+      <name>popHaltFlags</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1Report.html</anchorfile>
+      <anchor>af5e3f59b7c299469be750c9556f29d83</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>synchronized void</type>
+      <name>pushHaltFlags</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1Report.html</anchorfile>
+      <anchor>aea2de6e616741d79b839d5f518388658</anchor>
+      <arglist>(boolean haltOnErrors, boolean haltOnWarnings)</arglist>
     </member>
     <member kind="function">
       <type>synchronized ReportWriter</type>
@@ -6656,6 +6663,13 @@
       <name>defaultReport</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1Report.html</anchorfile>
       <anchor>a9088fab9d3df935215bb0bb30f7b2250</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Deque&lt; Integer &gt;</type>
+      <name>haltAfterReport</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1Report.html</anchorfile>
+      <anchor>a8f942094b65ae7b4b1769b227bb63652</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -8455,16 +8469,16 @@
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>fmtMultiLinePostfix</name>
+      <name>fmtMultiLinePrefix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
-      <anchor>a4a0d7c91d02a108e89817517dca908aa</anchor>
+      <anchor>aecf89caaefb89a866f30dfe5c36394d1</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>fmtMultiLinePrefix</name>
+      <name>fmtMultiLineSuffix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
-      <anchor>aecf89caaefb89a866f30dfe5c36394d1</anchor>
+      <anchor>aa14f64bb6925d66238f6a40d009bb4e3</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">

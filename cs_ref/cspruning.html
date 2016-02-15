@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1602</span>
+   &#160;<span id="projectnumber">V. 1602 R. 1</span>
    </div>
   </td>
  </tr>
@@ -124,14 +124,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="textblock"><h1><a class="anchor" id="cssetup_pruning_what_is_pruning"></a>
 1. What is Pruning?</h1>
-<p>What we mean with the term "pruning" is the automatic removal of the (debug) logging code from your release binaries when they are ready for deployment. The goals that motivate for auto pruning are:</p>
-<ul>
-<li>Maximize execution speed of your code, because all log statements are pruned.</li>
-<li>Minimize the footprint of your code.</li>
-<li>Keep the console clean in the release version of your console application.</li>
-<li>Hide your software secrets, by removing all textual strings from your executable or library that includes debug messages.</li>
-</ul>
-<p>Furthermore, if you are using ALox as well for release log outputs, then the above stays true for all of your debug log statements, while all release log statements remain.</p>
+<p>An introduction to the concept of pruning is given in <a href="../faq.html#faq_pruning">FAQ: What is Pruning?</a>.</p>
 <h1><a class="anchor" id="cssetup_pruning_how"></a>
 2. How Pruning in ALox for C# works</h1>
 <p>Since Version 5, the Microsoft C# compiler supports methods to be annotated with class "ConditionalAttribute". This attribute uses a conditional compilation symbol which causes the compiler to ignore the invocation of methods when the symbol is not set. Again: the <em>invocation</em> of the methods is disabled, not the compilation of the methods itself!</p>
@@ -164,7 +157,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 5 2016 10:32:56 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Feb 15 2016 11:32:19 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

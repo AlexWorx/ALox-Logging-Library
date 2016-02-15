@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1602</span>
+   &#160;<span id="projectnumber">V. 1602 R. 1</span>
    </div>
   </td>
  </tr>
@@ -141,7 +141,7 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">{                                        \</div><div class="line">        (instance)-&gt;_dbgCheck();             \</div><div class="line">    }</div></div><!-- fragment --><p>Simple macro that just invokes method _dbgCheck(), which is defined for classes <a class="el" href="classaworx_1_1lib_1_1strings_1_1AS.html">AS</a>, <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASTerminatable.html">ASTerminatable</a> and <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASAlloc.html">AString</a>. It is active only when compiler symbol <a class="el" href="group__GrpALibCodeSelectorSymbols.html#gae0e4a87e11482df5ecd72f6a2a648f05">ALIB_DEBUG_STRINGS</a> is set. The macro is placed in almost every method. </p>
+<b>Value:</b><div class="fragment"><div class="line">{                                        \</div><div class="line">        (instance)-&gt;_dbgCheck();             \</div><div class="line">    }</div></div><!-- fragment --><p>Simple macro that just invokes method _dbgCheck(), which is defined for classes <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a>, <a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html">TString</a> and <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a>. It is active only when compiler symbol <a class="el" href="group__GrpALibCodeSelectorSymbols.html#gae0e4a87e11482df5ecd72f6a2a648f05">ALIB_DEBUG_STRINGS</a> is set. The macro is placed in almost every method. </p>
 
 </div>
 </div>
@@ -168,7 +168,8 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">{                                                                    \</div><div class="line">    if ( (astring).Buffer() != <span class="keyword">nullptr</span> )                             \</div><div class="line">        (astring).VBuffer()[ (astring).Length()  + offset ]= <span class="charliteral">&#39;\1&#39;</span>;   \</div><div class="line">    ((ASTerminatable&amp;)(astring)).debugIsTerminated= 0;               \</div><div class="line">}</div></div><!-- fragment --><p>This macro serves for debugging the development (and potentially the use) of derived classes, eg. class <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASAlloc.html">AString</a>. It is active only when compiler symbol <a class="el" href="group__GrpALibCodeSelectorSymbols.html#gae0e4a87e11482df5ecd72f6a2a648f05">ALIB_DEBUG_STRINGS</a> is set. When active, whenever the contents of an AString instance is modified, the buffer is explicitly "unterminated" by writing a value of '\1' at the termination position and the state is stored in field <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASTerminatable.html#ac3615a067cb671e6b0cac6dbb26c9f3e">debugIsTerminated</a> <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASTerminatable.html#a8747c38ac0ef9f863ede544d51ff6721">_dbgCheck</a>.<br />
+<b>Value:</b><div class="fragment"><div class="line">{                                                                    \</div><div class="line">    if ( (astring).Buffer() != <span class="keyword">nullptr</span> )                             \</div><div class="line">        (astring).VBuffer()[ (astring).Length()  + offset ]= <span class="charliteral">&#39;\1&#39;</span>;   \</div><div class="line">    ((<a class="code" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a>&amp;)(astring)).debugIsTerminated= 0;               \</div><div class="line">}</div><div class="ttc" id="namespaceaworx_html_af01fde7c67b5f30027a4135222bbde31"><div class="ttname"><a href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">aworx::TString</a></div><div class="ttdeci">aworx::lib::strings::TString TString</div><div class="ttdef"><b>Definition:</b> tstring.hpp:612</div></div>
+</div><!-- fragment --><p>This macro serves for debugging the development (and potentially the use) of derived classes, eg. class <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a>. It is active only when compiler symbol <a class="el" href="group__GrpALibCodeSelectorSymbols.html#gae0e4a87e11482df5ecd72f6a2a648f05">ALIB_DEBUG_STRINGS</a> is set. When active, whenever the contents of an AString instance is modified, the buffer is explicitly "unterminated" by writing a value of '\1' at the termination position and the state is stored in field <a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html#ac3615a067cb671e6b0cac6dbb26c9f3e">debugIsTerminated</a> <a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html#a8747c38ac0ef9f863ede544d51ff6721">_dbgCheck</a>.<br />
  Doing this, will also hint to buffers that reside in non-writable memory, hence it will hint to buffers that may not be used with this class. </p>
 
 </div>
@@ -177,7 +178,7 @@ Macros</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 5 2016 10:32:54 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Feb 15 2016 11:32:18 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

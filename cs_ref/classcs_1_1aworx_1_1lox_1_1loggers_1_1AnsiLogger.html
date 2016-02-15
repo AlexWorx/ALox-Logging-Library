@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1602</span>
+   &#160;<span id="projectnumber">V. 1602 R. 1</span>
    </div>
   </td>
  </tr>
@@ -138,22 +138,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Inheritance diagram for AnsiLogger:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger__inherit__graph.svg" width="146" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger__inherit__graph.svg" width="146" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for AnsiLogger:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger__coll__graph.svg" width="1060" height="715"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger__coll__graph.svg" width="1060" height="715"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
-<p> A logger that logs all messages to the System.IO.TextWriter instance provided in the constructor. The name of the logger defaults to "ANSI_LOGGER".</p>
+<p> A logger that logs all messages to the <em>System.IO.TextWriter</em> instance provided in the constructor. The name of the logger defaults to "ANSI_LOGGER".</p>
 <p>ALox text logger escape sequences (see class <a class="el" href="classcs_1_1aworx_1_1lox_1_1ESC.html">ESC</a>) are translated to ANSI escape sequences. Support for ANSI escape sequences (also referred to as <em>VT100 terminal emulation</em>) is available on most unix terminal windows. Besides text colors, bold and italics font style can be set. ANSI escape sequences are also available in various IDE output windows.</p>
 <p>Foreground and background colors are set to be either light/dark or dark/light. This improves the readability of log output a lot. However, the right setting for this is dependent on the color scheme of final output device (window). To manipulate the right setting, see field <a class="el" href="classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#ab9537e130d3c02801775f8c1941eb9a3">IsBackgroundLight</a>.</p>
 <p>In the constructor, a default format string and some other definitions in member <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#adf1921db321da434a7a254222c174398">MetaInfo</a> get set to include ANSI Escape Sequences. Of-course, these publicly accessible format attributes can be customized after creation.</p>
-<p>There is not 100% match between the ANSI sequences and the definitions in <a class="el" href="classcs_1_1aworx_1_1lox_1_1ESC.html">ESC</a>. For example <a class="el" href="classcs_1_1aworx_1_1lox_1_1ESC.html">ESC</a> does not provide all ANSI colors and no blinking. On the other hand, ANSI does not allow to reset the style without resetting the colors. Of-course, it is no problem to log other ANSI codes directly into a AnsiLogger. In this case, other Loggers that might be attached to the same <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html">Lox</a> and that do not support ANSI must be equipped with corresponding replacement information. In other words: To support the same log output into different loggers, it is recommended to use <a class="el" href="classcs_1_1aworx_1_1lox_1_1ESC.html">ESC</a> sequences instead of directly using ANSI codes.</p>
+<p>There is not 100% match between the ANSI sequences and the definitions in <a class="el" href="classcs_1_1aworx_1_1lox_1_1ESC.html">ESC</a>. For example <a class="el" href="classcs_1_1aworx_1_1lox_1_1ESC.html">ESC</a> does not provide all ANSI colors and no blinking. On the other hand, ANSI does not allow to reset the style without resetting the colors. Of-course, it is no problem to log other ANSI codes directly into an <b>AnsiLogger</b>. In this case, other Loggers that might be attached to the same <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html">Lox</a> and that do not support ANSI must be equipped with corresponding replacement information. In other words: To support the same log output into different loggers, it is recommended to use <a class="el" href="classcs_1_1aworx_1_1lox_1_1ESC.html">ESC</a> sequences instead of directly using ANSI codes.</p>
 <p>The ANSI codes used by this class are exposed through a list of fields. They might be useful for manipulating the attributes of the <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#adf1921db321da434a7a254222c174398">MetaInfo</a> member, which of-course might contain native ANSI sequences. (In contrast to the log messages themselves, this meta information is specific to a logger instance and this way it does not need to be replaced in other loggers). </p>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
@@ -315,8 +313,6 @@ static readonly String&#160;</td><td class="memItemRight" valign="bottom"><a cla
 Public Fields</h2></td></tr>
 <tr class="memitem:ab9537e130d3c02801775f8c1941eb9a3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#ab9537e130d3c02801775f8c1941eb9a3">IsBackgroundLight</a></td></tr>
 <tr class="separator:ab9537e130d3c02801775f8c1941eb9a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf0b7aeabf626699ea5547c4c112c1ea"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#abf0b7aeabf626699ea5547c4c112c1ea">MsgPostfix</a> = <a class="el" href="classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#ad7bb9f2bbe5d393834b6401a2585b9b2">ANSI_RESET</a></td></tr>
-<tr class="separator:abf0b7aeabf626699ea5547c4c112c1ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7576c4768fda16421e817896836e568f"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#a7576c4768fda16421e817896836e568f">MsgPrefixError</a></td></tr>
 <tr class="separator:a7576c4768fda16421e817896836e568f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa6f1bc914355fe8d17d8ca1a3d642eed"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#aa6f1bc914355fe8d17d8ca1a3d642eed">MsgPrefixInfo</a> = &quot;&quot;</td></tr>
@@ -325,6 +321,8 @@ Public Fields</h2></td></tr>
 <tr class="separator:adfbbaceadd0848bac5de58dd675fd735"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad9cc2acc0ffe4f4ab09344dacb4c4396"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#ad9cc2acc0ffe4f4ab09344dacb4c4396">MsgPrefixWarning</a></td></tr>
 <tr class="separator:ad9cc2acc0ffe4f4ab09344dacb4c4396"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac00d21fc9d9b258f5eb5df6681a47c38"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#ac00d21fc9d9b258f5eb5df6681a47c38">MsgSuffix</a> = <a class="el" href="classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#ad7bb9f2bbe5d393834b6401a2585b9b2">ANSI_RESET</a></td></tr>
+<tr class="separator:ac00d21fc9d9b258f5eb5df6681a47c38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_attribs_classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger')"><img src="closed.png" alt="-"/>&#160;Public Fields inherited from <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a></td></tr>
 <tr class="memitem:a411d51414c576719fbf8694e1f19fb87 inherit pub_attribs_classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html">AutoSizes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a411d51414c576719fbf8694e1f19fb87">AutoSizes</a> = new <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html">AutoSizes</a>()</td></tr>
 <tr class="separator:a411d51414c576719fbf8694e1f19fb87 inherit pub_attribs_classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -334,10 +332,10 @@ Public Fields</h2></td></tr>
 String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#ab3423baaf4b67d0e7cfa757203aaf872">FmtMultiLineMsgHeadline</a> =&quot;ALox: Multi line message follows: &quot;</td></tr>
 <tr class="memdesc:ab3423baaf4b67d0e7cfa757203aaf872 inherit pub_attribs_classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger"><td class="mdescLeft">&#160;</td><td class="mdescRight">Headline for multi line messages (depending on <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a95ea94dee572eaac760d028ddcf3cf65">MultiLineMsgMode</a>). <br /></td></tr>
 <tr class="separator:ab3423baaf4b67d0e7cfa757203aaf872 inherit pub_attribs_classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0ab1101cb40bf899cb8fb9ef26fb29f inherit pub_attribs_classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#ae0ab1101cb40bf899cb8fb9ef26fb29f">FmtMultiLinePostfix</a> =null</td></tr>
-<tr class="separator:ae0ab1101cb40bf899cb8fb9ef26fb29f inherit pub_attribs_classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74da3f13d354d7b4b31aa8fefa7e7115 inherit pub_attribs_classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a74da3f13d354d7b4b31aa8fefa7e7115">FmtMultiLinePrefix</a> =&quot;&gt;&gt; &quot;</td></tr>
 <tr class="separator:a74da3f13d354d7b4b31aa8fefa7e7115 inherit pub_attribs_classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7daa8e01ebd6550ac7f2a0efacf3ef39 inherit pub_attribs_classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a7daa8e01ebd6550ac7f2a0efacf3ef39">FmtMultiLineSuffix</a> =null</td></tr>
+<tr class="separator:a7daa8e01ebd6550ac7f2a0efacf3ef39 inherit pub_attribs_classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf1921db321da434a7a254222c174398 inherit pub_attribs_classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html">MetaInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#adf1921db321da434a7a254222c174398">MetaInfo</a> =new <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html">MetaInfo</a>()</td></tr>
 <tr class="separator:adf1921db321da434a7a254222c174398 inherit pub_attribs_classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba58580b1670dbfb1caf21f47d0d53de inherit pub_attribs_classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#aba58580b1670dbfb1caf21f47d0d53de">MultiLineDelimiter</a> =null</td></tr>
@@ -626,19 +624,6 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="abf0b7aeabf626699ea5547c4c112c1ea"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String MsgPostfix = <a class="el" href="classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#ad7bb9f2bbe5d393834b6401a2585b9b2">ANSI_RESET</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Characters placed at the end of each line (e.g. used to reset colors and styles). </p>
-
-</div>
-</div>
 <a class="anchor" id="a7576c4768fda16421e817896836e568f"></a>
 <div class="memitem">
 <div class="memproto">
@@ -691,6 +676,19 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ac00d21fc9d9b258f5eb5df6681a47c38"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String MsgSuffix = <a class="el" href="classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#ad7bb9f2bbe5d393834b6401a2585b9b2">ANSI_RESET</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Characters placed at the end of each line (e.g. used to reset colors and styles). </p>
+
+</div>
+</div>
 <a class="anchor" id="a4ea8940b74eadffd0223cb5e7bb414f8"></a>
 <div class="memitem">
 <div class="memproto">
@@ -719,7 +717,7 @@ Protected Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 5 2016 10:32:57 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Feb 15 2016 11:32:19 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

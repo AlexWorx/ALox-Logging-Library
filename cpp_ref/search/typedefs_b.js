@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['safeness',['Safeness',['../namespaceaworx.html#ae44933ed0bc5c2462dce430a034dd6b0',1,'aworx']]],
+  ['sliteral',['SLiteral',['../namespaceaworx.html#af631a26bf70ad6d6143973fadf779747',1,'aworx']]],
+  ['string',['String',['../namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d',1,'aworx']]],
+  ['string128',['String128',['../namespaceaworx.html#a2841f1443c3b2f3d6066d5774cf69dbc',1,'aworx']]],
+  ['string16',['String16',['../namespaceaworx.html#a148a217c34a72b4360462205858b8f0e',1,'aworx']]],
+  ['string1k',['String1K',['../namespaceaworx.html#a82395a8f3fac47787ebe8749679a2796',1,'aworx']]],
+  ['string256',['String256',['../namespaceaworx.html#a152f787b6dac47dd3f94ae5ebf1ece53',1,'aworx']]],
+  ['string2k',['String2K',['../namespaceaworx.html#a76f69ad445caecfbf03351c884637b09',1,'aworx']]],
+  ['string32',['String32',['../namespaceaworx.html#a221752691fb92bcd592c045d6c368289',1,'aworx']]],
+  ['string4k',['String4K',['../namespaceaworx.html#a772f06f37ace5e2b2eb8cafc0c859c44',1,'aworx']]],
+  ['string512',['String512',['../namespaceaworx.html#af634b7550d8a316ce3cf3fb6f9e86079',1,'aworx']]],
+  ['string64',['String64',['../namespaceaworx.html#ac2fdc487456a994238ba4284b3859c41',1,'aworx']]],
+  ['string8',['String8',['../namespaceaworx.html#ab35696c2e8d79567a528a4b6da788eb3',1,'aworx']]],
+  ['substring',['Substring',['../namespaceaworx.html#aade494154da29084f1e59cfa2f83a23b',1,'aworx']]],
+  ['switch',['Switch',['../namespaceaworx.html#abbc3fd675117881e7c7aebcd1058ad03',1,'aworx']]],
+  ['system',['System',['../namespaceaworx.html#aea0af9d6b00ede1a16d0af24fdaeebe0',1,'aworx']]]
+];

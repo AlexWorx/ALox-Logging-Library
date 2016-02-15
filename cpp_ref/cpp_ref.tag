@@ -9,14 +9,25 @@
     <includes id="enums_8hpp" name="enums.hpp" local="yes" imported="no">alib/core/enums.hpp</includes>
     <includes id="report_8hpp" name="report.hpp" local="yes" imported="no">alib/core/report.hpp</includes>
     <includes id="cstring_8hpp" name="cstring.hpp" local="yes" imported="no">alib/strings/cstring.hpp</includes>
-    <includes id="as_8hpp" name="as.hpp" local="yes" imported="no">alib/strings/as.hpp</includes>
-    <includes id="ns__aworx_8hpp" name="ns_aworx.hpp" local="yes" imported="no">alib/core/ns_aworx.hpp</includes>
-    <includes id="namespace_8hpp" name="namespace.hpp" local="yes" imported="no">alib/strings/namespace.hpp</includes>
+    <includes id="string_8hpp" name="string.hpp" local="yes" imported="no">alib/strings/string.hpp</includes>
+    <includes id="tstring_8hpp" name="tstring.hpp" local="yes" imported="no">alib/strings/tstring.hpp</includes>
+    <includes id="stringliteral_8hpp" name="stringliteral.hpp" local="yes" imported="no">alib/strings/stringliteral.hpp</includes>
+    <includes id="astring_8hpp" name="astring.hpp" local="yes" imported="no">alib/strings/astring.hpp</includes>
+    <includes id="preallocatedstring_8hpp" name="preallocatedstring.hpp" local="yes" imported="no">alib/strings/preallocatedstring.hpp</includes>
+    <includes id="applyto_8hpp" name="applyto.hpp" local="yes" imported="no">alib/strings/applyto.hpp</includes>
+    <includes id="applyformat_8hpp" name="applyformat.hpp" local="yes" imported="no">alib/strings/applyformat.hpp</includes>
     <class kind="class">aworx::lib::ALIB</class>
     <namespace>aworx</namespace>
     <namespace>aworx::lib</namespace>
     <namespace>aworx::lib::config</namespace>
     <namespace>aworx::lib::threads</namespace>
+    <member kind="typedef">
+      <type>aworx::lib::ALIB</type>
+      <name>ALIB</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>afc2895fe34753aa1cd88ed8845fbd88b</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>alox.hpp</name>
@@ -37,6 +48,13 @@
       <anchor>ga2cde43a12bd2be40baa4896e409d642c</anchor>
       <arglist></arglist>
     </member>
+    <member kind="typedef">
+      <type>aworx::lox::ESC</type>
+      <name>ESC</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a41196e8ca29644376437095a102ad9ec</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>alox_console_loggers.hpp</name>
@@ -52,6 +70,13 @@
     <name>alox_macros.hpp</name>
     <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alox/internals/</path>
     <filename>alox__macros_8hpp</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>LOG_ACQUIRE</name>
+      <anchorfile>group__GrpALoxMacrosLowLevel.html</anchorfile>
+      <anchor>ga105a9f44250c23d6bb37df63aa9d9cbe</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="define">
       <type>#define</type>
       <name>Log_AddDebugLogger</name>
@@ -131,20 +156,6 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>LOG_POSTFIX</name>
-      <anchorfile>group__GrpALoxMacrosLowLevel.html</anchorfile>
-      <anchor>gad662b4dbce165eccc829278f9a1d5477</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LOG_PREFIX</name>
-      <anchorfile>group__GrpALoxMacrosLowLevel.html</anchorfile>
-      <anchor>gaae1d11681b36518afb9413f4194b18a6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
       <name>Log_Prune</name>
       <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
       <anchor>ga7dbb7427d18d49e2dd87d5f2d2036e0b</anchor>
@@ -152,9 +163,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>LOG_REL_LOX</name>
+      <name>LOG_RELEASE</name>
       <anchorfile>group__GrpALoxMacrosLowLevel.html</anchorfile>
-      <anchor>gab014491c0aaaceaa1ef1a7d679a8d3e0</anchor>
+      <anchor>ga0d5795316ecfccc7b40b43c01bf62b0e</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -222,6 +233,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>LOX_ACQUIRE</name>
+      <anchorfile>group__GrpALoxMacrosLowLevel.html</anchorfile>
+      <anchor>ga9ac629621d8152810e41e19931c990a1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>Lox_AddLogger</name>
       <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
       <anchor>gac3806ad5dcf0f48b170f79069369f380</anchor>
@@ -278,6 +296,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>LOX_LOX</name>
+      <anchorfile>group__GrpALoxMacrosLowLevel.html</anchorfile>
+      <anchor>ga1f170b96d3ead37b7f530134e64bf121</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>Lox_MapThreadName</name>
       <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
       <anchor>ga089dc860d3f28c5cf30b661f2877462a</anchor>
@@ -285,24 +310,17 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>LOX_POSTFIX</name>
-      <anchorfile>group__GrpALoxMacrosLowLevel.html</anchorfile>
-      <anchor>gad7b0252385be7787e0e08c7ea0582ce0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LOX_PREFIX</name>
-      <anchorfile>group__GrpALoxMacrosLowLevel.html</anchorfile>
-      <anchor>ga48644d682557d34b6a07bea1b13bb848</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
       <name>Lox_Prune</name>
       <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
       <anchor>ga04158d8131eba14e98f93e433b6325d2</anchor>
       <arglist>(releaseLogCode)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LOX_RELEASE</name>
+      <anchorfile>group__GrpALoxMacrosLowLevel.html</anchorfile>
+      <anchor>ga2ef98e816bdf36da37bb9bddbdfd635f</anchor>
+      <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -398,6 +416,20 @@
     <namespace>aworx</namespace>
     <namespace>aworx::lox</namespace>
     <namespace>aworx::lox::loggers</namespace>
+    <member kind="typedef">
+      <type>aworx::lox::loggers::AnsiConsoleLogger</type>
+      <name>AnsiConsoleLogger</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a1ea18f3cfd0faa27d99ecc1c9532b445</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lox::loggers::AnsiLogger</type>
+      <name>AnsiLogger</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>afbcb9cbc8853ce81a9d690e2a8923889</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>applyformat.hpp</name>
@@ -415,6 +447,13 @@
     <namespace>aworx</namespace>
     <namespace>aworx::lib</namespace>
     <namespace>aworx::lib::strings</namespace>
+    <member kind="typedef">
+      <type>aworx::lib::strings::Format</type>
+      <name>Format</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>aed5a5fab6b4a0c81a5a231f6d0379d41</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function">
       <type>ALIB_API int</type>
       <name>ApplyTo</name>
@@ -665,40 +704,22 @@
     </member>
   </compound>
   <compound kind="file">
-    <name>as.hpp</name>
+    <name>astring.hpp</name>
     <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alib/strings/</path>
-    <filename>as_8hpp</filename>
+    <filename>astring_8hpp</filename>
     <includes id="alib_8hpp" name="alib.hpp" local="yes" imported="no">alib/alib.hpp</includes>
-    <class kind="class">aworx::lib::strings::AS</class>
-    <class kind="struct">aworx::lib::strings::ToASDefined</class>
+    <class kind="class">aworx::lib::strings::AString</class>
+    <class kind="struct">aworx::lib::strings::IsTerminatable&lt; AString &gt;</class>
     <namespace>aworx</namespace>
     <namespace>aworx::lib</namespace>
     <namespace>aworx::lib::strings</namespace>
-    <member kind="define">
-      <type>#define</type>
-      <name>ALIB_STRING_DBG_CHK</name>
-      <anchorfile>group__GrpALibStringsMacros.html</anchorfile>
-      <anchor>gae7492253da37c76b118d446494f1f632</anchor>
-      <arglist>(instance)</arglist>
+    <member kind="typedef">
+      <type>aworx::lib::strings::AString</type>
+      <name>AString</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a51ace28d988aa0a7ab391f6aaec35f60</anchor>
+      <arglist></arglist>
     </member>
-    <member kind="function">
-      <type>TReturn</type>
-      <name>ToAS</name>
-      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>a86b0b5fb454f1fb24e37f31c51159cea</anchor>
-      <arglist>(const TString)</arglist>
-    </member>
-  </compound>
-  <compound kind="file">
-    <name>asalloc.hpp</name>
-    <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alib/strings/</path>
-    <filename>asalloc_8hpp</filename>
-    <includes id="alib_8hpp" name="alib.hpp" local="yes" imported="no">alib/alib.hpp</includes>
-    <class kind="class">aworx::lib::strings::ASAlloc</class>
-    <class kind="struct">aworx::lib::strings::IsTerminatable&lt; ASAlloc &gt;</class>
-    <namespace>aworx</namespace>
-    <namespace>aworx::lib</namespace>
-    <namespace>aworx::lib::strings</namespace>
     <member kind="function">
       <type>int</type>
       <name>ApplyTo</name>
@@ -712,56 +733,6 @@
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
       <anchor>abcd4a1d202f1c13b510ec14cd55d3a7a</anchor>
       <arglist>(AString &amp;target, const T src)</arglist>
-    </member>
-  </compound>
-  <compound kind="file">
-    <name>asliteral.hpp</name>
-    <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alib/strings/</path>
-    <filename>asliteral_8hpp</filename>
-    <includes id="alib_8hpp" name="alib.hpp" local="yes" imported="no">alib/alib.hpp</includes>
-    <class kind="class">aworx::lib::strings::ASLiteral</class>
-    <class kind="struct">aworx::lib::strings::TMPLiteral</class>
-    <namespace>aworx</namespace>
-    <namespace>aworx::lib</namespace>
-    <namespace>aworx::lib::strings</namespace>
-  </compound>
-  <compound kind="file">
-    <name>asprealloc.hpp</name>
-    <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alib/strings/</path>
-    <filename>asprealloc_8hpp</filename>
-    <includes id="alib_8hpp" name="alib.hpp" local="yes" imported="no">alib/alib.hpp</includes>
-    <class kind="class">aworx::lib::strings::ASPreAlloc</class>
-    <class kind="struct">aworx::lib::strings::IsTerminatable&lt; ASPreAlloc&lt; TCapacity &gt; &gt;</class>
-    <namespace>aworx</namespace>
-    <namespace>aworx::lib</namespace>
-    <namespace>aworx::lib::strings</namespace>
-  </compound>
-  <compound kind="file">
-    <name>assubstring.hpp</name>
-    <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alib/strings/</path>
-    <filename>assubstring_8hpp</filename>
-    <includes id="alib_8hpp" name="alib.hpp" local="yes" imported="no">alib/alib.hpp</includes>
-    <class kind="class">aworx::lib::strings::ASSubstring</class>
-    <namespace>aworx</namespace>
-    <namespace>aworx::lib</namespace>
-    <namespace>aworx::lib::strings</namespace>
-  </compound>
-  <compound kind="file">
-    <name>asterminatable.hpp</name>
-    <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alib/strings/</path>
-    <filename>asterminatable_8hpp</filename>
-    <includes id="alib_8hpp" name="alib.hpp" local="yes" imported="no">alib/alib.hpp</includes>
-    <class kind="class">aworx::lib::strings::ASTerminatable</class>
-    <class kind="struct">aworx::lib::strings::IsTerminatable</class>
-    <namespace>aworx</namespace>
-    <namespace>aworx::lib</namespace>
-    <namespace>aworx::lib::strings</namespace>
-    <member kind="define">
-      <type>#define</type>
-      <name>ALIB_STRING_DBG_UNTERMINATE</name>
-      <anchorfile>group__GrpALibStringsMacros.html</anchorfile>
-      <anchor>gacf96023d903e78f3b5d784a799041667</anchor>
-      <arglist>(astring, offset)</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -787,6 +758,13 @@
     <namespace>aworx</namespace>
     <namespace>aworx::lib</namespace>
     <namespace>aworx::lib::config</namespace>
+    <member kind="typedef">
+      <type>aworx::lib::config::Configuration</type>
+      <name>Configuration</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a9b321d2f72b975b304aa678e20344e7a</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>consolelogger.hpp</name>
@@ -798,6 +776,13 @@
     <namespace>aworx</namespace>
     <namespace>aworx::lox</namespace>
     <namespace>aworx::lox::loggers</namespace>
+    <member kind="typedef">
+      <type>aworx::lox::loggers::ConsoleLogger</type>
+      <name>ConsoleLogger</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>acfbbfc11d98646c37dbf27e3ede11644</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>cstring.hpp</name>
@@ -817,10 +802,17 @@
     <namespace>aworx</namespace>
     <namespace>aworx::lib</namespace>
     <namespace>aworx::lib::system</namespace>
+    <member kind="typedef">
+      <type>aworx::lib::system::Directory</type>
+      <name>Directory</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>ae59166dff4149598acd5f636fe6760d8</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="variable">
       <type>const char</type>
       <name>PathSeparator</name>
-      <anchorfile>namespaceaworx_1_1lib_1_1system.html</anchorfile>
+      <anchorfile>namespaceaworx.html</anchorfile>
       <anchor>a081742a3398152ceb8694674ffd21c37</anchor>
       <arglist></arglist>
     </member>
@@ -843,6 +835,104 @@
     <namespace>aworx</namespace>
     <namespace>aworx::lib</namespace>
     <namespace>aworx::lib::enums</namespace>
+    <member kind="typedef">
+      <type>aworx::lib::enums::Alignment</type>
+      <name>Alignment</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a96dde4be24b9217d6bef30b22d7dfd4c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::enums::Case</type>
+      <name>Case</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>ac497730bb253c7efcfee90f6de02a0ba</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::enums::Create</type>
+      <name>Create</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>ae9b7ef57f8fb67372f77ff485e3087d7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::enums::CurrentData</type>
+      <name>CurrentData</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a8cd9fd65cae399a824854fa2ea3b8bfc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::enums::Inclusion</type>
+      <name>Inclusion</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>af3771c700d4232fb5b8a10510e088274</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::enums::LockMode</type>
+      <name>LockMode</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>acae7a6e21dc6155b5f1b7c932fb8aa34</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::enums::Phase</type>
+      <name>Phase</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>ac87fae76a49419f75db6b44011acc407</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::enums::Propagation</type>
+      <name>Propagation</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a6becd7c5957b9924c08b78079a67c5b4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::enums::Responsibility</type>
+      <name>Responsibility</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>ad8c1565886f17d3b3262d8454ae546de</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::enums::Result</type>
+      <name>Result</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a0bb37c2c22c2eb85510445d1b9d11f19</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::enums::Safeness</type>
+      <name>Safeness</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>ae44933ed0bc5c2462dce430a034dd6b0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::enums::Switch</type>
+      <name>Switch</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>abbc3fd675117881e7c7aebcd1058ad03</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::enums::Timezone</type>
+      <name>Timezone</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a5d6766c28e92b7f6ec8f96383455acdc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::enums::Whitespaces</type>
+      <name>Whitespaces</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a0c07eb477a798a2088b4619390c54e72</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="enumeration">
       <type></type>
       <name>Alignment</name>
@@ -977,6 +1067,7 @@
     <name>inifile.hpp</name>
     <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alib/config/</path>
     <filename>inifile_8hpp</filename>
+    <includes id="substring_8hpp" name="substring.hpp" local="yes" imported="no">alib/strings/substring.hpp</includes>
     <includes id="configuration_8hpp" name="configuration.hpp" local="yes" imported="no">alib/config/configuration.hpp</includes>
     <class kind="class">aworx::lib::config::IniFile</class>
     <class kind="class">aworx::lib::config::IniFile::Section</class>
@@ -985,17 +1076,32 @@
     <namespace>aworx::lib</namespace>
     <namespace>aworx::lib::config</namespace>
     <namespace>aworx::lib::strings</namespace>
+    <member kind="typedef">
+      <type>aworx::lib::config::IniFile</type>
+      <name>IniFile</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>aef31dd55ee6403c15d9ba93325d3333d</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>log.hpp</name>
     <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alox/</path>
     <filename>log_8hpp</filename>
+    <includes id="alox_8hpp" name="alox.hpp" local="yes" imported="no">alox/alox.hpp</includes>
     <class kind="class">aworx::lox::ALoxReportWriter</class>
     <class kind="class">aworx::lox::Log</class>
     <namespace>aworx</namespace>
     <namespace>aworx::lox</namespace>
     <namespace>aworx::lox::core</namespace>
     <namespace>aworx::lox::core::textlogger</namespace>
+    <member kind="typedef">
+      <type>aworx::lox::Log</type>
+      <name>Log</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a5d8a9ca518e5abc7446b6a753e2b7ae6</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>logger.hpp</name>
@@ -1021,6 +1127,13 @@
     <namespace>aworx::lox</namespace>
     <namespace>aworx::lox::core</namespace>
     <namespace>aworx::lox::core::textlogger</namespace>
+    <member kind="typedef">
+      <type>aworx::lox::Lox</type>
+      <name>Lox</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>abf1258bbd9cf9772a1559f4ceb37fde4</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>macros.hpp</name>
@@ -1499,163 +1612,11 @@
     <namespace>aworx</namespace>
     <namespace>aworx::lox</namespace>
     <namespace>aworx::lox::loggers</namespace>
-  </compound>
-  <compound kind="file">
-    <name>namespace.hpp</name>
-    <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alib/strings/</path>
-    <filename>namespace_8hpp</filename>
-    <includes id="alib_8hpp" name="alib.hpp" local="yes" imported="no">alib/alib.hpp</includes>
-    <includes id="asterminatable_8hpp" name="asterminatable.hpp" local="yes" imported="no">alib/strings/asterminatable.hpp</includes>
-    <includes id="asliteral_8hpp" name="asliteral.hpp" local="yes" imported="no">alib/strings/asliteral.hpp</includes>
-    <includes id="asalloc_8hpp" name="asalloc.hpp" local="yes" imported="no">alib/strings/asalloc.hpp</includes>
-    <includes id="asprealloc_8hpp" name="asprealloc.hpp" local="yes" imported="no">alib/strings/asprealloc.hpp</includes>
-    <includes id="applyto_8hpp" name="applyto.hpp" local="yes" imported="no">alib/strings/applyto.hpp</includes>
-    <includes id="applyformat_8hpp" name="applyformat.hpp" local="yes" imported="no">alib/strings/applyformat.hpp</includes>
-    <namespace>aworx</namespace>
-    <namespace>aworx::lib</namespace>
-    <namespace>aworx::lib::strings</namespace>
-    <member kind="variable" static="yes">
-      <type>static constexpr ASLiteral&lt; 4 &gt;</type>
-      <name>DefaultWhitespaces</name>
-      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>a883f1244d6fd8d7f4615d647fa388d04</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static constexpr ASLiteral&lt; 1 &gt;</type>
-      <name>NewLine</name>
-      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>a9976902761097963bf1c3d15a704dd9a</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="file">
-    <name>ns_aworx.hpp</name>
-    <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alib/core/</path>
-    <filename>ns__aworx_8hpp</filename>
-    <includes id="alib_8hpp" name="alib.hpp" local="yes" imported="no">alib/alib.hpp</includes>
-    <class kind="class">aworx::lib::strings::ASLiteral</class>
-    <class kind="class">aworx::lib::strings::ASPreAlloc</class>
-    <namespace>aworx</namespace>
-    <namespace>aworx::lib</namespace>
-    <namespace>aworx::lib::strings</namespace>
     <member kind="typedef">
-      <type>aworx::lib::strings::ASAlloc</type>
-      <name>AString</name>
+      <type>aworx::lox::loggers::MemoryLogger</type>
+      <name>MemoryLogger</name>
       <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>a5878d649ed3cc544cbd74721f95da495</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
-      <type>aworx::lib::strings::AS</type>
-      <name>String</name>
-      <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>a1b602fe268f8de37e14430b7e646cd0f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
-      <type>aworx::lib::strings::ASPreAlloc&lt; 128 &gt;</type>
-      <name>String128</name>
-      <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>abb9edf26ef4b9c245c5a95bb13f41dcf</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
-      <type>aworx::lib::strings::ASPreAlloc&lt; 16 &gt;</type>
-      <name>String16</name>
-      <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>acbea83160c272e842de487ed7aa0caab</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
-      <type>aworx::lib::strings::ASPreAlloc&lt; 1024 &gt;</type>
-      <name>String1K</name>
-      <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>acd9946aad9d9041ea509a3bced22e283</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
-      <type>aworx::lib::strings::ASPreAlloc&lt; 256 &gt;</type>
-      <name>String256</name>
-      <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>a81ae91cb74396a4fc28abd35ed7ff052</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
-      <type>aworx::lib::strings::ASPreAlloc&lt; 2048 &gt;</type>
-      <name>String2K</name>
-      <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>af3dee8b08186b18ae10ef7bb0a41e650</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
-      <type>aworx::lib::strings::ASPreAlloc&lt; 32 &gt;</type>
-      <name>String32</name>
-      <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>a8a557200d216efbde6004a5eea849b86</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
-      <type>aworx::lib::strings::ASPreAlloc&lt; 4096 &gt;</type>
-      <name>String4K</name>
-      <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>ab35934f523d9f334a8310ea3384d3d67</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
-      <type>aworx::lib::strings::ASPreAlloc&lt; 512 &gt;</type>
-      <name>String512</name>
-      <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>afc3e452a4a1195b67d5a8121fd9ea8ce</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
-      <type>aworx::lib::strings::ASPreAlloc&lt; 64 &gt;</type>
-      <name>String64</name>
-      <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>ad16dfdce0f76423f90dcf6821f8b4a7e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
-      <type>aworx::lib::strings::ASPreAlloc&lt; 8 &gt;</type>
-      <name>String8</name>
-      <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>a639c84da3f1fd25fe67d734809c35992</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
-      <type>aworx::lib::strings::ASLiteral&lt; TLength &gt;</type>
-      <name>StringLiteral</name>
-      <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>a25a9748ddb0997bcedc38913800a9352</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
-      <type>aworx::lib::strings::ASSubstring</type>
-      <name>Substring</name>
-      <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>a020f593b093787650587801352ccddd3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
-      <type>aworx::lib::strings::ASTerminatable</type>
-      <name>TString</name>
-      <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>a2de28a17dc8f201aaa9a8bfa637500a5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr String</type>
-      <name>EmptyString</name>
-      <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>ae8312c2e2a7a26985be3500c40599b61</anchor>
-      <arglist>(&quot;&quot;, 0)</arglist>
-    </member>
-    <member kind="variable">
-      <type>constexpr String</type>
-      <name>NullString</name>
-      <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>a6d6180d70c719442ba8b7a120689b9ce</anchor>
+      <anchor>aff4e02a238ba03a98be3dd17d783f336</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -1667,6 +1628,13 @@
     <namespace>aworx</namespace>
     <namespace>aworx::lib</namespace>
     <namespace>aworx::lib::strings</namespace>
+    <member kind="typedef">
+      <type>aworx::lib::strings::NumberFormat</type>
+      <name>NumberFormat</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a4105ad142b7282bab44c0f051d36e350</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>ownable.hpp</name>
@@ -1704,6 +1672,94 @@
     <namespace>aworx::lib::config</namespace>
   </compound>
   <compound kind="file">
+    <name>preallocatedstring.hpp</name>
+    <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alib/strings/</path>
+    <filename>preallocatedstring_8hpp</filename>
+    <includes id="alib_8hpp" name="alib.hpp" local="yes" imported="no">alib/alib.hpp</includes>
+    <class kind="struct">aworx::lib::strings::IsTerminatable&lt; PreallocatedString&lt; TCapacity &gt; &gt;</class>
+    <class kind="class">aworx::lib::strings::PreallocatedString</class>
+    <namespace>aworx</namespace>
+    <namespace>aworx::lib</namespace>
+    <namespace>aworx::lib::strings</namespace>
+    <member kind="typedef">
+      <type>aworx::lib::strings::PreallocatedString&lt; TCapacity &gt;</type>
+      <name>PAString</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a10e9458c58956ec05a324232fc1cc9e4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::strings::PreallocatedString&lt; 128 &gt;</type>
+      <name>String128</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a2841f1443c3b2f3d6066d5774cf69dbc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::strings::PreallocatedString&lt; 16 &gt;</type>
+      <name>String16</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a148a217c34a72b4360462205858b8f0e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::strings::PreallocatedString&lt; 1024 &gt;</type>
+      <name>String1K</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a82395a8f3fac47787ebe8749679a2796</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::strings::PreallocatedString&lt; 256 &gt;</type>
+      <name>String256</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a152f787b6dac47dd3f94ae5ebf1ece53</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::strings::PreallocatedString&lt; 2048 &gt;</type>
+      <name>String2K</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a76f69ad445caecfbf03351c884637b09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::strings::PreallocatedString&lt; 32 &gt;</type>
+      <name>String32</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a221752691fb92bcd592c045d6c368289</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::strings::PreallocatedString&lt; 4096 &gt;</type>
+      <name>String4K</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a772f06f37ace5e2b2eb8cafc0c859c44</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::strings::PreallocatedString&lt; 512 &gt;</type>
+      <name>String512</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>af634b7550d8a316ce3cf3fb6f9e86079</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::strings::PreallocatedString&lt; 64 &gt;</type>
+      <name>String64</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>ac2fdc487456a994238ba4284b3859c41</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::strings::PreallocatedString&lt; 8 &gt;</type>
+      <name>String8</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>ab35696c2e8d79567a528a4b6da788eb3</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
     <name>process.hpp</name>
     <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alib/system/</path>
     <filename>process_8hpp</filename>
@@ -1711,6 +1767,13 @@
     <namespace>aworx</namespace>
     <namespace>aworx::lib</namespace>
     <namespace>aworx::lib::system</namespace>
+    <member kind="typedef">
+      <type>aworx::lib::system::ProcessInfo</type>
+      <name>ProcessInfo</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a8644368b56cf61a16e37300584a1d4e2</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>report.hpp</name>
@@ -1775,7 +1838,7 @@
     <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alib/compatibility/</path>
     <filename>std__string_8hpp</filename>
     <class kind="struct">aworx::lib::strings::IsApplicable&lt; const std::string &amp; &gt;</class>
-    <class kind="struct">aworx::lib::strings::ToASDefined&lt; const std::string &amp; &gt;</class>
+    <class kind="struct">aworx::lib::strings::ToStringDefined&lt; const std::string &amp; &gt;</class>
     <namespace>aworx</namespace>
     <namespace>aworx::lib</namespace>
     <namespace>aworx::lib::strings</namespace>
@@ -1794,46 +1857,149 @@
       <arglist>(AString &amp;target, const std::string &amp;src)</arglist>
     </member>
     <member kind="function">
-      <type>const char *</type>
-      <name>ToAS&lt; const std::string &amp; &gt;</name>
+      <type>std::string &amp;</type>
+      <name>ToStdString</name>
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>af2f5751974e1cdb68c13d3a8ac337b7b</anchor>
+      <anchor>acee8df0c9711c319807b3661f1046dfd</anchor>
+      <arglist>(const String &amp;as, std::string &amp;target, int regionStart, int regionLength=CString::MaxLen, enums::CurrentData targetData=enums::CurrentData::Clear)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>ToStdString</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>a69456b076a8fce4982a9d3790796d424</anchor>
+      <arglist>(const String &amp;as, int regionStart, int regionLength=CString::MaxLen)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>ToStdString</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>a039f938c7e403c09e0271e4f353123bf</anchor>
+      <arglist>(const String &amp;as)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string &amp;</type>
+      <name>ToStdString</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>a8f1c5a17c57b3b54f2f46e58bef50487</anchor>
+      <arglist>(const String &amp;as, std::string &amp;target, enums::CurrentData targetData=enums::CurrentData::Clear)</arglist>
+    </member>
+    <member kind="function">
+      <type>const char *</type>
+      <name>ToString&lt; const std::string &amp; &gt;</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>a8d85e610e17c69e9ece8b558735519e0</anchor>
       <arglist>(const std::string &amp;src)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
-      <name>ToAS&lt; const std::string &amp; &gt;</name>
+      <name>ToString&lt; const std::string &amp; &gt;</name>
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>ad176816568c03b4c43b5bbfb814ca7f5</anchor>
+      <anchor>ae0fc15801fea6b54738ca715ed192cf0</anchor>
       <arglist>(const std::string &amp;src)</arglist>
     </member>
-    <member kind="function">
-      <type>std::string &amp;</type>
-      <name>ToStdString</name>
-      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>a7b3324b379ed34963410530fde2392e5</anchor>
-      <arglist>(const AS &amp;as, std::string &amp;target, int regionStart, int regionLength=CString::MaxLen, enums::CurrentData targetData=enums::CurrentData::Clear)</arglist>
+  </compound>
+  <compound kind="file">
+    <name>string.hpp</name>
+    <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alib/strings/</path>
+    <filename>string_8hpp</filename>
+    <includes id="alib_8hpp" name="alib.hpp" local="yes" imported="no">alib/alib.hpp</includes>
+    <class kind="class">aworx::lib::strings::String</class>
+    <class kind="struct">aworx::lib::strings::ToStringDefined</class>
+    <namespace>aworx</namespace>
+    <namespace>aworx::lib</namespace>
+    <namespace>aworx::lib::strings</namespace>
+    <member kind="define">
+      <type>#define</type>
+      <name>ALIB_STRING_DBG_CHK</name>
+      <anchorfile>group__GrpALibStringsMacros.html</anchorfile>
+      <anchor>gae7492253da37c76b118d446494f1f632</anchor>
+      <arglist>(instance)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::strings::String</type>
+      <name>String</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>ad13481d84c6e592a41d07c64f747c95d</anchor>
+      <arglist></arglist>
     </member>
     <member kind="function">
-      <type>std::string</type>
-      <name>ToStdString</name>
+      <type>TReturn</type>
+      <name>ToString</name>
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>a70ca8b6e2ef4a9264c6c5f2755a43b07</anchor>
-      <arglist>(const AS &amp;as, int regionStart, int regionLength=CString::MaxLen)</arglist>
+      <anchor>a7cfd45024bf9222b42febac98fdcc146</anchor>
+      <arglist>(const TString)</arglist>
     </member>
-    <member kind="function">
-      <type>std::string</type>
-      <name>ToStdString</name>
-      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>af8e87f4ad5a228fdc94f04d405b281d8</anchor>
-      <arglist>(const AS &amp;as)</arglist>
+    <member kind="variable">
+      <type>constexpr lib::strings::String</type>
+      <name>EmptyString</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a3372961a8fb9d30455267babb4e6c26c</anchor>
+      <arglist></arglist>
     </member>
-    <member kind="function">
-      <type>std::string &amp;</type>
-      <name>ToStdString</name>
-      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>a82a39be3112d82041508726a9dfad939</anchor>
-      <arglist>(const AS &amp;as, std::string &amp;target, enums::CurrentData targetData=enums::CurrentData::Clear)</arglist>
+    <member kind="variable">
+      <type>constexpr lib::strings::String</type>
+      <name>NullString</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>ab1ed6dcfbe4628dccefbdb5633b1bf01</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>stringliteral.hpp</name>
+    <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alib/strings/</path>
+    <filename>stringliteral_8hpp</filename>
+    <includes id="alib_8hpp" name="alib.hpp" local="yes" imported="no">alib/alib.hpp</includes>
+    <class kind="class">aworx::lib::strings::StringLiteral</class>
+    <class kind="struct">aworx::lib::strings::TMPLiteral</class>
+    <namespace>aworx</namespace>
+    <namespace>aworx::lib</namespace>
+    <namespace>aworx::lib::strings</namespace>
+    <member kind="typedef">
+      <type>aworx::lib::strings::StringLiteral&lt; TLength &gt;</type>
+      <name>SLiteral</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>af631a26bf70ad6d6143973fadf779747</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr lib::strings::StringLiteral&lt; 4 &gt;</type>
+      <name>DefaultWhitespaces</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a5feaaf6a8fb11e8ebbb0013ec9f27b01</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr lib::strings::StringLiteral&lt; 1 &gt;</type>
+      <name>NewLine</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>aca82326cfe712c18f9adb9f560a28553</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>strings_namespace_documentation.hpp</name>
+    <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alib/strings/</path>
+    <filename>strings__namespace__documentation_8hpp</filename>
+    <namespace>aworx</namespace>
+    <namespace>aworx::lib</namespace>
+    <namespace>aworx::lib::strings</namespace>
+  </compound>
+  <compound kind="file">
+    <name>substring.hpp</name>
+    <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alib/strings/</path>
+    <filename>substring_8hpp</filename>
+    <includes id="alib_8hpp" name="alib.hpp" local="yes" imported="no">alib/alib.hpp</includes>
+    <class kind="class">aworx::lib::strings::Substring</class>
+    <namespace>aworx</namespace>
+    <namespace>aworx::lib</namespace>
+    <namespace>aworx::lib::strings</namespace>
+    <member kind="typedef">
+      <type>lib::strings::Substring</type>
+      <name>Substring</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>aade494154da29084f1e59cfa2f83a23b</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -1898,6 +2064,13 @@
     <namespace>aworx</namespace>
     <namespace>aworx::lib</namespace>
     <namespace>aworx::lib::system</namespace>
+    <member kind="typedef">
+      <type>aworx::lib::system::System</type>
+      <name>System</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>aea0af9d6b00ede1a16d0af24fdaeebe0</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>textfilelogger.hpp</name>
@@ -1909,6 +2082,13 @@
     <namespace>aworx</namespace>
     <namespace>aworx::lox</namespace>
     <namespace>aworx::lox::loggers</namespace>
+    <member kind="typedef">
+      <type>aworx::lox::loggers::TextFileLogger</type>
+      <name>TextFileLogger</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>ae64ac3b33c7c180e92559a869977fda0</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>textlogger.hpp</name>
@@ -1926,18 +2106,45 @@
     <namespace>aworx::lox</namespace>
     <namespace>aworx::lox::core</namespace>
     <namespace>aworx::lox::core::textlogger</namespace>
+    <member kind="typedef">
+      <type>aworx::lox::core::textlogger::TextLogger</type>
+      <name>TextLogger</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a8d1a5942495395f77e31bb5d451c332b</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>thread.hpp</name>
     <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alib/threads/</path>
     <filename>thread_8hpp</filename>
     <includes id="alib_8hpp" name="alib.hpp" local="yes" imported="no">alib/alib.hpp</includes>
-    <includes id="asprealloc_8hpp" name="asprealloc.hpp" local="yes" imported="no">alib/strings/asprealloc.hpp</includes>
     <class kind="class">aworx::lib::threads::Runnable</class>
     <class kind="class">aworx::lib::threads::Thread</class>
     <namespace>aworx</namespace>
     <namespace>aworx::lib</namespace>
     <namespace>aworx::lib::threads</namespace>
+    <member kind="typedef">
+      <type>aworx::lib::threads::Runnable</type>
+      <name>Runnable</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>af259362a7fa123eef74daaf4036e02a5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::threads::Thread</type>
+      <name>Thread</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a42fe02133ffe8b203c4aa204d2114d49</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::threads::ThreadLockNR</type>
+      <name>ThreadLockNR</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>adb7e18c3a3777faf17dde8a543e30a27</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>threadlock.hpp</name>
@@ -1951,12 +2158,19 @@
     <namespace>aworx</namespace>
     <namespace>aworx::lib</namespace>
     <namespace>aworx::lib::threads</namespace>
+    <member kind="typedef">
+      <type>aworx::lib::threads::ThreadLock</type>
+      <name>ThreadLock</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>ad941b2cb61bade9aa2478dd063154d33</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>ticks.hpp</name>
     <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alib/time/</path>
     <filename>ticks_8hpp</filename>
-    <includes id="assubstring_8hpp" name="assubstring.hpp" local="yes" imported="no">alib/strings/assubstring.hpp</includes>
+    <includes id="substring_8hpp" name="substring.hpp" local="yes" imported="no">alib/strings/substring.hpp</includes>
     <class kind="class">aworx::lib::time::Ticks</class>
     <class kind="class">aworx::lib::time::TicksCalendarTime</class>
     <class kind="class">aworx::lib::time::TickSpan</class>
@@ -1964,16 +2178,76 @@
     <namespace>aworx</namespace>
     <namespace>aworx::lib</namespace>
     <namespace>aworx::lib::time</namespace>
+    <member kind="typedef">
+      <type>aworx::lib::time::Ticks</type>
+      <name>Ticks</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>ad270463709a4ae7e7098df40e803e458</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::time::TicksCalendarTime</type>
+      <name>TicksCalendarTime</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a0607ccd659418fa7cb9922b2c4ba5f1d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::time::TickSpan</type>
+      <name>TickSpan</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a7b85567c52aa0abc2531be7a2a7f887f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::time::TickWatch</type>
+      <name>TickWatch</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a4d4926218d664dabc231ce5cf0c19afc</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>tokenizer.hpp</name>
     <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alib/strings/</path>
     <filename>tokenizer_8hpp</filename>
-    <includes id="assubstring_8hpp" name="assubstring.hpp" local="yes" imported="no">alib/strings/assubstring.hpp</includes>
+    <includes id="substring_8hpp" name="substring.hpp" local="yes" imported="no">alib/strings/substring.hpp</includes>
     <class kind="class">aworx::lib::strings::Tokenizer</class>
     <namespace>aworx</namespace>
     <namespace>aworx::lib</namespace>
     <namespace>aworx::lib::strings</namespace>
+    <member kind="typedef">
+      <type>aworx::lib::strings::Tokenizer</type>
+      <name>Tokenizer</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a605604b4e10ad391819f94254f1727b7</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>tstring.hpp</name>
+    <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alib/strings/</path>
+    <filename>tstring_8hpp</filename>
+    <includes id="alib_8hpp" name="alib.hpp" local="yes" imported="no">alib/alib.hpp</includes>
+    <class kind="struct">aworx::lib::strings::IsTerminatable</class>
+    <class kind="class">aworx::lib::strings::TString</class>
+    <namespace>aworx</namespace>
+    <namespace>aworx::lib</namespace>
+    <namespace>aworx::lib::strings</namespace>
+    <member kind="define">
+      <type>#define</type>
+      <name>ALIB_STRING_DBG_UNTERMINATE</name>
+      <anchorfile>group__GrpALibStringsMacros.html</anchorfile>
+      <anchor>gacf96023d903e78f3b5d784a799041667</anchor>
+      <arglist>(astring, offset)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::strings::TString</type>
+      <name>TString</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>af01fde7c67b5f30027a4135222bbde31</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>util.hpp</name>
@@ -1994,6 +2268,13 @@
     <namespace>aworx</namespace>
     <namespace>aworx::lox</namespace>
     <namespace>aworx::lox::loggers</namespace>
+    <member kind="typedef">
+      <type>aworx::lox::loggers::VStudioLogger</type>
+      <name>VStudioLogger</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a747899e07def7493ae65c9569a5dc879</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>windowsconsolelogger.hpp</name>
@@ -2005,6 +2286,13 @@
     <namespace>aworx</namespace>
     <namespace>aworx::lox</namespace>
     <namespace>aworx::lox::loggers</namespace>
+    <member kind="typedef">
+      <type>aworx::lox::loggers::WindowsConsoleLogger</type>
+      <name>WindowsConsoleLogger</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>ad427fd161e0ad8bd4c8835c5a643cc3f</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>aworx::lib::ALIB</name>
@@ -2031,10 +2319,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API strings::AS</type>
+      <type>static ALIB_API strings::String</type>
       <name>ConfigCategoryName</name>
       <anchorfile>classaworx_1_1lib_1_1ALIB.html</anchorfile>
-      <anchor>a22148968a71666eb82718ab25d688adc</anchor>
+      <anchor>affcf83e8b52935dd94b74c1a47cf7e0a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
@@ -2165,283 +2453,283 @@
     <filename>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</filename>
     <base>aworx::lox::core::textlogger::TextLogger</base>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 5 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 5 &gt;</type>
       <name>ANSI_BG_BLACK</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>a228ea55d3746ca88b1d2a8ff7a21db89</anchor>
+      <anchor>a27e72cbc5b02a1dbcc59459b24fcac93</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 5 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 5 &gt;</type>
       <name>ANSI_BG_BLUE</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>a3f90971fd506a7580d1e6a793b499b4c</anchor>
+      <anchor>a78781c97dcd77d8e020d97f45c6ec17d</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 5 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 5 &gt;</type>
       <name>ANSI_BG_CYAN</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>a0b2519b873ae00d399a93a15287a3f4c</anchor>
+      <anchor>a55cdb14432692f0f3652ab370f737838</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 11 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 11 &gt;</type>
       <name>ANSI_BG_GRAY</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>aa3abc0b726f85a364f822ef69fd2b708</anchor>
+      <anchor>a6a0101d01ba74803526dfe840f5908ca</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 5 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 5 &gt;</type>
       <name>ANSI_BG_GREEN</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>ad1c457983ab837465edeeeae5570547a</anchor>
+      <anchor>a730b918b92cd98d292027abe64c204e1</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 10 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 10 &gt;</type>
       <name>ANSI_BG_LIGHT_BLUE</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>a4a9dbb44c99da33ff395eaf2189b2538</anchor>
+      <anchor>a79a4977dd2c4d0c59ecc710e183dfdf0</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 10 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 10 &gt;</type>
       <name>ANSI_BG_LIGHT_CYAN</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>a4e21c418f58344c838bc684bc246df5d</anchor>
+      <anchor>a355036b8fd63b3bc610bb2306e82fd44</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 11 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 11 &gt;</type>
       <name>ANSI_BG_LIGHT_GRAY</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>a64cb6a513058e627f3b2fd666cb43265</anchor>
+      <anchor>add465a88b8403ce7a9958b5aef88bdec</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 10 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 10 &gt;</type>
       <name>ANSI_BG_LIGHT_GREEN</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>a8cb95631c68faa8a320cb49d008a2717</anchor>
+      <anchor>a5b80a3c04fe8a12fd70bf03ab10ccd24</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 10 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 10 &gt;</type>
       <name>ANSI_BG_LIGHT_MAGENTA</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>ae5ae4580cc025f86c36c5e5348fd39b5</anchor>
+      <anchor>af730ae0af14b4635f8520b8b38c47c3a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 10 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 10 &gt;</type>
       <name>ANSI_BG_LIGHT_RED</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>a8d7d338fb11abdef4e4ba49f9d0e4a0f</anchor>
+      <anchor>a3bb7b29b489ce76c545f44c537de9f11</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 5 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 5 &gt;</type>
       <name>ANSI_BG_LIGHT_STD_COL</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>a3bdb0b456b85ffcf30d0d6ec14cb2145</anchor>
+      <anchor>a30242d20b5eeab94340a1fb08aafac6d</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 10 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 10 &gt;</type>
       <name>ANSI_BG_LIGHT_YELLOW</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>a900b1b7b627c765bdc3d8a5c6b729faa</anchor>
+      <anchor>ac0f817a36a42706066be19b714b18529</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 5 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 5 &gt;</type>
       <name>ANSI_BG_MAGENTA</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>ac61bddff15e41911f8a8975f17372a5e</anchor>
+      <anchor>a39a1ec9788d46db67d8070dd8ba5f9c7</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 5 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 5 &gt;</type>
       <name>ANSI_BG_RED</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>a18bb2d7b3569d5cab7e4d0ce469fcfda</anchor>
+      <anchor>ad8f6edba5f4ea02b34a5ff9f47dbb823</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 5 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 5 &gt;</type>
       <name>ANSI_BG_STD_COL</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>afb6e0a58a346c020c73d278816906ed8</anchor>
+      <anchor>ad347cc384960c5b3a53711db67b461a0</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 10 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 10 &gt;</type>
       <name>ANSI_BG_WHITE</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>a48a55414be11b6bc9a61759ca36f9ccf</anchor>
+      <anchor>a997f0ff7a14095055ca4177f2c7ee24b</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 5 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 5 &gt;</type>
       <name>ANSI_BG_YELLOW</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>af56fd74ff93347b63cede3f70854faee</anchor>
+      <anchor>a0dd61828101f981ddf40596036491db2</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 5 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 5 &gt;</type>
       <name>ANSI_BLACK</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>adef3f7db058d0f8d1e51173ee3db06b5</anchor>
+      <anchor>a03bb338f2071710563b5b900776ff97c</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 5 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 5 &gt;</type>
       <name>ANSI_BLUE</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>a62455f6a7eff9b0b7a8076a89791de6d</anchor>
+      <anchor>af13e42075527c53826a45b701d2f11ff</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 4 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 4 &gt;</type>
       <name>ANSI_BOLD</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>a58d11cabdad7f79c70514bbee06f4c0c</anchor>
+      <anchor>a3673001c1ecfade29ebd998fb0a7d34d</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 5 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 5 &gt;</type>
       <name>ANSI_CYAN</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>a4f2d70b463cb45d22ab722d33037deff</anchor>
+      <anchor>ab74c43b828d71d6a0bb8f2f638153c38</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 11 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 11 &gt;</type>
       <name>ANSI_GRAY</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>ae94c1892d40b66679e7cf2accd37cbca</anchor>
+      <anchor>a451ac488ad5845c1fd7ef00baa7c4804</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 5 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 5 &gt;</type>
       <name>ANSI_GREEN</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>a65337713adf9ecf01a5c6d815428a223</anchor>
+      <anchor>a959850ecf9bb6c411bac981f96e856ee</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 4 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 4 &gt;</type>
       <name>ANSI_ITALICS</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>ab079336ce2b3ae0a8d6475e7f322ce11</anchor>
+      <anchor>a508beb405ebff03bbe2c95f6b1ee3b2a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 10 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 10 &gt;</type>
       <name>ANSI_LIGHT_BLUE</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>ab1957cfdacd73ceaea1c41c1571a16fd</anchor>
+      <anchor>a26d9f5b90c0c759c2f884de2bd3b686d</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 10 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 10 &gt;</type>
       <name>ANSI_LIGHT_CYAN</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>a70548855f970ad80c7fe347759d8edab</anchor>
+      <anchor>a8a7ab1c3f0c1801f4753b7688a169fb4</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 11 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 11 &gt;</type>
       <name>ANSI_LIGHT_GRAY</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>aa830905b6d622a7937d8f702855fdca2</anchor>
+      <anchor>ae011416736a221e44aaffcfef3f3f82c</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 10 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 10 &gt;</type>
       <name>ANSI_LIGHT_GREEN</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>a21ba33fdb33ec4a4de01a993ac82dbd9</anchor>
+      <anchor>a38253545c73c267665042f327e8c1d14</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 10 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 10 &gt;</type>
       <name>ANSI_LIGHT_MAGENTA</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>aa83811feca16a7e27043c0ca3c689665</anchor>
+      <anchor>a37ab8dbc850a5c7a93377533064a05e6</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 10 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 10 &gt;</type>
       <name>ANSI_LIGHT_RED</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>a4d505b745a16639d98880a199333b065</anchor>
+      <anchor>a76e632c9d3072b0787dc39f762570ecd</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 5 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 5 &gt;</type>
       <name>ANSI_LIGHT_STD_COL</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>ae87517e5a7e11aad6ccedf1978d050e4</anchor>
+      <anchor>af0def5f87a98d3035be0f9458b51d819</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 10 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 10 &gt;</type>
       <name>ANSI_LIGHT_YELLOW</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>ae241b706dbc782f3797bd7b1ac656229</anchor>
+      <anchor>a7d398f7c3538d3e90f580b40cb3e98de</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 5 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 5 &gt;</type>
       <name>ANSI_MAGENTA</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>ad5563da237bf3ebaf08c8eabbdb0b884</anchor>
+      <anchor>a0ddb3aa248250fc2cfc9e11784f2b12a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 5 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 5 &gt;</type>
       <name>ANSI_RED</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>aa2e4b9a44d88fc20c5ece29ca7fbf08d</anchor>
+      <anchor>a08626922493c40a069ef1cc2b0d384a9</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 4 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 4 &gt;</type>
       <name>ANSI_RESET</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>a0bdf17a2b3d992dfa541b5a209b28bda</anchor>
+      <anchor>a58e573cc2e2729e1c8de3f2ef2550f15</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 5 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 5 &gt;</type>
       <name>ANSI_STD_COL</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>a68da27811f5429fd786eb526f54b7334</anchor>
+      <anchor>ad16f181c52a38df089565a239eb26daa</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 4 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 4 &gt;</type>
       <name>ANSI_STD_STYLE</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>a8c3ca9ba1ef8b9a9b84e715a52bdc38c</anchor>
+      <anchor>ac490b3694ac9f9f753bb9dda4fde4f71</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 10 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 10 &gt;</type>
       <name>ANSI_WHITE</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>a99e7e0110f0f236d99ee79ce88627846</anchor>
+      <anchor>a7b3c274355061e30b915f2d0d30f16f6</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 5 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 5 &gt;</type>
       <name>ANSI_YELLOW</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>a59a88918be599b1cfeb36e9569d3b3df</anchor>
+      <anchor>a250a3234cb0ca3abaca33bc8651a6477</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -2452,38 +2740,38 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>lib::strings::AS</type>
-      <name>MsgPostfix</name>
-      <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>aee2520fb19bd6ae2691a7dfcd7553acb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>lib::strings::AS</type>
+      <type>lib::strings::String</type>
       <name>MsgPrefixError</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>aa60a6b63f1d879b616876c23686bfb30</anchor>
+      <anchor>a0867b64df1cacdb857bb71fd3d22f224</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>lib::strings::AS</type>
+      <type>lib::strings::String</type>
       <name>MsgPrefixInfo</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>a0ec0479f805ff3795e3e623fd89f4d5a</anchor>
+      <anchor>ae0318c55d22df0d49978ae6228a1ef56</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>lib::strings::AS</type>
+      <type>lib::strings::String</type>
       <name>MsgPrefixVerbose</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>a68902a4d4d4d29707e6c3b6bec8c573a</anchor>
+      <anchor>abb564b20fc159477c53a66a48e48e0e1</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>lib::strings::AS</type>
+      <type>lib::strings::String</type>
       <name>MsgPrefixWarning</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>a9ab2c6df9b3cd0cbd82ae35f57c93f8e</anchor>
+      <anchor>acb84a89fbf90dd7fdc8c3b032bfe447a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>lib::strings::String</type>
+      <name>MsgSuffix</name>
+      <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
+      <anchor>acd91abb130b89fd9f59bbbf0706cdd2f</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -2523,2102 +2811,657 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>aworx::lib::strings::AS</name>
-    <filename>classaworx_1_1lib_1_1strings_1_1AS.html</filename>
+    <name>aworx::lib::strings::AString</name>
+    <filename>classaworx_1_1lib_1_1strings_1_1AString.html</filename>
+    <base>aworx::lib::strings::TString</base>
     <member kind="function">
       <type>constexpr</type>
-      <name>AS</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a5402671442b4da5648a08d10c7890252</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr</type>
-      <name>AS</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>aaa5b055c4215aaf5f0304fcafd38a487</anchor>
-      <arglist>(const char *buffer, int contentLength)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>AS</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>af2b51b9c35197a1fbfe6852e23b3d6e1</anchor>
-      <arglist>(const AS &amp;src, int regionStart, int regionLength)</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr</type>
-      <name>AS</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>aea2111582ae33626faa088ed5231c47a</anchor>
-      <arglist>(const T &amp;src)</arglist>
-    </member>
-    <member kind="function">
-      <type>const char *</type>
-      <name>Buffer</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a5d5ce30daece7ec96d0b70ccc5d46002</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>Length</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a6e891964a37680c01e21dedac6ffe670</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>IsNull</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a055d87b78f69c9d039b7e12ead7aa6b6</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>IsNotNull</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>aaaf24e0ec4b4b51df542cd654230c3da</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>IsEmpty</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>aaef62c8761ddd1b95824fc57b1b277b5</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>IsNotEmpty</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a484ba322b1d13f2e2c90066db81179ed</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function">
-      <type>char</type>
-      <name>CharAt</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>aaf9706f704337ae92062d7b68c8f33ea</anchor>
-      <arglist>(int idx) const </arglist>
-    </member>
-    <member kind="function">
-      <type>char</type>
-      <name>CharAtStart</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>aa43766377944d0423a71478f1bbd61e1</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function">
-      <type>char</type>
-      <name>CharAtEnd</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a78fb764265a5d096e56717a52754396d</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function">
-      <type>char</type>
-      <name>operator[]</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a0b3b9871d2fc6522c1f2aedf67b8b1c2</anchor>
-      <arglist>(int op) const </arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>Equals</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>af159245e9c28589bfa834b70e09a4b66</anchor>
-      <arglist>(const AS &amp;needle, enums::Case sensitivity=enums::Case::Sensitive) const </arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>ContainsAt</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>ae9deb6d6fe080bd5a2609f82aefd2f5e</anchor>
-      <arglist>(const AS &amp;needle, int pos, enums::Case sensitivity=enums::Case::Sensitive) const </arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>StartsWith</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a52c449ac2963a7e4d81fbfb524c242fb</anchor>
-      <arglist>(const AS &amp;needle, enums::Case sensitivity=enums::Case::Sensitive) const </arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>EndsWith</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>abd78491bfb59955d08b84ec1592e059f</anchor>
-      <arglist>(const AS &amp;needle, enums::Case sensitivity=enums::Case::Sensitive) const </arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>CompareTo</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a7d7b7811de40ddd94cdcb7db38ad6ef3</anchor>
-      <arglist>(const AS &amp;needle, enums::Case sensitivity=enums::Case::Sensitive) const </arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>CompareTo</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a92ca8478c9d6e6b869c45606b2271616</anchor>
-      <arglist>(const AS &amp;needle, enums::Case sensitivity, int cmpRegionStart, int cmpRegionLength=CString::MaxLen) const </arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>CompareTo</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>ae54e9b486041d6d7a4270f5e9ce94897</anchor>
-      <arglist>(const AS &amp;needle, enums::Case sensitivity, int cmpRegionStart, int cmpRegionLength, int regionStart, int regionLength=CString::MaxLen) const </arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>operator&lt;</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>aa8fbc18f968d64405a07b7683f963e63</anchor>
-      <arglist>(const AS &amp;op) const </arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>operator&gt;</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>aa0a55fc3dc13bd853fb456a3a28bdf53</anchor>
-      <arglist>(const AS &amp;op) const </arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>operator==</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>af8e62ebb3e88a81a5a87bae6d2af4ece</anchor>
-      <arglist>(const AS &amp;op) const </arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>operator!=</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>ad3ba009196aa25cb1190328e7571780f</anchor>
-      <arglist>(const AS &amp;op) const </arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>IndexOf</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a4903bdaa9803322caddc87c623646a90</anchor>
-      <arglist>(char needle) const </arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>IndexOf</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>ab62c5abf6381ef65c72b97183fd64c8d</anchor>
-      <arglist>(char needle, int regionStart) const </arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>IndexOf</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a8ea4959c28189d614a7c883dae3787f5</anchor>
-      <arglist>(char needle, int regionStart, int regionLength) const </arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>LastIndexOf</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a6ff7c059a19d1003e1d150ab86d784f8</anchor>
-      <arglist>(char needle, int startIndex=CString::MaxLen) const </arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>IndexOfAny</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a7b9b46e0de678476c2d8f4e280d9384b</anchor>
-      <arglist>(const AS &amp;needles, enums::Inclusion inclusion, int startIdx=0) const </arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>LastIndexOfAny</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a03154d535fddb6d5bc5f6ffa9d1a578b</anchor>
-      <arglist>(const AS &amp;needles, enums::Inclusion inclusion, int startIdx=CString::MaxLen) const </arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>IndexOfAS</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a666987a9d5ca0f77ced109391935931e</anchor>
-      <arglist>(const AS &amp;needle, int startIdx=0, enums::Case sensitivity=enums::Case::Sensitive) const </arglist>
-    </member>
-    <member kind="function">
-      <type>ALIB_API int</type>
-      <name>ToWString</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a73cfa0a1eb5f3c47cb633967c8b22333</anchor>
-      <arglist>(wchar_t *dest, int destCapacity, int regionStart=0, int regionLength=CString::MaxLen) const </arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>AdjustRegion</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>afe13e5000dc11709e5da14d928f838b7</anchor>
-      <arglist>(int &amp;regionStart, int &amp;regionLength) const </arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>const char *</type>
-      <name>buffer</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>adae84acc92cd77a04f6aaf533643a33a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>int</type>
-      <name>length</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a9f59b34b1f25fe00023291b678246bcc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>char *</type>
-      <name>vbuffer</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>ab060ffba71bd8a3d7067a38950b39a82</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr</type>
-      <name>AS</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a5402671442b4da5648a08d10c7890252</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr</type>
-      <name>AS</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>aaa5b055c4215aaf5f0304fcafd38a487</anchor>
-      <arglist>(const char *buffer, int contentLength)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>AS</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>af2b51b9c35197a1fbfe6852e23b3d6e1</anchor>
-      <arglist>(const AS &amp;src, int regionStart, int regionLength)</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr</type>
-      <name>AS</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>aea2111582ae33626faa088ed5231c47a</anchor>
-      <arglist>(const T &amp;src)</arglist>
-    </member>
-    <member kind="function">
-      <type>const char *</type>
-      <name>Buffer</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a5d5ce30daece7ec96d0b70ccc5d46002</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>Length</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a6e891964a37680c01e21dedac6ffe670</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>IsNull</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a055d87b78f69c9d039b7e12ead7aa6b6</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>IsNotNull</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>aaaf24e0ec4b4b51df542cd654230c3da</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>IsEmpty</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>aaef62c8761ddd1b95824fc57b1b277b5</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>IsNotEmpty</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a484ba322b1d13f2e2c90066db81179ed</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function">
-      <type>char</type>
-      <name>CharAt</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>aaf9706f704337ae92062d7b68c8f33ea</anchor>
-      <arglist>(int idx) const </arglist>
-    </member>
-    <member kind="function">
-      <type>char</type>
-      <name>CharAtStart</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>aa43766377944d0423a71478f1bbd61e1</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function">
-      <type>char</type>
-      <name>CharAtEnd</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a78fb764265a5d096e56717a52754396d</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function">
-      <type>char</type>
-      <name>operator[]</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a0b3b9871d2fc6522c1f2aedf67b8b1c2</anchor>
-      <arglist>(int op) const </arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>Equals</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>af159245e9c28589bfa834b70e09a4b66</anchor>
-      <arglist>(const AS &amp;needle, enums::Case sensitivity=enums::Case::Sensitive) const </arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>ContainsAt</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>ae9deb6d6fe080bd5a2609f82aefd2f5e</anchor>
-      <arglist>(const AS &amp;needle, int pos, enums::Case sensitivity=enums::Case::Sensitive) const </arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>StartsWith</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a52c449ac2963a7e4d81fbfb524c242fb</anchor>
-      <arglist>(const AS &amp;needle, enums::Case sensitivity=enums::Case::Sensitive) const </arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>EndsWith</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>abd78491bfb59955d08b84ec1592e059f</anchor>
-      <arglist>(const AS &amp;needle, enums::Case sensitivity=enums::Case::Sensitive) const </arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>CompareTo</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a7d7b7811de40ddd94cdcb7db38ad6ef3</anchor>
-      <arglist>(const AS &amp;needle, enums::Case sensitivity=enums::Case::Sensitive) const </arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>CompareTo</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a92ca8478c9d6e6b869c45606b2271616</anchor>
-      <arglist>(const AS &amp;needle, enums::Case sensitivity, int cmpRegionStart, int cmpRegionLength=CString::MaxLen) const </arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>CompareTo</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>ae54e9b486041d6d7a4270f5e9ce94897</anchor>
-      <arglist>(const AS &amp;needle, enums::Case sensitivity, int cmpRegionStart, int cmpRegionLength, int regionStart, int regionLength=CString::MaxLen) const </arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>operator&lt;</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>aa8fbc18f968d64405a07b7683f963e63</anchor>
-      <arglist>(const AS &amp;op) const </arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>operator&gt;</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>aa0a55fc3dc13bd853fb456a3a28bdf53</anchor>
-      <arglist>(const AS &amp;op) const </arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>operator==</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>af8e62ebb3e88a81a5a87bae6d2af4ece</anchor>
-      <arglist>(const AS &amp;op) const </arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>operator!=</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>ad3ba009196aa25cb1190328e7571780f</anchor>
-      <arglist>(const AS &amp;op) const </arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>IndexOf</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a4903bdaa9803322caddc87c623646a90</anchor>
-      <arglist>(char needle) const </arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>IndexOf</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>ab62c5abf6381ef65c72b97183fd64c8d</anchor>
-      <arglist>(char needle, int regionStart) const </arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>IndexOf</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a8ea4959c28189d614a7c883dae3787f5</anchor>
-      <arglist>(char needle, int regionStart, int regionLength) const </arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>LastIndexOf</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a6ff7c059a19d1003e1d150ab86d784f8</anchor>
-      <arglist>(char needle, int startIndex=CString::MaxLen) const </arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>IndexOfAny</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a7b9b46e0de678476c2d8f4e280d9384b</anchor>
-      <arglist>(const AS &amp;needles, enums::Inclusion inclusion, int startIdx=0) const </arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>LastIndexOfAny</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a03154d535fddb6d5bc5f6ffa9d1a578b</anchor>
-      <arglist>(const AS &amp;needles, enums::Inclusion inclusion, int startIdx=CString::MaxLen) const </arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>IndexOfAS</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a666987a9d5ca0f77ced109391935931e</anchor>
-      <arglist>(const AS &amp;needle, int startIdx=0, enums::Case sensitivity=enums::Case::Sensitive) const </arglist>
-    </member>
-    <member kind="function">
-      <type>ALIB_API int</type>
-      <name>ToWString</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>a73cfa0a1eb5f3c47cb633967c8b22333</anchor>
-      <arglist>(wchar_t *dest, int destCapacity, int regionStart=0, int regionLength=CString::MaxLen) const </arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>AdjustRegion</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1AS.html</anchorfile>
-      <anchor>afe13e5000dc11709e5da14d928f838b7</anchor>
-      <arglist>(int &amp;regionStart, int &amp;regionLength) const </arglist>
-    </member>
-    <docanchor file="classaworx_1_1lib_1_1strings_1_1AS">CPP_STRINGS_AS_NULLSTATE</docanchor>
-    <docanchor file="classaworx_1_1lib_1_1strings_1_1AS">CPP_STRINGS_AS_NC</docanchor>
-  </compound>
-  <compound kind="class">
-    <name>aworx::lib::strings::ASAlloc</name>
-    <filename>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</filename>
-    <base>aworx::lib::strings::ASTerminatable</base>
-    <member kind="function">
-      <type>constexpr</type>
-      <name>ASAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>a97b1b72fb6f255c9a081a871b80538d9</anchor>
+      <name>AString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a135d849a18470b04a1f4cf761de3a17c</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type></type>
-      <name>ASAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>a7f5c06e907b7e0fca24144cb70bd5e69</anchor>
+      <name>AString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a8d15090f040cca48bcb7f1875de0fe3e</anchor>
       <arglist>(int initialCapacity)</arglist>
     </member>
     <member kind="function">
       <type></type>
-      <name>ASAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>a1e818b2fcc6331ba33670995afa7be58</anchor>
-      <arglist>(const ASAlloc &amp;copy)</arglist>
+      <name>AString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a4f3aebb5fc9bc80c4f569df5d6450025</anchor>
+      <arglist>(const AString &amp;copy)</arglist>
     </member>
     <member kind="function">
       <type></type>
-      <name>ASAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>ae055bad54b390d44b6dfc55fa13ecb87</anchor>
-      <arglist>(ASAlloc &amp;&amp;move) noexcept</arglist>
+      <name>AString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>aea0679449a7bd77ef8c90909a186b0f8</anchor>
+      <arglist>(AString &amp;&amp;move) noexcept</arglist>
     </member>
     <member kind="function">
       <type></type>
-      <name>ASAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>aaef92d763ea45deca330c3d42588e0cb</anchor>
+      <name>AString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>aebc985ab1428055a05aee879e173910a</anchor>
       <arglist>(const T &amp;src)</arglist>
     </member>
     <member kind="function">
       <type></type>
-      <name>ASAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>a792ffc4271041166863ca59b37870638</anchor>
-      <arglist>(const AS &amp;src, int regionStart, int regionLength=CString::MaxLen)</arglist>
+      <name>AString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a572f9132e424efddf6bfa92581db2b36</anchor>
+      <arglist>(const String &amp;src, int regionStart, int regionLength=CString::MaxLen)</arglist>
     </member>
     <member kind="function">
       <type></type>
-      <name>~ASAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>aa0373d9928777ea07116cd3a746aab28</anchor>
+      <name>~AString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>ab93ea5df790ecc39b4f09e84cbd9805c</anchor>
       <arglist>() noexcept</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>operator=</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>a549cf66b555bccba8ae2cc368f8d9c46</anchor>
-      <arglist>(const ASAlloc &amp;copy)</arglist>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>ab5e4f0275095724f12cb477527d2f33b</anchor>
+      <arglist>(const AString &amp;copy)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>operator=</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>aa568cfea22455c8476509646e87ee157</anchor>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a6cfb898b4e0d87d08b6c0b115b690239</anchor>
       <arglist>(const T &amp;op)</arglist>
     </member>
     <member kind="function">
       <type>ALIB_API void</type>
       <name>SetBuffer</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>a4c82c5367836f6886f1505c803ce4058</anchor>
       <arglist>(int newSize)</arglist>
     </member>
     <member kind="function">
       <type>ALIB_API void</type>
       <name>SetBuffer</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>a0c8474e9c19a45b535f1b460aac3847b</anchor>
       <arglist>(char *extBuffer, int extBufferSize, int extLength=0, enums::Responsibility responsibility=enums::Responsibility::KeepWithSender)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>SetLength</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>a0c14574ea5ef859e15b51f288c40f5da</anchor>
       <arglist>(int newLength)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>EnsureRemainingCapacity</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>afa227b35c03708d90f56d9b3280163f1</anchor>
       <arglist>(int spaceNeeded)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>GrowBufferAtLeastBy</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>a3fc410cc4cccd79e66c2f7491bce4bd3</anchor>
       <arglist>(int minimumGrowth)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>Capacity</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>ad07c7e740f0be42afb0c1eda25361864</anchor>
       <arglist>() const </arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>HasInternalBuffer</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>a799c4f153843f7dbba7fe16cf9bfc457</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>SetNull</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>a787c9800970197d19a5452ac456d64f1</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>char *</type>
       <name>VBuffer</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>a39184b93936d495a501cbea28e12495e</anchor>
       <arglist>() const </arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>SetCharAt</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>ab2cf143ab3c019c18b6ada0ea87a6370</anchor>
       <arglist>(int idx, char c)</arglist>
     </member>
     <member kind="function">
       <type>char &amp;</type>
       <name>operator[]</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>a8068d1bbfd60c6cb178bdc0b2084ab9b</anchor>
       <arglist>(int op)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>Clear</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>a222ec65ddfcb63da6f777a0a10f97dea</anchor>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>ae4d5af65574550e39830297e4496f81b</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>_</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>a7d1b2ede295754fcb3ea39e2681a6de6</anchor>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a05403e545a0fa8171456199085790c1c</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>InsertAt</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>a7b300128fd0109d7ed1512027695b03b</anchor>
-      <arglist>(const AS &amp;src, int pos)</arglist>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a8b5159f28435000513953d4b28b98c6d</anchor>
+      <arglist>(const String &amp;src, int pos)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>InsertChars</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>afac5206bb2d94e4ddf323c94e3b1ae6b</anchor>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>abf74925ba2fc5109db3c8be01c962e4e</anchor>
       <arglist>(char c, int qty, int pos=CString::MaxLen)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>ReplaceSubstring</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>a39fd9f532675b3fc95bac49859e1304d</anchor>
-      <arglist>(const AS &amp;src, int regionStart, int regionLength)</arglist>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a17e140dfb247b527da7f6e253601e6b3</anchor>
+      <arglist>(const String &amp;src, int regionStart, int regionLength)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>ReplaceRegion</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>a4c676ecc472793b6c162b55d583007ae</anchor>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>ab7e984ef7acfdeb4d63b572c6f2dca70</anchor>
       <arglist>(char c, int regionStart, int regionLength)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>Delete</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>a56823a21c21992ad292b6fa55396307a</anchor>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a7d7ec24a8f70ba85b88032b1d853acd0</anchor>
       <arglist>(int regionStart, int regionLength=CString::MaxLen)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>DeleteStart</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>ac58f5b2c1fa78ad64e98ece237fb2d01</anchor>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a3919b9c770d283b5df0b09b756081d99</anchor>
       <arglist>(int regionLength)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>DeleteEnd</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>a206da490c31262327e08d08dab328dca</anchor>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a4c72c80e34049aa4566be4fffe4b9251</anchor>
       <arglist>(int regionLength)</arglist>
     </member>
     <member kind="function">
-      <type>ALIB_API ASAlloc &amp;</type>
+      <type>ALIB_API AString &amp;</type>
       <name>Trim</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>ab802b141f81d833ebdfcc2491f0ad736</anchor>
-      <arglist>(const ASTerminatable &amp;trimChars=DefaultWhitespaces)</arglist>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a5902ed6d5d02134b98ac686172f34dc9</anchor>
+      <arglist>(const TString &amp;trimChars=DefaultWhitespaces)</arglist>
     </member>
     <member kind="function">
-      <type>ALIB_API ASAlloc &amp;</type>
+      <type>ALIB_API AString &amp;</type>
       <name>TrimAt</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>a987b1b4d5170a61db5ebf9fcfcd29284</anchor>
-      <arglist>(int index, const ASTerminatable &amp;trimChars=DefaultWhitespaces)</arglist>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a63f255e8769be77d70b70407e388746b</anchor>
+      <arglist>(int index, const TString &amp;trimChars=DefaultWhitespaces)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>TrimStart</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>a47c97dc2b945ad9bd6b8f74321a5b51c</anchor>
-      <arglist>(const ASTerminatable &amp;trimChars=DefaultWhitespaces)</arglist>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a4aacb9ead9be86623c688267f76760cf</anchor>
+      <arglist>(const TString &amp;trimChars=DefaultWhitespaces)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>TrimEnd</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>ae7690c97ce6d3329a1eb4e546a46d36f</anchor>
-      <arglist>(const ASTerminatable &amp;trimChars=DefaultWhitespaces)</arglist>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>abfb73aa66ba9e9ebedecd9de6ee6ed9b</anchor>
+      <arglist>(const TString &amp;trimChars=DefaultWhitespaces)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>Append</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>abd6181d468b63542ae6dcf794263dda7</anchor>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a45cb08597c96cf62edb8ece124d8e4fc</anchor>
       <arglist>(const char *src, int srcLength)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>Apply</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>a4dbe5fba1e5c5ed69d12d57b3eb49ef7</anchor>
       <arglist>(const T &amp;src)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>_</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>aefd4424048be8d9fce5bef95d3d0eb37</anchor>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a635ad749475cecd00e3ec3603327d78c</anchor>
       <arglist>(const T &amp;src)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>_</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>ad9033b6f935b840edb855ecba2ec3579</anchor>
-      <arglist>(const AS &amp;src, int regionStart, int regionLength=CString::MaxLen)</arglist>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a5997f9405428b49e5fd680e62ee41c45</anchor>
+      <arglist>(const String &amp;src, int regionStart, int regionLength=CString::MaxLen)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>operator&lt;&lt;</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>ac2a249cf12c2fb2697e4cb53d04a7f28</anchor>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>ac243bc3f2d0f61eb45d49f488ddbcb63</anchor>
       <arglist>(const T &amp;op)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>NewLine</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>ad4ce5f1548943a9fc77769e7161998b4</anchor>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a949cac7084e10566b50a195b60bff591</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>ALIB_API int</type>
       <name>SearchAndReplace</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>a9ffcb95f7e39cfd53c51257d0a14357e</anchor>
-      <arglist>(const ASTerminatable &amp;needle, const AS &amp;replacement, int startIdx=0, int maxReplacements=CString::MaxLen, enums::Case sensitivity=enums::Case::Sensitive)</arglist>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a5bf64f32d0163186492461fb2c3e4300</anchor>
+      <arglist>(const TString &amp;needle, const String &amp;replacement, int startIdx=0, int maxReplacements=CString::MaxLen, enums::Case sensitivity=enums::Case::Sensitive)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>SearchAndReplaceAll</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>a826d66b9ce28523efb39eb57babfbd38</anchor>
-      <arglist>(const ASTerminatable &amp;needle, const AS &amp;replacement, int startIdx=0, int maxReplacements=CString::MaxLen, enums::Case sensitivity=enums::Case::Sensitive)</arglist>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>ada2d3b01c31c088c8e04676c6e50e78b</anchor>
+      <arglist>(const TString needle, const String &amp;replacement, int startIdx=0, int maxReplacements=CString::MaxLen, enums::Case sensitivity=enums::Case::Sensitive)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>ToUpper</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>aca6738fe7f8559076ce9a939515cf865</anchor>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a76441306378ccdc4d560ea2ea417a89b</anchor>
       <arglist>(int regionStart=0, int regionLength=CString::MaxLen)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>ToLower</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>afaa6e9f80da8f54ffa1e29858785a703</anchor>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a4d1a7077beb29dd16e84c469e5e01f12</anchor>
       <arglist>(int regionStart=0, int regionLength=CString::MaxLen)</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>int</type>
       <name>debugLastAllocRequest</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>a7ebc042256408173ee3c3904906a0e47</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>bool</type>
       <name>debugBufferWithMagicBytePadding</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>aa155a96ba168342ab2ae8067d96e373e</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>int</type>
       <name>capacity</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>adbe66a087ac3fd4a5b0566f64ca2d12b</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>bool</type>
       <name>ReplaceExternalBuffer</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>ae6e756e6f5ccc142f9fc3ceb6ba18cf0</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>_dbgCheck</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>a8747c38ac0ef9f863ede544d51ff6721</anchor>
       <arglist>() const </arglist>
     </member>
     <member kind="function" protection="protected">
       <type>constexpr</type>
-      <name>ASAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>a15ffb1c90b1e88776456b0518f2459e2</anchor>
+      <name>AString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a56a710a7a5bc7604ce80ae47265f5835</anchor>
       <arglist>(char *extBuffer, int extBufferSize)</arglist>
     </member>
     <member kind="function">
       <type>constexpr</type>
-      <name>ASAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>a97b1b72fb6f255c9a081a871b80538d9</anchor>
+      <name>AString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a135d849a18470b04a1f4cf761de3a17c</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type></type>
-      <name>ASAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>a7f5c06e907b7e0fca24144cb70bd5e69</anchor>
+      <name>AString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a8d15090f040cca48bcb7f1875de0fe3e</anchor>
       <arglist>(int initialCapacity)</arglist>
     </member>
     <member kind="function">
       <type></type>
-      <name>ASAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>a1e818b2fcc6331ba33670995afa7be58</anchor>
-      <arglist>(const ASAlloc &amp;copy)</arglist>
+      <name>AString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a4f3aebb5fc9bc80c4f569df5d6450025</anchor>
+      <arglist>(const AString &amp;copy)</arglist>
     </member>
     <member kind="function">
       <type></type>
-      <name>ASAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>ae055bad54b390d44b6dfc55fa13ecb87</anchor>
-      <arglist>(ASAlloc &amp;&amp;move) noexcept</arglist>
+      <name>AString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>aea0679449a7bd77ef8c90909a186b0f8</anchor>
+      <arglist>(AString &amp;&amp;move) noexcept</arglist>
     </member>
     <member kind="function">
       <type></type>
-      <name>ASAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>aaef92d763ea45deca330c3d42588e0cb</anchor>
+      <name>AString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>aebc985ab1428055a05aee879e173910a</anchor>
       <arglist>(const T &amp;src)</arglist>
     </member>
     <member kind="function">
       <type></type>
-      <name>ASAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>a792ffc4271041166863ca59b37870638</anchor>
-      <arglist>(const AS &amp;src, int regionStart, int regionLength=CString::MaxLen)</arglist>
+      <name>AString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a572f9132e424efddf6bfa92581db2b36</anchor>
+      <arglist>(const String &amp;src, int regionStart, int regionLength=CString::MaxLen)</arglist>
     </member>
     <member kind="function">
       <type></type>
-      <name>~ASAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>aa0373d9928777ea07116cd3a746aab28</anchor>
+      <name>~AString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>ab93ea5df790ecc39b4f09e84cbd9805c</anchor>
       <arglist>() noexcept</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>operator=</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>a549cf66b555bccba8ae2cc368f8d9c46</anchor>
-      <arglist>(const ASAlloc &amp;copy)</arglist>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>ab5e4f0275095724f12cb477527d2f33b</anchor>
+      <arglist>(const AString &amp;copy)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>operator=</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>aa568cfea22455c8476509646e87ee157</anchor>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a6cfb898b4e0d87d08b6c0b115b690239</anchor>
       <arglist>(const T &amp;op)</arglist>
     </member>
     <member kind="function">
       <type>ALIB_API void</type>
       <name>SetBuffer</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>a4c82c5367836f6886f1505c803ce4058</anchor>
       <arglist>(int newSize)</arglist>
     </member>
     <member kind="function">
       <type>ALIB_API void</type>
       <name>SetBuffer</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>a0c8474e9c19a45b535f1b460aac3847b</anchor>
       <arglist>(char *extBuffer, int extBufferSize, int extLength=0, enums::Responsibility responsibility=enums::Responsibility::KeepWithSender)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>SetLength</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>a0c14574ea5ef859e15b51f288c40f5da</anchor>
       <arglist>(int newLength)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>EnsureRemainingCapacity</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>afa227b35c03708d90f56d9b3280163f1</anchor>
       <arglist>(int spaceNeeded)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>GrowBufferAtLeastBy</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>a3fc410cc4cccd79e66c2f7491bce4bd3</anchor>
       <arglist>(int minimumGrowth)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>Capacity</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>ad07c7e740f0be42afb0c1eda25361864</anchor>
       <arglist>() const </arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>HasInternalBuffer</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>a799c4f153843f7dbba7fe16cf9bfc457</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>SetNull</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>a787c9800970197d19a5452ac456d64f1</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>char *</type>
       <name>VBuffer</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>a39184b93936d495a501cbea28e12495e</anchor>
       <arglist>() const </arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>SetCharAt</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>ab2cf143ab3c019c18b6ada0ea87a6370</anchor>
       <arglist>(int idx, char c)</arglist>
     </member>
     <member kind="function">
       <type>char &amp;</type>
       <name>operator[]</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>a8068d1bbfd60c6cb178bdc0b2084ab9b</anchor>
       <arglist>(int op)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>Clear</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>a222ec65ddfcb63da6f777a0a10f97dea</anchor>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>ae4d5af65574550e39830297e4496f81b</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>_</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>a7d1b2ede295754fcb3ea39e2681a6de6</anchor>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a05403e545a0fa8171456199085790c1c</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>InsertAt</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>a7b300128fd0109d7ed1512027695b03b</anchor>
-      <arglist>(const AS &amp;src, int pos)</arglist>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a8b5159f28435000513953d4b28b98c6d</anchor>
+      <arglist>(const String &amp;src, int pos)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>InsertChars</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>afac5206bb2d94e4ddf323c94e3b1ae6b</anchor>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>abf74925ba2fc5109db3c8be01c962e4e</anchor>
       <arglist>(char c, int qty, int pos=CString::MaxLen)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>ReplaceSubstring</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>a39fd9f532675b3fc95bac49859e1304d</anchor>
-      <arglist>(const AS &amp;src, int regionStart, int regionLength)</arglist>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a17e140dfb247b527da7f6e253601e6b3</anchor>
+      <arglist>(const String &amp;src, int regionStart, int regionLength)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>ReplaceRegion</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>a4c676ecc472793b6c162b55d583007ae</anchor>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>ab7e984ef7acfdeb4d63b572c6f2dca70</anchor>
       <arglist>(char c, int regionStart, int regionLength)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>Delete</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>a56823a21c21992ad292b6fa55396307a</anchor>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a7d7ec24a8f70ba85b88032b1d853acd0</anchor>
       <arglist>(int regionStart, int regionLength=CString::MaxLen)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>DeleteStart</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>ac58f5b2c1fa78ad64e98ece237fb2d01</anchor>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a3919b9c770d283b5df0b09b756081d99</anchor>
       <arglist>(int regionLength)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>DeleteEnd</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>a206da490c31262327e08d08dab328dca</anchor>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a4c72c80e34049aa4566be4fffe4b9251</anchor>
       <arglist>(int regionLength)</arglist>
     </member>
     <member kind="function">
-      <type>ALIB_API ASAlloc &amp;</type>
+      <type>ALIB_API AString &amp;</type>
       <name>Trim</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>ab802b141f81d833ebdfcc2491f0ad736</anchor>
-      <arglist>(const ASTerminatable &amp;trimChars=DefaultWhitespaces)</arglist>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a5902ed6d5d02134b98ac686172f34dc9</anchor>
+      <arglist>(const TString &amp;trimChars=DefaultWhitespaces)</arglist>
     </member>
     <member kind="function">
-      <type>ALIB_API ASAlloc &amp;</type>
+      <type>ALIB_API AString &amp;</type>
       <name>TrimAt</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>a987b1b4d5170a61db5ebf9fcfcd29284</anchor>
-      <arglist>(int index, const ASTerminatable &amp;trimChars=DefaultWhitespaces)</arglist>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a63f255e8769be77d70b70407e388746b</anchor>
+      <arglist>(int index, const TString &amp;trimChars=DefaultWhitespaces)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>TrimStart</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>a47c97dc2b945ad9bd6b8f74321a5b51c</anchor>
-      <arglist>(const ASTerminatable &amp;trimChars=DefaultWhitespaces)</arglist>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a4aacb9ead9be86623c688267f76760cf</anchor>
+      <arglist>(const TString &amp;trimChars=DefaultWhitespaces)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>TrimEnd</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>ae7690c97ce6d3329a1eb4e546a46d36f</anchor>
-      <arglist>(const ASTerminatable &amp;trimChars=DefaultWhitespaces)</arglist>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>abfb73aa66ba9e9ebedecd9de6ee6ed9b</anchor>
+      <arglist>(const TString &amp;trimChars=DefaultWhitespaces)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>Append</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>abd6181d468b63542ae6dcf794263dda7</anchor>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a45cb08597c96cf62edb8ece124d8e4fc</anchor>
       <arglist>(const char *src, int srcLength)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>Apply</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>a4dbe5fba1e5c5ed69d12d57b3eb49ef7</anchor>
       <arglist>(const T &amp;src)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>_</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>aefd4424048be8d9fce5bef95d3d0eb37</anchor>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a635ad749475cecd00e3ec3603327d78c</anchor>
       <arglist>(const T &amp;src)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>_</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>ad9033b6f935b840edb855ecba2ec3579</anchor>
-      <arglist>(const AS &amp;src, int regionStart, int regionLength=CString::MaxLen)</arglist>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a5997f9405428b49e5fd680e62ee41c45</anchor>
+      <arglist>(const String &amp;src, int regionStart, int regionLength=CString::MaxLen)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>operator&lt;&lt;</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>ac2a249cf12c2fb2697e4cb53d04a7f28</anchor>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>ac243bc3f2d0f61eb45d49f488ddbcb63</anchor>
       <arglist>(const T &amp;op)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>NewLine</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>ad4ce5f1548943a9fc77769e7161998b4</anchor>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a949cac7084e10566b50a195b60bff591</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>ALIB_API int</type>
       <name>SearchAndReplace</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>a9ffcb95f7e39cfd53c51257d0a14357e</anchor>
-      <arglist>(const ASTerminatable &amp;needle, const AS &amp;replacement, int startIdx=0, int maxReplacements=CString::MaxLen, enums::Case sensitivity=enums::Case::Sensitive)</arglist>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a5bf64f32d0163186492461fb2c3e4300</anchor>
+      <arglist>(const TString &amp;needle, const String &amp;replacement, int startIdx=0, int maxReplacements=CString::MaxLen, enums::Case sensitivity=enums::Case::Sensitive)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>SearchAndReplaceAll</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>a826d66b9ce28523efb39eb57babfbd38</anchor>
-      <arglist>(const ASTerminatable &amp;needle, const AS &amp;replacement, int startIdx=0, int maxReplacements=CString::MaxLen, enums::Case sensitivity=enums::Case::Sensitive)</arglist>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>ada2d3b01c31c088c8e04676c6e50e78b</anchor>
+      <arglist>(const TString needle, const String &amp;replacement, int startIdx=0, int maxReplacements=CString::MaxLen, enums::Case sensitivity=enums::Case::Sensitive)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>ToUpper</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>aca6738fe7f8559076ce9a939515cf865</anchor>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a76441306378ccdc4d560ea2ea417a89b</anchor>
       <arglist>(int regionStart=0, int regionLength=CString::MaxLen)</arglist>
     </member>
     <member kind="function">
-      <type>ASAlloc &amp;</type>
+      <type>AString &amp;</type>
       <name>ToLower</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASAlloc.html</anchorfile>
-      <anchor>afaa6e9f80da8f54ffa1e29858785a703</anchor>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a4d1a7077beb29dd16e84c469e5e01f12</anchor>
       <arglist>(int regionStart=0, int regionLength=CString::MaxLen)</arglist>
     </member>
-    <docanchor file="classaworx_1_1lib_1_1strings_1_1ASAlloc">alib_namespace_strings_astring_move</docanchor>
-    <docanchor file="classaworx_1_1lib_1_1strings_1_1ASAlloc">alib_namespace_strings_astring_write_access</docanchor>
-    <docanchor file="classaworx_1_1lib_1_1strings_1_1ASAlloc">alib_namespace_strings_astring_nullable</docanchor>
-    <docanchor file="classaworx_1_1lib_1_1strings_1_1ASAlloc">alib_namespace_strings_astring_application_vs_interface</docanchor>
-  </compound>
-  <compound kind="class">
-    <name>aworx::lib::strings::ASLiteral</name>
-    <filename>classaworx_1_1lib_1_1strings_1_1ASLiteral.html</filename>
-    <templarg>TLength</templarg>
-    <base>aworx::lib::strings::ASTerminatable</base>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>Copy</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASLiteral.html</anchorfile>
-      <anchor>abe54b80eca850835aac62649d48de03c</anchor>
-      <arglist>(char *dest, const char *src)</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr</type>
-      <name>ASLiteral</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASLiteral.html</anchorfile>
-      <anchor>a42714b027a5bd6dcea974bfa400babbb</anchor>
-      <arglist>(const char(&amp;src)[TLength+1])</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>Copy</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASLiteral.html</anchorfile>
-      <anchor>a9d3a01b96278e25b770eabce9295bdf9</anchor>
-      <arglist>(char *dest)</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>ASLiteral&lt; 10 &gt;</name>
-    <filename>classaworx_1_1lib_1_1strings_1_1ASLiteral.html</filename>
-    <base>aworx::lib::strings::ASTerminatable</base>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>Copy</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASLiteral.html</anchorfile>
-      <anchor>abe54b80eca850835aac62649d48de03c</anchor>
-      <arglist>(char *dest, const char *src)</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr</type>
-      <name>ASLiteral</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASLiteral.html</anchorfile>
-      <anchor>a42714b027a5bd6dcea974bfa400babbb</anchor>
-      <arglist>(const char(&amp;src)[TLength+1])</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>Copy</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASLiteral.html</anchorfile>
-      <anchor>a9d3a01b96278e25b770eabce9295bdf9</anchor>
-      <arglist>(char *dest)</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>ASLiteral&lt; 11 &gt;</name>
-    <filename>classaworx_1_1lib_1_1strings_1_1ASLiteral.html</filename>
-    <base>aworx::lib::strings::ASTerminatable</base>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>Copy</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASLiteral.html</anchorfile>
-      <anchor>abe54b80eca850835aac62649d48de03c</anchor>
-      <arglist>(char *dest, const char *src)</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr</type>
-      <name>ASLiteral</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASLiteral.html</anchorfile>
-      <anchor>a42714b027a5bd6dcea974bfa400babbb</anchor>
-      <arglist>(const char(&amp;src)[TLength+1])</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>Copy</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASLiteral.html</anchorfile>
-      <anchor>a9d3a01b96278e25b770eabce9295bdf9</anchor>
-      <arglist>(char *dest)</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>ASLiteral&lt; 3 &gt;</name>
-    <filename>classaworx_1_1lib_1_1strings_1_1ASLiteral.html</filename>
-    <base>aworx::lib::strings::ASTerminatable</base>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>Copy</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASLiteral.html</anchorfile>
-      <anchor>abe54b80eca850835aac62649d48de03c</anchor>
-      <arglist>(char *dest, const char *src)</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr</type>
-      <name>ASLiteral</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASLiteral.html</anchorfile>
-      <anchor>a42714b027a5bd6dcea974bfa400babbb</anchor>
-      <arglist>(const char(&amp;src)[TLength+1])</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>Copy</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASLiteral.html</anchorfile>
-      <anchor>a9d3a01b96278e25b770eabce9295bdf9</anchor>
-      <arglist>(char *dest)</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>ASLiteral&lt; 4 &gt;</name>
-    <filename>classaworx_1_1lib_1_1strings_1_1ASLiteral.html</filename>
-    <base>aworx::lib::strings::ASTerminatable</base>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>Copy</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASLiteral.html</anchorfile>
-      <anchor>abe54b80eca850835aac62649d48de03c</anchor>
-      <arglist>(char *dest, const char *src)</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr</type>
-      <name>ASLiteral</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASLiteral.html</anchorfile>
-      <anchor>a42714b027a5bd6dcea974bfa400babbb</anchor>
-      <arglist>(const char(&amp;src)[TLength+1])</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>Copy</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASLiteral.html</anchorfile>
-      <anchor>a9d3a01b96278e25b770eabce9295bdf9</anchor>
-      <arglist>(char *dest)</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>ASLiteral&lt; 5 &gt;</name>
-    <filename>classaworx_1_1lib_1_1strings_1_1ASLiteral.html</filename>
-    <base>aworx::lib::strings::ASTerminatable</base>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>Copy</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASLiteral.html</anchorfile>
-      <anchor>abe54b80eca850835aac62649d48de03c</anchor>
-      <arglist>(char *dest, const char *src)</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr</type>
-      <name>ASLiteral</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASLiteral.html</anchorfile>
-      <anchor>a42714b027a5bd6dcea974bfa400babbb</anchor>
-      <arglist>(const char(&amp;src)[TLength+1])</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>Copy</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASLiteral.html</anchorfile>
-      <anchor>a9d3a01b96278e25b770eabce9295bdf9</anchor>
-      <arglist>(char *dest)</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>aworx::lib::strings::ASPreAlloc</name>
-    <filename>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</filename>
-    <templarg>TCapacity</templarg>
-    <base>aworx::lib::strings::ASAlloc</base>
-    <member kind="function">
-      <type>constexpr</type>
-      <name>ASPreAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>acdf29f7b25332d4e9616e0ed9ceab40f</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>ASPreAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>abe4fbd5272d2c7daa4aebd2eec92ab6e</anchor>
-      <arglist>(const ASPreAlloc &amp;copy)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>ASPreAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>afeb557df77f0ba041e5a1d0a14f0e97e</anchor>
-      <arglist>(ASPreAlloc &amp;&amp;move) noexcept</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>ASPreAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>a56f001ca865972bac28c3d92e307a3b3</anchor>
-      <arglist>(ASAlloc &amp;&amp;move) noexcept</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>ASPreAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>a24629b026f42e1f7381df01cc9461e3d</anchor>
-      <arglist>(const T &amp;src)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>ASPreAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>ad70f1ea6f2bda34e66ad1edd536ad9d3</anchor>
-      <arglist>(const AS &amp;src, int regionStart, int regionLength=CString::MaxLen)</arglist>
-    </member>
-    <member kind="function">
-      <type>ASPreAlloc&lt; TCapacity &gt; &amp;</type>
-      <name>operator=</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>a54182d58dc2f7b29779d9441a07df3c7</anchor>
-      <arglist>(const ASPreAlloc &amp;copy)</arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>char</type>
-      <name>preAllocBuf</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>a8b9dbb4b7dcd6efcb8275318c285f811</anchor>
-      <arglist>[TCapacity]</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>ASPreAlloc&lt; 16 &gt;</name>
-    <filename>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</filename>
-    <base>aworx::lib::strings::ASAlloc</base>
-    <member kind="function">
-      <type>constexpr</type>
-      <name>ASPreAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>acdf29f7b25332d4e9616e0ed9ceab40f</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>ASPreAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>abe4fbd5272d2c7daa4aebd2eec92ab6e</anchor>
-      <arglist>(const ASPreAlloc &amp;copy)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>ASPreAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>afeb557df77f0ba041e5a1d0a14f0e97e</anchor>
-      <arglist>(ASPreAlloc &amp;&amp;move) noexcept</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>ASPreAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>a56f001ca865972bac28c3d92e307a3b3</anchor>
-      <arglist>(ASAlloc &amp;&amp;move) noexcept</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>ASPreAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>a24629b026f42e1f7381df01cc9461e3d</anchor>
-      <arglist>(const T &amp;src)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>ASPreAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>ad70f1ea6f2bda34e66ad1edd536ad9d3</anchor>
-      <arglist>(const AS &amp;src, int regionStart, int regionLength=CString::MaxLen)</arglist>
-    </member>
-    <member kind="function">
-      <type>ASPreAlloc&lt; TCapacity &gt; &amp;</type>
-      <name>operator=</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>a54182d58dc2f7b29779d9441a07df3c7</anchor>
-      <arglist>(const ASPreAlloc &amp;copy)</arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>char</type>
-      <name>preAllocBuf</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>a8b9dbb4b7dcd6efcb8275318c285f811</anchor>
-      <arglist>[TCapacity]</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>ASPreAlloc&lt; 256 &gt;</name>
-    <filename>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</filename>
-    <base>aworx::lib::strings::ASAlloc</base>
-    <member kind="function">
-      <type>constexpr</type>
-      <name>ASPreAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>acdf29f7b25332d4e9616e0ed9ceab40f</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>ASPreAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>abe4fbd5272d2c7daa4aebd2eec92ab6e</anchor>
-      <arglist>(const ASPreAlloc &amp;copy)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>ASPreAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>afeb557df77f0ba041e5a1d0a14f0e97e</anchor>
-      <arglist>(ASPreAlloc &amp;&amp;move) noexcept</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>ASPreAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>a56f001ca865972bac28c3d92e307a3b3</anchor>
-      <arglist>(ASAlloc &amp;&amp;move) noexcept</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>ASPreAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>a24629b026f42e1f7381df01cc9461e3d</anchor>
-      <arglist>(const T &amp;src)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>ASPreAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>ad70f1ea6f2bda34e66ad1edd536ad9d3</anchor>
-      <arglist>(const AS &amp;src, int regionStart, int regionLength=CString::MaxLen)</arglist>
-    </member>
-    <member kind="function">
-      <type>ASPreAlloc&lt; TCapacity &gt; &amp;</type>
-      <name>operator=</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>a54182d58dc2f7b29779d9441a07df3c7</anchor>
-      <arglist>(const ASPreAlloc &amp;copy)</arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>char</type>
-      <name>preAllocBuf</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>a8b9dbb4b7dcd6efcb8275318c285f811</anchor>
-      <arglist>[TCapacity]</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>ASPreAlloc&lt; 32 &gt;</name>
-    <filename>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</filename>
-    <base>aworx::lib::strings::ASAlloc</base>
-    <member kind="function">
-      <type>constexpr</type>
-      <name>ASPreAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>acdf29f7b25332d4e9616e0ed9ceab40f</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>ASPreAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>abe4fbd5272d2c7daa4aebd2eec92ab6e</anchor>
-      <arglist>(const ASPreAlloc &amp;copy)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>ASPreAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>afeb557df77f0ba041e5a1d0a14f0e97e</anchor>
-      <arglist>(ASPreAlloc &amp;&amp;move) noexcept</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>ASPreAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>a56f001ca865972bac28c3d92e307a3b3</anchor>
-      <arglist>(ASAlloc &amp;&amp;move) noexcept</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>ASPreAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>a24629b026f42e1f7381df01cc9461e3d</anchor>
-      <arglist>(const T &amp;src)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>ASPreAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>ad70f1ea6f2bda34e66ad1edd536ad9d3</anchor>
-      <arglist>(const AS &amp;src, int regionStart, int regionLength=CString::MaxLen)</arglist>
-    </member>
-    <member kind="function">
-      <type>ASPreAlloc&lt; TCapacity &gt; &amp;</type>
-      <name>operator=</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>a54182d58dc2f7b29779d9441a07df3c7</anchor>
-      <arglist>(const ASPreAlloc &amp;copy)</arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>char</type>
-      <name>preAllocBuf</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>a8b9dbb4b7dcd6efcb8275318c285f811</anchor>
-      <arglist>[TCapacity]</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>ASPreAlloc&lt; 64 &gt;</name>
-    <filename>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</filename>
-    <base>aworx::lib::strings::ASAlloc</base>
-    <member kind="function">
-      <type>constexpr</type>
-      <name>ASPreAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>acdf29f7b25332d4e9616e0ed9ceab40f</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>ASPreAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>abe4fbd5272d2c7daa4aebd2eec92ab6e</anchor>
-      <arglist>(const ASPreAlloc &amp;copy)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>ASPreAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>afeb557df77f0ba041e5a1d0a14f0e97e</anchor>
-      <arglist>(ASPreAlloc &amp;&amp;move) noexcept</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>ASPreAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>a56f001ca865972bac28c3d92e307a3b3</anchor>
-      <arglist>(ASAlloc &amp;&amp;move) noexcept</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>ASPreAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>a24629b026f42e1f7381df01cc9461e3d</anchor>
-      <arglist>(const T &amp;src)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>ASPreAlloc</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>ad70f1ea6f2bda34e66ad1edd536ad9d3</anchor>
-      <arglist>(const AS &amp;src, int regionStart, int regionLength=CString::MaxLen)</arglist>
-    </member>
-    <member kind="function">
-      <type>ASPreAlloc&lt; TCapacity &gt; &amp;</type>
-      <name>operator=</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>a54182d58dc2f7b29779d9441a07df3c7</anchor>
-      <arglist>(const ASPreAlloc &amp;copy)</arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>char</type>
-      <name>preAllocBuf</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html</anchorfile>
-      <anchor>a8b9dbb4b7dcd6efcb8275318c285f811</anchor>
-      <arglist>[TCapacity]</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>aworx::lib::strings::ASSubstring</name>
-    <filename>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</filename>
-    <base>aworx::lib::strings::AS</base>
-    <member kind="function">
-      <type>ASSubstring &amp;</type>
-      <name>Set</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>a3a05680adff595b52de0cba6de885d17</anchor>
-      <arglist>(const AS &amp;src)</arglist>
-    </member>
-    <member kind="function">
-      <type>ASSubstring &amp;</type>
-      <name>Set</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>aeac7a062b5d87f2497595e06c95e27a6</anchor>
-      <arglist>(const AS &amp;src, int regionStart, int regionLength=CString::MaxLen)</arglist>
-    </member>
-    <member kind="function">
-      <type>ASSubstring &amp;</type>
-      <name>SetNull</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>a7539a7f4305a50fd17cb17ac57719b19</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>ASSubstring &amp;</type>
-      <name>Clear</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>af38ff4b91142835d3767c7835d4163cf</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>SetLength</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>a0c14574ea5ef859e15b51f288c40f5da</anchor>
-      <arglist>(int newLength)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>TrimStart</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>a40b61c916665860d338a376a98da7040</anchor>
-      <arglist>(const ASTerminatable &amp;whiteSpaces=DefaultWhitespaces)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>TrimEnd</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>aab582852f5c993337387022aa4dbff32</anchor>
-      <arglist>(const ASTerminatable &amp;whiteSpaces=DefaultWhitespaces)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>Trim</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>a254cb22cc3955f3f5895ad3c287e3573</anchor>
-      <arglist>(const ASTerminatable &amp;whiteSpaces=DefaultWhitespaces)</arglist>
-    </member>
-    <member kind="function">
-      <type>char</type>
-      <name>Consume</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>aaf59accd324c73fe307fbf81e1c35242</anchor>
-      <arglist>(enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
-    </member>
-    <member kind="function">
-      <type>char</type>
-      <name>ConsumeFromEnd</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>aefbbdae5be3973db831fc14f049902da</anchor>
-      <arglist>(enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>Consume</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>a15088f26d020c580ed62e3b842e9f7fb</anchor>
-      <arglist>(int regionLength, Substring *target=nullptr)</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>ConsumeFromEnd</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>a94a31afdd787fddb34efd2bf97601987</anchor>
-      <arglist>(int regionLength, Substring *target=nullptr)</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>Consume</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>a1269e3abe8d95272e9e9c3e0aa7f7905</anchor>
-      <arglist>(int regionLength, AString &amp;target, int separatorWidth=0, enums::CurrentData targetData=enums::CurrentData::Clear)</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>ConsumeFromEnd</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>a52e8d95769240c639d29ee1bdbfa0a0d</anchor>
-      <arglist>(int regionLength, AString &amp;target, int separatorWidth=0, enums::CurrentData targetData=enums::CurrentData::Clear)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>Consume</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>a6091a0b056bb7a1e9ae80c04f2a3d417</anchor>
-      <arglist>(const AS &amp;consumable, enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>ConsumeFromEnd</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>a91914ee3ff39f6b2d2196243a78d3172</anchor>
-      <arglist>(const AS &amp;consumable, enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>Consume</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>a56e71c29f72b9ec95c60a4b47eb45711</anchor>
-      <arglist>(char consumable, enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>ConsumeFromEnd</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>a3f589b8c9f5e4a6deb6f29804f210e12</anchor>
-      <arglist>(char consumable, enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>ConsumeInteger</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>a6f37923c216a4c3c7c6d4cf9c989e97a</anchor>
-      <arglist>(int32_t &amp;result, const ASTerminatable &amp;whitespaces=DefaultWhitespaces)</arglist>
-    </member>
-    <member kind="function">
-      <type>ALIB_API bool</type>
-      <name>ConsumeLong</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>ad08cf5147354b5a18ab1de0b33520cac</anchor>
-      <arglist>(int64_t &amp;result, const ASTerminatable &amp;whitespaces=DefaultWhitespaces)</arglist>
-    </member>
-    <member kind="function">
-      <type>ALIB_API bool</type>
-      <name>ConsumeFloat</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>adae22145224d9c573e1ffe0db732e2c7</anchor>
-      <arglist>(double &amp;result, strings::NumberFormat *numberFormat=nullptr, const ASTerminatable &amp;whitespaces=DefaultWhitespaces)</arglist>
-    </member>
-    <member kind="function">
-      <type>Substring &amp;</type>
-      <name>Split</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>a9ba2f83672cd35b574cba0788a923f36</anchor>
-      <arglist>(int position, Substring &amp;target, int separatorWidth=0)</arglist>
-    </member>
-    <member kind="function">
-      <type>ASSubstring &amp;</type>
-      <name>Set</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>a3a05680adff595b52de0cba6de885d17</anchor>
-      <arglist>(const AS &amp;src)</arglist>
-    </member>
-    <member kind="function">
-      <type>ASSubstring &amp;</type>
-      <name>Set</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>aeac7a062b5d87f2497595e06c95e27a6</anchor>
-      <arglist>(const AS &amp;src, int regionStart, int regionLength=CString::MaxLen)</arglist>
-    </member>
-    <member kind="function">
-      <type>ASSubstring &amp;</type>
-      <name>SetNull</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>a7539a7f4305a50fd17cb17ac57719b19</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>ASSubstring &amp;</type>
-      <name>Clear</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>af38ff4b91142835d3767c7835d4163cf</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>SetLength</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>a0c14574ea5ef859e15b51f288c40f5da</anchor>
-      <arglist>(int newLength)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>TrimStart</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>a40b61c916665860d338a376a98da7040</anchor>
-      <arglist>(const ASTerminatable &amp;whiteSpaces=DefaultWhitespaces)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>TrimEnd</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>aab582852f5c993337387022aa4dbff32</anchor>
-      <arglist>(const ASTerminatable &amp;whiteSpaces=DefaultWhitespaces)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>Trim</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>a254cb22cc3955f3f5895ad3c287e3573</anchor>
-      <arglist>(const ASTerminatable &amp;whiteSpaces=DefaultWhitespaces)</arglist>
-    </member>
-    <member kind="function">
-      <type>char</type>
-      <name>Consume</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>aaf59accd324c73fe307fbf81e1c35242</anchor>
-      <arglist>(enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
-    </member>
-    <member kind="function">
-      <type>char</type>
-      <name>ConsumeFromEnd</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>aefbbdae5be3973db831fc14f049902da</anchor>
-      <arglist>(enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>Consume</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>a15088f26d020c580ed62e3b842e9f7fb</anchor>
-      <arglist>(int regionLength, Substring *target=nullptr)</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>ConsumeFromEnd</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>a94a31afdd787fddb34efd2bf97601987</anchor>
-      <arglist>(int regionLength, Substring *target=nullptr)</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>Consume</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>a1269e3abe8d95272e9e9c3e0aa7f7905</anchor>
-      <arglist>(int regionLength, AString &amp;target, int separatorWidth=0, enums::CurrentData targetData=enums::CurrentData::Clear)</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>ConsumeFromEnd</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>a52e8d95769240c639d29ee1bdbfa0a0d</anchor>
-      <arglist>(int regionLength, AString &amp;target, int separatorWidth=0, enums::CurrentData targetData=enums::CurrentData::Clear)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>Consume</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>a6091a0b056bb7a1e9ae80c04f2a3d417</anchor>
-      <arglist>(const AS &amp;consumable, enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>ConsumeFromEnd</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>a91914ee3ff39f6b2d2196243a78d3172</anchor>
-      <arglist>(const AS &amp;consumable, enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>Consume</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>a56e71c29f72b9ec95c60a4b47eb45711</anchor>
-      <arglist>(char consumable, enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>ConsumeFromEnd</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>a3f589b8c9f5e4a6deb6f29804f210e12</anchor>
-      <arglist>(char consumable, enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>ConsumeInteger</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>a6f37923c216a4c3c7c6d4cf9c989e97a</anchor>
-      <arglist>(int32_t &amp;result, const ASTerminatable &amp;whitespaces=DefaultWhitespaces)</arglist>
-    </member>
-    <member kind="function">
-      <type>ALIB_API bool</type>
-      <name>ConsumeLong</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>ad08cf5147354b5a18ab1de0b33520cac</anchor>
-      <arglist>(int64_t &amp;result, const ASTerminatable &amp;whitespaces=DefaultWhitespaces)</arglist>
-    </member>
-    <member kind="function">
-      <type>ALIB_API bool</type>
-      <name>ConsumeFloat</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>adae22145224d9c573e1ffe0db732e2c7</anchor>
-      <arglist>(double &amp;result, strings::NumberFormat *numberFormat=nullptr, const ASTerminatable &amp;whitespaces=DefaultWhitespaces)</arglist>
-    </member>
-    <member kind="function">
-      <type>Substring &amp;</type>
-      <name>Split</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASSubstring.html</anchorfile>
-      <anchor>a9ba2f83672cd35b574cba0788a923f36</anchor>
-      <arglist>(int position, Substring &amp;target, int separatorWidth=0)</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>aworx::lib::strings::ASTerminatable</name>
-    <filename>classaworx_1_1lib_1_1strings_1_1ASTerminatable.html</filename>
-    <base>aworx::lib::strings::AS</base>
-    <member kind="function">
-      <type>char</type>
-      <name>operator[]</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASTerminatable.html</anchorfile>
-      <anchor>a0b3b9871d2fc6522c1f2aedf67b8b1c2</anchor>
-      <arglist>(int op) const </arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>Terminate</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASTerminatable.html</anchorfile>
-      <anchor>a7a1430f618f869550a47b5f078ce6860</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>IndexOf</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASTerminatable.html</anchorfile>
-      <anchor>a9d41bf2bd3a1ec7f25f1b6f78252387e</anchor>
-      <arglist>(const ASTerminatable &amp;needle, int startIdx=0, enums::Case sensitivity=enums::Case::Sensitive) const </arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>IndexOfAny</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASTerminatable.html</anchorfile>
-      <anchor>aaadf331bd2d7c97de55e27a5b84e6550</anchor>
-      <arglist>(const ASTerminatable &amp;needles, enums::Inclusion inclusion, int startIdx=0) const </arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>operator const char *</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASTerminatable.html</anchorfile>
-      <anchor>ab75164b28454722bdf29710c208f0736</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>const char *</type>
-      <name>ToCString</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASTerminatable.html</anchorfile>
-      <anchor>af283db5a533654cb8a0fa2e110d4b20f</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function">
-      <type>ALIB_API int64_t</type>
-      <name>ToLong</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASTerminatable.html</anchorfile>
-      <anchor>adc47f802bf6ec7b8c4597f30d9a13a77</anchor>
-      <arglist>(int startIdx=0, int *newIdx=nullptr, const ASTerminatable *whitespaces=nullptr) const </arglist>
-    </member>
-    <member kind="function">
-      <type>int32_t</type>
-      <name>ToInt</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASTerminatable.html</anchorfile>
-      <anchor>a5d832d40cd653f563ee1ab150dc32bf2</anchor>
-      <arglist>(int startIdx=0, int *newIdx=nullptr, const ASTerminatable *whitespaces=nullptr) const </arglist>
-    </member>
-    <member kind="function">
-      <type>ALIB_API double</type>
-      <name>ToFloat</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASTerminatable.html</anchorfile>
-      <anchor>a1309b615228fe47992cf402861185cad</anchor>
-      <arglist>(int startIdx=0, int *newIdx=nullptr, strings::NumberFormat *numberFormat=nullptr, const ASTerminatable *whitespaces=nullptr) const </arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>debugIsTerminated</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASTerminatable.html</anchorfile>
-      <anchor>ac3615a067cb671e6b0cac6dbb26c9f3e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>_dbgCheck</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASTerminatable.html</anchorfile>
-      <anchor>a8747c38ac0ef9f863ede544d51ff6721</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr</type>
-      <name>ASTerminatable</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASTerminatable.html</anchorfile>
-      <anchor>a192612506aa2768adb24bc6533a1f074</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>ASTerminatable</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASTerminatable.html</anchorfile>
-      <anchor>a1604dfffac2fcb1e478b4125ee8526b0</anchor>
-      <arglist>(const T &amp;src)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>constexpr</type>
-      <name>ASTerminatable</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASTerminatable.html</anchorfile>
-      <anchor>af3039222d341451d8e28d7b7eed03b35</anchor>
-      <arglist>(const char *buffer, int contentLength)</arglist>
-    </member>
-    <member kind="function">
-      <type>char</type>
-      <name>operator[]</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASTerminatable.html</anchorfile>
-      <anchor>a0b3b9871d2fc6522c1f2aedf67b8b1c2</anchor>
-      <arglist>(int op) const </arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>Terminate</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASTerminatable.html</anchorfile>
-      <anchor>a7a1430f618f869550a47b5f078ce6860</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>IndexOf</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASTerminatable.html</anchorfile>
-      <anchor>a9d41bf2bd3a1ec7f25f1b6f78252387e</anchor>
-      <arglist>(const ASTerminatable &amp;needle, int startIdx=0, enums::Case sensitivity=enums::Case::Sensitive) const </arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>IndexOfAny</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASTerminatable.html</anchorfile>
-      <anchor>aaadf331bd2d7c97de55e27a5b84e6550</anchor>
-      <arglist>(const ASTerminatable &amp;needles, enums::Inclusion inclusion, int startIdx=0) const </arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>operator const char *</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASTerminatable.html</anchorfile>
-      <anchor>ab75164b28454722bdf29710c208f0736</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>const char *</type>
-      <name>ToCString</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASTerminatable.html</anchorfile>
-      <anchor>af283db5a533654cb8a0fa2e110d4b20f</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function">
-      <type>ALIB_API int64_t</type>
-      <name>ToLong</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASTerminatable.html</anchorfile>
-      <anchor>adc47f802bf6ec7b8c4597f30d9a13a77</anchor>
-      <arglist>(int startIdx=0, int *newIdx=nullptr, const ASTerminatable *whitespaces=nullptr) const </arglist>
-    </member>
-    <member kind="function">
-      <type>int32_t</type>
-      <name>ToInt</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASTerminatable.html</anchorfile>
-      <anchor>a5d832d40cd653f563ee1ab150dc32bf2</anchor>
-      <arglist>(int startIdx=0, int *newIdx=nullptr, const ASTerminatable *whitespaces=nullptr) const </arglist>
-    </member>
-    <member kind="function">
-      <type>ALIB_API double</type>
-      <name>ToFloat</name>
-      <anchorfile>classaworx_1_1lib_1_1strings_1_1ASTerminatable.html</anchorfile>
-      <anchor>a1309b615228fe47992cf402861185cad</anchor>
-      <arglist>(int startIdx=0, int *newIdx=nullptr, strings::NumberFormat *numberFormat=nullptr, const ASTerminatable *whitespaces=nullptr) const </arglist>
-    </member>
+    <docanchor file="classaworx_1_1lib_1_1strings_1_1AString">alib_namespace_strings_astring_move</docanchor>
+    <docanchor file="classaworx_1_1lib_1_1strings_1_1AString">alib_namespace_strings_astring_write_access</docanchor>
+    <docanchor file="classaworx_1_1lib_1_1strings_1_1AString">alib_namespace_strings_astring_nullable</docanchor>
+    <docanchor file="classaworx_1_1lib_1_1strings_1_1AString">alib_namespace_strings_astring_application_vs_interface</docanchor>
   </compound>
   <compound kind="class">
     <name>aworx::lox::core::textlogger::AutoSizes</name>
@@ -4869,10 +3712,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>std::vector&lt; strings::AS &gt;</type>
+      <type>std::vector&lt; String &gt;</type>
       <name>TrueValues</name>
       <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a2f22d43d853eb3c7cae513a002372dc9</anchor>
+      <anchor>a5848fc835514e61005938ea4c9b9b772</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -4975,6 +3818,13 @@
       <name>Parent</name>
       <anchorfile>classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html</anchorfile>
       <anchor>a82bf1cd3b4adcee833998d1a0642c574</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="friend" protection="private">
+      <type>friend class</type>
+      <name>Configuration</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html</anchorfile>
+      <anchor>a30221ddc558692a7b52598b963a74bc2</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" protection="protected">
@@ -5354,199 +4204,199 @@
     <name>aworx::lox::ESC</name>
     <filename>classaworx_1_1lox_1_1ESC.html</filename>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 3 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 3 &gt;</type>
       <name>BG_BLACK</name>
       <anchorfile>classaworx_1_1lox_1_1ESC.html</anchorfile>
-      <anchor>a591c0a62a4afe03fd5accee26e649ccb</anchor>
+      <anchor>aa82c6a3b4740dbc8469c438cb508c9fc</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 3 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 3 &gt;</type>
       <name>BG_BLUE</name>
       <anchorfile>classaworx_1_1lox_1_1ESC.html</anchorfile>
-      <anchor>a6bd2d030367376b20863d01215c2cf01</anchor>
+      <anchor>a32c9da22aa2e2219e6110c71c0862cab</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 3 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 3 &gt;</type>
       <name>BG_CYAN</name>
       <anchorfile>classaworx_1_1lox_1_1ESC.html</anchorfile>
-      <anchor>a73a7f26c639d550312e047ae416d6aa8</anchor>
+      <anchor>ad3ea7c45421a7fe41bef9fccf446beab</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 3 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 3 &gt;</type>
       <name>BG_GRAY</name>
       <anchorfile>classaworx_1_1lox_1_1ESC.html</anchorfile>
-      <anchor>a325853f29ab387505994e59d9376a8e6</anchor>
+      <anchor>ab06f1181bd398bc4a055f2e1e2505fce</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 3 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 3 &gt;</type>
       <name>BG_GREEN</name>
       <anchorfile>classaworx_1_1lox_1_1ESC.html</anchorfile>
-      <anchor>a411f5103413bcca82db8f269080d17cc</anchor>
+      <anchor>a7d938ef89f27d144e7b95fd249d50ade</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 3 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 3 &gt;</type>
       <name>BG_MAGENTA</name>
       <anchorfile>classaworx_1_1lox_1_1ESC.html</anchorfile>
-      <anchor>a787b53262b8939ec34a9011c68be37e6</anchor>
+      <anchor>aab3e5266c78e812e7a6c426367dc9071</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 3 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 3 &gt;</type>
       <name>BG_RED</name>
       <anchorfile>classaworx_1_1lox_1_1ESC.html</anchorfile>
-      <anchor>a468cb9803ff3822c118ffcb6b68e21e3</anchor>
+      <anchor>afd07c8746625a0194d127cb2249aa0cf</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 3 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 3 &gt;</type>
       <name>BG_RESET</name>
       <anchorfile>classaworx_1_1lox_1_1ESC.html</anchorfile>
-      <anchor>a371f97707f9e577d213213725ff73293</anchor>
+      <anchor>a187117a859affcb7261591c26ea6b0d8</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 3 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 3 &gt;</type>
       <name>BG_WHITE</name>
       <anchorfile>classaworx_1_1lox_1_1ESC.html</anchorfile>
-      <anchor>a3d71605aad1cb7fed93493182f2e503e</anchor>
+      <anchor>a48c1e456dcabe4ffd80ec00ab474a0f6</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 3 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 3 &gt;</type>
       <name>BG_YELLOW</name>
       <anchorfile>classaworx_1_1lox_1_1ESC.html</anchorfile>
-      <anchor>abf8011260cc25ad42e7f6c280c36f69a</anchor>
+      <anchor>a630181f686ce699e803450426b341d06</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 3 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 3 &gt;</type>
       <name>BLACK</name>
       <anchorfile>classaworx_1_1lox_1_1ESC.html</anchorfile>
-      <anchor>aa8a50fad97c27dfc3fead77bd5f84d49</anchor>
+      <anchor>a03fcfa32650e29154ebb6ddfc325f13a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 3 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 3 &gt;</type>
       <name>BLUE</name>
       <anchorfile>classaworx_1_1lox_1_1ESC.html</anchorfile>
-      <anchor>ac3cfcc85216df0eee68cdb8d92a6ec0e</anchor>
+      <anchor>aae0f71c16c24eca46ba82cb778a4511e</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 3 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 3 &gt;</type>
       <name>BOLD</name>
       <anchorfile>classaworx_1_1lox_1_1ESC.html</anchorfile>
-      <anchor>a2b923090984551d8c635ca4dfb1b9de1</anchor>
+      <anchor>a9f9f2126d9e6edff3218927c04074dcb</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 3 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 3 &gt;</type>
       <name>CYAN</name>
       <anchorfile>classaworx_1_1lox_1_1ESC.html</anchorfile>
-      <anchor>a3ec185162d338c4b9549512b7bf4d490</anchor>
+      <anchor>afdf0230e4d8012d7a89df6f3fa266e5a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 3 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 3 &gt;</type>
       <name>EOMETA</name>
       <anchorfile>classaworx_1_1lox_1_1ESC.html</anchorfile>
-      <anchor>ac4bc405fc7ec1ec27182890373adef87</anchor>
+      <anchor>aebb3b721c38741c6c324f5358f0f881f</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 3 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 3 &gt;</type>
       <name>FG_RESET</name>
       <anchorfile>classaworx_1_1lox_1_1ESC.html</anchorfile>
-      <anchor>a38657b656a956ed9223ab85b3e00937b</anchor>
+      <anchor>a54cca82e07ebd6c5b7e91b1b4c5d02d7</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 3 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 3 &gt;</type>
       <name>GRAY</name>
       <anchorfile>classaworx_1_1lox_1_1ESC.html</anchorfile>
-      <anchor>abce02f65e33c47f28a6263135b37a44d</anchor>
+      <anchor>a381d37bbc1e467b09e401cd87ce6663a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 3 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 3 &gt;</type>
       <name>GREEN</name>
       <anchorfile>classaworx_1_1lox_1_1ESC.html</anchorfile>
-      <anchor>a9d4265677c04fce1d8e8226d4a36365b</anchor>
+      <anchor>a1453a2687e1c19f8c40d141c1bb89329</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 3 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 3 &gt;</type>
       <name>ITALICS</name>
       <anchorfile>classaworx_1_1lox_1_1ESC.html</anchorfile>
-      <anchor>ac3756a927764ac88ff640c5e594ad58e</anchor>
+      <anchor>a720d5fb808c384fa2d54e4a675b66c6e</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 3 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 3 &gt;</type>
       <name>MAGENTA</name>
       <anchorfile>classaworx_1_1lox_1_1ESC.html</anchorfile>
-      <anchor>ae21ea2db9dd052738bd45708fae2eb1d</anchor>
+      <anchor>ad7302f67367bb64d92d430db2b966744</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 3 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 3 &gt;</type>
       <name>RED</name>
       <anchorfile>classaworx_1_1lox_1_1ESC.html</anchorfile>
-      <anchor>a066674f791cca67278a52c5207d018bc</anchor>
+      <anchor>aa039ed1389702c723320be5baae61ef9</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 3 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 3 &gt;</type>
       <name>RESET</name>
       <anchorfile>classaworx_1_1lox_1_1ESC.html</anchorfile>
-      <anchor>aaf09659f7ae87ae1bb5da7b4bc4e7d3f</anchor>
+      <anchor>aea1c3b6709bf24bb5abce06e3061fd7b</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 3 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 3 &gt;</type>
       <name>STYLE_RESET</name>
       <anchorfile>classaworx_1_1lox_1_1ESC.html</anchorfile>
-      <anchor>af76abaa902cea3372f5981d2dbb5d306</anchor>
+      <anchor>a68e36419790bb4e6f1a6aa6148ae1984</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 3 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 3 &gt;</type>
       <name>TAB</name>
       <anchorfile>classaworx_1_1lox_1_1ESC.html</anchorfile>
-      <anchor>a14458bc469a53d8aca7f037c88481aa8</anchor>
+      <anchor>a5f86c0e8a5fe6d0af38c93a5c73724ba</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 3 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 3 &gt;</type>
       <name>URL_END</name>
       <anchorfile>classaworx_1_1lox_1_1ESC.html</anchorfile>
-      <anchor>aa0defb57a4d3f5e1d3460d2897c31785</anchor>
+      <anchor>ac4584a5ba5fec38ef5eaf0bb4e59f88a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 3 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 3 &gt;</type>
       <name>URL_START</name>
       <anchorfile>classaworx_1_1lox_1_1ESC.html</anchorfile>
-      <anchor>a4031072e77490d36e39b1adb705cb664</anchor>
+      <anchor>a920c1a537a90b3f971ee0d6f17fcdc02</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 3 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 3 &gt;</type>
       <name>WHITE</name>
       <anchorfile>classaworx_1_1lox_1_1ESC.html</anchorfile>
-      <anchor>ab7e7fd9c108468901218fb49e7246e7f</anchor>
+      <anchor>a7e39de6e4f8233bb0dc0a259f6169608</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API StringLiteral&lt; 3 &gt;</type>
+      <type>static ALIB_API SLiteral&lt; 3 &gt;</type>
       <name>YELLOW</name>
       <anchorfile>classaworx_1_1lox_1_1ESC.html</anchorfile>
-      <anchor>afd8a416942ff072d6ae39bf2b3183144</anchor>
+      <anchor>a929f0d422bc023cdd33e11f92a47bb6c</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -5561,10 +4411,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>const AS &amp;</type>
+      <type>const String &amp;</type>
       <name>contents</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1Format_1_1Field.html</anchorfile>
-      <anchor>a26d8094f91e9b7c975a330358ce018c1</anchor>
+      <anchor>ae26b1a80a32917acc6107e4bfc13ed40</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -5585,8 +4435,8 @@
       <type></type>
       <name>Field</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1Format_1_1Field.html</anchorfile>
-      <anchor>abc7b2006960dc53fa75d215f1b9bc9ef</anchor>
-      <arglist>(const AS &amp;contents, int width, enums::Alignment alignment=enums::Alignment::Right, char padChar= &apos; &apos;)</arglist>
+      <anchor>a66aa895a3b1d53cd97ca0073092505db</anchor>
+      <arglist>(const String &amp;contents, int width, enums::Alignment alignment=enums::Alignment::Right, char padChar= &apos; &apos;)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -5781,8 +4631,8 @@
       <type>ALIB_API void</type>
       <name>removeEscapeSequences</name>
       <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile.html</anchorfile>
-      <anchor>ab48e15d1063142c30ad2e417a4d23e06</anchor>
-      <arglist>(strings::ASSubstring &amp;value, AString &amp;target)</arglist>
+      <anchor>adb6f2e7ca2ef00452a7d709d4063ea3e</anchor>
+      <arglist>(strings::Substring &amp;value, AString &amp;target)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>ALIB_API void</type>
@@ -5857,12 +4707,12 @@
     <templarg></templarg>
   </compound>
   <compound kind="struct">
-    <name>aworx::lib::strings::IsTerminatable&lt; ASAlloc &gt;</name>
-    <filename>structaworx_1_1lib_1_1strings_1_1IsTerminatable_3_01ASAlloc_01_4.html</filename>
+    <name>aworx::lib::strings::IsTerminatable&lt; AString &gt;</name>
+    <filename>structaworx_1_1lib_1_1strings_1_1IsTerminatable_3_01AString_01_4.html</filename>
   </compound>
   <compound kind="struct">
-    <name>aworx::lib::strings::IsTerminatable&lt; ASPreAlloc&lt; TCapacity &gt; &gt;</name>
-    <filename>structaworx_1_1lib_1_1strings_1_1IsTerminatable_3_01ASPreAlloc_3_01TCapacity_01_4_01_4.html</filename>
+    <name>aworx::lib::strings::IsTerminatable&lt; PreallocatedString&lt; TCapacity &gt; &gt;</name>
+    <filename>structaworx_1_1lib_1_1strings_1_1IsTerminatable_3_01PreallocatedString_3_01TCapacity_01_4_01_4.html</filename>
     <templarg>TCapacity</templarg>
   </compound>
   <compound kind="class">
@@ -5941,28 +4791,21 @@
       <type>static ALoxReportWriter *</type>
       <name>DebugReportWriter</name>
       <anchorfile>classaworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a3fc6107634a1988540d4f827c3586233</anchor>
+      <anchor>a97f024643451cf050ab3825e9a87e041</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static ALOX_API Lox *</type>
-      <name>lox</name>
+      <name>LOX</name>
       <anchorfile>classaworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a4bf33caa00cd3346344e5bf2e3b2bc54</anchor>
+      <anchor>a43f74deff280835e63510eac2ceef1df</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static lib::ReportWriter *</type>
       <name>OrigReportWriter</name>
       <anchorfile>classaworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a0ee0c4383336dd6eec6044a1ca911915</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static ALOX_API Lox *</type>
-      <name>relLox</name>
-      <anchorfile>classaworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a00d43d75f98c8ff6cce6045ebe1557c6</anchor>
+      <anchor>a96c6588f7ee4ad88d177692f35c836ac</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
@@ -6040,13 +4883,6 @@
       <name>defaultDbgLox</name>
       <anchorfile>classaworx_1_1lox_1_1Log.html</anchorfile>
       <anchor>af8bae13abcdbf2f4a28f39d9a20368a9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected" static="yes">
-      <type>static ALOX_API Lox</type>
-      <name>defaultRelLox</name>
-      <anchorfile>classaworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a0bfc5687004f6adc827f13c7592215bf</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected" static="yes">
@@ -6649,24 +5485,24 @@
     <name>aworx::lib::Report::Message</name>
     <filename>classaworx_1_1lib_1_1Report_1_1Message.html</filename>
     <member kind="variable">
-      <type>const strings::ASTerminatable &amp;</type>
+      <type>const strings::TString &amp;</type>
       <name>Contents</name>
       <anchorfile>classaworx_1_1lib_1_1Report_1_1Message.html</anchorfile>
-      <anchor>a682e2846570b93b1f639f13132b30b10</anchor>
+      <anchor>afa76585979183dca208a5db82709e8af</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>const strings::ASTerminatable &amp;</type>
+      <type>const strings::TString &amp;</type>
       <name>File</name>
       <anchorfile>classaworx_1_1lib_1_1Report_1_1Message.html</anchorfile>
-      <anchor>ae3b802a523b8040532b4e65a62458ff1</anchor>
+      <anchor>ab4336abc4c74ecd888729fd0af580e53</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>const strings::ASTerminatable &amp;</type>
+      <type>const strings::TString &amp;</type>
       <name>Func</name>
       <anchorfile>classaworx_1_1lib_1_1Report_1_1Message.html</anchorfile>
-      <anchor>a14bbc45cd50e31a0457a9c9fe0c9c073</anchor>
+      <anchor>a2b44f701383104187505a36037238027</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -6687,8 +5523,8 @@
       <type></type>
       <name>Message</name>
       <anchorfile>classaworx_1_1lib_1_1Report_1_1Message.html</anchorfile>
-      <anchor>a45d7aa667871938158938affcb95f5b5</anchor>
-      <arglist>(ALIB_DBG_SRC_INFO_PARAMS_DECL int type, const strings::ASTerminatable &amp;msg)</arglist>
+      <anchor>a6baa7bb921e285b26a88c50af3ccbe9a</anchor>
+      <arglist>(ALIB_DBG_SRC_INFO_PARAMS_DECL int type, const strings::TString &amp;msg)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -6895,10 +5731,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>ASTerminatable</type>
+      <type>TString</type>
       <name>DecimalExponentSeparator</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1NumberFormat.html</anchorfile>
-      <anchor>a7d522765b039da87634a1ff4c05edca0</anchor>
+      <anchor>a522f4eafcaecbe8d0653d5ca4a33a9b4</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -6909,10 +5745,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>ASTerminatable</type>
+      <type>TString</type>
       <name>DecimalPointCharacters</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1NumberFormat.html</anchorfile>
-      <anchor>a79ad4feac81e7c3f18e72411402bce6f</anchor>
+      <anchor>a786b45246188c9d3c25e80fede6de8b4</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -6968,15 +5804,15 @@
       <type>ALIB_API double</type>
       <name>StringToFloat</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1NumberFormat.html</anchorfile>
-      <anchor>adc58da979de8d98200f0aca32cade7fe</anchor>
-      <arglist>(const AS &amp;src, int &amp;idx)</arglist>
+      <anchor>a207b4a145cc239c0724a12de60ba558d</anchor>
+      <arglist>(const String &amp;src, int &amp;idx)</arglist>
     </member>
     <member kind="function">
       <type>ALIB_API int64_t</type>
       <name>StringToInteger</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1NumberFormat.html</anchorfile>
-      <anchor>aab6dcba8a338af34f962ab45b9beaa65</anchor>
-      <arglist>(const AS &amp;src, int &amp;idx)</arglist>
+      <anchor>a91f18c4d647fe4d49f6e286fa785bc5c</anchor>
+      <arglist>(const String &amp;src, int &amp;idx)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -7144,6 +5980,312 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>aworx::lib::strings::PreallocatedString</name>
+    <filename>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</filename>
+    <templarg>TCapacity</templarg>
+    <base>aworx::lib::strings::AString</base>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>PreallocatedString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>ac585a9d67e12366867f16cdf65db1593</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PreallocatedString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>a8fcc38ef326fb2c1d64ee7e2fa6df7b8</anchor>
+      <arglist>(const PreallocatedString &amp;copy)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PreallocatedString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>a66fcd18865b8c604df35c29578f3f3d7</anchor>
+      <arglist>(PreallocatedString &amp;&amp;move) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PreallocatedString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>a026da30134930f13e104ee6a552bdc6d</anchor>
+      <arglist>(AString &amp;&amp;move) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PreallocatedString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>ad716f6b3fe53cf699bf3a680d89ca3d9</anchor>
+      <arglist>(const T &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PreallocatedString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>a5b54d15c29b480c2c654ac5539a4c2e7</anchor>
+      <arglist>(const String &amp;src, int regionStart, int regionLength=CString::MaxLen)</arglist>
+    </member>
+    <member kind="function">
+      <type>PreallocatedString&lt; TCapacity &gt; &amp;</type>
+      <name>operator=</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>a8d45c282eb1069917c4a0a1a5b76caac</anchor>
+      <arglist>(const PreallocatedString &amp;copy)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>char</type>
+      <name>preAllocBuf</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>a8b9dbb4b7dcd6efcb8275318c285f811</anchor>
+      <arglist>[TCapacity]</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>PreallocatedString&lt; 16 &gt;</name>
+    <filename>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</filename>
+    <base>aworx::lib::strings::AString</base>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>PreallocatedString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>ac585a9d67e12366867f16cdf65db1593</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PreallocatedString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>a8fcc38ef326fb2c1d64ee7e2fa6df7b8</anchor>
+      <arglist>(const PreallocatedString &amp;copy)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PreallocatedString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>a66fcd18865b8c604df35c29578f3f3d7</anchor>
+      <arglist>(PreallocatedString &amp;&amp;move) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PreallocatedString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>a026da30134930f13e104ee6a552bdc6d</anchor>
+      <arglist>(AString &amp;&amp;move) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PreallocatedString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>ad716f6b3fe53cf699bf3a680d89ca3d9</anchor>
+      <arglist>(const T &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PreallocatedString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>a5b54d15c29b480c2c654ac5539a4c2e7</anchor>
+      <arglist>(const String &amp;src, int regionStart, int regionLength=CString::MaxLen)</arglist>
+    </member>
+    <member kind="function">
+      <type>PreallocatedString&lt; TCapacity &gt; &amp;</type>
+      <name>operator=</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>a8d45c282eb1069917c4a0a1a5b76caac</anchor>
+      <arglist>(const PreallocatedString &amp;copy)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>char</type>
+      <name>preAllocBuf</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>a8b9dbb4b7dcd6efcb8275318c285f811</anchor>
+      <arglist>[TCapacity]</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>PreallocatedString&lt; 256 &gt;</name>
+    <filename>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</filename>
+    <base>aworx::lib::strings::AString</base>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>PreallocatedString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>ac585a9d67e12366867f16cdf65db1593</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PreallocatedString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>a8fcc38ef326fb2c1d64ee7e2fa6df7b8</anchor>
+      <arglist>(const PreallocatedString &amp;copy)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PreallocatedString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>a66fcd18865b8c604df35c29578f3f3d7</anchor>
+      <arglist>(PreallocatedString &amp;&amp;move) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PreallocatedString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>a026da30134930f13e104ee6a552bdc6d</anchor>
+      <arglist>(AString &amp;&amp;move) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PreallocatedString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>ad716f6b3fe53cf699bf3a680d89ca3d9</anchor>
+      <arglist>(const T &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PreallocatedString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>a5b54d15c29b480c2c654ac5539a4c2e7</anchor>
+      <arglist>(const String &amp;src, int regionStart, int regionLength=CString::MaxLen)</arglist>
+    </member>
+    <member kind="function">
+      <type>PreallocatedString&lt; TCapacity &gt; &amp;</type>
+      <name>operator=</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>a8d45c282eb1069917c4a0a1a5b76caac</anchor>
+      <arglist>(const PreallocatedString &amp;copy)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>char</type>
+      <name>preAllocBuf</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>a8b9dbb4b7dcd6efcb8275318c285f811</anchor>
+      <arglist>[TCapacity]</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>PreallocatedString&lt; 32 &gt;</name>
+    <filename>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</filename>
+    <base>aworx::lib::strings::AString</base>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>PreallocatedString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>ac585a9d67e12366867f16cdf65db1593</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PreallocatedString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>a8fcc38ef326fb2c1d64ee7e2fa6df7b8</anchor>
+      <arglist>(const PreallocatedString &amp;copy)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PreallocatedString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>a66fcd18865b8c604df35c29578f3f3d7</anchor>
+      <arglist>(PreallocatedString &amp;&amp;move) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PreallocatedString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>a026da30134930f13e104ee6a552bdc6d</anchor>
+      <arglist>(AString &amp;&amp;move) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PreallocatedString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>ad716f6b3fe53cf699bf3a680d89ca3d9</anchor>
+      <arglist>(const T &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PreallocatedString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>a5b54d15c29b480c2c654ac5539a4c2e7</anchor>
+      <arglist>(const String &amp;src, int regionStart, int regionLength=CString::MaxLen)</arglist>
+    </member>
+    <member kind="function">
+      <type>PreallocatedString&lt; TCapacity &gt; &amp;</type>
+      <name>operator=</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>a8d45c282eb1069917c4a0a1a5b76caac</anchor>
+      <arglist>(const PreallocatedString &amp;copy)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>char</type>
+      <name>preAllocBuf</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>a8b9dbb4b7dcd6efcb8275318c285f811</anchor>
+      <arglist>[TCapacity]</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>PreallocatedString&lt; 64 &gt;</name>
+    <filename>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</filename>
+    <base>aworx::lib::strings::AString</base>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>PreallocatedString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>ac585a9d67e12366867f16cdf65db1593</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PreallocatedString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>a8fcc38ef326fb2c1d64ee7e2fa6df7b8</anchor>
+      <arglist>(const PreallocatedString &amp;copy)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PreallocatedString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>a66fcd18865b8c604df35c29578f3f3d7</anchor>
+      <arglist>(PreallocatedString &amp;&amp;move) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PreallocatedString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>a026da30134930f13e104ee6a552bdc6d</anchor>
+      <arglist>(AString &amp;&amp;move) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PreallocatedString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>ad716f6b3fe53cf699bf3a680d89ca3d9</anchor>
+      <arglist>(const T &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PreallocatedString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>a5b54d15c29b480c2c654ac5539a4c2e7</anchor>
+      <arglist>(const String &amp;src, int regionStart, int regionLength=CString::MaxLen)</arglist>
+    </member>
+    <member kind="function">
+      <type>PreallocatedString&lt; TCapacity &gt; &amp;</type>
+      <name>operator=</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>a8d45c282eb1069917c4a0a1a5b76caac</anchor>
+      <arglist>(const PreallocatedString &amp;copy)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>char</type>
+      <name>preAllocBuf</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1PreallocatedString.html</anchorfile>
+      <anchor>a8b9dbb4b7dcd6efcb8275318c285f811</anchor>
+      <arglist>[TCapacity]</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>aworx::lib::system::ProcessInfo</name>
     <filename>classaworx_1_1lib_1_1system_1_1ProcessInfo.html</filename>
     <member kind="variable">
@@ -7302,20 +6444,6 @@
     <name>aworx::lib::Report</name>
     <filename>classaworx_1_1lib_1_1Report.html</filename>
     <class kind="class">aworx::lib::Report::Message</class>
-    <member kind="variable">
-      <type>bool</type>
-      <name>HaltOnError</name>
-      <anchorfile>classaworx_1_1lib_1_1Report.html</anchorfile>
-      <anchor>aaa5d96026d2a9009538182741b707aed</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>HaltOnWarning</name>
-      <anchorfile>classaworx_1_1lib_1_1Report.html</anchorfile>
-      <anchor>a57c82f739172de9fc0058f43d6e3f3ed</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="function" static="yes">
       <type>static Report &amp;</type>
       <name>GetDefault</name>
@@ -7327,8 +6455,22 @@
       <type>ALIB_API void</type>
       <name>DoReport</name>
       <anchorfile>classaworx_1_1lib_1_1Report.html</anchorfile>
-      <anchor>abc1a2b7127e4881f7d5ad8956bdcdc10</anchor>
-      <arglist>(ALIB_DBG_SRC_INFO_PARAMS_DECL int type, const strings::ASTerminatable &amp;msg)</arglist>
+      <anchor>a818a0ba87e92dfee2aacd992a942bb75</anchor>
+      <arglist>(ALIB_DBG_SRC_INFO_PARAMS_DECL int type, const strings::TString &amp;msg)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API void</type>
+      <name>PopHaltFlags</name>
+      <anchorfile>classaworx_1_1lib_1_1Report.html</anchorfile>
+      <anchor>ade3d2cc17cc7c56d59b88a15ee247ca0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API void</type>
+      <name>PushHaltFlags</name>
+      <anchorfile>classaworx_1_1lib_1_1Report.html</anchorfile>
+      <anchor>a7983ee7befb74df86990b506dfaaf6a0</anchor>
+      <arglist>(bool haltOnErrors, bool haltOnWarnings)</arglist>
     </member>
     <member kind="function">
       <type>ALIB_API ReportWriter *</type>
@@ -7342,6 +6484,13 @@
       <name>defaultReport</name>
       <anchorfile>classaworx_1_1lib_1_1Report.html</anchorfile>
       <anchor>a9088fab9d3df935215bb0bb30f7b2250</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>std::stack&lt; int &gt;</type>
+      <name>haltAfterReport</name>
+      <anchorfile>classaworx_1_1lib_1_1Report.html</anchorfile>
+      <anchor>ae0aa2499cfb7dcf29f7955cde68c79bb</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -7453,6 +6602,979 @@
       <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile_1_1Section.html</anchorfile>
       <anchor>a295f81c573fa45f08d98e19a72a814a8</anchor>
       <arglist>(const String &amp;name, const String &amp;value, const String &amp;comments=&quot;&quot;)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>aworx::lib::strings::String</name>
+    <filename>classaworx_1_1lib_1_1strings_1_1String.html</filename>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>String</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>adcffeb665e497d8c0909063e4b5df871</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>String</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a863a723eb56ea0b5fab9a838c5f27658</anchor>
+      <arglist>(const char *buffer, int contentLength)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>String</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a79bdef100f3c7887fd120a7a98d8062c</anchor>
+      <arglist>(const String &amp;src, int regionStart, int regionLength)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>String</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a2b1f593a0b9b71d210993cea0727b419</anchor>
+      <arglist>(const T &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>const char *</type>
+      <name>Buffer</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a5d5ce30daece7ec96d0b70ccc5d46002</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>Length</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a6e891964a37680c01e21dedac6ffe670</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>IsNull</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a055d87b78f69c9d039b7e12ead7aa6b6</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>IsNotNull</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>aaaf24e0ec4b4b51df542cd654230c3da</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>IsEmpty</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>aaef62c8761ddd1b95824fc57b1b277b5</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>IsNotEmpty</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a484ba322b1d13f2e2c90066db81179ed</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>char</type>
+      <name>CharAt</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>aaf9706f704337ae92062d7b68c8f33ea</anchor>
+      <arglist>(int idx) const </arglist>
+    </member>
+    <member kind="function">
+      <type>char</type>
+      <name>CharAtStart</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>aa43766377944d0423a71478f1bbd61e1</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>char</type>
+      <name>CharAtEnd</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a78fb764265a5d096e56717a52754396d</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>char</type>
+      <name>operator[]</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a0b3b9871d2fc6522c1f2aedf67b8b1c2</anchor>
+      <arglist>(int op) const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>Equals</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>aa30b895dcfaf0574aca843b212ee2602</anchor>
+      <arglist>(const String &amp;needle, enums::Case sensitivity=enums::Case::Sensitive) const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>ContainsAt</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a0c6c00e3b4e659d0088973d4219d86b3</anchor>
+      <arglist>(const String &amp;needle, int pos, enums::Case sensitivity=enums::Case::Sensitive) const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>StartsWith</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a874e198025e872dc30012ccdaef4ea71</anchor>
+      <arglist>(const String &amp;needle, enums::Case sensitivity=enums::Case::Sensitive) const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>EndsWith</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a34f943472db189e27586b5ad6df554f4</anchor>
+      <arglist>(const String &amp;needle, enums::Case sensitivity=enums::Case::Sensitive) const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>CompareTo</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>aa9596ce7ca16857d887ae619a42d231c</anchor>
+      <arglist>(const String &amp;needle, enums::Case sensitivity=enums::Case::Sensitive) const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>CompareTo</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a830c0be0e018f2e52eb311d566e61338</anchor>
+      <arglist>(const String &amp;needle, enums::Case sensitivity, int cmpRegionStart, int cmpRegionLength=CString::MaxLen) const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>CompareTo</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a6e6c71cbde80abfd17075314878964a9</anchor>
+      <arglist>(const String &amp;needle, enums::Case sensitivity, int cmpRegionStart, int cmpRegionLength, int regionStart, int regionLength=CString::MaxLen) const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator&lt;</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>aa87398e168744e30fdae0c9641273ab2</anchor>
+      <arglist>(const String &amp;op) const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator&gt;</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a8e233e56892e8dde5bbc59d232561895</anchor>
+      <arglist>(const String &amp;op) const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a5458d43552b4f83c721cc967f091cc4c</anchor>
+      <arglist>(const String &amp;op) const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator!=</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a9582e8e8e4b37606065566ec88f9626d</anchor>
+      <arglist>(const String &amp;op) const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>IndexOf</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a4903bdaa9803322caddc87c623646a90</anchor>
+      <arglist>(char needle) const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>IndexOf</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>ab62c5abf6381ef65c72b97183fd64c8d</anchor>
+      <arglist>(char needle, int regionStart) const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>IndexOf</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a8ea4959c28189d614a7c883dae3787f5</anchor>
+      <arglist>(char needle, int regionStart, int regionLength) const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>LastIndexOf</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a6ff7c059a19d1003e1d150ab86d784f8</anchor>
+      <arglist>(char needle, int startIndex=CString::MaxLen) const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>IndexOfAny</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>af56c0c63f30160a0e3e44957e3409732</anchor>
+      <arglist>(const String &amp;needles, enums::Inclusion inclusion, int startIdx=0) const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>LastIndexOfAny</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>aa7292ca793aceb1572d65a8ee444e97c</anchor>
+      <arglist>(const String &amp;needles, enums::Inclusion inclusion, int startIdx=CString::MaxLen) const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>IndexOfAS</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>af92525461d86384ebb32f56c9d5dc5f2</anchor>
+      <arglist>(const String &amp;needle, int startIdx=0, enums::Case sensitivity=enums::Case::Sensitive) const </arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API int</type>
+      <name>ToWString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a73cfa0a1eb5f3c47cb633967c8b22333</anchor>
+      <arglist>(wchar_t *dest, int destCapacity, int regionStart=0, int regionLength=CString::MaxLen) const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>AdjustRegion</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>afe13e5000dc11709e5da14d928f838b7</anchor>
+      <arglist>(int &amp;regionStart, int &amp;regionLength) const </arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>const char *</type>
+      <name>buffer</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>adae84acc92cd77a04f6aaf533643a33a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>length</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a9f59b34b1f25fe00023291b678246bcc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>char *</type>
+      <name>vbuffer</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>ab060ffba71bd8a3d7067a38950b39a82</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>String</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>adcffeb665e497d8c0909063e4b5df871</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>String</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a863a723eb56ea0b5fab9a838c5f27658</anchor>
+      <arglist>(const char *buffer, int contentLength)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>String</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a79bdef100f3c7887fd120a7a98d8062c</anchor>
+      <arglist>(const String &amp;src, int regionStart, int regionLength)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>String</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a2b1f593a0b9b71d210993cea0727b419</anchor>
+      <arglist>(const T &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>const char *</type>
+      <name>Buffer</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a5d5ce30daece7ec96d0b70ccc5d46002</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>Length</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a6e891964a37680c01e21dedac6ffe670</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>IsNull</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a055d87b78f69c9d039b7e12ead7aa6b6</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>IsNotNull</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>aaaf24e0ec4b4b51df542cd654230c3da</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>IsEmpty</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>aaef62c8761ddd1b95824fc57b1b277b5</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>IsNotEmpty</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a484ba322b1d13f2e2c90066db81179ed</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>char</type>
+      <name>CharAt</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>aaf9706f704337ae92062d7b68c8f33ea</anchor>
+      <arglist>(int idx) const </arglist>
+    </member>
+    <member kind="function">
+      <type>char</type>
+      <name>CharAtStart</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>aa43766377944d0423a71478f1bbd61e1</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>char</type>
+      <name>CharAtEnd</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a78fb764265a5d096e56717a52754396d</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>char</type>
+      <name>operator[]</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a0b3b9871d2fc6522c1f2aedf67b8b1c2</anchor>
+      <arglist>(int op) const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>Equals</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>aa30b895dcfaf0574aca843b212ee2602</anchor>
+      <arglist>(const String &amp;needle, enums::Case sensitivity=enums::Case::Sensitive) const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>ContainsAt</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a0c6c00e3b4e659d0088973d4219d86b3</anchor>
+      <arglist>(const String &amp;needle, int pos, enums::Case sensitivity=enums::Case::Sensitive) const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>StartsWith</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a874e198025e872dc30012ccdaef4ea71</anchor>
+      <arglist>(const String &amp;needle, enums::Case sensitivity=enums::Case::Sensitive) const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>EndsWith</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a34f943472db189e27586b5ad6df554f4</anchor>
+      <arglist>(const String &amp;needle, enums::Case sensitivity=enums::Case::Sensitive) const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>CompareTo</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>aa9596ce7ca16857d887ae619a42d231c</anchor>
+      <arglist>(const String &amp;needle, enums::Case sensitivity=enums::Case::Sensitive) const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>CompareTo</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a830c0be0e018f2e52eb311d566e61338</anchor>
+      <arglist>(const String &amp;needle, enums::Case sensitivity, int cmpRegionStart, int cmpRegionLength=CString::MaxLen) const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>CompareTo</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a6e6c71cbde80abfd17075314878964a9</anchor>
+      <arglist>(const String &amp;needle, enums::Case sensitivity, int cmpRegionStart, int cmpRegionLength, int regionStart, int regionLength=CString::MaxLen) const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator&lt;</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>aa87398e168744e30fdae0c9641273ab2</anchor>
+      <arglist>(const String &amp;op) const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator&gt;</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a8e233e56892e8dde5bbc59d232561895</anchor>
+      <arglist>(const String &amp;op) const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a5458d43552b4f83c721cc967f091cc4c</anchor>
+      <arglist>(const String &amp;op) const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator!=</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a9582e8e8e4b37606065566ec88f9626d</anchor>
+      <arglist>(const String &amp;op) const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>IndexOf</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a4903bdaa9803322caddc87c623646a90</anchor>
+      <arglist>(char needle) const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>IndexOf</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>ab62c5abf6381ef65c72b97183fd64c8d</anchor>
+      <arglist>(char needle, int regionStart) const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>IndexOf</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a8ea4959c28189d614a7c883dae3787f5</anchor>
+      <arglist>(char needle, int regionStart, int regionLength) const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>LastIndexOf</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a6ff7c059a19d1003e1d150ab86d784f8</anchor>
+      <arglist>(char needle, int startIndex=CString::MaxLen) const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>IndexOfAny</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>af56c0c63f30160a0e3e44957e3409732</anchor>
+      <arglist>(const String &amp;needles, enums::Inclusion inclusion, int startIdx=0) const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>LastIndexOfAny</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>aa7292ca793aceb1572d65a8ee444e97c</anchor>
+      <arglist>(const String &amp;needles, enums::Inclusion inclusion, int startIdx=CString::MaxLen) const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>IndexOfAS</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>af92525461d86384ebb32f56c9d5dc5f2</anchor>
+      <arglist>(const String &amp;needle, int startIdx=0, enums::Case sensitivity=enums::Case::Sensitive) const </arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API int</type>
+      <name>ToWString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>a73cfa0a1eb5f3c47cb633967c8b22333</anchor>
+      <arglist>(wchar_t *dest, int destCapacity, int regionStart=0, int regionLength=CString::MaxLen) const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>AdjustRegion</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
+      <anchor>afe13e5000dc11709e5da14d928f838b7</anchor>
+      <arglist>(int &amp;regionStart, int &amp;regionLength) const </arglist>
+    </member>
+    <docanchor file="classaworx_1_1lib_1_1strings_1_1String">CPP_STRINGS_AS_NULLSTATE</docanchor>
+    <docanchor file="classaworx_1_1lib_1_1strings_1_1String">CPP_STRINGS_AS_NC</docanchor>
+  </compound>
+  <compound kind="class">
+    <name>aworx::lib::strings::StringLiteral</name>
+    <filename>classaworx_1_1lib_1_1strings_1_1StringLiteral.html</filename>
+    <templarg>TLength</templarg>
+    <base>aworx::lib::strings::TString</base>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Copy</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1StringLiteral.html</anchorfile>
+      <anchor>abe54b80eca850835aac62649d48de03c</anchor>
+      <arglist>(char *dest, const char *src)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>StringLiteral</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1StringLiteral.html</anchorfile>
+      <anchor>a4b8fba33694e7534bd9ce9f0feae415d</anchor>
+      <arglist>(const char(&amp;src)[TLength+1])</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Copy</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1StringLiteral.html</anchorfile>
+      <anchor>a9d3a01b96278e25b770eabce9295bdf9</anchor>
+      <arglist>(char *dest)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>StringLiteral&lt; 10 &gt;</name>
+    <filename>classaworx_1_1lib_1_1strings_1_1StringLiteral.html</filename>
+    <base>aworx::lib::strings::TString</base>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Copy</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1StringLiteral.html</anchorfile>
+      <anchor>abe54b80eca850835aac62649d48de03c</anchor>
+      <arglist>(char *dest, const char *src)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>StringLiteral</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1StringLiteral.html</anchorfile>
+      <anchor>a4b8fba33694e7534bd9ce9f0feae415d</anchor>
+      <arglist>(const char(&amp;src)[TLength+1])</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Copy</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1StringLiteral.html</anchorfile>
+      <anchor>a9d3a01b96278e25b770eabce9295bdf9</anchor>
+      <arglist>(char *dest)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>StringLiteral&lt; 11 &gt;</name>
+    <filename>classaworx_1_1lib_1_1strings_1_1StringLiteral.html</filename>
+    <base>aworx::lib::strings::TString</base>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Copy</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1StringLiteral.html</anchorfile>
+      <anchor>abe54b80eca850835aac62649d48de03c</anchor>
+      <arglist>(char *dest, const char *src)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>StringLiteral</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1StringLiteral.html</anchorfile>
+      <anchor>a4b8fba33694e7534bd9ce9f0feae415d</anchor>
+      <arglist>(const char(&amp;src)[TLength+1])</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Copy</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1StringLiteral.html</anchorfile>
+      <anchor>a9d3a01b96278e25b770eabce9295bdf9</anchor>
+      <arglist>(char *dest)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>StringLiteral&lt; 3 &gt;</name>
+    <filename>classaworx_1_1lib_1_1strings_1_1StringLiteral.html</filename>
+    <base>aworx::lib::strings::TString</base>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Copy</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1StringLiteral.html</anchorfile>
+      <anchor>abe54b80eca850835aac62649d48de03c</anchor>
+      <arglist>(char *dest, const char *src)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>StringLiteral</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1StringLiteral.html</anchorfile>
+      <anchor>a4b8fba33694e7534bd9ce9f0feae415d</anchor>
+      <arglist>(const char(&amp;src)[TLength+1])</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Copy</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1StringLiteral.html</anchorfile>
+      <anchor>a9d3a01b96278e25b770eabce9295bdf9</anchor>
+      <arglist>(char *dest)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>StringLiteral&lt; 4 &gt;</name>
+    <filename>classaworx_1_1lib_1_1strings_1_1StringLiteral.html</filename>
+    <base>aworx::lib::strings::TString</base>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Copy</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1StringLiteral.html</anchorfile>
+      <anchor>abe54b80eca850835aac62649d48de03c</anchor>
+      <arglist>(char *dest, const char *src)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>StringLiteral</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1StringLiteral.html</anchorfile>
+      <anchor>a4b8fba33694e7534bd9ce9f0feae415d</anchor>
+      <arglist>(const char(&amp;src)[TLength+1])</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Copy</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1StringLiteral.html</anchorfile>
+      <anchor>a9d3a01b96278e25b770eabce9295bdf9</anchor>
+      <arglist>(char *dest)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>StringLiteral&lt; 5 &gt;</name>
+    <filename>classaworx_1_1lib_1_1strings_1_1StringLiteral.html</filename>
+    <base>aworx::lib::strings::TString</base>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Copy</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1StringLiteral.html</anchorfile>
+      <anchor>abe54b80eca850835aac62649d48de03c</anchor>
+      <arglist>(char *dest, const char *src)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>StringLiteral</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1StringLiteral.html</anchorfile>
+      <anchor>a4b8fba33694e7534bd9ce9f0feae415d</anchor>
+      <arglist>(const char(&amp;src)[TLength+1])</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Copy</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1StringLiteral.html</anchorfile>
+      <anchor>a9d3a01b96278e25b770eabce9295bdf9</anchor>
+      <arglist>(char *dest)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>aworx::lib::strings::Substring</name>
+    <filename>classaworx_1_1lib_1_1strings_1_1Substring.html</filename>
+    <base>aworx::lib::strings::String</base>
+    <member kind="function">
+      <type>Substring &amp;</type>
+      <name>Set</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a78e69b45cdcafe78919ef4394b946473</anchor>
+      <arglist>(const String &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>Substring &amp;</type>
+      <name>Set</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>abd670ace7a547520a1de51e09af48d16</anchor>
+      <arglist>(const String &amp;src, int regionStart, int regionLength=CString::MaxLen)</arglist>
+    </member>
+    <member kind="function">
+      <type>Substring &amp;</type>
+      <name>SetNull</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a3805c0af8d0d8c718fabbfce10236da3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>Substring &amp;</type>
+      <name>Clear</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>af3534dc253659982f8f5f646da7c951c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetLength</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a0c14574ea5ef859e15b51f288c40f5da</anchor>
+      <arglist>(int newLength)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>TrimStart</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>ad35eefd241e9ac52278c696d28671760</anchor>
+      <arglist>(const TString &amp;whiteSpaces=DefaultWhitespaces)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>TrimEnd</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a96cf750c8bd36acaa7510d08c4709567</anchor>
+      <arglist>(const TString &amp;whiteSpaces=DefaultWhitespaces)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>Trim</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a7ab157d58b1dcdec6b1962e2ed9580dc</anchor>
+      <arglist>(const TString &amp;whiteSpaces=DefaultWhitespaces)</arglist>
+    </member>
+    <member kind="function">
+      <type>char</type>
+      <name>Consume</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>aaf59accd324c73fe307fbf81e1c35242</anchor>
+      <arglist>(enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
+    </member>
+    <member kind="function">
+      <type>char</type>
+      <name>ConsumeFromEnd</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>aefbbdae5be3973db831fc14f049902da</anchor>
+      <arglist>(enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>Consume</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a15088f26d020c580ed62e3b842e9f7fb</anchor>
+      <arglist>(int regionLength, Substring *target=nullptr)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>ConsumeFromEnd</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a94a31afdd787fddb34efd2bf97601987</anchor>
+      <arglist>(int regionLength, Substring *target=nullptr)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>Consume</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a1269e3abe8d95272e9e9c3e0aa7f7905</anchor>
+      <arglist>(int regionLength, AString &amp;target, int separatorWidth=0, enums::CurrentData targetData=enums::CurrentData::Clear)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>ConsumeFromEnd</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a52e8d95769240c639d29ee1bdbfa0a0d</anchor>
+      <arglist>(int regionLength, AString &amp;target, int separatorWidth=0, enums::CurrentData targetData=enums::CurrentData::Clear)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>Consume</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a1ec4cca1d72e31dff41edbcb584a4138</anchor>
+      <arglist>(const String &amp;consumable, enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>ConsumeFromEnd</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>adccc3a479bc3abc37a8aef9322baa3c4</anchor>
+      <arglist>(const String &amp;consumable, enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>Consume</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a56e71c29f72b9ec95c60a4b47eb45711</anchor>
+      <arglist>(char consumable, enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>ConsumeFromEnd</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a3f589b8c9f5e4a6deb6f29804f210e12</anchor>
+      <arglist>(char consumable, enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>ConsumeInteger</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a5a68f106a868e841f97fac80c946cee0</anchor>
+      <arglist>(int32_t &amp;result, const TString &amp;whitespaces=DefaultWhitespaces)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API bool</type>
+      <name>ConsumeLong</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>ae6fb29c871e36492716451fc3081bad6</anchor>
+      <arglist>(int64_t &amp;result, const TString &amp;whitespaces=DefaultWhitespaces)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API bool</type>
+      <name>ConsumeFloat</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>abdbc41364a58d285b7f12ab88543aa5f</anchor>
+      <arglist>(double &amp;result, NumberFormat *numberFormat=nullptr, const TString whitespaces=DefaultWhitespaces)</arglist>
+    </member>
+    <member kind="function">
+      <type>Substring &amp;</type>
+      <name>Split</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a9ba2f83672cd35b574cba0788a923f36</anchor>
+      <arglist>(int position, Substring &amp;target, int separatorWidth=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>Substring &amp;</type>
+      <name>Set</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a78e69b45cdcafe78919ef4394b946473</anchor>
+      <arglist>(const String &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>Substring &amp;</type>
+      <name>Set</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>abd670ace7a547520a1de51e09af48d16</anchor>
+      <arglist>(const String &amp;src, int regionStart, int regionLength=CString::MaxLen)</arglist>
+    </member>
+    <member kind="function">
+      <type>Substring &amp;</type>
+      <name>SetNull</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a3805c0af8d0d8c718fabbfce10236da3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>Substring &amp;</type>
+      <name>Clear</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>af3534dc253659982f8f5f646da7c951c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetLength</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a0c14574ea5ef859e15b51f288c40f5da</anchor>
+      <arglist>(int newLength)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>TrimStart</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>ad35eefd241e9ac52278c696d28671760</anchor>
+      <arglist>(const TString &amp;whiteSpaces=DefaultWhitespaces)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>TrimEnd</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a96cf750c8bd36acaa7510d08c4709567</anchor>
+      <arglist>(const TString &amp;whiteSpaces=DefaultWhitespaces)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>Trim</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a7ab157d58b1dcdec6b1962e2ed9580dc</anchor>
+      <arglist>(const TString &amp;whiteSpaces=DefaultWhitespaces)</arglist>
+    </member>
+    <member kind="function">
+      <type>char</type>
+      <name>Consume</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>aaf59accd324c73fe307fbf81e1c35242</anchor>
+      <arglist>(enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
+    </member>
+    <member kind="function">
+      <type>char</type>
+      <name>ConsumeFromEnd</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>aefbbdae5be3973db831fc14f049902da</anchor>
+      <arglist>(enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>Consume</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a15088f26d020c580ed62e3b842e9f7fb</anchor>
+      <arglist>(int regionLength, Substring *target=nullptr)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>ConsumeFromEnd</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a94a31afdd787fddb34efd2bf97601987</anchor>
+      <arglist>(int regionLength, Substring *target=nullptr)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>Consume</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a1269e3abe8d95272e9e9c3e0aa7f7905</anchor>
+      <arglist>(int regionLength, AString &amp;target, int separatorWidth=0, enums::CurrentData targetData=enums::CurrentData::Clear)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>ConsumeFromEnd</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a52e8d95769240c639d29ee1bdbfa0a0d</anchor>
+      <arglist>(int regionLength, AString &amp;target, int separatorWidth=0, enums::CurrentData targetData=enums::CurrentData::Clear)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>Consume</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a1ec4cca1d72e31dff41edbcb584a4138</anchor>
+      <arglist>(const String &amp;consumable, enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>ConsumeFromEnd</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>adccc3a479bc3abc37a8aef9322baa3c4</anchor>
+      <arglist>(const String &amp;consumable, enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>Consume</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a56e71c29f72b9ec95c60a4b47eb45711</anchor>
+      <arglist>(char consumable, enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>ConsumeFromEnd</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a3f589b8c9f5e4a6deb6f29804f210e12</anchor>
+      <arglist>(char consumable, enums::Whitespaces trimBeforeConsume=enums::Whitespaces::Keep)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>ConsumeInteger</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a5a68f106a868e841f97fac80c946cee0</anchor>
+      <arglist>(int32_t &amp;result, const TString &amp;whitespaces=DefaultWhitespaces)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API bool</type>
+      <name>ConsumeLong</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>ae6fb29c871e36492716451fc3081bad6</anchor>
+      <arglist>(int64_t &amp;result, const TString &amp;whitespaces=DefaultWhitespaces)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API bool</type>
+      <name>ConsumeFloat</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>abdbc41364a58d285b7f12ab88543aa5f</anchor>
+      <arglist>(double &amp;result, NumberFormat *numberFormat=nullptr, const TString whitespaces=DefaultWhitespaces)</arglist>
+    </member>
+    <member kind="function">
+      <type>Substring &amp;</type>
+      <name>Split</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a9ba2f83672cd35b574cba0788a923f36</anchor>
+      <arglist>(int position, Substring &amp;target, int separatorWidth=0)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -7649,16 +7771,16 @@
     </member>
     <member kind="variable">
       <type>String16</type>
-      <name>FmtMultiLinePostfix</name>
+      <name>FmtMultiLinePrefix</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
-      <anchor>ae4e90041230421832bff40fe3ff57d25</anchor>
+      <anchor>a6a0f47a82a9e2018d42acdc864eaeb76</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String16</type>
-      <name>FmtMultiLinePrefix</name>
+      <name>FmtMultiLineSuffix</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
-      <anchor>a6a0f47a82a9e2018d42acdc864eaeb76</anchor>
+      <anchor>a32162368e4bed2b7fa666fd77a62a245</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -8839,30 +8961,21 @@
       <arglist>(void *)</arglist>
     </member>
   </compound>
-  <compound kind="struct">
-    <name>aworx::lib::strings::ToASDefined</name>
-    <filename>structaworx_1_1lib_1_1strings_1_1ToASDefined.html</filename>
-    <templarg></templarg>
-  </compound>
-  <compound kind="struct">
-    <name>aworx::lib::strings::ToASDefined&lt; const std::string &amp; &gt;</name>
-    <filename>structaworx_1_1lib_1_1strings_1_1ToASDefined_3_01const_01std_1_1string_01_6_01_4.html</filename>
-  </compound>
   <compound kind="class">
     <name>aworx::lib::strings::Tokenizer</name>
     <filename>classaworx_1_1lib_1_1strings_1_1Tokenizer.html</filename>
     <member kind="variable">
-      <type>ASSubstring</type>
+      <type>Substring</type>
       <name>Actual</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1Tokenizer.html</anchorfile>
-      <anchor>af12981021000f5c7c10a4f9566191f4b</anchor>
+      <anchor>a2eefe9530c5f2042ddfa20e26b34328b</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>ASSubstring</type>
+      <type>Substring</type>
       <name>Rest</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1Tokenizer.html</anchorfile>
-      <anchor>a110a475ccae8a2ff41a9c985c6fd02f6</anchor>
+      <anchor>a5c8c6045e5fe301e78496fd5e9c7bfab</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -8876,14 +8989,14 @@
       <type></type>
       <name>Tokenizer</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1Tokenizer.html</anchorfile>
-      <anchor>a8e0b4e86c2ce04a29c48aab6a9f77c8e</anchor>
-      <arglist>(const AS &amp;src, char delim)</arglist>
+      <anchor>ac02aa3ab5a834c7357ef278512efa27e</anchor>
+      <arglist>(const String &amp;src, char delim)</arglist>
     </member>
     <member kind="function">
-      <type>ASSubstring &amp;</type>
+      <type>Substring &amp;</type>
       <name>GetRest</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1Tokenizer.html</anchorfile>
-      <anchor>a201c3ca43bbcfa71f05f2f16e74250c0</anchor>
+      <anchor>ad8bca63647be16f18c25123486a41d19</anchor>
       <arglist>(enums::Whitespaces trimming=enums::Whitespaces::Trim)</arglist>
     </member>
     <member kind="function">
@@ -8894,18 +9007,18 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>ALIB_API ASSubstring &amp;</type>
+      <type>ALIB_API Substring &amp;</type>
       <name>Next</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1Tokenizer.html</anchorfile>
-      <anchor>aec29e9f7fa2c7d5d832674393be39cbb</anchor>
+      <anchor>a55ffaac69d1ce7232db83470a8390db8</anchor>
       <arglist>(enums::Whitespaces trimming=enums::Whitespaces::Trim, char newDelim= &apos;\0&apos;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Set</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1Tokenizer.html</anchorfile>
-      <anchor>a0db72e60497efe368680315f3a14af54</anchor>
-      <arglist>(const AS &amp;src, char delim)</arglist>
+      <anchor>a77fcc3c671e0e6e80d1c1007ef2f69d6</anchor>
+      <arglist>(const String &amp;src, char delim)</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>char</type>
@@ -8913,6 +9026,181 @@
       <anchorfile>classaworx_1_1lib_1_1strings_1_1Tokenizer.html</anchorfile>
       <anchor>ab56c67e0ed9605b4078e2135f791c4ed</anchor>
       <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>aworx::lib::strings::ToStringDefined</name>
+    <filename>structaworx_1_1lib_1_1strings_1_1ToStringDefined.html</filename>
+    <templarg></templarg>
+  </compound>
+  <compound kind="struct">
+    <name>aworx::lib::strings::ToStringDefined&lt; const std::string &amp; &gt;</name>
+    <filename>structaworx_1_1lib_1_1strings_1_1ToStringDefined_3_01const_01std_1_1string_01_6_01_4.html</filename>
+  </compound>
+  <compound kind="class">
+    <name>aworx::lib::strings::TString</name>
+    <filename>classaworx_1_1lib_1_1strings_1_1TString.html</filename>
+    <base>aworx::lib::strings::String</base>
+    <member kind="function">
+      <type>char</type>
+      <name>operator[]</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1TString.html</anchorfile>
+      <anchor>a0b3b9871d2fc6522c1f2aedf67b8b1c2</anchor>
+      <arglist>(int op) const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Terminate</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1TString.html</anchorfile>
+      <anchor>a7a1430f618f869550a47b5f078ce6860</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>IndexOf</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1TString.html</anchorfile>
+      <anchor>a57423bbca362af5c912ea619d9a14746</anchor>
+      <arglist>(const TString &amp;needle, int startIdx=0, enums::Case sensitivity=enums::Case::Sensitive) const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>IndexOfAny</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1TString.html</anchorfile>
+      <anchor>a77001b79e815a22ce126e3df14f591b2</anchor>
+      <arglist>(const TString &amp;needles, enums::Inclusion inclusion, int startIdx=0) const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator const char *</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1TString.html</anchorfile>
+      <anchor>ab75164b28454722bdf29710c208f0736</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const char *</type>
+      <name>ToCString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1TString.html</anchorfile>
+      <anchor>af283db5a533654cb8a0fa2e110d4b20f</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API int64_t</type>
+      <name>ToLong</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1TString.html</anchorfile>
+      <anchor>af2efe140bd7fe9300fa64c27c7adab08</anchor>
+      <arglist>(int startIdx=0, int *newIdx=nullptr, const TString *whitespaces=nullptr) const </arglist>
+    </member>
+    <member kind="function">
+      <type>int32_t</type>
+      <name>ToInt</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1TString.html</anchorfile>
+      <anchor>a0318c4e2b29a58be56c9f8645184448d</anchor>
+      <arglist>(int startIdx=0, int *newIdx=nullptr, const TString *whitespaces=nullptr) const </arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API double</type>
+      <name>ToFloat</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1TString.html</anchorfile>
+      <anchor>aefab2dff23cb4a711c8efdd73e85c15e</anchor>
+      <arglist>(int startIdx=0, int *newIdx=nullptr, NumberFormat *numberFormat=nullptr, const TString *whitespaces=nullptr) const </arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>debugIsTerminated</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1TString.html</anchorfile>
+      <anchor>ac3615a067cb671e6b0cac6dbb26c9f3e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>_dbgCheck</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1TString.html</anchorfile>
+      <anchor>a8747c38ac0ef9f863ede544d51ff6721</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>TString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1TString.html</anchorfile>
+      <anchor>ad751e8adb9aa217a042c45e1c0585285</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>TString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1TString.html</anchorfile>
+      <anchor>abe0c3a5e03ba9a10bd9b19a22a261499</anchor>
+      <arglist>(const T &amp;src)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>constexpr</type>
+      <name>TString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1TString.html</anchorfile>
+      <anchor>a6d715743a3937ea101a8deda34d993dc</anchor>
+      <arglist>(const char *buffer, int contentLength)</arglist>
+    </member>
+    <member kind="function">
+      <type>char</type>
+      <name>operator[]</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1TString.html</anchorfile>
+      <anchor>a0b3b9871d2fc6522c1f2aedf67b8b1c2</anchor>
+      <arglist>(int op) const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Terminate</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1TString.html</anchorfile>
+      <anchor>a7a1430f618f869550a47b5f078ce6860</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>IndexOf</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1TString.html</anchorfile>
+      <anchor>a57423bbca362af5c912ea619d9a14746</anchor>
+      <arglist>(const TString &amp;needle, int startIdx=0, enums::Case sensitivity=enums::Case::Sensitive) const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>IndexOfAny</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1TString.html</anchorfile>
+      <anchor>a77001b79e815a22ce126e3df14f591b2</anchor>
+      <arglist>(const TString &amp;needles, enums::Inclusion inclusion, int startIdx=0) const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator const char *</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1TString.html</anchorfile>
+      <anchor>ab75164b28454722bdf29710c208f0736</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const char *</type>
+      <name>ToCString</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1TString.html</anchorfile>
+      <anchor>af283db5a533654cb8a0fa2e110d4b20f</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API int64_t</type>
+      <name>ToLong</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1TString.html</anchorfile>
+      <anchor>af2efe140bd7fe9300fa64c27c7adab08</anchor>
+      <arglist>(int startIdx=0, int *newIdx=nullptr, const TString *whitespaces=nullptr) const </arglist>
+    </member>
+    <member kind="function">
+      <type>int32_t</type>
+      <name>ToInt</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1TString.html</anchorfile>
+      <anchor>a0318c4e2b29a58be56c9f8645184448d</anchor>
+      <arglist>(int startIdx=0, int *newIdx=nullptr, const TString *whitespaces=nullptr) const </arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API double</type>
+      <name>ToFloat</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1TString.html</anchorfile>
+      <anchor>aefab2dff23cb4a711c8efdd73e85c15e</anchor>
+      <arglist>(int startIdx=0, int *newIdx=nullptr, NumberFormat *numberFormat=nullptr, const TString *whitespaces=nullptr) const </arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -9164,123 +9452,445 @@
     <namespace>aworx::lib</namespace>
     <namespace>aworx::lox</namespace>
     <member kind="typedef">
-      <type>aworx::lib::strings::ASAlloc</type>
+      <type>aworx::lib::ALIB</type>
+      <name>ALIB</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>afc2895fe34753aa1cd88ed8845fbd88b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::enums::Alignment</type>
+      <name>Alignment</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a96dde4be24b9217d6bef30b22d7dfd4c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lox::loggers::AnsiConsoleLogger</type>
+      <name>AnsiConsoleLogger</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a1ea18f3cfd0faa27d99ecc1c9532b445</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lox::loggers::AnsiLogger</type>
+      <name>AnsiLogger</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>afbcb9cbc8853ce81a9d690e2a8923889</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::strings::AString</type>
       <name>AString</name>
       <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>a5878d649ed3cc544cbd74721f95da495</anchor>
+      <anchor>a51ace28d988aa0a7ab391f6aaec35f60</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>aworx::lib::strings::AS</type>
+      <type>aworx::lib::enums::Case</type>
+      <name>Case</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>ac497730bb253c7efcfee90f6de02a0ba</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::config::Configuration</type>
+      <name>Configuration</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a9b321d2f72b975b304aa678e20344e7a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lox::loggers::ConsoleLogger</type>
+      <name>ConsoleLogger</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>acfbbfc11d98646c37dbf27e3ede11644</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::enums::Create</type>
+      <name>Create</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>ae9b7ef57f8fb67372f77ff485e3087d7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::enums::CurrentData</type>
+      <name>CurrentData</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a8cd9fd65cae399a824854fa2ea3b8bfc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::system::Directory</type>
+      <name>Directory</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>ae59166dff4149598acd5f636fe6760d8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lox::ESC</type>
+      <name>ESC</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a41196e8ca29644376437095a102ad9ec</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::strings::Format</type>
+      <name>Format</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>aed5a5fab6b4a0c81a5a231f6d0379d41</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::enums::Inclusion</type>
+      <name>Inclusion</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>af3771c700d4232fb5b8a10510e088274</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::config::IniFile</type>
+      <name>IniFile</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>aef31dd55ee6403c15d9ba93325d3333d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::enums::LockMode</type>
+      <name>LockMode</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>acae7a6e21dc6155b5f1b7c932fb8aa34</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lox::Log</type>
+      <name>Log</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a5d8a9ca518e5abc7446b6a753e2b7ae6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lox::Lox</type>
+      <name>Lox</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>abf1258bbd9cf9772a1559f4ceb37fde4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lox::loggers::MemoryLogger</type>
+      <name>MemoryLogger</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>aff4e02a238ba03a98be3dd17d783f336</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::strings::NumberFormat</type>
+      <name>NumberFormat</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a4105ad142b7282bab44c0f051d36e350</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::strings::PreallocatedString&lt; TCapacity &gt;</type>
+      <name>PAString</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a10e9458c58956ec05a324232fc1cc9e4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::enums::Phase</type>
+      <name>Phase</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>ac87fae76a49419f75db6b44011acc407</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::system::ProcessInfo</type>
+      <name>ProcessInfo</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a8644368b56cf61a16e37300584a1d4e2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::enums::Propagation</type>
+      <name>Propagation</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a6becd7c5957b9924c08b78079a67c5b4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::enums::Responsibility</type>
+      <name>Responsibility</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>ad8c1565886f17d3b3262d8454ae546de</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::enums::Result</type>
+      <name>Result</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a0bb37c2c22c2eb85510445d1b9d11f19</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::threads::Runnable</type>
+      <name>Runnable</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>af259362a7fa123eef74daaf4036e02a5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::enums::Safeness</type>
+      <name>Safeness</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>ae44933ed0bc5c2462dce430a034dd6b0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::strings::StringLiteral&lt; TLength &gt;</type>
+      <name>SLiteral</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>af631a26bf70ad6d6143973fadf779747</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::strings::String</type>
       <name>String</name>
       <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>a1b602fe268f8de37e14430b7e646cd0f</anchor>
+      <anchor>ad13481d84c6e592a41d07c64f747c95d</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>aworx::lib::strings::ASPreAlloc&lt; 128 &gt;</type>
+      <type>aworx::lib::strings::PreallocatedString&lt; 128 &gt;</type>
       <name>String128</name>
       <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>abb9edf26ef4b9c245c5a95bb13f41dcf</anchor>
+      <anchor>a2841f1443c3b2f3d6066d5774cf69dbc</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>aworx::lib::strings::ASPreAlloc&lt; 16 &gt;</type>
+      <type>aworx::lib::strings::PreallocatedString&lt; 16 &gt;</type>
       <name>String16</name>
       <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>acbea83160c272e842de487ed7aa0caab</anchor>
+      <anchor>a148a217c34a72b4360462205858b8f0e</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>aworx::lib::strings::ASPreAlloc&lt; 1024 &gt;</type>
+      <type>aworx::lib::strings::PreallocatedString&lt; 1024 &gt;</type>
       <name>String1K</name>
       <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>acd9946aad9d9041ea509a3bced22e283</anchor>
+      <anchor>a82395a8f3fac47787ebe8749679a2796</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>aworx::lib::strings::ASPreAlloc&lt; 256 &gt;</type>
+      <type>aworx::lib::strings::PreallocatedString&lt; 256 &gt;</type>
       <name>String256</name>
       <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>a81ae91cb74396a4fc28abd35ed7ff052</anchor>
+      <anchor>a152f787b6dac47dd3f94ae5ebf1ece53</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>aworx::lib::strings::ASPreAlloc&lt; 2048 &gt;</type>
+      <type>aworx::lib::strings::PreallocatedString&lt; 2048 &gt;</type>
       <name>String2K</name>
       <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>af3dee8b08186b18ae10ef7bb0a41e650</anchor>
+      <anchor>a76f69ad445caecfbf03351c884637b09</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>aworx::lib::strings::ASPreAlloc&lt; 32 &gt;</type>
+      <type>aworx::lib::strings::PreallocatedString&lt; 32 &gt;</type>
       <name>String32</name>
       <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>a8a557200d216efbde6004a5eea849b86</anchor>
+      <anchor>a221752691fb92bcd592c045d6c368289</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>aworx::lib::strings::ASPreAlloc&lt; 4096 &gt;</type>
+      <type>aworx::lib::strings::PreallocatedString&lt; 4096 &gt;</type>
       <name>String4K</name>
       <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>ab35934f523d9f334a8310ea3384d3d67</anchor>
+      <anchor>a772f06f37ace5e2b2eb8cafc0c859c44</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>aworx::lib::strings::ASPreAlloc&lt; 512 &gt;</type>
+      <type>aworx::lib::strings::PreallocatedString&lt; 512 &gt;</type>
       <name>String512</name>
       <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>afc3e452a4a1195b67d5a8121fd9ea8ce</anchor>
+      <anchor>af634b7550d8a316ce3cf3fb6f9e86079</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>aworx::lib::strings::ASPreAlloc&lt; 64 &gt;</type>
+      <type>aworx::lib::strings::PreallocatedString&lt; 64 &gt;</type>
       <name>String64</name>
       <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>ad16dfdce0f76423f90dcf6821f8b4a7e</anchor>
+      <anchor>ac2fdc487456a994238ba4284b3859c41</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>aworx::lib::strings::ASPreAlloc&lt; 8 &gt;</type>
+      <type>aworx::lib::strings::PreallocatedString&lt; 8 &gt;</type>
       <name>String8</name>
       <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>a639c84da3f1fd25fe67d734809c35992</anchor>
+      <anchor>ab35696c2e8d79567a528a4b6da788eb3</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>aworx::lib::strings::ASLiteral&lt; TLength &gt;</type>
-      <name>StringLiteral</name>
-      <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>a25a9748ddb0997bcedc38913800a9352</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
-      <type>aworx::lib::strings::ASSubstring</type>
+      <type>lib::strings::Substring</type>
       <name>Substring</name>
       <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>a020f593b093787650587801352ccddd3</anchor>
+      <anchor>aade494154da29084f1e59cfa2f83a23b</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>aworx::lib::strings::ASTerminatable</type>
+      <type>aworx::lib::enums::Switch</type>
+      <name>Switch</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>abbc3fd675117881e7c7aebcd1058ad03</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::system::System</type>
+      <name>System</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>aea0af9d6b00ede1a16d0af24fdaeebe0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lox::loggers::TextFileLogger</type>
+      <name>TextFileLogger</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>ae64ac3b33c7c180e92559a869977fda0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lox::core::textlogger::TextLogger</type>
+      <name>TextLogger</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a8d1a5942495395f77e31bb5d451c332b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::threads::Thread</type>
+      <name>Thread</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a42fe02133ffe8b203c4aa204d2114d49</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::threads::ThreadLock</type>
+      <name>ThreadLock</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>ad941b2cb61bade9aa2478dd063154d33</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::threads::ThreadLockNR</type>
+      <name>ThreadLockNR</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>adb7e18c3a3777faf17dde8a543e30a27</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::time::Ticks</type>
+      <name>Ticks</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>ad270463709a4ae7e7098df40e803e458</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::time::TicksCalendarTime</type>
+      <name>TicksCalendarTime</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a0607ccd659418fa7cb9922b2c4ba5f1d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::time::TickSpan</type>
+      <name>TickSpan</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a7b85567c52aa0abc2531be7a2a7f887f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::time::TickWatch</type>
+      <name>TickWatch</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a4d4926218d664dabc231ce5cf0c19afc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::enums::Timezone</type>
+      <name>Timezone</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a5d6766c28e92b7f6ec8f96383455acdc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::strings::Tokenizer</type>
+      <name>Tokenizer</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a605604b4e10ad391819f94254f1727b7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::strings::TString</type>
       <name>TString</name>
       <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>a2de28a17dc8f201aaa9a8bfa637500a5</anchor>
+      <anchor>af01fde7c67b5f30027a4135222bbde31</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lox::loggers::VStudioLogger</type>
+      <name>VStudioLogger</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a747899e07def7493ae65c9569a5dc879</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::enums::Whitespaces</type>
+      <name>Whitespaces</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a0c07eb477a798a2088b4619390c54e72</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lox::loggers::WindowsConsoleLogger</type>
+      <name>WindowsConsoleLogger</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>ad427fd161e0ad8bd4c8835c5a643cc3f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr lib::strings::StringLiteral&lt; 4 &gt;</type>
+      <name>DefaultWhitespaces</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a5feaaf6a8fb11e8ebbb0013ec9f27b01</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>constexpr String</type>
-      <name>NullString</name>
-      <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>a6d6180d70c719442ba8b7a120689b9ce</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr String</type>
+      <type>constexpr lib::strings::String</type>
       <name>EmptyString</name>
       <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>ae8312c2e2a7a26985be3500c40599b61</anchor>
-      <arglist>(&quot;&quot;, 0)</arglist>
+      <anchor>a3372961a8fb9d30455267babb4e6c26c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr lib::strings::StringLiteral&lt; 1 &gt;</type>
+      <name>NewLine</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>aca82326cfe712c18f9adb9f560a28553</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>constexpr lib::strings::String</type>
+      <name>NullString</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>ab1ed6dcfbe4628dccefbdb5633b1bf01</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>const char</type>
+      <name>PathSeparator</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a081742a3398152ceb8694674ffd21c37</anchor>
+      <arglist></arglist>
     </member>
     <docanchor file="namespaceaworx">CPP_AWORX_NS_SHORTCUTS</docanchor>
   </compound>
@@ -9446,39 +10056,25 @@
   <compound kind="namespace">
     <name>aworx::lib::strings</name>
     <filename>namespaceaworx_1_1lib_1_1strings.html</filename>
-    <class kind="class">aworx::lib::strings::AS</class>
-    <class kind="class">aworx::lib::strings::ASAlloc</class>
-    <class kind="class">aworx::lib::strings::ASLiteral</class>
-    <class kind="class">aworx::lib::strings::ASPreAlloc</class>
-    <class kind="class">aworx::lib::strings::ASSubstring</class>
-    <class kind="class">aworx::lib::strings::ASTerminatable</class>
+    <class kind="class">aworx::lib::strings::AString</class>
     <class kind="class">aworx::lib::strings::CString</class>
     <class kind="class">aworx::lib::strings::Format</class>
     <class kind="struct">aworx::lib::strings::IsApplicable</class>
     <class kind="struct">aworx::lib::strings::IsApplicable&lt; const std::string &amp; &gt;</class>
     <class kind="struct">aworx::lib::strings::IsTerminatable</class>
-    <class kind="struct">aworx::lib::strings::IsTerminatable&lt; ASAlloc &gt;</class>
-    <class kind="struct">aworx::lib::strings::IsTerminatable&lt; ASPreAlloc&lt; TCapacity &gt; &gt;</class>
+    <class kind="struct">aworx::lib::strings::IsTerminatable&lt; AString &gt;</class>
+    <class kind="struct">aworx::lib::strings::IsTerminatable&lt; PreallocatedString&lt; TCapacity &gt; &gt;</class>
     <class kind="class">aworx::lib::strings::NumberFormat</class>
+    <class kind="class">aworx::lib::strings::PreallocatedString</class>
     <class kind="class">aworx::lib::strings::ReadLineFromIStream</class>
+    <class kind="class">aworx::lib::strings::String</class>
+    <class kind="class">aworx::lib::strings::StringLiteral</class>
+    <class kind="class">aworx::lib::strings::Substring</class>
     <class kind="struct">aworx::lib::strings::TMPLiteral</class>
-    <class kind="struct">aworx::lib::strings::ToASDefined</class>
-    <class kind="struct">aworx::lib::strings::ToASDefined&lt; const std::string &amp; &gt;</class>
     <class kind="class">aworx::lib::strings::Tokenizer</class>
-    <member kind="variable" static="yes">
-      <type>static constexpr ASLiteral&lt; 4 &gt;</type>
-      <name>DefaultWhitespaces</name>
-      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>a883f1244d6fd8d7f4615d647fa388d04</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static constexpr ASLiteral&lt; 1 &gt;</type>
-      <name>NewLine</name>
-      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>a9976902761097963bf1c3d15a704dd9a</anchor>
-      <arglist></arglist>
-    </member>
+    <class kind="struct">aworx::lib::strings::ToStringDefined</class>
+    <class kind="struct">aworx::lib::strings::ToStringDefined&lt; const std::string &amp; &gt;</class>
+    <class kind="class">aworx::lib::strings::TString</class>
     <member kind="function">
       <type>int</type>
       <name>ApplyTo</name>
@@ -9830,64 +10426,64 @@
       <arglist>(std::istream *stream, AString &amp;string)</arglist>
     </member>
     <member kind="function">
-      <type>TReturn</type>
-      <name>ToAS</name>
+      <type>std::string &amp;</type>
+      <name>ToStdString</name>
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>a86b0b5fb454f1fb24e37f31c51159cea</anchor>
+      <anchor>acee8df0c9711c319807b3661f1046dfd</anchor>
+      <arglist>(const String &amp;as, std::string &amp;target, int regionStart, int regionLength=CString::MaxLen, enums::CurrentData targetData=enums::CurrentData::Clear)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>ToStdString</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>a69456b076a8fce4982a9d3790796d424</anchor>
+      <arglist>(const String &amp;as, int regionStart, int regionLength=CString::MaxLen)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>ToStdString</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>a039f938c7e403c09e0271e4f353123bf</anchor>
+      <arglist>(const String &amp;as)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string &amp;</type>
+      <name>ToStdString</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>a8f1c5a17c57b3b54f2f46e58bef50487</anchor>
+      <arglist>(const String &amp;as, std::string &amp;target, enums::CurrentData targetData=enums::CurrentData::Clear)</arglist>
+    </member>
+    <member kind="function">
+      <type>TReturn</type>
+      <name>ToString</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>a7cfd45024bf9222b42febac98fdcc146</anchor>
       <arglist>(const TString)</arglist>
     </member>
     <member kind="function">
       <type>const char *</type>
-      <name>ToAS&lt; const std::string &amp; &gt;</name>
+      <name>ToString&lt; const std::string &amp; &gt;</name>
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>af2f5751974e1cdb68c13d3a8ac337b7b</anchor>
+      <anchor>a8d85e610e17c69e9ece8b558735519e0</anchor>
       <arglist>(const std::string &amp;src)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
-      <name>ToAS&lt; const std::string &amp; &gt;</name>
+      <name>ToString&lt; const std::string &amp; &gt;</name>
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>ad176816568c03b4c43b5bbfb814ca7f5</anchor>
+      <anchor>ae0fc15801fea6b54738ca715ed192cf0</anchor>
       <arglist>(const std::string &amp;src)</arglist>
-    </member>
-    <member kind="function">
-      <type>std::string &amp;</type>
-      <name>ToStdString</name>
-      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>a7b3324b379ed34963410530fde2392e5</anchor>
-      <arglist>(const AS &amp;as, std::string &amp;target, int regionStart, int regionLength=CString::MaxLen, enums::CurrentData targetData=enums::CurrentData::Clear)</arglist>
-    </member>
-    <member kind="function">
-      <type>std::string</type>
-      <name>ToStdString</name>
-      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>a70ca8b6e2ef4a9264c6c5f2755a43b07</anchor>
-      <arglist>(const AS &amp;as, int regionStart, int regionLength=CString::MaxLen)</arglist>
-    </member>
-    <member kind="function">
-      <type>std::string</type>
-      <name>ToStdString</name>
-      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>af8e87f4ad5a228fdc94f04d405b281d8</anchor>
-      <arglist>(const AS &amp;as)</arglist>
-    </member>
-    <member kind="function">
-      <type>std::string &amp;</type>
-      <name>ToStdString</name>
-      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>a82a39be3112d82041508726a9dfad939</anchor>
-      <arglist>(const AS &amp;as, std::string &amp;target, enums::CurrentData targetData=enums::CurrentData::Clear)</arglist>
     </member>
     <docanchor file="namespaceaworx_1_1lib_1_1strings">alib_namespace_strings_nullable</docanchor>
     <docanchor file="namespaceaworx_1_1lib_1_1strings">alib_namespace_strings_class_overview_astring_construction</docanchor>
     <docanchor file="namespaceaworx_1_1lib_1_1strings" title="Introduction">alib_namespace_strings_intro</docanchor>
     <docanchor file="namespaceaworx_1_1lib_1_1strings" title="Classes overview">alib_namespace_strings_class_overview</docanchor>
-    <docanchor file="namespaceaworx_1_1lib_1_1strings" title="Class AS">alib_namespace_strings_class_overview_as</docanchor>
-    <docanchor file="namespaceaworx_1_1lib_1_1strings" title="Class ASTerminatable">alib_namespace_strings_class_overview_asterminatable</docanchor>
-    <docanchor file="namespaceaworx_1_1lib_1_1strings" title="Class ASAlloc">alib_namespace_strings_class_overview_astring</docanchor>
-    <docanchor file="namespaceaworx_1_1lib_1_1strings" title="Class ASPreAlloc">alib_namespace_strings_class_overview_asprealoc</docanchor>
-    <docanchor file="namespaceaworx_1_1lib_1_1strings" title="Class ASSubstring">alib_namespace_strings_class_overview_substring</docanchor>
-    <docanchor file="namespaceaworx_1_1lib_1_1strings" title="Class ASLiteral">alib_namespace_strings_class_overview_asliteral</docanchor>
+    <docanchor file="namespaceaworx_1_1lib_1_1strings" title="Class String">alib_namespace_strings_class_overview_as</docanchor>
+    <docanchor file="namespaceaworx_1_1lib_1_1strings" title="Class TString">alib_namespace_strings_class_overview_asterminatable</docanchor>
+    <docanchor file="namespaceaworx_1_1lib_1_1strings" title="Class AString">alib_namespace_strings_class_overview_astring</docanchor>
+    <docanchor file="namespaceaworx_1_1lib_1_1strings" title="Class PreallocatedString">alib_namespace_strings_class_overview_asprealoc</docanchor>
+    <docanchor file="namespaceaworx_1_1lib_1_1strings" title="Class Substring">alib_namespace_strings_class_overview_substring</docanchor>
+    <docanchor file="namespaceaworx_1_1lib_1_1strings" title="Class StringLiteral">alib_namespace_strings_class_overview_asliteral</docanchor>
     <docanchor file="namespaceaworx_1_1lib_1_1strings" title="&apos;Non-Checking&apos; Methods of ALib String Classes">alib_namespace_strings_nonchecking</docanchor>
     <docanchor file="namespaceaworx_1_1lib_1_1strings" title="Compatibility with External Libraries">alib_namespace_strings_compat</docanchor>
     <docanchor file="namespaceaworx_1_1lib_1_1strings" title="Debugging ALib String Classes">alib_namespace_strings_debugging</docanchor>
@@ -9898,13 +10494,6 @@
     <class kind="class">aworx::lib::system::Directory</class>
     <class kind="class">aworx::lib::system::ProcessInfo</class>
     <class kind="class">aworx::lib::system::System</class>
-    <member kind="variable">
-      <type>const char</type>
-      <name>PathSeparator</name>
-      <anchorfile>namespaceaworx_1_1lib_1_1system.html</anchorfile>
-      <anchor>a081742a3398152ceb8694674ffd21c37</anchor>
-      <arglist></arglist>
-    </member>
   </compound>
   <compound kind="namespace">
     <name>aworx::lib::threads</name>
@@ -10338,6 +10927,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>LOG_ACQUIRE</name>
+      <anchorfile>group__GrpALoxMacrosLowLevel.html</anchorfile>
+      <anchor>ga105a9f44250c23d6bb37df63aa9d9cbe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>LOG_LOX</name>
       <anchorfile>group__GrpALoxMacrosLowLevel.html</anchorfile>
       <anchor>ga71f7449b6ad8bbd0ba22f897d7338a22</anchor>
@@ -10345,37 +10941,30 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>LOG_POSTFIX</name>
+      <name>LOG_RELEASE</name>
       <anchorfile>group__GrpALoxMacrosLowLevel.html</anchorfile>
-      <anchor>gad662b4dbce165eccc829278f9a1d5477</anchor>
+      <anchor>ga0d5795316ecfccc7b40b43c01bf62b0e</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>LOG_PREFIX</name>
+      <name>LOX_ACQUIRE</name>
       <anchorfile>group__GrpALoxMacrosLowLevel.html</anchorfile>
-      <anchor>gaae1d11681b36518afb9413f4194b18a6</anchor>
+      <anchor>ga9ac629621d8152810e41e19931c990a1</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>LOG_REL_LOX</name>
+      <name>LOX_LOX</name>
       <anchorfile>group__GrpALoxMacrosLowLevel.html</anchorfile>
-      <anchor>gab014491c0aaaceaa1ef1a7d679a8d3e0</anchor>
+      <anchor>ga1f170b96d3ead37b7f530134e64bf121</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>LOX_POSTFIX</name>
+      <name>LOX_RELEASE</name>
       <anchorfile>group__GrpALoxMacrosLowLevel.html</anchorfile>
-      <anchor>gad7b0252385be7787e0e08c7ea0582ce0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LOX_PREFIX</name>
-      <anchorfile>group__GrpALoxMacrosLowLevel.html</anchorfile>
-      <anchor>ga48644d682557d34b6a07bea1b13bb848</anchor>
+      <anchor>ga2ef98e816bdf36da37bb9bddbdfd635f</anchor>
       <arglist></arglist>
     </member>
   </compound>

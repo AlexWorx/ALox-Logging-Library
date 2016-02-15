@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1602</span>
+   &#160;<span id="projectnumber">V. 1602 R. 1</span>
    </div>
   </td>
  </tr>
@@ -132,21 +132,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>This is the complete list of members for <a class="el" href="classaworx_1_1lib_1_1Report.html">Report</a>, including all inherited members.</p>
 <table class="directory">
   <tr class="even"><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html#a9088fab9d3df935215bb0bb30f7b2250">defaultReport</a></td><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html">Report</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">static</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html#abc1a2b7127e4881f7d5ad8956bdcdc10">DoReport</a>(ALIB_DBG_SRC_INFO_PARAMS_DECL int type, const strings::ASTerminatable &amp;msg)</td><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html">Report</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html#a818a0ba87e92dfee2aacd992a942bb75">DoReport</a>(ALIB_DBG_SRC_INFO_PARAMS_DECL int type, const strings::TString &amp;msg)</td><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html">Report</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html#a1d9ac8f09122b5310b6776784882de6b">GetDefault</a>()</td><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html">Report</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">static</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html#aaa5d96026d2a9009538182741b707aed">HaltOnError</a></td><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html">Report</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html#a57c82f739172de9fc0058f43d6e3f3ed">HaltOnWarning</a></td><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html">Report</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html#ae93c7c02e0fcf8f15616b0b49bed5194">lock</a></td><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html">Report</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html#acb62b28ab9467a03c940908b8f6649d3">recursionBlocker</a></td><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html">Report</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html#a346c5c5d8273ac95ee3e62194753f9ea">ReplaceReportWriter</a>(ReportWriter *newReportWriter, bool deletePrevious)</td><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html">Report</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Report</b>() (defined in <a class="el" href="classaworx_1_1lib_1_1Report.html">Report</a>)</td><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html">Report</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html#a9b5969adbe225a7b5fe8bda46c619cd3">reportWriter</a></td><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html">Report</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>~Report</b>() (defined in <a class="el" href="classaworx_1_1lib_1_1Report.html">Report</a>)</td><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html">Report</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html#ae0aa2499cfb7dcf29f7955cde68c79bb">haltAfterReport</a></td><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html">Report</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html#ae93c7c02e0fcf8f15616b0b49bed5194">lock</a></td><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html">Report</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html#ade3d2cc17cc7c56d59b88a15ee247ca0">PopHaltFlags</a>()</td><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html">Report</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html#a7983ee7befb74df86990b506dfaaf6a0">PushHaltFlags</a>(bool haltOnErrors, bool haltOnWarnings)</td><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html">Report</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html#acb62b28ab9467a03c940908b8f6649d3">recursionBlocker</a></td><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html">Report</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html#a346c5c5d8273ac95ee3e62194753f9ea">ReplaceReportWriter</a>(ReportWriter *newReportWriter, bool deletePrevious)</td><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html">Report</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>Report</b>() (defined in <a class="el" href="classaworx_1_1lib_1_1Report.html">Report</a>)</td><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html">Report</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html#a9b5969adbe225a7b5fe8bda46c619cd3">reportWriter</a></td><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html">Report</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>~Report</b>() (defined in <a class="el" href="classaworx_1_1lib_1_1Report.html">Report</a>)</td><td class="entry"><a class="el" href="classaworx_1_1lib_1_1Report.html">Report</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 5 2016 10:32:54 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Feb 15 2016 11:32:18 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

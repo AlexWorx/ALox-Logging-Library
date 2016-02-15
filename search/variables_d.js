@@ -4,7 +4,7 @@ var searchData=
   ['nanoseconds',['Nanoseconds',['cpp_ref/classaworx_1_1lib_1_1time_1_1TickSpan.html#a07bce61c5d03546046f1cbbd77273a19',1,'aworx::lib::time::TickSpan::Nanoseconds()'],['java_ref/classcom_1_1aworx_1_1lib_1_1time_1_1TickSpan.html#a5363b04d6604a8f7d527420d632df865',1,'com::aworx::lib::time::TickSpan::nanoseconds()']]],
   ['never',['NEVER',['java_ref/enumcom_1_1aworx_1_1lib_1_1enums_1_1Create.html#aa5e40ba27c118cfa6f755e2241228644',1,'com::aworx::lib::enums::Create']]],
   ['new_5fline_5fchars',['NEW_LINE_CHARS',['java_ref/classcom_1_1aworx_1_1lib_1_1strings_1_1CString.html#a00e1f08ef053288a395b82bb6269409c',1,'com::aworx::lib::strings::CString']]],
-  ['newline',['NewLine',['cpp_ref/namespaceaworx_1_1lib_1_1strings.html#a9976902761097963bf1c3d15a704dd9a',1,'aworx::lib::strings']]],
+  ['newline',['NewLine',['cpp_ref/namespaceaworx.html#aca82326cfe712c18f9adb9f560a28553',1,'aworx']]],
   ['newlinechars',['NewLineChars',['cs_ref/classcs_1_1aworx_1_1lib_1_1strings_1_1CString.html#a8f912677346490ebb297caaee610721f',1,'cs::aworx::lib::strings::CString']]],
   ['nextsystemthreadid',['nextSystemThreadId',['cpp_ref/classaworx_1_1lib_1_1threads_1_1Thread.html#a6f75d73b07fa7d51811c670006afddfc',1,'aworx::lib::threads::Thread']]],
   ['nextthreadid',['nextThreadId',['cpp_ref/classaworx_1_1lib_1_1threads_1_1Thread.html#aafbcb206984d160d0e23ceb38921175c',1,'aworx::lib::threads::Thread']]],
@@ -14,6 +14,6 @@ var searchData=
   ['nosourcefileinfo',['NoSourceFileInfo',['cpp_ref/classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#aa2d945d4b31dd484ece4cc687acf8831',1,'aworx::lox::core::textlogger::MetaInfo']]],
   ['nullbuffer',['nullBuffer',['java_ref/classcom_1_1aworx_1_1lib_1_1strings_1_1CString.html#a4f39891fac58d3d4b775e7e2bbbdaaed',1,'com::aworx::lib::strings::CString::nullBuffer()'],['cs_ref/classcs_1_1aworx_1_1lib_1_1strings_1_1CString.html#abb7e666c78a39f2ab7934d340b99b091',1,'cs::aworx::lib::strings::CString::NullBuffer()']]],
   ['nulldomain',['NullDomain',['cs_ref/classcs_1_1aworx_1_1lox_1_1Lox.html#a14ff0f6a97bd25b6c22c0a820049fbe8',1,'cs::aworx::lox::Lox::NullDomain()'],['cpp_ref/classaworx_1_1lox_1_1Lox.html#a1b898840bc3c6004def2f687caa4acb9',1,'aworx::lox::Lox::NullDomain()'],['java_ref/classcom_1_1aworx_1_1lox_1_1Lox.html#a981b91037b86e139373283c4b5168b9f',1,'com::aworx::lox::Lox::nullDomain()']]],
-  ['nullstring',['NullString',['cpp_ref/namespaceaworx.html#a6d6180d70c719442ba8b7a120689b9ce',1,'aworx']]],
+  ['nullstring',['NullString',['cpp_ref/namespaceaworx.html#ab1ed6dcfbe4628dccefbdb5633b1bf01',1,'aworx']]],
   ['numberformat',['numberFormat',['java_ref/classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a0330374313c82399b6dd59c7db2acf58',1,'com::aworx::lib::config::Configuration::numberFormat()'],['cs_ref/classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a20358334d7d6268d5c50b650ebf3e4b8',1,'cs::aworx::lib::config::Configuration::NumberFormat()'],['cpp_ref/classaworx_1_1lib_1_1config_1_1Configuration.html#a9bfa3473e5c94dafa94ae1339fe70a48',1,'aworx::lib::config::Configuration::NumberFormat()']]]
 ];

@@ -4,7 +4,7 @@ var searchData=
   ['c11thread',['c11Thread',['../classaworx_1_1lib_1_1threads_1_1Thread.html#a89f5d379ab6ea494541102c2f4be341c',1,'aworx::lib::threads::Thread']]],
   ['callerdatetime',['callerDateTime',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a594357dd2afccbf86f5b6dfcdda82bbf',1,'aworx::lox::core::textlogger::MetaInfo']]],
   ['callerinfo',['callerInfo',['../classaworx_1_1lox_1_1Lox.html#a3f03380b7450165d47b292ccd8ad86ff',1,'aworx::lox::Lox']]],
-  ['capacity',['capacity',['../classaworx_1_1lib_1_1strings_1_1ASAlloc.html#adbe66a087ac3fd4a5b0566f64ca2d12b',1,'aworx::lib::strings::ASAlloc']]],
+  ['capacity',['capacity',['../classaworx_1_1lib_1_1strings_1_1AString.html#adbe66a087ac3fd4a5b0566f64ca2d12b',1,'aworx::lib::strings::AString']]],
   ['cmdline',['CmdLine',['../classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a38741324f2f4c6aa56dc430d4388a76c',1,'aworx::lib::system::ProcessInfo']]],
   ['cmdlinecp',['cmdLineCP',['../classaworx_1_1lib_1_1config_1_1Configuration.html#a8b6414b86e45aeffa6e8a18857614ca6',1,'aworx::lib::config::Configuration']]],
   ['cntacquirements',['cntAcquirements',['../classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a04735ee43ec4d1676e4e0eb3d6bebd73',1,'aworx::lib::threads::ThreadLock']]],
@@ -16,12 +16,12 @@ var searchData=
   ['compilationflagmeanings',['CompilationFlagMeanings',['../classaworx_1_1lib_1_1ALIB.html#a075d789701e32425e80a4e766354d005',1,'aworx::lib::ALIB::CompilationFlagMeanings()'],['../classaworx_1_1lox_1_1Log.html#a94e348b81d5b26163c0eb1efc4c0fd69',1,'aworx::lox::Log::CompilationFlagMeanings()']]],
   ['compilationflags',['CompilationFlags',['../classaworx_1_1lib_1_1ALIB.html#abbfe1aff131ede76ea8f259b2282b26e',1,'aworx::lib::ALIB::CompilationFlags()'],['../classaworx_1_1lox_1_1Log.html#abbfe1aff131ede76ea8f259b2282b26e',1,'aworx::lox::Log::CompilationFlags()']]],
   ['config',['Config',['../classaworx_1_1lib_1_1ALIB.html#a25de5cc112c10bba144bdd9d8d94b947',1,'aworx::lib::ALIB']]],
-  ['configcategoryname',['ConfigCategoryName',['../classaworx_1_1lib_1_1ALIB.html#a22148968a71666eb82718ab25d688adc',1,'aworx::lib::ALIB::ConfigCategoryName()'],['../classaworx_1_1lox_1_1Log.html#addc024f6c6dbb007e99c6becdc4d3649',1,'aworx::lox::Log::ConfigCategoryName()']]],
+  ['configcategoryname',['ConfigCategoryName',['../classaworx_1_1lib_1_1ALIB.html#affcf83e8b52935dd94b74c1a47cf7e0a',1,'aworx::lib::ALIB::ConfigCategoryName()'],['../classaworx_1_1lox_1_1Log.html#addc024f6c6dbb007e99c6becdc4d3649',1,'aworx::lox::Log::ConfigCategoryName()']]],
   ['consoletitle',['ConsoleTitle',['../classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a39dfc3f00493a74b8ab6907dec8c80ae',1,'aworx::lib::system::ProcessInfo']]],
   ['consumablesourcepathprefix',['ConsumableSourcePathPrefix',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a33397151e3c9c32997688cd29a3cd0c5',1,'aworx::lox::core::textlogger::MetaInfo']]],
-  ['contents',['contents',['../classaworx_1_1lib_1_1strings_1_1Format_1_1Field.html#a26d8094f91e9b7c975a330358ce018c1',1,'aworx::lib::strings::Format::Field::contents()'],['../classaworx_1_1lib_1_1Report_1_1Message.html#a682e2846570b93b1f639f13132b30b10',1,'aworx::lib::Report::Message::Contents()']]],
+  ['contents',['contents',['../classaworx_1_1lib_1_1strings_1_1Format_1_1Field.html#ae26b1a80a32917acc6107e4bfc13ed40',1,'aworx::lib::strings::Format::Field::contents()'],['../classaworx_1_1lib_1_1Report_1_1Message.html#afa76585979183dca208a5db82709e8af',1,'aworx::lib::Report::Message::Contents()']]],
   ['creationtime',['creationTime',['../classaworx_1_1lib_1_1time_1_1Ticks.html#ac4aaa87e2fbf873c653a97f4a1d49d13',1,'aworx::lib::time::Ticks']]],
   ['current',['current',['../classaworx_1_1lib_1_1system_1_1ProcessInfo.html#afabfc6a52ba3d7842fe4c2b0bdc7cf6d',1,'aworx::lib::system::ProcessInfo']]],
   ['currentlyinmultilineop',['currentlyInMultiLineOp',['../classaworx_1_1lox_1_1loggers_1_1TextFileLogger.html#a79360590a52ab99fa5ca7bd3e679fef5',1,'aworx::lox::loggers::TextFileLogger']]],
-  ['cyan',['CYAN',['../classaworx_1_1lox_1_1ESC.html#a3ec185162d338c4b9549512b7bf4d490',1,'aworx::lox::ESC']]]
+  ['cyan',['CYAN',['../classaworx_1_1lox_1_1ESC.html#afdf0230e4d8012d7a89df6f3fa266e5a',1,'aworx::lox::ESC']]]
 ];

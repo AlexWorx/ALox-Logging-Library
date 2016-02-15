@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1602</span>
+   &#160;<span id="projectnumber">V. 1602 R. 1</span>
    </div>
   </td>
  </tr>
@@ -126,7 +126,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Inner Classes</a> &#124;
-<a href="#pub-attribs">Public Fields</a> &#124;
 <a href="#pub-static-methods">Public Static Methods</a> &#124;
 <a href="#pub-methods">Public Methods</a> &#124;
 <a href="#pro-static-attribs">Protected Static Fields</a> &#124;
@@ -141,15 +140,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Collaboration diagram for Report:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lib_1_1Report__coll__graph.svg" width="254" height="203"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lib_1_1Report__coll__graph.svg" width="364" height="203"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
-<p> This class provides a simple facility to collect what is called a <em>'report'</em>. Reports are maintenance messages, similar to error messages, but is not aiming to replace and error handling. (Sending a <em>'report'</em> usually precedes raising an error.) Also, <em>'reports'</em> are not replacing any debug or release logging facility, which is not part of ALib. Much more, logging libraries (like <em>ALox</em> Logging Library, which builds on ALib, does) might provide a derived object of type <a class="el" href="classaworx_1_1lib_1_1ReportWriter.html">ReportWriter</a> to plug into ALib report facility. This way, the concepts of logging and reports get unified.</p>
-<p>While a process can create different objects of this class, usually, the default instance, received by <a class="el" href="classaworx_1_1lib_1_1Report.html#a1d9ac8f09122b5310b6776784882de6b">GetDefault</a>. is sufficient and all warnings and errors will be directed to this one. ALib itself directs all messages to the default instance.</p>
+<p> This class provides a simple facility to collect what is called a <em>'report'</em>. Reports are maintenance messages, similar to error messages, but is not aiming to replace any sort of error handling. (Sending a <em>'report'</em> usually precedes raising an error.) Also, <em>reports</em> are not replacing any debug or release logging facility, which is not part of ALib. Much more, logging libraries might provide a derived object of type <a class="el" href="classaworx_1_1lib_1_1ReportWriter.html">ReportWriter</a> to plug into ALib report facility. This way, the concepts of logging and reports get unified. (As a sample, <em>ALox Logging Library </em> which builds on ALib does so.)</p>
+<p>While a process can create different objects of this class, usually, the default instance, received by <a class="el" href="classaworx_1_1lib_1_1Report.html#a1d9ac8f09122b5310b6776784882de6b">GetDefault</a>. is sufficient and all warnings and errors will be directed to this one. ALib itself directs all internal reports to the default instance.</p>
 <p>This class uses a singleton of type <a class="el" href="classaworx_1_1lib_1_1ReportWriter.html">ReportWriter</a> to actually write the reports. By default, an object of type <a class="el" href="classaworx_1_1lib_1_1ConsoleReportWriter.html">ConsoleReportWriter</a> is attached.</p>
-<p>The reporting method, <a class="el" href="classaworx_1_1lib_1_1Report.html#abc1a2b7127e4881f7d5ad8956bdcdc10">DoReport</a> will check the public flag <a class="el" href="classaworx_1_1lib_1_1Report.html#aaa5d96026d2a9009538182741b707aed">HaltOnError</a> respectively <a class="el" href="classaworx_1_1lib_1_1Report.html#a57c82f739172de9fc0058f43d6e3f3ed">HaltOnWarning</a>, which if <code>true</code>, causes the method to invoke <em>assert()</em>. Such assertions are effective only in the debug compilation of the library/executable. Custom <em>'ReportWriters'</em> might take action (e.g. for security reasons) and e.g. terminate the application also in release compilations.</p>
+<p>The reporting method, <a class="el" href="classaworx_1_1lib_1_1Report.html#a818a0ba87e92dfee2aacd992a942bb75">DoReport</a> will check the flags provided with <a class="el" href="classaworx_1_1lib_1_1Report.html#a7983ee7befb74df86990b506dfaaf6a0">PushHaltFlags</a> which causes the method to invoke <em>assert()</em>. Such assertions are effective only in the debug compilation of the library/executable. Custom <em>'ReportWriters'</em> might take action (e.g. for security reasons) and e.g. terminate the application also in release compilations.</p>
 <p>To simplify things, a set of macros is defined which are pruned in release versions of the compilation unit. These are:</p>
 <ul>
 <li><a class="el" href="group__GrpALibMacros.html#gabdd5780e186ebbd62960d7ca9673dff1">ALIB_ERROR</a></li>
@@ -158,19 +156,12 @@ Collaboration diagram for Report:</div>
 <li><a class="el" href="group__GrpALibMacros.html#ga458a325506658361be4a4f8cf2c1d50e">ALIB_ASSERT_ERROR</a></li>
 <li><a class="el" href="group__GrpALibMacros.html#gaf6ee54a2e2b00632832c094c3683075e">ALIB_ASSERT_WARNING</a></li>
 </ul>
-<p>The use of the macros is recommended. For convenience, in debug compilations of the library/ executable, these macros provide the file name,line number and method name of the invocation source, which can be used by more sophisticated <a class="el" href="classaworx_1_1lib_1_1ReportWriter.html">ReportWriter</a>. </p>
+<p>The use of the macros is recommended. For convenience, in debug compilations of the library/ executable, these macros provide the file name,line number and method name of the invocation source, which can be used by more sophisticated versions of attached <a class="el" href="classaworx_1_1lib_1_1ReportWriter.html">ReportWriter</a>. </p>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Inner Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1Report_1_1Message.html">Message</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Public Fields</h2></td></tr>
-<tr class="memitem:aaa5d96026d2a9009538182741b707aed"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1Report.html#aaa5d96026d2a9009538182741b707aed">HaltOnError</a> =true</td></tr>
-<tr class="separator:aaa5d96026d2a9009538182741b707aed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a57c82f739172de9fc0058f43d6e3f3ed"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1Report.html#a57c82f739172de9fc0058f43d6e3f3ed">HaltOnWarning</a> =false</td></tr>
-<tr class="separator:a57c82f739172de9fc0058f43d6e3f3ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Public Static Methods</h2></td></tr>
@@ -179,8 +170,12 @@ Public Static Methods</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Methods</h2></td></tr>
-<tr class="memitem:abc1a2b7127e4881f7d5ad8956bdcdc10"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1Report.html#abc1a2b7127e4881f7d5ad8956bdcdc10">DoReport</a> (<a class="el" href="group__GrpALibMacros.html#ga1526353c5a75ab50925d64b13cf2ea4b">ALIB_DBG_SRC_INFO_PARAMS_DECL</a> int type, const <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASTerminatable.html">strings::ASTerminatable</a> &amp;msg)</td></tr>
-<tr class="separator:abc1a2b7127e4881f7d5ad8956bdcdc10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a818a0ba87e92dfee2aacd992a942bb75"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1Report.html#a818a0ba87e92dfee2aacd992a942bb75">DoReport</a> (<a class="el" href="group__GrpALibMacros.html#ga1526353c5a75ab50925d64b13cf2ea4b">ALIB_DBG_SRC_INFO_PARAMS_DECL</a> int type, const <a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html">strings::TString</a> &amp;msg)</td></tr>
+<tr class="separator:a818a0ba87e92dfee2aacd992a942bb75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade3d2cc17cc7c56d59b88a15ee247ca0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1Report.html#ade3d2cc17cc7c56d59b88a15ee247ca0">PopHaltFlags</a> ()</td></tr>
+<tr class="separator:ade3d2cc17cc7c56d59b88a15ee247ca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7983ee7befb74df86990b506dfaaf6a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1Report.html#a7983ee7befb74df86990b506dfaaf6a0">PushHaltFlags</a> (bool haltOnErrors, bool haltOnWarnings)</td></tr>
+<tr class="separator:a7983ee7befb74df86990b506dfaaf6a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a346c5c5d8273ac95ee3e62194753f9ea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="classaworx_1_1lib_1_1ReportWriter.html">ReportWriter</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1Report.html#a346c5c5d8273ac95ee3e62194753f9ea">ReplaceReportWriter</a> (<a class="el" href="classaworx_1_1lib_1_1ReportWriter.html">ReportWriter</a> *newReportWriter, bool deletePrevious)</td></tr>
 <tr class="separator:a346c5c5d8273ac95ee3e62194753f9ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -191,6 +186,8 @@ Protected Static Fields</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Fields</h2></td></tr>
+<tr class="memitem:ae0aa2499cfb7dcf29f7955cde68c79bb"><td class="memItemLeft" align="right" valign="top">std::stack&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1Report.html#ae0aa2499cfb7dcf29f7955cde68c79bb">haltAfterReport</a></td></tr>
+<tr class="separator:ae0aa2499cfb7dcf29f7955cde68c79bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae93c7c02e0fcf8f15616b0b49bed5194"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html">threads::ThreadLockNR</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1Report.html#ae93c7c02e0fcf8f15616b0b49bed5194">lock</a></td></tr>
 <tr class="separator:ae93c7c02e0fcf8f15616b0b49bed5194"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acb62b28ab9467a03c940908b8f6649d3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1Report.html#acb62b28ab9467a03c940908b8f6649d3">recursionBlocker</a> = false</td></tr>
@@ -199,7 +196,7 @@ Protected Fields</h2></td></tr>
 <tr class="separator:a9b5969adbe225a7b5fe8bda46c619cd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="abc1a2b7127e4881f7d5ad8956bdcdc10"></a>
+<a class="anchor" id="a818a0ba87e92dfee2aacd992a942bb75"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -212,7 +209,7 @@ Protected Fields</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASTerminatable.html">strings::ASTerminatable</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html">strings::TString</a> &amp;&#160;</td>
           <td class="paramname"><em>msg</em>&#160;</td>
         </tr>
         <tr>
@@ -223,8 +220,8 @@ Protected Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Reports the given message to the current <a class="el" href="classaworx_1_1lib_1_1ReportWriter.html">ReportWriter</a> in place. The default <b><a class="el" href="classaworx_1_1lib_1_1ReportWriter.html">ReportWriter</a></b> will print the message on the process console. Furthermore, in debug execution the flag <a class="el" href="classaworx_1_1lib_1_1Report.html#aaa5d96026d2a9009538182741b707aed">HaltOnError</a>, respectively <a class="el" href="classaworx_1_1lib_1_1Report.html#a57c82f739172de9fc0058f43d6e3f3ed">HaltOnWarning</a>, is checked. If this is set the program halts or suspends into the debugger (platform and language specific).</p>
-<p>If parameter <code>is</code> '0', the report is considered a <em>severe</em> error, otherwise a warning. User defined implementations of class <em>ReportWriter</em> may interpret this field arbitrarily.</p>
+<p> Reports the given message to the current <a class="el" href="classaworx_1_1lib_1_1ReportWriter.html">ReportWriter</a> in place. The default <b><a class="el" href="classaworx_1_1lib_1_1ReportWriter.html">ReportWriter</a></b> will print the message on the process console. Furthermore, in debug execution the flags provided with <a class="el" href="classaworx_1_1lib_1_1Report.html#a7983ee7befb74df86990b506dfaaf6a0">PushHaltFlags</a> is checked. If this is set for the type of message, the program halts or suspends into the debugger (platform and language specific).</p>
+<p>If parameter <code>type</code> is '0', the report is considered a <em>severe</em> error, otherwise a warning. User defined implementations of class <em>ReportWriter</em> may interpret this field arbitrarily.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">type</td><td>The report type. </td></tr>
@@ -257,6 +254,57 @@ Protected Fields</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Receives the default report object used by ALib and processes that rely on ALib. </p><dl class="section return"><dt>Returns</dt><dd>The default <b><a class="el" href="classaworx_1_1lib_1_1Report.html">Report</a></b>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ade3d2cc17cc7c56d59b88a15ee247ca0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PopHaltFlags </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Restores the previous values after an invocation to <a class="el" href="classaworx_1_1lib_1_1Report.html#a7983ee7befb74df86990b506dfaaf6a0">PushHaltFlags</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a7983ee7befb74df86990b506dfaaf6a0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PushHaltFlags </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>haltOnErrors</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>haltOnWarnings</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Writes new values to the internal flags that decide if calls to <a class="el" href="classaworx_1_1lib_1_1Report.html#a818a0ba87e92dfee2aacd992a942bb75">DoReport</a> with report type <em>'0'</em> (errors), respectively report type '&gt;0' (warnings) cause to halt program execution by calling <em>assert(false)</em>. The previous values can be restored using <a class="el" href="classaworx_1_1lib_1_1Report.html#ade3d2cc17cc7c56d59b88a15ee247ca0">PopHaltFlags</a>. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">haltOnErrors</td><td>Specifies if halting on errors is wanted. </td></tr>
+    <tr><td class="paramname">haltOnWarnings</td><td>Specifies if halting on warnings is wanted. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -318,31 +366,24 @@ Protected Fields</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aaa5d96026d2a9009538182741b707aed"></a>
+<a class="anchor" id="ae0aa2499cfb7dcf29f7955cde68c79bb"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool HaltOnError =true</td>
+          <td class="memname">std::stack&lt;int&gt; haltAfterReport</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<hr/>
-<p> Flag, which if set to <code>true</code>, causes calls to <a class="el" href="classaworx_1_1lib_1_1Report.html#abc1a2b7127e4881f7d5ad8956bdcdc10">DoReport</a> with report type <em>'0'</em> to halt program execution by calling <em>assert(false)</em>. Can be set at runtime by just overwriting the value. </p>
-
-</div>
-</div>
-<a class="anchor" id="a57c82f739172de9fc0058f43d6e3f3ed"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool HaltOnWarning =false</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<hr/>
-<p> Flag, which if set to <code>true</code>, causes calls to <a class="el" href="classaworx_1_1lib_1_1Report.html#abc1a2b7127e4881f7d5ad8956bdcdc10">DoReport</a> with report type not equal to <em>'0'</em> to halt program execution by calling <em>assert(false)</em>. Can be set at runtime by just overwriting the value. </p>
+<p>A stack of integers. The topmost value is used to decide, whether program execution is halted on message of type 'error' (type 0, bit 0) or of type 'warning' (type &gt; 0, bit 1). Can be set at runtime by just overwriting the value. </p>
 
 </div>
 </div>
@@ -417,7 +458,7 @@ Protected Fields</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 5 2016 10:32:54 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Feb 15 2016 11:32:18 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

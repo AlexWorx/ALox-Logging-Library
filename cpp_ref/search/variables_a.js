@@ -2,7 +2,7 @@ var searchData=
 [
   ['laststatus',['LastStatus',['../classaworx_1_1lib_1_1config_1_1IniFile.html#a828873beba46715ac28b88ef1de88ae4',1,'aworx::lib::config::IniFile']]],
   ['lazyflagthreadnameandid',['lazyFlagThreadNameAndID',['../classaworx_1_1lox_1_1core_1_1CallerInfo.html#a92cdf9ddc997d5c1e065702682511453',1,'aworx::lox::core::CallerInfo']]],
-  ['length',['length',['../classaworx_1_1lib_1_1strings_1_1AS.html#a9f59b34b1f25fe00023291b678246bcc',1,'aworx::lib::strings::AS']]],
+  ['length',['length',['../classaworx_1_1lib_1_1strings_1_1String.html#a9f59b34b1f25fe00023291b678246bcc',1,'aworx::lib::strings::String']]],
   ['level',['level',['../classaworx_1_1lox_1_1core_1_1Domain.html#a7dc431275952481e05cbb37a1115fafb',1,'aworx::lox::core::Domain']]],
   ['line',['Line',['../classaworx_1_1lib_1_1Report_1_1Message.html#af5b2cae791582f6f4f975f6b25290977',1,'aworx::lib::Report::Message']]],
   ['linenumber',['LineNumber',['../classaworx_1_1lox_1_1core_1_1CallerInfo.html#abc72cc909922c33908e48159b106efa3',1,'aworx::lox::core::CallerInfo']]],
@@ -16,5 +16,5 @@ var searchData=
   ['loglevelverbose',['LogLevelVerbose',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ae770e910a7f77ad48c0a39f18a02d708',1,'aworx::lox::core::textlogger::MetaInfo']]],
   ['loglevelwarning',['LogLevelWarning',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a9a924d9d08be43ed1289117bf4983b79',1,'aworx::lox::core::textlogger::MetaInfo']]],
   ['lognumbermindigits',['LogNumberMinDigits',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a72c44479ec3d128c1208b49e4b8ede08',1,'aworx::lox::core::textlogger::MetaInfo']]],
-  ['lox',['lox',['../classaworx_1_1lox_1_1ALoxReportWriter.html#a337184443073b338364d604916737ba8',1,'aworx::lox::ALoxReportWriter::lox()'],['../classaworx_1_1lox_1_1Log.html#a4bf33caa00cd3346344e5bf2e3b2bc54',1,'aworx::lox::Log::lox()']]]
+  ['lox',['lox',['../classaworx_1_1lox_1_1ALoxReportWriter.html#a337184443073b338364d604916737ba8',1,'aworx::lox::ALoxReportWriter::lox()'],['../classaworx_1_1lox_1_1Log.html#a43f74deff280835e63510eac2ceef1df',1,'aworx::lox::Log::LOX()']]]
 ];

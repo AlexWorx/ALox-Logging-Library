@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1602</span>
+   &#160;<span id="projectnumber">V. 1602 R. 1</span>
    </div>
   </td>
  </tr>
@@ -178,7 +178,7 @@ Warning-, Error- and Assertion- Reports for debug compilations</h2></td></tr>
 Macros for One time warnings</h2></td></tr>
 <tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrp85e686448b410189e45e86d2aa3db165"></a></p><hr/>
 <p>This group of macros enable the implementation of "one-time warnings", which are warnings that are issued only once per debug session.</p>
-<p>The warnings are executed using <a class="el" href="classaworx_1_1lib_1_1Report.html#abc1a2b7127e4881f7d5ad8956bdcdc10">Report::DoReport</a> (on the <b>Report</b> instance received by <a class="el" href="classaworx_1_1lib_1_1Report.html#a1d9ac8f09122b5310b6776784882de6b">Report::GetDefault</a>) and are effective only in debug compilations. They are pruned in release code (dependent on symbol <a class="el" href="group__GrpALibCodeSelectorSymbols.html#gac56d0d10d022f28ce6bacdc612b4a743">ALIB_DEBUG</a>).</p>
+<p>The warnings are executed using <a class="el" href="classaworx_1_1lib_1_1Report.html#a818a0ba87e92dfee2aacd992a942bb75">Report::DoReport</a> (on the <b>Report</b> instance received by <a class="el" href="classaworx_1_1lib_1_1Report.html#a1d9ac8f09122b5310b6776784882de6b">Report::GetDefault</a>) and are effective only in debug compilations. They are pruned in release code (dependent on symbol <a class="el" href="group__GrpALibCodeSelectorSymbols.html#gac56d0d10d022f28ce6bacdc612b4a743">ALIB_DEBUG</a>).</p>
 <p><b> Declaration of an one-time warning </b></p>
 <p>If an one-time warning is declared per type using <a class="el" href="group__GrpALibMacros.html#gabfca7dd3cf5d8186e47c2bcf11343679">ALIB_WARN_ONCE_PER_TYPE_DECL</a> only one warning for all objects will occur and the warnings can be enabled or disabled only for all instances of a class together.</p>
 <p>In contrast to this, declaring an one-time warning per instance using <a class="el" href="group__GrpALibMacros.html#gac506942a02a0be3af76a71116e8ce645">ALIB_WARN_ONCE_PER_INSTANCE_DECL</a>, a warning will occur once for each object.</p>
@@ -271,7 +271,7 @@ Macros supporting ALib classes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>If given condition is <code>false</code>, method <a class="el" href="classaworx_1_1lib_1_1Report.html#abc1a2b7127e4881f7d5ad8956bdcdc10">Report::DoReport</a> gets invoked with the standard message "Internal Error". This macro is pruned from release code. </p>
+<p>If given condition is <code>false</code>, method <a class="el" href="classaworx_1_1lib_1_1Report.html#a818a0ba87e92dfee2aacd992a942bb75">Report::DoReport</a> gets invoked with the standard message "Internal Error". This macro is pruned from release code. </p>
 
 </div>
 </div>
@@ -298,7 +298,7 @@ Macros supporting ALib classes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>If given condition is <code>false</code>, method <a class="el" href="classaworx_1_1lib_1_1Report.html#abc1a2b7127e4881f7d5ad8956bdcdc10">Report::DoReport</a> gets invoked with the given message. This macro is pruned from release code. </p>
+<p>If given condition is <code>false</code>, method <a class="el" href="classaworx_1_1lib_1_1Report.html#a818a0ba87e92dfee2aacd992a942bb75">Report::DoReport</a> gets invoked with the given message. This macro is pruned from release code. </p>
 
 </div>
 </div>
@@ -325,9 +325,9 @@ Macros supporting ALib classes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>If given condition is <code>false</code>, method <a class="el" href="classaworx_1_1lib_1_1Report.html#abc1a2b7127e4881f7d5ad8956bdcdc10">Report::DoReport</a> gets invoked with the given message.<br />
+<p>If given condition is <code>false</code>, method <a class="el" href="classaworx_1_1lib_1_1Report.html#a818a0ba87e92dfee2aacd992a942bb75">Report::DoReport</a> gets invoked with the given message.<br />
  This macro is pruned from release code.<br />
- This macro variant having the postfix <em>_AS</em> in its name, creates a <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html">String512</a>. Parameter <code>msg</code> can consist of sequences of strings and values concatenated using <em>operator&lt;&lt;</em>. </p>
+ This macro variant, suffixed <em>_AS</em>, creates a <a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">String512</a>. Parameter <code>msg</code> can consist of sequences of strings and values concatenated using <em>operator&lt;&lt;</em>. </p>
 
 </div>
 </div>
@@ -462,7 +462,7 @@ Macros supporting ALib classes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>If given condition is <code>false</code>, method <a class="el" href="classaworx_1_1lib_1_1Report.html#abc1a2b7127e4881f7d5ad8956bdcdc10">Report::DoReport</a> gets invoked with the given message. This macro is pruned from release code. </p>
+<p>If given condition is <code>false</code>, method <a class="el" href="classaworx_1_1lib_1_1Report.html#a818a0ba87e92dfee2aacd992a942bb75">Report::DoReport</a> gets invoked with the given message. This macro is pruned from release code. </p>
 
 </div>
 </div>
@@ -489,9 +489,9 @@ Macros supporting ALib classes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>If given condition is <code>false</code>, method <a class="el" href="classaworx_1_1lib_1_1Report.html#abc1a2b7127e4881f7d5ad8956bdcdc10">Report::DoReport</a> gets invoked with the given message.<br />
+<p>If given condition is <code>false</code>, method <a class="el" href="classaworx_1_1lib_1_1Report.html#a818a0ba87e92dfee2aacd992a942bb75">Report::DoReport</a> gets invoked with the given message.<br />
  This macro is pruned from release code.<br />
- This macro variant having the postfix <em>_AS</em> in its name, creates a <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html">String512</a>. Parameter <code>msg</code> can consist of sequences of strings and values concatenated using <em>operator&lt;&lt;</em>. </p>
+ This macro variant, suffixed <em>_AS</em>, creates a <a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">String512</a>. Parameter <code>msg</code> can consist of sequences of strings and values concatenated using <em>operator&lt;&lt;</em>. </p>
 
 </div>
 </div>
@@ -581,7 +581,7 @@ Macros supporting ALib classes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Invokes <a class="el" href="classaworx_1_1lib_1_1Report.html#abc1a2b7127e4881f7d5ad8956bdcdc10">Report::DoReport</a>. This macro is pruned from release code. </p>
+<p>Invokes <a class="el" href="classaworx_1_1lib_1_1Report.html#a818a0ba87e92dfee2aacd992a942bb75">Report::DoReport</a>. This macro is pruned from release code. </p>
 
 </div>
 </div>
@@ -598,9 +598,9 @@ Macros supporting ALib classes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Invokes <a class="el" href="classaworx_1_1lib_1_1Report.html#abc1a2b7127e4881f7d5ad8956bdcdc10">Report::DoReport</a>.<br />
+<p>Invokes <a class="el" href="classaworx_1_1lib_1_1Report.html#a818a0ba87e92dfee2aacd992a942bb75">Report::DoReport</a>.<br />
  This macro is pruned from release code.<br />
- This macro variant having the postfix <em>_AS</em> in its name, creates a <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html">String512</a>. Parameter <code>msg</code> can consist of sequences of strings and values concatenated using <em>operator&lt;&lt;</em>. </p>
+ This macro variant, suffixed <em>_AS</em>, creates a <a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">String512</a>. Parameter <code>msg</code> can consist of sequences of strings and values concatenated using <em>operator&lt;&lt;</em>. </p>
 
 </div>
 </div>
@@ -646,7 +646,7 @@ Macros supporting ALib classes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="keyword">const</span> <a class="code" href="classaworx_1_1lib_1_1strings_1_1ASTerminatable.html">aworx::lib::strings::ASTerminatable</a>&amp; file,   \</div><div class="line">                                    int                                        line,   \</div><div class="line">                                    const <a class="code" href="classaworx_1_1lib_1_1strings_1_1ASTerminatable.html">aworx::lib::strings::ASTerminatable</a>&amp; func,</div><div class="ttc" id="classaworx_1_1lib_1_1strings_1_1ASTerminatable_html"><div class="ttname"><a href="classaworx_1_1lib_1_1strings_1_1ASTerminatable.html">aworx::lib::strings::ASTerminatable</a></div><div class="ttdef"><b>Definition:</b> asterminatable.hpp:191</div></div>
+<b>Value:</b><div class="fragment"><div class="line"><span class="keyword">const</span> <a class="code" href="classaworx_1_1lib_1_1strings_1_1TString.html">aworx::lib::strings::TString</a>&amp; file,  \</div><div class="line">                                    int                                 line,  \</div><div class="line">                                    const <a class="code" href="classaworx_1_1lib_1_1strings_1_1TString.html">aworx::lib::strings::TString</a>&amp; func,</div><div class="ttc" id="classaworx_1_1lib_1_1strings_1_1TString_html"><div class="ttname"><a href="classaworx_1_1lib_1_1strings_1_1TString.html">aworx::lib::strings::TString</a></div><div class="ttdef"><b>Definition:</b> tstring.hpp:187</div></div>
 </div><!-- fragment --><p>This macro declares three parameters 'file', 'line' and 'func' for methods that in debug compilations receive these parameters using macro <a class="el" href="group__GrpALibMacros.html#gab1836c6de18fd089b123e40e22472f4d">ALIB_SRC_INFO_PARAMS</a>. </p>
 
 </div>
@@ -987,7 +987,7 @@ Macros supporting ALib classes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Invokes <a class="el" href="classaworx_1_1lib_1_1Report.html#abc1a2b7127e4881f7d5ad8956bdcdc10">Report::DoReport</a>. This macro is pruned from release code. </p>
+<p>Invokes <a class="el" href="classaworx_1_1lib_1_1Report.html#a818a0ba87e92dfee2aacd992a942bb75">Report::DoReport</a>. This macro is pruned from release code. </p>
 
 </div>
 </div>
@@ -1004,9 +1004,9 @@ Macros supporting ALib classes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Invokes <a class="el" href="classaworx_1_1lib_1_1Report.html#abc1a2b7127e4881f7d5ad8956bdcdc10">Report::DoReport</a>.<br />
+<p>Invokes <a class="el" href="classaworx_1_1lib_1_1Report.html#a818a0ba87e92dfee2aacd992a942bb75">Report::DoReport</a>.<br />
  This macro is pruned from release code.<br />
- This macro variant having the postfix <em>_AS</em> in its name, creates a <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html">String512</a>. Parameter <code>msg</code> can consist of sequences of strings and values concatenated using <em>operator&lt;&lt;</em>. </p>
+ This macro variant, suffixed <em>_AS</em>, creates a <a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">String512</a>. Parameter <code>msg</code> can consist of sequences of strings and values concatenated using <em>operator&lt;&lt;</em>. </p>
 
 </div>
 </div>
@@ -1045,7 +1045,7 @@ Macros supporting ALib classes</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 5 2016 10:32:54 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Feb 15 2016 11:32:18 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

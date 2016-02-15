@@ -1,16 +1,14 @@
 <map id="alib.hpp" name="alib.hpp">
 <area shape="rect" id="node2" href="$symbols_8hpp.html" title="alib/core/symbols.hpp" alt="" coords="5,80,155,107"/>
 <area shape="rect" id="node3" href="$macros_8hpp.html" title="alib/core/macros.hpp" alt="" coords="178,80,321,107"/>
-<area shape="rect" id="node10" href="$enums_8hpp.html" title="alib/core/enums.hpp" alt="" coords="911,80,1049,107"/>
-<area shape="rect" id="node11" href="$report_8hpp.html" title="alib/core/report.hpp" alt="" coords="1073,80,1207,107"/>
-<area shape="rect" id="node12" href="$cstring_8hpp.html" title="alib/strings/cstring.hpp" alt="" coords="1231,80,1385,107"/>
-<area shape="rect" id="node15" href="$as_8hpp.html" title="alib/strings/as.hpp" alt="" coords="1103,155,1231,181"/>
-<area shape="rect" id="node18" href="$ns__aworx_8hpp.html" title="alib/core/ns_aworx.hpp" alt="" coords="1994,80,2150,107"/>
-<area shape="rect" id="node19" href="$namespace_8hpp.html" title="alib/strings/namespace.hpp" alt="" coords="1636,80,1817,107"/>
-<area shape="rect" id="node20" href="$asterminatable_8hpp.html" title="alib/strings/asterminatable.hpp" alt="" coords="1645,155,1843,181"/>
-<area shape="rect" id="node21" href="$asliteral_8hpp.html" title="alib/strings/asliteral.hpp" alt="" coords="1255,155,1414,181"/>
-<area shape="rect" id="node22" href="$asalloc_8hpp.html" title="alib/strings/asalloc.hpp" alt="" coords="1867,155,2021,181"/>
-<area shape="rect" id="node24" href="$asprealloc_8hpp.html" title="alib/strings/asprealloc.hpp" alt="" coords="2045,155,2219,181"/>
-<area shape="rect" id="node25" href="$applyto_8hpp.html" title="alib/strings/applyto.hpp" alt="" coords="2243,155,2399,181"/>
-<area shape="rect" id="node26" href="$applyformat_8hpp.html" title="alib/strings/applyformat.hpp" alt="" coords="1438,155,1621,181"/>
+<area shape="rect" id="node11" href="$enums_8hpp.html" title="alib/core/enums.hpp" alt="" coords="991,80,1129,107"/>
+<area shape="rect" id="node12" href="$report_8hpp.html" title="alib/core/report.hpp" alt="" coords="1153,80,1287,107"/>
+<area shape="rect" id="node13" href="$cstring_8hpp.html" title="alib/strings/cstring.hpp" alt="" coords="1311,80,1465,107"/>
+<area shape="rect" id="node16" href="$string_8hpp.html" title="alib/strings/string.hpp" alt="" coords="1691,80,1837,107"/>
+<area shape="rect" id="node19" href="$tstring_8hpp.html" title="alib/strings/tstring.hpp" alt="" coords="2069,80,2219,107"/>
+<area shape="rect" id="node20" href="$stringliteral_8hpp.html" title="alib/strings/stringliteral.hpp" alt="" coords="1489,80,1666,107"/>
+<area shape="rect" id="node21" href="$astring_8hpp.html" title="alib/strings/astring.hpp" alt="" coords="2243,80,2397,107"/>
+<area shape="rect" id="node23" href="$preallocatedstring_8hpp.html" title="alib/strings/preallocatedstring.hpp" alt="" coords="2421,80,2637,107"/>
+<area shape="rect" id="node24" href="$applyto_8hpp.html" title="alib/strings/applyto.hpp" alt="" coords="2662,80,2818,107"/>
+<area shape="rect" id="node25" href="$applyformat_8hpp.html" title="alib/strings/applyformat.hpp" alt="" coords="1862,80,2045,107"/>
 </map>

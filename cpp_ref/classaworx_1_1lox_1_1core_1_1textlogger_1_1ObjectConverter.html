@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1602</span>
+   &#160;<span id="projectnumber">V. 1602 R. 1</span>
    </div>
   </td>
  </tr>
@@ -137,13 +137,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Collaboration diagram for ObjectConverter:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter__coll__graph.svg" width="196" height="294"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter__coll__graph.svg" width="196" height="308"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
 <p> This class is a sort of plug-in for the <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a> class which converts a given Object into its textual representation. An internal AString singleton is used as a string buffer and returned.</p>
-<p>This class might be extended to be able to handle custom objects within text loggers. This default implementation, only handles objects of type <a class="el" href="classaworx_1_1lib_1_1strings_1_1ASTerminatable.html">aworx::TString</a>. For nullptr and nulled <b>TStrings</b> a configurable string message is returned.</p>
+<p>This class might be extended to be able to handle custom objects within text loggers. This default implementation, only handles objects of type <a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html">aworx::TString</a>. For nullptr and nulled <b>TStrings</b> a configurable string message is returned.</p>
 <p>While other ALox implementations, like ALox for C# or ALox for Java use the 'runtime type information' feature of their underlying programming language to identify any object type, this is not possible in standard C++. Therefore, all logging objects in ALox for C++ have to be accompanied with a type information. This is implemented as a simple integer and the value <b>'0'</b> is reserved for <b>TStrings</b>.</p>
 <p>All other types are extension types, which are not part of core ALox and user specific types.</p>
 <p>It is recommended to use positive values for user specific types. Negative IDs are reserved to 'official' ALox extensions. </p>
@@ -151,11 +150,11 @@ Collaboration diagram for ObjectConverter:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Fields</h2></td></tr>
 <tr class="memitem:af8fbc61a0701e45601ee9355a2d6675a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af8fbc61a0701e45601ee9355a2d6675a"></a>
-<a class="el" href="namespaceaworx.html#ad16dfdce0f76423f90dcf6821f8b4a7e">String64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html#af8fbc61a0701e45601ee9355a2d6675a">FmtNullObject</a> =&quot;ALox message object is nullptr, type=%.&quot;</td></tr>
+<a class="el" href="namespaceaworx.html#ac2fdc487456a994238ba4284b3859c41">String64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html#af8fbc61a0701e45601ee9355a2d6675a">FmtNullObject</a> =&quot;ALox message object is nullptr, type=%.&quot;</td></tr>
 <tr class="memdesc:af8fbc61a0701e45601ee9355a2d6675a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to convert null values to string representation. <br /></td></tr>
 <tr class="separator:af8fbc61a0701e45601ee9355a2d6675a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a132ed009c6e3362a54e052134a602cfc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a132ed009c6e3362a54e052134a602cfc"></a>
-<a class="el" href="namespaceaworx.html#ad16dfdce0f76423f90dcf6821f8b4a7e">String64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html#a132ed009c6e3362a54e052134a602cfc">FmtUnknownObject</a> =&quot;ALox message object unknown, type=%.&quot;</td></tr>
+<a class="el" href="namespaceaworx.html#ac2fdc487456a994238ba4284b3859c41">String64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html#a132ed009c6e3362a54e052134a602cfc">FmtUnknownObject</a> =&quot;ALox message object unknown, type=%.&quot;</td></tr>
 <tr class="memdesc:a132ed009c6e3362a54e052134a602cfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to return an error message in the case the object could not be converted (type unknown) <br /></td></tr>
 <tr class="separator:a132ed009c6e3362a54e052134a602cfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -165,7 +164,7 @@ Public Methods</h2></td></tr>
 <tr class="separator:a16313a6b5202d6d886b0e5a34e995a8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e913a253720dcb333b6205b4272709d"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html#a6e913a253720dcb333b6205b4272709d">~ObjectConverter</a> ()</td></tr>
 <tr class="separator:a6e913a253720dcb333b6205b4272709d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a248a310704a1deac3710b03bc5b1712d"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html#a248a310704a1deac3710b03bc5b1712d">ConvertObject</a> (const void *o, int typeInfo, <a class="el" href="namespaceaworx.html#a5878d649ed3cc544cbd74721f95da495">AString</a> &amp;result)</td></tr>
+<tr class="memitem:a248a310704a1deac3710b03bc5b1712d"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html#a248a310704a1deac3710b03bc5b1712d">ConvertObject</a> (const void *o, int typeInfo, <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &amp;result)</td></tr>
 <tr class="separator:a248a310704a1deac3710b03bc5b1712d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -234,7 +233,7 @@ Public Methods</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespaceaworx.html#a5878d649ed3cc544cbd74721f95da495">AString</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &amp;&#160;</td>
           <td class="paramname"><em>result</em>&#160;</td>
         </tr>
         <tr>
@@ -270,7 +269,7 @@ Public Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 5 2016 10:32:54 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Feb 15 2016 11:32:19 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

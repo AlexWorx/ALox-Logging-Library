@@ -12,9 +12,9 @@ digraph "ThreadLock"
   Node4 [label="Runnable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1threads_1_1Runnable.html"];
   Node4 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" runnable" ,fontname="Helvetica"];
   Node5 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" name" ,fontname="Helvetica"];
-  Node5 [label="ASPreAlloc\< 64 \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1ASPreAlloc.html"];
+  Node5 [label="PreallocatedString\l\< 64 \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html"];
   Node6 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node6 [label="ASAlloc",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1ASAlloc.html"];
+  Node6 [label="AString",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1AString.html"];
   Node7 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" threadMap" ,fontname="Helvetica"];
   Node7 [label="map\< std::thread::id,\l aworx::lib::threads\l::Thread * \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node3 -> Node7 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" elements" ,fontname="Helvetica"];

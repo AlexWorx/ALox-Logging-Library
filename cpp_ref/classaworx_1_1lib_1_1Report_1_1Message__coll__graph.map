@@ -1,4 +1,4 @@
 <map id="Report::Message" name="Report::Message">
-<area shape="rect" id="node2" href="$classaworx_1_1lib_1_1strings_1_1ASTerminatable.html" title="ASTerminatable" alt="" coords="9,81,124,108"/>
-<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1strings_1_1AS.html" title="AS" alt="" coords="47,5,87,32"/>
+<area shape="rect" id="node2" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="35,81,99,108"/>
+<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1strings_1_1String.html" title="String" alt="" coords="39,5,95,32"/>
 </map>

@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1602</span>
+   &#160;<span id="projectnumber">V. 1602 R. 1</span>
    </div>
   </td>
  </tr>
@@ -195,14 +195,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 2. Pruning ALox Code in Java</h1>
 <h2><a class="anchor" id="javasetup_pruning_what_is_pruning"></a>
 2.1 What is Pruning?</h2>
-<p>What we mean with the term "pruning" is the automatic removal of the (debug) logging code from your release executable (or library) that is ready for deployment. The goals that motivate for auto pruning are:</p>
-<ul>
-<li>Maximize execution speed of your code, because all log statements are pruned.</li>
-<li>Minimize the footprint of your code.</li>
-<li>Keep the console clean in the release version of your console application.</li>
-<li>Hide your software secrets, by removing all textual strings from your executable or library that includes debug messages.</li>
-</ul>
-<p>Furthermore, if you are using ALox as well for release log outputs, then the above stays true for all of your debug log statements, while all release log statements remain.</p>
+<p>An introduction to the concept of pruning is given in <a href="../faq.html#faq_pruning">FAQ: What is Pruning?</a>.</p>
 <h2><a class="anchor" id="javasetup_pruning_basics"></a>
 2.1 How Pruning in ALox for Java works</h2>
 <p>Unfortunately, Java does not provide conditional compiler statements. (For example, the languages C, C++ and C# allow <code>#if</code> <code></code>... <code>#endif</code> statements and C#, since Version 5, supports methods to be annotated to be pruned, which is very handy!)<br />
@@ -349,7 +342,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 5 2016 10:32:58 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Feb 15 2016 11:32:20 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

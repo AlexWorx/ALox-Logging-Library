@@ -4,7 +4,7 @@ digraph "Report::Message"
   node [fontname="Helvetica",fontsize="10",shape=record];
   Node1 [label="Report::Message",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
   Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Contents\nFunc\nFile" ,fontname="Helvetica"];
-  Node2 [label="ASTerminatable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1ASTerminatable.html"];
+  Node2 [label="TString",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1TString.html"];
   Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node3 [label="AS",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1AS.html"];
+  Node3 [label="String",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1String.html"];
 }
