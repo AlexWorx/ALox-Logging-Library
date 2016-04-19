@@ -80,7 +80,7 @@ namespace                   strings {
     void String::_dbgCheck() const
     {
         // write to the console once that we are debugging AString
-        if ( !_astringCheckReported)
+        if ( !_astringCheckReported && ALIB::IsInitialized() )
         {
             _astringCheckReported= true;
             ALIB_WARNING( "ALIB_DEBUG_STRINGS is ON! To switch off, "
@@ -93,7 +93,7 @@ namespace                   strings {
         for (int aworx_astring_dbg_i= length -1 ; aworx_astring_dbg_i >= 0 ; aworx_astring_dbg_i--)
             if ( buffer[aworx_astring_dbg_i] == '\0' )
             {
-                ALIB_ERROR_AS( "Found termination character '\\0' in buffer[" << aworx_astring_dbg_i << "]." );
+                ALIB_ERROR_S512( "Found termination character '\\0' in buffer[" << aworx_astring_dbg_i << "]." );
                 break;
             }
     }
@@ -126,7 +126,7 @@ const
         const char* srcp=    buffer + regionStart;
         int conversionSize=  (int)  mbsnrtowcs( destBuffer, &srcp, regionLength, destCapacity, &ps );
         ALIB_ASSERT_WARNING( conversionSize !=  -1, "MBCS to WCS conversion failed. Illegal mb sequence." )
-        ALIB_ASSERT_ERROR_AS( srcp == buffer + regionStart + regionLength,
+        ALIB_ASSERT_ERROR_S512( srcp == buffer + regionStart + regionLength,
                                    "MBCS to WCS failed. Region length=" << regionLength
                                 << ", conversion length=" << ( buffer + regionStart + regionLength - srcp )  )
 

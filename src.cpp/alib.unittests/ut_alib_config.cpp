@@ -40,6 +40,8 @@ UT_CLASS()
 //---------------------------------------------------------------------------------------------------------
 
 UT_METHOD(CommandLineArgs)
+{
+    UT_INIT();
 
     const char* args[]=
     {
@@ -54,27 +56,30 @@ UT_METHOD(CommandLineArgs)
         "--ALIB_TEST=passed",
     };
 
-    Configuration cfg( Inclusion::Include, 9, (void**) args );
+    Configuration cfg;
+    cfg.AddStandardPlugIns( Inclusion::Include, 9, (void**) args );
     AString  v;
     int      prio;
     int32_t  iv;
     double   dv;
-    UT_EQ( 10,    cfg.Get   ( "",      "SingleHyphen",  v      ) );   UT_EQ( "12",            v   );
-    UT_EQ( true,  cfg.IsTrue( "",      "DoubleHyphen",  &prio  ) );   UT_EQ( 10,              prio);
+    UT_EQ( Configuration::PrioCmdLine,    cfg.Get   ( "",      "SingleHyphen",  v      ) );   UT_EQ( "12",            v   );
+    UT_EQ( true,  cfg.IsTrue( "",      "DoubleHyphen",  &prio  ) );   UT_EQ( Configuration::PrioCmdLine,              prio);
 
-    UT_EQ(  0,    cfg.Get   ( "",      "Empty",         v      ) );   UT_EQ( "",              v   );
-    UT_EQ( 10,    cfg.Get   ( "",      "Whitespaces",   v      ) );   UT_EQ( "Hello Test",    v   );
-    UT_EQ( 10,    cfg.Get   ( "",      "HOME",          v      ) );   UT_EQ( "overwritten",   v   );
-    UT_EQ( 10,    cfg.Get   ( "",      "integer",       iv     ) );   UT_EQ( 42,              iv  );
-    UT_EQ(  0,    cfg.Get   ( "",      "notexistant",   iv     ) );   UT_EQ( 0,               iv  );
-    UT_EQ( 10,    cfg.Get   ( "",      "integer",       iv     ) );   UT_EQ( 42,              iv  );
-    UT_EQ( 10,    cfg.Get   ( "",      "double",        dv     ) );   UT_EQ( 3.14,            dv  );
-    UT_EQ(  0,    cfg.Get   ( "",      "notexistant",   dv     ) );   UT_EQ( 0.0,             dv  );
-    UT_EQ( 10,    cfg.Get   ( "",      "double",        dv     ) );   UT_EQ( 3.14,            dv  );
-    UT_EQ( 10,    cfg.Get   ( "ALIB",  "test",           v     ) );   UT_EQ( "passed",        v   );
+    UT_EQ(                              0,    cfg.Get   ( "",      "Empty",         v      ) );   UT_EQ( "",              v   );
+    UT_EQ( Configuration::PrioCmdLine,    cfg.Get   ( "",      "Whitespaces",   v      ) );   UT_EQ( "Hello Test",    v   );
+    UT_EQ( Configuration::PrioCmdLine,    cfg.Get   ( "",      "HOME",          v      ) );   UT_EQ( "overwritten",   v   );
+    UT_EQ( Configuration::PrioCmdLine,    cfg.Get   ( "",      "integer",       iv     ) );   UT_EQ( 42,              iv  );
+    UT_EQ(                              0,    cfg.Get   ( "",      "notexistant",   iv     ) );   UT_EQ( 0,               iv  );
+    UT_EQ( Configuration::PrioCmdLine,    cfg.Get   ( "",      "integer",       iv     ) );   UT_EQ( 42,              iv  );
+    UT_EQ( Configuration::PrioCmdLine,    cfg.Get   ( "",      "double",        dv     ) );   UT_EQ( 3.14,            dv  );
+    UT_EQ(                              0,    cfg.Get   ( "",      "notexistant",   dv     ) );   UT_EQ( 0.0,             dv  );
+    UT_EQ( Configuration::PrioCmdLine,    cfg.Get   ( "",      "double",        dv     ) );   UT_EQ( 3.14,            dv  );
+    UT_EQ( Configuration::PrioCmdLine,    cfg.Get   ( "ALIB",  "test",           v     ) );   UT_EQ( "passed",        v   );
 }
 
 UT_METHOD(CommandLineArgsWChar)
+{
+    UT_INIT();
 
     const wchar_t* args[]=
     {
@@ -89,24 +94,25 @@ UT_METHOD(CommandLineArgsWChar)
         L"--ALIB_TEST=passed",
     };
 
-    Configuration cfg( Inclusion::Include, 9, (void**) args, true );
+    Configuration cfg;
+    cfg.AddStandardPlugIns( Inclusion::Include, 9, (void**) args, true );
     AString  v;
     int      prio;
     int32_t  iv;
     double   dv;
-    UT_EQ( 10,    cfg.Get   ( "",      "SingleHyphen",  v      ) );   UT_EQ( "12",            v   );
-    UT_EQ( true,  cfg.IsTrue( "",      "DoubleHyphen",  &prio  ) );   UT_EQ( 10,              prio);
+    UT_EQ( Configuration::PrioCmdLine,    cfg.Get   ( "",      "SingleHyphen",  v      ) );   UT_EQ( "12",            v   );
+    UT_EQ( true,  cfg.IsTrue( "",      "DoubleHyphen",  &prio  ) );   UT_EQ( Configuration::PrioCmdLine,              prio);
 
-    UT_EQ(  0,    cfg.Get   ( "",      "Empty",         v      ) );   UT_EQ( "",              v   );
-    UT_EQ( 10,    cfg.Get   ( "",      "Whitespaces",   v      ) );   UT_EQ( "Hello Test",    v   );
-    UT_EQ( 10,    cfg.Get   ( "",      "HOME",          v      ) );   UT_EQ( "overwritten",   v   );
-    UT_EQ( 10,    cfg.Get   ( "",      "integer",       iv     ) );   UT_EQ( 42,              iv  );
-    UT_EQ(  0,    cfg.Get   ( "",      "notexistant",   iv     ) );   UT_EQ( 0,               iv  );
-    UT_EQ( 10,    cfg.Get   ( "",      "integer",       iv     ) );   UT_EQ( 42,              iv  );
-    UT_EQ( 10,    cfg.Get   ( "",      "double",        dv     ) );   UT_EQ( 3.14,            dv  );
-    UT_EQ(  0,    cfg.Get   ( "",      "notexistant",   dv     ) );   UT_EQ( 0.0,             dv  );
-    UT_EQ( 10,    cfg.Get   ( "",      "double",        dv     ) );   UT_EQ( 3.14,            dv  );
-    UT_EQ( 10,    cfg.Get   ( "ALIB",  "test",           v     ) );   UT_EQ( "passed",        v   );
+    UT_EQ(                              0,    cfg.Get   ( "",      "Empty",         v      ) );   UT_EQ( "",              v   );
+    UT_EQ( Configuration::PrioCmdLine,    cfg.Get   ( "",      "Whitespaces",   v      ) );   UT_EQ( "Hello Test",    v   );
+    UT_EQ( Configuration::PrioCmdLine,    cfg.Get   ( "",      "HOME",          v      ) );   UT_EQ( "overwritten",   v   );
+    UT_EQ( Configuration::PrioCmdLine,    cfg.Get   ( "",      "integer",       iv     ) );   UT_EQ( 42,              iv  );
+    UT_EQ(                              0,    cfg.Get   ( "",      "notexistant",   iv     ) );   UT_EQ( 0,               iv  );
+    UT_EQ( Configuration::PrioCmdLine,    cfg.Get   ( "",      "integer",       iv     ) );   UT_EQ( 42,              iv  );
+    UT_EQ( Configuration::PrioCmdLine,    cfg.Get   ( "",      "double",        dv     ) );   UT_EQ( 3.14,            dv  );
+    UT_EQ(                              0,    cfg.Get   ( "",      "notexistant",   dv     ) );   UT_EQ( 0.0,             dv  );
+    UT_EQ( Configuration::PrioCmdLine,    cfg.Get   ( "",      "double",        dv     ) );   UT_EQ( 3.14,            dv  );
+    UT_EQ( Configuration::PrioCmdLine,    cfg.Get   ( "ALIB",  "test",           v     ) );   UT_EQ( "passed",        v   );
 }
 
 //---------------------------------------------------------------------------------------------------------
@@ -114,6 +120,8 @@ UT_METHOD(CommandLineArgsWChar)
 //---------------------------------------------------------------------------------------------------------
 
 UT_METHOD(IniFiles)
+{
+    UT_INIT();
 
     // write sample config file
     UT_PRINT(""); UT_PRINT( "### Configuration with IniFile ###" );
@@ -207,16 +215,16 @@ UT_METHOD(IniFiles)
 
 
     // add it to ALIB config
-    ALIB::Config->InsertPlugin( &iniFile, 30 );
-    ALIB::Config->Get( "",    "CUBA", sv );   UT_EQ( "a country", sv );
-    ALIB::Config->Get( "",    "cUbA", sv );   UT_EQ( "a country", sv );
-    ALIB::Config->Get( "",    "SIZE", sv );   UT_EQ( "25", sv );
-    ALIB::Config->Get( "",    "concat", sv ); UT_TRUE ( sv.StartsWith( "start =5,end   =32" ) );
-    ALIB::Config->Get( "Great Section",  "SectionVar",        sv );   UT_EQ( "5",              sv );
-    ALIB::Config->Get( "2nd Section",    "SectionVar",        sv );   UT_EQ( "6",              sv );
-    ALIB::Config->Get( "Great Section",  "SECTION_CONTINUED", sv );   UT_EQ( "yEs",            sv );
-    ALIB::Config->Get( "Great Section",  "Tricky",            sv );   UT_EQ( "backslash\\",    sv );
-    UT_TRUE( ALIB::Config->IsTrue( "Great Section",  "SECTION_CONTINUED" ) );
+    ALIB::Config.InsertPlugin( &iniFile, Configuration::PrioIniFile );
+    ALIB::Config.Get( "",    "CUBA", sv );   UT_EQ( "a country", sv );
+    ALIB::Config.Get( "",    "cUbA", sv );   UT_EQ( "a country", sv );
+    ALIB::Config.Get( "",    "SIZE", sv );   UT_EQ( "25", sv );
+    ALIB::Config.Get( "",    "concat", sv ); UT_TRUE ( sv.StartsWith( "start =5,end   =32" ) );
+    ALIB::Config.Get( "Great Section",  "SectionVar",        sv );   UT_EQ( "5",              sv );
+    ALIB::Config.Get( "2nd Section",    "SectionVar",        sv );   UT_EQ( "6",              sv );
+    ALIB::Config.Get( "Great Section",  "SECTION_CONTINUED", sv );   UT_EQ( "yEs",            sv );
+    ALIB::Config.Get( "Great Section",  "Tricky",            sv );   UT_EQ( "backslash\\",    sv );
+    UT_TRUE( ALIB::Config.IsTrue( "Great Section",  "SECTION_CONTINUED" ) );
 
 
     // check if environment variable "home" overwrites ini-file
@@ -228,33 +236,33 @@ UT_METHOD(IniFiles)
     #endif
 
     AString vIniFile;   iniFile.Get( "", HOME_ENV_NAME, vIniFile );                 UT_EQ( "overwritten_by_environment", vIniFile );
-    AString vConfig;    int prio= ALIB::Config->Get( "", HOME_ENV_NAME, vConfig ); UT_EQ( 20, prio );
+    AString vConfig;    int prio= ALIB::Config.Get( "", HOME_ENV_NAME, vConfig ); UT_EQ( Configuration::PrioEnvVars, prio );
     UT_TRUE( vConfig.IsNotEmpty() );
     UT_TRUE( !vIniFile.Equals( vConfig) );
 
 
     // change a value and write a new one
-    UT_EQ( 30, ALIB::Config->Save( "New Section",  "newvar", "new" ) );
-    ALIB::Config->Get ( "New Section",  "newvar", sv    );   UT_EQ( "new",   sv );
+    UT_EQ( Configuration::PrioIniFile, ALIB::Config.Save( "New Section",  "newvar", "new" ) );
+    ALIB::Config.Get ( "New Section",  "newvar", sv    );   UT_EQ( "new",   sv );
 
-    UT_EQ( 30, ALIB::Config->Save( "",             "newvar", "aworx") );
-    ALIB::Config->Get ( "",             "newvar", sv     );  UT_EQ( "aworx", sv );
+    UT_EQ( Configuration::PrioIniFile, ALIB::Config.Save( "",             "newvar", "aworx") );
+    ALIB::Config.Get ( "",             "newvar", sv     );  UT_EQ( "aworx", sv );
 
     double dv;
-    UT_EQ( 30, ALIB::Config->Save( "2nd Section",  "newvarF", 3.14 ) );
-    ALIB::Config->Get ( "2nd Section",  "newvarF", dv   );   UT_EQ(   3.14, dv );
+    UT_EQ( Configuration::PrioIniFile, ALIB::Config.Save( "2nd Section",  "newvarF", 3.14 ) );
+    ALIB::Config.Get ( "2nd Section",  "newvarF", dv   );   UT_EQ(   3.14, dv );
 
     int32_t iv;
-    UT_EQ( 30, ALIB::Config->Save( "Great Section","newvarI", 255  ) );
-    ALIB::Config->Get ( "Great Section","newvarI", iv   );   UT_EQ(   255, iv );
+    UT_EQ( Configuration::PrioIniFile, ALIB::Config.Save( "Great Section","newvarI", 255  ) );
+    ALIB::Config.Get ( "Great Section","newvarI", iv   );   UT_EQ(   255, iv );
 
-    UT_EQ( 30, ALIB::Config->Save( "",             "size", 42  ) );
-    ALIB::Config->Get ( "",  "size", iv   );                 UT_EQ(    42, iv );
+    UT_EQ( Configuration::PrioIniFile, ALIB::Config.Save( "",             "size", 42  ) );
+    ALIB::Config.Get ( "",  "size", iv   );                 UT_EQ(    42, iv );
 
-    UT_EQ( 30, ALIB::Config->Save( "",   "newvarList", "val1=5, val2=10, val3=hello", (const char*) nullptr, ',' ) );
-    ALIB::Config->Get ( "",  "newvarList", iv   );
+    UT_EQ( Configuration::PrioIniFile, ALIB::Config.Save( "",   "newvarList", "val1=5, val2=10, val3=hello", (const char*) nullptr, ',' ) );
+    ALIB::Config.Get ( "",  "newvarList", iv   );
 
-    UT_EQ( 30, ALIB::Config->Save( "",   "commented", "2lines", "this is c-line 1 \nand this line 2", ',' ) );
+    UT_EQ( Configuration::PrioIniFile, ALIB::Config.Save( "",   "commented", "2lines", "this is c-line 1 \nand this line 2", ',' ) );
 
 
 
@@ -294,16 +302,16 @@ UT_METHOD(IniFiles)
     readBack.Get ( "Great Section","newvarI", iv   );   UT_EQ(    255, (int) iv );
 
 
-    ALIB::Config->RemovePlugin( &iniFile );
+    ALIB::Config.RemovePlugin( &iniFile );
 
 
-    ALIB::Config->InsertPlugin( &readBack, 30 );
-    ALIB::Config->Get ( "New Section",  "newvar",  sv   );   UT_EQ( "new", sv );
-    ALIB::Config->Get ( "",             "newvar",  sv   );   UT_EQ( "aworx", sv );
-    ALIB::Config->Get ( "2nd Section",  "newvarF", dv   );   UT_EQ(   3.14, dv );
-    ALIB::Config->Get ( "Great Section","newvarI", iv   );   UT_EQ(    255, (int) iv );
+    ALIB::Config.InsertPlugin( &readBack, Configuration::PrioIniFile );
+    ALIB::Config.Get ( "New Section",  "newvar",  sv   );   UT_EQ( "new", sv );
+    ALIB::Config.Get ( "",             "newvar",  sv   );   UT_EQ( "aworx", sv );
+    ALIB::Config.Get ( "2nd Section",  "newvarF", dv   );   UT_EQ(   3.14, dv );
+    ALIB::Config.Get ( "Great Section","newvarI", iv   );   UT_EQ(    255, (int) iv );
 
-    ALIB::Config->RemovePlugin( &readBack );
+    ALIB::Config.RemovePlugin( &readBack );
 }
 
 

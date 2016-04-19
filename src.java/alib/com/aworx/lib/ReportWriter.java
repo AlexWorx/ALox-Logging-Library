@@ -6,18 +6,26 @@
 // #################################################################################################
 package com.aworx.lib;
 
+import com.aworx.lib.enums.Phase;
+
 
 /** ************************************************************************************************
- * Interface class declaring a plug-in for class \ref com::aworx::lib::Report "Report".
- * By default, a simple implementation is installed that just uses standard output to print
- * the error and warning messages to the applications' console.
- * Applications may implement their own \b %ReportWriter.
+ * Interface that defines a writer for for %ALib \ref com::aworx::lib::Report "Report".
+ * By default, a simple implementation is installed that just uses standard output and 
+ * standard error streams.<br>
+ * Applications may implement their own ReportWriter.
  **************************************************************************************************/
 public interface ReportWriter
 {
+    /** ****************************************************************************************
+     * Notify activation/deactivation
+     * @param phase     Information if activated or deactivated.
+     ******************************************************************************************/
+    public void NotifyActivation  ( Phase phase );
+
     /** ********************************************************************************************
      * Report a message. Pure virtual abstract interface method.
      * @param report     The report.
      **********************************************************************************************/
-    void report( Report.Message report );
+    public void report( Report.Message report );
 }

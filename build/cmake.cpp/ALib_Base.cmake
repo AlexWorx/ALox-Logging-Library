@@ -94,6 +94,12 @@
         set( ALIB_COMPILER_SYMBOLS  ${ALIB_COMPILER_SYMBOLS}    "ALIB_DEBUG_OFF"         )
     endif()
 
+    if ( ${ALIB_AVOID_ANALYZER_WARNINGS} )
+        set( ALIB_COMPILER_SYMBOLS  ${ALIB_COMPILER_SYMBOLS}    "ALIB_AVOID_ANALYZER_WARNINGS_ON"  )
+    else()
+        set( ALIB_COMPILER_SYMBOLS  ${ALIB_COMPILER_SYMBOLS}    "ALIB_AVOID_ANALYZER_WARNINGS_OFF" )
+    endif()
+
     if ( ${ALIB_FEAT_THREADS} )
         set( ALIB_COMPILER_SYMBOLS  ${ALIB_COMPILER_SYMBOLS}    "ALIB_FEAT_THREADS_ON"   )
     else()
@@ -106,13 +112,11 @@
         set( ALIB_COMPILER_SYMBOLS  ${ALIB_COMPILER_SYMBOLS}    "ALIB_DEBUG_STRINGS_OFF" )
     endif()
 
-
-    ### uncomment this to add extra debug code for GLIBC ###
-    #if( CMAKE_BUILD_TYPE STREQUAL "Debug" )
-    #    set( ALIB_COMPILER_SYMBOLS  ${ALIB_COMPILER_SYMBOLS}  "_GLIBCXX_DEBUG" )
-    #    set( ALIB_COMPILER_SYMBOLS  ${ALIB_COMPILER_SYMBOLS}  "_GLIBCXX_DEBUG_PEDANTIC" )
-    #    set( ALIB_COMPILER_SYMBOLS  ${ALIB_COMPILER_SYMBOLS}  "_GLIBCPP_CONCEPT_CHECKS" )
-    #endif()
+    if ( ${ALIB_DEBUG_GLIB} )
+        set( ALIB_COMPILER_SYMBOLS  ${ALIB_COMPILER_SYMBOLS}    "_GLIBCXX_DEBUG" )
+        set( ALIB_COMPILER_SYMBOLS  ${ALIB_COMPILER_SYMBOLS}    "_GLIBCXX_DEBUG_PEDANTIC" )
+        set( ALIB_COMPILER_SYMBOLS  ${ALIB_COMPILER_SYMBOLS}    "_GLIBCPP_CONCEPT_CHECKS" )
+    endif()
 
 # -------------------------------------------------------------------------------------------------
 # External libraries

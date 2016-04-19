@@ -32,20 +32,10 @@ namespace           loggers{
 
 /** ************************************************************************************************
  *  A logger that logs to the Visual Studio output pane using <em>OutputDebugString()</em>.
- *  The name of the logger defaults to "VSTUDIO_CONSOLE".
+ *  The name of the \e Logger defaults to "VSTUDIO_CONSOLE".
  *
  *  ALox text logger escape sequences (see class \ref aworx::lox::ESC "ESC")
  *  are removed and ignored.
- *
- *  While by default, the
- *  \ref aworx::lox::Log::DomainLevel "DomainLevel"
- *  of root domains of loggers are set to 'Off', the constructor of this class sets this value
- *  to 'All'. This way, all log invocations on 'unknown' domains (those that have not been
- *  registered and explicitly set) are fully enabled by default.
- *  This is done because this class typically represents a logger that used for debug logging,
- *  e.g. logging into the developer's IDE. Such loggers should detect all messages of any log domain
- *  that the application and its library uses - unless those are explicitly set differently in
- *  the bootstrap code of the application.
  *
  *  \note For the ease of use, class
  *  \ref aworx::lox::Log "Log" implements a method
@@ -78,7 +68,7 @@ class VStudioLogger : public aworx::lox::core::textlogger::PlainTextLogger
     public:
         /** ****************************************************************************************
          *  Creates a VStudioLogger.
-         * @param name   (Optional) The name of the logger, defaults to "VSTUDIO_CONSOLE".
+         * @param name   (Optional) The name of the \e Logger, defaults to "VSTUDIO_CONSOLE".
          ******************************************************************************************/
         ALOX_API
         explicit            VStudioLogger( const String& name= nullptr );
@@ -111,7 +101,7 @@ class VStudioLogger : public aworx::lox::core::textlogger::PlainTextLogger
          * @return The number of characters written, -1 on error.
          ******************************************************************************************/
         ALIB_API
-        virtual int doLogSubstring( const AString& buffer, int start, int length );
+        virtual int logSubstring( const AString& buffer, int start, int length );
 
 
         /** ****************************************************************************************

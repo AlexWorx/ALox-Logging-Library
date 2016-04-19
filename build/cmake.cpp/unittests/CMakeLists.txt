@@ -28,12 +28,16 @@
 
     #-- optional compilation symbols (ALib/ALox features).
     #-- uncomment to set (the opposite value is their default, therefore commenting the lines switches them)
-    #set( ALIB_DEBUG_STRINGS   "On"  )
-    #set( ALIB_FEAT_THREADS    "Off" )
-    #set( ALOX_DBG_LOG         "Off" )
-    #set( ALOX_DBG_LOG_CI      "Off"  )
-    #set( ALOX_REL_LOG         "Off" )
-    #set( ALOX_REL_LOG_CI      "On"  )
+    #set( ALIB_DEBUG_GLIB                "On"  )
+    set( ALIB_AVOID_ANALYZER_WARNINGS   "On"  )
+    #set( ALIB_DEBUG_STRINGS             "On"  )
+    #set( ALIB_FEAT_THREADS              "Off" ) // disabling this does not work with gtest projects
+    #set( ALOX_DBG_LOG                   "Off" )
+    #set( ALOX_DBG_LOG_CI                "Off"  )
+    #set( ALOX_REL_LOG                   "Off" )
+    set( ALOX_REL_LOG_CI                "On"  )
+
+
 
     #-- enable coverage compilation. Use script 'coverage-lcov.sh' after running the tests to create
     #-- coverage information

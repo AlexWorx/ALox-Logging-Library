@@ -26,10 +26,10 @@ itself!
 Consider the following line of code:
 
 \code{.cs}
-    Log.AddLogger( new ConsoleLogger() );
+    Log.SetVerbosity( new ConsoleLogger() );
 \endcode
 
-Method Log.AddLogger() is annotated as conditional using the symbol *ALOX_DBG_LOG*. Now the compiler does not
+Method Log.SetVerbosity() is annotated as conditional using the symbol *ALOX_DBG_LOG*. Now the compiler does not
 include this line into the executable when *ALOX_DBG_LOG* is not set.
 
 However, the compiler still checks the integrity of the parameter. Therefore, ALox provides empty method stubs
@@ -47,8 +47,8 @@ Consider the following code to setup the format of a log line:
 
 \code{.cs}
     ConsoleLogger cl= new ConsoleLogger();
-    cl.MetaInfo.Format= new AString( "%CF(%CL):%CM()%A3[%DD][%TD][%TE +%TI] %L [%O] <%#>: ");
-    Log.AddLogger( cl ) );
+    cl.MetaInfo.Format= new AString( "%SF(%SL):%SM()%A3[%DD][%TD][%TC +%TL]%V[%D]<%#>: ");
+    Log.SetVerbosity( cl, Verbosity.Verbose );
 \endcode
 
 This would lead to a compilation error in the release configuration of your project (if you do not use
@@ -60,9 +60,9 @@ To resolve this, use conditional compilation for all non-standard code specific 
 \code{.cs}
     ConsoleLogger cl= new ConsoleLogger();
     #if ALOX_DBG_LOG
-        cl.MetaInfo.Format= new AString( "%CF(%CL):%CM()%A3[%DD][%TD][%TE +%TI] %L [%O] <%#>: ");
+        cl.MetaInfo.Format= new AString( "%SF(%SL):%SM()%A3[%DD][%TD][%TC +%TL]%V[%D] <%#>: ");
     #endif
-    Log.AddLogger( cl ) );
+    Log.SetVerbosity( cl, Verbosity.Verbose  );
 \endcode
 
 While this is sufficient, in the last sample, when compiled in release configuration,
@@ -72,8 +72,8 @@ might want to do it like this:
 \code{.cs}
     #if ALOX_DBG_LOG
         ConsoleLogger cl= new ConsoleLogger();
-        cl.MetaInfo.Format= new AString( "%CF(%CL):%CM()%A3[%DD][%TD][%TE +%TI] %L [%O] <%#>: ");
-        Log.AddLogger( cl ) );
+        cl.MetaInfo.Format= new AString( "%SF(%SL):%SM()%A3[%DD][%TD][%TC +%TL]%V[%D] <%#>: ");
+        Log.SetVerbosity( cl, Verbosity.Verbose );
     #endif
 \endcode
 
@@ -87,12 +87,12 @@ is minimal. Again: standard logging code is always removed 100%!
 The result of the things said above incorporate **six great news** for you:
 
 1. You can safely use most methods of class *Log* without enclosing them by \c \#if \c ... \c \#endif statements!
-2. The impact of using ALox debug log statements in respect to execution speed in the release version of your application
+2. The impact of using ALox debug <em>Log Statements</em> in respect to execution speed in the release version of your application
    is exactly ZERO, because the methods do not make it into your release executable!
 3. The impact of using ALox in respect to the footprint of your executable extremely small (all that remains are
    some empty classes with a few stubs). This remains true, even if thousands of new features would come in future
    versions of ALox!
-4. All debug log statements, including all textual messages you are adding to your log calls, are completely
+4. All debug <em>Log Statements</em>, including all textual messages you are adding to your log calls, are completely
    pruned from the release executable! Your "debug secrets" can not be reverse engineered, they are just gone!
 5. You do not need to clutter your code with \c \#if \c ... \c \#endif statements if using ALox! Only within some "bootstrap sections".
 6. Even if you mix debug and release logging features of ALox the above stays true, except that the footprint

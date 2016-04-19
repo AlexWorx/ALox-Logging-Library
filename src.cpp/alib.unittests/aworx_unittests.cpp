@@ -33,10 +33,13 @@ String    ALIBUnitTesting::GeneratedSamplesSearchDir= "docs/ALox.CPP/";
 // #################################################################################################
 // Constructors/destructor
 // #################################################################################################
-ALIBUnitTesting::ALIBUnitTesting( const String& domain, const String& testName)
+ALIBUnitTesting::ALIBUnitTesting( const TString& domain, const TString& testName)
+: lox( "UTLox", false )
 {
     this->domain=       domain;
     this->actTestName=  testName;
+
+    Log_SetSourcePathTrimRule( "*/src.cpp/", Inclusion::Include );
 
     #if defined ( ALIB_VSTUDIO )
         utl= new VStudioUnitTestLogger();
@@ -49,43 +52,53 @@ ALIBUnitTesting::ALIBUnitTesting( const String& domain, const String& testName)
         utl->AutoSizes.Import( LastAutoSizes, CurrentData::Keep );
     }
 
-    lox.AddLogger( utl );
-    utl->SetDomain( lox.InternalDomain, Log::DomainLevel::WarningsAndErrors );
+    lox.SetScopeInfo(ALIB_SRC_INFO_PARAMS);
+        lox.SetVerbosity( utl, Verbosity::Verbose, domain);
+        lox.SetVerbosity( utl, Verbosity::Warning, ALox::InternalDomains );
+        lox.SetPrefix( ESC::BG_GRAY, "/" );
+    lox.Release();
 
-    lox.SetDomain( domain, Log::DomainLevel::All );
+    lib::Report::GetDefault().PushWriter( this );
 
-    origReportWriter=  lib::Report::GetDefault().ReplaceReportWriter( this, false );
 }
 
 ALIBUnitTesting::~ALIBUnitTesting()
 {
-    lox.RemoveLogger( utl );
+    lox.SetScopeInfo(ALIB_SRC_INFO_PARAMS);
+        lox.RemoveLogger( utl );
+    lox.Release();
+
     LastAutoSizes.Clear();
     utl->AutoSizes.Export( LastAutoSizes );
 
+    // clean debug lox and ALox
+    Log_Prune( ALox::Reset() );
+
+    // check if ALib smartlock for std I/O was released properly
+    this->EQ (__FILE__, __LINE__, actTestName,     0, ALIB::StdOutputStreamsLock.CntAcquirers() );
+    this->EQ (__FILE__, __LINE__, actTestName,     0, ((ThreadLock&)ALIB::StdOutputStreamsLock).DbgCountAcquirements() );
+
+    lib::Report::GetDefault().PopWriter( this );
     delete utl;
-    lib::Report::GetDefault().ReplaceReportWriter( origReportWriter, false );
-};
+}
 
 
 // #################################################################################################
 // Print
 // #################################################################################################
-void ALIBUnitTesting::Print( const String& file, int line, const String& func, int level, const TString& msg  )
+void ALIBUnitTesting::Print( const String& file, int line, const String&, Verbosity verbosity, const TString& msg  )
 {
-    lox.AcquireAndSetCI(file, line, func);
+    lox.SetScopeInfo(file, line, actTestName);
 
-             if ( level == 0 )  lox.Info    ( domain, msg );
-        else if ( level == 1 )  lox.Warning ( domain, msg );
-        else
-                                lox.Error   ( domain, msg );
+        lox.Entry( domain, verbosity, msg );
 
     lox.Release();
 }
 
-void ALIBUnitTesting::Failed( const String& file, int line, const String& func,           const TString& msg )
+void ALIBUnitTesting::Failed( const String& file, int line, const String& func,  AString& msg )
 {
-    Print( file, line, func, 2, msg );
+    msg.InsertAt( "UT Failure: Expected: ", 0 );
+    Print( file, line, func, aworx::Verbosity::Error, msg );
     assert(!AssertOnFailure);
 }
 
@@ -142,11 +155,19 @@ void ALIBUnitTesting::WriteResultFile(const String& name, const String& outputRa
 // #################################################################################################
 // Error/Warning
 // #################################################################################################
-#if defined( ALIB_DEBUG )
-    void ALIBUnitTesting::Report  ( const lib::Report::Message& msg ) {  Print( msg.File, msg.Line, msg.Func , msg.Type == 0 ? 2 : 1, msg.Contents );  }
-#else
-    void ALIBUnitTesting::Report  ( const lib::Report::Message& msg ) {  Print( nullptr,0,nullptr,             msg.Type == 0 ? 2 : 1, msg.Contents );  }
-#endif
+    void ALIBUnitTesting::Report  ( const lib::Report::Message& msg )
+    {
+            lox.SetScopeInfo(msg.File, msg.Line, msg.Func);
+
+                lox.Entry( String16() << ALox::InternalDomains << "UT_REPORT",
+                           msg.Type == 0 ? Verbosity::Error    :
+                           msg.Type == 1 ? Verbosity::Warning  :
+                           msg.Type == 2 ? Verbosity::Info     :
+                                           Verbosity::Verbose,
+                           msg.Contents                                          );
+
+            lox.Release();
+    }
 
 #if defined ( ALIB_VSTUDIO )
 
@@ -154,7 +175,7 @@ void ALIBUnitTesting::WriteResultFile(const String& name, const String& outputRa
     : MemoryLogger( "VSTUDIO_UNITTEST_CONSOLE" )
     {
         // prevent cutting off filenames
-        MetaInfo->ConsumableSourcePathPrefix= "";
+        MetaInfo->Format.SearchAndReplace( "%Sp", "%SP" );
         wCharBuffer= new wchar_t[ wCharBufferSize= 512 ];
     }
 
@@ -164,12 +185,35 @@ void ALIBUnitTesting::WriteResultFile(const String& name, const String& outputRa
             delete[] wCharBuffer;
     }
 
-    void VStudioUnitTestLogger::doTextLog( const TString& domain, Log::Level     level,
-                                           AString&       msg,    int            indent,
-                                           CallerInfo*    caller, int            lineNumber )
+    int   VStudioUnitTestLogger::AddAcquirer( ThreadLock* newAcquirer )
+    {
+        // when added to a lox, we register as std output stream user. This would not be necessary, because
+        // we do not write to the std output stream. But in other environments, the unit test logger does
+        // so, and therefore, if we dont do it, the unit test which tests the whole concept would fail.
+         ALIB::StdOutputStreamsLock.AddAcquirer( this );
+
+        // call parents' implementation
+        return Logger::AddAcquirer( newAcquirer );
+    }
+
+    int   VStudioUnitTestLogger::RemoveAcquirer( ThreadLock* acquirer )
+    {
+         ALIB::StdOutputStreamsLock.RemoveAcquirer( this );
+
+        // call parents' implementation
+        return Logger::RemoveAcquirer( acquirer );
+    }
+
+
+
+    void VStudioUnitTestLogger::logText( Domain&       domain,
+                                         Verbosity     verbosity,
+                                         AString&      msg,
+                                         ScopeInfo&    scope,
+                                         int           lineNumber )
 
     {
-        MemoryLogger::doTextLog( domain, level, msg, indent, caller, lineNumber );
+        MemoryLogger::logText( domain, verbosity, msg, scope, lineNumber );
         while( MemoryLog.ToWString( wCharBuffer, wCharBufferSize ) == -2 )
         {
             delete wCharBuffer;
@@ -187,38 +231,38 @@ void ALIBUnitTesting::WriteResultFile(const String& name, const String& outputRa
 // #################################################################################################
 
 #if defined( ALIB_GTEST )
-    void ALIBUnitTesting::EQ( const TString& file, int line, const TString& func, int32_t        exp, int32_t         i )        { if (i!=exp)                          Failed(file,line,func,String128("UT Failure: Expected: \"") << exp << "\", \"" << i << "\" given."); EXPECT_EQ   ( exp, i            ); }
-    void ALIBUnitTesting::EQ( const TString& file, int line, const TString& func, uint32_t       exp, uint32_t        i )        { if (i!=exp)                          Failed(file,line,func,String128("UT Failure: Expected: \"") << exp << "\", \"" << i << "\" given."); EXPECT_EQ   ( exp, i            ); }
-    void ALIBUnitTesting::EQ( const TString& file, int line, const TString& func, int64_t        exp, int64_t         i )        { if (i!=exp)                          Failed(file,line,func,String128("UT Failure: Expected: \"") << exp << "\", \"" << i << "\" given."); EXPECT_EQ   ( exp, i            ); }
-    void ALIBUnitTesting::EQ( const TString& file, int line, const TString& func, uint64_t       exp, uint64_t        i )        { if (i!=exp)                          Failed(file,line,func,String128("UT Failure: Expected: \"") << exp << "\", \"" << i << "\" given."); EXPECT_EQ   ( exp, i            ); }
-    void ALIBUnitTesting::EQ( const TString& file, int line, const TString& func, int32_t        exp, int32_t  i, int32_t   p )  { if ((i < exp ? exp-i : i-exp) > p)   Failed(file,line,func,String128("UT Failure: Expected: \"") << exp << "\", \"" << i << "\" given."); EXPECT_NEAR ( exp, i, p         ); }
-    void ALIBUnitTesting::EQ( const TString& file, int line, const TString& func, uint32_t       exp, uint32_t i, uint32_t  p )  { if ((i < exp ? exp-i : i-exp) > p)   Failed(file,line,func,String128("UT Failure: Expected: \"") << exp << "\", \"" << i << "\" given."); EXPECT_NEAR ( exp, i, p         ); }
-    void ALIBUnitTesting::EQ( const TString& file, int line, const TString& func, int64_t        exp, int64_t  i, int64_t   p )  { if ((i < exp ? exp-i : i-exp) > p)   Failed(file,line,func,String128("UT Failure: Expected: \"") << exp << "\", \"" << i << "\" given."); EXPECT_NEAR ( exp, i, p         ); }
-    void ALIBUnitTesting::EQ( const TString& file, int line, const TString& func, uint64_t       exp, uint64_t i, uint64_t  p )  { if ((i < exp ? exp-i : i-exp) > p)   Failed(file,line,func,String128("UT Failure: Expected: \"") << exp << "\", \"" << i << "\" given."); EXPECT_NEAR ( exp, i, p         ); }
-    void ALIBUnitTesting::EQ( const TString& file, int line, const TString& func, double         exp, double          d )        { if (d!=exp)                          Failed(file,line,func,String128("UT Failure: Expected: \"") << exp << "\", \"" << d << "\" given."); EXPECT_EQ   ( exp, d            ); }
-    void ALIBUnitTesting::EQ( const TString& file, int line, const TString& func, const String&  exp, const String&   s )        { if (!exp.Equals(s))                  Failed(file,line,func,String128("UT Failure: Expected: \"") << exp << "\", \"" << s << "\" given."); EXPECT_TRUE ( exp.Equals(s)     ); }
-    void ALIBUnitTesting::EQ( const TString& file, int line, const TString& func, const wchar_t* exp, const wchar_t*  s )        { if (wcscmp(exp,s)!=0)                Failed(file,line,func,String128("UT Failure: Expected: \"") << exp << "\", \"" << s << "\" given."); EXPECT_STREQ( exp, s            ); }
-    void ALIBUnitTesting::EQ( const TString& file, int line, const TString& func, double    exp, double d,   double   p )        { if ((d < exp ? exp-d : d-exp) > p)   Failed(file,line,func,String128("UT Failure: Expected: \"") << exp << "\", \"" << d << "\" given."); EXPECT_NEAR ( exp, d, p         ); }
+    void ALIBUnitTesting::EQ( const TString& file, int line, const TString& func, int32_t        exp, int32_t         i )        { if (i!=exp)                          Failed(file,line,func,String128("\"") << exp << "\", \"" << i << "\" given."); EXPECT_EQ   ( exp, i            ); }
+    void ALIBUnitTesting::EQ( const TString& file, int line, const TString& func, uint32_t       exp, uint32_t        i )        { if (i!=exp)                          Failed(file,line,func,String128("\"") << exp << "\", \"" << i << "\" given."); EXPECT_EQ   ( exp, i            ); }
+    void ALIBUnitTesting::EQ( const TString& file, int line, const TString& func, int64_t        exp, int64_t         i )        { if (i!=exp)                          Failed(file,line,func,String128("\"") << exp << "\", \"" << i << "\" given."); EXPECT_EQ   ( exp, i            ); }
+    void ALIBUnitTesting::EQ( const TString& file, int line, const TString& func, uint64_t       exp, uint64_t        i )        { if (i!=exp)                          Failed(file,line,func,String128("\"") << exp << "\", \"" << i << "\" given."); EXPECT_EQ   ( exp, i            ); }
+    void ALIBUnitTesting::EQ( const TString& file, int line, const TString& func, int32_t        exp, int32_t  i, int32_t   p )  { if ((i < exp ? exp-i : i-exp) > p)   Failed(file,line,func,String128("\"") << exp << "\", \"" << i << "\" given."); EXPECT_NEAR ( exp, i, p         ); }
+    void ALIBUnitTesting::EQ( const TString& file, int line, const TString& func, uint32_t       exp, uint32_t i, uint32_t  p )  { if ((i < exp ? exp-i : i-exp) > p)   Failed(file,line,func,String128("\"") << exp << "\", \"" << i << "\" given."); EXPECT_NEAR ( exp, i, p         ); }
+    void ALIBUnitTesting::EQ( const TString& file, int line, const TString& func, int64_t        exp, int64_t  i, int64_t   p )  { if ((i < exp ? exp-i : i-exp) > p)   Failed(file,line,func,String128("\"") << exp << "\", \"" << i << "\" given."); EXPECT_NEAR ( exp, i, p         ); }
+    void ALIBUnitTesting::EQ( const TString& file, int line, const TString& func, uint64_t       exp, uint64_t i, uint64_t  p )  { if ((i < exp ? exp-i : i-exp) > p)   Failed(file,line,func,String128("\"") << exp << "\", \"" << i << "\" given."); EXPECT_NEAR ( exp, i, p         ); }
+    void ALIBUnitTesting::EQ( const TString& file, int line, const TString& func, double         exp, double          d )        { if (d!=exp)                          Failed(file,line,func,String128("\"") << exp << "\", \"" << d << "\" given."); EXPECT_EQ   ( exp, d            ); }
+    void ALIBUnitTesting::EQ( const TString& file, int line, const TString& func, const String&  exp, const String&   s )        { if (!exp.Equals(s))                  Failed(file,line,func,String128("\"") << exp << "\", \"" << s << "\" given."); EXPECT_TRUE ( exp.Equals(s)     ); }
+    void ALIBUnitTesting::EQ( const TString& file, int line, const TString& func, const wchar_t* exp, const wchar_t*  s )        { if (wcscmp(exp,s)!=0)                Failed(file,line,func,String128("\"") << exp << "\", \"" << s << "\" given."); EXPECT_STREQ( exp, s            ); }
+    void ALIBUnitTesting::EQ( const TString& file, int line, const TString& func, double    exp, double d,   double   p )        { if ((d < exp ? exp-d : d-exp) > p)   Failed(file,line,func,String128("\"") << exp << "\", \"" << d << "\" given."); EXPECT_NEAR ( exp, d, p         ); }
 
-    void ALIBUnitTesting::ISTRUE ( const TString& file, int line, const TString& func, bool cond )                               { if (  !cond )                        Failed(file,line,func,"UT Failure: expected true, false given."                               ); EXPECT_TRUE ( cond              ); }
-    void ALIBUnitTesting::ISFALSE( const TString& file, int line, const TString& func, bool cond )                               { if (  cond )                         Failed(file,line,func,"UT Failure: expected false, true given."                               ); EXPECT_FALSE( cond              ); }
+    void ALIBUnitTesting::ISTRUE ( const TString& file, int line, const TString& func, bool cond )                               { if (  !cond )                        Failed(file,line,func,String128() << "true"                                     ); EXPECT_TRUE ( cond              ); }
+    void ALIBUnitTesting::ISFALSE( const TString& file, int line, const TString& func, bool cond )                               { if (  cond )                         Failed(file,line,func,String128() << "false"                                    ); EXPECT_FALSE( cond              ); }
 
 #elif defined ( ALIB_VSTUDIO )
-    void ALIBUnitTesting::EQ     ( const TString& file, int line, const TString& func, int32_t        i, int32_t         exp )  { if (i!=exp)                                              Failed(file,line,func,String128("UT Failure: Expected: \"") << exp << "\", \"" << i << "\" given."); Microsoft::VisualStudio::CppUnitTestFramework::Assert::AreEqual( exp, i ); }
-    void ALIBUnitTesting::EQ     ( const TString& file, int line, const TString& func, uint32_t       i, uint32_t        exp )  { if (i!=exp)                                              Failed(file,line,func,String128("UT Failure: Expected: \"") << exp << "\", \"" << i << "\" given."); Microsoft::VisualStudio::CppUnitTestFramework::Assert::AreEqual( exp, i ); }
-    void ALIBUnitTesting::EQ     ( const TString& file, int line, const TString& func, int64_t        i, int64_t         exp )  { bool c= i!=exp;                                   if(!c) Failed(file,line,func,String128("UT Failure: Expected: \"") << exp << "\", \"" << i << "\" given."); Microsoft::VisualStudio::CppUnitTestFramework::Assert::AreEqual( exp, i, NULL, NULL ); }
-    void ALIBUnitTesting::EQ     ( const TString& file, int line, const TString& func, uint64_t       i, uint64_t        exp )  { bool c= i!=exp;                                   if(!c) Failed(file,line,func,String128("UT Failure: Expected: \"") << exp << "\", \"" << i << "\" given."); Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c      ); }
-    void ALIBUnitTesting::EQ     ( const TString& file, int line, const TString& func, int32_t  i, int32_t  exp, int32_t   p )  { bool c= (i < exp ? exp-i : i-exp) <= p;           if(!c) Failed(file,line,func,String128("UT Failure: Expected: \"") << exp << "\", \"" << i << "\" given."); Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c      ); }
-    void ALIBUnitTesting::EQ     ( const TString& file, int line, const TString& func, uint32_t i, uint32_t exp, uint32_t  p )  { bool c= (i < exp ? exp-i : i-exp) <= p;           if(!c) Failed(file,line,func,String128("UT Failure: Expected: \"") << exp << "\", \"" << i << "\" given."); Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c      ); }
-    void ALIBUnitTesting::EQ     ( const TString& file, int line, const TString& func, int64_t  i, int64_t  exp, int64_t   p )  { bool c= (i < exp ? exp-i : i-exp) <= p;           if(!c) Failed(file,line,func,String128("UT Failure: Expected: \"") << exp << "\", \"" << i << "\" given."); Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c      ); }
-    void ALIBUnitTesting::EQ     ( const TString& file, int line, const TString& func, uint64_t i, uint64_t exp, uint64_t  p )  { bool c= (i < exp ? exp-i : i-exp) <= p;           if(!c) Failed(file,line,func,String128("UT Failure: Expected: \"") << exp << "\", \"" << i << "\" given."); Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c      ); }
-    void ALIBUnitTesting::EQ     ( const TString& file, int line, const TString& func, double         d, double          exp )  { if (d!=exp)                                              Failed(file,line,func,String128("UT Failure: Expected: \"") << exp << "\", \"" << d << "\" given."); Microsoft::VisualStudio::CppUnitTestFramework::Assert::AreEqual( exp, d ); }
-    void ALIBUnitTesting::EQ     ( const TString& file, int line, const TString& func, const String&  s, const String&   exp )  { if (!exp.Equals(s))                                      Failed(file,line,func,String128("UT Failure: Expected: \"") << exp << "\", \"" << s << "\" given."); Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( exp.Equals(s) ); }
-    void ALIBUnitTesting::EQ     ( const TString& file, int line, const TString& func, double  d,   double  exp,    double  p)  { bool c= (d < exp ? exp-d : d-exp) <= p;           if(!c) Failed(file,line,func,String128("UT Failure: Expected: \"") << exp << "\", \"" << d << "\" given."); Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c      ); }
-    void ALIBUnitTesting::EQ     ( const TString& file, int line, const TString& func, const wchar_t* s, const wchar_t*  exp )  { bool c= wcscmp( s, exp                      )==0; if(!c) Failed(file,line,func,      "UT Failure: Differences in wide characters."                     ); Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c      ); }
+    void ALIBUnitTesting::EQ     ( const TString& file, int line, const TString& func, int32_t        i, int32_t         exp )  { if (i!=exp)                                              Failed(file,line,func,String128("\"") << exp << "\", \"" << i << "\" given.");    Microsoft::VisualStudio::CppUnitTestFramework::Assert::AreEqual( exp, i ); }
+    void ALIBUnitTesting::EQ     ( const TString& file, int line, const TString& func, uint32_t       i, uint32_t        exp )  { if (i!=exp)                                              Failed(file,line,func,String128("\"") << exp << "\", \"" << i << "\" given.");    Microsoft::VisualStudio::CppUnitTestFramework::Assert::AreEqual( exp, i ); }
+    void ALIBUnitTesting::EQ     ( const TString& file, int line, const TString& func, int64_t        i, int64_t         exp )  { bool c= i!=exp;                                   if(!c) Failed(file,line,func,String128("\"") << exp << "\", \"" << i << "\" given.");    Microsoft::VisualStudio::CppUnitTestFramework::Assert::AreEqual( exp, i, NULL, NULL ); }
+    void ALIBUnitTesting::EQ     ( const TString& file, int line, const TString& func, uint64_t       i, uint64_t        exp )  { bool c= i!=exp;                                   if(!c) Failed(file,line,func,String128("\"") << exp << "\", \"" << i << "\" given.");    Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c      ); }
+    void ALIBUnitTesting::EQ     ( const TString& file, int line, const TString& func, int32_t  i, int32_t  exp, int32_t   p )  { bool c= (i < exp ? exp-i : i-exp) <= p;           if(!c) Failed(file,line,func,String128("\"") << exp << "\", \"" << i << "\" given.");    Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c      ); }
+    void ALIBUnitTesting::EQ     ( const TString& file, int line, const TString& func, uint32_t i, uint32_t exp, uint32_t  p )  { bool c= (i < exp ? exp-i : i-exp) <= p;           if(!c) Failed(file,line,func,String128("\"") << exp << "\", \"" << i << "\" given.");    Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c      ); }
+    void ALIBUnitTesting::EQ     ( const TString& file, int line, const TString& func, int64_t  i, int64_t  exp, int64_t   p )  { bool c= (i < exp ? exp-i : i-exp) <= p;           if(!c) Failed(file,line,func,String128("\"") << exp << "\", \"" << i << "\" given.");    Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c      ); }
+    void ALIBUnitTesting::EQ     ( const TString& file, int line, const TString& func, uint64_t i, uint64_t exp, uint64_t  p )  { bool c= (i < exp ? exp-i : i-exp) <= p;           if(!c) Failed(file,line,func,String128("\"") << exp << "\", \"" << i << "\" given.");    Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c      ); }
+    void ALIBUnitTesting::EQ     ( const TString& file, int line, const TString& func, double         d, double          exp )  { if (d!=exp)                                              Failed(file,line,func,String128("\"") << exp << "\", \"" << d << "\" given.");    Microsoft::VisualStudio::CppUnitTestFramework::Assert::AreEqual( exp, d ); }
+    void ALIBUnitTesting::EQ     ( const TString& file, int line, const TString& func, const String&  s, const String&   exp )  { if (!exp.Equals(s))                                      Failed(file,line,func,String128("\"") << exp << "\", \"" << s << "\" given.");    Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( exp.Equals(s) ); }
+    void ALIBUnitTesting::EQ     ( const TString& file, int line, const TString& func, double  d,   double  exp,    double  p)  { bool c= (d < exp ? exp-d : d-exp) <= p;           if(!c) Failed(file,line,func,String128("\"") << exp << "\", \"" << d << "\" given.");    Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c      ); }
+    void ALIBUnitTesting::EQ     ( const TString& file, int line, const TString& func, const wchar_t* s, const wchar_t*  exp )  { bool c= wcscmp( s, exp                      )==0; if(!c) Failed(file,line,func,String128() << "UT Failure: Differences in wchar string."); Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c      ); }
 
-    void ALIBUnitTesting::ISTRUE ( const TString& file, int line, const TString& func, bool c )                            {                                                   if(!c) Failed(file,line,func,"UT Failure"); Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c      ); }
-    void ALIBUnitTesting::ISFALSE( const TString& file, int line, const TString& func, bool c )                            {                                                   if( c) Failed(file,line,func,"UT Failure"); Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsFalse ( c      ); }
+    void ALIBUnitTesting::ISTRUE ( const TString& file, int line, const TString& func, bool c )                                 {                                                   if(!c) Failed(file,line,func,String128() << "true"                                 );    Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue  ( c      ); }
+    void ALIBUnitTesting::ISFALSE( const TString& file, int line, const TString& func, bool c )                                 {                                                   if( c) Failed(file,line,func,String128() << "false"                                );    Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsFalse ( c      ); }
 
 #else
     #pragma message ("Unknown Testing platform in: " __FILE__ )

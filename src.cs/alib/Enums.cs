@@ -122,7 +122,19 @@ public enum Phase
 {
     Begin,    ///< The start of a transaction.
     End       ///< The end of a transaction.
-};
+}
+
+/** ************************************************************************************************
+ * Denotes standard container operations.
+ **************************************************************************************************/
+public enum ContainerOp
+{
+    Insert,    ///< Denotes insertions.
+    Remove,    ///< Denotes removals.
+    Get,       ///< Denotes to search data.
+    GetCreate, ///< Denotes to create data if not found.
+    Create     ///< Denotes to create data.
+}
 
 
 

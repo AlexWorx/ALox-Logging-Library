@@ -715,6 +715,30 @@ public class Substring implements CharSequence
             return consumeFromEnd( consumable, Whitespaces.KEEP );
         }
 
+        /** ****************************************************************************************
+         * Splits this substring into two parts. What remains in this object is the region
+         * from 0 to \p position.
+         * \p target receives the rest. If optional parameter \p separatorWidth is given,
+         * this is subtracted from the front of \p target.
+         *
+         * @param position        The index where this object is split.
+         * @param target          The target substring to receive the right part of the string.
+         * @param separatorWidth  This does not change what remains in this object, but defines
+         *                        the number of characters that are cut from the front of the
+         *                        \p target. Defaults to 0.
+         *
+         * @return \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public Substring split( int position, Substring target, int separatorWidth )
+        {
+            CString.adjustRegion( length(), position, separatorWidth, _adjustedRegion );
+
+            int restStart= _adjustedRegion[0] + _adjustedRegion[1];
+            target.set( this, restStart, length() - restStart );
+            end= start  + position -1;
+            return this;
+        }
+
 
     /** ############################################################################################
      * @name Comparison
@@ -1515,7 +1539,7 @@ public class Substring implements CharSequence
         {
             if ( end - start >= 0 )
             {
-                int idx= CString.indexOfAnyInRegion( buf, start,  length(), whiteSpaces, Inclusion.Exclude );
+                int idx= CString.indexOfAnyInRegion( buf, start,  length(), whiteSpaces, Inclusion.EXCLUDE );
                 if(  idx < 0 )
                     clear();
                 else
@@ -1544,7 +1568,7 @@ public class Substring implements CharSequence
         public boolean trimEnd( char[] whiteSpaces )
         {
             if ( end - start >= 0 )
-                end=  CString.lastIndexOfAny( buf, start,  length(), whiteSpaces, Inclusion.Exclude );
+                end=  CString.lastIndexOfAny( buf, start,  length(), whiteSpaces, Inclusion.EXCLUDE );
             return isEmpty();
         }
 
@@ -1616,9 +1640,40 @@ public class Substring implements CharSequence
         @Override
         public String  toString()
         {
-            if ( isNull() || isEmpty() )
+            if ( isEmpty() )
                 return "";
             return new String( buf, start, end-start + 1 );
+        }
+
+        /** ****************************************************************************************
+         * Creates a String containing a copy of a region of the this Substring.
+         *
+         * @param regionStart   The start index of the region in this to create the string from.
+         * @param regionLength  The maximum length of the region to create the string from.
+         *                      Defaults to Integer.MAX_VALUE.
+         *
+         * @return A String that represents the specified sub region of this object.
+         ******************************************************************************************/
+        public String  toString( int regionStart, int regionLength )
+        {
+            CString.adjustRegion( length(), regionStart, regionLength, _adjustedRegion );
+
+            if ( isEmpty() || regionLength == 0)
+                return "";
+
+            return new String( buf, start + _adjustedRegion[0], _adjustedRegion[1] );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version providing default parameter \p regionLength as \c Integer.MAX_VALUE.
+         *
+         * @param regionStart   The start index of the region in this to create the string from.
+         *
+         * @return A String that represents the specified sub region of this object.
+         ******************************************************************************************/
+        public String  toString( int regionStart )
+        {
+            return toString( regionStart, Integer.MAX_VALUE );
         }
 
         /** ****************************************************************************************
@@ -1634,7 +1689,7 @@ public class Substring implements CharSequence
          * \note If this %Substring spans several integer values which are separated by
          *       Whitespaces, concatenated calls to this method will read one by one, without
          *       further trimming or tokenizing
-         *       (see \ref aworx::lib::strings::Tokenizer "Tokenizer").
+         *       (see \ref com::aworx::lib::strings::Tokenizer "Tokenizer").
          *       Therefore, by providing the parameter \p whiteSpaces, it is possible to
          *       easily read several numbers which are separated by user defined characters.
          *
@@ -1681,7 +1736,7 @@ public class Substring implements CharSequence
          * \note If this %Substring spans several integer values which are separated by
          *       Whitespaces, concatenated calls to this method will read one by one, without
          *       further trimming or tokenizing
-         *       (see \ref aworx::lib::strings::Tokenizer "Tokenizer").
+         *       (see \ref com::aworx::lib::strings::Tokenizer "Tokenizer").
          *       Therefore, by providing the parameter \p whiteSpaces, it is possible to
          *       easily read several numbers which are separated by user defined characters.
          *
@@ -1807,7 +1862,7 @@ public class Substring implements CharSequence
         }
 
         /** ****************************************************************************************
-         * Reports an ALib error (using \ref aworx::lib::ReportWriter "ReportWriter") and
+         * Reports an ALib error (using \ref com::aworx::lib::ReportWriter "ReportWriter") and
          * returns null. The reason for this behavior is to disallow the usage of AString within
          * (system) methods that create sub sequences.
          * This would be in contrast to the design goal of AString.

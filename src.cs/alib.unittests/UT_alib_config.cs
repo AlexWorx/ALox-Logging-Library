@@ -32,7 +32,7 @@ namespace ut_cs_aworx_lib
     #if ALIB_VSTUDIO
         [TestClass]
     #endif
-    public class CS_Configuration   : UnitTest
+    public class CS_Configuration   : AUnitTest
     {
 
 
@@ -66,22 +66,22 @@ namespace ut_cs_aworx_lib
             Configuration cfg= new Configuration( true, args );
             AString  v=     new AString();
             AString  temp=  new AString();
-            int      prio=  -1;
+            int      prio;
             int      iv=    -1;
             double   dv=    -1.0;
-            UT_EQ( 10,    cfg.Get   ( null,  "SingleHyphen",  v            ) );   UT_EQ( "12",            v );
-            UT_EQ( true,  cfg.IsTrue( null,  "DoubleHyphen",  ref prio,temp) );   UT_EQ( 10,              prio );
+            UT_EQ( Configuration.PrioCmdLine,    cfg.Get   ( null,  "SingleHyphen",  v            ) );   UT_EQ( "12",            v );
+            UT_EQ( true,  cfg.IsTrue( null,  "DoubleHyphen",  out prio,temp) );   UT_EQ( Configuration.PrioCmdLine,              prio );
 
-            UT_EQ(  0,    cfg.Get   ( null,  "Empty",         v            ) );   UT_EQ( "",              v );
-            UT_EQ( 10,    cfg.Get   ( null,  "Whitespaces",   v            ) );   UT_EQ( "Hello Test",    v );
-            UT_EQ( 10,    cfg.Get   ( null,  "HOME",          v            ) );   UT_EQ( "overwritten",   v );
-            UT_EQ( 10,    cfg.Get   ( null,  "integer",       ref iv       ) );   UT_EQ( 42,              iv );
-            UT_EQ(  0,    cfg.Get   ( null,  "notexistant",   ref iv       ) );   UT_EQ( 0,               iv );
-            UT_EQ( 10,    cfg.Get   ( null,  "integer",       ref iv, temp ) );   UT_EQ( 42,              iv );
-            UT_EQ( 10,    cfg.Get   ( null,  "double",        ref dv       ) );   UT_EQ( 3.14,            dv, 0.0 );
-            UT_EQ(  0,    cfg.Get   ( null,  "notexistant",   ref dv       ) );   UT_EQ( 0.0,             dv, 0.0 );
-            UT_EQ( 10,    cfg.Get   ( null,  "double",        ref dv, temp ) );   UT_EQ( 3.14,            dv, 0.0 );
-            UT_EQ( 10,    cfg.Get   ( "ALIB", "test",        v            ) );   UT_EQ( "passed",        v );
+            UT_EQ(                             0,    cfg.Get   ( null,  "Empty",         v            ) );   UT_EQ( "",              v );
+            UT_EQ( Configuration.PrioCmdLine,    cfg.Get   ( null,  "Whitespaces",   v            ) );   UT_EQ( "Hello Test",    v );
+            UT_EQ( Configuration.PrioCmdLine,    cfg.Get   ( null,  "HOME",          v            ) );   UT_EQ( "overwritten",   v );
+            UT_EQ( Configuration.PrioCmdLine,    cfg.Get   ( null,  "integer",       out iv       ) );   UT_EQ( 42,              iv );
+            UT_EQ(                             0,    cfg.Get   ( null,  "notexistant",   out iv       ) );   UT_EQ( 0,               iv );
+            UT_EQ( Configuration.PrioCmdLine,    cfg.Get   ( null,  "integer",       out iv, temp ) );   UT_EQ( 42,              iv );
+            UT_EQ( Configuration.PrioCmdLine,    cfg.Get   ( null,  "double",        out dv       ) );   UT_EQ( 3.14,            dv, 0.0 );
+            UT_EQ(                             0,    cfg.Get   ( null,  "notexistant",   out dv       ) );   UT_EQ( 0.0,             dv, 0.0 );
+            UT_EQ( Configuration.PrioCmdLine,    cfg.Get   ( null,  "double",        out dv, temp ) );   UT_EQ( 3.14,            dv, 0.0 );
+            UT_EQ( Configuration.PrioCmdLine,    cfg.Get   ( "ALIB", "test",         v            ) );   UT_EQ( "passed",        v );
 
         }
 //---------------------------------------------------------------------------------------------------------
@@ -182,8 +182,8 @@ namespace ut_cs_aworx_lib
             iniFile.Get( "Great Section",  "Tricky",            sv );   UT_EQ( "backslash\\",  sv );
 
             // add it to ALIB config
-            Log.Init();
-            ALIB.Config.InsertPlugin( iniFile, 30 );
+            ALox.Init();
+            ALIB.Config.InsertPlugin( iniFile, Configuration.PrioIniFile );
             ALIB.Config.Get( "",    "CUBA", sv );   UT_EQ( "a country", sv );
             ALIB.Config.Get( "",    "cUbA", sv );   UT_EQ( "a country", sv );
             ALIB.Config.Get( "",    "SIZE", sv );   UT_EQ( "25", sv );
@@ -199,12 +199,12 @@ namespace ut_cs_aworx_lib
             AString vIniFile= new AString();   iniFile.Get( "", "hOme", vIniFile );               UT_EQ( "overwritten_by_environment", vIniFile );
             AString vConfig=  new AString();
             int prio= ALIB.Config.Get( "", "hOme", vConfig );
-            if (prio != 20 ) // Windows platform?
+            if (prio != Configuration.PrioEnvVars ) // Windows platform?
             {
                 prio= ALIB.Config.Get( "", "hOmePAth", vConfig );
                 iniFile.Get( "", "hOmePAth", vIniFile );      UT_EQ( "overwritten_by_environment", vIniFile );
             }
-            UT_EQ( 20, prio );
+            UT_EQ( Configuration.PrioEnvVars, prio );
 
             UT_TRUE( vConfig.Length() > 0 );
             UT_TRUE( !vIniFile.Equals( vConfig) );
@@ -212,27 +212,27 @@ namespace ut_cs_aworx_lib
 
 
             // change a value and write a new one
-            UT_EQ( 30, ALIB.Config.Save( "New Section",  "newvar", new AString( "new") ) );
+            UT_EQ( Configuration.PrioIniFile, ALIB.Config.Save( "New Section",  "newvar", new AString( "new") ) );
             ALIB.Config.Get ( "New Section",  "newvar", sv    );   UT_EQ( "new",   sv );
 
-            UT_EQ( 30, ALIB.Config.Save( "",             "newvar", new AString( "aworx") ) );
+            UT_EQ( Configuration.PrioIniFile, ALIB.Config.Save( "",             "newvar", new AString( "aworx") ) );
             ALIB.Config.Get ( "",             "newvar", sv     );  UT_EQ( "aworx", sv );
 
-            double dv= 0;
-            UT_EQ( 30, ALIB.Config.Save( "2nd Section",  "newvarF", 3.14 ) );
-            ALIB.Config.Get ( "2nd Section",  "newvarF", ref dv ); UT_EQ(   3.14, dv );
+            double dv;
+            UT_EQ( Configuration.PrioIniFile, ALIB.Config.Save( "2nd Section",  "newvarF", 3.14 ) );
+            ALIB.Config.Get ( "2nd Section",  "newvarF", out dv ); UT_EQ(   3.14, dv );
 
-            int    iv= 0;
-            UT_EQ( 30, ALIB.Config.Save( "Great Section","newvarI", 255  ) );
-            ALIB.Config.Get ( "Great Section","newvarI", ref iv ); UT_EQ(   255,  iv );
+            int    iv;
+            UT_EQ( Configuration.PrioIniFile, ALIB.Config.Save( "Great Section","newvarI", 255  ) );
+            ALIB.Config.Get ( "Great Section","newvarI", out iv ); UT_EQ(   255,  iv );
 
-            UT_EQ( 30, ALIB.Config.Save( "",             "size", 42  ) );
-            ALIB.Config.Get ( "",  "size", ref iv   );                 UT_EQ(    42, iv );
+            UT_EQ( Configuration.PrioIniFile, ALIB.Config.Save( "",             "size", 42  ) );
+            ALIB.Config.Get ( "",  "size", out iv   );                 UT_EQ(    42, iv );
 
-            UT_EQ( 30, ALIB.Config.Save( "",   "newvarList", new AString( "val1=5, val2=10, val3=hello"), null, ',' ) );
-            ALIB.Config.Get ( "",  "newvarList", ref iv   );
+            UT_EQ( Configuration.PrioIniFile, ALIB.Config.Save( "",   "newvarList", new AString( "val1=5, val2=10, val3=hello"), null, ',' ) );
+            ALIB.Config.Get ( "",  "newvarList", out iv   );
 
-            UT_EQ( 30, ALIB.Config.Save( "",   "commented", new AString( "2lines"), new AString( "this is c-line 1 \nand this line 2" ), ',' ) );
+            UT_EQ( Configuration.PrioIniFile, ALIB.Config.Save( "",   "commented", new AString( "2lines"), new AString( "this is c-line 1 \nand this line 2" ), ',' ) );
 
 
 
@@ -265,18 +265,18 @@ namespace ut_cs_aworx_lib
 
             readBack.Get ( "New Section",  "newvar",      sv        );   UT_EQ(   "new", sv );
             readBack.Get ( "",             "newvar",      sv        );   UT_EQ( "aworx", sv );
-            readBack.Get ( "2nd Section",  "newvarF", ref dv, null  );   UT_EQ(    3.14, dv );
-            readBack.Get ( "Great Section","newvarI", ref iv, null  );   UT_EQ(     255, (int) iv );
+            readBack.Get ( "2nd Section",  "newvarF", out dv, null  );   UT_EQ(    3.14, dv );
+            readBack.Get ( "Great Section","newvarI", out iv, null  );   UT_EQ(     255, (int) iv );
 
 
             ALIB.Config.RemovePlugin( iniFile );
 
 
-            ALIB.Config.InsertPlugin( readBack, 30 );
+            ALIB.Config.InsertPlugin( readBack, Configuration.PrioIniFile );
             ALIB.Config.Get ( "New Section",  "newvar",  sv   );   UT_EQ( "new", sv );
             ALIB.Config.Get ( "",             "newvar",  sv   );   UT_EQ( "aworx", sv );
-            ALIB.Config.Get ( "2nd Section",  "newvarF", ref dv, null   );   UT_EQ(   3.14, dv );
-            ALIB.Config.Get ( "Great Section","newvarI", ref iv, null   );   UT_EQ(    255, (int) iv );
+            ALIB.Config.Get ( "2nd Section",  "newvarF", out dv, null   );   UT_EQ(   3.14, dv );
+            ALIB.Config.Get ( "Great Section","newvarI", out iv, null   );   UT_EQ(    255, (int) iv );
 
             ALIB.Config.RemovePlugin( readBack );
         }

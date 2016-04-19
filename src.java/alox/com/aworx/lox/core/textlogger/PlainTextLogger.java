@@ -10,20 +10,21 @@ import com.aworx.lib.ALIB;
 import com.aworx.lib.Util;
 import com.aworx.lib.enums.Phase;
 import com.aworx.lib.strings.AString;
-import com.aworx.lox.Log;
-import com.aworx.lox.core.CallerInfo;
+import com.aworx.lox.Verbosity;
+import com.aworx.lox.core.ScopeInfo;
+import com.aworx.lox.core.Domain;
 import com.aworx.lox.core.textlogger.TextLogger;
 
 
 /** ************************************************************************************************
  * A text logger that either removes or ignores (just writes through) ALox ESC sequences.
- * Implements abstract method #doTextLog and introduces two new abstract methods
- * doLogSubstring.
+ * Implements abstract method #logText and introduces two new abstract methods
+ * #logSubstring and #notifyLogOp.
  **************************************************************************************************/
 public abstract class PlainTextLogger extends TextLogger
 {
     /**
-     * If this field is set to \c true (the default), all \ref aworx::lox::ESC "ESC" color and
+     * If this field is set to \c true (the default), all \ref com::aworx::lox::ESC "ESC" color and
      * style codes get removed when logging into this Logger. \c ESC::TAB is processed.
      *
      * It might be useful, to set this to false, e.g. in the case, the contents of the
@@ -34,20 +35,22 @@ public abstract class PlainTextLogger extends TextLogger
 
     /** ********************************************************************************************
      * Creates a PlainTextLogger
-     * @param name     The name of the logger. If empty, it defaults to the type name.
-     * @param typeName The type of the logger.
+     * @param name            The name of the \e Logger. If empty, it defaults to the type name.
+     * @param typeName        The type of the \e Logger.
+     * @param usesStdStreams  Denotes whether this logger writes to the
+     *                        <em>standard output streams</em>.
      **********************************************************************************************/
-    protected    PlainTextLogger( String  name, String typeName )
+    protected PlainTextLogger( String name, String typeName, boolean usesStdStreams )
     {
-        super( name, typeName );
+        super( name, typeName, usesStdStreams );
     }
 
     /** ********************************************************************************************
      * Abstract method to be implemented by descendants. This method is called when a new
-     * log message is started. It is called exactly once before a series of doLogPortion()
+     * log message is started. It is called exactly once before a series of logSubstring()
      * calls and exactly once after such series. If either the start or one of the calls
-     * #doLogSubstring returns \c false, the invocation that would indicate the end of a log
-     * message is omitted.
+     * to #logSubstring returns \c false, the second invocation that would indicate the end of
+     * a log message is omitted.
      *
      * Implementing this method allows the acquisition of system resources (e.g. opening a file).
      *
@@ -67,33 +70,30 @@ public abstract class PlainTextLogger extends TextLogger
      * @return If \c false is returned, the log line is aborted without an invocation of
      *         \ref notifyLogOp "notifyLogOp(Phase.END)".
      **********************************************************************************************/
-    abstract protected boolean doLogSubstring( AString buffer, int start, int length );
+    abstract protected boolean logSubstring( AString buffer, int start, int length );
 
     /** ********************************************************************************************
      * The implementation of the abstract method of parent class TextLogger.
      * Loops over the log text, removes or ignores ESC sequences (all but ESC.TAB) and invokes
      * abstract methods of descendants as follows:
      * - \ref notifyLogOp "notifyLogOp(true)"
-     * -   #doLogSubstring()
+     * -   #logSubstring()
      * -   ...
      * - \ref notifyLogOp "notifyLogOp(Phase.END)"
      *
      *
-     * @param domain        The log domain name. If not starting with a slash ('/')
-     *                      this is appended to any default domain name that might have been
-     *                      specified for the source file.
-     * @param level         The log level. This has been checked to be active already on this stage
+     * @param domain        The <em>Log Domain</em>.
+     * @param verbosity     The verbosity. This has been checked to be active already on this stage
      *                      and is provided to be able to be logged out only.
      * @param msg           The log message.
-     * @param indent        the indentation in the output. Defaults to 0.
-     * @param caller        Once compiler generated and passed forward to here.
+     * @param scope         Information about the scope of the <em>Log Statement</em>..
      * @param lineNumber    The line number of a multi-line message, starting with 0. For single
      *                      line messages this is -1.
      **********************************************************************************************/
     @Override
-    protected void doTextLog( AString       domain,     Log.Level    level,
-                              AString       msg,        int          indent,
-                              CallerInfo    caller,     int          lineNumber)
+    protected void logText( Domain        domain,     Verbosity verbosity,
+                            AString       msg,
+                            ScopeInfo     scope,      int       lineNumber )
      {
         if ( !notifyLogOp( Phase.BEGIN ) )
             return;
@@ -114,9 +114,12 @@ public abstract class PlainTextLogger extends TextLogger
                     end=      msgLength ;
                 }
 
-
-                if (!doLogSubstring( msg,  start, end - start ) )  return;
-                column+= end - start;
+                if ( end > start )
+                {
+                    if (!logSubstring( msg,  start, end - start ) )
+                        return;
+                    column+= end - start;
+                }
 
                 // interpret escape sequence
                 if ( foundESC )
@@ -140,7 +143,7 @@ public abstract class PlainTextLogger extends TextLogger
                             while ( qty > 0 )
                             {
                                 int size= qty < spacesLength ? qty : spacesLength;
-                                if(!doLogSubstring( spaces, 0, size ) ) return;
+                                if(!logSubstring( spaces, 0, size ) ) return;
                                 qty-= size;
                             }
                             column= tabStop;
@@ -152,7 +155,7 @@ public abstract class PlainTextLogger extends TextLogger
                     else
                     {
                         if ( !pruneESCSequences )
-                            if(!doLogSubstring( msg, end - 1, 3 )) return;
+                            if(!logSubstring( msg, end - 1, 3 )) return;
                         end+= 2;
                     }
                 }

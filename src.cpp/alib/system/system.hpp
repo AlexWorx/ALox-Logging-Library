@@ -8,17 +8,17 @@
 
 
 // check for alib.hpp already there but not us
-#if !defined (HPP_ALIB_ALIB)
+#if !defined (HPP_ALIB)
     #error "include \"alib/alib.hpp\" before including this header"
 #endif
-#if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_ALIB_SYSTEM_SYSTEMINFO)
+#if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_ALIB_SYSTEM_SYSTEM)
     #error "Header already included"
 #endif
 
 // then, set include guard
-#ifndef HPP_ALIB_SYSTEM_SYSTEMINFO
+#ifndef HPP_ALIB_SYSTEM_SYSTEM
 #if !defined( IS_DOXYGEN_PARSER)
-#define HPP_ALIB_SYSTEM_SYSTEMINFO 1
+#define HPP_ALIB_SYSTEM_SYSTEM 1
 #endif
 
 namespace aworx {
@@ -143,6 +143,36 @@ class System
                                     enums::Case        sensitivity =enums::Case::Ignore          );
 
 
+    // #############################################################################################
+    // Others
+    // #############################################################################################
+        /** ****************************************************************************************
+         * Receives the name of the process. Evaluated only once, can't change.
+         * @return The name of the process.
+         ******************************************************************************************/
+        inline
+        static
+        const String& GetProcessName()
+        {
+            if( processName.IsNull() )
+                getProcessName();
+
+            return processName;
+        }
+
+    // #############################################################################################
+    // Internals
+    // #############################################################################################
+        protected:
+
+        /** The process name, retrieved once on request  */
+        static AString              processName;
+        /** ****************************************************************************************
+         * Invoked only once in a life-time. Receives the process name.
+         ******************************************************************************************/
+        ALIB_API
+        static void getProcessName();
+
 
 };// class System
 
@@ -153,4 +183,4 @@ using     System=       aworx::lib::system::System;
 
 }  // namespace aworx
 
-#endif // HPP_ALIB_SYSTEM_SYSTEMINFO
+#endif // HPP_ALIB_SYSTEM_SYSTEM

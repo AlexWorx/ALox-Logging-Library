@@ -7,7 +7,7 @@
 /** @file */ // Hello Doxygen
 
 // check for alib.hpp already there but not us
-#if !defined (HPP_ALIB_ALIB)
+#if !defined (HPP_ALIB)
     #error "include \"alib/alib.hpp\" before including this header"
 #endif
 #if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_ALIB_UTIL)
@@ -16,7 +16,7 @@
 
 // Due to our blocker above, this include will never be executed. But having it, allows IDEs
 // (e.g. QTCreator) to read the symbols when opening this file
-#if !defined (HPP_ALIB_ALIB)
+#if !defined (HPP_ALIB)
     #include "alib/alib.hpp"
 #endif
 
@@ -49,19 +49,29 @@ class Util
    public:
         /** ****************************************************************************************
          * Receives a const AString full of spaces.
-         * \attention
-         *   Parameter \p minSize should be omitted and the size of the object returned accepted.
-         *   Requesting a higher size, might result in slightly more efficiency.
-         *   In multithreaded processes, changing the size must be performed during bootstrap,
-         *   e.g. directly after invoking \ref aworx::lib::ALIB::Init "ALIB::Init" by calling
-         *   this method with the appropriate size.
-         *
-         * @param minSize  The minimum number of spaces that should be available in the returned
-         *                 AString. Defaults to 128. See notes in method description!
          *
          * @return A const AString filled with spaces.
          ******************************************************************************************/
-        static const aworx::AString&  GetSpaces(int minSize= 128);
+        inline
+        static const aworx::AString&  GetSpaces()
+        {
+            return GetSpacesUnsafe( 128 );
+        }
+
+        /** ****************************************************************************************
+         * Receives a const AString full of spaces.
+         *
+         * \attention
+         *   In multithreaded processes, changing the size of the internal spaces string must be
+         *   performed during bootstrap, e.g. directly after invoking
+         *   \ref aworx::lib::ALIB::Init "ALIB::Init" by calling this method with the appropriate
+         *   size.
+         *
+         * @param minSize  The minimum number of spaces that should be available in the returned
+         *                 AString
+         * @return A const AString filled with spaces.
+         ******************************************************************************************/
+        static const aworx::AString&  GetSpacesUnsafe(int minSize);
 
         /** ****************************************************************************************
          * Write the given number of spaces to the ostream.

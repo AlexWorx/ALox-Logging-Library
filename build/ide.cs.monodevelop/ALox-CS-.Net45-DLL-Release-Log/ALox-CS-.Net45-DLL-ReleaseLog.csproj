@@ -116,14 +116,8 @@
     <Compile Include="..\..\..\src.cs\alox\tools\LogTools.cs">
       <Link>ALox\tools\LogTools.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alox\core\CallerInfo.cs">
-      <Link>ALox\core\CallerInfo.cs</Link>
-    </Compile>
     <Compile Include="..\..\..\src.cs\alox\core\Logger.cs">
       <Link>ALox\core\Logger.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\src.cs\alox\ESC.cs">
-      <Link>ALox\ESC.cs</Link>
     </Compile>
     <Compile Include="..\..\..\src.cs\alox\Log.cs">
       <Link>ALox\Log.cs</Link>
@@ -145,6 +139,27 @@
     </Compile>
     <Compile Include="..\..\..\src.cs\alox\core\Domain.cs">
       <Link>ALox\core\Domain.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox\core\ScopeStore.cs">
+      <Link>ALox\core\ScopeStore.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox\core\ScopeInfo.cs">
+      <Link>ALox\core\ScopeInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\threads\SmartLock.cs">
+      <Link>ALib\threads\SmartLock.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox\core\ScopeDump.cs">
+      <Link>ALox\core\ScopeDump.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox\ALox.cs">
+      <Link>ALox\ALox.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox\ALoxTypesAndEnums.cs">
+      <Link>ALox\ALoxTypesAndEnums.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\containers\PathMap.cs">
+      <Link>ALib\containers\PathMap.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup />
@@ -173,5 +188,6 @@
     <Folder Include="ALib\time\" />
     <Folder Include="ALox\loggers\" />
     <Folder Include="ALox\tools\json\" />
+    <Folder Include="ALib\containers\" />
   </ItemGroup>
 </Project>

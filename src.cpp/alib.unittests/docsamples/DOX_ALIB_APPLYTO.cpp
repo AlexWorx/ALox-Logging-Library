@@ -87,6 +87,8 @@ namespace ut_aworx {
 UT_CLASS()
 
 UT_METHOD( DOX_ALIB_APPLYTO )
+{
+    UT_INIT();
 
     ApplyToSample();
     ut.WriteResultFile( "DOX_ALIB_APPLYTO.txt", applyto_os.str(), "//! [OUTPUT]" );

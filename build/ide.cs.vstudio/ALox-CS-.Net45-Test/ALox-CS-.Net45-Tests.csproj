@@ -86,26 +86,38 @@
     <Compile Include="..\..\..\src.cs\alox.samples\ALoxSamples.cs">
       <Link>ALoxSamples.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alox.unittests\UT_alox_documentation_samples.cs">
-      <Link>ut.ALox\UT_alox_documentation_samples.cs</Link>
+    <Compile Include="..\..\..\src.cs\alox.unittests\UT_alox_domains.cs">
+      <Link>ut.ALox\UT_alox_domains.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alox.unittests\UT_alox_loggers.cs">
-      <Link>ut.ALox\UT_alox_loggers.cs</Link>
+    <Compile Include="..\..\..\src.cs\alox.unittests\UT_alox_logger.cs">
+      <Link>ut.ALox\UT_alox_logger.cs</Link>
     </Compile>
     <Compile Include="..\..\..\src.cs\alox.unittests\UT_alox_logtools.cs">
       <Link>ut.ALox\UT_alox_logtools.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alox.unittests\UT_alox_log_dbg.cs">
-      <Link>ut.ALox\UT_alox_log_dbg.cs</Link>
+    <Compile Include="..\..\..\src.cs\alox.unittests\UT_alox_lox.cs">
+      <Link>ut.ALox\UT_alox_lox.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alox.unittests\UT_alox_log_rel.cs">
-      <Link>ut.ALox\UT_alox_log_rel.cs</Link>
+    <Compile Include="..\..\..\src.cs\alox.unittests\UT_alox_release_log.cs">
+      <Link>ut.ALox\UT_alox_release_log.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alox.unittests\UT_alox_tutorial.cs">
-      <Link>ut.ALox\UT_alox_tutorial.cs</Link>
+    <Compile Include="..\..\..\src.cs\alox.unittests\UT_alox_scopes.cs">
+      <Link>ut.ALox\UT_alox_scopes.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\src.cs\alox.unittests\UT_alox_tutorial_minimum.cs">
-      <Link>ut.ALox\UT_alox_tutorial_minimum.cs</Link>
+    <Compile Include="..\..\..\src.cs\alox.unittests\UT_alox_scopes_helper.cs">
+      <Link>ut.ALox\UT_alox_scopes_helper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox.unittests\UT_dox_manual.cs">
+      <Link>ut.ALox\UT_dox_manual.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox.unittests\UT_dox_reference_manual.cs">
+      <Link>ut.ALox\UT_dox_reference_manual.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox.unittests\UT_dox_tutorial.cs">
+      <Link>ut.ALox\UT_dox_tutorial.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alox.unittests\UT_dox_tutorial_minimum.cs">
+      <Link>ut.ALox\UT_dox_tutorial_minimum.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -138,6 +150,7 @@
       <Name>ALox-CS-.Net45-DLL-Release-Log</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

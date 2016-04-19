@@ -6,8 +6,8 @@
 // #################################################################################################
 /** @file */ // Hello Doxygen
 
-#ifndef HPP_ALIB_ALIB
-#define HPP_ALIB_ALIB 1
+#ifndef HPP_ALIB
+#define HPP_ALIB 1
 
 // compiler check
 #if defined(__GNUC__)
@@ -26,15 +26,15 @@
 // accordingly.
 // #################################################################################################
 
-#define FROM_HPP_ALIB_ALIB
+#define FROM_HPP_ALIB
 
-#if defined(HPP_ALIB_ALIB_CONDCOMPILE)
+#if defined(HPP_ALIB_SYMBOLS)
     #error "aworx_condcomp.hpp must not be included manually. Include alib.hpp instead"
 #endif
 #include "alib/core/symbols.hpp"
 
 
-#if defined(HPP_ALIB_ALIB_MACROS)
+#if defined(HPP_ALIB_MACROS)
     #error "aworx_macros.hpp must not be included manually. Include alib.hpp instead"
 #endif
 
@@ -216,6 +216,7 @@ namespace           lib {
 // #################################################################################################
 namespace config  { class Configuration;    }
 namespace threads { class ThreadLockNR;     }
+namespace threads { class SmartLock;        }
 
 
 // #################################################################################################
@@ -247,6 +248,10 @@ class ALIB
     // Public fields
     // #############################################################################################
     public:
+        /** Returns state of initialization, used internally to avoid deadlocks during init.
+         *  @return \c true if was initialized already. */
+        static bool                                     IsInitialized()     { return initialized; };
+
         /**
          * These flags are used internally to detect incompatibilities when linking ALib to
          * binaries that use differen compilation flags.
@@ -281,7 +286,7 @@ class ALIB
          * e.g. for one-time initialization tasks. In case of doubt, a separated, problem-specific
          * mutex should be created.
          */
-        ALIB_API static    threads::ThreadLockNR         Lock;
+        ALIB_API static    threads::ThreadLockNR        Lock;
 
         /**
          * This is the configuration singleton for ALib.
@@ -294,7 +299,7 @@ class ALIB
          *
          * For more information, see #aworx::lib::config.
          */
-        ALIB_API static    config::Configuration*         Config;
+        ALIB_API static    config::Configuration         Config;
 
         /**
          * The name of the configuration category of configuration variables used by ALib.<br>
@@ -314,6 +319,53 @@ class ALIB
         * In addition, this public flag may be modified at runtime (after method #Init was invoked).
         */
         ALIB_API static    bool                            WaitForKeyPressOnTermination;
+
+        /**
+         * This is a smart mutex that allows to lock an applications' <em>standard output
+         * streams</em>.
+         *
+         * In multi-threaded processes, to protect the output streams from concurrent access,
+         * this smart lock might be used by any \e entity that writes data to the streams.
+         * Before it can be used (acquired and released), it is needed to register with the object
+         * using
+         * \ref aworx::lib::threads::SmartLock::AddAcquirer "SmartLock::AddAcquirer".
+         * This has to be done once per thread that aims to write to the stream. Then, prior to
+         * writing, this object has to be acquired and after writing released.
+         *
+         * Because often, the standard \e output stream and standard \e error stream are identical,
+         * ALib provides one single lock for both, to protect also against interwoven
+         * standard output and error information.
+         *
+         * If the 'entity' that is registering is not of type
+         * \ref aworx::lib::threads::ThreadLock "ThreadLock" it is allowed to provide \c nullptr
+         * in the parameter of method \b AddAcquirer. In this case, the process of adding and
+         * removing \e acquirers is not performed in a thread safe way. Therefore it is advised
+         * to register so called anonymous (\c nullptr) \e acquirers only at bootstrap time, when
+         * no parallel threads were started, yet.
+         *
+         * If an application is deemed to always write to the standard output streams from within
+         * multiple threads, an alternative to registering each writing entity, is to
+         * invoke \b AddAcquirer just two times in a row with \c nullptr at the start of a process
+         * and then never do this again (and never de-register). This way, no thread needs
+         * to register/unregister but threads may still \b Acquire and \b Release the lock without
+         * being registered. In other words, once a smart lock is enabled, subsequent registrations
+         * are just used to count and identify the de-registration.
+         *
+         * \note
+         *   The advantage of the SmartLock is that if only one 'entity' registered, no
+         *   system \e mutexes will be used with \b Acquire and \b Release, hence there is
+         *   a performance gain. Such gain is not noticeable for the 'slow' terminal console output,
+         *   but it is for fast, buffered output streams.
+         * <p>
+         * \note
+         *   Logging library \b ALox, which is built on ALib, will register whenever a \e Logger
+         *   is used that writes to the standard output stream. Hence, applications that in
+         *   parallel use, e.g. 'std::cout', should register at bootstrap and \e acquire this
+         *   instance prior to writing. This way, log output and other application output is
+         *   not mixed, but separated in different Lines.
+         */
+        ALIB_API static    threads::SmartLock              StdOutputStreamsLock;
+
 
 
     // #############################################################################################
@@ -338,6 +390,15 @@ class ALIB
          *   <em>LANG</em> and <em>LANGUAGE</em>
          *   and depending on ALib configuration variable
          *   [ALIB_LOCALE](../group__GrpALoxConfigVars.html).
+         * - Config variable [WAIT_FOR_KEY_PRESS_ON_TERMINATION](../group__GrpALoxConfigVars.html)
+         *   is read and field #WaitForKeyPressOnTermination set accordingly
+         *
+         * \note If other, custom configuration data sources should be used already with this method
+         *       (to read the configuration variables as described above),
+         *       according configuration plug-ins have to be added attached to public, static field
+         *       #Config prior to invoking this method.
+         *
+         * <p>
          *
          * \note %ALIB must not be used before all global/static variables are created. Hence, it
          *       is not allowed to initialize %ALIB within static variable initialization code.
@@ -345,6 +406,8 @@ class ALIB
          *       implement the initialization phase of static and global code differently and it is
          *       not considered good programming style to rely on C++ bootstrap.
          *       Using %ALIB within C++ bootstrap is undefined behavior.
+         *
+         * <p>
          *
          * \note On the Windows platform, the Microsoft compiler provides the global variables
          *       <em>__argc</em> and <em>__argv</em> (respectively <em>__wargv</em> for wide
@@ -434,7 +497,7 @@ class ALIB
 
 };// class ALIB
 
-} // namespace aworx::lib
+} // namespace lib
 
 /** Type alias name in namespace #aworx. */
 using ALIB =    aworx::lib::ALIB;
@@ -455,7 +518,64 @@ using ALIB =    aworx::lib::ALIB;
 #include "alib/strings/applyformat.hpp"
 
 
-// disallow others to include our headers directly
-#undef FROM_HPP_ALIB_ALIB
+// #################################################################################################
+// Methods to 'parse' ALib enum values from strings.
+// These declarations can not be moved to header "enums.hpp", because this has to be included
+// prior to including strings.
+// Their implementation is found rightfully in source "enums.cpp".
+// #################################################################################################
 
-#endif // HPP_ALIB_ALIB
+namespace           aworx {
+    namespace           lib {
+        namespace           enums {
+
+/** ************************************************************************************************
+ * Interprets given \p src as a boolean value.
+ * If the case insensitive comparison of the first non-whitespace characters of the string with
+ * with values "t", "1", "y", "on", "ok"
+ * matches, \c true is returned.
+ * Otherwise, including the case that \p src is 'nulled', \c false is returned.
+ *
+ * @param src The string to 'parse'.
+ *
+ * @returns The \b %Case value read.
+ **************************************************************************************************/
+ALIB_API
+bool         ReadBoolean( const String& src );
+
+/** ************************************************************************************************
+ * Interprets given \p src as a value of enum type
+ * \ref aworx::lib::enums::Case "enums::Case".
+ * If the case insensitive comparison of the first non-whitespace characters of the string
+ * with values "s", "y", "t", "1"
+ * matches, \b %Case::Sensitive is returned.
+ * Otherwise, including the case that \p src is 'nulled', \b %Case::Ignore is returned.
+ *
+ * @param src The string to 'parse'.
+ *
+ * @returns The \b %Case value read.
+ **************************************************************************************************/
+ALIB_API
+Case        ReadCase( const String& src );
+
+/** ************************************************************************************************
+ * Interprets given \p src as a value of enum type
+ * \ref aworx::lib::enums::Inclusion "enums::Inclusion".
+ * If the case insensitive comparison of the first non-whitespace characters of the string
+ * with values "i", "y", "t", "1"
+ * matches, \b %Inclusion::Include is returned.
+ * Otherwise, including the case that \p src is 'nulled', \b %Inclusion::Exclude is returned.
+ *
+ * @param src The string to 'parse'.
+ *
+ * @returns The \b %Inclusion value read.
+ **************************************************************************************************/
+ALIB_API
+Inclusion   ReadInclusion( const String& src );
+
+}}} // namespace aworx::lib::enums
+
+// disallow others to include our headers directly
+#undef FROM_HPP_ALIB
+
+#endif // HPP_ALIB

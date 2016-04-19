@@ -7,13 +7,13 @@
 /** @file */ // Hello Doxygen
 
 // to preserve the right order, we are not includable directly from outside.
-#if !defined(FROM_HPP_ALIB_ALIB) || defined(HPP_ALIB_ALIB_SYMBOLS)
+#if !defined(FROM_HPP_ALIB) || defined(HPP_ALIB_SYMBOLS)
     #error "include alib/alib.hpp instead of this header"
 #endif
 
 
-#ifndef HPP_ALIB_ALIB_SYMBOLS
-#define HPP_ALIB_ALIB_SYMBOLS 1
+#ifndef HPP_ALIB_SYMBOLS
+#define HPP_ALIB_SYMBOLS 1
 
 
 /**
@@ -93,7 +93,7 @@
 #endif
 
 #if defined(ALIB_GTEST_ON)
-    #define ALIB_GTEST
+    #define ALIB_GTEST 1
 #endif
 
 /**
@@ -137,7 +137,7 @@
 #endif
 
 #if defined(ALIB_QTCREATOR_ON)
-    #define ALIB_QTCREATOR
+    #define ALIB_QTCREATOR 1
 #endif
 
 /**
@@ -164,7 +164,7 @@
 #endif
 
 #if defined(ALIB_VSTUDIO_ON)
-    #define ALIB_VSTUDIO
+    #define ALIB_VSTUDIO 1
 #endif
 
 
@@ -216,7 +216,7 @@
 
 #if !defined(ALIB_DEBUG_OFF)
     #if defined(ALIB_DEBUG_ON) || !defined(NDEBUG) || defined(_DEBUG) || defined(DEBUG)
-        #define ALIB_DEBUG
+        #define ALIB_DEBUG 1
     #endif
 #endif
 
@@ -226,6 +226,12 @@
  *  This compiler symbol enables additional debug code within class AString. When provided,
  *  it defines \ref ALIB_DEBUG_STRINGS. This is useful when extending or specifically debugging
  *  class AString.
+ * @}
+ *
+ * @addtogroup GrpALibCompilerSymbols
+ * @{ \def  ALIB_DEBUG_STRINGS_OFF
+ *  Disables certain debug code within class AString. See \ref ALIB_DEBUG_STRINGS_ON.
+ *  This symbol represents the default behavior and is provided for completeness.
  * @}
  *
  * @addtogroup GrpALibCodeSelectorSymbols
@@ -240,7 +246,39 @@
 #endif
 
 #if defined( ALIB_DEBUG_STRINGS_ON )
-    #define    ALIB_DEBUG_STRINGS
+    #define    ALIB_DEBUG_STRINGS 1
+#endif
+
+
+/**
+ * @addtogroup GrpALibCompilerSymbols
+ * @{ \def  ALIB_AVOID_ANALYZER_WARNINGS_ON
+ *  This compiler symbol enables additional debug code that tries to prevent external analysis
+ *  tools (e.g. [Valgrind](https://www.valgrind.org/)) to raise unnecessary warnings or errors.
+ *
+ *  When provided, it defines \ref ALIB_AVOID_ANALYZER_WARNINGS.
+ * @}
+ *
+ *
+ * @addtogroup GrpALibCompilerSymbols
+ * @{ \def  ALIB_AVOID_ANALYZER_WARNINGS_OFF
+ *  Disables certain debug code. See \ref ALIB_AVOID_ANALYZER_WARNINGS_ON.
+ *  This symbol represents the default behavior and is provided for completeness.
+ * @}
+ *
+ * @addtogroup GrpALibCodeSelectorSymbols
+ * @{ \def  ALIB_AVOID_ANALYZER_WARNINGS
+ *  Selects extra debug code to avoid potential warnings of external analyzation tools.
+ *  Gets defined by compiler symbol \ref ALIB_AVOID_ANALYZER_WARNINGS_ON.
+ * @}
+ */
+
+#if defined(ALIB_AVOID_ANALYZER_WARNINGS_OFF) && defined(ALIB_AVOID_ANALYZER_WARNINGS_ON)
+    #error "ALIB_AVOID_ANALYZER_WARNINGS_OFF / ALIB_AVOID_ANALYZER_WARNINGS_ON are both set"
+#endif
+
+#if defined( ALIB_AVOID_ANALYZER_WARNINGS_ON )
+    #define    ALIB_AVOID_ANALYZER_WARNINGS 1
 #endif
 
 
@@ -289,9 +327,9 @@
 #endif
 
 #if !defined(ALIB_FEAT_THREADS_OFF)
-    #define ALIB_FEAT_THREADS
+    #define ALIB_FEAT_THREADS 1
 #endif
 
 
 
-#endif // HPP_ALIB_ALIB_SYMBOLS
+#endif // HPP_ALIB_SYMBOLS

@@ -7,13 +7,13 @@
 /** @file */ // Hello Doxygen
 
 // to preserve the right order, we are not includable directly from outside.
-#if !defined(FROM_HPP_ALIB_ALIB) || defined(HPP_ALIB_ENUMS)
+#if !defined(FROM_HPP_ALIB) || defined(HPP_ALIB_ENUMS)
     #error "include alib/alib.hpp instead of this header"
 #endif
 
 // Due to our blocker above, this include will never be executed. But having it, allows IDEs
 // (e.g. QTCreator) to read the symbols when opening this file
-#if !defined (HPP_ALIB_ALIB)
+#if !defined (HPP_ALIB)
     #include "alib/alib.hpp"
 #endif
 
@@ -76,6 +76,7 @@ enum class Inclusion
     Include,  ///<  Chooses inclusion.
     Exclude,  ///<  Chooses exclusion.
 };
+
 
 /** ************************************************************************************************
  * Denotes if current, existing data should be cleared or if new data should be
@@ -164,6 +165,18 @@ enum class Phase
     End       ///< The end of a transaction.
 };
 
+/** ************************************************************************************************
+ * Denotes standard container operations.
+ **************************************************************************************************/
+enum class ContainerOp
+{
+    Insert,    ///< Denotes insertions.
+    Remove,    ///< Denotes removals.
+    Get,       ///< Denotes to search data.
+    GetCreate, ///< Denotes to create data if not found.
+    Create     ///< Denotes to create data.
+};
+
 
 /** ************************************************************************************************
  * Denotes result values across ALib functions
@@ -237,6 +250,9 @@ using     Propagation=      aworx::lib::enums::Propagation;
 
 /** Type alias name in namespace #aworx. */
 using     Phase=            aworx::lib::enums::Phase;
+
+/** Type alias name in namespace #aworx. */
+using     ContainerOp=      aworx::lib::enums::ContainerOp;
 
 /** Type alias name in namespace #aworx. */
 using     Result=           aworx::lib::enums::Result;

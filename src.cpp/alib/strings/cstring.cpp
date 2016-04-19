@@ -39,7 +39,7 @@ int  CString::LengthWhenConvertedToWChar( const char* cs, int  csLength )
             return -1;
         }
 
-        ALIB_ASSERT_ERROR_AS( conversionSize <= (size_t) csLength,
+        ALIB_ASSERT_ERROR_S512( conversionSize <= (size_t) csLength,
               "MBCS to WCS conversion failed. Region length=" << csLength
            << ", conversion length=" << conversionSize                    );
 
@@ -71,7 +71,7 @@ int  CString::LengthWhenConvertedToWChar( const char* cs, int  csLength )
 
             if( conversionSize > csLength )
             {
-                ALIB_ERROR_AS( "MBCS to WCS conversion failed. Region length=" << csLength
+                ALIB_ERROR_S512( "MBCS to WCS conversion failed. Region length=" << csLength
                                << ", conversion length=" << conversionSize );
                 return -1;
             }

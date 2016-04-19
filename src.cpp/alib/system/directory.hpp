@@ -7,7 +7,7 @@
 /** @file */ // Hello Doxygen
 
 // check for alib.hpp already there but not us
-#if !defined (HPP_ALIB_ALIB)
+#if !defined (HPP_ALIB)
     #error "include \"alib/alib.hpp\" before including this header"
 #endif
 #if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_ALIB_SYSTEM_DIRECTORY)
@@ -158,7 +158,7 @@ using     Directory=       aworx::lib::system::Directory;
  * The standard path separator character. Defaults to '\\' on Windows OS, '/' else.
  * Note: Available only with including "alib/system/directory.hpp"
  */
-const char    PathSeparator
+constexpr char    PathSeparator
 #if defined(IS_DOXYGEN_PARSER)
     ;
 #else

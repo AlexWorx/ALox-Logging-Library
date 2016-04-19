@@ -148,8 +148,8 @@ namespace cs.aworx.lib.config  {
             the file is read. */
         public AString                          FileName                     = new AString();
 
-        /** The standard file extension used for ALib configuration files. Defaults to ".alib.ini" */
-        public static String                    DefaultFileExtension         = ".alib.ini";
+        /** The standard file extension used for ALib configuration files. Defaults to ".ini" */
+        public static String                    DefaultFileExtension         = ".ini";
 
         /** The file header which will be written out as a comment lines with "# " prefixes */
         public AString                          FileComments                 = new AString();
@@ -199,10 +199,14 @@ namespace cs.aworx.lib.config  {
         /** ****************************************************************************************
          *  Constructs an instance of this class and reads the file.
          *  If no file name is given, the file name set to the process name with extension
-         *  ".aworx.ini" while the file path is retrieved using
+         *  ".ini" while the file path is retrieved using
          *  <em>Environment.GetFolderPath( Environment.SpecialFolder.ApplicationData )</em>.
          *
+         *  If the given file name \p filePathAndName starts with '*', no file is read and field
+         *  #AutoSave is set to \c false.
+         *
          *  @param filePathAndName  The name (and path) of the file to read and write.
+         *                          Provide "*" to suppress reading a file.
          *                          Defaults to \c null.
          ******************************************************************************************/
         public IniFile( String filePathAndName=  null )
@@ -213,13 +217,20 @@ namespace cs.aworx.lib.config  {
                                      "\\n",   "\n",
                                      "\\r",   "\r",
                                      "\\t",   "\t",
-                                     "\\/",   "/",
                                      "\\#",   "#",
                                      "\\;",   ";"
                                };
 
+
             if ( filePathAndName != null )
             {
+                // dont read anything
+                if ( filePathAndName.StartsWith( "*" ) )
+                {
+                    AutoSave= false;
+                    return;
+                }
+
                 FileName._( filePathAndName );
             }
             else
@@ -228,11 +239,10 @@ namespace cs.aworx.lib.config  {
                 if ( !Directory.Exists( path ) )
                     path=  Environment.GetFolderPath( Environment.SpecialFolder.UserProfile );
 
-                AString name= new AString( System.AppDomain.CurrentDomain.FriendlyName );
-                if ( name.EndsWith( ".exe", Case.Ignore ) )
-                    name.Delete_NC( name.Length() - 4, 4 );
-
-                FileName._( path )._(Path.DirectorySeparatorChar)._ ( name )._( DefaultFileExtension );
+                FileName._( path )
+                        ._( Path.DirectorySeparatorChar )
+                        ._( Util.GetProcessName() )
+                        ._( DefaultFileExtension  );
             }
 
             ReadFile();
@@ -582,7 +592,7 @@ namespace cs.aworx.lib.config  {
                     while( tok.HasNext() )
                     {
                         // write backslash of previous line and spaces of actual line
-                        if (tok.Rest.IsNotNull() )
+                        if (tok.Actual.IsNotNull() )
                         {
                             if ( backSlashPos < lastLineLen + 1  )
                                  backSlashPos=  lastLineLen + 8;

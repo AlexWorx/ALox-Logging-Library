@@ -7,7 +7,7 @@
 /** @file */ // Hello Doxygen
 
 // check for alib.hpp already there but not us
-#if !defined (HPP_ALIB_ALIB)
+#if !defined (HPP_ALIB)
     #error "include \"alib/alib.hpp\" before including this header"
 #endif
 #if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_ALIB_STRINGS_ASSUBSTRING)
@@ -16,7 +16,7 @@
 
 // Due to our blocker above, this include will never be executed. But having it, allows IDEs
 // (e.g. QTCreator) to read the symbols when opening this file
-#if !defined (HPP_ALIB_ALIB)
+#if !defined (HPP_ALIB)
     #include "alib/alib.hpp"
 #endif
 
@@ -627,7 +627,7 @@ class Substring : public String
         /** ****************************************************************************************
          * Reads a 32-Bit integer from this object. If successful, the front of this
          * \b %Substring is cut to point to first character that is not not belonging to the number.
-         * If no number is found, zero is returned and this object does not change.
+         * If no number is found, \c false is returned and this object does not change.
          *
          * Leading whitespace characters are ignored. However, if after leading whitespaces no
          * number is found, then also these whitespaces remain.

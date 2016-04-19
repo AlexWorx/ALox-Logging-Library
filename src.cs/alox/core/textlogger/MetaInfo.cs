@@ -23,7 +23,7 @@ namespace cs.aworx.lox.core.textlogger
 
 /** ************************************************************************************************
  * This class is a sort of plug-in for the TextLogger class. Its purpose is to assemble the meta
- * information of each log line (things like timestamps, thread information, level and domain, etc.).
+ * information of each log line (things like timestamps, thread information, verbosity and domain, etc.).
  *
  * To manipulate the meta information log output, three options exist:
  * - by just changing the #Format string (at runtime).
@@ -39,60 +39,54 @@ public class MetaInfo
     // #############################################################################################
 
         /**
+         * The line format specifies the (automated) log output that is prepended to each log
+         * line before the log message itself.
          *
-         *  The line format specifies the (automated) log output that is prepended to each log line before
-         *  the log message itself.
+         * The string supports replacement variables that begin with a % sign
+         * - %SP: The full path of the source file
+         * - %Sp: The trimmed path of the source file
+         * - %SF: The callers' source file name
+         * - %Sf: The callers' source file name without extension
+         * - %SL: The line number in the source file
+         * - %SM: The method name
          *
-         *  The string supports replacement variables that begin with a % sign
-         *  - %CF: The caller's source file name including path
-         *  - %Cf: The caller's source file name (excluding path)
-         *  - %CL: The line number in the caller's source file
-         *  - %CM: The caller's method name
-         *  - %D:  The date the log call was invoked
-         *  - %TD: Time of day the log call was invoked
-         *  - %TE: Time elapsed since the Logger was created or it's timer was reset
-         *  - %TI: Time elapsed since the last log call
-         *  - %t:  Thread name and/or ID
-         *  - %L:  The log level
-         *  - %O:  Log domain
-         *  - %#:  The log call counter (like a line counter, but counting multi lines as one)
-         *  - %An: An auto-adjusted tabulator. This grows whenever it needs, but never shrinks. The
-         *         optional integer number n specifies how much extra space is added when tab is adjusted.
-         *         Setting this to a higher value avoids too many adjustments at the beginning of a log session.
-         *  - %N:  The name of the logger. This might be useful if multiple loggers write to the same
-         *           output stream (e.g. Console).
+         * - %TD: The date the log call was invoked
+         * - %TT: Time of day the log call was invoked
+         * - %TC: Time elapsed since the Logger was created or its timer was reset
+         * - %TL: Time elapsed since the last log call
          *
-         */
-        //public AString  Format= new AString( "%CF(%CL):%CM()%A3[%DD] [%TD] [%TE +%TI] [%t] %L [%O] <%#>: ");
-        public            AString            Format    = new AString( "%CF(%CL):%CM()%A5[%TE +%TI] [%t] %L [%O]: ");
-
-
-        /**
+         * - %tN: Thread name
+         * - %tI: Thread ID
+         * - %V:  The verbosity
+         * - %D:  Log domain
+         * - %#:  The log call counter (like a line counter, but counting multi lines as one)
+         * - %An: An auto-adjusted tabulator. This grows whenever it needs, but never shrinks. The
+         *        optional integer number n specifies how much extra space is added when tab is adjusted.
+         *        Setting this to a higher value avoids too many adjustments at the beginning of a log session.
+         * - %LG: The name of the \e Logger. This might be useful if multiple loggers write to the same
+         *        output stream (e.g. Console).
+         * - %LX: The name of the \e Lox. 
+         * - %P:  The name of the process / application.
          *
-         *  To shorten the log output the given prefix might be cut from the source file path.
-         *  If this field is left to 'null' (or set to null at runtime), it is tried to detect this path
-         *  automatically once. However, in remote debug sessions (e.g. on mobile device development)
-         *  this fails. Hence, this parameter can be set 'manually' to the right prefix that is to be
-         *  consumed. In this case, whenever the project is compiled on a different machine setup (with
-         *  different project path), this field has to be changed. If it is not changed, there is no
-         *  other problem than that the path is not shortened and the log output might get a little wide.
-         *  If the output of the full path is intended, the parameter can be set to 'String.Empty'.
+         * Defaults to
+         * \code "%Sp/%SF(%SL):%A5%SM() %A5[%TC +%TL][%tN]%V[%D]%A1(%#): " \endcode
          *
          */
-        public         String                   ConsumableSourcePathPrefixString;
+        public AString
+        Format = new AString( "%Sp/%SF(%SL):%A5%SM() %A5[%TC +%TL][%tN]%V[%D]%A1(%#): " );
 
 
-        /// The output for the log level "Error".
-        public            String            LogLevelError                               = "[ERR]";
+        /// The output for the \e Verbosity "Error".
+        public            String            VerbosityError                               = "[ERR]";
 
-        /// The output for the log level "Warning".
-        public            String            LogLevelWarning                             = "[WRN]";
+        /// The output for the \e Verbosity "Warning".
+        public            String            VerbosityWarning                             = "[WRN]";
 
-        /// The output for the log level "Info".
-        public            String            LogLevelInfo                                = "     ";
+        /// The output for the \e Verbosity "Info".
+        public            String            VerbosityInfo                                = "     ";
 
-        /// The output for the log level "Verbose".
-        public            String            LogLevelVerbose                             = "[***]";
+        /// The output for the \e Verbosity "Verbose".
+        public            String            VerbosityVerbose                             = "[***]";
 
         /// Format string for the output of the log date. For more information, see
         ///  "Standard Date and Time Format Strings" in .NET StringBuilder.AppendFormat()
@@ -132,6 +126,11 @@ public class MetaInfo
         /// Format for time difference outputs of more than a day.
         public            String            TimeDiffDays                                = " days";
 
+        /// Replacement string if no source info is available.
+        public            AString           NoSourceFileInfo               = new AString( "---" );
+
+        /// Replacement string if no source info is available.
+        public            AString           NoMethodInfo                   = new AString( "---" );
         /// Prefix for the domain.
         public            int               LogNumberMinDigits                          = 3;
 
@@ -158,8 +157,13 @@ public class MetaInfo
         protected        DateTime?         callerDateTime;
 
         /// Tokenizer used in #Write.
-        protected        Tokenizer         tok=                         new Tokenizer();
+        protected        Tokenizer         tTok                                    =new Tokenizer();
 
+        /** A reusable AString . */
+        protected        AString           tmpAString                                =new AString();
+
+        /** Helper flag that indicates if a format warning report was already issued */
+        protected        bool               warnedOnce                                      = false;
 
     /** ********************************************************************************************
      *  Parses the #Format string and logs meta information into the log buffer. For each
@@ -168,14 +172,14 @@ public class MetaInfo
      *  recommended for formatter classes that do not rely on format strings.
      * @param logger    The logger that we are embedded in.
      * @param buffer    The buffer to write meta information into.
-     * @param domain    The log domain name.
-     * @param level     The log level. This has been checked to be active already on this
+     * @param domain    The <em>Log Domain</em>.
+     * @param verbosity The verbosity. This has been checked to be active already on this
      *                  stage and is provided to be able to be logged out only.
-     * @param caller    Once compiler generated and passed forward to here.
+     * @param scope     Information about the scope of the <em>Log Statement</em>..
      *
      * @return The number of tab sequences that were written (by adding ESC::TAB to the buffer).
      **********************************************************************************************/
-    public virtual int Write( TextLogger logger, AString buffer, AString domain, Log.Level level, CallerInfo caller )
+    public virtual int Write( TextLogger logger, AString buffer, Domain domain, Verbosity verbosity, ScopeInfo scope )
     {
         int qtyTabStops= 0;
 
@@ -187,20 +191,20 @@ public class MetaInfo
         callerDateTime= null ;
 
         // loop/switch over content specified in configuration array
-        tok.Set( Format, '%' );
+        tTok.Set( Format, '%' );
 
         while ( true )
         {
             // get next and log substring between commands
-            if ( tok.Next(Whitespaces.Keep).IsNotEmpty() )
-                buffer._( tok.Actual );
+            if ( tTok.Next(Whitespaces.Keep).IsNotEmpty() )
+                buffer._( tTok.Actual );
 
             // previous next did not find a delimiter
-            if ( !tok.HasNext() )
+            if ( !tTok.HasNext() )
                 break;
 
             // process the found variable
-            qtyTabStops+= processVariable( logger, domain, level, caller, buffer, tok.Rest );
+            qtyTabStops+= processVariable( logger, domain, verbosity, scope, buffer, tTok.Rest );
         }
 
         return qtyTabStops;
@@ -212,130 +216,141 @@ public class MetaInfo
      *  The given Substring holds the next command. When method returns, the command is cut
      *  from the front.
      *
-     * @param logger   The logger that we are embedded in.
-     * @param domain   The log domain name.
-     * @param level    The log level. This has been checked to be active already on this
-     *                 stage and is provided to be able to be logged out only.
-     * @param caller   Once compiler generated and passed forward to here.
-     * @param dest     The buffer to write meta information into.
-     * @param variable The variable to read (may have more characters appended)
+     * @param logger    The logger that we are embedded in.
+     * @param domain    The <em>Log Domain</em>.
+     * @param verbosity The verbosity. This has been checked to be active already on this
+     *                  stage and is provided to be able to be logged out only.
+     * @param scope     Information about the scope of the <em>Log Statement</em>..
+     * @param dest      The buffer to write meta information into.
+     * @param variable  The variable to read (may have more characters appended)
      *
      * @return The number of tab sequences that were written (by adding ESC::TAB to the buffer).
      **********************************************************************************************/
-    protected virtual int processVariable( TextLogger logger, AString domain, Log.Level level,
-                                           CallerInfo caller, AString dest, Substring variable )
+    protected virtual int processVariable( TextLogger logger, Domain  domain, Verbosity verbosity,
+                                           ScopeInfo  scope,  AString dest,   Substring variable )
     {
         // process commands
+        char c2;
         switch ( variable.Consume() )
         {
-            // caller info
-            case 'C':
+            // scope info
+            case 'S':
             {
-                // read sub command
-                char s= variable.Consume();
-
-                // add source file
-                if ( s == 'F' )
+                    // read sub command
+                AString val;
+                switch( c2= variable.Consume() )
                 {
-                    // can we cut the source file name by a prefix?
-                    String sourceFileName=    caller.SourceFileName;
-                    // detect cutable prefix from the filename path and current working directory
-                    // Note: we do this only once. And we do not use the prefix here
-                    //       This is up to the derived logger to do so.
-                    if ( ConsumableSourcePathPrefixString == null )
+                    case 'P':   // SP: full path
                     {
+                        int    length;
+                        String path= scope.GetFullPath( out length );
+                        if ( length > 0 )
+                        {
+                            dest._( path, 0, length );
+                            return 0;
+                        }
+                        val= NoSourceFileInfo;
 
-                        // get system execution path and compare to file path
-                        ConsumableSourcePathPrefixString= Environment.CurrentDirectory;
+                    } break;
 
-                        // Get the prefix that is the same in both paths
-                        // The first letter might be a drive letter and here we have to ignore the case
-                        int driveLetterIndex= ConsumableSourcePathPrefixString.Length >= 2 && ConsumableSourcePathPrefixString[1] == ':' ? 0 : -1;
-                        int i= 0;
-                        while (     i < sourceFileName                  .Length
-                                &&  i < ConsumableSourcePathPrefixString.Length
-                                &&  ( i== driveLetterIndex  ? Char.ToUpperInvariant( ConsumableSourcePathPrefixString[i]) == Char.ToUpperInvariant( sourceFileName[i] )
-                                                            :                         ConsumableSourcePathPrefixString[i]  ==                        sourceFileName[i]
-                                    )
-                        )
-                            i++;
+                    case 'p':   // Sp: trimmed path
+                    {
+                        val= scope.GetTrimmedPath();
+                        if ( val.IsEmpty() )
+                            val= NoSourceFileInfo;
+                    } break;
 
-                        // store consumable prefix and its length. If unsuccessful, "" is stored to prevent searching again
-                        ConsumableSourcePathPrefixString=  ( i > 1) ? ConsumableSourcePathPrefixString.Substring(0, i)
-                                                                    : String.Empty;
+                    case 'F':   // file name
+                    {
+                        val= scope.GetFileName();
+                        if ( val.IsEmpty() )
+                            val= NoSourceFileInfo;
+                    } break;
+
+                    case 'f':   // file name without extension
+                    {
+                        val= scope.GetFileNameWithoutExtension();
+                        if ( val.IsEmpty() )
+                            val= NoSourceFileInfo;
+                    } break;
+
+
+                    case 'M':   // method name
+                    {
+                        String method= scope.GetMethod();
+                        if ( method.Length == 0 )
+                            dest._( NoMethodInfo );
+                        else
+                            dest._( method );
+                        return 0;
                     }
 
-                    dest._NC( sourceFileName, ConsumableSourcePathPrefixString.Length, sourceFileName.Length - ConsumableSourcePathPrefixString.Length );
-                }
-
-                // add source file without path
-                if ( s == 'f' )
-                {
-                    // can we cut the source file name by a prefix?
-                    String sourceFileName=    caller.SourceFileName;
-
-                    int sfnLen=         sourceFileName.Length;
-                    int appendStart=    sfnLen - 1;
-                    while( appendStart > 0 && sourceFileName[appendStart] != System.IO.Path.VolumeSeparatorChar )
-                        appendStart--;
-                    if( appendStart == 0 )
-                        dest._( sourceFileName );
-                    else
-                        dest._NC( sourceFileName, appendStart + 1, sourceFileName.Length - appendStart -1  );
-                }
-
-                // add line number or method name
-                else if ( s == 'L' )  dest._( caller.LineNumber );
-                else if ( s == 'M' )  dest._( caller.MethodName );
-            }
-            return 0;
-
-            // Date
-            case 'D':
-            {
-                // get time stamp as DateTime once
-                if ( callerDateTime == null )
-                    callerDateTime= caller.TimeStamp.InDotNetDateTime();
-
-                // avoid the allocation of a) a StringBuilder (yes, a string builder is allocated inside StringBuilder.AppendFormat!)
-                // and b) a DateTime object, if the format is the unchanged standard. And it is faster anyhow.
-                if ( DateFormat.Equals( "yyyy-MM-dd" ) )
-                {
-                    dest ._( callerDateTime.Value.Year,  4 )._( '-' )
-                         ._( callerDateTime.Value.Month, 2 )._( '-' )
-                         ._( callerDateTime.Value.Day,   2 );
-                }
-
-                // support user defined standards
-                else
-                {
-                    // detect changes of format string since last log
-                    if ( detectDateFormatChanges != DateFormat )
+                    case 'L':  // line number
                     {
-                        detectDateFormatChanges= DateFormat;
-                        dateFormatString= "{0:" + DateFormat + "}";
+                        dest._( scope.GetLineNumber() );
+                        return 0;
                     }
 
-                    // get date string from system and append to log buffer
-                    formatSB.Clear();
-                    formatSB.AppendFormat( CultureInfo.InvariantCulture, dateFormatString, callerDateTime );
-                    dest._( formatSB );
+                    default:
+                    {
+                        if( !warnedOnce )
+                        {
+                            warnedOnce= true;
+                            ALIB.WARNING( "Unknown format variable '%S" + c2 + "\' (only one warning)" );
+                        }
+                        dest._( "%ERROR" );
+                        return 0;
+                    }
                 }
+                dest._( val );
+                return 0;
             }
-            return 0;
 
             // %Tx: Time
             case 'T':
             {
                 // read sub command
-                char s= variable.Consume();
+                c2= variable.Consume();
 
-                // %TD: Time of Day
-                if ( s == 'D' )
+                // %TD: Date
+                if ( c2 == 'D' )
                 {
                     // get time stamp as DateTime once
                     if ( callerDateTime == null )
-                        callerDateTime= caller.TimeStamp.InDotNetDateTime();
+                        callerDateTime= scope.GetTimeStamp().InDotNetDateTime();
+
+                    // avoid the allocation of a) a StringBuilder (yes, a string builder is allocated inside StringBuilder.AppendFormat!)
+                    // and b) a DateTime object, if the format is the unchanged standard. And it is faster anyhow.
+                    if ( DateFormat.Equals( "yyyy-MM-dd" ) )
+                    {
+                        dest ._( callerDateTime.Value.Year,  4 )._( '-' )
+                             ._( callerDateTime.Value.Month, 2 )._( '-' )
+                             ._( callerDateTime.Value.Day,   2 );
+                    }
+
+                    // support user defined standards
+                    else
+                    {
+                        // detect changes of format string since last log
+                        if ( detectDateFormatChanges != DateFormat )
+                        {
+                            detectDateFormatChanges= DateFormat;
+                            dateFormatString= "{0:" + DateFormat + "}";
+                        }
+
+                        // get date string from system and append to log buffer
+                        formatSB.Clear();
+                        formatSB.AppendFormat( CultureInfo.InvariantCulture, dateFormatString, callerDateTime );
+                        dest._( formatSB );
+                    }
+                }
+
+                // %TT: Time of Day
+                else if ( c2 == 'T' )
+                {
+                    // get time stamp as DateTime once
+                    if ( callerDateTime == null )
+                        callerDateTime= scope.GetTimeStamp().InDotNetDateTime();
 
                     // avoid the allocation of a) a StringBuilder (yes, a string builder is allocated inside StringBuilder.AppendFormat!)
                     // and b) a DateTime object, if the format is the unchanged standard. And it is faster anyhow.
@@ -363,11 +378,11 @@ public class MetaInfo
                     }
                 }
 
-                // %TE: Time Elapsed
-                else if ( s == 'E' )
+                // %TC: Time elapsed since created
+                else if ( c2 == 'C' )
                 {
                     // create TimeSpan object (on the stack by using new! :)
-                        TimeSpan elapsed= new TimeSpan( caller.TimeStamp.Raw() - logger.TimeOfCreation.Raw() );
+                    TimeSpan elapsed= new TimeSpan( scope.GetTimeStamp().Raw() - logger.TimeOfCreation.Raw() );
 
                     if ( elapsed.Days > 0 )
                         dest._( elapsed.Days )._( TimeElapsedDays );
@@ -380,42 +395,91 @@ public class MetaInfo
                          ._( elapsed.Milliseconds, 3);
                 }
 
-                // %TE: Time Diff
+                // %TL: Time elapsed since last log call
+                else if ( c2 == 'L' )
+                    writeTimeDiff( dest, scope.GetTimeStamp().Since(logger.TimeOfLastLog).InNanos() );
+
                 else
-                    writeTimeDiff( dest, caller.TimeStamp.Since(logger.TimeOfLastLog).InNanos() );
+                {
+                    if( !warnedOnce )
+                    {
+                        warnedOnce= true;
+                        ALIB.WARNING( "Unknown format variable '%T" + c2 + "\' (only one warning)" );
+                    }
+                    dest._( "%ERROR" );
+                }
+                return 0;
             }
-            return 0;
 
 
-            // Thread
+            // thread name / ID
             case 't':
             {
-                #if !ALOX_NO_THREADS
-                    // get name length and store max value
+                c2= variable.Consume();
+
+                if ( c2 == 'N' )
+                {
                     dest.Field()
-                         ._( caller.ThreadName )
-                       .Field( logger.AutoSizes.Next( caller.ThreadName.Length(), 0 ), Alignment.Center );
-                #endif
+                        ._( scope.GetThreadName() )
+                        .Field( logger.AutoSizes.Next( scope.GetThreadName().Length(), 0 ), Alignment.Center );
+                }
+                else if ( c2 == 'I' )
+                {
+                    tmpAString._()._( scope.GetThreadID() );
+                    dest.Field()
+                        ._( tmpAString )
+                        .Field( logger.AutoSizes.Next( tmpAString           .Length(), 0 ), Alignment.Center );
+                }
+                else
+                {
+                    if( !warnedOnce )
+                    {
+                        warnedOnce= true;
+                        ALIB.WARNING( "Unknown format variable '%t" + c2 + "\' (only one warning)" );
+                    }
+                    dest._( "%ERROR" );
+                }
+                return 0;
             }
-            return 0;
 
-            case 'L':   dest._ (    level == Log.Level.Error    ? LogLevelError
-                                  : level == Log.Level.Warning  ? LogLevelWarning
-                                  : level == Log.Level.Info     ? LogLevelInfo
-                                  :                               LogLevelVerbose    );
-            return 0;
-
-            case 'O':
+            case 'L':
             {
-                // If no domain logged yet and domain name is empty, we omit it
-                    dest.Field()
-                         ._( domain )
-                       .Field( logger.AutoSizes.Next( domain.Length(), 0 ), Alignment.Center );
+                c2= variable.Consume();
+                     if ( c2 == 'G' )     dest._NC( logger.GetName() );
+                else if ( c2 == 'X' )     dest._NC( scope.GetLoxName() );
+                else
+                {
+                    if( !warnedOnce )
+                    {
+                        warnedOnce= true;
+                        ALIB.WARNING( "Unknown format variable '%L" + c2 + "\' (only one warning)" );
+                    }
+                    dest._( "%ERROR" );
+                    return 0;
+                }
+                return 0;
             }
-            return 0;
+
+            case 'P':
+            {
+                dest._NC( Util.GetProcessName() );
+                return 0;
+            }
+
+            case 'V':   dest._ (    verbosity == Verbosity.Error    ? VerbosityError
+                                  : verbosity == Verbosity.Warning  ? VerbosityWarning
+                                  : verbosity == Verbosity.Info     ? VerbosityInfo
+                                  :                               VerbosityVerbose    );
+                        return 0;
+
+            case 'D':
+            {
+                dest.Field()._( domain.FullPath ).Field( logger.AutoSizes.Next( domain.FullPath.Length(), 0 ), Alignment.Left );
+                return 0;
+            }
 
             case '#':    dest._( logger.CntLogs, LogNumberMinDigits );
-            return 0;
+                         return 0;
 
             // A: Auto tab
             case 'A':
@@ -432,15 +496,17 @@ public class MetaInfo
                                             :   (char) ( 'A' + extraSpace );
 
                 dest._( "\x1Bt" )._( escNo );
+                return 1;
             }
-            return 1;
-
-            case 'N':    dest._( logger.Name );
-            return 0;
 
             default:
             {
-                ALIB.WARNING( "Unknown format character \'" + variable.Buf[variable.Start - 1] + "\'" );
+                if( !warnedOnce )
+                {
+                    warnedOnce= true;
+                    ALIB.WARNING( "Unknown format variable \'" + variable.Buf[variable.Start - 1] + "\'" );
+                }
+                dest._( "%ERROR" );
             }
             return 0;
         }
@@ -453,8 +519,8 @@ public class MetaInfo
      *  Helper function that logs a time given difference into the given buffer in a human readable
      *  format. Works from micro seconds to days.
      *
-     * @param buf         The buffer to write the time difference representation into. </param>
-     * @param diffNanos     The time difference to write in nanoseconds.     </param>
+     * @param buf         The buffer to write the time difference representation into.
+     * @param diffNanos   The time difference to write in nanoseconds.
      **********************************************************************************************/
     protected virtual void writeTimeDiff( AString buf, long diffNanos )
     {

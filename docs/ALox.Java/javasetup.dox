@@ -114,7 +114,7 @@ To stream ALox logging into LogCat create a logger of type [AndroidLogCatLogger]
 instead of type [ConsoleLogger](@ref com.aworx.lox.loggers.ConsoleLogger) as follows:
 
 \code{.cs}
-    Log.addLogger( new AndroidLogCatLogger() );
+    Log.setVerbosity( new AndroidLogCatLogger("LogCat"), Verbosity.VERBOSE );
 \endcode
 
 Attention: The normal [ConsoleLogger](@ref com.aworx.lox.loggers.ConsoleLogger) will not produce
@@ -126,7 +126,7 @@ any visible output using the Android Emulator or a debugging device.
 To test your setup, add minimum ALox functionality to your project as described in the first chapter
 of \ref javatutorial into your main method or anywhere you think it is appropriate:
 
-\snippet ut_com_aworx_lox/UT_alox_tutorial.java        Tut_Hello_ALox
+\snippet ut_alox/UT_dox_tutorial.java        Tut_Hello_ALox
 
 
 # 2. Pruning ALox Code in Java#  {#javasetup_pruning}
@@ -168,7 +168,7 @@ The disadvantages are:
 
 There are two possible configurations that differ in the breadth of pruning:
 - _Pruning with release logging enabled_<br>
-  This is the configuration you need if just your debug log statements are to be
+  This is the configuration you need if just your debug <em>Log Statements</em> are to be
   pruned. Use this, if you use ALox to perform some release logging.
 - _Pruning all ALox code_<br>
   This is the configuration you need to prune just all ALox code out of your
@@ -184,7 +184,7 @@ For quick information on the terms "debug and release logging", [read the FAQ](.
 For debug logging, you should build your message strings using class
 [LogBuf](@ref com::aworx::lox::LogBuf) and preferably the singleton of that acquired with method
 [Log.buf()](@ref com::aworx::lox::Log::buf). <br>
-See \ref tutjava_more_logbuf "Using the log buffer singleton" for more information on how to use this.<br>
+See \ref tutjava_logbuf "Using the log buffer singleton" for more information on how to use this.<br>
 Otherwise some remainders of unused strings and string concatenation code might remain. This is because
 ProGuard removes the method calls but not ultimately all parameter creation code of such method invocations.
 Using class *LogBuf* you are sure that this gets pruned.<br>
@@ -374,27 +374,29 @@ to get a first understanding of ALox release logging.
 As mentioned already, *ProGuard* provides an optional feature to obfuscate your code.
 Again, this is only optional and obfuscation has benefits but also some disadvantages.
 In respect to ALox, obfuscation introduces one little difficulty related
-to all methods that work with the "caller scope". Most remarkably, most default domain
+to all methods that work with the "caller scope". Most remarkably, most Scope Domain
 setting will stop working, because packages, class names and file names get mangled
 heavily.<br>
 The implication is, that any release logging statements (debug log is not affected as
-this is either way pruned from your release binaries) must not use default domains.
+this is either way pruned from your release binaries) must not use Scope Domains.
 In other words, for each invocation of a log call (again, only of release logging!)
-the domain name has to be explicitly set.
+the <em>Log Domain</em> has to be explicitly set.
 
 For release logging in combination with obfuscation, you might want to suppress the
-output of caller information in the log line (see
+output of scope information in the log line (see
 [TextLogger.metaInfo](@ref com::aworx::lox::core::textlogger::TextLogger::metaInfo) for
 information on how to do that).
 
 On the same token, the methods
-[Lox.setMarker()](@ref com::aworx::lox::Lox::setMarker) and
-[Lox.getMarker()](@ref com::aworx::lox::Lox::getMarker) will not work properly
-if you obfuscate. This is also not a severe restriction, as these function have been introduced
-to ALox to support debug logging code and hence are good to be pruned!
-For release logging, similar functionality can be included directly into the code.
+[Lox.setDomain](@ref com::aworx::lox::Lox::setDomain),
+[Lox.store]         (@ref com::aworx::lox::Lox::store)/
+[retrieve]          (@ref com::aworx::lox::Lox::retrieve) and
+[Lox.once]          (@ref com::aworx::lox::Lox::store) will not work properly
+with language-related \e Scopes if you obfuscate.
+For more information on this, refer to the user manual chapters about  <em>Scope Domains</em>,
+\e Scopes and features building on \e Scopes.
 
-Finally, it is obvious that [LogToools.instance()](@ref com::aworx::lox::tools::LogTools::instance) will
+Finally, it is obvious that [LogTools.instance()](@ref com::aworx::lox::tools::LogTools::instance) will
 not show readable results when your classes become obfuscated.
 
 ## 2.5 Mission accomplished: Perfect Auto Pruning of ALox code! ##  {#javasetup_pruning_result}
@@ -402,12 +404,12 @@ not show readable results when your classes become obfuscated.
 The result of the things said above incorporate **six great news** for you:
 
 1. You can safely use all methods of classes *Log* and *LogTools* without any special treatment for pruning within your code.
-2. The impact of using ALox debug log statements in respect to execution speed in the release version of your application
+2. The impact of using ALox debug <em>Log Statements</em> in respect to execution speed in the release version of your application
    is exactly ZERO, because the methods do not make it into your release executable!
 3. The impact of using ALox in respect to the footprint of your executable extremely small (all that remains are
    some empty classes with a few stubs). This remains true, even if thousands of new features would come in future
    versions of ALox!
-4. All debug log statements, including all textual messages you are adding to your log calls, are completely
+4. All debug <em>Log Statements</em>, including all textual messages you are adding to your log calls, are completely
    pruned from the release executable! Your "debug secrets" can not be reverse engineered, they are just gone!
 5. Even if you mix debug and release logging features of ALox the above stays true, except that the footprint
    of the ALox library is a little higher (e.g. it is 50kb in V1.1.0) !

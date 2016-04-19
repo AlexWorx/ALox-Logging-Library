@@ -17,9 +17,9 @@ As a matter of fact, this manual provides a more abstract and high level view on
 Such general understanding of the the ALox architecture and design concepts, might
 be important to maximize the use of ALox.
 
-If you have not worked with ALox, yet, and have not read one of the tutorials, we recommend to
-walk through one of the language specific tutorials in the corresponding programming language specific
-documentation first. There, you might find information on how to setup up ALox projects for
+If you have not worked with ALox, yet, and have not read one of the tutorials, we <b>highly recommend to
+walk through one of the language specific tutorials</b> found  in the corresponding programming language
+specific documentation first. There, you also might find information on how to setup up ALox projects for
 the platform you are using. The language specific documentation is always reachable through
 the main menu of this book (above). They are:
 
@@ -27,26 +27,66 @@ the main menu of this book (above). They are:
 - [ALox for C#](cs_ref/csmainpage.html)
 - [ALox for Java](java_ref/javamainpage.html)
 
-\note <b>Differences of ALox for C++, C# and Java</b>:<br>
-      As ALox is available for C++, C# and Java, the class and member names within this document
-      may vary a little per language. Especially the class **Log** has no interface in C++ while
-      in C# and Java its' interface is a copy of that of class **Lox**, made for pruning the code.
-      In contrast, in C++ the macros Log_xxx and Lox_xxx are used to provide pruned and non-pruned
-      access to methods of class Lox. Please remember this, when reading this manual and translate
-      the references used herein to the right ones of the language of your choice.
+<b>Orthogonality of ALox and its API</b>:<br>
+Reading this manual, you will see that some topics might become a little complex, maybe more
+complex than what you might expect from a logging framework that you probably just want to use
+for rather 'simple' debug-logging.<br>
+The good news is that ALox' features and API is design are to a high degree 'orthogonal'.
+Orthogonality in API design means that features that you do not use, do not know and that you might not be even
+interested in, are not even visible when using %ALox. This is mainly reached by three things:
+- Simplified method invocations by omitting all optional parameters (in Java overloaded methods omitting these parameters)
+- Reasonable default values for optional parameters
+- Automatic internal prerequisites when ALox 'detects' that a feature is not used.
+
+This way, you can use ALox in an extremely simple way, just as if ALox <em>was</em> extremely simple.
+And maybe just over time, you start reading this book and go into details that you need to conquer a
+next, more complex use case. For productively using ALox, the tutorials should do!
 
 
-<P>
+<b>Differences of ALox for C++, C# and Java</b>:<br>
+As ALox is available for C++, C# and Java, the class and member names within this document
+may vary a little per language. Fore example, class **Log** does not provide a mirrored version
+of the interface of class \b Lox in C++ as it has in C# and Java versions of ALox, where this is
+used for pruning exactly this interface out of release code.
+In contrast, in C++ the macros \b Log_xxx and \b Lox_xxx are used to provide pruned and non-pruned
+access to methods of class Lox. Which means an underscore in C++ '_' replaces a dot '.' in Java/C#.
+
+Also, in Java, interface methods generally start with a non-capital letter, while in C# and C++ the
+same method starts with a capital one. Please remember, that such details are not an error in the
+user manual, but we have just decided not to hint to this fact all of the time.
+
+Wherever reasonable, language specific differences are named and briefly explained.
+
+<p>
 
 # Contents #
 
-1. \ref man_intro
-2. \ref man_features_and_limitations
-3. \ref man_alox_architecture
-4. \ref man_levelsanddomains
-5. \ref man_loggers
-6. \ref man_debug_and_release_logging
-7. \ref GrpALoxConfigVars
+### Using ALox ###
+
+\ref man_intro                            <br>
+\ref man_features_and_limitations         <br>
+\ref man_alox_terminology                 <br>
+\ref man_logdomains                       <br>
+\ref man_scopes                           <br>
+\ref man_log_once                         <br>
+\ref man_prefix_logables                  <br>
+\ref man_log_data                         <br>
+\ref man_multi_threaded                 <br>
+\ref man_debug_and_release_logging        <br>
+\ref man_internal_domains                 <br>
+\ref man_external_verbosity_configuration <br>
+\ref man_trim_source_path                 <br>
+\ref man_domain_substitution              <br>
+\ref man_colorful_loggers                 <br>
+
+### Reference Appendix ###
+\ref GrpALoxConfigVars                    <br>
+\ref man_apdx_auto_config                 <br>
+
+### Extending ALox ###
+\ref man_ext_namespaces                   <br>
+\ref man_ext_loggers                      <br>
+
 
 */
 

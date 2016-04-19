@@ -42,6 +42,8 @@ UT_CLASS()
 //---------------------------------------------------------------------------------------------------------
 
 UT_METHOD(CurrentDir)
+{
+    UT_INIT();
 
     UT_PRINT(""); UT_PRINT( "### Environment::CurrentWorkingDir###" );
 
@@ -59,6 +61,8 @@ UT_METHOD(CurrentDir)
 //--- GetVariable
 //---------------------------------------------------------------------------------------------------------
 UT_METHOD(GetVariable)
+{
+    UT_INIT();
 
     UT_PRINT(""); UT_PRINT( "### Environment::GetVariable###" );
 
@@ -79,6 +83,8 @@ UT_METHOD(GetVariable)
 //--- Processes
 //---------------------------------------------------------------------------------------------------------
 UT_METHOD(Processes)
+{
+    UT_INIT();
 
     UT_PRINT(""); UT_PRINT( "### Environment::GetProcessInfo###" );
 

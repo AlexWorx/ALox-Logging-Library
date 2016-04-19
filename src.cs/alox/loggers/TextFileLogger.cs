@@ -21,11 +21,10 @@ namespace cs.aworx.lox.loggers    {
 
 /** ************************************************************************************************
  * This is a very simple file logger for textual log outputs. The file name string provided
- * in the constructor is not verified. If write operations fail, this logger disables
- * itself by setting the inherited flag isDisabled to true.
- * The fileName may be changed by simply setting the public member #FileName and the flag
- * #IsDisabled may be set to false by the user without the need of any other interaction other
- * than acquiring the \c Lox that the logger is added to.
+ * in the constructor is not verified. 
+ * The fileName may be changed any time by simply setting the public member #FileName 
+ * without the need of any other interaction other than acquiring the \c Lox that this logger is 
+ * attached to.
  **************************************************************************************************/
 public class TextFileLogger : PlainTextLogger
 {
@@ -46,22 +45,23 @@ public class TextFileLogger : PlainTextLogger
     /** Flag to prevent file open/close operations when multi line text logging is performed. */
     protected        bool                    currentlyInMultiLineOp;
 
+    /** Flag that indicates if there was an error opening he file */
+    public           bool                    hasIoError                                      =false;
 
     /** ********************************************************************************************
      * Creates a TextFileLogger.
      *
      * @param fileName    The filename (potentially including a path) of the output log file.
-     * @param loggerName  The name of the logger. Defaults to "TEXTFILE".
+     * @param loggerName  The name of the \e Logger. Defaults to "TEXTFILE".
      **********************************************************************************************/
     public TextFileLogger( String fileName, String loggerName= null  )
-    : base ( loggerName, "TEXTFILE" )
+    : base ( loggerName, "TEXTFILE", false )
     {
         this.FileName= fileName;
     }
 
     /** ********************************************************************************************
-     * Opens the file. If not successful, the logger will be disabled by setting field
-     * #IsDisabled to \c true.
+     * Opens the file.
      **********************************************************************************************/
     protected void openFile()
     {
@@ -72,20 +72,23 @@ public class TextFileLogger : PlainTextLogger
         #pragma warning disable 168
         catch (Exception e)
         {
-            IsDisabled=     true;
+            hasIoError=     true;
             #if ALOX_DBG_LOG
-                LogTools.Exception( Log.LOX.InternalDomain, Log.Level.Error, e, "Can not open file: \"" + FileName + "\". Exception follows"  );
+                LogTools.Exception( ALox.InternalDomains, Verbosity.Error, e, "Can not open file: \"" + FileName + "\". Exception follows"  );
             #endif
         }
         #pragma warning restore 168
+            hasIoError= false;
     }
 
     /** ********************************************************************************************
-     * Closes the file. If not successful, the logger will be disabled by setting field
-     * #IsDisabled to \c true.
+     * Closes the file.
      **********************************************************************************************/
     protected void closeFile()
-    {
+    {   
+        if( hasIoError )
+            return;
+
         try
         {
             sw.Close();
@@ -93,9 +96,9 @@ public class TextFileLogger : PlainTextLogger
         #pragma warning disable 168
         catch (Exception e)
         {
-            IsDisabled=     true;
+            hasIoError=     true;
             #if ALOX_DBG_LOG
-                LogTools.Exception( Log.LOX.InternalDomain, Log.Level.Error, e, "Error closing file: \"" + FileName + "\". Exception follows"  );
+                LogTools.Exception( ALox.InternalDomains, Verbosity.Error, e, "Error closing file: \"" + FileName + "\". Exception follows"  );
             #endif
         }
         #pragma warning restore 168
@@ -104,14 +107,14 @@ public class TextFileLogger : PlainTextLogger
     /** ********************************************************************************************
      * Implementation of abstract interface signaling start and end of a multi line message.
      * On start signal, the log file is opened, closed otherwise. Also stores the actual
-     * multi line message state in a field. This is for doTextLog() to know whether file is to be
+     * multi line message state in a field. This is for logText() to know whether file is to be
      * opened/closed.
      *
      * @param phase  Indicates the beginning or end of a multi-line operation.
      **********************************************************************************************/
     protected override void notifyMultiLineOp( Phase phase )
     {
-        // save state (to have it in doTextLog)
+        // save state (to have it in logText)
         currentlyInMultiLineOp= (phase == Phase.Begin );
 
         // open/close the file
@@ -125,7 +128,7 @@ public class TextFileLogger : PlainTextLogger
      * Start a new log line. Appends a new-line character sequence to previously logged lines.
      *
      * @param phase  Indicates the beginning or end of a log operation.
-     * @return Always returns true.
+     * @return The IO status (\c true if OK).
      **********************************************************************************************/
     protected override bool notifyLogOp( Phase phase )
     {
@@ -139,9 +142,9 @@ public class TextFileLogger : PlainTextLogger
             #pragma warning disable 168
             catch (Exception e)
             {
-                IsDisabled=     true;
+                hasIoError=     true;
                 #if ALOX_DBG_LOG
-                    LogTools.Exception( Log.LOX.InternalDomain, Log.Level.Error, e, "Error writing to file: \"" + FileName + "\". Exception follows"  );
+                    LogTools.Exception( ALox.InternalDomains, Verbosity.Error, e, "Error writing to file: \"" + FileName + "\". Exception follows"  );
                 #endif
                 return false;
             }
@@ -157,7 +160,7 @@ public class TextFileLogger : PlainTextLogger
                 closeFile();
         }
 
-        return true;
+        return !hasIoError;
     }
 
     /** ********************************************************************************************
@@ -166,26 +169,27 @@ public class TextFileLogger : PlainTextLogger
      * @param buffer   The string to write a portion of.
      * @param start    The start of the portion in \p buffer to write out.
      * @param length   The length of the portion in \p buffer to write out.
-     * @return Always returns true.
+     * @return The IO status (\c true if OK).
      **********************************************************************************************/
-    protected override bool doLogSubstring( AString buffer, int start, int length )
+    protected override bool logSubstring( AString buffer, int start, int length )
     {
-        try
+        if( !hasIoError )
         {
-            sw.Write( buffer.Buffer(), start, length );
+            try
+            {
+                sw.Write( buffer.Buffer(), start, length );
+            }
+            #pragma warning disable 168
+            catch (Exception e)
+            {
+                hasIoError=     true;
+                #if ALOX_DBG_LOG
+                    LogTools.Exception( ALox.InternalDomains, Verbosity.Error, e, "Error writing to file: \"" + FileName + "\". Exception follows"  );
+                #endif
+            }
+            #pragma warning restore 168
         }
-        #pragma warning disable 168
-        catch (Exception e)
-        {
-            IsDisabled=     true;
-            #if ALOX_DBG_LOG
-                LogTools.Exception( Log.LOX.InternalDomain, Log.Level.Error, e, "Error writing to file: \"" + FileName + "\". Exception follows"  );
-            #endif
-            return false;
-        }
-        #pragma warning restore 168
-
-        return true;
+        return !hasIoError;
     }
 
     #endif // ALOX_DBG_LOG || ALOX_REL_LOG

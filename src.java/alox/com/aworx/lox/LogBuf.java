@@ -467,7 +467,7 @@ public class LogBuf
     /** ********************************************************************************************
      *  Appends a double value as string representation.
      *  The conversion is performed by an object of class
-     *  \ref aworx::lib::strings::NumberFormat "NumberFormat".
+     *  \ref com::aworx::lib::strings::NumberFormat "NumberFormat".
      *  If no object of this type is provided with optional parameter \p numberFormat,
      *  the static default object found in
      *  \ref com::aworx::lib::strings::NumberFormat::global "NumberFormat.global" is used.

@@ -80,13 +80,13 @@ namespace                   strings {
             for (int aworx_astring_dbg_i= -16 ; aworx_astring_dbg_i < 0 ; aworx_astring_dbg_i++)
                 if ( buffer[aworx_astring_dbg_i] != 2 )
                 {
-                    ALIB_ERROR_AS( "Magic byte not found at start (buffer[" << aworx_astring_dbg_i << "])." );
+                    ALIB_ERROR_S512( "Magic byte not found at start (buffer[" << aworx_astring_dbg_i << "])." );
                     break;
                 }
             for (int aworx_astring_dbg_i= 1 ; aworx_astring_dbg_i <= 16 ; aworx_astring_dbg_i++)
                 if ( buffer[ capacity + aworx_astring_dbg_i] != 3 )
                 {
-                    ALIB_ERROR_AS( "Magic byte not found at end (buffer[" << capacity + aworx_astring_dbg_i << "])." );
+                    ALIB_ERROR_S512( "Magic byte not found at end (buffer[" << capacity + aworx_astring_dbg_i << "])." );
                     break;
                 }
         }

@@ -130,6 +130,8 @@ void testParamSubstring( ALIBUnitTesting& ut, const char* exp, const Substring& 
 //--- Explicit constructors
 //---------------------------------------------------------------------------------------------------------
 UT_METHOD( ConstructorsExplicit )
+{
+    UT_INIT();
 
     // before we begin...
     static_assert( std::is_nothrow_move_constructible<String>       ::value, "String has to be move constructable with no assertions");
@@ -371,6 +373,8 @@ UT_METHOD( ConstructorsExplicit )
 
 
 UT_METHOD( ConstructorsImplicit )
+{
+    UT_INIT();
 
     const char*              testConstCharP= "TEST";
     char*                    testCharP=      (char*) testConstCharP;
@@ -499,6 +503,8 @@ UT_METHOD( ConstructorsImplicit )
 //--- Assignment
 //---------------------------------------------------------------------------------------------------------
 UT_METHOD( Assignment )
+{
+    UT_INIT();
 
     wchar_t backTest[1024];
 
@@ -821,6 +827,8 @@ UT_METHOD( Assignment )
 //--- Append and operator <<
 //---------------------------------------------------------------------------------------------------------
 UT_METHOD( AppendAndAppendOperator )
+{
+    UT_INIT();
 
     const char*              testConstCharP= "TEST";
     char*                    testCharP=       (char*) testConstCharP;
@@ -1037,6 +1045,8 @@ UT_METHOD( AppendAndAppendOperator )
 //--- Move constructors
 //---------------------------------------------------------------------------------------------------------
 UT_METHOD( MoveConstructors )
+{
+    UT_INIT();
 
     lib::Report::GetDefault().PushHaltFlags( false, false );
 

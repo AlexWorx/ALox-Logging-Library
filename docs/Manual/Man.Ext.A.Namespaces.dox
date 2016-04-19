@@ -1,0 +1,263 @@
+// #################################################################################################
+//  Documentation - ALox Logging Library
+//
+//  (c) 2013-2016 A-Worx GmbH, Germany
+//  Published under MIT License (Open Source License, see LICENSE.txt)
+// #################################################################################################
+
+/**
+\page man_ext_namespaces         A - Namespaces
+
+\tableofcontents
+
+
+The implementation parts of the ALox library are split into different namespaces
+(in Java called "packages").
+
+All A-Worx software namespaces start with
+
+        com.aworx       // Java
+        cs.aworx        // C#
+        aworx           // C++
+
+This is the rational behind this setup:
+1. The Java language standards just demands things to be that way.
+2. The other language standards were never so explicit like the Java was
+   (and were never threatening with being arrested and even worse things if one does not apply!)
+3. We are in need to have different prefixes, otherwise our preferred documentation system
+   (we use the unrivaled coolest tool [Doxygen](http://www.stack.nl/~dimitri/doxygen/)!) gets irritated
+   due to ambiguous symbols.
+
+
+A design principle of namespaces in ALox is that the relationship
+between namespaces is not bidirectional. This means that if one class in a namespace \b A inherits
+or uses a class in a namespace \b B, then there is no reference from (any) class namespace \b B
+into namespace \b A.
+You can say here that <em>\"if \b A knows \b B then \b B must not know \b A\"</em>.
+
+Lets start with two namespaces:
+
+- <b>\[com.|cs.\]%aworx.lox</b>
+  ([C++](@ref #aworx::lox),
+  [C#]  (@ref #cs::aworx::lox),
+  [Java](@ref #com::aworx::lox) )<br>
+  This is the main and basic namespace of ALox. The central class is
+  <b>Lox</b>
+  ([C++] (@ref #aworx::lox::Lox),
+   [C#]  (@ref #cs::aworx::lox::Lox),
+   [Java](@ref #com::aworx::lox::Lox)),
+  which acts as a container for the \e Loggers, manages a set of different settings and
+  provides the user interface (API) into ALox logging.<br>
+
+- <b>\[com.|cs.\]%aworx.lox.core</b>
+ ([C++](@ref #aworx::lox::core),
+ [C#]  (@ref #cs::aworx::lox::core),
+ [Java](@ref #com::aworx::lox::core) ) <br>
+  As the name says, within this namespace (package) you will find the core classes needed for
+  logging. Besides the abstract class
+  <b>Logger</b>
+  ([C++] (@ref #aworx::lox::core::Logger),
+   [C#]  (@ref #cs::aworx::lox::core::Logger),
+   [Java](@ref #com::aworx::lox::core::Logger)),
+  there are classes that
+  care about internal things like scope information or <em>Log Domains</em>. <br>
+  In addition, utility classes for certain \e Logger types are located here
+  (currently for *TextLoggers*, probably more to come in the future).
+  A normal user of the ALox Logging Library would not use classes of this namespace directly.
+
+
+Now, namespace <b>%aworx.lox</b> knows namespace <b>%aworx.lox.core</b>, but not vice versa:
+
+\dot
+digraph G
+{
+    node [shape=plaintext, fontsize="10", fontname="Courier"]
+
+    lox     [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+                           <TR><TD PORT="first" BGCOLOR="gray"  ><b>aworx.lox</b></TD></TR>
+                           <TR><TD                              >class Lox</TD></TR>
+                           <TR><TD                              >class Log</TD></TR>
+                           <TR><TD                              >...</TD></TR>
+              </TABLE>>];
+
+    core    [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+                           <TR><TD PORT="first" BGCOLOR="gray"  ><b>aworx.lox.core</b></TD></TR>
+                           <TR><TD                              >class Domain</TD></TR>
+                           <TR><TD                              >class ScopeStore</TD></TR>
+                           <TR><TD                              >class ScopeInfo</TD></TR>
+                           <TR><TD                              >class Logger</TD></TR>
+                           <TR><TD                              >class TextLogger</TD></TR>
+                           <TR><TD                              >...</TD></TR>
+              </TABLE>>];
+
+    lox -> core     [label= " knows" arrowhead="open",  fontsize="10", fontname="Helvetica"];
+}
+\enddot
+
+A third namespace is:
+- <b>\[com.|cs.\]%aworx.lox.loggers</b>
+ ([C++](@ref #aworx::lox::loggers),
+ [C#]  (@ref #cs::aworx::lox::loggers),
+ [Java](@ref #com::aworx::lox::loggers) ) <br>
+This namespace provide ready to use *Logger* types, e.g.
+  <b>AnsiConsoleLogger</b>
+  ([C++] (@ref #aworx::lox::loggers::AnsiConsoleLogger),
+   [C#]  (@ref #cs::aworx::lox::loggers::AnsiConsoleLogger),
+   [Java](@ref #com::aworx::lox::loggers::AnsiConsoleLogger)), or
+  <b>MemoryLogger</b>
+  ([C++] (@ref #aworx::lox::loggers::MemoryLogger),
+   [C#]  (@ref #cs::aworx::lox::loggers::MemoryLogger),
+   [Java](@ref #com::aworx::lox::loggers::MemoryLogger)).
+
+Neither <b>%aworx.lox.core</b> nor <b>%aworx.lox</b> know about this namespace. Of-course, <b>%aworx.lox.loggers</b> knows
+about <b>%aworx.lox.core</b>.
+This makes sense, because instances of *Lox* get instances of abstract type *Logger* attached.
+All that class *Lox* knows is that they are derived from class *Logger* in namespace *aworx.lox.core*.
+This allows you to create your own loggers.
+
+Let's imagine you are using ALox from within your own namespace *yournamespace* and you have
+created your own *Logger* class, residing in namespace *yourloggers*.
+This then looks as follows:
+
+\dot
+digraph G
+{
+    node [shape=plaintext, fontsize="10", fontname="Courier"]
+
+    core    [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+                           <TR><TD PORT="first" BGCOLOR="gray"  ><b>aworx.lox.core</b></TD></TR>
+                           <TR><TD                              >class Domain</TD></TR>
+                           <TR><TD                              >class ScopeInfo</TD></TR>
+                           <TR><TD                              >class Logger</TD></TR>
+                           <TR><TD                              >class TextLogger</TD></TR>
+                           <TR><TD                              >...</TD></TR>
+              </TABLE>>];
+
+    lox     [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+                           <TR><TD PORT="first" BGCOLOR="gray"  ><b>aworx.lox</b></TD></TR>
+                           <TR><TD                              >class Lox</TD></TR>
+                           <TR><TD                              >class Log</TD></TR>
+                           <TR><TD                              >...</TD></TR>
+              </TABLE>>];
+
+    loggers [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+                           <TR><TD PORT="first" BGCOLOR="gray"  ><b>aworx.lox.loggers</b></TD></TR>
+                           <TR><TD                              >class ConsoleLogger</TD></TR>
+                           <TR><TD                              >class MemoryLogger</TD></TR>
+                           <TR><TD                              >...</TD></TR>
+              </TABLE>>];
+
+    yournamespace [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+                           <TR><TD PORT="first" BGCOLOR="gray"  ><b><font color="blue">yournamespace</font></b></TD></TR>
+                           <TR><TD                              >class YourClass</TD></TR>
+                           <TR><TD                              >...</TD></TR>
+              </TABLE>>];
+
+    yourloggers   [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+                           <TR><TD PORT="first" BGCOLOR="gray"  ><b><font color="blue">yourloggers</font></b></TD></TR>
+                           <TR><TD                              >class YourLogger</TD></TR>
+                           <TR><TD                              >...</TD></TR>
+              </TABLE>>];
+
+
+    lox             -> core          [label= " knows" arrowhead="open",  fontsize="10", fontname="Helvetica"];
+    loggers         -> core          [label= " knows" arrowhead="open",  fontsize="10", fontname="Helvetica"];
+    yournamespace   -> lox           [label= " knows" arrowhead="open",  fontsize="10", fontname="Helvetica"];
+    yournamespace   -> loggers       [label= " knows" arrowhead="open",  fontsize="10", fontname="Helvetica"];
+    yournamespace   -> yourloggers   [label= " knows" arrowhead="open",  fontsize="10", fontname="Helvetica"];
+    yourloggers     -> loggers       [label= " probably knows" arrowhead="open",  fontsize="10", fontname="Helvetica", style="dashed"];
+    yourloggers     -> core          [label= " knows" arrowhead="open",  fontsize="10", fontname="Helvetica"];
+}
+\enddot
+
+Besides understanding a little about the namespaces strategy of ALox, a simple takeaway from this
+is that you need to make namespaces <b>%aworx.lox</b> and <b>%aworx.lox.loggers</b> available to your
+code, but not <b>%aworx.lox.core</b>.
+
+\note As C++ supports it nicely, in this implementation we are using a special mechanism to get
+      an 'alias' of all major classes into namespace \b aworx. This is explained technically in
+      \ref aworx "C++ namespace aworx" and means that a simple <c>using aworx;</c> statement
+      is enough to \e 'see' ALox as well as ALib classes.
+
+
+Finally, there is a "underlying" namespace called <b>%aworx.lib</b> implementing \b ALib.
+This is pure, basic utility code. Some of the classes are just faster versions (more Bauhaus!)
+than equivalent existing system classes. Others do exist only to enable ALox code to look the same
+across languages and platforms. Of-course, you can read the reference documentation
+and you might use them somewhere, but this is off-topic here. There are many
+other libraries existing that are much more complete and standard. Again, we are building upon
+them, only because we really think it makes our life easier in respect to porting ALox and other
+of our projects and because it makes your logging life just faster.
+
+As you might guess, all other packages are built on <b>%aworx.lib</b>, so the graph is:
+
+
+\dot
+digraph G
+{
+    node [shape=plaintext, fontsize="10", fontname="Courier"]
+
+    core    [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+                           <TR><TD PORT="first" BGCOLOR="gray"  ><b>com.aworx.lox.core</b></TD></TR>
+                           <TR><TD                              >class Domain</TD></TR>
+                           <TR><TD                              >class ScopeInfo</TD></TR>
+                           <TR><TD                              >class Logger</TD></TR>
+                           <TR><TD                              >class TextLogger</TD></TR>
+                           <TR><TD                              >...</TD></TR>
+              </TABLE>>];
+
+    lox     [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+                           <TR><TD PORT="first" BGCOLOR="gray"  ><b>com.aworx.lox</b></TD></TR>
+                           <TR><TD                              >class Lox</TD></TR>
+                           <TR><TD                              >class Log</TD></TR>
+                           <TR><TD                              >class LogTools</TD></TR>
+                           <TR><TD                              >...</TD></TR>
+              </TABLE>>];
+
+    loggers [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+                           <TR><TD PORT="first" BGCOLOR="gray"  ><b>com.aworx.lox.loggers</b></TD></TR>
+                           <TR><TD                              >class ConsoleLogger</TD></TR>
+                           <TR><TD                              >class MemoryLogger</TD></TR>
+                           <TR><TD                              >...</TD></TR>
+              </TABLE>>];
+
+    util [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+                           <TR><TD PORT="first" BGCOLOR="gray"  ><b>com.aworx</b></TD></TR>
+                           <TR><TD                              >class AString</TD></TR>
+                           <TR><TD                              >class Tokenizer</TD></TR>
+                           <TR><TD                              >class Ticks</TD></TR>
+                           <TR><TD                              >class ThreadLock</TD></TR>
+                           <TR><TD                              >...</TD></TR>
+              </TABLE>>];
+
+
+    lox             -> core     [label= " knows" arrowhead="open",  fontsize="10", fontname="Helvetica"];
+    loggers         -> core     [label= " knows" arrowhead="open",  fontsize="10", fontname="Helvetica"];
+    lox             -> util     [label= " knows" arrowhead="open",  fontsize="10", fontname="Helvetica"];
+    loggers         -> util     [label= " knows" arrowhead="open",  fontsize="10", fontname="Helvetica"];
+    core            -> util     [label= " knows" arrowhead="open",  fontsize="10", fontname="Helvetica"];
+}
+\enddot
+
+As every rule has an exclamation, so this one has. For example, we broke
+the "if A knows B" then "B does not know A" rule
+intentionally by adding basic 'structs', constants and enums, like
+<b>%Verbosity</b>
+  ([C++] (@ref      #aworx::lox::Verbosity),
+   [C#]  (@ref  #cs::aworx::lox::Verbosity),
+   [Java](@ref #com::aworx::lox::Verbosity)) or
+<b>%Scope</b>
+  ([C++] (@ref      #aworx::lox::Scope),
+   [C#]  (@ref  #cs::aworx::lox::Scope),
+   [Java](@ref #com::aworx::lox::Scope)), to to the outer, main namespace
+<b>\[com.|cs.\]%aworx.lox</b>
+ ([C++](@ref      #aworx::lox),
+ [C#]  (@ref  #cs::aworx::lox),
+ [Java](@ref #com::aworx::lox) ) for convenience. The same applies to class
+<b>%ESC</b>
+  ([C++] (@ref      #aworx::lox::ESC),
+   [C#]  (@ref  #cs::aworx::lox::ESC),
+   [Java](@ref #com::aworx::lox::ESC)).
+And when you have a closer look into the source code you might find other minor samples.
+
+*/

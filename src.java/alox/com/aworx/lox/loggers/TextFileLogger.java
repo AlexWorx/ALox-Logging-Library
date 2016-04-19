@@ -10,18 +10,18 @@ import java.io.*;
 
 import com.aworx.lib.enums.Phase;
 import com.aworx.lib.strings.AString;
-import com.aworx.lox.Log;
+import com.aworx.lox.ALox;
+import com.aworx.lox.Verbosity;
 import com.aworx.lox.core.textlogger.PlainTextLogger;
 import com.aworx.lox.tools.LogTools;
 
 
 /** ************************************************************************************************
  * This is a very simple file logger for textual log outputs. The file name string provided
- * in the constructor is not verified. If write operations fail, this logger disables
- * itself by setting the inherited flag isDisabled to true.
- * The fileName may be changed by simply setting the public member #fileName and the flag
- * #isDisabled may be set to false by the user without the need of any other interaction
- * than acquiring the \c Lox that the logger is added to.
+ * in the constructor is not verified. 
+ * The fileName may be changed any time by simply setting the public member #fileName 
+ * without the need of any other interaction other than acquiring the \c Lox that this logger is 
+ * attached to.
  **************************************************************************************************/
 public class TextFileLogger extends PlainTextLogger
 {
@@ -37,15 +37,18 @@ public class TextFileLogger extends PlainTextLogger
     /** Flag to prevent file open/close operations when multi-line text logging is performed. */
     protected boolean                   currentlyInMultiLineOp;
 
+    /** Flag that indicates if there was an error opening he file */
+    public    boolean                   hasIoError                                           =false;
+    
     /** ********************************************************************************************
      * Creates a TextFileLogger with the given name.
      *
      * @param fileName      The filename (potentially including a path) of the output log file.
-     * @param loggerName  The name of the logger. Defaults to "TEXTFILE".
+     * @param loggerName  The name of the \e Logger. Defaults to "TEXTFILE".
      **********************************************************************************************/
     public    TextFileLogger( String fileName, String  loggerName  )
     {
-        super( loggerName, "TEXTFILE" );
+        super( loggerName, "TEXTFILE", false );
         this.fileName= fileName;
     }
 
@@ -56,13 +59,12 @@ public class TextFileLogger extends PlainTextLogger
      **********************************************************************************************/
     public    TextFileLogger( String fileName )
     {
-        super( null, "TEXTFILE" );
+        super( null, "TEXTFILE", false );
         this.fileName= fileName;
      }
 
     /** ********************************************************************************************
-     * Opens the file. If not successful, the logger will be disabled by setting field
-     * #isDisabled to \c true.
+     * Opens the file.
      **********************************************************************************************/
     protected void openFile()
     {
@@ -73,32 +75,36 @@ public class TextFileLogger extends PlainTextLogger
         }
         catch (Exception e)
         {
-            isDisabled=     true;
-            LogTools.exception( Log.LOX.internalDomain, Log.Level.ERROR, e, "Can not open file: \"" + fileName + "\". Exception follows"  );
+            hasIoError=     true;
+            LogTools.exception( ALox.INTERNAL_DOMAINS, Verbosity.ERROR, e, "Can not open file: \"" + fileName + "\". Exception follows"  );
+            return;
         }
+        hasIoError= false;
     }
 
     /** ********************************************************************************************
-     * Closes the file. If not successful, the logger will be disabled by setting field
-     * #isDisabled to \c true.
+     * Closes the file.
      **********************************************************************************************/
     protected void closeFile()
     {
+        if(hasIoError)
+            return;
+            
         try
         {
             bw.close();
         }
         catch (Exception e)
         {
-            isDisabled=     true;
-            LogTools.exception( Log.LOX.internalDomain, Log.Level.ERROR, e, "Error closing file: \"" + fileName + "\". Exception follows"  );
+            hasIoError=     true;
+            LogTools.exception( ALox.INTERNAL_DOMAINS, Verbosity.ERROR, e, "Error closing file: \"" + fileName + "\". Exception follows"  );
         }
     }
 
     /** ********************************************************************************************
      * Implementation of abstract interface signaling start and end of a multi line message.
      * On start signal, the log file is opened, closed otherwise. Also stores the actual
-     * multi line message state in a field. This is for doTextLog() to know whether file is to be
+     * multi line message state in a field. This is for logText() to know whether file is to be
      * opened/closed.
      *
      * @param phase  Indicates the beginning or end of a multi-line operation.
@@ -106,7 +112,7 @@ public class TextFileLogger extends PlainTextLogger
     @Override
     protected void notifyMultiLineOp (Phase phase)
     {
-        // save state (to have it in doTextLog)
+        // save state (to have it in logText)
         currentlyInMultiLineOp= ( phase == Phase.BEGIN );
 
         // open/close the file
@@ -120,7 +126,7 @@ public class TextFileLogger extends PlainTextLogger
      * Start a new log line. Appends a new-line character sequence to previously logged lines.
      *
      * @param phase  Indicates the beginning or end of a log operation.
-     * @return Always returns true.
+     * @return The IO status (\c true if OK).
      **********************************************************************************************/
     protected boolean notifyLogOp( Phase phase )
     {
@@ -133,8 +139,8 @@ public class TextFileLogger extends PlainTextLogger
             }
             catch (Exception e)
             {
-                isDisabled=     true;
-                LogTools.exception( Log.LOX.internalDomain, Log.Level.ERROR, e, "Error writing to file: \"" + fileName + "\". Exception follows"  );
+                hasIoError=     true;
+                LogTools.exception( ALox.INTERNAL_DOMAINS, Verbosity.ERROR, e, "Error writing to file: \"" + fileName + "\". Exception follows"  );
                 return false;
             }
         }
@@ -148,7 +154,7 @@ public class TextFileLogger extends PlainTextLogger
                 closeFile();
         }
 
-        return true;
+        return !hasIoError;
     }
 
     /** ********************************************************************************************
@@ -157,9 +163,9 @@ public class TextFileLogger extends PlainTextLogger
      * @param buffer   The string to write a portion of.
      * @param start    The start of the portion in \p buffer to write out.
      * @param length   The length of the portion in \p buffer to write out.
-     * @return Always returns true.
+     * @return The IO status (\c true if OK).
      **********************************************************************************************/
-    protected boolean doLogSubstring( AString buffer, int start, int length )
+    protected boolean logSubstring( AString buffer, int start, int length )
     {
         try
         {
@@ -167,12 +173,11 @@ public class TextFileLogger extends PlainTextLogger
         }
         catch (Exception e)
         {
-            isDisabled=     true;
-            LogTools.exception( Log.LOX.internalDomain, Log.Level.ERROR, e, "Error writing to file: \"" + fileName + "\". Exception follows"  );
-            return false;
+            hasIoError=     true;
+            LogTools.exception( ALox.INTERNAL_DOMAINS, Verbosity.ERROR, e, "Error writing to file: \"" + fileName + "\". Exception follows"  );
         }
 
-        return true;
+        return hasIoError;
     }
 
 } // class TextFileLogger

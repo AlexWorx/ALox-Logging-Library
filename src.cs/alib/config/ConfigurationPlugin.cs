@@ -14,7 +14,7 @@ namespace cs.aworx.lib.config  {
 
     /** ********************************************************************************************
      *  Abstract class that represents a plug in for class
-     *  \ref aworx::lib::config::Configuration "Configuration"
+     *  \ref cs::aworx::lib::config::Configuration "Configuration"
      *  to provide configuration data from specific configuration data source.
      *
      *  Different attached plug-ins of type #ConfigurationPlugIn differentiate in their priority.
@@ -27,11 +27,11 @@ namespace cs.aworx.lib.config  {
      *
      *  Category and Variable names are character case insensitive for the built-in
      *  ConfigurationPlugIn types
-     *  \ref aworx::lib::config::EnvironmentPlugIn "EnvironmentPlugIn"
+     *  \ref cs::aworx::lib::config::EnvironmentPlugIn "EnvironmentPlugIn"
      *  and
-     *  \ref aworx::lib::config::CommandLinePlugIn "CommandLinePlugIn".
+     *  \ref cs::aworx::lib::config::CommandLinePlugIn "CommandLinePlugIn".
      *  It is recommended to to ignore character case in custom specializations of class
-     *  \ref aworx::lib::config::ConfigurationPlugIn "ConfigurationPlugIn"
+     *  \ref cs::aworx::lib::config::ConfigurationPlugIn "ConfigurationPlugIn"
      *  as well.
      *
      *  Variables belong to categories. The built-in ConfigurationPlugIns types
@@ -85,7 +85,7 @@ namespace cs.aworx.lib.config  {
          *  @param temp      A buffer to temporarily store the value for parsing.
          *  @return true if variable was found within this configuration source, false if not.
          ******************************************************************************************/
-        public virtual bool  Get( Object category, Object name, ref int target, AString temp )
+        public virtual bool  Get( Object category, Object name, out int target, AString temp )
         {
             if ( temp == null )
                 temp= new AString();
@@ -120,7 +120,7 @@ namespace cs.aworx.lib.config  {
          *  @param temp      A buffer to temporarily store the value for parsing.
          *  @return true if variable was found within this configuration source, false if not.
          ******************************************************************************************/
-        public virtual bool  Get( Object category, Object name, ref double target, AString temp  )
+        public virtual bool  Get( Object category, Object name, out double target, AString temp  )
         {
             target= 0.0;
 
@@ -192,7 +192,7 @@ namespace cs.aworx.lib.config  {
          *
          *  \note The floating point to string conversion ignores the current locale setting and
          *        writes a dot ('.') as decimal operator. On the same token, the corresponding
-         *        method #Get(Object, Object, ref double, AString )
+         *        method #Get(Object, Object, out double, AString )
          *        accepts both, a dot or a comma (',').
          *
          *  @param category  The category of the  variable.

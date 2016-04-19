@@ -30,7 +30,7 @@ namespace ut_cs_aworx_lib
     #if ALIB_VSTUDIO
         [TestClass]
     #endif
-    public class CS_Ticks    : UnitTest
+    public class CS_Ticks    : AUnitTest
     {
         #if ALIB_MONO_DEVELOP
             [Test ()]
@@ -43,11 +43,11 @@ namespace ut_cs_aworx_lib
         #endif
         public void Basics()
         {
-            Log.Reset();
+            UT_INIT();
 
-            Log.AddLogger( new ConsoleLogger() );
+            Log.SetVerbosity( new ConsoleLogger(), Verbosity.Verbose, "/" );
             Log.MapThreadName( "UnitTest" );
-            Log.SetDomain( "TickWatch", Log.Scope.Method );
+            Log.SetDomain( "TickWatch", Scope.Method );
 
             Log.Info( "\n### TicksBasics ###" );
 
@@ -130,11 +130,11 @@ namespace ut_cs_aworx_lib
         #endif
         public void SpeedTest()
         {
-            Log.Reset();
+            UT_INIT();
 
-            Log.AddLogger( new ConsoleLogger() );
+            Log.SetVerbosity( new ConsoleLogger(), Verbosity.Verbose, "/" );
             Log.MapThreadName( "UnitTest" );
-            Log.SetDomain( "TickWatch", Log.Scope.Method );
+            Log.SetDomain( "TickWatch", Scope.Method );
 
             Log.Info(  "\n### TicksSpeedTest ###" );
             for (int runs= 0; runs < 5; runs ++ )
@@ -164,11 +164,11 @@ namespace ut_cs_aworx_lib
         #endif
         public void DateTimeConversion()
         {
-            Log.Reset();
+            UT_INIT();
 
-            Log.AddLogger( new ConsoleLogger() );
+            Log.SetVerbosity( new ConsoleLogger(), Verbosity.Verbose, "/" );
             Log.MapThreadName( "UnitTest" );
-            Log.SetDomain( "TickWatch", Log.Scope.Method );
+            Log.SetDomain( "TickWatch", Scope.Method );
 
             Log.Info( "DateTime.MinValue(): "    + ( DateTime.MinValue.ToString() )     );
             Log.Info( "DateTime.MaxValue(): "    + ( DateTime.MaxValue.ToString() )     );
@@ -230,11 +230,11 @@ namespace ut_cs_aworx_lib
         #endif
         public void Ages()
         {
-            Log.Reset();
+            UT_INIT();
 
-            Log.AddLogger( new ConsoleLogger() );
+            Log.SetVerbosity( new ConsoleLogger(), Verbosity.Verbose, "/" );
             Log.MapThreadName( "UnitTest" );
-            Log.SetDomain( "TickWatch", Log.Scope.Method );
+            Log.SetDomain( "TickWatch", Scope.Method );
 
             TickWatch tt=new TickWatch();
             // minimum time measuring
@@ -321,11 +321,11 @@ namespace ut_cs_aworx_lib
         public void MeasureIncreasingDoublingLoop()
         {
 
-            Log.Reset();
+            UT_INIT();
 
-            Log.AddLogger( new ConsoleLogger() );
+            Log.SetVerbosity( new ConsoleLogger(), Verbosity.Verbose, "/" );
             Log.MapThreadName( "UnitTest" );
-            Log.SetDomain( "TickWatch", Log.Scope.Method );
+            Log.SetDomain( "TickWatch", Scope.Method );
 
             Log.Info( "This test shows quite nicely, how the just in time compiler steps in when we are looping heavily!" );
 

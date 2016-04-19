@@ -1,0 +1,474 @@
+// #################################################################################################
+//  Documentation - ALox Logging Library
+//
+//  (c) 2013-2016 A-Worx GmbH, Germany
+//  Published under MIT License (Open Source License, see LICENSE.txt)
+// #################################################################################################
+
+/**
+\page man_logdomains          04 - Log Domains
+
+\tableofcontents
+
+This chapter provides all details on <em>Log Domains</em>. Before reading it, be sure that
+you have read and understood the chapter \ref man_alox_terminology.
+
+
+\~Comment ####################################################################################### \~
+# 1. Why Log Domains? # {#man_logdomains_intro}
+
+Let us quickly recapture what was explained already on <em>Log Domains</em> in the previous chapter
+and the tutorials.
+It is very common to logging libraries to provide a system that allows to control the verboseness
+of the log output, by matching what ALox calls a \e Verbosity associated.
+ALox allows to divide the overall set of <em>Log Statements</em> into sub-sets that belong to different
+topics or 'areas of interest'. These topics are called <em>Log Domains</em> and each
+<em>Log Statement</em> has one associated.
+Furthermore, ALox allows to have multiple different \e Loggers performing each <em>Log Statement</em>
+in parallel.
+Now, ALox stores the \e Verbosity per combination of <em>Log Domain</em> and \e Logger.
+
+The result is, that the \e Verbosity can be different not only in respect to each <em>Log Domain</em>
+but also, the same <em>Log Domain</em> may have a different \e Verbosity set for different \e Loggers.
+
+The method to set such \e Verbosity which is found (in different, overloaded versions)
+in class \b Lox is simply called \b SetVerbosity(). As you see in the reference documentation of
+<b>%Lox.SetVerbosity</b>
+([C++] (@ref      #aworx::lox::Lox::SetVerbosity),
+ [C#]  (@ref  #cs::aworx::lox::Lox::SetVerbosity),
+ [Java](@ref #com::aworx::lox::Lox::setVerbosity) ), this method as a minimum requires a value for
+the \e Logger that is affected and the
+<b>%Verbosity</b>
+([C++] (@ref      #aworx::lox::Verbosity),
+ [C#]  (@ref  #cs::aworx::lox::Verbosity),
+ [Java](@ref #com::aworx::lox::Verbosity) )
+that is to be set. The third parameter,
+the <em>Log Domain</em> defaults to "/" if not given. Omitting parameter \p domain with this method
+tells ALox to set \e all <em>Log Domains</em> to the same \b Verbosity.
+
+\note Other parameters of method \b SetVerbosity found in the reference documentation are explained later
+      in this chapter and in chapter \ref man_external_verbosity_configuration.
+
+This probably sounds more complex than it is. If you think about it for a second, it should become obvious.
+As a sample, this mechanism allows to log warning and error messages of an application
+of just any <em>Log Domain</em> to a file to have that log available across different debug-sessions, while
+the IDEs' console output is much more verbose in respect to those <em>Log Domains</em> a programmer
+currently is interested in.<br>
+Or, as another example, we could consider a \e Logger that sends alert Emails to system administrators.
+Of-course, Emails should be sent only for very special events, e.g. when something really severe happens.
+You may collect these severe errors in a special domain "/ADMIN" (real-time administration errors)
+and exclusively activate this domain for this Email-sending \e Logger.
+
+
+\~Comment ####################################################################################### \~
+# 2. Hierarchical Log Domains # {#man_logdomains_hierarchical_domains}
+
+One of the major design goals of ALox is simplicity. By nature simplicity is sometimes in
+in competition with flexibility or feature richness of an API. One way to resolve such conflicting
+goals is to provide features that - if not wanted or needed or not even known -  are invisible to
+the user. The concept of hierarchical <em>Log Domains</em> is a good sample of how this was achieved in the
+ALox API design.
+
+Consider an application with a user interface. Within the code that implements
+the UI, a lot of <em>Log Statements</em> using different \e Verbosities may be embedded using
+<em>Log Domain</em> 'UI'.
+Depending on the complexity of an application, switching domain 'UI' to a more verbose level
+(by setting the <em>Verbosity</em> of <em>Log Domain</em> 'UI'), might already lead to a huge
+amount of <em>Log Statements</em>. Of-course, the solution is to split that domain into several ones,
+e.g. one for UI dialogs, one for manipulations of the main window, one for menu events and one
+for mouse interactions, etc. Therefore, splitting domains in sub-topics is a very common use case
+as soon as code becomes more complex.
+To support this use case, ALox organizes <em>Log Domains</em> hierarchically. The sample
+would lead to:
+
+
+\dot
+digraph logdomains
+{
+    node [shape=record, fontname=Courier,   fontsize=12];
+    edge [shape=record, fontname=Helvetica, fontsize=10];
+    ui [ label="UI"];
+    dialogs[ label="DIALOGS"];
+    window [ label="WINDOW"];
+    menu   [ label="MENU"];
+    mouse  [ label="MOUSE"];
+    ui -> dialogs   [ arrowhead="open" label= "is parent of" ];
+    ui -> window    [ arrowhead="open"];
+    ui -> menu      [ arrowhead="open"];
+    ui -> mouse     [ arrowhead="open"];
+}
+\enddot
+
+
+Every method in ALox that accepts a <em>Log Domain</em> as a parameter, a <b>domain path</b> can be used.
+Domains in a path are separated by character '/'. As soon as domain parameters contain path separators,
+the hierarchical domain system of ALox takes action.<br>
+The <em>Log Domains'</em> paths in our sample would be named:
+- '/UI'
+- '/UI/DIALOGS'
+- '/UI/WINDOW'
+- '/UI/MENU'
+- '/UI/MOUSE'
+
+Setting the \e Verbosity of a <em>Log Domain</em> is always done recursively for all its sub-domains
+(and sub-sub-domains). Let us look at a sample, how an ALox user would setup the
+domain tree, when debugging.
+
+First, he/she might decide to allow only error messages in general:
+
+\snippet "UT_dox_manual.cs"        Man_DOMAINS___1
+
+As the interest is currently in domain '/UI/DIALOGS', he/she would first switch '/UI' to a <b>Verbosity</b> that
+logs \e error, \e warning and \e info statements and then switch sub-domain '/UI/DIALOGS/' to the most
+verbose level:
+
+\snippet "UT_dox_manual.cs"        Man_DOMAINS___2
+
+As such setting is always recursive, the order of setting domains is important. If the statements
+above were performed in reverse order:
+
+\snippet "UT_dox_manual.cs"        Man_DOMAINS___2reverse
+
+the setting for domain '/UI/DIALOGS' to \e All  would be overwritten by the setting of parent domain '/UI'.
+
+\note
+  In some situations, it might be wanted to be able to protect a domain setting and make
+  it 'immune' against subsequent settings of parent domains. This is especially important when
+  configuration is done 'outside' the source code, hence using configuration files, command line
+  parameters and such, but could be also helpful otherwise. This protection mechanism is explained
+  in chapter \ref man_external_verbosity_configuration.
+
+
+The advantages of hierarchical domains so far are:
+- You can control a whole set of domains with one statement
+- If parts of a software that is out of your control (other team, code in a library, etc.) introduces
+  new <em>Sub-Log Domains</em>, no changes of \e Verbosity settings in your code parts need to be done (as long as
+  you are not interested in directly manipulating this new sub-domain).
+
+But the real reason, why hierarchical domains drive the flexibility of ALox really to a next level,
+becomes only obvious in the next chapter!
+
+
+\~Comment ####################################################################################### \~
+# 3. Scope Domains # {#man_logdomains_default_domains}
+
+People might argue that providing a <em>Log Domain</em> to each <em>Log Statement</em> is an overhead of
+typing. That is true. For this reason - and many more - ALox provides the concept
+of *Scope Domains*.
+
+<em>Scope Domains</em> are set using method
+<b>%Lox.SetDomain</b>
+([C++] (@ref      #aworx::lox::Lox::SetDomain(const TString&, Scope, int)),
+ [C#]  (@ref  #cs::aworx::lox::Lox::SetDomain),
+ [Java](@ref #com::aworx::lox::Lox::setDomain) ). This method,
+along with the <em>Log Domain</em>, requires a parameter of type
+<b>%Scope</b>
+([C++] (@ref      #aworx::lox::Scope),
+ [C#]  (@ref  #cs::aworx::lox::Scope),
+ [Java](@ref #com::aworx::lox::Scope) ) that determines the \b 'Scope' that the given
+domain path should default to.
+
+
+Such \e Scope is assembled of two parts: one part that is taken from the source code information
+that ALox collects at compile-time (in Java done at run-time) with each <em>Log Statement</em>. The other part
+is related to <b>the thread that is executing the <em>Log Statement</em></b>, hence is evaluated at run-time.
+
+\attention
+  For this chapter, explaining the benefit of being able to assign <em>Scope Domains</em> to \e Scopes, we are
+  simplifying ALox \e Scope features to a bare minimum in this chapter.
+  We are deferring the full explanation of possible \e Scope settings to chapter \ref man_scopes.
+
+We start really simple and look at
+<b>%Scope.Method</b>
+([C++] (@ref      #aworx::lox::Scope::Method),
+ [C#]  (@ref  #cs::aworx::lox::Scope::Method),
+ [Java](@ref #com::aworx::lox::Scope::METHOD) ) which denotes that the <em>Scope Domain</em>
+given with method
+<b>%Lox.SetDomain</b>
+([C++] (@ref      #aworx::lox::Lox::SetDomain(const TString&, Scope, int)),
+ [C#]  (@ref  #cs::aworx::lox::Lox::SetDomain),
+ [Java](@ref #com::aworx::lox::Lox::setDomain) ). This method,
+should apply to all <em>Log Statements</em> of the current method. Here is a sample:
+
+\snippet "UT_dox_manual.cs"        Man_DOMAINS___3
+
+
+This sets the domain "/MYDOM" as the <em>Scope Domain</em> for this method. As a result, a
+<em>Log Statement</em> that does not provide a domain uses the <em>Scope Domain</em>. The output
+could be:
+
+\verbinclude  docs/ALox.CS/generated/Man_Domains_3.txt
+
+\note As you see, ALox' default meta information output of this sample and the following ones was reduced.
+
+We have already gained some advantages from this most simple use of a <em>Scope Domain</em>
+1. Less typing (we can omit the <em>Log Domain</em>)
+2. Less \e 'clutter' in the code, so better readability (<em>Log Statements</em> serve as comment lines)
+3. When the <em>Log Domain</em> should be changed, this has to be done only at one point in the code
+4. When code including <em>Log Statements</em> is copied and pasted into a different \e Scope, the
+   <em>Log Domain</em> adjusts to the destination \e Scopes' <em>Scope Domain</em>.
+
+
+\~Comment ####################################################################################### \~
+# 4. Absolute and Relative Domain Paths# {#man_logdomains_absolut_and_relative}
+
+As we have learned above, the following two <em>Log Statements</em> are the same when a <em>Scope Domain</em>
+was set for \b %Scope.Method:
+
+\snippet "UT_dox_manual.cs"        Man_DOMAINS___4
+
+But we have to be careful! The following two <em>Log Statements</em> are \b not using the same <em>Log Domain</em>:
+
+\snippet "UT_dox_manual.cs"        Man_DOMAINS___5
+
+As can bee seen in the output:
+
+\verbinclude  docs/ALox.CS/generated/Man_Domains_5.txt
+
+The difference of the sample is that while we previously always used a '/' at the beginning of
+the domains we used, now within the <em>Log Statement</em> this was omitted. This caused ALox to concatenate
+the domain provided in the <em>Log Statement</em> with the <em>Scope Domain</em> set, to a new domain path.
+
+This mechanism does not need too much further explanation, as this is similar to file system
+path usage: A <em>Log Domain</em> path starting with \b '/' is called an <b>absolute path</b> and one that omits the
+\b '/' character is called a <b>relative path</b>.<br>
+
+
+Same as with file system paths, a relative path can also be expressed with a single dot.
+As a Sample, domain paths \b "DOM" and \b "./DOM" are the same. The use of a leading extra
+'dot'-domain in the path to signal relative domains is optional and probably a matter of taste.<br>
+More important is that ALox <em>Log Domains</em> also support two dots '<b>..</b>' in
+relative path names for addressing a parent domain. Later in this chapter, a sample for
+addressing a parent domain is shown.
+
+While the previous sample code looked more like an erroneous use of a domain (resulting
+in domain '/MYDOM/MYDOM'), the following sample shows a use case of a relative domain path which
+absolutely makes sense:
+
+\snippet "UT_dox_manual.cs"        Man_DOMAINS___RelativePaths
+
+The output would be:
+
+\verbinclude  docs/ALox.CS/generated/Man_Domains_RelativePaths.txt
+
+
+\~Comment ####################################################################################### \~
+# 5. Inner and Outer Scopes# {#man_logdomains_inner_outer_scopes}
+
+The previous samples used <b>%Scope.Method</b>. Another important \e Scope 'level' is
+<b>%Scope.Filename</b>
+([C++] (@ref      #aworx::lox::Scope::Filename),
+ [C#]  (@ref  #cs::aworx::lox::Scope::Filename)), respectively in the Java version of ALox
+\ref #com::aworx::lox::Scope::CLASS "Scope.CLASS".
+
+As mentioned before, we are not going into the details of the extended \e Scope definition of
+ALox (those are given in \ref man_scopes), but what is very important to understand is that
+scopes are nested into each other. We talk about <em>outer scopes</em> and
+<em>inner scopes</em>. As you might guess, <b>%Scope.Filename</b> (resp. in Java
+<b>%Scope.CLASS</b>) is an outer \e Scope of <b>%Scope.Method</b>.
+
+Now, <em>Scope Domains</em> which can be set (or not) per \e Scope level, are concatenated to a complete
+domain path. ALox starts from the 'most inner' \e Scope and then prepends (!) the paths of outer
+\e Scopes as long as relative domain paths are given. In other words, as soon as
+an absolute path is found as a <em>Scope Domain</em> for a scope, the further concatenation of outer
+\e Scopes' <em>Scope Domains</em> is stopped.
+
+We are using the same sample as above, but this time, the public interface method internally
+is split into different parts:
+
+\snippet "UT_dox_manual.cs"        Man_DOMAINS___nested_scope
+
+The first important note on the source is that this class has a 'static constructor' which is executed
+exactly once for the life-time of the process and which sets the <em>Scope Domain</em> 'IO' for the entire
+class by using <b>%Scope.Filename</b>.
+
+\note
+ <b>For users of ALox for C++:</b><br>
+ This is a C# sample. A static constructor in C# is executed automatically, once a class is first
+ used. Similar semantics is available in the Java language.<br>
+ In C++ one might come to the idea to implement this using a function whose result is assigned to
+ a static variable. This would get executed in an 'automatic' fashion. But attention: this is <b>not
+ allowed</b>. Generally, it is considered bad code style to use such static construction, because the
+ language does not define the behavior properly and different compilers and operating systems
+ (when initializing dynamic libraries) handle such static initialization differently.
+ As a result, it is not assured if ALox and ALib itself are initialized, yet
+ (the truth is, they are definitely not!).<br>
+ Now, the good news is that %ALox does not mind if a <em>Scope Domain</em> is set multiple times.
+ So a first alternative is to put the statement just to the constructor of the class and have
+ %ALox execute it every time an instance of the class is created.<br>
+ If it is a very time-critical constructor, invoked many times, one recommended way to implement a
+ similar behavior in C++ as we have in C# and Java with static constructors is:
+ - Add a static boolean variable to the class with default value set to \c false, e.g. <br><c>bool isStaticallyInitialized= false;</c>
+ - In the (all) constructor(s) of the class check for this variable. If not set, invoke the
+   <em>Scope Domain</em> setting for the source file and flag the boolean variable to \c true.
+ - If all is related to pure debug-logging, wrap the variable definition and the initialization
+   statements in each constructor into pairs of preprocessor directives<br>
+   <c>\#if defined(ALOX_DBG_LOG)</c><br>
+   <c>   ...                   </c><br>
+   <c>\#endif</c><br>
+
+When sample method \e ReadChangeAndWriteBack() is executed, this output is generated:
+
+\verbinclude  docs/ALox.CS/generated/Man_DOMAINS___nested_scope.txt
+
+With the takeaways from the features explained already in this chapter, the code is quite self-explanatory.
+Some remarks:
+- As explained and observable in the output, relative domains are concatenated from inner scopes
+  to outer scopes. Samples are the domains '/IO/READ', '/IO/PROCESS' and '/IO/WRITE'
+- Like in the previous sample, method \e write() volunteers to use prefix "./" to signal that
+  the domain path is relative. This is a matter of taste and the result is the same as if this
+  prefix was omitted like in methods \e read() and \e process().
+- Method \e checkSetup() uses an \e absolute domain path for its \e %Scope. This tells ALox to
+  stop prepending any <em>Scope Domains</em> of outer \e Scopes.
+- Method \e writeStats() uses a \e relative domain path\e starting addressing the "../". parent
+  domain. The effect is that the outer \e Scope domain "IO" is removed. The effective path is:
+  '/IO/../STATS' which ALox of-course shortens to just '/STATS'.<br>
+  Hence 'STATS' is a sub-domain of the root-domain, the same as domain 'CHECKS' is. Note that, if
+  there were other <em>Scope Domains</em> in \e Scopes that are 'more outer' than <b>%Scope.Filename</b>,
+  the 'depth' of both domains would be different.
+
+
+
+
+\~Comment ####################################################################################### \~
+<br>
+
+
+
+\~Comment ####################################################################################### \~
+<br>
+# 6. Further Information and Wrap-Up # {#man_logdomains_further_wrapup}
+
+\~Comment ####################################################################################### \~
+## 6.1 Where to set the Verbosity## {#man_logdomains_bootstrap}
+
+The usual way to use ALox is to separate the code that sets the \e Verbosity of <em>Log Domains</em>
+into a single location, normally somewhere in the 'boot-strapping part of a process. This is
+probably the same location where the used \e Loggers and also \e Lox objects are created and
+configured.
+
+It is of-course tempting to quickly (temporily) increase \e the Verbosity of the <em>Log Domain(s)</em>
+that a code unit uses while working on that code unit. Method
+<b>%Lox.SetVerbosity</b>
+([C++] (@ref      #aworx::lox::Lox::SetVerbosity),
+ [C#]  (@ref  #cs::aworx::lox::Lox::SetVerbosity),
+ [Java](@ref #com::aworx::lox::Lox::setVerbosity) ), properly uses the current \e Scope, so that a statement
+like this:
+\snippet "UT_dox_manual.cs"        Man_DOMAINS___RelativePaths_Set
+properly sets the evaluated <em>Scope Domain</em>. However, if such code lines are inserted,
+they should be duly marked as 'temporary' and 'to-be-removed'.
+
+Especially when working in a team, it is even more convenient to not even set the \b
+Verbosity of any domain from within the code, but by using external configuration data.
+\note
+  To keep this chapter as simple as possible, all samples herein exclusively
+  used the method \e %Lox.SetVerbosity and you may not even have heard, yet, about other possibilities.
+  Information about how ALox is configured externally, is completely separated into an own chapter
+  of this manual: \ref man_external_verbosity_configuration.
+
+The separation has good reasons: A portion of the code that logs using a certain set of domains
+should not modify these <em>Log Domains' Verbosity</em>. One day such code could be moved into a library and then
+such changes are merely irreversible (well, in-fact they still are, but this is also only explained in
+chapter \ref man_external_verbosity_configuration).
+
+\~Comment ####################################################################################### \~
+## 6.2 Why Does Verbosity Setting Always Work Recursively? ## {#man_logdomains_recursive}
+
+It was explained in section \ref man_logdomains_hierarchical_domains "Hierarchical Log Domains",
+that setting the \e Verbosity is always done recursively for all sub-domains of the
+given <em>Log Domain</em>. The reason for this is to avoid 'random' settings as much as possible.
+
+For convenience, <em>Log Domains</em> do not need to be 'registered' with ALox. As soon as
+an unknown <em>Log Domain</em> is used in a <em>Log Statement</em>, ALox creates a reference to this
+<em>Log Domain</em> and for each \e Logger in the corresponding \e Lox the \e Verbosity of
+the parent <em>Log Domain</em> is inherited.
+
+Now, if a <em>Log Domain</em> setting was allowed to be non-recursive, the setting of a sub-domain
+could have different values:
+- If it was known to ALox already (because it was used in a <em>Log Statement</em>), it would keep the
+  \e Verbosity that it previously received by implicitly inheriting from its parent.
+- If it was implicitly registered with ALox after such non-recursive setting, it would still
+  inherit its parents setting.
+
+Therefore, the order of the use of a <em>Log Domain</em> would decide about its \e Verbosity.
+
+One of ALoxs' design goals is to hide features that are not used and which are unnecessarily
+increasing complexity of using ALox if they are not needed (Further explained in \ref man_apdx_auto_config).
+For this reason, within this chapter of the manual (which is all about understand what domains
+<em>Log Domain</em> just are), a parameter of method
+<b>%Lox.SetVerbosity</b>
+([C++] (@ref      #aworx::lox::Lox::SetVerbosity),
+ [C#]  (@ref  #cs::aworx::lox::Lox::SetVerbosity),
+ [Java](@ref #com::aworx::lox::Lox::setVerbosity) ) that can be omitted because it has a default value,
+was not even named.
+Using this parameter allows to restrict the setting of the \e Verbosity of to a domain and
+and allows to include arbitrary sets of sub-domains or not, by assigning a priority to
+each \e Verbosity setting.
+
+Apart from lifting the always recursive \e Verbosity setting, the main motivation for introducing
+this concept resulted from the general need to prioritize conflicting settings which may come
+from different sources. Therefore, if non-recursive settings are needed for any reason,
+refer to chapter \ref man_external_verbosity_configuration for explanations about how to achieve this.
+
+\~Comment ####################################################################################### \~
+## 6.3 Absolute or Relative Domain Paths? ## {#man_logdomains_absorrel}
+
+As we learned, ALox allows to use absolute or relative <em>Log Domain</em> paths. This is true for <em>Scope Domains</em> as well
+as for parameter \p domain in a <em>Log Statement</em>.
+
+The general recommendation is to use relative paths. There are several advantages which
+all arise from the fact that ALox assembles the <em>Scope Domain</em> path by looping through all \e Scopes from
+the most inner to the most outer. As soon as an absolute path is found, the loop is aborted and
+concatenation stops. The benefits of keeping all <em>Log Domain</em> paths relative are highlighted in the
+next chapter (\ref man_scopes) when all about \e Scopes is explained - including an important use
+case that justifies absolute <em>Log Domain</em> paths!
+
+
+\~Comment ####################################################################################### \~
+## 6.4 Illegal Domain Names and Case Sensitivity## {#man_logdomains_chars_allowed}
+
+Not all printable characters are allowed for domain names. The exact definition of allowed
+characters is:
+- All characters between
+  ASCII code 46 (Hex 0x2E, char <c>'0'</c>) and
+  ASCII code 122 (Hex 0x7A, char <c>'0'</c>),
+- excluding characters \c < \c > \c [ \c ] \c . \c ,  \c = \c ? \c ; \c : \c \\ and <c>'</c>.
+
+Of-course the domain path separator \c / is 'implicitly' not allowed in a domain name. The use
+of it splits a domain into two.
+If one of this characters is used, ALox replaces this character with \c # (which, as stated above
+is equally not allowed) without further notice (no internal log statement is given).
+As a result, the provision of illegal domain names \c "$%&" or \c "<=>" will result in
+the same domain name \c "###".
+
+By default, ALox treats domain names case \b insensitive. This can be controlled by switching
+public flag
+<b>%Lox.DomainSensitivity</b>
+([C++] (@ref      #aworx::lox::Lox::DomainSensitivity),
+ [C#]  (@ref  #cs::aworx::lox::Lox::DomainSensitivity),
+ [Java](@ref #com::aworx::lox::Lox::domainSensitivity) ), which is not recommended to do. The standard
+is to always provide domain names in capital letters. If this rule is applied, the sensitivity setting
+is worthless anyhow.
+
+
+\~Comment ####################################################################################### \~
+## 6.5 ALox Internal Log Domains ## {#man_logdomains_internal}
+
+ALox uses 'itself' to log information about its use. This is helpful e.g. to observe where
+and when a <em>Log Domain</em> is used for the first time or where and when a \e Verbosity
+setting is performed.
+
+To keep the 'tree of <em>Log Domains</em>' clean and reserved exclusively for application specific
+<em>Log Domains</em> and to avoid accidental activation of internal log messages, ALox
+manages the internal <em>Log Domains</em> in a separated tree.
+
+Information about how to 'address' this tree and when to use it, is explained in chapter
+\ref man_internal_domains.
+
+
+<br>
+
+--------------------------------------------------------------------
+<center>Next chapter: \ref man_scopes </center> <center> \ref manual "Back to index" </center>
+
+*/

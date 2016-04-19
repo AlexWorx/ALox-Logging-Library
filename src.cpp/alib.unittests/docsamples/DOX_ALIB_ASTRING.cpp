@@ -100,6 +100,8 @@ UT_CLASS()
 
 
     UT_METHOD( DocumentationSample )
+    {
+        UT_INIT();
 
         UT_PRINT("*** Documentation Sample +**")
         docmentationSample();

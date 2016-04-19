@@ -142,7 +142,7 @@ public class AutoSizes
                 values[ ActualIndex ]=        requestedSize + ( size == 0 ? 0 : extraGrowth );
             }
 
-            // increase auto tab index for next 'A' command
+            // increase auto tab index
             ActualIndex++;
 
             return size;
@@ -154,7 +154,7 @@ public class AutoSizes
          *  to be separated by ' ' characters (space).
          *
          * @param source    The Substring that is parsed for the numbers
-         * @param session   If \c CurrentData::Clear, which is the default, the current values 
+         * @param session   If \c CurrentData::Clear, which is the default, the current values
          *                  are taken from the last session stored and the sessions data is set to 0.
          *                  If \c CurrentData::Keep, both, current values and
          *                  session values are taken from the string.
@@ -181,8 +181,8 @@ public class AutoSizes
          *  Imports values from the given AString by parsing it using #Export.
          *
          * @param source    The AString that is parsed for the numbers
-         * @param session   If \c CurrentData.Keep the current values are stored to be the last 
-         *                  sessions' data and current values are set to 0. 
+         * @param session   If \c CurrentData.Keep the current values are stored to be the last
+         *                  sessions' data and current values are set to 0.
          *                  If \c CurrentData.Clear, which is the default, both, current values and
          *                  session values are taken from the string.
          ******************************************************************************************/

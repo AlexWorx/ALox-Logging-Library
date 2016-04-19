@@ -6,7 +6,7 @@
 // #################################################################################################
 #include "alib/stdafx_alib.h"
 
-#if !defined (HPP_ALIB_ALIB)
+#if !defined (HPP_ALIB)
     #include "alib/alib.hpp"
 #endif
 
@@ -38,6 +38,7 @@ namespace                    system {
     String      System::DebuggerProcessName= "gdb";
 #endif
 
+AString         System::processName;
 
 // #################################################################################################
 // TerminationCleanUp()
@@ -46,10 +47,9 @@ namespace                    system {
 bool System::HasConsoleWindow()
 {
     // read configuration
-    if ( ALIB::Config != nullptr )
     {
         int found= false;
-        bool configValue=   ALIB::Config->IsTrue( ALIB::ConfigCategoryName, "HAS_CONSOLE_WINDOW", &found );
+        bool configValue=   ALIB::Config.IsTrue( ALIB::ConfigCategoryName, "HAS_CONSOLE_WINDOW", &found );
         if ( found != 0 )
             return configValue;
     }
@@ -95,10 +95,9 @@ System::RuntimeEnvironment   System::RTE()
     RuntimeEnvironment RTE= RuntimeEnvironment::Unknown;
 
     // lets allow the config system to overwrite the RTE
-    if ( ALIB::Config != nullptr )
     {
         String128 convRTE;
-        ALIB::Config->Get( ALIB::ConfigCategoryName, "RTE", convRTE );
+        ALIB::Config.Get( ALIB::ConfigCategoryName, "RTE", convRTE );
         if ( convRTE.IsNotEmpty() && !convRTE.Equals( "auto", Case::Ignore ))
         {
             std::pair<String, RuntimeEnvironment> values[]=
@@ -118,7 +117,7 @@ System::RuntimeEnvironment   System::RTE()
                 if( convRTE.Equals( v->first, Case::Ignore ) )
                     return v->second;
 
-            ALIB_WARNING_AS(    "Unknown value specified in variable "
+            ALIB_WARNING_S512(    "Unknown value specified in variable "
                              << ALIB::ConfigCategoryName << "_RTE: \""  << convRTE << '\"' )
         }
     }
@@ -219,5 +218,47 @@ bool System::GetVariable( const TString&  name,
         return true;
     #endif
 }
+
+void System::getProcessName()
+{
+    // Own global lock and check if still nulled.
+    // (If not, this is a very unlikly parallel access )
+    OWN( ALIB::Lock );
+    if ( processName.IsNotNull() )
+        return;
+
+    #if defined (__unix__)
+        const ProcessInfo& pi= ProcessInfo::Current();
+        processName._( pi.ExecName );
+
+    #elif defined(_WIN32)
+        TCHAR szPath[ MAX_PATH ];
+        DWORD pathLen= GetModuleFileName( NULL, szPath, MAX_PATH );
+        if ( pathLen <= 0)
+        {
+            ALIB_WARNING( "Error retrieving module name" );
+            processName._( "UknProcess");
+        }
+        else
+        {
+            // convert to multi byte string and search last dir separator
+            String512 moduleFileName;
+            moduleFileName._( szPath );
+            int sepIdx= moduleFileName.LastIndexOfAny( "/\\", Inclusion::Include );
+            if ( sepIdx < 0)
+            {
+                ALIB_WARNING( "Error retrieving module name" );
+                processName._( "UknProcess");
+            }
+            else
+                processName._( moduleFileName, sepIdx + 1 );
+        }
+    #else
+        #pragma message ("Unknown Platform in file: " __FILE__ )
+        processName._( "UknProcessPlatform");
+    #endif
+
+}
+
 }}}// namespace aworx::lib::system
 

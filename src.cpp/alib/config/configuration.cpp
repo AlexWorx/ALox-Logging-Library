@@ -16,20 +16,30 @@ namespace           lib {
 namespace                   config {
 
 
-Configuration::Configuration( Inclusion environment, int argc, void **argv, bool wArgs )
+Configuration::Configuration()
 {
     // set default true values
     TrueValues.emplace_back( "1"    );
     TrueValues.emplace_back( "true" );
     TrueValues.emplace_back( "yes"  );
+    TrueValues.emplace_back( "on"   );
     TrueValues.emplace_back( "ok"   );
+}
 
+Configuration::~Configuration()
+{
+    if ( cmdLineCP != nullptr ) delete cmdLineCP;
+    if (     envCP != nullptr ) delete     envCP;
+}
+
+void Configuration::AddStandardPlugIns( Inclusion environment, int argc, void **argv, bool wArgs )
+{
     // create command line plug-in
     cmdLineCP=  nullptr;
     if ( argc != 0 && argv != nullptr )
     {
         cmdLineCP= new CommandLinePlugIn ( argc, argv, wArgs );
-        InsertPlugin( cmdLineCP, 10 );
+        InsertPlugin( cmdLineCP, Configuration::PrioCmdLine );
     }
 
     // environment config plug-in
@@ -37,14 +47,8 @@ Configuration::Configuration( Inclusion environment, int argc, void **argv, bool
     if ( environment == Inclusion::Include )
     {
         envCP= new EnvironmentPlugIn();
-        InsertPlugin( envCP,    20 );
+        InsertPlugin( envCP,     Configuration::PrioEnvVars );
     }
-}
-
-Configuration::~Configuration()
-{
-    for ( auto& pairPrioPlug : plugins )
-        delete pairPrioPlug.second;
 }
 
 void Configuration::InsertPlugin( ConfigurationPlugIn* plugin, int priority )
@@ -53,12 +57,12 @@ void Configuration::InsertPlugin( ConfigurationPlugIn* plugin, int priority )
 
     plugins.insert(
          std::find_if(  plugins.begin(),  plugins.end(),
-                        [priority]( PrioAndPlugin& pairPrioPlug)
+                        [priority]( PluginAndPrio& pairPrioPlug)
                         {
                             ALIB_ASSERT_ERROR( pairPrioPlug.first != priority,
                                 "Configuration::InsertPlugin(): Plug-in with same priority exists" );
 
-                            return pairPrioPlug.first >= priority;
+                            return pairPrioPlug.first < priority;
                         }
                      ),
 
@@ -74,7 +78,7 @@ bool Configuration::RemovePlugin( ConfigurationPlugIn* plugin )
 
     size_t qty= plugins.size();
     plugins.erase( std::remove_if( plugins.begin(), plugins.end(),
-                                   [plugin](PrioAndPlugin& pair)   { return pair.second == plugin; } ),
+                                   [plugin](PluginAndPrio& pair)   { return pair.second == plugin; } ),
                    plugins.end() );
 
     ALIB_ASSERT_WARNING( plugins.size() != qty, "Configuration::RemovePlugin(): No Plug-in was removed " )
@@ -138,11 +142,16 @@ bool Configuration::IsTrue( const String& category, const String& name, int* plu
 
 
     if( (*pluginPriority= Get( category, name, value )) != 0 )
-    {
-        for ( auto& it : TrueValues )
-            if ( value.Equals( it, Case::Ignore ) )
-                return true;
-    }
+        return IsTrue( value );
+
+    return false;
+}
+
+bool Configuration::IsTrue( const String& value )
+{
+    for ( auto& it : TrueValues )
+        if ( value.Equals( it, Case::Ignore ) )
+            return true;
 
     return false;
 }

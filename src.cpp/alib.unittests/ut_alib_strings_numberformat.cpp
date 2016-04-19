@@ -38,6 +38,8 @@ UT_CLASS()
 //--- Test ConvertIntegers
 //---------------------------------------------------------------------------------------------------------
 UT_METHOD( ConvertIntegers )
+{
+    UT_INIT();
 
     AString as;
     int pos;
@@ -193,6 +195,8 @@ void floatTest( ALIBUnitTesting& ut, double d, char decimalPoint, int minDigitsB
 
 
 UT_METHOD( ConvertFloats )
+{
+    UT_INIT();
 
     AString as;
     int pos;

@@ -6,7 +6,7 @@
 // #################################################################################################
 #include "alib/stdafx_alib.h"
 
-#if !defined (HPP_ALIB_ALIB)
+#if !defined (HPP_ALIB)
     #include "alib/alib.hpp"
 #endif
 
@@ -26,7 +26,7 @@ bool ConsoleLogger::notifyLogOp( Phase phase )
     return true;
 }
 
-int ConsoleLogger::doLogSubstring( const AString& buffer, int start, int length )
+int ConsoleLogger::logSubstring( const AString& buffer, int start, int length )
 {
     cout << String( buffer, start, length );
     return lib::strings::CString::LengthWhenConvertedToWChar( buffer.Buffer() + start, length );

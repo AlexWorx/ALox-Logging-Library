@@ -6,7 +6,7 @@
 // #################################################################################################
 #include "alib/stdafx_alib.h"
 
-#if !defined (HPP_ALIB_ALIB)
+#if !defined (HPP_ALIB)
     #include "alib/alib.hpp"
 #endif
 
@@ -127,13 +127,14 @@ constexpr SLiteral<4>   AnsiLogger::ANSI_RESET           ;
 // #################################################################################################
 // Constructor/Destructor
 // #################################################################################################
-AnsiLogger::AnsiLogger( std::basic_ostream<char>* oStream, const String&  name )
-:    TextLogger( name, "ANSI" )
+AnsiLogger::AnsiLogger( std::basic_ostream<char>* oStream, bool usesStdStreams,
+                        const String&  name, const String&  typeName  )
+:    TextLogger( name, typeName, usesStdStreams )
 ,    oStream( oStream )
 {
-    // evaluate environment variable "ALOX_CL_LIGHT_BACKGROUND"
+    // evaluate environment variable "ALOX_CONSOLE_HAS_LIGHT_BACKGROUND"
     int  configVarSet;
-    bool configVarTrue= ALIB::Config->IsTrue( Log::ConfigCategoryName, "CL_LIGHT_BACKGROUND", &configVarSet );
+    bool configVarTrue= ALIB::Config.IsTrue( ALox::ConfigCategoryName, "CONSOLE_HAS_LIGHT_BACKGROUND", &configVarSet );
     if( configVarSet != 0 )
         IsBackgroundLight=  configVarTrue;
     else
@@ -150,8 +151,8 @@ AnsiLogger::AnsiLogger( std::basic_ostream<char>* oStream, const String&  name )
 
     //--- modify the default format attributes of the MetaInfo support colors ---
 
-    // remove level information and colorize the whole line
-    MetaInfo->Format.SearchAndReplace( " %L ", " " );
+    // remove verbosity information and colorize the whole line
+    ALIB_ASSERT_RESULT_NOT_EQUALS( MetaInfo->Format.SearchAndReplace( "]%V[", "][" ), 0);
     if ( IsBackgroundLight )
     {
         MsgPrefixError           = ANSI_RED;
@@ -169,7 +170,7 @@ AnsiLogger::AnsiLogger( std::basic_ostream<char>* oStream, const String&  name )
     // set source file background to gray.
     // Note: We are using the ESC gray here, because only at runtime
     //       it is decided if this will be light or dark gray.
-    TString colorize= "%CF(%CL):";
+    TString colorize= "%SF(%SL):";
     int idx= MetaInfo->Format.IndexOf( colorize );
     if (idx >= 0 )
     {
@@ -177,10 +178,12 @@ AnsiLogger::AnsiLogger( std::basic_ostream<char>* oStream, const String&  name )
         MetaInfo->Format.InsertAt( ANSI_BG_STD_COL,   idx + 3 + colorize.Length() );
     }
 
-    if ( MetaInfo->NoSourceFileInfo.IsNotEmpty() )
-        MetaInfo->NoSourceFileInfo.InsertAt( ANSI_BG_CYAN, 0)._<false>( ANSI_BG_STD_COL );
-    if ( MetaInfo->NoMethodInfo.IsNotEmpty() )
-        MetaInfo->NoMethodInfo.InsertAt( ANSI_BG_CYAN, 0)._<false>( ANSI_BG_STD_COL );
+    MetaInfo->NoSourceFileInfo= NoSourceFileInfo._<false>( ANSI_BG_CYAN)
+                                                ._<false>( MetaInfo->NoSourceFileInfo )
+                                                ._<false>( ANSI_BG_STD_COL );
+    MetaInfo->NoMethodInfo=     NoMethodInfo    ._<false>( ANSI_BG_CYAN)
+                                                ._<false>( MetaInfo->NoMethodInfo )
+                                                ._<false>( ANSI_BG_STD_COL );
 }
 
 AnsiLogger::~AnsiLogger()
@@ -188,13 +191,13 @@ AnsiLogger::~AnsiLogger()
 }
 
 // #################################################################################################
-// doTextLog
+// logText
 // #################################################################################################
 
 
-void AnsiLogger::doTextLog( const    TString&           ,    Log::Level  level,
-                                     AString&        msg,    int         ,
-                                     CallerInfo*        ,    int            )
+void AnsiLogger::logText( core::Domain&      ,    Verbosity  verbosity,
+                          AString&        msg,
+                          ScopeInfo&         ,    int                )
 {
     // loop over message, print the parts between the escape sequences
     int column= 0;
@@ -343,15 +346,13 @@ void AnsiLogger::doTextLog( const    TString&           ,    Log::Level  level,
             if ( endOfMeta )
             {
                 String msgPrefix;
-                switch ( level )
+                switch ( verbosity )
                 {
-                    case Log::Level::Verbose:   msgPrefix= MsgPrefixVerbose;     break;
-                    case Log::Level::Info:      msgPrefix= MsgPrefixInfo;        break;
-                    case Log::Level::Warning:   msgPrefix= MsgPrefixWarning;     break;
-                    case Log::Level::Error:     msgPrefix= MsgPrefixError;       break;
-                    #if defined (_MSC_VER)
-                        default: msgPrefix= nullptr;
-                    #endif
+                    case Verbosity::Verbose:   msgPrefix= MsgPrefixVerbose;     break;
+                    case Verbosity::Info:      msgPrefix= MsgPrefixInfo;        break;
+                    case Verbosity::Warning:   msgPrefix= MsgPrefixWarning;     break;
+                    case Verbosity::Error:     msgPrefix= MsgPrefixError;       break;
+                    default: msgPrefix= nullptr;
                 }
                 oStream << msgPrefix;
             }
@@ -369,7 +370,7 @@ void AnsiLogger::doTextLog( const    TString&           ,    Log::Level  level,
         else
         {
             rest.Consume();
-            ALIB_WARNING_AS( "Unknown ESC code '" << c << '\'')
+            ALIB_WARNING_S512( "Unknown ESC code '" << c << '\'')
         }
 
     } // write loop
@@ -382,15 +383,8 @@ void AnsiLogger::doTextLog( const    TString&           ,    Log::Level  level,
 // AnsiConsoleLogger
 // #################################################################################################
 AnsiConsoleLogger::AnsiConsoleLogger( const String&  name )
-: AnsiLogger( &cout, name )
+: AnsiLogger( &cout, true, name, "ANSI_CONSOLE" )
 {
-    // fix name and type
-    TypeName=  "ANSI_CONSOLE";
-    if ( name.IsEmpty() )
-        Name= TypeName;
-
-    // set default domain level to all: As an app console logger/IDE logger we want to fetch all we can
-    RootDomain.SetLevel( Log::DomainLevel::All, Propagation::None );
 }
 
 AnsiConsoleLogger::~AnsiConsoleLogger()

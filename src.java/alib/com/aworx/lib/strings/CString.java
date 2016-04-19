@@ -41,7 +41,7 @@ public class CString
 
         /** ****************************************************************************************
          * Checks if a given CharSequence is empty or has a length of zero.
-         *
+         * \note Mimics  corresponding method in C# class String. 
          * @param cs   The CharSequence to check.
          *
          * @return  Returns true if given String is empty or 0.
@@ -447,7 +447,7 @@ public class CString
         int     i=      regionStart;
         int     e=      regionStart + regionLength;
 
-        if ( inclusion == Inclusion.Include )
+        if ( inclusion == Inclusion.INCLUDE )
         {
             while( i != e )
             {
@@ -499,7 +499,7 @@ public class CString
         int     nbLen=  needles.length;
 
         int     i=      regionStart + regionLength - 1;
-        if ( inclusion == Inclusion.Include )
+        if ( inclusion == Inclusion.INCLUDE )
         {
             while( i >= regionStart )
             {

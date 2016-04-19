@@ -9,11 +9,313 @@
 \page changelog         Change Log
 
 Historically, there existed a kind of predecessor of this library for C++ and Java and was
-more or less maintained since the year 1999. However this is a complete rewrite with C++, Java and C#
-implementations.<br>
+more or less maintained since the year 1999. However this is a complete rewrite with C++, Java
+and C# implementations.<br>
 The first released version was Version 1.0.1 in **May 2013**.
 
 This change log is sorted reversely in respect to chronology.
+
+\~Comment ####################################################################################### \~
+\~Comment #############################  V. 1604  Revision 0 #################################### \~
+\~Comment ####################################################################################### \~
+## Version 1604, Revision 0, released April 19th, 2016 ##
+
+<b> Changes in ALib:</b>
+
+Besides small fixes and correction of documentation, relevant changes are:
+- Class
+  <b>Report</b>
+    ([C++](@ref      #aworx::lib::Report),
+    [C#]  (@ref  #cs::aworx::lib::Report),
+    [Java](@ref #com::aworx::lib::Report)) was extended by methods to push, pop and peek the
+  current \b ReportWriter, which replaces former method \b Report::ReplaceReportWriter.
+
+- Added methods
+  <b>%AString.LastIndexOf</b>
+    ([C++](@ref      #aworx::lib::strings::AString::LastIndexOf),
+    [C#]  (@ref  #cs::aworx::lib::strings::AString::LastIndexOf),
+    [Java](@ref #com::aworx::lib::strings::AString::lastIndexOf)) and
+  <b>Substring.Split</b>
+    ([C++](@ref      #aworx::lib::strings.Substring.Split),
+    [C#]  (@ref  #cs::aworx::lib::strings.Substring.Split),
+    [Java](@ref #com::aworx::lib::strings.Substring.split)), which were missing in C#/Java
+  versions
+
+- Fixed methods
+  <b>%AString.InsertAt</b>
+    ([C++](@ref      #aworx::lib::strings::AString::InsertAt),
+    [C#]  (@ref  #cs::aworx::lib::strings::AString::InsertAt),
+    [Java](@ref #com::aworx::lib::strings::AString::insertAt)) and
+  <b>%AString.ReplaceSubstring</b>
+    ([C++](@ref      #aworx::lib::strings::AString::ReplaceSubstring),
+    [C#]  (@ref  #cs::aworx::lib::strings::AString::ReplaceSubstring),
+    [Java](@ref #com::aworx::lib::strings::AString::replaceSubstring)) in C#/Java versions to check
+  for null parameter.
+
+- Added scope information for actual owner of class
+  <b>ThreadLock</b>
+    ([C++](@ref      #aworx::lib::threads::ThreadLock),
+    [C#]  (@ref  #cs::aworx::lib::threads::ThreadLock),
+    [Java](@ref #com::aworx::lib::threads::ThreadLock)) which allows to quickly identify
+  the location (in Java the complete stacktrace) of the last acquirement of the lock.
+
+- Added class
+  <b>SmartLock</b>
+    ([C++](@ref      #aworx::lib::threads::SmartLock),
+    [C#]  (@ref  #cs::aworx::lib::threads::SmartLock),
+    [Java](@ref #com::aworx::lib::threads::SmartLock)) which specializes \b ThreadLock to
+  control safeness depending on the number of 'users' of the lock.
+
+- Added field
+<b>%ALIB.StdOutputStreamsLock</b>
+  ([C++] (@ref      #aworx::lib::ALIB::StdOutputStreamsLock),
+   [C#]  (@ref  #cs::aworx::lib::ALIB::StdOutputStreamsLock),
+   [Java](@ref #com::aworx::lib::ALIB::stdOutputStreamsLock)) to allow locking of standard I/O
+output to avoid clashing of output data in multi-threaded applications.
+
+- Added constants to class
+  <b>Configuration</b>
+   ([C++] (@ref      #aworx::lib::config::Configuration),
+    [C#]  (@ref  #cs::aworx::lib::config::Configuration),
+    [Java](@ref #com::aworx::lib::config::Configuration)) proposing default priorities for the
+standard plug-ins to attach. On the same token the previously hard-coded numbers where revised
+and their sort-order switched (higher value is now higher priority).
+
+
+<b> Changes in ALox</b>
+
+This release incorporates some major changes of ALox and code that is using ALox needs to be
+revised. If we still had the former numbering scheme, this was ALox <b>2.0!</b>.
+Before the changes get listed here, the motivation to do so should be explained:
+
+- Simplify the use of ALox by hiding complexity when implementing simple use cases.
+  Simplification was reached by greatly increasing 'orthogonality' of features. This allows
+  to ignore features (mostly by omitting optional method parameters) if they are not wanted.
+
+- Avoid situations, where the sequence order of invocations (e.g. of <em>Log Domain</em> settings \e Verbosity
+  setting and log-domain usage) decides about the effective \e Verbosity setup.
+
+- Support <em>Scope Domain</em> settings of nested scopes to be concatenated if relative domain
+  paths are given.
+
+- Support 'external' configuration of \e Verbosity settings (via INI-files,
+  command line parameters, environment variables, etc.). This way, the control of the log output
+  was extended from being available to the programmer, to being available to the user of a
+  software as well. Therefore, a certain level of protection against either faulty or unauthorized
+  modifications had to be provided.
+
+- Finally, as the changes are quite dramatic anyhow, we took the chance to clean and refactor
+  the whole project, rewrite the tutorials and add a lot of new manual chapters!
+
+
+With these goals in mind, the changes in design and log interface are:
+
+- The internal relationship of objects of type \b Lox, \e %Loggers and \b LogDomain
+  was changed.
+
+- New static class
+  <b>%ALox</b>
+   ([C++] (@ref      #aworx::lox::ALox),
+    [C#]  (@ref  #cs::aworx::lox::ALox),
+    [Java](@ref #com::aworx::lox::ALox)) holds list of all \b Lox instances created.
+  For this, class \b %Lox received a name, which has to be unique. To prevent access to 'private'
+  instances of class \b %Lox, the registration with class \b ALox can be suppressed.
+
+- \e %Loggers attached to a \b Lox now need to have unique names.
+
+- \e %Loggers now safely can be attached to more than one \b Lox without loosing performance
+  (for unnecessarily using a mutex) if a \e %Logger is attached to one \b Lox only.
+
+- Dropped the possibility to set a \e Verbosity through the interface of class \b %Logger.
+  Instead, the interface of class \b Lox has to be used exclusively.
+
+- Dropped the possibility to independently disable a \e Logger. To disable a \e Logger, its levels of \e Verbosity
+  have to be set accordingly.
+
+- Dropped the ability of choosing whether a setting of the \e Verbosity for a <em>Log Domain</em> and \e Logger is propagated to
+  its sub-domains or not. Now, such changes are \e always propagated. On the same token, \e Verbosity
+  'Inherit' was dropped.
+
+- Renamed main generic logging method from \b %Lox.Line to
+  <b>%Lox.Entry</b>
+   ([C++] (@ref      #aworx::lox::Lox::Entry),
+    [C#]  (@ref  #cs::aworx::lox::Lox::Entry),
+    [Java](@ref #com::aworx::lox::Lox::entry)).
+
+- Dropped the concept to change or address a subset of \e Loggers filtered by a search string. In other words:
+  To change a \e Verbosity, a reference to (or the unique name of) the \e Logger in question is needed.
+  Also, method \b Lox.Entry lost parameter \e loggerFilter. Such \e Logger -specific output can now exclusively
+  be realized either using dedicated <em>Log Domains</em> that are explicitly enabled for a certain (set of)
+  \e Logger(s), or by using a dedicated \b Lox.
+
+- Overloaded methods \b SetDomain have been replaced new methods
+  <b>%Lox.SetVerbosity</b>
+   ([C++] (@ref      #aworx::lox::Lox::SetVerbosity),
+    [C#]  (@ref  #cs::aworx::lox::Lox::SetVerbosity),
+    [Java](@ref #com::aworx::lox::Lox::setVerbosity)) and
+  <b>%Lox.SetDomain</b>
+   ([C++] (@ref      #aworx::lox::Lox::SetDomain),
+    [C#]  (@ref  #cs::aworx::lox::Lox::SetDomain),
+    [Java](@ref #com::aworx::lox::Lox::setDomain)).
+
+- Method AddLogger was removed. \e Loggers are implicitly added when setting a \e %Verbosity for a
+  first domain.
+
+- Method AddLogger was removed. \e Loggers are implicitly added when setting a \e %Verbosity for a
+  first domain.
+
+
+- Scope Domains are working differently now:
+  - If a Scope Domain is set for a scope, a given domain is appended to the Scope Domain,
+    unless it starts with a '/'.
+  - Consequently, character '~' is not recognized as relative domain addressing any more, as this
+    is now the default behavior. Optionally "./" may be used. Also, support for parent domains "../"
+    is supported in relative <em>Log Domains</em>paths.
+  - Same is true for inner/outer scopes: outer scopes' Scope Domains are now \e prepended to inner
+    scopes' domains unless one starts a '/'.
+  - '/' is the only allowed domain separator now (support for '\\' and '|' has been dropped).
+
+- The concept of \e Scopes has been extended by new ones <b>related to the current thread</b>.
+
+- The feature of <em>Code Markers</em> was renamed <em>Log Data</em> and adopted to the the
+  heavily extended ALox concept of \e Scopes. (For details see \ref man_log_data.)
+
+- Added method
+  <b>%Lox.Once</b>
+   ([C++] (@ref      #aworx::lox::Lox::Once),
+    [C#]  (@ref  #cs::aworx::lox::Lox::Once),
+    [Java](@ref #com::aworx::lox::Lox::once)) allows to have a <em>Log Statement</em> being executed only
+    once (or a given number of time). A set of such \b Lox.Once statements can be grouped
+    and can be associated to a \e %Scope. (For details see \ref man_log_once.)
+
+- Removed parameter \p doLog from method
+  <b>%Lox.Entry</b>
+   ([C++] (@ref      #aworx::lox::Lox::Entry),
+    [C#]  (@ref  #cs::aworx::lox::Lox::Entry),
+    [Java](@ref #com::aworx::lox::Lox::entry)) which allowed conditional logging.
+
+- Added method
+  <b>%Lox.If</b>
+   ([C++] (@ref      #aworx::lox::Lox::If),
+    [C#]  (@ref  #cs::aworx::lox::Lox::If),
+    [Java](@ref #com::aworx::lox::Lox::If)) as a replacement for removed parameter \p doLog.
+
+- Removed parameter \p indent from method
+  <b>%Lox.Entry</b>
+   ([C++] (@ref      #aworx::lox::Lox::Entry),
+    [C#]  (@ref  #cs::aworx::lox::Lox::Entry),
+    [Java](@ref #com::aworx::lox::Lox::entry)) which allowed indentation of textual log output.
+
+- Added method
+  <b>Lox.SetPrefix</b>
+   ([C++] (@ref      #aworx::lox::Lox::SetPrefix),
+    [C#]  (@ref  #cs::aworx::lox::Lox::SetPrefix),
+    [Java](@ref #com::aworx::lox::Lox::setPrefix)) as a powerful replacement for removed parameter \p indent.
+  Prefixes are using the extended \e %Scope concept and are well applicable to the concept of
+  logging arbitrary objects.
+
+- Refactored static class \b %Log:
+  - moved inner enum classes to the namespace (package) scope.
+  - Combined enums \b %Level and \b %DomainLevel into one single enum
+    <b>Verbosity</b>
+       ([C++] (@ref      #aworx::lox::Verbosity,
+        [C#]  (@ref  #cs::aworx::lox::Verbosity,
+        [Java](@ref #com::aworx::lox::Verbosity).
+  - moved static data and interface concerning initialization, configuration and constants
+    to new class
+    <b>ALox</b>
+       ([C++] (@ref      #aworx::lox::ALox),
+        [C#]  (@ref  #cs::aworx::lox::ALox),
+        [Java](@ref #com::aworx::lox::ALox)).
+
+- Added methods
+  <b>Lox.SetSourcePathTrimRule</b>
+   ([C++] (@ref      #aworx::lox::Lox::SetSourcePathTrimRule),
+    [C#]  (@ref  #cs::aworx::lox::Lox::SetSourcePathTrimRule)) and
+  <b>Lox.ClearSourcePathTrimRules</b>
+   ([C++] (@ref      #aworx::lox::Lox::ClearSourcePathTrimRules),
+    [C#]  (@ref  #cs::aworx::lox::Lox::ClearSourcePathTrimRules)) and
+     as a powerful replacement the now removed
+  concept of 'consumable source path prefixes' (Does not apply to Java version). This replaced
+  also the corresponding mechanics in former class \b %CallerInfo, which is now named \b %ScopeInfo.
+
+- Added concept of <em>Domain Substitution</em>. See \ref man_domain_substitution and
+  <b>Lox.SetDomainSubstitutionRule</b>
+   ([C++] (@ref      #aworx::lox::Lox::SetDomainSubstitutionRule),
+    [C#]  (@ref  #cs::aworx::lox::Lox::SetDomainSubstitutionRule),
+    [Java](@ref #com::aworx::lox::Lox::setDomainSubstitutionRule)).
+
+- The <em>internal domain</em> which formerly defaulted to "/ALOX" was moved into a separated 'domain tree'.
+  The advantage is, that It can not be accidentally switched on by setting a \e Verbosity of
+  the root domain "/". Internal domains are just not reachable any more from the standard tree of
+  domains and have to be activated with a separate invocation of method
+  <b>Lox.SetVerbosity</b>
+   ([C++] (@ref      #aworx::lox::Lox::SetVerbosity),
+    [C#]  (@ref  #cs::aworx::lox::Lox::SetVerbosity),
+    [Java](@ref #com::aworx::lox::Lox::setVerbosity)).
+
+- Added a counter for the number of <em>Log Statements</em> per domain/logger which is exposed with
+  <b>Lox.LogConfig</b>
+   ([C++] (@ref      #aworx::lox::Lox::LogConfig),
+    [C#]  (@ref  #cs::aworx::lox::Lox::LogConfig),
+    [Java](@ref #com::aworx::lox::Lox::logConfig)).
+
+- Added field
+  <b>Lox.DomainSensitivity</b>
+    ([C++](@ref #aworx::lox::Lox::DomainSensitivity),
+    [C#]  (@ref #cs::aworx::lox::Lox::DomainSensitivity),
+    [Java](@ref #com::aworx::lox::Lox::domainSensitivity)) which controls if <em>Log Domains</em>
+  are treated the same when they only differ in the case of their writing (which is the default and
+  also former behavior) or if case sensitivity is enforced.
+
+- Removed parameter \e replaceDefaultReportWriter from method
+  <b>Log.AddDebugLogger</b>
+    ([C++](@ref      #aworx::lox::Log::AddDebugLogger),
+    [C#]  (@ref  #cs::aworx::lox::Log::AddDebugLogger),
+    [Java](@ref #com::aworx::lox::Log::addDebugLogger)). An \b
+  <b>ALoxReportWriter</b>
+    ([C++](@ref      #aworx::lox::ALoxReportWriter),
+    [C#]  (@ref  #cs::aworx::lox::ALoxReportWriter),
+    [Java](@ref #com::aworx::lox::ALoxReportWriter)) is now set provided that the default
+   ALib \b ConsoleReportWriter is in place.
+
+- Class
+  <b>TextLogger</b>
+   ([C++] (@ref      #aworx::lox::core::textlogger::TextLogger),
+    [C#]  (@ref  #cs::aworx::lox::core::textlogger::TextLogger),
+    [Java](@ref #com::aworx::lox::core::textlogger::TextLogger)) now supports a list of
+  <b>ObjectConverter</b>
+   ([C++] (@ref      #aworx::lox::core::textlogger::ObjectConverter),
+    [C#]  (@ref  #cs::aworx::lox::core::textlogger::ObjectConverter),
+    [Java](@ref #com::aworx::lox::core::textlogger::ObjectConverter)) objects being attached,
+  instead of only one.
+  This simplifies the creation of custom converter types and makes their use more flexible.
+
+- If multiple \e %Loggers, which direct log output to either standard <em>output</em> or
+  <em>error</em> stream exist, such output is now protected in multi-threaded applications.
+  Such protection can in aenumddition be achieved with standard output that is not generated from
+  ALox.
+
+- If multiple \e %Loggers, which direct log output to either standard <em>output</em> or
+  <em>error</em> stream exist, such output is now protected in multi-threaded applications.
+  Such protection can in addition be achieved with standard output that is not generated from
+  ALox.
+
+- Some configuration variables were renamed and new ones added, for example \c ALOX_LOGGERNAME_FORMAT.
+  For complete info see \ref GrpALoxConfigVars.
+
+- C++ support for single-threaded ALox compilations cleaned (ALib now fully hides differences between
+  single/multi-threaded compilations, all interfaces remain active in single threaded mode).
+
+- Dropped compiler symobl \b ALOX_NO_THREADS of C# Version. ALox for C# is now always thread
+  enabled (same as ALox for Java).
+
+- <b>Tutorials</b>
+    ([C++](@ref cpptutorial),
+    [C#]  (@ref cstutorial),
+    [Java](@ref javatutorial)) and the (@ref manual) have be completely rewritten and greatly
+    expanded to reflect the new architecture and features (and also those that were dropped).
+
 
 \~Comment ####################################################################################### \~
 \~Comment #############################  V. 1602  Revision 1 #################################### \~
@@ -50,13 +352,13 @@ This is a revision of version 1602, with minimal impact on standard ALox user co
 - Removed public flags \b HaltOnError and \b HaltOnWarning in class \b Report and replaced their
   functionality by providing new methods
   <b>Report::PushHaltFlags</b>
-    ([C++] (@ref #aworx::lib::Report::PushHaltFlags),
-     [C#]  (@ref #cs::aworx::lib::Report::PushHaltFlags),
-     [JAVA](@ref #com::aworx::lib::Report::pushHaltFlags)) and
+    ([C++] (@ref      #aworx::lib::Report::PushHaltFlags),
+     [C#]  (@ref  #cs::aworx::lib::Report::PushHaltFlags),
+     [Java](@ref #com::aworx::lib::Report::pushHaltFlags)) and
   <b>Report::PopHaltFlags</b>
-    ([C++] (@ref #aworx::lib::Report::PopHaltFlags),
-     [C#]  (@ref #cs::aworx::lib::Report::PopHaltFlags),
-     [JAVA](@ref #com::aworx::lib::Report::popHaltFlags)).
+    ([C++] (@ref      #aworx::lib::Report::PopHaltFlags),
+     [C#]  (@ref  #cs::aworx::lib::Report::PopHaltFlags),
+     [Java](@ref #com::aworx::lib::Report::popHaltFlags)).
 
 
 <b> Changes in ALox</b>
@@ -90,14 +392,11 @@ More important general changes are:
   \b 1602. In addition each version has a revision number for updates without interface changes.
   ALib (formerly named AWXU) and ALox have separated version fields found in
   <b>ALIB.Version</b>
-  ([C++] (@ref #aworx::lib::ALIB::Version),
-   [C#]  (@ref #cs::aworx::lib::ALIB::Version),
-   [JAVA](@ref #com::aworx::lib::ALIB::version)) and
-  <b>Log.Version</b>
-  ([C++] (@ref #aworx::lox::Log::Version),
-   [C#]  (@ref #cs::aworx::lox::Log::Version),
-   [JAVA](@ref #com::aworx::lox::Log::version)). It is expected that these two different version
-   numbers will stay in sync.
+  ([C++] (@ref      #aworx::lib::ALIB::Version),
+   [C#]  (@ref  #cs::aworx::lib::ALIB::Version),
+   [Java](@ref #com::aworx::lib::ALIB::version)) and
+  \b Log.Version
+   It is expected that these two different version numbers will stay in sync.
 
 - All IDE or CMake project files, solution names, folder structure, source structure changed.
   Also some 'compiler symbols', and so on.
@@ -128,7 +427,7 @@ More important general changes are:
   <b>ALIB</b>
   ([C++] (@ref #aworx::lib::ALIB),
    [C#]  (@ref #cs::aworx::lib::ALIB),
-   [JAVA](@ref #com::aworx::lib::ALIB))
+   [Java](@ref #com::aworx::lib::ALIB))
 
 - With this renaming, all namespaces
   (in Java 'package') of the AWorx Library and ALox itself have been renamed. A main
@@ -143,23 +442,23 @@ More important general changes are:
   - <b>[com::|cs::] %aworx::lib</b>
     ([C++] (@ref aworx::lib)
      [C#]  (@ref cs::aworx::lib)
-     [JAVA](@ref com::aworx::lib)) for the AWorx Library and
+     [Java](@ref com::aworx::lib)) for the AWorx Library and
   - <b>[com::|cs::] %aworx::lox</b>
     ([C++] (@ref aworx::lox)
      [C#]  (@ref cs::aworx::lox)
-     [JAVA](@ref com::aworx::lox)) for the ALox Logging Library exist.
+     [Java](@ref com::aworx::lox)) for the ALox Logging Library exist.
 
   The classes of the AWorx Library, hence those in namespace
   <b>[com::|cs::] %aworx::lib</b>
   ([C++] (@ref aworx::lib)
    [C#]  (@ref cs::aworx::lib)
-   [JAVA](@ref com::aworx::lib)), have been moved and sorted into a set of sub namespaces as well.
+   [Java](@ref com::aworx::lib)), have been moved and sorted into a set of sub namespaces as well.
 
 - Class
   <b>AString</b>
   ([C++] (@ref #aworx::lib::strings::AString),
    [C#]  (@ref #cs::aworx::lib::strings::AString),
-   [JAVA](@ref #com::aworx::lib::strings::AString))
+   [Java](@ref #com::aworx::lib::strings::AString))
   received a complete overhaul. The trigger was a huge frustration with general string handling in
   C++. (See the great essay [The Most Expensive One-byte Mistake] (http://queue.acm.org/detail.cfm?id=2010365)).
   The goal was to make
@@ -185,35 +484,35 @@ More important general changes are:
     <b>CString</b>
     ([C++] (@ref #aworx::lib::strings::CString),
      [C#]  (@ref #cs::aworx::lib::strings::CString),
-     [JAVA](@ref #com::aworx::lib::strings::CString))
+     [Java](@ref #com::aworx::lib::strings::CString))
   - Conversion of floating point values into strings and vice versa received its own implementation
     (instead of using existing system methods). This brings several advantages. For more information
     see documentation of class
     <b>NumberFormat</b>
       ([C++](@ref #aworx::lib::strings::NumberFormat),
       [C#]  (@ref #cs::aworx::lib::strings::NumberFormat),
-      [JAVA](@ref #com::aworx::lib::strings::NumberFormat)).
+      [Java](@ref #com::aworx::lib::strings::NumberFormat)).
   - Methods that omit checking their given parameter values and also omit some internal state
     checking and setting got introduced. The goal here is to avoid redundant, repetitive checks. See
     <b>Non-checking methods</b>
       ([C++](@ref alib_namespace_strings_nonchecking),
       [C#]  (@ref CS_ASTRING_NC),
-      [JAVA](@ref JAVA_ASTRING_NC)) for more information.
+      [Java](@ref JAVA_ASTRING_NC)) for more information.
   - New String classes
     <b>Substring</b>
     ([C++] (@ref #aworx::lib::strings::Substring),
      [C#]  (@ref #cs::aworx::lib::strings::Substring),
-     [JAVA](@ref #com::aworx::lib::strings::Substring))
+     [Java](@ref #com::aworx::lib::strings::Substring))
     and
     <b>Tokenizer</b>
     ([C++] (@ref #aworx::lib::strings::Tokenizer),
      [C#]  (@ref #cs::aworx::lib::strings::Tokenizer),
-     [JAVA](@ref #com::aworx::lib::strings::Tokenizer))
+     [Java](@ref #com::aworx::lib::strings::Tokenizer))
     that provide fast (no memory allocations), simple string parsing capabilities.
     <b>AString</b>
     ([C++] (@ref #aworx::lib::strings::AString),
      [C#]  (@ref #cs::aworx::lib::strings::AString),
-     [JAVA](@ref #com::aworx::lib::strings::AString))
+     [Java](@ref #com::aworx::lib::strings::AString))
     accept class <em>Substring</em> as a parameter (Well, C++ Version of AString accepts just
     anything that smells like a string in its TMP-based constructor!)
 
@@ -221,13 +520,13 @@ More important general changes are:
   <b>Namespace 'enums'</b>
     ([C++] (@ref #aworx::lib::enums),
     [C#]  (@ref #cs::aworx::lib::enums),
-    [JAVA](@ref #com::aworx::lib::enums))
+    [Java](@ref #com::aworx::lib::enums))
 
 - Class
   <b>ALIB</b>
   ([C++] (@ref #aworx::lib::ALIB),
    [C#]  (@ref #cs::aworx::lib::ALIB),
-   [JAVA](@ref #com::aworx::lib::ALIB))
+   [Java](@ref #com::aworx::lib::ALIB))
   in its C# and Java version received a list of assertion methods, named
    - \e ALIB.WARNING,
    - \e ALIB.ERROR,
@@ -243,11 +542,11 @@ More important general changes are:
   <b>Report</b>
   ([C++] (@ref #aworx::lib::Report),
    [C#]  (@ref #cs::aworx::lib::Report),
-   [JAVA](@ref #com::aworx::lib::Report)) and
+   [Java](@ref #com::aworx::lib::Report)) and
   <b>ReportWriter</b>
   ([C++] (@ref #aworx::lib::ReportWriter),
    [C#]  (@ref #cs::aworx::lib::ReportWriter),
-   [JAVA](@ref #com::aworx::lib::ReportWriter)) which replaced the former \e ErrorHandler class.
+   [Java](@ref #com::aworx::lib::ReportWriter)) which replaced the former \e ErrorHandler class.
 
 
 <p>
@@ -261,7 +560,7 @@ More important general changes are:
   <b>config</b>
     ([C++](@ref #aworx::lib::config),
     [C#]  (@ref #cs::aworx::lib::config),
-    [JAVA](@ref #com::aworx::lib::config)) for more information.
+    [Java](@ref #com::aworx::lib::config)) for more information.
 
 
 - Fixed daylight saving bug in class Ticks (GNU/Linux, C++ version)
@@ -271,64 +570,64 @@ More important general changes are:
 <b> Changes in ALox </b>
 
 - ALox learned to <b>colorize log lines</b>. Depending on programming language and platform,
-  different new loggers are provided (e.g. ANSI escape sequences and native windows console coloring).
+  different new \e Loggers are provided (e.g. ANSI escape sequences and native windows console coloring).
 
 - Combining the aforementioned configuration capabilities and the colorful log output, ALox learned
-  to <b>detect and choose the right debug console logger</b> automatically, respectively use configuration
+  to <b>detect and choose the right debug console \e Logger</b> automatically, respectively use configuration
   hints and settings to do so.
   See new method
   <b>Log::CreateConsoleLogger</b>
   ([C++] (@ref #aworx::lox::Lox::CreateConsoleLogger),
    [C#]  (@ref #cs::aworx::lox::Lox::CreateConsoleLogger),
-   [JAVA](@ref #com::aworx::lox::Lox::createConsoleLogger))
+   [Java](@ref #com::aworx::lox::Lox::createConsoleLogger))
   for further information.<br>
   For debug logging, method
   <b>Log::AddDebugLogger</b>
   ([C++] (@ref #aworx::lox::Log::AddDebugLogger),
    [C#]  (@ref #cs::aworx::lox::Log::AddDebugLogger),
-   [JAVA](@ref #com::aworx::lox::Log::addDebugLogger))
+   [Java](@ref #com::aworx::lox::Log::addDebugLogger))
   may be used which also reflects some IDE specifics. There is more to come here in the future.
 
-  Furthermore, the (automatically increased) tab positions of the debug logger created in
-  <b>Log::AddDebugLogger</b>
+  Furthermore, the (automatically increased) tab positions of the debug \e Logger created in
+  <b>Log::AddDebug\e Logger</b>
   ([C++] (@ref #aworx::lox::Log::AddDebugLogger),
    [C#]  (@ref #cs::aworx::lox::Log::AddDebugLogger),
-   [JAVA](@ref #com::aworx::lox::Log::addDebugLogger)),
+   [Java](@ref #com::aworx::lox::Log::addDebugLogger)),
   are stored in the configuration (as soon as a
   <b>ConfigurationPlugIn</b>
     ([C++](@ref #aworx::lib::config::ConfigurationPlugIn),
     [C#]  (@ref #cs::aworx::lib::config::ConfigurationPlugIn),
-    [JAVA](@ref #com::aworx::lib::config::ConfigurationPlugIn)) is provided that is capable of
+    [Java](@ref #com::aworx::lib::config::ConfigurationPlugIn)) is provided that is capable of
   storing configuration data, e.g. one of type class
   <b>IniFile</b>
     ([C++](@ref #aworx::lib::config::IniFile),
     [C#]  (@ref #cs::aworx::lib::config::IniFile),
-    [JAVA](@ref #com::aworx::lib::config::IniFile)) ) and this way survive the lifetime of a
+    [Java](@ref #com::aworx::lib::config::IniFile)) ) and this way survive the lifetime of a
   process.
 
-- Added IDE specific loggers for Visual Studio (C++/C#) and MonoDevelop (C#).
+- Added IDE specific \e Loggers for Visual Studio (C++/C#) and MonoDevelop (C#).
 
 - Removed optional parameter \p InternalDomainLevel from method \b Lox.AddLogger.
   It was OK to have it but caused a lot of confusion users. Instead, the method now checks if
-  the internal domain level was set before and if not, sets it to \b DomainLevel.ErrorsAndWarnings.
+  the internal \e Verbosity was set before and if not, sets it to \b DomainVerbosity.ErrorAndWarnings.
 
 
-- Renamed method \b Lox.SetDisabled to \b Lox.SetLogger.
+- Renamed method \b Lox.SetDisabled to \b Lox.SetVerbosity.
 
 - Renamed method \b Lox.RegDomain to \b Lox.SetDomain (which existed before, therefore these are now
   overloaded methods).<br> Background: with increasing \e tolerance of ALox against non- or
   partly-configured logging, the concept of "registering" a domain becomes an internal thing.
   On the same token, logging to an unregistered domain is now an internal log message on
-  level \e Info, not \e Warning.
+  \e Verbosity.Info, not \e Verbosity.Warning.
 
-- Added public interface to class \b Logger to set a domain level, independent from using a \b Lox.
+- Added public interface to class \b %Logger to set a log level, independent from using a \b Lox.
   This was already possible before, but now got put into a convenient method which registers the
   domain. For more information on here to use that, refer to
   <b>tutorials</b>
     ([C++](@ref cpptutorial),
     [C#]  (@ref cstutorial),
-    [JAVA](@ref javatutorial)) ) and chapter
-  \ref man_levelsanddomains in the ALox user manual.
+    [Java](@ref javatutorial)) ) and chapter "Log Levels, Log Domains and Log Domain Levels".
+  in the ALox user manual.
 
 - Renamed internal class \b LogDomain to \b Domain. Similar as with aforementioned tendency to
   tolerance, also its interface changed in a way that any search for an unknown domain now creates
@@ -346,20 +645,20 @@ More important general changes are:
     - New format symbol 'Cf' in MetaInfo. Writes source file name excluding
       the path name (C++ and C# versions)
 
-    - Fixed caller information handling in C++ version. Nested log calls will now all show
-      caller information of the first log call invoked. (Nested log calls appear for example
+    - Fixed scope information handling in C++ version. Nested log calls will now all show
+      scope information of the first log call invoked. (Nested log calls appear for example
       if an assertion is thrown during the assembly of a log message.)
 
     - Moved class
       <b>TextLogger</b>
       ([C++] (@ref #aworx::lox::core::textlogger::TextLogger),
        [C#]  (@ref #cs::aworx::lox::core::textlogger::TextLogger),
-       [JAVA](@ref #com::aworx::lox::core::textlogger::TextLogger)) and its helpers into an
+       [Java](@ref #com::aworx::lox::core::textlogger::TextLogger)) and its helpers into an
        own namespace. Also introduced abstract class
       <b>PlainTextLogger</b>
       ([C++] (@ref #aworx::lox::core::textlogger::PlainTextLogger),
        [C#]  (@ref #cs::aworx::lox::core::textlogger::PlainTextLogger),
-       [JAVA](@ref #com::aworx::lox::core::textlogger::PlainTextLogger)) which filters out
+       [Java](@ref #com::aworx::lox::core::textlogger::PlainTextLogger)) which filters out
        color and other format information for log destinations that can not make use of it.
        This is now parent of e.g. \b MemoryLogger, \b TextFileLoger and the (plain) \b ConsoleLogger.
 
@@ -367,7 +666,7 @@ More important general changes are:
       <b>MemoryLogger</b>
       ([C++] (@ref #aworx::lox::loggers::MemoryLogger),
        [C#]  (@ref #cs::aworx::lox::loggers::MemoryLogger),
-       [JAVA](@ref #com::aworx::lox::loggers::MemoryLogger)) to <em>MemoryLog</em>.
+       [Java](@ref #com::aworx::lox::loggers::MemoryLogger)) to <em>MemoryLog</em>.
 
     - Cleaned internal ALox log messages.
 
@@ -432,7 +731,7 @@ More important general changes are:
 
 
 ## Version 1.1.1, released November 26th, 2013 ##
-- Added a first, simplistic file logger. This is really just a first shot, not optimized in any
+- Added a first, simplistic file \e Logger. This is really just a first shot, not optimized in any
   respect. This is due to be extended in next versions.
 - Created an own source folder for tools and moved class [LogTools](@ref #cs::aworx::lox::tools::LogTools)
   there.
@@ -451,7 +750,7 @@ More important general changes are:
 - First ALox for Java Release!
   100% Feature complete (as compared to actual C# Version).
 
-- ALox for Java includes an LogCat logger for Android. This enables LogCat filtering and double-click
+- ALox for Java includes an LogCat \e Logger for Android. This enables LogCat filtering and double-click
   support (jump to code line)
 
 - Doxygen documentation now builds three different sites: Main, C# and Java. With a little doxygen
@@ -470,19 +769,19 @@ More important general changes are:
     [MemoryLogger](@ref cs::aworx::lox::loggers::MemoryLogger) and
     [ConsoleLogger](@ref cs::aworx::lox::loggers::ConsoleLogger)
     moved to a new package from *com.aworx.lox.loggers*
-    This new packages is to be filled over time with new Logger types. Class
+    This new packages is to be filled over time with new \e Logger types. Class
     [TextLogger](@ref cs::aworx::lox::core::textlogger::TextLogger) however, was kept in package *com.aworx.lox.core*
-    as this class is an abstract foundation class for current and future text based loggers.
+    as this class is an abstract foundation class for current and future text based \e Loggers.
 
 - Class [TextLogger](@ref #cs::aworx::lox::core::textlogger::TextLogger) was completely redesigned to be more configurable
-  and extensible. For a complete description, see new manual chapter \ref man_loggers.
+  and extensible. For a complete description, see new manual chapter \ref man_ext_loggers.
 
 - Added a AString singleton to classes
   [Log](@ref #cs::aworx::lox::Log) and
   [Lox](@ref #cs::aworx::lox::Lox) that can be acquired using
   [Log.Buf()](@ref #cs::aworx::lox::Lox::Buf) respectively
   [Lox.Buf()](@ref #cs::aworx::lox::Lox::Buf) and is automatically released when contents gets logged. See
-  new tutorial section \ref tutcs_more_logbuf.
+  new tutorial section \ref tutcs_logbuf.
 
 - C# class [ThreadLock](@ref cs::aworx::lib::threads::ThreadLock) corrected method names to follow "upper camel case".
 
@@ -502,26 +801,26 @@ More important general changes are:
   AString, CharSequence, etc.) and handle them efficiently. Unknown types are converted using their ToString() function.
   Other Loggers might treat them differently. This should not affect your code base in respect to using the standard logging
   interface.
-- Introduced the new enumeration [Log.Scope](@ref #cs::aworx::lox::Log::Scope). The scope is used by different
+- Introduced the new enumeration [Scope](@ref #cs::aworx::lox::Scope). The scope is used by different
   methods as a parameter to define the applicable scope of a command. Scopes differ in different platform/languages
   supported by ALox. In C# the scope can be "Method" or "SourceFile" while in the upcoming Java version of ALox
   the scope "Package", "Class" and "Method" are defined.
-  The difference is due to different mechanisms to automatically collect caller information.
+  The difference is due to different mechanisms to automatically collect scope information.
 
   Attn C# users: If within one source file two or more classes with equal same method names exist, then such
   method names share the same scope and hence are ambiguous. This is due to technical restrictions
-  of how caller information is collected in C#/.Net.
+  of how scope information is collected in C#/.Net.
 
   The methods affected in this release are:
-  - [Log.GetMarker](@ref #cs::aworx::lox::Log::GetMarker),
-  - [Log.SetMarker](@ref #cs::aworx::lox::Log::SetMarker), and
+  - \b Log.GetMarker,
+  - \b Log.SetMarker, and
   - \b Log.RegDomain.
 
   For the latter, the optional parameter "setAsDefault" was replaced by the scope and is not optional, but explicit now.
-  For registering a Domain without setting it as the default domain, the Scope value
-  [Log.Scope.None](@ref #cs::aworx::lox::Log::Scope) has to be given.
+  For registering a Domain without setting it as the Scope Domain, the Scope value
+  [Scope.None](@ref #cs::aworx::lox::Scope) has to be given.
 
-- Parameter list of abstract function [TextLogger](@ref #cs::aworx::lox::core::textlogger::TextLogger::doTextLog) got extended.
+- Parameter list of abstract function \b TextLogger::logText got extended.
   Needs adaption if you derived your own TextLogger class.
 - Removed one and renamed two of the output control flags in [Logger](@ref #cs::aworx::lox::core::Logger). If you
   used them, you will have to make small code changes.
@@ -537,17 +836,14 @@ More important general changes are:
 ## Version 1.0.3, released May 27th, 2013 ##
 - added Windows Phone 7.1 compatibility (Windows Phone 8, was already supported)
 - minor bug fixes in code and documentation
-- renamed methods *Log.LOG()*, *Lox.log()* and *Logger.Log()* to
-   [Log.Line()]   (@ref #cs::aworx::lox::Log::Line),
-   [Lox.Line()]   (@ref #cs::aworx::lox::Lox::Line) and
-   [Logger.Line()](@ref #cs::aworx::lox::core::Logger::Line). The reason may be obvious. The reasons
-  why they had been named as they were before, is maybe not too obvious. Some name conflicts where
-  confusing. Now, all confusion should be gone!
+- renamed methods *Log.LOG()*, *Lox.log()* and *Logger.Log()* to *Logger.Line()*.
+  The reasons why they had been named as they were before, is maybe not too obvious.
+  Some name conflicts where  confusing. Now, all confusion should be gone!
 
   Note: If you had used these methods, you have to rename them in your code accordingly.
 
 - Enums *Level* and *DomainLevel* stop existing several times in different namespaces. Their place
-  is now in class Log, hence [Log.Level]  (@ref #cs::aworx::lox::Log::Level) and [Log.DomainLevel]  (@ref #cs::aworx::lox::Log::DomainLevel)
+  is now in class Log, hence \b Level and \b Verbosity.
 
   *Note for those who are interested:*  This was OK before and supported separation and avoided cyclic
   package references. However, with implementing the Java version, having multiple versions caused problems
@@ -588,22 +884,20 @@ More important general changes are:
 
 - Renamed the namespaces from having prefix "com.aworx.log" to "com.aworx.lox"
 
-- Renamed all symbols in enum
-  [Log.DomainLevel](@ref #cs::aworx::lox::Log::DomainLevel) and enum
-  [Log.Level](@ref #cs::aworx::lox::Log::Level) from *"upper case with underscores"*  to *"upper camel case"*, for
-  consistency with C# standards.
+- Renamed all symbols in enum \b Verbosity and enum \b Level from *"upper case with underscores"*
+  to *"upper camel case"*, for consistency with C# standards.
 
 - Renamed
   - **Log.CreateDomain()** to \b Log.RegDomain and
     on the same token renamed:
-  - **Log.SetDomainLogLevel()** to [Log.SetDomain()](@ref #cs::aworx::lox::Log::SetDomain )
+  - **Log.SetDomainLogLevel()** to \b Log.SetDomain()
 
   This was done to emphasize the fact that both functions create a domain if it does not exist
   yet and it is not important in which order they are called.
 
-- Removed method **Log.SetDefaultDomain()**. Use \b Log.RegDomain
+- Removed method **Log.SetDomain()**. Use \b Log.RegDomain
 
-- Added new Parameter **internalDomainLevel** added to method [Log.AddLogger()](@ref #cs::aworx::lox::Log::AddLogger )
+- Added new Parameter \p internalDomainLevel added to method \b Log.AddLogger().
 
   *Note: You do not need to change your source code, because the new parameter has a default value. However, you might
   want to look at the documentation to understand the concept and use this parameter rightfully.*

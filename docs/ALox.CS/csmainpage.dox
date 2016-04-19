@@ -14,9 +14,21 @@
 This part of the ALox Logging library documentation is specific to its C# Implementation.<br>
 The following information is found here:
 
-## Tutorial ##
-Walk yourself through the \ref cstutorial. This is allows you a fast overview and intro
-if you are new to ALox.
+## Documentation ##
+- Walk yourself through the [ALox for C# Tutorial ](cstutorial.html). This is allows you a fast overview and intro
+  if you are new to ALox.
+
+- Consult the general (language agnostic) [ALox User Manual](../manual.html) for in-depth information
+  on various topics.
+
+- In addition, a complete [C# Reference Documentation](annotated.html) is available...
+  created with marvelous [Doxygen](http://www.stack.nl/~dimitri/doxygen/)!
+
+  \note
+  As of ALox version 1604, with the introduction of static class \b %ALox, the term "ALox" in the reference
+  documentation is oftenly erroneously linked to this class. This will be fixed in a next release.
+<p>
+
 
 ## IDE / Built System Setup ##
 The C# Version has been developed and tested on the operating systems
@@ -37,14 +49,6 @@ Check out \ref cssetup for details of how to compile and setup ALox.
 After working yourself through the tutorial and after having set up your projects to use
 ALox, it is recommended to read some information about <em>pruning</em>.
 Such information is provided here: \ref cspruning
-
-## More to read   ##
-Consult the general (language agnostic) [ALox User Manual](../manual.html) for in-depth information
-on various topics.
-
-## Class Reference ##
-
-To browse the class reference, please use the page menu above.
 
 ## Organization of code ##
 

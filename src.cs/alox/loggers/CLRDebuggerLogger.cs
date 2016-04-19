@@ -28,23 +28,13 @@ namespace cs.aworx.lox.loggers    {
 /** ************************************************************************************************
  *  A logger that logs to the to the Debugger's output stream using .Net method
  *  <em>System.Diagnostics.Debug.Write()</em>.
- *  The name of the logger defaults to "CLR_DEBUGGER_LOGGER".
+ *  The name of the \e Logger defaults to "CLR_DEBUGGER_LOGGER".
  *
- *  ALox text logger escape sequences (see class \ref aworx::lox::ESC "ESC")
+ *  ALox text logger escape sequences (see class \ref cs::aworx::lox::ESC "ESC")
  *  are removed and ignored.
  *
- *  While by default, the
- *  \ref aworx::lox::Log::DomainLevel "DomainLevel"
- *  of root domains of loggers are set to 'Off', the constructor of this class sets this value
- *  to 'All'. This way, all log invocations on 'unknown' domains (those that have not been
- *  registered and explicitly set) are fully enabled by default.
- *  This is done because this class typically represents a logger that used for debug logging,
- *  e.g. logging into the developer's IDE. Such loggers should detect all messages of any log domain
- *  that the application and its library uses - unless those are explicitly set differently in
- *  the bootstrap code of the application.
- *
- *  \note For the ease of use, class \ref aworx::lox::Log "Log" implements a method
- *  \ref aworx::lox::Log::AddDebugLogger "Log.AddDebugLogger"
+ *  \note For the ease of use, class \ref cs::aworx::lox::Log "Log" implements a method
+ *  \ref cs::aworx::lox::Log::AddDebugLogger "Log.AddDebugLogger"
  *  that tries to create the right Logger type for standard debug logging.
  *  If a debug session is detected (e.g. in Visual Studio or MonoDevelop IDE), this logger is added
  *  in addition.
@@ -64,17 +54,13 @@ public class CLRDebuggerLogger : PlainTextLogger
 
         /** ****************************************************************************************
          * Creates a CLRDebuggerLogger.
-         * @param name   (Optional) The name of the logger, defaults to "CLR_DEBUGGER".
+         * @param name   (Optional) The name of the \e Logger, defaults to "CLR_DEBUGGER".
          ******************************************************************************************/
         public CLRDebuggerLogger( String name= null )
-        : base( name, "CLR_DBG_CONSOLE" )
+        : base( name, "CLR_DBG_CONSOLE", false )
         {
-            // set default domain level to all: As an app console logger/IDE logger we want to
-            // fetch all we can
-            RootDomain.SetLevel( Log.DomainLevel.All, Propagation.None );
-
             // prevent cutting off filenames
-            MetaInfo.ConsumableSourcePathPrefixString= String.Empty;
+            MetaInfo.Format.SearchAndReplace( "%Sp", "%SP" );
         }
 
     /** ********************************************************************************************
@@ -100,7 +86,7 @@ public class CLRDebuggerLogger : PlainTextLogger
      * @return Always returns true.
      **********************************************************************************************/
     override
-    protected bool doLogSubstring( AString buffer, int start, int length )
+    protected bool logSubstring( AString buffer, int start, int length )
     {
         System.Diagnostics.Debug.Write( buffer.ToString( start, length ) );
         return true;

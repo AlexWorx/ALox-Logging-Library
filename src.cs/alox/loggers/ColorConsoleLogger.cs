@@ -26,34 +26,27 @@ namespace cs.aworx.lox.loggers    {
 
 
 /** ************************************************************************************************
+ * A logger that logs all messages using the .Net class <em>System.Console</em>. Converts color
+ * sequences defined in class
+ * \ref cs::aworx::lox::ESC "ESC"
+ * that are found within the log messages (and meta info format strings) to a corresponding
+ * color setting of class <em>System.Console</em>.
  *
- *  A logger that logs all messages using the .Net class <em>System.Console</em>. Converts color
- *  sequences defined in class
- *  \ref cs::aworx::lox::ESC "ESC"
- *  that are found within the log messages (and meta info format strings) to a corresponding
- *  color setting of class <em>System.Console</em>.
+ * Foreground and background colors are set to be either light/dark or dark/light. This improves
+ * the readability of log output a lot. However, the right setting for this is dependent on
+ * the color scheme of final output device (window). To manipulate the right setting, see field
+ * #IsBackgroundLight and also configuration variable
+ * [ALOX_CONSOLE_HAS_LIGHT_BACKGROUND](../group__GrpALoxConfigVars.html).
  *
- *  Foreground and background colors are set to be either light/dark or dark/light. This improves
- *  the readability of log output a lot. However, the right setting for this is dependent on
- *  the color scheme of final output device (window). To manipulate the right setting, see field
- *  #IsBackgroundLight and also configuration variable
- *  [ALOX_CL_LIGHT_BACKGROUND](../group__GrpALoxConfigVars.html).
+ * \note
+ *   The implementation of class <em>System.Console</em> and its color support is system
+ *   dependent. E.g. under Mono V. 4.0.2. it was observed that dark and light colors are equal
+ *   in effect. Therefore, it might be advisable to use a different type of console logger
+ *   on certain platforms. E.g. under Linux with standard terminal output, class
+ *   \ref cs.aworx.lox.loggers.AnsiConsoleLogger "AnsiConsoleLogger"
+ *   might lead to better readable results.
  *
- *  \note The implementation of class <em>System.Console</em> and its color support is system
- *  dependent. E.g. under Mono V. 4.0.2. it was observed that dark and light colors are equal
- *  in effect. Therefore, it might be advisable to use a different type of console logger
- *  on certain platforms. E.g. under Linux with standard terminal output, class
- *  \ref cs.aworx.lox.loggers.AnsiConsoleLogger "AnsiConsoleLogger"
- *  might lead to better readable results.
- *
- *  The name of the logger defaults to "COLORCONSOLE".
- *
- *  The constructor sets the level of the root domain, and as such the level of all 'unknown'
- *  domains that inherit from root domain to 'All'. This is because this class represents a logger
- *  that logs into the developer's IDE, and hence just wants to fetch all log domains that the
- *  app and its library uses - unless explicitly set differently in the bootstrap code.  By default,
- *  root domains of loggers have domain level 'Off'.
- *
+ * The name of the \e Logger defaults to "COLORCONSOLE".
  **************************************************************************************************/
 public class ColorConsoleLogger : TextLogger
 {
@@ -78,23 +71,23 @@ public class ColorConsoleLogger : TextLogger
          *
          * Defaults to false.
          *
-         * The configuration variable [ALOX_CL_LIGHT_BACKGROUND](../group__GrpALoxConfigVars.html)
+         * The configuration variable [ALOX_CONSOLE_HAS_LIGHT_BACKGROUND](../group__GrpALoxConfigVars.html)
          * is evaluated within the constructor of this class, to allow to modifying this flag at
          * runtime.
          */
 
         public      bool                    IsBackgroundLight;
 
-        /** Color of a log line with level 'Error'.*/
+        /** Color of a log line with \e Verbosity 'Error'.*/
         public      ConsoleColor            MsgColorError;
 
-        /** Color of a log line with level 'Warning'.*/
+        /** Color of a log line with \e Verbosity 'Warning'.*/
         public      ConsoleColor            MsgColorWarning;
 
-        /** Color of a log line with level 'Info'.*/
+        /** Color of a log line with \e Verbosity 'Info'.*/
         public      ConsoleColor            MsgColorInfo;
 
-        /** Color of a log line with level 'Verbose'.*/
+        /** Color of a log line with \e Verbosity 'Verbose'.*/
         public      ConsoleColor            MsgColorVerbose;
 
         /** Conversion table from ESC to light colors      */
@@ -127,22 +120,17 @@ public class ColorConsoleLogger : TextLogger
 
     /** ********************************************************************************************
      * Creates a ConsoleLogger.
-     * @param name  (Optional) The name of the logger, defaults to "COLOR_CONSOLE" </param>
+     * @param name  (Optional) The name of the \e Logger, defaults to "COLOR_CONSOLE"
      **********************************************************************************************/
     public ColorConsoleLogger( String name= null )
-    : base( name, "COLOR_CONSOLE" )
+    : base( name, "COLOR_CONSOLE", true )
     {
-        // set default domain level to all: As an app console logger/IDE logger we want to
-        // fetch all we can
-        RootDomain.SetLevel( Log.DomainLevel.All, Propagation.None );
-
-
         // get actual console foreground color
         ConsoleColor fgCol= Console.ForegroundColor;
 
-        // evaluate environment variable "ALOX_CL_LIGHT_BACKGROUND"
-        int  configVarSet= 0;
-        bool configVarTrue= ALIB.Config.IsTrue( Log.ConfigCategoryName, "CL_LIGHT_BACKGROUND", ref configVarSet );
+        // evaluate environment variable "ALOX_CONSOLE_HAS_LIGHT_BACKGROUND"
+        int  configVarSet;
+        bool configVarTrue= ALIB.Config.IsTrue( ALox.ConfigCategoryName, "CONSOLE_HAS_LIGHT_BACKGROUND", out configVarSet );
         if( configVarSet != 0 )
             IsBackgroundLight=  configVarTrue;
         else
@@ -158,8 +146,8 @@ public class ColorConsoleLogger : TextLogger
         }
 
 
-        // remove level information and colorize the whole line
-        MetaInfo.Format.SearchAndReplace( " %L ", " " );
+        // remove verbosity information and colorize the whole line
+        MetaInfo.Format.SearchAndReplace( " %V ", " " );
         MsgColorInfo          = fgCol;
         if ( IsBackgroundLight )
         {
@@ -180,18 +168,17 @@ public class ColorConsoleLogger : TextLogger
      *  The implementation of the abstract method of parent class TextLogger. Logs messages to the
      *  application console and/or the VStudio output window.
      *
-     * @param domain      The log domain name. </param>
-     * @param level       The log level. This has been checked to be active already on this
-     *                           stage and is provided to be able to be logged out only. </param>
-     * @param msg         The log message. </param>
-     * @param indent      the indentation in the output. Defaults to 0. </param>
-     * @param caller      Once compiler generated and passed forward to here. </param>
+     * @param domain      The <em>Log Domain</em>.
+     * @param verbosity   The verbosity. This has been checked to be active already on this
+     *                    stage and is provided to be able to be logged out only.
+     * @param msg         The log message.
+     * @param scope       Information about the scope of the <em>Log Statement</em>..
      * @param lineNumber  The line number of a multi-line message, starting with 0. For
-     *                           single line messages this is -1. </param>
+     *                    single line messages this is -1.
      **********************************************************************************************/
-    override protected void doTextLog(  AString        domain,     Log.Level     level,
-                                        AString        msg,        int            indent,
-                                        CallerInfo     caller,     int            lineNumber)
+    override protected void logText(  Domain     domain,     Verbosity verbosity,
+                                      AString    msg,
+                                      ScopeInfo  scope,      int       lineNumber)
     {
         // get actual console attributes
         ConsoleColor actualFGCol= Console.ForegroundColor;
@@ -284,12 +271,12 @@ public class ColorConsoleLogger : TextLogger
 
                 if ( endOfMeta )
                 {
-                    switch ( level )
+                    switch ( verbosity )
                     {
-                        case Log.Level.Verbose:   Console.ForegroundColor= MsgColorVerbose;     break;
-                        case Log.Level.Info:      Console.ForegroundColor= MsgColorInfo;        break;
-                        case Log.Level.Warning:   Console.ForegroundColor= MsgColorWarning;     break;
-                        case Log.Level.Error:     Console.ForegroundColor= MsgColorError;       break;
+                        case Verbosity.Verbose:   Console.ForegroundColor= MsgColorVerbose;     break;
+                        case Verbosity.Info:      Console.ForegroundColor= MsgColorInfo;        break;
+                        case Verbosity.Warning:   Console.ForegroundColor= MsgColorWarning;     break;
+                        case Verbosity.Error:     Console.ForegroundColor= MsgColorError;       break;
                         default:                  break;
                     }
                 }

@@ -13,7 +13,7 @@ import com.aworx.lib.strings.NumberFormat;
 
 /** ************************************************************************************************
  *  Abstract class that represents a plug in for class
- *  \ref aworx::lib::config::Configuration "Configuration"
+ *  \ref com::aworx::lib::config::Configuration "Configuration"
  *  to provide configuration data from specific configuration data source.
  *
  *  Different attached plug-ins of type #ConfigurationPlugIn differentiate in their priority. This
@@ -28,7 +28,7 @@ import com.aworx.lib.strings.NumberFormat;
  *  ConfigurationPlugIn types
  *  \ref com::aworx::lib::config::EnvironmentPlugIn "EnvironmentPlugIn"
  *  and
- *  \ref aworx::lib::config::CommandLinePlugIn "CommandLinePlugIn".
+ *  \ref com::aworx::lib::config::CommandLinePlugIn "CommandLinePlugIn".
  *  It is recommended to to ignore character case in custom specializations of class
  *  \ref com::aworx::lib::config::ConfigurationPlugIn "ConfigurationPlugIn" 
  *  as well.

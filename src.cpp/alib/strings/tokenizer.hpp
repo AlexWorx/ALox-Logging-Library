@@ -7,7 +7,7 @@
 /** @file */ // Hello Doxygen
 
 // check for alib.hpp already there but not us
-#if !defined (HPP_ALIB_ALIB)
+#if !defined (HPP_ALIB)
     #error "include \"alib/alib.hpp\" before including this header"
 #endif
 #if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_ALIB_STRINGS_TOKENIZER)
@@ -195,4 +195,4 @@ using     Tokenizer=     aworx::lib::strings::Tokenizer;
 
 }  // namespace aworx
 
-#endif // HPP_ALIB_STRINGS_STRINGS
+#endif // HPP_ALIB_STRINGS_TOKENIZER

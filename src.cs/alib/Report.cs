@@ -21,21 +21,20 @@ namespace cs.aworx.lib {
 
 /** ************************************************************************************************
  * This class provides a simple facility to collect what is called a \e 'report'.
- * Reports are maintenance messages, similar to error messages, but is not aiming to replace
+ * Reports are maintenance messages, mostly error and warning messages, but is not aiming to replace
  * any sort of error handling.
- * (Sending a \e 'report' usually precedes raising an error.)
+ * (In ALib itself, sending a \e 'report' usually precedes raising an error.)
  * Also, \e reports are not replacing any debug or release logging facility, which is not
  * part of ALib. Much more, logging libraries might provide a derived object of type
  * \ref cs::aworx::lib::ReportWriter "ReportWriter" to plug into ALib report facility.
  * This way, the concepts of logging and reports get unified. (As a sample,
  * <em>ALox Logging Library </em> which builds on ALib does so.)
  *
- *
  * While a process can create different objects of this class, usually, the default instance,
  * received by
  * \ref cs::aworx::lib::Report::GetDefault "GetDefault".
  * is sufficient and all warnings and errors will be directed to this one. ALib itself directs
- * all messages to the default instance.
+ * all internal reports to the default instance.
  *
  * This class uses a singleton of type
  * \ref cs::aworx::lib::ReportWriter "ReportWriter" to actually write the reports. By default, an
@@ -44,16 +43,17 @@ namespace cs.aworx.lib {
  *
  * The reporting method,
  * \ref cs::aworx::lib::Report::DoReport "DoReport" will check the flags provided with
- * \ref aworx::lib::Report::PushHaltFlags "PushHaltFlags"
- * which causes the method to invoke <em>System.Diagnostics.Debug.Assert</em>.
- * Such assertions are effective only in the debug compilation of the library/executable.
- * Custom \e 'ReportWriters' might take action (e.g. for security reasons) and e.g. terminate
- * the application also in release compilations.
+ * \ref cs::aworx::lib::Report::PushHaltFlags "PushHaltFlags" for message types \c 0 (errors)
+ * and \c 1 (warnings), and may invoke \e assert(). Such assertions are effective
+ * only in the debug compilation of the library/executable. Custom \e 'ReportWriters' might
+ * take action (e.g. for security reasons) and e.g. terminate the application also in
+ * release compilations.
  *
  * To simplify things, a set of static methods are defined in class
- * \ref cs::aworx::lib::ALIB "ALIB" wich are deemed to be
+ * \ref cs::aworx::lib::ALIB "ALIB" which are deemed to be
  * pruned in release versions of the compilation unit. These are:
  *
+ * - \ref cs::aworx::lib::ALIB::REPORT          "ALIB.REPORT"
  * - \ref cs::aworx::lib::ALIB::ERROR           "ALIB.ERROR"
  * - \ref cs::aworx::lib::ALIB::WARNING         "ALIB.WARNING"
  * - \ref cs::aworx::lib::ALIB::ASSERT          "ALIB.ASSERT"
@@ -77,9 +77,12 @@ public class Report
         /** The function/method name that reported.  */
         public String      Func;
 
-        /** The message type. '0' indicates \e 'severe' errors. Others are warnings and may be
-         *  defined (interpreted) by custom implementations of
-         *  \ref aworx::lib::ReportWriter "ReportWriter".  */
+        /**
+         * The message type. \c 0 indicates \e 'severe' errors, \c 1 warnings.
+         * Others are status messages and may be defined (interpreted) by custom
+         * implementations of
+         * \ref cs::aworx::lib::ReportWriter "ReportWriter".
+         */
         public int         Type;
 
         /** The message.  */
@@ -88,9 +91,9 @@ public class Report
         /** Constructs a message.
          * @param type The message type.
          * @param msg  The message.
-         * @param csf  (Optional) Caller info, compiler generated. Please omit.
-         * @param cln  (Optional) Caller info, compiler generated. Please omit.
-         * @param cmn  (Optional) Caller info, compiler generated. Please omit.
+         * @param cln (Optional) Caller info, compiler generated. Please omit.
+         * @param csf (Optional) Caller info, compiler generated. Please omit.
+         * @param cmn (Optional) Caller info, compiler generated. Please omit.
          */
         public Message( int type, String msg,  String csf="",  int    cln= 0, String cmn=""  )
         {
@@ -106,27 +109,31 @@ public class Report
     // Internal fields
     // #############################################################################################
 
-        /**  The ReportWriter.  */
-        protected         ReportWriter      writer                      =new ConsoleReportWriter();
-
         /** The default Report used internally by ALib and usually by processes that rely on ALib.*/
-        protected static  Report            defaultReport                            =new Report();
+        protected static  Report                defaultReport                         =new Report();
 
         /** This is a flag that avoids recursion. Recursion might occur when a more sophisticated
          * report writer sends a report (e.g. an ALIB Error or Warning). Recursive calls are
          * rejected without further notice.
          */
-        protected         bool              recursionBlocker                                = false;
+        protected         bool                  recursionBlocker                           = false;
 
         /** A Lock to protect against multihreaded calls.     */
-        protected         ThreadLock        Lock                                  =new ThreadLock();
+        protected         ThreadLock            Lock                             =new ThreadLock();
 
          /**
          * A stack of integers. The topmost value is used to decide, whether program execution is
-         * halted on message of type 'error' (type 0, bit 0) or of type 'warning' (type > 0, bit 1).
-         * Can be set at runtime by just overwriting the value.
+         * halted on message of type 'error' (type \c 0, bit \c 0) or of type 'warning'
+         * (type \c 1, bit \c 1).
+         * Can be set at runtime using methods #PushHaltFlags and #PopHaltFlags.
          */
-        public          Stack<int>          haltAfterReport                      = new Stack<int>();
+        protected         Stack<int>            haltAfterReport                 = new Stack<int>();
+
+        /**
+         * A stack of writers. The topmost one is the actual.
+         * Can be set at runtime using methods #PushWriter and #PopWriter.
+         */
+        protected         Stack<ReportWriter>   writers                 =new Stack<ReportWriter>();
 
 
     // #############################################################################################
@@ -139,6 +146,7 @@ public class Report
         public Report()
         {
             PushHaltFlags( true,  false );
+            PushWriter( ConsoleReportWriter.Singleton );
         }
 
         /** ****************************************************************************************
@@ -148,22 +156,64 @@ public class Report
         public static Report  GetDefault()           { return defaultReport; }
 
         /** ****************************************************************************************
-         * Replaces the current \b %ReportWriter singleton by the one provided.
-         * If null is provided, a new instance of
-         * \ref cs::aworx::lib::ConsoleReportWriter "ConsoleReportWriter" is created and set.
+         * Sets a new writer. The actual writer is implemented as a stack. It is important to
+         * keep the right order when pushing and popping writers, as there lifetime is externally
+         * managed. (In standard use-cases, only one, app-specific writer should be pushed anyhow).
+         * To give a little assurance, method #PopWriter takes the same parameter as this method
+         * does, to verify if if the one to be removed is really the topmost.
          *
-         * @param newWriter The \b %ReportWriter to set.
-         * @return The former \b %ReportWriter.
+         * @param newWriter   The writer to use.
          ******************************************************************************************/
-        public ReportWriter ReplaceWriter( ReportWriter newWriter )
+        public void PushWriter( ReportWriter newWriter )
         {
             try { Lock.Acquire();
-                ReportWriter oldEH= writer;
-                writer= newWriter != null ? newWriter
-                                          : new ConsoleReportWriter();
-                return oldEH;
+
+                if ( writers.Count > 0 )
+                    writers.Peek().NotifyActivation( Phase.End );
+
+                writers.Push( newWriter );
+                newWriter.NotifyActivation( Phase.Begin );
             } finally { Lock.Release(); }
         }
+
+        /** ****************************************************************************************
+         * Restores the previous writer after setting a new one using #PushWriter.
+         * It is important to keep the right order when pushing and popping writers, as there
+         * lifetime is externally managed.
+         * (In standard use-cases, only one, app-specific writer should be pushed anyhow).
+         * To give a little assurance, this method #PopWriter takes the same parameter as
+         * #PushWriter does, to verify if the one to be removed is really the topmost.
+         *
+         * @param checkWriter  The previously pushed writer (for checking of call order).
+         ******************************************************************************************/
+        public void PopWriter( ReportWriter checkWriter )
+        {
+            try { Lock.Acquire();
+                if ( writers.Count  == 0 )             { ALIB.ERROR( "No Writer to remove" );          return; }
+                if ( writers.Peek() != checkWriter )   { ALIB.ERROR( "Report Writer is not actual" );  return; }
+
+                writers.Peek().NotifyActivation( Phase.End );
+                writers.Pop();
+                if ( writers.Count > 0 )
+                    writers.Peek().NotifyActivation( Phase.Begin );
+
+            } finally { Lock.Release(); }
+        }
+
+        /** ****************************************************************************************
+         * Retrieves the actual report writer.
+         *
+         * \note This method should not be used to retrieve the writer and use it. It should be used
+         *       only to test the installation.
+         * @return The actual report writer in place.
+         ******************************************************************************************/
+        public ReportWriter PeekWriter()
+        {
+            try { Lock.Acquire();
+                return writers.Peek();
+            } finally { Lock.Release(); }
+        }
+
 
         /** ****************************************************************************************
          * Writes new values to the internal flags that decide if calls to #DoReport with
@@ -209,7 +259,7 @@ public class Report
 
         /** ****************************************************************************************
          * Reports the given message to the current
-         * \ref aworx::lib::ReportWriter "ReportWriter" in place. The default \b ReportWriter
+         * \ref cs::aworx::lib::ReportWriter "ReportWriter" in place. The default \b ReportWriter
          * will print the message on the process console. Furthermore, in debug
          * execution the flags provided with #PushHaltFlags is checked.
          * If this is set for the type of message, the program halts or suspends into the debugger
@@ -221,9 +271,9 @@ public class Report
          *
          * @param type The report type.
          * @param msg  The report message.
-         * @param csf  (Optional) Caller info, compiler generated. Please omit.
-         * @param cln  (Optional) Caller info, compiler generated. Please omit.
-         * @param cmn  (Optional) Caller info, compiler generated. Please omit.
+         * @param cln (Optional) Caller info, compiler generated. Please omit.
+         * @param csf (Optional) Caller info, compiler generated. Please omit.
+         * @param cmn (Optional) Caller info, compiler generated. Please omit.
          ******************************************************************************************/
         public void DoReport( int type, String msg,
                               [CallerFilePath]   String csf="",
@@ -236,7 +286,8 @@ public class Report
                     return;
                 recursionBlocker= true;
                     Message message= new Message( type, msg, csf, cln, cmn );
-                    writer.Report( message );
+                    if ( writers.Count > 0 )
+                        writers.Peek().Report( message );
                     int haltFlags= haltAfterReport.Peek();
                     System.Diagnostics.Debug.Assert( !(    (type == 0 && ( (haltFlags & 1) != 0) )
                                                         || (type != 0 && ( (haltFlags & 2) != 0) )

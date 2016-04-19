@@ -6,7 +6,7 @@
 // #################################################################################################
 #include "alib/stdafx_alib.h"
 
-#if !defined (HPP_ALIB_ALIB)
+#if !defined (HPP_ALIB)
     #include "alib/alib.hpp"
 #endif
 
@@ -36,10 +36,13 @@ const int            ALIB::Revision=                                    1;
 
 bool                 ALIB::initialized                                                     =false;
 String               ALIB::ConfigCategoryName                                              ="ALIB";
-Configuration*       ALIB::Config                                                          =nullptr;
+Configuration        ALIB::Config;
 
 bool                 ALIB::WaitForKeyPressOnTermination                                    =false;
 ThreadLockNR         ALIB::Lock;
+
+SmartLock            ALIB::StdOutputStreamsLock;
+
 
 std::pair <const char*, uint32_t> ALIB::CompilationFlagMeanings[]=
 {
@@ -87,21 +90,23 @@ void ALIB::Init( Inclusion environment, int argc, void **argv, bool wArgs )
     // check for double initialization (this is explicitly allowed, see docs)
     if ( initialized )
         return;
-    initialized= true;
 
     //############### initialize threads and time ################
     Thread::_Init_ALib();
     Ticks ::_Init_ALib();
 
-    //############### create configuration object ###############
-    Config= new Configuration( environment, argc, argv, wArgs );
+    //############### create singletons ###############
+    Report::GetDefault();
+    Config.AddStandardPlugIns( environment, argc, argv, wArgs );
+
+    initialized= true;
 
     //############### set locale ###############
     #if defined (__GLIBCXX__)
     {
         String64  locale;
         int receivedFrom= 0;
-             if ( Config->Get( ConfigCategoryName, "LOCALE"    ,locale ) != 0 )        receivedFrom= 1;
+             if ( Config.Get( ConfigCategoryName, "LOCALE"    ,locale ) != 0 )        receivedFrom= 1;
         else if ( System::GetVariable(             "LANG"      ,locale )      )        receivedFrom= 2;
         else if ( System::GetVariable(             "LANGUAGE"  ,locale )      )        receivedFrom= 3;
 
@@ -141,7 +146,7 @@ void ALIB::Init( Inclusion environment, int argc, void **argv, bool wArgs )
     {
         // read configuration
         int found;
-        bool configValue=   Config->IsTrue( ALIB::ConfigCategoryName, "WAIT_FOR_KEY_PRESS_ON_TERMINATION", &found );
+        bool configValue=   Config.IsTrue( ALIB::ConfigCategoryName, "WAIT_FOR_KEY_PRESS_ON_TERMINATION", &found );
         if ( found != 0 )
             WaitForKeyPressOnTermination= configValue;
         else
@@ -161,8 +166,6 @@ void ALIB::Init( Inclusion environment, int argc, void **argv, bool wArgs )
 
 void ALIB::TerminationCleanUp()
 {
-    if ( Config != nullptr )    delete Config;
-
     if ( ALIB::WaitForKeyPressOnTermination )
     {
         #if defined(_WIN32)
@@ -176,8 +179,12 @@ void ALIB::TerminationCleanUp()
             ;
     }
 
-    Thread::_Terminate_ALib();
+    // remove singletons
+    delete &Report::GetDefault();
+
+    // terminate subcomponents
     Ticks ::_Terminate_ALib();
+    Thread::_Terminate_ALib();
 }
 
 

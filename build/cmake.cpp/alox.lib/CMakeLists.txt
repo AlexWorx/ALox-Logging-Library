@@ -26,6 +26,16 @@
 ## include ALib/ALox base cmake file
 ## -------------------------------------------------------------------------------------------------
 
+    #-- optional compilation symbols (ALib/ALox features).
+    #-- uncomment to set (the opposite value is their default, therefore commenting the lines switches them)
+    #set( ALIB_DEBUG_GLIB                "On"  )
+    #set( ALIB_AVOID_ANALYZER_WARNINGS   "On"  )
+    #set( ALIB_DEBUG_STRINGS             "On"  )
+    #set( ALIB_FEAT_THREADS              "Off" )
+    #set( ALOX_DBG_LOG                   "Off" )
+    #set( ALOX_DBG_LOG_CI                "Off"  )
+    #set( ALOX_REL_LOG                   "Off" )
+    #set( ALOX_REL_LOG_CI                "On"  )
 
     set ( ALOX_BASE_DIR   "../../.."  )
     include( ${ALOX_BASE_DIR}/build/cmake.cpp/ALox_Base.cmake )

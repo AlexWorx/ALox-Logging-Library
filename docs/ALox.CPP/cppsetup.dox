@@ -242,11 +242,11 @@ as source projects within the binary folder. This means:
 - The library names get some name extensions depending on the \ref cppprepro "Compilation Symbols"
   chosen. It is important to not link compilation units with mixed compilation symbols.
   ALib/ALox have a built-in mechanism to detect such misconfigurations which are automatically
-  invoked with method  \ref aworx::lox::Log::Init "Log::Init" (also in release-builds).
+  invoked with method  \ref aworx::lox::ALox::Init "ALox::Init" (also in release-builds).
 
   Refer to
   \ref aworx::lib::ALIB::VerifyCompilationFlags "ALIB::VerifyCompilationFlags" and
-  \ref aworx::lox::Log::checkLibraryVersions "Log::checkLibraryVersions" for more information.
+  \ref aworx::lox::ALox::checkLibraryVersions   "ALox::checkLibraryVersions" for more information.
 
 ## 3.2. Using ALox with QT Creator##    {#cppsetup_qtcreator}
 <em>QT Creator</em> has a built in CMake support which works really well (tested version is 3.6).
@@ -372,7 +372,7 @@ which level of windows functionality is needed.
 To test your setup, add minimum ALox functionality to your project (as described in the first
 chapter of \ref cpptutorial) into your main method or anywhere you think it is appropriate:
 
-\snippet ut_alox_tutorial.cpp        Tut_Understanding_ALox_All
+\snippet ut_dox_tutorial.cpp        Tut_Understanding_ALox_All
 
 You are set if:
 - your project compiles and runs without error
@@ -391,7 +391,7 @@ Let's wrap up what was said:
 Once you are set, make sure to read:
 
 - \ref cpptutorial
-- A short chapter \ref cppprepro_macros that describes how pruning debug log statements from the
+- A short chapter \ref cppprepro_macros that describes how pruning debug <em>Log Statements</em> from the
   code is implemented in ALox for C++. This is needed to understand how to use ALox without getting
   compilation errors in release versions while debug compiles fine.
 - Some further info about ALox features and its architecture in [ALox User Manual](../manual.html)

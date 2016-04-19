@@ -69,13 +69,4 @@ introduced by ALox for C#:
   This is useful for target platforms that do not support this library.
   The method [LogTools.XML](@ref #cs::aworx::lox::tools::LogTools::XML) will not be available however.
   <p>
-
-- **ALOX_NO_THREADS**<br>
-  This symbol deactivates any mechanisms to protect ALox logging in multi-threaded environments. Use this
-  symbol only if you are sure to operate single threaded. (Even if your application does not create a new thread
-  directly, e.g. UI driven applications are generally multi threaded. The advantage of using this
-  compile symbol is to increase ALox performance by around 8% (when logging in-memory). For console logging the
-  performance gain is much less. So, only in very critical situations this symbol should be used.
-  <p>
-
 */

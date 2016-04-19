@@ -48,6 +48,8 @@ void substringConstruction( const char* inputString, AString& res, bool trim )
 }
 
 UT_METHOD( Constructor )
+{
+    UT_INIT();
 
     AString as;
     AString res;
@@ -127,6 +129,8 @@ UT_METHOD( Constructor )
 }
 
 UT_METHOD( Operators )
+{
+    UT_INIT();
 
 
     String32 as;
@@ -146,6 +150,8 @@ UT_METHOD( Operators )
 }
 
 UT_METHOD( CharAt)
+{
+    UT_INIT();
     // empty substring
     {
         Substring subs;
@@ -192,6 +198,8 @@ UT_METHOD( CharAt)
 }
 
 UT_METHOD( ConsumeNumbers )
+{
+    UT_INIT();
 
     // ConsumeInteger()
     {
@@ -239,9 +247,11 @@ UT_METHOD( ConsumeNumbers )
 //--- Test Consume
 //---------------------------------------------------------------------------------------------------------
 UT_METHOD( Consume )
+{
+    UT_INIT();
     // null substring
     {
-        Substring s= new Substring();
+        Substring s;
         Substring r("oldval");
         UT_EQ(  '\0',      s.Consume       ( )         );
         UT_EQ(  0,         s.Consume       (  0  , &r) ); UT_TRUE(r.IsNull());
@@ -257,7 +267,7 @@ UT_METHOD( Consume )
 
     // empty substring
     {
-        Substring s= new Substring("");
+        Substring s("");
         Substring r("oldval");
         UT_EQ(  '\0',      s.Consume       ( )         );
         UT_EQ(  0,         s.Consume       (  0   ,&r) ); UT_TRUE( r.IsNotNull()); UT_TRUE(r.IsEmpty());
@@ -273,7 +283,7 @@ UT_METHOD( Consume )
 
     // substring of length 1
     {
-        Substring s= new Substring();
+        Substring s;
         Substring r("oldval");
         s= "a"; UT_EQ(  'a',       s.Consume       ( )         ); UT_EQ( 0, s.Length() );
         s= "a"; UT_EQ(  1,         s.Consume       (  0  )     ); UT_EQ( 1, s.Length() );
@@ -293,7 +303,7 @@ UT_METHOD( Consume )
 
     // substring of length 2
     {
-        Substring s= new Substring();
+        Substring s;
         Substring r("oldval");
 
         s= "ab"; UT_EQ(  'a',       s.Consume       ( )         ); UT_EQ( 1, s.Length() );
@@ -331,7 +341,7 @@ UT_METHOD( Consume )
 
     // 3 words
     {
-        Substring s= new Substring("word1 word2 word3");
+        Substring s("word1 word2 word3");
 
         UT_EQ(  'w',       s.Consume       ( )         );
         UT_EQ(  'o',       s.Consume       ( )         );
@@ -351,7 +361,7 @@ UT_METHOD( Consume )
         UT_EQ(  2        , s.Consume       ( 4 )   );
         UT_EQ(  "d3"     , s );
 
-                  s= new Substring("word1 word2 word3");
+        s= "word1 word2 word3";
 
         UT_EQ(  '3',       s.ConsumeFromEnd( )         );
         UT_EQ(  'd',       s.ConsumeFromEnd( )         );

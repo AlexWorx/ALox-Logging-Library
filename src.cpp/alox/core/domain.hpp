@@ -29,58 +29,86 @@ namespace       lox {
 namespace           core{
 
 /** ************************************************************************************************
- * Objects of this class represent a logging Domain. Each log statement refers to
- * such a domain which can be defined specifically for different parts of your application like
- * assemblies, libraries, namespaces, specific code files or even for a single log call.
- * Domains can be created with path separators '/', for example 'COMM/SOCKET' could be the domain
- * for log calls in a socket class, residing within a communication library. The advantage of
- * creating paths and this way trees of domains, is that a whole bunch of logging domains can
- * be altered (in respect of logging verbosity) by just changing their root domain.
- * \note This class should not be used directly. Nevertheless the interface is kept public which is
- *       a general design decision for the classes of ALox libraries.
+ * Objects of this class represent a <em>Log Domain</em> of ALox. This class is internally used by
+ * class \b Lox.
  **************************************************************************************************/
 class Domain
 {
-    // #############################################################################################
-    // static fields
-    // #############################################################################################
+    /** ********************************************************************************************
+     * Internal class that holds data stored per Logger
+     **********************************************************************************************/
     public:
+    struct LoggerData
+    {
+        /**  The logger  */
+        core::Logger*         Logger;
+
+        /**  The verbosity of the \e Logger for this domain */
+        Verbosity             LoggerVerbosity       = Verbosity::Off;
+
+        /**  The priority value that was used to set the priority */
+        int                   Priority              = 0;
+
+
+        /** the number of log calls on this domain for this logger */
+        int                   CntLogCalls           =0;
+
         /**
-         *  Contains all characters allowed for domain separation (slash, backslash and pipe symbol)
-        */
-        static    TString                   DomainSeparatorChars;
+         * Constructor
+         * @param logger The logger to add
+         */
+        LoggerData( core::Logger* logger )
+        {
+            this->Logger= logger;
+        }
+    };
 
     // #############################################################################################
     // Public fields
     // #############################################################################################
     public:
 
-        ///  The name of the domain. For root domains, this is null.
+        /** The name of the domain. For root domains, this is null. */
         String32                            Name;
 
-        ///  The parent domain. For root domains, this is null.
+        /** The parent domain. For root domains, this is null. */
         Domain*                             Parent;
 
-        ///  A list of sub domains (recursion).
+        /** A list of sub domains. */
         std::vector<Domain*>                SubDomains;
 
+        /** Data stored per logger. The index is corresponding to the list of loggers in 'our' Lox.*/
+        std::vector<LoggerData>             Data;
 
-    // #############################################################################################
-    // Protected fields
-    // #############################################################################################
-    //
-    ///  The actual user setting for the log level of the domain.
-    protected:
-        Log::DomainLevel        level;
+        /** The full path of the domain (set in the constructor once) . */
+        String64                            FullPath;
+
+       /**
+         * A counter for the quantity of calls on this domain.
+         * The does not include:
+         * - logs when no \e Logger was set
+         * - conditional logs that were suppressed
+         * Otherwise, it includes all log calls, even when no \e Logger was enabled on this domain.
+         */
+        int                                 CntLogCalls                                   =0;
+
+        /** <em>Prefix Logables</em> associated with this domain. */
+        std::vector<std::pair<Logable, Inclusion>>   PrefixLogables;
 
 
     // #############################################################################################
     // Public interface
     // #############################################################################################
     public:
+         /** @return Returns the domain path separation character.  */
+         static constexpr
+         char  PathSeparator()
+         {
+            return '/';
+         }
 
         /** ****************************************************************************************
-         * Constructor for log domains.
+         * Constructor
          * @param parent    The parent domain. For root domains, this is null.
          * @param name      The name of the domain. For root domains, this is null.
          ******************************************************************************************/
@@ -88,74 +116,295 @@ class Domain
         Domain( Domain* parent,  const String& name );
 
         /** ****************************************************************************************
-         * Destroys the log domain object.
+         * Destroys the <em>Log Domain</em> object.
          ******************************************************************************************/
         ALOX_API
         ~Domain();
 
         /** ****************************************************************************************
-         * Returns the domains log level. If this is set to INHERIT, the effective value is evaluated
-         * (recursively) from the parent's domain.
-         *
-         * @return The found/defined domain log level.
+         * Returns the root domain of this object.
+         * @return The root domain of this object
          ******************************************************************************************/
-        ALOX_API
-        Log::DomainLevel    GetLevel();
+        inline
+        Domain* GetRoot()
+        {
+            Domain* rootDomain= this;
+            while ( rootDomain->Parent != nullptr )
+                rootDomain= rootDomain->Parent;
+            return rootDomain;
+        }
 
         /** ****************************************************************************************
-         * Sets the level of this domain and optionally of all its sub domains to the specified value.
-         * \note
-         *   The root domain's level can not be set to DomainLevel.Inherit.
-         *   Such request would be ignored.
+         * Adds a new entry in field #Data and recursively demands the same from its sub-domains.
+         * Checks if a logger with the same name exists.
          *
-         * @param domainLevel The domain level value to set.
-         * @param propagation If \c Propagation::ToDescendants (the default), the level is set for all
-         *                    sub-domains currently existing.
-         *                    If \c Propagation::None, then only this domain is changed.
+         * @param logger The logger to add.
+         * @return The number of the \e Logger, -1 if a logger with the same name exists already.
          ******************************************************************************************/
-        ALOX_API
-        void                SetLevel( Log::DomainLevel domainLevel,
-                                      lib::enums::Propagation propagation= lib::enums::Propagation::ToDescendants );
+        inline
+        int    AddLogger( core::Logger* logger)
+        {
+            // let our root do this
+            if ( Parent != nullptr )
+                return Parent->AddLogger( logger );
+
+            // check for doubles
+            if ( GetLoggerNo( logger->GetName() ) >= 0 )
+                return -1;
+
+            // now this and all childs
+            addLoggerRecursive( logger );
+            return ((int) Data.size()) - 1;
+        }
 
         /** ****************************************************************************************
-         * Determines if the domain is active in respect to the given Log.Level and the current
-         * domain level.
+         * Removes an new entry in field #Data and recursively demands the same from
+         * its sub-domains.
+         * @param loggerNo  The number of the \e Logger to be removed.
+         ******************************************************************************************/
+        inline
+        void    RemoveLogger( int loggerNo )
+        {
+            // let our root do this
+            if ( Parent != nullptr )
+            {
+                Parent->RemoveLogger( loggerNo );
+                return;
+            }
+
+            // now this and all childs
+            removeLoggerRecursive( loggerNo );
+        }
+
+        /** ****************************************************************************************
+         * Returns the number of loggers stored in this domain (the same for all domains within
+         * a tree).
+         * @return The number of loggers attached.
+         ******************************************************************************************/
+        inline
+        int  CountLoggers()
+        {
+            return (int) Data.size();
+        }
+
+        /** ****************************************************************************************
+         * Searches and returns the \e Logger given by name.
+         * @param loggerName  The logger to search.
+         * @return The the \e Logger found corresponding to given name.
+         *         If the \e Logger does not exist, nullptr is returned.
+         ******************************************************************************************/
+        inline
+        core::Logger*  GetLogger( const String& loggerName )
+        {
+            for ( size_t i= 0; i < Data.size() ; i++  )
+                if ( loggerName.Equals( Data[i].Logger->GetName(), Case::Ignore ) )
+                    return Data[i].Logger;
+            return nullptr;
+        }
+
+        /** ****************************************************************************************
+         * Returns logger of given number.
+         * @param no  The number of the \e Logger to return.
+         * @return The the \e Logger found with number \p no.
+         ******************************************************************************************/
+        inline
+        core::Logger*  GetLogger( int no )
+        {
+            ALIB_ASSERT_ERROR( no >= 0 && no < (int) Data.size(), "Internal error: Illegal Logger Number" )
+            return Data[no].Logger;
+        }
+
+        /** ****************************************************************************************
+         * Returns the number of the \e Logger specified by name.
+         * @param loggerName  The logger name to search.
+         * @return The number of the \e Logger found corresponding to given name.
+         *         If the \e Logger does not exist, -1 is returned.
+         ******************************************************************************************/
+        inline
+        int  GetLoggerNo( const String& loggerName )
+        {
+            for ( size_t i= 0; i < Data.size() ; i++  )
+                if ( loggerName.Equals( Data[i].Logger->GetName(), Case::Ignore ) )
+                    return (int) i;
+            return -1;
+        }
+
+        /** ****************************************************************************************
+         * Returns the number of a the \e Logger.
+         * @param logger  The logger to search.
+         * @return The number of the \e Logger. If the \e Logger does not exist, -1 is returned.
+         ******************************************************************************************/
+        inline
+        int  GetLoggerNo( core::Logger* logger)
+        {
+            for ( size_t i= 0; i < Data.size() ; i++  )
+                if ( logger == Data[i].Logger )
+                    return (int) i;
+            return -1;
+        }
+
+        /** ****************************************************************************************
+         * Sets the verbosity for a logger of this domain of all its sub domains to the specified
+         * value. If given priority is lower than those actually stored, nothing is set and
+         * recursion is stopped.
          *
-         * @param level    The log level to check .
+         * @param loggerNo    The number of the \e Logger to set the \e Verbosity for.
+         * @param verbosity   The verbosity value to set.
+         * @param priority    The priority of the setting.
+         * @return The new \e Verbosity.
+         ******************************************************************************************/
+        inline
+        Verbosity SetVerbosity( int loggerNo, Verbosity verbosity, int priority )
+        {
+            LoggerData& ld= Data[loggerNo];
+            if( priority >= ld.Priority )
+            {
+                ld.Priority=        priority;
+                ld.LoggerVerbosity= verbosity;
+
+                for( Domain* subDomain : SubDomains )
+                    subDomain->SetVerbosity( loggerNo, verbosity, priority );
+            }
+            return ld.LoggerVerbosity;
+        }
+
+        /** ****************************************************************************************
+         * Returns the <em>Log Domains' Verbosity</em> for the given logger number.
+         * @param loggerNo  The number of the \e Logger whose \e Verbosity is requested.
+         * @return The found/defined domain \e Verbosity.
+         ******************************************************************************************/
+        inline
+        Verbosity GetVerbosity( int loggerNo )
+        {
+            return Data[loggerNo].LoggerVerbosity;
+        }
+
+        /** ****************************************************************************************
+         * Returns the priority of the \e Verbosity setting for the given logger number.
+         * @param loggerNo  The number of the \e Logger whose \e Verbosity is requested.
+         * @return The priority.
+         ******************************************************************************************/
+        inline
+        int       GetPriority( int loggerNo )
+        {
+            return Data[loggerNo].Priority;
+        }
+
+
+        /** ****************************************************************************************
+         * Returns the number of log calls for this domain and logger.
+         * @param loggerNo  The number of the \e Logger whose \e Verbosity is requested.
+         * @return The number of calls executed by this logger on this domain.
+         ******************************************************************************************/
+        inline
+        int       GetCount( int loggerNo )
+        {
+            return Data[loggerNo].CntLogCalls;
+        }
+
+        /** ****************************************************************************************
+         * Determines if the domain is active in respect to the given Verbosity.
+         *
+         * @param loggerNo  The number of the \e Logger whose \e Verbosity is to be evaluated against
+         *                  \p statement.
+         * @param statement The \e Verbosity to check.
          * @return  \c true if domain is active (log should be performed)
          ******************************************************************************************/
-        ALOX_API
-        bool                IsActive( Log::Level level );
+        inline
+        bool      IsActive( int loggerNo, Verbosity statement )
+        {
+            Verbosity domain= GetVerbosity( loggerNo );
+
+            //    domain ^  / stmnt > |   Off   Error  Warning   Info  Verbose
+            //  ---------------------------------------------------------------------
+            //    Off                 |    -      -       -        -      -
+            //    Errors              |    -      Y       -        -      -
+            //    Warning             |    -      Y       Y        -      -
+            //    Info                |    -      Y       Y        Y      -
+            //    Verbose             |    -      Y       Y        Y      Y
+
+            if(    statement != Verbosity::Off
+                && (    ( domain == Verbosity::Error       &&        statement == Verbosity::Error   )
+                     || ( domain == Verbosity::Warning     &&    (   statement == Verbosity::Warning || statement == Verbosity::Error ) )
+                     || ( domain == Verbosity::Info        &&        statement != Verbosity::Verbose )
+                     ||   domain == Verbosity::Verbose )
+              )
+            {
+                Data[loggerNo].CntLogCalls++;
+                return true;
+            }
+
+            return false;
+        }
 
         /** ****************************************************************************************
-         * Searches a domain. If not found, the domain is (or branch of domains are) created in
+         * Searches a domain. If not found, the domain is (or path of domains are) created in
          * the domain tree.
-         * If the path String starts with a domain separator character, then
+         * If the path string starts with the character defined with #PathSeparator, then
          * the search (and creation) is done starting from the root domain of this domain and not
          * from this domain.
          *
          * @param       domainPath  Path and domain to search.
+         * @param       sensitivity Denotes if domain name search is treated case sensitive or not.
+         * @param       maxCreate   The maximum number of sub domains that are created if not
+         *                          found at the end of the path.
          * @param[out]  wasCreated  Output parameter that is set \c true if domain was not found
-         *                          and hence created.
-         * @return    The domain found or created.
+         *                          and hence created. If \c nullptr, it is ignored.
+         * @return The domain found or created.
          ******************************************************************************************/
         ALOX_API
-        Domain*             Find( Substring domainPath, bool* wasCreated= nullptr );
+        Domain*   Find( Substring domainPath, Case sensitivity, int maxCreate,
+                        bool* wasCreated );
 
+
+        /** ****************************************************************************************
+         * This is for debugging purposes and for configuration output.
+         * @param target The target string to write information about us into.
+         * @returns A human readable string representation of this object.
+         ******************************************************************************************/
+        void      ToString( AString& target );
 
     // #############################################################################################
     // Internals
     // #############################################################################################
     protected:
         /** ****************************************************************************************
-         * The internal recursive helper to implement the Find() interface.
+         * Internal, recursive helper of #Find.
          *
          * @param       domainPath  Path to search.
+         * @param       sensitivity Denotes if domain name search is treated case sensitive or not.
+         * @param       maxCreate   The maximum number of sub domains that are created if not
+         *                          found at the end of the path.
          * @param[out]  wasCreated  Output parameter that is set \c true if domain was not found
-         *                          and hence created.
-         * @return    The domain found or created.
+         *                          and hence created. If \c nullptr, it is ignored.
+         * @return The domain found or created.
          ******************************************************************************************/
-         Domain*           findRecursive( Substring&  domainPath, bool* wasCreated= nullptr  );
+        Domain*     findRecursive( Substring&  domainPath, Case sensitivity, int maxCreate,
+                                   bool* wasCreated );
+
+        /** ****************************************************************************************
+         * Internal, recursive helper of #AddLogger.
+         * @param logger The logger to add.
+         ******************************************************************************************/
+        inline
+        void        addLoggerRecursive( core::Logger* logger)
+        {
+            Data.emplace_back( LoggerData( logger ) );
+            for( Domain* subDomain : SubDomains )
+                subDomain->addLoggerRecursive( logger );
+        }
+
+        /** ****************************************************************************************
+         * Internal, recursive helper of #RemoveLogger.
+         * @param loggerNo  The number of the \e Logger to be removed.
+         ******************************************************************************************/
+        inline
+        void        removeLoggerRecursive( int loggerNo )
+        {
+            Data.erase( Data.begin() + loggerNo );
+            for( Domain* subDomain : SubDomains )
+                subDomain->removeLoggerRecursive( loggerNo );
+        }
 
 }; // Domain
 

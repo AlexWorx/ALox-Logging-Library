@@ -120,7 +120,7 @@
       <AdditionalIncludeDirectories>$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;ALIB_VSTUDIO_ON;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
-      <DisableSpecificWarnings>4652;4505;4711;4458;4459</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4652;4505;4711;4458;4459; 4592</DisableSpecificWarnings>
       <PrecompiledHeaderFile>alib/stdafx_alib.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
@@ -161,7 +161,7 @@
       <AdditionalIncludeDirectories>$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;ALIB_VSTUDIO_ON;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
-      <DisableSpecificWarnings>4652;4505;4711;4458;4459</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4652;4505;4711;4458;4459; 4592</DisableSpecificWarnings>
       <PrecompiledHeaderFile>alib/stdafx_alib.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
@@ -174,6 +174,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src.cpp\alib.unittests\aworx_unittests.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alox.unittests\ut_alox_log_scopes.hpp" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
@@ -190,12 +191,16 @@
     <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_system_environment.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_threads.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_time.cpp" />
-    <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_alox_documentation_samples.cpp" />
-    <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_alox_loggers.cpp" />
-    <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_alox_log_dbg.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_alox_logger.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_alox_log_domains.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_alox_log_rel.cpp" />
-    <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_alox_tutorial.cpp" />
-    <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_alox_tutorial_minimum.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_alox_log_scopes.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_alox_log_scopes_helper.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_alox_log_scopes_helper_sub2.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_alox_lox.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_dox_reference_manual.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_dox_tutorial.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_dox_tutorial_minimum.cpp" />
     <ClCompile Include="stdafx_alox_unittests.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

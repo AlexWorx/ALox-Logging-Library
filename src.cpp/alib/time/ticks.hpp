@@ -7,7 +7,7 @@
 /** @file */ // Hello Doxygen
 
 // check for alib.hpp already there but not us
-#if !defined (HPP_ALIB_ALIB)
+#if !defined (HPP_ALIB)
     #error "include \"alib/alib.hpp\" before including this header"
 #endif
 #if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_ALIB_TIME)
@@ -297,15 +297,15 @@ class Ticks
         }
 
         /** ****************************************************************************************
-         *  Returns the time span between the value represented by this instance and the given
-         *  StopWatch.If the given StopWatch represents an earlier point in time, the result is
-         *  positive.
+         * Returns the time span between the value represented by this instance and the given
+         * StopWatch.If the given StopWatch represents an earlier point in time, the result is
+         * positive.
          *
          * @param olderTime The value to compare this instance with
          *
          * @return  The age of this instance stored in the given or created object.
          ******************************************************************************************/
-        Ticks    Since( const Ticks& olderTime )
+        Ticks    Since( const Ticks& olderTime )    const
         {
             Ticks result(ticks);
             result.Sub( olderTime );
@@ -977,28 +977,30 @@ class TicksCalendarTime
      * with class SimpleDateFormat of the Java APIs.<br>
      * Strings within the format text that should not be interpreted as tokens may be surrounded
      * by single quotes. Two single quotes in a row, will be replaced by one single quote.<br>
-     * The following tokens are supported:<br>
-     * <TABLE>
-     *   <TR> <TD>y       </TD>      <TD>The year with as many digits as it has (for current dates this is 4).</TD> </TR>
-     *   <TR> <TD>yy      </TD>      <TD>The year, truncated to 2 digits (modulo 100).</TD> </TR>
-     *   <TR> <TD>yyy...y </TD>      <TD>The year with a minimum amount of digits as amount of y-characters given.</TD> </TR>
-     *   <TR> <TD>M       </TD>      <TD>The month as numbers from 1..12.</TD> </TR>
-     *   <TR> <TD>MM      </TD>      <TD>The month as numbers from 01..12.</TD> </TR>
-     *   <TR> <TD>MMM     </TD>      <TD>The month as abbreviated, 3-digit word in English language.</TD> </TR>
-     *   <TR> <TD>MMMM    </TD>      <TD>The month as word in English language.</TD> </TR>
-     *   <TR> <TD>d       </TD>      <TD>The day as numbers from 1..31.</TD> </TR>
-     *   <TR> <TD>dd      </TD>      <TD>The day as numbers from 01..31.</TD> </TR>
-     *   <TR> <TD>ddd     </TD>      <TD>The day as abbreviated, 3-digit word in English language.</TD> </TR>
-     *   <TR> <TD>dddd    </TD>      <TD>The day as word in English language.</TD> </TR>
-     *   <TR> <TD>H       </TD>      <TD>The hour as numbers from 0..23.</TD> </TR>
-     *   <TR> <TD>HH      </TD>      <TD>The hour as numbers from 01..23.</TD> </TR>
-     *   <TR> <TD>K       </TD>      <TD>The hour as numbers from 0..11 am/pm.</TD> </TR>
-     *   <TR> <TD>KK      </TD>      <TD>The hour as numbers from 01..11 am/pm.</TD> </TR>
-     *   <TR> <TD>m       </TD>      <TD>The minute as numbers from 0..59.</TD> </TR>
-     *   <TR> <TD>mm      </TD>      <TD>The minute as numbers from 01..59.</TD> </TR>
-     *   <TR> <TD>s       </TD>      <TD>The second as numbers from 0..59.</TD> </TR>
-     *   <TR> <TD>ss      </TD>      <TD>The second as numbers from 00..59.</TD> </TR>
-     * </TABLE>
+     * The following tokens are supported:
+     *
+     *  <center>Token</center>  | <center>Description</center>
+     *  - - - - -| - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+     *   y       |The year with as many digits as it has (for current dates this is 4).</TD> </TR>
+     *   yy      |The year, truncated to 2 digits (modulo 100).</TD> </TR>
+     *   yyy...y |The year with a minimum amount of digits as amount of y-characters given.</TD> </TR>
+     *   M       |The month as numbers from 1..12.</TD> </TR>
+     *   MM      |The month as numbers from 01..12.</TD> </TR>
+     *   MMM     |The month as abbreviated, 3-digit word in English language.</TD> </TR>
+     *   MMMM    |The month as word in English language.</TD> </TR>
+     *   d       |The day as numbers from 1..31.</TD> </TR>
+     *   dd      |The day as numbers from 01..31.</TD> </TR>
+     *   ddd     |The day as abbreviated, 3-digit word in English language.</TD> </TR>
+     *   dddd    |The day as word in English language.</TD> </TR>
+     *   H       |The hour as numbers from 0..23.</TD> </TR>
+     *   HH      |The hour as numbers from 01..23.</TD> </TR>
+     *   K       |The hour as numbers from 0..11 am/pm.</TD> </TR>
+     *   KK      |The hour as numbers from 01..11 am/pm.</TD> </TR>
+     *   m       |The minute as numbers from 0..59.</TD> </TR>
+     *   mm      |The minute as numbers from 01..59.</TD> </TR>
+     *   s       |The second as numbers from 0..59.</TD> </TR>
+     *   ss      |The second as numbers from 00..59.</TD> </TR>
+     *
      * @param format     The format pattern string.
      * @param target     A reference to an AString that gets the result of the format processing
      *                   appended.

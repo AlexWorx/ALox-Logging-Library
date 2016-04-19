@@ -32,7 +32,7 @@ namespace ut_cs_aworx_lib
     #if ALIB_VSTUDIO
         [TestClass]
     #endif
-    public class CS_Strings_AStringAndSubstring  : UnitTest
+    public class CS_Strings_AStringAndSubstring  : AUnitTest
     {
     //---------------------------------------------------------------------------------------------------------
     //--- Test Compare

@@ -6,12 +6,27 @@
 // #################################################################################################
 #include "alib/stdafx_alib.h"
 
-#include "alib/config/inifile.hpp"
-#include "alib/system/directory.hpp"
-#include "alib/system/process.hpp"
-#include "alib/strings/tokenizer.hpp"
-#include "alib/compatibility/std_iostream.hpp"
-#include "alib/core/util.hpp"
+#if !defined (HPP_ALIB_CONFIG_INI_FILE)
+    #include "alib/config/inifile.hpp"
+#endif
+#if !defined (HPP_ALIB_SYSTEM_DIRECTORY)
+    #include "alib/system/directory.hpp"
+#endif
+#if !defined (HPP_ALIB_SYSTEM_SYSTEM)
+    #include "alib/system/system.hpp"
+#endif
+#if !defined (HPP_ALIB_SYSTEM_PROCESSINFO)
+    #include "alib/system/process.hpp"
+#endif
+#if !defined (HPP_ALIB_STRINGS_TOKENIZER)
+    #include "alib/strings/tokenizer.hpp"
+#endif
+#if !defined (HPP_ALIB_COMPATIBILITY_STD_IOSTREAM)
+    #include "alib/compatibility/std_iostream.hpp"
+#endif
+#if !defined (HPP_ALIB_UTIL)
+    #include "alib/core/util.hpp"
+#endif
 
 #include <fstream>
 #include <algorithm>
@@ -25,7 +40,7 @@ namespace                   config {
 // #################################################################################################
 // static/globals
 // #################################################################################################
-String                IniFile::DefaultFileExtension                                   = ".alib.ini";
+String                IniFile::DefaultFileExtension                                   = ".ini";
 
 // #################################################################################################
 // Constructor/Destructor
@@ -38,59 +53,34 @@ IniFile::IniFile( const String& fileName )
                              "\\n",   "\n",
                              "\\r",   "\r",
                              "\\t",   "\t",
-                             "\\/",   "/",
                              "\\#",   "#",
                              "\\;",   ";"
                        };
 
     if ( fileName.IsNotEmpty() )
     {
+        // dont read anything
+        if ( fileName.StartsWith( "*" ) )
+        {
+            AutoSave= false;
+            return;
+        }
+
         FileName= fileName;
     }
     else
     {
         Directory dir( Directory::SpecialFolder::HOME_CONFIG );
+        FileName._( dir.Path      )
+                ._( PathSeparator )
+                ._( System::GetProcessName()  );
 
-
-        #if defined (__unix__)
-            const ProcessInfo& pi= ProcessInfo::Current();
-            FileName._<false>( dir.Path      )
-                    ._<false>( PathSeparator )
-                    ._<false>( pi.ExecName   )
-                    ._<false>( DefaultFileExtension  );
-
-        #elif defined(_WIN32)
-            FileName._( dir.Path )._( PathSeparator );
-            TCHAR szPath[ MAX_PATH ];
-            DWORD pathLen= GetModuleFileName( NULL, szPath, MAX_PATH );
-            if ( pathLen <= 0)
-            {
-                ALIB_WARNING( "Error retrieving module name" );
-                FileName._( "Unknown_module_name.aworx.ini");
-            }
-            else
-            {
-                // convert to multi byte string and search last dir separator
-                String512 moduleFileName;
-                moduleFileName._( szPath );
-                int sepIdx= moduleFileName.LastIndexOfAny( "/\\", Inclusion::Include );
-                if ( sepIdx < 0)
-                {
-                    ALIB_WARNING( "Error retrieving module name" );
-                    FileName._( "Unknown_module_name.aworx.ini" );
-                }
-                else
-                {
-                    if( moduleFileName.EndsWith( ".exe" ) )
-                        moduleFileName.Delete( moduleFileName.Length() - 4 );
-
-                    FileName._( moduleFileName, sepIdx + 1 )._( ".aworx.ini" );
-                }
-            }
-        #else
-            #pragma message ("Unknown Platform in file: " __FILE__ )
+        #if defined(_WIN32)
+            if( FileName.EndsWith( ".exe" ) )
+                FileName.DeleteEnd( 4 );
         #endif
 
+        FileName._( DefaultFileExtension  );
     }
 
     ReadFile();
@@ -103,13 +93,11 @@ IniFile::IniFile( const String& fileName )
 void  IniFile::Clear()
 {
     FileComments.Clear();
+    for ( Section* section : Sections )
+        delete section;
     Sections.clear();
     LinesWithReadErrors.clear();
     LastStatus= Status::Ok;
-
-
-    // insert default section without a name as first entry
-    Sections.insert( Sections.end(), new Section( nullptr ) );
 }
 
 IniFile::Section* IniFile::SearchSection( const String& name )
@@ -280,7 +268,9 @@ IniFile::Status  IniFile::ReadFile()
     String128   name;
     AString     value;
     AString     comments;
-    Section*    actSection= Sections[0];
+    Section*    actSection;
+    Sections.insert( Sections.end(), actSection= new Section( nullptr ) );
+
     int         lineNo= 0;
     bool        fileHeaderRead= false;
 

@@ -6,7 +6,7 @@
 // #################################################################################################
 #include "alib/stdafx_alib.h"
 
-#if !defined (HPP_ALIB_ALIB)
+#if !defined (HPP_ALIB)
     #include "alib/alib.hpp"
 #endif
 
@@ -30,18 +30,11 @@ AString Util::theSpaces;
 // #################################################################################################
 // WriteSpaces
 // #################################################################################################
-const aworx::AString&  Util::GetSpaces( int minSize )
+const aworx::AString&  Util::GetSpacesUnsafe( int minSize )
 {
     int spacesLength= Util::theSpaces.Length();
     if ( spacesLength < minSize )
-    {
-        OWN( ALIB::Lock)
-
-        // check it again, after having the lock
-        spacesLength= Util::theSpaces.Length();
-        if ( spacesLength < minSize )
-            Util::theSpaces.InsertChars( ' ', minSize - spacesLength );
-    }
+        Util::theSpaces.InsertChars( ' ', minSize - spacesLength );
 
     return theSpaces;
 }

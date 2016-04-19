@@ -12,7 +12,7 @@ import com.aworx.lox.core.textlogger.PlainTextLogger;
 
 
 /** ************************************************************************************************
- * A logger that logs all messages to an in-memory buffer of type AString. The name of the logger
+ * A logger that logs all messages to an in-memory buffer of type AString. The name of the \e Logger
  * defaults to "MEMORY".
  **************************************************************************************************/
 public class MemoryLogger extends PlainTextLogger
@@ -31,28 +31,28 @@ public class MemoryLogger extends PlainTextLogger
      **********************************************************************************************/
     public    MemoryLogger()
     {
-        super( null, "MEMORY" );
+        super( null, "MEMORY", false );
     }
 
     /** ********************************************************************************************
      * Creates a MemoryLogger with the given name.
-     * @param name  The name of the logger. Defaults to "MEMORY".
+     * @param name  The name of the \e Logger. Defaults to "MEMORY".
      **********************************************************************************************/
     public    MemoryLogger( String name )
     {
-        super( name, "MEMORY" );
+        super( name, "MEMORY", false );
     }
 
     /** ********************************************************************************************
      * Creates a MemoryLogger with the given name.
-     * @param name              (Optional) The name of the logger.
+     * @param name              (Optional) The name of the \e Logger.
      *                          Defaults to "MEMORY".
      * @param pruneESCSequences (Optional) Sets the member #pruneESCSequences.
      *                          Defaults to true.
      **********************************************************************************************/
     public    MemoryLogger( String name, boolean pruneESCSequences )
     {
-        super( name, "MEMORY" );
+        super( name, "MEMORY", false );
         this.pruneESCSequences= pruneESCSequences;
     }
 
@@ -78,7 +78,7 @@ public class MemoryLogger extends PlainTextLogger
      * @param length   The length of the portion in \p buffer to write out.
      * @return Always returns true.
      **********************************************************************************************/
-    protected boolean doLogSubstring( AString buffer, int start, int length )
+    protected boolean logSubstring( AString buffer, int start, int length )
     {
         memoryLog._NC( buffer, start, length );
         return true;

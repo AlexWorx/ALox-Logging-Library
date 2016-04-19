@@ -27,34 +27,19 @@
 namespace aworx {
 namespace       lox {
 /** ************************************************************************************************
- *  This is the C++ namespace for the implementation of <em>logger classes</em> that are provided
- *  by default with <em>%ALox Logging Library</em>.
+ * This is the C++ namespace for the implementation of <em>logger classes</em> that are provided
+ * by default with <em>%ALox Logging Library</em>.
  *
- *  Developed by A-Worx GmbH and published under the MIT license.
+ * Developed by A-Worx GmbH and published under the MIT license.
  **************************************************************************************************/
 namespace           loggers{
 
 /** ************************************************************************************************
- *  A logger that logs all messages to the standard output <em>cout</em>.
- *  The name of the logger defaults to "PLAIN_CONSOLE".
+ * A logger that logs all messages to the standard output <em>cout</em>.
+ * The name of the \e Logger defaults to "CONSOLE".
  *
- *  ALox text logger escape sequences (see class \ref aworx::lox::ESC "ESC")
- *  are removed and ignored.
- *
- *  While by default, the
- *  \ref aworx::lox::Log::DomainLevel "DomainLevel"
- *  of root domains of loggers are set to 'Off', the constructor of this class sets this value
- *  to 'All'. This way, all log invocations on 'unknown' domains (those that have not been
- *  registered and explicitly set) are fully enabled by default.
- *  This is done because this class typically represents a logger that used for debug logging,
- *  e.g. logging into the developer's IDE. Such loggers should detect all messages of any log domain
- *  that the application and its library uses - unless those are explicitly set differently in
- *  the bootstrap code of the application.
- *
- *  \note For the ease of use, class \ref aworx::lox::Log "Log" implements a method
- *  \ref aworx::lox::Log::AddDebugLogger "Log::AddDebugLogger"
- *  that tries to create the right Logger type for standard debug logging (potentially this one),
- *  depending on the platform, IDE and optional configuration settings.
+ * ALox text logger escape sequences (see class \ref aworx::lox::ESC "ESC")
+ * are removed and ignored.
  **************************************************************************************************/
 class ConsoleLogger : public aworx::lox::core::textlogger::PlainTextLogger
 {
@@ -64,13 +49,11 @@ class ConsoleLogger : public aworx::lox::core::textlogger::PlainTextLogger
     public:
         /** ****************************************************************************************
          *  Creates a ConsoleLogger.
-         * @param name (Optional) The name of the logger, defaults to "CONSOLE".
+         * @param name (Optional) The name of the \e Logger, defaults to "CONSOLE".
          ******************************************************************************************/
         explicit            ConsoleLogger( const String& name= nullptr )
-                            :  PlainTextLogger( name, "CONSOLE" )
+                            :  PlainTextLogger( name, "CONSOLE", true )
         {
-            // set default domain level to all: As an app console logger/IDE logger we want to fetch all we can
-            RootDomain.SetLevel( Log::DomainLevel::All, lib::enums::Propagation::None );
         }
 
 
@@ -101,7 +84,7 @@ class ConsoleLogger : public aworx::lox::core::textlogger::PlainTextLogger
          * @return The number of characters written, -1 on error.
          ******************************************************************************************/
         ALIB_API
-        virtual int doLogSubstring( const AString& buffer, int start, int length );
+        virtual int logSubstring( const AString& buffer, int start, int length );
 
 
         /** ****************************************************************************************

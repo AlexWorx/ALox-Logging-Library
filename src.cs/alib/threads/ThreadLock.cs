@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading;
 using cs.aworx.lib.time;
 using cs.aworx.lib.enums;
+using System.Runtime.CompilerServices;
+using cs.aworx.lib.strings;
 
 /** ************************************************************************************************
  *  This namespace of the A-Worx Library holds classes that are providing an interface into
@@ -18,8 +20,6 @@ using cs.aworx.lib.enums;
  *  As C# provides standardized multi-threading support, this namespace is quite empty in
  *  the C# Version of the AWorx Library.
  **************************************************************************************************/
-
-
 namespace cs.aworx.lib.threads  {
 
 /** ************************************************************************************************
@@ -59,7 +59,7 @@ public class ThreadLock
 
     /**
      * This is a threshold that causes Acquire() to send a warning to
-     * \ref aworx::lib::ReportWriter "ReportWriter"
+     * \ref cs::aworx::lib::ReportWriter "ReportWriter"
      * if acquiring the access takes longer than the given number of milliseconds.
      * To disable such messages, set this value to 0. Default is 1 second.
      */
@@ -67,7 +67,7 @@ public class ThreadLock
 
     /**
      * Limit of recursions. If limit is reached or a multiple of it, an error is passed to
-     * \ref aworx::lib::ReportWriter "ReportWriter". Defaults is 10.
+     * \ref cs::aworx::lib::ReportWriter "ReportWriter". Defaults is 10.
      */
     public    int               RecursionWarningThreshold                                   =10;
 
@@ -90,6 +90,18 @@ public class ThreadLock
     /**  The internal object to measure the time */
     protected Ticks             waitTime                                               =new Ticks();
 
+    #if DEBUG
+        /**  Debug information on acquirement location */
+        protected int           acquirementLineNumber;
+
+        /**  Debug information on acquirement location */
+        protected String        acquirementSourcefile;
+
+        /**  Debug information on acquirement location */
+        protected String        acquirementMethodName;
+    #endif
+
+
 
     // #############################################################################################
     // Constructors
@@ -103,7 +115,7 @@ public class ThreadLock
      * @param lockMode  (Optional) Flag if recursion support is on (the default).
      *                  If not, nested locks are not counted.
      * @param safeness  (Optional) Defaults to \c Safeness.Safe.
-     *                  See #SetMode for more information.
+     *                  See #SetSafeness for more information.
      **********************************************************************************************/
     public ThreadLock( LockMode lockMode=  LockMode.Recursive, Safeness safeness= Safeness.Safe  )
     {
@@ -111,7 +123,7 @@ public class ThreadLock
         this.lockMode=    lockMode;
 
         // set safeness
-        SetMode( safeness );
+        SetSafeness( safeness );
     }
 
     // #############################################################################################
@@ -126,8 +138,14 @@ public class ThreadLock
      *  until ownership can be gained.
      *  Multiple (nested) calls to this method are counted and the object is only released when the same
      *  number of Release() calls have been made.
+     *
+     * @param cln (Optional) Caller info, compiler generated. Please omit.
+     * @param csf (Optional) Caller info, compiler generated. Please omit.
+     * @param cmn (Optional) Caller info, compiler generated. Please omit.
      **********************************************************************************************/
-    public void Acquire()
+    public void Acquire(
+    [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
+
     {
         // are we in unsafe mode?
         if ( mutex == null )
@@ -186,8 +204,14 @@ public class ThreadLock
                         {
                             hasWarned= true;
                             ALIB.WARNING(    "Timeout (" + waitWarningTimeLimitInMillis
-                                              +  " ms). Change your codes critical section length if possible."
-                                              +  " Thread ID/Name: "  + thisThread.ManagedThreadId + "/" + thisThread.Name );
+                                              +  " ms). Change your codes critical section length if possible." + CString.NewLineChars
+                                              +  "This thread: "  + thisThread.ManagedThreadId + "/" + thisThread.Name  + CString.NewLineChars
+                                              +  "Owning thread: " + ( owner != null ? ( owner.ManagedThreadId + "/" + owner.Name ) : "null" )
+                                    #if DEBUG
+                                              + CString.NewLineChars
+                                              +  "Location of acquirement: " + acquirementSourcefile + ":" + acquirementLineNumber + " " + acquirementMethodName + "()"
+                                    #endif
+                                        );
                         }
 
                     }
@@ -197,6 +221,12 @@ public class ThreadLock
 
             // take control
             owner=        thisThread;
+            #if DEBUG
+                acquirementLineNumber= cln;
+                acquirementSourcefile= csf;
+                acquirementMethodName= cmn;
+            #endif
+
             lockCount=    1;
 
         } // synchronized
@@ -218,7 +248,6 @@ public class ThreadLock
             // we are still decreasing the lockCount
             lockCount=  lockMode == LockMode.Recursive  ? lockCount - 1
                                                         : 0;
-
             // end of unsafe version of this method
             return;
         }
@@ -239,36 +268,44 @@ public class ThreadLock
             {
                 owner= null;
                 Monitor.Pulse( mutex );
+
+                #if DEBUG
+                    acquirementLineNumber= -1;
+                    acquirementSourcefile= null;
+                    acquirementMethodName= null;
+                #endif
             }
         } // synchronized
     }
 
     /** ********************************************************************************************
-     *  Identifies if the provided thread is the actual owner of this ThreadLock. If the parameter is
-     *  omitted, then it is tested if the current thread owns this lock.
-     *  \note This method is provided mainly for debugging and implementing debug assertions into
-     *        the code. It is *not* considered a good practice to use this method for implementing
-     *        software logic. In contrast the software should be designed in a way, that it is always
-     *        clear who owns a ThreadLock or at least that acquiring a thread lock can be performed
-     *        instead.
+     * Returns the number of acquirements of this ThreadLock. The negative number (still
+     * providing the number of acquirements) is returned if the owning thread is not the same
+     * as the given one.
      *
-     * @param thread The thread to test current ownership of this. If omitted the ownership is
-     *                          identified for the current thread.
-     * @return If acquired by the given thread (the current thread if parameter \p thread is
-     *         omitted), the number of (recursive) acquire calls is returned. Otherwise
-     *         returns 0.
+     * \note This method is provided mainly for debugging and implementing debug assertions
+     *       into the code. It is *not* considered a good practice to use this method for
+     *       implementing  software logic.
+     *       In contrast the software should be designed in a way, that it is always
+     *       clear who owns a ThreadLock or at least that acquiring a thread lock can be
+     *       performed instead.
+     *
+     * @param thread The thread to test current ownership of this.
+     *               Defaults to the current (invocating) thread.
+     * @return The number of (recursive) acquirements, negative if acquired by a different
+     *         thread than provided.
      **********************************************************************************************/
-    public int IsAcquired( Thread thread= null )
+    public int DbgCountAcquirements( Thread thread= null )
     {
-        if ( IsUnsafe() )
+        if ( GetSafeness() == Safeness.Unsafe )
             return lockCount;
 
         if ( owner == null )
             return 0;
 
         return  (owner == ( thread != null ? thread : Thread.CurrentThread ))
-                ? lockCount
-                : 0;
+                ?  lockCount
+                : -lockCount;
     }
 
 
@@ -283,7 +320,7 @@ public class ThreadLock
      * @param safeness  Determines if this object should use a mutex (\c Safeness.Safe)
      *                  or just do nothing (\c Safeness.Unsafe).
      *************************************************************************************************/
-    public void SetMode( Safeness safeness )
+    public void SetSafeness( Safeness safeness )
     {
         // are we in unsafe mode?
         if ( mutex == null )
@@ -319,16 +356,24 @@ public class ThreadLock
             if( safeness == Safeness.Unsafe )
                 mutex= null;
         }
-
     }
 
     /** ********************************************************************************************
-     *     Query if this instance was set to unsafe mode.
-     * @return    True if unsafe, false if not.
+     * Query if this instance was set to unsafe mode.
+     * @return A value of type cs::aworx::lib::enums::Safeness "Safeness"
      **********************************************************************************************/
-    public bool IsUnsafe()
+    public Safeness GetSafeness()
     {
-        return ( mutex == null );
+        return ( mutex == null ) ? Safeness.Unsafe : Safeness.Safe;
+    }
+
+    /** ****************************************************************************************
+     *  Query if this instance was set to work recursively.
+     * @return A value of type cs::aworx::lib::enums::LockMode "LockMode"
+     ******************************************************************************************/
+    public LockMode GetMode()     
+    {
+        return lockMode; 
     }
 
     /** ****************************************************************************************

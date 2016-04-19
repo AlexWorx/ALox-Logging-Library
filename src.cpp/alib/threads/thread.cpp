@@ -35,17 +35,21 @@ int                             Thread::nextThreadId                            
 // static library initialization code ( invoked by ALIB::Init() )
 void Thread::_Init_ALib()
 {
+    Thread* main;
+
     #if !defined( ALIB_FEAT_THREADS )
+        main=
         Thread::noThreadsCompilationMainThread= new Thread();
         Thread::noThreadsCompilationMainThread->id= -1;
+        Thread::noThreadsCompilationMainThread->SetName("SINGLE");
+    #else
+        // create the current thread as an object within our thread map
+        (main= Thread::CurrentThread())->SetName( "MAIN" );
     #endif
 
-
-    // create the current thread as an object within our thread map
-    Thread* main= Thread::CurrentThread();
-            main->SetName( "MAIN" );
     ALIB_ASSERT_ERROR( main->GetId() == -1,
        "Error initializing threads. Probably forbidden repeated initialization from different thread." );
+    (void) main;
 }
 
 
@@ -184,13 +188,13 @@ void  Thread::Start()
 {
     if ( c11Thread != nullptr )
     {
-        ALIB_ERROR_AS( "Thread already started. (" << GetId() <<  '/' << GetName() << ')')
+        ALIB_ERROR_S512( "Thread already started. (" << GetId() <<  '/' << GetName() << ')')
         return;
     }
 
     if ( id <= 0 )
     {
-        ALIB_ERROR_AS( "System threads can not be started. (" << GetId() <<  '/' << GetName() << ')' )
+        ALIB_ERROR_S512( "System threads can not be started. (" << GetId() <<  '/' << GetName() << ')' )
         return;
     }
 
@@ -208,7 +212,7 @@ void  Thread::Start()
     #else
             c11Thread=    this;
             isAliveFlag=  false;
-            ALIB_WARNING_AS( "Starting Thread not supported. ALib is compiled with compilation symbol ALIB_FEAT_THREADS_OFF" )
+            ALIB_WARNING_S512( "Starting Thread not supported. ALib is compiled with compilation symbol ALIB_FEAT_THREADS_OFF" )
     #endif
 }
 

@@ -30,11 +30,8 @@ namespace           loggers{
 
 /** ************************************************************************************************
  * This is a very simple file logger for textual log outputs. The file name string provided
- * in the constructor is not verified. If write operations fail, this logger disables
- * itself by setting the inherited flag isDisabled to true.
- * The fileName may be changed by simply setting the public member #FileName and the flag
- * #IsDisabled may be set to false by the user without the need of any other interaction other
- * than acquiring the \c Lox that the logger is added to.
+ * in the constructor is not verified.
+ * The fileName may be changed by simply setting the public member #FileName.
  **************************************************************************************************/
 class TextFileLogger : public aworx::lox::core::textlogger::PlainTextLogger
 {
@@ -48,7 +45,10 @@ class TextFileLogger : public aworx::lox::core::textlogger::PlainTextLogger
         protected:        std::ofstream*           os                                     = nullptr;
 
         /** Flag to prevent file open/close operations when multi line text logging is performed. */
-        protected:        bool                     currentlyInMultiLineOp                 = false;
+        protected:        bool                     currentlyInMultiLineOp                   = false;
+
+        /** Flag that indicates if there was an error opening he file */
+        public:           bool                     hasIoError                                =false;
 
 
     // #############################################################################################
@@ -58,11 +58,11 @@ class TextFileLogger : public aworx::lox::core::textlogger::PlainTextLogger
         /** ****************************************************************************************
          *  Creates a TextFileLogger.
          * @param fileName    The filename (potentially including a path) of the output log file.
-         * @param loggerName  The name of the logger. Defaults to "TEXTFILE".
+         * @param loggerName  The name of the \e Logger. Defaults to "TEXTFILE".
          ******************************************************************************************/
         explicit            TextFileLogger( const aworx::String& fileName,
                                             const aworx::String& loggerName    =nullptr )
-                            :  PlainTextLogger( loggerName, "TEXTFILE" )
+                            :  PlainTextLogger( loggerName, "TEXTFILE", false )
         {
             FileName << fileName;
         }
@@ -81,15 +81,13 @@ class TextFileLogger : public aworx::lox::core::textlogger::PlainTextLogger
     // #############################################################################################
     protected:
         /** ****************************************************************************************
-         * Opens the file. If not successful, the logger will be disabled by setting field
-         * #IsDisabled to \c true.
+         * Opens the file.
          ******************************************************************************************/
         ALIB_API
         void openFile();
 
         /** ****************************************************************************************
-         * Closes the file. If not successful, the logger will be disabled by setting field
-         * #IsDisabled to \c true.
+         * Closes the file.
          ******************************************************************************************/
         ALIB_API
         void closeFile();
@@ -116,7 +114,7 @@ class TextFileLogger : public aworx::lox::core::textlogger::PlainTextLogger
          * @return The number of characters written, -1 on error.
          ******************************************************************************************/
         ALIB_API
-        virtual int doLogSubstring( const AString& buffer, int start, int length );
+        virtual int logSubstring( const AString& buffer, int start, int length );
 
 
         /** ****************************************************************************************

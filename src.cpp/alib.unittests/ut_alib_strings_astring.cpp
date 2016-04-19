@@ -40,6 +40,8 @@ UT_CLASS()
 //--- Test Constructors
 //---------------------------------------------------------------------------------------------------------
 UT_METHOD( Constructors )
+{
+    UT_INIT();
 
     AString* ms;
     char*     csNull= nullptr;
@@ -117,6 +119,8 @@ UT_METHOD( Constructors )
 //--- Test IsNull
 //---------------------------------------------------------------------------------------------------------
 UT_METHOD( IsNull )
+{
+    UT_INIT();
 
     AString ms;          UT_TRUE( ms.IsNull()    ); UT_TRUE(  ms.IsNull() );  UT_TRUE( !ms.IsNotNull() );  UT_TRUE(  ms.IsEmpty() );  UT_TRUE( !ms.IsNotEmpty() );
     ms= "";              UT_TRUE( ms.IsNotNull() ); UT_TRUE( !ms.IsNull() );  UT_TRUE(  ms.IsNotNull() );  UT_TRUE(  ms.IsEmpty() );  UT_TRUE( !ms.IsNotEmpty() );
@@ -140,6 +144,8 @@ UT_METHOD( IsNull )
 //--- Test FirstBackCharAt
 //---------------------------------------------------------------------------------------------------------
 UT_METHOD( CharAt )
+{
+    UT_INIT();
 
     AString ms;
     UT_EQ(  ms.CharAtStart       ()    ,    '\0' );
@@ -194,6 +200,8 @@ UT_METHOD( CharAt )
 //--- Test DeleteInsert
 //---------------------------------------------------------------------------------------------------------
 UT_METHOD( DeleteInsertFillReplace )
+{
+    UT_INIT();
 
     AString ms;
     // delete
@@ -330,6 +338,8 @@ UT_METHOD( DeleteInsertFillReplace )
 //--- Test Conversions
 //---------------------------------------------------------------------------------------------------------
 UT_METHOD( Conversions )
+{
+    UT_INIT();
 
     AString   ms;
     string        s;
@@ -402,6 +412,8 @@ UT_METHOD( Conversions )
 //--- Test AssignAndAppend
 //---------------------------------------------------------------------------------------------------------
 UT_METHOD( Append )
+{
+    UT_INIT();
 
     // const char*
     {
@@ -618,6 +630,8 @@ UT_METHOD( Append )
 //--- Test Fields
 //---------------------------------------------------------------------------------------------------------
 UT_METHOD( Fields )
+{
+    UT_INIT();
 
     AString ms;
 
@@ -677,6 +691,8 @@ UT_METHOD( Fields )
 //--- Test Capacity
 //---------------------------------------------------------------------------------------------------------
 UT_METHOD( CapacityLength )
+{
+    UT_INIT();
 
     // null-allocated
     {
@@ -781,6 +797,8 @@ UT_METHOD( CapacityLength )
 //--- Test Tab
 //---------------------------------------------------------------------------------------------------------
 UT_METHOD( Tab )
+{
+    UT_INIT();
 
     AString ms;
 
@@ -875,6 +893,8 @@ UT_METHOD( Tab )
 //--- Test SearchReplace
 //---------------------------------------------------------------------------------------------------------
 UT_METHOD( SearchAndReplace )
+{
+    UT_INIT();
 
     int result;
 
@@ -1162,14 +1182,14 @@ UT_METHOD( SearchAndReplace )
     // search nullptr, empty string
     {
         AString ms("abcd abcd");
-        result= ms.IndexOfAS( nullptr        );    UT_EQ( result, 0 );
-        result= ms.IndexOfAS( nullptr,    5  );    UT_EQ( result, 5 );
-        result= ms.IndexOfAS( nullptr,   50  );    UT_EQ( result,-1 );
-        result= ms.IndexOfAS( nullptr, -  5  );    UT_EQ( result, 0 );
-        result= ms.IndexOfAS( "",      -  5  );    UT_EQ( result, 0 );
-        result= ms.IndexOfAS( "",         0  );    UT_EQ( result, 0 );
-        result= ms.IndexOfAS( "",         4  );    UT_EQ( result, 4 );
-        result= ms.IndexOfAS( "",       100  );    UT_EQ( result,-1 );
+        result= ms.IndexOfSubstring( nullptr        );    UT_EQ( result, 0 );
+        result= ms.IndexOfSubstring( nullptr,    5  );    UT_EQ( result, 5 );
+        result= ms.IndexOfSubstring( nullptr,   50  );    UT_EQ( result,-1 );
+        result= ms.IndexOfSubstring( nullptr, -  5  );    UT_EQ( result, 0 );
+        result= ms.IndexOfSubstring( "",      -  5  );    UT_EQ( result, 0 );
+        result= ms.IndexOfSubstring( "",         0  );    UT_EQ( result, 0 );
+        result= ms.IndexOfSubstring( "",         4  );    UT_EQ( result, 4 );
+        result= ms.IndexOfSubstring( "",       100  );    UT_EQ( result,-1 );
         result= ms.IndexOf  ( nullptr        );    UT_EQ( result, 0 );
         result= ms.IndexOf  ( nullptr,    5  );    UT_EQ( result, 5 );
         result= ms.IndexOf  ( nullptr,   50  );    UT_EQ( result,-1 );
@@ -1183,16 +1203,16 @@ UT_METHOD( SearchAndReplace )
     // search
     {
         AString ms("abcd abcd");
-        result= ms.IndexOfAS       ( "abcd"       );      UT_EQ( result, 0 );
-        result= ms.IndexOfAS       ( "b"          );      UT_EQ( result, 1 );
-        result= ms.IndexOfAS       ( " abcd"      );      UT_EQ( result, 4 );
-        result= ms.IndexOfAS       ( "abcd",     1);      UT_EQ( result, 5 );
-        result= ms.IndexOfAS       ( "abcd",   - 1);      UT_EQ( result, 0 );
-        result= ms.IndexOfAS       ( "xyz",    -10);      UT_EQ( result,-1 );
-        result= ms.IndexOfAS<false>( "abcd"       );      UT_EQ( result, 0 );
-        result= ms.IndexOfAS<false>( "b"          );      UT_EQ( result, 1 );
-        result= ms.IndexOfAS<false>( " abcd"      );      UT_EQ( result, 4 );
-        result= ms.IndexOfAS<false>( "abcd",     1);      UT_EQ( result, 5 );
+        result= ms.IndexOfSubstring       ( "abcd"       );      UT_EQ( result, 0 );
+        result= ms.IndexOfSubstring       ( "b"          );      UT_EQ( result, 1 );
+        result= ms.IndexOfSubstring       ( " abcd"      );      UT_EQ( result, 4 );
+        result= ms.IndexOfSubstring       ( "abcd",     1);      UT_EQ( result, 5 );
+        result= ms.IndexOfSubstring       ( "abcd",   - 1);      UT_EQ( result, 0 );
+        result= ms.IndexOfSubstring       ( "xyz",    -10);      UT_EQ( result,-1 );
+        result= ms.IndexOfSubstring<false>( "abcd"       );      UT_EQ( result, 0 );
+        result= ms.IndexOfSubstring<false>( "b"          );      UT_EQ( result, 1 );
+        result= ms.IndexOfSubstring<false>( " abcd"      );      UT_EQ( result, 4 );
+        result= ms.IndexOfSubstring<false>( "abcd",     1);      UT_EQ( result, 5 );
         result= ms.IndexOf         ( "abcd"       );      UT_EQ( result, 0 );
         result= ms.IndexOf         ( "b"          );      UT_EQ( result, 1 );
         result= ms.IndexOf         ( " abcd"      );      UT_EQ( result, 4 );
@@ -1207,30 +1227,29 @@ UT_METHOD( SearchAndReplace )
 
     // ignore case
     {
-        AString ms( "Hallo A-Worx util" );
-        result= ms.IndexOfAS       ( "a-worx",   0, Case::Ignore ); UT_EQ( result,  6 );
-        result= ms.IndexOfAS       ( "a-worx",   1, Case::Ignore ); UT_EQ( result,  6 );
-        result= ms.IndexOfAS       ( "a-worx", -10, Case::Ignore ); UT_EQ( result,  6 );
-        result= ms.IndexOfAS       ( "a-worx",   6, Case::Ignore ); UT_EQ( result,  6 );
-        result= ms.IndexOfAS       ( "a-worx",   7, Case::Ignore ); UT_EQ( result, -1 );
-        result= ms.IndexOfAS       ( "a-worx", 100, Case::Ignore ); UT_EQ( result, -1 );
-        result= ms.IndexOfAS       ( "hal",      0, Case::Ignore ); UT_EQ( result,  0 );
-        result= ms.IndexOfAS       ( "hal",      1, Case::Ignore ); UT_EQ( result, -1 );
-        result= ms.IndexOfAS       ( "util",     1, Case::Ignore ); UT_EQ( result, 13 );
-        result= ms.IndexOfAS       ( "UTIL",     5, Case::Ignore ); UT_EQ( result, 13 );
-        result= ms.IndexOfAS       ( "UTIL",    13, Case::Ignore ); UT_EQ( result, 13 );
-        result= ms.IndexOfAS       ( "UTIL",    14, Case::Ignore ); UT_EQ( result, -1 );
-        result= ms.IndexOfAS<false>( "a-worx",   0, Case::Ignore ); UT_EQ( result,  6 );
-        result= ms.IndexOfAS<false>( "a-worx",   1, Case::Ignore ); UT_EQ( result,  6 );
-        result= ms.IndexOfAS<false>( "a-worx",   6, Case::Ignore ); UT_EQ( result,  6 );
-        result= ms.IndexOfAS<false>( "a-worx",   7, Case::Ignore ); UT_EQ( result, -1 );
-        result= ms.IndexOfAS<false>( "hal",      0, Case::Ignore ); UT_EQ( result,  0 );
-        result= ms.IndexOfAS<false>( "hal",      1, Case::Ignore ); UT_EQ( result, -1 );
-        result= ms.IndexOfAS<false>( "util",     1, Case::Ignore ); UT_EQ( result, 13 );
-        result= ms.IndexOfAS<false>( "UTIL",     5, Case::Ignore ); UT_EQ( result, 13 );
-        result= ms.IndexOfAS<false>( "UTIL",    13, Case::Ignore ); UT_EQ( result, 13 );
-        result= ms.IndexOfAS<false>( "UTIL",    14, Case::Ignore ); UT_EQ( result, -1 );
-        result= ms.IndexOfAS<false>( "TILX",    14, Case::Ignore ); UT_EQ( result, -1 );
+        AString ms( "Hallo A-Worx utilXXX" );
+        ms.DeleteEnd(3);
+        result= ms.IndexOfSubstring       ( "a-worx",   0, Case::Ignore ); UT_EQ( result,  6 );
+        result= ms.IndexOfSubstring       ( "a-worx",   1, Case::Ignore ); UT_EQ( result,  6 );
+        result= ms.IndexOfSubstring       ( "a-worx", -10, Case::Ignore ); UT_EQ( result,  6 );
+        result= ms.IndexOfSubstring       ( "a-worx",   6, Case::Ignore ); UT_EQ( result,  6 );
+        result= ms.IndexOfSubstring       ( "a-worx",   7, Case::Ignore ); UT_EQ( result, -1 );
+        result= ms.IndexOfSubstring       ( "a-worx", 100, Case::Ignore ); UT_EQ( result, -1 );
+        result= ms.IndexOfSubstring       ( "hal",      0, Case::Ignore ); UT_EQ( result,  0 );
+        result= ms.IndexOfSubstring       ( "hal",      1, Case::Ignore ); UT_EQ( result, -1 );
+        result= ms.IndexOfSubstring       ( "util",     1, Case::Ignore ); UT_EQ( result, 13 );
+        result= ms.IndexOfSubstring       ( "UTIL",     5, Case::Ignore ); UT_EQ( result, 13 );
+        result= ms.IndexOfSubstring       ( "UTIL",    13, Case::Ignore ); UT_EQ( result, 13 );
+        result= ms.IndexOfSubstring       ( "UTIL",    14, Case::Ignore ); UT_EQ( result, -1 );
+        result= ms.IndexOfSubstring<false>( "a-worx",   0, Case::Ignore ); UT_EQ( result,  6 );
+        result= ms.IndexOfSubstring<false>( "a-worx",   1, Case::Ignore ); UT_EQ( result,  6 );
+        result= ms.IndexOfSubstring<false>( "a-worx",   6, Case::Ignore ); UT_EQ( result,  6 );
+        result= ms.IndexOfSubstring<false>( "a-worx",   7, Case::Ignore ); UT_EQ( result, -1 );
+        result= ms.IndexOfSubstring<false>( "hal",      0, Case::Ignore ); UT_EQ( result,  0 );
+        result= ms.IndexOfSubstring<false>( "hal",      1, Case::Ignore ); UT_EQ( result, -1 );
+        result= ms.IndexOfSubstring<false>( "util",     1, Case::Ignore ); UT_EQ( result, 13 );
+        result= ms.IndexOfSubstring<false>( "UTIL",     5, Case::Ignore ); UT_EQ( result, 13 );
+        result= ms.IndexOfSubstring<false>( "UTIL",    13, Case::Ignore ); UT_EQ( result, 13 );
         result= ms.IndexOf         ( "a-worx",   0, Case::Ignore ); UT_EQ( result,  6 );
         result= ms.IndexOf         ( "a-worx",   1, Case::Ignore ); UT_EQ( result,  6 );
         result= ms.IndexOf         ( "a-worx", -10, Case::Ignore ); UT_EQ( result,  6 );
@@ -1252,8 +1271,6 @@ UT_METHOD( SearchAndReplace )
         result= ms.IndexOf  <false>( "util",     1, Case::Ignore ); UT_EQ( result, 13 );
         result= ms.IndexOf  <false>( "UTIL",     5, Case::Ignore ); UT_EQ( result, 13 );
         result= ms.IndexOf  <false>( "UTIL",    13, Case::Ignore ); UT_EQ( result, 13 );
-        result= ms.IndexOf  <false>( "UTIL",    14, Case::Ignore ); UT_EQ( result, -1 );
-        result= ms.IndexOf  <false>( "TILX",    14, Case::Ignore ); UT_EQ( result, -1 );
     }
 
     // replace nullptr
@@ -1309,6 +1326,8 @@ UT_METHOD( SearchAndReplace )
 //--- Test Trim
 //---------------------------------------------------------------------------------------------------------
 UT_METHOD( Trim )
+{
+    UT_INIT();
 
     AString ms;
 
@@ -1368,6 +1387,8 @@ UT_METHOD( Trim )
 //--- Test Compare
 //---------------------------------------------------------------------------------------------------------
 UT_METHOD( Compare )
+{
+    UT_INIT();
 
     // null string comparison
     char*   nullCString= nullptr;
@@ -1562,6 +1583,8 @@ UT_METHOD( Compare )
 //--- Test ConvertCase
 //---------------------------------------------------------------------------------------------------------
 UT_METHOD( ConvertCase )
+{
+    UT_INIT();
 
     AString ms;
 
@@ -1613,6 +1636,8 @@ void wCharRoundTrip( AString& astring, ALIBUnitTesting& ut, const wchar_t* wstri
 }
 
 UT_METHOD( WCharConversion )
+{
+    UT_INIT();
 
     AString ms;
 

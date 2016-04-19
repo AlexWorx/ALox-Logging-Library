@@ -12,16 +12,22 @@
     #include "alib/system/directory.hpp"
 #endif
 
-
 #if !defined (HPP_ALOX)
     #include "alox/alox.hpp"
 #endif
+#if !defined (HPP_ALIB_SYSTEM_SYSTEM)
+    #include "alib/system/system.hpp"
+#endif
+#if !defined (HPP_ALOX_CORE_TEXTLOGGER_TEXTLOGGER)
+    #include "textlogger.hpp"
+#endif
 
-#include "textlogger.hpp"
-
-#include "alib/compatibility/std_string.hpp"
-#include "alib/strings/numberformat.hpp"
-
+#if !defined (HPP_ALIB_COMPATIBILITY_STD_STRING)
+    #include "alib/compatibility/std_string.hpp"
+#endif
+#if !defined (HPP_ALIB_CONFIG_CONFIGURATION)
+    #include "alib/config/configuration.hpp"
+#endif
 #if !defined (_GLIBCXX_CSTRING) && !defined(_CSTRING_)
     #include <cstring>
 #endif
@@ -35,33 +41,24 @@ using namespace std;
 namespace aworx { namespace lox { namespace core { namespace textlogger {
 
 // #################################################################################################
-// ObjectConverter
+// StringConverter
 // #################################################################################################
-ObjectConverter::ObjectConverter()
+StringConverter::StringConverter()
 {
 }
 
-bool ObjectConverter::ConvertObject( const void* o, int typeInfo, AString& result )
+bool StringConverter::ConvertObject( const Logable& logable, AString& target )
 {
-    // copy the string into our internal Buffer
-    if ( o == nullptr  )
+    if ( logable.Type == 0 || logable.Type == -1 )
     {
-        String128 text( FmtNullObject );
-        text.SearchAndReplace( "%", String32(typeInfo) );
-        result._NC( FmtNullObject );
+        if ( logable.Object != nullptr && ((const TString*) logable.Object)->IsNotNull()  )
+            target._NC( (const TString*) logable.Object );
+        else
+            target._NC( FmtNullObject );
+        return true;
     }
 
-    else if ( typeInfo == 0 )       result._( (const TString*)    o );
-
-    // default
-    else
-    {
-        String128 text( FmtUnknownObject );
-        text.SearchAndReplace( "%", String32(typeInfo) );
-        result._NC( text );
-        return false;
-    }
-    return true;
+    return false;
 }
 
 // #################################################################################################
@@ -91,7 +88,7 @@ int     AutoSizes::Next( int requestedSize, int extraGrowth )
         values[ ActualIndex ]=        requestedSize + ( size == 0 ? 0 : extraGrowth );
     }
 
-    // increase auto tab index for next 'A' command
+    // increase auto tab index
     ActualIndex++;
 
     return size;
@@ -99,8 +96,7 @@ int     AutoSizes::Next( int requestedSize, int extraGrowth )
 
 void    AutoSizes::Export( AString& target  )
 {
-
-    for( unsigned int i= 0; i < values.size() ; i++ )
+    for( size_t i= 0; i < values.size() ; i++ )
     {
         if ( i != 0 )
             target._( ' ' );
@@ -135,7 +131,7 @@ void    AutoSizes::Import( const String& sourceString, CurrentData session  )
 // #################################################################################################
 // MetaInfo
 // #################################################################################################
-int MetaInfo::Write( TextLogger& logger, AString& buf, const TString& domain, Log::Level level, CallerInfo* caller )
+int MetaInfo::Write( TextLogger& logger, AString& buf, core::Domain& domain, Verbosity verbosity, ScopeInfo& scope )
 {
     int qtyTabStops= 0;
 
@@ -154,7 +150,7 @@ int MetaInfo::Write( TextLogger& logger, AString& buf, const TString& domain, Lo
         if ( idx >= 0 )
         {
             format.Consume<false>( idx, buf, 1, CurrentData::Keep );
-            qtyTabStops+= processVariable( logger, domain, level, caller, buf, format );
+            qtyTabStops+= processVariable( logger, domain, verbosity, scope, buf, format );
         }
         else
         {
@@ -166,164 +162,146 @@ int MetaInfo::Write( TextLogger& logger, AString& buf, const TString& domain, Lo
 }
 
 int MetaInfo::processVariable( TextLogger&        logger,
-                               const TString&     domain,
-                               Log::Level         level,
-                               CallerInfo*        caller,
-                               AString&           buf,
+                               core::Domain&      domain,
+                               Verbosity          verbosity,
+                               ScopeInfo&         scope,
+                               AString&           dest,
                                Substring&         variable       )
 
 {
     // process commands
+    char c2;
     switch ( variable.Consume() )
     {
-        // caller info
-        case 'C':
+        // scope info
+        case 'S':
         {
             // read sub command
-            char s= variable.Consume();
-
-            // add source file including path
-            if ( s == 'F' )
+            String val;
+            switch( c2= variable.Consume() )
             {
-                const TString& sourceFileName=  caller->SourceFileName;
-                if ( sourceFileName.IsNotNull() )
+                case 'P':   // SP: full path
                 {
-                    // detect cutable prefix from the file name path and current working directory
-                    // Note: we do this only once. And we do not use the prefix here
-                    //       This is up to the derived logger to do so.
-                    if ( ConsumableSourcePathPrefix.IsNull() )
-                    {
-                        // get system execution path and compare to file path
-                        String256 currentDir;
-                        ALIB_WARN_ONCE_PER_INSTANCE_DISABLE( currentDir,  ReplaceExternalBuffer );
+                    val= scope.GetFullPath();
+                    if ( val.IsEmpty() )
+                        val= NoSourceFileInfo;
+                } break;
 
-                        Directory::CurrentDirectory( currentDir );
-                        sourceFileName.Terminate();
-                        // Get the prefix that is the same in both paths
-                        int i= 0;
-                        while (     i < currentDir.Length()
-                                &&  sourceFileName[i] != '\0'
-                                #if defined ( _MSC_VER ) // MS Compiler delivers __FILE__ in lower case
-                                    &&  tolower( currentDir[i] ) == tolower( sourceFileName[i] )
-                                #else
-                                    &&           currentDir[i]   ==          sourceFileName[i]
-                                #endif
-                                )
-                            i++;
-
-                        // store consumable prefix and its length. If unsuccessful, "" is stored to prevent searching again
-                        if ( i > 1 )
-                        {
-                            ConsumableSourcePathPrefix._NC( currentDir, 0, i );
-                            #if defined ( _MSC_VER ) // MS Compiler delivers __FILE__ in lower case
-                                ConsumableSourcePathPrefix.ToLower();
-                            #endif
-                        }
-                        else
-                            ConsumableSourcePathPrefix= ""; // mark as not null
-                    }
-
-                    // can we cut the source file name by a prefix?
-                    int appendStart= sourceFileName.StartsWith( ConsumableSourcePathPrefix )
-                                     ? ConsumableSourcePathPrefix.Length()
-                                     : 0;
-
-                    buf._NC( sourceFileName, appendStart, sourceFileName.Length() - appendStart );
-                }
-                else
-                    buf._NC( NoSourceFileInfo );
-            }
-
-            // add source file excluding path
-            else if ( s == 'f' )
-            {
-                const String& sourceFileName=   caller->SourceFileName;
-                if ( sourceFileName.IsNotNull() )
+                case 'p':   // Sp: trimmed path
                 {
-                    int appendStart=  sourceFileName.LastIndexOf( PathSeparator ) + 1;
-                    buf._NC( sourceFileName, appendStart, sourceFileName.Length() - appendStart );
+                    val= scope.GetTrimmedPath();
+                    if ( val.IsEmpty() )
+                        val= NoSourceFileInfo;
+                } break;
+
+                case 'F':   // file name
+                {
+                    val= scope.GetFileName();
+                    if ( val.IsEmpty() )
+                        val= NoSourceFileInfo;
+                } break;
+
+                case 'f':   // file name without extension
+                {
+                    val= scope.GetFileNameWithoutExtension();
+                    if ( val.IsEmpty() )
+                        val= NoSourceFileInfo;
+                } break;
+
+
+                case 'M':   // method name
+                {
+                    val= scope.GetMethod();
+                    if ( val.IsEmpty() )
+                        val= NoMethodInfo;
+                } break;
+
+                case 'L':  // line number
+                {
+                    dest._NC( scope.GetLineNumber() );
+                    return 0;
                 }
-                else
-                    buf._NC( NoSourceFileInfo );
+
+                default:
+                {
+                    ALIB_WARN_ONCE( String64( "Unknown format variable '%S" ) <<  c2 << "\' (only one warning)",
+                                    *this, FormatWarning);
+                    val= "%ERROR";
+                } break;
             }
-
-            // add line number or method name
-            else if ( s == 'L' )  buf._  ( caller->LineNumber );
-            else if ( s == 'M' )  buf._NC( caller->MethodName.IsNotNull() ? caller->MethodName : NoMethodInfo );
-            else
-            {
-                ALIB_WARN_ONCE( String64( "Unknown format character 'C" ) <<  s << "\' (only one warning)",
-                                *this, FormatWarning);
-            }
-
-            return 0;
-        }
-
-        // Date
-        case 'D':
-        {
-            // get time stamp as TicksCalendarTime once
-            if ( callerDateTime.Year == (numeric_limits<int>::min)() )
-                callerDateTime.Set( caller->TimeStamp );
-
-            // if standard format, just write it out
-            if ( DateFormat.Equals( "yyyy-MM-dd" ) )
-            {
-                buf._NC( Format::Int32( callerDateTime.Year,     4 ) )._NC( '-' )
-                   ._NC( Format::Int32( callerDateTime.Month,    2 ) )._NC( '-' )
-                   ._NC( Format::Int32( callerDateTime.Day,      2 ) );
-            }
-            // user defined format
-            else
-                callerDateTime.Format( DateFormat, buf  );
-
+            dest._( val );
             return 0;
         }
 
         // %Tx: Time
         case 'T':
         {
-            // read sub command
-            char s= variable.Consume();
+            c2= variable.Consume();
 
-            // %TD: Time of Day
-            if ( s == 'D' )
+            // %TD: Date
+            if ( c2 == 'D' )
             {
                 // get time stamp as TicksCalendarTime once
                 if ( callerDateTime.Year == (numeric_limits<int>::min)() )
-                    callerDateTime.Set( caller->TimeStamp );
+                    callerDateTime.Set( scope.GetTimeStamp() );
+
+                // if standard format, just write it out
+                if ( DateFormat.Equals( "yyyy-MM-dd" ) )
+                {
+                    dest._NC( Format::Int32( callerDateTime.Year,     4 ) )._NC( '-' )
+                        ._NC( Format::Int32( callerDateTime.Month,    2 ) )._NC( '-' )
+                        ._NC( Format::Int32( callerDateTime.Day,      2 ) );
+                }
+                // user defined format
+                else
+                    callerDateTime.Format( DateFormat, dest  );
+
+                return 0;
+            }
+
+
+            // %TT: Time of Day
+            if ( c2 == 'T' )
+            {
+                // get time stamp as TicksCalendarTime once
+                if ( callerDateTime.Year == (numeric_limits<int>::min)() )
+                    callerDateTime.Set( scope.GetTimeStamp() );
 
                 // avoid the allocation of a) a StringBuilder (yes, a string builder is allocated inside StringBuilder.AppendFormat!)
                 // and b) a DateTime object, if the format is the unchanged standard. And it is faster anyhow.
                 if ( TimeOfDayFormat.Equals( "HH:mm:ss" ) )
                 {
-                    buf ._NC( Format::Int32(callerDateTime.Hour,    2) )._NC( ':' )
+                    dest ._NC( Format::Int32(callerDateTime.Hour,    2) )._NC( ':' )
                         ._NC( Format::Int32(callerDateTime.Minute,  2) )._NC( ':' )
                         ._NC( Format::Int32(callerDateTime.Second,  2) );
                 }
 
                 // user defined format
                 else
-                    callerDateTime.Format( TimeOfDayFormat, buf  );
+                    callerDateTime.Format( TimeOfDayFormat, dest  );
             }
 
-            // %TE: Time Elapsed
-            else if ( s == 'E' )
+            // %TC: Time elapsed since created
+            else if ( c2 == 'C' )
             {
-                TickSpan elapsed( caller->TimeStamp, logger.TimeOfCreation );
+                TickSpan elapsed( scope.GetTimeStamp(), logger.TimeOfCreation );
 
-                if ( elapsed.Days  > 0 )    buf._NC( elapsed.Days  )._NC( TimeElapsedDays );
-                if ( elapsed.Hours > 0 )    buf._NC( elapsed.Hours )._NC( ':' );
+                if ( elapsed.Days  > 0 )    dest._NC( elapsed.Days  )._NC( TimeElapsedDays );
+                if ( elapsed.Hours > 0 )    dest._NC( elapsed.Hours )._NC( ':' );
 
-                buf._NC( Format::Int32(elapsed.Minutes,       2) )._NC( ':' )
+                dest._NC( Format::Int32(elapsed.Minutes,       2) )._NC( ':' )
                    ._NC( Format::Int32(elapsed.Seconds,       2) )._NC( '.' )
                    ._NC( Format::Int32(elapsed.Milliseconds,  3) );
             }
 
-            // %TE: Time Diff
+            // %TL: Time elapsed since last log call
+            else if ( c2 == 'L' )
+                writeTimeDiff( dest, scope.GetTimeStamp().Since( logger.TimeOfLastLog ).InNanos() );
+
             else
             {
-                writeTimeDiff( buf, caller->TimeStamp.Since( logger.TimeOfLastLog ).InNanos() );
+                ALIB_WARN_ONCE( String64( "Unknown format variable '%T" ) <<  c2 << "\' (only one warning)",
+                               *this, FormatWarning );
             }
             return 0;
         }
@@ -332,28 +310,61 @@ int MetaInfo::processVariable( TextLogger&        logger,
         // Thread
         case 't':
         {
-            #if defined(ALIB_FEAT_THREADS)
-                const String& threadName= caller->getThreadNameAndID(nullptr);
-                buf._NC( Format::Field( threadName, logger.AutoSizes.Next( threadName.Length(), 0 ), Alignment::Center ) );
-            #endif
+            c2= variable.Consume();
+
+            if ( c2 == 'N' )        // %tN: thread name
+            {
+                const String& threadName= scope.GetThreadNameAndID(nullptr);
+                dest._NC( Format::Field( threadName, logger.AutoSizes.Next( threadName.Length(), 0 ), Alignment::Center ) );
+            }
+            else if ( c2 == 'I' )   // %tI: thread ID
+            {
+                String32 threadID; threadID._( scope.GetThreadID() );
+                dest._NC( Format::Field( threadID,   logger.AutoSizes.Next( threadID  .Length(), 0 ), Alignment::Center ) );
+            }
+            else
+            {
+                ALIB_WARN_ONCE( String64( "Unknown format variable '%t" ) <<  c2 << "\' (only one warning)",
+                               *this, FormatWarning );
+            }
             return 0;
         }
 
         case 'L':
-            buf._NC(   level == Log::Level::Error     ? LogLevelError
-                     : level == Log::Level::Warning   ? LogLevelWarning
-                     : level == Log::Level::Info      ? LogLevelInfo
-                     :                                  LogLevelVerbose    );
+        {
+            c2= variable.Consume();
+                 if ( c2 == 'G' )     dest._NC( logger.GetName() );
+            else if ( c2 == 'X' )     dest._NC( scope.GetLoxName() );
+            else
+            {
+                ALIB_WARN_ONCE( String64( "Unknown format variable '%L" ) <<  c2 << "\' (only one warning)",
+                               *this, FormatWarning );
+            }
+            return 0;
+        }
+
+        case 'P':
+        {
+            dest._NC( System::GetProcessName() );
+            return 0;
+        }
+
+        case 'V':
+            dest._NC(  verbosity == Verbosity::Error     ? VerbosityError
+                     : verbosity == Verbosity::Warning   ? VerbosityWarning
+                     : verbosity == Verbosity::Info      ? VerbosityInfo
+                     :                                     VerbosityVerbose    );
             return 0;
 
-        case 'O':
-            // If no domain logged yet and domain name is empty, we omit it
-            buf._( Format::Field( domain, logger.AutoSizes.Next( domain.Length(), 0 ), Alignment::Center ) );
+        case 'D':
+        {
+            dest._( Format::Field( domain.FullPath, logger.AutoSizes.Next( domain.FullPath.Length(), 0 ), Alignment::Left ) );
             return 0;
+        }
 
         case '#':
 
-            buf._NC( Format::Int32( logger.CntLogs, LogNumberMinDigits ) );
+            dest._NC( Format::Int32( logger.CntLogs, LogNumberMinDigits ) );
             return 0;
 
         // A: Auto tab
@@ -373,12 +384,12 @@ int MetaInfo::processVariable( TextLogger&        logger,
             escseq[2]= extraSpace < 10 ?   (char) ('0' + extraSpace )
                                        :   (char) ('A' + extraSpace );
 
-            buf._NC( escseq );
+            dest._NC( escseq );
             return 1;
         }
 
         case 'N':
-            buf._NC( logger.Name );
+            dest._NC( logger.GetName() );
             return 0;
 
         default:
@@ -545,26 +556,100 @@ void MetaInfo::writeTimeDiff( AString& buf, int_fast64_t diffNanos )
 // TextLogger
 // #################################################################################################
 
-TextLogger::TextLogger( const String& name, const String& typeName )
+TextLogger::TextLogger( const String& name, const String& typeName, bool  usesStdStreams  )
 : Logger( name, typeName )
 , logBuf( 256 )
 , msgBuf( 256 )
+, usesStdStreams( usesStdStreams )
 {
-    ObjectConverter= new textlogger::ObjectConverter();
+    ObjectConverters.emplace_back(  new textlogger::StringConverter() );
     MetaInfo=        new textlogger::MetaInfo();
+
+    // evaluate config variable <name>_FORMAT / <typeName>_FORMAT
+    {
+        String64    variableName( name ); variableName._( "_FORMAT" );
+        String128   result;
+        if ( ALIB::Config.Get( ALox::ConfigCategoryName, variableName, result ) == 0 )
+        {
+            variableName._()._( typeName )._( "_FORMAT" );
+            ALIB::Config.Get( ALox::ConfigCategoryName, variableName, result );
+        }
+
+        if( result.IsNotEmpty() )
+            MetaInfo->Format._()._( result );
+    }
+
 }
 
 TextLogger::~TextLogger()
 {
     delete MetaInfo;
-    delete ObjectConverter;
+    for( auto it : ObjectConverters )
+        delete it;
 }
+
+int   TextLogger::AddAcquirer( ThreadLock* newAcquirer )
+{
+    // register with ALIB lockers (if not done yet)
+    if ( usesStdStreams )
+    {
+        int stdStreamLockRegistrationCounter;
+        {
+            OWN( ALIB::Lock );
+            stdStreamLockRegistrationCounter= this->stdStreamLockRegistrationCounter++;
+        }
+        if ( stdStreamLockRegistrationCounter == 0 )
+             ALIB::StdOutputStreamsLock.AddAcquirer( this );
+    }
+
+    // import autosizes from configuration
+    {
+        // get auto sizes from last session
+        String64 autoSizes;
+        String64 variableName( name ); variableName._( "_AUTO_SIZES" );
+        if( ALIB::Config.Get( ALox::ConfigCategoryName, variableName, autoSizes ) != 0 )
+            AutoSizes.Import( Substring(autoSizes) );
+    }
+
+    // call parents' implementation
+    return Logger::AddAcquirer( newAcquirer );
+}
+
+int   TextLogger::RemoveAcquirer( ThreadLock* acquirer )
+{
+    // de-register with ALIB lockers (if not done yet)
+    if ( usesStdStreams )
+    {
+        int stdStreamLockRegistrationCounter;
+        {
+            OWN( ALIB::Lock );
+            stdStreamLockRegistrationCounter= --this->stdStreamLockRegistrationCounter;
+        }
+
+        if ( stdStreamLockRegistrationCounter == 0 )
+            ALIB::StdOutputStreamsLock.RemoveAcquirer( this );
+    }
+
+    // export autosizes to configuration
+    {
+        String64 autoSizes;
+        String64 variableName( name ); variableName._( "_AUTO_SIZES" );
+        AutoSizes.Export( autoSizes );
+        ALIB::Config.Save( ALox::ConfigCategoryName, variableName, autoSizes,
+                            "Auto size values of last run" );
+    }
+
+
+    // call parents' implementation
+    return Logger::RemoveAcquirer( acquirer );
+}
+
 
 void TextLogger::SetReplacement( const String& searched, const String& replacement )
 {
     // if exists, replace replacement
     for( auto it= replacements.begin(); it < replacements.end(); it+= 2)
-        if ( (*it).Equals( searched ) )
+        if ( it->Equals( searched ) )
         {
             if ( replacement.IsNotNull() )
             {
@@ -595,30 +680,34 @@ void TextLogger::ClearReplacements()
 
 
 // #################################################################################################
-// TextLogger::doLog()
+// TextLogger::Log()
 // #################################################################################################
-void TextLogger::doLog( const TString&  domain,     Log::Level    level,
-                        const void*     msgObject,  int           typeInfo,
-                        int             indent,     CallerInfo*   caller )
+void TextLogger::Log( Domain& domain, Verbosity verbosity, Logables& logables, ScopeInfo& scope)
 {
     // clear Buffers
     logBuf.Clear();
-    msgBuf.Clear();
 
     AutoSizes.Start();
 
-    // meta info << ESC::EOMETA << indent
-    int qtyESCTabsWritten= MetaInfo->Write( *this, logBuf, domain, level, caller );
-
-
+    // meta info << ESC::EOMETA
+    int qtyESCTabsWritten= MetaInfo->Write( *this, logBuf, domain, verbosity, scope );
     logBuf._NC( ESC::EOMETA );
 
-    for (int i= indent; i > 0 ; i--)
-        logBuf._NC( FmtIndentString );
-
-    // convert msg object into a AString representation
-
-    ObjectConverter->ConvertObject( msgObject, typeInfo, msgBuf );
+    // convert msg object into an AString representation
+    msgBuf._();
+    for( Logable* logable : logables )
+    {
+        auto it = ObjectConverters.rbegin();
+        for( ; it != ObjectConverters.rend() ; it++ )
+            if ( (*it)->ConvertObject( *logable, msgBuf ) )
+                break;
+        if ( it == ObjectConverters.rend() )
+        {
+            String128 text( FmtUnknownObject );
+            text.SearchAndReplace( "%", String32( logable->Type) );
+            msgBuf._NC( text );
+        }
+    }
 
     // replace strings in message
     for ( int i= 0; i < ((int) replacements.size()) - 1; i+= 2 )
@@ -628,7 +717,9 @@ void TextLogger::doLog( const TString&  domain,     Log::Level    level,
     if ( msgBuf.IsEmpty() )
     {
         // log empty msg and quit
-        doTextLog( domain, level, logBuf, indent, caller, -1 );
+        if (usesStdStreams) ALIB::StdOutputStreamsLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);
+            logText( domain, verbosity, logBuf, scope, -1 );
+        if (usesStdStreams) ALIB::StdOutputStreamsLock.Release();
         return;
     }
 
@@ -641,7 +732,6 @@ void TextLogger::doLog( const TString&  domain,     Log::Level    level,
             cntReplacements+=    msgBuf.SearchAndReplace( MultiLineDelimiter, MultiLineDelimiterRepl );
         else
         {
-            // explicit cast terminates AString
             String& replacement= MultiLineDelimiterRepl;
             cntReplacements+=    msgBuf.SearchAndReplace( "\r\n", replacement );
             cntReplacements+=    msgBuf.SearchAndReplace( "\r",   replacement );
@@ -660,8 +750,10 @@ void TextLogger::doLog( const TString&  domain,     Log::Level    level,
             logBuf._NC( FmtMultiLineSuffix );
         }
 
-        // now do the logging by calling our derived classes' doTextLog
-        doTextLog( domain, level, logBuf, indent, caller, -1 );
+        // now do the logging by calling our derived classes' logText
+        if (usesStdStreams) ALIB::StdOutputStreamsLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);
+            logText( domain, verbosity, logBuf, scope, -1 );
+        if (usesStdStreams) ALIB::StdOutputStreamsLock.Release();
 
         // stop here
         return;
@@ -707,8 +799,9 @@ void TextLogger::doLog( const TString&  domain,     Log::Level    level,
             if ( lineNo == 0 )
             {
                 logBuf._NC( msgBuf );
-                doTextLog( domain, level, logBuf, indent, caller, -1 );
-
+                if (usesStdStreams) ALIB::StdOutputStreamsLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);
+                    logText( domain, verbosity, logBuf, scope, -1 );
+                if (usesStdStreams) ALIB::StdOutputStreamsLock.Release();
                 // stop here
                 return;
             }
@@ -721,7 +814,10 @@ void TextLogger::doLog( const TString&  domain,     Log::Level    level,
 
         // signal start of multi line log
         if ( lineNo == 0 )
+        {
+            if (usesStdStreams) ALIB::StdOutputStreamsLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);
             notifyMultiLineOp( Phase::Begin );
+        }
 
         // in mode 3, 4, meta info is deleted
         if ( lineNo == 0 && ( MultiLineMsgMode == 3 || MultiLineMsgMode == 4 ) )
@@ -731,7 +827,7 @@ void TextLogger::doLog( const TString&  domain,     Log::Level    level,
             {
                 logBuf._NC( FmtMultiLineMsgHeadline );
                 AutoSizes.ActualIndex=  qtyTabStops;
-                doTextLog( domain, level, logBuf, indent, caller, 0 );
+                logText( domain, verbosity, logBuf, scope, 0 );
             }
 
             // remember zero as offset
@@ -758,7 +854,7 @@ void TextLogger::doLog( const TString&  domain,     Log::Level    level,
         logBuf._NC( FmtMultiLinePrefix );
           logBuf._NC( msgBuf,  actStart, actEnd - actStart  );
         logBuf._NC( FmtMultiLineSuffix );
-        doTextLog( domain, level, logBuf, indent, MultiLineMsgMode != 4 ? caller : nullptr, lineNo );
+        logText( domain, verbosity, logBuf, scope, lineNo );
 
         // next
         actStart= actEnd + delimLen;
@@ -767,7 +863,10 @@ void TextLogger::doLog( const TString&  domain,     Log::Level    level,
 
     // signal end of multi line log
     if ( lineNo > 0 )
+    {
         notifyMultiLineOp( Phase::End );
+        if (usesStdStreams) ALIB::StdOutputStreamsLock.Release();
+    }
 }
 
 }}}}//namespace aworx::lox::core::textlogger

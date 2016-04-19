@@ -7,7 +7,7 @@
 /** @file */ // Hello Doxygen
 
 // check for alib.hpp already there but not us
-#if !defined (HPP_ALIB_ALIB)
+#if !defined (HPP_ALIB)
     #error "include \"alib/alib.hpp\" before including this header"
 #endif
 #if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_ALIB_THREADS_THREAD)
@@ -16,7 +16,7 @@
 
 // Due to our blocker above, this include will never be executed. But having it, allows IDEs
 // (e.g. QTCreator) to read the symbols when opening this file
-#if !defined (HPP_ALIB_ALIB)
+#if !defined (HPP_ALIB)
     #include "alib/alib.hpp"
 #endif
 
@@ -148,6 +148,10 @@ class Thread : public Runnable
          */
         static void _Terminate_ALib();
 
+        /**  This is a value that may be passed as a value indicating an undefined (null) thread  */
+        static constexpr   int      NullThreadId= 0;
+
+
     // #############################################################################################
     // static functionality
     // #############################################################################################
@@ -206,7 +210,7 @@ class Thread : public Runnable
     // #############################################################################################
     public:
         /** ****************************************************************************************
-         * Returns an object representing the thread that invoke this call.
+         * Returns an object representing the thread that invoked this call.
          *
          * @return A pointer to the current Thread.
          ******************************************************************************************/
@@ -237,7 +241,7 @@ class Thread : public Runnable
          *  code unless a specialized class is derived that overwrites the Run method.
          *
          * @param name The designated name of the thread. If the name provided is empty or,
-         *             nullptr, the name of the thread will be set to match a string representation
+         *             \c nullptr, the name of the thread will be set to match a string representation
          *             of the thread id.
          ******************************************************************************************/
         ALIB_API            Thread( const String& name ) : Thread( nullptr, name )     {}
@@ -267,7 +271,7 @@ class Thread : public Runnable
     // #############################################################################################
 
         /**  If we have a runnable, execute its run() method. Does nothing else.  */
-        virtual void        Run()                       { if (runnable)    runnable->Run();    }
+        virtual void        Run()                           { if (runnable)    runnable->Run();    }
 
 
     // #############################################################################################
@@ -280,7 +284,8 @@ class Thread : public Runnable
          *
          * @return    The ALib id of the thread.
          ******************************************************************************************/
-                  int           GetId()                                 { return id;          }
+        inline
+        int            GetId()                              { return id;          }
 
         /** ****************************************************************************************
          *  Returns the name of the thread. An ALIB thread can have any name that is given to it and
@@ -289,7 +294,8 @@ class Thread : public Runnable
          *
          * @return  Returns the name of the thread.
          ******************************************************************************************/
-                  const String& GetName()                               { return name; }
+        inline
+        const String&  GetName()                            { return name; }
 
         /** ****************************************************************************************
          *  Sets the name of the thread. An ALIB thread can have any name that is given to it and
@@ -298,7 +304,8 @@ class Thread : public Runnable
          *
          * @param newName    The name that the Thread should hold.
          ******************************************************************************************/
-                  void          SetName( const String& newName )        { name= newName;   }
+         inline
+         void          SetName( const String& newName )     { name= newName;   }
 
         /** ****************************************************************************************
          * Returns \c true, if this thread was started and is still running. If \c false is
@@ -310,14 +317,16 @@ class Thread : public Runnable
          *
          * @return \c true if this thread was started previously and is still running.
          ******************************************************************************************/
-                  bool          IsAlive()                               { return id <= 0 || isAliveFlag; }
+         inline
+         bool          IsAlive()                            { return id <= 0 || isAliveFlag; }
 
         /** ****************************************************************************************
          *  Starts the execution of the thread. The thread's Run method is invoked, which
          *  (if not overwritten) invokes the Run method of any given Runnable. After returning from
          *  the method, unless the thread #IsAlive will return \c true.
          ******************************************************************************************/
-        ALIB_API  void          Start();
+        ALIB_API
+        void          Start();
 };
 
 

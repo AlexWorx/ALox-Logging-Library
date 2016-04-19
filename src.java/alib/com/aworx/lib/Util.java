@@ -22,7 +22,7 @@ public class Util
     // static functionality
     // #############################################################################################
         /** The internal string of spaces returned by #getSpaces and used by #writeSpaces. */
-        private static          AString          theSpaces=                           new AString();
+        private static          AString          theSpaces                           =new AString();
 
         /**
          * A fixed size byte array of spaces used in #writeSpaces(PrintStream, int). Unfortunately,
@@ -30,6 +30,9 @@ public class Util
          * therefore this is fixed (and redundant to field #theSpaces).
          */
         private static          byte[]           spacesByte;
+
+        /** The process name, retrieved once on request  */
+        private static          AString          processName                                 = null;
 
    // #############################################################################################
    // Interface
@@ -41,7 +44,7 @@ public class Util
          *   Parameter \p minSize should be omitted and the size of the object returned accepted.
          *   Requesting a higher size, might result in slightly more efficiency.
          *   In multithreaded processes, changing the size must be performed during bootstrap,
-         *   e.g. directly after invoking \ref com.aworx::lib::ALIB::init "ALIB.init" by calling
+         *   e.g. directly after invoking \ref com::aworx::lib::ALIB::init "ALIB.init" by calling
          *   this method with the appropriate size.
          *
          * @param minSize  The minimum number of spaces that should be available in the returned
@@ -121,5 +124,34 @@ public class Util
                 qty-= size;
             }
         }
+        
+        /** ****************************************************************************************
+         * Receives the name of the process. Evaluated only once, can't change.
+         * \note In the Java version of ALib, this is the name of the class whose \c main() method 
+         *       was started.
+         * @return The name of the process.
+         ******************************************************************************************/
+        public static AString getProcessName()
+        {
+            if( processName == null  )
+            {
+                try { ALIB.lock.acquire();
+
+                    // If this happens, this is a very unlikely parallel access 
+                    if( processName != null  )
+                        return processName;
+                        
+                    StackTraceElement[] stack=          Thread.currentThread ().getStackTrace ();
+                    processName=   new AString( stack[stack.length - 1].getClassName () );
+                    int dotPos=    processName.lastIndexOf( '.' );
+                    if (dotPos >= 0)
+                        processName.deleteStart( dotPos + 1 );
+                        
+                } finally { ALIB.lock.release(); }                        
+            }
+
+            return processName;
+        }
+        
 
 } // class Util

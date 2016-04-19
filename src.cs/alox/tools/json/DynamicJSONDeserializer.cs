@@ -17,21 +17,16 @@ using System.Dynamic;
 using System.Web.Script.Serialization;
 
 /** ************************************************************************************************
- * 
  * This namespace just contents a single class which provides a quick and easy reader for "unknown"
- * JSON formatted data. (Copied from a web forum, I would not have been able to get this syntax
- * done :-P )
- *  
+ * JSON formatted data.
  **************************************************************************************************/
 namespace cs.aworx.lox.tools.json
 {
     /** ********************************************************************************************
-     * 
      * Small class which provides a quick and easy reader for "unknown" JSON formatted data.
      * (Copied from a web forum, I would not have been able to get this syntax * done :-P ).
      * The output is basically is a nested dictionary and can nicely be passed into LogTools.Instance()
      * method for reviewing the JSON data contents.
-     *  
      **********************************************************************************************/
     public sealed class DynamicJSONDeserializer : JavaScriptConverter
 {
@@ -40,12 +35,11 @@ namespace cs.aworx.lox.tools.json
     // #############################################################################################
 
     /** ********************************************************************************************
-     * 
-     *     Static method to deserialize a JSON data from a string. Returns a nested dictionary containing
-     *     the JSON data.
-     * @param json  The JSON data as a String. </param>
-     * 
-     * @return  A dictionary representing the values 
+     * Static method to deserialize a JSON data from a string. Returns a nested dictionary containing
+     * the JSON data.
+     * @param json  The JSON data as a String.
+     *
+     * @return  A dictionary representing the values
      **********************************************************************************************/
     public static IDictionary<string, object> FromString( String json )
     {
@@ -55,11 +49,11 @@ namespace cs.aworx.lox.tools.json
     }
 
     /** ********************************************************************************************
-     * See class JavaScriptConverter for more info 
-     * @param dictionary     see parent class. </param>
-     * @param type             see parent class. </param>
-     * @param serializer     see parent class. </param>
-     * @return  see parent class 
+     * See class JavaScriptConverter for more info
+     * @param dictionary   See parent class.
+     * @param type         See parent class.
+     * @param serializer   See parent class.
+     * @return  see parent class
      **********************************************************************************************/
     public override object Deserialize(IDictionary<string, object> dictionary, Type type, JavaScriptSerializer serializer)
     {
@@ -70,10 +64,10 @@ namespace cs.aworx.lox.tools.json
     }
 
     /** ********************************************************************************************
-     * See class JavaScriptConverter for more info 
-     * @param obj             see parent class. </param>
-     * @param serializer     see parent class. </param>
-     * @return  see parent class 
+     * See class JavaScriptConverter for more info
+     * @param obj           See parent class.
+     * @param serializer    See parent class.
+     * @return  see parent class
      **********************************************************************************************/
     public override IDictionary<string, object> Serialize(object obj, JavaScriptSerializer serializer)
     {
@@ -81,11 +75,11 @@ namespace cs.aworx.lox.tools.json
     }
 
     /** ********************************************************************************************
-     * See class JavaScriptConverter for more info 
-     * @param dictionary     see parent class. </param>
-     * @param type             see parent class. </param>
-     * @param serializer     see parent class. </param>
-     * @return  see parent class 
+     * See class JavaScriptConverter for more info
+     * @param dictionary    See parent class.
+     * @param type          See parent class.
+     * @param serializer    See parent class.
+     * @return  see parent class
      **********************************************************************************************/
     public override IEnumerable<Type> SupportedTypes
     {
@@ -98,7 +92,7 @@ namespace cs.aworx.lox.tools.json
     // #############################################################################################
 
     /** ********************************************************************************************
-     * Inner class that implements the DynamicObject 
+     * Inner class that implements the DynamicObject
      **********************************************************************************************/
     private sealed class DynamicJsonObject : DynamicObject
     {
@@ -106,10 +100,10 @@ namespace cs.aworx.lox.tools.json
         internal readonly    IDictionary<string, object>        Dictionary;
 
         /** ****************************************************************************************
-         * Constructor. 
-         * <exception cref="ArgumentNullException  Thrown when one or more required arguments are 
+         * Constructor.
+         * <exception cref="ArgumentNullException  Thrown when one or more required arguments are
          *                                          null. </exception>
-         * @param dictionary     the recursive dictionary to store the data in. </param>
+         * @param dictionary     the recursive dictionary to store the data in.
          ******************************************************************************************/
         public DynamicJsonObject(IDictionary<string, object> dictionary)
         {
@@ -121,10 +115,10 @@ namespace cs.aworx.lox.tools.json
 
 
         /** ****************************************************************************************
-         * See class DynamicObject for more info 
-         * @param binder   See parent class. </param>
-         * @param result   See parent class. </param>
-         * @return  see parent class 
+         * See class DynamicObject for more info
+         * @param binder   See parent class.
+         * @param result   See parent class.
+         * @return  See parent class
          ******************************************************************************************/
         public override bool TryGetMember(GetMemberBinder binder, out object result)
         {
@@ -140,11 +134,11 @@ namespace cs.aworx.lox.tools.json
         }
 
         /** ****************************************************************************************
-         * See class DynamicObject for more info 
-         * @param binder    See parent class. </param>
-         * @param indexes   See parent class. </param>
-         * @param result    See parent class. </param>
-         * @return  see parent class 
+         * See class DynamicObject for more info
+         * @param binder    See parent class.
+         * @param indexes   See parent class.
+         * @param result    See parent class.
+         * @return  See parent class
          ******************************************************************************************/
         public override bool TryGetIndex(GetIndexBinder binder, object[] indexes, out object result)
         {
@@ -165,9 +159,9 @@ namespace cs.aworx.lox.tools.json
         }
 
         /** ****************************************************************************************
-         * See class DynamicObject for more info 
-         * @param result  See parent class. </param>
-         * @return  see parent class 
+         * See class DynamicObject for more info
+         * @param result  See parent class.
+         * @return  See parent class
          ******************************************************************************************/
         private static object WrapResultObject(object result)
         {

@@ -36,8 +36,8 @@ namespace                           textlogger{
 
 /** ************************************************************************************************
  * A text logger that either removes or ignores (just writes through) ALox ESC sequences.
- * Implements abstract method #doTextLog and introduces two new abstract methods
- * doLogSubstring.
+ * Implements abstract method #logText and introduces two new abstract methods
+ * #logSubstring and #notifyLogOp.
  **************************************************************************************************/
 class PlainTextLogger : public aworx::lox::core::textlogger::TextLogger
 {
@@ -61,17 +61,20 @@ class PlainTextLogger : public aworx::lox::core::textlogger::TextLogger
     protected:
         /** ****************************************************************************************
          * Creates a PlainTextLogger
-         * @param name     The name of the logger. If empty, it defaults to the type name.
-         * @param typeName The type of the logger.
+         * @param name     The name of the \e Logger. If empty, it defaults to the type name.
+         * @param typeName The type of the \e Logger.
+         * @param usesStdStreams  Denotes whether this logger writes to the
+         *                    <em>standard output streams</em>.
          ******************************************************************************************/
-        explicit        PlainTextLogger( const String& name, const String& typeName )
-                        : TextLogger( name, typeName )
-                        {}
+        explicit  PlainTextLogger( const String& name, const String& typeName, bool usesStdStreams )
+                  : TextLogger( name, typeName, usesStdStreams )
+        {}
 
         /** ****************************************************************************************
          * Destructs a MemoryLogger
          ******************************************************************************************/
-        virtual        ~PlainTextLogger() {};
+        virtual  ~PlainTextLogger()
+        {};
 
     // #############################################################################################
     // Abstract methods introduced
@@ -79,10 +82,10 @@ class PlainTextLogger : public aworx::lox::core::textlogger::TextLogger
     protected:
         /** ****************************************************************************************
          * Abstract method to be implemented by descendants. This method is called when a new
-         * log message is started. It is called exactly once before a series of doLogPortion()
+         * log message is started. It is called exactly once before a series of logSubstring()
          * calls and exactly once after such series. If either the start or one of the calls
-         * #doLogSubstring returns \c false, the invocation that would indicate the end of a log
-         * message is omitted.
+         * to #logSubstring returns \c false, the second invocation that would indicate the end of
+         * a log message is omitted.
          *
          * Implementing this method allows the acquisition of system resources
          * (e.g. opening a file).
@@ -106,7 +109,7 @@ class PlainTextLogger : public aworx::lox::core::textlogger::TextLogger
          * @param length   The length of the portion in \p buffer to write out.
          * @return The number of characters written, -1 on error.
          ******************************************************************************************/
-        virtual int doLogSubstring( const AString& buffer, int start, int length )             = 0;
+        virtual int logSubstring( const AString& buffer, int start, int length )             = 0;
 
 
     // #############################################################################################
@@ -118,23 +121,22 @@ class PlainTextLogger : public aworx::lox::core::textlogger::TextLogger
          * Loops over the log text, removes or ignores ESC sequences (all but ESC.TAB) and invokes
          * abstract methods of descendants as follows:
          * - \ref notifyLogOp "notifyLogOp(true)"
-         * -   #doLogSubstring()
+         * -   #logSubstring()
          * -   ...
          * - \ref notifyLogOp "notifyLogOp(Phase::End)"
          *
-         * @param domain        The log domain name.
-         * @param level         The log level. This has been checked to be active already on this
+         * @param domain        The <em>Log Domain</em>.
+         * @param verbosity     The verbosity. This has been checked to be active already on this
          *                      stage and is provided to be able to be logged out only.
          * @param msg           The log message.
-         * @param indent        the indentation in the output. Defaults to 0.
-         * @param caller        Once compiler generated and passed forward to here.
+         * @param scope         Information about the scope of the <em>Log Statement</em>..
          * @param lineNumber    The line number of a multi-line message, starting with 0. For
          *                      single line messages this is -1.
          ******************************************************************************************/
         ALOX_API
-        virtual void doTextLog( const TString&            domain,     Log::Level     level,
-                                      AString&            msg,        int            indent,
-                                      core::CallerInfo*   caller,     int            lineNumber);
+        virtual void logText( core::Domain&     domain,    Verbosity verbosity,
+                              AString&          msg,
+                              core::ScopeInfo&  scope,     int       lineNumber);
 }; // class PlainTextLogger
 
 }}}} // namespace

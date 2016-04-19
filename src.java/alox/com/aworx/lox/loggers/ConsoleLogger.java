@@ -16,9 +16,8 @@ import java.io.PrintWriter;
 
 import com.aworx.lib.ALIB;
 import com.aworx.lib.enums.Phase;
-import com.aworx.lib.enums.Propagation;
 import com.aworx.lib.strings.AString;
-import com.aworx.lox.Log;
+import com.aworx.lox.ALox;
 import com.aworx.lox.core.textlogger.PlainTextLogger;
 
 /** ************************************************************************************************
@@ -26,19 +25,13 @@ import com.aworx.lox.core.textlogger.PlainTextLogger;
  * alternatively (if available) the <em>PrintWriter</em> object returned by <em>System.console()</em>.
  * The latter is used if it is available and will lead to a different character encoding
  * (typically on Windows operating system).
- * The configuration variable [ALOX_CL_USE_SYSTEM_OUT_PRINT](../group__GrpALoxConfigVars.html)
+ * The configuration variable [ALOX_USE_SYSTEM_OUT_PRINT](../group__GrpALoxConfigVars.html)
  * can be used to force the use of <em>System.out.</em>.
  *
- * The name of the logger defaults to "CONSOLE".
+ * The name of the \e Logger defaults to "CONSOLE".
  *
  * E.g. in the Eclipse IDE, log lines are double-clickable to jump directly to the source code
  * that generated the log.
- *
- * The constructor sets the level of the root domain, and as such the level of all 'unknown'
- * domains that inherit from root domain to 'All'. This is because this class represents a logger
- * that logs into the developer's IDE, and hence just wants to fetch all log domains that the
- * app and its library uses - unless explicitly set differently in the bootstrap code.  By default,
- * root domains of loggers have domain level 'Off'.
  **************************************************************************************************/
 public class ConsoleLogger extends PlainTextLogger
 {
@@ -53,11 +46,11 @@ public class ConsoleLogger extends PlainTextLogger
     /** ********************************************************************************************
      * Creates a ConsoleLogger with the given name.
      *
-     * @param name  The name of the logger, defaults to "CONSOLE".
+     * @param name  The name of the \e Logger, defaults to "CONSOLE".
      **********************************************************************************************/
     public    ConsoleLogger( String    name )
     {
-        super( name, "CONSOLE" );
+        super( name, "CONSOLE", true );
         constructor();
     }
 
@@ -66,7 +59,7 @@ public class ConsoleLogger extends PlainTextLogger
      **********************************************************************************************/
     public    ConsoleLogger( )
     {
-        super( null, "CONSOLE" );
+        super( null, "CONSOLE", true );
         constructor();
     }
 
@@ -75,14 +68,11 @@ public class ConsoleLogger extends PlainTextLogger
      **********************************************************************************************/
     protected  void  constructor()
     {
-        // set default domain level to all: As an app console logger/IDE logger we want to fetch all we can
-        rootDomain.setLevel( Log.DomainLevel.ALL, Propagation.NONE );
-
         // Enables logging to *System.console()* if such console is available. This might result in a
         // different character encoding (typically on Windows machines). */
 
         // checks a config variable to suppress using the system console instead of system.out
-        writer=  (    !ALIB.config.isTrue( Log.configCategoryName, "CL_USE_SYSTEM_OUT_PRINT" )
+        writer=  (    !ALIB.config.isTrue( ALox.configCategoryName, "USE_SYSTEM_OUT_PRINT" )
                    && System.console() !=null )
                         ?  System.console().writer()
                         :  null;
@@ -114,7 +104,7 @@ public class ConsoleLogger extends PlainTextLogger
      * @param length   The length of the portion in \p buffer to write out.
      * @return Always returns true.
      **********************************************************************************************/
-    protected boolean doLogSubstring( AString buffer, int start, int length )
+    protected boolean logSubstring( AString buffer, int start, int length )
     {
         char[]  buf=        buffer.buffer();
         if ( writer != null )

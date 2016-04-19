@@ -7,13 +7,13 @@
 /** @file */ // Hello Doxygen
 
 // to preserve the right order, we are not includable directly from outside.
-#if !defined(FROM_HPP_ALIB_ALIB) || defined(HPP_ALIB_STRINGS_ASTERMINATABLE)
+#if !defined(FROM_HPP_ALIB) || defined(HPP_ALIB_STRINGS_ASTERMINATABLE)
     #error "include alib/alib.hpp instead of this header"
 #endif
 
 // Due to our blocker above, this include will never be executed. But having it, allows IDEs
 // (e.g. QTCreator) to read the symbols when opening this file
-#if !defined (HPP_ALIB_ALIB)
+#if !defined (HPP_ALIB)
     #include "alib/alib.hpp"
 #endif
 
@@ -47,6 +47,10 @@
  *  \ref aworx::lib::strings::TString::_dbgCheck "_dbgCheck".<br>
  *  Doing this, will also hint to buffers that reside in non-writable memory, hence
  *  it will hint to buffers that may not be used with this class.
+ *
+ *  The macro is active when conditional compilation symbol \ref ALIB_DEBUG_STRINGS_ON is set.
+ *  In case \b ALIB_DEBUG_STRINGS_ON it is not set, but macro \ref ALIB_AVOID_ANALYZER_WARNINGS_ON
+ *  is, still the string is un-terminated, but no checks are are performed.
  * @}
  *
  */
@@ -55,16 +59,25 @@
 //--- debug mode ---
 #if defined(ALIB_DEBUG_STRINGS)
 
-#define  ALIB_STRING_DBG_UNTERMINATE( astring, offset )              \
-{                                                                    \
-    if ( (astring).Buffer() != nullptr )                             \
-        (astring).VBuffer()[ (astring).Length()  + offset ]= '\1';   \
-    ((TString&)(astring)).debugIsTerminated= 0;               \
-}
+    #define  ALIB_STRING_DBG_UNTERMINATE( astring, offset )              \
+    {                                                                    \
+        if ( (astring).Buffer() != nullptr )                             \
+            (astring).VBuffer()[ (astring).Length()  + offset ]= '\1';   \
+        ((TString&)(astring)).debugIsTerminated= 0;                      \
+    }
 
-//--- normal mode ---
+//--- suppress analyzer warnings by writing the value ---
+#elif  defined(ALIB_AVOID_ANALYZER_WARNINGS)
+
+    #define  ALIB_STRING_DBG_UNTERMINATE( astring, offset )              \
+    {                                                                    \
+        if ( (astring).Buffer() != nullptr )                             \
+            (astring).VBuffer()[ (astring).Length()  + offset ]= '\2';   \
+    }
+
 #else
 
+//--- normal mode: do nothing ---
 #define  ALIB_STRING_DBG_UNTERMINATE(astring, offset)
 
 #endif
@@ -112,7 +125,7 @@ template<typename Type> struct  IsTerminatable : public std::false_type { };
  * \ref aworx::lib::strings::String "String" to represent zero terminated or more precisely
  * zero \e terminatable strings.
  * Zero terminated strings are especially needed when string data has to be passed to system
- * functions. Also, some efficient algorithms (platfrom dependent and mostly written in assembly
+ * functions. Also, some efficient algorithms (platform dependent and mostly written in assembly
  * language) exist.  Hence, various functions and methods of ALib require a const reference
  * to an object of this type \b %TString instead to an object of class \b %String.
  *
@@ -229,6 +242,7 @@ class TString : public String
          * @param contentLength   The length of the content in the given buffer.
          ******************************************************************************************/
         constexpr
+        inline
         TString( const char* buffer, int contentLength )
         : String( buffer, contentLength )
         {}
@@ -240,6 +254,7 @@ class TString : public String
          * Default constructor creating a \e nulled \b %TString.
          ******************************************************************************************/
         constexpr
+        inline
         TString()
         : String()
         {}
@@ -253,6 +268,7 @@ class TString : public String
          * @param src  The string to represent by this object.
          ******************************************************************************************/
         template <typename T>
+        inline
         TString(const  T& src )
         : String(src)
         {
@@ -280,6 +296,7 @@ class TString : public String
          * @param   op    The index of the character within this objects' buffer.
          * @returns If the character contained at index \p op.
          ******************************************************************************************/
+         inline
          char    operator[] (int  op) const
          {
             ALIB_ASSERT_ERROR( op >= 0  && op <= length , "Index out of bounds" );
@@ -302,6 +319,19 @@ class TString : public String
         {
             ALIB_ASSERT_ERROR(  buffer != nullptr
                                   ,"Can't terminated nulled object." );
+
+            // Note:
+            // The following read may cause memory tools to detect access to unitialized memory.
+            // This is OK and should be ignored/suppressed.
+            // For the 'valgrind' tool, add a suppression rule as follows:
+            //   {
+            //      <TString_terminate>
+            //      Memcheck:Cond
+            //      fun:*TStXring*Terminate*
+            //   }
+            //
+            // (Tested with valgrind version 3.11)
+            // See project folder "tools" for a complete valgrind supression file for ALib.
 
             if (buffer[ length ] != '\0' )
             {
@@ -379,7 +409,7 @@ class TString : public String
                 }
                 else
                     // there is no strcasestr in windows, we use the slower String version, non-checking
-                    return IndexOfAS<false>( needle, startIdx , enums::Case::Ignore );
+                    return IndexOfSubstring<false>( needle, startIdx , enums::Case::Ignore );
             #endif
         }
 

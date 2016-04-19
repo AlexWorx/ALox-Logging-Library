@@ -7,14 +7,13 @@
 /** @file */ // Hello Doxygen
 
 // to preserve the right order, we are not includable directly from outside.
-#if !defined(FROM_HPP_ALIB_ALIB) || defined(HPP_ALIB_ALIB_MACROS)
+#if !defined(FROM_HPP_ALIB) || defined(HPP_ALIB_MACROS)
     #error "include alib/alib.hpp instead of this header"
 #endif
 
 
-#ifndef HPP_ALIB_ALIB_MACROS
-#define HPP_ALIB_ALIB_MACROS 1
-
+#ifndef HPP_ALIB_MACROS
+#define HPP_ALIB_MACROS 1
 
 // #################################################################################################
 // Compile veryfier flags. Compiled statically into ALIB::CompilationFlags and are used to detect
@@ -23,7 +22,7 @@
 
 #if !defined( IS_DOXYGEN_PARSER )
 
-#define     ALIB_VERSION_VERYFIER              1602
+#define     ALIB_VERSION_VERYFIER              1604
 
 #if defined(ALIB_DEBUG)
     #define ALIB_DEBUG_VFYBIT                  +(1 << 0)
@@ -133,10 +132,6 @@
 
 
 /**
- * \def  ALIB_SRC_INFO_PARAMS_DECL
- * This macro declares three parameters 'file', 'line' and 'func' for methods that in debug
- * compilations receive these parameters using macro #ALIB_SRC_INFO_PARAMS.
- *
  * \def  ALIB_SRC_INFO_PARAMS
  * This macro fills in the built-in compiler symbols that provide the current source file,
  * line number and function strings.<p>
@@ -147,13 +142,9 @@
  * be changed to provide other standard information.<p>
  */
 
-#define ALIB_SRC_INFO_PARAMS_DECL   const aworx::lib::strings::TString& file,  \
-                                    int                                 line,  \
-                                    const aworx::lib::strings::TString& func,
-
 #if defined( __GNUC__ )
-    #define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, __func__
-//  #define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, __PRETTY_FUNCTION__
+    #define ALIB_SRC_INFO_PARAMS    __FILE__, __LINE__, __func__
+//  #define ALIB_SRC_INFO_PARAMS    __FILE__, __LINE__, __PRETTY_FUNCTION__
 
 #elif defined ( _MSC_VER )
     #define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, __FUNCTION__
@@ -165,6 +156,20 @@
 
 
 /**
+ * \def  ALIB_DBG_SRC_INFO_PARAMS
+ * This macro is the same as \ref ALIB_SRC_INFO_PARAMS but empty if \ref ALIB_DEBUG is not defined.
+ */
+
+#if defined( ALIB_DEBUG )
+    #define ALIB_DBG_SRC_INFO_PARAMS           ALIB_SRC_INFO_PARAMS
+#else
+    #define ALIB_DBG_SRC_INFO_PARAMS
+#endif
+
+
+
+
+/**
  * \def  ALIB_IDENTIFIER
  * This macro assembles an 'anonymous' identifier using the given prefix and the current
  * line number within the source code file. This macro is used within other macros that
@@ -173,22 +178,6 @@
  */
 
 #define ALIB_IDENTIFIER(prefix)              ALIB_CONCAT(prefix, __LINE__)
-
-/**
- * \def  ALIB_DBG_SRC_INFO_PARAMS_DECL
- * This macro is the same as \ref ALIB_SRC_INFO_PARAMS_DECL but empty if \ref ALIB_DEBUG is not defined.
- *
- * \def  ALIB_DBG_SRC_INFO_PARAMS
- * This macro is the same as \ref ALIB_SRC_INFO_PARAMS but empty if \ref ALIB_DEBUG is not defined.
- */
-
-#if defined( ALIB_DEBUG )
-    #define ALIB_DBG_SRC_INFO_PARAMS_DECL      ALIB_SRC_INFO_PARAMS_DECL
-    #define ALIB_DBG_SRC_INFO_PARAMS           ALIB_SRC_INFO_PARAMS
-#else
-    #define ALIB_DBG_SRC_INFO_PARAMS_DECL
-    #define ALIB_DBG_SRC_INFO_PARAMS
-#endif
 
 /** @} */
 
@@ -204,12 +193,23 @@
  **********************************************************************************************/
 
 /**
- *  \def  ALIB_ERROR
+ *  \def  ALIB_REPORT
  *  Invokes \ref aworx::lib::Report::DoReport "Report::DoReport".
  *  This macro is pruned from release code.
  *
- *  \def  ALIB_ERROR_AS
+ *  \def  ALIB_REPORT_S512
  *  Invokes \ref aworx::lib::Report::DoReport "Report::DoReport".<br>
+ *  This macro is pruned from release code.<br>
+ *  This macro variant, suffixed <em>_AS</em>, creates a
+ *  \ref aworx::lib::strings::PreallocatedString "String512". Parameter \p msg can consist of sequences of
+ *  strings and values concatenated using <em>operator<<</em>.
+ *
+ *  \def  ALIB_ERROR
+ *  Invokes \ref aworx::lib::Report::DoReport "Report::DoReport" with report type \0.
+ *  This macro is pruned from release code.
+ *
+ *  \def  ALIB_ERROR_S512
+ *  Invokes \ref aworx::lib::Report::DoReport "Report::DoReport with report type \0".<br>
  *  This macro is pruned from release code.<br>
  *  This macro variant, suffixed <em>_AS</em>, creates a
  *  \ref aworx::lib::strings::PreallocatedString "String512". Parameter \p msg can consist of sequences of
@@ -217,11 +217,11 @@
  *
  *
  *  \def  ALIB_WARNING
- *  Invokes \ref aworx::lib::Report::DoReport "Report::DoReport".
+ *  Invokes \ref aworx::lib::Report::DoReport "Report::DoReport with report type \1".
  *  This macro is pruned from release code.
  *
- *  \def  ALIB_WARNING_AS
- *  Invokes \ref aworx::lib::Report::DoReport "Report::DoReport".<br>
+ *  \def  ALIB_WARNING_S512
+ *  Invokes \ref aworx::lib::Report::DoReport "Report::DoReport with report type \1".<br>
  *  This macro is pruned from release code.<br>
  *  This macro variant, suffixed <em>_AS</em>, creates a
  *  \ref aworx::lib::strings::PreallocatedString "String512". Parameter \p msg can consist of sequences of
@@ -231,18 +231,20 @@
  *  \def  ALIB_ASSERT
  *  If given condition is \c false, method
  *  \ref aworx::lib::Report::DoReport "Report::DoReport" gets invoked with the standard message
- *  "Internal Error".
+ *  "Internal Error" and report type \0.
  *  This macro is pruned from release code.
  *
  *
  *  \def  ALIB_ASSERT_ERROR
  *  If given condition is \c false, method
- *  \ref aworx::lib::Report::DoReport "Report::DoReport" gets invoked with the given message.
+ *  \ref aworx::lib::Report::DoReport "Report::DoReport" gets invoked with the given message
+ *  and report type \0.
  *  This macro is pruned from release code.
  *
- *  \def  ALIB_ASSERT_ERROR_AS
+ *  \def  ALIB_ASSERT_ERROR_S512
  *  If given condition is \c false, method
- *  \ref aworx::lib::Report::DoReport "Report::DoReport" gets invoked with the given message.<br>
+ *  \ref aworx::lib::Report::DoReport "Report::DoReport" gets invoked with the given message
+ *  and report type \0.<br>
  *  This macro is pruned from release code.<br>
  *  This macro variant, suffixed <em>_AS</em>, creates a
  *  \ref aworx::lib::strings::PreallocatedString "String512". Parameter \p msg can consist of sequences of
@@ -251,55 +253,46 @@
  *
  *  \def  ALIB_ASSERT_WARNING
  *  If given condition is \c false, method
- *  \ref aworx::lib::Report::DoReport "Report::DoReport" gets invoked with the given message.
+ *  \ref aworx::lib::Report::DoReport "Report::DoReport" gets invoked with the given message
+ *  and report type \1.
  *  This macro is pruned from release code.
  *
- *  \def  ALIB_ASSERT_WARNING_AS
+ *  \def  ALIB_ASSERT_WARNING_S512
  *  If given condition is \c false, method
- *  \ref aworx::lib::Report::DoReport "Report::DoReport" gets invoked with the given message.<br>
+ *  \ref aworx::lib::Report::DoReport "Report::DoReport" gets invoked with the given message
+ *  and report type \1.<br>
  *  This macro is pruned from release code.<br>
  *  This macro variant, suffixed <em>_AS</em>, creates a
  *  \ref aworx::lib::strings::PreallocatedString "String512". Parameter \p msg can consist of sequences of
  *  strings and values concatenated using <em>operator<<</em>.
- *
- *
  */
-#if !defined( IS_DOXYGEN_PARSER )
-#if defined(ALIB_DEBUG)
-    #define ALIB_ERROR(   msg )                     {                aworx::lib::Report::GetDefault().DoReport( ALIB_DBG_SRC_INFO_PARAMS, 0, msg );                         }
-    #define ALIB_WARNING( msg )                     {                aworx::lib::Report::GetDefault().DoReport( ALIB_DBG_SRC_INFO_PARAMS, 1, msg );                         }
-    #define ALIB_ERROR_AS(   msg )                  {                aworx::lib::Report::GetDefault().DoReport( ALIB_DBG_SRC_INFO_PARAMS, 0, aworx::String512() << msg );   }
-    #define ALIB_WARNING_AS( msg )                  {                aworx::lib::Report::GetDefault().DoReport( ALIB_DBG_SRC_INFO_PARAMS, 1, aworx::String512() << msg );   }
 
-    #define ALIB_ASSERT( cond )                     { if (!(cond)) { aworx::lib::Report::GetDefault().DoReport( ALIB_DBG_SRC_INFO_PARAMS, 0, "Internal Error" );          } }
-    #define ALIB_ASSERT_ERROR( cond, msg )          { if (!(cond)) { aworx::lib::Report::GetDefault().DoReport( ALIB_DBG_SRC_INFO_PARAMS, 0, msg );                       } }
-    #define ALIB_ASSERT_WARNING( cond, msg )        { if (!(cond)) { aworx::lib::Report::GetDefault().DoReport( ALIB_DBG_SRC_INFO_PARAMS, 1, msg );                       } }
-    #define ALIB_ASSERT_ERROR_AS( cond, msg )       { if (!(cond)) { aworx::lib::Report::GetDefault().DoReport( ALIB_DBG_SRC_INFO_PARAMS, 0, aworx::String512() << msg ); } }
-    #define ALIB_ASSERT_WARNING_AS( cond, msg )     { if (!(cond)) { aworx::lib::Report::GetDefault().DoReport( ALIB_DBG_SRC_INFO_PARAMS, 1, aworx::String512() << msg ); } }
+#if defined(ALIB_DEBUG) && !defined( IS_DOXYGEN_PARSER )
+    #define ALIB_REPORT( type, msg )                {                aworx::lib::Report::GetDefault().DoReport( type, msg                       , ALIB_DBG_SRC_INFO_PARAMS);  }
+    #define ALIB_REPORT_S512( type, msg )           {                aworx::lib::Report::GetDefault().DoReport( type, aworx::String512() << msg , ALIB_DBG_SRC_INFO_PARAMS);  }
+    #define ALIB_ERROR(   msg )                     {                aworx::lib::Report::GetDefault().DoReport( 0,    msg                       , ALIB_DBG_SRC_INFO_PARAMS);  }
+    #define ALIB_WARNING( msg )                     {                aworx::lib::Report::GetDefault().DoReport( 1,    msg                       , ALIB_DBG_SRC_INFO_PARAMS);  }
+    #define ALIB_ERROR_S512(   msg )                {                aworx::lib::Report::GetDefault().DoReport( 0,    aworx::String512() << msg , ALIB_DBG_SRC_INFO_PARAMS);  }
+    #define ALIB_WARNING_S512( msg )                {                aworx::lib::Report::GetDefault().DoReport( 1,    aworx::String512() << msg , ALIB_DBG_SRC_INFO_PARAMS);  }
+
+    #define ALIB_ASSERT( cond )                     { if (!(cond)) { aworx::lib::Report::GetDefault().DoReport( 0,    "Internal Error"          , ALIB_DBG_SRC_INFO_PARAMS); } }
+    #define ALIB_ASSERT_ERROR( cond, msg )          { if (!(cond)) { aworx::lib::Report::GetDefault().DoReport( 0,    msg                       , ALIB_DBG_SRC_INFO_PARAMS); } }
+    #define ALIB_ASSERT_WARNING( cond, msg )        { if (!(cond)) { aworx::lib::Report::GetDefault().DoReport( 1,    msg                       , ALIB_DBG_SRC_INFO_PARAMS); } }
+    #define ALIB_ASSERT_ERROR_S512( cond, msg )     { if (!(cond)) { aworx::lib::Report::GetDefault().DoReport( 0,    aworx::String512() << msg , ALIB_DBG_SRC_INFO_PARAMS); } }
+    #define ALIB_ASSERT_WARNING_S512( cond, msg )   { if (!(cond)) { aworx::lib::Report::GetDefault().DoReport( 1,    aworx::String512() << msg , ALIB_DBG_SRC_INFO_PARAMS); } }
 #else
+    #define ALIB_REPORT( type, msg )                {}
+    #define ALIB_REPORT_S512( type, msg )           {}
     #define ALIB_ERROR(   msg )                     {}
     #define ALIB_WARNING( msg )                     {}
-    #define ALIB_ERROR_AS(   msg )                  {}
-    #define ALIB_WARNING_AS( msg )                  {}
+    #define ALIB_ERROR_S512(   msg )                {}
+    #define ALIB_WARNING_S512( msg )                {}
 
     #define ALIB_ASSERT( cond )                     {}
     #define ALIB_ASSERT_ERROR( cond, msg )          {}
     #define ALIB_ASSERT_WARNING( cond, msg )        {}
-    #define ALIB_ASSERT_ERROR_AS( cond, msg )       {}
-    #define ALIB_ASSERT_WARNING_AS( cond, msg )     {}
-#endif
-
-// doxygen version
-#else
-    #define ALIB_ERROR(   msg )                     {}
-    #define ALIB_WARNING( msg )                     {}
-    #define ALIB_ERROR_AS(   msg )                  {}
-    #define ALIB_WARNING_AS( msg )                  {}
-    #define ALIB_ASSERT( cond )                     {}
-    #define ALIB_ASSERT_ERROR( cond, msg )          {}
-    #define ALIB_ASSERT_WARNING( cond, msg )        {}
-    #define ALIB_ASSERT_ERROR_AS( cond, msg )       {}
-    #define ALIB_ASSERT_WARNING_AS( cond, msg )     {}
+    #define ALIB_ASSERT_ERROR_S512( cond, msg )     {}
+    #define ALIB_ASSERT_WARNING_S512( cond, msg )   {}
 #endif
 
 /**
@@ -367,7 +360,7 @@
  * In contrast to this, declaring an one-time warning per instance using
  * \ref ALIB_WARN_ONCE_PER_INSTANCE_DECL, a warning will occur once for each object.
  *
- * Both macros have to be placed in the public member section of a class. In addtion to that,
+ * Both macros have to be placed in the public member section of a class. In addition to that,
  * per type declarations need to be completed with a definition using macro
  * \ref ALIB_WARN_ONCE_PER_TYPE_DEFINE in the implementation file of the type.
  *
@@ -471,7 +464,7 @@
         if( (instance).ALIB_OTW_##identifier )                                              \
         {                                                                                   \
             ALIB_OTW_##identifier= false;                                                   \
-            aworx::lib::Report::GetDefault().DoReport( ALIB_DBG_SRC_INFO_PARAMS, 1, msg);   \
+            aworx::lib::Report::GetDefault().DoReport( 1, msg, ALIB_DBG_SRC_INFO_PARAMS); \
         }                                                                                   \
     }
     #define ALIB_WARN_ONCE_IF(cond, msg, instance, identifier)                              \
@@ -479,7 +472,7 @@
         if( (instance).ALIB_OTW_##identifier && (cond) )                                    \
         {                                                                                   \
             ALIB_OTW_##identifier= false;                                                   \
-            aworx::lib::Report::GetDefault().DoReport( ALIB_DBG_SRC_INFO_PARAMS, 1, msg);   \
+            aworx::lib::Report::GetDefault().DoReport( 1, msg, ALIB_DBG_SRC_INFO_PARAMS); \
         }                                                                                   \
     }
     #define ALIB_WARN_ONCE_IF_NOT(cond, msg, instance, identifier)                          \
@@ -487,7 +480,7 @@
         if( (instance).ALIB_OTW_##identifier && !(cond) )                                   \
         {                                                                                   \
             ALIB_OTW_##identifier= false;                                                   \
-            aworx::lib::Report::GetDefault().DoReport( ALIB_DBG_SRC_INFO_PARAMS, 1, msg);   \
+            aworx::lib::Report::GetDefault().DoReport( 1, msg, ALIB_DBG_SRC_INFO_PARAMS); \
         }                                                                                   \
     }
 #else
@@ -571,7 +564,13 @@
 }
 \endverbatim
  */
-#define   OWN(ownable) aworx::lib::Owner ALIB_IDENTIFIER(owner) (ownable);
+
+#if defined( ALIB_DEBUG )
+    #define   OWN(ownable) aworx::lib::Owner ALIB_IDENTIFIER(owner) (ownable, ALIB_SRC_INFO_PARAMS);
+#else
+    #define   OWN(ownable) aworx::lib::Owner ALIB_IDENTIFIER(owner) (ownable);
+#endif
+
 
 
 /** @} */
@@ -580,4 +579,4 @@
 
 
 
-#endif // HPP_ALIB_ALIB_MACROS
+#endif // HPP_ALIB_MACROS

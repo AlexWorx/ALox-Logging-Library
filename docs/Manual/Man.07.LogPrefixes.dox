@@ -1,0 +1,299 @@
+// #################################################################################################
+//  Documentation - ALox Logging Library
+//
+//  (c) 2013-2016 A-Worx GmbH, Germany
+//  Published under MIT License (Open Source License, see LICENSE.txt)
+// #################################################################################################
+
+/**
+\page man_prefix_logables 07 - Prefix Logables
+
+\tableofcontents
+
+
+\~Comment ####################################################################################### \~
+# 1. Introduction #  {#man_prefix_logables_intro}
+
+The feature of ALox called <b>Prefix Logables</b>, covered in this chapter, builds upon
+the ALox concept of \e Scopes in a similar way as feature <em>Scope Domains</em> does. Therefore it is advisable
+to have read and understood chapters
+- \ref man_logdomains and
+- \ref man_scopes prior to continuing reading here.
+
+This chapter will \e not repeat every detail covered already in the aforementioned chapters.
+
+\e Logables in ALox for Java/C# are of type <c>class </c> Object, in ALox for C++ of type
+<c>const void*</c>, accompanied by a type info parameter. Therefore, a user defined derived type
+of class \c Logger, might expect (at least accept) any array-type, hence multiple objects to
+be logged out.<br>
+When looking at method
+<b>Logger.Log</b>
+  ([C++] (@ref      #aworx::lox::core::Logger::Log),
+   [C#]  (@ref  #cs::aworx::lox::core::Logger::Log),
+   [Java](@ref #com::aworx::lox::core::Logger::log)) we can see that a \e Logger by default
+receives an array of \e Logables. One part of the answer to this is, that if an array-type
+is be passed as parameter \p logable to a <em>Log Statement</em>, this array will appear as one of the \e Logables
+of the list passed to the \e Loggers. In other words, ALox passes lists the same as other
+'objects' to the \e Logger.
+
+So, where do the other \e Logables passed to the \e Logger now come from? The answer is: Those
+are <em>Prefix Logables</em>!
+
+Before we explain the use cases for <em>Prefix Logables</em>, let us begin to elaborate how those are set by the
+user of ALox and how ALox processes them.
+
+\~Comment ####################################################################################### \~
+# 2. Setting Prefix Logables #
+## 2.1 Setting Prefix Logables According to the Scope ##
+For the first way of setting and removing <em>Prefix Logables</em> method
+<b>%Lox.SetPrefix</b>
+([C++] (@ref      #aworx::lox::Lox::SetPrefix(const void*,int, Scope, int)),
+ [C#]  (@ref  #cs::aworx::lox::Lox::SetPrefix),
+ [Java](@ref #com::aworx::lox::Lox::setPrefix) ) is used. The method and its overloaded versions
+is very similar to method
+<b>%Lox.SetDomain</b>
+([C++] (@ref      #aworx::lox::Lox::SetDomain(const TString&, Scope, int)),
+ [C#]  (@ref  #cs::aworx::lox::Lox::SetDomain),
+ [Java](@ref #com::aworx::lox::Lox::setDomain) ) used for setting <em>Scope Domains</em>.
+Besides the difference in the name, the only
+difference is the first parameter, which is a \e Logable instead of a domain path string.
+
+All that was said about setting <em>Scope Domains</em> in Chapter \ref man_logdomains is true for setting <em>Prefix Logables</em> and this
+should not be repeated here. The same rules for \e %Scopes apply, including the fact that with
+\e %Scope.ThreadInner and \e %Scope.ThreadOuter, a subsequent setting of a <em>Prefix Logable</em> is added to
+a list of <em>Prefix Logables</em> for these \e Scopes, while for other \e Scopes, the current <em>Prefix Logable</em> is replaced.
+
+Passing \c null (C++: \c nullptr) as parameter \p logable, removes the <em>Prefix Logable</em> from the given \e Scope,
+respectively, in the case of thread-related \e Scopes, removes the <em>Prefix Logable</em> most recently set.
+
+The only small difference to the interface for setting <em>Log Domains</em> is that there is no method available
+corresponding to
+<b>%Lox.RemoveThreadDomain</b>
+([C++] (@ref      #aworx::lox::Lox::RemoveThreadDomain),
+ [C#]  (@ref  #cs::aworx::lox::Lox::RemoveThreadDomain),
+ [Java](@ref #com::aworx::lox::Lox::removeThreadDomain) ), which provides a little extra flexibility
+of maintaining <em>Scope Domains</em> in contrast to maintaining <em>Prefix Logables</em>.
+
+## 2.2 Setting Prefix Logables According to the Log Domain##
+Besides setting <em>Prefix Logables</em> which are bound to a given \e Scope the same as <em>Scope Domains</em> do, there is an alternative
+for <em>Prefix Logables</em>. Those can in addition be
+The second way of setting and removing <em>Prefix Logables</em> which are bound to a <em>Log Domain</em>.
+The method for doing this is
+<b>%Lox.SetPrefix</b>
+([C++] (@ref      #aworx::lox::Lox::SetPrefix(const void*,int, const TString&,lib::enums::Inclusion )),
+ [C#]  (@ref  #cs::aworx::lox::Lox::SetPrefix(Object,String,Inclusion ,int,String,String) ),
+ [Java](@ref #com::aworx::lox::Lox::setPrefix(Object,String,Inclusion)) ) is used.
+
+The method accepts a <em>Log Domain</em> path which may be absolute (starting with \c "/" or relative). If
+relative the normal evaluation of a resulting domain path taking <em>Scope Domains</em> into account applies.<br>
+A third optional parameter allows to make the setting exclusive in respect to <em>Prefix Logables</em> which are
+set according to a \e Scope. By default, the exclusivity is not set.
+
+
+\~Comment ####################################################################################### \~
+# 3. How ALox Processes Prefix Logables # {#man_prefix_logables_processing}
+With any sort of <em>Log Statement</em> in ALox, the <em>Prefix Logables</em> are collected according to the \e Scope and the <em>Log Domain</em> of that <em>Log Statement</em>.
+In the same fashion as <em>Scope Domains</em> are concatenated, ALox adds <em>Prefix Logables</em> to the list of \e Logables
+that are passed to each \e Logger instance. Consequently, the list that a \e Logger receives
+is filled as follows:
+
+1. <em>Prefix Logables</em> of \e %Scope.Global
+2. <em>Prefix Logables</em> of \e %Scope.ThreadOuter (can be more than one)
+3. <em>Prefix Logables</em> of \e %Scope.Path (PACKAGE)
+4. <em>Prefix Logables</em> of \e %Scope.Filename (CLASS)
+5. <em>Prefix Logables</em> of \e %Scope.Method
+6. The <em>Prefix Logables</em> of the parent <em>Log Domain</em> in the order of there setting (recursively prepended!)
+7. The <em>Prefix Logables</em> of the <em>Log Domain</em> in the order of there setting
+8. The \e Logable of the <em>Log Statement</em>
+9. <em>Prefix Logables</em> of \e %Scope.ThreadInner (can be more than one)
+
+If in \b 6. or \b 7. an <em>Prefix Logable</em> was passed with optional parameter \p otherPLs valued
+\b %Inclusion.Exclude, then starting after this object, the collection of further <em>Prefix Logables</em> is stopped.
+Because all objects are collected in reverse order, starting with objects of \e %Scope.ThreadInner,
+this means that objects otherwise collected in \b 1. to \b 5. (respectively \b 6.) are not added.
+This allows to have a setting of a <em>Prefix Logable</em> which is bound to a domain to 'overwrite' those bound to
+a \e Scope.
+
+As with any 'normal' \e Logable that is passed to the \e Logger, it is completely up to the
+\e Logger what to do with this data.
+
+Those \e Logables passed with \e %Scope.ThreadInner are appended to the list \e after
+the <em>Log Statements</em>' \e Logable and therefore should be considered a 'suffix', not a prefix.
+You might wonder why this whole feature is named 'prefix', especially as
+this term is not applicable to objects in an ordered array. The answer to this is given in the
+next section.
+
+\~Comment ####################################################################################### \~
+# 4. Use cases of Prefix Logables #
+
+Talking about the use cases of feature <em>Prefix Logables</em>, we have to distinguish between logging arbitrary
+objects, what ALox supports and logging textual (string) messages, what is by far the most widely
+application for ALox.
+
+## 4.1 Textual Logging #
+When logging textual messages - when using abstract class
+<b>TextLogger</b>
+  ([C++] (@ref #aworx::lox::core::textlogger::TextLogger),
+   [C#]  (@ref #cs::aworx::lox::core::textlogger::TextLogger),
+   [Java](@ref #com::aworx::lox::core::textlogger::TextLogger)) just as all
+textual \e Loggers delivered with ALox do - the impact of <em>Prefix Logable</em> is simple. Class \b %TextLogger
+simply concatenates all (string) objects found in the list of \e Logables to the buffer which
+is passed to the abstract method implemented by derived classes.
+
+\note For more information on \e Loggers and \e %TextLogger, see \ref man_colorful_loggers and
+      \ref man_ext_loggers.
+
+This explains the term \e 'prefix': Apart from <em>Prefix Logables</em> of \e %Scope.ThreadInner, all <em>Prefix Logables</em> are
+prefixes to the 'log message'. Those of \e %Scope.ThreadInner are suffixes. For the architects
+of the ALox API it was just too teasing to name the whole concept <em>Prefix Logables</em> and this way being able to
+have - for the most obvious use case - the user code look like this:
+
+\snippet "UT_dox_manual.cs"        Man_LogSetPrefix___1
+
+The output will look similar to this:
+
+\verbinclude ALox.CS/generated/Man_LogSetPrefix_1.txt
+
+
+A next use case is recursively increasing 'indentation' of the log messages, as demonstrated
+here:
+
+\snippet "UT_dox_manual.cs"        Man_LogSetPrefix___2
+
+Note that this sample is using \e Scope.ThreadOuter. If using \e %Scope.Method it would fail, because
+only the thread-related \e Scopes allow to add multiple objects. With thread-related \e Scopes,
+this works like a 'push and pull' mechanism.
+Luckily, with using the thread-related \e Scopes, the whole indentation is
+automatically \e thread-safe!
+
+Indentation can also be useful when adding prefixes for different language-related \e Scopes.
+For example classes of a nested namespace (in Java 'package'), might be considered core, helper
+tools that usually have a low \b Verbosity setting.
+It might be a good option to indent all their logging by setting a prefix for their namespace.
+If they need to be debugged, and their \e Verbosity is increased, <em>Log Statement</em> of those are due to the
+indentation still very easily distinguishable from the rest of the log output. Such structured
+log output can help to increase the readability of a debug-log tremendously.
+
+As an alternative to 'indentation', think about using the escape codes found in class
+<b>ESC</b>
+  ([C++] (@ref      #aworx::lox::ESC),
+   [C#]  (@ref  #cs::aworx::lox::ESC),
+   [Java](@ref #com::aworx::lox::ESC)). Prefixing those instead of normal strings or spaces,
+leads to nicely colorized, bold and italic log output, at least with text-loggers supporting such
+styles (ALox provides such \e Loggers e.g. for ANSI consoles or Windows OS command windows).
+
+Use cases are depending on the application and situation. Let us touch
+a last one here: Consider an application that causes errors in certain situations. Let's say, a
+phone app seems to start logging errors 'randomly' which means, you do not know when. You suspect
+it happens when the network connection drops. A first quick investigation could be to add
+a <em>Prefix Logable</em> \b "Online:  ", respectively \b "Offline: " as soon as the devices' OS signals a change.
+You simply set this using \e Scope.Global, or alternatively for the <em>Log Domain</em> where the error occurs.
+In the next debug-runs, you have all messages prefixed
+with the current state. You do not need to follow your log output \e 'backward' to find the most
+recent log message giving you information about that status. Generally spoken: <em>Prefix Logables</em> allow
+to add status information to log lines providing information collected elsewhere.
+
+\~Comment ####################################################################################### \~
+## 4.2 Arbitrary Object Logging #
+
+The situation with \e Loggers designed to log arbitrary objects is different.
+(How to create such custom, application specific \e Loggers is described in \ref man_ext_loggers).
+
+If only arbitrary objects were supported in \e ALox and the standard textual logging would not
+exist, then the whole feature probably would have been named <b>Context Logables</b>.
+Instead of providing the 'context' with each <em>Log Statement</em> to a custom \e Logger, or setting it explicitly
+using a custom interface method of such custom \e Logger, arbitrary context data can be used
+leveraging the various \e Scope options.
+
+Imagine for example a custom \e Logger that logs into a database. A 'context' in this case
+could be the database table to use. <em>Log Statements</em> of different \e Scopes would then 'automatically' direct
+their \e Logables to different tables in the database.
+
+Another sample could be logging application metrics to an online metrics-server. The parameters
+and information passed to the server are probably encoded in a URL. Now, the bigger parts of such
+parameters do not change within a context (aka \e Scope). Those would be passed only once per
+\e Scope to ALox using the feature of <em>Prefix Logables</em>. The metrics-<em>Log Statements</em> themselves would only carry the
+rest of the detailed information specific to the metrics information that are supposed to be sent.
+
+Use cases are endless and can not be named here, they depend the field of application that
+ALox is used to support.
+
+\~Comment ####################################################################################### \~
+# 5 ALox for C++ specifics #
+
+One of the design goals of the ALox Logging Library is to avoid code clutter when using it.
+In a perfect world, <em>Log Statements</em> would be as clear and easy to read as comment lines.
+As C++ does not provide life-cycle management for allocated data (as Java and C# do), and this
+causes a potential problem when using <em>Prefix Logables</em>.
+
+When logging <b>arbitrary objects</b>, the use cases
+touched in the previous section make it obvious that ALox can not be responsible for life-cycle
+management of <em>Prefix Logables</em>. Therefore, if data is used as <em>Prefix Logable</em> which is exclusively created for that
+purpose (and are no general long-living objects), there is no way to avoid some extra
+code that creates and deletes such objects, probably enclosed by
+
+        #if defined(ALOX_DBG_LOG) // alternatively ALOX_REL_LOG, or both
+        ...
+        #endif
+
+or embedded in macro
+
+        Log_Prune( ... )    // alternatively Lox_Prune()
+
+We think, as this is a matter of logging arbitrary objects, which is considered a 'heavy' use
+of ALox anyhow, extra code should not be anything to be concerned about.
+
+With <b>textual logging</b>, especially in the case of debug logging, this is different. Here,
+the designers of ALox are concerned about extra code, and extra 'intrusiveness' of ALox!
+Therefore, the following rule applies. For \e Logables of \p type \c 0, hence especially when using
+the overloaded version of C++ method
+\ref aworx::lox::Lox::SetPrefix(const TString&, Scope, int) "Lox.SetPrefix" which accepts
+a <c>const TString&</c> as a \b Logable, then ALox internally creates a copy of the string provided.
+Of-course, when such <em>Prefix Logable</em> is removed, ALox deletes it. The benefit of this is huge: A user
+of ALox does not need to care about keeping string-type <em>Prefix Logables</em> 'alive' after setting them. This
+means, any locally assembled, short-living string can be passed to method \b %Lox.SetPrefix and
+right afterwards, it can be deleted or removed by C++ from the stack if the scope is left.
+
+It is important to understand the impact:
+- With string-type <em>Prefix Logables</em>, you do not need to worry about the life cycle of the string passed
+- With <em>Prefix Logables</em> of arbitrary type however, it is the users' responsibility to keep objects intact
+  as long as any <em>Log Statement</em> may be invoked that gets such <em>Prefix Logable</em> passed.
+- Unlike, with ALox for C#/Java, setting an \b %AString as <em>Prefix Logable</em> with \p type \c 0 and
+  changing the instance after it was set, does \e not change the prefix object.
+
+The latter is of-course a the drawback of this convenience design. The way out is to set an
+external \b %AString by using the overloaded version of the method which allows to explicitly
+set the type of the <em>Prefix Logable</em> and using \c -1 for the parameter \p type. This type value explicityl
+specifies external objects of type \b %AString.
+
+
+\~Comment ####################################################################################### \~
+# 6. Wrap-Up #  {#man_prefix_logables_wrapup}
+
+This is what this chapter has covered in respect to <em>Prefix Logables</em>:
+- <em>Prefix Logables</em> are \e Logables that can be set according to the \e Scope mechanisms featured by ALox, or
+  according to a <em>Log Domain</em>.
+- With every <em>Log Statement</em> executed by ALox, all applicable <em>Prefix Logables</em> are collected in a list and passed to
+  each \e Logger.
+- The most prominent use case for <em>Prefix Logables</em> is adding a prefix, a color or (optionally recursive)
+  indentation to textual log messages.
+- With custom \e Loggers using arbitrary types of \e Logables, the use cases are different but
+  not less powerful. Consider the feature to be named <em>Context Logables</em> rather than
+  <em>Prefix Logables</em>.
+- In ALox for C++ a copy of any string-type <em>Prefix Logable</em> set is created. Therefore, a user must not worry about
+  the life-cycle of such <em>Prefix Logables</em>. If arbitrary objects are used, the user of ALox has to ensure that
+  <em>Prefix Logables</em> survive until the last corresponding <em>Log Statement</em> is executed.
+
+As with other features that are using ALox \e Scopes, on the first sight, this seems to be
+a little complicated. Especially when looking at the list given in
+\ref man_prefix_logables_processing "How ALox Processes Prefix Logables".
+But when you look at the use cases, it becomes clear, that from the nine options of that list,
+mostly one is used in parallel, seldom two.
+Once the concept of <em>Scope Domains</em> is fully understood, the use of this feature
+and of others that leverage ALox' \e Scopes, should quickly become very intuitive.
+
+
+--------------------------------------------------------------------
+<center>Next chapter: \ref man_log_data </center> <center> \ref manual "Back to index" </center>
+
+*/

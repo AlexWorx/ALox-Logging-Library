@@ -6,7 +6,7 @@
 // #################################################################################################
 #include "alib/stdafx_alib.h"
 
-#if !defined (HPP_ALIB_ALIB)
+#if !defined (HPP_ALIB)
     #include "alib/alib.hpp"
 #endif
 
@@ -26,9 +26,10 @@ void TextFileLogger::openFile()
     {
         ALIB_WARNING( String512() <<  "Could not open file: \"" << FileName << '\"');
         delete os;  os= nullptr;
-        IsDisabled= true;
+        hasIoError= true;
         return;
     }
+    hasIoError= false;
 }
 
 void TextFileLogger::closeFile()
@@ -41,7 +42,7 @@ void TextFileLogger::closeFile()
 
 void TextFileLogger::notifyMultiLineOp( Phase phase )
 {
-    // save state (to have it in doTextLog)
+    // save state (to have it in logText)
     currentlyInMultiLineOp= (phase == Phase::Begin);
 
     // open/close the file
@@ -65,11 +66,12 @@ bool TextFileLogger::notifyLogOp( Phase phase )
             closeFile();
     }
 
-    return !IsDisabled;
+    return !hasIoError;
 }
 
-int TextFileLogger::doLogSubstring( const AString& buffer, int start, int length )
+int TextFileLogger::logSubstring( const AString& buffer, int start, int length )
 {
-    *os << String( buffer, start, length );
+    if (!hasIoError)
+        *os << String( buffer, start, length );
     return lib::strings::CString::LengthWhenConvertedToWChar( buffer.Buffer() + start, length );
 }

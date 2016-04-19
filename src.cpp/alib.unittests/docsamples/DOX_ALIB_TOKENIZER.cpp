@@ -67,6 +67,8 @@ void documentationSampleTokenizer(ALIBUnitTesting& ut)
 
 
 UT_METHOD( DOX_ALIB_TOKEN )
+{
+    UT_INIT();
 
     UT_PRINT("*** Documentation Sample +**")
     documentationSampleTokenizer( ut );

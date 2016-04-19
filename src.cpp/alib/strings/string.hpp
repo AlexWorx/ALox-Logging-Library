@@ -7,13 +7,13 @@
 /** @file */ // Hello Doxygen
 
 // to preserve the right order, we are not includable directly from outside.
-#if !defined(FROM_HPP_ALIB_ALIB) || defined(HPP_ALIB_STRINGS_AS)
+#if !defined(FROM_HPP_ALIB) || defined(HPP_ALIB_STRINGS_AS)
     #error "include alib/alib.hpp instead of this header"
 #endif
 
 // Due to our blocker above, this include will never be executed. But having it, allows IDEs
 // (e.g. QTCreator) to read the symbols when opening this file
-#if !defined (HPP_ALIB_ALIB)
+#if !defined (HPP_ALIB)
     #include "alib/alib.hpp"
 #endif
 
@@ -57,12 +57,12 @@
 
 // do not indent this, for the sake of doxygen formatting
 #if defined(ALIB_DEBUG_STRINGS)
-    #define ALIB_STRING_DBG_CHK(instance)    \
-    {                                        \
-        (instance)->_dbgCheck();             \
-    }
+#define ALIB_STRING_DBG_CHK(instance)    \
+{                                        \
+    (instance)->_dbgCheck();             \
+}
 #else
-    #define  ALIB_STRING_DBG_CHK(instance)
+#define  ALIB_STRING_DBG_CHK(instance)
 #endif
 
 namespace aworx {
@@ -340,8 +340,10 @@ class String
         /** ****************************************************************************************
          * Constructs a \e nulled %String
          ******************************************************************************************/
+        inline
         constexpr String()                      : buffer(nullptr)
-                                            , length(0)                                           {}
+                                                , length(0)
+        {}
 
         /** ****************************************************************************************
          * Constructs this object using the given external buffer and length of content.
@@ -352,19 +354,28 @@ class String
          * @param buffer          The buffer to use.
          * @param contentLength   The length of the content in the given buffer.
          ******************************************************************************************/
+        inline
         constexpr
         String( const char* buffer, int contentLength ) : buffer(buffer)
-                                                    , length(contentLength )
+                                                        , length(contentLength )
         {}
 
         /** ****************************************************************************************
          *  Constructs this object to represent a region of another %String (respectively a region
          *  of any string object whose type implicitly constructs a temporary %String).<br>
          *  The region is adjusted to  [0 ... <em>as.Length()</em>].
+         *
+         *  \note
+         *    When constructing an aworx::String from a region of another aworx::String, this
+         *    constructor is preferable over the overloaded <b>String(const char*, int)</b>
+         *    (although often the same calculation of parameters has to be performed),
+         *    because this constructor checks the bounds!
+         *
          *  @param src           The src from that we will represent a region.
          *  @param regionStart   The start of the region within the given %String.
          *  @param regionLength  The length of the region within the given %String.
          ******************************************************************************************/
+        inline
         String(  const String& src, int regionStart, int regionLength )
         {
             src.AdjustRegion( regionStart, regionLength );
@@ -400,6 +411,7 @@ class String
          * @param src  The source of template type T to take the buffer and length from.
          ******************************************************************************************/
         template <typename T>
+        inline
         constexpr
         String(const  T& src )
         : buffer(
@@ -620,6 +632,7 @@ class String
          * @param   op    The index of the character within this objects' buffer.
          * @returns If the character contained at index \p op.
          ******************************************************************************************/
+         inline
          char    operator[] (int  op) const
          {
             #if defined(ALIB_DEBUG)
@@ -1050,8 +1063,8 @@ class String
             if ( TCheck )
             {
                 // adjust range, if empty return -1
-                     if ( startIndex <  0      )   return -1;
-                else if ( startIndex >= length )   startIndex= length-1;
+                if ( startIndex <  0      )   return -1;
+                if ( startIndex >= length )   startIndex= length-1;
             }
             else
             {
@@ -1189,9 +1202,9 @@ class String
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        int            IndexOfAS( const String&   needle,
-                                  int         startIdx= 0,
-                                  enums::Case sensitivity=  enums::Case::Sensitive )
+        int            IndexOfSubstring( const String&  needle,
+                                         int            startIdx= 0,
+                                         enums::Case    sensitivity=  enums::Case::Sensitive )
         const
         {
             int         nLen=   needle.Length();
@@ -1205,7 +1218,7 @@ class String
             {
                 #if defined(ALIB_DEBUG)
                     if (    startIdx < 0
-                         || startIdx >= length
+                         || startIdx + nLen > length
                          || nLen == 0    )
                         dbgAStringAlibError( "Non checking and illegal parameters" );
                 #endif
@@ -1222,13 +1235,13 @@ class String
                 const char* n= nBuf;
                 if ( sensitivity == enums::Case::Sensitive )
                 {
-                    while ( *(b++) == *(n++) )
+                    while ( *b++ == *n++ )
                         if( n == nBufEnd )
                             return (int) (buf - buffer);
                 }
                 else
                 {
-                    while ( tolower(*(b++)) == tolower(*(n++)) )
+                    while ( tolower(*b++) == tolower(*n++) )
                         if( n == nBufEnd )
                             return (int) (buf - buffer);
                 }
@@ -1310,7 +1323,6 @@ using     String    =       aworx::lib::strings::String;
  * A constant \e nulled ALib string.
  * E.g. useful to provide as parameter to methods or to use as default value for method
  * parameters.
- * @return A constant \e nulled ALib string.
  */
 constexpr lib::strings::String   NullString;
 
@@ -1318,7 +1330,6 @@ constexpr lib::strings::String   NullString;
  * A constant empty (but not \e nulled) ALib string
  * E.g. useful to provide as parameter to methods or to use as default value for method
  * parameters.
- * @return A constant empty (but not \e nulled) ALib string.
  */
 constexpr lib::strings::String   EmptyString {"", 0};
 

@@ -8,9 +8,8 @@
 
 
 import com.aworx.lib.ALIB;
-import com.aworx.lib.ConsoleReportWriter;
 import com.aworx.lib.Report;
-import com.aworx.lib.ReportWriter;
+import com.aworx.lib.config.Configuration;
 import com.aworx.lib.config.IniFile;
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.time.Ticks;
@@ -18,7 +17,6 @@ import com.aworx.lox.*;
 import com.aworx.lox.core.textlogger.TextLogger;
 import com.aworx.lox.loggers.AnsiConsoleLogger;
 import com.aworx.lox.loggers.MemoryLogger;
-import com.aworx.lox.loggers.TextFileLogger;
 
 public class ALoxSamples
 {
@@ -31,19 +29,18 @@ public class ALoxSamples
     public void releaseLogging()
     {
         // create a lox for release logging
-        Lox lox= new Lox();
+        Lox lox= new Lox( "ReleaseLox" );
 
         // let the system choose an appropriate console logger
         TextLogger releaseLogger= Lox.createConsoleLogger();
 
-        // we set a format string without caller information (as this is of-course not available in release logging)
-        releaseLogger.metaInfo.format= new AString( "[%TE +%TI] [%t] %L [%O] %A1(%#): " );
-        lox.addLogger( releaseLogger );
-        lox.setDomain( "A_DOMAIN", Log.DomainLevel.INFO_WARNINGS_AND_ERRORS );
+        // we set a format string without scope information (as this is of-course not available in release logging)
+        releaseLogger.metaInfo.format= new AString( "[%TC +%TL][%tN]%V[%D]%A1(%#): " );
+        lox.setVerbosity( releaseLogger, Verbosity.INFO, "A_DOMAIN" );
 
         lox.info ( "A_DOMAIN", "Hello ALox, this is release logging" );
 
-        lox.removeLoggers();
+        lox.removeLogger( releaseLogger );
     }
 
 
@@ -53,22 +50,31 @@ public class ALoxSamples
     void sampleALibReport()
     {
         System.out.println( "Sample: ALib Report via using ALox" );
+        Log.setDomain( "SAMPLE", Scope.METHOD);
 
         Log.addDebugLogger();
-        Log.setDomain( "SAMPLE", Log.DomainLevel.INFO_WARNINGS_AND_ERRORS );
-        Log.setDomain( "SAMPLE", Log.Scope.METHOD);
+        Log.setVerbosity(  Log.debugLogger,  Verbosity.INFO, "/"  );
 
         Log.info(   "Method \"Log.AddDebugLogger()\" by default creates a replacement for ALib\n"
                   + "error/warning reporter. If this is a debug compiliation, let's have a try and\n"
-                  + "create an ALib error:"  );
+                  + "create 3 Messages:"  );
 
         Report.getDefault().pushHaltFlags(false, false);
+            ALIB.ERROR(   "This is an error report!" );
+            ALIB.WARNING( "And this is a warning!"   );
             AString illegalAccess= new AString(10);
             illegalAccess._()._("1234");
             illegalAccess.setCharAt_NC( 5, '5' );
         Report.getDefault().popHaltFlags();
-        
-        Log.info( "Note the domain 'REPORT' used by ALib reporter." );
+
+        Log.setVerbosity( Log.debugLogger, Verbosity.VERBOSE, ALox.INTERNAL_DOMAINS);
+        ALIB.REPORT( 2,   "This is an ALib Report. Types other than '0' and '1' are user defined.\n"
+                        + "Verbosity of ALox.INTERAL_DOMAINS has to be increased to see them when using"
+                        + " ALoxReportWriter." );
+
+        Log.info(   "Note the domain prefix '" + ALox.INTERNAL_DOMAINS.toString() + "'. This addresses "
+                  + "the tree of internal domains\nof the Lox, which the report writer is just "
+                  + "using." );
 
         Log.removeDebugLogger();
     }
@@ -76,37 +82,30 @@ public class ALoxSamples
     void performanceTest()
     {
         Log.addDebugLogger();
-
         MemoryLogger  ml= new MemoryLogger( "Memory");
-        Log.addLogger( ml );
 
-        Log.setDomain( "CON", Log.Scope.METHOD );
+        Log.setVerbosity( Log.debugLogger, Verbosity.OFF);
+        Log.setVerbosity( Log.debugLogger, Verbosity.VERBOSE, "/CON");
+        Log.setVerbosity( ml,              Verbosity.VERBOSE, "/MEM" );
 
-        Log.setDomain( "MEM", Log.Scope.NONE  );
-        Log.setDomain( "BOTH",Log.Scope.NONE );
-
-        Log.setDomain( "CON", Log.DomainLevel.ALL, "Console" );
-        Log.setDomain( "MEM", Log.DomainLevel.OFF, "Console" );
-        Log.setDomain( "MEM", Log.DomainLevel.ALL, "Memory"  );
-        Log.setDomain( "CON", Log.DomainLevel.OFF, "Memory"  );
-        Log.setDomain( "BOTH",Log.DomainLevel.ALL            );
-
-        //Log.LogConfig( "CON", Log.Level.Info, "Log Config follows..." );
         Log.info( "Logging simple info lines" );
-        long    fastest=     Long.MAX_VALUE;
-        int qtyLines=   100;
-        int qtyLoops= 10000;
+        long  fastest=    Long.MAX_VALUE;
+        int   qtyLines=    100;
+        int   qtyLoops=   1000;
         for ( int i= 0 ; i < qtyLoops ; i++ )
         {
             ml.memoryLog.clear();
             Ticks tt= new Ticks();
                 for ( int ii= 0 ; ii < qtyLines ; ii++ )
-                    Log.info( "MEM", "Test Line " + ii );
+                {
+                    Log.info( "/MEM", "Test Line " + ii );
+                    if( i== 0 && ii == 0) System.out.println( ml.memoryLog.toString() );
+                }
             Ticks t= tt.age();
             if ( t.raw() < fastest )
             {
                 fastest= t.raw();
-                Log.line( "CON", Log.Level.INFO,
+                Log.info( "/CON",
                          Log.buf()._( "Pass " )._( i, 3)._( " is new fastest:  ")
                                   ._(  (new Ticks( fastest)).inMicros(), 0)._( " micros per ")
                                   ._( qtyLines)._( " logs.") );
@@ -115,51 +114,44 @@ public class ALoxSamples
         }
         double microsPerLog=  ( (double) (new Ticks(fastest)).inMicros() ) / qtyLines;
         int    logsPerSecond= (int)( 1000000.0 / microsPerLog);
-        Log.info( Log.buf()._( "  " )._( ESC.MAGENTA )._( "Fastest Debug Logging: " )
-                           ._( microsPerLog  )._( " micros per log (resp " )
-                           ._( logsPerSecond )._( " logs per second) " ) );
+        Log.info( "/CON", Log.buf()._( "  " )._( ESC.MAGENTA )._( "Fastest Debug Logging: " )
+                                   ._( microsPerLog  )._( " micros per log (resp " )
+                                   ._( logsPerSecond )._( " logs per second) " ) );
 
 
        Log.removeDebugLogger();
-       Log.removeLoggers();
+       Log.removeLogger( ml );
     }
 
     void performanceTestRL()
     {
-        Lox lox= new Lox();
-        TextLogger relLogger= Lox.createConsoleLogger( null );
-        lox.addLogger( relLogger );
+        Lox lox= new Lox( "ReleaseLox" );
 
-        MemoryLogger  ml= new MemoryLogger( "Memory");
-        lox.addLogger( ml );
+        TextLogger    relLogger= Lox.createConsoleLogger( "Console" );
+        MemoryLogger  ml=        new MemoryLogger( "Memory");
+        lox.setVerbosity( relLogger, Verbosity.VERBOSE, "/CON" );
+        lox.setVerbosity( ml,        Verbosity.VERBOSE, "/MEM" );
 
-        lox.setDomain( "CON", Log.Scope.METHOD );
 
-        lox.setDomain( "MEM", Log.Scope.NONE  );
-        lox.setDomain( "BOTH",Log.Scope.NONE );
-
-        lox.setDomain( "CON", Log.DomainLevel.ALL, "Console" );
-        lox.setDomain( "MEM", Log.DomainLevel.OFF, "Console" );
-        lox.setDomain( "MEM", Log.DomainLevel.ALL, "Memory" );
-        lox.setDomain( "CON", Log.DomainLevel.OFF, "Memory" );
-        lox.setDomain( "BOTH",Log.DomainLevel.ALL  );
-
-        //Log.LogConfig( "CON", Log.Level.Info, "Log Config follows..." );
         lox.info( "Logging simple info lines (release logging)" );
-        long    fastest=     Long.MAX_VALUE;
-        int qtyLines=   100;
-        int qtyLoops= 10000;
+        long fastest=   Long.MAX_VALUE;
+        int  qtyLines=   100;
+        int  qtyLoops=  1000;
         for ( int i= 0 ; i < qtyLoops ; i++ )
         {
             ml.memoryLog.clear();
             Ticks tt= new Ticks();
                 for ( int ii= 0 ; ii < qtyLines ; ii++ )
-                    lox.info( "MEM", "Test Line " + ii );
+                {
+                    lox.info( "/MEM", "Test Line " + ii );
+                    if( i== 0 && ii == 0) System.out.println( ml.memoryLog.toString() );
+                }
+
             Ticks t= tt.age();
             if ( t.raw() < fastest )
             {
                 fastest= t.raw();
-                lox.line( "CON", Log.Level.INFO,
+                lox.entry( "/CON", Verbosity.INFO,
                          lox.buf()._( "Pass " )._( i, 3)._( " is new fastest:  ")
                                   ._(  (new Ticks( fastest)).inMicros(), 0)._( " micros per ")
                                   ._( qtyLines)._( " logs.") );
@@ -168,12 +160,13 @@ public class ALoxSamples
         }
         double microsPerLog=  ( (double) (new Ticks(fastest)).inMicros() ) / qtyLines;
         int    logsPerSecond= (int)( 1000000.0 / microsPerLog);
-        lox.info( lox.buf()._( "  " )._( ESC.MAGENTA )._( "Fastest Release Logging: " )
-                           ._( microsPerLog  )._( " micros per log (resp " )
-                           ._( logsPerSecond )._( " logs per second) " ) );
+        lox.info( "/CON", lox.buf()._( "  " )._( ESC.MAGENTA )._( "Fastest Release Logging: " )
+                                   ._( microsPerLog  )._( " micros per log (resp " )
+                                   ._( logsPerSecond )._( " logs per second) " ) );
 
 
-       Log.removeLoggers();
+       Log.removeLogger(relLogger);
+       Log.removeLogger(ml);
     }
 
 
@@ -181,9 +174,7 @@ public class ALoxSamples
     {
         Log.addDebugLogger();
 
-        Log.setDomain( "UNICODE", Log.DomainLevel.ALL);
-        Log.setDomain( "UNICODE", Log.Scope.METHOD );
-
+        Log.setDomain( "UNICODE", Scope.METHOD );
 
         Log.info( "Some unicode characters:" );
         Log.info( " Euro Sign:     €" );
@@ -197,8 +188,7 @@ public class ALoxSamples
     {
         Log.addDebugLogger();
 
-        Log.setDomain( "COLORS", Log.DomainLevel.ALL);
-        Log.setDomain( "COLORS", Log.Scope.METHOD );
+        Log.setDomain( "COLORS", Scope.METHOD );
 
 
         Log.info(   "Playing with colors. Depending on the test environment, the colors might "
@@ -329,11 +319,9 @@ public class ALoxSamples
 
     public void textFileLogger()
     {
+        Log.setDomain( "TEXTFILE_TEST", Scope.METHOD    );
         Log.info( "Creating a text file logger with file 'Test.log.txt'" );
-        Log.addLogger( new TextFileLogger( "Test.log.txt" ) );
-        Log.getLogger( "TEXTFILE" ).setDomain( Log.LOX.internalDomain, Log.DomainLevel.ERRORS );
-        Log.setDomain( "TEXTFILE_TEST", Log.Scope.METHOD    );
-        Log.setDomain( "TEXTFILE_TEST", Log.DomainLevel.ALL );
+        Log.setVerbosity( "TEXTFILE", Verbosity.VERBOSE, "TEXTFILE_TEST" );
 
         Log.verbose( "A verbose message (goes to textfile logger as well)" );
         Log.info   ( "An info message  (goes to textfile logger as well)" );
@@ -344,8 +332,8 @@ public class ALoxSamples
 
     void aworxLibraryDebugCodePruning()
     {
-        ReportWriter oldReportWriter=  Report.getDefault().replaceWriter( new ConsoleReportWriter() );
         Report.getDefault().pushHaltFlags(false, false);
+            Log.addDebugLogger();
 
             String appear=    "This message should appear in pruned version";
             String notAppear= "This message should NOT appear in pruned version";
@@ -360,8 +348,6 @@ public class ALoxSamples
             ALIB.ASSERT_WARNING( false, notAppear );
 
         Report.getDefault().popHaltFlags();
-
-        Report.getDefault().replaceWriter( oldReportWriter );
     }
 
 
@@ -378,11 +364,11 @@ public class ALoxSamples
      */
     public static void main(String[] args)
     {
-        Log.init( true, args );
+        ALox.init( true, args );
 
         // open and attach ini-file
         IniFile iniFile= new IniFile( null );
-        ALIB.config.insertPlugin( iniFile, 30 );
+        ALIB.config.insertPlugin( iniFile, Configuration.PRIO_INI_FILE );
 
         // create us
         ALoxSamples test= new ALoxSamples();
@@ -390,47 +376,47 @@ public class ALoxSamples
 
         System.out.println( "PRINT: Hello world debug logging" );
             test.debugLogging();
-        Log.reset();
+        ALox.reset();
         System.out.println();
 
         // do some release logging tests.
         System.out.println( "PRINT: Release logging test:" );
             test.releaseLogging();
-        Log.reset();
+        ALox.reset();
         System.out.println();
 
         // do some performance tests.
         System.out.println( "PRINT: Performance test (debug logging):" );
             test.performanceTest();
-        Log.reset();
+        ALox.reset();
         System.out.println();
 
         // do some performance tests.
         System.out.println( "PRINT: Performance test (release logging):" );
             test.performanceTestRL();
-        Log.reset();
+        ALox.reset();
         System.out.println();
 
         // have a try on colors and styles
         System.out.println( "PRINT: Colors and Styles:" );
             test.colorsAndStyles();
-        Log.reset();
+        ALox.reset();
         System.out.println();
 
         // have a try on colors and styles
         System.out.println( "PRINT: TextFile Logger" );
             test.textFileLogger();
-        Log.reset();
+        ALox.reset();
         System.out.println();
-/*
+
         test.uniCodeOutput();
-        Log.reset();
+        ALox.reset();
 
         // test pruning of ALIB debug messages and assertions
         System.out.println();
         System.out.println( "PRINT: AWorx Library debug code pruning test (errors displayed are just for testing!):" );
             test.aworxLibraryDebugCodePruning();
-        Log.reset();
+        ALox.reset();
         System.out.println();
 
 
@@ -438,7 +424,7 @@ public class ALoxSamples
         System.out.println( "PRINT: Sample ALib report:" );
             test.sampleALibReport();
         System.out.println();
-*/
+
         System.out.println( "PRINT: Thats it!" );
 
         ALIB.terminationCleanUp();

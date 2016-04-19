@@ -6,6 +6,8 @@
 // #################################################################################################
 package com.aworx.lox;
 
+import com.aworx.lib.strings.AString;
+
 /** ************************************************************************************************
  * This class defines "escape sequences" that influence the formatting of log output.
  * Specific implementations of class
@@ -20,7 +22,7 @@ package com.aworx.lox;
  * The name of the class was intentionally chosen to be short, because the escape codes
  * defined with this class will be concatenated to log strings like that:
  *
- *  \snippet "UT_alox_documentation_samples.java"     DOC_SAMPLES_ALOX_ESC
+ *  \snippet "UT_dox_reference_manual.java"     DOC_SAMPLES_ALOX_ESC
  **************************************************************************************************/
 public class ESC
 {
@@ -59,5 +61,76 @@ public class ESC
                                                          ///< will increase the tab position automatically.
     public static final String  EOMETA      = "\033A0";  ///< End of meta information in log string
                                                          
+    /** ************************************************************************************************
+     * Replaces ESC codes in a string reversely to "ESC.XXX".
+     * @param target   The string to replace in.
+     * @param startIdx The index to start searching for ESC codes.
+     **************************************************************************************************/
+    public static void replaceToReadable( AString target, int startIdx )
+    {
+        while( (startIdx= target.indexOf( '\033', startIdx ) ) >= 0 )
+        {
+            String val= "{ESC.";
+            char c=  target.charAt( startIdx + 1 );
+            char c2= target.charAt( startIdx + 2 );
+    
+            String code= "ERROR";
+    
+            // colors
+            if( c == 'c' || c == 'C' )
+            {
+                if ( c == 'C' )
+                    val+= "BG_" ;
+                switch( c2 - '0' )
+                {
+                    case 0:  code= "RED"     ; break;
+                    case 1:  code= "GREEN"   ; break;
+                    case 2:  code= "YELLOW"  ; break;
+                    case 3:  code= "BLUE"    ; break;
+                    case 4:  code= "MAGENTA" ; break;
+                    case 5:  code= "CYAN"    ; break;
+                    case 6:  code= "BLACK"   ; break;
+                    case 7:  code= "WHITE"   ; break;
+                    case 8:  code= "GRAY"    ; break;
+                    case 9:  code= "RESET"   ; break;
+                    default: code= "COL_ERR"; break;
+                }
+    
+            }
+    
+            // styles
+            else if( c == 's' )
+            {
+                switch( c2 )
+                {
+                    case 'B': code= "BOLD"         ; break;
+                    case 'I': code= "ITALICS"      ; break;
+                    case 'r': code= "STYLE_RESET"  ; break;
+                    case 'a': code= "RESET"        ; break;
+                    default:  code= "STYLE_ERR"    ; break;
+                }
+            }
+    
+            // styles
+            else if( c == 'l' )
+            {
+                switch( c2 )
+                {
+                    case 'S': code= "URL_START"    ; break;
+                    case 'E': code= "URL_END"      ; break;
+                    default:  code= "URL_ERR"      ; break;
+                }
+            }
+    
+            // others
+            else if( c == 'l' && c2 == '0' )    code= "TAB";
+            else if( c == 'A' && c2 == '0' )    code= "EOMETA";
+    
+            // Replace
+            val+= code + '}';
+            target.replaceSubstring( val, startIdx, 3 );
+            startIdx+= 3;
+        }
+    }
 
 } // class ESC

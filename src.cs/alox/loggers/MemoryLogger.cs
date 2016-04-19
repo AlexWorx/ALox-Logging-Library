@@ -16,8 +16,8 @@ namespace cs.aworx.lox.loggers {
 
 
 /** ************************************************************************************************
- *  A logger that logs all messages to an in-memory buffer of type AString. The name of the logger
- *  defaults to "MEMORY".
+ * A logger that logs all messages to an in-memory buffer of type AString. The name of the \e Logger
+ * defaults to "MEMORY".
  **************************************************************************************************/
 public class MemoryLogger : PlainTextLogger
 {
@@ -29,22 +29,22 @@ public class MemoryLogger : PlainTextLogger
         public  AString             MemoryLog                            = new AString( 0 );
     #else
     /**
-     *  The logging Buffer. This can be accessed publicly and hence used as preferred. Especially,
-     *  the whole log can easily be cleared using
-     *  \ref cs::aworx::lib::strings::AString::Clear "AString.Clear".
-     *  In multi-threaded environments, \c Lox interfaces' mutex should be acquired
-     *  before accessing this buffer. The initial size of the buffer is 8kb.
+     * The logging Buffer. This can be accessed publicly and hence used as preferred. Especially,
+     * the whole log can easily be cleared using
+     * \ref cs::aworx::lib::strings::AString::Clear "AString.Clear".
+     * In multi-threaded environments, \c Lox interfaces' mutex should be acquired
+     * before accessing this buffer. The initial size of the buffer is 8kb.
      */
     public      AString             MemoryLog                            = new AString( 8192 );
 
     /** ********************************************************************************************
      * Creates a MemoryLogger with the given name.
-     * @param name              (Optional) The name of the logger. Defaults to "MEMORY".
+     * @param name              (Optional) The name of the \e Logger. Defaults to "MEMORY".
      * @param pruneESCSequences (Optional) Sets the member \ref PruneESCSequences.
      *                          Defaults to true.
      **********************************************************************************************/
     public MemoryLogger( String name= null, bool pruneESCSequences= true  )
-    : base( name, "MEMORY" )
+    : base( name, "MEMORY", false )
     {
         this.PruneESCSequences= pruneESCSequences;
     }
@@ -73,7 +73,7 @@ public class MemoryLogger : PlainTextLogger
      * @return Always returns true.
      **********************************************************************************************/
     override
-    protected bool doLogSubstring( AString buffer, int start, int length )
+    protected bool logSubstring( AString buffer, int start, int length )
     {
         MemoryLog._NC( buffer, start, length );
         return true;

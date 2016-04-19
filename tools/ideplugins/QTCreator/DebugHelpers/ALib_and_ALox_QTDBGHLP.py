@@ -184,7 +184,7 @@ def qdump__aworx__lib__strings__AString(d, value):
     return
 
 
-#----- ASPreAlloc  ------
+#----- PreallocatedString  ------
 def qdump__aworx__lib__strings__PreallocatedString(d, value):
     return qdump__aworx__lib__strings__AString(d, value)
 
@@ -315,21 +315,36 @@ def qdump__aworx__lib__threads__ThreadLock(d, value):
 
 ############################ ALox  #############################
 
+#----- Verbosity  ------
+def VerbosityHelper(value):
+    if value == 0:
+        return "Verbose"
+    if value == 1:
+        return "Info"
+    if value == 2:
+        return "Warning"
+    if value == 3:
+        return "Error"
+    if value == 4:
+        return "Off"
+
+    return"<dbg helper error>"
+
+
 #----- Logger Types  ------
 
 def getLoggerDescription(d, value):
-    result= "(disabled) " if (value["IsDisabled"] != 0) else ""
+    result= getASString( d, value["name"] )
 
-    result+= getASString( d, value["Name"] )
-
-    if not areEqualStrings(d, value["Name"], d, value["TypeName"] ):
-        result+= " (" + getASString( d, value["TypeName"] ) + ")"
+    if not areEqualStrings(d, value["name"], d, value["typeName"] ):
+        result+= " (" + getASString( d, value["typeName"] ) + ")"
     result+= " [" + str(value["CntLogs"] ) + "]"
 
     return result
 
 def stdLoggerHelper(d, value):
     d.putValue( getLoggerDescription( d, value ) )
+
     #----- expands normal object ----
     d.putNumChild(1)
     if d.isExpanded():
@@ -357,35 +372,35 @@ def qdump__aworx__lox__loggers__MemoryLogger(d, value):
 #----- LogDomain ------
 def getLogDomainFullName(d, domain, actString):
 
-    # root domain?
-    if domain["Name"]["buffer"] == 0:
-        return "/" + actString
+    actString= ""
+    omitFirstSlash= domain["Parent"] != 0
+    while True:
+        if omitFirstSlash == False:
+           actString=   "/" + actString
+        omitFirstSlash= False
 
-    # add current
-    if actString != "":
-        actString= "/" + actString
-    actString=  getASString( d, domain["Name"] ) + actString
+        if domain["Name"]["length"] != 0:
+            actString= getASString( d, domain["Name"] ) + actString
+        domain= domain["Parent"]
+        if domain == 0:
+            break
 
-    # recursion
-    return  getLogDomainFullName(d, domain["Parent"], actString)
+    return actString
 
-def getLogDomainInheritedLevel(value):
+def qdump__aworx__lox__core__Domain(d, value):
+    dhResult=  getLogDomainFullName(d, value, "")
+    dhResult+= "  [" + str(value["CntLogCalls"]) + "]"
+    d.putValue( dhResult )
 
-    dhLevel=  value["level"]
-    dhParent= value["Parent"]
+    #----- expands normal object ----
+    d.putNumChild(1)
+    if d.isExpanded():
+        d.putPlainChildren(value)
 
-    if ( dhParent == 0 or dhLevel <= 4 ):
-        return removeNamespace( dhLevel )
-
-    return getLogDomainInheritedLevel( dhParent )
-
-def qdump__aworx__lox__core__LogDomain(d, value):
-    dhResult=  getLogDomainFullName(d, value, "") +" "
-    dhLevel= value["level"]
-    if dhLevel != 5:
-        dhResult+= "<" + removeNamespace( dhLevel ) + ">"
-    else:
-        dhResult+= "<" + getLogDomainInheritedLevel( value ) + "> (inherited)"
+def qdump__aworx__lox__core__Domain__LoggerData(d, value):
+    dhResult = "<"  + VerbosityHelper( value["LoggerVerbosity"] )
+    dhResult+= ", " + getLoggerDescription(d, value["Logger"])
+    dhResult+= ">[" + str(value["CntLogCalls"]) + "]"
 
     d.putValue( dhResult )
 
@@ -394,7 +409,30 @@ def qdump__aworx__lox__core__LogDomain(d, value):
     if d.isExpanded():
         d.putPlainChildren(value)
 
+#----- LogData ------
+def qdump__aworx__lox__LogData(d, value):
+    result= "<"
 
+    type=                            value["Type"]
+    if type != 0:
+        result+= "Type=" + str(type) + ", "
+
+    result+= str(                    value["IntegerValue"] ) + ", "
+    result+= r"\"" + getASString( d, value["StringValue" ] ) + r"\", "
+
+    objectValue=                     value["ObjectValue"]
+    if objectValue != 0:
+        result+= str(objectValue)
+    else:
+        result+= "nullptr"
+    result+= ">"
+
+    d.putValue( result )
+
+    #----- expands normal object ----
+    d.putNumChild(1)
+    if d.isExpanded():
+        d.putPlainChildren(value)
 
 
 

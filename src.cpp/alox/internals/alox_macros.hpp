@@ -101,7 +101,7 @@
  */
 
 #if !defined(LOG_LOX)
-    #define LOG_LOX       (*aworx::lox::Log::LOX)
+    #define LOG_LOX       (*aworx::ALox::Log())
 #endif
 
 #if defined(IS_DOXYGEN_PARSER)
@@ -117,48 +117,40 @@
 /**
  * \def  LOG_ACQUIRE
  * Macro that is placed at the beginning of almost all macros of type \ref GrpMacrosDebugLog.
- * Provides caller information (provided that \ref ALOX_DBG_LOG_CI is set) to the lox and places
+ * Provides scope information (provided that \ref ALOX_DBG_LOG_CI is set) to the lox and places
  * the debug lox instance access code using \ref LOG_LOX.
  */
 #ifdef  ALOX_DBG_LOG_CI
-    #define LOG_ACQUIRE      LOG_LOX.AcquireAndSetCI( ALIB_SRC_INFO_PARAMS );   LOG_LOX
+    #define LOG_ACQUIRE     { aworx::Lox& log= LOG_LOX; log.SetScopeInfo( ALIB_SRC_INFO_PARAMS );
 #else
-    #define LOG_ACQUIRE                                                         LOG_LOX
+    #define LOG_ACQUIRE     { aworx::Lox& log= LOG_LOX; log.SetScopeInfo( nullptr, 0, nullptr );
 #endif
 
 /**
  * \def  LOG_RELEASE
  * Macro that is placed at the end of almost all macros of type \ref GrpMacrosDebugLog.
- * Releases the lox which was acquired when passing caller information (in macro \ref LOG_ACQUIRE.).
+ * Releases the lox which was acquired when passing scope information (in macro \ref LOG_ACQUIRE.).
  */
-#ifdef  ALOX_DBG_LOG_CI
-    #define LOG_RELEASE     LOG_LOX.Release();
-#else
-    #define LOG_RELEASE
-#endif
+#define LOG_RELEASE         log.Release(); }
 
 /**
  * \def  LOX_ACQUIRE
  * Macro that is placed at the beginning of almost all macros of type \ref GrpMacrosReleaseLog.
- * Provides caller information (provided that \ref ALOX_REL_LOG_CI is set) to the lox and places
+ * Provides scope information (provided that \ref ALOX_REL_LOG_CI is set) to the lox and places
  * the release lox instance access code using \ref LOX_LOX.
  */
 #ifdef  ALOX_REL_LOG_CI
-    #define LOX_ACQUIRE      LOX_LOX.AcquireAndSetCI( ALIB_SRC_INFO_PARAMS );   LOX_LOX
+    #define LOX_ACQUIRE     LOX_LOX.SetScopeInfo( ALIB_SRC_INFO_PARAMS );
 #else
-    #define LOX_ACQUIRE                                                             LOX_LOX
+    #define LOX_ACQUIRE     LOX_LOX.SetScopeInfo( nullptr, 0, nullptr );
 #endif
 
 /**
  * \def  LOX_RELEASE
  * Macro that is placed at the end of almost all macros of type \ref GrpMacrosDebugLog.
- * Releases the lox which was acquired when passing caller information (in macro \ref LOG_ACQUIRE.).
+ * Releases the lox which was acquired when passing scope information (in macro \ref LOG_ACQUIRE.).
  */
-#ifdef  ALOX_REL_LOG_CI
-    #define LOX_RELEASE     LOX_LOX.Release();
-#else
-    #define LOX_RELEASE
-#endif
+#define     LOX_RELEASE     LOX_LOX.Release();
 
 /** @} */ // End of GrpALoxMacrosLowLevel
 
@@ -170,7 +162,7 @@
 /**
  * @defgroup GrpMacrosDebugLog ALox Macros For Debug Logging
  *
- * The macros listed here, are provided to place debug log statements within source code using ALox.
+ * The macros listed here, are provided to place debug <em>Log Statements</em> within source code using ALox.
  * Besides that, macros controlling and setting preferences for ALox exists.<p>
  *
  * The exclusive use of these macros should be sufficient to support most of common debug logging
@@ -198,8 +190,8 @@
  * \ref LOG_LOX might be changed for different compilation units or the ALox C++
  * API might be used instead of the macros listed here.
  *
- * \note The ALox default domain mechanism as well as the ALox code markers rely on the information
- * provided by ALib macro \ref ALIB_SRC_INFO_PARAMS.
+ * \note The ALox Scope Domain mechanism as well as other ALox functionality which relies on \e Scopes
+ * rely on the information provided by ALib macro \ref ALIB_SRC_INFO_PARAMS.
  * Changing this macro, might cause these mechanism to fail.
  * @{
  */
@@ -207,7 +199,7 @@
 
 /**
  * \def  Log_Prune
- * This very simple macro is used for pruning debug log statements.
+ * This very simple macro is used for pruning debug <em>Log Statements</em>.
  * While it is used as a building block of all other macros for debug logging, for code entities
  * using ALox, it provides an easy way to prune code lines that get inserted purely to support
  * logging, e.g. to create ALox loggers or to prepare more complex log output. (The alternative
@@ -224,72 +216,80 @@
     #define Log_Prune( ... )
 #endif
 
-/** Invokes \ref aworx::lox::Log::AddDebugLogger(aworx::lox::Lox*, bool) "Log::AddDebugLogger" to create, add and configure a default debug logger suitable for the platform and toolset. */
-#define Log_AddDebugLogger()                { Log_Prune( Log::Init();    \
-                                              LOG_LOX.AcquireAndSetCI( ALIB_SRC_INFO_PARAMS ); \
-                                                              Log::AddDebugLogger( &LOG_LOX, true );  LOG_RELEASE ) }
+
+/** Invokes \ref aworx::lox::Lox::SetSourcePathTrimRule "Lox::SetSourcePathTrimRule" on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
+#define Log_SetSourcePathTrimRule(...)          { Log_Prune( LOG_ACQUIRE LOG_LOX.SetSourcePathTrimRule( __VA_ARGS__ );    LOG_RELEASE ) }
+
+/** Invokes \ref aworx::lox::Lox::ClearSourcePathTrimRules "Lox::ClearSourcePathTrimRules" on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
+#define Log_ClearSourcePathTrimRules(...)       { Log_Prune( LOG_ACQUIRE LOG_LOX.ClearSourcePathTrimRules( __VA_ARGS__ ); LOG_RELEASE ) }
+
+/** Invokes \ref aworx::lox::Log::AddDebugLogger(aworx::lox::Lox*) "Log::AddDebugLogger" to create, add and configure a default debug logger suitable for the platform and toolset. */
+#define Log_AddDebugLogger()                    { Log_Prune( LOG_ACQUIRE    Log::AddDebugLogger   ( &LOG_LOX );           LOG_RELEASE ) }
 
 /** Invokes \ref aworx::lox::Log::RemoveDebugLogger "Log::RemoveDebugLogger" to remove and delete a debug logger created by \ref aworx::lox::Log::AddDebugLogger "Log::AddDebugLogger". */
-#define Log_RemoveDebugLogger()             { Log_Prune( LOG_LOX.AcquireAndSetCI( ALIB_SRC_INFO_PARAMS ); Log::RemoveDebugLogger( &LOG_LOX );      LOG_RELEASE) }
-
-/** Invokes \ref aworx::lox::Lox::AddLogger "Lox::AddLogger"  on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
-#define Log_AddLogger(...)                  { Log_Prune( LOG_ACQUIRE.AddLogger    ( __VA_ARGS__ );       LOG_RELEASE ) }
+#define Log_RemoveDebugLogger()                 { Log_Prune( LOG_ACQUIRE    Log::RemoveDebugLogger( &LOG_LOX );           LOG_RELEASE ) }
 
 /** Invokes \ref aworx::lox::Lox::GetLogger "Lox::GetLogger" on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
-#define Log_GetLogger( identifier, name )    Log_Prune( LOG_LOX.AcquireAndSetCI( ALIB_SRC_INFO_PARAMS ); identifier= LOG_LOX.GetLogger ( name ); LOG_RELEASE )
+#define Log_GetLogger( identifier, name )         Log_Prune( aworx::lox::core::Logger* identifier;                                      \
+                                                             LOG_ACQUIRE  identifier= log.GetLogger( name );              LOG_RELEASE )
 
-
-/** Invokes \ref aworx::lox::Lox::RemoveLoggers "Lox::RemoveLoggers" on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
-#define Log_RemoveLoggers(...)              { Log_Prune( LOG_ACQUIRE.RemoveLoggers( __VA_ARGS__ );       LOG_RELEASE ) }
-
-/** Invokes \ref aworx::lox::Lox::RemoveLoggers "Lox::RemoveLoggers" on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
-#define Log_RemoveLogger( logger)           { Log_Prune( LOG_ACQUIRE.RemoveLogger ( logger );            LOG_RELEASE ) }
+/** Invokes \ref aworx::lox::Lox::RemoveLogger "Lox::RemoveLogger" on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
+#define Log_RemoveLogger( logger)               { Log_Prune( LOG_ACQUIRE LOG_LOX.RemoveLogger ( logger );                 LOG_RELEASE ) }
 
 /** Invokes \ref aworx::lox::Lox::SetDomain "Lox::SetDomain" on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
-#define Log_SetDomain(...)                  { Log_Prune( LOG_ACQUIRE.SetDomain    ( __VA_ARGS__ );       LOG_RELEASE ) }
+#define Log_SetDomain(...)                      { Log_Prune( LOG_ACQUIRE LOG_LOX.SetDomain    ( __VA_ARGS__ );            LOG_RELEASE ) }
 
-/** Invokes \ref aworx::lox::Lox::SetLogger "Lox::SetLogger" on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
-#define Log_SetLogger( disabled, filter )   { Log_Prune( LOG_ACQUIRE.SetLogger    ( disabled, filter );  LOG_RELEASE ) }
+/** Invokes \ref aworx::lox::Lox::RemoveThreadDomain "Lox::RemoveThreadDomain" on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
+#define Log_RemoveThreadDomain(...)             { Log_Prune( LOG_ACQUIRE LOG_LOX.RemoveThreadDomain( __VA_ARGS__ );       LOG_RELEASE ) }
+
+/** Invokes \ref aworx::lox::Lox::SetDomainSubstitutionRule "Lox::SetDomainSubstitutionRule" on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
+#define Log_SetDomainSubstitutionRule(...)      { Log_Prune( LOG_ACQUIRE LOG_LOX.SetDomainSubstitutionRule( __VA_ARGS__ );         LOG_RELEASE ) }
+
+/** Invokes one of the overloaded methods \ref aworx::lox::Lox::SetVerbosity "Lox::SetVerbosity" on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
+#define Log_SetVerbosity(...)                   { Log_Prune( LOG_ACQUIRE LOG_LOX.SetVerbosity    ( __VA_ARGS__ );            LOG_RELEASE ) }
 
 /** Invokes \ref aworx::lox::Lox::SetStartTime "Lox::SetStartTime" on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
-#define Log_SetStartTime( time, filter )    { Log_Prune( LOG_ACQUIRE.SetStartTime ( time, filter );      LOG_RELEASE ) }
+#define Log_SetStartTime( time, loggerName )    { Log_Prune( LOG_ACQUIRE LOG_LOX.SetStartTime ( time, loggerName);        LOG_RELEASE ) }
 
 /** Invokes \ref aworx::lox::Lox::MapThreadName "Lox::MapThreadName" on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
-#define Log_MapThreadName( threadName )     { Log_Prune( LOG_ACQUIRE.MapThreadName( threadName );        LOG_RELEASE ) }
+#define Log_MapThreadName( threadName )         { Log_Prune( LOG_ACQUIRE LOG_LOX.MapThreadName( threadName );             LOG_RELEASE ) }
 
 /** Invokes \ref aworx::lox::Lox::LogConfig "Lox::LogConfig" on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
-#define Log_LogConfig(...)                  { Log_Prune( LOG_ACQUIRE.LogConfig    ( __VA_ARGS__ );       LOG_RELEASE ) }
-
-
+#define Log_LogConfig(...)                      { Log_Prune( LOG_ACQUIRE LOG_LOX.LogConfig    ( __VA_ARGS__ );            LOG_RELEASE ) }
 
 /** Invokes \ref aworx::lox::Lox::Verbose "Lox::Verbose" on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
-#define Log_Verbose(...)                    { Log_Prune( LOG_ACQUIRE.Verbose      ( __VA_ARGS__ );       LOG_RELEASE ) }
+#define Log_Verbose(...)                        { Log_Prune( LOG_ACQUIRE LOG_LOX.Verbose      ( __VA_ARGS__ );            LOG_RELEASE ) }
 
 /** Invokes \ref aworx::lox::Lox::Info "Lox::Info" on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
-#define Log_Info(...)                       { Log_Prune( LOG_ACQUIRE.Info         ( __VA_ARGS__ );       LOG_RELEASE ) }
+#define Log_Info(...)                           { Log_Prune( LOG_ACQUIRE LOG_LOX.Info         ( __VA_ARGS__ );            LOG_RELEASE ) }
 
 /** Invokes \ref aworx::lox::Lox::Warning "Lox::Warning" on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
-#define Log_Warning(...)                    { Log_Prune( LOG_ACQUIRE.Warning      ( __VA_ARGS__ );       LOG_RELEASE ) }
+#define Log_Warning(...)                        { Log_Prune( LOG_ACQUIRE LOG_LOX.Warning      ( __VA_ARGS__ );            LOG_RELEASE ) }
 
 /** Invokes \ref aworx::lox::Lox::Error "Lox::Error" on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
-#define Log_Error(...)                      { Log_Prune( LOG_ACQUIRE.Error        ( __VA_ARGS__ );       LOG_RELEASE ) }
+#define Log_Error(...)                          { Log_Prune( LOG_ACQUIRE LOG_LOX.Error        ( __VA_ARGS__ );            LOG_RELEASE ) }
 
 /** Invokes \ref aworx::lox::Lox::Assert "Lox::Assert" on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
-#define Log_Assert(...)                     { Log_Prune( LOG_ACQUIRE.Assert       ( __VA_ARGS__ );       LOG_RELEASE ) }
+#define Log_Assert(...)                         { Log_Prune( LOG_ACQUIRE LOG_LOX.Assert       ( __VA_ARGS__ );            LOG_RELEASE ) }
 
-/** Invokes \ref aworx::lox::Lox::Line "Lox::Line" on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
-#define Log_Line(...)                       { Log_Prune( LOG_ACQUIRE.Line         ( __VA_ARGS__ );       LOG_RELEASE ) }
+/** Invokes \ref aworx::lox::Lox::If "Lox::If" on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
+#define Log_If(...)                             { Log_Prune( LOG_ACQUIRE LOG_LOX.If           ( __VA_ARGS__ );            LOG_RELEASE ) }
 
+/** Invokes \ref aworx::lox::Lox::Once "Lox::Once" on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
+#define Log_Once(...)                           { Log_Prune( LOG_ACQUIRE LOG_LOX.Once         ( __VA_ARGS__ );            LOG_RELEASE ) }
 
-/** Invokes \ref aworx::lox::Lox::SetMarker "Lox::SetMarker" on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
-#define Log_SetMarker( marker, scope )      { Log_Prune( LOG_ACQUIRE.SetMarker    ( marker, scope );  LOG_RELEASE ) }
+/** Invokes \ref aworx::lox::Lox::Entry "Lox::Entry" on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
+#define Log_Entry(...)                          { Log_Prune( LOG_ACQUIRE LOG_LOX.Entry         ( __VA_ARGS__ );            LOG_RELEASE ) }
 
-/** Invokes \ref aworx::lox::Lox::GetMarker "Lox::GetMarker" on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
-#if defined(ALOX_DBG_LOG_CI)
-    #define Log_GetMarker( marker, scope )  { Log_Prune( LOG_LOX.AcquireAndSetCI( ALIB_SRC_INFO_PARAMS ); marker= LOG_LOX.GetMarker ( scope ); LOG_RELEASE ) }
-#else
-    #define Log_GetMarker( marker, scope )  { Log_Prune(     marker= LOG_LOX.GetMarker ( scope ); ) }
-#endif
+/** Invokes \ref aworx::lox::Lox::SetPrefix "Lox::SetPrefix" on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
+#define Log_SetPrefix(...)                      { Log_Prune( LOG_ACQUIRE LOG_LOX.SetPrefix    ( __VA_ARGS__ );            LOG_RELEASE ) }
+
+/** Invokes \ref aworx::lox::Lox::Store "Lox::Store" on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
+#define Log_Store(...)                          { Log_Prune( LOG_ACQUIRE LOG_LOX.Store        ( __VA_ARGS__ );            LOG_RELEASE ) }
+
+/** Invokes \ref aworx::lox::Lox::Retrieve "Lox::Retrieve" on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
+#define Log_Retrieve(data,...)                    Log_Prune( LogData* data;                                                             \
+                                                             LOG_ACQUIRE data= log.Retrieve( __VA_ARGS__ );               LOG_RELEASE )
 
 /** @} */
 
@@ -300,7 +300,7 @@
 /**
  * @defgroup GrpMacrosReleaseLog        ALox Macros For Release Logging
  *
- * The macros listed here, are provided to place release log statements within source code using
+ * The macros listed here, are provided to place release <em>Log Statements</em> within source code using
  * ALox. Besides that, macros controlling and setting preferences for ALox exists.<p>
  *
  * The exclusive use of these macros should be sufficient to support most of common release logging
@@ -343,7 +343,7 @@
 
 /**
  * \def  Lox_Prune
- * This very simple macro is used for pruning release log statements in the moment release logging
+ * This very simple macro is used for pruning release <em>Log Statements</em> in the moment release logging
  * gets disabled (what in standard release scenarios is not done).<p>
  *
  * While it is used as a building block of all other macros for release logging, for code entities
@@ -365,90 +365,91 @@
 
 
 
-/** Invokes \ref aworx::lox::Lox::AddLogger "Lox::AddLogger" on the object of type class Lox defined in macro \ref LOX_LOX. */
-#define Lox_AddLogger(...)    { Lox_Prune( LOX_ACQUIRE.AddLogger    ( __VA_ARGS__ );  LOX_RELEASE ) }
+/** Invokes \ref aworx::lox::Lox::SetSourcePathTrimRule "Lox::SetSourcePathTrimRule" on the object of type Lox defined in macro \ref LOX_LOX. */
+#define Lox_SetSourcePathTrimRule(...)      { Lox_Prune( LOX_ACQUIRE LOX_LOX.SetSourcePathTrimRule( __VA_ARGS__ ); LOX_RELEASE ) }
 
-/** Invokes \ref aworx::lox::Lox::GetLogger "Lox::GetLogger" on the object of type class Lox defined in macro \ref LOX_LOX. */
-#define Lox_GetLogger( identifier, name )   Log_Prune( LOX_LOX.AcquireAndSetCI( ALIB_SRC_INFO_PARAMS ); identifier= LOX_LOX.GetLogger ( name ); LOX_RELEASE )
+/** Invokes \ref aworx::lox::Lox::ClearSourcePathTrimRules "Lox::ClearSourcePathTrimRules" on the object of type Lox defined in macro \ref LOX_LOX. */
+#define Lox_ClearSourcePathTrimRules(...)   { Lox_Prune( LOX_ACQUIRE LOX_LOX.ClearSourcePathTrimRules( __VA_ARGS__ ); LOX_RELEASE ) }
 
-/** Invokes \ref aworx::lox::Lox::RemoveLoggers "Lox::RemoveLoggers" on the object of type class Lox defined in macro \ref LOX_LOX. */
-#define Lox_RemoveLoggers( filter )  { Lox_Prune( LOX_ACQUIRE.RemoveLoggers( filter );  LOX_RELEASE ) }
+/** Invokes \ref aworx::lox::Lox::GetLogger "Lox::GetLogger" on the object of type Lox defined in macro \ref LOX_LOX. */
+#define Lox_GetLogger( identifier, name )     Lox_Prune( LOX_ACQUIRE aworx::lox::core::Logger* identifier= LOX_LOX.GetLogger ( name ); LOX_RELEASE )
 
-/** Invokes \ref aworx::lox::Lox::RemoveLoggers "Lox::RemoveLoggers" on the object of type class Lox defined in macro \ref LOX_LOX. */
-#define Lox_RemoveLogger( logger )  { Lox_Prune( LOX_ACQUIRE.RemoveLogger ( logger );  LOX_RELEASE ) }
+/** Invokes \ref aworx::lox::Lox::RemoveLogger "Lox::RemoveLogger" on the object of type Lox defined in macro \ref LOX_LOX. */
+#define Lox_RemoveLogger( logger )          { Lox_Prune( LOX_ACQUIRE LOX_LOX.RemoveLogger ( logger );        LOX_RELEASE ) }
 
 
-/** Invokes \ref aworx::lox::Lox::SetDomain "Lox::SetDomain" on the object of type class Lox defined in macro \ref LOX_LOX.
+/** Invokes \ref aworx::lox::Lox::SetDomain "Lox::SetDomain" on the object of type Lox defined in macro \ref LOX_LOX.
  * \attention
- *  If \ref ALOX_REL_LOG_CI is not set, which is the default for release logging
- *  statements, the overloaded version of the method that takes a scope parameter
- *  method will log a warning and will not be effective if parameter scope is
- *  not equal to Log::Scope.None.<br>
- *  In release logging it   is advised to provide a domain name explicitly with every
- *  release log call.<br>
- *  If default domains should be supported, the software entity has to be compiled
- *  with precompiler symbol \ref ALOX_REL_LOG_CI_ON. Note that one effect of setting
- *  this symbol is, that information on source code paths and file names, as well as
+ *  If \ref ALOX_REL_LOG_CI is not set, which is the default for release logging, and when used with language-related
+ *  \e Scopes, this method will log an internal warning and will not be effective in respect to
+ *  \e %Scope.Path, \e %Scope.Filename, and \e %Scope.Method. See ALox user manual for detailed information.
+ *  If Scope Domains based on source-related scopes should be supported in release logging, the
+ *  software entity has to be compiled with precompiler symbol \ref ALOX_REL_LOG_CI_ON.
+ *  Note that one effect of setting this symbol is, that information on source code paths and file names, as well as
  *  method names make their way into the release executable. This may not be wanted.
  */
-#define Lox_SetDomain(...)                  { Lox_Prune( LOX_ACQUIRE.SetDomain    ( __VA_ARGS__ );   LOX_RELEASE ) }
+#define Lox_SetDomain(...)                  { Lox_Prune( LOX_ACQUIRE LOX_LOX.SetDomain(__VA_ARGS__);            LOX_RELEASE ) }
 
-/** Invokes \ref aworx::lox::Lox::SetLogger "Lox::SetLogger" on the object of type class Lox defined in macro \ref LOX_LOX. */
-#define Lox_SetLogger( enable, filter )     { Lox_Prune( LOX_ACQUIRE.SetLogger    ( enable, filter); LOX_RELEASE ) }
+/** Invokes \ref aworx::lox::Lox::RemoveThreadDomain "Lox::RemoveThreadDomain" on the object of type Lox defined in macro \ref LOX_LOX. */
+#define Lox_RemoveThreadDomain(...)         { Lox_Prune( LOX_ACQUIRE LOX_LOX.RemoveThreadDomain( __VA_ARGS__ ); LOX_RELEASE ) }
 
-/** Invokes \ref aworx::lox::Lox::SetStartTime "Lox::SetStartTime" on the object of type class Lox defined in macro \ref LOX_LOX. */
-#define Lox_SetStartTime( time, filter )    { Lox_Prune( LOX_ACQUIRE.SetStartTime ( time, filter );  LOX_RELEASE ) }
+/** Invokes \ref aworx::lox::Lox::SetDomainSubstitutionRule "Lox::SetDomainSubstitutionRule" on the object of type Lox defined in macro \ref LOX_LOX. */
+#define Lox_SetDomainSubstitutionRule(...)  { Lox_Prune( LOX_ACQUIRE LOX_LOX.SetDomainSubstitutionRule( __VA_ARGS__ );   LOX_RELEASE ) }
 
-/** Invokes \ref aworx::lox::Lox::MapThreadName "Lox::MapThreadName" on the object of type class Lox defined in macro \ref LOX_LOX. */
-#define Lox_MapThreadName( threadName )     { Lox_Prune( LOX_ACQUIRE.MapThreadName( threadName );    LOX_RELEASE ) }
+/** Invokes one of the overloaded methods \ref aworx::lox::Lox::SetVerbosity "Lox::SetVerbosity" on the object of type Lox defined in macro \ref LOX_LOX. */
+#define Lox_SetVerbosity(...)               { Lox_Prune( LOX_ACQUIRE LOX_LOX.SetVerbosity    ( __VA_ARGS__ );   LOX_RELEASE ) }
 
-/** Invokes \ref aworx::lox::Lox::LogConfig "Lox::LogConfig" on the object of type class Lox defined in macro \ref LOX_LOX. */
-#define Lox_LogConfig(...)                  { Lox_Prune( LOX_ACQUIRE.LogConfig    ( __VA_ARGS__ );   LOX_RELEASE ) }
+/** Invokes \ref aworx::lox::Lox::SetStartTime "Lox::SetStartTime" on the object of type Lox defined in macro \ref LOX_LOX. */
+#define Lox_SetStartTime( time, loggerName ){ Lox_Prune( LOX_ACQUIRE LOX_LOX.SetStartTime ( time, loggerName ); LOX_RELEASE ) }
 
-/** Invokes \ref aworx::lox::Lox::Verbose "Lox::Verbose" on the object of type class Lox defined in macro \ref LOX_LOX. */
-#define Lox_Verbose(...)                    { Lox_Prune( LOX_ACQUIRE.Verbose      ( __VA_ARGS__ );   LOX_RELEASE ) }
+/** Invokes \ref aworx::lox::Lox::MapThreadName "Lox::MapThreadName" on the object of type Lox defined in macro \ref LOX_LOX. */
+#define Lox_MapThreadName( threadName )     { Lox_Prune( LOX_ACQUIRE LOX_LOX.MapThreadName( threadName );       LOX_RELEASE ) }
 
-/** Invokes \ref aworx::lox::Lox::Info "Lox::Info" on the object of type class Lox defined in macro \ref LOX_LOX. */
-#define Lox_Info(...)                       { Lox_Prune( LOX_ACQUIRE.Info         ( __VA_ARGS__ );   LOX_RELEASE ) }
+/** Invokes \ref aworx::lox::Lox::LogConfig "Lox::LogConfig" on the object of type Lox defined in macro \ref LOX_LOX. */
+#define Lox_LogConfig(...)                  { Lox_Prune( LOX_ACQUIRE LOX_LOX.LogConfig    ( __VA_ARGS__ );      LOX_RELEASE ) }
 
-/** Invokes \ref aworx::lox::Lox::Warning "Lox::Warning" on the object of type class Lox defined in macro \ref LOX_LOX. */
-#define Lox_Warning(...)                    { Lox_Prune( LOX_ACQUIRE.Warning      ( __VA_ARGS__ );   LOX_RELEASE ) }
+/** Invokes \ref aworx::lox::Lox::Verbose "Lox::Verbose" on the object of type Lox defined in macro \ref LOX_LOX. */
+#define Lox_Verbose(...)                    { Lox_Prune( LOX_ACQUIRE LOX_LOX.Verbose      ( __VA_ARGS__ );      LOX_RELEASE ) }
 
-/** Invokes \ref aworx::lox::Lox::Error "Lox::Error" on the object of type class Lox defined in macro \ref LOX_LOX. */
-#define Lox_Error(...)                      { Lox_Prune( LOX_ACQUIRE.Error        ( __VA_ARGS__ );   LOX_RELEASE ) }
+/** Invokes \ref aworx::lox::Lox::Info "Lox::Info" on the object of type Lox defined in macro \ref LOX_LOX. */
+#define Lox_Info(...)                       { Lox_Prune( LOX_ACQUIRE LOX_LOX.Info         ( __VA_ARGS__ );      LOX_RELEASE ) }
 
-/** Invokes \ref aworx::lox::Lox::Assert "Lox::Assert" on the object of type class Lox defined in macro \ref LOX_LOX. */
-#define Lox_Assert(...)                     { Lox_Prune( LOX_ACQUIRE.Assert       ( __VA_ARGS__);    LOX_RELEASE ) }
+/** Invokes \ref aworx::lox::Lox::Warning "Lox::Warning" on the object of type Lox defined in macro \ref LOX_LOX. */
+#define Lox_Warning(...)                    { Lox_Prune( LOX_ACQUIRE LOX_LOX.Warning      ( __VA_ARGS__ );      LOX_RELEASE ) }
 
-/** Invokes \ref aworx::lox::Lox::Line "Lox::Line" on the object of type class Lox defined in macro \ref LOX_LOX. */
-#define Lox_Line(...)                       { Lox_Prune( LOX_ACQUIRE.Line         ( __VA_ARGS__ );   LOX_RELEASE ) }
+/** Invokes \ref aworx::lox::Lox::Error "Lox::Error" on the object of type Lox defined in macro \ref LOX_LOX. */
+#define Lox_Error(...)                      { Lox_Prune( LOX_ACQUIRE LOX_LOX.Error        ( __VA_ARGS__ );      LOX_RELEASE ) }
+
+/** Invokes \ref aworx::lox::Lox::Assert "Lox::Assert" on the object of type Lox defined in macro \ref LOX_LOX. */
+#define Lox_Assert(...)                     { Lox_Prune( LOX_ACQUIRE LOX_LOX.Assert       ( __VA_ARGS__);       LOX_RELEASE ) }
+
+/** Invokes \ref aworx::lox::Lox::If "Lox::Assert" on the object of type Lox defined in macro \ref LOX_LOX. */
+#define Lox_If(...)                         { Lox_Prune( LOX_ACQUIRE LOX_LOX.If           ( __VA_ARGS__);       LOX_RELEASE ) }
+
+/** Invokes \ref aworx::lox::Lox::Once "Lox::Once" on the object of type Lox defined in macro \ref LOX_LOX. */
+#define Lox_Once(...)                       { Lox_Prune( LOX_ACQUIRE LOX_LOX.Once         ( __VA_ARGS__ );      LOX_RELEASE ) }
+
+/** Invokes \ref aworx::lox::Lox::Entry "Lox::Entry" on the object of type Lox defined in macro \ref LOX_LOX. */
+#define Lox_Entry(...)                      { Lox_Prune( LOX_ACQUIRE LOX_LOX.Entry         ( __VA_ARGS__ );      LOX_RELEASE ) }
 
 
-/** Invokes \ref aworx::lox::Lox::SetMarker "Lox::SetMarker" on the object of type class Lox defined in macro \ref LOX_LOX.
- *  \attention If \ref ALOX_REL_LOG_CI is not set, which is the default for release logging
- *             statements, code markers can not be used.<br>
- *             If markers should be supported in release logging, the software entity has to be compiled
+/** Invokes \ref aworx::lox::Lox::Store "Lox::Store" on the object of type Lox defined in macro \ref LOX_LOX.
+ *  \attention  If \ref ALOX_REL_LOG_CI is not set, which is the default for release logging
+ *             statements, Log Data can not be used in conjunction with language-related \e Scopes.<br>
+ *             If <em>Log Data</em> should be supported in release logging, the software entity has to be compiled
  *             with precompiler symbol \ref ALOX_REL_LOG_CI_ON. Note that one effect of setting
  *             this symbol is, that information on source code paths and file names, as well as
  *             method names make their way into the release executable. This may not be wanted.<br>
+ *             In general, methods \b Lox::Store and \b Lox::Retrieve should exclusively be used for
+ *             debug logging. See user manual for more information.
  */
-#define Lox_SetMarker( marker, scope )      { Lox_Prune( LOX_ACQUIRE.SetMarker    ( marker, scope );  LOX_RELEASE ) }
+#define Lox_Store(...)                      { Lox_Prune( LOX_ACQUIRE LOX_LOX.Store        ( __VA_ARGS__ );      LOX_RELEASE ) }
 
-/** Invokes \ref aworx::lox::Lox::GetMarker "Lox::GetMarker" on the object of type class Lox defined in macro \ref LOX_LOX.
- *  \attention If \ref ALOX_REL_LOG_CI is not set, which is the default for release logging
- *             statements, code markers can not be used.<br>
- *             If markers should be supported in release logging, the software entity has to be compiled
- *             with precompiler symbol \ref ALOX_REL_LOG_CI_ON. Note that one effect of setting
- *             this symbol is, that information on source code paths and file names, as well as
- *             method names make their way into the release executable. This may not be wanted.<br>
- */
-#if defined(ALOX_REL_LOG_CI)
-    #define Lox_GetMarker( marker, scope )  { Lox_Prune( LOX_LOX.AcquireAndSetCI( ALIB_SRC_INFO_PARAMS ); marker= LOX_LOX.GetMarker ( scope ); LOX_RELEASE ) }
-#else
-    #define Lox_GetMarker( marker, scope )  { Lox_Prune( marker= LOX_LOX.GetMarker ( scope ); ) }
-#endif
+/** Invokes \ref aworx::lox::Lox::Retrieve "Lox::Retrieve" on the object of type Lox defined in macro \ref LOX_LOX. */
+#define Lox_Retrieve(data,...)                Lox_Prune( LOX_ACQUIRE LogData* data= LOX_LOX.Retrieve( __VA_ARGS__ );  LOX_RELEASE )
 
-
+/** Invokes \ref aworx::lox::Lox::SetPrefix "Lox::SetPrefix" on the object of type Lox defined in macro \ref LOX_LOX. */
+#define Lox_SetPrefix(...)                  { Lox_Prune( LOX_ACQUIRE LOX_LOX.SetPrefix     ( __VA_ARGS__ );     LOX_RELEASE ) }
 
 /** @} */ // GrpMacrosReleaseLog
 

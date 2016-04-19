@@ -14,6 +14,7 @@ using cs.aworx.lib.threads;
 using cs.aworx.lib.config;
 using cs.aworx.lib.time;
 using cs.aworx.lib.strings;
+using cs.aworx.lib.enums;
 
 /**
  *  This is the outer C++ namespace for all classes published by A-Worx GmbH, Germany. As far as we
@@ -24,8 +25,6 @@ using cs.aworx.lib.strings;
  *  This is for having classes with the same names existing in C++, C# and Java not collide
  *  within the Doxygen documentation system.
  */
-
-
 namespace cs.aworx {}
 
 
@@ -68,22 +67,14 @@ public static class ALIB
          * Besides this version number, field #Revision indicates if this is a revised version
          * of a former release.
          */
-        public static readonly  int                    Version                              =1602;
+        public static readonly  int                    Version                                =1604;
 
         /**
          * The revision number of this release. Each ALib #Version is initially released as
          * revision \e 0. Pure bug-fix releases that do not change the interface of ALib
          * are holding the same #Version but an increased number in this field.
          */
-        public static readonly  int                    Revision                                =1;
-
-        /**
-         * This is a general mutex that is used by ALib internally but also may be used from outside
-         * for different purposes. It is non-recursive and supposed to be used seldom and 'shortly',
-         * e.g. for one-time initialization tasks. In case of doubt, a separated, problem-specific
-         * mutex should be created.
-         */
-        public static    ThreadLock                    Lock                     =new ThreadLock();
+        public static readonly  int                    Revision                                  =0;
 
         /**
          * This is the configuration singleton for ALib.
@@ -96,7 +87,7 @@ public static class ALIB
          *
          * For more information, see \ref cs::aworx::lib::config.
          */
-        public static       Configuration           Config                   =new Configuration();
+        public static       Configuration           Config                     =new Configuration();
 
         /**
          * The name of the configuration category of configuration variables used by the AWorx
@@ -107,20 +98,72 @@ public static class ALIB
          * bootstrap code, before the invocation of #Init.
          */
 
-        public  static      String                  ConfigCategoryName                    ="ALIB";
+        public  static      String                  ConfigCategoryName                      ="ALIB";
 
         /**
         * If true, within #TerminationCleanUp, it is waited for a key press in the console
         * window.<br>
-        * By default, this flag is enabled when debugging a console application under Visual Studio.<br>
+        * By default, this flag is enabled when debugging a console application under Visual
+        * Studio.<br>
         * This default behavior can be overruled by setting configuration variable
         * [ALIB_WAIT_FOR_KEY_PRESS_ON_TERMINATION](../group__GrpALoxConfigVars.html).<br>
         * In addition, this public flag may be modified at runtime.
         */
         public static       bool                    WaitForKeyPressOnTermination;
 
+        /**
+         * This is a general mutex that is used by ALib internally but also may be used from outside
+         * for different purposes. It is non-recursive and supposed to be used seldom and 'shortly',
+         * e.g. for one-time initialization tasks. In case of doubt, a separated, problem-specific
+         * mutex should be created.
+         */
+        public static       ThreadLock              Lock      =new ThreadLock(LockMode.SingleLocks);
 
-
+        /**
+         * This is a smart mutex that allows to lock an applications' <em>standard output
+         * streams</em>.
+         *
+         * In multi-threaded processes, to protect the output streams from concurrent access,
+         * this smart lock might be used by any \e entity that writes data to the streams.
+         * Before it can be used (acquired and released), it is needed to register with the object
+         * using
+         * \ref cs::aworx::lib::threads::SmartLock::AddAcquirer "SmartLock.AddAcquirer".
+         * This has to be done once per thread that aims to write to the stream. Then, prior to
+         * writing, this object has to be acquired and after writing released.
+         *
+         * Because often, the standard \e output stream and standard \e error stream are identical,
+         * ALib provides one single lock for both, to protect also against interwoven
+         * standard output and error information.
+         *
+         * If the 'entity' that is registering is not of type
+         * \ref cs::aworx::lib::threads::ThreadLock "ThreadLock" it is allowed to provide \c nullptr
+         * in the parameter of method \b AddAcquirer. In this case, the process of adding and
+         * removing \e acquirers is not performed in a thread safe way. Therefore it is advised
+         * to register so called anonymous (\c nullptr) \e acquirers only at bootstrap time, when
+         * no parallel threads were started, yet.
+         *
+         * If an application is deemed to always write to the standard output streams from within
+         * multiple threads, an alternative to registering each writing entity, is to
+         * invoke \b AddAcquirer just two times in a row with \c nullptr at the start of a process
+         * and then never do this again (and never de-register). This way, no thread needs
+         * to register/unregister but threads may still \b Acquire and \b Release the lock without
+         * being registered. In other words, once a smart lock is enabled, subsequent registrations
+         * are just used to count and identify the de-registration.
+         *
+         * \note
+         *   The advantage of the SmartLock is that if only one 'entity' registered, no
+         *   system \e mutexes will be used with \b Acquire and \b Release, hence there is
+         *   a performance gain. Such gain is not noticeable for the 'slow' terminal console output,
+         *   but it is for fast, buffered output streams.
+         * <p>
+         * \note
+         *   Logging library \b ALox, which is built on ALib, will register whenever a \e Logger
+         *   is used that writes to the standard output stream. Hence, applications that in
+         *   parallel use, e.g. \c Console.WriteLine, should register at bootstrap and \e acquire this
+         *   instance prior to writing. This way, log output and other application output is
+         *   not mixed, but separated in different Lines.
+         */
+        public static     SmartLock              StdOutputStreamsLock             = new SmartLock();
 
     // #############################################################################################
     // Environment definition/detection
@@ -157,40 +200,38 @@ public static class ALIB
          * This method must (may) be called prior to using the AWorx library, e.g. at the beginning of
          * the main() method of an application. It is OK, to call this method more than once, which
          * allows independent code blocks (e.g. libraries) to bootstrap ALIB without interfering.
+         * Only the first invocation is effective.
          *
          * In the C# version of the AWorx library, the invocation of this method is optional.
          * However, it is good practice to invoke this method in the main() method of a process
-         * and provide the command line arguments. If the configuration should <em>not</em> take
-         * command line  arguments and/or environment variables into account, then the parameters
-         * can be set accordingly.
+         * and provide the command line arguments. If no invocation is performed, no
+         * configuration plug-ins are set.
          *
-         * As different code entities might or might not invoke this method during initialization
-         * the behavior is defined as follows:
-         * - If the method is never invoked, environment variables are used for
-         *   configuration while command line options are not.
-         * - If the method is invoked multiple times, environment variables are used if the
-         *   last invocation that occurs demands to use them. Command line parameters are
-         *   used if one of the invocations provides the parameter array.
+         * If the configuration should <em>not</em> take
+         * command line arguments and/or environment variables into account, then the parameters
+         * can be set accordingly. If other, custom configuration data sources should be used
+         * already with this method (in the current implementation, the only configuration variable
+         * read with this method is \c WAIT_FOR_KEY_PRESS_ON_TERMINATION), then such plug-in(s)
+         * have to be added to public, static field #Config prior to invoking this method.
          *
-         *
-         * @param useEnv  If true, a
-         *                \ref aworx::lib::config::EnvironmentPlugIn "EnvironmentPlugIn"
-         *                is attached to the
-         *                \ref aworx::lib::ALIB::Config "ALIB.Config" singleton. Hence,
-         *                environment variables are read and potentially overwrite
-         *                configuration variables in other configuration plug-ins.<br>
-         *                Defaults to true.
-         * @param args    Parameter which in the standard case is taken from  C/C++ main()
-         *                method providing the command line arguments.
-         *                If arguments are provided, a
-         *                \ref aworx::lib::config::CommandLinePlugIn "CommandLinePlugIn"
-         *                is attached to the
-         *                \ref aworx::lib::ALIB::Config "ALIB.Config" singleton. Hence,
-         *                command line options are read and those potentially overwrite
-         *                configuration variables in other configuration plug-ins.<br>
-         *                Defaults to null.
+         * @param useEnv        If true, a
+         *                      \ref cs::aworx::lib::config::EnvironmentPlugIn "EnvironmentPlugIn"
+         *                      is attached to the
+         *                      \ref cs::aworx::lib::ALIB::Config "ALIB.Config" singleton. Hence,
+         *                      environment variables are read and potentially overwrite
+         *                      configuration variables in other configuration plug-ins.<br>
+         *                      Defaults to true.
+         * @param args          Parameter which in the standard case is taken from  C/C++ main()
+         *                      method providing the command line arguments.
+         *                      If arguments are provided, a
+         *                      \ref cs::aworx::lib::config::CommandLinePlugIn "CommandLinePlugIn"
+         *                      is attached to the
+         *                      \ref cs::aworx::lib::ALIB::Config "ALIB.Config" singleton. Hence,
+         *                      command line options are read and those potentially overwrite
+         *                      configuration variables in other configuration plug-ins.<br>
+         *                      Defaults to null.
          ******************************************************************************************/
-        public static void     Init(  bool useEnv= true, String[] args= null )
+        public static void     Init(  bool useEnv= true, String[] args= null)
         {
             if ( isInitialized )
                 return;
@@ -205,7 +246,7 @@ public static class ALIB
                 if ( useEnv && Config.EnvCP == null )
                 {
                     Config.EnvCP= new EnvironmentPlugIn();
-                    Config.InsertPlugin( Config.EnvCP,    20 );
+                    Config.InsertPlugin( Config.EnvCP,    Configuration.PrioEnvVars );
                 }
 
                 if ( !useEnv && Config.EnvCP != null )
@@ -219,7 +260,7 @@ public static class ALIB
                 if ( useArgs && Config.CmdLineCP == null )
                 {
                     Config.CmdLineCP= new CommandLinePlugIn ( args );
-                    Config.InsertPlugin( Config.CmdLineCP, 10 );
+                    Config.InsertPlugin( Config.CmdLineCP, Configuration.PrioCmdLine );
                 }
             }
 
@@ -227,7 +268,7 @@ public static class ALIB
             {
                 // read configuration
                 int found= 0;
-                bool configValue=   Config.IsTrue( ALIB.ConfigCategoryName, "WAIT_FOR_KEY_PRESS_ON_TERMINATION", ref found );
+                bool configValue=   Config.IsTrue( ALIB.ConfigCategoryName, "WAIT_FOR_KEY_PRESS_ON_TERMINATION", out found );
                 if ( found != 0 )
                     WaitForKeyPressOnTermination= configValue;
                 else
@@ -262,64 +303,75 @@ public static class ALIB
                                    + "      (To disable this, set 'ALIB.WaitForKeyPressOnTermination to 'false'.)" );
                 Console.ReadKey();
             }
-
         }
 
         /** ****************************************************************************************
-         * Invokes \ref aworx::lib::Report::DoReport "Report.DoReport".
+         * Invokes \ref cs::aworx::lib::Report::DoReport "Report.DoReport".
+         * This method is pruned from release code.
+         *
+         * @param type  The msg type.
+         * @param msg   The msg to be passed to the
+         *              \ref cs::aworx::lib::ReportWriter "ReportWriter".
+         * @param cln (Optional) Caller info, compiler generated. Please omit.
+         * @param csf (Optional) Caller info, compiler generated. Please omit.
+         * @param cmn (Optional) Caller info, compiler generated. Please omit.
+         ******************************************************************************************/
+        [Conditional( "DEBUG" )]
+        public static void REPORT( int type, String msg ,
+        [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
+        {
+            Report.GetDefault().DoReport( type, msg,  csf,cln,cmn );
+        }
+
+        /** ****************************************************************************************
+         * Invokes \ref cs::aworx::lib::Report::DoReport "Report.DoReport".
          * This method is pruned from release code.
          *
          * @param msg  The msg to be passed to the
-         *             \ref aworx::lib::ReportWriter "ReportWriter".
-         * @param csf  (Optional) Caller info, compiler generated. Please omit.
-         * @param cln  (Optional) Caller info, compiler generated. Please omit.
-         * @param cmn  (Optional) Caller info, compiler generated. Please omit.
+         *             \ref cs::aworx::lib::ReportWriter "ReportWriter".
+         * @param cln (Optional) Caller info, compiler generated. Please omit.
+         * @param csf (Optional) Caller info, compiler generated. Please omit.
+         * @param cmn (Optional) Caller info, compiler generated. Please omit.
          ******************************************************************************************/
         [Conditional( "DEBUG" )]
         public static void ERROR( String msg ,
-                                  [CallerFilePath]   String csf="",
-                                  [CallerLineNumber] int    cln= 0,
-                                  [CallerMemberName] String cmn=""           )
+        [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
         {
             Report.GetDefault().DoReport( 0, msg,  csf,cln,cmn );
         }
 
         /** ****************************************************************************************
-         * Invokes \ref aworx::lib::Report::DoReport "Report.DoReport".
+         * Invokes \ref cs::aworx::lib::Report::DoReport "Report.DoReport".
          * This method is pruned from release code.
          *
          * @param msg  The msg to be passed to the
-         *             \ref aworx::lib::ReportWriter "ReportWriter".
-         * @param csf  (Optional) Caller info, compiler generated. Please omit.
-         * @param cln  (Optional) Caller info, compiler generated. Please omit.
-         * @param cmn  (Optional) Caller info, compiler generated. Please omit.
+         *             \ref cs::aworx::lib::ReportWriter "ReportWriter".
+         * @param cln (Optional) Caller info, compiler generated. Please omit.
+         * @param csf (Optional) Caller info, compiler generated. Please omit.
+         * @param cmn (Optional) Caller info, compiler generated. Please omit.
          ******************************************************************************************/
         [Conditional( "DEBUG" )]
         public static void WARNING( String msg,
-                                    [CallerFilePath]   String csf="",
-                                    [CallerLineNumber] int    cln= 0,
-                                    [CallerMemberName] String cmn=""           )
+        [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
         {
             Report.GetDefault().DoReport( 1, msg,  csf,cln,cmn );
         }
 
         /** ****************************************************************************************
          * If given condition is false, method
-         * \ref aworx::lib::Report::DoReport "Report.DoReport" gets invoked with the standard message
+         * \ref cs::aworx::lib::Report::DoReport "Report.DoReport" gets invoked with the standard message
          * "Internal Error".
          * This method is pruned from release code.
          *
          * @param cond The condition that has to be met to prevent
-         *             \ref aworx::lib::ReportWriter "ReportWriter" call.
-         * @param csf  (Optional) Caller info, compiler generated. Please omit.
-         * @param cln  (Optional) Caller info, compiler generated. Please omit.
-         * @param cmn  (Optional) Caller info, compiler generated. Please omit.
+         *             \ref cs::aworx::lib::ReportWriter "ReportWriter" call.
+         * @param cln (Optional) Caller info, compiler generated. Please omit.
+         * @param csf (Optional) Caller info, compiler generated. Please omit.
+         * @param cmn (Optional) Caller info, compiler generated. Please omit.
          ******************************************************************************************/
         [Conditional( "DEBUG" )]
         public static void ASSERT( bool cond,
-                                   [CallerFilePath]   String csf="",
-                                   [CallerLineNumber] int    cln= 0,
-                                   [CallerMemberName] String cmn=""           )
+        [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
         {
             if ( !cond )
                 Report.GetDefault().DoReport( 0, "Internal Error",  csf,cln,cmn );
@@ -328,23 +380,20 @@ public static class ALIB
 
         /** ****************************************************************************************
          * If given condition is false, method
-         * \ref aworx::lib::Report::DoReport "Report.DoReport" gets invoked with the given message.
+         * \ref cs::aworx::lib::Report::DoReport "Report.DoReport" gets invoked with the given message.
          * This method is pruned from release code.
          *
          * @param cond The condition that has to be met to prevent
-         *             \ref aworx::lib::ReportWriter "ReportWriter" call.
+         *             \ref cs::aworx::lib::ReportWriter "ReportWriter" call.
          * @param msg  The msg to be passed to the
-         *             \ref aworx::lib::ReportWriter "ReportWriter".
-         * @param csf  (Optional) Caller info, compiler generated. Please omit.
-         * @param cln  (Optional) Caller info, compiler generated. Please omit.
-         * @param cmn  (Optional) Caller info, compiler generated. Please omit.
+         *             \ref cs::aworx::lib::ReportWriter "ReportWriter".
+         * @param cln (Optional) Caller info, compiler generated. Please omit.
+         * @param csf (Optional) Caller info, compiler generated. Please omit.
+         * @param cmn (Optional) Caller info, compiler generated. Please omit.
          ******************************************************************************************/
         [Conditional( "DEBUG" )]
         public static void ASSERT_ERROR( bool cond, String msg,
-                                         [CallerFilePath]   String csf="",
-                                         [CallerLineNumber] int    cln= 0,
-                                         [CallerMemberName] String cmn=""           )
-
+        [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
         {
             if ( !cond )
                 Report.GetDefault().DoReport( 0, msg,  csf,cln,cmn );
@@ -352,22 +401,20 @@ public static class ALIB
 
         /** ****************************************************************************************
          * If given condition is false, method
-         * \ref aworx::lib::Report::DoReport "Report.DoReport" gets invoked with the given message.
+         * \ref cs::aworx::lib::Report::DoReport "Report.DoReport" gets invoked with the given message.
          * This method is pruned from release code.
          *
          * @param cond The condition that has to be met to prevent
-         *             \ref aworx::lib::ReportWriter "ReportWriter" call.
+         *             \ref cs::aworx::lib::ReportWriter "ReportWriter" call.
          * @param msg  The msg to be passed to the
-         *             \ref aworx::lib::ReportWriter "ReportWriter".
-         * @param csf  (Optional) Caller info, compiler generated. Please omit.
-         * @param cln  (Optional) Caller info, compiler generated. Please omit.
-         * @param cmn  (Optional) Caller info, compiler generated. Please omit.
+         *             \ref cs::aworx::lib::ReportWriter "ReportWriter".
+         * @param cln (Optional) Caller info, compiler generated. Please omit.
+         * @param csf (Optional) Caller info, compiler generated. Please omit.
+         * @param cmn (Optional) Caller info, compiler generated. Please omit.
          ******************************************************************************************/
         [Conditional( "DEBUG" )]
         public static void ASSERT_WARNING( bool cond, String msg,
-                                           [CallerFilePath]   String csf="",
-                                           [CallerLineNumber] int    cln= 0,
-                                           [CallerMemberName] String cmn=""           )
+        [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
         {
             if ( !cond )
                 Report.GetDefault().DoReport( 1, msg,  csf,cln,cmn );
@@ -433,6 +480,98 @@ public static class ALIB
                 Thread.Sleep( TimeSpan.FromTicks( nanosecs / 100L ) );
         }
 
+
+        // #########################################################################################
+        // Methods to 'parse' ALib enum values from strings.
+        // #########################################################################################
+
+        /** Strings used to identify a boolean value from a string representation */
+         private static char[]  trueValuesBoolean= { 't', '1', 'y' };
+
+        /** ****************************************************************************************
+         * Interprets given \p src as a boolean value.
+         * \ref cs::aworx::lib::enums::Inclusion "enums.Inclusion".
+         * If the case insensitive comparison of the first non-whitespace characters of the string with
+         * with values "t", "1", "y", "on", "ok"
+         * matches, \c true is returned.
+         * Otherwise, including the case that \p src is 'nulled', \c false is returned.
+         *
+         * @param src The string to 'parse'.
+         *
+         * @returns The \b %Case value read.
+         ******************************************************************************************/
+        public static bool      ReadBoolean( Substring src )
+        {
+            int idx= src.IndexOfAny( CString.DefaultWhitespaces, Inclusion.Exclude );
+            if ( idx >= 0 )
+            {
+                char c=  Char.ToLower( src.CharAt(idx) );
+                foreach ( char v in trueValuesBoolean )
+                    if ( c == v )
+                        return true;
+
+                char c2= Char.ToLower( src.CharAt( idx + 1 ) );
+                if ( c == 'o' &&  ( c2 == 'n' || c2 == 'k' ) )
+                    return true;
+            }
+            return false;
+        }
+
+        /** Strings used to identify an enum \b Case from a string representation */
+         private static char[]  trueValuesCase= { 's', 't', '1', 'y' };
+
+        /** ****************************************************************************************
+         * Interprets given \p src as a value of enum type
+         * \ref aworx.lib::enums::Case "enums.Case".
+         * If the case insensitive comparison of the first non-whitespace characters of the string
+         * with values "s", "y", "t", "1"
+         * matches, \b %Case.Sensitive is returned.
+         * Otherwise, including the case that \p src is 'nulled', \b %Case.Ignore is returned.
+         *
+         * @param src The string to 'parse'.
+         *
+         * @returns The \b %Case value read.
+         ******************************************************************************************/
+        public static Case      ReadCase( Substring src )
+        {
+            int idx= src.IndexOfAny( CString.DefaultWhitespaces, Inclusion.Exclude );
+            if ( idx >= 0 )
+            {
+                int c= Char.ToLower( src.CharAt(idx) );
+                foreach ( char v in trueValuesCase )
+                    if ( c == v )
+                        return Case.Sensitive;
+            }
+            return Case.Ignore;
+        }
+
+        /** Strings used to identify an enum \b Inclusion from a string representation */
+        private static char[]   trueValuesInclusion= { 'i', 't', '1', 'y' };
+
+        /** ****************************************************************************************
+         * Interprets given \p src as a value of enum type
+         * \ref cs::aworx::lib::enums::Inclusion "enums.Inclusion".
+         * If the case insensitive comparison of the first non-whitespace characters of the string
+         * with values "i", "y", "t", "1"
+         * matches, \b %Inclusion.Include is returned.
+         * Otherwise, including the case that \p src is 'nulled', \b %Inclusion.Exclude is returned.
+         *
+         * @param src The string to 'parse'.
+         *
+         * @returns The \b %Inclusion value read.
+         ******************************************************************************************/
+        public static Inclusion ReadInclusion( Substring src )
+        {
+            int idx= src.IndexOfAny( CString.DefaultWhitespaces, Inclusion.Exclude );
+            if ( idx >= 0 )
+            {
+                int c= Char.ToLower( src.CharAt(idx) );
+                foreach ( char v in trueValuesInclusion )
+                    if ( c == v )
+                        return Inclusion.Include;
+            }
+            return Inclusion.Exclude;
+        }
 }// class ALIB
 
 

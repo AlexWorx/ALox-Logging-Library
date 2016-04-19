@@ -50,6 +50,8 @@ void tokenizerTest( const char* inputString, AString& res, char delim, char newD
 }
 
 UT_METHOD( Tokenize )
+{
+    UT_INIT();
 
     AString as;
     AString res;

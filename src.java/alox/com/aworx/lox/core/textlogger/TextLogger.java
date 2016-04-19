@@ -13,12 +13,16 @@ package com.aworx.lox.core.textlogger;
 
 import java.util.ArrayList;
 
+import com.aworx.lib.ALIB;
 import com.aworx.lib.enums.Phase;
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.CString;
+import com.aworx.lib.threads.ThreadLock;
+import com.aworx.lox.ALox;
 import com.aworx.lox.ESC;
-import com.aworx.lox.Log;
-import com.aworx.lox.core.CallerInfo;
+import com.aworx.lox.Verbosity;
+import com.aworx.lox.core.ScopeInfo;
+import com.aworx.lox.core.Domain;
 import com.aworx.lox.core.Logger;
 
 /** ************************************************************************************************
@@ -29,9 +33,9 @@ import com.aworx.lox.core.Logger;
  * and a second to generate the textual representation of the meta information of a log call.
  * These helpers can be extended and replaced to modify the behavior of TextLogger.
  *
- * The final log message is then passed to the abstract method #doTextLog(). Hence, custom Logger classes
- * that inherited from this class instead of directly from class #Logger, need to implement #doTextLog()
- * instead of implementing #doLog()!
+ * The final log message is then passed to the abstract method #logText(). Hence, custom Logger classes
+ * that inherited from this class instead of directly from class #Logger, need to implement #logText()
+ * instead of implementing #log.
  *
  * Class TextLogger supports multi line log outputs. Such multi line log outputs can be configured to
  * be logged in different ways. See #multiLineMsgMode for more information.
@@ -43,7 +47,17 @@ public abstract class TextLogger extends Logger
     // #############################################################################################
 
         /**  The internal log Buffer. */
-        protected AString                   logBuf                      = new AString( 256 );
+        protected AString                   logBuf                             = new AString( 256 );
+
+        /** A buffer for converting the user object(s).     */
+        protected AString                   msgBuf                             = new AString( 128 );
+
+        /** Denotes whether this logger writes to the <em>standard output streams</em>.  */
+        protected boolean                   usesStdStreams;
+
+        /** Used to avoid to repeatedly register with ALib <em>standard output stream</em> lockers
+            when attached to multiple instances of class \b Lox.   */
+        protected int                       stdStreamLockRegistrationCounter                     =0;
 
         /**
          * A list of pairs of strings. Within each log message, the first string of a pair is
@@ -57,10 +71,15 @@ public abstract class TextLogger extends Logger
     // #############################################################################################
 
         /**
-         * A helper object to convert log objects into textual representations. To extend TextLogger, this
-         * object can be replaced by custom implementations.
+         * A list of helper objects to get textual representation of logable objects.<br>
+         * To extend TextLogger to support logging custom objects, custom converters can
+         * be appended. Also, the default may be removed and deleted.<br>
+         * In the destructor of this class, all object converters (still attached) will be deleted.
+         *
+         * When converting an object, all object converts listed here are invoked in
+         * <b> reverse order</b> until a first reports a successful conversion.
          */
-        public    ObjectConverter           objectConverter             = new ObjectConverter();
+        public    ArrayList<ObjectConverter> objectConverters    = new ArrayList<ObjectConverter>();
 
         /**
          * A helper object to format log objects into textual representations. This class incorporates
@@ -94,39 +113,38 @@ public abstract class TextLogger extends Logger
          *
          * - 4: Just the multi line text is logged, starting at column zero (no meta information is logged)
          */
-        public    int                       multiLineMsgMode             = 2;
+        public    int                       multiLineMsgMode                                    = 2;
 
         /**
          * This is the string interpreted as line delimiter within log messages. If null, CR, LF or CRLF
          * are used.  Important: Set to empty string, to stop any multi line processing of TextLogger, even the replacements.
          */
-        public    String                    multiLineDelimiter           = null;
+        public    String                    multiLineDelimiter                               = null;
 
         /**
          * This is the readable (!) separator string, for logging out multi line messages into a
          * single line (#multiLineMsgMode==0).
          */
-        public    String                    multiLineDelimiterRepl       = "\\r";
+        public    String                    multiLineDelimiterRepl                          = "\\r";
 
 
         /** Headline for multi line messages (depending on #multiLineMsgMode)  . */
-        public    String                    fmtMultiLineMsgHeadline      = "ALox: Multi line message follows: ";
+        public    String                    fmtMultiLineMsgHeadline="ALox: Multi line message follows: ";
 
         /**
          *  Prefix for multi line messages. This is also used if multi line messages logging is switched off
          *  (MultiLineMsgMode == 0) but replacing of a set MultiLineDelimiter takes place.
          */
-        public    String                    fmtMultiLinePrefix           = ">> ";
+        public    String                    fmtMultiLinePrefix                              = ">> ";
 
         /**
          *  Suffix for multi line messages. This is also used if multi line messages logging is switched off
          *  (MultiLineMsgMode == 0) but replacing of a set MultiLineDelimiter takes place.
          */
-        public    String                    fmtMultiLineSuffix          = null;
+        public    String                    fmtMultiLineSuffix                               = null;
 
-        /** The character(s) used for indentation. */
-        public    String                    fmtIndentString              = "  ";
-
+        /** Used to return an error message in the case the object could not be converted */
+        public    String                    fmtUnknownObject           ="<unknown object type '%'>";
 
 
     // #############################################################################################
@@ -136,12 +154,102 @@ public abstract class TextLogger extends Logger
         /** ****************************************************************************************
          * Constructs a TextLogger.
          *
-         * @param name     The name of the logger. If empty, it defaults to the type name.
-         * @param typeName The type of the logger.
+         * @param name           The name of the \e Logger. If empty, it defaults to the type name.
+         * @param typeName       The type of the \e Logger.
+         * @param usesStdStreams Denotes whether this logger writes to the
+         *                       <em>standard output streams</em>.
          ******************************************************************************************/
-        protected TextLogger( String  name, String typeName )
+        protected TextLogger( String name, String typeName, boolean usesStdStreams )
         {
             super( name, typeName );
+            this.usesStdStreams= usesStdStreams;
+            objectConverters.add( new StringConverter() );
+
+            // evaluate config variable <name>_FORMAT / <typeName>_FORMAT
+            {
+                AString variableName= new AString( name ); variableName._( "_FORMAT" );
+                AString result= new AString();
+                if ( ALIB.config.get( ALox.configCategoryName, variableName, result ) == 0 )
+                {
+                    variableName._()._( typeName )._( "_FORMAT" );
+                    ALIB.config.get( ALox.configCategoryName, variableName, result );
+                }
+
+                if( result.isNotEmpty() )
+                    metaInfo.format._()._( result );
+            }
+
+        }
+
+    // #############################################################################################
+    // Reimplementing interface of grand-parent class SmartLock
+    // #############################################################################################
+
+        /** ****************************************************************************************
+         * Invokes grand-parent's method and in addition, if field #usesStdStreams is set,
+         * registers with
+         * \ref com::aworx::lib::ALIB::stdOutputStreamsLock "ALIB.stdOutputStreamsLock"
+         *
+         * @param newAcquirer The acquirer to add.
+         * @return The new number of \e acquirers set.
+         ******************************************************************************************/
+        @Override
+        public int   addAcquirer( ThreadLock newAcquirer )
+        {
+            // register with ALIB lockers (if not done yet)
+            if ( usesStdStreams )
+            {
+                ALIB.lock.acquire();
+                    int  stdStreamLockRegistrationCounter= this.stdStreamLockRegistrationCounter++;
+                ALIB.lock.release();
+
+                if ( stdStreamLockRegistrationCounter == 0 )
+                    ALIB.stdOutputStreamsLock.addAcquirer( this );
+            }
+
+            // get auto sizes from last session
+            {
+                AString autoSizes= new AString();
+                AString variableName= new AString(name); variableName._( "_AUTO_SIZES" );
+                if( ALIB.config.get( ALox.configCategoryName, variableName, autoSizes ) != 0 )
+                    this.autoSizes.importValues( autoSizes );
+            }
+
+            // call parents' implementation
+            return super.addAcquirer( newAcquirer );
+        }
+
+        /** ****************************************************************************************
+         * Invokes grand-parent's method and in addition, de-registers with
+         * \ref com::aworx::lib::ALIB::stdOutputStreamsLock "ALIB.stdOutputStreamsLock".
+         * @param acquirer The acquirer to remove.
+         * @return The new number of \e acquirers set.
+         ******************************************************************************************/
+        @Override
+        public int   removeAcquirer( ThreadLock acquirer )
+        {
+            // de-register with ALIB lockers (if not done yet)
+            if ( usesStdStreams )
+            {
+                ALIB.lock.acquire();
+                    int  stdStreamLockRegistrationCounter= --this.stdStreamLockRegistrationCounter;
+                ALIB.lock.release();
+
+                if ( stdStreamLockRegistrationCounter == 0 )
+                    ALIB.stdOutputStreamsLock.removeAcquirer( this );
+            }
+
+            // export auto sizes to configuration
+            {
+                AString autoSizes= new AString();
+                AString variableName= new AString(name); variableName._( "_AUTO_SIZES" );
+                this.autoSizes.exportValues( autoSizes );
+                ALIB.config.save( ALox.configCategoryName, variableName, autoSizes,
+                                  "Auto size values of last run" );
+            }
+
+            // call parents' implementation
+            return super.removeAcquirer( acquirer );
         }
 
     // #############################################################################################
@@ -149,12 +257,13 @@ public abstract class TextLogger extends Logger
     // #############################################################################################
 
         /** ****************************************************************************************
-         *  Adds the given pair of replacement strings. If searched string already exists, the
-         *  current replacement string gets replaced. If the replacement string equals 'null'
-         *  nothing is set and a previously set replacement definition becomes unset.
-          * @param searched    The string to be searched.
-          * @param replacement The replacement string. If this equals \c null a previously set
-          *                    replacement will be unset.
+         * Adds the given pair of replacement strings. If searched string already exists, the
+         * current replacement string gets replaced. If the replacement string equals 'null'
+         * nothing is set and a previously set replacement definition becomes unset.
+         *
+         * @param searched    The string to be searched.
+         * @param replacement The replacement string. If this equals \c null a previously set
+         *                    replacement will be unset.
          ******************************************************************************************/
         public void  setReplacement( String searched, String replacement )
         {
@@ -188,7 +297,7 @@ public abstract class TextLogger extends Logger
         }
 
         /** ****************************************************************************************
-         *  Removes all pairs of searched strings and their replacement value.
+         * Removes all pairs of searched strings and their replacement value.
          ******************************************************************************************/
         public void  clearReplacements()
         {
@@ -201,31 +310,28 @@ public abstract class TextLogger extends Logger
     // #############################################################################################
 
         /** ****************************************************************************************
-         *  This abstract method introduced by this class "replaces" the the abstract method #doLog
-         *  of parent class Logger which this class implements. In other words, descendants of this
-         *  class need to overwrite this method instead of #doLog. This class %TextLogger is
-         *  responsible for generating meta information, doing text replacements, handle multi-line
-         *  messages, etc. and provides the textual representation of the whole log contents
-         *  to descendants using this method.
+         * This abstract method introduced by this class "replaces" the the abstract method #log
+         * of parent class Logger which this class implements. In other words, descendants of this
+         * class need to overwrite this method instead of \b %Do. This class %TextLogger is
+         * responsible for generating meta information, doing text replacements, handle multi-line
+         * messages, etc. and provides the textual representation of the whole log contents
+         * to descendants using this method.
          *
-         * @param domain        The log domain name. If not starting with a slash ('/')
-         *                      this is appended to any default domain name that might have been
-         *                      specified for the source file.
-         * @param level         The log level. This has been checked to be active already on this
+         * @param domain        The <em>Log Domain</em>.
+         * @param verbosity     The verbosity. This has been checked to be active already on this
          *                      stage and is provided to be able to be logged out only.
          * @param msg           The log message.
-         * @param indent        the indentation in the output. Defaults to 0.
-         * @param caller        Once compiler generated and passed forward to here.
+         * @param scope         Information about the scope of the <em>Log Statement</em>..
          * @param lineNumber    The line number of a multi-line message, starting with 0.
          *                      For single line messages this is -1.
          ******************************************************************************************/
-        abstract protected void doTextLog( AString     domain,     Log.Level   level,
-                                           AString     msg,        int         indent,
-                                           CallerInfo  caller,     int         lineNumber);
+        abstract protected void logText( Domain      domain,     Verbosity verbosity,
+                                         AString     msg,
+                                         ScopeInfo   scope,      int       lineNumber  );
 
         /** ****************************************************************************************
          * Abstract method to be implemented by descendants. This message is called only when
-         * multi-line messages are logged. It is called exactly once before a series of doLog()
+         * multi-line messages are logged. It is called exactly once before a series of #logText
          * calls of a multi-line message and exactly once after such series.<br>
          * This is useful if the writing of text includes the acquisition of system resources
          * (e.g. opening a file).
@@ -239,46 +345,50 @@ public abstract class TextLogger extends Logger
     // #############################################################################################
 
         /** ****************************************************************************************
-         *  This is the implementation of the abstract method inherited from class Logger
-         *  that executes a log.<br>
-         *  This class implements this method and but exposes the new abstract method #doTextLog.
-         *  This mechanism allows this class to do various things that are standard to Loggers
-         *  of type TextLogger. For example, meta information of the log invocation is formatted and
-         *  string replacements are performed. This way, descendants of this class will consume
-         *  a ready to use log buffer with all meta information included and their primary
-         *  obligation is to copy the content into a corresponding output stream.
+         * This is the implementation of the abstract method inherited from class Logger
+         * that executes a log.<br>
+         * This class implements this method and but exposes the new abstract method #logText.
+         * This mechanism allows this class to do various things that are standard to Loggers
+         * of type TextLogger. For example, meta information of the log invocation is formatted and
+         * string replacements are performed. This way, descendants of this class will consume
+         * a ready to use log buffer with all meta information and contents of all objects to be
+         * included and their primary obligation is to copy the content into a corresponding
+         * output stream.
          *
-         *
-         * @param domain    The log domain name. If not starting with a slash ('/')
-         *                  this is appended to any default domain name that might have been specified
-         *                  for the source file.
-         * @param level     The log level. This has been checked to be active already on this stage and
-         *                  is provided to be able to be logged out only.
-         * @param msgObject The log message. If this is not a String (StringBuilder, AString, etc.)
-         *                  type, then is converted to a text using 'toString()'.
-         * @param indent    the indentation in the output. Defaults to 0.
-         * @param caller    Once compiler generated and passed forward to here.
+         * @param domain    The <em>Log Domain</em>.
+         * @param verbosity The verbosity.
+         * @param logables  The list of objects to log.
+         * @param scope     Information about the scope of the <em>Log Statement</em>.
          ******************************************************************************************/
-        @Override protected void doLog(    AString     domain,     Log.Level   level,
-                                           Object      msgObject,  int         indent,
-                                           CallerInfo  caller )
-
+        @Override public void log( Domain            domain,
+                                   Verbosity         verbosity,
+                                   ArrayList<Object> logables,
+                                   ScopeInfo         scope       )
         {
             // clear Buffer and reset utility members
             logBuf.clear();
             autoSizes.start();
 
-            //  << meta info << ESC::EOMETA << indent
-            int qtyESCTabsWritten=  metaInfo.write( this, logBuf, domain, level, caller );
-
+            //  << meta info << ESC.EOMETA
+            int qtyESCTabsWritten=  metaInfo.write( this, logBuf, domain, verbosity, scope );
             logBuf._( ESC.EOMETA );
-
-            for (int i= indent; i > 0 ; i--)
-                logBuf._( fmtIndentString );
 
 
             // convert msg object into an AString representation
-            AString msgBuf=  objectConverter.convertObject( msgObject );
+            msgBuf._();
+            for( Object logable : logables )
+            {
+                int i;
+                for( i= objectConverters.size() - 1; i >= 0 ; i-- )
+                    if ( objectConverters.get(i).convertObject( logable, msgBuf ) )
+                        break;
+                if ( i == -1 )
+                {
+                    AString msg= new AString( fmtUnknownObject );
+                    msg.searchAndReplace( "%", "" + logable.getClass().getName() );
+                    msgBuf._NC( msg );
+                }
+            }
 
             // replace strings in message
             for ( int i= 0 ; i < replacements.size() -1 ; i+= 2 )
@@ -288,7 +398,9 @@ public abstract class TextLogger extends Logger
             if ( msgBuf.isEmpty() )
             {
                 // log empty msg and quit
-                doTextLog( domain, level, logBuf, indent, caller, -1 );
+                if (usesStdStreams) ALIB.stdOutputStreamsLock.acquire();
+                    logText( domain, verbosity, logBuf, scope, -1 );
+                if (usesStdStreams) ALIB.stdOutputStreamsLock.release();
                 return;
             }
 
@@ -318,8 +430,8 @@ public abstract class TextLogger extends Logger
                     logBuf._( fmtMultiLineSuffix );
                 }
 
-                // now do the logging by calling our derived classes' doLog
-                doTextLog( domain, level, logBuf, indent, caller, -1 );
+                // now do the logging by calling our derived classes' logText
+                logText( domain, verbosity, logBuf, scope, -1 );
 
                 // stop here
                 return;
@@ -341,15 +453,15 @@ public abstract class TextLogger extends Logger
                 // no delimiter given: search "\r\n", then '\r', then '\n'
                 if ( CString.isNullOrEmpty(multiLineDelimiter) )
                 {
-                    delimLen=    2;
-                    actEnd=        msgBuf.indexOf ( "\r\n", actStart );
-                    if (actEnd < 0 )
+                    delimLen= 1;
+                    actEnd= msgBuf.indexOf( '\n', actStart );
+                    if( actEnd > actStart )
                     {
-                        delimLen= 1;
-                        actEnd=    msgBuf.indexOf ( "\r",   actStart );
-
-                        if (actEnd < 0 )
-                            actEnd=    msgBuf.indexOf ( "\n",   actStart );
+                        if( msgBuf.charAt(actEnd - 1) == '\r' )
+                        {
+                            actEnd--;
+                            delimLen= 2;
+                        }
                     }
                 }
                 else
@@ -367,8 +479,10 @@ public abstract class TextLogger extends Logger
                         // append msg to logBuf
                         logBuf._( msgBuf );
 
-                        // now do the logging by calling our derived classes' doLog
-                        doTextLog( domain, level, logBuf, indent, caller, -1 );
+                        // now do the logging by calling our derived classes' logText
+                        if (usesStdStreams) ALIB.stdOutputStreamsLock.acquire();
+                            logText( domain, verbosity, logBuf, scope, -1 );
+                        if (usesStdStreams) ALIB.stdOutputStreamsLock.release();
 
                         // stop here
                         return;
@@ -382,7 +496,10 @@ public abstract class TextLogger extends Logger
 
                 // signal start of multi line log
                 if ( lineNo == 0 )
+                {
+                    if (usesStdStreams) ALIB.stdOutputStreamsLock.acquire();
                     notifyMultiLineOp( Phase.BEGIN );
+                }
 
                 // in mode 3, 4, meta info is deleted
                 if ( lineNo == 0 && (multiLineMsgMode == 3 || multiLineMsgMode == 4) )
@@ -392,7 +509,7 @@ public abstract class TextLogger extends Logger
                     {
                         logBuf._( fmtMultiLineMsgHeadline );
                         autoSizes.actualIndex=  qtyTabStops;
-                        doTextLog( domain, level, logBuf, indent, caller, 0 );
+                        logText( domain, verbosity, logBuf, scope, 0 );
                     }
 
                     // remember zero as offset
@@ -419,7 +536,7 @@ public abstract class TextLogger extends Logger
                 logBuf._( fmtMultiLinePrefix );
                   logBuf._NC( msgBuf, actStart, actEnd - actStart  );
                 logBuf._( fmtMultiLineSuffix );
-                doTextLog( domain, level, logBuf, indent, multiLineMsgMode != 4 ? caller : null, lineNo );
+                logText( domain, verbosity, logBuf, scope, lineNo );
 
                 // next
                 actStart= actEnd + delimLen;
@@ -428,7 +545,10 @@ public abstract class TextLogger extends Logger
 
             // signal end of multi line log
             if ( lineNo > 0 )
+            {
                 notifyMultiLineOp( Phase.END );
+                if (usesStdStreams) ALIB.stdOutputStreamsLock.release();
+            }
         }
 
 } // class TextLogger

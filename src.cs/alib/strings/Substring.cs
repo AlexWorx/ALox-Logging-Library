@@ -589,7 +589,7 @@ public class Substring
          *   If this \b %Substring spans several float values which are separated by
          *   whitespaces, concatenated calls to this method will read one by one,
          *   without the need of further trimming or
-         *   \ref aworx::lib::strings::Tokenizer "'tokenizing'").
+         *   \ref cs::aworx::lib::strings::Tokenizer "'tokenizing'").
          *   Therefore, by providing the parameter \p whitespaces, it is possible to
          *   easily read several numbers which are separated by user defined characters.
          *
@@ -625,7 +625,7 @@ public class Substring
          *   If this \b %Substring spans several float values which are separated by
          *   whitespaces, concatenated calls to this method will read one by one,
          *   without the need of further trimming or
-         *   \ref aworx::lib::strings::Tokenizer "'tokenizing'").
+         *   \ref cs::aworx::lib::strings::Tokenizer "'tokenizing'").
          *   Therefore, by providing the parameter \p whitespaces, it is possible to
          *   easily read several numbers which are separated by user defined characters.
          *
@@ -684,7 +684,7 @@ public class Substring
          *  for more information about conversion methods of floating point values in ALib.
          *  If no object of this type is provided with optional parameter \p numberFormat,
          *  the static default object found in
-         *  \ref aworx::lib::strings::NumberFormat::Global "NumberFormat.Global"
+         *  \ref cs::aworx::lib::strings::NumberFormat::Global "NumberFormat.Global"
          *  is used.
          *
          * @param[out] result  A reference to the result value.
@@ -723,6 +723,30 @@ public class Substring
             End=   origEnd;
             return false;
         }
+
+        /** ****************************************************************************************
+         * Splits this substring into two parts. What remains in this object is the region
+         * from 0 to \p position.
+         * \p target receives the rest. If \p separatorWidth is given, this is subtracted from
+         * the front of \p target.
+         *
+         * @param position        The index where this object is split.
+         * @param target          The target substring to receive the right part of the string.
+         * @param separatorWidth  This does not change what remains in this object, but defines
+         *                        the number of characters that are cut from the front of the
+         *                        \p target. Defaults to 0.
+         *
+         * @return \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public Substring Split( int position, Substring target, int separatorWidth  =0 )
+        {
+            CString.AdjustRegion( Length(), ref position, ref separatorWidth );
+
+            target.Set( this, position + separatorWidth, Length() - position - separatorWidth );
+            End= Start  + position -1;
+            return this;
+        }
+
     /** ############################################################################################
      * @name Search
      ##@{ ########################################################################################*/
@@ -1451,11 +1475,29 @@ public class Substring
          ******************************************************************************************/
         public override String ToString()
         {
-            if ( IsNull() || IsEmpty() )
+            if ( IsEmpty() )
                 return "";
             return new String( Buf, Start, End-Start + 1 );
         }
 
+
+        /** ****************************************************************************************
+         * Creates a String containing a copy of a region of the this Substring.
+         *
+         * @param regionStart   The start index of the region in this to create the string from.
+         * @param regionLength  The maximum length of the region to create the string from.
+         *                      Defaults to int.MaxValue.
+         *
+         * @return A String that represents the specified sub region of this object.
+         ******************************************************************************************/
+        public String ToString( int regionStart, int regionLength= int.MaxValue)
+        {
+            CString.AdjustRegion( Length(), ref regionStart, ref regionLength );
+            if ( IsEmpty() || regionLength == 0)
+                return "";
+
+            return new String( Buf, Start + regionStart, regionLength );
+        }
 
 
 

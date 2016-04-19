@@ -25,6 +25,7 @@ import com.aworx.lib.strings.AString;
 import com.aworx.lib.threads.ThreadLock;
 import com.aworx.lox.Log;
 import com.aworx.lox.Lox;
+import com.aworx.lox.Verbosity;
 
 
 /** ************************************************************************************************
@@ -73,7 +74,7 @@ public abstract class LogTools
         /** Suffix after logging out a cyclic reference line number. */
         public static    String            fmtInstCycRefSuffix           = ">)";
 
-        /** Indent String for instance lines */
+        /** String for non-accessible members  */
         public static    String            FmtInstNoAccessToValue        = "<no access>" ;
 
         /** Prefix for type names */
@@ -140,14 +141,14 @@ public abstract class LogTools
     /** ********************************************************************************************
      *  Log an exception including inner exceptions recursively.
      *
-     * @param domain      The log domain name.
-     * @param level       The log level.
-     * @param e           The Exception to log.
-     * @param headline    (Optional) A headline string preceding the exception output.
-     * @param indent      (Optional) the indentation in the output (recursively increased). Defaults to 0.
-     * @param lox         (Optional) The Lox to log with. If null, the static member LOX of class Log is used.
+     * @param domain    The <em>Log Domain</em> which is combined with <em>Scope Domains</em>
+     *                  set for the \e Scope of invocation.
+     * @param verbosity The verbosity.
+     * @param e         The Exception to log.
+     * @param headline  (Optional) A headline string preceding the exception output.
+     * @param lox       (Optional) The Lox to log with. If null, the static member LOX of class Log is used.
      **********************************************************************************************/
-    public static void exception( String domain, Log.Level level, Exception e, String headline, int indent, Lox lox)
+    public static void exception( String domain, Verbosity verbosity, Exception e, String headline, Lox lox)
     {
         try { lock.acquire();
 
@@ -164,7 +165,7 @@ public abstract class LogTools
                 lox= Log.LOX;
 
             // log it using the static Log interface
-            lox.line ( true, domain, level, toolBuf, indent, null );
+            lox.entry( domain, verbosity, toolBuf );
 
         } finally { lock.release(); }
     }
@@ -172,105 +173,84 @@ public abstract class LogTools
     /** ********************************************************************************************
      *  Log an exception including inner exceptions recursively.
      *
-     * @param domain      The log domain name.
-     * @param level       The log level.
-     * @param e           The Exception to log.
-     * @param headline    (Optional) A headline string preceding the exception output.
-     * @param indent      (Optional) the indentation in the output (recursively increased). Defaults to 0.
+     * @param domain    The <em>Log Domain</em> which is combined with <em>Scope Domains</em>
+     *                  set for the \e Scope of invocation.
+     * @param verbosity The verbosity.
+     * @param e         The Exception to log.
+     * @param headline  (Optional) A headline string preceding the exception output.
      **********************************************************************************************/
-    public static void exception( String domain, Log.Level level, Exception e, String headline, int indent ){ exception( domain,  level, e, headline,     indent, null ); }
+    public static void exception( String domain, Verbosity verbosity, Exception e, String headline )
+    {
+        exception( domain, verbosity, e, headline, null );
+    }
+
     /** ********************************************************************************************
      *  Log an exception including inner exceptions recursively.
      *
-     * @param domain      The log domain name.
-     * @param level       The log level.
-     * @param e           The Exception to log.
-     * @param headline    (Optional) A headline string preceding the exception output.
+     * @param domain    The <em>Log Domain</em> which is combined with <em>Scope Domains</em>
+     *                  set for the \e Scope of invocation.
+     * @param verbosity The verbosity.
+     * @param e         The Exception to log.
      **********************************************************************************************/
-    public static void exception( String domain, Log.Level level, Exception e, String headline )            { exception( domain,  level, e, headline,     0,        null ); }
+    public static void exception( String domain, Verbosity verbosity, Exception e )
+    {
+        exception( domain, verbosity, e, null, null );
+    }
+
     /** ********************************************************************************************
      *  Log an exception including inner exceptions recursively.
      *
-     * @param domain      The log domain name.
-     * @param level       The log level.
-     * @param e           The Exception to log.
-     **********************************************************************************************/
-    public static void exception( String domain, Log.Level level, Exception e )                                { exception( domain,  level, e, null,         0,        null ); }
-    /** ********************************************************************************************
-     *  Log an exception including inner exceptions recursively.
-     *
-     * @param level       The log level.
-     * @param e           The Exception to log.
-     * @param headline    (Optional) A headline string preceding the exception output.
-     * @param indent      (Optional) the indentation in the output (recursively increased). Defaults to 0.
-     * @param lox         (Optional) The Lox to log with. If null, the static member LOX of class Log is used.
-     **********************************************************************************************/
-    public static void exception(                  Log.Level level, Exception e, String headline, int indent, Lox lox){ exception( null,    level, e, headline,     indent, lox ); }
-    /** ********************************************************************************************
-     *  Log an exception including inner exceptions recursively.
-     *
-     * @param level       The log level.
-     * @param e           The Exception to log.
-     * @param headline    (Optional) A headline string preceding the exception output.
-     * @param indent      (Optional) the indentation in the output (recursively increased). Defaults to 0.
-     **********************************************************************************************/
-    public static void exception(                  Log.Level level, Exception e, String headline, int indent )        { exception( null,    level, e, headline,     indent, null ); }
-    /** ********************************************************************************************
-     *  Log an exception including inner exceptions recursively.
-     *
-     * @param level       The log level.
+     * @param verbosity   The verbosity.
      * @param e           The Exception to log.
      * @param headline    (Optional) A headline string preceding the exception output.
      **********************************************************************************************/
-    public static void exception(                  Log.Level level, Exception e, String headline )                    { exception( null,    level, e, headline,     0,        null ); }
+    public static void exception(                  Verbosity verbosity, Exception e, String headline )
+    {
+         exception( null, verbosity, e, headline,  null );
+    }
+
     /** ********************************************************************************************
      *  Log an exception including inner exceptions recursively.
      *
-     * @param level       The log level.
+     * @param verbosity   The verbosity.
      * @param e           The Exception to log.
      **********************************************************************************************/
-    public static void exception(                  Log.Level level, Exception e )                                        { exception( null,      level, e, null,         0,        null ); }
-    /** ********************************************************************************************
-     *  Log an exception including inner exceptions recursively.
-     *
-     * @param e           The Exception to log.
-     * @param headline    (Optional) A headline string preceding the exception output.
-     * @param indent      (Optional) the indentation in the output (recursively increased). Defaults to 0.
-     * @param lox         (Optional) The Lox to log with. If null, the static member LOX of class Log is used.
-     **********************************************************************************************/
-    public static void exception(                                    Exception e, String headline, int indent, Lox lox){ exception( null,    Log.Level.ERROR, e, headline,     indent, lox ); }
-    /** ********************************************************************************************
-     *  Log an exception including inner exceptions recursively.
-     *
-     * @param e           The Exception to log.
-     * @param headline    (Optional) A headline string preceding the exception output.
-     * @param indent      (Optional) the indentation in the output (recursively increased). Defaults to 0.
-     **********************************************************************************************/
-    public static void exception(                                    Exception e, String headline, int indent )        { exception( null,    Log.Level.ERROR, e, headline,     indent, null ); }
+    public static void exception(                  Verbosity verbosity, Exception e )
+    {
+        exception( null,   verbosity, e, null, null );
+    }
+
     /** ********************************************************************************************
      *  Log an exception including inner exceptions recursively.
      *
      * @param e           The Exception to log.
      * @param headline    (Optional) A headline string preceding the exception output.
      **********************************************************************************************/
-    public static void exception(                                    Exception e, String headline )                    { exception( null,    Log.Level.ERROR, e, headline,     0,        null ); }
+    public static void exception(                                    Exception e, String headline )
+    {
+        exception( null,    Verbosity.ERROR, e, headline, null );
+    }
+
     /** ********************************************************************************************
      *  Log an exception including inner exceptions recursively.
      *
      * @param e           The Exception to log.
      **********************************************************************************************/
-    public static void exception(                                    Exception e )                                        { exception( null,      Log.Level.ERROR, e, null,         0,        null ); }
+    public static void exception(Exception e)
+    {
+        exception( null, Verbosity.ERROR, e, null, null );
+    }
 
     /** ********************************************************************************************
      *  Log the current stack trace.
      *
-     * @param domain      The log domain name.
-     * @param level       The log level.
-     * @param headline    (Optional) A headline string preceding the stacktrace output.
-     * @param indent      (Optional) the indentation of the output. Defaults to 0.
-     * @param lox         (Optional) The Lox to log with. If null, the static member LOX of class Log is used.
+     * @param domain    The <em>Log Domain</em> which is combined with <em>Scope Domains</em>
+     *                  set for the \e Scope of invocation.
+     * @param verbosity The verbosity.
+     * @param headline  (Optional) A headline string preceding the stack trace output.
+     * @param lox       (Optional) The Lox to log with. If null, the static member LOX of class Log is used.
      **********************************************************************************************/
-    public static void stackTrace( String domain, Log.Level level, String headline, int indent, Lox lox)
+    public static void stackTrace( String domain, Verbosity verbosity, String headline, Lox lox)
     {
         try { lock.acquire();
 
@@ -310,7 +290,7 @@ public abstract class LogTools
                 lox= Log.LOX;
 
             // log it using the static Log interface
-            lox.line ( true, domain, level, toolBuf, indent, null );
+            lox.entry( domain, verbosity, toolBuf );
 
         } finally { lock.release(); }
     }
@@ -318,63 +298,61 @@ public abstract class LogTools
     /** ********************************************************************************************
      *  Log the current stack trace.
      *
-     * @param domain      The log domain name.
-     * @param level       The log level.
-     * @param headline    (Optional) A headline string preceding the stacktrace output.
-     * @param indent      (Optional) the indentation of the output. Defaults to 0.
+     * @param domain    The <em>Log Domain</em> which is combined with <em>Scope Domains</em>
+     *                  set for the \e Scope of invocation.
+     * @param verbosity The verbosity.
+     * @param headline  (Optional) A headline string preceding the stacktrace output.
      **********************************************************************************************/
-    public static void stackTrace( String domain, Log.Level level, String headline, int indent ){ stackTrace( domain,    level, headline,     indent, null ); }
-    /** ********************************************************************************************
-     *  Log the current stack trace.
-     *
-     * @param domain      The log domain name.
-     * @param level       The log level.
-     * @param headline    (Optional) A headline string preceding the stacktrace output.
-     **********************************************************************************************/
-    public static void stackTrace( String domain, Log.Level level, String headline )            { stackTrace( domain,    level, headline,     0,        null ); }
-    /** ********************************************************************************************
-     *  Log the current stack trace.
-     *
-     * @param domain      The log domain name.
-     * @param level       The log level.
-     **********************************************************************************************/
-    public static void stackTrace( String domain, Log.Level level )                                { stackTrace( domain,    level, null,         0,        null ); }
-    /** ********************************************************************************************
-     *  Log the current stack trace.
-     *
-     * @param level       The log level.
-     * @param headline    (Optional) A headline string preceding the stacktrace output.
-     * @param indent      (Optional) the indentation of the output. Defaults to 0.
-     **********************************************************************************************/
-    public static void stackTrace(                   Log.Level level, String headline, int indent ){ stackTrace( null,        level, headline,     indent, null ); }
-    /** ********************************************************************************************
-     *  Log the current stack trace.
-     *
-     * @param level       The log level.
-     * @param headline    (Optional) A headline string preceding the stacktrace output.
-     **********************************************************************************************/
-    public static void stackTrace(                   Log.Level level, String headline )            { stackTrace( null,        level, headline,     0,        null ); }
-    /** ********************************************************************************************
-     *  Log the current stack trace.
-     *
-     * @param level       The log level.
-     **********************************************************************************************/
-    public static void stackTrace(                   Log.Level level )                                { stackTrace( null,        level, null,         0,        null ); }
-
+    public static void stackTrace(String domain, Verbosity verbosity, String headline)
+    {
+        stackTrace( domain, verbosity, headline, null );
+    }
 
     /** ********************************************************************************************
-     *     Recursively logs objects using reflection.
-     * @param domain       The log domain name.
-     * @param level        The log level.
+     *  Log the current stack trace.
+     *
+     * @param domain    The <em>Log Domain</em> which is combined with <em>Scope Domains</em>
+     *                  set for the \e Scope of invocation.
+     * @param verbosity The verbosity.
+     **********************************************************************************************/
+    public static void stackTrace(String domain, Verbosity verbosity)
+    {
+        stackTrace( domain, verbosity, null, null );
+    }
+
+    /** ********************************************************************************************
+     *  Log the current stack trace.
+     *
+     * @param verbosity   The verbosity.
+     * @param headline    (Optional) A headline string preceding the stacktrace output.
+     **********************************************************************************************/
+    public static void stackTrace(Verbosity verbosity, String headline)
+    {
+        stackTrace( null, verbosity, headline, null );
+    }
+
+    /** ********************************************************************************************
+     *  Log the current stack trace.
+     *
+     * @param verbosity   The verbosity.
+     **********************************************************************************************/
+    public static void stackTrace(Verbosity verbosity)
+    {
+        stackTrace( null, verbosity, null, null );
+    }
+
+    /** ********************************************************************************************
+     * Recursively logs objects using reflection.
+     * @param domain       The <em>Log Domain</em> which is combined with <em>Scope Domains</em>
+     *                     set for the \e Scope of invocation.
+     * @param verbosity    The verbosity.
      * @param o            The object to be logged.
      * @param maxRecursion The maximum depth of recursion for logging nested object.
      * @param headline     (Optional) A headline string to precede the exception with.
-     * @param indent       (Optional) The indentation in the output (recursively increased).
-     *                     Defaults to 0.
      * @param lox          (Optional) The lox to log with. If null, the static member LOX of
      *                     the static class Log is used.
      **********************************************************************************************/
-    public static void instance( String domain, Log.Level level, Object o, int maxRecursion, String headline, int indent, Lox lox)
+    public static void instance( String domain, Verbosity verbosity, Object o, int maxRecursion, String headline, Lox lox)
 
     {
         try { lock.acquire();
@@ -387,76 +365,61 @@ public abstract class LogTools
                 instMain( o, maxRecursion, headline );
 
                 // log it using the static Log interface
-                lox.line ( true, domain, level, toolBuf, indent, null );
+                lox.entry( domain, verbosity, toolBuf );
 
 
         } finally { lock.release(); }
     }
 
     /** ********************************************************************************************
-     *     Recursively logs objects using reflection.
-     * @param domain          The log domain name.
-     * @param level           The log level.
-     * @param o               The object to be logged.
-     * @param maxRecursion    The maximum depth of recursion for logging nested object.
-     * @param headline        (Optional) A headline string to precede the exception with.
-     * @param indent          (Optional) The indentation in the output (recursively increased). Defaults to 0.
-     **********************************************************************************************/
-    public static void instance( String domain, Log.Level level, Object o, int maxRecursion, String headline, int indent )    { instance( domain,    level, o, maxRecursion, headline,     indent, null ); }
-    /** ********************************************************************************************
-     *     Recursively logs objects using reflection.
-     * @param domain          The log domain name.
-     * @param level           The log level.
+     * Recursively logs objects using reflection.
+     * @param domain          The <em>Log Domain</em> which is combined with <em>Scope Domains</em>
+     *                        set for the \e Scope of invocation.
+     * @param verbosity       The verbosity.
      * @param o               The object to be logged.
      * @param maxRecursion    The maximum depth of recursion for logging nested object.
      * @param headline        (Optional) A headline string to precede the exception with.
      **********************************************************************************************/
-    public static void instance( String domain, Log.Level level, Object o, int maxRecursion, String headline )                { instance( domain,    level, o, maxRecursion, headline,     0,        null ); }
-    /** ********************************************************************************************
-     *     Recursively logs objects using reflection.
-     * @param domain          The log domain name.
-     * @param level           The log level.
-     * @param o               The object to be logged.
-     * @param maxRecursion    The maximum depth of recursion for logging nested object.
-     **********************************************************************************************/
-    public static void instance( String domain, Log.Level level, Object o, int maxRecursion )                                { instance( domain,    level, o, maxRecursion, null,         0,        null ); }
+    public static void instance(String domain, Verbosity verbosity, Object o, int maxRecursion, String headline)
+    {
+        instance( domain, verbosity, o, maxRecursion, headline, null );
+    }
 
     /** ********************************************************************************************
-     *     Recursively logs objects using reflection.
-     * @param level           The log level.
-     * @param o               The object to be logged.
-     * @param maxRecursion    The maximum depth of recursion for logging nested object.
-     * @param headline        (Optional) A headline string to precede the exception with.
-     * @param indent          (Optional) The indentation in the output (recursively increased). Defaults to 0.
-     * @param lox             (Optional) The lox to log with. If null, the static member LOX of
-     *                        the static class Log is used.
-     **********************************************************************************************/
-    public static void instance(                 Log.Level level, Object o, int maxRecursion, String headline, int indent, Lox lox )    { instance( null,    level, o, maxRecursion, headline,     indent, lox ); }
-    /** ********************************************************************************************
-     *     Recursively logs objects using reflection.
-     * @param level           The log level.
-     * @param o               The object to be logged.
-     * @param maxRecursion    The maximum depth of recursion for logging nested object.
-     * @param headline        (Optional) A headline string to precede the exception with.
-     * @param indent          (Optional) The indentation in the output (recursively increased). Defaults to 0.
-     **********************************************************************************************/
-    public static void instance(                 Log.Level level, Object o, int maxRecursion, String headline, int indent )            { instance( null,    level, o, maxRecursion, headline,     indent, null ); }
-    /** ********************************************************************************************
-     *     Recursively logs objects using reflection.
-     * @param level           The log level.
-     * @param o               The object to be logged.
-     * @param maxRecursion    The maximum depth of recursion for logging nested object.
-     * @param headline        (Optional) A headline string to precede the exception with.
-     **********************************************************************************************/
-    public static void instance(                 Log.Level level, Object o, int maxRecursion, String headline )                        { instance( null,    level, o, maxRecursion, headline,     0,        null ); }
-    /** ********************************************************************************************
-     *     Recursively logs objects using reflection.
-     * @param level           The log level.
+     * Recursively logs objects using reflection.
+     * @param domain          The <em>Log Domain</em> which is combined with <em>Scope Domains</em>
+     *                        set for the \e Scope of invocation.
+     * @param verbosity       The verbosity.
      * @param o               The object to be logged.
      * @param maxRecursion    The maximum depth of recursion for logging nested object.
      **********************************************************************************************/
-    public static void instance(                 Log.Level level, Object o, int maxRecursion )                                        { instance( null,    level, o, maxRecursion, null,         0,        null ); }
+    public static void instance(String domain, Verbosity verbosity, Object o, int maxRecursion)
+    {
+        instance( domain, verbosity, o, maxRecursion, null, null );
+    }
 
+    /** ********************************************************************************************
+     * Recursively logs objects using reflection.
+     * @param verbosity       The verbosity.
+     * @param o               The object to be logged.
+     * @param maxRecursion    The maximum depth of recursion for logging nested object.
+     * @param headline        (Optional) A headline string to precede the exception with.
+     **********************************************************************************************/
+    public static void instance(Verbosity verbosity, Object o, int maxRecursion, String headline)
+    {
+        instance( null, verbosity, o, maxRecursion, headline, null );
+    }
+
+    /** ********************************************************************************************
+     * Recursively logs objects using reflection.
+     * @param verbosity       The verbosity.
+     * @param o               The object to be logged.
+     * @param maxRecursion    The maximum depth of recursion for logging nested object.
+     **********************************************************************************************/
+    public static void instance(Verbosity verbosity, Object o, int maxRecursion)
+    {
+        instance( null, verbosity, o, maxRecursion, null, null );
+    }
 
     // #############################################################################################
     // internals
@@ -568,12 +531,12 @@ public abstract class LogTools
     protected static void instMain( Object o, int maxRecursion, String headLine)
     {
         // prepare fields
-        if ( toolBuf == null )        toolBuf= new AString( 1024 );
-        else                        toolBuf.clear();
+        if ( toolBuf == null )   toolBuf= new AString( 1024 );
+        else                     toolBuf.clear();
 
-        instLineNumber=            0;
+        instLineNumber=          0;
         instLineBeginIdx=        0;
-        instObject2LineNumber=  new HashMap<Object, Integer>();
+        instObject2LineNumber=   new HashMap<Object, Integer>();
 
         // log headline if answer exception
         if ( headLine != null )
@@ -588,7 +551,7 @@ public abstract class LogTools
 
 
     /** ********************************************************************************************
-     *     Recursively log an instance using reflection.
+     * Recursively log an instance using reflection.
      * @param inst         The element.
      * @param maxRecursion The maximum depth of recursion for logging nested object.
      * @param indent       The indentation in the output (recursively increased).

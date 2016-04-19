@@ -11,7 +11,7 @@ package com.aworx.lib.enums;
  **************************************************************************************************/
 public enum Inclusion
 {
-    Include,  ///<  Chooses inclusion.
-    Exclude,  ///<  Chooses exclusion.
+    INCLUDE,  ///<  Chooses inclusion.
+    EXCLUDE,  ///<  Chooses exclusion.
 }
 

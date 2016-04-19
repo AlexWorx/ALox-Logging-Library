@@ -32,7 +32,7 @@ namespace                   system {
 ProcessInfo    ProcessInfo::current;
 
 #if defined(__GLIBC__) && defined(__unix__)
-    bool readProcFile( const AString& fileName, AString& result  )
+    bool readProcFile( const TString& fileName, AString& result  )
     {
         result.Clear();
         ifstream file( fileName.ToCString() );
@@ -50,6 +50,7 @@ ProcessInfo    ProcessInfo::current;
     bool ProcessInfo::getStatField( int fieldNo, AString& result )
     {
         result.Clear();
+
         // search startidx
         int startIdx= 0;
         for ( int i= 0; i < fieldNo; i++ )

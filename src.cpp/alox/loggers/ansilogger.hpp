@@ -34,7 +34,7 @@ namespace           loggers{
 
 /** ************************************************************************************************
  * A logger that logs all messages to the <em>std::basic_ostream</em> instance provided in the
- * constructor. The name of the logger defaults to "ANSI_LOGGER".
+ * constructor. The name of the \e Logger defaults to "ANSI_LOGGER".
  *
  * ALox text logger escape sequences (see class \ref aworx::lox::ESC "ESC")
  * are translated to ANSI escape sequences.
@@ -47,7 +47,7 @@ namespace           loggers{
  * the readability of log output a lot. However, the right setting for this is dependent on
  * the color scheme of final output device (window). To manipulate the right setting, see field
  * #IsBackgroundLight and also configuration variable
- * [ALOX_CL_LIGHT_BACKGROUND](../group__GrpALoxConfigVars.html).
+ * [ALOX_CONSOLE_HAS_LIGHT_BACKGROUND](../group__GrpALoxConfigVars.html).
  *
  * In the constructor, a default format string and some other definitions in member
  * \ref MetaInfo get set to include ESC Escape Sequences.
@@ -203,27 +203,33 @@ class AnsiLogger : public aworx::lox::core::textlogger::TextLogger
          *
          * Defaults to \c false.
          *
-         * The configuration variable [ALOX_CL_LIGHT_BACKGROUND](../group__GrpALoxConfigVars.html)
+         * The configuration variable [ALOX_CONSOLE_HAS_LIGHT_BACKGROUND](../group__GrpALoxConfigVars.html)
          * is evaluated within the constructor of this class, to allow to modifying this flag at
          * runtime.
          */
         bool        IsBackgroundLight;
 
 
-        /** Characters  placed at the beginning of a log line with level 'Error'.*/
-        lib::strings::String MsgPrefixError;
+        /** Characters  placed at the beginning of a log line with \e Verbosity 'Error'.*/
+        String MsgPrefixError;
 
-        /** Characters  placed at the beginning of a log line with level 'Warning'.*/
-        lib::strings::String MsgPrefixWarning;
+        /** Characters  placed at the beginning of a log line with \e Verbosity 'Warning'.*/
+        String MsgPrefixWarning;
 
-        /** Characters  placed at the beginning of a log line with level 'Info'.*/
-        lib::strings::String MsgPrefixInfo                   = "";
+        /** Characters  placed at the beginning of a log line with \e Verbosity 'Info'.*/
+        String MsgPrefixInfo                   = "";
 
-        /** Characters  placed at the beginning of a log line with level 'Verbose'.*/
-        lib::strings::String MsgPrefixVerbose;
+        /** Characters  placed at the beginning of a log line with \e Verbosity 'Verbose'.*/
+        String MsgPrefixVerbose;
 
         /** Characters  placed at the end of each line (e.g. used to reset colors and styles).*/
-        lib::strings::String MsgSuffix                      = ANSI_RESET;
+        String MsgSuffix                      = ANSI_RESET;
+
+        /** Colorful replacement for corresponding meta info string.*/
+        String64  NoSourceFileInfo;
+
+        /** Colorful replacement for corresponding meta info string.*/
+        String64  NoMethodInfo;
 
 
     // #############################################################################################
@@ -232,11 +238,16 @@ class AnsiLogger : public aworx::lox::core::textlogger::TextLogger
     public:
         /** ****************************************************************************************
          * Creates an AnsiLogger.
-         * @param oStream  The output stream to write into.
-         * @param name     (Optional) The name of the logger, defaults to "ANSI".
+         * @param oStream        The output stream to write into.
+         * @param usesStdStreams Denotes wether this logger writes to the
+         *                       <em>standard output streams</em>.
+         * @param name           The name of the \e Logger, defaults to what is provided with
+         *                       parameter \p typeName.
+         * @param typeName       The type of the \e Logger, defaults to "ANSI".
          ******************************************************************************************/
         ALOX_API
-        explicit        AnsiLogger( std::basic_ostream<char>* oStream, const String& name= nullptr );
+        explicit        AnsiLogger( std::basic_ostream<char>* oStream, bool  usesStdStreams,
+                                    const String& name= nullptr, const String& typeName= "ANSI" );
 
         /** ****************************************************************************************
          * Destructs an AnsiLogger
@@ -258,21 +269,19 @@ class AnsiLogger : public aworx::lox::core::textlogger::TextLogger
          *  Logs messages to the basic output stream provided in the constructor. Replaces
          *  ALox ESC escape sequences with ANSI escape sequences.
          *
-         * @param domain      The log domain name.
-         * @param level       The log level. This has been checked to be active already on this
+         * @param domain      The <em>Log Domain</em>.
+         * @param verbosity   The verbosity. This has been checked to be active already on this
          *                    stage and is provided to be able to be logged out only.
          * @param msg         The log message.
-         * @param indent      the indentation in the output. Defaults to 0.
-         * @param caller      Once compiler generated and passed forward to here.
+         * @param scope       Information about the scope of the <em>Log Statement</em>..
          * @param lineNumber  The line number of a multi-line message, starting with 0. For
          *                    single line messages this is -1.
          ******************************************************************************************/
         ALOX_API
-        virtual void doTextLog(  const TString&    domain,
-                                 Log::Level        level,
+        virtual void logText(  core::Domain&       domain,
+                                 Verbosity         verbosity,
                                  AString&          msg,
-                                 int               indent,
-                                 core::CallerInfo* caller,
+                                 core::ScopeInfo&  scope,
                                  int               lineNumber);
 
         /** ****************************************************************************************
@@ -287,29 +296,14 @@ class AnsiLogger : public aworx::lox::core::textlogger::TextLogger
 
 /** ************************************************************************************************
  *  A #AnsiLogger that logs all messages to the standard output <em>cout</em>.
- *  The name of the logger defaults to "ANSI_CONSOLE".
+ *  The name of the \e Logger defaults to "ANSI_CONSOLE".
  *
  *  Provides 'cout' to the constructor of its parent class %AnsiLogger.
  *  See class #AnsiLogger for more information on ANSI escape sequences and their use.
  *
- *  While by default, the
- *  \ref aworx::lox::Log::DomainLevel "DomainLevel"
- *  of root domains of loggers are set to 'Off', the constructor of this class sets this value
- *  to 'All'. This way, all log invocations on 'unknown' domains (those that have not been
- *  registered and explicitly set) are fully enabled by default.
- *  This is done because this class typically represents a logger that used for debug logging,
- *  e.g. logging into the developer's IDE. Such loggers should detect all messages of any log domain
- *  that the application and its library uses - unless those are explicitly set differently in
- *  the bootstrap code of the application.
- *
- *  \note For the ease of use, class \ref aworx::lox::Log "Log" implements a method
- *  \ref aworx::lox::Log::AddDebugLogger "Log::AddDebugLogger"
- *  that tries to create the right Logger type for standard debug logging (potentially this one),
- *  depending on the platform, IDE and optional configuration settings.
- *
- *  \note This class can not enable the output console (which receives ALox
- *  log data) to support ANSI Escape Codes. The opposite is right: this class should be used only if
- *  the console supports ANSI Escape Codes.
+ *  \note To avoid misunderstandings: This class can not enable the output console (which receives
+ *        ALox log data) to support ANSI Escape Codes. The opposite is right: this class should be
+ *        used only if the console supports ANSI Escape Codes.
  **************************************************************************************************/
 class AnsiConsoleLogger : public AnsiLogger
 {
@@ -319,7 +313,7 @@ class AnsiConsoleLogger : public AnsiLogger
     public:
         /** ****************************************************************************************
          *  Creates an AnsiConsoleLogger.
-         * @param name     (Optional) The name of the logger, defaults to "CONSOLE".
+         * @param name     (Optional) The name of the \e Logger, defaults to "CONSOLE".
          ******************************************************************************************/
         ALOX_API
         explicit            AnsiConsoleLogger( const String& name= nullptr  );

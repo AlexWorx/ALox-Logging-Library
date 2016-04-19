@@ -40,40 +40,13 @@ namespace                           textlogger{
 
 
 /** ************************************************************************************************
- *  This class is a sort of plug-in for the TextLogger class which converts a given Object
- *  into its textual representation. An internal AString singleton is used as a string buffer
- *  and returned.
- *
- *  This class might be extended to be able to handle custom objects within text loggers.
- *  This default implementation, only handles objects of type
- *  \ref aworx::lib::strings::TString "aworx::TString".
- *  For nullptr and nulled \b %TStrings a configurable string message is returned.
- *
- *  While other ALox implementations, like ALox for C# or ALox for Java use the 'runtime type
- *  information' feature of their underlying programming language to identify any object type,
- *  this is not possible in standard C++. Therefore, all logging objects in ALox for C++ have
- *  to be accompanied with a type information. This is implemented as a simple integer and
- *  the value \b '0' is reserved for \b TStrings.
- *
- *  All other types are extension types, which are not part of core ALox and user specific types.
- *
- *  It is recommended to use positive values for user specific types. Negative IDs
- *  are reserved to 'official' ALox extensions.
+ * This abstract class represents a plug-in for the TextLogger class which converts a given Object
+ * into its textual representation.
+ * \see StringConverter for further information.
  **************************************************************************************************/
 class ObjectConverter
 {
     public:
-        /// Used to convert null values to string representation.
-        String64        FmtNullObject     ="ALox message object is nullptr, type=%.";
-
-        /// Used to return an error message in the case the object could not be converted (type unknown)
-        String64        FmtUnknownObject  ="ALox message object unknown, type=%.";
-
-    public:
-        /** ****************************************************************************************
-         * Constructs an object of this class.
-         ******************************************************************************************/
-         ALOX_API       ObjectConverter();
         /** ****************************************************************************************
          * Destructs an object of this class.
          ******************************************************************************************/
@@ -81,15 +54,57 @@ class ObjectConverter
 
         /** ****************************************************************************************
          * The conversion method.
-         * @param o         The object to convert.
-         * @param typeInfo  The type of the object.
-         * @param result    An AString that takes the result.
-         * @return True, if the object was converted successfully, false otherwise. Note:
-         * Even if false was returned, the error text of template field \ref FmtUnknownObject
-         * is appended, including the typeInfo value.
+         * @param logable   The object to convert.
+         * @param target    An AString that takes the result.
+         *
+         * @return \c true, if the object was converted successfully, \c false otherwise.
+         ******************************************************************************************/
+        virtual bool    ConvertObject( const Logable& logable, AString& target )                = 0;
+};
+
+/** ************************************************************************************************
+ * Implements the interface
+ * \ref aworx::lox::core::textlogger::ObjectConverter "ObjectConverter".
+ * With ALox leveraging the underlying
+ * \ref aworx::lib::strings "ALib string class-family", various standard string types are supported
+ * with this converter.
+ *
+ * While other ALox implementations, like ALox for C# or ALox for Java use the 'runtime type
+ * information' feature of their underlying programming language to identify any object type,
+ * this is not possible in standard C++. Therefore, all logging objects in ALox for C++ have
+ * to be accompanied with a type information. This is implemented as a simple integer and
+ * the value \b '0' is reserved for \b TStrings.
+ *
+ * All other types are extension types, which are not part of core ALox and user specific types.
+ *
+ * It is recommended to use positive values for user specific types.
+ * Negative IDs are reserved for future ALox types and extensions.
+ **************************************************************************************************/
+class StringConverter : public ObjectConverter
+{
+    public:
+        /// Used to convert null values to string representation.
+        TString          FmtNullObject                  ="ALox message object (type=0) is nullptr.";
+
+    public:
+        /** ****************************************************************************************
+         * Constructs an object of this class.
+         ******************************************************************************************/
+         ALOX_API       StringConverter();
+        /** ****************************************************************************************
+         * Destructs an object of this class.
+         ******************************************************************************************/
+        virtual        ~StringConverter() {};
+
+        /** ****************************************************************************************
+         * The conversion method.
+         * @param logable   The object to convert.
+         * @param target    An AString that takes the result.
+         *
+         * @return \c true, if the object was converted successfully, \c false otherwise.
          ******************************************************************************************/
         ALOX_API
-        virtual bool    ConvertObject( const void* o, int typeInfo, AString& result );
+        virtual bool    ConvertObject( const Logable& logable, AString& target );
 };
 
 /** ************************************************************************************************
@@ -135,11 +150,13 @@ class AutoSizes
         /** ****************************************************************************************
          * Resets the whole object. All values get deleted.
          ******************************************************************************************/
+        inline
         void        Reset ()                      {   values.clear(); sessionValues.clear();       }
 
         /** ****************************************************************************************
          * Initializes a new query sequence, which is a series of invocations of method #Next.
          ******************************************************************************************/
+        inline
         void        Start ()                      {   ActualIndex=   0; }
 
         /** ****************************************************************************************
@@ -186,7 +203,7 @@ class AutoSizes
 
 /** ************************************************************************************************
  * This class is a sort of plug-in for the TextLogger class. Its purpose is to assemble the meta
- * information of each log line (things like timestamps, thread information, level and domain, etc.).
+ * information of each log line (things like timestamps, thread information, verbosity and domain, etc.).
  *
  * To manipulate the meta information log output, three options exist:
  * - by just changing the #Format string (at runtime).
@@ -201,46 +218,53 @@ class MetaInfo
     // Public fields
     // #############################################################################################
     public:
-
         /**
          * The line format specifies the (automated) log output that is prepended to each log line before
          * the log message itself. This format string can be changed after the creation
          * of a \ref TextLogger.
          *
          * The string supports replacement variables that begin with a % sign
-         * - %CF: The caller's source file name including path
-         * - %Cf: The caller's source file name (excluding path)
-         * - %CL: The line number in the caller's source file
-         * - %CM: The caller's method name
-         * - %D:  The date the log call was invoked
-         * - %TD: Time of day the log call was invoked
-         * - %TE: Time elapsed since the Logger was created or it's timer was reset
-         * - %TI: Time elapsed since the last log call
-         * - %t:  Thread name and/or ID
-         * - %L:  The log level
-         * - %O:  Log domain
+         * - %SP: The full path of the source file
+         * - %Sp: The trimmed path of the source file
+         * - %SF: The callers' source file name
+         * - %Sf: The callers' source file name without extension
+         * - %SL: The line number in the source file
+         * - %SM: The method name
+         *
+         * - %TD: The date the log call was invoked
+         * - %TT: Time of day the log call was invoked
+         * - %TC: Time elapsed since the Logger was created or its timer was reset
+         * - %TL: Time elapsed since the last log call
+         *
+         * - %tN: Thread name
+         * - %tI: Thread ID
+         * - %V:  The verbosity
+         * - %D:  Log domain
          * - %#:  The log call counter (like a line counter, but counting multi lines as one)
          * - %An: An auto-adjusted tabulator. This grows whenever it needs, but never shrinks. The
          *        optional integer number n specifies how much extra space is added when tab is adjusted.
          *        Setting this to a higher value avoids too many adjustments at the beginning of a log session.
-         * - %N:  The name of the logger. This might be useful if multiple loggers write to the same
+         * - %LG: The name of the \e Logger. This might be useful if multiple loggers write to the same
          *        output stream (e.g. Console).
-         *
-         * A sample that would show just all info in the output is be:
-         * \code "%CF(%CL):%CM()%A5[%D] [%TD] [%TE +%TI] [%t] [%t] %L [%O] <%#>: " \endcode
+         * - %LX: The name of the \e Lox.
+         * - %P:  The name of the process / application.
          *
          * Defaults to
-         * \code "%CF(%CL):%A5%CM() %A5[%TE +%TI] [%t] %L [%O] %A1(%#): " \endcode
+         * \code "%Sp/%SF(%SL):%A5%SM() %A5[%TC +%TL][%tN]%V[%D]%A1(%#): " \endcode
          *
-         * If debug logging as well as release logging has caller information disabled
+         * If debug logging as well as release logging has scope information disabled
          * (see \ref ALOX_DBG_LOG_CI_OFF and \ref ALOX_REL_LOG_CI_ON ), then it defaults to:
-         * \code "[%TE +%TI] [%t] %L [%O]: " \endcode
+         * \code "[%TC +%TL][%tN]%V[%D]%A1(%#): " \endcode
          */
 
         #if defined(ALOX_DBG_LOG_CI) || defined(ALOX_REL_LOG_CI)
-            AString  Format {"%CF(%CL):%A5%CM() %A5[%TE +%TI] [%t] %L [%O] %A1(%#): "};
+            #if !defined(_WIN32)
+                AString Format { "%Sp/%SF(%SL):%A5%SM() %A5[%TC +%TL][%tN]%V[%D]%A1(%#): "};
+            #else
+                AString Format {"%Sp\\%SF(%SL):%A5%SM() %A5[%TC +%TL][%tN]%V[%D]%A1(%#): "};
+            #endif
         #else
-            AString  Format {"[%TE +%TI] [%t] %L [%O] %A1(%#): "};
+            AString Format {"[%TC +%TL][%tN]%V[%D]%A1(%#): "};
         #endif
 
         /**
@@ -263,95 +287,78 @@ class MetaInfo
         #endif
 
 
-        /**
-         *  To shorten the log output the given prefix might be cut from the source file path.
-         *  If this
-         *  \ref aworx::lib::strings::AString "AString" is \e nulled, it is tried to
-         *  detect this path automatically once.<p>
-         *  However, in various debug sessions (e.g. remote debugging) this might fail.
-         *  Hence, this parameter can be set 'manually' to the right prefix that is to be consumed.
-         *  In this case, whenever the project is compiled on a different machine setup (with
-         *  different project path), this field has to be changed. If it is not changed, there is no
-         *  other problem than that the path is not shortened and the log output might get a little
-         *  wide.
-         *
-         *  If the output of the full path is intended, the filed can be set to empty string(\"\").
-         */
-        AString  ConsumableSourcePathPrefix;
+        /// The output for the verbosity "Error".
+        TString    VerbosityError           ="[ERR]";
 
+        /// The output for the verbosity "Warning".
+        TString    VerbosityWarning         ="[WRN]";
 
-        /// The output for the log level "Error".
-        String16     LogLevelError            ="[ERR]";
+        /// The output for the verbosity "Info".
+        TString    VerbosityInfo            ="     ";
 
-        /// The output for the log level "Warning".
-        String16     LogLevelWarning          ="[WRN]";
-
-        /// The output for the log level "Info".
-        String16     LogLevelInfo             ="     ";
-
-        /// The output for the log level "Verbose".
-        String16     LogLevelVerbose          ="[***]";
+        /// The output for the verbosity "Verbose".
+        TString    VerbosityVerbose         ="[***]";
 
         /// Format string for the output of the log date. For more information, see
         ///  "Standard Date and Time Format Strings" in .NET StringBuilder.AppendFormat()
-        String16     DateFormat               ="yyyy-MM-dd";
+        TString    DateFormat               ="yyyy-MM-dd";
 
         /// Format string for the output of the time of day. For more information, see
         ///  "Standard Date and Time Format Strings" in .NET StringBuilder.AppendFormat()
-        String16     TimeOfDayFormat          ="HH:mm:ss";
+        TString    TimeOfDayFormat          ="HH:mm:ss";
 
         /// The word "Days" the out put of time elapsed (if longer than a day).
-        String16     TimeElapsedDays          =" Days ";
+        TString    TimeElapsedDays          =" Days ";
 
         /// Minimum time difference to log in nanoseconds.  Below that #TimeDiffNone is written.
-        long         TimeDiffMinimum          =1000L;
+        long       TimeDiffMinimum          =1000L;
 
         /// Output for time difference if below reasonable (measurable) minimum defined in #TimeDiffMinimum.
-        String16     TimeDiffNone             ="---   ";
+        TString    TimeDiffNone             ="---   ";
 
         /// Entity nanoseconds for time difference outputs below 1000 microsecond.
-        String16     TimeDiffNanos            =" ns";
+        TString    TimeDiffNanos            =" ns";
 
         /// Entity microseconds for time difference outputs below 1000 microseconds.
-        String16     TimeDiffMicros           =" \xC2\xB5s"; // UTF-8 encoding of the greek 'm' letter;
+        TString    TimeDiffMicros           =" \xC2\xB5s"; // UTF-8 encoding of the greek 'm' letter;
 
         /// Entity milliseconds for time difference outputs below 1000 milliseconds.
-        String16     TimeDiffMillis           =" ms";
+        TString    TimeDiffMillis           =" ms";
 
         /// Format for time difference outputs between 10s and 99.9s.
-        String16     TimeDiffSecs             =" s";
+        TString    TimeDiffSecs             =" s";
 
         /// Format for time difference outputs between 100s and 60 min.
-        String16     TimeDiffMins             =" m";
+        TString    TimeDiffMins             =" m";
 
         /// Format for time difference outputs between 1h and 24h.
-        String16     TimeDiffHours            =" h";
+        TString    TimeDiffHours            =" h";
 
         /// Format for time difference outputs of more than a day.
-        String16     TimeDiffDays             =" days";
+        TString    TimeDiffDays             =" days";
 
         /// Replacement string if no source info is available.
-        String32     NoSourceFileInfo         ="---";
+        TString    NoSourceFileInfo         ="---";
 
         /// Replacement string if no source info is available.
-        String32     NoMethodInfo             ="---";
+        TString    NoMethodInfo             ="---";
 
         /// The minimum digits to write for the log number (if used in format string).
-        int          LogNumberMinDigits       = 3;
+        int        LogNumberMinDigits       = 3;
 
     // #############################################################################################
     // Internal fields
     // #############################################################################################
     protected:
 
-        ///  A singleton calendar time object shared between different format variables during one invocation.
+        /**  A singleton calendar time object shared between different format variables during one
+         *   invocation. */
         lib::time::TicksCalendarTime callerDateTime;
 
     // #############################################################################################
     // Constructor/Destructor
     // #############################################################################################
     public:
-
         /** ****************************************************************************************
          * Virtual destructor of MetaInfo.
          ******************************************************************************************/
@@ -369,19 +376,18 @@ class MetaInfo
          *  recommended for formatter classes that do not rely on format strings.
          * @param logger    The logger that we are embedded in.
          * @param buffer    The buffer to write meta information into.
-         * @param domain    The log domain name.
-         * @param level     The log level. This has been checked to be active already on this
-         *                  stage and is provided to be able to be logged out only.
-         * @param caller    Once compiler generated and passed forward to here.
+         * @param domain    The <em>Log Domain</em>.
+         * @param verbosity The verbosity.
+         * @param scope     Information about the scope of the <em>Log Statement</em>..
          *
          * @return The number of tab sequences that were written (by adding ESC::TAB to the buffer).
          ******************************************************************************************/
         ALOX_API
         virtual int Write( TextLogger&        logger,
                            AString&           buffer,
-                           const TString&     domain,
-                           Log::Level         level,
-                           CallerInfo*        caller      );
+                           core::Domain&      domain,
+                           Verbosity          verbosity,
+                           ScopeInfo&         scope     );
 
     // #############################################################################################
     // Internals
@@ -396,21 +402,21 @@ class MetaInfo
          *  When method the returns, the command is cut from the front.
          *
          * @param logger       The logger that we are embedded in.
-         * @param domain       The log domain name.
-         * @param level        The log level. This has been checked to be active already on this
+         * @param domain       The <em>Log Domain</em>.
+         * @param verbosity    The verbosity. This has been checked to be active already on this
          *                     stage and is provided to be able to be logged out only.
-         * @param caller       Once compiler generated and passed forward to here.
-         * @param buffer       The buffer to write meta information into.
+         * @param scope        Information about the scope of the <em>Log Statement</em>..
+         * @param dest         The buffer to write meta information into.
          * @param variable     The variable to read (may have more characters appended)
          *
          * @return The number of tab sequences that were written (by adding ESC::TAB to the buffer).
          ******************************************************************************************/
         ALOX_API
         virtual int processVariable( TextLogger&      logger,
-                                     const TString&   domain,
-                                     Log::Level       level,
-                                     CallerInfo*      caller,
-                                     AString&         buffer,
+                                     core::Domain&    domain,
+                                     Verbosity        verbosity,
+                                     ScopeInfo&       scope,
+                                     AString&         dest,
                                      Substring&       variable      );
 
         /** ****************************************************************************************
@@ -434,9 +440,9 @@ class MetaInfo
  *  of a log call.
  *  This helper can be extended and replaced in #MetaInfo to modify the behavior of TextLogger.
  *
- *  The final log message is then passed to the abstract method #doTextLog.
+ *  The final log message is then passed to the abstract method #logText.
  *  Hence, custom Logger classes that inherited from this class instead of directly from class
- *  #Logger, need to implement #doTextLog instead of implementing #doLog!
+ *  #Logger, need to implement #logText instead of implementing #Log.
  *
  *  Class TextLogger supports multi line log outputs. Such multi line log outputs can be configured to
  *  be logged in different ways. See #MultiLineMsgMode for more information.
@@ -447,11 +453,18 @@ class TextLogger : public Logger
     // Internal fields
     // #############################################################################################
     protected:
-        ///  The internal log Buffer.
+        /** The internal log Buffer. */
         AString         logBuf;
 
-        ///  A buffer for the textmessage
+        /** A buffer for converting the user object(s).     */
         AString         msgBuf;
+
+        /** Denotes whether this logger writes to the <em>standard output streams</em>.  */
+        bool            usesStdStreams;
+
+        /** Used to avoid to repeatedly register with ALib <em>standard output stream</em> lockers
+            when attached to multiple instances of class \b Lox.   */
+        int             stdStreamLockRegistrationCounter                                         =0;
 
         /**
          * A list of pairs of strings. Within each log message, the first string of a pair is
@@ -464,10 +477,15 @@ class TextLogger : public Logger
     // #############################################################################################
     public:
         /**
-         * A helper object to convert log objects into textual representations. To extend TextLogger, this
-         * object can be replaced by custom implementations.
+         * A list of helper objects to get textual representation of logable objects.<br>
+         * To extend TextLogger to support logging custom objects, custom converters can
+         * be appended. Also, the default may be removed and deleted.<br>
+         * In the destructor of this class, all object converters (still attached) will be deleted.
+         *
+         * When converting an object, all object converts listed here are invoked in
+         * <b> reverse order</b> until a first reports a successful conversion.
          */
-        textlogger::ObjectConverter*    ObjectConverter;
+        std::vector<ObjectConverter*>   ObjectConverters;
 
         /**
          * A helper object to format log objects into textual representations. This class incorporates
@@ -520,13 +538,13 @@ class TextLogger : public Logger
          * single line (#MultiLineMsgMode==0).
          * Defaults to "\\r".
          */
-        String16                        MultiLineDelimiterRepl                               ="\\r";
+        TString                         MultiLineDelimiterRepl                               ="\\r";
 
         /**
          * Headline for multi line messages (depending on #MultiLineMsgMode)  .
          * Defaults to "ALox: Multi line message follows: "
          */
-        String256                       FmtMultiLineMsgHeadline="ALox: Multi line message follows: ";
+        TString                         FmtMultiLineMsgHeadline="ALox: Multi line message follows: ";
 
         /**
          * Prefix for multi line messages. This is also used if multi line messages logging is
@@ -534,7 +552,7 @@ class TextLogger : public Logger
          * place.
          * Defaults to ">> ".
          */
-        String16                        FmtMultiLinePrefix                                   =">> ";
+        TString                         FmtMultiLinePrefix                                   =">> ";
 
         /**
          *  Suffix for multi line messages. This is also used if multi line messages logging is
@@ -542,13 +560,10 @@ class TextLogger : public Logger
          *  takes place.
          * Defaults to "".
          */
-        String16                        FmtMultiLineSuffix                                      ="";
+        TString                         FmtMultiLineSuffix                                      ="";
 
-        /**
-         * The characters  used for indentation.
-         * Defaults to "  " (two spaces).
-         */
-        String16                        FmtIndentString                                       ="  ";
+        /** Used to return an error message in the case the object could not be converted. */
+        TString                         FmtUnknownObject                 ="<unknown object type %>";
 
     // #############################################################################################
     // protected Constructor/ public destructor
@@ -556,10 +571,15 @@ class TextLogger : public Logger
     protected:
         /** ****************************************************************************************
          * Constructs a TextLogger.
-         * @param name      The name of the logger.
-         * @param typeName  The type of the logger.
+         * Reads the format variable for the meta information from the configuration. The
+         * variable name is created from the \e Logger name and the suffix <c>'_FORMAT'</c>
+         * @param name            The name of the \e Logger.
+         * @param typeName        The type of the \e Logger.
+         * @param usesStdStreams  Denotes whether this logger writes to the
+         *                        <em>standard output streams</em>.
          ******************************************************************************************/
-        ALOX_API explicit TextLogger( const String& name, const String& typeName );
+        ALOX_API explicit TextLogger( const String& name, const String& typeName,
+                                      bool  usesStdStreams );
 
         /** ****************************************************************************************
          *  Destructs a TextLogger.
@@ -568,36 +588,59 @@ class TextLogger : public Logger
         ALOX_API virtual ~TextLogger();
 
     // #############################################################################################
+    // Reimplementing interface of grand-parent class SmartLock
+    // #############################################################################################
+
+        /** ****************************************************************************************
+         * Invokes grand-parent's method and in addition, if field #usesStdStreams
+         * is set, registers with
+         * \ref aworx::lib::ALIB::StdOutputStreamsLock "ALIB::StdOutputStreamsLock".
+         *
+         * @param newAcquirer The acquirer to add.
+         * @return The new number of \e acquirers set.
+         ******************************************************************************************/
+        ALIB_API
+        virtual int   AddAcquirer( ThreadLock* newAcquirer );
+
+        /** ****************************************************************************************
+         * Invokes grand-parent's method and in addition, de-registers with
+         * \ref aworx::lib::ALIB::StdOutputStreamsLock "ALIB::StdOutputStreamsLock".
+         * @param acquirer The acquirer to remove.
+         * @return The new number of \e acquirers set.
+         ******************************************************************************************/
+        ALIB_API
+        virtual int   RemoveAcquirer( ThreadLock* acquirer );
+
+
+    // #############################################################################################
     // Abstract methods introduced
     // #############################################################################################
     protected:
         /** ****************************************************************************************
-         *  This abstract method introduced by this class "replaces" the the abstract method #doLog
+         *  This abstract method introduced by this class "replaces" the the abstract method #Log
          *  of parent class Logger which this class implements. In other words, descendants of this
-         *  class need to overwrite this method instead of #doLog. This class %TextLogger is
+         *  class need to overwrite this method instead of \b %Do. This class %TextLogger is
          *  responsible for generating meta information, doing text replacements, handle multi-line
          *  messages, etc. and provides the textual representation of the whole log contents
          *  to descendants using this method.
          *
-         * @param domain     The log domain name.
-         * @param level      The log level. This has been checked to be active already on this
+         * @param domain     The <em>Log Domain</em>.
+         * @param verbosity  The verbosity. This has been checked to be active already on this
          *                   stage and is provided to be able to be logged out only.
          * @param msg        The log message.
-         * @param indent     the indentation in the output. Defaults to 0.
-         * @param caller     Once compiler generated and passed forward to here.
+         * @param scope     Information about the scope of the <em>Log Statement</em>..
          * @param lineNumber The line number of a multi-line message, starting with 0.
          *                   For single line messages this is -1.
          ******************************************************************************************/
-        virtual void doTextLog(  const TString&     domain,
-                                 Log::Level         level,
-                                 AString&           msg,
-                                 int                indent,
-                                 core::CallerInfo*  caller,
-                                 int                lineNumber)    =0;
+        virtual void logText(  core::Domain&      domain,
+                               Verbosity          verbosity,
+                               AString&           msg,
+                               core::ScopeInfo&   scope,
+                               int                lineNumber)    =0;
 
         /** ****************************************************************************************
          * Abstract method to be implemented by descendants. This message is called only when
-         * multi-line messages are logged. It is called exactly once before a series of doLog()
+         * multi-line messages are logged. It is called exactly once before a series of #logText
          * calls of a multi-line message and exactly once after such series.<br>
          * This is useful if the writing of text includes the acquisition of system resources
          * (e.g. opening a file).
@@ -609,29 +652,25 @@ class TextLogger : public Logger
     // #############################################################################################
     // Abstract method implementations
     // #############################################################################################
-    protected:
+    public:
         /** ****************************************************************************************
          * This is the implementation of the abstract method inherited from class Logger
          * that executes a log.<br>
-         * This class implements this method and but exposes the new abstract method #doTextLog.
+         * This class implements this method and but exposes the new abstract method #logText.
          * This mechanism allows this class to do various things that are standard to Loggers
          * of type TextLogger. For example, meta information of the log invocation is formatted
          * and string replacements are performed. This way, descendants of this class will consume
-         * a ready to use log buffer with all meta information included and their primary
-         * obligation is to copy the content into a corresponding output stream.
+         * a ready to use log buffer with all meta information and contents of all objects to be
+         * included and their primary obligation is to copy the content into a corresponding
+         * output stream.
          *
-         * @param domain    The log domain name.
-         * @param level     The log level. This has been checked to be active already on this
-         *                  stage and is provided to be able to be logged out only.
-         * @param msgObject The object to log.
-         * @param msgType   Type information on the object to log.
-         * @param indent    the indentation in the output. Defaults to 0.
-         * @param caller    Once compiler generated and passed forward to here.
+         * @param domain    The <em>Log Domain</em>.
+         * @param verbosity The verbosity.
+         * @param logables  The list of objects to log.
+         * @param scope     Information about the scope of the <em>Log Statement</em>..
          ******************************************************************************************/
         ALOX_API
-        virtual void doLog( const TString&   domain,     Log::Level      level,
-                            const void*      msgObject,  int             msgType,
-                            int              indent,     CallerInfo*     caller  );
+        virtual void Log( Domain& domain, Verbosity verbosity, Logables& logables, ScopeInfo& scope);
 
     // #############################################################################################
     // Public interface

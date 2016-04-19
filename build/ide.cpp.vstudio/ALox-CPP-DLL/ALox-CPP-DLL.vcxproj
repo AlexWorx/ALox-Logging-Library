@@ -117,7 +117,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>ALIB_DLL_EXPORTS;ALOX_DLL_EXPORTS;ALIB_VSTUDIO_ON;WIN32;_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <DisableSpecificWarnings>4652;4711;4458;4459</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4652;4711;4458;4459; 4592</DisableSpecificWarnings>
       <PrecompiledHeaderFile>alib/stdafx_alib.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
@@ -154,7 +154,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>ALIB_DLL_EXPORTS;ALOX_DLL_EXPORTS;ALIB_VSTUDIO_ON;WIN32;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <DisableSpecificWarnings>4652;4711;4458;4459</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4652;4711;4458;4459; 4592</DisableSpecificWarnings>
       <PrecompiledHeaderFile>alib/stdafx_alib.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
@@ -171,6 +171,7 @@
     <ClInclude Include="..\..\..\src.cpp\alib\config\configuration.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\config\inifile.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\config\plugins.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\containers\pathmap.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\core\enums.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\core\macros.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\core\ns_aworx.hpp" />
@@ -198,10 +199,13 @@
     <ClInclude Include="..\..\..\src.cpp\alib\threads\threadlock.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\time\ticks.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alox\alox.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alox\aloxtypesandenums.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alox\alox_console_loggers.hpp" />
-    <ClInclude Include="..\..\..\src.cpp\alox\core\callerinfo.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alox\core\domain.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alox\core\logger.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alox\core\scopedump.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alox\core\scopeinfo.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alox\core\scopestore.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alox\core\textlogger\plaintextlogger.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alox\core\textlogger\textlogger.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alox\internals\alox_macros.hpp" />
@@ -222,6 +226,7 @@
     <ClCompile Include="..\..\..\src.cpp\alib\config\inifile.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\config\plugins.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\core\alib.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\core\enums.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\core\report.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\core\util.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\strings\applyformat.cpp" />
@@ -240,9 +245,11 @@
     <ClCompile Include="..\..\..\src.cpp\alib\threads\threadlock.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\time\ticks.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alox\alox.cpp" />
-    <ClCompile Include="..\..\..\src.cpp\alox\core\callerinfo.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alox\aloxtypesandenums.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alox\core\domain.cpp" />
-    <ClCompile Include="..\..\..\src.cpp\alox\core\logger.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alox\core\scopedump.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alox\core\scopeinfo.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alox\core\scopestore.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alox\core\textlogger\plaintextlogger.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alox\core\textlogger\textlogger.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alox\log.cpp" />

@@ -76,7 +76,6 @@ public class IniFile extends ConfigurationPlugIn
             ERROR_WRITING_FILE
         }
 
-
     // #############################################################################################
     // inner classes
     // #############################################################################################
@@ -168,8 +167,8 @@ public class IniFile extends ConfigurationPlugIn
             by invoking #writeFile */
         public boolean                          autoSave                     = true;
 
-        /** The standard file extension used for ALib configuration files. Defaults to ".alib.ini" */
-        public static String                    DefaultFileExtension         = ".alib.ini";
+        /** The standard file extension used for ALib configuration files. Defaults to "ini" */
+        public static String                    DefaultFileExtension         = ".ini";
 
         /** The file name. This might include a path or not. Should be set properly before
             the file is read. */
@@ -223,13 +222,18 @@ public class IniFile extends ConfigurationPlugIn
         /** ****************************************************************************************
          *  Constructs an instance of this class and reads the file.
          *  If no file name is given, the file name set to the name of the executed class
-         *  with extension ".aworx.ini". The path is then chosen as follows:
+         *  with extension ".ini". The path is then chosen as follows:
          *  - on Unix like systems: if exists, to the folder ".config" in the users home directory
          *    and just to the users home directory otherwise
          *  - on Windows OS: if exists, to the folder "AppData/Roaming" in the users home directory
          *    and just to the users home directory otherwise
          *
+         *
+         *  If the given file name \p filePathAndName starts with '*', no file is read and field
+         *  #autoSave is set to \c false.
+         *
          *  @param filePathAndName  The name (and path) of the file to read and write.
+         *                          Provide "*" to suppress reading a file.
          *                          Defaults to \c null.
          ******************************************************************************************/
         public IniFile( String filePathAndName )
@@ -239,12 +243,17 @@ public class IniFile extends ConfigurationPlugIn
             escapeSequences.add( "\\n" ); escapeSequences.add( "\n" );
             escapeSequences.add( "\\r" ); escapeSequences.add( "\r" );
             escapeSequences.add( "\\t" ); escapeSequences.add( "\t" );
-            escapeSequences.add( "\\/" ); escapeSequences.add( "/"  );
             escapeSequences.add( "\\#" ); escapeSequences.add( "#"  );
             escapeSequences.add( "\\;" ); escapeSequences.add( ";"  );
 
             if ( filePathAndName != null )
             {
+                // dont read anything
+                if ( filePathAndName.startsWith( "*" ) )
+                {
+                    autoSave= false;
+                    return;
+                }
                 fileName._( filePathAndName );
             }
             else
@@ -270,7 +279,7 @@ public class IniFile extends ConfigurationPlugIn
 
                 StackTraceElement[] stack=          Thread.currentThread ().getStackTrace ();
                 AString             mainClassName=  new AString( stack[stack.length - 1].getClassName () );
-                int dotPos= mainClassName.lastIndexOfAny( ".".toCharArray(), Inclusion.Include );
+                int dotPos= mainClassName.lastIndexOfAny( ".".toCharArray(), Inclusion.INCLUDE );
                 if (dotPos > 0)
                     mainClassName.delete_NC( 0, dotPos + 1 );
                 fileName._NC( path )._( File.separatorChar )._NC( mainClassName )._NC( DefaultFileExtension );
@@ -663,7 +672,7 @@ public class IniFile extends ConfigurationPlugIn
                         while( tok.hasNext() )
                         {
                             // write backslash of previous line and spaces of actual line
-                            if ( tok.rest.isNotNull() )
+                            if ( tok.actual.isNotNull() )
                             {
                                 if ( backSlashPos < lastLineLen + 1 )
                                      backSlashPos=  lastLineLen + 8;

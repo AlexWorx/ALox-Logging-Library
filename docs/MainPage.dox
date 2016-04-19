@@ -31,14 +31,15 @@ goals provides <em>\"source-compatible\"</em> types for the three languages.
 ALox attempts to make logging as easy and lightweight as possible. We want you to **stop adding
 temporary debug output lines** into your code. Instead, write (with less effort!) short, nice
 and readable *ALox statements* that live in your code as if they were comment lines. Let ALox do
-the rest: Add meta information to the output, format the output, filter output based on verbosity
-level and based on your current topic of interest. Finally, get it all *pruned* out of your
+the rest: Add meta information to the output, format the output, filter output based on \e Verbosity
+and based on your current topic of interest (<em>'Log Domain'</em>). Finally, get it all *pruned* out of your
 release executable, same as your source comments.
 
 On the other end of the list, ALox  enables **release logging** for productive applications
 to collect mission critical **metrics from the field**.
 
-This is **Version 1602**, the first release to colorful logging and persistent configuration.
+This is **Version 1604**, which is a result of heavy refactoring version 1602 :-).
+In other versioning schemes, this would have been version \b 2.0.
 We are optimistic that the simple [Bauhaus Style](\ref faq_bauhaus) architecture of the library allows you
 to easily use it and even to extend it with logging features you need.
 
@@ -52,9 +53,22 @@ To get an overview about what ALox offers, read \ref man_features_and_limitation
 
 \section mainpage_documentation   Documentation
 
-In the main menu of this site (see top of the page) you will find a general manual that introduces
-into the concepts and architecture of ALox. In addition, there are platform (programming language)
-specific tutorials and class references available.
+ALox comes with a detailed [User Manual](manual.html) for in-depth information on various topics.
+This manual is <em>"programming language agnostic"</em>.
+
+Language specific documentation is given with:
+- The <b>Tutorials</b>
+  ([C++] ( cpp_ref/cpptutorial.html  ),
+   [C#]  (  cs_ref/cstutorial.html   ),
+   [Java](java_ref/javatutorial.html ) )
+
+- The <b>Reference Documentation</b>
+  ([C++] ( cpp_ref/annotated.html ),
+   [C#]  (  cs_ref/annotated.html ),
+   [Java](java_ref/annotated.html ) )
+<p>
+All created with marvelous [Doxygen](http://www.stack.nl/~dimitri/doxygen/)!
+
 
 \section mainpage_faq            FAQ
 This is the \ref faq

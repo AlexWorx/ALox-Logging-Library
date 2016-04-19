@@ -29,9 +29,9 @@ using namespace aworx::lox::core::textlogger;
 // For code compatibility with ALox Java/C++
 #define _NC _<false>
 
-void PlainTextLogger::doTextLog( const TString&           ,   Log::Level  ,
-                                       AString&        msg,   int         ,
-                                       CallerInfo*        ,   int           )
+void PlainTextLogger::logText( Domain&          ,   Verbosity  ,
+                               AString&      msg,
+                               ScopeInfo&       ,   int           )
 {
     if ( !notifyLogOp( Phase::Begin ) )
         return;
@@ -51,10 +51,13 @@ void PlainTextLogger::doTextLog( const TString&           ,   Log::Level  ,
             end=      msgLength ;
         }
 
-        int logWidth= doLogSubstring( msg,  start, end - start );
-        if ( logWidth < 0 )
-            return;
-        column+= logWidth;
+        if( end > start )
+        {
+            int logWidth= logSubstring( msg,  start, end - start );
+            if ( logWidth < 0 )
+                return;
+            column+= logWidth;
+        }
 
         // interpret escape sequence
         if ( foundESC )
@@ -79,7 +82,7 @@ void PlainTextLogger::doTextLog( const TString&           ,   Log::Level  ,
                     while ( qty > 0 )
                     {
                         int size= qty < spacesLength ? qty : spacesLength;
-                        if( doLogSubstring( spaces, 0, size ) < 0 )
+                        if( logSubstring( spaces, 0, size ) < 0 )
                             return;
                         qty-= size;
                     }
@@ -91,7 +94,7 @@ void PlainTextLogger::doTextLog( const TString&           ,   Log::Level  ,
             else
             {
                 if ( !PruneESCSequences )
-                    if( doLogSubstring( msg, end - 1, 3 ) < 0)
+                    if( logSubstring( msg, end - 1, 3 ) < 0)
                         return;
                 end+= 2;
             }

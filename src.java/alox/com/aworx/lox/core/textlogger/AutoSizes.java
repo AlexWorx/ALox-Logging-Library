@@ -47,7 +47,7 @@ public class AutoSizes
         /**  The actual index requested by #next. This is reset to 0 with every invocation of
          *   #start. */
         public    int                    actualIndex;
-    
+
     // #############################################################################################
     // Protected methods
     // #############################################################################################
@@ -129,7 +129,7 @@ public class AutoSizes
                 values[ actualIndex ]=        requestedSize + ( size == 0 ? 0 : extraGrowth );
             }
 
-            // increase auto tab index for next 'A' command
+            // increase auto tab index
             actualIndex++;
 
             return size;
@@ -141,7 +141,7 @@ public class AutoSizes
          * to be separated by ' ' characters (space).
          *
          * @param source    The Substring that is parsed for the numbers
-         * @param session   If \c CurrentData::CLEAR, which is the default, the current values 
+         * @param session   If \c CurrentData::CLEAR, which is the default, the current values
          *                  are taken from the last session stored and the sessions data is set to 0.
          *                  If \c CurrentData::KEEP, both, current values and
          *                  session values are taken from the string.
@@ -183,8 +183,8 @@ public class AutoSizes
          * The session values in the string are ignored (starts a new session).
          *
          * @param source   The AString that is parsed for the numbers
-         * @param session   If \c CurrentData.KEEP the current values are stored to be the last 
-         *                  sessions' data and current values are set to 0. 
+         * @param session   If \c CurrentData.KEEP the current values are stored to be the last
+         *                  sessions' data and current values are set to 0.
          *                  If \c CurrentData.CLEAR, which is the default, both, current values and
          *                  session values are taken from the string.
          ******************************************************************************************/
@@ -222,15 +222,15 @@ public class AutoSizes
                 target._( ' ' );
                 target._( sessionValues[ i ] );
             }
-            
+
             while( target.endsWith(" 0 0" ) )
                 target.deleteEnd(4);
         }
-        
+
         /** ****************************************************************************************
          * This is for debugging purposes. E.g. this enables the \e Eclipse IDE to display
-         * object descriptions in the debugger. 
-         * @returns A human readable string representation of this object.  
+         * object descriptions in the debugger.
+         * @returns A human readable string representation of this object.
          ******************************************************************************************/
         @Override
         public String toString()

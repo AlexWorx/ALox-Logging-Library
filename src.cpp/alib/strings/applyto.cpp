@@ -101,7 +101,7 @@ template<>  int ApplyTo( AString& target, const wchar_t* src)
             }
 
             // quit on other errors
-            ALIB_WARNING_AS(
+            ALIB_WARNING_S512(
                      "AString: Cannot convert wide character string to UTF-8. (Error: "
                       << ( error == ERROR_INVALID_FLAGS          ? "ERROR_INVALID_FLAGS."
                         :  error == ERROR_INVALID_PARAMETER      ? "ERROR_INVALID_PARAMETER"

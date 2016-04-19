@@ -13,7 +13,7 @@ using cs.aworx.lib.enums;
 
 /** ************************************************************************************************
  *  This namespace of the A-Worx Library provides classes for character string operations
- *  (following \ref aworx::lib "the principle design goals of the A-Worx Library").
+ *  (following \ref cs::aworx::lib "the principle design goals of the A-Worx Library").
  **************************************************************************************************/
 namespace cs.aworx.lib.strings  {
 
@@ -451,8 +451,10 @@ public class AString
          ******************************************************************************************/
         public AString InsertAt( AString  src, int pos )
         {
-            return InsertAt( src.buffer, 0, src.length, pos );
-        }
+            
+            return src != null ? InsertAt( src.buffer, 0, src.length, pos )
+                               : this;
+        }       
 
         /** ****************************************************************************************
          * Inserts a Substring at a given position.
@@ -468,7 +470,8 @@ public class AString
          ******************************************************************************************/
         public AString InsertAt( Substring  src, int pos )
         {
-            return InsertAt( src.Buf, src.Start, src.Length(), pos );
+            return src != null ? InsertAt( src.Buf, src.Start, src.Length(), pos )
+                               : this;
         }
 
         /** ****************************************************************************************
@@ -485,11 +488,14 @@ public class AString
          ******************************************************************************************/
         public AString InsertAt( String  src, int pos )
         {
-            int srcLength= src.Length;
-            if ( !resizeRegion( pos, 0, srcLength ) )
-                return this;
+            if ( src != null )
+            {
+                int srcLength= src.Length;
+                if ( !resizeRegion( pos, 0, srcLength ) )
+                    return this;
 
-            src.CopyTo( 0, buffer, pos, srcLength );
+                src.CopyTo( 0, buffer, pos, srcLength );
+            }
             return this;
         }
 
@@ -507,11 +513,14 @@ public class AString
          ******************************************************************************************/
         public AString InsertAt( StringBuilder  src, int pos )
         {
-            int srcLength= src.Length;
-            if ( !resizeRegion( pos, 0, srcLength ) )
-                return this;
-
-            src.CopyTo( 0, buffer, pos, srcLength );
+            if ( src != null )
+            {
+                int srcLength= src.Length;
+                if ( !resizeRegion( pos, 0, srcLength ) )
+                    return this;
+    
+                src.CopyTo( 0, buffer, pos, srcLength );
+            }
             return this;
         }
 
@@ -599,7 +608,8 @@ public class AString
          ******************************************************************************************/
         public AString  ReplaceSubstring( AString src, int regionStart, int regionLength )
         {
-            return ReplaceSubstring( src.buffer, 0, src.length, regionStart, regionLength );
+            return src != null ? ReplaceSubstring( src.buffer, 0, src.length, regionStart, regionLength )
+                               : this;
         }
 
         /** ****************************************************************************************
@@ -613,7 +623,8 @@ public class AString
          ******************************************************************************************/
         public AString  ReplaceSubstring( Substring src, int regionStart, int regionLength )
         {
-            return ReplaceSubstring( src.Buf, src.Start, src.Length(), regionStart, regionLength );
+            return src != null ? ReplaceSubstring( src.Buf, src.Start, src.Length(), regionStart, regionLength )
+                               : this;
         }
 
         /** ****************************************************************************************
@@ -627,11 +638,14 @@ public class AString
          ******************************************************************************************/
         public AString  ReplaceSubstring( String src, int regionStart, int regionLength )
         {
-            int srcLength= src.Length;
-            if ( !resizeRegion( regionStart, regionLength, srcLength ) )
-                return this;
-
-            src.CopyTo( 0, buffer, regionStart, srcLength );
+            if ( src != null )
+            {
+                int srcLength= src.Length;
+                if ( !resizeRegion( regionStart, regionLength, srcLength ) )
+                    return this;
+    
+                src.CopyTo( 0, buffer, regionStart, srcLength );
+            }
             return this;
         }
 
@@ -1027,9 +1041,7 @@ public class AString
         }
 
         /** ********************************************************************************************
-         * Appends the given string-type object.
-         * \note This method is useful to implement methods that allow take any type of string
-         *       parameters.
+         * Appends an object by invoking \c ToString on it.
          *
          * @param src    The AString compatible type to append
          * @return \c this to allow concatenated calls.
@@ -1047,6 +1059,30 @@ public class AString
             if ( src is char[]    ) return _( (char[])    src );
 
                                     return _( src.ToString()  );
+        }
+
+        /** ********************************************************************************************
+         * Appends an object by invoking \c ToString on it.
+         * \attention Non checking variant of original method.
+         *            See \ref CS_ASTRING_NC "Non-checking methods" for <em>_NC</em> method
+         *            variants.
+         *
+         * @param src    The AString compatible type to append
+         * @return \c this to allow concatenated calls.
+         **********************************************************************************************/
+        public AString _NC( Object src  )
+        {
+            // check null argument
+            if ( src == null )
+                return this;
+
+            // cast type
+            if ( src is AString   ) return _NC( (AString)   src );
+            if ( src is Substring ) return _NC( (Substring) src );
+            if ( src is String    ) return _NC( (String)    src );
+            if ( src is char[]    ) return _NC( (char[])    src );
+                                            
+                                    return _NC( src.ToString()  );
         }
 
         /** ********************************************************************************************
@@ -1292,7 +1328,7 @@ public class AString
          * @param src   The String to append.
          * @return \c this to allow concatenated calls.
          **********************************************************************************************/
-        public AString _( String src)
+        public AString _( String src )
         {
             // check null argument
             if ( src == null )
@@ -2245,6 +2281,28 @@ public class AString
         }
 
         /** ****************************************************************************************
+         * Searches a character starting backwards from the end or a given start index.
+         *
+         * @param needle       The character to search for.
+         * @param startIndex   The index in this to start searching the character.
+         *                     Defaults to CString::MaxLen.
+         *
+         * @return  -1 if the character \p needle is not found.
+         *          Otherwise the index of its last occurrence relative to the start index.
+         ******************************************************************************************/
+        public int LastIndexOf( char needle, int startIndex= int.MaxValue )
+        {
+            // adjust range, if empty return -1
+            if ( startIndex <  0      )   return -1;
+            if ( startIndex >= length )   startIndex= length - 1;
+
+            while( startIndex >= 0 && buffer[ startIndex ] != needle )
+                startIndex--;
+
+            return startIndex;
+        }
+
+        /** ****************************************************************************************
          * Returns the index of the first character which is included, respectively <em>not</em>
          * included in a given set of characters.
          * The search starts at the given index and goes backward.
@@ -2659,7 +2717,7 @@ public class AString
         /** ****************************************************************************************
          *  Appends a double value as string representation.
          *  The conversion is performed by an object of class
-         *  \ref aworx::lib::strings::NumberFormat "NumberFormat".
+         *  \ref cs::aworx::lib::strings::NumberFormat "NumberFormat".
          *  If no object of this type is provided with optional parameter \p numberFormat,
          *  the static default object found in
          *  \ref cs::aworx::lib::strings::NumberFormat::Global "NumberFormat.Global" is used.
@@ -2699,8 +2757,7 @@ public class AString
         }
 
         /** ****************************************************************************************
-         * Creates a String containing a copy of a region of the contents of this
-         *    AString.
+         * Creates a String containing a copy of a region of the contents of this AString.
          *
          * @param regionStart   The start index of the region in this to create the string from.
          * @param regionLength  The maximum length of the region to create the string from.
@@ -2708,7 +2765,7 @@ public class AString
          *
          * @return A String that represents the specified sub region of this object.
          ******************************************************************************************/
-        public string ToString( int regionStart, int regionLength= int.MaxValue)
+        public String ToString( int regionStart, int regionLength= int.MaxValue)
         {
             // adjust range, if empty return empty string
             if ( CString.AdjustRegion( length, ref regionStart, ref regionLength ) )

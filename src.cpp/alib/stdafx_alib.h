@@ -9,8 +9,8 @@
 #define _HPP_COM_ALIB_ALIB_PRECOMP
 
 
-// to check if includes are still reasonably set, uncomment this
-#define  HPP_COM_ALIB_TEST_INCLUDES
+// to check if includes are still rightfully set, uncomment this
+// #define  HPP_COM_ALIB_TEST_INCLUDES 1
 
 #if !defined( HPP_COM_ALIB_TEST_INCLUDES )
   // stdlib headers
@@ -27,7 +27,7 @@
 
 #if !defined( HPP_COM_ALIB_TEST_INCLUDES )
   // additional alib headers
-  #include "alib/system/environment.hpp"
+  #include "alib/system/system.hpp"
   #include "alib/time/ticks.hpp"
   #include "alib/threads/thread.hpp"
   #include "alib/threads/threadlock.hpp"

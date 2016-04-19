@@ -7,7 +7,7 @@
 
 /**
  *  This namespace of the A-Worx Library provides classes for character string operations
- *  (following \ref aworx::lib "the principle design goals of the A-Worx Library").
+ *  (following \ref com::aworx::lib "the principle design goals of the A-Worx Library").
  */
 package com.aworx.lib.strings;
 
@@ -417,13 +417,16 @@ public class AString implements CharSequence
          ******************************************************************************************/
         public AString insertAt( CharSequence src, int pos )
         {
-            int srcLength= src.length();
-            if ( !resizeRegion( pos, 0, srcLength ) )
-                return this;
-
-            for ( int i= 0 ; i < srcLength ; i++ )
-                buffer[pos + i]= src.charAt( i );
-
+            if ( src != null )
+            {
+                int srcLength= src.length();
+                if ( !resizeRegion( pos, 0, srcLength ) )
+                    return this;
+    
+                for ( int i= 0 ; i < srcLength ; i++ )
+                    buffer[pos + i]= src.charAt( i );
+            }
+            
             return this;
         }
 
@@ -484,13 +487,15 @@ public class AString implements CharSequence
          ******************************************************************************************/
         public AString  replaceSubstring( CharSequence src, int regionStart, int regionLength )
         {
-            int srcLength= src.length();
-            if ( !resizeRegion( regionStart, regionLength, srcLength ) )
-                return this;
-
-            for ( int i= 0 ; i < srcLength ; i++ )
-                buffer[regionStart + i]= src.charAt( i );
-
+            if (src != null )
+            {
+                int srcLength= src.length();
+                if ( !resizeRegion( regionStart, regionLength, srcLength ) )
+                    return this;
+    
+                for ( int i= 0 ; i < srcLength ; i++ )
+                    buffer[regionStart + i]= src.charAt( i );
+            }
             return this;
         }
 
@@ -690,8 +695,8 @@ public class AString implements CharSequence
             if ( trimChars == null )
                 trimChars= CString.DEFAULT_WHITESPACES;
 
-            length=  CString.lastIndexOfAny( buffer, 0, length, trimChars, Inclusion.Exclude ) + 1;
-            int idx= CString.indexOfAnyInRegion( buffer, 0, length, trimChars, Inclusion.Exclude );
+            length=  CString.lastIndexOfAny( buffer, 0, length, trimChars, Inclusion.EXCLUDE ) + 1;
+            int idx= CString.indexOfAnyInRegion( buffer, 0, length, trimChars, Inclusion.EXCLUDE );
             if ( idx > 0 )
                 delete_NC( 0, idx );
             return this;
@@ -725,8 +730,8 @@ public class AString implements CharSequence
             if ( trimChars == null )
                 trimChars= CString.DEFAULT_WHITESPACES;
 
-            int regionStart= CString.lastIndexOfAny( buffer, 0,     index + 1,      trimChars, Inclusion.Exclude ) + 1;
-            int regionEnd=   CString.indexOfAnyInRegion( buffer, index, length - index, trimChars, Inclusion.Exclude );
+            int regionStart= CString.lastIndexOfAny( buffer, 0,     index + 1,      trimChars, Inclusion.EXCLUDE ) + 1;
+            int regionEnd=   CString.indexOfAnyInRegion( buffer, index, length - index, trimChars, Inclusion.EXCLUDE );
             if (regionEnd < 0 )
                 regionEnd= length;
 
@@ -1443,6 +1448,34 @@ public class AString implements CharSequence
 
             // return me for concatenated operations
             return this;
+        }
+
+        /** ****************************************************************************************
+         * Appends an object by invoking \c toString on it.
+         *
+         * @param object The object whose string representation is to be appended.
+         *
+         * @return    \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public AString _( Object object )
+        {
+            return _( object.toString() );
+        }
+
+        /** ****************************************************************************************
+         * Appends an object by invoking \c toString on it.
+         *
+         *  \attention Non checking variant of original method.
+         *             See \ref JAVA_ASTRING_NC "Non-checking methods" for <em>_NC</em> method
+         *             variants.         
+         *             
+         * @param object The object whose string representation is to be appended.
+         *
+         * @return    \c this to allow concatenated calls.
+         ******************************************************************************************/
+        public AString _NC( Object object )
+        {
+            return _NC( object.toString() );
         }
 
 
@@ -2345,6 +2378,42 @@ public class AString implements CharSequence
         }
 
         /** ****************************************************************************************
+         * Searches a character starting backwards from the end or a given start index.
+         *
+         * @param needle       The character to search for.
+         * @param startIndex   The index in this to start searching the character.
+         *                     Defaults to the end of this string.
+         *
+         * @return  -1 if the character \p needle is not found.
+         *          Otherwise the index of its last occurrence relative to the start index.
+         ******************************************************************************************/
+        public int lastIndexOf( char needle, int startIndex )
+        {
+            // adjust range, if empty return -1
+            if ( startIndex <  0      )   return -1;
+            if ( startIndex >= length )   startIndex= length - 1;
+
+            while( startIndex >= 0 && buffer[ startIndex ] != needle )
+                startIndex--;
+
+            return startIndex;
+        }
+
+        /** ****************************************************************************************
+         * Searches a character starting backwards from the end or a given start index.
+         *
+         * @param needle       The character to search for.
+         *
+         * @return  -1 if the character \p needle is not found.
+         *          Otherwise the index of its last occurrence relative to the start index.
+         ******************************************************************************************/
+        public int lastIndexOf( char needle )
+        {
+            if ( length == 0 ) return   -1;
+            return lastIndexOf( needle, length );
+        }
+
+        /** ****************************************************************************************
          * Returns the index of the first character which is included, respectively <em>not</em>
          * included in a given set of characters.
          * The search starts at the given index and goes backward.
@@ -2614,7 +2683,7 @@ public class AString implements CharSequence
      ##@{ ########################################################################################*/
 
         /** ****************************************************************************************
-         *  Convert and append a 32-Bit integer value.
+         * Convert and append a 32-Bit integer value.
          *
          * @param value        The integer value to append.
          * @param minDigits    The minimum number of digits to append.
@@ -2658,7 +2727,7 @@ public class AString implements CharSequence
         }
 
         /** ****************************************************************************************
-         *  Convert and append a 32-Bit integer value.
+         * Convert and append a 32-Bit integer value.
          *
          * @param value        The integer value to append.
          * @return      \c this to allow concatenated calls.
@@ -2669,7 +2738,7 @@ public class AString implements CharSequence
         }
 
         /** ****************************************************************************************
-         *  Convert and append a 64-Bit integer value.
+         * Convert and append a 64-Bit integer value.
          *
          * @param value        The integer value to append.
          * @param minDigits    The minimum number of digits to append.
@@ -2720,7 +2789,7 @@ public class AString implements CharSequence
         }
 
         /** ****************************************************************************************
-         *  Convert and append the given 64-Bit integer value.
+         * Convert and append the given 64-Bit integer value.
          *
          * @param value     The integer value to append.
          * @return \c this to allow concatenated calls.
@@ -2731,12 +2800,12 @@ public class AString implements CharSequence
         }
 
         /** ****************************************************************************************
-         *  Appends a double value as string representation.
-         *  The conversion is performed by an object of class
-         *  \ref aworx::lib::strings::NumberFormat "NumberFormat".
-         *  If no object of this type is provided with optional parameter \p numberFormat,
-         *  the static default object found in
-         *  \ref com::aworx::lib::strings::NumberFormat::global "NumberFormat.global" is used.
+         * Appends a double value as string representation.
+         * The conversion is performed by an object of class
+         * \ref com::aworx::lib::strings::NumberFormat "NumberFormat".
+         * If no object of this type is provided with optional parameter \p numberFormat,
+         * the static default object found in
+         * \ref com::aworx::lib::strings::NumberFormat::global "NumberFormat.global" is used.
          *
          * @param value        The double value to append.
          * @param numberFormat The object performing the conversion and defines the output format.
@@ -2762,12 +2831,12 @@ public class AString implements CharSequence
         }
 
         /** ****************************************************************************************
-         *  Appends a double value as string representation.
-         *  The conversion is performed using
-         *  \ref com::aworx::lib::strings::NumberFormat::global "NumberFormat.global".
+         * Appends a double value as string representation.
+         * The conversion is performed using
+         * \ref com::aworx::lib::strings::NumberFormat::global "NumberFormat.global".
          *
-         *  The overloaded method #_(double, NumberFormat)
-         *  allows to explicitly provide a dedicated conversion object.
+         * The overloaded method #_(double, NumberFormat)
+         * allows to explicitly provide a dedicated conversion object.
          *
          * @param value The double value to append.
          *
@@ -2882,7 +2951,7 @@ public class AString implements CharSequence
             // get index, read whitespaces and store start index after white spaces
             int idxOrig= startIdx;
             if ( (startIdx= indexOfAny( whitespaces != null ? whitespaces : CString.DEFAULT_WHITESPACES,
-                                        Inclusion.Exclude, startIdx ) ) == -1 )
+                                        Inclusion.EXCLUDE, startIdx ) ) == -1 )
                 return 0;
 
             int idxWS= startIdx;
@@ -3046,7 +3115,7 @@ public class AString implements CharSequence
 
             // get index, read whitespaces and store start index after white spaces
             startIdx= indexOfAny( whitespaces != null ? whitespaces : CString.DEFAULT_WHITESPACES,
-                                  Inclusion.Exclude, startIdx );
+                                  Inclusion.EXCLUDE, startIdx );
             if ( startIdx == -1 )
                 return 0;
 
@@ -3158,7 +3227,7 @@ public class AString implements CharSequence
         // note: charAt() already implemented in standard interface
 
         /** ****************************************************************************************
-         * Reports an ALib error (using \ref aworx::lib::ReportWriter "ReportWriter")
+         * Reports an ALib error (using \ref com::aworx::lib::ReportWriter "ReportWriter")
          * and returns null. The reason for this behavior is to disallow the usage of AString
          * within (system) methods that create sub sequences. This would be in contrast to the
          * design goal of AString.

@@ -73,13 +73,12 @@ The projects for __Mono Develop__ are found in:
 
         ALOX_LIB_PATH/build/ide.cs.monodevelop/ALox-CS.xxx-DLL-xxx
 
-Your, choices are:
-<table border="1" >
-    <tr><th><center>Project Name</center>           </th>   <th><center>Description</center></th>  </tr>
+Your, choices are: xx
 
-    <tr><td>ALox-CS-.Net45-DLL               </td>   <td>For .Net 4.5 projects that do *not* use ALox release logging</tr>
-    <tr><td>ALox-CS-.Net45-DLL-Release-Log   </td>   <td>For .Net 4.5 projects that intent to use ALox release logging (besides debug logging)</tr>
-</table>
+<center>Project Name</center>    | <center>Description</center>
+- - - - - - - - - - - - - - - - -| - - - - - - - -
+ALox-CS-.Net45-DLL               | For .Net 4.5 projects that do *not* use ALox release logging
+ALox-CS-.Net45-DLL-Release-Log   | For .Net 4.5 projects that intent to use ALox release logging (besides debug logging)
 
 
 The projects for __Visual Studio__ are found in:
@@ -89,14 +88,12 @@ The projects for __Visual Studio__ are found in:
 Your, choices are:
 
 
-<table border="1" >
-    <tr><th><center>Project Name</center>           </th>   <th><center>Description</center></th>  </tr>
-
-    <tr><td>ALox-CS-.Net45-DLL               </td>   <td>For .Net 4.5 projects that do *not* use ALox release logging</tr>
-    <tr><td>ALox-CS-.Net45-DLL-Release-Log   </td>   <td>For .Net 4.5 projects that intent to use ALox release logging (besides debug logging)</tr>
-    <tr><td>ALox-CS-.WP80-DLL                </td>   <td>For windows Phone 8 projects that do *not* use ALox release logging</tr>
-    <tr><td>ALox-CS-.WP80-DLL-Release-Log    </td>   <td>For windows Phone 8 projects that intent to use ALox release logging (besides debug logging)</tr>
-</table>
+<center>Project Name</center>    | <center>Description</center>
+- - - - - - - - - - - - - - - - -| - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ALox-CS-.Net45-DLL               |For .Net 4.5 projects that do *not* use ALox release logging
+ALox-CS-.Net45-DLL-Release-Log   |For .Net 4.5 projects that intent to use ALox release logging (besides debug logging)
+ALox-CS-.WP80-DLL                |For windows Phone 8 projects that do *not* use ALox release logging
+ALox-CS-.WP80-DLL-Release-Log    |For windows Phone 8 projects that intent to use ALox release logging (besides debug logging)
 
 
 \note
@@ -113,7 +110,7 @@ The difference between the project versions with or without the release logging 
   (Only, class [Log](@ref #cs::aworx::lox::Log) gets its  interface replaced by thin
   stub methods in release mode.).
 - The size of the release assembly slightly increases if you use the release log enabled projects.
-- Temporary or long-term pruning of the release log statements in your code is still enabled
+- Temporary or long-term pruning of the release <em>Log Statements</em> in your code is still enabled
   when you use the release log versions of the library!<br>
   Therefore: Only, if you never want to use release logging, choose the smaller library that
   only enables debug logging.
@@ -220,7 +217,7 @@ and your project!
 To test your setup, add minimum ALox functionality to your project as described in the first chapter
 of \ref cstutorial into your main method or anywhere you think it is appropriate:
 
-\snippet UT_alox_tutorial.cs        Tut_Hello_ALox
+        Log.Info( "Hello ALox" );
 
 You are set if:
 - your project compiles and runs without error
@@ -242,7 +239,7 @@ Let's wrap up what was said:
 Once you are set, make sure to read:
 
 - \ref cstutorial
-- A short chapter \ref cspruning that describes how pruning debug log statements from the
+- A short chapter \ref cspruning that describes how pruning debug <em>Log Statements</em> from the
   code is implemented in ALox for C#. This is needed to understand how to use ALox without getting
   compilation errors in debug and release versions.
 - Some further info about ALox features and its architecture in [ALox User Manual](../manual.html)

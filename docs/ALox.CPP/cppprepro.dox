@@ -67,7 +67,7 @@ Consequently, for all important methods of ALox classes to implement logging a p
 exists, because
 - debug logging is deemed to be \e pruned in release builds
 - release logging can be configured using <em>compilation symbols</em> (e.g. to incorporate
-caller information in the release build or not.
+scope information in the release build or not.
 
 \note In other words: While ALox logging is incorporated into the users' code mostly using
 preprocessor macros, this is still <b> conforming to modern C++ programming style</b>,
@@ -105,9 +105,9 @@ and <em>_DEBUG</em> used by other libraries. These default settings include:
 - extra debug code is switched off.
 - multi threading support is switched on.
 - debug logging is switched on in debug builts and switched off in release builts.
-- debug logging caller information is switched on.
+- debug logging scope information is switched on.
 - release logging is switched on.
-- release logging caller information is switched off.
+- release logging scope information is switched off.
 
 <b>Avoiding library compilation problems</b><br>
 As with other C++ libraries, some of the compilation symbols change the interface and
@@ -120,7 +120,7 @@ the code, share the same value across all compilation units and the ALox library
 A mechanism to detect compilation setup problems exists with method
 \ref aworx::lib::ALIB::VerifyCompilationFlags "ALIB::VerifyCompilationFlags" which is called
 automatically when invoking
-\ref aworx::lox::Log::Init "Log::Init", which should be done explicitly on bootstrap, but which
+\ref aworx::lox::ALox::Init "ALox::Init", which should be done explicitly on bootstrap, but which
 is also be done implicitly, when ALox is used (and no explicit invocation was made before).
 
 <b>Reference guide:</b><br>
@@ -149,7 +149,7 @@ Code selection symbols could be used to implement ALox logging using pairs of
 
 While they are useful to implement rather large extra code blocks which are only used if
 certain logging is enabled, in general it is not recommended to use this mechanism for each
-and every log statement. Instead, it is recommended to use the ALox macros discussed in the next
+and every <em>Log Statement</em>. Instead, it is recommended to use the ALox macros discussed in the next
 section.<p>
 
 ALox itself uses these symbols to enable the compilation of specific versions of the library
@@ -177,7 +177,7 @@ To configure logging (e.g. create certain loggers, configure the log output, etc
 
 <p>
 
-- **Adding caller information**<br>
+- **Adding scope information**<br>
 ALox uses built-in standard preprocessor symbols like  "__FILE__" and "__LINE__" to provide
 information about the position of logging statement within the source. Especially for release
 logging, one problematic fact is that such logging source information could disclose internals

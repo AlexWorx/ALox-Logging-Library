@@ -17,53 +17,59 @@ using cs.aworx.lib;
 using cs.aworx.lox;
 using cs.aworx.lox.core;
 
-namespace cs.aworx.lox.core.textlogger 
+namespace cs.aworx.lox.core.textlogger
 {
 
 /** ************************************************************************************************
- * 
- *  This class is a sort of plug-in for the TextLogger class which converts a given Object
- *  into its textual representation. An internal AString singleton is used as a string buffer
- *  and returned.
- *
- *  This class might be extended to be able to handle custom objects within text loggers.
- *  This default implementation, handles objects of type *String*, *AString* and *StringBuilder*,
- *  For null values a predefined string is returned.
- *  All other Object types are converted by invoking their toString() function
- * 
+ * This abstract class represents a plug-in for the TextLogger class which converts a given Object
+ * into its textual representation.
+ * \see StringConverter for further information.
  **************************************************************************************************/
-public class ObjectConverter
+public abstract class ObjectConverter
 {
-     /// Used to convert null values to string representation. 
+    /** ********************************************************************************************
+     * The conversion method.
+     * @param o        The object to convert.
+     * @param target   An AString that takes the result.
+     * @return \c true, if the object was converted successfully, \c false otherwise.
+     **********************************************************************************************/
+    abstract public  bool ConvertObject( Object o, AString target );
+} // class
+
+
+/** ************************************************************************************************
+ * Implements the interface
+ * \ref cs::aworx::lox::core::textlogger::ObjectConverter "ObjectConverter".
+ * With ALox leveraging the underlying
+ * \ref cs::aworx::lib::strings "ALib string class-family", various standard string types are supported
+ * with this converter.
+ *
+ * For null values a predefined string is returned.
+ * All other Object types are converted by invoking their \b ToString() method.
+ **************************************************************************************************/
+public class StringConverter : ObjectConverter
+{
+     /// Used to convert null values to string representation.
     public           String                FmtNullObject                        ="<null>";
 
-    /// Buffer singleton to store the string representation of Objects. 
-    protected        AString                buffer                              =new AString( 128 );
-
-
     /** ********************************************************************************************
-     * The conversion method. 
-     * @param o  The object to convert. </param>
-     * @return      The filled AString singleton #buffer or, in the case that the given object was
-     *                  of type AString already, just the object itself! 
+     * The conversion method.
+     * @param o        The object to convert.
+     * @param target   An AString that takes the result.
+     * @return \c true, if the object was converted successfully, \c false otherwise.
      **********************************************************************************************/
-    public virtual AString ConvertObject( Object o )
+    public override bool ConvertObject( Object o, AString target )
     {
         // copy the string into our internal Buffer (or reassign if AString given)
-        AString msg=     buffer.Clear();
-        
-             if ( o == null )           msg._( FmtNullObject );
-        else if ( o is String )         msg._( (String)         o );
-        else if ( o is AString )        msg=        (AString)        o  ; // reassign!
-        else if ( o is StringBuilder )  msg._( (StringBuilder)  o );
+             if ( o == null )       target._( FmtNullObject ); // <null>
+        else                        target._( o )  ;           // let AString do the conversion
 
-        // default: use ToString()
-        else
-            msg._( o.ToString() );
-
-        return msg;
+        // we always return true
+        return true;
     }
-} // class
+}
+
+
 } // namespace
 
 #endif

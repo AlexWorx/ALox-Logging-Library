@@ -76,7 +76,11 @@ set( ALOX_VERSION       "${ALIB_VERSION}"     )
     endif()
 
     if( NOT DEFINED  ALOX_DBG_LOG_CI  )
-        set( ALOX_DBG_LOG_CI   "ON" )
+        if ( ${ALOX_DBG_LOG} )
+            set( ALOX_DBG_LOG_CI "ON" )
+        else()
+            set( ALOX_DBG_LOG_CI "OFF" )
+        endif()
     endif()
 
     if( NOT DEFINED  ALOX_REL_LOG  )

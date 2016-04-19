@@ -146,18 +146,18 @@ bool ParseLine( Line& fileLine )
                 node->TParamName= line;
                 dotFile.TClasses.emplace_back( node );
 
-                Log_Info( String64() << " Saveing param name: " << node->TParamName, 1 );
+                Log_Info( String64() << "  Saveing param name: " << node->TParamName );
                 Inifile->Save( nullptr, node->TClassName, node->TParamName, "auto generated", '\0' );
             }
             else
             {
-                Log_Info( String128() << " Template param <" << line << "> found, not usable as parameter name", 1 );
+                Log_Info( String128() << "  Template param <" << line << "> found, not usable as parameter name" );
                 dotFile.TClassesUntouched.emplace_back( &fileLine );
             }
 
         }
         else
-            Log_Info( String64() << " Template<NN> found", 1 );
+            Log_Info( String64() << "  Template<NN> found" );
 
         // OK
         return true;
@@ -251,10 +251,10 @@ bool Build()
             if (!Inifile->Get( nullptr, actNode->TClassName, actNode->TParamName ) )
                 actNode->TParamName= "T";
 
-            Log_Info( String512() <<  "No general TClass found for this node. Using this node as target for all: "
+            Log_Info( String512() <<  "  No general TClass found for this node. Using this node as target for all: "
                                   <<  actNode->TClassName << "<" << actNode->TInstantiationNum << ">"
                                   <<  ", with '" << actNode->TParamName << "' as parameter name."
-                                  , 1);
+                                  );
             dotFile.TClasses.emplace_back(actNode);
         }
     }
@@ -267,7 +267,7 @@ bool Build()
 
     Log_Info( String512() <<  dotFile.TClasses.size() << " TClass(es) found:" );
     Log_Prune ( for( auto tClass : dotFile.TClasses )               )
-        Log_Verbose( String32() <<tClass->TClassName, 1 )
+        Log_Verbose( String32() << "  " <<tClass->TClassName )
 
 
     // sort nodes
@@ -276,8 +276,8 @@ bool Build()
 
     Log_Info( String512() << "Replacement nodes sorted" );
     Log_Prune( for (auto n : dotFile.ReplacedNodes) { )
-        Log_Verbose( String512() << n->Num << " \"" << n->TClassName <<'\"' << Format::Tab(20)
-                    << "   ->  " << n->ReplacementNodeNum ,1 );
+        Log_Verbose( String512() << "  " << n->Num << " \"" << n->TClassName <<'\"' << Format::Tab(20)
+                    << "   ->  " << n->ReplacementNodeNum  );
     Log_Prune( } )
 
 
@@ -323,7 +323,7 @@ bool Build()
               } );
 
     Log_Prune( for (auto n : dotFile.SortedLinks) { )
-        Log_Verbose( String512() << n->From << " -> " << n->To, 1  );
+        Log_Verbose( String512() << "  " << n->From << " -> " << n->To  );
     Log_Prune( } )
 
     // ------------ remove double links ------------
@@ -334,12 +334,11 @@ bool Build()
         if (    lastLink != nullptr
              && lastLink->From == link->From
              && lastLink->To   == link->To
-             && link->LineRest.IndexOfAS("label=") < 0 )
+             && link->LineRest.IndexOfSubstring("label=") < 0 )
         {
-            Log_Verbose( String512() << "Removing link: "
+            Log_Verbose( String512() << "  Removing link: "
                                      << "  Node"   << link->From << " -> Node" << link->To
-                                     << link->LineRest
-                         , 1 );
+                                     << link->LineRest );
             link->Skip= true;
             continue;
         }
@@ -464,15 +463,12 @@ int main(int argc, char *argv[])
     DebugMode= argc==1;
 
     // init ALib/ALox
-    Log::Init( Inclusion::Exclude, argc, (void**) argv);
+    ALox::Init( Inclusion::Exclude, argc, (void**) argv);
     Log_AddDebugLogger();
-    Log_SetDomain( "DOXGRAPH", Log::Scope::SourceFile );
-    Log_SetDomain( "DOXGRAPH", System::IsDebuggerPresent() ?  Log::DomainLevel::All
-                                                           :  Log::DomainLevel::WarningsAndErrors );
-
-    Log_Prune( if ( DebugMode ) )
-    Log_SetDomain( "DOXGRAPH", Log::DomainLevel::All);
-
+    Log_SetDomain( "DOXGRAPH", Scope::Filename  );
+    Log_SetVerbosity( "DEBUG_LOGGER", DebugMode || System::IsDebuggerPresent()
+                                      ?  Verbosity::Verbose :  Verbosity::Warning,
+                                      "/DOXGRAPH" );
 
     if (!DebugMode )
     {
@@ -536,7 +532,7 @@ int main(int argc, char *argv[])
 
     delete Inifile;
     FileName.SetNull();
-    Log::TerminationCleanUp();
+    ALox::TerminationCleanUp();
 
     return 0;
 }

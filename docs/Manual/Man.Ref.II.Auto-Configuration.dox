@@ -1,0 +1,362 @@
+// #################################################################################################
+//  Documentation - ALox Logging Library
+//
+//  (c) 2013-2016 A-Worx GmbH, Germany
+//  Published under MIT License (Open Source License, see LICENSE.txt)
+// #################################################################################################
+
+/**
+\page man_apdx_auto_config  II -  ALox Auto-Configuration and Orthogonality
+
+\tableofcontents
+
+
+\~Comment ####################################################################################### \~
+# Introduction # {#man_apdx_auto_config_intro}
+
+ALox addresses two fundamental 'use cases', namely <b>debug logging</b> and <b>release logging</b>
+(For a general definition see \ref faq_debug_vs_release_logging). While technically both are
+similar, from a conceptual perspective the two are very different things.
+
+Looking into the head of a software developer that thinks about debug logging, you will find
+the following thoughts:
+- "I will quickly write some output routines and if not needed comment them out or just delete them."
+- "Don't bother me, I am not willing to read a user manual for generating simple debug output."
+- "My boss will not pay me for writing nice debug log output, so I do not care."
+- "I have a debugger and comment lines in my code, so I do not urgently need a logging library."
+- "I don't care too much if logging misbehaves or even crashes, this happens only in debug-versions of my software".
+
+&rArr; We understand that a logging library has to be \b easy!
+
+Now release logging:
+- "I have to obey legal rules, logging is a key component of my server"
+- "Collecting usage metrics and detecting failures in the field is a key to success of my app"
+- "Using any external library needs deep and thorough understanding of this. I am paid for making sure this works."
+- "More features of a logging library is always better than less."
+
+&rArr; We understand that a logging library has to be <b>feature rich</b> and \b reliable!
+
+This discrepancy easily justifies the use of two different libraries for both use cases.
+ALox takes a different approach: it tries to match the needs of both worlds. There are two
+fundamental design rules in ALox that lead to a solution:
+
+<b>1. Orthogonality of ALox and its API.</b><br>
+   Orthogonality here means that features that are not used,
+   are not visible when using ALox.
+   This is reached by optional parameters with reasonable default values, many overloaded variants
+   of methods and by taking internal prerequisites when ALox 'detects' that a feature is not used.
+
+<b>2. Auto-configuration.</b><br>
+   This means not only that missing configuration is defaulted, but also that
+   ALox is not pedantic but designed rather non-intrusive. For example, logging into a 'new'
+   <em>Log Domain</em> does not need to anyhow 'register' or 'create' such domain. Many things in ALox just
+   happen on the fly.
+
+Most of ALox auto-configuration features apply to debug logging only and are implemented by
+the dedicated, auto-created \b %Lox instance used for debug logging and also by the dedicated API
+interface used for debug logging (which enables the automatic pruning of debug-logging from release code).
+
+This sounds nice, and leads to the fact that this most simple sample works without any
+further bootstrapping of ALox (here, C# code sampled):
+
+\snippet UT_dox_tutorial_minimum.cs       Tut_Minimum_Hello
+
+
+But it has a little drawback: Hiding features to make an API simple reduces the
+understanding of the API - and this is what a user of release-logging requires.
+And this is <b>the goal of this appendix chapter</b>: We try to collect, list and name concepts of ALox
+that otherwise might be a little hidden for good reasons.
+
+\note
+ The list might not be too well sorted and certain points may seem to be off-topic. Please excuse.
+
+<p>
+
+\note
+  Many of the things that happen 'automatically' or 'on the fly' can be observed by activating the
+  <em>internal logging</em> as described in \ref man_internal_domains.
+
+
+
+\~Comment ####################################################################################### \~
+# 2. List of Automatic Configuration and Orthogonal Features#  {#man_apdx_auto_config_list}
+
+\~Comment ####################################################################################### \~
+## 2.1 Initialization, Lox and Logger Instances ## {#man_apdx_auto_config_list_init}
+
+\~Comment ####################################################################################### \~
+### 2.1.1 ALib/ALox Init ###  {#man_apdx_auto_config_list_init_init}
+To perform a thorough bootstrap, ALox itself as well as underlying utility library
+<b>%ALib</b>
+  ([C++](@ref      aworx::lib),
+  [C#]  (@ref  cs::aworx::lib),
+  [Java](@ref com::aworx::lib)) each provide a static initialization method (
+<b>%ALIB.Init</b>
+  ([C++](@ref      aworx::lib::ALIB::Init),
+  [C#]  (@ref  cs::aworx::lib::ALIB::Init),
+  [Java](@ref com::aworx::lib::ALIB::init)) and
+<b>%ALox.Init</b>
+  ([C++](@ref      aworx::lox::ALox::Init),
+  [C#]  (@ref  cs::aworx::lox::ALox::Init),
+  [Java](@ref com::aworx::lox::ALox::init))).
+
+\b %ALox.Init invokes \b ALib.Init internally. With debug-logging, it is best practice to
+explicitly invoke \b ALox.Init and provide optional parameters as needed.
+However, if omitted, ALox detects that (in different ways in the different language versions of ALox)
+and fixes this providing default values. In addition, ALox is tolerant to multiple invocations.
+Those are simply ignored.
+
+As described in the API reference documentation linked above, external custom configuration
+source plug-ins ( see namespace
+<b>%aworx::lib::config</b>
+  ([C++](@ref      aworx::lib::config),
+  [C#]  (@ref  cs::aworx::lib::config),
+  [Java](@ref com::aworx::lib::config)) and
+<b>%ConfigurationPlugIn</b>
+  ([C++](@ref      aworx::lib::config::ConfigurationPlugIn),
+  [C#]  (@ref  cs::aworx::lib::config::ConfigurationPlugIn),
+  [Java](@ref com::aworx::lib::config::ConfigurationPlugIn))) have to be added to public
+static field
+<b>%ALIB.Config</b>
+  ([C++](@ref      aworx::lib::ALIB::Config),
+  [C#]  (@ref  cs::aworx::lib::ALIB::Config),
+  [Java](@ref com::aworx::lib::ALIB::config))) prior to invoking \b %ALox.Init - especially
+in the case that configuration variables read by the initialization methods and defned in
+these custom sources should be taken into account.
+
+\attention
+  If release logging is used, the explicit initialization of ALox is \b mandatory and failure
+  to do so might lead to critical errors and undefined behavior only in release builds
+  when debug-logging is pruned!
+
+The same applies for methods
+<b>%ALIB.TerminationCleanUp</b>
+  ([C++](@ref      aworx::lib::ALIB::Init),
+  [C#]  (@ref  cs::aworx::lib::ALIB::Init),
+  [Java](@ref com::aworx::lib::ALIB::init)) and
+<b>%ALox.TerminationCleanUp</b>
+  ([C++](@ref      aworx::lox::ALox::Init),
+  [C#]  (@ref  cs::aworx::lox::ALox::Init),
+  [Java](@ref com::aworx::lox::ALox::init)).
+But missing to invoke them on upon termination of a process does not have other effects than
+causing \b harmless memory leaks. (Harmless, because the end of a
+process makes the operating system clean up memory anyhow. OK, this again is not true for some
+obscure operating systems originating from the wild 1960ies...)
+
+\~Comment ####################################################################################### \~
+### 2.1.2 The Lox Singleton for Debug-Logging ### {#man_apdx_auto_config_list_init_log}
+For debug logging, a pre-configured instance of class \b %Lox is created and used.
+More information on this is given in chapter \b man_debug_and_release_logging.
+
+\~Comment ####################################################################################### \~
+### 2.1.3 Adding and Removing Loggers to a Lox ### {#man_apdx_auto_config_list_init_addlogger}
+While method
+<b>%Lox.RemoveLogger</b>
+  ([C++](@ref      aworx::lox::Lox::RemoveLogger),
+  [C#]  (@ref  cs::aworx::lox::Lox::RemoveLogger),
+  [Java](@ref com::aworx::lox::Lox::removeLogger)) is available for removing a \e %Logger from a
+\b %Lox instance, there is no method for explictly adding one. Instead, the method that allows
+to control the \e Verbosity of a <em>Log Domain</em> and its sub-domains for a \e %Logger,
+<b>%Lox.SetVerbosity</b>
+  ([C++](@ref      aworx::lox::Lox::SetVerbosity),
+  [C#]  (@ref  cs::aworx::lox::Lox::SetVerbosity),
+  [Java](@ref com::aworx::lox::Lox::setVerbosity)) adds a \e %Logger in the moment the one provided
+is not known to the \b %Lox, yet. Consequently, the very first time a \e Verbosity of a \e %Logger
+is set, the overloaded version of \b %Lox.SetVerbosity which takes a reference to the \e %Logger
+as parameter has to be used. In subsequent invocations, alternatively, the name of the
+\e %Logger can be provided.
+
+\~Comment ####################################################################################### \~
+### 2.1.4 Logger Names ###  {#man_apdx_auto_config_list_init_loggernames}
+Each \e %Logger attached to a \b %Lox has to have a unique name. Nevertheless, \e %Loggers can be constructed
+without explicitly providing a name. In this case, a default name which is different with each
+derived type of \e %Logger is used. This way, many standard use cases do require the user to
+think about the name of \e %Loggers. For example if a \e %Logger that logs to the console should be used
+in parallel to one that logs into a text file, both \e %Loggers will have different names.
+
+However, if for example two different loggers of type
+<b>%TextLogger</b>
+  ([C++](@ref      aworx::lox::loggers::TextLogger),
+  [C#]  (@ref  cs::aworx::lox::loggers::TextLogger),
+  [Java](@ref com::aworx::lox::loggers::TextLogger)) are to be added to one \b %Lox, then with their
+creation, a dedicated, distinguishable name has to be provided.
+
+In addition, when reading \e Verbosity settings from external configuration (as described in
+\ref man_external_verbosity_configuration), it is advisable to explicitly name \e Loggers, so
+that external configuration data stay "compatible" in the moment a different \e %Logger type is used
+for a certain task. On the other hand: this is \e not necessary for the standard debug \e %Logger
+created automatically or explicitly by calling
+<b>%Log.AddDebugLogger</b>
+  ([C++](@ref      aworx::lox::Log::AddDebugLogger),
+  [C#]  (@ref  cs::aworx::lox::Log::AddDebugLogger),
+  [Java](@ref com::aworx::lox::Log::addDebugLogger)) (see more info on this below), because
+such \e %Loggers are always named \c "DEBUG_LOGGER".
+
+<b>%Lox.RemoveLogger</b>
+  ([C++](@ref      aworx::lox::Lox::RemoveLogger),
+  [C#]  (@ref  cs::aworx::lox::Lox::RemoveLogger),
+  [Java](@ref com::aworx::lox::Lox::removeLogger)) is available for removing a \e %Logger from a
+\b %Lox instance, there is no method for explictly adding one. Instead, the method that allows
+to control the \e Verbosity of a <em>Log Domain</em> and its sub-domains for a \e %Logger,
+<b>%Lox.SetVerbosity</b>
+  ([C++](@ref      aworx::lox::Lox::SetVerbosity),
+  [C#]  (@ref  cs::aworx::lox::Lox::SetVerbosity),
+  [Java](@ref com::aworx::lox::Lox::setVerbosity)) adds a \e %Logger in the moment the one provided
+is not known to the \b %Lox, yet. Consequently, the very first time a \e Verbosity of a \e %Logger
+is set, the overloaded version of <b>%Lox.SetVerbosity</b> which takes a reference to the \e %Logger
+as parameter has to be used. In subsequent invocations, alternatively, the name of the
+\e %Logger can be provided.
+
+
+\~Comment ####################################################################################### \~
+### 2.1.5 Using a Logger with Multiple Lox Instances ### {#man_apdx_auto_config_list_init_loginmultiplelox}
+If a \e %Logger is set with multiple \b %Lox instances, using ALib class
+<b>%SmartLock</b>
+  ([C++](@ref      aworx::lib::threads::SmartLock),
+  [C#]  (@ref  cs::aworx::lib::threads::SmartLock),
+  [Java](@ref com::aworx::lib::threads::SmartLock)), it is automatically protected against
+concurrent access in multi-threaded applications.
+
+\~Comment ####################################################################################### \~
+### 2.1.6 Console Loggers and Debug Logger ### {#man_apdx_auto_config_list_init_consoleloggers}
+Method
+<b>%Lox.CreateConsoleLogger</b>
+  ([C++](@ref      aworx::lox::Lox::CreateConsoleLogger),
+  [C#]  (@ref  cs::aworx::lox::Lox::CreateConsoleLogger),
+  [Java](@ref com::aworx::lox::Lox::createConsoleLogger)) creates an appropriate type of \e Logger
+depending on the operating system, IDE used (if in IDE), implementation language, configuration
+variable, etc.
+The goal get a maximum logging experience, e.g. colorful logging if the console supports colors.
+
+This method can be used to create a \e Logger whenever a console logger is needed (also for
+release-logging of-course).
+
+Furthermore, method
+<b>%Log.AddDebugLogger</b>
+  ([C++](@ref      aworx::lox::Log::AddDebugLogger),
+  [C#]  (@ref  cs::aworx::lox::Log::AddDebugLogger),
+  [Java](@ref com::aworx::lox::Log::addDebugLogger)) uses this method to attach a \e Logger to
+the \b %Lox singleton used for debug-logging.
+In addition, if running in an IDE, ALox tries to detect the IDE and optionally (if available)
+creates a second, IDE specific \e Logger. See reference documentation of the methods linked above
+for more details.<br>
+For both \e %Loggers, root domain <c> '/'</c> is set to \e %Verbosity.Verbose. In addition, the \e Verbosity
+for internal ALox messages is set to \e %Verbosity.Warning.
+(More information on internal ALox messages is found in \ref man_internal_domains.)
+
+Finally, method \b %Log.AddDebugLogger is automatically invoked internally in the moment that
+the \b %Lox singleton used for debug-logging is used and no other \e Logger was attached, yet.
+
+\note The exclamation to this rule is when a \e Logger was added to the
+      \ref man_internal_domains "internal domain tree" only.
+      In this case, the normal standard domain tree is still free of loggers and therefore,
+      a debug logger is automatically attached.
+
+\~Comment ####################################################################################### \~
+## 2.2 Source Path Trimming ## {#man_apdx_auto_config_list_spt}
+If no <em>Source Path Trim Rules</em> are given a default rule is automatically detected and registered.<br>
+If <em>Source Path Trim Rules</em> are given, path separators <c>'/'</c> and <c>'\'</c> are corrected to suit the
+platform of compilation (C++), respectively of execution (C#).
+
+For more information see chapter \ref man_trim_source_path.
+
+
+\~Comment ####################################################################################### \~
+## 2.3 Log Domains and Verbosity ##  {#man_apdx_auto_config_list_ldv}
+<em>Log Domains</em> are created on the fly as needed (used). <em>Log Domain</em>, once created, are never deleted and a user does
+not need to care about their management.
+New, unknown <em>Log Domains</em> inherit their \b Verbosity from their parent, unless optional parameter
+\p priority  of method
+<b>%Lox.SetVerbosity</b>
+  ([C++](@ref      aworx::lox::Lox::SetVerbosity),
+  [C#]  (@ref  cs::aworx::lox::Lox::SetVerbosity),
+  [Java](@ref com::aworx::lox::Lox::setVerbosity)) is used.
+
+Furthermore, when obtaining \e Verbosity settings from external configuration, a natural
+prioritization is applied: First ini-File settings, which are overwritten by environment variable
+settings, which are overwritten by command-line parameters. All of them are overwriting
+settings made invocations of \b %Lox.SetVerbosity in the source code - as long as optional
+parameter \p priority is not given.<br>
+More information on this is found in \ref man_external_verbosity_configuration.
+
+\~Comment ####################################################################################### \~
+## 2.4 Logging Text and Objects ##  {#man_apdx_auto_config_list_logables}
+
+### 2.4.1 Arbitrary Logables ###  {#man_apdx_auto_config_list_logables_arbitrary}
+ALox API transparently hides the fact that it is made for logging arbitrary \e objects - not
+just text messages. Features for logging text is just an application build on the concept
+of logging abstract \e 'Logables'.
+This is not only true for the \e Logables provided in <em>Log Statements</em>, but also for
+\ref man_prefix_logables "Prefix Logables". More information about logging arbitrary
+objects is found in \ref man_ext_loggers.
+
+### 2.4.2 Namespace 'textlogger' ###  {#man_apdx_auto_config_list_logables_textlogger}
+When logging text, classes found in
+<b>%[cs::|com::]%aworx::lox::core::textlogger</b>
+  ([C++](@ref      aworx::lox::core::textlogger),
+  [C#]  (@ref  cs::aworx::lox::core::textlogger),
+  [Java](@ref com::aworx::lox::core::textlogger)) are doing quite a bit of things in the
+background that are not obvious to the user. For example:
+
+- ALox
+ <b>%ESC codes</b>
+   ([C++](@ref      aworx::lox::ESC),
+   [C#]  (@ref  cs::aworx::lox::ESC),
+   [Java](@ref com::aworx::lox::ESC)) are removed from textual \e Logables if a \e Logger
+ does not support them. (For more information see \ref man_colorful_loggers.)
+
+- Classes derived from \e %Textlogger by default recognize
+ multi-line text in \e Logables (in standard line ending, Windows line ending or mixed mode)
+ and format multi-line text accordingly.
+
+- With the help of utility class
+ <b>%AutoSizes</b>
+   ([C++](@ref      aworx::lox::core::textlogger::AutoSizes),
+   [C#]  (@ref  cs::aworx::lox::core::textlogger::AutoSizes),
+   [Java](@ref com::aworx::lox::core::textlogger::AutoSizes)), class \b %TextLogger
+ formats the log output into columns that grow over time.
+ In the moment a write-enabled configuration plug-in is attached (e.g. an ini-File), such sizes
+ are restored when a process is re-launched. Also automatic shrinking happens. This is done
+ when next detects that the tabulator and field sizes of a previous session it used, have been
+ higher than needed after all. In the next run, the smaller sizes are restored.
+ The read and write of the values is performed in methods
+ <b>%TextLogger::AddAcquirer</b>
+   ([C++](@ref      aworx::lox::core::textlogger::TextLogger::AddAcquirer),
+   [C#]  (@ref  cs::aworx::lox::core::textlogger::TextLogger::AddAcquirer),
+   [Java](@ref com::aworx::lox::core::textlogger::TextLogger::addAcquirer)) and
+ <b>%TextLogger::RemoveAcquirer</b>
+   ([C++](@ref      aworx::lox::core::textlogger::TextLogger::RemoveAcquirer),
+   [C#]  (@ref  cs::aworx::lox::core::textlogger::TextLogger::RemoveAcquirer),
+   [Java](@ref com::aworx::lox::core::textlogger::TextLogger::removeAcquirer)) which are invoked
+ when a \e Logger is added, respectively removed from a \b %Lox.
+
+- The standard output streams (e.g. in C++ <c>'std::cout'</c> and <c>'std::cerr'</c>) are locked against
+  concurrent write operations as soon as more than one \e %Logger is active. This avoids clutter that
+  is created by intermixing log statements coming from different threads. It is also possible
+  to synchronize such output with other entities (non-ALox) that write to these streams. In this
+  case, locking takes place already when only one \e %Logger which uses the streams is established.
+  See
+  <b>%ALIB::StdOutputStreamsLock</b>
+   ([C++](@ref      aworx::lib::ALIB::StdOutputStreamsLock),
+   [C#]  (@ref  cs::aworx::lib::ALIB::StdOutputStreamsLock),
+   [Java](@ref com::aworx::lib::ALIB::stdOutputStreamsLock)) for more information on how to do that.
+
+
+### 2.4.3 C++ Strings ###  {#man_apdx_auto_config_list_logables_cppstrings}
+In ALox for C++, logging strings leverages the string facilities of underlying ALib, which allows
+to transparently pass just any sort of string object to <em>Log Statements</em>, including references or pointers to almost
+any custom string type - without any sort of prior conversion!
+This is achieved using 'template meta programming' of C++ 11.
+Information on how to adopt custom string types is found here: \ref aworx::lib::strings "ALib strings".
+
+
+
+
+\~Comment
+- Also sample TextLogger "Multi-Line" Logging with \n separators?
+
+
+\~
+
+
+*/

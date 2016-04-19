@@ -15,28 +15,20 @@ using cs.aworx.lib.enums;
 
 
 /** ************************************************************************************************
- *  This is the C# namespace for the implementation of <em>logger classes</em> that are provided
- *  by default with <em>%ALox Logging Library</em>.
+ * This is the C# namespace for the implementation of <em>logger classes</em> that are provided
+ * by default with <em>%ALox Logging Library</em>.
  *
- *  Developed by A-Worx GmbH and published under the MIT license.
+ * Developed by A-Worx GmbH and published under the MIT license.
  **************************************************************************************************/
 namespace cs.aworx.lox.loggers    {
 
 
 /** ************************************************************************************************
+ * A logger that logs all messages using the .Net class <em>System.Console</em>.
+ * The name of the \e Logger defaults to "CONSOLE".
  *
- *  A logger that logs all messages using the .Net class <em>System.Console</em>.
- *  The name of the logger defaults to "CONSOLE".
- *
- *  ALox text logger escape sequences (see class \ref aworx::lox::ESC "ESC")
- *  are removed and ignored.
- *
- *  The constructor sets the level of the root domain, and as such the level of all 'unknown'
- *  domains that inherit from root domain to 'All'. This is because this class represents a logger
- *  that logs into the developer's IDE, and hence just wants to fetch all log domains that the
- *  app and its library uses - unless explicitly set differently in the bootstrap code.  By default,
- *  root domains of loggers have domain level 'Off'.
- *
+ * ALox text logger escape sequences (see class \ref cs::aworx::lox::ESC "ESC")
+ * are removed and ignored.
  **************************************************************************************************/
 public class ConsoleLogger : PlainTextLogger
 {
@@ -52,15 +44,11 @@ public class ConsoleLogger : PlainTextLogger
 
     /** ********************************************************************************************
      * Creates a ConsoleLogger.
-     * @param name  (Optional) The name of the logger, defaults to "CONSOLE" </param>
+     * @param name  (Optional) The name of the \e Logger, defaults to "CONSOLE"
      **********************************************************************************************/
     public ConsoleLogger( String name= null )
-    : base( name, "CONSOLE" )
+    : base( name, "CONSOLE", true )
     {
-        // set default domain level to all: As an app console logger/IDE logger we want to
-        // fetch all we can
-        RootDomain.SetLevel( Log.DomainLevel.All, Propagation.None );
-
     }
 
     /** ********************************************************************************************
@@ -92,7 +80,7 @@ public class ConsoleLogger : PlainTextLogger
      * @return Always returns true.
      **********************************************************************************************/
     override
-    protected bool doLogSubstring( AString buffer, int start, int length )
+    protected bool logSubstring( AString buffer, int start, int length )
     {
         #if !(ALOX_WP71 || ALOX_WP8)
             Console.Write( buffer.Buffer(), start, length );

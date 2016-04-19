@@ -14,6 +14,7 @@
     #include "alox/alox.hpp"
 #endif
 
+
 #include "alox/loggers/consolelogger.hpp"
 #include "alox/loggers/ansilogger.hpp"
 #include "alox/loggers/vstudiologger.hpp"

@@ -27,94 +27,66 @@ using namespace aworx::lox::core;
 // #################################################################################################
 // static fields
 // #################################################################################################
-TString            Domain::DomainSeparatorChars("\\|/");
 
 // #################################################################################################
 // Constructor/Destructor
 // #################################################################################################
 
 Domain::Domain( Domain* parent, const String& name )
+: SubDomains()
+, Data()
 {
     // store parameters
     this->Parent=   parent;
     Name=           name;
 
-    // set log level to Off, if we have no parent, else we inherit from parent
-    level= ( parent == nullptr )    ?  Log::DomainLevel::Off
-                                    :  Log::DomainLevel::Inherit;
+    SubDomains.reserve(3);
+    Data      .reserve( parent == nullptr ? (size_t) 2 : parent->Data.size() );
+
+    // if we have a parent, we inherit all loggers' verbosities
+    if( parent != nullptr )
+    {
+        Data= parent->Data;
+    }
+
+    // assemble the full path once
+    const Domain* dom= this;
+    do
+    {
+        if ( dom != this || dom->Parent == nullptr )
+            FullPath.InsertAt( "/"      , 0 );
+        FullPath.InsertAt( dom->Name, 0 );
+        dom= dom->Parent;
+    }
+    while( dom != nullptr );
 }
 
 Domain::~Domain()
 {
     for ( Domain* sub : SubDomains )
         delete sub;
+    for ( auto& it : PrefixLogables )
+        if ( it.first.Type == 0 )
+            delete (AString*) it.first.Object;
 }
 
 // #################################################################################################
 // Methods
 // #################################################################################################
-
-Log::DomainLevel Domain::GetLevel()
-{
-    // recursively find a defined level
-    Domain*       parent=  this->Parent;
-    Log::DomainLevel level=   this->level;
-    while (level == Log::DomainLevel::Inherit && parent != nullptr )
-    {
-        level=   parent->level;
-        parent=  parent->Parent;
-    }
-
-    ALIB_ASSERT_ERROR( level != Log::DomainLevel::Inherit, "Root domain level must not be DomainLevel::Inherit" );
-
-    // return result
-    return level;
-}
-
-// #################################################################################################
-// Methods
-// #################################################################################################
-void Domain::SetLevel( Log::DomainLevel level, Propagation propagation )
-{
-    // set it for myself
-    if ( Parent != nullptr || level != Log::DomainLevel::Inherit )
-        this->level= level;
-
-    // recursively set level for sub domains
-    if ( propagation == Propagation::ToDescendants )
-        for ( Domain* domain : SubDomains )
-            domain->SetLevel ( level, Propagation::ToDescendants );
-}
-
-bool Domain::IsActive( Log::Level level )
-{
-    Log::DomainLevel domainLevel= GetLevel();
-
-    ALIB_ASSERT ( domainLevel != Log::DomainLevel::Inherit );
-
-    //    Level / DomainLevel        |   Verbose  Info     Warning     Error
-    //  ---------------------------------------------------------------------
-    //    Off                        |     -        -        -           -
-    //    Errors                     |     -        -        -           Y
-    //    WarningsAndErrors          |     -        -        Y           Y
-    //    InfoWarningsAndErrors      |     -        Y        Y           Y
-    //    All                        |     Y        Y        Y           Y
-    return        ( domainLevel == Log::DomainLevel::Errors                   &&        level == Log::Level::Error   )
-            ||    ( domainLevel == Log::DomainLevel::WarningsAndErrors        &&    (   level == Log::Level::Warning || level == Log::Level::Error ) )
-            ||    ( domainLevel == Log::DomainLevel::InfoWarningsAndErrors    &&        level != Log::Level::Verbose )
-            ||      domainLevel == Log::DomainLevel::All;
-}
-
-Domain* Domain::Find( Substring domainPath, bool* wasCreated )
+Domain* Domain::Find( Substring domainPath, Case sensitivity, int maxCreate, bool* wasCreated )
 {
     // set optional output parameter as default to false
-    if ( wasCreated != nullptr )
-        *wasCreated= false;
+    bool dummy;
+    if ( wasCreated == nullptr )
+        wasCreated= &dummy;
+    *wasCreated= false;
 
     int lenBeforeTrim= domainPath.Length();
 
     // if string is empty (resp. contains only separator characters), return ourselves
-    if( domainPath.TrimStart( DomainSeparatorChars ) )
+    while ( domainPath.Consume( Domain::PathSeparator() ) )
+        ;
+    if( domainPath.IsEmpty() )
     {
         return this;
     }
@@ -128,52 +100,121 @@ Domain* Domain::Find( Substring domainPath, bool* wasCreated )
     }
 
     // call find
-    return startDomain->findRecursive( domainPath, wasCreated );
+    return startDomain->findRecursive( domainPath, sensitivity, maxCreate, wasCreated );
 }
 
-Domain* Domain::findRecursive( Substring& domainPath, bool* wasCreated )
+Domain* Domain::findRecursive( Substring& domainPath, Case sensitivity, int maxCreate, bool* wasCreated )
 {
-    // invariant: domainPath is never empty (might be just path separators though)
-
     //--- get act sub-name and rest of path
-    domainPath.TrimStart( DomainSeparatorChars );
-    int endSubName= domainPath.IndexOfAny( DomainSeparatorChars, Inclusion::Include );
+    domainPath.Consume( Domain::PathSeparator() );
+    int endSubName= domainPath.IndexOf( Domain::PathSeparator() );
 
     ALIB_ASSERT_ERROR( endSubName != 0, "Internal Error" );
 
-    // find start of rest, mark as negative pos if empty
-
+    // find end of actual domain name and save rest
     Substring restOfDomainPath;
     if ( endSubName > 0 )
         domainPath.Split<false>( endSubName, restOfDomainPath, 1 );
 
-    // search act domain
-    int  comparison=   -1;
-    auto subDomainIt=  SubDomains.begin();
-    while ( subDomainIt != SubDomains.end() )
+    // search sub-domain
+    Domain* subDomain= nullptr;
+
+    // "."
+    if( domainPath.Equals( "." ) )
+        subDomain= this;
+
+    // ".."
+    else if( domainPath.Equals( ".." ) )
+        subDomain= Parent != nullptr ? Parent : this;
+
+
+    // search in sub-domain
+    else
     {
-        comparison= (*subDomainIt)->Name.CompareTo<false>( domainPath, Case::Sensitive );
+        std::vector<Domain*>::iterator subDomainIt;
+        bool fixedOnce= false;
+        for(;;)
+        {
+            subDomainIt=  SubDomains.begin();
+            while ( subDomainIt != SubDomains.end() )
+            {
+                int comparison= (*subDomainIt)->Name.CompareTo<false>( domainPath, sensitivity );
 
-        if( comparison >= 0 )
-            break;
+                if( comparison >= 0 )
+                {
+                    if ( comparison == 0 )
+                        subDomain=    *subDomainIt;
+                    break;
+                }
+                subDomainIt++;
+            }
 
-        subDomainIt++;
-    }
+            // domain found?
+            if ( subDomain != nullptr )
+                break;
 
-    // domain not found? then create.
-    if ( comparison != 0 )
-    {
-        subDomainIt= SubDomains.insert( subDomainIt, new Domain( this,  domainPath) );
-        if ( wasCreated != nullptr )
+            // try and fix name
+            if( !fixedOnce )
+            {
+                fixedOnce= true;
+
+                bool illegalCharacterFound= false;
+                for( int i= 0; i< domainPath.Length() ; ++i )
+                {
+                    char c= (int) domainPath[i];
+                    if (     c <  '-' || c > 'z'
+                          || c == '<' || c == '>'
+                          || c == '[' || c == ']'
+                          || c == '=' || c == '?' || c == ';' || c == ':'
+                          || c == '\\'|| c == '\''|| c == '.' || c == ','
+                       )
+                    {
+                        illegalCharacterFound= true;
+                        // ohdear: modifying const buffer...but this is definitely from an AString!
+                        *(char*) (domainPath.Buffer() + i)= '#';
+                    }
+                }
+
+                if ( illegalCharacterFound )
+                    continue;
+             }
+
+            // create
+            if ( maxCreate == 0 )
+                return nullptr;
+
             *wasCreated= true;
+            subDomainIt= SubDomains.insert( subDomainIt, subDomain= new Domain( this,  domainPath) );
+            maxCreate--;
+            if ( maxCreate == 0 )
+                return *subDomainIt;
+            break;
+        }
     }
 
     // recursion?
-    if ( restOfDomainPath.IsNotEmpty() )
-        return (*subDomainIt)->findRecursive( restOfDomainPath, wasCreated );
+    return  restOfDomainPath.IsNotEmpty()
+            ? subDomain->findRecursive( restOfDomainPath, sensitivity, maxCreate, wasCreated )
+            : subDomain;
+}
 
-    // that's it
-    return *subDomainIt;
+void Domain::ToString( AString& tAString )
+{
+    tAString << FullPath;
+    tAString._('[')._( Format::Int32( CntLogCalls,3 ) )._("] ");
+
+    // get verbosities
+    tAString._(" { ");
+        for( size_t i= 0; i < Data.size() ; i++ )
+        {
+            LoggerData& ld= Data[i];
+            tAString._(i!=0 ? ", " : "" )
+                    ._('(')
+                        ._('[')._( Format::Int32(ld.CntLogCalls, 3) )._( "], " );
+                        aworx::lox::ToString( ld.LoggerVerbosity, ld.Priority, tAString )
+                    ._( ')' );
+        }
+    tAString._(" }");
 }
 
 

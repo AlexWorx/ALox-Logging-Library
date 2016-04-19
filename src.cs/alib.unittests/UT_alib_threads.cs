@@ -31,7 +31,7 @@ namespace ut_cs_aworx_lib
     #if ALIB_VSTUDIO
         [TestClass]
     #endif
-    public class CS_ThreadLock    : UnitTest
+    public class CS_ThreadLock    : AUnitTest
     {
         #if ALIB_MONO_DEVELOP
             [Test ()]
@@ -44,13 +44,13 @@ namespace ut_cs_aworx_lib
         #endif
         public void ThreadLock_SimpleTests()
         {
+            UT_INIT();
             Report.GetDefault().PushHaltFlags( false, false );
 
-            Log.Reset();
-            Log.AddLogger( new ConsoleLogger() );
+            Log.AddDebugLogger();
             Log.MapThreadName( "UnitTest" );
-            Log.SetDomain( "TestTLock", Log.Scope.Method );
-            Log.SetDomain( "ALIB", Log.DomainLevel.All );
+            Log.SetDomain( "TestTLock", Scope.Method );
+            Log.SetVerbosity( Log.DebugLogger, Verbosity.Verbose, "ALIB" );
 
             // lock a recursive lock
             ThreadLock aLock= new ThreadLock();
@@ -67,11 +67,11 @@ namespace ut_cs_aworx_lib
             aLock.Release();                                UT_TRUE (  aLock.ToString().StartsWith("Unlocked") );
 
             // set unsafe
-            aLock.SetMode( Safeness.Unsafe );               UT_TRUE (  aLock.ToString().StartsWith("Unlocked") );
+            aLock.SetSafeness( Safeness.Unsafe );           UT_TRUE (  aLock.ToString().StartsWith("Unlocked") );
                                                             UT_TRUE (  aLock.ToString().Contains  ("Unsafe")   );
-            aLock.SetMode( Safeness.Safe );                 UT_TRUE ( !aLock.ToString().Contains  ("Unsafe")   );
+            aLock.SetSafeness( Safeness.Safe );             UT_TRUE ( !aLock.ToString().Contains  ("Unsafe")   );
 
-            aLock.SetMode( Safeness.Unsafe );               UT_TRUE (  aLock.ToString().StartsWith("Unlocked") );
+            aLock.SetSafeness( Safeness.Unsafe );           UT_TRUE (  aLock.ToString().StartsWith("Unlocked") );
                                                             UT_TRUE (  aLock.ToString().Contains  ("Unsafe")   );
             aLock.Acquire();                                UT_TRUE (  aLock.ToString().StartsWith("Locked")   );
             aLock.Release();                                UT_TRUE (  aLock.ToString().StartsWith("Unlocked") );
@@ -80,7 +80,7 @@ namespace ut_cs_aworx_lib
             // unsafe
             aLock.Acquire();                                UT_TRUE (  aLock.ToString().StartsWith("Locked")   );
             Log.Info("One warning should come now: ");
-            aLock.SetMode( Safeness.Safe );                 UT_TRUE (  aLock.ToString().StartsWith("Locked")   );
+            aLock.SetSafeness( Safeness.Safe );             UT_TRUE (  aLock.ToString().StartsWith("Locked")   );
                                                             UT_TRUE (  aLock.ToString().Contains  ("Unsafe")   );
 
             // safe (new lock)
@@ -88,7 +88,7 @@ namespace ut_cs_aworx_lib
             aLock.Acquire();                                UT_TRUE (  aLock.ToString().StartsWith("Locked")   );
                                                             UT_TRUE ( !aLock.ToString().Contains  ("Unsafe")   );
             Log.Info("One warning should come now: ");
-            aLock.SetMode( Safeness.Unsafe );               UT_TRUE ( !aLock.ToString().StartsWith("null")     );
+            aLock.SetSafeness( Safeness.Unsafe );           UT_TRUE ( !aLock.ToString().StartsWith("null")     );
                                                             UT_TRUE ( !aLock.ToString().Contains  ("Unsafe")   );
 
 
@@ -125,12 +125,12 @@ namespace ut_cs_aworx_lib
         #endif
         public void ThreadLock_Threaded()
         {
-            Log.Reset();
+            UT_INIT();
 
-            Log.AddLogger( new ConsoleLogger() );
+            Log.SetVerbosity( new ConsoleLogger(),Verbosity.Verbose, "/" );
             Log.MapThreadName( "UnitTest" );
-            Log.SetDomain( "TestTLock", Log.Scope.SourceFile );
-            Log.SetDomain( "ALIB", Log.DomainLevel.All );
+            Log.SetDomain( "TestTLock", Scope.Filename );
+            Log.SetVerbosity( "CONSOLE", Verbosity.Verbose, "ALIB" );
 
             ThreadLock aLock= new ThreadLock();
 
@@ -168,6 +168,83 @@ namespace ut_cs_aworx_lib
 
         }
 
+
+    #if ALOX_DBG_LOG
+        #if ALIB_MONO_DEVELOP
+            [Test ()]
+        #endif
+        #if ALIB_VSTUDIO
+            [TestMethod]
+            #if !WINDOWS_PHONE
+                [TestCategory("CS_ThreadLock")]
+            #endif
+        #endif
+        public void SmartLock()
+        {
+            UT_INIT();
+
+            Report.GetDefault().PushHaltFlags( false, false );
+            
+                // SmartLock with null-users
+                {
+                                                                                                                                                  utWriter.lox.CntLogCalls= 0;
+                    SmartLock sl= new SmartLock();      UT_TRUE( sl.GetSafeness() == Safeness.Unsafe );  UT_TRUE( utWriter.lox.CntLogCalls== 0 ); utWriter.lox.CntLogCalls= 0;
+                    sl.AddAcquirer   ( null );          UT_TRUE( sl.GetSafeness() == Safeness.Unsafe );  UT_TRUE( utWriter.lox.CntLogCalls== 0 ); utWriter.lox.CntLogCalls= 0;
+                    sl.AddAcquirer   ( null );          UT_TRUE( sl.GetSafeness() == Safeness.Safe   );  UT_TRUE( utWriter.lox.CntLogCalls== 0 ); utWriter.lox.CntLogCalls= 0;
+                    sl.AddAcquirer   ( null );          UT_TRUE( sl.GetSafeness() == Safeness.Safe   );  UT_TRUE( utWriter.lox.CntLogCalls== 0 ); utWriter.lox.CntLogCalls= 0;
+                    sl.RemoveAcquirer( null );          UT_TRUE( sl.GetSafeness() == Safeness.Safe   );  UT_TRUE( utWriter.lox.CntLogCalls== 0 ); utWriter.lox.CntLogCalls= 0;
+                    sl.RemoveAcquirer( null );          UT_TRUE( sl.GetSafeness() == Safeness.Unsafe );  UT_TRUE( utWriter.lox.CntLogCalls== 0 ); utWriter.lox.CntLogCalls= 0;
+                    sl.RemoveAcquirer( null );          UT_TRUE( sl.GetSafeness() == Safeness.Unsafe );  UT_TRUE( utWriter.lox.CntLogCalls== 0 ); utWriter.lox.CntLogCalls= 0;
+                    sl.RemoveAcquirer( null );          UT_TRUE( sl.GetSafeness() == Safeness.Unsafe );  UT_TRUE( utWriter.lox.CntLogCalls== 1 ); utWriter.lox.CntLogCalls= 0;
+                }
+            
+                // SmartLock with threadlocks
+                {
+                    ThreadLock tl1 = new ThreadLock();
+                    ThreadLock tl2 = new ThreadLock();
+                    ThreadLock tl3 = new ThreadLock();
+                    SmartLock  sl= new SmartLock();    UT_TRUE( sl.GetSafeness() == Safeness.Unsafe );  UT_TRUE( utWriter.lox.CntLogCalls== 0 ); utWriter.lox.CntLogCalls= 0;
+                    sl.AddAcquirer   ( tl1 );          UT_TRUE( sl.GetSafeness() == Safeness.Unsafe );  UT_TRUE( utWriter.lox.CntLogCalls== 0 ); utWriter.lox.CntLogCalls= 0;
+                    sl.AddAcquirer   ( tl2 );          UT_TRUE( sl.GetSafeness() == Safeness.Safe   );  UT_TRUE( utWriter.lox.CntLogCalls== 0 ); utWriter.lox.CntLogCalls= 0;
+                    sl.AddAcquirer   ( tl3 );          UT_TRUE( sl.GetSafeness() == Safeness.Safe   );  UT_TRUE( utWriter.lox.CntLogCalls== 0 ); utWriter.lox.CntLogCalls= 0;
+                    sl.RemoveAcquirer( tl3 );          UT_TRUE( sl.GetSafeness() == Safeness.Safe   );  UT_TRUE( utWriter.lox.CntLogCalls== 0 ); utWriter.lox.CntLogCalls= 0;
+                    sl.RemoveAcquirer( tl3 );          UT_TRUE( sl.GetSafeness() == Safeness.Safe   );  UT_TRUE( utWriter.lox.CntLogCalls== 1 ); utWriter.lox.CntLogCalls= 0;
+                    sl.RemoveAcquirer( tl2 );          UT_TRUE( sl.GetSafeness() == Safeness.Unsafe );  UT_TRUE( utWriter.lox.CntLogCalls== 0 ); utWriter.lox.CntLogCalls= 0;
+                    sl.RemoveAcquirer( tl1 );          UT_TRUE( sl.GetSafeness() == Safeness.Unsafe );  UT_TRUE( utWriter.lox.CntLogCalls== 0 ); utWriter.lox.CntLogCalls= 0;
+                    sl.RemoveAcquirer( tl1 );          UT_TRUE( sl.GetSafeness() == Safeness.Unsafe );  UT_TRUE( utWriter.lox.CntLogCalls== 1 ); utWriter.lox.CntLogCalls= 0;
+                }
+            
+                // mixed
+                {
+                    ThreadLock tl1 = new ThreadLock();
+                    ThreadLock tl2 = new ThreadLock();
+                    ThreadLock tl3 = new ThreadLock();
+                    SmartLock  sl= new SmartLock();     UT_TRUE( sl.GetSafeness() == Safeness.Unsafe );  UT_TRUE( utWriter.lox.CntLogCalls== 0 ); utWriter.lox.CntLogCalls= 0;
+                    sl.AddAcquirer   ( tl1  );          UT_TRUE( sl.GetSafeness() == Safeness.Unsafe );  UT_TRUE( utWriter.lox.CntLogCalls== 0 ); utWriter.lox.CntLogCalls= 0;
+                    sl.AddAcquirer   ( null );          UT_TRUE( sl.GetSafeness() == Safeness.Safe   );  UT_TRUE( utWriter.lox.CntLogCalls== 0 ); utWriter.lox.CntLogCalls= 0;
+                    sl.AddAcquirer   ( null );          UT_TRUE( sl.GetSafeness() == Safeness.Safe   );  UT_TRUE( utWriter.lox.CntLogCalls== 0 ); utWriter.lox.CntLogCalls= 0;
+                    sl.AddAcquirer   ( tl2  );          UT_TRUE( sl.GetSafeness() == Safeness.Safe   );  UT_TRUE( utWriter.lox.CntLogCalls== 0 ); utWriter.lox.CntLogCalls= 0;
+                    sl.AddAcquirer   ( null );          UT_TRUE( sl.GetSafeness() == Safeness.Safe   );  UT_TRUE( utWriter.lox.CntLogCalls== 0 ); utWriter.lox.CntLogCalls= 0;
+                    sl.AddAcquirer   ( tl2  );          UT_TRUE( sl.GetSafeness() == Safeness.Safe   );  UT_TRUE( utWriter.lox.CntLogCalls== 1 ); utWriter.lox.CntLogCalls= 0;
+                    sl.AddAcquirer   ( null );          UT_TRUE( sl.GetSafeness() == Safeness.Safe   );  UT_TRUE( utWriter.lox.CntLogCalls== 0 ); utWriter.lox.CntLogCalls= 0;
+                    sl.AddAcquirer   ( tl3  );          UT_TRUE( sl.GetSafeness() == Safeness.Safe   );  UT_TRUE( utWriter.lox.CntLogCalls== 0 ); utWriter.lox.CntLogCalls= 0;
+                    sl.RemoveAcquirer( null );          UT_TRUE( sl.GetSafeness() == Safeness.Safe   );  UT_TRUE( utWriter.lox.CntLogCalls== 0 ); utWriter.lox.CntLogCalls= 0;
+                    sl.RemoveAcquirer( tl1  );          UT_TRUE( sl.GetSafeness() == Safeness.Safe   );  UT_TRUE( utWriter.lox.CntLogCalls== 0 ); utWriter.lox.CntLogCalls= 0;
+                    sl.RemoveAcquirer( tl1  );          UT_TRUE( sl.GetSafeness() == Safeness.Safe   );  UT_TRUE( utWriter.lox.CntLogCalls== 1 ); utWriter.lox.CntLogCalls= 0;
+                    sl.RemoveAcquirer( null );          UT_TRUE( sl.GetSafeness() == Safeness.Safe   );  UT_TRUE( utWriter.lox.CntLogCalls== 0 ); utWriter.lox.CntLogCalls= 0;
+                    sl.RemoveAcquirer( tl3  );          UT_TRUE( sl.GetSafeness() == Safeness.Safe   );  UT_TRUE( utWriter.lox.CntLogCalls== 0 ); utWriter.lox.CntLogCalls= 0;
+                    sl.RemoveAcquirer( null );          UT_TRUE( sl.GetSafeness() == Safeness.Safe   );  UT_TRUE( utWriter.lox.CntLogCalls== 0 ); utWriter.lox.CntLogCalls= 0;
+                    sl.RemoveAcquirer( null );          UT_TRUE( sl.GetSafeness() == Safeness.Unsafe );  UT_TRUE( utWriter.lox.CntLogCalls== 0 ); utWriter.lox.CntLogCalls= 0;
+                    sl.RemoveAcquirer( null );          UT_TRUE( sl.GetSafeness() == Safeness.Unsafe );  UT_TRUE( utWriter.lox.CntLogCalls== 1 ); utWriter.lox.CntLogCalls= 0;
+                    sl.RemoveAcquirer( null );          UT_TRUE( sl.GetSafeness() == Safeness.Unsafe );  UT_TRUE( utWriter.lox.CntLogCalls== 1 ); utWriter.lox.CntLogCalls= 0;
+                    sl.RemoveAcquirer( tl3  );          UT_TRUE( sl.GetSafeness() == Safeness.Unsafe );  UT_TRUE( utWriter.lox.CntLogCalls== 1 ); utWriter.lox.CntLogCalls= 0;
+                    sl.RemoveAcquirer( tl2  );          UT_TRUE( sl.GetSafeness() == Safeness.Unsafe );  UT_TRUE( utWriter.lox.CntLogCalls== 0 ); utWriter.lox.CntLogCalls= 0;
+                    sl.RemoveAcquirer( null );          UT_TRUE( sl.GetSafeness() == Safeness.Unsafe );  UT_TRUE( utWriter.lox.CntLogCalls== 1 ); utWriter.lox.CntLogCalls= 0;
+                }
+                Report.GetDefault().PopHaltFlags();
+        }
+    #endif
+
         #if ALIB_MONO_DEVELOP
             [Test ()]
         #endif
@@ -179,11 +256,10 @@ namespace ut_cs_aworx_lib
         #endif
         public void ThreadLock_HeavyLoad()
         {
-            Log.Reset();
-            Log.AddLogger( new ConsoleLogger() );
+            UT_INIT();
+            Log.SetVerbosity( new ConsoleLogger(), Verbosity.Verbose, "/" );
             Log.MapThreadName( "UnitTest" );
-            Log.SetDomain( "TestTLock", Log.Scope.SourceFile );
-            Log.SetDomain( "ALIB", Log.DomainLevel.All );
+            Log.SetDomain( "TestTLock", Scope.Filename );
 
             ThreadLock aLock= new ThreadLock();
 
@@ -228,12 +304,11 @@ namespace ut_cs_aworx_lib
         #endif
         public void ThreadLock_SpeedTest()
         {
-            Log.Reset();
+            UT_INIT();
 
-            Log.AddLogger( new ConsoleLogger() );
+            Log.SetVerbosity( new ConsoleLogger(), Verbosity.Verbose, "/" );
             Log.MapThreadName( "UnitTest" );
-            Log.SetDomain( "TestTLock", Log.Scope.Method );
-            Log.SetDomain( "ALIB", Log.DomainLevel.All );
+            Log.SetDomain( "TestTLock", Scope.Method );
 
             ThreadLock aLock= new ThreadLock();
 
@@ -245,7 +320,7 @@ namespace ut_cs_aworx_lib
             {
                 Log.Info("Run " + rrepeats );
 
-                aLock.SetMode( Safeness.Unsafe );
+                aLock.SetSafeness( Safeness.Unsafe );
                 stopwatch.Set();
                 for ( int i= 0; i < repeats; i++ )
                 {
@@ -255,7 +330,7 @@ namespace ut_cs_aworx_lib
                 long time= stopwatch.Age().InMillis();
                 Log.Info("Safe mode, " + repeats + " lock/unlock ops: " + time + " ms" );
 
-                aLock.SetMode( Safeness.Safe );
+                aLock.SetSafeness( Safeness.Safe );
                 stopwatch.Set();
                 for ( int i= 0; i < repeats; i++ )
                 {
@@ -284,7 +359,7 @@ namespace ut_cs_aworx_lib
             public        int         holdTime;
             public        int         repeats;
             public        bool        verbose;
-            public         int        result= 1;
+            public        int         result= 1;
             public        Test_ThreadLock_SharedInt shared;
 
             public Test_ThreadLock_TestThreadParams( ThreadLock aLock, int holdTime, int repeats, bool verbose, Test_ThreadLock_SharedInt shared )

@@ -7,13 +7,13 @@
 /** @file */ // Hello Doxygen
 
 // to preserve the right order, we are not includable directly from outside.
-#if !defined(FROM_HPP_ALIB_ALIB) || defined(HPP_ALIB_STRINGS_CSTRING)
+#if !defined(FROM_HPP_ALIB) || defined(HPP_ALIB_STRINGS_CSTRING)
     #error "include alib/alib.hpp instead of this header"
 #endif
 
 // Due to our blocker above, this include will never be executed. But having it, allows IDEs
 // (e.g. QTCreator) to read the symbols when opening this file
-#if !defined (HPP_ALIB_ALIB)
+#if !defined (HPP_ALIB)
     #include "alib/alib.hpp"
 #endif
 

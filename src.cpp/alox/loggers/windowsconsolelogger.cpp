@@ -9,7 +9,7 @@
 
 #if defined( _WIN32 )
 
-#if !defined (HPP_ALIB_ALIB)
+#if !defined (HPP_ALIB)
     #include "alib/alib.hpp"
 #endif
 
@@ -33,8 +33,10 @@
 
 
 using namespace std;
-using namespace aworx;
-using namespace aworx::lox::core;
+namespace aworx {
+    namespace lox   {
+
+    using namespace core;
 
 
 
@@ -56,6 +58,7 @@ using namespace aworx::lox::core;
  #define W32C_GRAY_LIGHT     FOREGROUND_RED   | FOREGROUND_GREEN | FOREGROUND_BLUE
  #define W32C_GRAY_DARK      FOREGROUND_INTENSITY
 
+#if !defined( IS_DOXYGEN_PARSER)
  WORD win32Cols[]=
  {
     W32C_RED,
@@ -65,17 +68,14 @@ using namespace aworx::lox::core;
     W32C_MAGENTA,
     W32C_CYAN,
  };
-
+#endif
 
 // #################################################################################################
 // Constructor/Destructor
 // #################################################################################################
 WindowsConsoleLogger::WindowsConsoleLogger( const String&  name )
-:    TextLogger( name, "WINDOWS_CONSOLE" )
+:    TextLogger( name, "WINDOWS_CONSOLE",  true)
 {
-    // set default domain level to all: As an app console logger/IDE logger we want to fetch all we can
-    RootDomain.SetLevel( Log::DomainLevel::All, Propagation::None );
-
     // get actual console attributes
     WORD actualAttributes;
     {
@@ -86,18 +86,18 @@ WindowsConsoleLogger::WindowsConsoleLogger( const String&  name )
         originalConsoleAttributes= actualAttributes;
     }
 
-    // evaluate environment variable "ALOX_CL_LIGHT_BACKGROUND"
+    // evaluate environment variable "ALOX_CONSOLE_HAS_LIGHT_BACKGROUND"
     {
         int  configVarSet;
-        bool configVarTrue= ALIB::Config->IsTrue( Log::ConfigCategoryName, "CL_LIGHT_BACKGROUND", &configVarSet );
+        bool configVarTrue= ALIB::Config.IsTrue( ALox::ConfigCategoryName, "CONSOLE_HAS_LIGHT_BACKGROUND", &configVarSet );
         if( configVarSet != 0 )
             IsBackgroundLight=  configVarTrue;
         else
             IsBackgroundLight=   ( originalConsoleAttributes & ~W32C_FOREGROUND_MASK )        < 7;
     }
 
-    // colorize log level strings.
-    MetaInfo->Format.SearchAndReplace( " %L ", " " );
+    // colorize log verbosity strings.
+    ALIB_ASSERT_RESULT_NOT_EQUALS( MetaInfo->Format.SearchAndReplace( "]%V[", "][" ), 0);
 
     MsgColorInfo            = actualAttributes & ~W32C_FOREGROUND_MASK;
     MsgColorError           = W32C_RED;
@@ -110,11 +110,11 @@ WindowsConsoleLogger::WindowsConsoleLogger( const String&  name )
         MsgColorVerbose         |= FOREGROUND_INTENSITY;
     }
 
-    // evaluate config variable CL_WINDOWS_CODE_PAGE
+    // evaluate config variable CODE_PAGE
     {
         int32_t configCodePage;
 
-        if ( ALIB::Config->Get( Log::ConfigCategoryName, "CL_WINDOWS_CODE_PAGE", configCodePage ) != 0 )
+        if ( ALIB::Config.Get( ALox::ConfigCategoryName, "CODE_PAGE", configCodePage ) != 0 )
             CodePage= (UINT) configCodePage;
     }
 
@@ -125,11 +125,11 @@ WindowsConsoleLogger::~WindowsConsoleLogger()
 }
 
 // #################################################################################################
-// doTextLog
+// logText
 // #################################################################################################
-void WindowsConsoleLogger::doTextLog( const    TString&           ,    Log::Level  level,
-                                               AString&        msg,    int         ,
-                                               CallerInfo*        ,    int                )
+void WindowsConsoleLogger::logText( Domain&        ,    Verbosity  verbosity,
+                                    AString&    msg,
+                                    ScopeInfo&     ,    int                   )
 {
     HANDLE H=       GetStdHandle(STD_OUTPUT_HANDLE);
     DWORD ignore;
@@ -237,12 +237,12 @@ void WindowsConsoleLogger::doTextLog( const    TString&           ,    Log::Leve
             if ( endOfMeta )
             {
                 WORD col;
-                switch ( level )
+                switch ( verbosity )
                 {
-                    case Log::Level::Verbose:   col= MsgColorVerbose;     break;
-                    case Log::Level::Info:      col= MsgColorInfo;        break;
-                    case Log::Level::Warning:   col= MsgColorWarning;     break;
-                    case Log::Level::Error:     col= MsgColorError;       break;
+                    case Verbosity::Verbose:   col= MsgColorVerbose;     break;
+                    case Verbosity::Info:      col= MsgColorInfo;        break;
+                    case Verbosity::Warning:   col= MsgColorWarning;     break;
+                    case Verbosity::Error:     col= MsgColorError;       break;
                     default: col= 0; break;
                 }
                 actualAttributes= ( actualAttributes & W32C_FOREGROUND_MASK ) | col;
@@ -278,5 +278,7 @@ void WindowsConsoleLogger::doTextLog( const    TString&           ,    Log::Leve
 
 
 }
+
+}}// namespace aworx::lox
 
 #endif // Win32

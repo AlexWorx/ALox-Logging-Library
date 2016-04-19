@@ -16,10 +16,9 @@ using cs.aworx.lib.enums;
 
 namespace cs.aworx.lox.loggers    {
 
-
 /** ************************************************************************************************
  *  A logger that logs all messages to the <em>System.IO.TextWriter</em> instance provided in the constructor.
- *  The name of the logger defaults to "ANSI_LOGGER".
+ *  The name of the \e Logger defaults to "ANSI_LOGGER".
  *
  *  ALox text logger escape sequences (see class \ref cs::aworx::lox::ESC "ESC")
  *  are translated to ANSI escape sequences.
@@ -38,14 +37,14 @@ namespace cs.aworx.lox.loggers    {
  *  accessible format attributes can be customized after creation.
  *
  *  There is not 100% match between the ANSI sequences and the definitions in
- *  \ref aworx::lox::ESC "ESC".
+ *  \ref cs::aworx::lox::ESC "ESC".
  *  For example ESC does not provide all ANSI colors and no blinking. On the other hand,
  *  ANSI does not allow to reset the style without resetting the colors.
  *  Of-course, it is no problem to log other ANSI codes directly into an \b %AnsiLogger.
  *  In this case, other Loggers that might be attached to the same Lox and that do not
  *  support ANSI must be equipped with corresponding replacement information.
  *  In other words: To support the same log output into different loggers, it is
- *  recommended to use \ref aworx::lox::ESC "ESC"  sequences instead of
+ *  recommended to use \ref cs::aworx::lox::ESC "ESC"  sequences instead of
  *  directly using ANSI codes.
  *
  *  The ANSI codes used by this class are exposed through a list of fields.
@@ -142,7 +141,7 @@ public class AnsiLogger : TextLogger
          *
          * Defaults to false.
          *
-         * Configuration variable [ALOX_CL_LIGHT_BACKGROUND](../group__GrpALoxConfigVars.html)
+         * Configuration variable [ALOX_CONSOLE_HAS_LIGHT_BACKGROUND](../group__GrpALoxConfigVars.html)
          * is evaluated within the constructor of this class, to allow to modifying this flag at
          * runtime.
          */
@@ -153,16 +152,16 @@ public class AnsiLogger : TextLogger
          */
         protected   System.IO.TextWriter        textWriter;
 
-        /** Characters  placed at the beginning of a log line with level 'Error'.*/
+        /** Characters  placed at the beginning of a log line with \e Verbosity 'Error'.*/
         public      String                      MsgPrefixError;
 
-        /** Characters  placed at the beginning of a log line with level 'Warning'.*/
+        /** Characters  placed at the beginning of a log line with \e Verbosity 'Warning'.*/
         public      String                      MsgPrefixWarning;
 
-        /** Characters  placed at the beginning of a log line with level 'Info'.*/
+        /** Characters  placed at the beginning of a log line with \e Verbosity 'Info'.*/
         public      String                      MsgPrefixInfo            = "";
 
-        /** Characters  placed at the beginning of a log line with level 'Verbose'.*/
+        /** Characters  placed at the beginning of a log line with \e Verbosity 'Verbose'.*/
         public      String                      MsgPrefixVerbose;
 
         /** Characters  placed at the end of each line (e.g. used to reset colors and styles).*/
@@ -175,17 +174,22 @@ public class AnsiLogger : TextLogger
 
         /** ****************************************************************************************
          * Creates an AnsiLogger.
-         * @param textWriter  The TextWriter object to write into.
-         * @param name        (Optional) The name of the logger, defaults to "ANSI".
+         * @param textWriter     The TextWriter object to write into.
+         * @param usesStdStreams Denotes whether this logger writes to the
+         *                       <em>standard output streams</em>.
+         * @param name           The name of the \e Logger, defaults to what is provided with
+         *                       parameter \p typeName.
+         * @param typeName       The type of the \e Logger, defaults to "ANSI".
          ******************************************************************************************/
-        public AnsiLogger( System.IO.TextWriter textWriter, String name= null )
-            : base( name, "ANSI" )
+        public AnsiLogger( System.IO.TextWriter textWriter, bool usesStdStreams, 
+                           String name= null, String typeName= "ANSI" )
+            : base( name, typeName, usesStdStreams )
         {
             this.textWriter= textWriter;
 
-            // evaluate environment variable "ALOX_CL_LIGHT_BACKGROUND"
-            int  configVarSet= 0;
-            bool configVarTrue= ALIB.Config.IsTrue( Log.ConfigCategoryName, "CL_LIGHT_BACKGROUND", ref configVarSet );
+            // evaluate environment variable "ALOX_CONSOLE_HAS_LIGHT_BACKGROUND"
+            int  configVarSet;
+            bool configVarTrue= ALIB.Config.IsTrue( lox.ALox.ConfigCategoryName, "CONSOLE_HAS_LIGHT_BACKGROUND", out configVarSet );
             if( configVarSet != 0 )
                 IsBackgroundLight=  configVarTrue;
             else
@@ -194,8 +198,8 @@ public class AnsiLogger : TextLogger
                 IsBackgroundLight= false;
             }
 
-            // remove level information and colorize the whole line
-            MetaInfo.Format.SearchAndReplace( " %L ", " " );
+            // remove verbosity information and colorize the whole line
+            MetaInfo.Format.SearchAndReplace( "]%V[", "][" );
             if ( IsBackgroundLight )
             {
                 MsgPrefixError           = ANSI_RED;
@@ -210,12 +214,12 @@ public class AnsiLogger : TextLogger
             }
 
             // set source file background to gray
-            AString ansiBGGray= new AString( ESC.BG_GRAY ); ansiBGGray._( "%CF(%CL):" )._( ANSI_BG_STD_COL );
-            MetaInfo.Format.SearchAndReplace( "%CF(%CL):", ansiBGGray.ToString() );
+            AString ansiBGGray= new AString( ESC.BG_GRAY ); ansiBGGray._( "%SF(%SL):" )._( ANSI_BG_STD_COL );
+            MetaInfo.Format.SearchAndReplace( "%SF(%SL):", ansiBGGray.ToString() );
         }
 
     // #############################################################################################
-    // doTextLog
+    // logText
     // #############################################################################################
 
     /** ********************************************************************************************
@@ -223,18 +227,17 @@ public class AnsiLogger : TextLogger
      *  The implementation of the abstract method of parent class TextLogger. Logs messages to the
      *  application console and/or the VStudio output window.
      *
-     * @param domain      The log domain name. </param>
-     * @param level       The log level. This has been checked to be active already on this
-     *                           stage and is provided to be able to be logged out only. </param>
-     * @param msg         The log message. </param>
-     * @param indent      the indentation in the output. Defaults to 0. </param>
-     * @param caller      Once compiler generated and passed forward to here. </param>
+     * @param domain      The <em>Log Domain</em>.
+     * @param verbosity   The verbosity. This has been checked to be active already on this
+     *                    stage and is provided to be able to be logged out only.
+     * @param msg         The log message
+     * @param scope       Information about the scope of the <em>Log Statement</em>..
      * @param lineNumber  The line number of a multi-line message, starting with 0. For
-     *                           single line messages this is -1. </param>
+     *                    single line messages this is -1.
      **********************************************************************************************/
-    override protected void doTextLog(  AString        domain,     Log.Level     level,
-                                        AString        msg,        int            indent,
-                                        CallerInfo     caller,     int            lineNumber)
+    override protected void logText(  Domain         domain,     Verbosity verbosity,
+                                        AString        msg,
+                                        ScopeInfo      scope,      int           lineNumber)
     {
         // loop over message, print the parts between the escape sequences
         Tokenizer msgParts= new Tokenizer( msg, '\x001B' );
@@ -331,12 +334,12 @@ public class AnsiLogger : TextLogger
                 if ( endOfMeta )
                 {
                     String msgPrefix;
-                    switch ( level )
+                    switch ( verbosity )
                     {
-                        case Log.Level.Verbose:   msgPrefix= MsgPrefixVerbose;     break;
-                        case Log.Level.Info:      msgPrefix= MsgPrefixInfo;        break;
-                        case Log.Level.Warning:   msgPrefix= MsgPrefixWarning;     break;
-                        case Log.Level.Error:     msgPrefix= MsgPrefixError;       break;
+                        case lox.Verbosity.Verbose:   msgPrefix= MsgPrefixVerbose;     break;
+                        case lox.Verbosity.Info:      msgPrefix= MsgPrefixInfo;        break;
+                        case lox.Verbosity.Warning:   msgPrefix= MsgPrefixWarning;     break;
+                        case lox.Verbosity.Error:     msgPrefix= MsgPrefixError;       break;
                         default:                  msgPrefix= "";                   break;
                     }
                     textWriter.Write( msgPrefix );
@@ -386,7 +389,7 @@ public class AnsiLogger : TextLogger
  *  class %AnsiLogger.
  *  See class #AnsiLogger for more information on ANSI escape sequences and their use.
  *
- *  The name of the logger defaults to "ANSI_CONSOLE".
+ *  The name of the \e Logger defaults to "ANSI_CONSOLE".
  *
  *  \note Due to the fact that mono libraries under Linux do not support light colors (they
  *  can be used, but they are equal to the dark colors), this logger is preferred over
@@ -397,21 +400,6 @@ public class AnsiLogger : TextLogger
  *  \note While this class does not use class Console to colorize the output, within the
  *  constructor, class Console is still used to identify whether the background of the console
  *  attached to the current process has a dark or light background.
- *
- *  \note For the ease of use, class \ref aworx::lox::Log "Log" implements a method
- *  \ref cs.aworx::lox::Log::AddDebugLogger "Log.AddDebugLogger"
- *  that tries to create the right Logger type for standard debug logging (potentially this one),
- *  depending on the platform, IDE and optional configuration settings.
- *
- *  While by default, the
- *  \ref cs.aworx::lox::Log::DomainLevel "DomainLevel"
- *  of root domains of loggers are set to 'Off', the constructor of this class sets this value
- *  to 'All'. This way, all log invocations on 'unknown' domains (those that have not been
- *  registered and explicitly set) are fully enabled by default.
- *  This is done because this class typically represents a logger that used for debug logging,
- *  e.g. logging into the developer's IDE. Such loggers should detect all messages of any log domain
- *  that the application and its library uses - unless those are explicitly set differently in
- *  the bootstrap code of the application.
  *
  *  \note This class can not enable the output console (which receives ALox
  *  log data) to support ANSI Escape Codes. The opposite is right: this class should be used only if
@@ -428,21 +416,14 @@ public class AnsiConsoleLogger : AnsiLogger
     #else
     /** ********************************************************************************************
      * Creates an AnsiConsoleLogger.
-     * @param name        (Optional) The name of the logger, defaults to "ANSI_CONSOLE".
+     * @param name        (Optional) The name of the \e Logger, defaults to "ANSI_CONSOLE".
      **********************************************************************************************/
-    public AnsiConsoleLogger( String name= "ANSI_CONSOLE" )
-    : base( Console.Out, name )
+    public AnsiConsoleLogger( String name= null )
+    : base( Console.Out, true, name, "ANSI_CONSOLE" )
     {
-        // fix type name
-        TypeName= "ANSI_CONSOLE";
-
-        // set default domain level to all: As an app console logger/IDE logger we want to
-        // fetch all we can
-        RootDomain.SetLevel( Log.DomainLevel.All, Propagation.None );
-
-        // evaluate environment variable "ALOX_CL_LIGHT_BACKGROUND"
-        int  configVarSet= 0;
-        bool configVarTrue= ALIB.Config.IsTrue( Log.ConfigCategoryName, "CL_LIGHT_BACKGROUND", ref configVarSet );
+        // evaluate environment variable "ALOX_CONSOLE_HAS_LIGHT_BACKGROUND"
+        int  configVarSet;
+        bool configVarTrue= ALIB.Config.IsTrue( ALox.ConfigCategoryName, "CONSOLE_HAS_LIGHT_BACKGROUND", out configVarSet );
         if( configVarSet != 0 )
             IsBackgroundLight=  configVarTrue;
         else

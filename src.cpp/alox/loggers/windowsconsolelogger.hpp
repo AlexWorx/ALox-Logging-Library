@@ -31,7 +31,7 @@ namespace           loggers{
 
 /** ************************************************************************************************
  *  A logger that logs all messages to the standard output <em>cout</em>.
- *  The name of the logger defaults to "WINDOWS_CONSOLE".
+ *  The name of the \e Logger defaults to "WINDOWS_CONSOLE".
  *
  *  ALox text logger escape sequences (see class \ref aworx::lox::ESC "ESC")
  *  are translated to Windows API calls (<em>SetConsoleTextAttribute</em>) which manipulates
@@ -43,26 +43,11 @@ namespace           loggers{
  *  the readability of log output a lot. However, the right setting for this is dependent on
  *  the color scheme of final output device (window). To manipulate the right setting, see field
  *  #IsBackgroundLight and also configuration variable
- *  [ALOX_CL_LIGHT_BACKGROUND](../group__GrpALoxConfigVars.html).
+ *  [ALOX_CONSOLE_HAS_LIGHT_BACKGROUND](../group__GrpALoxConfigVars.html).
  *
  *  In the constructor, a default format string and some other definitions in member
  *  \ref MetaInfo get set to include ESC sequences. Of-course, these publicly accessible
  *  format attributes can be customized after creation.
- *
- *  While by default, the
- *  \ref aworx::lox::Log::DomainLevel "DomainLevel"
- *  of root domains of loggers are set to 'Off', the constructor of this class sets this value
- *  to 'All'. This way, all log invocations on 'unknown' domains (those that have not been
- *  registered and explicitly set) are fully enabled by default.
- *  This is done because this class typically represents a logger that used for debug logging,
- *  e.g. logging into the developer's IDE. Such loggers should detect all messages of any log domain
- *  that the application and its library uses - unless those are explicitly set differently in
- *  the bootstrap code of the application.
- *
- *  \note For the ease of use, class \ref aworx::lox::Log "Log" implements a method
- *  \ref aworx::lox::Log::AddDebugLogger "Log::AddDebugLogger"
- *  that tries to create the right Logger type for standard debug logging (potentially this one),
- *  depending on the platform, IDE and optional configuration settings.
  *
  *  \note This class can not enable the output console (which receives ALox
  *  log data) to support the windows API call <em>SetConsoleTextAttribute</em>.
@@ -94,7 +79,7 @@ class WindowsConsoleLogger : public aworx::lox::core::textlogger::TextLogger
          * It will be set to \c true, if the standard console of the application is displaying
          * a light color foreground on a dark color background and vice versa.
          *
-         * The configuration variable [ALOX_CL_LIGHT_BACKGROUND](../group__GrpALoxConfigVars.html)
+         * The configuration variable [ALOX_CONSOLE_HAS_LIGHT_BACKGROUND](../group__GrpALoxConfigVars.html)
          * is evaluated within the constructor of this class, to allow to modifying this flag at
          * runtime.
          */
@@ -110,23 +95,23 @@ class WindowsConsoleLogger : public aworx::lox::core::textlogger::TextLogger
          * This flag can be modified from outside any time. If the value is not equal to 0,
          * the code page of the output console is set prior to each log output.
          *
-         * The configuration variable [ALOX_CL_WINDOWS_CODE_PAGE](../group__GrpALoxConfigVars.html)
+         * The configuration variable [ALOX_CODE_PAGE](../group__GrpALoxConfigVars.html)
          * is evaluated within the constructor of this class, to allow to modifying the codepage at
          * runtime.
          */
 
         UINT            CodePage                                                            =65001;
 
-        /** Color of a log line with level 'Error'.*/
+        /** Color of a log line with \e Verbosity 'Error'.*/
         WORD            MsgColorError;
 
-        /** Color of a log line with level 'Warning'.*/
+        /** Color of a log line with \e Verbosity 'Warning'.*/
         WORD            MsgColorWarning;
 
-        /** Color of a log line with level 'Info'.*/
+        /** Color of a log line with \e Verbosity 'Info'.*/
         WORD            MsgColorInfo;
 
-        /** Color of a log line with level 'Verbose'.*/
+        /** Color of a log line with \e Verbosity 'Verbose'.*/
         WORD            MsgColorVerbose;
 
     // #############################################################################################
@@ -135,7 +120,7 @@ class WindowsConsoleLogger : public aworx::lox::core::textlogger::TextLogger
     public:
         /** ****************************************************************************************
          *  Creates a WindowsConsoleLogger.
-         * @param name  (Optional) The name of the logger, defaults to "WINDOWS_CONSOLE".
+         * @param name  (Optional) The name of the \e Logger, defaults to "WINDOWS_CONSOLE".
          ******************************************************************************************/
         ALOX_API
         explicit            WindowsConsoleLogger( const String& name= nullptr  );
@@ -156,22 +141,20 @@ class WindowsConsoleLogger : public aworx::lox::core::textlogger::TextLogger
          *  Logs messages to the basic output stream 'cout' and sets windows console colors
          *  by invoking corresponding Windows API methods..
          *
-         * @param domain      The log domain name.
-         * @param level       The log level. This has been checked to be active already on this
+         * @param domain      The <em>Log Domain</em>.
+         * @param verbosity   The verbosity. This has been checked to be active already on this
          *                    stage and is provided to be able to be logged out only.
          * @param msg         The log message.
-         * @param indent      the indentation in the output. Defaults to 0.
-         * @param caller      Once compiler generated and passed forward to here.
+         * @param scope       Information about the scope of the <em>Log Statement</em>..
          * @param lineNumber  The line number of a multi-line message, starting with 0. For
          *                    single line messages this is -1.
          ******************************************************************************************/
         ALOX_API
-        virtual void doTextLog(  const TString&    domain,
-                                 Log::Level        level,
-                                 AString&          msg,
-                                 int               indent,
-                                 core::CallerInfo* caller,
-                                 int               lineNumber);
+        virtual void logText(  core::Domain&     domain,
+                               Verbosity         verbosity,
+                               AString&          msg,
+                               core::ScopeInfo&  scope,
+                               int               lineNumber);
 
         /** ****************************************************************************************
          *  Empty implementation, not needed for this class

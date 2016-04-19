@@ -56,11 +56,11 @@ go quickly through them one by one. The classes are:
 - \ref aworx::lib::strings::Substring "Substring"
 
 \note As described in \ref CPP_AWORX_NS_SHORTCUTS "Type Shortcuts in the aworx Namespace",
-      the type names of ALib are 'mirrored' into namespace \b aworx. However, as there is a limitation
-      about themplate classes, types
+      the type names of ALib are 'mirrored' into namespace \b aworx. As there is a limitation
+      with template types, classes
       \ref  aworx::lib::strings::StringLiteral      "StringLiteral" and
       \ref  aworx::lib::strings::PreallocatedString "PreallocatedString" got renamed in
-      namespace \b aworx. Their names there are \p %SLiteral and \p %PAString.<br>
+      namespace \b aworx. Their names are mapped to \p %SLiteral and \p %PAString.<br>
       The latter names are probably even more common in the documentation. Just remember that
       \b %StringLiteral and \b %SLiteral are synonyms, the same as
       \b %PreallocatedString and \b %PAString are.
@@ -383,9 +383,9 @@ piece of code:
 The implementation of method
 \ref aworx::lib::strings::Substring::Consume  "Substring::Consume(int)" by default checks if
 object \e line is big enough to cut the given number of characters from the front.
-Obviously this check is redundant here, because \b Consume is invoked only if \b IndexOfAs had
+Obviously this check is redundant here, because \b Consume is invoked only if \b IndexOfSubstring had
 found the string <em>"\<start\>"</em>. To avoid the redundant check, we invoke the non-checking version of
-method \b Consume by providing template parameter \p TCheck with value \c false.
+method \b Consume by providing template parameter \p TCheck with value \c false:
 \snippet "DOX_ALIB_STRINGS.cpp"     DOX_ALIB_STRINGS_NONCHECKING_2
 
 \note

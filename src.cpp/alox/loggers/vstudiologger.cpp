@@ -8,7 +8,7 @@
 
 #if defined(ALIB_VSTUDIO) && defined(ALIB_DEBUG)
 
-#if !defined (HPP_ALIB_ALIB)
+#if !defined (HPP_ALIB)
     #include "alib/alib.hpp"
 #endif
 
@@ -20,7 +20,7 @@
     #include "alib/strings/tokenizer.hpp"
 #endif
 
-#if !defined (HPP_ALIB_SYSTEM_SYSTEMINFO)
+#if !defined (HPP_ALIB_SYSTEM_SYSTEM)
     #include "alib/system/system.hpp"
 #endif
 
@@ -45,15 +45,12 @@ using namespace aworx::lox::core;
 // #################################################################################################
 
 VStudioLogger::VStudioLogger( const String&  name )
-: PlainTextLogger( name, "VSTUDIO_CONSOLE" )
+: PlainTextLogger( name, "VSTUDIO_CONSOLE", false )
 {
     ALIB_ASSERT_ERROR ( System::IsDebuggerPresent(), "This is not a debug session within Visual Studio" )
 
-    // set default domain level to all: As an app console logger/IDE logger we want to fetch all we can
-    RootDomain.SetLevel( Log::DomainLevel::All, Propagation::None );
-
     // prevent cutting off filenames
-    MetaInfo->ConsumableSourcePathPrefix= "";
+    MetaInfo->Format.SearchAndReplace( "%Sp", "%SP" );
 }
 
 VStudioLogger::~VStudioLogger()
@@ -69,7 +66,7 @@ bool VStudioLogger::notifyLogOp( Phase phase)
     return true;
 }
 
-int VStudioLogger::doLogSubstring( const AString& buffer, int start, int length )
+int VStudioLogger::logSubstring( const AString& buffer, int start, int length )
 {
     if ( wCharBuffer == nullptr )
         wCharBuffer= new wchar_t[ wCharBufferSize= 128];

@@ -23,10 +23,8 @@ using cs.aworx.lib.strings;
     using System.Reflection;
 #endif
 
-#if (!ALOX_NO_THREADS)
-    using System.Threading;
+using System.Threading;
 using cs.aworx.lox.core;
-#endif
 
 /** ************************************************************************************************
  *  This is the C# namespace for classes that provide tools and extensions to the
@@ -37,9 +35,7 @@ using cs.aworx.lox.core;
 namespace cs.aworx.lox.tools {
 
 /** ************************************************************************************************
- *
  *    Provides high level functionality for logging things like Exceptions, objects and XML documents.
- *
  **************************************************************************************************/
 public class LogTools
 {
@@ -83,7 +79,7 @@ public class LogTools
         /// Suffix after logging out a cyclic reference line number.
         public static    String            FmtInstCycRefSuffix                  =">)";
 
-        /// Indent String for instance lines
+        /// String for non-accessible members
         public static    String            FmtInstNoAccessToValue               ="<no access>" ;
 
         /// Prefix for type names
@@ -138,27 +134,24 @@ public class LogTools
 
 
     /** ********************************************************************************************
-     *
      *  Log an exception including inner exceptions recursively. Note: Calls to this  method are
      *  automatically removed from release code.
      *
-     * @param domain     The log domain name. </param>
-     * @param level      The log level. </param>
-     * @param e          The Exception to log. </param>
-     * @param headline   (Optional) A headline string to precede the exception with. </param>
-     * @param indent     (Optional) the indentation in the output (recursively increased).
-     *                          Defaults to 0. </param>
+     * @param domain     The <em>Log Domain</em>.
+     * @param verbosity  The verbosity.
+     * @param e          The Exception to log.
+     * @param headline   (Optional) A headline string to precede the exception with.
      * @param lox        (Optional) The lox to log with. If null, the static member LOX of
-     *                          the static class Log is used. </param>
-     * @param csf        (Optional) Caller info, compiler generated. Please omit. </param>
-     * @param cln        (Optional) Caller info, compiler generated. Please omit. </param>
-     * @param cmn        (Optional) Caller info, compiler generated. Please omit. </param>
+     *                   the static class Log is used.
+     * @param cln (Optional) Caller info, compiler generated. Please omit.
+     * @param csf (Optional) Caller info, compiler generated. Please omit.
+     * @param cmn (Optional) Caller info, compiler generated. Please omit.
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public static void Exception( String    domain,       Log.Level   level,
+    public static void Exception( String    domain,       Verbosity verbosity,
                                   Exception e,            String      headline= null,
-                                  int       indent= 0,    Lox         lox=      null,
-                                  [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
+                                  Lox       lox=   null,
+                                  [CallerLineNumber] int cln=0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
 
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
@@ -181,87 +174,80 @@ public class LogTools
                     #endif
 
                 // log it using the static Log interface
-                lox.Line ( true, domain, level, toolBuf, indent, null, csf, cln, cmn);
+                lox.Entry( domain, verbosity, toolBuf, cln,csf,cmn);
 
             } finally { Lock.Release(); }
         #endif
     }
 
     /** ********************************************************************************************
+     *  Log an exception including inner exceptions recursively. Scope Domain of file is used with
+     *  Verbosity.Error. Note: Calls to this  method are automatically removed from release code.
      *
-     *  Log an exception including inner exceptions recursively. Default domain of file is used with
-     *  Log.Level.Error. Note: Calls to this  method are automatically removed from release code.
-     *
-     * @param level      The log level. </param>
-     * @param e          The Exception to log. </param>
-     * @param headline   (Optional) A headline string to precede the exception with. </param>
-     * @param indent     (Optional) the indentation in the output (recursively increased).
-     *                          Defaults to 0. </param>
+     * @param verbosity The verbosity.
+     * @param e          The Exception to log.
+     * @param headline   (Optional) A headline string to precede the exception with.
      * @param lox        (Optional) The lox to log with. If null, the static member LOX of
-     *                          the static class Log is used. </param>
-     * @param csf        (Optional) Caller info, compiler generated. Please omit. </param>
-     * @param cln        (Optional) Caller info, compiler generated. Please omit. </param>
-     * @param cmn        (Optional) Caller info, compiler generated. Please omit. </param>
+     *                   the static class Log is used.
+     * @param cln (Optional) Caller info, compiler generated. Please omit.
+     * @param csf (Optional) Caller info, compiler generated. Please omit.
+     * @param cmn (Optional) Caller info, compiler generated. Please omit.
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public static void Exception( Log.Level   level,
+    public static void Exception( Verbosity verbosity,
                                   Exception   e,                String        headline= null,
-                                  int         indent=    0,     Lox           lox=      null,
-                                  [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
+                                  Lox         lox=      null,
+                                  [CallerLineNumber] int cln=0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
 
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            Exception( null, level, e, headline, indent, lox, csf,cln,cmn );
+            Exception( null, verbosity, e, headline, lox, cln,csf,cmn );
         #endif
     }
 
     /** ********************************************************************************************
+     *  Log an exception including inner exceptions recursively. Scope Domain is used with
+     *  Verbosity.Error. Note: Calls to this  method are automatically removed from release code.
      *
-     *  Log an exception including inner exceptions recursively. Default domain of file is used with
-     *  Log.Level.Error. Note: Calls to this  method are automatically removed from release code.
-     *
-     * @param e          The Exception to log. </param>
-     * @param headline   (Optional) A headline string to precede the exception with. </param>
-     * @param indent     (Optional) the indentation in the output (recursively increased).
-     *                          Defaults to 0. </param>
+     * @param e          The Exception to log.
+     * @param headline   (Optional) A headline string to precede the exception with.
      * @param lox        (Optional) The lox to log with. If null, the static member LOX of
-     *                          the static class Log is used. </param>
-     * @param cln        (Optional) Caller info, compiler generated. Please omit. </param>
-     * @param cmn        (Optional) Caller info, compiler generated. Please omit. </param>
-     * @param csf        (Optional) Caller info, compiler generated. Please omit. </param>
+     *                   the static class Log is used.
+     * @param cln (Optional) Caller info, compiler generated. Please omit.
+     * @param csf (Optional) Caller info, compiler generated. Please omit.
+     * @param cmn (Optional) Caller info, compiler generated. Please omit.
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
     public static void Exception( Exception e,             String headline= null,
-                                  int       indent=  0,    Lox    lox=      null,
-                                  [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
+                                  Lox       lox=   null,
+                                  [CallerLineNumber] int cln=0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
 
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            Exception( null, Log.Level.Error, e, headline, indent, lox, csf,cln,cmn );
+            Exception( null, Verbosity.Error, e, headline, lox, cln,csf,cmn );
         #endif
     }
 
     /** ********************************************************************************************
      * Uses reflection to log an object.
-     * @param domain         The log domain name. </param>
-     * @param level          The log level. </param>
-     * @param o              The object to be logged. </param>
-     * @param maxRecursion   The maximum depth of recursion for logging nested object. </param>
-     * @param headline       (Optional) A headline string to precede the exception with. </param>
-     * @param indent         (Optional) The indentation in the output (recursively increased).
-     *                              Defaults to 0. </param>
+     * @param domain         The <em>Log Domain</em> which is combined with <em>Scope Domains</em>
+     *                       set for the \e Scope of invocation.
+     * @param verbosity      The verbosity.
+     * @param o              The object to be logged.
+     * @param maxRecursion   The maximum depth of recursion for logging nested object.
+     * @param headline       (Optional) A headline string to precede the exception with.
      * @param lox            (Optional) The lox to log with. If null, the static member LOX of
-     *                              the static class Log is used. </param>
-     * @param csf            (Optional) Caller info, compiler generated. Please omit. </param>
-     * @param cln            (Optional) Caller info, compiler generated. Please omit. </param>
-     * @param cmn            (Optional) Caller info, compiler generated. Please omit. </param>
+     *                       the static class Log is used.
+     * @param cln (Optional) Caller info, compiler generated. Please omit.
+     * @param csf (Optional) Caller info, compiler generated. Please omit.
+     * @param cmn (Optional) Caller info, compiler generated. Please omit.
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public static void Instance( String  domain,              Log.Level   level,
+    public static void Instance( String  domain,              Verbosity verbosity,
                                  Object  o,                   int         maxRecursion,
-                                 String  headline=  null,     int         indent=    0,
+                                 String  headline=  null,
                                  Lox     lox=       null,
-                                 [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
+                                 [CallerLineNumber] int cln=0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
 
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
@@ -281,11 +267,11 @@ public class LogTools
                     instMain( o, maxRecursion, headline );
 
                     // log it using the static Log interface
-                    lox.Line ( true, domain, level, toolBuf, indent, null, csf,cln,cmn );
+                    lox.Entry ( domain, verbosity, toolBuf, cln,csf,cmn );
 
                 #else
-                    lox.Line ( true, domain, level, "LoxTools.Instance(): Reflection not supported on this platform. ToString(): ", indent, null, csf,cln,cmn );
-                    lox.Line ( true, domain, level, ( o == null ? "null" : o.ToString()), indent + 1, null, csf, cln, cmn );
+                    lox.Entry ( domain, verbosity, "LoxTools.Instance(): Reflection not supported on this platform. ToString(): ", cln,csf,cmn );
+                    lox.Entry ( domain, verbosity, ( "  " + (o == null ? "null" : o.ToString())), cln,csf,cmn );
                 #endif // NO_REFLECTION
 
             } finally { Lock.Release(); }
@@ -294,53 +280,49 @@ public class LogTools
 
     /** ********************************************************************************************
      * Uses reflection to log an object.
-     * @param level            The log level. </param>
-     * @param o                The object to be logged. </param>
-     * @param maxRecursion     The maximum depth of recursion for logging nested object. </param>
-     * @param headline         (Optional) A headline string to precede the exception with. </param>
-     * @param indent           (Optional) The indentation in the output (recursively increased).
-     *                                Defaults to 0. </param>
+     * @param verbosity        The verbosity.
+     * @param o                The object to be logged.
+     * @param maxRecursion     The maximum depth of recursion for logging nested object.
+     * @param headline         (Optional) A headline string to precede the exception with.
      * @param lox              (Optional) The lox to log with. If null, the static member LOX of
-     *                                the static class Log is used. </param>
-     * @param csf              (Optional) Caller info, compiler generated. Please omit. </param>
-     * @param cln              (Optional) Caller info, compiler generated. Please omit. </param>
-     * @param cmn              (Optional) Caller info, compiler generated. Please omit. </param>
+     *                         the static class Log is used.
+     * @param cln (Optional) Caller info, compiler generated. Please omit.
+     * @param csf (Optional) Caller info, compiler generated. Please omit.
+     * @param cmn (Optional) Caller info, compiler generated. Please omit.
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public static void Instance( Log.Level  level,
+    public static void Instance( Verbosity verbosity,
                                  Object     o,                  int    maxRecursion,
-                                 String     headline= null,     int    indent=    0,
+                                 String     headline= null,
                                  Lox        lox=      null,
-                                 [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
+                                 [CallerLineNumber] int cln=0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
 
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            Instance( null, level, o, maxRecursion, headline, indent, lox, csf, cln, cmn );
+            Instance( null, verbosity, o, maxRecursion, headline, lox, cln,csf,cmn );
         #endif
     }
 
     #if  !ALOX_NO_XML
         /** ****************************************************************************************
-         *
          *  Log a XML document. Note: Calls to this method are automatically removed from release code.
          *
-         * @param domain     The log domain name. </param>
-         * @param level      The log level. </param>
-         * @param xDocument  the XML document to be logged. </param>
-         * @param headLine   (Optional) The headline to log. </param>
-         * @param indent     (Optional) the indentation in the output (recursively increased).
-         *                          Defaults to 0. </param>
-         * @param lox        (Optional) The lox to log with. If null, the static member LOX of
-         *                          the static class Log is used. </param>
-         * @param csf        (Optional) Caller info, compiler generated. Please omit. </param>
-         * @param cln        (Optional) Caller info, compiler generated. Please omit. </param>
-         * @param cmn        (Optional) Caller info, compiler generated. Please omit. </param>
+         * @param domain    The <em>Log Domain</em> which is combined with <em>Scope Domains</em>
+         *                  set for the \e Scope of invocation.
+         * @param verbosity The verbosity.
+         * @param xDocument the XML document to be logged.
+         * @param headLine  (Optional) The headline to log.
+         * @param lox       (Optional) The lox to log with. If null, the static member LOX of
+         *                  the static class Log is used.
+         * @param cln (Optional) Caller info, compiler generated. Please omit.
+         * @param csf (Optional) Caller info, compiler generated. Please omit.
+         * @param cmn (Optional) Caller info, compiler generated. Please omit.
          ******************************************************************************************/
         [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-        public static void XML( String       domain,           Log.Level    level,
+        public static void XML( String       domain,           Verbosity verbosity,
                                 XDocument    xDocument,        String       headLine=   null,
-                                int          indent=      0,   Lox          lox=        null,
-                                [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
+                                Lox          lox=        null,
+                                [CallerLineNumber] int cln=0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
         {
             #if ALOX_DBG_LOG || ALOX_REL_LOG
                 try { Lock.Acquire();
@@ -357,7 +339,7 @@ public class LogTools
                         #endif
 
                     // log it using the static Log interface
-                    lox.Line ( true, domain, level, toolBuf, indent, null, csf, cln, cmn );
+                    lox.Entry ( domain, verbosity, toolBuf, cln,csf,cmn );
 
 
                 } finally { Lock.Release(); }
@@ -365,52 +347,47 @@ public class LogTools
         }
 
         /** ****************************************************************************************
-         *
          *  Log a XML document. Note: Calls to this method are automatically removed from release code.
          *
-         * @param level      The log level. </param>
-         * @param xDocument  the XML document to be logged. </param>
-         * @param headLine   The headline to log. </param>
-         * @param indent     (Optional) the indentation in the output (recursively increased).
-         *                          Defaults to 0. </param>
+         * @param verbosity The verbosity.
+         * @param xDocument  the XML document to be logged.
+         * @param headLine   The headline to log.
          * @param lox        (Optional) The lox to log with. If null, the static member LOX of
-         *                          the static class Log is used. </param>
-         * @param csf        (Optional) Caller info, compiler generated. Please omit. </param>
-         * @param cln        (Optional) Caller info, compiler generated. Please omit. </param>
-         * @param cmn        (Optional) Caller info, compiler generated. Please omit. </param>
+         *                   the static class Log is used.
+         * @param cln (Optional) Caller info, compiler generated. Please omit.
+         * @param csf (Optional) Caller info, compiler generated. Please omit.
+         * @param cmn (Optional) Caller info, compiler generated. Please omit.
          ******************************************************************************************/
         [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-        public static void XML( Log.Level       level,
+        public static void XML( Verbosity       verbosity,
                                 XDocument       xDocument,      String    headLine,
-                                int             indent=    0,   Lox       lox= null,
-                                [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
+                                Lox             lox= null,
+                                [CallerLineNumber] int cln=0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
         {
             #if ALOX_DBG_LOG || ALOX_REL_LOG
-                XML( null, level, xDocument, headLine, indent, lox, csf, cln, cmn );
+                XML( null, verbosity, xDocument, headLine, lox, cln,csf,cmn );
             #endif
         }
 
         /** ****************************************************************************************
-         *
          *  Log a XML element. Note: Calls to this method are automatically removed from release code.
          *
-         * @param domain     The log domain name. </param>
-         * @param level      The log level. </param>
-         * @param xElement   the answer node of the XML tree to be logged. </param>
-         * @param headLine   (Optional) The headline to log. </param>
-         * @param indent     (Optional) the indentation in the output (recursively increased).
-         *                          Defaults to 0. </param>
-         * @param lox        (Optional) The lox to log with. If null, the static member LOX of
-         *                          the static class Log is used. </param>
-         * @param csf        (Optional) Caller info, compiler generated. Please omit. </param>
-         * @param cln        (Optional) Caller info, compiler generated. Please omit. </param>
-         * @param cmn        (Optional) Caller info, compiler generated. Please omit. </param>
+         * @param domain    The <em>Log Domain</em> which is combined with <em>Scope Domains</em>
+         *                  set for the \e Scope of invocation.
+         * @param verbosity The verbosity.
+         * @param xElement  the answer node of the XML tree to be logged.
+         * @param headLine  (Optional) The headline to log.
+         * @param lox       (Optional) The lox to log with. If null, the static member LOX of
+         *                  the static class Log is used.
+         * @param cln (Optional) Caller info, compiler generated. Please omit.
+         * @param csf (Optional) Caller info, compiler generated. Please omit.
+         * @param cmn (Optional) Caller info, compiler generated. Please omit.
          ******************************************************************************************/
         [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-        public static void XML( String      domain,     Log.Level    level,
+        public static void XML( String      domain,     Verbosity verbosity,
                                 XElement    xElement,   String       headLine=  null,
-                                int         indent= 0,  Lox          lox=       null,
-                                [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
+                                Lox         lox= null,
+                                [CallerLineNumber] int cln=0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
         {
             #if ALOX_DBG_LOG || ALOX_REL_LOG
                 try { Lock.Acquire();
@@ -433,7 +410,7 @@ public class LogTools
                         #endif
 
                     // log it using the static Log interface
-                    lox.Line ( true, domain, level, toolBuf, indent, null, csf, cln, cmn );
+                    lox.Entry ( domain, verbosity, toolBuf, cln,csf,cmn );
 
 
                 } finally { Lock.Release(); }
@@ -441,28 +418,25 @@ public class LogTools
         }
 
         /** ****************************************************************************************
-         *
          *  Log a XML element. Note: Calls to this method are automatically removed from release code.
          *
-         * @param level        The log level. </param>
-         * @param xElement     the answer node of the XML tree to be logged. </param>
-         * @param headLine     The head line. </param>
-         * @param indent       (Optional) the indentation in the output (recursively increased).
-         *                            Defaults to 0. </param>
+         * @param verbosity    The verbosity.
+         * @param xElement     the answer node of the XML tree to be logged.
+         * @param headLine     The head line.
          * @param lox          (Optional) The lox to log with. If null, the static member LOX of
-         *                            the static class Log is used. </param>
-         * @param csf          (Optional) Caller info, compiler generated. Please omit. </param>
-         * @param cln          (Optional) Caller info, compiler generated. Please omit. </param>
-         * @param cmn          (Optional) Caller info, compiler generated. Please omit. </param>
+         *                     the static class Log is used.
+         * @param cln (Optional) Caller info, compiler generated. Please omit.
+         * @param csf (Optional) Caller info, compiler generated. Please omit.
+         * @param cmn (Optional) Caller info, compiler generated. Please omit.
          ******************************************************************************************/
         [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-        public static void XML( Log.Level   level,
+        public static void XML( Verbosity verbosity,
                                 XElement    xElement,    String  headLine,
-                                int         indent=  0,  Lox     lox= null,
-                                [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="" )
+                                Lox         lox= null,
+                                [CallerLineNumber] int cln=0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
         {
             #if ALOX_DBG_LOG || ALOX_REL_LOG
-                XML( null, level, xElement, headLine, indent, lox, csf, cln, cmn );
+                XML( null, verbosity, xElement, headLine, lox, cln,csf,cmn );
             #endif
         }
 
@@ -475,10 +449,10 @@ public class LogTools
 
         /** ****************************************************************************************
          * Logs an exception.
-         * @param e          The exception to log. </param>
-         * @param headline   An optional headline string preceding the exception. </param>
+         * @param e          The exception to log.
+         * @param headline   An optional headline string preceding the exception.
          * @param indent     The indentation in the output (recursively increased). If set to -1
-         *                          the 'headline' is logged. </param>
+         *                   the 'headline' is logged.
          ******************************************************************************************/
         protected static void exception( Exception e, String headline, int indent )
         {
@@ -528,9 +502,9 @@ public class LogTools
 
             /** ************************************************************************************
              * Logs the header and invokes instRecursive()
-             * @param o               The object to be logged. </param>
-             * @param maxRecursion    The maximum depth of recursion for logging nested object. </param>
-             * @param headLine        The headline to log. </param>
+             * @param o               The object to be logged.
+             * @param maxRecursion    The maximum depth of recursion for logging nested object.
+             * @param headLine        The headline to log.
              **************************************************************************************/
             protected static void instMain( Object o, int maxRecursion, String headLine)
             {
@@ -556,11 +530,10 @@ public class LogTools
 
             /** ************************************************************************************
              * Recursively log an instance using reflection.
-             * @param inst            The element. </param>
-             * @param maxRecursion    The maximum depth of recursion for logging nested
-             *                               object. </param>
-             * @param indent          The indentation in the output (recursively increased).
-             *                               </param>
+             * @param inst         The element.
+             * @param maxRecursion The maximum depth of recursion for logging nested
+             *                     object.
+             * @param indent       The indentation in the output (recursively increased).
              **************************************************************************************/
             protected static void instRecursive( Object inst, int maxRecursion, int indent )
             {
@@ -790,14 +763,13 @@ public class LogTools
             }
 
             /** ************************************************************************************
-             *
              *  Detects if the given object is of value type. Special treatment is given to
              *  KeyValuePair&lt;,&gt;. C# treat them as a value type that causes some irritation
              *  sometimes.
              *
-             * @param o        The object to be tested. </param>
-             * @param type     The type of the object (needed outside, therefore passed here
-             *                        to avoid double creation). </param>
+             * @param o    The object to be tested.
+             * @param type The type of the object (needed outside, therefore passed here
+             *             to avoid double creation).
              * @return  the value (if given object is of value type) or null otherwise.
              **************************************************************************************/
             protected static bool isValueType( Object o, Type type )
@@ -877,7 +849,7 @@ public class LogTools
              *  #FmtInstLineNoSuffix) and then adds indent characters (defined in field
              *  #FmtInstIndent).
              *
-             * @param indent     The indentation of the line. </param>
+             * @param indent     The indentation of the line.
              **************************************************************************************/
             protected static void instBeginLine( int indent )
             {
@@ -889,7 +861,7 @@ public class LogTools
 
             /** ************************************************************************************
              * Appends spaces to move to the given tabStop (but at least one).
-             * @param tabStop     The tab stop position to go to </param>
+             * @param tabStop     The tab stop position to go to
              **************************************************************************************/
             protected static void instTabStop( int tabStop )
             {
@@ -899,7 +871,7 @@ public class LogTools
 
             /** ************************************************************************************
              * Appends type information at the end of the line and starts a new line.
-             * @param type     The type to append in the log  </param>
+             * @param type     The type to append in the log
              **************************************************************************************/
             protected static void instTabTypeAndNewLine( Type type )
             {
@@ -918,8 +890,8 @@ public class LogTools
 
             /** ************************************************************************************
              * Dump a XML document into our Buffer.
-             * @param xDocument      The XDocument to be logged. </param>
-             * @param headLine       The headline to log. </param>
+             * @param xDocument      The XDocument to be logged.
+             * @param headLine       The headline to log.
              **************************************************************************************/
             protected static void xml( XDocument xDocument, String headLine)
             {
@@ -940,9 +912,9 @@ public class LogTools
 
             /** ************************************************************************************
              * Internal function for logging an XElement.
-             * @param xe           The XElement to log. </param>
-             * @param headLine     The headline to log. </param>
-             * @param indent       The indentation to Log. </param>
+             * @param xe           The XElement to log.
+             * @param headLine     The headline to log.
+             * @param indent       The indentation to Log.
              **************************************************************************************/
             protected static void xmlElement( XElement xe, String headLine, int indent )
             {

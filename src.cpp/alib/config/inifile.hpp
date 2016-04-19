@@ -7,7 +7,7 @@
 /** @file */ // Hello Doxygen
 
 // check for alib.hpp already there but not us
-#if !defined (HPP_ALIB_ALIB)
+#if !defined (HPP_ALIB)
     #error "include \"alib/alib.hpp\" before including this header"
 #endif
 #if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_ALIB_CONFIG_INI_FILE)
@@ -181,7 +181,7 @@ namespace                   config {
             by invoking #WriteFile */
         bool                             AutoSave                                           = true;
 
-        /** The standard file extension used for ALib configuration files. Defaults to ".alib.ini" */
+        /** The standard file extension used for ALib configuration files. Defaults to ".ini" */
         static String                    DefaultFileExtension;
 
         /** The file name. This might include a path or not. Should be set properly before
@@ -234,7 +234,11 @@ namespace                   config {
          *  found in public static field #DefaultFileExtension and the file path will be set to
          *  \ref aworx::lib::system::Directory::SpecialFolder::HOME_CONFIG "Directory::SpecialFolder::HOME_CONFIG".
          *
+         *  If the given file name \p filePathAndName starts with '*', no file is read and field
+         *  #AutoSave is set to \c false.
+         *
          *  @param filePathAndName  The name (and path) of the file to read and write.
+         *                          Provide "*" to suppress reading a file.
          *                          Defaults to nullptr.
          ******************************************************************************************/
         ALIB_API               IniFile( const String& filePathAndName= nullptr );
@@ -244,8 +248,7 @@ namespace                   config {
          ******************************************************************************************/
         virtual      ~IniFile()
         {
-           for ( Section* section : Sections )
-                delete section;
+            Clear();
         }
 
     // #############################################################################################

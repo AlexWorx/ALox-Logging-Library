@@ -14,9 +14,20 @@
 This part of the ALox Logging library documentation is specific to its Java Implementation.<br>
 The following information is found here:
 
-## Tutorial ##
-If you are new to ALox, the easiest way to get familiar with it, is to walk yourself
-through the \ref javatutorial.
+## Documentation ##
+- Walk yourself through the [ALox for Java Tutorial ](javatutorial.html). This is allows you a fast overview and intro
+  if you are new to ALox.
+
+- Consult the general (language agnostic) [ALox User Manual](../manual.html) for in-depth information
+  on various topics.
+
+- In addition, a complete [Java Reference Documentation](annotated.html) is available...
+  created with marvelous [Doxygen](http://www.stack.nl/~dimitri/doxygen/)!
+
+  \note
+  As of ALox version 1604, with the introduction of static class \b %ALox, the term "ALox" in the reference
+  documentation is oftenly erroneously linked to this class. This will be fixed in a next release.
+<p>
 
 ## Project Setup ##
 The steps to configure Eclipse or any other Java IDE to support ALox is described
@@ -25,27 +36,19 @@ here: \ref javasetup.
 ## ALox for Android ##
 
 The Java Version is compatible with Android development and supports logging into LogCat.
-To stream ALox into LogCat create a logger of type [AndroidLogCatLogger](@ref com.aworx.lox.android.AndroidLogCatLogger)
+To stream ALox into LogCat create a \e Logger of type [AndroidLogCatLogger](@ref com.aworx.lox.android.AndroidLogCatLogger)
 instead of type [ConsoleLogger](@ref com.aworx.lox.loggers.ConsoleLogger)
 
-    Log.addLogger( new AndroidLogCatLogger("LogCat") );
+    Log.setVerbosity( new AndroidLogCatLogger("LogCat"), Verbosity.VERBOSE );
 
 Attention: The normal [ConsoleLogger](@ref com.aworx.lox.loggers.ConsoleLogger) would not produce any visible output using
 the Android Emulator or a debugging device.
 
 ## Pruning ALox from your release code ##
-Unlike C# (beginning in Version 5.0), Java does not provide a built-in mechanism to "prune" the debug log messages
+Java does not provide a built-in mechanism to "prune" the debug log messages
 from the code. There are a range of tools available on the java tools market, that provide such feature (most
 commonly along with so called "obfuscation"). Samples of such tools will be given here in the future. (We are
 very thankful to receive your experience and tool description to incorporate into this documentation).
-
-## More to read   ##
-Consult the general (language agnostic) [ALox User Manual](../manual.html) for in-depth information
-on various topics.
-
-## Class Reference ##
-
-To browse the Java class reference, please use the page menu above.
 
 ## Organization of code ##
 
@@ -62,7 +65,7 @@ ALox itself consist of three namespaces.
 The main classes that the user of ALox interfaces with reside in:
 - **com.aworx.lox**
 
-Some specific loggers are found in:
+Some specific \e Loggers are found in:
 - **com.aworx.lox.loggers**
 
 Internal classes are located in:

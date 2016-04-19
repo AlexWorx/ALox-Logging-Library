@@ -82,7 +82,7 @@
  *  Must not be used in conjunction with \ref ALOX_DBG_LOG_OFF.<p>
  *
  *  If neither <b>ALOX_DBG_LOG_ON</b> nor <b>ALOX_DBG_LOG_OFF</b> are specified, ALox will determine the
- *  inclusion of debug log statements by evaluating the (partly standardized) NDEBUG macro that is
+ *  inclusion of debug <em>Log Statements</em> by evaluating the (partly standardized) NDEBUG macro that is
  *  used by most 'assert' libraries. Hence, if NDEBUG is set, ALOX_DBG_LOG will not be defined.<p>
  *
  * @}
@@ -90,19 +90,19 @@
  * @addtogroup GrpALoxCompilerSymbols
  * @{ \def  ALOX_DBG_LOG_OFF
  *  Explicitly disables debug logging by leaving the code selection symbol \ref ALOX_DBG_LOG undefined.
- *  Any debug log statements that are embedded in code by using the \ref GrpMacrosDebugLog, will
+ *  Any debug <em>Log Statements</em> that are embedded in code by using the \ref GrpMacrosDebugLog, will
  *  get pruned.<p>
  *
  *  Must not be used in conjunction with \ref ALOX_DBG_LOG_ON.<p>
  *
  *  If neither <b>ALOX_DBG_LOG_ON</b> nor <b>ALOX_DBG_LOG_OFF</b> are specified, ALox will determine the
- *  inclusion of debug log statements by evaluating the (partly standardized) NDEBUG macro that is
+ *  inclusion of debug <em>Log Statements</em> by evaluating the (partly standardized) NDEBUG macro that is
  *  used by most 'assert' libraries. Hence, if NDEBUG is set, ALOX_DBG_LOG will not be defined.
  * @}
  *
  * @addtogroup GrpALoxCodeSelectorSymbols
  * @{ \def  ALOX_DBG_LOG
- *  If defined, debug log statements are enabled. Hence, users of ALox can conditionally
+ *  If defined, debug <em>Log Statements</em> are enabled. Hence, users of ALox can conditionally
  *  compile special debug logging code that normally belongs to corresponding
  *  debug logging statements.
  *  This is useful for example, to conditionally compile code that calculates and gathers
@@ -147,7 +147,7 @@
  * @{ \def  ALOX_REL_LOG_OFF
  *  Explicitly disables release logging by leaving the code selection symbol \ref ALOX_REL_LOG
  *  undefined.
- *  Any release log statements that are embedded in code by using the \ref GrpMacrosReleaseLog, will
+ *  Any release <em>Log Statements</em> that are embedded in code by using the \ref GrpMacrosReleaseLog, will
  *  get pruned.<p>
  *
  *  Must not be used in conjunction with \ref ALOX_REL_LOG_ON.<p>
@@ -163,7 +163,7 @@
  *
  * @addtogroup GrpALoxCodeSelectorSymbols
  * @{ \def  ALOX_REL_LOG
- *  If defined, release log statements are enabled. Hence, users of ALox can conditionally
+ *  If defined, release <em>Log Statements</em> are enabled. Hence, users of ALox can conditionally
  *  compile special debug logging code that normally belongs to corresponding
  *  debug logging statements.
  *  This is useful for example, to conditionally compile code that calculates and gathers
@@ -196,7 +196,7 @@
 /**
  * @addtogroup GrpALoxCompilerSymbols
  * @{ \def  ALOX_DBG_LOG_CI_ON
- *  Explicitly enables the generation of caller information using the built-in preprocessor
+ *  Explicitly enables the generation of scope information using the built-in preprocessor
  *  macros like "__FILE__" and "__LINE__" for ALox debug logging statements<p>
  *
  *  Passing this Symbol to the compiler, makes ALox define the code selection symbol
@@ -206,15 +206,15 @@
  *  caller source information for debug logging. In other words, <b>ALOX_DBG_LOG_CI_ON</b> is the
  *  default and passing the symbol to the compiler is not mandatory.<p>
  *
- *  \note The ALox default domain mechanism as well as the ALox code markers rely on caller
- *  information. These mechanisms are therefore not available to debug logging unless this
- *  symbol is set.
+ *  \note The ALox <em>Scope Domain</em> mechanism as well as the ALox features \e Lox.Once and
+ *  <em>Log Data</em> rely on caller information.
+ *  These mechanisms are therefore not available to debug logging unless this symbol is set.
  * @}
  *
  *
  * @addtogroup GrpALoxCompilerSymbols
  * @{ \def  ALOX_DBG_LOG_CI_OFF
- *  Disables the generation of caller information using the built-in preprocessor
+ *  Disables the generation of scope information using the built-in preprocessor
  *  macros like "__FILE__" and "__LINE__" for ALox debug logging statements<p>
  *
  *  Passing this Symbol to the compiler, makes ALox to leave the code selection symbol
@@ -223,23 +223,23 @@
  *  If neither <b>ALOX_DBG_LOG_CI_ON</b> nor <b>ALOX_DBG_LOG_CIO_OFF</b> are specified, then
  *  \ref ALOX_DBG_LOG_CI_ON is the default.<p>
  *
- *  \note The ALox default domain mechanism as well as the ALox code markers rely on caller
- *  information. These mechanisms are therefore not available to debug logging when this
- *  symbol is set.
+ *  \note The ALox Scope Domain mechanism as well as the ALox features \e Lox.Once and
+ *  <em>Log Data</em> rely on caller information.
+ *  These mechanisms are therefore not available to debug logging when this symbol is set.
  * @}
  *
  * @addtogroup GrpALoxCodeSelectorSymbols
  * @{ \def  ALOX_DBG_LOG_CI
- *  If defined, caller information is passed to ALox on invocation of debug
- *  log statements.
+ *  If defined, scope information is passed to ALox on invocation of debug
+ *  <em>Log Statements</em>.
  *  Hence, users of ALox can conditionally compile special debug logging code that normally
  *  belongs to corresponding debug logging statements based on this symbol. A sample would be
  *  the definition of different log line meta information formats, depending on the availability
- *  of caller information.<p>
+ *  of scope information.<p>
  *
- *  \note The ALox default domain mechanism as well as the ALox code markers rely on caller
- *  information. These mechanisms are therefore not available to debug logging unless
- *  this symbol is defined.
+ *  \note The ALox <em>Scope Domain</em> mechanism as well as the ALox features \e Lox.Once and
+ *  <em>Log Data</em> rely on caller information.
+ *  These mechanisms are therefore not available to debug logging unless this symbol is set.
  *
  *
  *  See \ref ALOX_DBG_LOG_CI_ON and \ref ALOX_DBG_LOG_CI_OFF for information about how to manipulate
@@ -256,7 +256,7 @@
     #error "ALOX_DBG_LOG_CI_OFF / ALOX_DBG_LOG_CI_ON are both set"
 #endif
 
-#if !defined( ALOX_DBG_LOG_CI_OFF )
+#if defined( ALOX_DBG_LOG ) && !defined( ALOX_DBG_LOG_CI_OFF )
     #define ALOX_DBG_LOG_CI
 #endif
 
@@ -264,7 +264,7 @@
 /**
  * @addtogroup GrpALoxCompilerSymbols
  * @{ \def  ALOX_REL_LOG_CI_ON
- *  Explicitly enables the generation of caller information using the built-in preprocessor
+ *  Explicitly enables the generation of scope information using the built-in preprocessor
  *  macros like "__FILE__" and "__LINE__" for ALox release logging statements<p>
  *
  *  Passing this Symbol to the compiler, makes ALox define the code selection symbol
@@ -277,19 +277,19 @@
  *  not generate log output that an end user is not able to understand.
  *  It can make sense however, if release log information from the field goes back to the
  *  software development team.
- *  Furthermore, it can be very helpful to enable caller information for release log statements
+ *  Furthermore, it can be very helpful to enable scope information for release <em>Log Statements</em>
  *  in the debug version of a compilation unit.<p>
  *
- *  \note The ALox default domain mechanism as well as the ALox code markers rely on caller
- *  information. These mechanisms are therefore not available to release logging unless this
- *  symbol is set.
+ *  \note The ALox <em>Scope Domain</em> mechanism as well as the ALox features \e Lox.Once and
+ *  <em>Log Data</em> rely on caller information.
+ *  These mechanisms are therefore not available to debug logging unless this symbol is set.
  *
  * @}
  *
  *
  * @addtogroup GrpALoxCompilerSymbols
  * @{ \def  ALOX_REL_LOG_CI_OFF
- *  Disables the generation of caller information using the built-in preprocessor
+ *  Disables the generation of scope information using the built-in preprocessor
  *  macros like "__FILE__" and "__LINE__" for ALox release logging statements<p>
  *
  *  Passing this Symbol to the compiler, makes ALox to leave the code selection symbol
@@ -299,24 +299,25 @@
  *  \ref ALOX_REL_LOG_CI_OFF is the default.  In other words: passing the symbol to the
  *  compiler is not mandatory.<p>
  *
- *  \note The ALox default domain mechanism as well as the ALox code markers rely on caller
- *  information. These mechanisms are therefore not available to release logging unless
+ *  \note The ALox <em>Scope Domain</em> mechanism as well as the ALox features \e Lox.Once and
+ *  <em>Log Data</em> rely on caller information.
+ * These mechanisms are therefore not available to release logging unless
  *  \ref ALOX_REL_LOG_CI_ON is set.
  *
  * @}
  *
  * @addtogroup GrpALoxCodeSelectorSymbols
  * @{ \def  ALOX_REL_LOG_CI
- *  If defined, caller information is passed to ALox on invocation of release log
+ *  If defined, scope information is passed to ALox on invocation of release log
  *  statements when using the \ref GrpMacrosReleaseLog.<br>
  *  Hence, users of ALox can conditionally compile special debug logging code that normally
  *  belongs to corresponding debug logging statements based on this symbol. A sample would be
  *  the definition of different log line meta-information formats, depending on the availability of
- *  caller information.<p>
+ *  scope information.<p>
  *
- *  \note The ALox default domain mechanism as well as the ALox code markers rely on caller
- *  information. These mechanisms are therefore not available to release logging unless
- *  this symbol is defined.
+ *  \note The ALox <em>Scope Domain</em> mechanism as well as the ALox features \e Lox.Once and
+ *  <em>Log Data</em> rely on caller information.
+ *  These mechanisms are therefore not available to debug logging unless this symbol is set.
  *
  *  See \ref ALOX_REL_LOG_CI_ON and \ref ALOX_REL_LOG_CI_OFF for information about how to manipulate
  *  this symbol.
@@ -332,7 +333,7 @@
     #error "ALOX_REL_LOG_CI_OFF / ALOX_REL_LOG_CI_ON are both set"
 #endif
 
-#if defined( ALOX_REL_LOG_CI_ON )
+#if defined( ALOX_REL_LOG ) && defined( ALOX_REL_LOG_CI_ON )
     #define ALOX_REL_LOG_CI
 #endif
 

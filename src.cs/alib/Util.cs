@@ -6,6 +6,7 @@
 // #################################################################################################
 using cs.aworx.lib.strings;
 using System.IO;
+using cs.aworx.lib.enums;
 
 namespace cs.aworx.lib {
 
@@ -19,7 +20,10 @@ public class Util
     // static functionality
     // #############################################################################################
         /** The internal string of spaces returned by #GetSpaces and used by #WriteSpaces. */
-        private static         AString          theSpaces=                            new AString();
+        private static         AString          theSpaces                            =new AString();
+
+        /** The process name, retrieved once on request  */
+        private static         AString          processName                                  = null;
 
     // #############################################################################################
     // Interface
@@ -31,7 +35,7 @@ public class Util
          *   Parameter \p minSize should be omitted and the size of the object returned accepted.
          *   Requesting a higher size, might result in slightly more efficiency.
          *   In multithreaded processes, changing the size must be performed during bootstrap,
-         *   e.g. directly after invoking \ref aworx::lib::ALIB::Init "ALIB.Init" by calling
+         *   e.g. directly after invoking \ref cs::aworx::lib::ALIB::Init "ALIB.Init" by calling
          *   this method with the appropriate size.
          *
          * @param minSize  The minimum number of spaces that should be available in the returned
@@ -87,6 +91,31 @@ public class Util
                 qty-= size;
             }
         }
+
+        /** ****************************************************************************************
+         * Receives the name of the process. Evaluated only once, can't change.
+         * @return The name of the process.
+         ******************************************************************************************/
+        public static AString GetProcessName()
+        {
+            if( processName == null  )
+            {
+                try { ALIB.Lock.Acquire();
+
+                    // If this happens, this is a very unlikely parallel access
+                    if( processName != null  )
+                        return processName;
+
+                    processName= new AString( System.AppDomain.CurrentDomain.FriendlyName );
+                    if ( processName.EndsWith( ".exe", Case.Ignore ) )
+                        processName.DeleteEnd( 4 );
+
+                } finally { ALIB.Lock.Release(); }
+            }
+
+            return processName;
+        }
+
 
 } // class Util
 

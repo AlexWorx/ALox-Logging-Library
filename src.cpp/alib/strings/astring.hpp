@@ -7,13 +7,13 @@
 /**@file*///<- needed for Doxygen include of the typedefs at the end of the file
 
 // to preserve the right order, we are not includable directly from outside.
-#if !defined(FROM_HPP_ALIB_ALIB) || defined(HPP_ALIB_STRINGS_ASTRING)
+#if !defined(FROM_HPP_ALIB) || defined(HPP_ALIB_STRINGS_ASTRING)
     #error "include alib/alib.hpp instead of this header"
 #endif
 
 // Due to our blocker above, this include will never be executed. But having it, allows IDEs
 // (e.g. QTCreator) to read the symbols when opening this file
-#if !defined (HPP_ALIB_ALIB)
+#if !defined (HPP_ALIB)
     #include "alib/alib.hpp"
 #endif
 
@@ -328,6 +328,7 @@ class AString : public TString
          * @param extBufferSize   The capacity of the given buffer.
          ******************************************************************************************/
         constexpr
+        inline
         explicit AString( char* extBuffer, int extBufferSize )
         : TString( extBuffer, 0)
         , capacity  (- (extBufferSize - 1))
@@ -342,6 +343,7 @@ class AString : public TString
          ******************************************************************************************/
         explicit
         constexpr
+        inline
         AString()
         : TString()
         , capacity  (0)
@@ -358,6 +360,7 @@ class AString : public TString
          * @param initialCapacity  The size of the buffer that is allocated.
          ******************************************************************************************/
         explicit
+        inline
         AString( int initialCapacity )
         : TString()
         , capacity  (0)
@@ -370,6 +373,7 @@ class AString : public TString
          * @param copy The object to copy.
          ******************************************************************************************/
         explicit
+        inline
         AString( const AString& copy)
         : TString()
         , capacity  (0)
@@ -383,6 +387,7 @@ class AString : public TString
          * for details.
          * @param move The object to move.
          ******************************************************************************************/
+        inline
         AString(AString&& move) noexcept
         : TString()
         {
@@ -422,6 +427,7 @@ class AString : public TString
          * @param  src    The source of type T to append.
          ******************************************************************************************/
         template <class T>
+        inline
         explicit
         AString (const  T& src )
         : TString()
@@ -439,6 +445,7 @@ class AString : public TString
          *                     Defaults to CString::MaxLen.
          ******************************************************************************************/
         explicit
+        inline
         AString(const String& src, int regionStart, int regionLength= CString::MaxLen )
         : TString()
         , capacity  (0)
@@ -472,6 +479,7 @@ class AString : public TString
          * @param  copy  The object to copy the contents from.
          * @return \c *this to allow concatenated calls.
          ******************************************************************************************/
+        inline
         AString& operator= (const AString&  copy)
         {
             if ( copy.IsNull() )
@@ -501,6 +509,7 @@ class AString : public TString
          * @return    \c *this to allow concatenated calls.
          ******************************************************************************************/
         template <class T>
+        inline
         AString& operator= (const  T& op )
         {
             Clear();
@@ -521,7 +530,7 @@ class AString : public TString
          *  - The string represented by this instance is copied to the new buffer.
          *    If this is larger than the new buffer size, the string is cut at the end to fit.
          *  - If the desired new size is 0, then the currently allocated buffer will be released
-         *    and the objects state is \e \e nulled.
+         *    and the objects state is \e nulled.
          *  - If the current buffers' life-cycle is managed externally (e.g. was set using
          *    #SetBuffer(char*,int,int, enums::Responsibility)
          *    with parameter \p responsibility being \c Responsibility::KeepWithSender), this method
@@ -738,6 +747,7 @@ class AString : public TString
          * Invokes \ref SetBuffer "SetBuffer(0)".
          * @return \c *this to allow concatenated calls.
          ******************************************************************************************/
+        inline
         void           SetNull()
         {
             SetBuffer( 0 );
@@ -812,6 +822,7 @@ class AString : public TString
          * @param op The index of the character within this objects' buffer.
          * @returns If the character contained (or, if lvalue the one to set).
          ******************************************************************************************/
+        inline
         char&    operator[] (int  op)
         {
             ALIB_ASSERT_ERROR( op >= 0  && op < length , "Index out of bounds" );
@@ -1273,7 +1284,7 @@ class AString : public TString
                 if ( srcLength == 0 )
                 {
                     // set "un-nulled"
-                    if ( buffer == nullptr )
+                    if ( IsNull() )
                         SetBuffer( 15 );
 
                     return *this;
@@ -1381,6 +1392,7 @@ class AString : public TString
          *         method \ref ApplyTo( AString&,const T) which is invoked in turn.
          ******************************************************************************************/
         template <bool TCheck= true, class T>
+        inline
         int Apply(const  T& src )
         {
             ALIB_STRING_DBG_CHK(this);
@@ -1425,7 +1437,7 @@ class AString : public TString
                     if ( mbLength <= 0 )
                     {
                         ALIB_DEBUG_CODE( int error= GetLastError(); )
-                        ALIB_WARNING_AS(
+                        ALIB_WARNING_S512(
                            "AString: Cannot convert wide character string to UTF-8. (Error: "
                             << (   error == ERROR_INSUFFICIENT_BUFFER    ? "ERROR_INSUFFICIENT_BUFFER"
                                 :  error == ERROR_INVALID_FLAGS          ? "ERROR_INVALID_FLAGS."
@@ -1567,6 +1579,7 @@ class AString : public TString
          * @return   \c *this to allow concatenated calls.
          ******************************************************************************************/
         template <bool TCheck= true, class T >
+        inline
         AString& _(const  T& src )
         {
             Apply<TCheck>( src );
@@ -1602,7 +1615,8 @@ class AString : public TString
                     // special treatment if currently nothing is allocated and a blank string ("") is added:
                     // we allocate, which means, we are not a null object anymore!
                     // (...also, in this case we check the src parameter)
-                    SetBuffer( 15 );
+                    if ( IsNull() )
+                        SetBuffer( 15 );
                     return *this;
                 }
             }
@@ -1644,6 +1658,7 @@ class AString : public TString
          *  \ref aworx::NewLine "NewLine".
          * @return \c *this to allow concatenated calls.
          ******************************************************************************************/
+        inline
         AString&          NewLine()
         {
             return _<false>( aworx::NewLine );

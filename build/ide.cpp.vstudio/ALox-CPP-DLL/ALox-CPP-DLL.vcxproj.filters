@@ -44,6 +44,9 @@
     <Filter Include="alib\compatibility">
       <UniqueIdentifier>{c0d27242-d598-4f3d-aa47-f620b3f8efde}</UniqueIdentifier>
     </Filter>
+    <Filter Include="alib\containers">
+      <UniqueIdentifier>{a07a4873-4514-4b05-af72-b3a896ea6e7a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -127,9 +130,6 @@
     <ClInclude Include="..\..\..\src.cpp\alox\core\logger.hpp">
       <Filter>alox\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alox\core\callerinfo.hpp">
-      <Filter>alox\core</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src.cpp\alib\compatibility\std_string.hpp">
       <Filter>alib\compatibility</Filter>
     </ClInclude>
@@ -196,6 +196,21 @@
     <ClInclude Include="..\..\..\src.cpp\alib\strings\cstring.hpp">
       <Filter>alib\strings</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alox\core\scopestore.hpp">
+      <Filter>alox\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alox\core\scopeinfo.hpp">
+      <Filter>alox\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alox\aloxtypesandenums.hpp">
+      <Filter>alox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alox\core\scopedump.hpp">
+      <Filter>alox\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\containers\pathmap.hpp">
+      <Filter>alib\containers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ALox-CPP-DLL.cpp">
@@ -255,12 +270,6 @@
     <ClCompile Include="..\..\..\src.cpp\alox\lox.cpp">
       <Filter>alox</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alox\core\callerinfo.cpp">
-      <Filter>alox\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alox\core\logger.cpp">
-      <Filter>alox\core</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src.cpp\alib\compatibility\std_iostream.cpp">
       <Filter>alib\compatibility</Filter>
     </ClCompile>
@@ -311,6 +320,21 @@
     </ClCompile>
     <ClCompile Include="..\..\..\src.cpp\alib\strings\string.cpp">
       <Filter>alib\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alox\core\scopeinfo.cpp">
+      <Filter>alox\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alox\core\scopestore.cpp">
+      <Filter>alox\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alox\aloxtypesandenums.cpp">
+      <Filter>alox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alox\core\scopedump.cpp">
+      <Filter>alox\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\core\enums.cpp">
+      <Filter>alib\core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

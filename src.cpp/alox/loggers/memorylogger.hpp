@@ -28,7 +28,7 @@ namespace           loggers{
 
 
 /** ************************************************************************************************
- *  A logger that logs all messages to an in-memory buffer of type AString. The name of the logger
+ *  A logger that logs all messages to an in-memory buffer of type AString. The name of the \e Logger
  *  defaults to "MEMORY".
  **************************************************************************************************/
 class MemoryLogger : public aworx::lox::core::textlogger::PlainTextLogger
@@ -62,7 +62,7 @@ class MemoryLogger : public aworx::lox::core::textlogger::PlainTextLogger
     public:
         /** ****************************************************************************************
          * Creates a MemoryLogger with the given name.
-         * @param name              (Optional) The name of the logger. Defaults to "MEMORY".
+         * @param name              (Optional) The name of the \e Logger. Defaults to "MEMORY".
          * @param pruneESCSequences (Optional) Sets the member \ref PruneESCSequences.
          *                          Defaults to \c true.
          * @param useWCharLengthForTabAdjustments (Optional) Sets the member
@@ -72,7 +72,7 @@ class MemoryLogger : public aworx::lox::core::textlogger::PlainTextLogger
         explicit        MemoryLogger( const String& name                    = nullptr,
                                       bool pruneESCSequences                = true,
                                       bool useWCharLengthForTabAdjustments  = true )
-                        : PlainTextLogger( name, "MEMORY" )
+                        : PlainTextLogger( name, "MEMORY", false )
                         , MemoryLog                      (8092)
                         {
                             PruneESCSequences              = pruneESCSequences;
@@ -111,7 +111,7 @@ class MemoryLogger : public aworx::lox::core::textlogger::PlainTextLogger
          * @param length   The length of the portion in \p buffer to write out.
          * @return The number of characters written, -1 on error.
          ******************************************************************************************/
-        virtual int doLogSubstring( const AString& buffer, int start, int length )
+        virtual int logSubstring( const AString& buffer, int start, int length )
         {
             MemoryLog._<false>( buffer, start, length );
             return UseWCharLengthForTabAdjustments

@@ -7,7 +7,7 @@
 /** @file */ // Hello Doxygen
 
 // check for alib.hpp already there but not us
-#if !defined (HPP_ALIB_ALIB)
+#if !defined (HPP_ALIB)
     #error "include \"alib/alib.hpp\" before including this header"
 #endif
 #if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_ALIB_OWNABLE)
@@ -16,7 +16,7 @@
 
 // Due to our blocker above, this include will never be executed. But having it, allows IDEs
 // (e.g. QTCreator) to read the symbols when opening this file
-#if !defined (HPP_ALIB_ALIB)
+#if !defined (HPP_ALIB)
     #include "alib/alib.hpp"
 #endif
 
@@ -30,24 +30,51 @@ namespace aworx {
 namespace           lib {
 
 /** ************************************************************************************************
- *  This interface class (which means, it has only abstract virtual methods) represents objects
- *  that can be owned by some other instances. Here, the verb 'to own' denotes an abstract concept
- *  of getting 'acquired' and getting 'released' later on. The obvious and well known example are
- *  objects that implement a 'mutex' to lock data against concurrent threads.<br>
- *  But pattern of having ownership on ownable objects is usable in other areas as well.
- *  The C++ language provides the concept of "stack unwinding", which ensures that all objects are
- *  destructed, even when exceptions are thrown (that is why C++ does not have a 'finally'
- *  keyword).<br>
- *  See class \ref Owner and macro \ref OWN for information on how to 'own' an Ownable automatically
- *  for exactly one block of code.
+ * This abstract class represents objects that can be owned by some other instances.
+ * 'To own' means an abstract concept of getting 'acquired' and getting 'released' later on.
+ * The obvious and well known example are objects that implement a 'mutex' to lock data against
+ * concurrent threads.<br>
+ * The pattern of having ownership on ownable objects is usable in other areas as well.
+ * The C++ language provides the concept of "stack unwinding", which ensures that all objects are
+ * destructed, even when exceptions are thrown (that is why C++ does not have a 'finally'
+ * keyword).<br>
+ * See class \ref Owner and macro \ref OWN for information on how to 'own' an Ownable automatically
+ * for exactly one block of code.
+ *
+ * In debug compilations, the class supports information about the source location where ownership
+ * was gained.
  **************************************************************************************************/
 class Ownable
 {
+    protected:
+        #if defined(ALIB_DEBUG)
+            /**  Debug information on acquirement location */
+            strings::TString  acquirementSourcefile                                        =nullptr;
+
+            /**  Debug information on acquirement location */
+            int               acquirementLineNumber;
+
+            /**  Debug information on acquirement location */
+            strings::TString  acquirementMethodName                                        =nullptr;
+        #endif
+
     public:
         /** ****************************************************************************************
-         *  Virtual abstract method. Functionality due to implementation in descendants.
+         * Virtual abstract method. Functionality due to implementation in descendants.
+         * @param file  Caller information. Available only in debug compilations.
+         * @param line  Caller information. Available only in debug compilations.
+         * @param func  Caller information. Available only in debug compilations.
          *****************************************************************************************/
-        virtual void Acquire()    =0;
+        #if defined(ALIB_DEBUG)
+            virtual void Acquire(const TString& file, int line, const TString& func)
+            {
+                acquirementSourcefile= file;
+                acquirementLineNumber= line;
+                acquirementMethodName= func;
+            }
+        #else
+            virtual void Acquire() {}
+        #endif
 
         /** **************************************************************************************
          *  Virtual abstract method. Functionality due to implementation in descendants.
@@ -82,8 +109,23 @@ struct Owner
         /** **************************************************************************************
          *  The constructor. Invokes Acquire() on the owner.
          * @param ownable    The ownable to acquire.
+         *
+         * @param file  Caller information. Available only in debug compilations.
+         * @param line  Caller information. Available only in debug compilations.
+         * @param func  Caller information. Available only in debug compilations.
          *****************************************************************************************/
-         Owner( Ownable& ownable ) : ownable(ownable)    { ownable.Acquire();  }
+         #if defined(ALIB_DEBUG)
+             Owner( Ownable& ownable, const TString& file, int line, const TString& func)
+             : ownable(ownable)
+             {
+                ownable.Acquire( file, line, func );
+             }
+         #else
+             Owner( Ownable& ownable ) : ownable(ownable)
+             {
+                ownable.Acquire();
+             }
+         #endif
 
         /** **************************************************************************************
          *  The destructor. Releases the owner by invoking Release().

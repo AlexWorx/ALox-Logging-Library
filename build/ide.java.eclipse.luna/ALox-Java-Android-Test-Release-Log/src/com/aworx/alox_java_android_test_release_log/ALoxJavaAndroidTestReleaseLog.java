@@ -33,45 +33,44 @@ public class ALoxJavaAndroidTestReleaseLog extends Activity
     public void testReleaseLogging()
     {
         // create a lox for release logging
-        Lox lox= new Lox();
+        Lox lox= new Lox("Release");
 
         // add and configure a memory logger
         MemoryLogger ml=           new MemoryLogger();
-        ml.metaInfo.format=   new AString( "[%TE]%L[%O]: ");
-        ml.setDomain( lox.internalDomain, Log.DomainLevel.ALL );
-        lox.addLogger( ml );
+        ml.metaInfo.format=   new AString( "[%TC]%V[%D]: ");
+        //lox.setVerbosity( ml, Verbosity.VERBOSE, ALox.INTERNAL_DOMAINS );
+        lox.setVerbosity( ml, Verbosity.VERBOSE  );
 
         // add and configure a log cat logger
         AndroidLogCatLogger lcl= new AndroidLogCatLogger();
-        lcl.setDomain( lox.internalDomain, Log.DomainLevel.ALL );
-        lox.addLogger( lcl );
+        lox.setVerbosity( lcl, Verbosity.VERBOSE, ALox.INTERNAL_DOMAINS );
+        lox.setVerbosity( lcl, Verbosity.VERBOSE  );
 
-        // We do not work with default domains, as we will obfuscate the code.
-        // Obfuscated code and release logging does not allow default domains, because
-        // the rely on caller information and reasonable package, class and method names
-        lox.setDomain( "RelLog",    Log.Scope.NONE );
-        lox.setDomain( "RelLog",    Log.DomainLevel.ALL  );
+        // We do not work with scope domains, as we will obfuscate the code.
+        // Obfuscated code and release logging does not allow scope domains, because
+        // the rely on scope information and reasonable package, class and method names
+        lox.setDomain( "RelLog",    Scope.GLOBAL );
 
-        // all log invocations provide the "domain" parameter explicitly to be safe when
-        // obfuscation is enabled!
-        lox.info( "RelLog", "Hello ALox, thank you for providing release logging!" );
-        lox.info( "RelLog", "Let's see if LogTools is available." );
-        lox.info( "RelLog", "We need to provide our lox as a parameter to all LogTools methods!" );
+        lox.info( "Hello ALox, thank you for providing release logging!" );
+        lox.info( "Let's see if LogTools are available." );
+        lox.info( "We need to provide our lox as a parameter to all LogTools methods!" );
 
         // instance() will not give very nice member names, if obfuscated!
-        LogTools.instance( "RelLog", Log.Level.INFO, Log.LOX, 2, " Logging the Lox:", 0, lox );
+        LogTools.instance( "/RelLog", Verbosity.INFO, lox, 2, " Logging the Lox:", lox );
 
         // also, the exception stack trace should be not too easy to read. Proguard provides a tool "retrace"...
         lox.info( "RelLog", "Logging exceptions: " );
-        LogTools.exception( "RelLog", Log.Level.ERROR, new Exception("This is not a real Exception", new Exception("...unreal inner")), " Logging instance 'this':", 0, lox );
+        LogTools.exception( "/RelLog", Verbosity.ERROR, 
+                            new Exception("This is not a real Exception", new Exception("...unreal inner")),
+                            " Logging instance 'this':", lox );
 
-        lox.info( "RelLog", "That's it for now. More release logging tests to come...stay tuned!" );
+        lox.info( "That's it for now. Have fun with ALox for Android!" );
 
-        // copy the memory logger's output to the TextBlock
+        // copy the memory loggers' output to the TextBlock
         TextView logOutput= (TextView) findViewById( R.id.logOutput );
         logOutput.setMovementMethod(new ScrollingMovementMethod());
 
-        // copy the memory logger's output to the view
+        // copy the memory loggers' output to the view
         if ( ml.memoryLog.length() > 0 )
             logOutput.setText( ml.memoryLog.toString() );
         else

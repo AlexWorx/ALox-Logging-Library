@@ -16,7 +16,7 @@ using cs.aworx.lox.core.textlogger;
 
 namespace ALox_CS_Test_Perf  {
 
-class AloxTests
+class AloxSamples
 {
     // #############################################################################################
     // static entrance (Main)
@@ -25,47 +25,53 @@ class AloxTests
     {
         ALIB.Init( true, args );
 
+
         // create us
-        AloxTests test= new AloxTests();
+        AloxSamples samples= new AloxSamples();
 
         // do some release logging tests.
         Console.WriteLine( "PRINT: Debug logging:" );
-            test.DebugLogging();
-        Log.Reset();
+            samples.DebugLogging();
+        ALoxSampleReset();
 
         // do some release logging tests.
         Console.WriteLine( "PRINT: Release logging:" );
-            test.ReleaseLogging();
-        Log.Reset();
+            samples.ReleaseLogging();
+        ALoxSampleReset();
 
         // do some performance tests.
         Console.WriteLine( "PRINT: Performance test (debug logging):" );
-           test.PerformanceTest();
-        Log.Reset();
+           samples.PerformanceTest();
+        ALoxSampleReset();
 
         // do some performance tests.
         Console.WriteLine( "PRINT: Performance test (release logging):" );
-           test.PerformanceTestRL();
-        Log.Reset();
+           samples.PerformanceTestRL();
+        ALoxSampleReset();
 
         // test class TextFileLogger
         Console.WriteLine( "PRINT: test class TextFileLogger:" );
-            test.TextFileLogger();
-        Log.Reset();
+            samples.TextFileLogger();
+        ALoxSampleReset();
 
         // test class terminal test (colors and styles)
         Console.WriteLine( "PRINT: Colors (depending on detected terminal):" );
-            test.ColorTest();
-        Log.Reset();
+            samples.ColorTest();
+        ALoxSampleReset();
 
         Console.WriteLine( "PRINT: Thats it!" );
 
         // sample ALib report facility through ALox
-        test.SampleALibReport();
+        samples.SampleALibReport();
 
         ALIB.TerminationCleanUp();
     }
 
+    static void ALoxSampleReset()
+    {
+        Log.Reset();
+        Log.SetSourcePathTrimRule( "*/src.cs/", Inclusion.Include );
+    }
 
     public void DebugLogging()
     {
@@ -75,53 +81,40 @@ class AloxTests
     public void ReleaseLogging()
     {
         // create a lox for release logging
-        Lox lox= new Lox();
+        Lox lox= new Lox( "ReleaseLox" );
 
         // let the system choose an appropriate console logger
         TextLogger releaseLogger=  Lox.CreateConsoleLogger();
 
-        // we set a format string without caller information (as this is of-course not available in release logging)
+        // we set a format string without scope information (as this is of-course not available in release logging)
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-            releaseLogger.MetaInfo.Format= new AString( "[%TE +%TI] [%t] %L [%O] %A1(%#): " );
+            releaseLogger.MetaInfo.Format= new AString( "[%TC +%TL][%tN]%V[%D]%A1(%#): " );
         #endif
-        lox.AddLogger( releaseLogger );
-        lox.SetDomain( "A_DOMAIN", Log.DomainLevel.InfoWarningsAndErrors );
+        lox.SetVerbosity( releaseLogger, Verbosity.Info, "A_DOMAIN" );
 
         lox.Info ( "A_DOMAIN", "Hello ALox, this is release logging" );
 
-        lox.RemoveLoggers();
+        lox.RemoveLogger( releaseLogger );
     }
 
     void PerformanceTest()
     {
         Log.AddDebugLogger();
-        #if ALOX_DBG_LOG
-            Log.SetDomain( Log.LOX.InternalDomain, Log.DomainLevel.WarningsAndErrors, Log.DebugLogger.Name );
-        #endif
-
-
         MemoryLogger ml= new MemoryLogger();
-        Log.AddLogger( ml );
 
+        Log.SetVerbosity( Log.DebugLogger, Verbosity.Off );
+        Log.SetVerbosity( Log.DebugLogger, Verbosity.Verbose, "/CON" );
+        Log.SetVerbosity( ml,              Verbosity.Verbose, "/MEM" );
 
-        Log.SetDomain( "CON", Log.Scope.SourceFile );
-        Log.SetDomain( "MEM", Log.Scope.None  );
-        Log.SetDomain( "BOTH",Log.Scope.None );
-
-        Log.SetDomain( "CON", Log.DomainLevel.All);
-        Log.SetDomain( "MEM", Log.DomainLevel.Off);
-        Log.SetDomain( "MEM", Log.DomainLevel.All, "Memory" );
-        Log.SetDomain( "CON", Log.DomainLevel.Off, "Memory" );
-        Log.SetDomain( "BOTH",Log.DomainLevel.All );
-
-
-        Log.Info( "Logging simple info lines into a memory logger" );
+        Log.Info( "/CON", "Logging simple info lines into a memory logger" );
 
         AString  msgBuf=  new AString( );
         long     fastest= long.MaxValue;
         Ticks    timer=     new Ticks();
-        const int qtyLines=   100;
-        const int qtyLoops= 10000;
+        int      qtyLines=    100;
+        int      qtyLoops=  10000;
+        if( System.Diagnostics.Debugger.IsAttached )
+            qtyLines= qtyLoops= 10;
 
         for ( int i= 0 ; i < qtyLoops ; i++ )
         {
@@ -131,22 +124,25 @@ class AloxTests
 
             timer.Set();
                 for ( int ii= 0 ; ii < qtyLines ; ii++ )
-                    Log.Info( "MEM", "Test Line" );
+                {
+                    Log.Info( "/MEM", "Test Line" );
+                    if( i== 0 && ii == 0) Console.WriteLine( ml.MemoryLog.ToString() );
+                }
             long t= timer.Age().Raw();
 
             if ( fastest > t )
             {
                 fastest= t;
-                Log.Info( msgBuf.Clear()._( "Pass " )._( i, 3)._( " is new fastest:  ")
+                Log.Info( "/CON", msgBuf.Clear()._( "Pass " )._( i, 3)._( " is new fastest:  ")
                         ._( (int) (new Ticks( fastest)).InMicros(), 0)._( " micros per ")._(qtyLines)._(" logs.") );
             }
         }
 
         double microsPerLog=  ( (double) (new Ticks(fastest)).InMicros() ) / qtyLines;
         int    logsPerSecond= (int)( 1000000.0 / microsPerLog);
-        Log.Info( msgBuf._()._( "  " )._( ESC.MAGENTA )._( "Fastest Debug Logging: " )
-                        ._( microsPerLog  )._( " micros per log (resp " )
-                        ._( logsPerSecond )._( " logs per second) " ) );
+        Log.Info( "/CON", msgBuf._()._( "  " )._( ESC.MAGENTA )._( "Fastest Debug Logging: " )
+                                            ._( microsPerLog  )._( " micros per log (resp " )
+                                            ._( logsPerSecond )._( " logs per second) " ) );
 
         Log.RemoveDebugLogger();
     }
@@ -154,31 +150,24 @@ class AloxTests
     void PerformanceTestRL()
     {
         // create a lox for release logging
-        Lox lox= new Lox();
-        TextLogger relLogger= Lox.CreateConsoleLogger();
-        lox.AddLogger( relLogger );
-        MemoryLogger ml= new MemoryLogger();
-        lox.AddLogger( ml );
+        Lox lox= new Lox( "ReleaseLox" );
+        TextLogger   relLogger= Lox.CreateConsoleLogger();
+        MemoryLogger ml       = new MemoryLogger();
 
 
-        lox.SetDomain( "CON", Log.Scope.SourceFile );
-        lox.SetDomain( "MEM", Log.Scope.None  );
-        lox.SetDomain( "BOTH",Log.Scope.None );
-
-        lox.SetDomain( "CON", Log.DomainLevel.All );
-        lox.SetDomain( "MEM", Log.DomainLevel.Off );
-        lox.SetDomain( "MEM", Log.DomainLevel.All, "Memory" );
-        lox.SetDomain( "CON", Log.DomainLevel.Off, "Memory" );
-        lox.SetDomain( "BOTH",Log.DomainLevel.All  );
+        lox.SetVerbosity( relLogger, Verbosity.Verbose, "/CON" );
+        lox.SetVerbosity( ml       , Verbosity.Verbose, "/MEM" );
 
 
-        lox.Info( "Logging simple info lines into a memory logger" );
+        lox.Info( "/CON", "Logging simple info lines into a memory logger" );
 
         AString  msgBuf=  new AString( );
         long     fastest= long.MaxValue;
         Ticks    timer=     new Ticks();
-        const int qtyLines=   100;
-        const int qtyLoops= 10000;
+        int      qtyLines=  1000;
+        int      qtyLoops=  2000; //1000
+        if( System.Diagnostics.Debugger.IsAttached )
+            qtyLines= qtyLoops= 10;
 
         for ( int i= 0 ; i < qtyLoops ; i++ )
         {
@@ -188,35 +177,37 @@ class AloxTests
 
             timer.Set();
                 for ( int ii= 0 ; ii < qtyLines ; ii++ )
-                    lox.Info( "MEM", "Test Line" );
+                {
+                    lox.Info( "/MEM", "Test Line" );
+                    if( i== 0 && ii == 0) Console.WriteLine( ml.MemoryLog.ToString() );
+                }
             long t= timer.Age().Raw();
 
             if ( fastest > t )
             {
                 fastest= t;
-                lox.Info( msgBuf.Clear()._( "Pass " )._( i, 3)._( " is new fastest:  ")
-                        ._( (int) (new Ticks( fastest)).InMicros(), 0)._( " micros per ")._(qtyLines)._(" logs.") );
+                lox.Info( "/CON", msgBuf.Clear()._( "Pass " )._( i, 3)._( " is new fastest:  ")
+                                       ._( (int) (new Ticks( fastest)).InMicros(), 0)
+                                       ._( " micros per ")._(qtyLines)._(" logs.") );
             }
         }
 
         double microsPerLog=  ( (double) (new Ticks(fastest)).InMicros() ) / qtyLines;
         int    logsPerSecond= (int)( 1000000.0 / microsPerLog);
-        lox.Info( msgBuf._()._( "  " )._( ESC.MAGENTA )._( "Fastest Debug Logging: " )
-                            ._( microsPerLog  )._( " micros per log (resp " )
-                            ._( logsPerSecond )._( " logs per second) " ) );
+        lox.Info( "/CON", msgBuf._()._( "  " )._( ESC.MAGENTA )._( "Fastest Release Logging: " )
+                                    ._( microsPerLog  )._( " micros per log (resp " )
+                                    ._( logsPerSecond )._( " logs per second) " ) );
 
-        lox.RemoveLoggers();
+        lox.RemoveLogger( ml );
+        lox.RemoveLogger( relLogger );
     }
 
     public void TextFileLogger()
     {
         Log.Info( "Creating a text file logger with file 'Test.log.txt'" );
-        Log.AddLogger( new TextFileLogger( "Test.log.txt" ) );
-        #if ALOX_DBG_LOG
-            Log.GetLogger("TEXTFILE").SetDomain( Log.LOX.InternalDomain, Log.DomainLevel.Errors );
-        #endif
-        Log.SetDomain( "TEXTFILE_TEST", Log.Scope.Method    );
-        Log.SetDomain( "TEXTFILE_TEST", Log.DomainLevel.All );
+
+        Log.SetDomain( "/TEXTFILE_TEST", Scope.Method );
+        Log.SetVerbosity( "TEXTFILE", Verbosity.Verbose, "" );
 
         Log.Verbose( "A verbose message (goes to textfile logger as well)" );
         Log.Info   ( "An info message  (goes to textfile logger as well)" );
@@ -227,11 +218,8 @@ class AloxTests
 
     void ColorTest()
     {
-
         Log.AddDebugLogger();
-
-        Log.SetDomain( "COLORS", Log.DomainLevel.All );
-        Log.SetDomain( "COLORS", Log.Scope.Method );
+        Log.SetDomain( "/COLORS", Scope.Method );
 
         Log.Info(      "Hello ALox, this debug logging" );
         Log.Verbose(   "Some verbose log output" );
@@ -372,19 +360,30 @@ class AloxTests
         Console.WriteLine( "Sample: ALib Report via using ALox" );
 
         Log.AddDebugLogger();
-        Log.SetDomain( "SAMPLE", Log.DomainLevel.InfoWarningsAndErrors );
-        Log.SetDomain( "SAMPLE", Log.Scope.SourceFile);
+        Log.SetDomain( "/SAMPLE", Scope.Filename);
+        Log.SetVerbosity( Log.DebugLogger, Verbosity.Info, "" );
         Log.Info(   "Method \"Log.AddDebugLogger()\" by default creates a replacement for ALibs'\n"
                   + "error/warning reporter. If this is a debug compiliation, let's have a try and\n"
-                  + "create an ALib error:"  );
+                  + "create 3 Messages:"  );
 
             Report.GetDefault().PushHaltFlags( false, false );
+                ALIB.ERROR(   "This is an error report!" );
+                ALIB.WARNING( "And this is a warning!"   );
                 AString illegalAccess= new AString(10);
                 illegalAccess._("1234");
                 illegalAccess.SetCharAt_NC(5, '5');
             Report.GetDefault().PopHaltFlags();
 
-        Log.Info( "Note the domain 'REPORT' used by ALib reporter." );
+
+            Log.SetVerbosity( Log.DebugLogger, Verbosity.Verbose, ALox.InternalDomains );
+            ALIB.REPORT( 2,   "This is an ALib Report. Types other than '0' and '1' are user defined.\n"
+                            + "Verbosity of ALox.InternalDomains has to be increased to see them when using"
+                            + " ALoxReportWriter." );
+
+
+        Log.Info(   "Note the domain prefix '" + ALox.InternalDomains.ToString() + "'. This addresses "
+                  + "the tree of internal domains\nof the Lox, which the report writer is just "
+                  + "using for ALib reports." );
 
         Log.RemoveDebugLogger();
     }

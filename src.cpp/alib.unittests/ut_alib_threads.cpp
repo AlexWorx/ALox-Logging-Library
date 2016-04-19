@@ -20,16 +20,17 @@
     #include "alib/threads/threadlock.hpp"
 #endif
 
+
+using namespace aworx;
+
 #include <iostream>
 
 #define TESTCLASSNAME       CPP_ALib_Threads
 #include "aworx_unittests.hpp"
 
 using namespace std;
-using namespace aworx;
 
 namespace ut_aworx {
-
 
 UT_CLASS()
 
@@ -71,7 +72,7 @@ class Test_ThreadLock_TestThread : public Thread
         for ( int i= 0; i < repeats ; i++ )
         {
             if (verbose) { UT_PRINT( "Thread: " << GetName() << " acquiring lock..." ); }
-            mutex->Acquire();
+            mutex->Acquire(ALIB_DBG_SRC_INFO_PARAMS);
             if (verbose) { UT_PRINT( "Thread: " << GetName() << " has lock." ); }
 
                 int sVal= ++shared->val;
@@ -95,6 +96,8 @@ class Test_ThreadLock_TestThread : public Thread
 //--- ThreadSimple
 //---------------------------------------------------------------------------------------------------------
 UT_METHOD( ThreadSimple )
+{
+    UT_INIT();
 
     // create and delete
     {
@@ -160,47 +163,49 @@ UT_METHOD( ThreadSimple )
 //--- ThreadLockSimple
 //---------------------------------------------------------------------------------------------------------
 UT_METHOD( ThreadLockSimple )
+{
+    UT_INIT();
 
     lib::Report::GetDefault().PushHaltFlags( false, false );
 
     // lock a recursive lock
     {
         ThreadLock aLock;
-        aLock.Acquire();                UT_EQ ( 1, aLock.IsAcquired() );
-        aLock.Release();                UT_EQ ( 0, aLock.IsAcquired() );
+        aLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);    UT_EQ ( 1, aLock.DbgCountAcquirements() );
+        aLock.Release();                UT_EQ ( 0, aLock.DbgCountAcquirements() );
 
-        aLock.Acquire();                UT_EQ ( 1, aLock.IsAcquired() );
-        aLock.Acquire();                UT_EQ ( 2, aLock.IsAcquired() );
-        aLock.Release();                UT_EQ ( 1, aLock.IsAcquired() );
+        aLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);    UT_EQ ( 1, aLock.DbgCountAcquirements() );
+        aLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);    UT_EQ ( 2, aLock.DbgCountAcquirements() );
+        aLock.Release();                            UT_EQ ( 1, aLock.DbgCountAcquirements() );
 
-        aLock.Acquire();                UT_EQ ( 2, aLock.IsAcquired() );
-        aLock.Release();                UT_EQ ( 1, aLock.IsAcquired() );
-        aLock.Release();                UT_EQ ( 0, aLock.IsAcquired() );
+        aLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);    UT_EQ ( 2, aLock.DbgCountAcquirements() );
+        aLock.Release();                            UT_EQ ( 1, aLock.DbgCountAcquirements() );
+        aLock.Release();                            UT_EQ ( 0, aLock.DbgCountAcquirements() );
 
         // set unsafe
-        aLock.SetMode( Safeness::Unsafe );   UT_EQ ( 0, aLock.IsAcquired() );
-        aLock.SetMode( Safeness::Safe   );   UT_EQ ( 0, aLock.IsAcquired() );
+        aLock.SetSafeness( Safeness::Unsafe );      UT_EQ ( 0, aLock.DbgCountAcquirements() );
+        aLock.SetSafeness( Safeness::Safe   );      UT_EQ ( 0, aLock.DbgCountAcquirements() );
 
-        aLock.SetMode( Safeness::Unsafe );   UT_EQ ( 0, aLock.IsAcquired() );
-        aLock.Acquire();                     UT_EQ ( 1, aLock.IsAcquired() );
-        aLock.Release();                     UT_EQ ( 0, aLock.IsAcquired() );
+        aLock.SetSafeness( Safeness::Unsafe );      UT_EQ ( 0, aLock.DbgCountAcquirements() );
+        aLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);    UT_EQ ( 1, aLock.DbgCountAcquirements() );
+        aLock.Release();                            UT_EQ ( 0, aLock.DbgCountAcquirements() );
 
         // unsafe
-        aLock.Acquire();                     UT_EQ ( 1, aLock.IsAcquired() );
+        aLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);    UT_EQ ( 1, aLock.DbgCountAcquirements() );
         UT_PRINT( "Expecting error: set unsafe when already locked" );
-        aLock.SetMode( Safeness::Safe   );   UT_EQ ( 1, aLock.IsAcquired() );
+        aLock.SetSafeness( Safeness::Safe   );      UT_EQ ( 1, aLock.DbgCountAcquirements() );
         UT_PRINT( "Expecting error: destruction while locked" );
     }
 
     // safe (new lock)
     {
         ThreadLock aLock;
-        aLock.Acquire();                     UT_EQ ( 1, aLock.IsAcquired() );
+        aLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS); UT_EQ ( 1, aLock.DbgCountAcquirements() );
         UT_PRINT( "Expecting error: set unsafe when already locked" );
-        aLock.SetMode( Safeness::Unsafe );   UT_EQ ( 1, aLock.IsAcquired() );
-        aLock.Release();                     UT_EQ ( 0, aLock.IsAcquired() );
+        aLock.SetSafeness( Safeness::Unsafe );   UT_EQ ( 1, aLock.DbgCountAcquirements() );
+        aLock.Release();                         UT_EQ ( 0, aLock.DbgCountAcquirements() );
         UT_PRINT( "Expecting error: release whithout lock" );
-        aLock.Release();                     UT_EQ (-1, aLock.IsAcquired() );
+        aLock.Release();                         UT_EQ (-1, aLock.DbgCountAcquirements() );
     }
 
     // test warnings (10) locks:
@@ -208,22 +213,22 @@ UT_METHOD( ThreadLockSimple )
         ThreadLock aLock;
         UT_PRINT( "Two warnings should come now: " );
         for (int i= 0; i<20; i++)
-            aLock.Acquire();
-        UT_TRUE ( aLock.IsAcquired() > 0 );
+            aLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);
+        UT_TRUE ( aLock.DbgCountAcquirements() > 0 );
         for (int i= 0; i<20; i++)
             aLock.Release();
-        UT_EQ ( 0, aLock.IsAcquired() );
+        UT_EQ ( 0, aLock.DbgCountAcquirements() );
     }
 
     // test a non-recursive lock
     {
         ThreadLock aLock( LockMode::SingleLocks );
-        aLock.Acquire();                UT_EQ ( 1, aLock.IsAcquired() );
-        aLock.Acquire();                UT_EQ ( 1, aLock.IsAcquired() );
-        aLock.Release();                UT_EQ ( 0, aLock.IsAcquired() );
+        aLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);    UT_EQ ( 1, aLock.DbgCountAcquirements() );
+        aLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);    UT_EQ ( 1, aLock.DbgCountAcquirements() );
+        aLock.Release();                            UT_EQ ( 0, aLock.DbgCountAcquirements() );
 
         UT_PRINT( "One Error should come now: " );
-        aLock.Release();                UT_EQ ( 0, aLock.IsAcquired() );
+        aLock.Release();                            UT_EQ ( 0, aLock.DbgCountAcquirements() );
     }
 
     lib::Report::GetDefault().PopHaltFlags();
@@ -233,13 +238,15 @@ UT_METHOD( ThreadLockSimple )
 //--- ThreadLockThreaded
 //---------------------------------------------------------------------------------------------------------
 UT_METHOD( ThreadLockThreaded )
+{
+    UT_INIT();
 
     lib::Report::GetDefault().PushHaltFlags( false, false );
 
         ThreadLock aLock;
         Test_ThreadLock_SharedInt* shared= new Test_ThreadLock_SharedInt();
         UT_PRINT( "starting thread locked" );
-        aLock.Acquire();
+        aLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);
         Test_ThreadLock_TestThread* t= new Test_ThreadLock_TestThread( &ut, "A Thread", &aLock, 10, 1, true, shared );
         t->Start();
         UT_PRINT( "We wait 1100 ms. This should give a warning! " );
@@ -252,7 +259,7 @@ UT_METHOD( ThreadLockThreaded )
 
         // now we do the same with a lower wait limit, no error should come
         aLock.WaitWarningTimeLimitInMillis= 5;
-        aLock.Acquire();
+        aLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);
         delete t;
         t= new Test_ThreadLock_TestThread( &ut, "A Thread", &aLock, 10, 1, true, shared );
         t->Start();
@@ -269,12 +276,78 @@ UT_METHOD( ThreadLockThreaded )
     lib::Report::GetDefault().PopHaltFlags();
 }
 
+//---------------------------------------------------------------------------------------------------------
+//--- SmartLockTest
+//---------------------------------------------------------------------------------------------------------
+#if defined (ALOX_DBG_LOG) // in release, no ALIB report is sent.
+UT_METHOD( SmartLockTest )
+{
+    UT_INIT();
 
+    lib::Report::GetDefault().PushHaltFlags( false, false );
+    ut.lox.CntLogCalls= 0;
+
+    // SmartLock with null-users
+    {
+        SmartLock sl;                          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.AddAcquirer   ( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.AddAcquirer   ( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.AddAcquirer   ( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
+    }
+
+    // SmartLock with threadlocks
+    {
+        ThreadLock tl1, tl2, tl3;
+        SmartLock  sl;                         UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.AddAcquirer   ( &tl1    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.AddAcquirer   ( &tl2    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.AddAcquirer   ( &tl3    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( &tl3    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( &tl3    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( &tl2    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( &tl1    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( &tl1    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
+    }
+
+    // mixed
+    {
+        ThreadLock tl1, tl2, tl3;
+        SmartLock  sl;                         UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.AddAcquirer   ( &tl1    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.AddAcquirer   ( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.AddAcquirer   ( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.AddAcquirer   ( &tl2    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.AddAcquirer   ( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.AddAcquirer   ( &tl2    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
+        sl.AddAcquirer   ( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.AddAcquirer   ( &tl3    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( &tl1    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( &tl1    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( &tl3    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Safe   );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( &tl3    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( &tl2    );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 0 ); ut.lox.CntLogCalls= 0;
+        sl.RemoveAcquirer( nullptr );          UT_TRUE( ((ThreadLock&) sl).GetSafeness() == Safeness::Unsafe );  UT_TRUE( ut.lox.CntLogCalls== 1 ); ut.lox.CntLogCalls= 0;
+    }
+    lib::Report::GetDefault().PopHaltFlags();
+}
+#endif
 
 //---------------------------------------------------------------------------------------------------------
 //--- HeavyLoad
 //---------------------------------------------------------------------------------------------------------
 UT_METHOD( HeavyLoad )
+{
+    UT_INIT();
 
     ThreadLock aLock;
 
@@ -309,6 +382,8 @@ UT_METHOD( HeavyLoad )
 //--- SpeedTest
 //---------------------------------------------------------------------------------------------------------
 UT_METHOD( LockSpeedTest )
+{
+    UT_INIT();
 
     ThreadLock aLock;
 
@@ -321,22 +396,22 @@ UT_METHOD( LockSpeedTest )
     {
         UT_PRINT( "Run " << run << '/' << rrepeats );
 
-        aLock.SetMode( Safeness::Safe );
+        aLock.SetSafeness( Safeness::Safe );
         stopwatch.Set();
         for ( int i= 0; i < repeats; i++ )
         {
-            aLock.Acquire();
+            aLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);
             aLock.Release();
         }
         auto time= stopwatch.Age().InMicros();
         UT_PRINT( "  Safe mode:   " << repeats << " lock/unlock ops: " << time << "\xC2\xB5s" ); // UTF-8 encoding of the greek 'm' letter;
 
-        aLock.SetMode( Safeness::Unsafe );
+        aLock.SetSafeness( Safeness::Unsafe );
         stopwatch.Set();
         volatile int ii= 0;
         for ( int i= 0; i < repeats; i++ )
         {
-            aLock.Acquire();
+            aLock.Acquire(ALIB_DBG_SRC_INFO_PARAMS);
             aLock.Release();
 
             // in java, adding the following two loops, results in similar execution speed
@@ -357,7 +432,7 @@ UT_METHOD( LockSpeedTest )
         stopwatch.Set();
         for ( int i= 0; i < repeats; i++ )
         {
-            tNR.Acquire();
+            tNR.Acquire(ALIB_DBG_SRC_INFO_PARAMS);
             tNR.Release();
         }
         time= stopwatch.Age().InMicros();

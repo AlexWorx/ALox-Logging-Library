@@ -27,22 +27,24 @@ using namespace aworx;
 // SAMPLE code of Non-Checking method variants
 //##################################################################################################
 
-void sample12( aworx::Substring line )
-{
 //! [DOX_ALIB_STRINGS_NONCHECKING_1]
+void parse( aworx::Substring line )
+{
     // object 'line' is of type aworx::Substring
-    aworx::String startWord= "<start>";
-    int idx= line.IndexOfAS( startWord );
+    aworx::TString startWord= "<start>";
+    int idx= line.IndexOfSubstring( startWord );
     if( idx > 0 )
         line.Consume( idx + startWord.Length() );
+    //...
+    //...
 //! [DOX_ALIB_STRINGS_NONCHECKING_1]
 }
 
 void sample22( aworx::Substring line )
 {
+    aworx::TString startWord= "<start>";
+    int idx= line.IndexOfSubstring( startWord );
 //! [DOX_ALIB_STRINGS_NONCHECKING_2]
-    aworx::String startWord= "<start>";
-    int idx= line.IndexOfAS( startWord );
     if( idx > 0 )
         line.Consume<false>( idx + startWord.Length() ); // No check for length of object 'line'
 //! [DOX_ALIB_STRINGS_NONCHECKING_2]
@@ -127,6 +129,8 @@ UT_CLASS()
 
 
     UT_METHOD( Strings_NonCheckingSample )
+    {
+        UT_INIT();
 
         UT_PRINT("*** Documentation Sample +**")
 

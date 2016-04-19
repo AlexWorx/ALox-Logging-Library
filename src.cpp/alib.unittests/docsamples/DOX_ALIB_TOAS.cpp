@@ -136,7 +136,6 @@ namespace std { stringstream testOutputStream2; }
 #include "aworx_unittests.hpp"
 #include "alib/strings/tokenizer.hpp"
 #include "alib/strings/numberformat.hpp"
-#include "alib/system/directory.hpp"
 
 namespace ut_aworx {
 
@@ -144,6 +143,8 @@ namespace ut_aworx {
 UT_CLASS()
 
 UT_METHOD( DOX_ALIB_TOAS )
+{
+    UT_INIT();
 
     MyFunction();
     ut.WriteResultFile( "DOX_ALIB_TOAS.txt", testOutputStream1.str(), "//! [OUTPUT]" );

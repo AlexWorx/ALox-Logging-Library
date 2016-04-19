@@ -47,10 +47,9 @@ void dateFormatCheck( ALIBUnitTesting& ut, TicksCalendarTime& ct,  const char * 
 
 
 UT_METHOD(Basics)
+{
+    UT_INIT();
 
-    //Log.RemoveLoggers( );
-    //Log.AddLogger( new ConsoleLogger() );
-    //Log.SetDomain( "Ticks", true );
     UT_PRINT("") UT_PRINT( "### TicksBasics ###" );
 
     // check times
@@ -129,10 +128,9 @@ UT_METHOD(Basics)
 //--- SpeedTest
 //---------------------------------------------------------------------------------------------------------
 UT_METHOD(SpeedTest)
+{
+    UT_INIT();
 
-    //Log.RemoveLoggers( );
-    //Log.AddLogger( new ConsoleLogger() );
-    //Log.SetDomain( "Ticks", true );
     UT_PRINT(""); UT_PRINT( "### TicksSpeedTest ###" );
     for (int runs= 0; runs < 5; runs ++ )
     {
@@ -147,7 +145,7 @@ UT_METHOD(SpeedTest)
         auto nanos= tkMeasure.Age().InNanos();
         auto averageNanos= nanos/ aLotOf ;
         UT_PRINT(  "  This took " << nanos << " ns. This is an average of " << averageNanos << " nanoseconds per call" );
-        #if defined (_WIN32)
+        #if defined (_WIN32) || defined(ALIB_AVOID_ANALYZER_WARNINGS )
             UT_TRUE ( averageNanos < 10000 ); // Windows QueryPerformanceCounter is really slow!
                                                   // Intrinsics should do much better
         #else
@@ -160,10 +158,9 @@ UT_METHOD(SpeedTest)
 //--- DateTimeConversion
 //---------------------------------------------------------------------------------------------------------
 UT_METHOD(DateTimeConversion)
+{
+    UT_INIT();
 
-    //Log.RemoveLoggers( );
-    //Log.AddLogger( new ConsoleLogger() );
-    //Log.SetDomain( "Ticks", true );
 
     UT_PRINT("")  UT_PRINT( "### TickSpeedTest ###" );
 
@@ -190,7 +187,9 @@ UT_METHOD(DateTimeConversion)
                 UT_PRINT( "Ticks original:  "  << ticksNowOrig        .Raw() );
                 UT_PRINT( "Ticks roundtrip: "  << ticksNowRoundtrip   .Raw() );
 
-                UT_EQ( ticksNowOrig.InSeconds() ,  ticksNowRoundtrip.InSeconds() );
+                #if defined(ALIB_AVOID_ANALYZER_WARNINGS )
+                    UT_EQ( ticksNowOrig.InSeconds() ,  ticksNowRoundtrip.InSeconds() );
+                #endif
             }
 
             // now we add a day
@@ -326,6 +325,8 @@ UT_METHOD(DateTimeConversion)
 //--- Ages
 //---------------------------------------------------------------------------------------------------------
 UT_METHOD(Ages)
+{
+    UT_INIT();
 
     //UT_PRINT( "Nanos per 2013 years:    "                << (nanosPerYear*2013) );
 
@@ -341,9 +342,12 @@ UT_METHOD(Ages)
         UT_PRINT( "Ticks minimum measurement nanos:    "    << ttAverageInNanos    );
         UT_PRINT( "Ticks minimum measurement micros:   "    << ttAverageInMicros   );
         UT_PRINT( "Ticks minimum measurement millis:   "    << ttAverageInMillis   );
+
+        #if !defined(ALIB_AVOID_ANALYZER_WARNINGS )
         UT_TRUE ( ttAverageInNanos  < 10000    );
         UT_TRUE ( ttAverageInMicros < 10    );
         UT_TRUE ( ttAverageInMillis == 0    );
+        #endif
     }
     // minimum sleep time measuring
     {
@@ -404,6 +408,8 @@ UT_METHOD(Ages)
 //--- MeasureIncreasingDoublingLoop
 //---------------------------------------------------------------------------------------------------------
 UT_METHOD(MeasureIncreasingDoublingLoop)
+{
+    UT_INIT();
 
     string      testString("-------------------------------------------------------------------------------------------#");
     AString     testAString( testString );
@@ -443,6 +449,8 @@ UT_METHOD(MeasureIncreasingDoublingLoop)
 }
 
 UT_METHOD(DateFormat)
+{
+    UT_INIT();
 
     TicksCalendarTime ct;
     ct.Year     = 2015;

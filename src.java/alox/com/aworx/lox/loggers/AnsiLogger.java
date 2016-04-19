@@ -10,21 +10,17 @@ package com.aworx.lox.loggers;
 import java.io.PrintStream;
 
 import com.aworx.lib.*;
-import com.aworx.lib.enums.Phase;
-import com.aworx.lib.enums.Whitespaces;
-import com.aworx.lib.strings.AString;
-import com.aworx.lib.strings.Substring;
-import com.aworx.lib.strings.Tokenizer;
-import com.aworx.lox.ESC;
-import com.aworx.lox.Log;
-import com.aworx.lox.core.CallerInfo;
-import com.aworx.lox.core.textlogger.TextLogger;
+import com.aworx.lib.enums.*;
+import com.aworx.lib.strings.*;
+import com.aworx.lox.*;
+import com.aworx.lox.core.*;
+import com.aworx.lox.core.textlogger.*;
 
 /** ************************************************************************************************
  *  A logger that logs all messages to the <em>PrintStream</em> instance provided in the constructor.
- *  The name of the logger defaults to "ANSI_LOGGER".
+ *  The name of the \e Logger defaults to "ANSI_LOGGER".
  *
- *  ALox text logger escape sequences (see class \ref aworx::lox::ESC "ESC")
+ *  ALox text logger escape sequences (see class \ref com::aworx::lox::ESC "ESC")
  *  are translated to ANSI escape sequences.
  *  Support for ANSI escape sequences (also referred to as <em>VT100 terminal emulation</em>)
  *  is available on most unix terminal windows. Besides text colors, bold and italics font style
@@ -41,14 +37,14 @@ import com.aworx.lox.core.textlogger.TextLogger;
  *  accessible format attributes can be customized after creation.
  *
  *  There is not 100% match between the ANSI sequences and the definitions in
- *  \ref aworx::lox::ESC "ESC".
+ *  \ref com::aworx::lox::ESC "ESC".
  *  For example ESC does not provide all ANSI colors and no blinking. On the other hand,
  *  ANSI does not allow to reset the style without resetting the colors.
  *  Of-course, it is no problem to log other ANSI codes directly into an \b %AnsiLogger.
  *  In this case, other Loggers that might be attached to the same Lox and that do not
  *  support ANSI must be equipped with corresponding replacement information.
  *  In other words: To support the same log output into different loggers, it is
- *  recommended to use \ref aworx::lox::ESC "ESC"  sequences instead of
+ *  recommended to use \ref com::aworx::lox::ESC "ESC"  sequences instead of
  *  directly using ANSI codes.
  *
  *  The ANSI codes used by this class are exposed through a list of fields.
@@ -135,7 +131,7 @@ public class AnsiLogger extends TextLogger
          *
          * Defaults to false.
          *
-         * Configuration variable [ALOX_CL_LIGHT_BACKGROUND](../group__GrpALoxConfigVars.html)
+         * Configuration variable [ALOX_CONSOLE_HAS_LIGHT_BACKGROUND](../group__GrpALoxConfigVars.html)
          * is evaluated within the constructor of this class, to allow to modifying this flag at
          * runtime.
          */
@@ -146,16 +142,16 @@ public class AnsiLogger extends TextLogger
          */
         protected   PrintStream             out;
 
-        /** Characters  placed at the beginning of a log line with level 'Error'.*/
+        /** Characters  placed at the beginning of a log line with \e Verbosity 'ERROR'.*/
         public      String                  msgPrefixError;
 
-        /** Characters  placed at the beginning of a log line with level 'Warning'.*/
+        /** Characters  placed at the beginning of a log line with \e Verbosity 'WARNING'.*/
         public      String                  msgPrefixWarning;
 
-        /** Characters  placed at the beginning of a log line with level 'Info'.*/
+        /** Characters  placed at the beginning of a log line with \e Verbosity 'INFO'.*/
         public      String                  msgPrefixInfo           = "";
 
-        /** Characters  placed at the beginning of a log line with level 'Verbose'.*/
+        /** Characters  placed at the beginning of a log line with \e Verbosity 'VERBOSE'.*/
         public      String                  msgPrefixVerbose;
 
         /** Characters  placed at the end of each line (e.g. used to reset colors and styles).*/
@@ -168,34 +164,42 @@ public class AnsiLogger extends TextLogger
 
     /** ********************************************************************************************
      * Creates an AnsiLogger with the given PrintStream and name.
-     * @param out   (Optional) A java.io.PrintStream to write the log data to.
-     *               Defaults to <em>System.out</em>.
-     * @param name  (Optional) The name of the logger, defaults to "ANSI".
+     * @param out            A java.io.PrintStream to write the log data to.
+     * @param usesStdStreams Denotes whether this logger writes to the
+     *                       <em>standard output streams</em>.
+     * @param name           The name of the \e Logger, defaults to what is provided with
+     *                       parameter \p typeName.
+     * @param typeName       The type of the \e Logger, defaults to "ANSI".
      **********************************************************************************************/
-    public    AnsiLogger( PrintStream  out, String name )
+    public    AnsiLogger( PrintStream  out, boolean usesStdStreams , String name, String typeName )
     {
-        super( name, "ANSI" );
+        super( name, typeName, usesStdStreams );
+        construct( out );
+    }
+    
+    /** ********************************************************************************************
+     * Creates an AnsiLogger with the given PrintStream and name.
+     * @param out            A java.io.PrintStream to write the log data to.
+     * @param usesStdStreams Denotes whether this logger writes to the
+     *                       <em>standard output streams</em>.
+     * @param name           The name of the \e Logger. Defaults to "ANSI".
+     **********************************************************************************************/
+    public    AnsiLogger( PrintStream  out, boolean usesStdStreams , String name )
+    {
+        super( name, "ANSI", usesStdStreams );
         construct( out );
     }
 
     /** ********************************************************************************************
-     * Creates an AnsiLogger with the name "ANSI" and the given PrintStream.
-     * @param out   (Optional) A java.io.PrintStream to write the log data to.
-     *               Defaults to <em>System.out</em>.
+     * Overwritten constructor providing default parameters.
+     * @param out            A java.io.PrintStream to write the log data to.
+     * @param usesStdStreams Denotes whether this logger writes to the
+     *                       <em>standard output streams</em>.
      **********************************************************************************************/
-    public    AnsiLogger( PrintStream  out )
+    public    AnsiLogger( PrintStream  out, boolean usesStdStreams )
     {
-        super( null, "ANSI" );
+        super( null, "ANSI", usesStdStreams );
         construct( out );
-    }
-
-    /** ********************************************************************************************
-     * Creates an AnsiLogger with the name "ANSI" using <em>System.out</em> as PrintStream.
-     **********************************************************************************************/
-    public    AnsiLogger( )
-    {
-        super( null, "ANSI" );
-        construct( System.out );
     }
 
     /** ********************************************************************************************
@@ -206,9 +210,9 @@ public class AnsiLogger extends TextLogger
     {
         this.out= out;
 
-        // evaluate environment variable "ALOX_CL_LIGHT_BACKGROUND"
+        // evaluate environment variable "ALOX_CONSOLE_HAS_LIGHT_BACKGROUND"
         int[]  configVarSet= {0};
-        boolean configVarTrue= ALIB.config.isTrue( Log.configCategoryName, "CL_LIGHT_BACKGROUND",  configVarSet );
+        boolean configVarTrue= ALIB.config.isTrue( ALox.configCategoryName, "CONSOLE_HAS_LIGHT_BACKGROUND",  configVarSet );
         if( configVarSet[0] != 0 )
             isBackgroundLight=  configVarTrue;
         else
@@ -219,8 +223,8 @@ public class AnsiLogger extends TextLogger
 
         //--- modify the default format attributes of the MetaInfo support colors ---
 
-        // remove level information and colorize the whole line
-        metaInfo.format.searchAndReplace( " %L ", " " );
+        // remove verbosity information and colorize the whole line
+        metaInfo.format.searchAndReplace( "]%V[", "][" );
 
         if ( isBackgroundLight )
         {
@@ -237,30 +241,27 @@ public class AnsiLogger extends TextLogger
 
         // set source file background to gray
         AString ansiBGGray= new AString( ESC.BG_GRAY );
-                ansiBGGray._      ( "%CF(%CL):" )
+                ansiBGGray._      ( "%SF(%SL):" )
                           ._      ( ANSI_BG_STD_COL );
-        metaInfo.format.searchAndReplace( "%CF(%CL):", ansiBGGray.toString() );
+        metaInfo.format.searchAndReplace( "%SF(%SL):", ansiBGGray.toString() );
     }
 
     /** ********************************************************************************************
      * The implementation of the abstract method of parent class TextLogger. Logs messages to the
      * application console.
      *
-     * @param domain        The log domain name. If not starting with a slash ('/')
-     *                      this is appended to any default domain name that might have been specified
-     *                      for the source file.
-     * @param level         The log level. This has been checked to be active already on this stage
+     * @param domain        The <em>Log Domain</em>.
+     * @param verbosity     The verbosity. This has been checked to be active already on this stage
      *                      and is provided to be able to be logged out only.
      * @param msg           The log message.
-     * @param indent        the indentation in the output. Defaults to 0.
-     * @param caller        Once compiler generated and passed forward to here.
+     * @param scope         Information about the scope of the <em>Log Statement</em>..
      * @param lineNumber    The line number of a multi-line message, starting with 0. For single line
      *                      messages this is -1.
      **********************************************************************************************/
     @Override
-    protected void doTextLog( AString       domain,     Log.Level    level,
-                              AString       msg,        int          indent,
-                              CallerInfo    caller,     int          lineNumber)
+    protected void logText( Domain       domain,    Verbosity verbosity,
+                            AString      msg,
+                            ScopeInfo    scope,     int          lineNumber)
     {
         char[]  buf=        msg.buffer();
 
@@ -362,7 +363,7 @@ public class AnsiLogger extends TextLogger
                 if ( endOfMeta )
                 {
                     String msgPrefix;
-                    switch ( level )
+                    switch ( verbosity )
                     {
                         case VERBOSE:   msgPrefix= msgPrefixVerbose;     break;
                         case INFO:      msgPrefix= msgPrefixInfo;        break;

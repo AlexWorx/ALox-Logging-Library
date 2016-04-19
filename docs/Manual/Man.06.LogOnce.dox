@@ -1,0 +1,252 @@
+// #################################################################################################
+//  Documentation - ALox Logging Library
+//
+//  (c) 2013-2016 A-Worx GmbH, Germany
+//  Published under MIT License (Open Source License, see LICENSE.txt)
+// #################################################################################################
+
+/**
+\page man_log_once 06 - Lox.Once()
+
+\tableofcontents
+
+
+\~Comment ####################################################################################### \~
+# 1. Introduction #  {#man_logonce_intro}
+
+For a better understanding of what is explained in this chapter, it might be advisable to have read chapter
+\ref man_scopes before continuing with this one. In short, at that place it is explained how ALox defines
+language-related \e Scopes (including the 'global' \e Scope) and thread-related \e Scopes.
+Both types are 'interwoven' and form the complete set, as denoted in enum-class
+<b>%Scope</b>
+([C++] (@ref      #aworx::lox::Scope),
+ [C#]  (@ref  #cs::aworx::lox::Scope),
+ [Java](@ref #com::aworx::lox::Scope) ).
+
+The most important use of \e Scopes in ALox is for setting and using <em>Scope Domains</em>
+which helps sorting and controlling the log output tremendously. Further information on
+this topic is found in chapter \ref man_logdomains.
+This chapter provides details about a feature that we simple call <b>Lox.Once</b>.
+
+Using ALox, you have probably come across method
+<b>%Lox.Once</b>
+([C++] (@ref      #aworx::lox::Lox::Once),
+ [C#]  (@ref  #cs::aworx::lox::Lox::Once),
+ [Java](@ref #com::aworx::lox::Lox::once) ), with its various parameters and overloaded versions
+which omit and default the parameters.
+
+As the name indicates, this method is used to execute a <em>Log Statement</em> only once. A first use case of such
+a <em>Log Statement</em> is obvious: Whenever it is interesting to know whether a piece of code was executed
+at least \e once, this <em>Log Statement</em>:
+
+\snippet "UT_dox_manual.cs"        Man_LogOnce___1
+
+is the one to go. No further (debug) code needs to be added and pruned using \c \#if / \c \#endif
+clutter. Its nice and readable, just as <em>Log Statements</em> should be.
+
+\note The samples in this chapter showcases ALox for C#. With the other language implementations
+      the code looks very similar. With Java, due to a lack of the language in respect to resolving
+      (quite easily resolvable!) overloading ambiguities, there might be less options to omit parameters and
+      some variants have slightly different order in the parameters.
+
+The concept of method \c Log.Once goes quite beyond this simple sample. Before we go to the
+real interesting things, lets first quickly introduce other parameters that are optional to all
+other variations of this method:
+- As with all <em>Log Statements</em>, a <b>domain path</b> can be given:
+
+  \snippet "UT_dox_manual.cs"        Man_LogOnce___2
+
+  By the way: this sample output above indicates a next use case besides the one asking for
+  "was a piece of code reached once". The sample logs a fact that will not change in the future
+  (The configuration file "config.ini" is how it is, its just wrong). The sample
+  indicates, that a default directory was chosen. This will be done all the time the method is
+  used but it is logged out only once.
+
+- To avoid the definition of even a bigger set of overloaded methods in class \b Lox
+  (e.g. they could have been named \e Log.ErrorOnce or \e Log.WarningOnce), the \b Verbosity
+  is provided as a parameter and defaults to Verbosity.Info. If a different \e Verbosity is to be chosen, use:
+
+  \snippet "UT_dox_manual.cs"        Man_LogOnce___3
+
+  At this point in time, it might be worth to mention, that the counter is increased with
+  each \b Log.Once statement independently from the \e Verbosity setting of the effective
+  <em>Log Domain</em> such statement is associated with. In other words, even if the domain was
+  switched off (using \b Verbosity.Off), the counter is still increased. On the same token, if
+  more than one \e %Logger (or none) is attached to the \b Lox, still the counter is increased by
+  exactly \c 1.
+
+- Then, although the method is name 'Once', parameter \p quantity allows to specify a different
+  number of occurrences:
+
+  \snippet "UT_dox_manual.cs"        Man_LogOnce___4
+
+- Finally setting the parameter to  a negative value, lets ALox perform the log the first time
+  it is invoked and after that, every n-th time (to be precise, every (-quantity)-th time).
+
+  \snippet "UT_dox_manual.cs"        Man_LogOnce___5
+
+
+\~Comment ####################################################################################### \~
+# 2. Grouping #  {#man_logonce_grouping}
+
+In the introduction we have seen use cases like:
+- Is a certain piece of code reached?
+- A log message results from a non-changeable fact, and hence it should only be logged once.
+
+These and similar use cases are now extended from concerning <em>one</em> log message to
+<em>a set of</em> log messages. Let us Stick to the sample with the mis-configured config.ini:
+
+\snippet "UT_dox_manual.cs"        Man_LogOnce___2
+
+This might be observed in two methods: when data is written or when it is read:
+
+\snippet "UT_dox_manual.cs"        Man_LogOnce___11
+
+While this works well and we could be happy as it is, the little drawback here, is that, if both methods
+get executed, each <em>Log Statement</em> is executed once and hence, this sums up to two. For a debug-log
+output on a IDE console, this is not really dramatic. But there are other usage scenarios
+of logging (logging to a system journal, logging over the air, etc.) where ALox should be asked
+to avoid this.
+
+And it can be very easily avoided:
+
+\snippet "UT_dox_manual.cs"        Man_LogOnce___12
+
+We provide optional parameter \p group, both valued <em>\"INI_DIR_ERROR\"</em>. Because both log
+statements share the same \e Group <em>'key'</em>, ALox shares its internal counter for the number of
+already performed logs between them.
+
+\note
+  Of-course, such \e Group keys do not need to be registered and their use is not limited. As
+  always, ALox just manages internally what the use feeds in. Even if parameter \p quantity is provided
+  and it differs between \b Log.Once statements that belong to the same group, ALox does what you
+  might expect:
+  - The counter is shared and increased with each executed (!) statement.
+  - Each \b Log.Once statement checks the counter against what is provided with \p quantity.
+  In other words: While one statement of a group may be already disabled, others might continue
+  logging. Please do not ask us for a use case of this!
+
+In summary, parameter \p group is used to group a number of \b Log.Once statements which are
+located in an arbitrary places of a software together and count the number of overall executed logs.
+
+For a short time, this is all to know about using \e Groups. But we will come back
+to \e Groups after the next section.
+
+\~Comment ####################################################################################### \~
+# 3. Log.Once and Scopes #  {#man_logonce_scopes}
+
+Instead of 'grouping' a set of \e Log.Once statements by manually assigning them a
+group name, ALox \e Scopes can 'automatically' group statements which in a 'natural' way belong
+together. If the methods \b ReadData and \b WriteData from the previous sample reside in
+the same source file (In Java \e class, in C++/C# source file),
+the very same that was achieved using \e Groups, can be achieved using \e Scopes:
+
+\snippet "UT_dox_manual.cs"        Man_LogOnce___21
+
+Comparing the samples, it can be observed, that parameter \p group of type \e String was replaced by
+parameter \p scope of type \b %Scope, with value \b Scope.Filename. For other possible
+values, see \ref man_scopes.
+
+From a birds' perspective, the advantages of \e Scopes are:
+- No need to 'invent' a group name and no risk of accidentally using the same name twice (e.g.
+  in a library that a user does not even have access to).
+- No need to double-check what \e Group key was used with other statements in the set.
+- Copy and pasting of the <em>Log Statements</em> (into a different \e Scope), 'automatically' adjust the
+  'grouping key'.
+
+Their biggest disadvantage: There is only one \b Log.Once counter per \e %Scope. The sample above
+does not support two different sets of methods that independently from each other get counted.
+
+On the other hand, the advantage of \e Groups is: Statements from completely different \e Scopes
+can be grouped and unlike with \e Scopes, there is an unlimited number of \e Groups possible.
+
+There is one thing, that can only be achieved with \e Scopes and this is when using
+\b Scope.ThreadOuter or \b Scope.ThreadInner. This attaches the \b Log.Once counter to
+a thread that is executing one of the statements. This opens the new use case for ALox:
+- Log one or one set of messages, up to n-times per execution thread.
+
+As we see, both variants have their proper use case and both have advantages and disadvantages.
+Why not combining them?
+
+
+\~Comment ####################################################################################### \~
+# 4. Combining Groups and Scopes #  {#man_logonce_gs_combined}
+
+The parameter list of
+<b>%Lox.Once</b>
+([C++] (@ref      #aworx::lox::Lox::Once),
+ [C#]  (@ref  #cs::aworx::lox::Lox::Once),
+ [Java](@ref #com::aworx::lox::Lox::once) ), and some of its overloaded variants, allow to provide
+both, a \e Group name and a \e %Scope.
+To understand the consequence, its best to explain how ALox internally handles \e Groups.<br>
+\e Groups of-course are implemented with hash-tables. Their key is a \e String, the \e Group name,
+and their value contains the counter. Now, ALox (to be precise, class \b Lox), creates a
+hash-table for \e Group keys for each 'instance of a scope' where \b Log.Once is used.<br>
+When parameter \p scope is omitted with \b Log.Once, it simply defaults to \e %Scope.Global, which
+is, as explained in \ref man_scopes, a singleton for each \b Lox. Consequently, each and every
+statement belongs to \e %Scope.Global and this is why \e Groups of default \e %Scope.Global
+seem to work independently from any scope.<br>
+The other way round, if parameter \p group is omitted, then there are two options for ALox: If
+parameter \p scope is given and is not equal to \e %Scope.Global, then ALox uses a default
+\e Group key. Because this is the same for all such invocations, the statement is bound to the
+given \e Scope and to nothing else. In the second case, when \e %Scope.Global is given with no
+\e Group, ALox switches to \e %Scope.Filename (In Java \e %Scope.CLASS) and creates the \e Group
+key from the line number of the invocation. This way, the 'parameterless' invocation of \b LogOnce,
+results in binding the counter exclusively to this single \b Lox.Once statement.
+
+The truth therefore is, that ALox always combines \e Groups and \e Scopes, we just have not noticed
+that, yet.
+After having understood this, the only question is: What new use cases do we get when using
+\e Groups with \e Scopes other than \e %Scope.Global?
+So far, we had:
+
+- Is a certain piece of code reached?
+- Don't spoil my log-output, so stop after n-messages of the same type.
+- A log message results from a non-changeable fact, and hence it should only be logged once.
+- A set of log messages result from a non-changeable fact, and hence only one of them should
+  be logged once (or together n-times).
+- Log one or a set of messages, up to n-times per execution thread.
+
+With using \e Groups in \e Scopes other than \e %Scope.Global all of the above get combined and
+a little more. Just for example:
+
+- %Log only the first n statements which belong to the same group and are placed within
+  any method of
+  - a source file (in Java a class)
+  - a directory of source files (in Java a package)
+  - a parent directory of source files and all sources recursively (in Java an outer package)
+- %Log only the first n statements of a group of statements executed by a specific thread.
+- Have an arbitrary number of different \e Groups of Log.Once statements per Thread.
+
+It is up to the reader of this manual and user of ALox to adopt his/her own use cases to this
+list.
+
+
+\~Comment ####################################################################################### \~
+# 5. Wrap-Up #  {#man_logonce_wrapup}
+
+Some combinations of \e Scope 'levels' and using \e Groups probably do not make too much sense.
+For example: Grouping different \b LogOnce statements together within \e %Scope.Method? Well, you rather
+think about splitting a huge method into a bunch of smaller ones, as your method seems to have
+become a little complex.
+
+If this gets all to complicated for you being new to ALox, here are some hints:
+- Just don't overuse the combination of \e Groups and \e Scopes with \b Log.Once.
+  You will probably get along without any of it! A simple:
+  \snippet "UT_dox_manual.cs"        Man_LogOnce___1_wrapup
+  is mostly what is needed for debug-logging.
+
+- Like with other features of ALox, if parameters are omitted, you don't even see the more complex
+  options and you are not bothered too much.
+  See \ref man_apdx_auto_config for a summary of this.
+
+- If, especially in decent release-logging scenarios, a more complex setup troubles you,
+  switch on ALox internal logging and see exactly what is happening where, when and why!
+  Information on how to do this is found in \ref man_internal_domains.
+
+
+
+--------------------------------------------------------------------
+<center>Next chapter: \ref man_prefix_logables </center> <center> \ref manual "Back to index" </center>
+
+*/

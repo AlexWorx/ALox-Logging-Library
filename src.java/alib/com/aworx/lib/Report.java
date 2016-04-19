@@ -11,22 +11,24 @@ package com.aworx.lib;
 import java.util.Deque;
 import java.util.LinkedList;
 
+import com.aworx.lib.enums.Phase;
+
 /** ************************************************************************************************
  * This class provides a simple facility to collect what is called a \e 'report'.
- * Reports are maintenance messages, similar to error messages, but is not aiming to replace
+ * Reports are maintenance messages, mostly error and warning messages, but is not aiming to replace
  * any sort of error handling.
- * (Sending a \e 'report' usually precedes raising an error.)
+ * (In ALib itself, sending a \e 'report' usually precedes raising an error.)
  * Also, \e reports are not replacing any debug or release logging facility, which is not
  * part of ALib. Much more, logging libraries might provide a derived object of type
  * \ref com::aworx::lib::ReportWriter "ReportWriter" to plug into ALib report facility.
  * This way, the concepts of logging and reports get unified. (As a sample,
  * <em>ALox Logging Library </em> which builds on ALib does so.)
  *
- * While a process can create different objects of this class, usually the default instance,
+ * While a process can create different objects of this class, usually, the default instance,
  * received by
  * \ref com::aworx::lib::Report::getDefault "getDefault".
  * is sufficient and all warnings and errors will be directed to this one. ALib itself directs
- * all messages to the default instance.
+ * all internal reports to the default instance.
  *
  * This class uses a singleton of type
  * \ref com::aworx::lib::ReportWriter "ReportWriter" to actually write the reports. By default, an
@@ -34,16 +36,18 @@ import java.util.LinkedList;
  * \ref com::aworx::lib::ConsoleReportWriter "ConsoleReportWriter" is attached.
  *
  * The reporting method,
- * \ref com::aworx::lib::Report::doReport "doReport" will check the flags provided with 
- * \ref aworx::lib::Report::pushHaltFlags "pushHaltFlags" 
- * which causes the method to invoke \e assert() after the \b ReportWriter was called.
- * Such assertions are effective only in the debug compilation of the library/executable.
- * Custom implementations of class \b ReportWriter might take other actions.
+ * \ref com::aworx::lib::Report::doReport      "doReport" will check the flags provided with
+ * \ref com::aworx::lib::Report::pushHaltFlags "pushHaltFlags" for message types \c 0 (errors)
+ * and \c 1 (warnings), and may invoke \e assert(). Such assertions are effective
+ * only in the debug compilation of the library/executable. Custom \e 'ReportWriters' might
+ * take action (e.g. for security reasons) and e.g. terminate the application also in
+ * release compilations.
  *
  * To simplify things, a set of static methods are defined in class
  * \ref com::aworx::lib::ALIB "ALIB" which  are deemed to be
  * pruned in release versions of the compilation unit. These are:
  *
+ * - \ref com::aworx::lib::ALIB::REPORT          "ALIB.REPORT"
  * - \ref com::aworx::lib::ALIB::ERROR           "ALIB.ERROR"
  * - \ref com::aworx::lib::ALIB::WARNING         "ALIB.WARNING"
  * - \ref com::aworx::lib::ALIB::ASSERT          "ALIB.ASSERT"
@@ -61,9 +65,12 @@ public class Report
         /** The message.  */
         public String      contents;
 
-        /** The message type. '0' indicates \e 'severe' errors. Others are warnings and may be
-         *  defined (interpreted) by custom implementations of
-         *  \ref aworx::lib::ReportWriter "ReportWriter".  */
+        /**
+         * The message type. \c 0 indicates \e 'severe' errors, \c 1 warnings.
+         * Others are status messages and may be defined (interpreted) by custom
+         * implementations of
+         * \ref com::aworx::lib::ReportWriter "ReportWriter".
+         */
         public int         type;
 
 
@@ -82,9 +89,6 @@ public class Report
     // Internal fields
     // #############################################################################################
 
-        /**  The ReportWriter.  */
-        protected         ReportWriter      writer                       =new ConsoleReportWriter();
-
         /** The default Report used internally by ALib and usually by processes that rely on ALib. */
         protected static  Report            defaultReport                             =new Report();
 
@@ -95,11 +99,18 @@ public class Report
         protected         boolean           recursionBlocker                                 =false;
 
         /**
-         * A stack of Integers. The topmost value is used to decide, whether program execution is
-         * halted on message of type 'error' (type 0, bit 0) or of type 'warning' (type > 0, bit 1).
-         * Can be set at runtime by just overwriting the value.
+         * A stack of integers. The topmost value is used to decide, whether program execution is
+         * halted on message of type 'error' (type \c 0, bit \c 0) or of type 'warning'
+         * (type \c 1, bit \c 1).
+         * Can be set at runtime using methods #pushHaltFlags and #popHaltFlags.
          */
         protected         Deque<Integer>    haltAfterReport              =new LinkedList<Integer>();
+
+        /**
+         * A stack of writers. The topmost one is the actual.
+         * Can be set at runtime using methods #pushWriter and #popWriter.
+         */
+        protected         Deque<ReportWriter> writers               =new LinkedList<ReportWriter>();
 
 
     // #############################################################################################
@@ -111,7 +122,8 @@ public class Report
          ******************************************************************************************/
         public Report() 
         {
-            pushHaltFlags( true,  false );                
+            pushHaltFlags( true,  false );    
+            pushWriter( ConsoleReportWriter.SINGLETON );            
         }
         
         /** ****************************************************************************************
@@ -121,21 +133,58 @@ public class Report
         public static Report  getDefault()           { return defaultReport; }
 
         /** ****************************************************************************************
-         * Replaces the current
-         * \ref aworx::lib::ReportWriter "ReportWriter" singleton by the one provided.
-         * If null is provided, a new instance of
-         * \ref com::aworx::lib::ConsoleReportWriter "ConsoleReportWriter" is created and set.
-         *
-         * @param newWriter The \b %ReportWriter to set.
-         * @return The former \b %ReportWriter. 
+         * Sets a new writer. The actual writer is implemented as a stack. It is important to 
+         * keep the right order when pushing and popping writers, as there lifetime is externally
+         * managed. (In standard use-cases, only one, app-specific writer should be pushed anyhow).
+         * To give a little assurance, method #popWriter takes the same parameter as this method
+         * does, to verify if if the one to be removed is really the topmost.
+         * @param newWriter   The writer to use.
          ******************************************************************************************/
         synchronized
-        public ReportWriter replaceWriter( ReportWriter newWriter )
+        public void          pushWriter( ReportWriter newWriter )
         {
-            ReportWriter oldEH= writer;
-            writer= newWriter != null ? newWriter
-                                      : new ConsoleReportWriter();
-            return oldEH;
+            if ( writers.size() > 0 )
+                writers.peek().NotifyActivation( Phase.END );
+        
+            writers.push( newWriter );
+            newWriter.NotifyActivation( Phase.BEGIN );
+        }
+        
+        /** ****************************************************************************************
+         * Restores the previous writer after setting a new one using #pushWriter.
+         * It is important to keep the right order when pushing and popping writers, as there
+         * lifetime is externally managed.
+         * (In standard use-cases, only one, app-specific writer should be pushed anyhow).
+         * To give a little assurance, this method #popWriter takes the same parameter as
+         * #pushWriter does, to verify if the one to be removed is really the topmost.
+         *
+         * @param checkWriter  The previously pushed writer (for checking of call order).
+         ******************************************************************************************/
+        synchronized
+        public void          popWriter( ReportWriter checkWriter )
+        {
+            if ( writers.size() == 0 )             { ALIB.ERROR( "No Writer to remove" );          return; }
+            if ( writers.peek() != checkWriter )   { ALIB.ERROR( "Report Writer is not actual" );  return; }
+            
+            writers.peek().NotifyActivation( Phase.END );
+            writers.pop();
+            if ( writers.size() > 0 )
+                writers.peek().NotifyActivation( Phase.BEGIN );
+            
+        }
+        
+        /** ****************************************************************************************
+         * Retrieves the actual report writer.
+         * 
+         * \note This method should not be used to retrieve the writer and use it. It should be used
+         *       only to test the installation.
+         *       
+         * @return The actual report writer in place.
+         ******************************************************************************************/
+        synchronized
+        public ReportWriter peekWriter()
+        {
+            return writers.peek();
         }
         
         /** ****************************************************************************************
@@ -164,7 +213,7 @@ public class Report
 
         /** ****************************************************************************************
          * Reports the given message to the current
-         * \ref aworx::lib::ReportWriter "ReportWriter" in place. The default \b ReportWriter
+         * \ref com::aworx::lib::ReportWriter "ReportWriter" in place. The default \b ReportWriter
          * will print the message on the process console. Furthermore, in debug
          * execution the flags provided with #pushHaltFlags is checked.
          * If this is set for the type of message, the program halts or suspends into the debugger
@@ -173,6 +222,11 @@ public class Report
          * If parameter \p is '0', the report is considered a \e severe error, otherwise a warning.
          * User defined implementations of class \e %ReportWriter may interpret this field
          * arbitrarily.
+         * 
+         * \note
+         *   In Java, assertions are disabled by default. Therefore, to really have your program
+         *   'halted' on reports, assertions have to be enabled, by providing parameter
+         *   \p -enableassertions to the Java virtual machine. 
          *
          * @param type The report type.
          * @param msg  The report message.
@@ -185,12 +239,25 @@ public class Report
                 return;
             recursionBlocker= true;
                 Message message= new Message( type, msg );
-                writer.report( message );
+                if ( writers.size() > 0 )
+                    writers.peek().report( message );
                 int haltFlags= haltAfterReport.element().intValue();
+
+// As an alternative to enabling jvm assert, this can be undocumented and a breakpoint may be set
+/*
+ if (    (type == 0 && ( (haltFlags & 1) != 0) )
+      || (type != 0 && ( (haltFlags & 2) != 0) )
+    )
+ {
+      System.out.println( "This should be commented out. For debug, set a breakpoint here! " );
+ }
+*/                
+                
                 assert !(     (type == 0 && ( (haltFlags & 1) != 0) )
                            || (type != 0 && ( (haltFlags & 2) != 0) )
                          ):  msg;
             recursionBlocker= false;
         }
+
 }// class ReportWriter
 

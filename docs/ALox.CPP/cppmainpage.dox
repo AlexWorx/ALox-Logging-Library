@@ -17,7 +17,11 @@
 
 #define ALIB_DEBUG_ON
 #define ALIB_DEBUG_OFF
+#define ALIB_AVOID_ANALYZER_WARNINGS
+#define ALIB_AVOID_ANALYZER_WARNINGS_ON
+#define ALIB_AVOID_ANALYZER_WARNINGS_OFF
 #define ALIB_DEBUG_STRINGS_ON
+#define ALIB_DEBUG_STRINGS_OFF
 #define ALIB_FEAT_THREADS_ON
 #define ALIB_FEAT_THREADS_OFF
 
@@ -47,9 +51,21 @@ ALox will not compile.
 The following information is found in the C++ sub pages:
 
 
-## Tutorial ##
-Walk yourself through the \ref cpptutorial. This is allows you a fast overview and intro
-if you are new to ALox.
+## Documentation ##
+- Walk yourself through the [ALox for C++ Tutorial ](cpptutorial.html). This is allows you a fast overview and intro
+  if you are new to ALox.
+
+- Consult the general (language agnostic) [ALox User Manual](../manual.html) for in-depth information
+  on various topics.
+
+- In addition, a complete [C++ Reference Documentation](annotated.html) is available...
+  created with marvelous [Doxygen](http://www.stack.nl/~dimitri/doxygen/)!
+
+  \note
+  As of ALox version 1604, with the introduction of static class \b %ALox, the term "ALox" in the reference
+  documentation is oftenly erroneously linked to this class. This will be fixed in a next release.
+<p>
+
 
 ## IDE / Built System Setup ##
 The C++ Version got tested on the following platform combinations:
@@ -64,14 +80,6 @@ After working yourself through the tutorial and after having set up your project
 ALox, it is recommended to read some information about <em>preprocessor macros</em> that
 form the 'highest' level API into ALox.
 Such information is provided here: \ref cppprepro_macros  "C++ Macros"
-
-## More to read   ##
-Consult the general (language agnostic) [ALox User Manual](../manual.html) for in-depth information
-on various topics.
-
-## Class Reference ##
-
-To browse the class reference, please use the page menu above.
 
 ## ALib ##
 

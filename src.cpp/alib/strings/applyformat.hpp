@@ -7,7 +7,7 @@
 /**@file*///<- needed for Doxygen include of the typedefs at the end of the file
 
 // to preserve the right order, we are not includable directly from outside.
-#if !defined(FROM_HPP_ALIB_ALIB) || defined(HPP_ALIB_STRINGS_APPLY_FORMAT)
+#if !defined(FROM_HPP_ALIB) || defined(HPP_ALIB_STRINGS_APPLY_FORMAT)
     #error "include alib/alib.hpp instead of this header"
 #endif
 
