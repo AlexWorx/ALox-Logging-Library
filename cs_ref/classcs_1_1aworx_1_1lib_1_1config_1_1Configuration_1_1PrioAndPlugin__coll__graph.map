@@ -1,7 +1,0 @@
-<map id="Configuration.PrioAndPlugin" name="Configuration.PrioAndPlugin">
-<area shape="rect" id="node2" href="$classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html" title="ConfigurationPlugIn" alt="" coords="277,5,413,32"/>
-<area shape="rect" id="node4" href="$classcs_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html" title="EnvironmentPlugIn" alt="" coords="215,95,347,121"/>
-<area shape="rect" id="node5" href="$classcs_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugIn.html" title="CommandLinePlugIn" alt="" coords="371,95,513,121"/>
-<area shape="rect" id="node3" href="$classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html" title="Configuration" alt="" coords="465,184,563,211"/>
-<area shape="rect" id="node6" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html" title="NumberFormat" alt="" coords="629,95,738,121"/>
-</map>

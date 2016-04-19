@@ -1,12 +1,13 @@
 <map id="TextLogger" name="TextLogger">
-<area shape="rect" id="node8" href="$classaworx_1_1lox_1_1core_1_1Domain.html" title="Domain" alt="" coords="714,201,781,228"/>
-<area shape="rect" id="node13" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html" title="AutoSizes" alt="" coords="1028,887,1111,913"/>
-<area shape="rect" id="node5" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\l\&lt; TCapacity \&gt;" alt="" coords="380,371,508,413"/>
-<area shape="rect" id="node6" href="$classaworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="1039,431,1100,457"/>
-<area shape="rect" id="node9" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html" title="MetaInfo" alt="" coords="711,680,784,707"/>
-<area shape="rect" id="node10" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html" title="ObjectConverter" alt="" coords="843,492,961,519"/>
-<area shape="rect" id="node7" href="$classaworx_1_1lib_1_1time_1_1Ticks.html" title="Ticks" alt="" coords="720,373,775,400"/>
-<area shape="rect" id="node11" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="119,379,184,405"/>
-<area shape="rect" id="node12" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="5,124,69,151"/>
-<area shape="rect" id="node14" href="$classaworx_1_1lib_1_1time_1_1TicksCalendarTime.html" title="TicksCalendarTime" alt="" coords="377,688,511,715"/>
+<area shape="rect" id="node2" href="$classaworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="884,125,945,152"/>
+<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1threads_1_1SmartLock.html" title="SmartLock" alt="" coords="547,11,632,37"/>
+<area shape="rect" id="node4" href="$classaworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="5,5,96,32"/>
+<area shape="rect" id="node6" href="$classaworx_1_1lib_1_1time_1_1Ticks.html" title="Ticks" alt="" coords="562,100,617,127"/>
+<area shape="rect" id="node7" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\l\&lt; 32 \&gt;" alt="" coords="525,159,653,201"/>
+<area shape="rect" id="node8" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="254,171,319,197"/>
+<area shape="rect" id="node13" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html" title="MetaInfo" alt="" coords="553,369,626,396"/>
+<area shape="rect" id="node9" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="19,369,83,396"/>
+<area shape="rect" id="node10" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html" title="AutoSizes" alt="" coords="873,532,956,559"/>
+<area shape="rect" id="node14" href="$classaworx_1_1lib_1_1time_1_1TicksCalendarTime.html" title="TicksCalendarTime" alt="" coords="219,431,354,457"/>
+<area shape="rect" id="node16" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html" title="ObjectConverter" alt="" coords="531,597,648,624"/>
 </map>

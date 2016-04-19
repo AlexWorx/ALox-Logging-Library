@@ -1,8 +1,8 @@
 <map id="substring.hpp" name="substring.hpp">
 <area shape="rect" id="node2" href="$inifile_8hpp.html" title="inifile.hpp" alt="" coords="5,80,83,107"/>
-<area shape="rect" id="node3" href="$tokenizer_8hpp.html" title="tokenizer.hpp" alt="" coords="106,80,206,107"/>
-<area shape="rect" id="node4" href="$ticks_8hpp.html" title="ticks.hpp" alt="" coords="229,80,304,107"/>
-<area shape="rect" id="node5" href="$callerinfo_8hpp.html" title="callerinfo.hpp" alt="" coords="217,155,316,181"/>
-<area shape="rect" id="node6" href="$lox_8hpp.html" title="lox.hpp" alt="" coords="187,229,251,256"/>
-<area shape="rect" id="node7" href="$logger_8hpp.html" title="logger.hpp" alt="" coords="275,229,357,256"/>
+<area shape="rect" id="node3" href="$pathmap_8hpp.html" title="pathmap.hpp" alt="" coords="107,80,205,107"/>
+<area shape="rect" id="node4" href="$tokenizer_8hpp.html" title="tokenizer.hpp" alt="" coords="229,80,329,107"/>
+<area shape="rect" id="node5" href="$ticks_8hpp.html" title="ticks.hpp" alt="" coords="352,80,427,107"/>
+<area shape="rect" id="node6" href="$scopeinfo_8hpp.html" title="scopeinfo.hpp" alt="" coords="338,155,441,181"/>
+<area shape="rect" id="node7" href="$lox_8hpp.html" title="lox.hpp" alt="" coords="357,229,421,256"/>
 </map>

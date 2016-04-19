@@ -15,7 +15,8 @@ var searchData=
   ['black',['BLACK',['../classcom_1_1aworx_1_1lox_1_1ESC.html#a3618e0d1ad7e1ae75b6c709d5ddb3749',1,'com::aworx::lox::ESC']]],
   ['blue',['BLUE',['../classcom_1_1aworx_1_1lox_1_1ESC.html#aa009a309d65226d49084eaad4a189511',1,'com::aworx::lox::ESC']]],
   ['bold',['BOLD',['../classcom_1_1aworx_1_1lox_1_1ESC.html#a7a5a68a05e3c2d92a2284e7d489d9645',1,'com::aworx::lox::ESC']]],
+  ['booleanoutputparam',['booleanOutputParam',['../classcom_1_1aworx_1_1lox_1_1Lox.html#a04588900eccda0f5413f237e6bbb926c',1,'com::aworx::lox::Lox']]],
   ['buf',['buf',['../classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a9998f6d669c822c8daab53c6c541ca0b',1,'com::aworx::lib::strings::Substring']]],
-  ['buffer',['buffer',['../classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a8317b33b8c004741d95935199d964be9',1,'com.aworx.lib.strings.AString.buffer()'],['../classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html#aaf50e38674e1c356539d73525486b1d5',1,'com.aworx.lox.core.textlogger.ObjectConverter.buffer()']]],
+  ['buffer',['buffer',['../classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a8317b33b8c004741d95935199d964be9',1,'com::aworx::lib::strings::AString']]],
   ['bw',['bw',['../classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html#a2e57480b2872e7896cb15daa72559449',1,'com::aworx::lox::loggers::TextFileLogger']]]
 ];

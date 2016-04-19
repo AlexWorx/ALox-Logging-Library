@@ -32,7 +32,7 @@
 <g id="node2" class="node"><title>Node2</title>
 <polygon fill="white" stroke="#bfbfbf" points="1.5,-117 1.5,-147 159.5,-147 159.5,-117 1.5,-117"/>
 <text text-anchor="start" x="9.5" y="-135" font-family="Helvetica,sans-Serif" font-size="10.00">ArrayList&lt; com.aworx.lib.config.</text>
-<text text-anchor="middle" x="80.5" y="-124" font-family="Helvetica,sans-Serif" font-size="10.00">Configuration.PrioAndPlugin &gt;</text>
+<text text-anchor="middle" x="80.5" y="-124" font-family="Helvetica,sans-Serif" font-size="10.00">Configuration.PluginAndPrio &gt;</text>
 </g>
 <!-- Node2&#45;&gt;Node1 -->
 <g id="edge1" class="edge"><title>Node2&#45;&gt;Node1</title>

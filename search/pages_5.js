@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['java_20reference',['Java Reference',['java_ref/javamainpage.html',1,'']]]
+  ['faq_20_2d_20frequently_20asked_20questions_20for_20alox',['FAQ - Frequently asked Questions for ALox',['../faq.html',1,'']]]
 ];

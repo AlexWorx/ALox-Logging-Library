@@ -176,7 +176,7 @@ Inner Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Public Static Fields</h2></td></tr>
-<tr class="memitem:a2eaa2333f2f0f3ee2b95eb569798ec80"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html#a2eaa2333f2f0f3ee2b95eb569798ec80">DefaultFileExtension</a> = &quot;.alib.ini&quot;</td></tr>
+<tr class="memitem:a2eaa2333f2f0f3ee2b95eb569798ec80"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html#a2eaa2333f2f0f3ee2b95eb569798ec80">DefaultFileExtension</a> = &quot;.ini&quot;</td></tr>
 <tr class="separator:a2eaa2333f2f0f3ee2b95eb569798ec80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -271,13 +271,14 @@ Protected Methods</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Constructs an instance of this class and reads the file. If no file name is given, the file name set to the name of the executed class with extension ".aworx.ini". The path is then chosen as follows:</p><ul>
+<p> Constructs an instance of this class and reads the file. If no file name is given, the file name set to the name of the executed class with extension ".ini". The path is then chosen as follows:</p><ul>
 <li>on Unix like systems: if exists, to the folder ".config" in the users home directory and just to the users home directory otherwise</li>
 <li>on Windows OS: if exists, to the folder "AppData/Roaming" in the users home directory and just to the users home directory otherwise</li>
 </ul>
+<p>If the given file name <code>filePathAndName</code> starts with '*', no file is read and field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html#a5b3964b63bd8facd8a6282509c924916">autoSave</a> is set to <code>false</code>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">filePathAndName</td><td>The name (and path) of the file to read and write. Defaults to <code>null</code>. </td></tr>
+    <tr><td class="paramname">filePathAndName</td><td>The name (and path) of the file to read and write. Provide "*" to suppress reading a file. Defaults to <code>null</code>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -814,7 +815,7 @@ Protected Methods</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">String DefaultFileExtension = &quot;.alib.ini&quot;</td>
+          <td class="memname">String DefaultFileExtension = &quot;.ini&quot;</td>
         </tr>
       </table>
   </td>
@@ -823,7 +824,7 @@ Protected Methods</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>The standard file extension used for ALib configuration files. Defaults to ".alib.ini" </p>
+<p>The standard file extension used for ALib configuration files. Defaults to "ini" </p>
 
 </div>
 </div>
@@ -921,7 +922,7 @@ Protected Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:20 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:18 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

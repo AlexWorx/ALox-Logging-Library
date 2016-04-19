@@ -43,7 +43,7 @@
 <!-- Node4 -->
 <g id="node4" class="node"><title>Node4</title>
 <g id="a_node4"><a xlink:href="classaworx_1_1lox_1_1core_1_1Logger.html" target="_top" xlink:title="Logger">
-<polygon fill="white" stroke="black" points="20.5,-168.5 20.5,-187.5 66.5,-187.5 66.5,-168.5 20.5,-168.5"/>
+<polygon fill="white" stroke="red" points="20.5,-168.5 20.5,-187.5 66.5,-187.5 66.5,-168.5 20.5,-168.5"/>
 <text text-anchor="middle" x="43.5" y="-175.5" font-family="Helvetica,sans-Serif" font-size="10.00">Logger</text>
 </a>
 </g>

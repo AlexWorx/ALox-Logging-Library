@@ -125,66 +125,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-attribs">Public Fields</a> &#124;
 <a href="#pub-methods">Public Methods</a> &#124;
 <a href="classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">ObjectConverter Class Reference</div>  </div>
+<div class="title">ObjectConverter Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 
 <p><code>#include &lt;<a class="el" href="textlogger_8hpp_source.html">textlogger.hpp</a>&gt;</code></p>
 <div class="dynheader">
-Collaboration diagram for ObjectConverter:</div>
+Inheritance diagram for ObjectConverter:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter__coll__graph.svg" width="196" height="308"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter__inherit__graph.svg" width="128" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
-<p> This class is a sort of plug-in for the <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a> class which converts a given Object into its textual representation. An internal AString singleton is used as a string buffer and returned.</p>
-<p>This class might be extended to be able to handle custom objects within text loggers. This default implementation, only handles objects of type <a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html">aworx::TString</a>. For nullptr and nulled <b>TStrings</b> a configurable string message is returned.</p>
-<p>While other ALox implementations, like ALox for C# or ALox for Java use the 'runtime type information' feature of their underlying programming language to identify any object type, this is not possible in standard C++. Therefore, all logging objects in ALox for C++ have to be accompanied with a type information. This is implemented as a simple integer and the value <b>'0'</b> is reserved for <b>TStrings</b>.</p>
-<p>All other types are extension types, which are not part of core ALox and user specific types.</p>
-<p>It is recommended to use positive values for user specific types. Negative IDs are reserved to 'official' ALox extensions. </p>
+<p> This abstract class represents a plug-in for the <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a> class which converts a given Object into its textual representation. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1StringConverter.html">StringConverter</a> for further information. </dd></dl>
 </div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Public Fields</h2></td></tr>
-<tr class="memitem:af8fbc61a0701e45601ee9355a2d6675a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af8fbc61a0701e45601ee9355a2d6675a"></a>
-<a class="el" href="namespaceaworx.html#ac2fdc487456a994238ba4284b3859c41">String64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html#af8fbc61a0701e45601ee9355a2d6675a">FmtNullObject</a> =&quot;ALox message object is nullptr, type=%.&quot;</td></tr>
-<tr class="memdesc:af8fbc61a0701e45601ee9355a2d6675a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to convert null values to string representation. <br /></td></tr>
-<tr class="separator:af8fbc61a0701e45601ee9355a2d6675a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a132ed009c6e3362a54e052134a602cfc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a132ed009c6e3362a54e052134a602cfc"></a>
-<a class="el" href="namespaceaworx.html#ac2fdc487456a994238ba4284b3859c41">String64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html#a132ed009c6e3362a54e052134a602cfc">FmtUnknownObject</a> =&quot;ALox message object unknown, type=%.&quot;</td></tr>
-<tr class="memdesc:a132ed009c6e3362a54e052134a602cfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to return an error message in the case the object could not be converted (type unknown) <br /></td></tr>
-<tr class="separator:a132ed009c6e3362a54e052134a602cfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Methods</h2></td></tr>
-<tr class="memitem:a16313a6b5202d6d886b0e5a34e995a8a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html#a16313a6b5202d6d886b0e5a34e995a8a">ObjectConverter</a> ()</td></tr>
-<tr class="separator:a16313a6b5202d6d886b0e5a34e995a8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e913a253720dcb333b6205b4272709d"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html#a6e913a253720dcb333b6205b4272709d">~ObjectConverter</a> ()</td></tr>
 <tr class="separator:a6e913a253720dcb333b6205b4272709d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a248a310704a1deac3710b03bc5b1712d"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html#a248a310704a1deac3710b03bc5b1712d">ConvertObject</a> (const void *o, int typeInfo, <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &amp;result)</td></tr>
-<tr class="separator:a248a310704a1deac3710b03bc5b1712d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8420c7f2bc561caf4977bf17ab7d8af6"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html#a8420c7f2bc561caf4977bf17ab7d8af6">ConvertObject</a> (const <a class="el" href="structaworx_1_1lox_1_1core_1_1Logable.html">Logable</a> &amp;logable, <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &amp;target)=0</td></tr>
+<tr class="separator:a8420c7f2bc561caf4977bf17ab7d8af6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a16313a6b5202d6d886b0e5a34e995a8a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html">ObjectConverter</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<hr/>
-<p> Constructs an object of this class. </p>
-
-</div>
-</div>
 <a class="anchor" id="a6e913a253720dcb333b6205b4272709d"></a>
 <div class="memitem">
 <div class="memproto">
@@ -211,7 +176,7 @@ Public Methods</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a248a310704a1deac3710b03bc5b1712d"></a>
+<a class="anchor" id="a8420c7f2bc561caf4977bf17ab7d8af6"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -219,22 +184,16 @@ Public Methods</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool ConvertObject </td>
+          <td class="memname">virtual bool ConvertObject </td>
           <td>(</td>
-          <td class="paramtype">const void *&#160;</td>
-          <td class="paramname"><em>o</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>typeInfo</em>, </td>
+          <td class="paramtype">const <a class="el" href="structaworx_1_1lox_1_1core_1_1Logable.html">Logable</a> &amp;&#160;</td>
+          <td class="paramname"><em>logable</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &amp;&#160;</td>
-          <td class="paramname"><em>result</em>&#160;</td>
+          <td class="paramname"><em>target</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -244,32 +203,32 @@ Public Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 <hr/>
 <p> The conversion method. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">o</td><td>The object to convert. </td></tr>
-    <tr><td class="paramname">typeInfo</td><td>The type of the object. </td></tr>
-    <tr><td class="paramname">result</td><td>An AString that takes the result. </td></tr>
+    <tr><td class="paramname">logable</td><td>The object to convert. </td></tr>
+    <tr><td class="paramname">target</td><td>An AString that takes the result.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>True, if the object was converted successfully, false otherwise. Note: Even if false was returned, the error text of template field <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html#a132ed009c6e3362a54e052134a602cfc">FmtUnknownObject</a> is appended, including the typeInfo value. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code>, if the object was converted successfully, <code>false</code> otherwise. </dd></dl>
+
+<p>Implemented in <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1StringConverter.html#ac396326d32429f94105a6b045c0ce42d">StringConverter</a>.</p>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="textlogger_8hpp_source.html">textlogger.hpp</a></li>
-<li>textlogger.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:19 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:16 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

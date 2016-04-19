@@ -139,116 +139,112 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Collaboration diagram for MetaInfo:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo__coll__graph.svg" width="492" height="443"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo__coll__graph.svg" width="380" height="414"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
-<p> This class is a sort of plug-in for the <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a> class. Its purpose is to assemble the meta information of each log line (things like timestamps, thread information, level and domain, etc.).</p>
+<p> This class is a sort of plug-in for the <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a> class. Its purpose is to assemble the meta information of each log line (things like timestamps, thread information, verbosity and domain, etc.).</p>
 <p>To manipulate the meta information log output, three options exist:</p><ul>
 <li>by just changing the <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a5f73a9d6a9bfabaa4a33c34831006d07">Format</a> string (at runtime).</li>
-<li>by creating a derived class that introduces a new version of method <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a6afaa48005f63c597d47b2125022cd23">processVariable()</a> to handle one or more format variable differently or to introduce new variables.</li>
-<li>by creating a derived class that introduces a new version of method <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a5848a385a93b4c1ff902525337babcc2">Write()</a> to completely control the meta information output. </li>
+<li>by creating a derived class that introduces a new version of method <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#adea560dbe05cd27b8d3313d5bd202817">processVariable()</a> to handle one or more format variable differently or to introduce new variables.</li>
+<li>by creating a derived class that introduces a new version of method <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a037523cdb14e8bae567b8fef2d102009">Write()</a> to completely control the meta information output. </li>
 </ul>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Fields</h2></td></tr>
-<tr class="memitem:a33397151e3c9c32997688cd29a3cd0c5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a33397151e3c9c32997688cd29a3cd0c5">ConsumableSourcePathPrefix</a></td></tr>
-<tr class="separator:a33397151e3c9c32997688cd29a3cd0c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04c5093c5a5f5e30994ca8b0b84853a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a148a217c34a72b4360462205858b8f0e">String16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a04c5093c5a5f5e30994ca8b0b84853a0">DateFormat</a> =&quot;yyyy-MM-dd&quot;</td></tr>
-<tr class="separator:a04c5093c5a5f5e30994ca8b0b84853a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f73a9d6a9bfabaa4a33c34831006d07"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a5f73a9d6a9bfabaa4a33c34831006d07">Format</a> {&quot;%CF(%CL):%A5%CM() %A5[%TE +%TI] [%t] %L [%O] %A1(%#): &quot;}</td></tr>
+<tr class="memitem:af2fb4c3f354b7666adac33e78e4a36a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#af2fb4c3f354b7666adac33e78e4a36a0">DateFormat</a> =&quot;yyyy-MM-dd&quot;</td></tr>
+<tr class="separator:af2fb4c3f354b7666adac33e78e4a36a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f73a9d6a9bfabaa4a33c34831006d07"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a5f73a9d6a9bfabaa4a33c34831006d07">Format</a> {&quot;%Sp\\%SF(%SL):%A5%SM() %A5[%TC +%TL][%tN]%V[%D]%A1(%#): &quot;}</td></tr>
 <tr class="separator:a5f73a9d6a9bfabaa4a33c34831006d07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b4dcaaa0d0c31151f28626b539b2c78"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a9b4dcaaa0d0c31151f28626b539b2c78">FormatWarning</a> = true</td></tr>
 <tr class="separator:a9b4dcaaa0d0c31151f28626b539b2c78"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2764435fbb01166f974b5a15e1e8409c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2764435fbb01166f974b5a15e1e8409c"></a>
-<a class="el" href="namespaceaworx.html#a148a217c34a72b4360462205858b8f0e">String16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a2764435fbb01166f974b5a15e1e8409c">LogLevelError</a> =&quot;[ERR]&quot;</td></tr>
-<tr class="memdesc:a2764435fbb01166f974b5a15e1e8409c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The output for the log level "Error". <br /></td></tr>
-<tr class="separator:a2764435fbb01166f974b5a15e1e8409c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c2f6953954b286c890698b87394d177"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3c2f6953954b286c890698b87394d177"></a>
-<a class="el" href="namespaceaworx.html#a148a217c34a72b4360462205858b8f0e">String16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a3c2f6953954b286c890698b87394d177">LogLevelInfo</a> =&quot; &quot;</td></tr>
-<tr class="memdesc:a3c2f6953954b286c890698b87394d177"><td class="mdescLeft">&#160;</td><td class="mdescRight">The output for the log level "Info". <br /></td></tr>
-<tr class="separator:a3c2f6953954b286c890698b87394d177"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae770e910a7f77ad48c0a39f18a02d708"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae770e910a7f77ad48c0a39f18a02d708"></a>
-<a class="el" href="namespaceaworx.html#a148a217c34a72b4360462205858b8f0e">String16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ae770e910a7f77ad48c0a39f18a02d708">LogLevelVerbose</a> =&quot;[***]&quot;</td></tr>
-<tr class="memdesc:ae770e910a7f77ad48c0a39f18a02d708"><td class="mdescLeft">&#160;</td><td class="mdescRight">The output for the log level "Verbose". <br /></td></tr>
-<tr class="separator:ae770e910a7f77ad48c0a39f18a02d708"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a924d9d08be43ed1289117bf4983b79"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9a924d9d08be43ed1289117bf4983b79"></a>
-<a class="el" href="namespaceaworx.html#a148a217c34a72b4360462205858b8f0e">String16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a9a924d9d08be43ed1289117bf4983b79">LogLevelWarning</a> =&quot;[WRN]&quot;</td></tr>
-<tr class="memdesc:a9a924d9d08be43ed1289117bf4983b79"><td class="mdescLeft">&#160;</td><td class="mdescRight">The output for the log level "Warning". <br /></td></tr>
-<tr class="separator:a9a924d9d08be43ed1289117bf4983b79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72c44479ec3d128c1208b49e4b8ede08"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a72c44479ec3d128c1208b49e4b8ede08"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a72c44479ec3d128c1208b49e4b8ede08">LogNumberMinDigits</a> = 3</td></tr>
 <tr class="memdesc:a72c44479ec3d128c1208b49e4b8ede08"><td class="mdescLeft">&#160;</td><td class="mdescRight">The minimum digits to write for the log number (if used in format string). <br /></td></tr>
 <tr class="separator:a72c44479ec3d128c1208b49e4b8ede08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12513f8c0773fab55c23cc8546af56b1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a12513f8c0773fab55c23cc8546af56b1"></a>
-<a class="el" href="namespaceaworx.html#a221752691fb92bcd592c045d6c368289">String32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a12513f8c0773fab55c23cc8546af56b1">NoMethodInfo</a> =&quot;---&quot;</td></tr>
-<tr class="memdesc:a12513f8c0773fab55c23cc8546af56b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replacement string if no source info is available. <br /></td></tr>
-<tr class="separator:a12513f8c0773fab55c23cc8546af56b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2d945d4b31dd484ece4cc687acf8831"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa2d945d4b31dd484ece4cc687acf8831"></a>
-<a class="el" href="namespaceaworx.html#a221752691fb92bcd592c045d6c368289">String32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#aa2d945d4b31dd484ece4cc687acf8831">NoSourceFileInfo</a> =&quot;---&quot;</td></tr>
-<tr class="memdesc:aa2d945d4b31dd484ece4cc687acf8831"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replacement string if no source info is available. <br /></td></tr>
-<tr class="separator:aa2d945d4b31dd484ece4cc687acf8831"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3f98d2aa27c33f8dc7c3cf4c6b1a0d8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa3f98d2aa27c33f8dc7c3cf4c6b1a0d8"></a>
-<a class="el" href="namespaceaworx.html#a148a217c34a72b4360462205858b8f0e">String16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#aa3f98d2aa27c33f8dc7c3cf4c6b1a0d8">TimeDiffDays</a> =&quot; days&quot;</td></tr>
-<tr class="memdesc:aa3f98d2aa27c33f8dc7c3cf4c6b1a0d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format for time difference outputs of more than a day. <br /></td></tr>
-<tr class="separator:aa3f98d2aa27c33f8dc7c3cf4c6b1a0d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20d1d3b476a6aafeeb5e87fbfacc5e52"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a20d1d3b476a6aafeeb5e87fbfacc5e52"></a>
-<a class="el" href="namespaceaworx.html#a148a217c34a72b4360462205858b8f0e">String16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a20d1d3b476a6aafeeb5e87fbfacc5e52">TimeDiffHours</a> =&quot; h&quot;</td></tr>
-<tr class="memdesc:a20d1d3b476a6aafeeb5e87fbfacc5e52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format for time difference outputs between 1h and 24h. <br /></td></tr>
-<tr class="separator:a20d1d3b476a6aafeeb5e87fbfacc5e52"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a661a09a8e1eb17581bc67aff1f132d56"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a661a09a8e1eb17581bc67aff1f132d56"></a>
-<a class="el" href="namespaceaworx.html#a148a217c34a72b4360462205858b8f0e">String16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a661a09a8e1eb17581bc67aff1f132d56">TimeDiffMicros</a> =&quot; \xC2\xB5s&quot;</td></tr>
-<tr class="memdesc:a661a09a8e1eb17581bc67aff1f132d56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Entity microseconds for time difference outputs below 1000 microseconds. <br /></td></tr>
-<tr class="separator:a661a09a8e1eb17581bc67aff1f132d56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad78fde89caeb4ccbe776b1d351d52413"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad78fde89caeb4ccbe776b1d351d52413"></a>
-<a class="el" href="namespaceaworx.html#a148a217c34a72b4360462205858b8f0e">String16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ad78fde89caeb4ccbe776b1d351d52413">TimeDiffMillis</a> =&quot; ms&quot;</td></tr>
-<tr class="memdesc:ad78fde89caeb4ccbe776b1d351d52413"><td class="mdescLeft">&#160;</td><td class="mdescRight">Entity milliseconds for time difference outputs below 1000 milliseconds. <br /></td></tr>
-<tr class="separator:ad78fde89caeb4ccbe776b1d351d52413"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3feb1a3fdbbde8059ca3007d9a7421d6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3feb1a3fdbbde8059ca3007d9a7421d6"></a>
+<a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a3feb1a3fdbbde8059ca3007d9a7421d6">NoMethodInfo</a> =&quot;---&quot;</td></tr>
+<tr class="memdesc:a3feb1a3fdbbde8059ca3007d9a7421d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replacement string if no source info is available. <br /></td></tr>
+<tr class="separator:a3feb1a3fdbbde8059ca3007d9a7421d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af44d2da6f43116de8557910776f9b1f1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af44d2da6f43116de8557910776f9b1f1"></a>
+<a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#af44d2da6f43116de8557910776f9b1f1">NoSourceFileInfo</a> =&quot;---&quot;</td></tr>
+<tr class="memdesc:af44d2da6f43116de8557910776f9b1f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replacement string if no source info is available. <br /></td></tr>
+<tr class="separator:af44d2da6f43116de8557910776f9b1f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b75d4c8a835d33c6dac1bd7416ed70a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7b75d4c8a835d33c6dac1bd7416ed70a"></a>
+<a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a7b75d4c8a835d33c6dac1bd7416ed70a">TimeDiffDays</a> =&quot; days&quot;</td></tr>
+<tr class="memdesc:a7b75d4c8a835d33c6dac1bd7416ed70a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format for time difference outputs of more than a day. <br /></td></tr>
+<tr class="separator:a7b75d4c8a835d33c6dac1bd7416ed70a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9395ddf39cb846bdf260e116583203cb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9395ddf39cb846bdf260e116583203cb"></a>
+<a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a9395ddf39cb846bdf260e116583203cb">TimeDiffHours</a> =&quot; h&quot;</td></tr>
+<tr class="memdesc:a9395ddf39cb846bdf260e116583203cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format for time difference outputs between 1h and 24h. <br /></td></tr>
+<tr class="separator:a9395ddf39cb846bdf260e116583203cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b7385903157de774b3d44906d0f09fc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8b7385903157de774b3d44906d0f09fc"></a>
+<a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a8b7385903157de774b3d44906d0f09fc">TimeDiffMicros</a> =&quot; \xC2\xB5s&quot;</td></tr>
+<tr class="memdesc:a8b7385903157de774b3d44906d0f09fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Entity microseconds for time difference outputs below 1000 microseconds. <br /></td></tr>
+<tr class="separator:a8b7385903157de774b3d44906d0f09fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3f039b4887207a47f2868449e3b1443"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac3f039b4887207a47f2868449e3b1443"></a>
+<a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ac3f039b4887207a47f2868449e3b1443">TimeDiffMillis</a> =&quot; ms&quot;</td></tr>
+<tr class="memdesc:ac3f039b4887207a47f2868449e3b1443"><td class="mdescLeft">&#160;</td><td class="mdescRight">Entity milliseconds for time difference outputs below 1000 milliseconds. <br /></td></tr>
+<tr class="separator:ac3f039b4887207a47f2868449e3b1443"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac72715ae7c695bbfce1fe76075a2f9a1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac72715ae7c695bbfce1fe76075a2f9a1"></a>
 long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ac72715ae7c695bbfce1fe76075a2f9a1">TimeDiffMinimum</a> =1000L</td></tr>
-<tr class="memdesc:ac72715ae7c695bbfce1fe76075a2f9a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum time difference to log in nanoseconds. Below that <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a1e70c1adc386d8704fd62c4978a0a3d5" title="Output for time difference if below reasonable (measurable) minimum defined in TimeDiffMinimum. ">TimeDiffNone</a> is written. <br /></td></tr>
+<tr class="memdesc:ac72715ae7c695bbfce1fe76075a2f9a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum time difference to log in nanoseconds. Below that <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a33336f57dcc0d962375b72a082cd16a2" title="Output for time difference if below reasonable (measurable) minimum defined in TimeDiffMinimum. ">TimeDiffNone</a> is written. <br /></td></tr>
 <tr class="separator:ac72715ae7c695bbfce1fe76075a2f9a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6781ce4c72ba2117380b0ee0b803e4bd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6781ce4c72ba2117380b0ee0b803e4bd"></a>
-<a class="el" href="namespaceaworx.html#a148a217c34a72b4360462205858b8f0e">String16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a6781ce4c72ba2117380b0ee0b803e4bd">TimeDiffMins</a> =&quot; m&quot;</td></tr>
-<tr class="memdesc:a6781ce4c72ba2117380b0ee0b803e4bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format for time difference outputs between 100s and 60 min. <br /></td></tr>
-<tr class="separator:a6781ce4c72ba2117380b0ee0b803e4bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64f81ff97c47cac44c8c03890bdf62b8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a64f81ff97c47cac44c8c03890bdf62b8"></a>
-<a class="el" href="namespaceaworx.html#a148a217c34a72b4360462205858b8f0e">String16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a64f81ff97c47cac44c8c03890bdf62b8">TimeDiffNanos</a> =&quot; ns&quot;</td></tr>
-<tr class="memdesc:a64f81ff97c47cac44c8c03890bdf62b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Entity nanoseconds for time difference outputs below 1000 microsecond. <br /></td></tr>
-<tr class="separator:a64f81ff97c47cac44c8c03890bdf62b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e70c1adc386d8704fd62c4978a0a3d5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1e70c1adc386d8704fd62c4978a0a3d5"></a>
-<a class="el" href="namespaceaworx.html#a148a217c34a72b4360462205858b8f0e">String16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a1e70c1adc386d8704fd62c4978a0a3d5">TimeDiffNone</a> =&quot;--- &quot;</td></tr>
-<tr class="memdesc:a1e70c1adc386d8704fd62c4978a0a3d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output for time difference if below reasonable (measurable) minimum defined in <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ac72715ae7c695bbfce1fe76075a2f9a1" title="Minimum time difference to log in nanoseconds. Below that TimeDiffNone is written. ">TimeDiffMinimum</a>. <br /></td></tr>
-<tr class="separator:a1e70c1adc386d8704fd62c4978a0a3d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12c8df15357e02da8b11708cb294cfd3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a12c8df15357e02da8b11708cb294cfd3"></a>
-<a class="el" href="namespaceaworx.html#a148a217c34a72b4360462205858b8f0e">String16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a12c8df15357e02da8b11708cb294cfd3">TimeDiffSecs</a> =&quot; s&quot;</td></tr>
-<tr class="memdesc:a12c8df15357e02da8b11708cb294cfd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format for time difference outputs between 10s and 99.9s. <br /></td></tr>
-<tr class="separator:a12c8df15357e02da8b11708cb294cfd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a41d26c37bd02bb24b9428af4896aa074"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a41d26c37bd02bb24b9428af4896aa074"></a>
-<a class="el" href="namespaceaworx.html#a148a217c34a72b4360462205858b8f0e">String16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a41d26c37bd02bb24b9428af4896aa074">TimeElapsedDays</a> =&quot; Days &quot;</td></tr>
-<tr class="memdesc:a41d26c37bd02bb24b9428af4896aa074"><td class="mdescLeft">&#160;</td><td class="mdescRight">The word "Days" the out put of time elapsed (if longer than a day). <br /></td></tr>
-<tr class="separator:a41d26c37bd02bb24b9428af4896aa074"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84bddee7b379ee961f0d8dc745401985"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#a148a217c34a72b4360462205858b8f0e">String16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a84bddee7b379ee961f0d8dc745401985">TimeOfDayFormat</a> =&quot;HH:mm:ss&quot;</td></tr>
-<tr class="separator:a84bddee7b379ee961f0d8dc745401985"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a068b97de0fc963964de79ccb2fde412d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a068b97de0fc963964de79ccb2fde412d"></a>
+<a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a068b97de0fc963964de79ccb2fde412d">TimeDiffMins</a> =&quot; m&quot;</td></tr>
+<tr class="memdesc:a068b97de0fc963964de79ccb2fde412d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format for time difference outputs between 100s and 60 min. <br /></td></tr>
+<tr class="separator:a068b97de0fc963964de79ccb2fde412d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5466a8a9826616e5082306e7d688ccd2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5466a8a9826616e5082306e7d688ccd2"></a>
+<a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a5466a8a9826616e5082306e7d688ccd2">TimeDiffNanos</a> =&quot; ns&quot;</td></tr>
+<tr class="memdesc:a5466a8a9826616e5082306e7d688ccd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Entity nanoseconds for time difference outputs below 1000 microsecond. <br /></td></tr>
+<tr class="separator:a5466a8a9826616e5082306e7d688ccd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33336f57dcc0d962375b72a082cd16a2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a33336f57dcc0d962375b72a082cd16a2"></a>
+<a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a33336f57dcc0d962375b72a082cd16a2">TimeDiffNone</a> =&quot;--- &quot;</td></tr>
+<tr class="memdesc:a33336f57dcc0d962375b72a082cd16a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output for time difference if below reasonable (measurable) minimum defined in <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ac72715ae7c695bbfce1fe76075a2f9a1" title="Minimum time difference to log in nanoseconds. Below that TimeDiffNone is written. ">TimeDiffMinimum</a>. <br /></td></tr>
+<tr class="separator:a33336f57dcc0d962375b72a082cd16a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41fbed046e377a2f835b2f7e9c93c758"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a41fbed046e377a2f835b2f7e9c93c758"></a>
+<a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a41fbed046e377a2f835b2f7e9c93c758">TimeDiffSecs</a> =&quot; s&quot;</td></tr>
+<tr class="memdesc:a41fbed046e377a2f835b2f7e9c93c758"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format for time difference outputs between 10s and 99.9s. <br /></td></tr>
+<tr class="separator:a41fbed046e377a2f835b2f7e9c93c758"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a090fd75d30917282f140e5fcdde1fe3a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a090fd75d30917282f140e5fcdde1fe3a"></a>
+<a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a090fd75d30917282f140e5fcdde1fe3a">TimeElapsedDays</a> =&quot; Days &quot;</td></tr>
+<tr class="memdesc:a090fd75d30917282f140e5fcdde1fe3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The word "Days" the out put of time elapsed (if longer than a day). <br /></td></tr>
+<tr class="separator:a090fd75d30917282f140e5fcdde1fe3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78d44b9a457f1b8a1e175b3fe7043f8f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a78d44b9a457f1b8a1e175b3fe7043f8f">TimeOfDayFormat</a> =&quot;HH:mm:ss&quot;</td></tr>
+<tr class="separator:a78d44b9a457f1b8a1e175b3fe7043f8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69535f9bd8c5493447f323c5cf7f7401"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a69535f9bd8c5493447f323c5cf7f7401"></a>
+<a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a69535f9bd8c5493447f323c5cf7f7401">VerbosityError</a> =&quot;[ERR]&quot;</td></tr>
+<tr class="memdesc:a69535f9bd8c5493447f323c5cf7f7401"><td class="mdescLeft">&#160;</td><td class="mdescRight">The output for the verbosity "Error". <br /></td></tr>
+<tr class="separator:a69535f9bd8c5493447f323c5cf7f7401"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2417488cbf15cf08bf1c373b9aac3222"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2417488cbf15cf08bf1c373b9aac3222"></a>
+<a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a2417488cbf15cf08bf1c373b9aac3222">VerbosityInfo</a> =&quot; &quot;</td></tr>
+<tr class="memdesc:a2417488cbf15cf08bf1c373b9aac3222"><td class="mdescLeft">&#160;</td><td class="mdescRight">The output for the verbosity "Info". <br /></td></tr>
+<tr class="separator:a2417488cbf15cf08bf1c373b9aac3222"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78d18da89faf78000af7767edbd48249"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a78d18da89faf78000af7767edbd48249"></a>
+<a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a78d18da89faf78000af7767edbd48249">VerbosityVerbose</a> =&quot;[***]&quot;</td></tr>
+<tr class="memdesc:a78d18da89faf78000af7767edbd48249"><td class="mdescLeft">&#160;</td><td class="mdescRight">The output for the verbosity "Verbose". <br /></td></tr>
+<tr class="separator:a78d18da89faf78000af7767edbd48249"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accf8a9e6cd0f83806e46a5b3998965d2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="accf8a9e6cd0f83806e46a5b3998965d2"></a>
+<a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#accf8a9e6cd0f83806e46a5b3998965d2">VerbosityWarning</a> =&quot;[WRN]&quot;</td></tr>
+<tr class="memdesc:accf8a9e6cd0f83806e46a5b3998965d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The output for the verbosity "Warning". <br /></td></tr>
+<tr class="separator:accf8a9e6cd0f83806e46a5b3998965d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Methods</h2></td></tr>
 <tr class="memitem:a7d8a1047142018ffc32e85ca0bf21df0"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a7d8a1047142018ffc32e85ca0bf21df0">~MetaInfo</a> ()</td></tr>
 <tr class="separator:a7d8a1047142018ffc32e85ca0bf21df0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5848a385a93b4c1ff902525337babcc2"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a5848a385a93b4c1ff902525337babcc2">Write</a> (<a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a> &amp;logger, <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &amp;buffer, const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;domain, <a class="el" href="classaworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log::Level</a> level, <a class="el" href="classaworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a> *caller)</td></tr>
-<tr class="separator:a5848a385a93b4c1ff902525337babcc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a037523cdb14e8bae567b8fef2d102009"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a037523cdb14e8bae567b8fef2d102009">Write</a> (<a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a> &amp;logger, <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &amp;buffer, <a class="el" href="classaworx_1_1lox_1_1core_1_1Domain.html">core::Domain</a> &amp;domain, <a class="el" href="namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, <a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeInfo.html">ScopeInfo</a> &amp;scope)</td></tr>
+<tr class="separator:a037523cdb14e8bae567b8fef2d102009"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Fields</h2></td></tr>
-<tr class="memitem:a594357dd2afccbf86f5b6dfcdda82bbf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a594357dd2afccbf86f5b6dfcdda82bbf"></a>
-<a class="el" href="classaworx_1_1lib_1_1time_1_1TicksCalendarTime.html">lib::time::TicksCalendarTime</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a594357dd2afccbf86f5b6dfcdda82bbf">callerDateTime</a></td></tr>
-<tr class="memdesc:a594357dd2afccbf86f5b6dfcdda82bbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">A singleton calendar time object shared between different format variables during one invocation. <br /></td></tr>
+<tr class="memitem:a594357dd2afccbf86f5b6dfcdda82bbf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1time_1_1TicksCalendarTime.html">lib::time::TicksCalendarTime</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a594357dd2afccbf86f5b6dfcdda82bbf">callerDateTime</a></td></tr>
 <tr class="separator:a594357dd2afccbf86f5b6dfcdda82bbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Methods</h2></td></tr>
-<tr class="memitem:a6afaa48005f63c597d47b2125022cd23"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a6afaa48005f63c597d47b2125022cd23">processVariable</a> (<a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a> &amp;logger, const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;domain, <a class="el" href="classaworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log::Level</a> level, <a class="el" href="classaworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a> *caller, <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &amp;buffer, <a class="el" href="namespaceaworx.html#aade494154da29084f1e59cfa2f83a23b">Substring</a> &amp;variable)</td></tr>
-<tr class="separator:a6afaa48005f63c597d47b2125022cd23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adea560dbe05cd27b8d3313d5bd202817"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#adea560dbe05cd27b8d3313d5bd202817">processVariable</a> (<a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a> &amp;logger, <a class="el" href="classaworx_1_1lox_1_1core_1_1Domain.html">core::Domain</a> &amp;domain, <a class="el" href="namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, <a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeInfo.html">ScopeInfo</a> &amp;scope, <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &amp;dest, <a class="el" href="namespaceaworx.html#aade494154da29084f1e59cfa2f83a23b">Substring</a> &amp;variable)</td></tr>
+<tr class="separator:adea560dbe05cd27b8d3313d5bd202817"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e51ddb2d0d6ce33302bf0d16b1328fb"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a3e51ddb2d0d6ce33302bf0d16b1328fb">writeTimeDiff</a> (<a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &amp;buffer, int_fast64_t diffNanos)</td></tr>
 <tr class="separator:a3e51ddb2d0d6ce33302bf0d16b1328fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -279,7 +275,7 @@ Protected Methods</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a6afaa48005f63c597d47b2125022cd23"></a>
+<a class="anchor" id="adea560dbe05cd27b8d3313d5bd202817"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -295,26 +291,26 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classaworx_1_1lox_1_1core_1_1Domain.html">core::Domain</a> &amp;&#160;</td>
           <td class="paramname"><em>domain</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classaworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log::Level</a>&#160;</td>
-          <td class="paramname"><em>level</em>, </td>
+          <td class="paramtype"><a class="el" href="namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>&#160;</td>
+          <td class="paramname"><em>verbosity</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classaworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a> *&#160;</td>
-          <td class="paramname"><em>caller</em>, </td>
+          <td class="paramtype"><a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeInfo.html">ScopeInfo</a> &amp;&#160;</td>
+          <td class="paramname"><em>scope</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> &amp;&#160;</td>
-          <td class="paramname"><em>buffer</em>, </td>
+          <td class="paramname"><em>dest</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -339,10 +335,10 @@ Protected Methods</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">logger</td><td>The logger that we are embedded in. </td></tr>
-    <tr><td class="paramname">domain</td><td>The log domain name. </td></tr>
-    <tr><td class="paramname">level</td><td>The log level. This has been checked to be active already on this stage and is provided to be able to be logged out only. </td></tr>
-    <tr><td class="paramname">caller</td><td>Once compiler generated and passed forward to here. </td></tr>
-    <tr><td class="paramname">buffer</td><td>The buffer to write meta information into. </td></tr>
+    <tr><td class="paramname">domain</td><td>The <em><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> <a class="el" href="classaworx_1_1lox_1_1core_1_1Domain.html">Domain</a></em>. </td></tr>
+    <tr><td class="paramname">verbosity</td><td>The verbosity. This has been checked to be active already on this stage and is provided to be able to be logged out only. </td></tr>
+    <tr><td class="paramname">scope</td><td>Information about the scope of the <em><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> Statement</em>.. </td></tr>
+    <tr><td class="paramname">dest</td><td>The buffer to write meta information into. </td></tr>
     <tr><td class="paramname">variable</td><td>The variable to read (may have more characters appended)</td></tr>
   </table>
   </dd>
@@ -351,7 +347,7 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a5848a385a93b4c1ff902525337babcc2"></a>
+<a class="anchor" id="a037523cdb14e8bae567b8fef2d102009"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -373,20 +369,20 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classaworx_1_1lox_1_1core_1_1Domain.html">core::Domain</a> &amp;&#160;</td>
           <td class="paramname"><em>domain</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classaworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log::Level</a>&#160;</td>
-          <td class="paramname"><em>level</em>, </td>
+          <td class="paramtype"><a class="el" href="namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>&#160;</td>
+          <td class="paramname"><em>verbosity</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classaworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a> *&#160;</td>
-          <td class="paramname"><em>caller</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeInfo.html">ScopeInfo</a> &amp;&#160;</td>
+          <td class="paramname"><em>scope</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -401,13 +397,13 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Parses the <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a5f73a9d6a9bfabaa4a33c34831006d07">Format</a> string and logs meta information into the log buffer. For each variable found, method <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a6afaa48005f63c597d47b2125022cd23">processVariable</a> is invoked. Hence, to add new variables, the latter method can be overwritten by descendants. Overwriting this method is recommended for formatter classes that do not rely on format strings. </p><dl class="params"><dt>Parameters</dt><dd>
+<p> Parses the <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a5f73a9d6a9bfabaa4a33c34831006d07">Format</a> string and logs meta information into the log buffer. For each variable found, method <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#adea560dbe05cd27b8d3313d5bd202817">processVariable</a> is invoked. Hence, to add new variables, the latter method can be overwritten by descendants. Overwriting this method is recommended for formatter classes that do not rely on format strings. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">logger</td><td>The logger that we are embedded in. </td></tr>
     <tr><td class="paramname">buffer</td><td>The buffer to write meta information into. </td></tr>
-    <tr><td class="paramname">domain</td><td>The log domain name. </td></tr>
-    <tr><td class="paramname">level</td><td>The log level. This has been checked to be active already on this stage and is provided to be able to be logged out only. </td></tr>
-    <tr><td class="paramname">caller</td><td>Once compiler generated and passed forward to here.</td></tr>
+    <tr><td class="paramname">domain</td><td>The <em><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> <a class="el" href="classaworx_1_1lox_1_1core_1_1Domain.html">Domain</a></em>. </td></tr>
+    <tr><td class="paramname">verbosity</td><td>The verbosity. </td></tr>
+    <tr><td class="paramname">scope</td><td>Information about the scope of the <em><a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> Statement</em>..</td></tr>
   </table>
   </dd>
 </dl>
@@ -459,27 +455,33 @@ Protected Methods</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a33397151e3c9c32997688cd29a3cd0c5"></a>
+<a class="anchor" id="a594357dd2afccbf86f5b6dfcdda82bbf"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> ConsumableSourcePathPrefix</td>
+          <td class="memname"><a class="el" href="classaworx_1_1lib_1_1time_1_1TicksCalendarTime.html">lib::time::TicksCalendarTime</a> callerDateTime</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>To shorten the log output the given prefix might be cut from the source file path. If this <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> is <em>nulled</em>, it is tried to detect this path automatically once.</p>
-<p>However, in various debug sessions (e.g. remote debugging) this might fail. Hence, this parameter can be set 'manually' to the right prefix that is to be consumed. In this case, whenever the project is compiled on a different machine setup (with different project path), this field has to be changed. If it is not changed, there is no other problem than that the path is not shortened and the log output might get a little wide.</p>
-<p>If the output of the full path is intended, the filed can be set to empty string(""). </p>
+<p>A singleton calendar time object shared between different format variables during one invocation. </p>
 
 </div>
 </div>
-<a class="anchor" id="a04c5093c5a5f5e30994ca8b0b84853a0"></a>
+<a class="anchor" id="af2fb4c3f354b7666adac33e78e4a36a0"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceaworx.html#a148a217c34a72b4360462205858b8f0e">String16</a> DateFormat =&quot;yyyy-MM-dd&quot;</td>
+          <td class="memname"><a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> DateFormat =&quot;yyyy-MM-dd&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -492,28 +494,33 @@ Protected Methods</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> <a class="el" href="namespaceaworx.html#aed5a5fab6b4a0c81a5a231f6d0379d41">Format</a> {&quot;%CF(%CL):%A5%CM() %A5[%TE +%TI] [%t] %L [%O] %A1(%#): &quot;}</td>
+          <td class="memname"><a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">AString</a> <a class="el" href="namespaceaworx.html#aed5a5fab6b4a0c81a5a231f6d0379d41">Format</a> {&quot;%Sp\\%SF(%SL):%A5%SM() %A5[%TC +%TL][%tN]%V[%D]%A1(%#): &quot;}</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p>The line format specifies the (automated) log output that is prepended to each log line before the log message itself. This format string can be changed after the creation of a <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a>.</p>
 <p>The string supports replacement variables that begin with a % sign</p><ul>
-<li>CF: The caller's source file name including path</li>
-<li>Cf: The caller's source file name (excluding path)</li>
-<li>CL: The line number in the caller's source file</li>
-<li>CM: The caller's method name</li>
-<li>D: The date the log call was invoked</li>
-<li>TD: Time of day the log call was invoked</li>
-<li>TE: Time elapsed since the <a class="el" href="classaworx_1_1lox_1_1core_1_1Logger.html">Logger</a> was created or it's timer was reset</li>
-<li>TI: Time elapsed since the last log call</li>
-<li>t: Thread name and/or ID</li>
-<li>L: The log level</li>
-<li>O: <a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> domain</li>
+<li>SP: The full path of the source file</li>
+<li>Sp: The trimmed path of the source file</li>
+<li>SF: The callers' source file name</li>
+<li>Sf: The callers' source file name without extension</li>
+<li>SL: The line number in the source file</li>
+<li>SM: The method name</li>
+<li>TD: The date the log call was invoked</li>
+<li>TT: Time of day the log call was invoked</li>
+<li>TC: Time elapsed since the <a class="el" href="classaworx_1_1lox_1_1core_1_1Logger.html">Logger</a> was created or its timer was reset</li>
+<li>TL: Time elapsed since the last log call</li>
+<li>tN: Thread name</li>
+<li>tI: Thread ID</li>
+<li>V: The verbosity</li>
+<li>D: <a class="el" href="classaworx_1_1lox_1_1Log.html">Log</a> domain</li>
 <li>%#: The log call counter (like a line counter, but counting multi lines as one)</li>
 <li>An: An auto-adjusted tabulator. This grows whenever it needs, but never shrinks. The optional integer number n specifies how much extra space is added when tab is adjusted. Setting this to a higher value avoids too many adjustments at the beginning of a log session.</li>
-<li>N: The name of the logger. This might be useful if multiple loggers write to the same output stream (e.g. Console).</li>
+<li>LG: The name of the <em><a class="el" href="classaworx_1_1lox_1_1core_1_1Logger.html">Logger</a></em>. This might be useful if multiple loggers write to the same output stream (e.g. Console).</li>
+<li>LX: The name of the <em><a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a></em>.</li>
+<li>P: The name of the process / application.</li>
 </ul>
-<p>A sample that would show just all info in the output is be: </p><div class="fragment"><div class="line"><span class="stringliteral">&quot;%CF(%CL):%CM()%A5[%D] [%TD] [%TE +%TI] [%t] [%t] %L [%O] &lt;%#&gt;: &quot;</span> </div></div><!-- fragment --><p>Defaults to </p><div class="fragment"><div class="line"><span class="stringliteral">&quot;%CF(%CL):%A5%CM() %A5[%TE +%TI] [%t] %L [%O] %A1(%#): &quot;</span> </div></div><!-- fragment --><p>If debug logging as well as release logging has caller information disabled (see <a class="el" href="group__GrpALoxCompilerSymbols.html#gabf2ce25e392b218c30b6b0af8280ddf7">ALOX_DBG_LOG_CI_OFF</a> and <a class="el" href="group__GrpALoxCompilerSymbols.html#ga85c683ba401d4c9216c96a9a17a9e9a9">ALOX_REL_LOG_CI_ON</a> ), then it defaults to: </p><div class="fragment"><div class="line"><span class="stringliteral">&quot;[%TE +%TI] [%t] %L [%O]: &quot;</span> </div></div><!-- fragment --> 
+<p>Defaults to </p><div class="fragment"><div class="line"><span class="stringliteral">&quot;%Sp/%SF(%SL):%A5%SM() %A5[%TC +%TL][%tN]%V[%D]%A1(%#): &quot;</span> </div></div><!-- fragment --><p>If debug logging as well as release logging has scope information disabled (see <a class="el" href="group__GrpALoxCompilerSymbols.html#gabf2ce25e392b218c30b6b0af8280ddf7">ALOX_DBG_LOG_CI_OFF</a> and <a class="el" href="group__GrpALoxCompilerSymbols.html#ga85c683ba401d4c9216c96a9a17a9e9a9">ALOX_REL_LOG_CI_ON</a> ), then it defaults to: </p><div class="fragment"><div class="line"><span class="stringliteral">&quot;[%TC +%TL][%tN]%V[%D]%A1(%#): &quot;</span> </div></div><!-- fragment --> 
 </div>
 </div>
 <a class="anchor" id="a9b4dcaaa0d0c31151f28626b539b2c78"></a>
@@ -525,7 +532,7 @@ Protected Methods</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>If <code>true</code>, an one-time warning (using <a class="el" href="classaworx_1_1lib_1_1Report.html#a818a0ba87e92dfee2aacd992a942bb75">Report::DoReport</a>) will be issued if the format string is illegal.</p>
+<p>If <code>true</code>, an one-time warning (using <a class="el" href="classaworx_1_1lib_1_1Report.html#a3977916df8d86dcb2c61e95d9b457b38">Report::DoReport</a>) will be issued if the format string is illegal.</p>
 <dl class="section note"><dt>Note</dt><dd>This field can not be accessed directly (For technical reasons, it is differently declared than stated here in the source documentation).<br />
  To change the field use macros<ul>
 <li><a class="el" href="group__GrpALibMacros.html#gaea25b327ef9d2c90aad05f5bef07bd97">ALIB_WARN_ONCE_PER_INSTANCE_ENABLE(myinstance, FormatWarning)</a> and</li>
@@ -536,12 +543,12 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a84bddee7b379ee961f0d8dc745401985"></a>
+<a class="anchor" id="a78d44b9a457f1b8a1e175b3fe7043f8f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceaworx.html#a148a217c34a72b4360462205858b8f0e">String16</a> TimeOfDayFormat =&quot;HH:mm:ss&quot;</td>
+          <td class="memname"><a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> TimeOfDayFormat =&quot;HH:mm:ss&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -557,7 +564,7 @@ Protected Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:19 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:16 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

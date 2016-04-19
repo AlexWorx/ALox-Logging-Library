@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['level',['Level',['../classaworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5',1,'aworx::lox::Log']]],
-  ['lockmode',['LockMode',['../namespaceaworx_1_1lib_1_1enums.html#a00fc859257c8f09ff9198dde28121961',1,'aworx::lib::enums']]]
+  ['phase',['Phase',['../namespaceaworx_1_1lib_1_1enums.html#ae1c5184dc404edf057ed537bcfddef84',1,'aworx::lib::enums']]],
+  ['propagation',['Propagation',['../namespaceaworx_1_1lib_1_1enums.html#aeae0c2d4659a32ef54bd221d1a3da4e6',1,'aworx::lib::enums']]]
 ];

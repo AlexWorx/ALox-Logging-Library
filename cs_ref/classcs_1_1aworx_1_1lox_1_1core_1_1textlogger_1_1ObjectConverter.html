@@ -125,45 +125,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-attribs">Public Fields</a> &#124;
 <a href="#pub-methods">Public Methods</a> &#124;
-<a href="#pro-attribs">Protected Fields</a> &#124;
 <a href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">ObjectConverter Class Reference</div>  </div>
+<div class="title">ObjectConverter Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="dynheader">
-Collaboration diagram for ObjectConverter:</div>
+Inheritance diagram for ObjectConverter:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter__coll__graph.svg" width="128" height="127"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter__inherit__graph.svg" width="128" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
-<p>This class is a sort of plug-in for the <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a> class which converts a given Object into its textual representation. An internal AString singleton is used as a string buffer and returned.</p>
-<p>This class might be extended to be able to handle custom objects within text loggers. This default implementation, handles objects of type <em>String</em>, <em>AString</em> and <em>StringBuilder</em>, For null values a predefined string is returned. All other Object types are converted by invoking their toString() function </p>
+<p> This abstract class represents a plug-in for the <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a> class which converts a given Object into its textual representation. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1StringConverter.html">StringConverter</a> for further information. </dd></dl>
 </div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Public Fields</h2></td></tr>
-<tr class="memitem:ac281d117b6e931783195f52f70bfa5b3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac281d117b6e931783195f52f70bfa5b3"></a>
-String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html#ac281d117b6e931783195f52f70bfa5b3">FmtNullObject</a> =&quot;&lt;null&gt;&quot;</td></tr>
-<tr class="memdesc:ac281d117b6e931783195f52f70bfa5b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to convert null values to string representation. <br /></td></tr>
-<tr class="separator:ac281d117b6e931783195f52f70bfa5b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Methods</h2></td></tr>
-<tr class="memitem:a0ba6332bdc61bc28bdc5c9d0106f12c4"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html#a0ba6332bdc61bc28bdc5c9d0106f12c4">ConvertObject</a> (Object o)</td></tr>
-<tr class="separator:a0ba6332bdc61bc28bdc5c9d0106f12c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
-Protected Fields</h2></td></tr>
-<tr class="memitem:aaf50e38674e1c356539d73525486b1d5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaf50e38674e1c356539d73525486b1d5"></a>
-<a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html#aaf50e38674e1c356539d73525486b1d5">buffer</a> =new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>( 128 )</td></tr>
-<tr class="memdesc:aaf50e38674e1c356539d73525486b1d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buffer singleton to store the string representation of Objects. <br /></td></tr>
-<tr class="separator:aaf50e38674e1c356539d73525486b1d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38f08c6715a886c5d1867bfb250adb1d"><td class="memItemLeft" align="right" valign="top">abstract bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html#a38f08c6715a886c5d1867bfb250adb1d">ConvertObject</a> (Object o, <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> target)</td></tr>
+<tr class="separator:a38f08c6715a886c5d1867bfb250adb1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a0ba6332bdc61bc28bdc5c9d0106f12c4"></a>
+<a class="anchor" id="a38f08c6715a886c5d1867bfb250adb1d"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -171,16 +154,26 @@ Protected Fields</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> ConvertObject </td>
+          <td class="memname">abstract bool ConvertObject </td>
           <td>(</td>
           <td class="paramtype">Object&#160;</td>
-          <td class="paramname"><em>o</em></td><td>)</td>
+          <td class="paramname"><em>o</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td>
+          <td class="paramname"><em>target</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -188,10 +181,13 @@ Protected Fields</h2></td></tr>
 <p> The conversion method. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">o</td><td>The object to convert. </td></tr>
+    <tr><td class="paramname">target</td><td>An AString that takes the result. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The filled AString singleton <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html#aaf50e38674e1c356539d73525486b1d5" title="Buffer singleton to store the string representation of Objects. ">buffer</a> or, in the case that the given object was of type AString already, just the object itself! </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code>, if the object was converted successfully, <code>false</code> otherwise. </dd></dl>
+
+<p>Implemented in <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1StringConverter.html#a1a0031697ff24b742c6f1f4e249514ae">StringConverter</a>.</p>
 
 </div>
 </div>
@@ -202,7 +198,7 @@ Protected Fields</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:19 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:17 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

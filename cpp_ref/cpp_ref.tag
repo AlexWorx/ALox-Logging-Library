@@ -20,6 +20,7 @@
     <namespace>aworx</namespace>
     <namespace>aworx::lib</namespace>
     <namespace>aworx::lib::config</namespace>
+    <namespace>aworx::lib::enums</namespace>
     <namespace>aworx::lib::threads</namespace>
     <member kind="typedef">
       <type>aworx::lib::ALIB</type>
@@ -27,6 +28,27 @@
       <anchorfile>namespaceaworx.html</anchorfile>
       <anchor>afc2895fe34753aa1cd88ed8845fbd88b</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API bool</type>
+      <name>ReadBoolean</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1enums.html</anchorfile>
+      <anchor>adb04d5102fc162a8ac01ef0999b761e4</anchor>
+      <arglist>(const String &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API Case</type>
+      <name>ReadCase</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1enums.html</anchorfile>
+      <anchor>a3aef0064d7182c495b6a683dd61cb3f4</anchor>
+      <arglist>(const String &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API Inclusion</type>
+      <name>ReadInclusion</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1enums.html</anchorfile>
+      <anchor>a691ce2d51651ae6a8294e76944d30416</anchor>
+      <arglist>(const String &amp;src)</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -36,9 +58,11 @@
     <includes id="alib_8hpp" name="alib.hpp" local="yes" imported="no">alib/alib.hpp</includes>
     <includes id="alox__symbols_8hpp" name="alox_symbols.hpp" local="yes" imported="no">internals/alox_symbols.hpp</includes>
     <includes id="alox__macros_8hpp" name="alox_macros.hpp" local="yes" imported="no">internals/alox_macros.hpp</includes>
+    <includes id="aloxtypesandenums_8hpp" name="aloxtypesandenums.hpp" local="yes" imported="no">aloxtypesandenums.hpp</includes>
     <includes id="log_8hpp" name="log.hpp" local="yes" imported="no">log.hpp</includes>
     <includes id="lox_8hpp" name="lox.hpp" local="yes" imported="no">lox.hpp</includes>
-    <class kind="class">aworx::lox::ESC</class>
+    <class kind="class">aworx::lox::ALox</class>
+    <class kind="class">aworx::lox::ALoxReportWriter</class>
     <namespace>aworx</namespace>
     <namespace>aworx::lox</namespace>
     <member kind="define">
@@ -49,10 +73,10 @@
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>aworx::lox::ESC</type>
-      <name>ESC</name>
+      <type>aworx::lox::ALox</type>
+      <name>ALox</name>
       <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>a41196e8ca29644376437095a102ad9ec</anchor>
+      <anchor>a4d5353279fde6a5d6e5b1c8e776abf66</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -86,16 +110,23 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Log_AddLogger</name>
+      <name>Log_Assert</name>
       <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
-      <anchor>ga518bf5331afc5bd2e6d79a9f290ae8b6</anchor>
+      <anchor>ga2797c2e9f997606c3c786fa68720ac71</anchor>
       <arglist>(...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Log_Assert</name>
+      <name>Log_ClearSourcePathTrimRules</name>
       <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
-      <anchor>ga2797c2e9f997606c3c786fa68720ac71</anchor>
+      <anchor>gaff8f037b778ce73b40e0c7a0506a8718</anchor>
+      <arglist>(...)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Log_Entry</name>
+      <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
+      <anchor>ga9ac05a63013c784625c66685ad51aff3</anchor>
       <arglist>(...)</arglist>
     </member>
     <member kind="define">
@@ -114,23 +145,16 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Log_GetMarker</name>
+      <name>Log_If</name>
       <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
-      <anchor>ga85abcf294a9046897fc2924513e7947f</anchor>
-      <arglist>(marker, scope)</arglist>
+      <anchor>ga7a1af9531448e3c6da1027b193e3b01b</anchor>
+      <arglist>(...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>Log_Info</name>
       <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
       <anchor>gaed4877ef3a04a6eb1ec1d4fba8305d75</anchor>
-      <arglist>(...)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Log_Line</name>
-      <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
-      <anchor>gae6d6d078cd4c5ed6c6726d0cbdbbc4aa</anchor>
       <arglist>(...)</arglist>
     </member>
     <member kind="define">
@@ -153,6 +177,13 @@
       <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
       <anchor>gad01526d3f277fab96faf18695d25cb7e</anchor>
       <arglist>(threadName)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Log_Once</name>
+      <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
+      <anchor>ga68c8af8941a64be4f6e075ab31c6c05b</anchor>
+      <arglist>(...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -184,10 +215,17 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Log_RemoveLoggers</name>
+      <name>Log_RemoveThreadDomain</name>
       <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
-      <anchor>gad3a71e0a643a1c19f8875e586f95b92e</anchor>
+      <anchor>gafc93873c04ed08e842109543d142fb60</anchor>
       <arglist>(...)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Log_Retrieve</name>
+      <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
+      <anchor>ga233db1e86b0cf457b550f74b58d69926</anchor>
+      <arglist>(data,...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -198,24 +236,45 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Log_SetLogger</name>
+      <name>Log_SetDomainSubstitutionRule</name>
       <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
-      <anchor>ga8fb5f633199382936bfc67e45c1737af</anchor>
-      <arglist>(disabled, filter)</arglist>
+      <anchor>ga619af6c6682bc920e038b0fe006c49be</anchor>
+      <arglist>(...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Log_SetMarker</name>
+      <name>Log_SetPrefix</name>
       <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
-      <anchor>gaecd826ea5803a068bca503e075f5d878</anchor>
-      <arglist>(marker, scope)</arglist>
+      <anchor>ga4186c23d7999be11f0e5017d254a306c</anchor>
+      <arglist>(...)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Log_SetSourcePathTrimRule</name>
+      <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
+      <anchor>gac96dec2672c7ae4e722cae3b12eaf3fd</anchor>
+      <arglist>(...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>Log_SetStartTime</name>
       <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
-      <anchor>ga519416f7b52968906c24d3c57f4ce39f</anchor>
-      <arglist>(time, filter)</arglist>
+      <anchor>ga14bcc9217818e50b7fe5028398f11e8d</anchor>
+      <arglist>(time, loggerName)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Log_SetVerbosity</name>
+      <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
+      <anchor>gad5444af82c2a3640a1c456940b8c3b8f</anchor>
+      <arglist>(...)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Log_Store</name>
+      <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
+      <anchor>ga9c1ca580a86c5c6a0653146b0bb9cb38</anchor>
+      <arglist>(...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -240,16 +299,23 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Lox_AddLogger</name>
+      <name>Lox_Assert</name>
       <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
-      <anchor>gac3806ad5dcf0f48b170f79069369f380</anchor>
+      <anchor>ga4d9961312aab181a28b21724c3809184</anchor>
       <arglist>(...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Lox_Assert</name>
+      <name>Lox_ClearSourcePathTrimRules</name>
       <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
-      <anchor>ga4d9961312aab181a28b21724c3809184</anchor>
+      <anchor>ga1689da460f8040489689b3f45cf1e6b2</anchor>
+      <arglist>(...)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Lox_Entry</name>
+      <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
+      <anchor>ga3ee12da39c3574baf4fb03f7f323c886</anchor>
       <arglist>(...)</arglist>
     </member>
     <member kind="define">
@@ -268,23 +334,16 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Lox_GetMarker</name>
+      <name>Lox_If</name>
       <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
-      <anchor>gaac5f1d37b8f195a7d387d4bf59f9b7c0</anchor>
-      <arglist>(marker, scope)</arglist>
+      <anchor>ga31e9c5302ccb2af7285d9e17a46aac2b</anchor>
+      <arglist>(...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>Lox_Info</name>
       <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
       <anchor>ga28233c29442a3ae8996d32b5078537d9</anchor>
-      <arglist>(...)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Lox_Line</name>
-      <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
-      <anchor>ga97a2c77a1cef79dc8dd295153ea2347e</anchor>
       <arglist>(...)</arglist>
     </member>
     <member kind="define">
@@ -310,6 +369,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>Lox_Once</name>
+      <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
+      <anchor>ga03e5f8a0b134f709f130a4f93b2f8ab2</anchor>
+      <arglist>(...)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>Lox_Prune</name>
       <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
       <anchor>ga04158d8131eba14e98f93e433b6325d2</anchor>
@@ -331,10 +397,17 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Lox_RemoveLoggers</name>
+      <name>Lox_RemoveThreadDomain</name>
       <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
-      <anchor>gaa493b652d1b9a0d3bca8662603f5e199</anchor>
-      <arglist>(filter)</arglist>
+      <anchor>ga5af8171356c0b231483221d0b3e534c1</anchor>
+      <arglist>(...)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Lox_Retrieve</name>
+      <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
+      <anchor>ga21ac85d6bd6b297b92b707b6362f52df</anchor>
+      <arglist>(data,...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -345,24 +418,45 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Lox_SetLogger</name>
+      <name>Lox_SetDomainSubstitutionRule</name>
       <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
-      <anchor>gae6103e5556647a551bb2d78afb60522d</anchor>
-      <arglist>(enable, filter)</arglist>
+      <anchor>gab66ecad871e42c6779e9f2bb62921be3</anchor>
+      <arglist>(...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Lox_SetMarker</name>
+      <name>Lox_SetPrefix</name>
       <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
-      <anchor>gacea507bfcbffd40425f919f17a36fb9f</anchor>
-      <arglist>(marker, scope)</arglist>
+      <anchor>ga0f4d320a3b393e1e6eba353f567dec4d</anchor>
+      <arglist>(...)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Lox_SetSourcePathTrimRule</name>
+      <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
+      <anchor>ga26b42492cafe7bc093cd810facddeb6b</anchor>
+      <arglist>(...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>Lox_SetStartTime</name>
       <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
-      <anchor>ga4ce0c3ef52fd3806ee4e99f8c44e8179</anchor>
-      <arglist>(time, filter)</arglist>
+      <anchor>ga2c91f19bc972dbacc137e8c4c88ee25c</anchor>
+      <arglist>(time, loggerName)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Lox_SetVerbosity</name>
+      <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
+      <anchor>ga58d12e520c215bfc22c8da42777d567b</anchor>
+      <arglist>(...)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Lox_Store</name>
+      <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
+      <anchor>gaa8e5c76201f2ac838ef643377641f2a6</anchor>
+      <arglist>(...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -403,6 +497,96 @@
       <anchorfile>group__GrpALoxCodeSelectorSymbols.html</anchorfile>
       <anchor>ga4d0c70512b17f1dd4fa3556f79dd2689</anchor>
       <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>aloxtypesandenums.hpp</name>
+    <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alox/</path>
+    <filename>aloxtypesandenums_8hpp</filename>
+    <class kind="class">aworx::lox::ESC</class>
+    <class kind="struct">aworx::lox::LogData</class>
+    <namespace>aworx</namespace>
+    <namespace>aworx::lox</namespace>
+    <member kind="typedef">
+      <type>aworx::lox::ESC</type>
+      <name>ESC</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a41196e8ca29644376437095a102ad9ec</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lox::LogData</type>
+      <name>LogData</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a07d961a72c3ccbe33993cdeb56dab52e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lox::Scope</type>
+      <name>Scope</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>aef58f56e96f194bf0b5f765175f6ebd6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lox::Verbosity</type>
+      <name>Verbosity</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>aa10bcb350ba5320cadb5dff6b8e2da6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>Scope</name>
+      <anchorfile>namespaceaworx_1_1lox.html</anchorfile>
+      <anchor>aaecc53892786f2fa11e682f633af84c6</anchor>
+      <arglist></arglist>
+      <enumvalue file="namespaceaworx_1_1lox.html" anchor="aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Global</enumvalue>
+      <enumvalue file="namespaceaworx_1_1lox.html" anchor="aaecc53892786f2fa11e682f633af84c6a1ee3f312b05c55202500569aadfc8d9b">ThreadOuter</enumvalue>
+      <enumvalue file="namespaceaworx_1_1lox.html" anchor="aaecc53892786f2fa11e682f633af84c6aac70412e939d72a9234cdebb1af5867b">Path</enumvalue>
+      <enumvalue file="namespaceaworx_1_1lox.html" anchor="aaecc53892786f2fa11e682f633af84c6a1351017ac6423911223bc19a8cb7c653">Filename</enumvalue>
+      <enumvalue file="namespaceaworx_1_1lox.html" anchor="aaecc53892786f2fa11e682f633af84c6a4c3880bb027f159e801041b1021e88e8">Method</enumvalue>
+      <enumvalue file="namespaceaworx_1_1lox.html" anchor="aaecc53892786f2fa11e682f633af84c6ae46b159c990fae9e712309bdb4d7b7c4">ThreadInner</enumvalue>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>Verbosity</name>
+      <anchorfile>namespaceaworx_1_1lox.html</anchorfile>
+      <anchor>abf3be10d03894afb391f3a2935e3b313</anchor>
+      <arglist></arglist>
+      <enumvalue file="namespaceaworx_1_1lox.html" anchor="abf3be10d03894afb391f3a2935e3b313ad4a9fa383ab700c5bdd6f31cf7df0faf">Verbose</enumvalue>
+      <enumvalue file="namespaceaworx_1_1lox.html" anchor="abf3be10d03894afb391f3a2935e3b313a4059b0251f66a18cb56f544728796875">Info</enumvalue>
+      <enumvalue file="namespaceaworx_1_1lox.html" anchor="abf3be10d03894afb391f3a2935e3b313a0eaadb4fcb48a0a0ed7bc9868be9fbaa">Warning</enumvalue>
+      <enumvalue file="namespaceaworx_1_1lox.html" anchor="abf3be10d03894afb391f3a2935e3b313a902b0d55fddef6f8d651fe1035b7d4bd">Error</enumvalue>
+      <enumvalue file="namespaceaworx_1_1lox.html" anchor="abf3be10d03894afb391f3a2935e3b313ad15305d7a4e34e02489c74a5ef542f36">Off</enumvalue>
+    </member>
+    <member kind="function">
+      <type>Verbosity</type>
+      <name>ReadVerbosity</name>
+      <anchorfile>namespaceaworx_1_1lox.html</anchorfile>
+      <anchor>a198631ef025eac410d87373b39c7280f</anchor>
+      <arglist>(const String &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString &amp;</type>
+      <name>ToString</name>
+      <anchorfile>namespaceaworx_1_1lox.html</anchorfile>
+      <anchor>ade21849436cde3af69157368d5e5a27e</anchor>
+      <arglist>(Verbosity verbosity, int priority, AString &amp;target)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString &amp;</type>
+      <name>ToString</name>
+      <anchorfile>namespaceaworx_1_1lox.html</anchorfile>
+      <anchor>a0883c50f69bfa5d7b121a59ba14d8464</anchor>
+      <arglist>(Scope scope, int pathLevel, AString &amp;target)</arglist>
+    </member>
+    <member kind="function">
+      <type>const String</type>
+      <name>ToStringX</name>
+      <anchorfile>namespaceaworx_1_1lox.html</anchorfile>
+      <anchor>abfd92f16f9c0e36069f30ffa03a5d96d</anchor>
+      <arglist>(Verbosity verbosity)</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -736,18 +920,6 @@
     </member>
   </compound>
   <compound kind="file">
-    <name>callerinfo.hpp</name>
-    <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alox/core/</path>
-    <filename>callerinfo_8hpp</filename>
-    <includes id="alox_8hpp" name="alox.hpp" local="yes" imported="no">alox/alox.hpp</includes>
-    <includes id="ticks_8hpp" name="ticks.hpp" local="yes" imported="no">alib/time/ticks.hpp</includes>
-    <includes id="thread_8hpp" name="thread.hpp" local="yes" imported="no">thread.hpp</includes>
-    <class kind="class">aworx::lox::core::CallerInfo</class>
-    <namespace>aworx</namespace>
-    <namespace>aworx::lox</namespace>
-    <namespace>aworx::lox::core</namespace>
-  </compound>
-  <compound kind="file">
     <name>configuration.hpp</name>
     <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alib/config/</path>
     <filename>configuration_8hpp</filename>
@@ -810,10 +982,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>const char</type>
+      <type>constexpr char</type>
       <name>PathSeparator</name>
       <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>a081742a3398152ceb8694674ffd21c37</anchor>
+      <anchor>a262e7ce267358080f085b5a3f42e3a67</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -823,6 +995,7 @@
     <filename>domain_8hpp</filename>
     <includes id="alox_8hpp" name="alox.hpp" local="yes" imported="no">alox/alox.hpp</includes>
     <class kind="class">aworx::lox::core::Domain</class>
+    <class kind="struct">aworx::lox::core::Domain::LoggerData</class>
     <namespace>aworx</namespace>
     <namespace>aworx::lox</namespace>
     <namespace>aworx::lox::core</namespace>
@@ -847,6 +1020,13 @@
       <name>Case</name>
       <anchorfile>namespaceaworx.html</anchorfile>
       <anchor>ac497730bb253c7efcfee90f6de02a0ba</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::enums::ContainerOp</type>
+      <name>ContainerOp</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a79b40b1cf65e889763d9ac0858268172</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
@@ -951,6 +1131,18 @@
       <arglist></arglist>
       <enumvalue file="namespaceaworx_1_1lib_1_1enums.html" anchor="ab9aab17a5e54a8bae6915bc24db13a17a8f21fcdc233ba4078679ca628453d06b">Sensitive</enumvalue>
       <enumvalue file="namespaceaworx_1_1lib_1_1enums.html" anchor="ab9aab17a5e54a8bae6915bc24db13a17afd038fc7f319e48f3115d92bf5bdbef9">Ignore</enumvalue>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>ContainerOp</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1enums.html</anchorfile>
+      <anchor>af6d9cc1e6686eca6e60d57d959cf57fb</anchor>
+      <arglist></arglist>
+      <enumvalue file="namespaceaworx_1_1lib_1_1enums.html" anchor="af6d9cc1e6686eca6e60d57d959cf57fbaa458be0f08b7e4ff3c0f633c100176c0">Insert</enumvalue>
+      <enumvalue file="namespaceaworx_1_1lib_1_1enums.html" anchor="af6d9cc1e6686eca6e60d57d959cf57fba1063e38cb53d94d386f21227fcd84717">Remove</enumvalue>
+      <enumvalue file="namespaceaworx_1_1lib_1_1enums.html" anchor="af6d9cc1e6686eca6e60d57d959cf57fbac55582518cba2c464f29f5bae1c68def">Get</enumvalue>
+      <enumvalue file="namespaceaworx_1_1lib_1_1enums.html" anchor="af6d9cc1e6686eca6e60d57d959cf57fba1d5c1a7fde77e84c993d6fea61f88c2a">GetCreate</enumvalue>
+      <enumvalue file="namespaceaworx_1_1lib_1_1enums.html" anchor="af6d9cc1e6686eca6e60d57d959cf57fba686e697538050e4664636337cc3b834f">Create</enumvalue>
     </member>
     <member kind="enumeration">
       <type></type>
@@ -1089,7 +1281,6 @@
     <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alox/</path>
     <filename>log_8hpp</filename>
     <includes id="alox_8hpp" name="alox.hpp" local="yes" imported="no">alox/alox.hpp</includes>
-    <class kind="class">aworx::lox::ALoxReportWriter</class>
     <class kind="class">aworx::lox::Log</class>
     <namespace>aworx</namespace>
     <namespace>aworx::lox</namespace>
@@ -1108,20 +1299,47 @@
     <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alox/core/</path>
     <filename>logger_8hpp</filename>
     <includes id="alox_8hpp" name="alox.hpp" local="yes" imported="no">alox/alox.hpp</includes>
-    <includes id="callerinfo_8hpp" name="callerinfo.hpp" local="yes" imported="no">callerinfo.hpp</includes>
-    <includes id="domain_8hpp" name="domain.hpp" local="yes" imported="no">domain.hpp</includes>
+    <class kind="struct">aworx::lib::strings::IsApplicable&lt; const lox::core::Logger &amp; &gt;</class>
+    <class kind="struct">aworx::lox::core::Logable</class>
     <class kind="class">aworx::lox::core::Logger</class>
     <namespace>aworx</namespace>
+    <namespace>aworx::lib</namespace>
+    <namespace>aworx::lib::strings</namespace>
     <namespace>aworx::lox</namespace>
     <namespace>aworx::lox::core</namespace>
+    <member kind="typedef">
+      <type>std::vector&lt; core::Logable * &gt;</type>
+      <name>Logables</name>
+      <anchorfile>namespaceaworx_1_1lox_1_1core.html</anchorfile>
+      <anchor>a89b734aa261b747d9edc7a459bfc9db8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lox::core::Logger</type>
+      <name>Logger</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a8ec4a1b5f5786befe04b9f08d5417cdc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>ApplyTo&lt; const lox::core::Logger &amp; &gt;</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>a9293db3b9b449a46d07d91e1b8964183</anchor>
+      <arglist>(AString &amp;target, const lox::core::Logger &amp;logger)</arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>lox.hpp</name>
     <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alox/</path>
     <filename>lox_8hpp</filename>
+    <includes id="alox_8hpp" name="alox.hpp" local="yes" imported="no">alox/alox.hpp</includes>
     <includes id="threadlock_8hpp" name="threadlock.hpp" local="yes" imported="no">alib/threads/threadlock.hpp</includes>
-    <includes id="callerinfo_8hpp" name="callerinfo.hpp" local="yes" imported="no">alox/core/callerinfo.hpp</includes>
+    <includes id="scopeinfo_8hpp" name="scopeinfo.hpp" local="yes" imported="no">alox/core/scopeinfo.hpp</includes>
+    <includes id="logger_8hpp" name="logger.hpp" local="yes" imported="no">alox/core/logger.hpp</includes>
     <includes id="domain_8hpp" name="domain.hpp" local="yes" imported="no">alox/core/domain.hpp</includes>
+    <includes id="scopestore_8hpp" name="scopestore.hpp" local="yes" imported="no">alox/core/scopestore.hpp</includes>
+    <class kind="struct">aworx::lox::Lox::DomainSubstitutionRule</class>
     <class kind="class">aworx::lox::Lox</class>
     <namespace>aworx</namespace>
     <namespace>aworx::lox</namespace>
@@ -1162,16 +1380,16 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>ALIB_SRC_INFO_PARAMS_DECL</name>
+      <name>ALIB_SRC_INFO_PARAMS</name>
       <anchorfile>group__GrpALibMacros.html</anchorfile>
-      <anchor>ga325630a2911ce8e6b188bb5e7ab7f38a</anchor>
+      <anchor>gab1836c6de18fd089b123e40e22472f4d</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>ALIB_SRC_INFO_PARAMS</name>
+      <name>ALIB_DBG_SRC_INFO_PARAMS</name>
       <anchorfile>group__GrpALibMacros.html</anchorfile>
-      <anchor>gab1836c6de18fd089b123e40e22472f4d</anchor>
+      <anchor>gac17f8e410ff33bbb690c0608d12ba5d4</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -1183,17 +1401,17 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>ALIB_DBG_SRC_INFO_PARAMS_DECL</name>
+      <name>ALIB_REPORT</name>
       <anchorfile>group__GrpALibMacros.html</anchorfile>
-      <anchor>ga1526353c5a75ab50925d64b13cf2ea4b</anchor>
-      <arglist></arglist>
+      <anchor>ga8460b7062323107819d75e7001451cc4</anchor>
+      <arglist>(type, msg)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>ALIB_DBG_SRC_INFO_PARAMS</name>
+      <name>ALIB_REPORT_S512</name>
       <anchorfile>group__GrpALibMacros.html</anchorfile>
-      <anchor>gac17f8e410ff33bbb690c0608d12ba5d4</anchor>
-      <arglist></arglist>
+      <anchor>gabd7b7f6d6244265e96a13ea98bee76b9</anchor>
+      <arglist>(type, msg)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -1211,16 +1429,16 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>ALIB_ERROR_AS</name>
+      <name>ALIB_ERROR_S512</name>
       <anchorfile>group__GrpALibMacros.html</anchorfile>
-      <anchor>ga9760e218b8f31dab354ea3fd9668db73</anchor>
+      <anchor>ga259ac181b20784b8dfa4cd72c191da4c</anchor>
       <arglist>(msg)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>ALIB_WARNING_AS</name>
+      <name>ALIB_WARNING_S512</name>
       <anchorfile>group__GrpALibMacros.html</anchorfile>
-      <anchor>gaba07586b518480b52466e018bfa34c98</anchor>
+      <anchor>ga6d09217171c3a303e6b91eba62833193</anchor>
       <arglist>(msg)</arglist>
     </member>
     <member kind="define">
@@ -1246,16 +1464,16 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>ALIB_ASSERT_ERROR_AS</name>
+      <name>ALIB_ASSERT_ERROR_S512</name>
       <anchorfile>group__GrpALibMacros.html</anchorfile>
-      <anchor>gac9a7ce9ac002073d26b3abf5797e9d86</anchor>
+      <anchor>ga1d9b0a700c59c2e87bc2935d6a434db9</anchor>
       <arglist>(cond, msg)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>ALIB_ASSERT_WARNING_AS</name>
+      <name>ALIB_ASSERT_WARNING_S512</name>
       <anchorfile>group__GrpALibMacros.html</anchorfile>
-      <anchor>ga12732c26cd94f68b87b8d8a31bb079c9</anchor>
+      <anchor>ga3cafe9da29ad24d8d8a7997556dde3be</anchor>
       <arglist>(cond, msg)</arglist>
     </member>
     <member kind="define">
@@ -1393,16 +1611,16 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>ALIB_SRC_INFO_PARAMS_DECL</name>
+      <name>ALIB_SRC_INFO_PARAMS</name>
       <anchorfile>group__GrpALibMacros.html</anchorfile>
-      <anchor>ga325630a2911ce8e6b188bb5e7ab7f38a</anchor>
+      <anchor>gab1836c6de18fd089b123e40e22472f4d</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>ALIB_SRC_INFO_PARAMS</name>
+      <name>ALIB_DBG_SRC_INFO_PARAMS</name>
       <anchorfile>group__GrpALibMacros.html</anchorfile>
-      <anchor>gab1836c6de18fd089b123e40e22472f4d</anchor>
+      <anchor>gac17f8e410ff33bbb690c0608d12ba5d4</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -1414,17 +1632,17 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>ALIB_DBG_SRC_INFO_PARAMS_DECL</name>
+      <name>ALIB_REPORT</name>
       <anchorfile>group__GrpALibMacros.html</anchorfile>
-      <anchor>ga1526353c5a75ab50925d64b13cf2ea4b</anchor>
-      <arglist></arglist>
+      <anchor>ga8460b7062323107819d75e7001451cc4</anchor>
+      <arglist>(type, msg)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>ALIB_DBG_SRC_INFO_PARAMS</name>
+      <name>ALIB_REPORT_S512</name>
       <anchorfile>group__GrpALibMacros.html</anchorfile>
-      <anchor>gac17f8e410ff33bbb690c0608d12ba5d4</anchor>
-      <arglist></arglist>
+      <anchor>gabd7b7f6d6244265e96a13ea98bee76b9</anchor>
+      <arglist>(type, msg)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -1442,16 +1660,16 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>ALIB_ERROR_AS</name>
+      <name>ALIB_ERROR_S512</name>
       <anchorfile>group__GrpALibMacros.html</anchorfile>
-      <anchor>ga9760e218b8f31dab354ea3fd9668db73</anchor>
+      <anchor>ga259ac181b20784b8dfa4cd72c191da4c</anchor>
       <arglist>(msg)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>ALIB_WARNING_AS</name>
+      <name>ALIB_WARNING_S512</name>
       <anchorfile>group__GrpALibMacros.html</anchorfile>
-      <anchor>gaba07586b518480b52466e018bfa34c98</anchor>
+      <anchor>ga6d09217171c3a303e6b91eba62833193</anchor>
       <arglist>(msg)</arglist>
     </member>
     <member kind="define">
@@ -1477,16 +1695,16 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>ALIB_ASSERT_ERROR_AS</name>
+      <name>ALIB_ASSERT_ERROR_S512</name>
       <anchorfile>group__GrpALibMacros.html</anchorfile>
-      <anchor>gac9a7ce9ac002073d26b3abf5797e9d86</anchor>
+      <anchor>ga1d9b0a700c59c2e87bc2935d6a434db9</anchor>
       <arglist>(cond, msg)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>ALIB_ASSERT_WARNING_AS</name>
+      <name>ALIB_ASSERT_WARNING_S512</name>
       <anchorfile>group__GrpALibMacros.html</anchorfile>
-      <anchor>ga12732c26cd94f68b87b8d8a31bb079c9</anchor>
+      <anchor>ga3cafe9da29ad24d8d8a7997556dde3be</anchor>
       <arglist>(cond, msg)</arglist>
     </member>
     <member kind="define">
@@ -1647,6 +1865,39 @@
     <namespace>aworx::lib</namespace>
   </compound>
   <compound kind="file">
+    <name>pathmap.hpp</name>
+    <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alib/containers/</path>
+    <filename>pathmap_8hpp</filename>
+    <includes id="substring_8hpp" name="substring.hpp" local="yes" imported="no">alib/strings/substring.hpp</includes>
+    <class kind="class">aworx::lib::containers::PathMap::Iterator</class>
+    <class kind="struct">aworx::lib::containers::PathMap::Iterator::NodeAndChild</class>
+    <class kind="class">aworx::lib::containers::PathMap</class>
+    <namespace>aworx</namespace>
+    <namespace>aworx::lib</namespace>
+    <namespace>aworx::lib::containers</namespace>
+    <member kind="typedef">
+      <type>aworx::lib::containers::PathMap&lt; StoreT &gt;</type>
+      <name>PathMap</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a40dd35c549af4dcf094f486d3f2dca1f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>PathMap&lt; StoreT &gt;::Iterator</type>
+      <name>begin</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1containers.html</anchorfile>
+      <anchor>a3c9cd89161562d9d1c346f6f82666108</anchor>
+      <arglist>(const PathMap&lt; StoreT &gt; &amp;pathMap)</arglist>
+    </member>
+    <member kind="function">
+      <type>PathMap&lt; StoreT &gt;::Iterator</type>
+      <name>end</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1containers.html</anchorfile>
+      <anchor>a493642c7093a3913fb626ebd25eb4c7d</anchor>
+      <arglist>(const PathMap&lt; StoreT &gt; &amp;)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
     <name>plaintextlogger.hpp</name>
     <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alox/core/textlogger/</path>
     <filename>plaintextlogger_8hpp</filename>
@@ -1788,6 +2039,46 @@
     <namespace>aworx::lib</namespace>
     <namespace>aworx::lib::strings</namespace>
     <namespace>aworx::lib::threads</namespace>
+  </compound>
+  <compound kind="file">
+    <name>scopedump.hpp</name>
+    <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alox/core/</path>
+    <filename>scopedump_8hpp</filename>
+    <includes id="alox_8hpp" name="alox.hpp" local="yes" imported="no">alox/alox.hpp</includes>
+    <includes id="scopestore_8hpp" name="scopestore.hpp" local="yes" imported="no">scopestore.hpp</includes>
+    <class kind="class">aworx::lox::core::ScopeDump</class>
+    <namespace>aworx</namespace>
+    <namespace>aworx::lox</namespace>
+    <namespace>aworx::lox::core</namespace>
+  </compound>
+  <compound kind="file">
+    <name>scopeinfo.hpp</name>
+    <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alox/core/</path>
+    <filename>scopeinfo_8hpp</filename>
+    <includes id="alox_8hpp" name="alox.hpp" local="yes" imported="no">alox/alox.hpp</includes>
+    <includes id="ticks_8hpp" name="ticks.hpp" local="yes" imported="no">alib/time/ticks.hpp</includes>
+    <includes id="thread_8hpp" name="thread.hpp" local="yes" imported="no">thread.hpp</includes>
+    <includes id="directory_8hpp" name="directory.hpp" local="yes" imported="no">alib/system/directory.hpp</includes>
+    <class kind="class">aworx::lox::core::ScopeInfo</class>
+    <class kind="struct">aworx::lox::core::ScopeInfo::SourceFile</class>
+    <class kind="struct">aworx::lox::core::ScopeInfo::SourcePathTrimRule</class>
+    <namespace>aworx</namespace>
+    <namespace>aworx::lox</namespace>
+    <namespace>aworx::lox::core</namespace>
+  </compound>
+  <compound kind="file">
+    <name>scopestore.hpp</name>
+    <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alox/core/</path>
+    <filename>scopestore_8hpp</filename>
+    <includes id="alox_8hpp" name="alox.hpp" local="yes" imported="no">alox/alox.hpp</includes>
+    <class kind="class">aworx::lib::containers::PathMap</class>
+    <class kind="class">aworx::lox::core::ScopeStore</class>
+    <class kind="class">aworx::lox::core::ScopeStoreType</class>
+    <namespace>aworx</namespace>
+    <namespace>aworx::lib</namespace>
+    <namespace>aworx::lib::containers</namespace>
+    <namespace>aworx::lox</namespace>
+    <namespace>aworx::lox::core</namespace>
   </compound>
   <compound kind="file">
     <name>std_iostream.hpp</name>
@@ -2099,6 +2390,7 @@
     <class kind="class">aworx::lox::core::textlogger::AutoSizes</class>
     <class kind="class">aworx::lox::core::textlogger::MetaInfo</class>
     <class kind="class">aworx::lox::core::textlogger::ObjectConverter</class>
+    <class kind="class">aworx::lox::core::textlogger::StringConverter</class>
     <class kind="class">aworx::lox::core::textlogger::TextLogger</class>
     <namespace>aworx</namespace>
     <namespace>aworx::lib</namespace>
@@ -2142,7 +2434,7 @@
       <type>aworx::lib::threads::ThreadLockNR</type>
       <name>ThreadLockNR</name>
       <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>adb7e18c3a3777faf17dde8a543e30a27</anchor>
+      <anchor>a414cfa465381a22be7bf0bdc5728c1a0</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -2153,11 +2445,19 @@
     <includes id="alib_8hpp" name="alib.hpp" local="yes" imported="no">alib/alib.hpp</includes>
     <includes id="ownable_8hpp" name="ownable.hpp" local="yes" imported="no">alib/core/ownable.hpp</includes>
     <includes id="thread_8hpp" name="thread.hpp" local="yes" imported="no">thread.hpp</includes>
+    <class kind="class">aworx::lib::threads::SmartLock</class>
     <class kind="class">aworx::lib::threads::ThreadLock</class>
     <class kind="class">aworx::lib::threads::ThreadLockNR</class>
     <namespace>aworx</namespace>
     <namespace>aworx::lib</namespace>
     <namespace>aworx::lib::threads</namespace>
+    <member kind="typedef">
+      <type>aworx::lib::threads::SmartLock</type>
+      <name>SmartLock</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>aee1cd004a3010e8ee798517d96c1ffca</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="typedef">
       <type>aworx::lib::threads::ThreadLock</type>
       <name>ThreadLock</name>
@@ -2312,10 +2612,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API config::Configuration *</type>
+      <type>static ALIB_API config::Configuration</type>
       <name>Config</name>
       <anchorfile>classaworx_1_1lib_1_1ALIB.html</anchorfile>
-      <anchor>a25de5cc112c10bba144bdd9d8d94b947</anchor>
+      <anchor>a34430993f800b3bc4571bd4b9a6d9184</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
@@ -2340,6 +2640,13 @@
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
+      <type>static ALIB_API threads::SmartLock</type>
+      <name>StdOutputStreamsLock</name>
+      <anchorfile>classaworx_1_1lib_1_1ALIB.html</anchorfile>
+      <anchor>aa44d863f975cf49f3cf879b53f080a07</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
       <type>static ALIB_API const int</type>
       <name>Version</name>
       <anchorfile>classaworx_1_1lib_1_1ALIB.html</anchorfile>
@@ -2359,6 +2666,13 @@
       <anchorfile>classaworx_1_1lib_1_1ALIB.html</anchorfile>
       <anchor>a368faebfbb1d770d76d5e073266a3deb</anchor>
       <arglist>(enums::Inclusion environment=enums::Inclusion::Include, int argc=0, void **argv=nullptr, bool wArgs=false)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static bool</type>
+      <name>IsInitialized</name>
+      <anchorfile>classaworx_1_1lib_1_1ALIB.html</anchorfile>
+      <anchor>ab2c217951b4362bb6661a1e863105320</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static ALIB_API void</type>
@@ -2404,6 +2718,150 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>aworx::lox::ALox</name>
+    <filename>classaworx_1_1lox_1_1ALox.html</filename>
+    <member kind="variable" static="yes">
+      <type>static ALIB_API const uint32_t</type>
+      <name>ALibCompilationFlags</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>ad73d0d3096f8469b1e8ba2f17fe9bb69</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static ALIB_API std::pair&lt; const char *, uint32_t &gt;</type>
+      <name>CompilationFlagMeanings</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a94e348b81d5b26163c0eb1efc4c0fd69</anchor>
+      <arglist>[4]</arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static ALIB_API const uint32_t</type>
+      <name>CompilationFlags</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>abbfe1aff131ede76ea8f259b2282b26e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static ALIB_API const String &amp;</type>
+      <name>ConfigCategoryName</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>addc024f6c6dbb007e99c6becdc4d3649</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static ALIB_API SLiteral&lt; 2 &gt;</type>
+      <name>InternalDomains</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a27e1cb674b3172d5696b38af8479755d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static ALIB_API const int</type>
+      <name>Revision</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a9c8cddb79a23b8e57370078da95de8ed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static ALIB_API const int</type>
+      <name>Version</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a8d88b5f159f3cd597cdd92f942340024</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static ALOX_API Lox *</type>
+      <name>Get</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a5f7f08079ff9bd8f3bc10ccae36febd0</anchor>
+      <arglist>(const TString &amp;name, Create create=Create::Never)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static bool</type>
+      <name>Init</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>aa42e90660a7c751cd1dfd28942375f54</anchor>
+      <arglist>(lib::enums::Inclusion environment=lib::enums::Inclusion::Include, int argc=0, void **argv=nullptr, bool wArgs=false)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static ALOX_API Lox *</type>
+      <name>Log</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>ae55ef9a26260880cde159c9d7591cb6a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static ALOX_API void</type>
+      <name>Register</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>adf95bbd67aec5e9e71e14134b0924fcf</anchor>
+      <arglist>(Lox *lox, ContainerOp operation)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static ALOX_API void</type>
+      <name>Reset</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a372de693ad40b3f42839c8ec6ac845f4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static ALOX_API void</type>
+      <name>TerminationCleanUp</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a2a0bcae1f7341255492ebc90deab5f01</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static ALIB_API bool</type>
+      <name>VerifyCompilationFlags</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a6924a062cb4b36d1cffa928296525365</anchor>
+      <arglist>(uint32_t flags)</arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static ALOX_API bool</type>
+      <name>isInitialized</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a1fdc2bf5595c2e64dc06d987769834eb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static ALIB_API std::vector&lt; Lox * &gt;</type>
+      <name>loxes</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a6ca6d3ba00770c0f9f3f510f5f190f25</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static ALIB_API Lox *</type>
+      <name>theLog</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>aa738c8e1b3262d2afe7463f97d5980e4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected" static="yes">
+      <type>static ALOX_API void</type>
+      <name>checkLibraryVersions</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a2dbf1714a573a9e1d90bd5a68c644917</anchor>
+      <arglist>(int alibVersion=ALIB_VERSION_VERYFIER, int aloxVersion=ALIB_VERSION_VERYFIER, uint32_t flagsALib=ALIB_COMPATIBILITY_VERYFIER, uint32_t flagsALox=ALOX_COMPATIBILITY_VERYFIER)</arglist>
+    </member>
+    <member kind="function" protection="protected" static="yes">
+      <type>static ALOX_API bool</type>
+      <name>initInternal</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a11c523fe94ea435258a293ab80a6afed</anchor>
+      <arglist>(Inclusion environment, int argc, void **argv, bool wArgs)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type></type>
+      <name>ALox</name>
+      <anchorfile>classaworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>aa6e6d60af89ba00a696f2882251907d9</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>aworx::lox::ALoxReportWriter</name>
     <filename>classaworx_1_1lox_1_1ALoxReportWriter.html</filename>
     <base>aworx::lib::ReportWriter</base>
@@ -2413,6 +2871,13 @@
       <anchorfile>classaworx_1_1lox_1_1ALoxReportWriter.html</anchorfile>
       <anchor>a4b218cdb1f7e96e6cd3a851cca5f7c76</anchor>
       <arglist>(Lox *lox)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>NotifyActivation</name>
+      <anchorfile>classaworx_1_1lox_1_1ALoxReportWriter.html</anchorfile>
+      <anchor>a810c6fafc7e815f40da0a7e1f30e2233</anchor>
+      <arglist>(Phase)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual void</type>
@@ -2740,46 +3205,60 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>lib::strings::String</type>
+      <type>String</type>
       <name>MsgPrefixError</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>a0867b64df1cacdb857bb71fd3d22f224</anchor>
+      <anchor>a7576c4768fda16421e817896836e568f</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>lib::strings::String</type>
+      <type>String</type>
       <name>MsgPrefixInfo</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>ae0318c55d22df0d49978ae6228a1ef56</anchor>
+      <anchor>aa6f1bc914355fe8d17d8ca1a3d642eed</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>lib::strings::String</type>
+      <type>String</type>
       <name>MsgPrefixVerbose</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>abb564b20fc159477c53a66a48e48e0e1</anchor>
+      <anchor>adfbbaceadd0848bac5de58dd675fd735</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>lib::strings::String</type>
+      <type>String</type>
       <name>MsgPrefixWarning</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>acb84a89fbf90dd7fdc8c3b032bfe447a</anchor>
+      <anchor>ad9cc2acc0ffe4f4ab09344dacb4c4396</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>lib::strings::String</type>
+      <type>String</type>
       <name>MsgSuffix</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>acd91abb130b89fd9f59bbbf0706cdd2f</anchor>
+      <anchor>ac00d21fc9d9b258f5eb5df6681a47c38</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String64</type>
+      <name>NoMethodInfo</name>
+      <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
+      <anchor>a2e7b7694fcfdddd12ec0e58161481c25</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String64</type>
+      <name>NoSourceFileInfo</name>
+      <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
+      <anchor>a730401280990f16d7aed88c503fe6e04</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type>ALOX_API</type>
       <name>AnsiLogger</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>aee038aeffe892d57b517d5d7173e5394</anchor>
-      <arglist>(std::basic_ostream&lt; char &gt; *oStream, const String &amp;name=nullptr)</arglist>
+      <anchor>aeac625cc5388399443c5af013b437a4d</anchor>
+      <arglist>(std::basic_ostream&lt; char &gt; *oStream, bool usesStdStreams, const String &amp;name=nullptr, const String &amp;typeName=&quot;ANSI&quot;)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual ALOX_API</type>
@@ -2797,10 +3276,10 @@
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual ALOX_API void</type>
-      <name>doTextLog</name>
+      <name>logText</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>ad15a0a8b8b8d232f97d9c0d9c28cea41</anchor>
-      <arglist>(const TString &amp;domain, Log::Level level, AString &amp;msg, int indent, core::CallerInfo *caller, int lineNumber)</arglist>
+      <anchor>aa7e70b90717f0429abf0990e5e12ad9f</anchor>
+      <arglist>(core::Domain &amp;domain, Verbosity verbosity, AString &amp;msg, core::ScopeInfo &amp;scope, int lineNumber)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual ALOX_API void</type>
@@ -3524,122 +4003,6 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>aworx::lox::core::CallerInfo</name>
-    <filename>classaworx_1_1lox_1_1core_1_1CallerInfo.html</filename>
-    <member kind="typedef">
-      <type>std::map&lt; int, String32 &gt;</type>
-      <name>ThreadDictionary</name>
-      <anchorfile>classaworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>a99735dc703a3e0c252ea69a22c1687d2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>LineNumber</name>
-      <anchorfile>classaworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>abc72cc909922c33908e48159b106efa3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>TString</type>
-      <name>MethodName</name>
-      <anchorfile>classaworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>a54e2b41594e56ac5e473240774a85793</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>TString</type>
-      <name>SourceFileName</name>
-      <anchorfile>classaworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>a41b14aa6b4e69f96ee0648887a950d89</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>aworx::lib::time::Ticks</type>
-      <name>TimeStamp</name>
-      <anchorfile>classaworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>abce612133a1fd5426e5ac17ae0170ee1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>ALOX_API</type>
-      <name>CallerInfo</name>
-      <anchorfile>classaworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>ac8a59b2a7246e69fc9400468dcf39f3c</anchor>
-      <arglist>(const std::map&lt; int, String32 &gt; &amp;threadDictionary)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>Acquire</name>
-      <anchorfile>classaworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>ab91dc804181f48b0b445ac1299c36c05</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>ALOX_API void</type>
-      <name>AcquireAndSet</name>
-      <anchorfile>classaworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>a2b0ee3e889c28bcbefb239fe26ec4faa</anchor>
-      <arglist>(const TString &amp;source, int lineNumber, const TString &amp;method)</arglist>
-    </member>
-    <member kind="function">
-      <type>ALOX_API const aworx::String &amp;</type>
-      <name>getThreadNameAndID</name>
-      <anchorfile>classaworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>a073a52e5c8441631bb198ee3eea5a597</anchor>
-      <arglist>(int *id)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>Release</name>
-      <anchorfile>classaworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>a94c93747c8daa99d65c2a04c6be0748c</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>bool</type>
-      <name>lazyFlagThreadNameAndID</name>
-      <anchorfile>classaworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>a92cdf9ddc997d5c1e065702682511453</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>int</type>
-      <name>recursionCounter</name>
-      <anchorfile>classaworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>aaaa3b2279f13f2258c4db77e7949e123</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>const ThreadDictionary &amp;</type>
-      <name>threadDictionary</name>
-      <anchorfile>classaworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>ab89d14dc857db74727211f5fcf3c138f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>int</type>
-      <name>threadID</name>
-      <anchorfile>classaworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>a88110d06c2b8b5584d31b5be3f13af46</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>String</type>
-      <name>threadName</name>
-      <anchorfile>classaworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>ab0235bb40987a8310ebd7e8500b96975</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>CallerInfo &amp;</type>
-      <name>operator=</name>
-      <anchorfile>classaworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>a33aa51e818c9102464c331c763bdb02b</anchor>
-      <arglist>(const CallerInfo &amp;op)</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
     <name>aworx::lib::config::CommandLinePlugIn</name>
     <filename>classaworx_1_1lib_1_1config_1_1CommandLinePlugIn.html</filename>
     <base>aworx::lib::config::ConfigurationPlugIn</base>
@@ -3690,6 +4053,27 @@
     <name>aworx::lib::config::Configuration</name>
     <filename>classaworx_1_1lib_1_1config_1_1Configuration.html</filename>
     <base>aworx::lib::threads::ThreadLock</base>
+    <member kind="variable" static="yes">
+      <type>static constexpr int</type>
+      <name>PrioCmdLine</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>a1baac67c511294bc3317b956ea196b11</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr int</type>
+      <name>PrioEnvVars</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>aff7062a012b6acdf15fcfb20ab184975</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr int</type>
+      <name>PrioIniFile</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>ac0e213817eb829a4d7b3f1960814a781</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="variable">
       <type>CommandLinePlugIn *</type>
       <name>cmdLineCP</name>
@@ -3722,8 +4106,8 @@
       <type>ALIB_API</type>
       <name>Configuration</name>
       <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a4cc6600e815dce6891f90a80c9791798</anchor>
-      <arglist>(enums::Inclusion environment=enums::Inclusion::Include, int argc=0, void **argv=nullptr, bool wArgs=false)</arglist>
+      <anchor>a36d123dcc42ef58da853d1eb86f12199</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual ALIB_API</type>
@@ -3731,6 +4115,13 @@
       <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
       <anchor>a09dcd47e8d29f55ef5515d6413d42d16</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API void</type>
+      <name>AddStandardPlugIns</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>a705c239bb70c153d65d12a2d1a4763ed</anchor>
+      <arglist>(enums::Inclusion environment=enums::Inclusion::Include, int argc=0, void **argv=nullptr, bool wArgs=false)</arglist>
     </member>
     <member kind="function">
       <type>ALIB_API int</type>
@@ -3759,6 +4150,13 @@
       <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
       <anchor>ab36ebb23134231a52f92bc04c7ccaf91</anchor>
       <arglist>(ConfigurationPlugIn *plugin, int priority)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API bool</type>
+      <name>IsTrue</name>
+      <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>aa0da6e72e76dfd9415dedd65569f8d02</anchor>
+      <arglist>(const String &amp;value)</arglist>
     </member>
     <member kind="function">
       <type>ALIB_API bool</type>
@@ -3797,16 +4195,16 @@
     </member>
     <member kind="typedef" protection="protected">
       <type>std::pair&lt; int, ConfigurationPlugIn * &gt;</type>
-      <name>PrioAndPlugin</name>
+      <name>PluginAndPrio</name>
       <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a358c0cf54658aebd8827ac51f402dc4d</anchor>
+      <anchor>ae19a925ddfe98cba62d5bea6aeaba2e4</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>std::vector&lt; PrioAndPlugin &gt;</type>
+      <type>std::vector&lt; PluginAndPrio &gt;</type>
       <name>plugins</name>
       <anchorfile>classaworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>ad6371e09317e11b0cabb24f9adc0290a</anchor>
+      <anchor>a3ab0c51547c4c4232d1cc46c3024aef0</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -3904,9 +4302,9 @@
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual ALIB_API int</type>
-      <name>doLogSubstring</name>
+      <name>logSubstring</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1ConsoleLogger.html</anchorfile>
-      <anchor>ac69f7301749f95053732100e17a76fb4</anchor>
+      <anchor>a728330a0b5b726d0bcbb30d1fe0992f5</anchor>
       <arglist>(const AString &amp;buffer, int start, int length)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
@@ -3928,12 +4326,33 @@
     <name>aworx::lib::ConsoleReportWriter</name>
     <filename>classaworx_1_1lib_1_1ConsoleReportWriter.html</filename>
     <base>aworx::lib::ReportWriter</base>
-    <member kind="function" protection="private" virtualness="virtual">
-      <type>virtual void</type>
+    <member kind="variable" static="yes">
+      <type>static ALIB_API ConsoleReportWriter</type>
+      <name>Singleton</name>
+      <anchorfile>classaworx_1_1lib_1_1ConsoleReportWriter.html</anchorfile>
+      <anchor>a7814635efff621671f61ae49310a9d52</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual ALIB_API void</type>
+      <name>NotifyActivation</name>
+      <anchorfile>classaworx_1_1lib_1_1ConsoleReportWriter.html</anchorfile>
+      <anchor>a060e63e8c473550f7964f35ba21704bc</anchor>
+      <arglist>(enums::Phase phase)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual ALIB_API void</type>
       <name>Report</name>
       <anchorfile>classaworx_1_1lib_1_1ConsoleReportWriter.html</anchorfile>
       <anchor>a4e22fecd02d1d3b1b079178c29c54d90</anchor>
       <arglist>(const Report::Message &amp;report)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type></type>
+      <name>ConsoleReportWriter</name>
+      <anchorfile>classaworx_1_1lib_1_1ConsoleReportWriter.html</anchorfile>
+      <anchor>aa79313b30414299d171786d881144df7</anchor>
+      <arglist>()</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -4064,11 +4483,26 @@
   <compound kind="class">
     <name>aworx::lox::core::Domain</name>
     <filename>classaworx_1_1lox_1_1core_1_1Domain.html</filename>
-    <member kind="variable" static="yes">
-      <type>static TString</type>
-      <name>DomainSeparatorChars</name>
+    <class kind="struct">aworx::lox::core::Domain::LoggerData</class>
+    <member kind="variable">
+      <type>int</type>
+      <name>CntLogCalls</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
-      <anchor>afbf227c46394352a0762ecc8a5503d89</anchor>
+      <anchor>a2c80e5630abe5d5042ddb4b85c0c3562</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::vector&lt; LoggerData &gt;</type>
+      <name>Data</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>ae084fa950af8593b424bb0f75fba7a0f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String64</type>
+      <name>FullPath</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a5249fc60e18f9a0e7e7ffd24a20dbec9</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -4086,11 +4520,25 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
+      <type>std::vector&lt; std::pair&lt; Logable, Inclusion &gt; &gt;</type>
+      <name>PrefixLogables</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a07cbccb2eb45cd2c64f468b04ef7f397</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
       <type>std::vector&lt; Domain * &gt;</type>
       <name>SubDomains</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
       <anchor>a45607390dc4f3ea0f79c1ee1a08a777b</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static constexpr char</type>
+      <name>PathSeparator</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a28fc603aa3aaa186e688d30802253538</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>ALOX_API</type>
@@ -4107,46 +4555,173 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>ALOX_API Domain *</type>
-      <name>Find</name>
+      <type>int</type>
+      <name>AddLogger</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
-      <anchor>a81aa542aff07e91462b56a72c2afaede</anchor>
-      <arglist>(Substring domainPath, bool *wasCreated=nullptr)</arglist>
+      <anchor>af6b2bbb7cabe76ef457594558aac85f8</anchor>
+      <arglist>(core::Logger *logger)</arglist>
     </member>
     <member kind="function">
-      <type>ALOX_API Log::DomainLevel</type>
-      <name>GetLevel</name>
+      <type>int</type>
+      <name>CountLoggers</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
-      <anchor>a60670380e12310a09a4c36802ba4330c</anchor>
+      <anchor>a99a4aca5fd12818f7a0718ff1bf37c9d</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>ALOX_API bool</type>
-      <name>IsActive</name>
+      <type>ALOX_API Domain *</type>
+      <name>Find</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
-      <anchor>a9a7f61a789b52e689f56f0f53ceb449b</anchor>
-      <arglist>(Log::Level level)</arglist>
+      <anchor>a39db56c49e652a545a01be2bc1d50a99</anchor>
+      <arglist>(Substring domainPath, Case sensitivity, int maxCreate, bool *wasCreated)</arglist>
     </member>
     <member kind="function">
-      <type>ALOX_API void</type>
-      <name>SetLevel</name>
+      <type>int</type>
+      <name>GetCount</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
-      <anchor>a24b654c80579e9df23400b6c618f31ed</anchor>
-      <arglist>(Log::DomainLevel domainLevel, lib::enums::Propagation propagation=lib::enums::Propagation::ToDescendants)</arglist>
+      <anchor>a20db10bae0149b8f99461370b2b3fd48</anchor>
+      <arglist>(int loggerNo)</arglist>
     </member>
-    <member kind="variable" protection="protected">
-      <type>Log::DomainLevel</type>
-      <name>level</name>
+    <member kind="function">
+      <type>core::Logger *</type>
+      <name>GetLogger</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
-      <anchor>a7dc431275952481e05cbb37a1115fafb</anchor>
-      <arglist></arglist>
+      <anchor>a2c5c025862458ad7bd56bff6a0e3ea0c</anchor>
+      <arglist>(const String &amp;loggerName)</arglist>
+    </member>
+    <member kind="function">
+      <type>core::Logger *</type>
+      <name>GetLogger</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a7a091eb804deb77940227c78f4c36ad7</anchor>
+      <arglist>(int no)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>GetLoggerNo</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a2657f04b274350d1a8e01747e125ece4</anchor>
+      <arglist>(const String &amp;loggerName)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>GetLoggerNo</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>aa47720e17d76f442124d5c279b9d0287</anchor>
+      <arglist>(core::Logger *logger)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>GetPriority</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a6fd0d5e74c9ce237644735d17cbc7119</anchor>
+      <arglist>(int loggerNo)</arglist>
+    </member>
+    <member kind="function">
+      <type>Domain *</type>
+      <name>GetRoot</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a3fbb171d3b615727af29167b4cb61c4b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>Verbosity</type>
+      <name>GetVerbosity</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a19ec6c97f7e17ca51908a7174e43f2bd</anchor>
+      <arglist>(int loggerNo)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>IsActive</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a6dc8fbb3427c720adda3ed3a807f9902</anchor>
+      <arglist>(int loggerNo, Verbosity statement)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>RemoveLogger</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a9aa2e7ebee563c92c3335f9a3b4a574c</anchor>
+      <arglist>(int loggerNo)</arglist>
+    </member>
+    <member kind="function">
+      <type>Verbosity</type>
+      <name>SetVerbosity</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a72b26b0cca06a87932744d5f625efbfa</anchor>
+      <arglist>(int loggerNo, Verbosity verbosity, int priority)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>ToString</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a40a66924a70652623c5e6bceaff3d62e</anchor>
+      <arglist>(AString &amp;target)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>addLoggerRecursive</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a60a0f660238122080765f3d2e7a2e95d</anchor>
+      <arglist>(core::Logger *logger)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>Domain *</type>
       <name>findRecursive</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
-      <anchor>a5fe9c125f72057468ddd766592c08be7</anchor>
-      <arglist>(Substring &amp;domainPath, bool *wasCreated=nullptr)</arglist>
+      <anchor>a02b8bad45eee615dd7b0fb6e4d863aef</anchor>
+      <arglist>(Substring &amp;domainPath, Case sensitivity, int maxCreate, bool *wasCreated)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>removeLoggerRecursive</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a1b032fcdfc7306d529107bcd28145b66</anchor>
+      <arglist>(int loggerNo)</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>aworx::lox::Lox::DomainSubstitutionRule</name>
+    <filename>structaworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html</filename>
+    <member kind="enumeration">
+      <type></type>
+      <name>Type</name>
+      <anchorfile>structaworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html</anchorfile>
+      <anchor>a1d1cfd8ffb84e947f82999c682b666a7</anchor>
+      <arglist></arglist>
+      <enumvalue file="structaworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html" anchor="a1d1cfd8ffb84e947f82999c682b666a7a1649aed298f99d587e2eb30c1db5946b">Exact</enumvalue>
+      <enumvalue file="structaworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html" anchor="a1d1cfd8ffb84e947f82999c682b666a7a9d1a2cba952f9245c54397bbbf3e8183">StartsWith</enumvalue>
+      <enumvalue file="structaworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html" anchor="a1d1cfd8ffb84e947f82999c682b666a7a213068b7e25d045126e9b1702fae80db">EndsWith</enumvalue>
+      <enumvalue file="structaworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html" anchor="a1d1cfd8ffb84e947f82999c682b666a7a7ba559a2b304b4c6d34d67ed77f80345">Substring</enumvalue>
+    </member>
+    <member kind="variable">
+      <type>String32</type>
+      <name>Replacement</name>
+      <anchorfile>structaworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html</anchorfile>
+      <anchor>aec5095f2fc805732629f1bfc648de05c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String32</type>
+      <name>Search</name>
+      <anchorfile>structaworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html</anchorfile>
+      <anchor>ac5d8cc07dc3e4eea47354e7b7f6eb8a2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Type</type>
+      <name>type</name>
+      <anchorfile>structaworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html</anchorfile>
+      <anchor>ab6f4e6d3fde00ce906e46494f60dfe7a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>DomainSubstitutionRule</name>
+      <anchorfile>structaworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html</anchorfile>
+      <anchor>a79a7b9599dc10cfe2e980f50eb90c53e</anchor>
+      <arglist>(const TString &amp;s, const TString &amp;r)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -4398,6 +4973,13 @@
       <anchorfile>classaworx_1_1lox_1_1ESC.html</anchorfile>
       <anchor>a929f0d422bc023cdd33e11f92a47bb6c</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static ALOX_API void</type>
+      <name>ReplaceToReadable</name>
+      <anchorfile>classaworx_1_1lox_1_1ESC.html</anchorfile>
+      <anchor>a8bf7915da932619dd2686e9f9f96317d</anchor>
+      <arglist>(AString &amp;target, int startIdx)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -4698,6 +5280,10 @@
     <templarg></templarg>
   </compound>
   <compound kind="struct">
+    <name>aworx::lib::strings::IsApplicable&lt; const lox::core::Logger &amp; &gt;</name>
+    <filename>structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01lox_1_1core_1_1Logger_01_6_01_4.html</filename>
+  </compound>
+  <compound kind="struct">
     <name>aworx::lib::strings::IsApplicable&lt; const std::string &amp; &gt;</name>
     <filename>structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01std_1_1string_01_6_01_4.html</filename>
   </compound>
@@ -4716,72 +5302,64 @@
     <templarg>TCapacity</templarg>
   </compound>
   <compound kind="class">
+    <name>aworx::lib::containers::PathMap::Iterator</name>
+    <filename>classaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator.html</filename>
+    <class kind="struct">aworx::lib::containers::PathMap::Iterator::NodeAndChild</class>
+    <member kind="function">
+      <type></type>
+      <name>Iterator</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator.html</anchorfile>
+      <anchor>a1f703720e1f5d97a0386c2dfe803c763</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Iterator</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator.html</anchorfile>
+      <anchor>a7068350d054e5b6f4375389138dfd1d2</anchor>
+      <arglist>(const PathMap&lt; StoreT &gt; &amp;sm)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator!=</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator.html</anchorfile>
+      <anchor>a8c6df673280990e664cbf787369ef582</anchor>
+      <arglist>(const Iterator &amp;other) const </arglist>
+    </member>
+    <member kind="function">
+      <type>const PathMap&lt; StoreT &gt; &amp;</type>
+      <name>operator*</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator.html</anchorfile>
+      <anchor>a718054a9741bdc52d3dea84cfc84f766</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>Iterator &amp;</type>
+      <name>operator++</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator.html</anchorfile>
+      <anchor>aef12ef33726bc591f569f822c7b5ac41</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator.html</anchorfile>
+      <anchor>a9ff2e07df1950f834fee3c2deca0ff78</anchor>
+      <arglist>(const typename PathMap&lt; StoreT &gt;::Iterator &amp;other) const </arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>std::stack&lt; NodeAndChild &gt;</type>
+      <name>nodesAndChilds</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator.html</anchorfile>
+      <anchor>a2d41004ffc951d19cabd7d5717debd35</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>aworx::lox::Log</name>
     <filename>classaworx_1_1lox_1_1Log.html</filename>
-    <member kind="enumeration">
-      <type></type>
-      <name>DomainLevel</name>
-      <anchorfile>classaworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a10ac165398697ce1d642d739cc3b170f</anchor>
-      <arglist></arglist>
-      <enumvalue file="classaworx_1_1lox_1_1Log.html" anchor="a10ac165398697ce1d642d739cc3b170fad15305d7a4e34e02489c74a5ef542f36">Off</enumvalue>
-      <enumvalue file="classaworx_1_1lox_1_1Log.html" anchor="a10ac165398697ce1d642d739cc3b170fa5ef0c737746fae2ca90e66c39333f8f6">Errors</enumvalue>
-      <enumvalue file="classaworx_1_1lox_1_1Log.html" anchor="a10ac165398697ce1d642d739cc3b170fac97dda1f78d8fbb5a4f489ab1b51ff4d">WarningsAndErrors</enumvalue>
-      <enumvalue file="classaworx_1_1lox_1_1Log.html" anchor="a10ac165398697ce1d642d739cc3b170fa377a1a5cb4724b1fb5993b36459d6570">InfoWarningsAndErrors</enumvalue>
-      <enumvalue file="classaworx_1_1lox_1_1Log.html" anchor="a10ac165398697ce1d642d739cc3b170fab1c94ca2fbc3e78fc30069c8d0f01680">All</enumvalue>
-      <enumvalue file="classaworx_1_1lox_1_1Log.html" anchor="a10ac165398697ce1d642d739cc3b170fac49484faf79e2388b580e49444d6ac11">Inherit</enumvalue>
-    </member>
-    <member kind="enumeration">
-      <type></type>
-      <name>Level</name>
-      <anchorfile>classaworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a221b779e6bb7b8d40677d7642bfefac5</anchor>
-      <arglist></arglist>
-      <enumvalue file="classaworx_1_1lox_1_1Log.html" anchor="a221b779e6bb7b8d40677d7642bfefac5ad4a9fa383ab700c5bdd6f31cf7df0faf">Verbose</enumvalue>
-      <enumvalue file="classaworx_1_1lox_1_1Log.html" anchor="a221b779e6bb7b8d40677d7642bfefac5a4059b0251f66a18cb56f544728796875">Info</enumvalue>
-      <enumvalue file="classaworx_1_1lox_1_1Log.html" anchor="a221b779e6bb7b8d40677d7642bfefac5a0eaadb4fcb48a0a0ed7bc9868be9fbaa">Warning</enumvalue>
-      <enumvalue file="classaworx_1_1lox_1_1Log.html" anchor="a221b779e6bb7b8d40677d7642bfefac5a902b0d55fddef6f8d651fe1035b7d4bd">Error</enumvalue>
-    </member>
-    <member kind="enumeration">
-      <type></type>
-      <name>Scope</name>
-      <anchorfile>classaworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>aaecc53892786f2fa11e682f633af84c6</anchor>
-      <arglist></arglist>
-      <enumvalue file="classaworx_1_1lox_1_1Log.html" anchor="aaecc53892786f2fa11e682f633af84c6a6adf97f83acf6453d4a6a4b1070f3754">None</enumvalue>
-      <enumvalue file="classaworx_1_1lox_1_1Log.html" anchor="aaecc53892786f2fa11e682f633af84c6aad9c9150641994c9937a1bce42884a31">SourceFile</enumvalue>
-      <enumvalue file="classaworx_1_1lox_1_1Log.html" anchor="aaecc53892786f2fa11e682f633af84c6a4c3880bb027f159e801041b1021e88e8">Method</enumvalue>
-    </member>
     <member kind="variable" static="yes">
-      <type>static ALIB_API const uint32_t</type>
-      <name>ALibCompilationFlags</name>
-      <anchorfile>classaworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>ad73d0d3096f8469b1e8ba2f17fe9bb69</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static ALIB_API std::pair&lt; const char *, uint32_t &gt;</type>
-      <name>CompilationFlagMeanings</name>
-      <anchorfile>classaworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a94e348b81d5b26163c0eb1efc4c0fd69</anchor>
-      <arglist>[4]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static ALIB_API const uint32_t</type>
-      <name>CompilationFlags</name>
-      <anchorfile>classaworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>abbfe1aff131ede76ea8f259b2282b26e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static ALIB_API const String &amp;</type>
-      <name>ConfigCategoryName</name>
-      <anchorfile>classaworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>addc024f6c6dbb007e99c6becdc4d3649</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static ALOX_API aworx::lox::core::textlogger::TextLogger *</type>
+      <type>static ALOX_API core::textlogger::TextLogger *</type>
       <name>DebugLogger</name>
       <anchorfile>classaworx_1_1lox_1_1Log.html</anchorfile>
       <anchor>a6dab5611a4ba1574d65dfcdcb0f77cd9</anchor>
@@ -4791,50 +5369,22 @@
       <type>static ALoxReportWriter *</type>
       <name>DebugReportWriter</name>
       <anchorfile>classaworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a97f024643451cf050ab3825e9a87e041</anchor>
+      <anchor>a3fc6107634a1988540d4f827c3586233</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static ALOX_API Lox *</type>
-      <name>LOX</name>
+      <type>static ALOX_API core::textlogger::TextLogger *</type>
+      <name>IDELogger</name>
       <anchorfile>classaworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a43f74deff280835e63510eac2ceef1df</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static lib::ReportWriter *</type>
-      <name>OrigReportWriter</name>
-      <anchorfile>classaworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a96c6588f7ee4ad88d177692f35c836ac</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static ALIB_API const int</type>
-      <name>Revision</name>
-      <anchorfile>classaworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a9c8cddb79a23b8e57370078da95de8ed</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static ALIB_API const int</type>
-      <name>Version</name>
-      <anchorfile>classaworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a8d88b5f159f3cd597cdd92f942340024</anchor>
+      <anchor>a7764bec073718f0cc7c022afbc17b4b9</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" static="yes">
       <type>static ALOX_API void</type>
       <name>AddDebugLogger</name>
       <anchorfile>classaworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>af6d116f9dcb6f677378a8f4b58edb94c</anchor>
-      <arglist>(Lox *lox, bool replaceDefaultReportWriter)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static bool</type>
-      <name>Init</name>
-      <anchorfile>classaworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>aa42e90660a7c751cd1dfd28942375f54</anchor>
-      <arglist>(lib::enums::Inclusion environment=lib::enums::Inclusion::Include, int argc=0, void **argv=nullptr, bool wArgs=false)</arglist>
+      <anchor>a06444d2e7a321e26fe1d4c309cb8ed49</anchor>
+      <arglist>(Lox *lox)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static ALOX_API void</type>
@@ -4843,99 +5393,129 @@
       <anchor>a6d4775cac3c6e185f454a5e1fbf9325a</anchor>
       <arglist>(Lox *lox)</arglist>
     </member>
-    <member kind="function" static="yes">
-      <type>static ALOX_API void</type>
-      <name>TerminationCleanUp</name>
-      <anchorfile>classaworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a2a0bcae1f7341255492ebc90deab5f01</anchor>
+  </compound>
+  <compound kind="struct">
+    <name>aworx::lox::core::Logable</name>
+    <filename>structaworx_1_1lox_1_1core_1_1Logable.html</filename>
+    <member kind="variable">
+      <type>const void *</type>
+      <name>Object</name>
+      <anchorfile>structaworx_1_1lox_1_1core_1_1Logable.html</anchorfile>
+      <anchor>aa2a021e8c29b63b3e25531a9f795f50a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>Type</name>
+      <anchorfile>structaworx_1_1lox_1_1core_1_1Logable.html</anchorfile>
+      <anchor>ae011432eaca3858364b05a111f4011d3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Logable</name>
+      <anchorfile>structaworx_1_1lox_1_1core_1_1Logable.html</anchorfile>
+      <anchor>a230ce76669619539316f7de7fdbcd02f</anchor>
+      <arglist>(int type, const void *object)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>Equals</name>
+      <anchorfile>structaworx_1_1lox_1_1core_1_1Logable.html</anchorfile>
+      <anchor>a1bb22a7f33e2cce3c5abc5ced4bf4c06</anchor>
+      <arglist>(const Logable &amp;comp)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString &amp;</type>
+      <name>ToString</name>
+      <anchorfile>structaworx_1_1lox_1_1core_1_1Logable.html</anchorfile>
+      <anchor>acd0b1256409c89d1b68df9a41825fcea</anchor>
+      <arglist>(AString &amp;target)</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>aworx::lox::LogData</name>
+    <filename>structaworx_1_1lox_1_1LogData.html</filename>
+    <member kind="variable">
+      <type>int</type>
+      <name>IntegerValue</name>
+      <anchorfile>structaworx_1_1lox_1_1LogData.html</anchorfile>
+      <anchor>a65a3775caf9d6718458869ad29c1ab8a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>void *</type>
+      <name>ObjectValue</name>
+      <anchorfile>structaworx_1_1lox_1_1LogData.html</anchorfile>
+      <anchor>af6e8b41d2b8786b1ce8f27c38f70ab43</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>StringValue</name>
+      <anchorfile>structaworx_1_1lox_1_1LogData.html</anchorfile>
+      <anchor>ae2bc4ad5fb100c1514db295fe5278ebd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>Type</name>
+      <anchorfile>structaworx_1_1lox_1_1LogData.html</anchorfile>
+      <anchor>ae011432eaca3858364b05a111f4011d3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>LogData</name>
+      <anchorfile>structaworx_1_1lox_1_1LogData.html</anchorfile>
+      <anchor>ab02c224dd1a0fe3c79062f5db7f377a1</anchor>
+      <arglist>(const aworx::String &amp;s, int i, void *o=nullptr)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>LogData</name>
+      <anchorfile>structaworx_1_1lox_1_1LogData.html</anchorfile>
+      <anchor>a7f543b15e40eaffc6e2c9d0512043c4c</anchor>
+      <arglist>(const aworx::String &amp;s, void *o=nullptr)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>LogData</name>
+      <anchorfile>structaworx_1_1lox_1_1LogData.html</anchorfile>
+      <anchor>ad1a67523d8979e36e2fa85d426486507</anchor>
+      <arglist>(int i, void *o=nullptr)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>LogData</name>
+      <anchorfile>structaworx_1_1lox_1_1LogData.html</anchorfile>
+      <anchor>ad81b9241db781fd2d40299166c50340d</anchor>
+      <arglist>(void *o=nullptr)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~LogData</name>
+      <anchorfile>structaworx_1_1lox_1_1LogData.html</anchorfile>
+      <anchor>a939d886d20cf188c46c3082fb068cc46</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function" static="yes">
-      <type>static const String</type>
+    <member kind="function">
+      <type>ALOX_API AString &amp;</type>
       <name>ToString</name>
-      <anchorfile>classaworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>ac6815b6fdee40b577e3a7792f0c57324</anchor>
-      <arglist>(DomainLevel level)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static const String</type>
-      <name>ToString</name>
-      <anchorfile>classaworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a16204b7ac39117faa6738b685073cc1a</anchor>
-      <arglist>(Level level)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static const String</type>
-      <name>ToString</name>
-      <anchorfile>classaworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>ae599037403c21665853084b9d88d33e6</anchor>
-      <arglist>(Scope scope)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static ALIB_API bool</type>
-      <name>VerifyCompilationFlags</name>
-      <anchorfile>classaworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a6924a062cb4b36d1cffa928296525365</anchor>
-      <arglist>(uint32_t flags)</arglist>
-    </member>
-    <member kind="variable" protection="protected" static="yes">
-      <type>static ALOX_API Lox</type>
-      <name>defaultDbgLox</name>
-      <anchorfile>classaworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>af8bae13abcdbf2f4a28f39d9a20368a9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected" static="yes">
-      <type>static ALOX_API bool</type>
-      <name>isInitialized</name>
-      <anchorfile>classaworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a1fdc2bf5595c2e64dc06d987769834eb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function" protection="protected" static="yes">
-      <type>static ALOX_API void</type>
-      <name>checkLibraryVersions</name>
-      <anchorfile>classaworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a2dbf1714a573a9e1d90bd5a68c644917</anchor>
-      <arglist>(int alibVersion=ALIB_VERSION_VERYFIER, int aloxVersion=ALIB_VERSION_VERYFIER, uint32_t flagsALib=ALIB_COMPATIBILITY_VERYFIER, uint32_t flagsALox=ALOX_COMPATIBILITY_VERYFIER)</arglist>
-    </member>
-    <member kind="function" protection="protected" static="yes">
-      <type>static ALOX_API bool</type>
-      <name>initInternal</name>
-      <anchorfile>classaworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>aadef22675beaaa96fcf43af0f7350945</anchor>
-      <arglist>(lib::enums::Inclusion environment, int argc, void **argv, bool wArgs)</arglist>
+      <anchorfile>structaworx_1_1lox_1_1LogData.html</anchorfile>
+      <anchor>a41b1d71f6744e7d3b7e7efb30683471d</anchor>
+      <arglist>(AString &amp;target)</arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>aworx::lox::core::Logger</name>
     <filename>classaworx_1_1lox_1_1core_1_1Logger.html</filename>
+    <base>aworx::lib::threads::SmartLock</base>
     <member kind="variable">
-      <type>unsigned int</type>
+      <type>int</type>
       <name>CntLogs</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>a644d0a2cf3bb9b3a68b5159b89216f08</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>IsDisabled</name>
-      <anchorfile>classaworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>abada4ef55f947626e50d53b5cb8a31cc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String32</type>
-      <name>Name</name>
-      <anchorfile>classaworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>ab3c68b8a64bf47454f94bde4ebb6de0b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>Domain</type>
-      <name>RootDomain</name>
-      <anchorfile>classaworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>a8c3be195312b12e47828c3b647f8add1</anchor>
+      <anchor>ac0d4236906004de0129b9ff90108fdff</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -4952,33 +5532,47 @@
       <anchor>a82a500fb8edf826b0c802fce0bee6f67</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable">
-      <type>String32</type>
-      <name>TypeName</name>
-      <anchorfile>classaworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>a5a295fb1c491a3a0bc84efbe8ebe28c9</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual ALOX_API</type>
+      <type>virtual</type>
       <name>~Logger</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>a0d77f27eb95c246d555904aaf08018eb</anchor>
+      <anchor>a7a62719474beac5f447b376e0c9d5b44</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual ALOX_API bool</type>
-      <name>Line</name>
+    <member kind="function">
+      <type>const TString &amp;</type>
+      <name>GetName</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>a87a33ab7f4020fa9b515090948087801</anchor>
-      <arglist>(const AString &amp;domain, Log::Level level, const void *msgObject, int msgType, int indent, CallerInfo *caller)</arglist>
+      <anchor>a3f67e8769ddaf510b7952b91a4621d08</anchor>
+      <arglist>() const </arglist>
     </member>
     <member kind="function">
-      <type>void</type>
-      <name>SetDomain</name>
+      <type>const TString &amp;</type>
+      <name>GetTypeName</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>ac449bb9b0f280d33286db8463f48e287</anchor>
-      <arglist>(const TString &amp;domain, Log::DomainLevel domainLevel, lib::enums::Propagation propagation=lib::enums::Propagation::ToDescendants)</arglist>
+      <anchor>aa3262ab4d70006323c89b20b85d2e4d8</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>Log</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
+      <anchor>af6b022d80e4b67918067714afb8cab48</anchor>
+      <arglist>(Domain &amp;dom, Verbosity verbosity, Logables &amp;logables, ScopeInfo &amp;scope)=0</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>String32</type>
+      <name>name</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
+      <anchor>abb61b5a8a9b6a9b105bdcadaebd5b1ba</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>String32</type>
+      <name>typeName</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
+      <anchor>a7c2cc5873d633c891b5492046ece60fc</anchor>
+      <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>bool</type>
@@ -4994,18 +5588,65 @@
       <anchor>aee3bfe16d6478e9f80bf37786712bfe9</anchor>
       <arglist>(const String &amp;name, const String &amp;typeName)</arglist>
     </member>
-    <member kind="function" protection="protected" virtualness="pure">
-      <type>virtual void</type>
-      <name>doLog</name>
-      <anchorfile>classaworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>ad424401ee9cc91177dda1c0778790ea5</anchor>
-      <arglist>(const TString &amp;domain, Log::Level level, const void *msgObject, int msgType, int indent, CallerInfo *caller)=0</arglist>
+  </compound>
+  <compound kind="struct">
+    <name>aworx::lox::core::Domain::LoggerData</name>
+    <filename>structaworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html</filename>
+    <member kind="variable">
+      <type>int</type>
+      <name>CntLogCalls</name>
+      <anchorfile>structaworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html</anchorfile>
+      <anchor>a2c80e5630abe5d5042ddb4b85c0c3562</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>core::Logger *</type>
+      <name>Logger</name>
+      <anchorfile>structaworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html</anchorfile>
+      <anchor>ab0f0a9542542d6c8782e1ad65fdc708b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Verbosity</type>
+      <name>LoggerVerbosity</name>
+      <anchorfile>structaworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html</anchorfile>
+      <anchor>a312c13a4f141e167f5b82a483b9a9edd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>Priority</name>
+      <anchorfile>structaworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html</anchorfile>
+      <anchor>a4450b0bad265ba3bd24e994f70aec802</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>LoggerData</name>
+      <anchorfile>structaworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html</anchorfile>
+      <anchor>a7665b2385a58790b8ef821caeea4f7bf</anchor>
+      <arglist>(core::Logger *logger)</arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>aworx::lox::Lox</name>
     <filename>classaworx_1_1lox_1_1Lox.html</filename>
     <base>aworx::lib::threads::ThreadLock</base>
+    <class kind="struct">aworx::lox::Lox::DomainSubstitutionRule</class>
+    <member kind="variable" static="yes">
+      <type>static constexpr int</type>
+      <name>PrioProtected</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>aaadcce82539022fab50871afc106a9d1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr int</type>
+      <name>PrioSource</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a49d9175b17b3c2d376e35c59615a905e</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="variable">
       <type>int</type>
       <name>CntLogCalls</name>
@@ -5014,24 +5655,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>int</type>
-      <name>ErrIfNoDefaultDomain</name>
+      <type>Case</type>
+      <name>DomainSensitivity</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>aaaef02f6a1dff7969d2fa1e39a7b9755</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>TString</type>
-      <name>InternalDomain</name>
-      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a9bccc0d3300ad844c867a263e6e3e8bd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>TString</type>
-      <name>NullDomain</name>
-      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a1b898840bc3c6004def2f687caa4acb9</anchor>
+      <anchor>ac63dd33538dff8703707b14fc6d04d52</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" static="yes">
@@ -5042,11 +5669,11 @@
       <arglist>(const String &amp;name=nullptr)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>ALOX_API</type>
       <name>Lox</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>adeecd070b47db04dfac1b186f99a95d2</anchor>
-      <arglist>()</arglist>
+      <anchor>ac5a4bc73635c5e608f573170a65c0dc1</anchor>
+      <arglist>(const TString &amp;name, bool doRegister=true)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual ALOX_API</type>
@@ -5055,82 +5682,96 @@
       <anchor>a8df22829cdb5cad1db7f72bb0b068d5b</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
-      <name>Acquire</name>
+    <member kind="function">
+      <type>void</type>
+      <name>Assert</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>affeac79a4a864890b2e1862d388bfad3</anchor>
-      <arglist>()</arglist>
+      <anchor>a120c861ade11fa9312affe53dcb39c4e</anchor>
+      <arglist>(bool condition, const TString &amp;domain, void *logable, int type)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
-      <name>AcquireAndSetCI</name>
+      <name>Assert</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a56aa4e48e2328746639c63a9b9af2fb9</anchor>
-      <arglist>(const TString &amp;file, int line, const TString &amp;func)</arglist>
+      <anchor>ac2f172a00bb8f199400ca73a5af89611</anchor>
+      <arglist>(bool condition, void *logable, int type)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Assert</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>af4aa22eabb67650079c44822cae0102f</anchor>
+      <arglist>(bool condition, const TString &amp;domain, const TString &amp;msg)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Assert</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>af6231385bed64a25d113276260fa420c</anchor>
+      <arglist>(bool condition, const TString &amp;msg)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>ClearSourcePathTrimRules</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a01bb6d07bbecaacf8be4471b16889d63</anchor>
+      <arglist>(Inclusion global=Inclusion::Include, bool allowAutoRule=true)</arglist>
     </member>
     <member kind="function">
       <type>ALOX_API void</type>
-      <name>AddLogger</name>
+      <name>Entry</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>abd300988900048304b481573883406d8</anchor>
-      <arglist>(core::Logger *logger)</arglist>
+      <anchor>a6c3cca935f588cd3ce14b9ea8e077a4d</anchor>
+      <arglist>(const TString &amp;domain, Verbosity verbosity, const void *logable, int type)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
-      <name>Assert</name>
+      <name>Entry</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a3499398cbeb8d1a26f5eea3399514111</anchor>
-      <arglist>(bool cond, const TString &amp;msg, int indent=0)</arglist>
+      <anchor>a8f6a598272b876b9f4bf8e3cff0a974d</anchor>
+      <arglist>(Verbosity verbosity, const void *logable, int type)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
-      <name>Assert</name>
+      <name>Entry</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a25747e65a604090e40b91fccea0023d0</anchor>
-      <arglist>(bool cond, const TString &amp;domain, const TString &amp;msg, int indent=0)</arglist>
+      <anchor>a764d843b292c608d125b17e68480d143</anchor>
+      <arglist>(const TString &amp;domain, Verbosity verbosity, const TString &amp;msg)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
-      <name>Assert</name>
+      <name>Entry</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a4ede60be7decfe6038d3a7e24798967d</anchor>
-      <arglist>(bool cond, void *msgObject, int msgType, int indent=0)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>Assert</name>
-      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>aea4c583aaf831207900eed3bba5b4d6e</anchor>
-      <arglist>(bool cond, const TString &amp;domain, void *msgObject, int msgType, int indent=0)</arglist>
+      <anchor>a7f16d440005d604207e93de5f5bcae8b</anchor>
+      <arglist>(Verbosity verbosity, const TString &amp;msg)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Error</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a3dab1b8384cf49f26424e34436c5b744</anchor>
-      <arglist>(const TString &amp;msg, int indent=0)</arglist>
+      <anchor>a7cdf87c0b7a9162f2c748b35f421a218</anchor>
+      <arglist>(const TString &amp;domain, void *logable, int type)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Error</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ab5b4330eb329275e5b8a47988ca1dd6f</anchor>
-      <arglist>(const TString &amp;domain, const TString &amp;msg, int indent=0)</arglist>
+      <anchor>afb10be657f483af50f2dd2e47ca8ac27</anchor>
+      <arglist>(void *logable, int type)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Error</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a019fa45a1dcc075e3719d74ecb6c55f5</anchor>
-      <arglist>(void *msgObject, int msgType, int indent=0)</arglist>
+      <anchor>a99504f65048f664e85268b185682f7ac</anchor>
+      <arglist>(const TString &amp;domain, const TString &amp;msg)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Error</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>afb3563a6edb68e3726b76510179e3853</anchor>
-      <arglist>(const TString &amp;domain, void *msgObject, int msgType, int indent=0)</arglist>
+      <anchor>a605156badc9cabaf2391bc99c398bde2</anchor>
+      <arglist>(const TString &amp;msg)</arglist>
     </member>
     <member kind="function">
       <type>ALOX_API core::Logger *</type>
@@ -5140,67 +5781,81 @@
       <arglist>(const String &amp;loggerName)</arglist>
     </member>
     <member kind="function">
-      <type>ALOX_API void *</type>
-      <name>GetMarker</name>
+      <type>const TString</type>
+      <name>GetName</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a5c0a8913fff2143fb1eb6d2b86098933</anchor>
-      <arglist>(Log::Scope scope)</arglist>
+      <anchor>ace2e04c6099b72fe8d100d8736286990</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>If</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ab6bd80427375239e9c52f75772162d57</anchor>
+      <arglist>(bool condition, const TString &amp;domain, Verbosity verbosity, void *logable, int type)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>If</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a4f78de1a4be801e12d5e69c9d7928f7f</anchor>
+      <arglist>(bool condition, Verbosity verbosity, void *logable, int type)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>If</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a01ecf358ad9640f001f8435b42257ab3</anchor>
+      <arglist>(bool condition, const TString &amp;domain, Verbosity verbosity, const TString &amp;msg)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>If</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a54d566d5308d5be55c7ce6c8bc685b5d</anchor>
+      <arglist>(bool condition, Verbosity verbosity, const TString &amp;msg)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Info</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ad52f89dd7d537db1a1bf70eb5b1c9ae0</anchor>
-      <arglist>(const TString &amp;msg, int indent=0)</arglist>
+      <anchor>a057d793fc722121a883fe4f2bd070135</anchor>
+      <arglist>(const TString &amp;domain, void *logable, int type)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Info</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>af38603caa1098e01c8fb24237ad6827d</anchor>
-      <arglist>(const TString &amp;domain, const TString &amp;msg, int indent=0)</arglist>
+      <anchor>a534f09df615c1685f74ffffc8b2eb209</anchor>
+      <arglist>(void *logable, int type)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Info</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ae5d7977c90da70a522134f43afa647b4</anchor>
-      <arglist>(void *msgObject, int msgType, int indent=0)</arglist>
+      <anchor>aa7971b0e50324b6e0d31195a5d5e4836</anchor>
+      <arglist>(const TString &amp;domain, const TString &amp;msg)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Info</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a39e67f909bd052a39ceeb0a198f5f2cc</anchor>
-      <arglist>(const TString &amp;domain, void *msgObject, int msgType, int indent=0)</arglist>
+      <anchor>a1164ae171b5383d292b71e6bba05b9ec</anchor>
+      <arglist>(const TString &amp;msg)</arglist>
     </member>
     <member kind="function">
-      <type>ALOX_API void</type>
-      <name>Line</name>
+      <type>bool</type>
+      <name>IsRegistered</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a36309b70ccb095ea31e0a428111a4d2a</anchor>
-      <arglist>(bool doLog, const TString &amp;domain, Log::Level level, const void *msgObject, int msgType, int indent=0, const String &amp;loggerFilter=nullptr)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>Line</name>
-      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>aa51041fd6646711c6d13f84d7bc9259f</anchor>
-      <arglist>(const TString &amp;domain, Log::Level level, const void *msgObject, int msgType, int indent=0, const String &amp;loggerFilter=nullptr)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>Line</name>
-      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>aeb594bf91110eb9584dd472d2e15c21a</anchor>
-      <arglist>(Log::Level level, const void *msgObject, int msgType, int indent=0, const String &amp;loggerFilter=nullptr)</arglist>
+      <anchor>a7232acc9ffe4595630e4abdaf6918ef9</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>ALOX_API void</type>
       <name>LogConfig</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a5ecb5f8a2a72316617ea48e6bcf695d4</anchor>
-      <arglist>(const String &amp;domain, Log::Level level, const String &amp;headLine, const String &amp;loggerFilter=nullptr)</arglist>
+      <anchor>ade5edb3b47eee24a0185ac0b7efa8c17</anchor>
+      <arglist>(const String &amp;domain, Verbosity verbosity, const String &amp;headLine)</arglist>
     </member>
     <member kind="function">
       <type>ALOX_API void</type>
@@ -5208,6 +5863,83 @@
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
       <anchor>a3911541857ea84938dede341ceb64ddd</anchor>
       <arglist>(const String &amp;threadName, int id=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Once</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>abe9c3707a734c9442f3913ee9360ab06</anchor>
+      <arglist>(const TString &amp;domain, Verbosity verbosity, const void *logable, int type, const TString &amp;group, Scope scope=Scope::Global, int pathLevel=0, int quantity=1)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Once</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a374f4b2b2a5d441c6ea1d5d87c900e5d</anchor>
+      <arglist>(const TString &amp;domain, Verbosity verbosity, const TString &amp;msg, const TString &amp;group, Scope scope=Scope::Global, int pathLevel=0, int quantity=1)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Once</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a29b732950cc10545c4c7049562f1247f</anchor>
+      <arglist>(Verbosity verbosity, const TString &amp;msg, const TString &amp;group, Scope scope, int pathLevel=0, int quantity=1)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Once</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a3b2a861e3335e72f1ea400d0cf31852a</anchor>
+      <arglist>(Verbosity verbosity, const TString &amp;msg, const TString &amp;group, int quantity=1)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Once</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a3fe7e7ccb6629132fc0ac2a390e6727b</anchor>
+      <arglist>(Verbosity verbosity, const TString &amp;msg, int quantity=1)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Once</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a1304c179d155be221d4e5d80531a8a44</anchor>
+      <arglist>(const TString &amp;msg, const TString &amp;group, Scope scope, int pathLevel=0, int quantity=1)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Once</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a1aa72ece36ea563d1fa192224540f5cd</anchor>
+      <arglist>(const TString &amp;domain, Verbosity verbosity, const TString &amp;msg, Scope scope=Scope::Global, int pathLevel=0, int quantity=1)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Once</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ad855bd815fb02fc6b3c59bc4a4680cf0</anchor>
+      <arglist>(Verbosity verbosity, const TString &amp;msg, Scope scope, int pathLevel=0, int quantity=1)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Once</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a6c81827f29e2f252dad250fbcbcb15ed</anchor>
+      <arglist>(const TString &amp;msg, Scope scope, int pathLevel=0, int quantity=1)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Once</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ad8291e14a64c61bcdc55cb4cd5b3ffe1</anchor>
+      <arglist>(const TString &amp;msg, int quantity=1)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Once</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a591671dd8ff5a4140e1588071450465a</anchor>
+      <arglist>(const TString &amp;msg, const TString &amp;group, int quantity=1)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual void</type>
@@ -5220,15 +5952,22 @@
       <type>ALOX_API bool</type>
       <name>RemoveLogger</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a9d6901dfd4853b8287bede398b6d4c86</anchor>
-      <arglist>(const core::Logger *logger)</arglist>
+      <anchor>ab2aa68c613846fce90749385f1c373e1</anchor>
+      <arglist>(core::Logger *logger)</arglist>
     </member>
     <member kind="function">
-      <type>ALOX_API int</type>
-      <name>RemoveLoggers</name>
+      <type>ALOX_API core::Logger *</type>
+      <name>RemoveLogger</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a394e92d4075de2a50b6fc0b5658500ac</anchor>
-      <arglist>(const String &amp;loggerFilter=nullptr)</arglist>
+      <anchor>aa919db1f8e24e600d7f648f52a240487</anchor>
+      <arglist>(const String &amp;loggerName)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API void</type>
+      <name>RemoveThreadDomain</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a097f3c186dbc0dc2d13188e1c3242230</anchor>
+      <arglist>(const TString &amp;scopeDomain, Scope scope, Thread *thread=nullptr)</arglist>
     </member>
     <member kind="function">
       <type>ALOX_API void</type>
@@ -5238,193 +5977,403 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>ALOX_API void</type>
-      <name>SetDomain</name>
+      <type>ALOX_API LogData *</type>
+      <name>Retrieve</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a0676d6fc6dd68d7c2c0ca49ab8abe630</anchor>
-      <arglist>(const TString &amp;domain, Log::Scope scope=Log::Scope::None)</arglist>
+      <anchor>a6d6ebd5b956c1a86e602a24bfbe02b94</anchor>
+      <arglist>(const TString &amp;key, Scope scope=Scope::Global, int pathLevel=0)</arglist>
     </member>
     <member kind="function">
-      <type>ALOX_API void</type>
-      <name>SetDomain</name>
+      <type>ALOX_API LogData *</type>
+      <name>Retrieve</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a1812ac9849649157cf391d03e4af86cb</anchor>
-      <arglist>(const TString &amp;domain, Log::DomainLevel domainLevel, const String &amp;loggerFilter=nullptr, lib::enums::Propagation propagation=lib::enums::Propagation::ToDescendants)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>SetDomain</name>
-      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a4cf6388b847550f8b6b318b55efa35ee</anchor>
-      <arglist>(const TString &amp;domain, Log::Scope scope, Log::DomainLevel domainLevel, const String &amp;loggerFilter=nullptr)</arglist>
+      <anchor>ae98f464af09413f17915bc73267f33d3</anchor>
+      <arglist>(Scope scope=Scope::Global, int pathLevel=0)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>SetDomain</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a8546fd2c39a9ee72596df9a57cd82083</anchor>
-      <arglist>(const TString &amp;domain, Log::DomainLevel domainLevel, Log::Scope scope)</arglist>
+      <anchor>a8a61a1c73d6a94b505c0baf9e6108bbb</anchor>
+      <arglist>(const TString &amp;scopeDomain, Scope scope, int pathLevel=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetDomain</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a4b9be1d512730ff13756ee388a3e20a3</anchor>
+      <arglist>(const TString &amp;scopeDomain, Scope scope, Thread *thread)</arglist>
     </member>
     <member kind="function">
       <type>ALOX_API void</type>
-      <name>SetLogger</name>
+      <name>SetDomainSubstitutionRule</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>af59433acecdc611018aad891528e1efa</anchor>
-      <arglist>(lib::enums::Switch newState, const String &amp;loggerFilter)</arglist>
+      <anchor>a57e92057e7a33c93ff16a677df6db52b</anchor>
+      <arglist>(const TString &amp;domainPath, const TString &amp;replacement)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetPrefix</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a7c865720d8a1df7f2df6ee0b130abca9</anchor>
+      <arglist>(const void *logable, int type, Scope scope, int pathLevel=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetPrefix</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a218d51eec9cff785c6df0f91baf965c1</anchor>
+      <arglist>(const void *logable, int type, Scope scope, Thread *thread)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetPrefix</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a3534f0ed8caa9504f58cf1a8fc7ae2d3</anchor>
+      <arglist>(const TString &amp;logable, Scope scope, int pathLevel=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetPrefix</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a26f41fad430c36f0a2518642331115a8</anchor>
+      <arglist>(const TString &amp;logable, Scope scope, Thread *thread)</arglist>
     </member>
     <member kind="function">
       <type>ALOX_API void</type>
-      <name>SetMarker</name>
+      <name>SetPrefix</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a848fdd8b93afc2b2c89d526d4d128e3e</anchor>
-      <arglist>(void *marker, Log::Scope scope)</arglist>
+      <anchor>ac257a2345d3c5d4223b9861cd32309dd</anchor>
+      <arglist>(const void *logable, int type, const TString &amp;domain=nullptr, lib::enums::Inclusion otherPLs=lib::enums::Inclusion::Include)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetPrefix</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a6da7c7ea4a8b7956e37772963bf885ce</anchor>
+      <arglist>(const TString &amp;logable, const TString &amp;domain=nullptr, Inclusion otherPLs=Inclusion::Include)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetScopeInfo</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a81ef55056de37ef21728a427ee665120</anchor>
+      <arglist>(const TString &amp;file, int line, const TString &amp;func)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetSourcePathTrimRule</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ace0e192fa14eb0d6a522e06e69e5402b</anchor>
+      <arglist>(const TString &amp;path, Inclusion includeString=Inclusion::Exclude, int trimOffset=0, Case sensitivity=Case::Ignore, Inclusion global=Inclusion::Include)</arglist>
     </member>
     <member kind="function">
       <type>ALOX_API void</type>
       <name>SetStartTime</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ae31d4b72ea1bc7513fd341b6dc99053f</anchor>
-      <arglist>(lib::time::Ticks startTime=lib::time::Ticks(0), const String &amp;loggerFilter=nullptr)</arglist>
+      <anchor>a1e977d06d962d8afce696058345f94f4</anchor>
+      <arglist>(lib::time::Ticks startTime=lib::time::Ticks(0), const String &amp;loggerName=nullptr)</arglist>
     </member>
     <member kind="function">
       <type>ALOX_API void</type>
       <name>SetStartTime</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ac47e41fa26b09d46e609ad195632b6a4</anchor>
-      <arglist>(time_t startTime, const String &amp;loggerFilter=nullptr)</arglist>
+      <anchor>a717cc8dfcf1a68396ca4bd060eca1c75</anchor>
+      <arglist>(time_t startTime, const String &amp;loggerName=nullptr)</arglist>
     </member>
     <member kind="function">
       <type>ALOX_API void</type>
       <name>SetStartTime</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>afc65c39a68e3170106a30e13b4006c98</anchor>
-      <arglist>(LPFILETIME startTime, const String &amp;loggerFilter=nullptr)</arglist>
+      <anchor>af0daf981d6d3e6bee367e90c2cdd7711</anchor>
+      <arglist>(LPFILETIME startTime, const String &amp;loggerName=nullptr)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API void</type>
+      <name>SetVerbosity</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a31dbb9788d52da7bc7376da0a03a3730</anchor>
+      <arglist>(core::Logger *logger, Verbosity verbosity, const TString &amp;domain=TString(&quot;/&quot;), int priority=PrioSource)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API void</type>
+      <name>SetVerbosity</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ad7ea38441082c8a2f995c45e8948b0c7</anchor>
+      <arglist>(const String &amp;loggerName, Verbosity verbosity, const TString &amp;domain=TString(&quot;/&quot;), int priority=PrioSource)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Store</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a03fbc3e701040c7543830e9009b92ae2</anchor>
+      <arglist>(LogData *data, const TString &amp;key, Scope scope=Scope::Global, int pathLevel=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Store</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a7e726e7707a926643b25ede72388fcc2</anchor>
+      <arglist>(LogData *data, Scope scope=Scope::Global, int pathLevel=0)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Verbose</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>af6093dbce9dbbeffcf76362b4abacac8</anchor>
-      <arglist>(const TString &amp;msg, int indent=0)</arglist>
+      <anchor>aefc98d380005814de3f5b77cd75782c3</anchor>
+      <arglist>(const TString &amp;domain, void *logable, int type)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Verbose</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a19d5d602e061c3bffafbe24730ed277c</anchor>
-      <arglist>(const TString &amp;domain, const TString &amp;msg, int indent=0)</arglist>
+      <anchor>af60088d3d1396e844d744c171f3e91b3</anchor>
+      <arglist>(void *logable, int type)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Verbose</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a7de4de50bb74004025ca67dc8ad0bcd4</anchor>
-      <arglist>(void *msgObject, int msgType, int indent=0)</arglist>
+      <anchor>a536087f02433ec49f75c9f5d7918ddd2</anchor>
+      <arglist>(const TString &amp;domain, const TString &amp;msg)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Verbose</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a40ea941f26bcba6258584ccde996411f</anchor>
-      <arglist>(const TString &amp;domain, void *msgObject, int msgType, int indent=0)</arglist>
+      <anchor>a8a2723a1773a6284b17ca68d0cf05bcf</anchor>
+      <arglist>(const TString &amp;msg)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Warning</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ab00a8f8c882ff229ed5ff26ab1f5633d</anchor>
-      <arglist>(const TString &amp;msg, int indent=0)</arglist>
+      <anchor>acc935824995fd1701feb05ca9be8029d</anchor>
+      <arglist>(const TString &amp;domain, void *logable, int type)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Warning</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>af5b1f5ef4329394a8f3d25d701ca2fe3</anchor>
-      <arglist>(const TString &amp;domain, const TString &amp;msg, int indent=0)</arglist>
+      <anchor>adc0c50c09fe5044dac135fd1b72d1abc</anchor>
+      <arglist>(void *logable, int type)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Warning</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ac9945acd645dbaa0d59128d3c8b4fb94</anchor>
-      <arglist>(void *msgObject, int msgType, int indent=0)</arglist>
+      <anchor>afcfd60ee05c9410f38c52569303e29b1</anchor>
+      <arglist>(const TString &amp;domain, const TString &amp;msg)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Warning</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ae7e139392e7c429aff8f1045e302792d</anchor>
-      <arglist>(const TString &amp;domain, void *msgObject, int msgType, int indent=0)</arglist>
+      <anchor>afd14515586cd059d17cff59eef98be5a</anchor>
+      <arglist>(const TString &amp;msg)</arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>core::CallerInfo</type>
-      <name>callerInfo</name>
+      <type>core::Domain</type>
+      <name>domains</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a3f03380b7450165d47b292ccd8ad86ff</anchor>
+      <anchor>af7a1bb606d5ac72b03aa6cf35988405a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>std::map&lt; AString, AString &gt;</type>
-      <name>defaultDomains</name>
+      <type>std::vector&lt; DomainSubstitutionRule &gt;</type>
+      <name>domainSubstitutions</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a1d0d0993e720ea4eaadcc4e1debd8f7d</anchor>
+      <anchor>a7f3139c0b1ac2de972db69d485a9481e</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>std::vector&lt; core::Logger * &gt;</type>
-      <name>loggers</name>
+      <type>core::Domain</type>
+      <name>internalDomains</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a8af08b7d47cdaedadac30275031331eb</anchor>
+      <anchor>aa3529fb39b5e80492452d6fb4b669b4c</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>std::map&lt; AString, void * &gt;</type>
-      <name>markers</name>
+      <type>int</type>
+      <name>maxDomainPathLength</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a95a2ae400c6a2ca0bbb66ac4dcec4020</anchor>
+      <anchor>a71f136dd9dc7e9d48c33ad54ae5d802f</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>AString</type>
-      <name>resDomain</name>
+      <type>int</type>
+      <name>maxLoggerNameLength</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>aa704b680934869c92c288cb9a23034f2</anchor>
+      <anchor>a905f7b109e0f5efe1313db829261b824</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>core::CallerInfo::ThreadDictionary</type>
+      <type>const aworx::TString</type>
+      <name>noKeyHashKey</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ae99685f280a7452b79acca0bdfd6dc7b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>oneTimeWarningCircularDS</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a1ff634203235e02dab39d057469ec3db</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>core::ScopeStore&lt; AString * &gt;</type>
+      <name>scopeDomains</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a0b8621c72cad2bd075810e7d8641c327</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>core::ScopeInfo</type>
+      <name>scopeInfo</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a39702a71b03e2768266e8bfbef7d6c62</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>core::ScopeStore&lt; std::map&lt; AString, LogData * &gt; * &gt;</type>
+      <name>scopeLogData</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a031d54d92dd3ebf60e76609c1164133c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>core::ScopeStore&lt; std::map&lt; AString, int &gt; * &gt;</type>
+      <name>scopeLogOnce</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a4fe9fdff3ef94ccf56c20bba13571e72</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>core::ScopeStore&lt; core::Logable * &gt;</type>
+      <name>scopePrefixes</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a8b2fdf701e870e1932cbe2ebe34ea70c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>core::ScopeInfo::ThreadDictionary</type>
       <name>threadDictionary</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a6840265f2a87f2c836f0661ab90fb188</anchor>
+      <anchor>aaa1e0a8fb5a0deba7ca52242bfa582c8</anchor>
       <arglist></arglist>
     </member>
-    <member kind="function" protection="protected" static="yes">
-      <type>static ALOX_API bool</type>
-      <name>simpleWildcardFilter</name>
+    <member kind="variable" protection="protected">
+      <type>core::Logables</type>
+      <name>tmpLogables</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a7f1ea36a1e2ce90d2ced8b3e5fa71084</anchor>
-      <arglist>(core::Logger *logger, const String &amp;loggerFilter)</arglist>
+      <anchor>a105bef857d9833bf0646546f497e19d9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>ALOX_API bool</type>
+      <name>checkScopeInformation</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>aa69a4d8c11d48465bbffe12495842142</anchor>
+      <arglist>(Scope scope, int pathLevel, const TString &amp;internalDomain)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>ALOX_API void</type>
+      <name>clear</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ac8bb3912a3ce86b15842e79d0b421204</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>ALOX_API core::Domain *</type>
       <name>evaluateResultDomain</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a4b3ab93a52d93d663c9898504ff53c90</anchor>
-      <arglist>(const TString &amp;domain)</arglist>
+      <anchor>a9b58060c77090803e3cf92866bd90ce4</anchor>
+      <arglist>(const TString &amp;domainPath)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>ALOX_API core::Domain *</type>
+      <name>findDomain</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>af4d7254610ffa1da2fbcf77ed19251ed</anchor>
+      <arglist>(core::Domain &amp;domainSystem, TString domainPath)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>ALOX_API void</type>
-      <name>internalLog</name>
+      <name>getAllVerbosities</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a2788f89cf43423ca779ccfb931574e96</anchor>
-      <arglist>(Log::Level level, const TString &amp;msg)</arglist>
+      <anchor>a4054bdb8cd2fe4f7a1bd9b583fde528c</anchor>
+      <arglist>(core::Logger *logger, core::Domain *dom, TString *cfgStr, int cfgPriority)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>ALOX_API void</type>
+      <name>getVerbosityFromConfig</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a190a949c9c2cc69040e74ef491d257c6</anchor>
+      <arglist>(core::Logger *logger, core::Domain *dom, TString *cfgStr, int cfgPriority)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>ALOX_API bool</type>
+      <name>isThreadReleatedScope</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a09cea8594a917bd4a8e004acbf452b66</anchor>
+      <arglist>(Scope scope)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>ALOX_API void</type>
+      <name>log</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>abf4f36065b0fc241ec6610d58a4e267a</anchor>
+      <arglist>(core::Domain *dom, Verbosity verbosity, core::Logable &amp;logable, Inclusion prefixes)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>ALOX_API void</type>
       <name>logConfigDomainRecursive</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a69162739e7506f8e9e806bf52fa4672b</anchor>
-      <arglist>(core::Domain &amp;domain, int indent, AString &amp;domPath, AString &amp;buffer)</arglist>
+      <anchor>ad82cd87b2f33a36a7dd4a750f0d3441f</anchor>
+      <arglist>(core::Domain &amp;domain, AString &amp;buffer)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>ALOX_API void</type>
+      <name>logInternal</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a921cc772993edd15813cbe3daa4777f4</anchor>
+      <arglist>(Verbosity verbosity, const String &amp;subDomain, const TString &amp;msg)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>ALOX_API void</type>
+      <name>once</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ae5fab8772abbb100400889765325221b</anchor>
+      <arglist>(const TString &amp;domain, Verbosity verbosity, const void *logable, int type, const TString &amp;group, Scope scope, int pathLevel, int quantity)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>ALOX_API LogData *</type>
+      <name>retrieveImpl</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ae09231332a3d86620476b3b87006fa82</anchor>
+      <arglist>(const TString &amp;key, Scope scope, int pathLevel)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>ALOX_API void</type>
+      <name>setDomainImpl</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a34fa0de31f161bd2fe77dc0295c76952</anchor>
+      <arglist>(const TString &amp;scopeDomain, Scope scope, int pathLevel, bool removeNTRSD, Thread *thread)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>ALOX_API void</type>
+      <name>setPrefixImpl</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a042f2376d21a1d317f632ac4b889e444</anchor>
+      <arglist>(const void *logable, int type, Scope scope, int pathLevel, Thread *thread)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>ALOX_API void</type>
+      <name>storeImpl</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a9c14c75a9aa3b27f5bedefebed8998f0</anchor>
+      <arglist>(LogData *data, const TString &amp;key, Scope scope, int pathLevel)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -5461,9 +6410,9 @@
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual int</type>
-      <name>doLogSubstring</name>
+      <name>logSubstring</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1MemoryLogger.html</anchorfile>
-      <anchor>a463c7df444456b599a8175d2d5d82daa</anchor>
+      <anchor>a32594d5f318dc7d7cdb4aed2ce86a9ac</anchor>
       <arglist>(const AString &amp;buffer, int start, int length)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
@@ -5523,25 +6472,18 @@
       <type></type>
       <name>Message</name>
       <anchorfile>classaworx_1_1lib_1_1Report_1_1Message.html</anchorfile>
-      <anchor>a6baa7bb921e285b26a88c50af3ccbe9a</anchor>
-      <arglist>(ALIB_DBG_SRC_INFO_PARAMS_DECL int type, const strings::TString &amp;msg)</arglist>
+      <anchor>a8b57d684d8b9eb03bc4683373660211a</anchor>
+      <arglist>(int type, const strings::TString &amp;msg, const strings::TString &amp;file, int line, const strings::TString &amp;func)</arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>aworx::lox::core::textlogger::MetaInfo</name>
     <filename>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</filename>
     <member kind="variable">
-      <type>AString</type>
-      <name>ConsumableSourcePathPrefix</name>
-      <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a33397151e3c9c32997688cd29a3cd0c5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String16</type>
+      <type>TString</type>
       <name>DateFormat</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a04c5093c5a5f5e30994ca8b0b84853a0</anchor>
+      <anchor>af2fb4c3f354b7666adac33e78e4a36a0</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -5559,34 +6501,6 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>String16</type>
-      <name>LogLevelError</name>
-      <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a2764435fbb01166f974b5a15e1e8409c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String16</type>
-      <name>LogLevelInfo</name>
-      <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a3c2f6953954b286c890698b87394d177</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String16</type>
-      <name>LogLevelVerbose</name>
-      <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>ae770e910a7f77ad48c0a39f18a02d708</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String16</type>
-      <name>LogLevelWarning</name>
-      <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a9a924d9d08be43ed1289117bf4983b79</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
       <type>int</type>
       <name>LogNumberMinDigits</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
@@ -5594,45 +6508,45 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>String32</type>
+      <type>TString</type>
       <name>NoMethodInfo</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a12513f8c0773fab55c23cc8546af56b1</anchor>
+      <anchor>a3feb1a3fdbbde8059ca3007d9a7421d6</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>String32</type>
+      <type>TString</type>
       <name>NoSourceFileInfo</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>aa2d945d4b31dd484ece4cc687acf8831</anchor>
+      <anchor>af44d2da6f43116de8557910776f9b1f1</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>String16</type>
+      <type>TString</type>
       <name>TimeDiffDays</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>aa3f98d2aa27c33f8dc7c3cf4c6b1a0d8</anchor>
+      <anchor>a7b75d4c8a835d33c6dac1bd7416ed70a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>String16</type>
+      <type>TString</type>
       <name>TimeDiffHours</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a20d1d3b476a6aafeeb5e87fbfacc5e52</anchor>
+      <anchor>a9395ddf39cb846bdf260e116583203cb</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>String16</type>
+      <type>TString</type>
       <name>TimeDiffMicros</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a661a09a8e1eb17581bc67aff1f132d56</anchor>
+      <anchor>a8b7385903157de774b3d44906d0f09fc</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>String16</type>
+      <type>TString</type>
       <name>TimeDiffMillis</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>ad78fde89caeb4ccbe776b1d351d52413</anchor>
+      <anchor>ac3f039b4887207a47f2868449e3b1443</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -5643,45 +6557,73 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>String16</type>
+      <type>TString</type>
       <name>TimeDiffMins</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a6781ce4c72ba2117380b0ee0b803e4bd</anchor>
+      <anchor>a068b97de0fc963964de79ccb2fde412d</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>String16</type>
+      <type>TString</type>
       <name>TimeDiffNanos</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a64f81ff97c47cac44c8c03890bdf62b8</anchor>
+      <anchor>a5466a8a9826616e5082306e7d688ccd2</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>String16</type>
+      <type>TString</type>
       <name>TimeDiffNone</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a1e70c1adc386d8704fd62c4978a0a3d5</anchor>
+      <anchor>a33336f57dcc0d962375b72a082cd16a2</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>String16</type>
+      <type>TString</type>
       <name>TimeDiffSecs</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a12c8df15357e02da8b11708cb294cfd3</anchor>
+      <anchor>a41fbed046e377a2f835b2f7e9c93c758</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>String16</type>
+      <type>TString</type>
       <name>TimeElapsedDays</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a41d26c37bd02bb24b9428af4896aa074</anchor>
+      <anchor>a090fd75d30917282f140e5fcdde1fe3a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>String16</type>
+      <type>TString</type>
       <name>TimeOfDayFormat</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a84bddee7b379ee961f0d8dc745401985</anchor>
+      <anchor>a78d44b9a457f1b8a1e175b3fe7043f8f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>TString</type>
+      <name>VerbosityError</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
+      <anchor>a69535f9bd8c5493447f323c5cf7f7401</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>TString</type>
+      <name>VerbosityInfo</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
+      <anchor>a2417488cbf15cf08bf1c373b9aac3222</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>TString</type>
+      <name>VerbosityVerbose</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
+      <anchor>a78d18da89faf78000af7767edbd48249</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>TString</type>
+      <name>VerbosityWarning</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
+      <anchor>accf8a9e6cd0f83806e46a5b3998965d2</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" virtualness="virtual">
@@ -5695,8 +6637,8 @@
       <type>virtual ALOX_API int</type>
       <name>Write</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a5848a385a93b4c1ff902525337babcc2</anchor>
-      <arglist>(TextLogger &amp;logger, AString &amp;buffer, const TString &amp;domain, Log::Level level, CallerInfo *caller)</arglist>
+      <anchor>a037523cdb14e8bae567b8fef2d102009</anchor>
+      <arglist>(TextLogger &amp;logger, AString &amp;buffer, core::Domain &amp;domain, Verbosity verbosity, ScopeInfo &amp;scope)</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>lib::time::TicksCalendarTime</type>
@@ -5709,8 +6651,8 @@
       <type>virtual ALOX_API int</type>
       <name>processVariable</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a6afaa48005f63c597d47b2125022cd23</anchor>
-      <arglist>(TextLogger &amp;logger, const TString &amp;domain, Log::Level level, CallerInfo *caller, AString &amp;buffer, Substring &amp;variable)</arglist>
+      <anchor>adea560dbe05cd27b8d3313d5bd202817</anchor>
+      <arglist>(TextLogger &amp;logger, core::Domain &amp;domain, Verbosity verbosity, ScopeInfo &amp;scope, AString &amp;dest, Substring &amp;variable)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual ALOX_API void</type>
@@ -5718,6 +6660,31 @@
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
       <anchor>a3e51ddb2d0d6ce33302bf0d16b1328fb</anchor>
       <arglist>(AString &amp;buffer, int_fast64_t diffNanos)</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>aworx::lib::containers::PathMap::Iterator::NodeAndChild</name>
+    <filename>structaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator_1_1NodeAndChild.html</filename>
+    <member kind="variable">
+      <type>int</type>
+      <name>childNo</name>
+      <anchorfile>structaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator_1_1NodeAndChild.html</anchorfile>
+      <anchor>ac10cf46c3127cd5d178f7dafd27307eb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>const PathMap&lt; StoreT &gt; *</type>
+      <name>node</name>
+      <anchorfile>structaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator_1_1NodeAndChild.html</anchorfile>
+      <anchor>affa9990544a6dc2526546efc06c9d391</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NodeAndChild</name>
+      <anchorfile>structaworx_1_1lib_1_1containers_1_1PathMap_1_1Iterator_1_1NodeAndChild.html</anchorfile>
+      <anchor>a20a6c2f03983e9a440e87bf1564b4766</anchor>
+      <arglist>(const PathMap&lt; StoreT &gt; *node, int childNo)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -5818,27 +6785,6 @@
   <compound kind="class">
     <name>aworx::lox::core::textlogger::ObjectConverter</name>
     <filename>classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html</filename>
-    <member kind="variable">
-      <type>String64</type>
-      <name>FmtNullObject</name>
-      <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html</anchorfile>
-      <anchor>af8fbc61a0701e45601ee9355a2d6675a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String64</type>
-      <name>FmtUnknownObject</name>
-      <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html</anchorfile>
-      <anchor>a132ed009c6e3362a54e052134a602cfc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>ALOX_API</type>
-      <name>ObjectConverter</name>
-      <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html</anchorfile>
-      <anchor>a16313a6b5202d6d886b0e5a34e995a8a</anchor>
-      <arglist>()</arglist>
-    </member>
     <member kind="function" virtualness="virtual">
       <type>virtual</type>
       <name>~ObjectConverter</name>
@@ -5846,23 +6792,23 @@
       <anchor>a6e913a253720dcb333b6205b4272709d</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual ALOX_API bool</type>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
       <name>ConvertObject</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html</anchorfile>
-      <anchor>a248a310704a1deac3710b03bc5b1712d</anchor>
-      <arglist>(const void *o, int typeInfo, AString &amp;result)</arglist>
+      <anchor>a8420c7f2bc561caf4977bf17ab7d8af6</anchor>
+      <arglist>(const Logable &amp;logable, AString &amp;target)=0</arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>aworx::lib::Ownable</name>
     <filename>classaworx_1_1lib_1_1Ownable.html</filename>
-    <member kind="function" virtualness="pure">
+    <member kind="function" virtualness="virtual">
       <type>virtual void</type>
       <name>Acquire</name>
       <anchorfile>classaworx_1_1lib_1_1Ownable.html</anchorfile>
-      <anchor>a72e29e3a91bbf0ab80b0b19bc7975a39</anchor>
-      <arglist>()=0</arglist>
+      <anchor>a07a42f9930e2b2f9b94a3d47d3088532</anchor>
+      <arglist>(const TString &amp;file, int line, const TString &amp;func)</arglist>
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual void</type>
@@ -5870,6 +6816,27 @@
       <anchorfile>classaworx_1_1lib_1_1Ownable.html</anchorfile>
       <anchor>a4dc7ecb0d192d6cccc9287daaf0eca0f</anchor>
       <arglist>()=0</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>acquirementLineNumber</name>
+      <anchorfile>classaworx_1_1lib_1_1Ownable.html</anchorfile>
+      <anchor>a7d085fb917fb26fa76fad94d9296665d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>strings::TString</type>
+      <name>acquirementMethodName</name>
+      <anchorfile>classaworx_1_1lib_1_1Ownable.html</anchorfile>
+      <anchor>a34743946c0a8598a13feea2b3c7944eb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>strings::TString</type>
+      <name>acquirementSourcefile</name>
+      <anchorfile>classaworx_1_1lib_1_1Ownable.html</anchorfile>
+      <anchor>ae9f15c83b17c4bab35858650c98c44d5</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="struct">
@@ -5879,8 +6846,8 @@
       <type></type>
       <name>Owner</name>
       <anchorfile>structaworx_1_1lib_1_1Owner.html</anchorfile>
-      <anchor>a59da7b021af5b8c1ce7e456a6d1c72a1</anchor>
-      <arglist>(Ownable &amp;ownable)</arglist>
+      <anchor>a514baed722d3c59c870ad9579f7002ae</anchor>
+      <arglist>(Ownable &amp;ownable, const TString &amp;file, int line, const TString &amp;func)</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -5933,6 +6900,378 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>aworx::lib::containers::PathMap</name>
+    <filename>classaworx_1_1lib_1_1containers_1_1PathMap.html</filename>
+    <templarg>StoreT</templarg>
+    <class kind="class">aworx::lib::containers::PathMap::Iterator</class>
+    <member kind="variable">
+      <type>std::vector&lt; PathMap * &gt;</type>
+      <name>Childs</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a422c2605154bc2f2293a700bb3a0ad58</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>PathMap *</type>
+      <name>Parent</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>ada6ee4f09fb99fb511bcab41e0e56a86</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>Path</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a5e583dd1bf88abfb28487df2f676a6e8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>StoreT</type>
+      <name>Value</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>acc64411e4973d80d6983e983f9ce7f0e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PathMap</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>aaccccfd0b10107ddbacf38c91f873caa</anchor>
+      <arglist>(PathMap *parent=nullptr)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~PathMap</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a822667eea97b87b37dd5bc7ac2604df2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Clear</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>aa71d36872f416feaa853788a7a7a7ef8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>PathMap *</type>
+      <name>Get</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a7046c5973df23b42d51def0cc83ec30a</anchor>
+      <arglist>(const TString &amp;key, bool create, const TString &amp;separators)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Remove</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a8f18aa974dae0df745dcb929542c462a</anchor>
+      <arglist>(PathMap *node)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>PathMap *</type>
+      <name>get</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>ae5b636df31556bf9f00d3b88c769cbf1</anchor>
+      <arglist>(Substring &amp;key, bool create, const TString &amp;separators)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>PathMap&lt; aworx::lib::strings::AString * &gt;</name>
+    <filename>classaworx_1_1lib_1_1containers_1_1PathMap.html</filename>
+    <member kind="variable">
+      <type>std::vector&lt; PathMap * &gt;</type>
+      <name>Childs</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a422c2605154bc2f2293a700bb3a0ad58</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>PathMap *</type>
+      <name>Parent</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>ada6ee4f09fb99fb511bcab41e0e56a86</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>Path</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a5e583dd1bf88abfb28487df2f676a6e8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>aworx::lib::strings::AString *</type>
+      <name>Value</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>acc64411e4973d80d6983e983f9ce7f0e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PathMap</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>aaccccfd0b10107ddbacf38c91f873caa</anchor>
+      <arglist>(PathMap *parent=nullptr)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~PathMap</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a822667eea97b87b37dd5bc7ac2604df2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Clear</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>aa71d36872f416feaa853788a7a7a7ef8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>PathMap *</type>
+      <name>Get</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a7046c5973df23b42d51def0cc83ec30a</anchor>
+      <arglist>(const TString &amp;key, bool create, const TString &amp;separators)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Remove</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a8f18aa974dae0df745dcb929542c462a</anchor>
+      <arglist>(PathMap *node)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>PathMap *</type>
+      <name>get</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>ae5b636df31556bf9f00d3b88c769cbf1</anchor>
+      <arglist>(Substring &amp;key, bool create, const TString &amp;separators)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>PathMap&lt; core::aworx::lox::core::Logable * &gt;</name>
+    <filename>classaworx_1_1lib_1_1containers_1_1PathMap.html</filename>
+    <member kind="variable">
+      <type>std::vector&lt; PathMap * &gt;</type>
+      <name>Childs</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a422c2605154bc2f2293a700bb3a0ad58</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>PathMap *</type>
+      <name>Parent</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>ada6ee4f09fb99fb511bcab41e0e56a86</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>Path</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a5e583dd1bf88abfb28487df2f676a6e8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>core::aworx::lox::core::Logable *</type>
+      <name>Value</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>acc64411e4973d80d6983e983f9ce7f0e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PathMap</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>aaccccfd0b10107ddbacf38c91f873caa</anchor>
+      <arglist>(PathMap *parent=nullptr)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~PathMap</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a822667eea97b87b37dd5bc7ac2604df2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Clear</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>aa71d36872f416feaa853788a7a7a7ef8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>PathMap *</type>
+      <name>Get</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a7046c5973df23b42d51def0cc83ec30a</anchor>
+      <arglist>(const TString &amp;key, bool create, const TString &amp;separators)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Remove</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a8f18aa974dae0df745dcb929542c462a</anchor>
+      <arglist>(PathMap *node)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>PathMap *</type>
+      <name>get</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>ae5b636df31556bf9f00d3b88c769cbf1</anchor>
+      <arglist>(Substring &amp;key, bool create, const TString &amp;separators)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>PathMap&lt; std::map&lt; aworx::lib::strings::AString, aworx::lox::LogData * &gt; * &gt;</name>
+    <filename>classaworx_1_1lib_1_1containers_1_1PathMap.html</filename>
+    <member kind="variable">
+      <type>std::vector&lt; PathMap * &gt;</type>
+      <name>Childs</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a422c2605154bc2f2293a700bb3a0ad58</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>PathMap *</type>
+      <name>Parent</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>ada6ee4f09fb99fb511bcab41e0e56a86</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>Path</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a5e583dd1bf88abfb28487df2f676a6e8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::map&lt; aworx::lib::strings::AString, aworx::lox::LogData * &gt; *</type>
+      <name>Value</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>acc64411e4973d80d6983e983f9ce7f0e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PathMap</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>aaccccfd0b10107ddbacf38c91f873caa</anchor>
+      <arglist>(PathMap *parent=nullptr)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~PathMap</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a822667eea97b87b37dd5bc7ac2604df2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Clear</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>aa71d36872f416feaa853788a7a7a7ef8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>PathMap *</type>
+      <name>Get</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a7046c5973df23b42d51def0cc83ec30a</anchor>
+      <arglist>(const TString &amp;key, bool create, const TString &amp;separators)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Remove</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a8f18aa974dae0df745dcb929542c462a</anchor>
+      <arglist>(PathMap *node)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>PathMap *</type>
+      <name>get</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>ae5b636df31556bf9f00d3b88c769cbf1</anchor>
+      <arglist>(Substring &amp;key, bool create, const TString &amp;separators)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>PathMap&lt; std::map&lt; aworx::lib::strings::AString, int &gt; * &gt;</name>
+    <filename>classaworx_1_1lib_1_1containers_1_1PathMap.html</filename>
+    <member kind="variable">
+      <type>std::vector&lt; PathMap * &gt;</type>
+      <name>Childs</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a422c2605154bc2f2293a700bb3a0ad58</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>PathMap *</type>
+      <name>Parent</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>ada6ee4f09fb99fb511bcab41e0e56a86</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>Path</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a5e583dd1bf88abfb28487df2f676a6e8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::map&lt; aworx::lib::strings::AString, int &gt; *</type>
+      <name>Value</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>acc64411e4973d80d6983e983f9ce7f0e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PathMap</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>aaccccfd0b10107ddbacf38c91f873caa</anchor>
+      <arglist>(PathMap *parent=nullptr)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~PathMap</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a822667eea97b87b37dd5bc7ac2604df2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Clear</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>aa71d36872f416feaa853788a7a7a7ef8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>PathMap *</type>
+      <name>Get</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a7046c5973df23b42d51def0cc83ec30a</anchor>
+      <arglist>(const TString &amp;key, bool create, const TString &amp;separators)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Remove</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a8f18aa974dae0df745dcb929542c462a</anchor>
+      <arglist>(PathMap *node)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>PathMap *</type>
+      <name>get</name>
+      <anchorfile>classaworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>ae5b636df31556bf9f00d3b88c769cbf1</anchor>
+      <arglist>(Substring &amp;key, bool create, const TString &amp;separators)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>aworx::lox::core::textlogger::PlainTextLogger</name>
     <filename>classaworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html</filename>
     <base>aworx::lox::core::textlogger::TextLogger</base>
@@ -5947,8 +7286,8 @@
       <type></type>
       <name>PlainTextLogger</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html</anchorfile>
-      <anchor>ab982d0ee3cc6faeacdc8f538f63efb87</anchor>
-      <arglist>(const String &amp;name, const String &amp;typeName)</arglist>
+      <anchor>a2f3dfc9db13a16de7292abe4ca45bc82</anchor>
+      <arglist>(const String &amp;name, const String &amp;typeName, bool usesStdStreams)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual</type>
@@ -5959,17 +7298,17 @@
     </member>
     <member kind="function" protection="protected" virtualness="pure">
       <type>virtual int</type>
-      <name>doLogSubstring</name>
+      <name>logSubstring</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html</anchorfile>
-      <anchor>a1eb6db533f3cc421bb2a9a2f9d8751a6</anchor>
+      <anchor>aa445d82f16d9fe9da5b080028805447e</anchor>
       <arglist>(const AString &amp;buffer, int start, int length)=0</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual ALOX_API void</type>
-      <name>doTextLog</name>
+      <name>logText</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html</anchorfile>
-      <anchor>ad15a0a8b8b8d232f97d9c0d9c28cea41</anchor>
-      <arglist>(const TString &amp;domain, Log::Level level, AString &amp;msg, int indent, core::CallerInfo *caller, int lineNumber)</arglist>
+      <anchor>aa7e70b90717f0429abf0990e5e12ad9f</anchor>
+      <arglist>(core::Domain &amp;domain, Verbosity verbosity, AString &amp;msg, core::ScopeInfo &amp;scope, int lineNumber)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="pure">
       <type>virtual bool</type>
@@ -6455,8 +7794,15 @@
       <type>ALIB_API void</type>
       <name>DoReport</name>
       <anchorfile>classaworx_1_1lib_1_1Report.html</anchorfile>
-      <anchor>a818a0ba87e92dfee2aacd992a942bb75</anchor>
-      <arglist>(ALIB_DBG_SRC_INFO_PARAMS_DECL int type, const strings::TString &amp;msg)</arglist>
+      <anchor>a3977916df8d86dcb2c61e95d9b457b38</anchor>
+      <arglist>(int type, const lib::strings::TString &amp;msg, const lib::strings::TString &amp;file, int line, const lib::strings::TString &amp;func)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API ReportWriter *</type>
+      <name>PeekWriter</name>
+      <anchorfile>classaworx_1_1lib_1_1Report.html</anchorfile>
+      <anchor>ac3c72f0916841cb53a007d099a86e4d3</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>ALIB_API void</type>
@@ -6467,23 +7813,30 @@
     </member>
     <member kind="function">
       <type>ALIB_API void</type>
+      <name>PopWriter</name>
+      <anchorfile>classaworx_1_1lib_1_1Report.html</anchorfile>
+      <anchor>a51cc05fbf386a19049a2e80bd32a0541</anchor>
+      <arglist>(ReportWriter *checkWriter)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API void</type>
       <name>PushHaltFlags</name>
       <anchorfile>classaworx_1_1lib_1_1Report.html</anchorfile>
       <anchor>a7983ee7befb74df86990b506dfaaf6a0</anchor>
       <arglist>(bool haltOnErrors, bool haltOnWarnings)</arglist>
     </member>
     <member kind="function">
-      <type>ALIB_API ReportWriter *</type>
-      <name>ReplaceReportWriter</name>
+      <type>ALIB_API void</type>
+      <name>PushWriter</name>
       <anchorfile>classaworx_1_1lib_1_1Report.html</anchorfile>
-      <anchor>a346c5c5d8273ac95ee3e62194753f9ea</anchor>
-      <arglist>(ReportWriter *newReportWriter, bool deletePrevious)</arglist>
+      <anchor>a15a55ca31cef913041443efc8a13494f</anchor>
+      <arglist>(ReportWriter *newWriter)</arglist>
     </member>
     <member kind="variable" protection="protected" static="yes">
-      <type>static ALIB_API Report</type>
+      <type>static ALIB_API Report *</type>
       <name>defaultReport</name>
       <anchorfile>classaworx_1_1lib_1_1Report.html</anchorfile>
-      <anchor>a9088fab9d3df935215bb0bb30f7b2250</anchor>
+      <anchor>a85731ee839db2fafc226b9a8281167f4</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -6494,10 +7847,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>threads::ThreadLockNR *</type>
+      <type>threads::ThreadLock *</type>
       <name>lock</name>
       <anchorfile>classaworx_1_1lib_1_1Report.html</anchorfile>
-      <anchor>ae93c7c02e0fcf8f15616b0b49bed5194</anchor>
+      <anchor>ad083e81bb83e9548b93f22631c5f0477</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -6508,10 +7861,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>ReportWriter *</type>
-      <name>reportWriter</name>
+      <type>std::stack&lt; ReportWriter * &gt;</type>
+      <name>writers</name>
       <anchorfile>classaworx_1_1lib_1_1Report.html</anchorfile>
-      <anchor>a9b5969adbe225a7b5fe8bda46c619cd3</anchor>
+      <anchor>a46a7dd034e50f98088be4da9bb180524</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -6524,6 +7877,13 @@
       <anchorfile>classaworx_1_1lib_1_1ReportWriter.html</anchorfile>
       <anchor>aacb613601745319beb402a265be497e5</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>NotifyActivation</name>
+      <anchorfile>classaworx_1_1lib_1_1ReportWriter.html</anchorfile>
+      <anchor>aff02ec3de8e94bd4d906e89168849ac8</anchor>
+      <arglist>(enums::Phase phase)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual void</type>
@@ -6549,6 +7909,1281 @@
       <anchorfile>classaworx_1_1lib_1_1threads_1_1Runnable.html</anchorfile>
       <anchor>adc27ee0d7b66b8795db722f47a615cfe</anchor>
       <arglist>()=0</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>aworx::lox::core::ScopeDump</name>
+    <filename>classaworx_1_1lox_1_1core_1_1ScopeDump.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>ScopeDump</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>a62e1dda70b97ff9daa0b12f0e5670b80</anchor>
+      <arglist>(ScopeInfo::ThreadDictionary &amp;threadDictionary, const TString noKeyHashKey, AString &amp;target, int maxKeyLength=10)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API int</type>
+      <name>writeStore</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>a2ac85963ae7b731f047051b4d593b58e</anchor>
+      <arglist>(ScopeStore&lt; T &gt; *store, int indentSpaces)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API int</type>
+      <name>writeStoreMap</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>a0300c0e3bf0ca655848b1737e500a9f9</anchor>
+      <arglist>(ScopeStore&lt; T &gt; *store)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>maxKeyLength</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>ace5c16296f35665a0346922cdb706cc6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>const TString</type>
+      <name>noKeyHashKey</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>aa191e3a8df124f0e744972df0322fdda</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString &amp;</type>
+      <name>target</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>a3d93c7a0f172c1aa8064bcb3ad11919a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ScopeInfo::ThreadDictionary &amp;</type>
+      <name>threadDictionary</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>ac9c80619e40a37f61c24b594febf1782</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>ALOX_API AString &amp;</type>
+      <name>storeKeyToScope</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>a5a2f983c8c5be78a45fbbeb8c4bde6a4</anchor>
+      <arglist>(const lib::containers::PathMap&lt; T &gt; &amp;map)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>ALOX_API AString &amp;</type>
+      <name>storeThreadToScope</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>aa8e35644877b44cceea3c76ef1961b6c</anchor>
+      <arglist>(int threadID)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>ALOX_API int</type>
+      <name>writeStoreMapHelper</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>a9b273d5cd4060583f81ea934d8976d46</anchor>
+      <arglist>(std::map&lt; AString, T &gt; &amp;map, const TString &amp;prefix)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>aworx::lox::core::ScopeInfo</name>
+    <filename>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</filename>
+    <member kind="typedef">
+      <type>std::map&lt; int, String32 &gt;</type>
+      <name>ThreadDictionary</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a99735dc703a3e0c252ea69a22c1687d2</anchor>
+      <arglist></arglist>
+    </member>
+    <class kind="struct">aworx::lox::core::ScopeInfo::SourceFile</class>
+    <class kind="struct">aworx::lox::core::ScopeInfo::SourcePathTrimRule</class>
+    <member kind="variable" static="yes">
+      <type>static ALIB_API int</type>
+      <name>DefaultCacheSize</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a01d0e5f6ac830884f21e5086d1d91b94</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API</type>
+      <name>ScopeInfo</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a6af06b1fa6e8772eff948e87947fbb3b</anchor>
+      <arglist>(const TString &amp;name, const std::map&lt; int, String32 &gt; &amp;threadDictionary)</arglist>
+    </member>
+    <member kind="function">
+      <type>const String</type>
+      <name>GetFileName</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a28b15d71e257d5eba8fc981ffb1421f1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const String</type>
+      <name>GetFileNameWithoutExtension</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>acba47760057c72724b081ae6a38465e0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const String</type>
+      <name>GetFullPath</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>ae2c23eee898650cd7880a370e7ce5899</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>GetLineNumber</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>ae5c4253d48d562a076016c054d847ccc</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const TString &amp;</type>
+      <name>GetLoxName</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>acda6a047a2327d0ef0819057a0e5c580</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const String</type>
+      <name>GetMethod</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a8bdcd510e436ae95bce067beae21b69a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const TString &amp;</type>
+      <name>GetOrigFile</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>af4805883509db0aa99eb41e0e75b305d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>GetThreadID</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a6ada61025e16fbfcd69fa53b531eb63a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const aworx::String &amp;</type>
+      <name>GetThreadNameAndID</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>ae0a6b0dbae09af09760197641e5a4025</anchor>
+      <arglist>(int *id)</arglist>
+    </member>
+    <member kind="function">
+      <type>const Ticks &amp;</type>
+      <name>GetTimeStamp</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>aac63d502ad9e3127e63ecc389c36d078</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const String</type>
+      <name>GetTrimmedPath</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>aa35b14e49f6fa87ff1011fc2f3a4fcc3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API void</type>
+      <name>Set</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>aef667a335cd43ee15210ae8f002037dd</anchor>
+      <arglist>(const TString &amp;source, int lineNumber, const TString &amp;method, Thread *thread)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API void</type>
+      <name>SetSourcePathTrimRule</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>aaccc72216941cd9da1aa1bf22010e313</anchor>
+      <arglist>(const TString &amp;path, Inclusion includeString, int trimOffset, Case sensitivity, Inclusion global)</arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static ALIB_API std::vector&lt; SourcePathTrimRule &gt;</type>
+      <name>GlobalSPTRs</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a3ff8b25900c8fb4a39086e55a4de2f15</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static ALIB_API bool</type>
+      <name>GlobalSPTRsReadFromConfig</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a4b4cc9b47565ee962c6488358e236c65</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>SourceFile *</type>
+      <name>actual</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a9e5d069be80c5f7ef34c1aa0abd7e169</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>AutoDetectTrimableSourcePath</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>ac69d17599ca644e4c9e9be0f42ca7361</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>SourceFile *</type>
+      <name>cache</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a0483fbbfacc1e2fedddd3360cf1b7a89</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>uint_fast64_t</type>
+      <name>cacheRun</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a7777e336e451a64b8311a14136e9a062</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>cacheSize</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a21f5d4e833c67e26ce27afd3d9f23288</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>std::vector&lt; SourcePathTrimRule &gt;</type>
+      <name>LocalSPTRs</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a1a109984041e560099b534dd1ab4c10c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>String32</type>
+      <name>loxName</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a17e561c001584e6fc3a4b9445deea701</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>origLine</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>aea32b63d1b8fdc55f090b2b8b41b3d6b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>TString</type>
+      <name>origMethod</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>ad28921e2af5d6ded371d6d1b33ade6a3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Thread *</type>
+      <name>thread</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a743989b66f3b52f1eda2a8498a93da0b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>const ThreadDictionary &amp;</type>
+      <name>threadDictionary</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>ab89d14dc857db74727211f5fcf3c138f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>String</type>
+      <name>threadName</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>ab0235bb40987a8310ebd7e8500b96975</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Ticks</type>
+      <name>timeStamp</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a4e72dac5d168369a754893772395f0d3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>int</type>
+      <name>getPathSeparator</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>aa6d59afb05181160d621a1e9e8875a40</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>ALIB_API void</type>
+      <name>trimPath</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>adce30083ede7f1172f4f92c5b627e837</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>ScopeInfo &amp;</type>
+      <name>operator=</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a79aef84c80ea77a4800b7aa7179d1aa3</anchor>
+      <arglist>(const ScopeInfo &amp;op)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>aworx::lox::core::ScopeStore</name>
+    <filename>classaworx_1_1lox_1_1core_1_1ScopeStore.html</filename>
+    <templarg>StoreT</templarg>
+    <member kind="variable">
+      <type>StoreT</type>
+      <name>globalStore</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ad5f544834c72f2e639cda32bfdf4914b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>lib::containers::PathMap&lt; StoreT &gt; *</type>
+      <name>languageStore</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a1251572d8e2460a60f89fd2372e71c63</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::map&lt; int, std::vector&lt; StoreT &gt; &gt;</type>
+      <name>threadInnerStore</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a344205164cffc3c7c0a6191c9a716b8f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::map&lt; int, std::vector&lt; StoreT &gt; &gt;</type>
+      <name>threadOuterStore</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aaedb67f0bf7ce679a991c7ee988e1cc4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API</type>
+      <name>ScopeStore</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ab2e398fa8b1dfdd80338f081ee495717</anchor>
+      <arglist>(ScopeInfo &amp;scopeInfo, bool cfgSingleThreadValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API</type>
+      <name>~ScopeStore</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>af76396d4a8d1de67fe742bf4cdc3fbab</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API void</type>
+      <name>Clear</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa71d36872f416feaa853788a7a7a7ef8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>StoreT</type>
+      <name>Get</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a19b162b0d416fc5be7f1f6a91c718c3e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API void</type>
+      <name>InitAccess</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aeaa3f65207097ff85093acc485223a44</anchor>
+      <arglist>(Scope scope, int pathLevel, int threadID)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API void</type>
+      <name>InitWalk</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ae264cb9b825bd34050766c256a2504df</anchor>
+      <arglist>(Scope startScope, StoreT localObject)</arglist>
+    </member>
+    <member kind="function">
+      <type>StoreT</type>
+      <name>Remove</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a4b6e9ae247a950ed1b5d5d82c72b1440</anchor>
+      <arglist>(StoreT value)</arglist>
+    </member>
+    <member kind="function">
+      <type>StoreT</type>
+      <name>Store</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a5361906d7ce4b2ca6c3f676c85cf01fd</anchor>
+      <arglist>(StoreT value)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API StoreT</type>
+      <name>Walk</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>abf60f56ae3a9568c4c963460cb4cf9b7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>actPathLevel</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa5ede8468c729de0886d3bc84d31714e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>lib::containers::PathMap&lt; StoreT &gt; *</type>
+      <name>actPathMapNode</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a77c6ecbc68ffa22251428b4763a3d3b7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Scope</type>
+      <name>actScope</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ab420b6d519025a485c6345895ad174ee</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>actThreadID</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>afd0f796ebbfae3564416016c197c27b1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>cfgSingleThreadValue</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ac8ebbb91a987a22c90eae5a4c72ecbc0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>lazyLanguageNode</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a531fce640b5915cd0496ba8c3c1058db</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ScopeInfo &amp;</type>
+      <name>scopeInfo</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aef20e807838c38a874e2952fa989535b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>walking</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa99316a33a7768a6af77f01edda34ef3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>StoreT</type>
+      <name>walkLocalObject</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a82821b811e042ad4ca39396346cd49e0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>walkNextThreadIdx</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a9928f44e5399d356c4380ab105e48941</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>std::vector&lt; StoreT &gt; *</type>
+      <name>walkThreadValues</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>abf7b7f408957d23da2c7b6fc692436cd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>StoreT</type>
+      <name>access</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a9d948185e80ad3706923867cfe608317</anchor>
+      <arglist>(int cmd, StoreT value)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>getPathMapNode</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ad1305df36b6dfcde87eded99e9e9424b</anchor>
+      <arglist>(bool create)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ScopeStore&lt; aworx::lib::strings::AString * &gt;</name>
+    <filename>classaworx_1_1lox_1_1core_1_1ScopeStore.html</filename>
+    <member kind="variable">
+      <type>aworx::lib::strings::AString *</type>
+      <name>globalStore</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ad5f544834c72f2e639cda32bfdf4914b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>lib::containers::PathMap&lt; aworx::lib::strings::AString * &gt; *</type>
+      <name>languageStore</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a1251572d8e2460a60f89fd2372e71c63</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::map&lt; int, std::vector&lt; aworx::lib::strings::AString * &gt; &gt;</type>
+      <name>threadInnerStore</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a344205164cffc3c7c0a6191c9a716b8f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::map&lt; int, std::vector&lt; aworx::lib::strings::AString * &gt; &gt;</type>
+      <name>threadOuterStore</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aaedb67f0bf7ce679a991c7ee988e1cc4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API</type>
+      <name>ScopeStore</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ab2e398fa8b1dfdd80338f081ee495717</anchor>
+      <arglist>(ScopeInfo &amp;scopeInfo, bool cfgSingleThreadValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API</type>
+      <name>~ScopeStore</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>af76396d4a8d1de67fe742bf4cdc3fbab</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API void</type>
+      <name>Clear</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa71d36872f416feaa853788a7a7a7ef8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>aworx::lib::strings::AString *</type>
+      <name>Get</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a19b162b0d416fc5be7f1f6a91c718c3e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API void</type>
+      <name>InitAccess</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aeaa3f65207097ff85093acc485223a44</anchor>
+      <arglist>(Scope scope, int pathLevel, int threadID)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API void</type>
+      <name>InitWalk</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ae264cb9b825bd34050766c256a2504df</anchor>
+      <arglist>(Scope startScope, aworx::lib::strings::AString *localObject)</arglist>
+    </member>
+    <member kind="function">
+      <type>aworx::lib::strings::AString *</type>
+      <name>Remove</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a4b6e9ae247a950ed1b5d5d82c72b1440</anchor>
+      <arglist>(aworx::lib::strings::AString *value)</arglist>
+    </member>
+    <member kind="function">
+      <type>aworx::lib::strings::AString *</type>
+      <name>Store</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a5361906d7ce4b2ca6c3f676c85cf01fd</anchor>
+      <arglist>(aworx::lib::strings::AString *value)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API aworx::lib::strings::AString *</type>
+      <name>Walk</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>abf60f56ae3a9568c4c963460cb4cf9b7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>actPathLevel</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa5ede8468c729de0886d3bc84d31714e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>lib::containers::PathMap&lt; aworx::lib::strings::AString * &gt; *</type>
+      <name>actPathMapNode</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a77c6ecbc68ffa22251428b4763a3d3b7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Scope</type>
+      <name>actScope</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ab420b6d519025a485c6345895ad174ee</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>actThreadID</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>afd0f796ebbfae3564416016c197c27b1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>cfgSingleThreadValue</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ac8ebbb91a987a22c90eae5a4c72ecbc0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>lazyLanguageNode</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a531fce640b5915cd0496ba8c3c1058db</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ScopeInfo &amp;</type>
+      <name>scopeInfo</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aef20e807838c38a874e2952fa989535b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>walking</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa99316a33a7768a6af77f01edda34ef3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>aworx::lib::strings::AString *</type>
+      <name>walkLocalObject</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a82821b811e042ad4ca39396346cd49e0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>walkNextThreadIdx</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a9928f44e5399d356c4380ab105e48941</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>std::vector&lt; aworx::lib::strings::AString * &gt; *</type>
+      <name>walkThreadValues</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>abf7b7f408957d23da2c7b6fc692436cd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>aworx::lib::strings::AString *</type>
+      <name>access</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a9d948185e80ad3706923867cfe608317</anchor>
+      <arglist>(int cmd, aworx::lib::strings::AString *value)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>getPathMapNode</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ad1305df36b6dfcde87eded99e9e9424b</anchor>
+      <arglist>(bool create)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ScopeStore&lt; core::aworx::lox::core::Logable * &gt;</name>
+    <filename>classaworx_1_1lox_1_1core_1_1ScopeStore.html</filename>
+    <member kind="variable">
+      <type>core::aworx::lox::core::Logable *</type>
+      <name>globalStore</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ad5f544834c72f2e639cda32bfdf4914b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>lib::containers::PathMap&lt; core::aworx::lox::core::Logable * &gt; *</type>
+      <name>languageStore</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a1251572d8e2460a60f89fd2372e71c63</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::map&lt; int, std::vector&lt; core::aworx::lox::core::Logable * &gt; &gt;</type>
+      <name>threadInnerStore</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a344205164cffc3c7c0a6191c9a716b8f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::map&lt; int, std::vector&lt; core::aworx::lox::core::Logable * &gt; &gt;</type>
+      <name>threadOuterStore</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aaedb67f0bf7ce679a991c7ee988e1cc4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API</type>
+      <name>ScopeStore</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ab2e398fa8b1dfdd80338f081ee495717</anchor>
+      <arglist>(ScopeInfo &amp;scopeInfo, bool cfgSingleThreadValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API</type>
+      <name>~ScopeStore</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>af76396d4a8d1de67fe742bf4cdc3fbab</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API void</type>
+      <name>Clear</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa71d36872f416feaa853788a7a7a7ef8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>core::aworx::lox::core::Logable *</type>
+      <name>Get</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a19b162b0d416fc5be7f1f6a91c718c3e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API void</type>
+      <name>InitAccess</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aeaa3f65207097ff85093acc485223a44</anchor>
+      <arglist>(Scope scope, int pathLevel, int threadID)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API void</type>
+      <name>InitWalk</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ae264cb9b825bd34050766c256a2504df</anchor>
+      <arglist>(Scope startScope, core::aworx::lox::core::Logable *localObject)</arglist>
+    </member>
+    <member kind="function">
+      <type>core::aworx::lox::core::Logable *</type>
+      <name>Remove</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a4b6e9ae247a950ed1b5d5d82c72b1440</anchor>
+      <arglist>(core::aworx::lox::core::Logable *value)</arglist>
+    </member>
+    <member kind="function">
+      <type>core::aworx::lox::core::Logable *</type>
+      <name>Store</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a5361906d7ce4b2ca6c3f676c85cf01fd</anchor>
+      <arglist>(core::aworx::lox::core::Logable *value)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API core::aworx::lox::core::Logable *</type>
+      <name>Walk</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>abf60f56ae3a9568c4c963460cb4cf9b7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>actPathLevel</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa5ede8468c729de0886d3bc84d31714e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>lib::containers::PathMap&lt; core::aworx::lox::core::Logable * &gt; *</type>
+      <name>actPathMapNode</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a77c6ecbc68ffa22251428b4763a3d3b7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Scope</type>
+      <name>actScope</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ab420b6d519025a485c6345895ad174ee</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>actThreadID</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>afd0f796ebbfae3564416016c197c27b1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>cfgSingleThreadValue</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ac8ebbb91a987a22c90eae5a4c72ecbc0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>lazyLanguageNode</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a531fce640b5915cd0496ba8c3c1058db</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ScopeInfo &amp;</type>
+      <name>scopeInfo</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aef20e807838c38a874e2952fa989535b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>walking</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa99316a33a7768a6af77f01edda34ef3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>core::aworx::lox::core::Logable *</type>
+      <name>walkLocalObject</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a82821b811e042ad4ca39396346cd49e0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>walkNextThreadIdx</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a9928f44e5399d356c4380ab105e48941</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>std::vector&lt; core::aworx::lox::core::Logable * &gt; *</type>
+      <name>walkThreadValues</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>abf7b7f408957d23da2c7b6fc692436cd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>core::aworx::lox::core::Logable *</type>
+      <name>access</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a9d948185e80ad3706923867cfe608317</anchor>
+      <arglist>(int cmd, core::aworx::lox::core::Logable *value)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>getPathMapNode</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ad1305df36b6dfcde87eded99e9e9424b</anchor>
+      <arglist>(bool create)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ScopeStore&lt; std::map&lt; aworx::lib::strings::AString, aworx::lox::LogData * &gt; * &gt;</name>
+    <filename>classaworx_1_1lox_1_1core_1_1ScopeStore.html</filename>
+    <member kind="variable">
+      <type>std::map&lt; aworx::lib::strings::AString, aworx::lox::LogData * &gt; *</type>
+      <name>globalStore</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ad5f544834c72f2e639cda32bfdf4914b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>lib::containers::PathMap&lt; std::map&lt; aworx::lib::strings::AString, aworx::lox::LogData * &gt; * &gt; *</type>
+      <name>languageStore</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a1251572d8e2460a60f89fd2372e71c63</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::map&lt; int, std::vector&lt; std::map&lt; aworx::lib::strings::AString, aworx::lox::LogData * &gt; * &gt; &gt;</type>
+      <name>threadInnerStore</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a344205164cffc3c7c0a6191c9a716b8f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::map&lt; int, std::vector&lt; std::map&lt; aworx::lib::strings::AString, aworx::lox::LogData * &gt; * &gt; &gt;</type>
+      <name>threadOuterStore</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aaedb67f0bf7ce679a991c7ee988e1cc4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API</type>
+      <name>ScopeStore</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ab2e398fa8b1dfdd80338f081ee495717</anchor>
+      <arglist>(ScopeInfo &amp;scopeInfo, bool cfgSingleThreadValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API</type>
+      <name>~ScopeStore</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>af76396d4a8d1de67fe742bf4cdc3fbab</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API void</type>
+      <name>Clear</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa71d36872f416feaa853788a7a7a7ef8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>std::map&lt; aworx::lib::strings::AString, aworx::lox::LogData * &gt; *</type>
+      <name>Get</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a19b162b0d416fc5be7f1f6a91c718c3e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API void</type>
+      <name>InitAccess</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aeaa3f65207097ff85093acc485223a44</anchor>
+      <arglist>(Scope scope, int pathLevel, int threadID)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API void</type>
+      <name>InitWalk</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ae264cb9b825bd34050766c256a2504df</anchor>
+      <arglist>(Scope startScope, std::map&lt; aworx::lib::strings::AString, aworx::lox::LogData * &gt; *localObject)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::map&lt; aworx::lib::strings::AString, aworx::lox::LogData * &gt; *</type>
+      <name>Remove</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a4b6e9ae247a950ed1b5d5d82c72b1440</anchor>
+      <arglist>(std::map&lt; aworx::lib::strings::AString, aworx::lox::LogData * &gt; *value)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::map&lt; aworx::lib::strings::AString, aworx::lox::LogData * &gt; *</type>
+      <name>Store</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a5361906d7ce4b2ca6c3f676c85cf01fd</anchor>
+      <arglist>(std::map&lt; aworx::lib::strings::AString, aworx::lox::LogData * &gt; *value)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API std::map&lt; aworx::lib::strings::AString, aworx::lox::LogData * &gt; *</type>
+      <name>Walk</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>abf60f56ae3a9568c4c963460cb4cf9b7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>actPathLevel</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa5ede8468c729de0886d3bc84d31714e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>lib::containers::PathMap&lt; std::map&lt; aworx::lib::strings::AString, aworx::lox::LogData * &gt; * &gt; *</type>
+      <name>actPathMapNode</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a77c6ecbc68ffa22251428b4763a3d3b7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Scope</type>
+      <name>actScope</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ab420b6d519025a485c6345895ad174ee</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>actThreadID</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>afd0f796ebbfae3564416016c197c27b1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>cfgSingleThreadValue</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ac8ebbb91a987a22c90eae5a4c72ecbc0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>lazyLanguageNode</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a531fce640b5915cd0496ba8c3c1058db</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ScopeInfo &amp;</type>
+      <name>scopeInfo</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aef20e807838c38a874e2952fa989535b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>walking</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa99316a33a7768a6af77f01edda34ef3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>std::map&lt; aworx::lib::strings::AString, aworx::lox::LogData * &gt; *</type>
+      <name>walkLocalObject</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a82821b811e042ad4ca39396346cd49e0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>walkNextThreadIdx</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a9928f44e5399d356c4380ab105e48941</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>std::vector&lt; std::map&lt; aworx::lib::strings::AString, aworx::lox::LogData * &gt; * &gt; *</type>
+      <name>walkThreadValues</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>abf7b7f408957d23da2c7b6fc692436cd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>std::map&lt; aworx::lib::strings::AString, aworx::lox::LogData * &gt; *</type>
+      <name>access</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a9d948185e80ad3706923867cfe608317</anchor>
+      <arglist>(int cmd, std::map&lt; aworx::lib::strings::AString, aworx::lox::LogData * &gt; *value)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>getPathMapNode</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ad1305df36b6dfcde87eded99e9e9424b</anchor>
+      <arglist>(bool create)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ScopeStore&lt; std::map&lt; aworx::lib::strings::AString, int &gt; * &gt;</name>
+    <filename>classaworx_1_1lox_1_1core_1_1ScopeStore.html</filename>
+    <member kind="variable">
+      <type>std::map&lt; aworx::lib::strings::AString, int &gt; *</type>
+      <name>globalStore</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ad5f544834c72f2e639cda32bfdf4914b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>lib::containers::PathMap&lt; std::map&lt; aworx::lib::strings::AString, int &gt; * &gt; *</type>
+      <name>languageStore</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a1251572d8e2460a60f89fd2372e71c63</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::map&lt; int, std::vector&lt; std::map&lt; aworx::lib::strings::AString, int &gt; * &gt; &gt;</type>
+      <name>threadInnerStore</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a344205164cffc3c7c0a6191c9a716b8f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::map&lt; int, std::vector&lt; std::map&lt; aworx::lib::strings::AString, int &gt; * &gt; &gt;</type>
+      <name>threadOuterStore</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aaedb67f0bf7ce679a991c7ee988e1cc4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API</type>
+      <name>ScopeStore</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ab2e398fa8b1dfdd80338f081ee495717</anchor>
+      <arglist>(ScopeInfo &amp;scopeInfo, bool cfgSingleThreadValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API</type>
+      <name>~ScopeStore</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>af76396d4a8d1de67fe742bf4cdc3fbab</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API void</type>
+      <name>Clear</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa71d36872f416feaa853788a7a7a7ef8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>std::map&lt; aworx::lib::strings::AString, int &gt; *</type>
+      <name>Get</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a19b162b0d416fc5be7f1f6a91c718c3e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API void</type>
+      <name>InitAccess</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aeaa3f65207097ff85093acc485223a44</anchor>
+      <arglist>(Scope scope, int pathLevel, int threadID)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API void</type>
+      <name>InitWalk</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ae264cb9b825bd34050766c256a2504df</anchor>
+      <arglist>(Scope startScope, std::map&lt; aworx::lib::strings::AString, int &gt; *localObject)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::map&lt; aworx::lib::strings::AString, int &gt; *</type>
+      <name>Remove</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a4b6e9ae247a950ed1b5d5d82c72b1440</anchor>
+      <arglist>(std::map&lt; aworx::lib::strings::AString, int &gt; *value)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::map&lt; aworx::lib::strings::AString, int &gt; *</type>
+      <name>Store</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a5361906d7ce4b2ca6c3f676c85cf01fd</anchor>
+      <arglist>(std::map&lt; aworx::lib::strings::AString, int &gt; *value)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API std::map&lt; aworx::lib::strings::AString, int &gt; *</type>
+      <name>Walk</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>abf60f56ae3a9568c4c963460cb4cf9b7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>actPathLevel</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa5ede8468c729de0886d3bc84d31714e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>lib::containers::PathMap&lt; std::map&lt; aworx::lib::strings::AString, int &gt; * &gt; *</type>
+      <name>actPathMapNode</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a77c6ecbc68ffa22251428b4763a3d3b7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Scope</type>
+      <name>actScope</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ab420b6d519025a485c6345895ad174ee</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>actThreadID</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>afd0f796ebbfae3564416016c197c27b1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>cfgSingleThreadValue</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ac8ebbb91a987a22c90eae5a4c72ecbc0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>lazyLanguageNode</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a531fce640b5915cd0496ba8c3c1058db</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ScopeInfo &amp;</type>
+      <name>scopeInfo</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aef20e807838c38a874e2952fa989535b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>walking</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa99316a33a7768a6af77f01edda34ef3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>std::map&lt; aworx::lib::strings::AString, int &gt; *</type>
+      <name>walkLocalObject</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a82821b811e042ad4ca39396346cd49e0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>walkNextThreadIdx</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a9928f44e5399d356c4380ab105e48941</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>std::vector&lt; std::map&lt; aworx::lib::strings::AString, int &gt; * &gt; *</type>
+      <name>walkThreadValues</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>abf7b7f408957d23da2c7b6fc692436cd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>std::map&lt; aworx::lib::strings::AString, int &gt; *</type>
+      <name>access</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a9d948185e80ad3706923867cfe608317</anchor>
+      <arglist>(int cmd, std::map&lt; aworx::lib::strings::AString, int &gt; *value)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>getPathMapNode</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ad1305df36b6dfcde87eded99e9e9424b</anchor>
+      <arglist>(bool create)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>aworx::lox::core::ScopeStoreType</name>
+    <filename>classaworx_1_1lox_1_1core_1_1ScopeStoreType.html</filename>
+    <templarg></templarg>
+    <member kind="function" static="yes">
+      <type>static ALOX_API bool</type>
+      <name>AreEqual</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStoreType.html</anchorfile>
+      <anchor>ad5516ec32df909883ecac628527d7e09</anchor>
+      <arglist>(StoreT first, StoreT second)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static ALOX_API bool</type>
+      <name>IsNull</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStoreType.html</anchorfile>
+      <anchor>ae5573aa455900d85f7191f38710c09f5</anchor>
+      <arglist>(StoreT value)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static ALOX_API StoreT</type>
+      <name>NullValue</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStoreType.html</anchorfile>
+      <anchor>a6b093555946a852ee96996e03c376c25</anchor>
+      <arglist>()</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -6602,6 +9237,145 @@
       <anchorfile>classaworx_1_1lib_1_1config_1_1IniFile_1_1Section.html</anchorfile>
       <anchor>a295f81c573fa45f08d98e19a72a814a8</anchor>
       <arglist>(const String &amp;name, const String &amp;value, const String &amp;comments=&quot;&quot;)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>aworx::lib::threads::SmartLock</name>
+    <filename>classaworx_1_1lib_1_1threads_1_1SmartLock.html</filename>
+    <base>aworx::lib::threads::ThreadLock</base>
+    <member kind="function">
+      <type></type>
+      <name>SmartLock</name>
+      <anchorfile>classaworx_1_1lib_1_1threads_1_1SmartLock.html</anchorfile>
+      <anchor>a90c2c49cbc4b52547424991f1665a8cb</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>Acquire</name>
+      <anchorfile>classaworx_1_1lib_1_1threads_1_1SmartLock.html</anchorfile>
+      <anchor>a07a42f9930e2b2f9b94a3d47d3088532</anchor>
+      <arglist>(const TString &amp;file, int line, const TString &amp;func)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual ALIB_API int</type>
+      <name>AddAcquirer</name>
+      <anchorfile>classaworx_1_1lib_1_1threads_1_1SmartLock.html</anchorfile>
+      <anchor>ac097a5b90ddc055cbf44b6a87b8cfda6</anchor>
+      <arglist>(ThreadLock *newAcquirer)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API int</type>
+      <name>CntAcquirers</name>
+      <anchorfile>classaworx_1_1lib_1_1threads_1_1SmartLock.html</anchorfile>
+      <anchor>a8d7f3cb41c747cf4c508db08fc60fe9f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual ALIB_API int</type>
+      <name>RemoveAcquirer</name>
+      <anchorfile>classaworx_1_1lib_1_1threads_1_1SmartLock.html</anchorfile>
+      <anchor>a2f480eaa76919774ba222225c952b874</anchor>
+      <arglist>(ThreadLock *acquirer)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>std::vector&lt; ThreadLock * &gt;</type>
+      <name>acquirers</name>
+      <anchorfile>classaworx_1_1lib_1_1threads_1_1SmartLock.html</anchorfile>
+      <anchor>a69a7bacc64ce3f8afd6cc837408e532f</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>aworx::lox::core::ScopeInfo::SourceFile</name>
+    <filename>structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html</filename>
+    <member kind="variable">
+      <type>String</type>
+      <name>fullPath</name>
+      <anchorfile>structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html</anchorfile>
+      <anchor>a54ee0033dccba3b71b4df46be20a8ed8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>name</name>
+      <anchorfile>structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html</anchorfile>
+      <anchor>a9a2326f35466e54c36c070829245c557</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>nameWOExt</name>
+      <anchorfile>structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html</anchorfile>
+      <anchor>ae612f42281f92db83f647e7bcb9634c4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>TString</type>
+      <name>origFile</name>
+      <anchorfile>structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html</anchorfile>
+      <anchor>a792c2a0b64091058562faaf73b0b5e9e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>origFilePathSeparator</name>
+      <anchorfile>structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html</anchorfile>
+      <anchor>a92c278f6e653f2ff33c65cd197d61239</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>uint_fast64_t</type>
+      <name>timeStamp</name>
+      <anchorfile>structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html</anchorfile>
+      <anchor>ad45eb797111ee6d571af7fffc9fc6d79</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>trimmedPath</name>
+      <anchorfile>structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html</anchorfile>
+      <anchor>a457ff5532ac38a6fafc282764d6da378</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>aworx::lox::core::ScopeInfo::SourcePathTrimRule</name>
+    <filename>structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html</filename>
+    <member kind="variable">
+      <type>Inclusion</type>
+      <name>IncludeString</name>
+      <anchorfile>structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html</anchorfile>
+      <anchor>a4dfbe3fa1c6cd975f1a6a3b17dc6ac8d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>IsPrefix</name>
+      <anchorfile>structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html</anchorfile>
+      <anchor>af3bc9a519dad021ce04b07599d610ccd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>Path</name>
+      <anchorfile>structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html</anchorfile>
+      <anchor>a5e583dd1bf88abfb28487df2f676a6e8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Case</type>
+      <name>Sensitivity</name>
+      <anchorfile>structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html</anchorfile>
+      <anchor>a48bf193d2228373a7e76ba4e08137017</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>TrimOffset</name>
+      <anchorfile>structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html</anchorfile>
+      <anchor>a400a3c8a83ee22ccb635bb8a96a1d6ca</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -6826,9 +9600,9 @@
     </member>
     <member kind="function">
       <type>int</type>
-      <name>IndexOfAS</name>
+      <name>IndexOfSubstring</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
-      <anchor>af92525461d86384ebb32f56c9d5dc5f2</anchor>
+      <anchor>adc427de75c146cf8618a397833edaa9a</anchor>
       <arglist>(const String &amp;needle, int startIdx=0, enums::Case sensitivity=enums::Case::Sensitive) const </arglist>
     </member>
     <member kind="function">
@@ -7085,9 +9859,9 @@
     </member>
     <member kind="function">
       <type>int</type>
-      <name>IndexOfAS</name>
+      <name>IndexOfSubstring</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
-      <anchor>af92525461d86384ebb32f56c9d5dc5f2</anchor>
+      <anchor>adc427de75c146cf8618a397833edaa9a</anchor>
       <arglist>(const String &amp;needle, int startIdx=0, enums::Case sensitivity=enums::Case::Sensitive) const </arglist>
     </member>
     <member kind="function">
@@ -7106,6 +9880,39 @@
     </member>
     <docanchor file="classaworx_1_1lib_1_1strings_1_1String">CPP_STRINGS_AS_NULLSTATE</docanchor>
     <docanchor file="classaworx_1_1lib_1_1strings_1_1String">CPP_STRINGS_AS_NC</docanchor>
+  </compound>
+  <compound kind="class">
+    <name>aworx::lox::core::textlogger::StringConverter</name>
+    <filename>classaworx_1_1lox_1_1core_1_1textlogger_1_1StringConverter.html</filename>
+    <base>aworx::lox::core::textlogger::ObjectConverter</base>
+    <member kind="variable">
+      <type>TString</type>
+      <name>FmtNullObject</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1StringConverter.html</anchorfile>
+      <anchor>a955492342cb1b68eb4c56a036750d036</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>ALOX_API</type>
+      <name>StringConverter</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1StringConverter.html</anchorfile>
+      <anchor>a3ac0b7af1e751b339f2ea93813e4120c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~StringConverter</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1StringConverter.html</anchorfile>
+      <anchor>a8aa76811d77f8707068ed596468fc849</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual ALOX_API bool</type>
+      <name>ConvertObject</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1StringConverter.html</anchorfile>
+      <anchor>ac396326d32429f94105a6b045c0ce42d</anchor>
+      <arglist>(const Logable &amp;logable, AString &amp;target)</arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>aworx::lib::strings::StringLiteral</name>
@@ -7162,6 +9969,32 @@
   </compound>
   <compound kind="class">
     <name>StringLiteral&lt; 11 &gt;</name>
+    <filename>classaworx_1_1lib_1_1strings_1_1StringLiteral.html</filename>
+    <base>aworx::lib::strings::TString</base>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Copy</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1StringLiteral.html</anchorfile>
+      <anchor>abe54b80eca850835aac62649d48de03c</anchor>
+      <arglist>(char *dest, const char *src)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>StringLiteral</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1StringLiteral.html</anchorfile>
+      <anchor>a4b8fba33694e7534bd9ce9f0feae415d</anchor>
+      <arglist>(const char(&amp;src)[TLength+1])</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Copy</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1StringLiteral.html</anchorfile>
+      <anchor>a9d3a01b96278e25b770eabce9295bdf9</anchor>
+      <arglist>(char *dest)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>StringLiteral&lt; 2 &gt;</name>
     <filename>classaworx_1_1lib_1_1strings_1_1StringLiteral.html</filename>
     <base>aworx::lib::strings::TString</base>
     <member kind="function" static="yes">
@@ -7602,6 +10435,13 @@
       <arglist></arglist>
     </member>
     <member kind="function" static="yes">
+      <type>static const String &amp;</type>
+      <name>GetProcessName</name>
+      <anchorfile>classaworx_1_1lib_1_1system_1_1System.html</anchorfile>
+      <anchor>a3efcfee814940f4c1c1ad2a99d5e172a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
       <type>static ALIB_API bool</type>
       <name>GetVariable</name>
       <anchorfile>classaworx_1_1lib_1_1system_1_1System.html</anchorfile>
@@ -7627,6 +10467,20 @@
       <name>RTE</name>
       <anchorfile>classaworx_1_1lib_1_1system_1_1System.html</anchorfile>
       <anchor>a28b473ab05b45948857c11c98973e6c2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static AString</type>
+      <name>processName</name>
+      <anchorfile>classaworx_1_1lib_1_1system_1_1System.html</anchorfile>
+      <anchor>acdefe8c9e0fc3c1abb1655ea13d4f3d0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected" static="yes">
+      <type>static ALIB_API void</type>
+      <name>getProcessName</name>
+      <anchorfile>classaworx_1_1lib_1_1system_1_1System.html</anchorfile>
+      <anchor>a14d31f74cb29b4e92cc090905256c8d1</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
@@ -7680,6 +10534,13 @@
       <anchor>a15b92b72838ed16c47a44702bce981c8</anchor>
       <arglist></arglist>
     </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>hasIoError</name>
+      <anchorfile>classaworx_1_1lox_1_1loggers_1_1TextFileLogger.html</anchorfile>
+      <anchor>aef8156626509284bebb701bfd5a93699</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function">
       <type></type>
       <name>TextFileLogger</name>
@@ -7717,9 +10578,9 @@
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual ALIB_API int</type>
-      <name>doLogSubstring</name>
+      <name>logSubstring</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1TextFileLogger.html</anchorfile>
-      <anchor>ac69f7301749f95053732100e17a76fb4</anchor>
+      <anchor>a728330a0b5b726d0bcbb30d1fe0992f5</anchor>
       <arglist>(const AString &amp;buffer, int start, int length)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
@@ -7756,31 +10617,31 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>String16</type>
-      <name>FmtIndentString</name>
-      <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
-      <anchor>a62494b942e4f6e70bf8f80fa1a3a5223</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String256</type>
+      <type>TString</type>
       <name>FmtMultiLineMsgHeadline</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
-      <anchor>ab0cf10ab98ce4ece873b70d4577ca035</anchor>
+      <anchor>a53efc9595ad578dfa30d7c3f79441c19</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>String16</type>
+      <type>TString</type>
       <name>FmtMultiLinePrefix</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
-      <anchor>a6a0f47a82a9e2018d42acdc864eaeb76</anchor>
+      <anchor>ae7e21aa436fd2966ab2ce5188f3bbca2</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>String16</type>
+      <type>TString</type>
       <name>FmtMultiLineSuffix</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
-      <anchor>a32162368e4bed2b7fa666fd77a62a245</anchor>
+      <anchor>a321ad7402c369b0f2249ffa764afc080</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>TString</type>
+      <name>FmtUnknownObject</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
+      <anchor>ab3a2c4f921a956a74a79c8b93fa4bec7</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -7798,10 +10659,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>String16</type>
+      <type>TString</type>
       <name>MultiLineDelimiterRepl</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
-      <anchor>a1c310c98162c46f37a1935c70f8edb70</anchor>
+      <anchor>a044f3f9d4ad22b7e3b6210f0ead7307c</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -7812,10 +10673,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>textlogger::ObjectConverter *</type>
-      <name>ObjectConverter</name>
+      <type>std::vector&lt; ObjectConverter * &gt;</type>
+      <name>ObjectConverters</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
-      <anchor>adbae482a1c395e38d1c0abf4dd8d6660</anchor>
+      <anchor>a7db775b96025ee18de0b020f81302633</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" virtualness="virtual">
@@ -7826,11 +10687,32 @@
       <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="virtual">
+      <type>virtual ALIB_API int</type>
+      <name>AddAcquirer</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
+      <anchor>ac097a5b90ddc055cbf44b6a87b8cfda6</anchor>
+      <arglist>(ThreadLock *newAcquirer)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
       <type>virtual ALOX_API void</type>
       <name>ClearReplacements</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
       <anchor>a17d8436509bfd6902d02a1a7628c9708</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual ALOX_API void</type>
+      <name>Log</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
+      <anchor>a16ba334409d5da064ac05df710fb2239</anchor>
+      <arglist>(Domain &amp;domain, Verbosity verbosity, Logables &amp;logables, ScopeInfo &amp;scope)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual ALIB_API int</type>
+      <name>RemoveAcquirer</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
+      <anchor>a2f480eaa76919774ba222225c952b874</anchor>
+      <arglist>(ThreadLock *acquirer)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual ALOX_API void</type>
@@ -7860,26 +10742,33 @@
       <anchor>a07a5ac8fc34beb304cd3389da5378ed0</anchor>
       <arglist></arglist>
     </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>stdStreamLockRegistrationCounter</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
+      <anchor>a7e0257392907f8a498262a3d8516f04c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>usesStdStreams</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
+      <anchor>a521df36fef7aa1dc1979a93cd4db2e83</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function" protection="protected">
       <type>ALOX_API</type>
       <name>TextLogger</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
-      <anchor>a95e205d20b58c467d54116f7124f7cc2</anchor>
-      <arglist>(const String &amp;name, const String &amp;typeName)</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual ALOX_API void</type>
-      <name>doLog</name>
-      <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
-      <anchor>a3ce020f3020679efc65d083b34bb7123</anchor>
-      <arglist>(const TString &amp;domain, Log::Level level, const void *msgObject, int msgType, int indent, CallerInfo *caller)</arglist>
+      <anchor>a642acb6c649fc76e765ad8ed4cfbc50d</anchor>
+      <arglist>(const String &amp;name, const String &amp;typeName, bool usesStdStreams)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="pure">
       <type>virtual void</type>
-      <name>doTextLog</name>
+      <name>logText</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
-      <anchor>a734a84c01a944814d8da5285962e9d50</anchor>
-      <arglist>(const TString &amp;domain, Log::Level level, AString &amp;msg, int indent, core::CallerInfo *caller, int lineNumber)=0</arglist>
+      <anchor>ae272f3e7c4827d4ad3cd3e7822bf9aff</anchor>
+      <arglist>(core::Domain &amp;domain, Verbosity verbosity, AString &amp;msg, core::ScopeInfo &amp;scope, int lineNumber)=0</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="pure">
       <type>virtual void</type>
@@ -7893,6 +10782,13 @@
     <name>aworx::lib::threads::Thread</name>
     <filename>classaworx_1_1lib_1_1threads_1_1Thread.html</filename>
     <base>aworx::lib::threads::Runnable</base>
+    <member kind="variable" static="yes">
+      <type>static constexpr int</type>
+      <name>NullThreadId</name>
+      <anchorfile>classaworx_1_1lib_1_1threads_1_1Thread.html</anchorfile>
+      <anchor>ab74d46f09db54cfc6e3c0d55baca5bfc</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>_Init_ALib</name>
@@ -8105,21 +11001,28 @@
       <type>virtual ALIB_API void</type>
       <name>Acquire</name>
       <anchorfile>classaworx_1_1lib_1_1threads_1_1ThreadLock.html</anchorfile>
-      <anchor>ab91dc804181f48b0b445ac1299c36c05</anchor>
-      <arglist>()</arglist>
+      <anchor>a607d6c96bfd21c3530e8a7fab9ca0395</anchor>
+      <arglist>(const TString &amp;file, int line, const TString &amp;func)</arglist>
     </member>
     <member kind="function">
       <type>ALIB_API int</type>
-      <name>IsAcquired</name>
+      <name>DbgCountAcquirements</name>
       <anchorfile>classaworx_1_1lib_1_1threads_1_1ThreadLock.html</anchorfile>
-      <anchor>a6713972787725f6b42d7fe94ea32624c</anchor>
+      <anchor>af99e21e2f05c81744d2e6b5b66d14951</anchor>
       <arglist>(Thread *thread=nullptr)</arglist>
     </member>
     <member kind="function">
-      <type>enums::Safeness</type>
-      <name>Mode</name>
+      <type>enums::LockMode</type>
+      <name>GetMode</name>
       <anchorfile>classaworx_1_1lib_1_1threads_1_1ThreadLock.html</anchorfile>
-      <anchor>a6f6f0840b4d4e758e93644c2fd389896</anchor>
+      <anchor>a92909f85539d41af1752c6654b837922</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>enums::Safeness</type>
+      <name>GetSafeness</name>
+      <anchorfile>classaworx_1_1lib_1_1threads_1_1ThreadLock.html</anchorfile>
+      <anchor>a41098f63af0e1f20173013039dfa6956</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="virtual">
@@ -8131,9 +11034,9 @@
     </member>
     <member kind="function">
       <type>ALIB_API void</type>
-      <name>SetMode</name>
+      <name>SetSafeness</name>
       <anchorfile>classaworx_1_1lib_1_1threads_1_1ThreadLock.html</anchorfile>
-      <anchor>a7ba75d036f96e4ea3d2b451677bdeba5</anchor>
+      <anchor>a906fc408a38b0d414e232328d82cdb72</anchor>
       <arglist>(enums::Safeness safeness)</arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -8194,8 +11097,8 @@
       <type>virtual void</type>
       <name>Acquire</name>
       <anchorfile>classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html</anchorfile>
-      <anchor>affeac79a4a864890b2e1862d388bfad3</anchor>
-      <arglist>()</arglist>
+      <anchor>a07a42f9930e2b2f9b94a3d47d3088532</anchor>
+      <arglist>(const TString &amp;file, int line, const TString &amp;func)</arglist>
     </member>
     <member kind="function">
       <type>enums::Safeness</type>
@@ -8506,8 +11409,8 @@
       <type>Ticks</type>
       <name>Since</name>
       <anchorfile>classaworx_1_1lib_1_1time_1_1Ticks.html</anchorfile>
-      <anchor>a8b1a3d7efe592bf648dfbd0cb42df127</anchor>
-      <arglist>(const Ticks &amp;olderTime)</arglist>
+      <anchor>a152d260d4d1411a09d9c14fa4ae2eeb2</anchor>
+      <arglist>(const Ticks &amp;olderTime) const </arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -9260,8 +12163,15 @@
       <type>static const aworx::AString &amp;</type>
       <name>GetSpaces</name>
       <anchorfile>classaworx_1_1lib_1_1Util.html</anchorfile>
-      <anchor>a887f6daaa639283cba0d5d5eb6ce5aba</anchor>
-      <arglist>(int minSize=128)</arglist>
+      <anchor>a59010cc79be20c6026095241b52c564f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static const aworx::AString &amp;</type>
+      <name>GetSpacesUnsafe</name>
+      <anchorfile>classaworx_1_1lib_1_1Util.html</anchorfile>
+      <anchor>a3e3ea965460f027ed5e65b9df82bdeae</anchor>
+      <arglist>(int minSize)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
@@ -9344,9 +12254,9 @@
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual ALIB_API int</type>
-      <name>doLogSubstring</name>
+      <name>logSubstring</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1VStudioLogger.html</anchorfile>
-      <anchor>ac69f7301749f95053732100e17a76fb4</anchor>
+      <anchor>a728330a0b5b726d0bcbb30d1fe0992f5</anchor>
       <arglist>(const AString &amp;buffer, int start, int length)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
@@ -9433,10 +12343,10 @@
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual ALOX_API void</type>
-      <name>doTextLog</name>
+      <name>logText</name>
       <anchorfile>classaworx_1_1lox_1_1loggers_1_1WindowsConsoleLogger.html</anchorfile>
-      <anchor>ad15a0a8b8b8d232f97d9c0d9c28cea41</anchor>
-      <arglist>(const TString &amp;domain, Log::Level level, AString &amp;msg, int indent, core::CallerInfo *caller, int lineNumber)</arglist>
+      <anchor>aa7e70b90717f0429abf0990e5e12ad9f</anchor>
+      <arglist>(core::Domain &amp;domain, Verbosity verbosity, AString &amp;msg, core::ScopeInfo &amp;scope, int lineNumber)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual ALOX_API void</type>
@@ -9463,6 +12373,13 @@
       <name>Alignment</name>
       <anchorfile>namespaceaworx.html</anchorfile>
       <anchor>a96dde4be24b9217d6bef30b22d7dfd4c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lox::ALox</type>
+      <name>ALox</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a4d5353279fde6a5d6e5b1c8e776abf66</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
@@ -9505,6 +12422,13 @@
       <name>ConsoleLogger</name>
       <anchorfile>namespaceaworx.html</anchorfile>
       <anchor>acfbbfc11d98646c37dbf27e3ede11644</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::enums::ContainerOp</type>
+      <name>ContainerOp</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a79b40b1cf65e889763d9ac0858268172</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
@@ -9571,6 +12495,20 @@
       <arglist></arglist>
     </member>
     <member kind="typedef">
+      <type>aworx::lox::LogData</type>
+      <name>LogData</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a07d961a72c3ccbe33993cdeb56dab52e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lox::core::Logger</type>
+      <name>Logger</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a8ec4a1b5f5786befe04b9f08d5417cdc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
       <type>aworx::lox::Lox</type>
       <name>Lox</name>
       <anchorfile>namespaceaworx.html</anchorfile>
@@ -9596,6 +12534,13 @@
       <name>PAString</name>
       <anchorfile>namespaceaworx.html</anchorfile>
       <anchor>a10e9458c58956ec05a324232fc1cc9e4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::containers::PathMap&lt; StoreT &gt;</type>
+      <name>PathMap</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>a40dd35c549af4dcf094f486d3f2dca1f</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
@@ -9648,10 +12593,24 @@
       <arglist></arglist>
     </member>
     <member kind="typedef">
+      <type>aworx::lox::Scope</type>
+      <name>Scope</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>aef58f56e96f194bf0b5f765175f6ebd6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
       <type>aworx::lib::strings::StringLiteral&lt; TLength &gt;</type>
       <name>SLiteral</name>
       <anchorfile>namespaceaworx.html</anchorfile>
       <anchor>af631a26bf70ad6d6143973fadf779747</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>aworx::lib::threads::SmartLock</type>
+      <name>SmartLock</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>aee1cd004a3010e8ee798517d96c1ffca</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
@@ -9784,7 +12743,7 @@
       <type>aworx::lib::threads::ThreadLockNR</type>
       <name>ThreadLockNR</name>
       <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>adb7e18c3a3777faf17dde8a543e30a27</anchor>
+      <anchor>a414cfa465381a22be7bf0bdc5728c1a0</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
@@ -9837,6 +12796,13 @@
       <arglist></arglist>
     </member>
     <member kind="typedef">
+      <type>aworx::lox::Verbosity</type>
+      <name>Verbosity</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>aa10bcb350ba5320cadb5dff6b8e2da6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
       <type>aworx::lox::loggers::VStudioLogger</type>
       <name>VStudioLogger</name>
       <anchorfile>namespaceaworx.html</anchorfile>
@@ -9886,10 +12852,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>const char</type>
+      <type>constexpr char</type>
       <name>PathSeparator</name>
       <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>a081742a3398152ceb8694674ffd21c37</anchor>
+      <anchor>a262e7ce267358080f085b5a3f42e3a67</anchor>
       <arglist></arglist>
     </member>
     <docanchor file="namespaceaworx">CPP_AWORX_NS_SHORTCUTS</docanchor>
@@ -9898,6 +12864,7 @@
     <name>aworx::lib</name>
     <filename>namespaceaworx_1_1lib.html</filename>
     <namespace>aworx::lib::config</namespace>
+    <namespace>aworx::lib::containers</namespace>
     <namespace>aworx::lib::enums</namespace>
     <namespace>aworx::lib::strings</namespace>
     <namespace>aworx::lib::system</namespace>
@@ -9921,6 +12888,25 @@
     <class kind="class">aworx::lib::config::IniFile</class>
   </compound>
   <compound kind="namespace">
+    <name>aworx::lib::containers</name>
+    <filename>namespaceaworx_1_1lib_1_1containers.html</filename>
+    <class kind="class">aworx::lib::containers::PathMap</class>
+    <member kind="function">
+      <type>PathMap&lt; StoreT &gt;::Iterator</type>
+      <name>begin</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1containers.html</anchorfile>
+      <anchor>a3c9cd89161562d9d1c346f6f82666108</anchor>
+      <arglist>(const PathMap&lt; StoreT &gt; &amp;pathMap)</arglist>
+    </member>
+    <member kind="function">
+      <type>PathMap&lt; StoreT &gt;::Iterator</type>
+      <name>end</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1containers.html</anchorfile>
+      <anchor>a493642c7093a3913fb626ebd25eb4c7d</anchor>
+      <arglist>(const PathMap&lt; StoreT &gt; &amp;)</arglist>
+    </member>
+  </compound>
+  <compound kind="namespace">
     <name>aworx::lib::enums</name>
     <filename>namespaceaworx_1_1lib_1_1enums.html</filename>
     <member kind="enumeration">
@@ -9941,6 +12927,18 @@
       <arglist></arglist>
       <enumvalue file="namespaceaworx_1_1lib_1_1enums.html" anchor="ab9aab17a5e54a8bae6915bc24db13a17a8f21fcdc233ba4078679ca628453d06b">Sensitive</enumvalue>
       <enumvalue file="namespaceaworx_1_1lib_1_1enums.html" anchor="ab9aab17a5e54a8bae6915bc24db13a17afd038fc7f319e48f3115d92bf5bdbef9">Ignore</enumvalue>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>ContainerOp</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1enums.html</anchorfile>
+      <anchor>af6d9cc1e6686eca6e60d57d959cf57fb</anchor>
+      <arglist></arglist>
+      <enumvalue file="namespaceaworx_1_1lib_1_1enums.html" anchor="af6d9cc1e6686eca6e60d57d959cf57fbaa458be0f08b7e4ff3c0f633c100176c0">Insert</enumvalue>
+      <enumvalue file="namespaceaworx_1_1lib_1_1enums.html" anchor="af6d9cc1e6686eca6e60d57d959cf57fba1063e38cb53d94d386f21227fcd84717">Remove</enumvalue>
+      <enumvalue file="namespaceaworx_1_1lib_1_1enums.html" anchor="af6d9cc1e6686eca6e60d57d959cf57fbac55582518cba2c464f29f5bae1c68def">Get</enumvalue>
+      <enumvalue file="namespaceaworx_1_1lib_1_1enums.html" anchor="af6d9cc1e6686eca6e60d57d959cf57fba1d5c1a7fde77e84c993d6fea61f88c2a">GetCreate</enumvalue>
+      <enumvalue file="namespaceaworx_1_1lib_1_1enums.html" anchor="af6d9cc1e6686eca6e60d57d959cf57fba686e697538050e4664636337cc3b834f">Create</enumvalue>
     </member>
     <member kind="enumeration">
       <type></type>
@@ -10052,6 +13050,27 @@
       <enumvalue file="namespaceaworx_1_1lib_1_1enums.html" anchor="ad4a46f9fb632511f6be7c53e05f330f7a1fc5884251ca9f20a4fd5f79a458f94f">Trim</enumvalue>
       <enumvalue file="namespaceaworx_1_1lib_1_1enums.html" anchor="ad4a46f9fb632511f6be7c53e05f330f7a02bce93bff905887ad2233110bf9c49e">Keep</enumvalue>
     </member>
+    <member kind="function">
+      <type>ALIB_API bool</type>
+      <name>ReadBoolean</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1enums.html</anchorfile>
+      <anchor>adb04d5102fc162a8ac01ef0999b761e4</anchor>
+      <arglist>(const String &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API Case</type>
+      <name>ReadCase</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1enums.html</anchorfile>
+      <anchor>a3aef0064d7182c495b6a683dd61cb3f4</anchor>
+      <arglist>(const String &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API Inclusion</type>
+      <name>ReadInclusion</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1enums.html</anchorfile>
+      <anchor>a691ce2d51651ae6a8294e76944d30416</anchor>
+      <arglist>(const String &amp;src)</arglist>
+    </member>
   </compound>
   <compound kind="namespace">
     <name>aworx::lib::strings</name>
@@ -10060,6 +13079,7 @@
     <class kind="class">aworx::lib::strings::CString</class>
     <class kind="class">aworx::lib::strings::Format</class>
     <class kind="struct">aworx::lib::strings::IsApplicable</class>
+    <class kind="struct">aworx::lib::strings::IsApplicable&lt; const lox::core::Logger &amp; &gt;</class>
     <class kind="struct">aworx::lib::strings::IsApplicable&lt; const std::string &amp; &gt;</class>
     <class kind="struct">aworx::lib::strings::IsTerminatable</class>
     <class kind="struct">aworx::lib::strings::IsTerminatable&lt; AString &gt;</class>
@@ -10378,6 +13398,13 @@
     </member>
     <member kind="function">
       <type>int</type>
+      <name>ApplyTo&lt; const lox::core::Logger &amp; &gt;</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>a9293db3b9b449a46d07d91e1b8964183</anchor>
+      <arglist>(AString &amp;target, const lox::core::Logger &amp;logger)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
       <name>ApplyTo&lt; const std::string &amp; &gt;</name>
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
       <anchor>a46d2b8074d6fd76918018ca6704e7cfc</anchor>
@@ -10499,6 +13526,7 @@
     <name>aworx::lib::threads</name>
     <filename>namespaceaworx_1_1lib_1_1threads.html</filename>
     <class kind="class">aworx::lib::threads::Runnable</class>
+    <class kind="class">aworx::lib::threads::SmartLock</class>
     <class kind="class">aworx::lib::threads::Thread</class>
     <class kind="class">aworx::lib::threads::ThreadLock</class>
     <class kind="class">aworx::lib::threads::ThreadLockNR</class>
@@ -10516,18 +13544,84 @@
     <filename>namespaceaworx_1_1lox.html</filename>
     <namespace>aworx::lox::core</namespace>
     <namespace>aworx::lox::loggers</namespace>
+    <class kind="class">aworx::lox::ALox</class>
     <class kind="class">aworx::lox::ALoxReportWriter</class>
     <class kind="class">aworx::lox::ESC</class>
     <class kind="class">aworx::lox::Log</class>
+    <class kind="struct">aworx::lox::LogData</class>
     <class kind="class">aworx::lox::Lox</class>
+    <member kind="enumeration">
+      <type></type>
+      <name>Scope</name>
+      <anchorfile>namespaceaworx_1_1lox.html</anchorfile>
+      <anchor>aaecc53892786f2fa11e682f633af84c6</anchor>
+      <arglist></arglist>
+      <enumvalue file="namespaceaworx_1_1lox.html" anchor="aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Global</enumvalue>
+      <enumvalue file="namespaceaworx_1_1lox.html" anchor="aaecc53892786f2fa11e682f633af84c6a1ee3f312b05c55202500569aadfc8d9b">ThreadOuter</enumvalue>
+      <enumvalue file="namespaceaworx_1_1lox.html" anchor="aaecc53892786f2fa11e682f633af84c6aac70412e939d72a9234cdebb1af5867b">Path</enumvalue>
+      <enumvalue file="namespaceaworx_1_1lox.html" anchor="aaecc53892786f2fa11e682f633af84c6a1351017ac6423911223bc19a8cb7c653">Filename</enumvalue>
+      <enumvalue file="namespaceaworx_1_1lox.html" anchor="aaecc53892786f2fa11e682f633af84c6a4c3880bb027f159e801041b1021e88e8">Method</enumvalue>
+      <enumvalue file="namespaceaworx_1_1lox.html" anchor="aaecc53892786f2fa11e682f633af84c6ae46b159c990fae9e712309bdb4d7b7c4">ThreadInner</enumvalue>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>Verbosity</name>
+      <anchorfile>namespaceaworx_1_1lox.html</anchorfile>
+      <anchor>abf3be10d03894afb391f3a2935e3b313</anchor>
+      <arglist></arglist>
+      <enumvalue file="namespaceaworx_1_1lox.html" anchor="abf3be10d03894afb391f3a2935e3b313ad4a9fa383ab700c5bdd6f31cf7df0faf">Verbose</enumvalue>
+      <enumvalue file="namespaceaworx_1_1lox.html" anchor="abf3be10d03894afb391f3a2935e3b313a4059b0251f66a18cb56f544728796875">Info</enumvalue>
+      <enumvalue file="namespaceaworx_1_1lox.html" anchor="abf3be10d03894afb391f3a2935e3b313a0eaadb4fcb48a0a0ed7bc9868be9fbaa">Warning</enumvalue>
+      <enumvalue file="namespaceaworx_1_1lox.html" anchor="abf3be10d03894afb391f3a2935e3b313a902b0d55fddef6f8d651fe1035b7d4bd">Error</enumvalue>
+      <enumvalue file="namespaceaworx_1_1lox.html" anchor="abf3be10d03894afb391f3a2935e3b313ad15305d7a4e34e02489c74a5ef542f36">Off</enumvalue>
+    </member>
+    <member kind="function">
+      <type>Verbosity</type>
+      <name>ReadVerbosity</name>
+      <anchorfile>namespaceaworx_1_1lox.html</anchorfile>
+      <anchor>a198631ef025eac410d87373b39c7280f</anchor>
+      <arglist>(const String &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString &amp;</type>
+      <name>ToString</name>
+      <anchorfile>namespaceaworx_1_1lox.html</anchorfile>
+      <anchor>ade21849436cde3af69157368d5e5a27e</anchor>
+      <arglist>(Verbosity verbosity, int priority, AString &amp;target)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString &amp;</type>
+      <name>ToString</name>
+      <anchorfile>namespaceaworx_1_1lox.html</anchorfile>
+      <anchor>a0883c50f69bfa5d7b121a59ba14d8464</anchor>
+      <arglist>(Scope scope, int pathLevel, AString &amp;target)</arglist>
+    </member>
+    <member kind="function">
+      <type>const String</type>
+      <name>ToStringX</name>
+      <anchorfile>namespaceaworx_1_1lox.html</anchorfile>
+      <anchor>abfd92f16f9c0e36069f30ffa03a5d96d</anchor>
+      <arglist>(Verbosity verbosity)</arglist>
+    </member>
   </compound>
   <compound kind="namespace">
     <name>aworx::lox::core</name>
     <filename>namespaceaworx_1_1lox_1_1core.html</filename>
     <namespace>aworx::lox::core::textlogger</namespace>
-    <class kind="class">aworx::lox::core::CallerInfo</class>
     <class kind="class">aworx::lox::core::Domain</class>
+    <class kind="struct">aworx::lox::core::Logable</class>
     <class kind="class">aworx::lox::core::Logger</class>
+    <class kind="class">aworx::lox::core::ScopeDump</class>
+    <class kind="class">aworx::lox::core::ScopeInfo</class>
+    <class kind="class">aworx::lox::core::ScopeStore</class>
+    <class kind="class">aworx::lox::core::ScopeStoreType</class>
+    <member kind="typedef">
+      <type>std::vector&lt; core::Logable * &gt;</type>
+      <name>Logables</name>
+      <anchorfile>namespaceaworx_1_1lox_1_1core.html</anchorfile>
+      <anchor>a89b734aa261b747d9edc7a459bfc9db8</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="namespace">
     <name>aworx::lox::core::textlogger</name>
@@ -10536,6 +13630,7 @@
     <class kind="class">aworx::lox::core::textlogger::MetaInfo</class>
     <class kind="class">aworx::lox::core::textlogger::ObjectConverter</class>
     <class kind="class">aworx::lox::core::textlogger::PlainTextLogger</class>
+    <class kind="class">aworx::lox::core::textlogger::StringConverter</class>
     <class kind="class">aworx::lox::core::textlogger::TextLogger</class>
   </compound>
   <compound kind="namespace">
@@ -10576,30 +13671,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>ALIB_SRC_INFO_PARAMS_DECL</name>
-      <anchorfile>group__GrpALibMacros.html</anchorfile>
-      <anchor>ga325630a2911ce8e6b188bb5e7ab7f38a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
       <name>ALIB_SRC_INFO_PARAMS</name>
       <anchorfile>group__GrpALibMacros.html</anchorfile>
       <anchor>gab1836c6de18fd089b123e40e22472f4d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>ALIB_IDENTIFIER</name>
-      <anchorfile>group__GrpALibMacros.html</anchorfile>
-      <anchor>gaeee83bac121e3fd5d1b452269a5853f3</anchor>
-      <arglist>(prefix)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>ALIB_DBG_SRC_INFO_PARAMS_DECL</name>
-      <anchorfile>group__GrpALibMacros.html</anchorfile>
-      <anchor>ga1526353c5a75ab50925d64b13cf2ea4b</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -10611,6 +13685,27 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>ALIB_IDENTIFIER</name>
+      <anchorfile>group__GrpALibMacros.html</anchorfile>
+      <anchor>gaeee83bac121e3fd5d1b452269a5853f3</anchor>
+      <arglist>(prefix)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ALIB_REPORT</name>
+      <anchorfile>group__GrpALibMacros.html</anchorfile>
+      <anchor>ga8460b7062323107819d75e7001451cc4</anchor>
+      <arglist>(type, msg)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ALIB_REPORT_S512</name>
+      <anchorfile>group__GrpALibMacros.html</anchorfile>
+      <anchor>gabd7b7f6d6244265e96a13ea98bee76b9</anchor>
+      <arglist>(type, msg)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>ALIB_ERROR</name>
       <anchorfile>group__GrpALibMacros.html</anchorfile>
       <anchor>gabdd5780e186ebbd62960d7ca9673dff1</anchor>
@@ -10618,9 +13713,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>ALIB_ERROR_AS</name>
+      <name>ALIB_ERROR_S512</name>
       <anchorfile>group__GrpALibMacros.html</anchorfile>
-      <anchor>ga9760e218b8f31dab354ea3fd9668db73</anchor>
+      <anchor>ga259ac181b20784b8dfa4cd72c191da4c</anchor>
       <arglist>(msg)</arglist>
     </member>
     <member kind="define">
@@ -10632,9 +13727,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>ALIB_WARNING_AS</name>
+      <name>ALIB_WARNING_S512</name>
       <anchorfile>group__GrpALibMacros.html</anchorfile>
-      <anchor>gaba07586b518480b52466e018bfa34c98</anchor>
+      <anchor>ga6d09217171c3a303e6b91eba62833193</anchor>
       <arglist>(msg)</arglist>
     </member>
     <member kind="define">
@@ -10653,9 +13748,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>ALIB_ASSERT_ERROR_AS</name>
+      <name>ALIB_ASSERT_ERROR_S512</name>
       <anchorfile>group__GrpALibMacros.html</anchorfile>
-      <anchor>gac9a7ce9ac002073d26b3abf5797e9d86</anchor>
+      <anchor>ga1d9b0a700c59c2e87bc2935d6a434db9</anchor>
       <arglist>(cond, msg)</arglist>
     </member>
     <member kind="define">
@@ -10667,9 +13762,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>ALIB_ASSERT_WARNING_AS</name>
+      <name>ALIB_ASSERT_WARNING_S512</name>
       <anchorfile>group__GrpALibMacros.html</anchorfile>
-      <anchor>ga12732c26cd94f68b87b8d8a31bb079c9</anchor>
+      <anchor>ga3cafe9da29ad24d8d8a7997556dde3be</anchor>
       <arglist>(cond, msg)</arglist>
     </member>
     <member kind="define">
@@ -10791,6 +13886,20 @@
     <filename>group__GrpALibCompilerSymbols.html</filename>
     <member kind="define">
       <type>#define</type>
+      <name>ALIB_AVOID_ANALYZER_WARNINGS_OFF</name>
+      <anchorfile>group__GrpALibCompilerSymbols.html</anchorfile>
+      <anchor>ga749e93d24d210c48e3b9b31a09727b82</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ALIB_AVOID_ANALYZER_WARNINGS_ON</name>
+      <anchorfile>group__GrpALibCompilerSymbols.html</anchorfile>
+      <anchor>gacaa316e613cf0f7bc021130c1b4e2f33</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>ALIB_DEBUG_OFF</name>
       <anchorfile>group__GrpALibCompilerSymbols.html</anchorfile>
       <anchor>ga141eac004cc6915d6217ddd591b46b4c</anchor>
@@ -10801,6 +13910,13 @@
       <name>ALIB_DEBUG_ON</name>
       <anchorfile>group__GrpALibCompilerSymbols.html</anchorfile>
       <anchor>ga3afdbe5a480e0328d115f7b6fb17f5f9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ALIB_DEBUG_STRINGS_OFF</name>
+      <anchorfile>group__GrpALibCompilerSymbols.html</anchorfile>
+      <anchor>gaffe4a144b888498c743d7b81d983d84b</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -10864,6 +13980,13 @@
     <name>GrpALibCodeSelectorSymbols</name>
     <title>ALib Symbols To Select Code Fragments</title>
     <filename>group__GrpALibCodeSelectorSymbols.html</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>ALIB_AVOID_ANALYZER_WARNINGS</name>
+      <anchorfile>group__GrpALibCodeSelectorSymbols.html</anchorfile>
+      <anchor>ga22453f45d36d0fa8790b74a270f027c8</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="define">
       <type>#define</type>
       <name>ALIB_DEBUG</name>
@@ -10981,16 +14104,23 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Log_AddLogger</name>
+      <name>Log_Assert</name>
       <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
-      <anchor>ga518bf5331afc5bd2e6d79a9f290ae8b6</anchor>
+      <anchor>ga2797c2e9f997606c3c786fa68720ac71</anchor>
       <arglist>(...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Log_Assert</name>
+      <name>Log_ClearSourcePathTrimRules</name>
       <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
-      <anchor>ga2797c2e9f997606c3c786fa68720ac71</anchor>
+      <anchor>gaff8f037b778ce73b40e0c7a0506a8718</anchor>
+      <arglist>(...)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Log_Entry</name>
+      <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
+      <anchor>ga9ac05a63013c784625c66685ad51aff3</anchor>
       <arglist>(...)</arglist>
     </member>
     <member kind="define">
@@ -11009,23 +14139,16 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Log_GetMarker</name>
+      <name>Log_If</name>
       <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
-      <anchor>ga85abcf294a9046897fc2924513e7947f</anchor>
-      <arglist>(marker, scope)</arglist>
+      <anchor>ga7a1af9531448e3c6da1027b193e3b01b</anchor>
+      <arglist>(...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>Log_Info</name>
       <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
       <anchor>gaed4877ef3a04a6eb1ec1d4fba8305d75</anchor>
-      <arglist>(...)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Log_Line</name>
-      <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
-      <anchor>gae6d6d078cd4c5ed6c6726d0cbdbbc4aa</anchor>
       <arglist>(...)</arglist>
     </member>
     <member kind="define">
@@ -11041,6 +14164,13 @@
       <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
       <anchor>gad01526d3f277fab96faf18695d25cb7e</anchor>
       <arglist>(threadName)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Log_Once</name>
+      <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
+      <anchor>ga68c8af8941a64be4f6e075ab31c6c05b</anchor>
+      <arglist>(...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -11065,10 +14195,17 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Log_RemoveLoggers</name>
+      <name>Log_RemoveThreadDomain</name>
       <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
-      <anchor>gad3a71e0a643a1c19f8875e586f95b92e</anchor>
+      <anchor>gafc93873c04ed08e842109543d142fb60</anchor>
       <arglist>(...)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Log_Retrieve</name>
+      <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
+      <anchor>ga233db1e86b0cf457b550f74b58d69926</anchor>
+      <arglist>(data,...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -11079,24 +14216,45 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Log_SetLogger</name>
+      <name>Log_SetDomainSubstitutionRule</name>
       <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
-      <anchor>ga8fb5f633199382936bfc67e45c1737af</anchor>
-      <arglist>(disabled, filter)</arglist>
+      <anchor>ga619af6c6682bc920e038b0fe006c49be</anchor>
+      <arglist>(...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Log_SetMarker</name>
+      <name>Log_SetPrefix</name>
       <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
-      <anchor>gaecd826ea5803a068bca503e075f5d878</anchor>
-      <arglist>(marker, scope)</arglist>
+      <anchor>ga4186c23d7999be11f0e5017d254a306c</anchor>
+      <arglist>(...)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Log_SetSourcePathTrimRule</name>
+      <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
+      <anchor>gac96dec2672c7ae4e722cae3b12eaf3fd</anchor>
+      <arglist>(...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>Log_SetStartTime</name>
       <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
-      <anchor>ga519416f7b52968906c24d3c57f4ce39f</anchor>
-      <arglist>(time, filter)</arglist>
+      <anchor>ga14bcc9217818e50b7fe5028398f11e8d</anchor>
+      <arglist>(time, loggerName)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Log_SetVerbosity</name>
+      <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
+      <anchor>gad5444af82c2a3640a1c456940b8c3b8f</anchor>
+      <arglist>(...)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Log_Store</name>
+      <anchorfile>group__GrpMacrosDebugLog.html</anchorfile>
+      <anchor>ga9c1ca580a86c5c6a0653146b0bb9cb38</anchor>
+      <arglist>(...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -11119,16 +14277,23 @@
     <filename>group__GrpMacrosReleaseLog.html</filename>
     <member kind="define">
       <type>#define</type>
-      <name>Lox_AddLogger</name>
+      <name>Lox_Assert</name>
       <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
-      <anchor>gac3806ad5dcf0f48b170f79069369f380</anchor>
+      <anchor>ga4d9961312aab181a28b21724c3809184</anchor>
       <arglist>(...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Lox_Assert</name>
+      <name>Lox_ClearSourcePathTrimRules</name>
       <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
-      <anchor>ga4d9961312aab181a28b21724c3809184</anchor>
+      <anchor>ga1689da460f8040489689b3f45cf1e6b2</anchor>
+      <arglist>(...)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Lox_Entry</name>
+      <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
+      <anchor>ga3ee12da39c3574baf4fb03f7f323c886</anchor>
       <arglist>(...)</arglist>
     </member>
     <member kind="define">
@@ -11147,23 +14312,16 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Lox_GetMarker</name>
+      <name>Lox_If</name>
       <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
-      <anchor>gaac5f1d37b8f195a7d387d4bf59f9b7c0</anchor>
-      <arglist>(marker, scope)</arglist>
+      <anchor>ga31e9c5302ccb2af7285d9e17a46aac2b</anchor>
+      <arglist>(...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>Lox_Info</name>
       <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
       <anchor>ga28233c29442a3ae8996d32b5078537d9</anchor>
-      <arglist>(...)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Lox_Line</name>
-      <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
-      <anchor>ga97a2c77a1cef79dc8dd295153ea2347e</anchor>
       <arglist>(...)</arglist>
     </member>
     <member kind="define">
@@ -11182,6 +14340,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>Lox_Once</name>
+      <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
+      <anchor>ga03e5f8a0b134f709f130a4f93b2f8ab2</anchor>
+      <arglist>(...)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>Lox_Prune</name>
       <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
       <anchor>ga04158d8131eba14e98f93e433b6325d2</anchor>
@@ -11196,10 +14361,17 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Lox_RemoveLoggers</name>
+      <name>Lox_RemoveThreadDomain</name>
       <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
-      <anchor>gaa493b652d1b9a0d3bca8662603f5e199</anchor>
-      <arglist>(filter)</arglist>
+      <anchor>ga5af8171356c0b231483221d0b3e534c1</anchor>
+      <arglist>(...)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Lox_Retrieve</name>
+      <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
+      <anchor>ga21ac85d6bd6b297b92b707b6362f52df</anchor>
+      <arglist>(data,...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -11210,24 +14382,45 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Lox_SetLogger</name>
+      <name>Lox_SetDomainSubstitutionRule</name>
       <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
-      <anchor>gae6103e5556647a551bb2d78afb60522d</anchor>
-      <arglist>(enable, filter)</arglist>
+      <anchor>gab66ecad871e42c6779e9f2bb62921be3</anchor>
+      <arglist>(...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Lox_SetMarker</name>
+      <name>Lox_SetPrefix</name>
       <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
-      <anchor>gacea507bfcbffd40425f919f17a36fb9f</anchor>
-      <arglist>(marker, scope)</arglist>
+      <anchor>ga0f4d320a3b393e1e6eba353f567dec4d</anchor>
+      <arglist>(...)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Lox_SetSourcePathTrimRule</name>
+      <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
+      <anchor>ga26b42492cafe7bc093cd810facddeb6b</anchor>
+      <arglist>(...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>Lox_SetStartTime</name>
       <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
-      <anchor>ga4ce0c3ef52fd3806ee4e99f8c44e8179</anchor>
-      <arglist>(time, filter)</arglist>
+      <anchor>ga2c91f19bc972dbacc137e8c4c88ee25c</anchor>
+      <arglist>(time, loggerName)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Lox_SetVerbosity</name>
+      <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
+      <anchor>ga58d12e520c215bfc22c8da42777d567b</anchor>
+      <arglist>(...)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Lox_Store</name>
+      <anchorfile>group__GrpMacrosReleaseLog.html</anchorfile>
+      <anchor>gaa8e5c76201f2ac838ef643377641f2a6</anchor>
+      <arglist>(...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -11405,25 +14598,23 @@
     <title>ALox for C++ Tutorial</title>
     <filename>cpptutorial</filename>
     <docanchor file="cpptutorial" title="1. Hello ALox">tutcpp_hello_alox</docanchor>
-    <docanchor file="cpptutorial" title="2. Adding ALox to a Project">tutcpp_adding_ALox</docanchor>
-    <docanchor file="cpptutorial" title="2.1 Create a tutorial project or equip your current project with ALox">tutcpp_createproject</docanchor>
-    <docanchor file="cpptutorial" title="2.2. Create an instance of class &quot;Logger&quot;">tutcpp_ha1</docanchor>
-    <docanchor file="cpptutorial" title="2.3. Add code to create and set a &quot;Log Domain&quot;">tutcpp_ha_3</docanchor>
-    <docanchor file="cpptutorial" title="2.4. Add log code">tutcpp_ha_4</docanchor>
-    <docanchor file="cpptutorial" title="2.5. Run your application within your IDE">tutcpp_ha_5</docanchor>
-    <docanchor file="cpptutorial" title="2.6. Build a release version">tutcpp_ha_6</docanchor>
-    <docanchor file="cpptutorial" title="3. Log levels and log domains">tutcpp_llld</docanchor>
-    <docanchor file="cpptutorial" title="3.1. Log code with different log levels">tutcpp_llld_1</docanchor>
-    <docanchor file="cpptutorial" title="3.2. Default domains">tutcpp_llld_2</docanchor>
-    <docanchor file="cpptutorial" title="3.3. Where to place ALox log code">tutcpp_llld_3</docanchor>
-    <docanchor file="cpptutorial" title="4. Some more Details">tutcpp_more</docanchor>
-    <docanchor file="cpptutorial" title="4.1 Stop reading here?">tutcpp_more_1</docanchor>
-    <docanchor file="cpptutorial" title="4.2 Using StringNN to create your log messages">tutcpp_more_astring</docanchor>
-    <docanchor file="cpptutorial" title="4.3 Conditional logging">tutcpp_more_conditional</docanchor>
-    <docanchor file="cpptutorial" title="4.4 LogTools: Log complex things easily">tutcpp_more_logtools</docanchor>
-    <docanchor file="cpptutorial" title="4.5 Directing log output to distinct loggers">tutcpp_more_seplog</docanchor>
-    <docanchor file="cpptutorial" title="4.6 ALox configuration and internal log messages">tutcpp_more_config</docanchor>
-    <docanchor file="cpptutorial" title="4.7 Indentation">tutcpp_more_indentation</docanchor>
-    <docanchor file="cpptutorial" title="Further reading">tutcpp_end</docanchor>
+    <docanchor file="cpptutorial" title="2. Class Lox and ALox C++ Macros">tutcpp_adding_ALox</docanchor>
+    <docanchor file="cpptutorial" title="3. Create a tutorial project or equip your current project with ALox">tutcpp_createproject</docanchor>
+    <docanchor file="cpptutorial" title="4. Class Logger">tutcpp_logger</docanchor>
+    <docanchor file="cpptutorial" title="5. Run the Application">tutcpp_run</docanchor>
+    <docanchor file="cpptutorial" title="5.1. Run your application within your IDE">tutcpp_run_ide</docanchor>
+    <docanchor file="cpptutorial" title="5.2. Build a release version">tutcpp_run_release</docanchor>
+    <docanchor file="cpptutorial" title="6. Controlling the &apos;Verbosity&apos;">tutcpp_verbosity</docanchor>
+    <docanchor file="cpptutorial" title="7. Log Domains">tutcpp_logdomains</docanchor>
+    <docanchor file="cpptutorial" title="8. Hierarchical Log Domains">tutcpp_logdomains_hierarchical</docanchor>
+    <docanchor file="cpptutorial" title="9. Scope Domains">tutcpp_scope_domains</docanchor>
+    <docanchor file="cpptutorial" title="10. Conditional logging">tutcpp_conditional</docanchor>
+    <docanchor file="cpptutorial" title="11. Prefixes">tutcpp_Log_Prefix</docanchor>
+    <docanchor file="cpptutorial" title="12. LogTools: Log Complex Data">tutcpp_logtools</docanchor>
+    <docanchor file="cpptutorial" title="13 Using aworx::StringNNN for Log Messages">tutcpp_astring</docanchor>
+    <docanchor file="cpptutorial" title="14. Name Your Threads">tutcpp_threadnames</docanchor>
+    <docanchor file="cpptutorial" title="15. ALox Log Data">tutcpp_logdata</docanchor>
+    <docanchor file="cpptutorial" title="16. ALox Configuration Information and Internal Log Messages">tutcpp_config</docanchor>
+    <docanchor file="cpptutorial" title="Further Reading">tutcpp_end</docanchor>
   </compound>
 </tagfile>

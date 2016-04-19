@@ -138,7 +138,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Collaboration diagram for Owner:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="structaworx_1_1lib_1_1Owner__coll__graph.svg" width="102" height="127"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="structaworx_1_1lib_1_1Owner__coll__graph.svg" width="202" height="307"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
@@ -147,8 +147,8 @@ Collaboration diagram for Owner:</div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Methods</h2></td></tr>
-<tr class="memitem:a59da7b021af5b8c1ce7e456a6d1c72a1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1Owner.html#a59da7b021af5b8c1ce7e456a6d1c72a1">Owner</a> (<a class="el" href="classaworx_1_1lib_1_1Ownable.html">Ownable</a> &amp;<a class="el" href="structaworx_1_1lib_1_1Owner.html#a33f6a794c5fbaddcd7b726da2492c4d5">ownable</a>)</td></tr>
-<tr class="separator:a59da7b021af5b8c1ce7e456a6d1c72a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a514baed722d3c59c870ad9579f7002ae"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1Owner.html#a514baed722d3c59c870ad9579f7002ae">Owner</a> (<a class="el" href="classaworx_1_1lib_1_1Ownable.html">Ownable</a> &amp;<a class="el" href="structaworx_1_1lib_1_1Owner.html#a33f6a794c5fbaddcd7b726da2492c4d5">ownable</a>, const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;file, int line, const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;func)</td></tr>
+<tr class="separator:a514baed722d3c59c870ad9579f7002ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac22eca8fa24d998053adc01cde626b52"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1Owner.html#ac22eca8fa24d998053adc01cde626b52">~Owner</a> ()</td></tr>
 <tr class="separator:ac22eca8fa24d998053adc01cde626b52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -171,7 +171,7 @@ Private Methods</h2></td></tr>
 <tr class="separator:abc04222281a5040c88978fc8cc5410f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a59da7b021af5b8c1ce7e456a6d1c72a1"></a>
+<a class="anchor" id="a514baed722d3c59c870ad9579f7002ae"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -182,8 +182,30 @@ Private Methods</h2></td></tr>
           <td class="memname"><a class="el" href="structaworx_1_1lib_1_1Owner.html">Owner</a> </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classaworx_1_1lib_1_1Ownable.html">Ownable</a> &amp;&#160;</td>
-          <td class="paramname"><em>ownable</em></td><td>)</td>
+          <td class="paramname"><em>ownable</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>line</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
+          <td class="paramname"><em>func</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -195,7 +217,10 @@ Private Methods</h2></td></tr>
 <hr/>
 <p> The constructor. Invokes Acquire() on the owner. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ownable</td><td>The ownable to acquire. </td></tr>
+    <tr><td class="paramname">ownable</td><td>The ownable to acquire.</td></tr>
+    <tr><td class="paramname">file</td><td>Caller information. Available only in debug compilations. </td></tr>
+    <tr><td class="paramname">line</td><td>Caller information. Available only in debug compilations. </td></tr>
+    <tr><td class="paramname">func</td><td>Caller information. Available only in debug compilations. </td></tr>
   </table>
   </dd>
 </dl>
@@ -402,7 +427,7 @@ Private Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:18 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:16 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

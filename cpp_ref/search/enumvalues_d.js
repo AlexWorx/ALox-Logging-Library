@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['qtcreator',['QTCreator',['../classaworx_1_1lib_1_1system_1_1System.html#aeae50cdd350e3deaae33d2900b0a72f2abd58134b67d16f4a15d1f36d60e2f5b0',1,'aworx::lib::system::System']]]
+  ['path',['Path',['../namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6aac70412e939d72a9234cdebb1af5867b',1,'aworx::lox']]]
 ];

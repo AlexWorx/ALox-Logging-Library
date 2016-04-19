@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['callerinfo',['CallerInfo',['../classaworx_1_1lox_1_1core_1_1CallerInfo.html',1,'aworx::lox::core']]],
   ['commandlineplugin',['CommandLinePlugIn',['../classaworx_1_1lib_1_1config_1_1CommandLinePlugIn.html',1,'aworx::lib::config']]],
   ['configuration',['Configuration',['../classaworx_1_1lib_1_1config_1_1Configuration.html',1,'aworx::lib::config']]],
   ['configurationplugin',['ConfigurationPlugIn',['../classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html',1,'aworx::lib::config']]],

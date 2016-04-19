@@ -18,10 +18,24 @@
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
+      <type>static ThreadLock</type>
+      <name>lock</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
+      <anchor>a77074852c5d95a31cab43e8c85871c64</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
       <type>static final int</type>
       <name>revision</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
       <anchor>a80915412cfca1d0f550c217f30d3083c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static SmartLock</type>
+      <name>stdOutputStreamsLock</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
+      <anchor>a3e06b7976acfefcb37439832378a1070</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
@@ -65,6 +79,34 @@
       <anchorfile>classcom_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
       <anchor>a80c97a1b39e20bbf4fb85495e11b58d4</anchor>
       <arglist>(boolean useEnv, String[] args)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static boolean</type>
+      <name>readBoolean</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
+      <anchor>a26132ef4a63bb3ad56a2630fae0d49f9</anchor>
+      <arglist>(Substring src)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static Case</type>
+      <name>readCase</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
+      <anchor>a580e8fc68c1ef90b1b304bd94c32bfa8</anchor>
+      <arglist>(Substring src)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static Inclusion</type>
+      <name>readInclusion</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
+      <anchor>ae4b235120820112ab5945a12adf01a3b</anchor>
+      <arglist>(Substring src)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>REPORT</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
+      <anchor>afc3da8c7951c4bb457d04494c04a4ba6</anchor>
+      <arglist>(int type, String msg)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
@@ -115,6 +157,27 @@
       <anchor>a32cea66bae4ae86c00efd6ffe1e97393</anchor>
       <arglist></arglist>
     </member>
+    <member kind="variable" protection="private" static="yes">
+      <type>static char[]</type>
+      <name>trueValuesBoolean</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
+      <anchor>a65337581a93a3179f7578aa6b483915b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private" static="yes">
+      <type>static char[]</type>
+      <name>trueValuesCase</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
+      <anchor>a0a20ce9d8843a85788d87d662e71c35d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private" static="yes">
+      <type>static char[]</type>
+      <name>trueValuesInclusion</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
+      <anchor>af9e96e2665866b3811a07ba6261b80c2</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="enum">
     <name>com::aworx::lib::enums::Alignment</name>
@@ -142,6 +205,108 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>com::aworx::lox::ALox</name>
+    <filename>classcom_1_1aworx_1_1lox_1_1ALox.html</filename>
+    <member kind="variable" static="yes">
+      <type>static String</type>
+      <name>configCategoryName</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a25cfe93aaf9615cfe8d411514c1f1499</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static final String</type>
+      <name>INTERNAL_DOMAINS</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a7911d1f444b0ff44a320f9c9fe69b288</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static final int</type>
+      <name>revision</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a80915412cfca1d0f550c217f30d3083c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static final int</type>
+      <name>version</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a450c392481245410c99fb560c206e824</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static Lox</type>
+      <name>get</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>abd5b83b25aa8b469de629b472f16de1c</anchor>
+      <arglist>(String name, Create create)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static Lox</type>
+      <name>get</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a1b09c9b539f3ec4a7cb3a4d90f7bbbec</anchor>
+      <arglist>(String name)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>init</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a32b5b4fa3926a42ee9728e2ec8b46d9c</anchor>
+      <arglist>(boolean useEnv, String[] args)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static Verbosity</type>
+      <name>readVerbosity</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>ad9a22d73dfb13cf533aecf7e1e0357e0</anchor>
+      <arglist>(Substring src)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>register</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a08cd2744e09e4ba6330ac01468b308e1</anchor>
+      <arglist>(Lox lox, ContainerOp operation)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>reset</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>ab9d3f06dc4ef871fad50465095b5ea32</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static AString</type>
+      <name>toString</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>ac538b0ba56643ba3c3bcaedf4a77586b</anchor>
+      <arglist>(Scope scope, int packageLevel, AString target)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static AString</type>
+      <name>toString</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a788a36f456c5fb5c73e12834606ed541</anchor>
+      <arglist>(Verbosity verbosity, int priority, AString target)</arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static boolean</type>
+      <name>isInitialized</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a32cea66bae4ae86c00efd6ffe1e97393</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private" static="yes">
+      <type>static ArrayList&lt; Lox &gt;</type>
+      <name>loxes</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a6a728a3f9546988d072cacb41953242b</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>com::aworx::lox::ALoxReportWriter</name>
     <filename>classcom_1_1aworx_1_1lox_1_1ALoxReportWriter.html</filename>
     <base>com::aworx::lib::ReportWriter</base>
@@ -151,6 +316,13 @@
       <anchorfile>classcom_1_1aworx_1_1lox_1_1ALoxReportWriter.html</anchorfile>
       <anchor>a0bf141375d34781d9d1aba4cbedf4c3e</anchor>
       <arglist>(Lox lox)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>NotifyActivation</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1ALoxReportWriter.html</anchorfile>
+      <anchor>a9f03332e9e50d3d28eb466d31492a022</anchor>
+      <arglist>(Phase phase)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -208,10 +380,10 @@
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
-      <name>doTextLog</name>
+      <name>logText</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1android_1_1AndroidLogCatLogger.html</anchorfile>
-      <anchor>a14f8b03575770404280298d4d1876bda</anchor>
-      <arglist>(AString domain, Log.Level level, AString msg, int indent, CallerInfo caller, int lineNumber)</arglist>
+      <anchor>a499738d5dc205b52db9c91549de320ff</anchor>
+      <arglist>(Domain domain, Verbosity verbosity, AString msg, ScopeInfo caller, int lineNumber)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
@@ -556,22 +728,22 @@
       <type></type>
       <name>AnsiLogger</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>a665ab97649767275d6a334bde8151042</anchor>
-      <arglist>(PrintStream out, String name)</arglist>
+      <anchor>aaeeefcf3cb2bdfbac6fd38a73f1ea0b0</anchor>
+      <arglist>(PrintStream out, boolean usesStdStreams, String name, String typeName)</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>AnsiLogger</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>a26087caef4aee45a258e46099ee3030e</anchor>
-      <arglist>(PrintStream out)</arglist>
+      <anchor>abefe8c4d31d57ace8520580c7747419c</anchor>
+      <arglist>(PrintStream out, boolean usesStdStreams, String name)</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>AnsiLogger</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>acc43f430e26daaadc18269bb2b1b78b6</anchor>
-      <arglist>()</arglist>
+      <anchor>a495b42e8524572598909a8811ed46d99</anchor>
+      <arglist>(PrintStream out, boolean usesStdStreams)</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>String[]</type>
@@ -596,10 +768,10 @@
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
-      <name>doTextLog</name>
+      <name>logText</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>a14f8b03575770404280298d4d1876bda</anchor>
-      <arglist>(AString domain, Log.Level level, AString msg, int indent, CallerInfo caller, int lineNumber)</arglist>
+      <anchor>a71ee6354d9100d17cc375306ec2955dd</anchor>
+      <arglist>(Domain domain, Verbosity verbosity, AString msg, ScopeInfo scope, int lineNumber)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
@@ -1061,6 +1233,20 @@
       <arglist>(char c)</arglist>
     </member>
     <member kind="function">
+      <type>AString</type>
+      <name>_</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>aed0c1d7dae40b57d087dd15c4f8cef51</anchor>
+      <arglist>(Object object)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>_NC</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>af64737359c2599c240078ab19b2e03f1</anchor>
+      <arglist>(Object object)</arglist>
+    </member>
+    <member kind="function">
       <type>char</type>
       <name>charAt</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
@@ -1402,6 +1588,20 @@
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>a08cd18532f275e3318387826b87245b7</anchor>
       <arglist>(char[] needles, Inclusion inclusion)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>lastIndexOf</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a9da2ebde647320be3568aec8807d1028</anchor>
+      <arglist>(char needle, int startIndex)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>lastIndexOf</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a7f7d95137ecb0028cd6949a0ecf59b7d</anchor>
+      <arglist>(char needle)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
@@ -2146,6 +2346,20 @@
       <arglist>(char c)</arglist>
     </member>
     <member kind="function">
+      <type>AString</type>
+      <name>_</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>aed0c1d7dae40b57d087dd15c4f8cef51</anchor>
+      <arglist>(Object object)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>_NC</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>af64737359c2599c240078ab19b2e03f1</anchor>
+      <arglist>(Object object)</arglist>
+    </member>
+    <member kind="function">
       <type>char</type>
       <name>charAt</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
@@ -2487,6 +2701,20 @@
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>a08cd18532f275e3318387826b87245b7</anchor>
       <arglist>(char[] needles, Inclusion inclusion)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>lastIndexOf</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a9da2ebde647320be3568aec8807d1028</anchor>
+      <arglist>(char needle, int startIndex)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>lastIndexOf</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a7f7d95137ecb0028cd6949a0ecf59b7d</anchor>
+      <arglist>(char needle)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
@@ -2865,80 +3093,6 @@
       <arglist>(int minArraySize)</arglist>
     </member>
   </compound>
-  <compound kind="class">
-    <name>com::aworx::lox::core::CallerInfo</name>
-    <filename>classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html</filename>
-    <member kind="variable">
-      <type>AString</type>
-      <name>className</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>a7cc5b098bd04225b9970d6fa403f9415</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>AString</type>
-      <name>fileName</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>ae6372d134a0fe65a56c8fe81f089ae59</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>lineNumber</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>a44bf2f6ee91a35522c07c779325d3ef0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>AString</type>
-      <name>methodName</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>adb209f246d40ce3b523787fc7776c0f3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>AString</type>
-      <name>packageName</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>a436e0978ded8aef84f28e7fa3044b3b1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>Thread</type>
-      <name>thread</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>ac99b75d10f465c1160242dea4544069a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>long</type>
-      <name>threadID</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>a60a653746c2fc588e8da8d1a4b444bb5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>AString</type>
-      <name>threadName</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>af24ba4a8a819b679d1ac18505b2fe8a0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>Ticks</type>
-      <name>timeStamp</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>a4e72dac5d168369a754893772395f0d3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>set</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>a8763da7ac2da09ba6cfc45a58244252b</anchor>
-      <arglist>(HashMap&lt; Long, String &gt; threadDictionary, Vector&lt; String &gt; omittablePackagePrefixes)</arglist>
-    </member>
-  </compound>
   <compound kind="enum">
     <name>com::aworx::lib::enums::Case</name>
     <filename>enumcom_1_1aworx_1_1lib_1_1enums_1_1Case.html</filename>
@@ -2986,7 +3140,28 @@
   <compound kind="class">
     <name>com::aworx::lib::config::Configuration</name>
     <filename>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</filename>
-    <class kind="class">com::aworx::lib::config::Configuration::PrioAndPlugin</class>
+    <class kind="class">com::aworx::lib::config::Configuration::PluginAndPrio</class>
+    <member kind="variable" static="yes">
+      <type>static final int</type>
+      <name>PRIO_CMD_LINE</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>ac1f233d6ee7b092b2ccd53bb12a51911</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static final int</type>
+      <name>PRIO_ENV_VARS</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>ac51f528297704c7c6c1a965d03b8e02f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static final int</type>
+      <name>PRIO_INI_FILE</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>a84df1450d5fdbfd98e7bc29bb04957ea</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="variable">
       <type>CommandLinePlugIn</type>
       <name>cmdLineCP</name>
@@ -3063,6 +3238,13 @@
       <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
       <anchor>abc91dfb893771044af6ffc52daa83a23</anchor>
       <arglist>(ConfigurationPlugIn plugin, int priority)</arglist>
+    </member>
+    <member kind="function">
+      <type>boolean</type>
+      <name>isTrue</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>ac99ae832b810701fd58549162db17169</anchor>
+      <arglist>(AString value)</arglist>
     </member>
     <member kind="function">
       <type>synchronized boolean</type>
@@ -3163,10 +3345,10 @@
       <arglist>(CharSequence category, CharSequence name, double value)</arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>ArrayList&lt; PrioAndPlugin &gt;</type>
+      <type>ArrayList&lt; PluginAndPrio &gt;</type>
       <name>plugins</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a85f65b76d03e1858d74701fcf970ad58</anchor>
+      <anchor>a12e29cc98de32e97d6e851d9c7c43d6b</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -3264,9 +3446,9 @@
     </member>
     <member kind="function" protection="protected">
       <type>boolean</type>
-      <name>doLogSubstring</name>
+      <name>logSubstring</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html</anchorfile>
-      <anchor>aaba50d6f95a026a7efe28b483802557c</anchor>
+      <anchor>a3a5b4278703e908f00ed28a013f24a68</anchor>
       <arglist>(AString buffer, int start, int length)</arglist>
     </member>
     <member kind="function" protection="protected">
@@ -3288,12 +3470,72 @@
     <name>com::aworx::lib::ConsoleReportWriter</name>
     <filename>classcom_1_1aworx_1_1lib_1_1ConsoleReportWriter.html</filename>
     <base>com::aworx::lib::ReportWriter</base>
+    <member kind="variable" static="yes">
+      <type>static final ConsoleReportWriter</type>
+      <name>SINGLETON</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1ConsoleReportWriter.html</anchorfile>
+      <anchor>a95a006d0fea5ad2857dc32521003e314</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>NotifyActivation</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1ConsoleReportWriter.html</anchorfile>
+      <anchor>a9f03332e9e50d3d28eb466d31492a022</anchor>
+      <arglist>(Phase phase)</arglist>
+    </member>
     <member kind="function">
       <type>void</type>
       <name>report</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1ConsoleReportWriter.html</anchorfile>
       <anchor>aa7880db249327f80eaabd7c7be516744</anchor>
       <arglist>(Report.Message report)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type></type>
+      <name>ConsoleReportWriter</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1ConsoleReportWriter.html</anchorfile>
+      <anchor>aa79313b30414299d171786d881144df7</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="enum">
+    <name>com::aworx::lib::enums::ContainerOp</name>
+    <filename>enumcom_1_1aworx_1_1lib_1_1enums_1_1ContainerOp.html</filename>
+    <member kind="variable">
+      <type></type>
+      <name>CREATE</name>
+      <anchorfile>enumcom_1_1aworx_1_1lib_1_1enums_1_1ContainerOp.html</anchorfile>
+      <anchor>a953f73df78d66c15d03328d5d077a171</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type></type>
+      <name>GET</name>
+      <anchorfile>enumcom_1_1aworx_1_1lib_1_1enums_1_1ContainerOp.html</anchorfile>
+      <anchor>ad190d942df20d50724197816c107b848</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type></type>
+      <name>GET_CREATE</name>
+      <anchorfile>enumcom_1_1aworx_1_1lib_1_1enums_1_1ContainerOp.html</anchorfile>
+      <anchor>a85f7cba7036621a9b83679c1eb180bdc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type></type>
+      <name>INSERT</name>
+      <anchorfile>enumcom_1_1aworx_1_1lib_1_1enums_1_1ContainerOp.html</anchorfile>
+      <anchor>a7413a7bd185dd81a3b5df334bc212303</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type></type>
+      <name>REMOVE</name>
+      <anchorfile>enumcom_1_1aworx_1_1lib_1_1enums_1_1ContainerOp.html</anchorfile>
+      <anchor>aa6533af166e05c78a0c1449a72be26e7</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="enum">
@@ -3472,11 +3714,34 @@
   <compound kind="class">
     <name>com::aworx::lox::core::Domain</name>
     <filename>classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html</filename>
+    <class kind="class">com::aworx::lox::core::Domain::LoggerData</class>
+    <class kind="class">com::aworx::lox::core::Domain::PL</class>
     <member kind="variable" static="yes">
-      <type>static String</type>
-      <name>domainSeparatorChars</name>
+      <type>static final char</type>
+      <name>PATH_SEPARATOR</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
-      <anchor>aa25dea88ec319cb6f8954e150ec0c542</anchor>
+      <anchor>a1ff0cc608b849c79d921a7e5cac3ff8a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>cntLogCalls</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a898aebb032f3bceb8d879e7695f197d0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>ArrayList&lt; LoggerData &gt;</type>
+      <name>data</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>abafe607151d468281bbf327834cecc60</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>fullPath</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a8dff5559f7fb753cf25981e24bbb3126</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -3494,6 +3759,13 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
+      <type>ArrayList&lt; PL &gt;</type>
+      <name>prefixLogables</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>ac8fd14b26bac4257e13eee401026db3e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
       <type>ArrayList&lt; Domain &gt;</type>
       <name>subDomains</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
@@ -3508,39 +3780,102 @@
       <arglist>(Domain parent, AString name)</arglist>
     </member>
     <member kind="function">
+      <type>int</type>
+      <name>addLogger</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>afebe6acc9182045fd11015887422a074</anchor>
+      <arglist>(Logger logger)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>countLoggers</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a91fe9d70e4941b9acb15ab7b2d9d168f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
       <type>Domain</type>
       <name>find</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
-      <anchor>aac3d13d6c32c0cf706e1dfcbe3c26014</anchor>
-      <arglist>(AString domainPath, boolean[] wasCreated)</arglist>
+      <anchor>af8ab0b5782c462bd23a8d31b2c3cc048</anchor>
+      <arglist>(AString domainPathAS, Case sensitivity, int maxCreate, boolean[] wasCreated)</arglist>
     </member>
     <member kind="function">
-      <type>Log.DomainLevel</type>
-      <name>getLevel</name>
+      <type>int</type>
+      <name>getCount</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
-      <anchor>acff162e8486d1c073b6ab88bf60c9c9b</anchor>
+      <anchor>a3d3c558fc4ce0d8c3d5c53b1d0165fb5</anchor>
+      <arglist>(int loggerNo)</arglist>
+    </member>
+    <member kind="function">
+      <type>Logger</type>
+      <name>getLogger</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>acaa486d7048bb92b36bf103fdea4518c</anchor>
+      <arglist>(String loggerName)</arglist>
+    </member>
+    <member kind="function">
+      <type>Logger</type>
+      <name>getLogger</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a049c8cc723e5142a61d9c523ca101649</anchor>
+      <arglist>(int no)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>getLoggerNo</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a6647c95c18132355d9747968b3844455</anchor>
+      <arglist>(String loggerName)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>getLoggerNo</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a4c50282ab3cc53d16f5dec6ed826bfa0</anchor>
+      <arglist>(Logger logger)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>getPriority</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a9d3a825b8e9fd7880299ee075dad8506</anchor>
+      <arglist>(int loggerNo)</arglist>
+    </member>
+    <member kind="function">
+      <type>Domain</type>
+      <name>getRoot</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a21100edc8b9a809a54aeea69aaf0589c</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>Verbosity</type>
+      <name>getVerbosity</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a104bc80f0ea86693b5f1b6ac3a26252f</anchor>
+      <arglist>(int loggerNo)</arglist>
     </member>
     <member kind="function">
       <type>boolean</type>
       <name>isActive</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
-      <anchor>a6d8ba3b2ebf63ea89e6cd80de592dcc4</anchor>
-      <arglist>(Log.Level cmpLevel)</arglist>
+      <anchor>ac166f193b19da2275301536d7610a549</anchor>
+      <arglist>(int loggerNo, Verbosity statement)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
-      <name>setLevel</name>
+      <name>removeLogger</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
-      <anchor>a112e95a796d1abfdce50f17e4e4ed7bd</anchor>
-      <arglist>(Log.DomainLevel domainLevel, Propagation propagation)</arglist>
+      <anchor>a13f53561d67bd0b769ab5a7e102b3a72</anchor>
+      <arglist>(int loggerNo)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
-      <name>setLevel</name>
+      <type>Verbosity</type>
+      <name>setVerbosity</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
-      <anchor>ac35c288567f30cbdc471fe49a2d4e4db</anchor>
-      <arglist>(Log.DomainLevel domainLevel)</arglist>
+      <anchor>a56f31355e541142f60afd03757abee85</anchor>
+      <arglist>(int loggerNo, Verbosity verbosity, int priority)</arglist>
     </member>
     <member kind="function">
       <type>String</type>
@@ -3550,63 +3885,109 @@
       <arglist>()</arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>Log.DomainLevel</type>
-      <name>level</name>
+      <type>AString</type>
+      <name>tAString</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
-      <anchor>a1a9f7325c08dd31ecae733ac275a3791</anchor>
+      <anchor>a4eab9ca32845e6e56169e1df28225791</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Substring</type>
+      <name>tSubstring</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>ae02ecb257cadbd45d5280d878055873a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Substring</type>
+      <name>tSubstring2</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>ac2fc5db593e64d47fe51e0989418ef72</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>addLoggerRecursive</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>ad7d48a4bbb7151b268d7a126f6034db1</anchor>
+      <arglist>(Logger logger)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>Domain</type>
       <name>findRecursive</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
-      <anchor>a21f85eaafea246075350ce08ec817f36</anchor>
-      <arglist>(AString domainPath, int dpStartIdx, boolean[] wasCreated)</arglist>
+      <anchor>a93479fdf4df53e69f3eb27d9cf241dea</anchor>
+      <arglist>(Substring domainPath, Case sensitivity, int maxCreate, boolean[] wasCreated)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>removeLoggerRecursive</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a1b032fcdfc7306d529107bcd28145b66</anchor>
+      <arglist>(int loggerNo)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>com::aworx::lox::Lox::DomainSubstitutionRule</name>
+    <filename>classcom_1_1aworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html</filename>
+    <member kind="variable">
+      <type>AString</type>
+      <name>replacement</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html</anchorfile>
+      <anchor>ae332e770c44fe618ab8f3e55da38dcf8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>search</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html</anchorfile>
+      <anchor>a3d076ef013e71bb63512dc463b4854c5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>DSRType</type>
+      <name>type</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html</anchorfile>
+      <anchor>a61cb4b672b80256fa889668dd5ec4de5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>DomainSubstitutionRule</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html</anchorfile>
+      <anchor>a8b30f3a721abf15d09f442304685e83e</anchor>
+      <arglist>(String s, String r)</arglist>
     </member>
   </compound>
   <compound kind="enum">
-    <name>com::aworx::lox::Log::DomainLevel</name>
-    <filename>enumcom_1_1aworx_1_1lox_1_1Log_1_1DomainLevel.html</filename>
+    <name>com::aworx::lox::Lox::DSRType</name>
+    <filename>enumcom_1_1aworx_1_1lox_1_1Lox_1_1DSRType.html</filename>
     <member kind="variable">
       <type></type>
-      <name>ALL</name>
-      <anchorfile>enumcom_1_1aworx_1_1lox_1_1Log_1_1DomainLevel.html</anchorfile>
-      <anchor>aaff03f45544854747fa5e7821e84252e</anchor>
+      <name>ENDS_WIDTH</name>
+      <anchorfile>enumcom_1_1aworx_1_1lox_1_1Lox_1_1DSRType.html</anchorfile>
+      <anchor>a2e9661a4f024a990056eba38c763b29f</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type></type>
-      <name>ERRORS</name>
-      <anchorfile>enumcom_1_1aworx_1_1lox_1_1Log_1_1DomainLevel.html</anchorfile>
-      <anchor>a622ccac4bed4b5ffcfd1acea83629286</anchor>
+      <name>EXACT</name>
+      <anchorfile>enumcom_1_1aworx_1_1lox_1_1Lox_1_1DSRType.html</anchorfile>
+      <anchor>a4d7ced7e91082dd7db8ca474c3ff96ac</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type></type>
-      <name>INFO_WARNINGS_AND_ERRORS</name>
-      <anchorfile>enumcom_1_1aworx_1_1lox_1_1Log_1_1DomainLevel.html</anchorfile>
-      <anchor>a9bbe14daf8eaa39934d9381b03eda2b3</anchor>
+      <name>STARTS_WITH</name>
+      <anchorfile>enumcom_1_1aworx_1_1lox_1_1Lox_1_1DSRType.html</anchorfile>
+      <anchor>a11a679ee22aa82acaf5cef4a713f4b0b</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type></type>
-      <name>INHERIT</name>
-      <anchorfile>enumcom_1_1aworx_1_1lox_1_1Log_1_1DomainLevel.html</anchorfile>
-      <anchor>a8771f4952654026ffa7275448f8d7f76</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type></type>
-      <name>OFF</name>
-      <anchorfile>enumcom_1_1aworx_1_1lox_1_1Log_1_1DomainLevel.html</anchorfile>
-      <anchor>aba437f58ad654d395b18d209a1a8c21c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type></type>
-      <name>WARNINGS_AND_ERRORS</name>
-      <anchorfile>enumcom_1_1aworx_1_1lox_1_1Log_1_1DomainLevel.html</anchorfile>
-      <anchor>a2e93b8db1cedcf3815016fe352b1b2f0</anchor>
+      <name>SUBSTRING</name>
+      <anchorfile>enumcom_1_1aworx_1_1lox_1_1Lox_1_1DSRType.html</anchorfile>
+      <anchor>aba600e02d9fbe008e18ea35b4d191991</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -3828,22 +4209,29 @@
       <anchor>a1d12745347903d52196d55fd897ace5d</anchor>
       <arglist></arglist>
     </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>replaceToReadable</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1ESC.html</anchorfile>
+      <anchor>adc8ea4fa4b55b4151b3119e7e8174031</anchor>
+      <arglist>(AString target, int startIdx)</arglist>
+    </member>
   </compound>
   <compound kind="enum">
     <name>com::aworx::lib::enums::Inclusion</name>
     <filename>enumcom_1_1aworx_1_1lib_1_1enums_1_1Inclusion.html</filename>
     <member kind="variable">
       <type></type>
-      <name>Exclude</name>
+      <name>EXCLUDE</name>
       <anchorfile>enumcom_1_1aworx_1_1lib_1_1enums_1_1Inclusion.html</anchorfile>
-      <anchor>a09131a3151ba4ba68f2b555dd1bd919e</anchor>
+      <anchor>a68675e302dc131913045dd7e20320bb1</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type></type>
-      <name>Include</name>
+      <name>INCLUDE</name>
       <anchorfile>enumcom_1_1aworx_1_1lib_1_1enums_1_1Inclusion.html</anchorfile>
-      <anchor>a71e87ef8b29d863a0030729762f31926</anchor>
+      <anchor>a7142aafb51bbc0998c5e45e9235f67fe</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -4024,38 +4412,6 @@
     </member>
   </compound>
   <compound kind="enum">
-    <name>com::aworx::lox::Log::Level</name>
-    <filename>enumcom_1_1aworx_1_1lox_1_1Log_1_1Level.html</filename>
-    <member kind="variable">
-      <type></type>
-      <name>ERROR</name>
-      <anchorfile>enumcom_1_1aworx_1_1lox_1_1Log_1_1Level.html</anchorfile>
-      <anchor>a9eaada089c4de774cfc8b7aea4b9379a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type></type>
-      <name>INFO</name>
-      <anchorfile>enumcom_1_1aworx_1_1lox_1_1Log_1_1Level.html</anchorfile>
-      <anchor>ab1764b91c3b44a5988564bbfe1d6e352</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type></type>
-      <name>VERBOSE</name>
-      <anchorfile>enumcom_1_1aworx_1_1lox_1_1Log_1_1Level.html</anchorfile>
-      <anchor>a03169c2c7e2ff706233c78422b0daf3a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type></type>
-      <name>WARNING</name>
-      <anchorfile>enumcom_1_1aworx_1_1lox_1_1Log_1_1Level.html</anchorfile>
-      <anchor>a1dfc73ab73898d3f4f348d462a5d126a</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="enum">
     <name>com::aworx::lib::enums::LockMode</name>
     <filename>enumcom_1_1aworx_1_1lib_1_1enums_1_1LockMode.html</filename>
     <member kind="variable">
@@ -4076,16 +4432,6 @@
   <compound kind="class">
     <name>com::aworx::lox::Log</name>
     <filename>classcom_1_1aworx_1_1lox_1_1Log.html</filename>
-    <class kind="enum">com::aworx::lox::Log::DomainLevel</class>
-    <class kind="enum">com::aworx::lox::Log::Level</class>
-    <class kind="enum">com::aworx::lox::Log::Scope</class>
-    <member kind="variable" static="yes">
-      <type>static String</type>
-      <name>configCategoryName</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a25cfe93aaf9615cfe8d411514c1f1499</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="variable" static="yes">
       <type>static TextLogger</type>
       <name>debugLogger</name>
@@ -4107,27 +4453,6 @@
       <anchor>a9291aece8829db000d6508daa16f67fc</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable" static="yes">
-      <type>static final int</type>
-      <name>revision</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a80915412cfca1d0f550c217f30d3083c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static final int</type>
-      <name>version</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a450c392481245410c99fb560c206e824</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>addDebugLogger</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>ab01c271e8f023ec9a79476a928418759</anchor>
-      <arglist>(Lox lox, boolean replaceDefaultReportWriter)</arglist>
-    </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>addDebugLogger</name>
@@ -4144,38 +4469,17 @@
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
-      <name>addLogger</name>
+      <name>Assert</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a3327fc90660ebcb1cd8fd586536f5075</anchor>
-      <arglist>(Logger logger)</arglist>
+      <anchor>af8fce8719b8538120168bbd9d59990a3</anchor>
+      <arglist>(boolean condition, String domain, Object logable)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>Assert</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>ab802716eb51a321322610cdc31cd9b52</anchor>
-      <arglist>(boolean trueOrLog, Object msg, int indent)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>Assert</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a08f149f29b5d9b1516a7ca471e8150b3</anchor>
-      <arglist>(boolean trueOrLog, Object msg)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>Assert</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a7241c02d2c81a7a069557add2e7c75ce</anchor>
-      <arglist>(boolean trueOrLog, String domain, Object msg, int indent)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>Assert</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>ace80ea65c976c798d5660500b9fe574d</anchor>
-      <arglist>(boolean trueOrLog, String domain, Object msg)</arglist>
+      <anchor>aa01e0f65bc0437c0cf383c84a40bdf4d</anchor>
+      <arglist>(boolean condition, Object logable)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static LogBuf</type>
@@ -4193,31 +4497,31 @@
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
-      <name>error</name>
+      <name>entry</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>aa2e53c0784cea0a017e3338cd05836fe</anchor>
-      <arglist>(Object msg, int indent)</arglist>
+      <anchor>adbc5da4d6001117ea79eabaae1297d23</anchor>
+      <arglist>(String domain, Verbosity verbosity, Object logable)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>entry</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a0e3301e9ff655beea70377d77ad5cf42</anchor>
+      <arglist>(Verbosity verbosity, Object logable)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>error</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a28b11303d9a15e0d5684f712b6e83233</anchor>
-      <arglist>(Object msg)</arglist>
+      <anchor>a11606a61180cfb802dd09f53ec3b2682</anchor>
+      <arglist>(Object logable)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>error</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a0ab444cbbf94592fc37f50c90a4e231f</anchor>
-      <arglist>(String domain, Object msg, int indent)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>error</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a5cf4eecdefd926fb4164e214ddd7c081</anchor>
-      <arglist>(String domain, Object msg)</arglist>
+      <anchor>afbe015e53b65c12d923c6cc100aabf2c</anchor>
+      <arglist>(String domain, Object logable)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static Logger</type>
@@ -4227,109 +4531,39 @@
       <arglist>(String loggerName)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static Object</type>
-      <name>getMarker</name>
+      <type>static void</type>
+      <name>If</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a9e2d1be856f4a7531ba4e53b2653b292</anchor>
-      <arglist>(Log.Scope scope)</arglist>
+      <anchor>a6946e942d3c54a87f4c79179f00afb4a</anchor>
+      <arglist>(boolean condition, String domain, Verbosity verbosity, Object logable)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>If</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>aa3e15e82b708fca795ecfec62eff188d</anchor>
+      <arglist>(boolean condition, Verbosity verbosity, Object logable)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>info</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a708d83da58cf7eac55373101ed7fca02</anchor>
-      <arglist>(Object msg, int indent)</arglist>
+      <anchor>ac4263792d89c27bfd2b78c3d2ad024b3</anchor>
+      <arglist>(Object logable)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>info</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>acbf90a8c4639c26ee49091424a6b5ffb</anchor>
-      <arglist>(Object msg)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>info</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a907fbc10c60826cf5313876cb0c26d87</anchor>
-      <arglist>(String domain, Object msg, int indent)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>info</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a72ac623f948b57fb5238cba3d84088ae</anchor>
-      <arglist>(String domain, Object msg)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>init</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a32b5b4fa3926a42ee9728e2ec8b46d9c</anchor>
-      <arglist>(boolean useEnv, String[] args)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>line</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a4e97e04e1f54ed79523211878fc0f687</anchor>
-      <arglist>(boolean doLog, String domain, Log.Level level, Object msg, int indent, String loggerFilter)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>line</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a2e5ea9d1202dd6a6543508010b04b815</anchor>
-      <arglist>(boolean doLog, String domain, Log.Level level, Object msg, int indent)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>line</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a70607e01082132ee0ea82dbd1bd4b201</anchor>
-      <arglist>(boolean doLog, String domain, Log.Level level, Object msg)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>line</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a3b0de0cec9b282bdae3f824211932925</anchor>
-      <arglist>(String domain, Log.Level level, Object msg)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>line</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a70f180274d1ecb02fa9ea97aca7afd46</anchor>
-      <arglist>(Log.Level level, Object msg)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>line</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a76d5375571bdb64b68858310097db88f</anchor>
-      <arglist>(Log.Level level, Object msg, int indent)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>line</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a8b8e21d34f079a0b503a3e2bff26e70c</anchor>
-      <arglist>(Log.Level level, Object msg, int indent, String loggerFilter)</arglist>
+      <anchor>a4eec75ab8f55f6bd0c01fa82832a18de</anchor>
+      <arglist>(String domain, Object logable)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>logConfig</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a3d500fb540ea7d731003c91292a742cc</anchor>
-      <arglist>(String domain, Log.Level level, String headLine, String loggerFilter)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>logConfig</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a01a959146336e7f4211c1e2b788dda29</anchor>
-      <arglist>(String domain, Log.Level level, String headLine)</arglist>
+      <anchor>ad5e7f4323a20180ef047731c78421de1</anchor>
+      <arglist>(String domain, Verbosity verbosity, String headLine)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
@@ -4344,6 +4578,111 @@
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
       <anchor>aa903f41f5afd5721bf51364f3e43990b</anchor>
       <arglist>(String threadName)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>once</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>aea63ff58929076e46e74b8447c22c1c8</anchor>
+      <arglist>(String domain, Verbosity verbosity, Object logable, String group, Scope scope, int pkgLevel, int quantity)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>once</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>ae529d5dd966f84d6a23e2ffe150209d0</anchor>
+      <arglist>(String domain, Verbosity verbosity, Object logable, String group, Scope scope, int pkgLevel)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>once</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a405d1843e0b7d89f89ad47e0a1071654</anchor>
+      <arglist>(String domain, Verbosity verbosity, Object logable, String group, Scope scope)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>once</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a6b873e0c7ad71d72f9b5a2a6fa41d14a</anchor>
+      <arglist>(String domain, Verbosity verbosity, Object logable, String group)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>once</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>ad09d1857a81cfedcc6d14cee859a1c5d</anchor>
+      <arglist>(String domain, Verbosity verbosity, Object logable, String group, int quantity)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>once</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a10b85e66a9aabe21c2094835292753d9</anchor>
+      <arglist>(String domain, Verbosity verbosity, Object logable, Scope scope, int pkgLevel, int quantity)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>once</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a0c60af2b7d2f83463c91d85bf08ad616</anchor>
+      <arglist>(String domain, Verbosity verbosity, Object logable, Scope scope, int pkgLevel)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>once</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>acd03aea1e503d7e8f9b0d9a567f9adb0</anchor>
+      <arglist>(String domain, Verbosity verbosity, Object logable, Scope scope)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>once</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>acb8bd84cf1ac981ded1c8ef332b3985e</anchor>
+      <arglist>(String domain, Verbosity verbosity, Object logable)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>once</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>aacaf5da23364f258be40b8ef5ba57078</anchor>
+      <arglist>(String domain, Verbosity verbosity, Object logable, int quantity)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>once</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a97070b1080af45c480f7db9ccfd0a347</anchor>
+      <arglist>(Object logable)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>once</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a5c6b0157acd8b4ce3c184de0ee21c418</anchor>
+      <arglist>(Object logable, int quantity)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>once</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a98bef7ee2632335daa551b250543798b</anchor>
+      <arglist>(Object logable, int quantity, String group)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>once</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a62aafe3b13152227b8007292b28945a3</anchor>
+      <arglist>(Object logable, int quantity, Scope scope, int pkgLevel)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>once</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>ad0f6aae2970b4e61196acdc4ce40aae5</anchor>
+      <arglist>(Object logable, int quantity, Scope scope)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
@@ -4367,18 +4706,25 @@
       <arglist>(Logger logger)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static int</type>
-      <name>removeLoggers</name>
+      <type>static Logger</type>
+      <name>removeLogger</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a3072d18e2b59e25a64ff4b0abcf4b521</anchor>
-      <arglist>(String loggerFilter)</arglist>
+      <anchor>ab696202d2ede306675fbbb575fe2828b</anchor>
+      <arglist>(String loggerName)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static int</type>
-      <name>removeLoggers</name>
+      <type>static void</type>
+      <name>removeThreadDomain</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a9ee15f4b5194bfa6914e29e25fb16e50</anchor>
-      <arglist>()</arglist>
+      <anchor>a3b8dc68ae1affc16843951d411a6a253</anchor>
+      <arglist>(String scopeDomain, Scope scope, Thread thread)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>removeThreadDomain</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a412d8b8249ed7f947c21eec484174522</anchor>
+      <arglist>(String scopeDomain, Scope scope)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
@@ -4388,74 +4734,123 @@
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static void</type>
-      <name>setDomain</name>
+      <type>static LogData</type>
+      <name>retrieve</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>ae865ebf18f1683fd7769f470bd732202</anchor>
-      <arglist>(String domain, Log.Scope scope)</arglist>
+      <anchor>a92cf2a8d50a9d21cba9527c3f744db33</anchor>
+      <arglist>(String key, Scope scope, int pkgLevel)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static LogData</type>
+      <name>retrieve</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>ace5e4ecd3f56544506dd00c9b80603e7</anchor>
+      <arglist>(String key, Scope scope)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static LogData</type>
+      <name>retrieve</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>ac9b4f3e09a0f6f68abf5f41f1a149246</anchor>
+      <arglist>(String key)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static LogData</type>
+      <name>retrieve</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a1a113bffa8027dc2b30bd78a60c2cb66</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static LogData</type>
+      <name>retrieve</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>ac3097a654f6ff636a2f847b887e429b7</anchor>
+      <arglist>(Scope scope, int pkgLevel)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static LogData</type>
+      <name>retrieve</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>ac5e4643dfc96b51db5a0697f58a60381</anchor>
+      <arglist>(Scope scope)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>setDomain</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>ae768b2cbe497d43081a2a4ff81d31214</anchor>
-      <arglist>(String domain, Log.DomainLevel domainLevel, String loggerFilter, Propagation propagation)</arglist>
+      <anchor>a9f2baed1e3dd3172488f447f23dfed49</anchor>
+      <arglist>(String scopeDomain, Scope scope, int packageLevel)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>setDomain</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>ada113d9af3a9d8aa137c5d47966a0a96</anchor>
-      <arglist>(String domain, Log.DomainLevel domainLevel, String loggerFilter)</arglist>
+      <anchor>ad6e44824913b2e06684d6366a6aa5a1b</anchor>
+      <arglist>(String scopeDomain, Scope scope)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>setDomain</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a43fefb4b6e7eb349e51ba6267e2b07c5</anchor>
-      <arglist>(String domain, Log.DomainLevel domainLevel)</arglist>
+      <anchor>ada980157df99987e7447b4322d445870</anchor>
+      <arglist>(String scopeDomain, Scope scope, Thread thread)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
-      <name>setDomain</name>
+      <name>setDomainSubstitutionRule</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a5d78462df322bc0169c5f19e5f05cd64</anchor>
-      <arglist>(String domain, Log.Scope scope, Log.DomainLevel domainLevel, String loggerFilter)</arglist>
+      <anchor>ac7c4f783db38b3739c56f12014b0f424</anchor>
+      <arglist>(String domainPath, String replacement)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
-      <name>setDomain</name>
+      <name>setPrefix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a1902a7e60eb082e12f36be4c1cd38aa6</anchor>
-      <arglist>(String domain, Log.Scope scope, Log.DomainLevel domainLevel)</arglist>
+      <anchor>a5686b241228cddb64e254f180bb9071b</anchor>
+      <arglist>(Object logable, Scope scope, int packageLevel)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
-      <name>setDomain</name>
+      <name>setPrefix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a8c07fc8445deb4be45c67882954cc04c</anchor>
-      <arglist>(String domain, Log.DomainLevel domainLevel, Log.Scope scope)</arglist>
+      <anchor>ad501999c7575c5eabb542ed84f763c91</anchor>
+      <arglist>(Object logable, Scope scope)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
-      <name>setLogger</name>
+      <name>setPrefix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a03b811a7ba5133f0210e671314e94a6e</anchor>
-      <arglist>(Switch newState, String loggerFilter)</arglist>
+      <anchor>aeff198bbfa29efbbe3e4aef5c3d99d4e</anchor>
+      <arglist>(Object logable, Scope scope, Thread thread)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
-      <name>setMarker</name>
+      <name>setPrefix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>abc283df31cdf12ac52f8b1d261cccb9f</anchor>
-      <arglist>(Object marker, Log.Scope scope)</arglist>
+      <anchor>a799b6a85c92cf5ae6708ee24ba5118ed</anchor>
+      <arglist>(Object logable, String domain, Inclusion otherPLs)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>setPrefix</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>ada153a61857190156e5fdeb4d11cc132</anchor>
+      <arglist>(Object logable, String domain)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>setPrefix</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>ae6bd44a12f0c3260b45eb8e60c27243d</anchor>
+      <arglist>(Object logable)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>setStartTime</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>afddd20932f60d5ca1a4b40b559b7541f</anchor>
-      <arglist>(Date startTime, String loggerFilter)</arglist>
+      <anchor>aca5f6a9fc5be0ff05f3bd7b3c2c22489</anchor>
+      <arglist>(Date startTime, String loggerName)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
@@ -4473,66 +4868,115 @@
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
-      <name>verbose</name>
+      <name>setVerbosity</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>af3057efb28c59cca2a83abf0fc30c757</anchor>
-      <arglist>(Object msg, int indent)</arglist>
+      <anchor>a941880afa9b81bbc7922ec6989050c68</anchor>
+      <arglist>(Logger logger, Verbosity verbosity, String domain, int priority)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>setVerbosity</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a458fddb8dbf87c012d2014a70a7b528d</anchor>
+      <arglist>(Logger logger, Verbosity verbosity, String domain)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>setVerbosity</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a2bca93f1a811f91fa07aaed305e1e556</anchor>
+      <arglist>(Logger logger, Verbosity verbosity)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>setVerbosity</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>aa1027f91ba42ed18f6ee0aa7c9460265</anchor>
+      <arglist>(String loggerName, Verbosity verbosity, String domain, int priority)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>setVerbosity</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a3950e43f5860a48472cac13adf4eb902</anchor>
+      <arglist>(String loggerName, Verbosity verbosity, String domain)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>setVerbosity</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a7976f23bef4ef75ab86bcad9a87d692a</anchor>
+      <arglist>(String loggerName, Verbosity verbosity)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>store</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a7a33fccc17dd4c60660e99841a8bda47</anchor>
+      <arglist>(LogData data, String key, Scope scope, int pkgLevel)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>store</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>ac2fa5675b0dcc65938550ed7bf26907d</anchor>
+      <arglist>(LogData data, String key, Scope scope)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>store</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>ac7a24419772497fd8827a7db87413d77</anchor>
+      <arglist>(LogData data, String key)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>store</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a67322e58d75fa6b23670bddf4e3faa1a</anchor>
+      <arglist>(LogData data)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>store</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>ac97a925130f6c404497d43c4199577d3</anchor>
+      <arglist>(LogData data, Scope scope, int pkgLevel)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>store</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>aef8d4ddfe8ff75ea4955f2167a85ef02</anchor>
+      <arglist>(LogData data, Scope scope)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>verbose</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>aaf61c77dd78e6c9cfdae2ef45fec0747</anchor>
-      <arglist>(Object msg)</arglist>
+      <anchor>ad25d71b72399e9f40eff6f6490042360</anchor>
+      <arglist>(Object logable)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>verbose</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>ae4a44a2b27bf655c541e1540e3a69132</anchor>
-      <arglist>(String domain, Object msg, int indent)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>verbose</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a721dadbbd6d493d62026fcf9a1ef5cde</anchor>
-      <arglist>(String domain, Object msg)</arglist>
+      <anchor>aa628a96765f4d3a58d9e979f0678b90c</anchor>
+      <arglist>(String domain, Object logable)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>warning</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>aedf486a4ad185f3affdef48fbb4c8262</anchor>
-      <arglist>(Object msg, int indent)</arglist>
+      <anchor>a7c5244f63fd71d41e16689c7c33fe3a3</anchor>
+      <arglist>(Object logable)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>warning</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a6124ce1aa80c6dd14dfb6bbe32d5a41d</anchor>
-      <arglist>(Object msg)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>warning</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a9663b644aea091e0b98c2866e8c2e042</anchor>
-      <arglist>(String domain, Object msg, int indent)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>warning</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a47ade1ce84e1f20bb16df3c74ac18e09</anchor>
-      <arglist>(String domain, Object msg)</arglist>
-    </member>
-    <member kind="variable" protection="protected" static="yes">
-      <type>static boolean</type>
-      <name>isInitialized</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a32cea66bae4ae86c00efd6ffe1e97393</anchor>
-      <arglist></arglist>
+      <anchor>aadde5e40d71996484f5edd348a672e4d</anchor>
+      <arglist>(String domain, Object logable)</arglist>
     </member>
     <member kind="variable" protection="protected" static="yes">
       <type>static LogBuf</type>
@@ -4988,34 +5432,102 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>com::aworx::lox::LogData</name>
+    <filename>classcom_1_1aworx_1_1lox_1_1LogData.html</filename>
+    <member kind="variable">
+      <type>int</type>
+      <name>integerValue</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogData.html</anchorfile>
+      <anchor>afed5dd139c9551f6e47e2964a5a2ee05</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Object</type>
+      <name>objectValue</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogData.html</anchorfile>
+      <anchor>a7c9a4576baa85ac479ca2b4f64aa3ad5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>stringValue</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogData.html</anchorfile>
+      <anchor>a42bf15400eb9db41649ee336c7188dd8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>LogData</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogData.html</anchorfile>
+      <anchor>a645cb2b36cdc6265cab52de40da3a31d</anchor>
+      <arglist>(CharSequence s, int i, Object o)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>LogData</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogData.html</anchorfile>
+      <anchor>ad3fbca46b5ef542e96a962554046ef5f</anchor>
+      <arglist>(CharSequence s, int i)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>LogData</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogData.html</anchorfile>
+      <anchor>af26483ece7b626f34409e92490d1c35e</anchor>
+      <arglist>(CharSequence s)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>LogData</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogData.html</anchorfile>
+      <anchor>a9ee3762a8b399950d7fc0a0b8ac9009f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>LogData</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogData.html</anchorfile>
+      <anchor>af7fba2389e81add214506a8b6128c23d</anchor>
+      <arglist>(CharSequence s, Object o)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>LogData</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogData.html</anchorfile>
+      <anchor>a873fae7d376c547a9f52626d4e1898a3</anchor>
+      <arglist>(int i, Object o)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>LogData</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogData.html</anchorfile>
+      <anchor>acbf846bab719322f67000afac6464692</anchor>
+      <arglist>(int i)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>toString</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogData.html</anchorfile>
+      <anchor>ad4ed0d2e12f739e48629aa83d912094b</anchor>
+      <arglist>(AString target)</arglist>
+    </member>
+    <member kind="function">
+      <type>String</type>
+      <name>toString</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1LogData.html</anchorfile>
+      <anchor>ad146fa8579a5f8a876c4688cc5a68520</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>com::aworx::lox::core::Logger</name>
     <filename>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</filename>
+    <base>com::aworx::lib::threads::SmartLock</base>
     <member kind="variable">
       <type>int</type>
       <name>cntLogs</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
       <anchor>a875cc7d46740caba1725c2f6580804e2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>boolean</type>
-      <name>isDisabled</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>ad7073fb6d6486e166ea6116e36bbecf2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>name</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>a9a2326f35466e54c36c070829245c557</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>Domain</type>
-      <name>rootDomain</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>a2d7e603d6dfc10acdcb5977896ff6815</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -5032,40 +5544,26 @@
       <anchor>a086aaa689b170f76cb4730aebbf01349</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable">
+    <member kind="function">
       <type>String</type>
-      <name>typeName</name>
+      <name>getName</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>ab702590cb21a529418c7bd6439c4337a</anchor>
-      <arglist></arglist>
+      <anchor>a78ee178b6a73658d65ca60da4d1e6683</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>boolean</type>
-      <name>line</name>
+      <type>String</type>
+      <name>getTypeName</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>ac0639589481c5277d8990402ce40d1d3</anchor>
-      <arglist>(AString domain, Log.Level level, Object msgObject, int indent, CallerInfo caller)</arglist>
+      <anchor>a9f0f20d4149a5730b858d8faff891de4</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
-      <name>setDomain</name>
+      <type>abstract void</type>
+      <name>log</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>aa04d2808f596473483133bade2030231</anchor>
-      <arglist>(String domain, Log.DomainLevel domainLevel, Propagation propagation)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setDomain</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>a1bd909b7fe445e5f6b94516529cd4a73</anchor>
-      <arglist>(AString domain, Log.DomainLevel domainLevel, Propagation propagation)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setDomain</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>acfea987a1279622cfb8a5e0393fe33d7</anchor>
-      <arglist>(String domain, Log.DomainLevel domainLevel)</arglist>
+      <anchor>afb6fb454e24c653a10c6966754960298</anchor>
+      <arglist>(Domain domain, Verbosity verbosity, ArrayList&lt; Object &gt; logables, ScopeInfo scope)</arglist>
     </member>
     <member kind="function">
       <type>String</type>
@@ -5075,17 +5573,17 @@
       <arglist>()</arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>boolean[]</type>
-      <name>outputParam</name>
+      <type>String</type>
+      <name>name</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>ac83b466ab167e961c5c709935cae1132</anchor>
+      <anchor>a9a2326f35466e54c36c070829245c557</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>AString</type>
-      <name>tmpDomainName</name>
+      <type>String</type>
+      <name>typeName</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>ab3455c59a6cb0194878d7942ff4eb825</anchor>
+      <anchor>ab702590cb21a529418c7bd6439c4337a</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" protection="protected">
@@ -5095,12 +5593,44 @@
       <anchor>ad5d85bd2edd6cf4e166d9744f6e97f16</anchor>
       <arglist>(String name, String typeName)</arglist>
     </member>
-    <member kind="function" protection="protected">
-      <type>abstract void</type>
-      <name>doLog</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>adf2d4a3039b4c8e4f2f24289af899838</anchor>
-      <arglist>(AString domain, Log.Level level, Object msgObject, int indent, CallerInfo caller)</arglist>
+  </compound>
+  <compound kind="class">
+    <name>com::aworx::lox::core::Domain::LoggerData</name>
+    <filename>classcom_1_1aworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html</filename>
+    <member kind="variable">
+      <type>int</type>
+      <name>cntLogCalls</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html</anchorfile>
+      <anchor>a898aebb032f3bceb8d879e7695f197d0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Logger</type>
+      <name>logger</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html</anchorfile>
+      <anchor>a5b27630dbcf231bfda3a7d79e1eefce5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Verbosity</type>
+      <name>loggerVerbosity</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html</anchorfile>
+      <anchor>a7e7397c3558728fcaacfffbe284a6014</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>priority</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html</anchorfile>
+      <anchor>acec9ce2df15222151ad66fcb1d74eb9f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>LoggerData</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html</anchorfile>
+      <anchor>af3bde5b7060fb57e76b308c36a86f283</anchor>
+      <arglist>(Logger logger)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -5236,71 +5766,36 @@
       <type>static void</type>
       <name>exception</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>a2eefb8683336b59a35278ccf0a0af407</anchor>
-      <arglist>(String domain, Log.Level level, Exception e, String headline, int indent, Lox lox)</arglist>
+      <anchor>a3c3b26ea0457aa865ab6a4b73616f7cb</anchor>
+      <arglist>(String domain, Verbosity verbosity, Exception e, String headline, Lox lox)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>exception</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>aee2dcd1cd6054ce0a3e3a150beb17d46</anchor>
-      <arglist>(String domain, Log.Level level, Exception e, String headline, int indent)</arglist>
+      <anchor>ac8f453f802053d70d68274a945845e3e</anchor>
+      <arglist>(String domain, Verbosity verbosity, Exception e, String headline)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>exception</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>a39e4b6c911f5917228620a521406183c</anchor>
-      <arglist>(String domain, Log.Level level, Exception e, String headline)</arglist>
+      <anchor>ad0e48df7448c0b9b7c69798ec20b405c</anchor>
+      <arglist>(String domain, Verbosity verbosity, Exception e)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>exception</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>a1ff9b68ec7f5e482b68378cf1a1ba41f</anchor>
-      <arglist>(String domain, Log.Level level, Exception e)</arglist>
+      <anchor>a9d50e0ee756fc0f43b052797fbd71ba8</anchor>
+      <arglist>(Verbosity verbosity, Exception e, String headline)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>exception</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>a72e68689d57b79afb0c808869a8fa0f2</anchor>
-      <arglist>(Log.Level level, Exception e, String headline, int indent, Lox lox)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>exception</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>a9d466aba103eba05d942556dd37d2e63</anchor>
-      <arglist>(Log.Level level, Exception e, String headline, int indent)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>exception</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>ac0c84106c9b411de7a17de7eabfd471e</anchor>
-      <arglist>(Log.Level level, Exception e, String headline)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>exception</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>ad457dd13412a755b99cf4a32b05456c2</anchor>
-      <arglist>(Log.Level level, Exception e)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>exception</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>ababb44a10033d07adc1c83b1af162c41</anchor>
-      <arglist>(Exception e, String headline, int indent, Lox lox)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>exception</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>a03b1a235ac32902423d66ee923c94613</anchor>
-      <arglist>(Exception e, String headline, int indent)</arglist>
+      <anchor>ab6ad204da13ee793f471a8d035dd80a1</anchor>
+      <arglist>(Verbosity verbosity, Exception e)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
@@ -5320,106 +5815,71 @@
       <type>static void</type>
       <name>instance</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>a46eedcc7353667a139db8f4f70e6a20c</anchor>
-      <arglist>(String domain, Log.Level level, Object o, int maxRecursion, String headline, int indent, Lox lox)</arglist>
+      <anchor>adea42ddd53fb309518d7f4f48450dbde</anchor>
+      <arglist>(String domain, Verbosity verbosity, Object o, int maxRecursion, String headline, Lox lox)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>instance</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>a91624d9df4759f974a7646e829171edc</anchor>
-      <arglist>(String domain, Log.Level level, Object o, int maxRecursion, String headline, int indent)</arglist>
+      <anchor>a627756f830b6417b771f6bff6415a9ab</anchor>
+      <arglist>(String domain, Verbosity verbosity, Object o, int maxRecursion, String headline)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>instance</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>a93abcc02143b6f726f6a57c83487ed92</anchor>
-      <arglist>(String domain, Log.Level level, Object o, int maxRecursion, String headline)</arglist>
+      <anchor>a5dbc590db1a64c9f7b241256e2dfd4a1</anchor>
+      <arglist>(String domain, Verbosity verbosity, Object o, int maxRecursion)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>instance</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>ac32aa2578833e9f22f41a7d1efb3a6b5</anchor>
-      <arglist>(String domain, Log.Level level, Object o, int maxRecursion)</arglist>
+      <anchor>a6c98d0b095f4296233fd9e83800b1ba1</anchor>
+      <arglist>(Verbosity verbosity, Object o, int maxRecursion, String headline)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>instance</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>acd2cad4423fd97fc82952d7c54d588d6</anchor>
-      <arglist>(Log.Level level, Object o, int maxRecursion, String headline, int indent, Lox lox)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>instance</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>a843848812b37f0f95f74c75d02f2cf58</anchor>
-      <arglist>(Log.Level level, Object o, int maxRecursion, String headline, int indent)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>instance</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>ae8551bce5f762937be6ecf321531fb41</anchor>
-      <arglist>(Log.Level level, Object o, int maxRecursion, String headline)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>instance</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>abd08f03fc574e93cb8390391910bfcd7</anchor>
-      <arglist>(Log.Level level, Object o, int maxRecursion)</arglist>
+      <anchor>a7684bbf5cbd3e2fae77656d4512ce611</anchor>
+      <arglist>(Verbosity verbosity, Object o, int maxRecursion)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>stackTrace</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>aed3f6ab2dd27d848acdc0503080dd52d</anchor>
-      <arglist>(String domain, Log.Level level, String headline, int indent, Lox lox)</arglist>
+      <anchor>a2d67ca3532def0dabea1195721e71ec2</anchor>
+      <arglist>(String domain, Verbosity verbosity, String headline, Lox lox)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>stackTrace</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>a512bd4e62b1e49e036de1fe0ba5571fa</anchor>
-      <arglist>(String domain, Log.Level level, String headline, int indent)</arglist>
+      <anchor>a44bb7a094baab5a1010725fa94b234eb</anchor>
+      <arglist>(String domain, Verbosity verbosity, String headline)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>stackTrace</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>aa57d76aacbe828e51e6982442b393e7f</anchor>
-      <arglist>(String domain, Log.Level level, String headline)</arglist>
+      <anchor>abbb2e1ededf56ab88f2fbec62eb0cc6d</anchor>
+      <arglist>(String domain, Verbosity verbosity)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>stackTrace</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>a4c3e962c3dae9b4dc17c387ae6b45c01</anchor>
-      <arglist>(String domain, Log.Level level)</arglist>
+      <anchor>adde31d401566f9c12aaac9d380e0535e</anchor>
+      <arglist>(Verbosity verbosity, String headline)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>stackTrace</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>a94bec0fc3a3b806f2edb992ddf1fffed</anchor>
-      <arglist>(Log.Level level, String headline, int indent)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>stackTrace</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>aadc99123f5a7e3fe8e459280da99d6a6</anchor>
-      <arglist>(Log.Level level, String headline)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>stackTrace</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>a817e6e1f3fc55f4e24d9aeaad93700cd</anchor>
-      <arglist>(Log.Level level)</arglist>
+      <anchor>a13d23bab877afb30b6a906bc5dafa964</anchor>
+      <arglist>(Verbosity verbosity)</arglist>
     </member>
     <member kind="variable" protection="protected" static="yes">
       <type>static ByteArrayOutputStream</type>
@@ -5558,6 +6018,23 @@
   <compound kind="class">
     <name>com::aworx::lox::Lox</name>
     <filename>classcom_1_1aworx_1_1lox_1_1Lox.html</filename>
+    <base>com::aworx::lib::threads::ThreadLock</base>
+    <class kind="class">com::aworx::lox::Lox::DomainSubstitutionRule</class>
+    <class kind="enum">com::aworx::lox::Lox::DSRType</class>
+    <member kind="variable" static="yes">
+      <type>static final int</type>
+      <name>PRIO_PROTECTED</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>acabc9e89fbc407ff2ae93b6537d6450f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static final int</type>
+      <name>PRIO_SOURCE</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ab246a325c67b7851557d4e75b071ffdb</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="variable">
       <type>int</type>
       <name>cntLogCalls</name>
@@ -5566,31 +6043,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>int</type>
-      <name>errIfNoDefaultDomain</name>
+      <type>Case</type>
+      <name>domainSensitivity</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ae7e92ed4a49ac5fb693e174febb53de1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>internalDomain</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a67901e9f160da1261843f911d9a0c7a8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>ThreadLock</type>
-      <name>lock</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a77074852c5d95a31cab43e8c85871c64</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>nullDomain</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a981b91037b86e139373283c4b5168b9f</anchor>
+      <anchor>ad046f0da21b58c1b1fb6940df0c7fd0a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -5618,43 +6074,29 @@
       <type></type>
       <name>Lox</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>adeecd070b47db04dfac1b186f99a95d2</anchor>
-      <arglist>()</arglist>
+      <anchor>af8f539ceb3118068eda172e9077d71bd</anchor>
+      <arglist>(String name, boolean doRegister)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
-      <name>addLogger</name>
+      <type></type>
+      <name>Lox</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a11ce703948713f6ac0111873a8f09dc5</anchor>
-      <arglist>(Logger logger)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>Assert</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ad03f0bbfaa635d146cecb0c1ed946ff1</anchor>
-      <arglist>(boolean cond, Object msg, int indent)</arglist>
+      <anchor>a67de452b6068b40e7aa795bcb2a2b533</anchor>
+      <arglist>(String name)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Assert</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a6bfbb14b558215f290f16e29641c0b08</anchor>
-      <arglist>(boolean cond, Object msg)</arglist>
+      <anchor>a697cbd797b243a984a791a189944816d</anchor>
+      <arglist>(boolean condition, String domain, Object logable)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Assert</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ab29ce755653ae16242de61c15d6fd353</anchor>
-      <arglist>(boolean cond, String domain, Object msg, int indent)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>Assert</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ad7a50b2f5f682b178c064b52bfa0d350</anchor>
-      <arglist>(boolean cond, String domain, Object msg)</arglist>
+      <anchor>ab65c29f931b26de5076445f901a07dab</anchor>
+      <arglist>(boolean condition, Object logable)</arglist>
     </member>
     <member kind="function">
       <type>AString</type>
@@ -5672,31 +6114,31 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>error</name>
+      <name>entry</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>afcfe66401e26f994706e6306e5886033</anchor>
-      <arglist>(Object msg, int indent)</arglist>
+      <anchor>a04407537e796b43015151bd8f0a96ed5</anchor>
+      <arglist>(String domain, Verbosity verbosity, Object logable)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>entry</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a770397e7e0a0424ab48b86091b75769b</anchor>
+      <arglist>(Verbosity verbosity, Object logable)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>error</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a143121b7aa73c57aed99b0d13b5b80d3</anchor>
-      <arglist>(Object msg)</arglist>
+      <anchor>a2c917723f967cf3d3c38649ef80af120</anchor>
+      <arglist>(String domain, Object logable)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>error</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a5c07ba41966a86bb50c30abbc50d1122</anchor>
-      <arglist>(String domain, Object msg, int indent)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>error</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a7df4f528e505be28800d4833b743ad73</anchor>
-      <arglist>(String domain, Object msg)</arglist>
+      <anchor>a96c75037fab3985c0e62c1a87d189f4c</anchor>
+      <arglist>(Object logable)</arglist>
     </member>
     <member kind="function">
       <type>Logger</type>
@@ -5706,102 +6148,53 @@
       <arglist>(String loggerName)</arglist>
     </member>
     <member kind="function">
-      <type>Object</type>
-      <name>getMarker</name>
+      <type>String</type>
+      <name>getName</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a36637a46434eba0c17faa8c0b0f82159</anchor>
-      <arglist>(Log.Scope scope)</arglist>
+      <anchor>a78ee178b6a73658d65ca60da4d1e6683</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>If</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a86b4fca5de0d15c769149d67d74d8bd9</anchor>
+      <arglist>(boolean condition, String domain, Verbosity verbosity, Object logable)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>If</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a8c8bfe7e307a33a69418cb9a23f73cdb</anchor>
+      <arglist>(boolean condition, Verbosity verbosity, Object logable)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>info</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a43695b6a313e25c926b98f41ca74c501</anchor>
-      <arglist>(Object msg, int indent)</arglist>
+      <anchor>aa65db1852dfc36e037f43c54a82c3bd4</anchor>
+      <arglist>(String domain, Object logable)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>info</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>acd7eef5b5a94377fa530ea9f930fee85</anchor>
-      <arglist>(Object msg)</arglist>
+      <anchor>adeb7c4bd6193255b93bc3cff65c46804</anchor>
+      <arglist>(Object logable)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
-      <name>info</name>
+      <type>boolean</type>
+      <name>isRegistered</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a50744ad3358054e9cecf08616a3e9d8b</anchor>
-      <arglist>(String domain, Object msg, int indent)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>info</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ae189289c16615c865b799c67b6dc8350</anchor>
-      <arglist>(String domain, Object msg)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>line</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a85dfa486fadf8eb0a5e91021d9626ae8</anchor>
-      <arglist>(boolean doLog, String domain, Log.Level level, Object msgObject, int indent, String loggerFilter)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>line</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>abad2865fd643d8cce3e06237579102d8</anchor>
-      <arglist>(boolean doLog, String domain, Log.Level level, Object msgObject, int indent)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>line</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a5be15f59b9d0e1b07076e615015b0fc9</anchor>
-      <arglist>(boolean doLog, String domain, Log.Level level, Object msgObject)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>line</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a97f9b7339462129066391369504b6bc4</anchor>
-      <arglist>(String domain, Log.Level level, Object msgObject)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>line</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a190fddfae44584eec3ee4e2da2e243d2</anchor>
-      <arglist>(Log.Level level, Object msgObject)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>line</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a9363c140ae2b54a1848ccbed47522e21</anchor>
-      <arglist>(Log.Level level, Object msgObject, int indent)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>line</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a63ffdc0eff99c9b8509b3a899e464379</anchor>
-      <arglist>(Log.Level level, Object msgObject, int indent, String loggerFilter)</arglist>
+      <anchor>ae630c66df5c224b773988d8a8d76a892</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>logConfig</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a78bb02ffe6a591b53a58b99e6d041495</anchor>
-      <arglist>(String domain, Log.Level level, String headLine, String loggerFilter)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>logConfig</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ad84bd03ff5650d26ab52f576ea1407ad</anchor>
-      <arglist>(String domain, Log.Level level, String headLine)</arglist>
+      <anchor>a1a8a9b854d09ded3321e4a7577d6cda2</anchor>
+      <arglist>(String domain, Verbosity verbosity, String headLine)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -5818,6 +6211,111 @@
       <arglist>(String threadName)</arglist>
     </member>
     <member kind="function">
+      <type>void</type>
+      <name>once</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a73a695c94a7581bb1a79cdb4962199c8</anchor>
+      <arglist>(String domain, Verbosity verbosity, Object logable, String group, Scope scope, int pkgLevel, int quantity)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>once</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a179bf8b26654fcde264285ef8c123fa3</anchor>
+      <arglist>(String domain, Verbosity verbosity, Object logable, String group, Scope scope, int pkgLevel)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>once</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a42e4ec221500a8c8bbb58f889223684a</anchor>
+      <arglist>(String domain, Verbosity verbosity, Object logable, String group, Scope scope)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>once</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>abe3dfe0b6bf1cec748561789970cee78</anchor>
+      <arglist>(String domain, Verbosity verbosity, Object logable, String group)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>once</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ac26cc1d3f6bd6ea1de1f9257965ae9b7</anchor>
+      <arglist>(String domain, Verbosity verbosity, Object logable, String group, int quantity)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>once</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>aeafc6687e653a9145db4877335664586</anchor>
+      <arglist>(String domain, Verbosity verbosity, Object logable, Scope scope, int pkgLevel, int quantity)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>once</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>abcfced78cb8701622d586577080b7e71</anchor>
+      <arglist>(String domain, Verbosity verbosity, Object logable, Scope scope, int pkgLevel)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>once</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a953d334bf04fc5f7f44a75670de0f0d3</anchor>
+      <arglist>(String domain, Verbosity verbosity, Object logable, Scope scope)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>once</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a0e80acd39c8a7676f008dd73c1a3eccc</anchor>
+      <arglist>(String domain, Verbosity verbosity, Object logable)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>once</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a5c285d0d6cc7b8341d957ae517662fc9</anchor>
+      <arglist>(String domain, Verbosity verbosity, Object logable, int quantity)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>once</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a36ffc88c5ef31eb9f54976659be1256f</anchor>
+      <arglist>(Object logable)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>once</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a88536a5e552e9383635e457ae3b0e57f</anchor>
+      <arglist>(Object logable, int quantity)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>once</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a554f208f2047c42e79cec6d25e2d292b</anchor>
+      <arglist>(Object logable, int quantity, String group)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>once</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a2a47a20f633f9ff9a26b6a6e3cf78d34</anchor>
+      <arglist>(Object logable, int quantity, Scope scope, int pkgLevel)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>once</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a30bce26137f97363d4a395bbb8cb0764</anchor>
+      <arglist>(Object logable, int quantity, Scope scope)</arglist>
+    </member>
+    <member kind="function">
       <type>boolean</type>
       <name>removeLogger</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
@@ -5825,88 +6323,144 @@
       <arglist>(Logger logger)</arglist>
     </member>
     <member kind="function">
-      <type>int</type>
-      <name>removeLoggers</name>
+      <type>Logger</type>
+      <name>removeLogger</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a6936f68b813b34f03a659720a4d9157e</anchor>
-      <arglist>(String loggerFilter)</arglist>
+      <anchor>a66058640838e3b536267f4e91bcba6b5</anchor>
+      <arglist>(String loggerName)</arglist>
     </member>
     <member kind="function">
-      <type>int</type>
-      <name>removeLoggers</name>
+      <type>void</type>
+      <name>removeThreadDomain</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a2c7a8ba78f8b4c5536a026aff3a757c7</anchor>
+      <anchor>a0986c7bfe43e066b677489830a6c9af0</anchor>
+      <arglist>(String scopeDomain, Scope scope, Thread thread)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>removeThreadDomain</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a981ee8ebb28f64daeeb92e331acc7fff</anchor>
+      <arglist>(String scopeDomain, Scope scope)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogData</type>
+      <name>retrieve</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ab4159eca3fb8c6f996a46f22c2cc442a</anchor>
+      <arglist>(String key, Scope scope, int pkgLevel)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogData</type>
+      <name>retrieve</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>aad4bc322fbb9425af780723e3e3410bf</anchor>
+      <arglist>(String key, Scope scope)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogData</type>
+      <name>retrieve</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ad64dfb710cbebd0be66db8dc32a83438</anchor>
+      <arglist>(String key)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogData</type>
+      <name>retrieve</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ad472da80b43590da427f4d3868440e1e</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
-      <name>setDomain</name>
+      <type>LogData</type>
+      <name>retrieve</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a14433cbe7c50daf92ad1123dabab29c7</anchor>
-      <arglist>(String domain, Log.Scope scope)</arglist>
+      <anchor>ab99766ebc402e22db908088d4c63cc07</anchor>
+      <arglist>(Scope scope, int pkgLevel)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogData</type>
+      <name>retrieve</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>afbe76e39e3d20830355c13d4734f9edc</anchor>
+      <arglist>(Scope scope)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>setDomain</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>aab6a419149acf97ca3c1d7c45849b3b6</anchor>
-      <arglist>(String domain, Log.DomainLevel domainLevel, String loggerFilter, Propagation propagation)</arglist>
+      <anchor>afd6a91bb2c6eaee017b0ccbd4cccd447</anchor>
+      <arglist>(String scopeDomain, Scope scope, int packageLevel)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>setDomain</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a6ae262709f8520ce2d237c842de2dc36</anchor>
-      <arglist>(String domain, Log.DomainLevel domainLevel, String loggerFilter)</arglist>
+      <anchor>a187ee69acb339ca35e516c3c46be8f81</anchor>
+      <arglist>(String scopeDomain, Scope scope)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>setDomain</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>acfea987a1279622cfb8a5e0393fe33d7</anchor>
-      <arglist>(String domain, Log.DomainLevel domainLevel)</arglist>
+      <anchor>a55326177edbc20197855ce67c8ff71f2</anchor>
+      <arglist>(String scopeDomain, Scope scope, Thread thread)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
-      <name>setDomain</name>
+      <name>setDomainSubstitutionRule</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a68fb0d6a9ed6d9e74ea793b436db3779</anchor>
-      <arglist>(String domain, Log.Scope scope, Log.DomainLevel domainLevel, String loggerFilter)</arglist>
+      <anchor>a28c3f7dfb6142e509a46adbfbd309264</anchor>
+      <arglist>(String domainPath, String replacement)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
-      <name>setDomain</name>
+      <name>setPrefix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ab897b6be72b62613ecb4a516f4eebb30</anchor>
-      <arglist>(String domain, Log.Scope scope, Log.DomainLevel domainLevel)</arglist>
+      <anchor>ac597801824c8795693fc149ad1f9243b</anchor>
+      <arglist>(Object logable, Scope scope, int packageLevel)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
-      <name>setDomain</name>
+      <name>setPrefix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>aad27f2d3c6195357ac2ab523aa6cddcf</anchor>
-      <arglist>(String domain, Log.DomainLevel domainLevel, Log.Scope scope)</arglist>
+      <anchor>a51d7ec60d9127a4bdfa0fbf774192cff</anchor>
+      <arglist>(Object logable, Scope scope)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
-      <name>setLogger</name>
+      <name>setPrefix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>af656e11a297fc617c981d67d321cd3de</anchor>
-      <arglist>(Switch newState, String loggerFilter)</arglist>
+      <anchor>a5dcbb4f29eff6a01b36a87b228c7c7fe</anchor>
+      <arglist>(Object logable, Scope scope, Thread thread)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
-      <name>setMarker</name>
+      <name>setPrefix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ac22f5751d25bc89b3f8a93f330b0fdf7</anchor>
-      <arglist>(Object marker, Log.Scope scope)</arglist>
+      <anchor>a9bda0b407a8e700abe7a3008c3cb8d5a</anchor>
+      <arglist>(Object logable, String domain, Inclusion otherPLs)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setPrefix</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a4e0ce0cac17e311f542384dd4388f1c5</anchor>
+      <arglist>(Object logable, String domain)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setPrefix</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>afd79440737f1d318a6efc6492569d319</anchor>
+      <arglist>(Object logable)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>setStartTime</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a28ab0d0c7dc645cbc25043d6af7a81ef</anchor>
-      <arglist>(Date startTime, String loggerFilter)</arglist>
+      <anchor>ad67deaf5d40c2bf2ae3dcc0c4e1fbd76</anchor>
+      <arglist>(Date startTime, String loggerName)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -5924,72 +6478,156 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>verbose</name>
+      <name>setVerbosity</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ad55e8ca1d024bd9e1da15685c4b5b19f</anchor>
-      <arglist>(Object msg, int indent)</arglist>
+      <anchor>aa8b1df498e4a9039c9b9a958f2186a05</anchor>
+      <arglist>(Logger logger, Verbosity verbosity, String domain, int priority)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setVerbosity</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a7bd595babcdfc2701e77a21238979840</anchor>
+      <arglist>(Logger logger, Verbosity verbosity, String domain)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setVerbosity</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a5f2f7c886002277b2d5a75a3c735d20c</anchor>
+      <arglist>(Logger logger, Verbosity verbosity)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setVerbosity</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a107cd6a6448bd86693f66da6ebc900d2</anchor>
+      <arglist>(String loggerName, Verbosity verbosity, String domain, int priority)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setVerbosity</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a4e2d16fa19aa7291d0f1c602610d06f0</anchor>
+      <arglist>(String loggerName, Verbosity verbosity, String domain)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setVerbosity</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ab0944daee8be0b99268f6d9304a1fb04</anchor>
+      <arglist>(String loggerName, Verbosity verbosity)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>store</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a3379a132338bd43fb84bd769dc1fd2c4</anchor>
+      <arglist>(LogData data, String key, Scope scope, int pkgLevel)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>store</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a9a5c3b03e4b84e1f7b146486311df4f3</anchor>
+      <arglist>(LogData data, String key, Scope scope)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>store</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a0e42ac3365991d636ff0e405eea66686</anchor>
+      <arglist>(LogData data, String key)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>store</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ab28cd091668bfe6e43f1a32c65ff48d2</anchor>
+      <arglist>(LogData data)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>store</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a584f9e47d0120cd8686980a186eb6e95</anchor>
+      <arglist>(LogData data, Scope scope, int pkgLevel)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>store</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>af5e9f5636117a603ab4779a4843d9e86</anchor>
+      <arglist>(LogData data, Scope scope)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>verbose</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a08a4461d6fdc8f4f7defb37542876a2e</anchor>
-      <arglist>(Object msg)</arglist>
+      <anchor>ae997656d97a3c40586ee7317fa589fdd</anchor>
+      <arglist>(Object logable)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>verbose</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ae0096258c7f17ee885de682386294c28</anchor>
-      <arglist>(String domain, Object msg, int indent)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>verbose</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a4bad4d43b8ff70f38e648a73a4e9aa0e</anchor>
-      <arglist>(String domain, Object msg)</arglist>
+      <anchor>aa51a1fee4334d90a36e971260491a880</anchor>
+      <arglist>(String domain, Object logable)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>warning</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>adb50d51269bc686ca51b6102e169721c</anchor>
-      <arglist>(Object msg, int indent)</arglist>
+      <anchor>a956af7789a007a7694a88fd588286485</anchor>
+      <arglist>(String domain, Object logable)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>warning</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a054c4b2d956d70587cfc45b54d09d1c9</anchor>
-      <arglist>(Object msg)</arglist>
+      <anchor>a619cf9bf0f2ebe6527809ef3dfd862cd</anchor>
+      <arglist>(Object logable)</arglist>
     </member>
-    <member kind="function">
-      <type>void</type>
-      <name>warning</name>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static final String</type>
+      <name>noKeyHashKey</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a46b4fd3bac0dcbe7f4e7c60ac1cfdedc</anchor>
-      <arglist>(String domain, Object msg, int indent)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>warning</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ade4c8701caa62459c0a849954fa655d2</anchor>
-      <arglist>(String domain, Object msg)</arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>CallerInfo</type>
-      <name>caller</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a661374595beb4ef6cdcd0417c8c47f0d</anchor>
+      <anchor>a19fb2d2133544aa92f69196e9cb4ae86</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>HashMap&lt; AString, AString &gt;</type>
-      <name>defaultDomains</name>
+      <type>boolean[]</type>
+      <name>booleanOutputParam</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a28fa24d887dd394d69e4b12f9d6002a5</anchor>
+      <anchor>a04588900eccda0f5413f237e6bbb926c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Domain</type>
+      <name>domains</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a9dd0eff01eb6972483137d6fc87a8c49</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ArrayList&lt; DomainSubstitutionRule &gt;</type>
+      <name>domainSubstitutions</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>aa77f5563b87a6b4860cc7da68e337e69</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Domain</type>
+      <name>internalDomains</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>aa921f3f43ab67608196f46723182a3c4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>intMsg</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>adc7950715b5ea60bbbfe297cf70fb70f</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -6007,17 +6645,24 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>ArrayList&lt; Logger &gt;</type>
-      <name>loggers</name>
+      <type>int</type>
+      <name>maxDomainPathLength</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a7144a4b0aaac3ec84ce06a48b50d9911</anchor>
+      <anchor>a71f136dd9dc7e9d48c33ad54ae5d802f</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>HashMap&lt; AString, Object &gt;</type>
-      <name>markers</name>
+      <type>int</type>
+      <name>maxLoggerNameLength</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a07103df900206725ba6a7613514d3fff</anchor>
+      <anchor>a905f7b109e0f5efe1313db829261b824</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>boolean</type>
+      <name>oneTimeWarningCircularDS</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ae6fa478f8a4d761aae4509480cde29f7</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -6029,9 +6674,44 @@
     </member>
     <member kind="variable" protection="protected">
       <type>AString</type>
-      <name>tempAS</name>
+      <name>resDomainInternal</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a5a04010d4c0003b3aba30583b7bf3d48</anchor>
+      <anchor>a919b9402cb4cf96d550863ca08f476f3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ScopeStore&lt; AString &gt;</type>
+      <name>scopeDomains</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>aaccfbdf474a57acad4f6433b37786d94</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ScopeInfo</type>
+      <name>scopeInfo</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a609ba5315772ded9cdb21726e54ff69d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ScopeStore&lt; HashMap&lt; AString, LogData &gt; &gt;</type>
+      <name>scopeLogData</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>af732fe7d2ad359266da4a9ce95d5f64b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ScopeStore&lt; HashMap&lt; AString, int[]&gt; &gt;</type>
+      <name>scopeLogOnce</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a11b8b34595b80581ab81e2728acbf86f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ScopeStore&lt; Object &gt;</type>
+      <name>scopePrefixes</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>abb5ec5897d6c69b61b8593ad57ebe16a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -6041,33 +6721,131 @@
       <anchor>a28aec8792ccd6e67dd49f06d57c8a8bd</anchor>
       <arglist></arglist>
     </member>
-    <member kind="function" protection="private" static="yes">
-      <type>static boolean</type>
-      <name>simpleWildcardFilter</name>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>tmpAS</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a2b24103f62da8cad52b51faea81dd5f4</anchor>
-      <arglist>(Logger logger, String loggerFilter)</arglist>
+      <anchor>a43a6d226488086cf9563b431ccbe5c69</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>tmpConfigValue</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a2313c9e8c9b7afdf186b4331ab7fbbd7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ArrayList&lt; Object &gt;</type>
+      <name>tmpLogables</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a123dcb4dcf0d165687411e9da978f531</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>tmpSubstitutionPath</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a3586a087b92907c9c32173cecc2f78a3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>tmpSubstitutionPathInternalDomains</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ae2265ed8cb8c01d3e57fe59f77929ccb</anchor>
+      <arglist></arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
+      <name>construct</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a373da4f05883aafd40a560cd6d9c66a5</anchor>
+      <arglist>(String name, boolean doRegister)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Domain</type>
       <name>evaluateResultDomain</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a0211ab31ad0b19ced6cf693f7f56e838</anchor>
-      <arglist>(String domain)</arglist>
+      <anchor>a00b9b5dedced60246e16ad39d66e2538</anchor>
+      <arglist>(String domainPath)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
-      <name>internalLog</name>
+      <name>getAllVerbosities</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>aa4cbc7d10fb7a53ae1b3f903512f6f75</anchor>
-      <arglist>(Log.Level level, AString msg)</arglist>
+      <anchor>a47d2dd08f0748552ebd6399637223df1</anchor>
+      <arglist>(Logger logger, Domain dom, AString cfgStr, int cfgPriority)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>getVerbosityFromConfig</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ab8cf66e80845561dcaa3183af626661d</anchor>
+      <arglist>(Logger logger, Domain dom, AString cfgStr, int cfgPriority)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>boolean</type>
+      <name>isThreadReleatedScope</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a8b39c1bdce27929b9f0440b3d570e7c1</anchor>
+      <arglist>(Scope scope)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>log</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a2bf47438610d8ce34fa37f81892b0150</anchor>
+      <arglist>(Domain dom, Verbosity verbosity, Object logable, Inclusion prefixes)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>logConfigCollectPrefixes</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a03444bb7da0a5dede116dc2decd51238</anchor>
+      <arglist>(Domain domain, int indentSpaces, AString target)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>logConfigDomainRecursive</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a6b0703f05803dd21c44fa3ffb1d71e7d</anchor>
-      <arglist>(Domain domain, int indent, String domPath, AString buf)</arglist>
+      <anchor>a12d11e9840b1a4aa1d45d6ad02a7e6ca</anchor>
+      <arglist>(Domain domain, AString buf)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>logConfigDomsWithDiffVerb</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a38a859311f3e383f9e439d81e6eecf69</anchor>
+      <arglist>(Domain domain, int loggerNo, ArrayList&lt; Domain &gt; results)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>logInternal</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a41785b58f7f928a11d27ff14a8fa4274</anchor>
+      <arglist>(Verbosity verbosity, String subDomain, AString logable)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setDomainImpl</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a378c80877ca398b59740f2b327f887a7</anchor>
+      <arglist>(String scopeDomain, Scope scope, int packageLevel, boolean removeNTRSD, Thread thread)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setPrefixImpl</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a6364eebeca102fe86bbf2c4afbd865f1</anchor>
+      <arglist>(Object logable, Scope scope, int packageLevel, Thread thread)</arglist>
+    </member>
+    <member kind="function" protection="package">
+      <type>Domain</type>
+      <name>findDomain</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ae3be7b75d20b907c107c20de77069bac</anchor>
+      <arglist>(Domain domainSystem, AString domainPath)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -6104,9 +6882,9 @@
     </member>
     <member kind="function" protection="protected">
       <type>boolean</type>
-      <name>doLogSubstring</name>
+      <name>logSubstring</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html</anchorfile>
-      <anchor>aaba50d6f95a026a7efe28b483802557c</anchor>
+      <anchor>a3a5b4278703e908f00ed28a013f24a68</anchor>
       <arglist>(AString buffer, int start, int length)</arglist>
     </member>
     <member kind="function" protection="protected">
@@ -6171,34 +6949,6 @@
       <name>format</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
       <anchor>ade879c363f20d8d0acb216f8bf40d1af</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>logLevelError</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>ae8322b6ecc21496710ca2c4bb50d4cec</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>logLevelInfo</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a15ed110e8ee4220103779d9df1d1d31a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>logLevelVerbose</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a43bbe77b119f7f752815048f0552d6ce</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>logLevelWarning</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a6eacb25f7d4c74adb2ada7ccbcd36f3d</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -6292,6 +7042,34 @@
       <anchor>aeb350e099bc2a47cf6c85fa0db340748</anchor>
       <arglist></arglist>
     </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>verbosityError</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
+      <anchor>ab6e4166544675a2fed05d47c7b6707f3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>verbosityInfo</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
+      <anchor>a218a62323db198131078f60ea48fe537</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>verbosityVerbose</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
+      <anchor>a9fa3d4ab8021da100c82279eb136ba64</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>verbosityWarning</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
+      <anchor>a8ae1dae497ee2986b38b6f4c51907560</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="variable" protection="protected">
       <type>boolean</type>
       <name>calInstanceSet</name>
@@ -6363,25 +7141,39 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>Tokenizer</type>
-      <name>tok</name>
+      <type>AString</type>
+      <name>tmpAString</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a8a66329d15c440f4546f72bfe913c4a4</anchor>
+      <anchor>ab6307f6d6ae7eb38fdcd9f372e798366</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Tokenizer</type>
+      <name>tTok</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
+      <anchor>a7e48c9b876240a28cb1ec476593f3d10</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>boolean</type>
+      <name>warnedOnce</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
+      <anchor>af092cd717d73525692163f7b819cfa5e</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" protection="protected">
       <type>int</type>
       <name>processVariable</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>ac7e974853e784255fa22fd766ffa0f5e</anchor>
-      <arglist>(TextLogger logger, AString domain, Log.Level level, CallerInfo caller, AString dest, Substring variable)</arglist>
+      <anchor>adf6ac072abe740c98bda2cc007851b18</anchor>
+      <arglist>(TextLogger logger, Domain domain, Verbosity verbosity, ScopeInfo scope, AString dest, Substring variable)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>int</type>
       <name>write</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>afad264ab5150512279bf200e88157d79</anchor>
-      <arglist>(TextLogger logger, AString buf, AString domain, Log.Level level, CallerInfo caller)</arglist>
+      <anchor>a043ad9162f01c0cd87781fc900883630</anchor>
+      <arglist>(TextLogger logger, AString buf, Domain domain, Verbosity verbosity, ScopeInfo scope)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
@@ -6389,6 +7181,78 @@
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
       <anchor>a54b0e0ca4a269b9add4e5cb42b517e0a</anchor>
       <arglist>(AString buf, long diffNanos)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>com::aworx::lib::containers::PathMap::MyIterator</name>
+    <filename>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap_1_1MyIterator.html</filename>
+    <class kind="class">com::aworx::lib::containers::PathMap::MyIterator::NodeAndChild</class>
+    <member kind="function">
+      <type></type>
+      <name>MyIterator</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap_1_1MyIterator.html</anchorfile>
+      <anchor>a5e4884de09511cac19b0a6d60bb38a18</anchor>
+      <arglist>(PathMap&lt; StoreT &gt; initialNode)</arglist>
+    </member>
+    <member kind="function">
+      <type>boolean</type>
+      <name>hasNext</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap_1_1MyIterator.html</anchorfile>
+      <anchor>a58d1cc3d61071d927bf040bf0b035a22</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>PathMap&lt; StoreT &gt;</type>
+      <name>next</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap_1_1MyIterator.html</anchorfile>
+      <anchor>af5a3afb1fa5ec34bc0f97d1679790b1c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>remove</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap_1_1MyIterator.html</anchorfile>
+      <anchor>a1fcb45e5d2428352eb36b487d1d4eea3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="package">
+      <type>Deque&lt; NodeAndChild &gt;</type>
+      <name>nodesAndChilds</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap_1_1MyIterator.html</anchorfile>
+      <anchor>a9c6beaa9ac94219648f97be84c37bb87</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="package">
+      <type>void</type>
+      <name>forward</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap_1_1MyIterator.html</anchorfile>
+      <anchor>a7de2a543986e45b9083c69f6138bf079</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>com::aworx::lib::containers::PathMap::MyIterator::NodeAndChild</name>
+    <filename>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap_1_1MyIterator_1_1NodeAndChild.html</filename>
+    <member kind="variable">
+      <type>int</type>
+      <name>childNo</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap_1_1MyIterator_1_1NodeAndChild.html</anchorfile>
+      <anchor>ac10cf46c3127cd5d178f7dafd27307eb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>PathMap&lt; StoreT &gt;</type>
+      <name>node</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap_1_1MyIterator_1_1NodeAndChild.html</anchorfile>
+      <anchor>a21dc2e5ee5a8b3975ebec79d8da68679</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NodeAndChild</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap_1_1MyIterator_1_1NodeAndChild.html</anchorfile>
+      <anchor>ae846cfbc11fe4720d9693082c96458ea</anchor>
+      <arglist>(PathMap&lt; StoreT &gt; node, int childNo)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -6493,29 +7357,179 @@
       <arglist>[]</arglist>
     </member>
   </compound>
-  <compound kind="class">
+  <compound kind="interface">
     <name>com::aworx::lox::core::textlogger::ObjectConverter</name>
-    <filename>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html</filename>
+    <filename>interfacecom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html</filename>
+    <member kind="function">
+      <type>boolean</type>
+      <name>convertObject</name>
+      <anchorfile>interfacecom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html</anchorfile>
+      <anchor>a021e85842bb9a42f78a8d455f894610d</anchor>
+      <arglist>(Object o, AString target)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>com::aworx::lib::containers::PathMap</name>
+    <filename>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</filename>
+    <templarg></templarg>
+    <class kind="class">com::aworx::lib::containers::PathMap::MyIterator</class>
     <member kind="variable">
-      <type>String</type>
-      <name>fmtNullObject</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html</anchorfile>
-      <anchor>a5b4240f9d910de65e0f07e5775ab6eef</anchor>
+      <type>ArrayList&lt; PathMap&lt; StoreT &gt; &gt;</type>
+      <name>childs</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a794248fa373df763bff19604c9ebb581</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>PathMap&lt; StoreT &gt;</type>
+      <name>parent</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>acedcb22c1d63f74a24ea222128201980</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>path</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>ae6abf0da37021edf19342fbba5e3f28e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>StoreT</type>
+      <name>value</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a1db5084a522b6b29d54eed9917105d49</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>AString</type>
-      <name>convertObject</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html</anchorfile>
-      <anchor>abef6601760adb6e539753b3ee03692e5</anchor>
-      <arglist>(Object o)</arglist>
+      <type></type>
+      <name>PathMap</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a44e73c451368d352713a232ed9c28a4a</anchor>
+      <arglist>()</arglist>
     </member>
-    <member kind="variable" protection="protected">
-      <type>AString</type>
-      <name>buffer</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html</anchorfile>
-      <anchor>aaf50e38674e1c356539d73525486b1d5</anchor>
+    <member kind="function">
+      <type></type>
+      <name>PathMap</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a93e3eb6db3a9cb1d05637d9b5199c471</anchor>
+      <arglist>(PathMap&lt; StoreT &gt; parent)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>clear</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>ac8bb3912a3ce86b15842e79d0b421204</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>PathMap&lt; StoreT &gt;</type>
+      <name>Get</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>aaee8965b5a1fbb0de440b3d36f53fa79</anchor>
+      <arglist>(Substring key, boolean create, AString separators)</arglist>
+    </member>
+    <member kind="function">
+      <type>Iterator&lt; PathMap&lt; StoreT &gt; &gt;</type>
+      <name>iterator</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>adc6fa3b7ed3a0f2881db342e39ba7c64</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Remove</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a34f4f7743c42b4c5c5437db3e013ba12</anchor>
+      <arglist>(PathMap&lt; StoreT &gt; node)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>PathMap&lt; StoreT &gt;</type>
+      <name>get</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a56871a64731d19e2ade22fdd1f1b5554</anchor>
+      <arglist>(Substring key, boolean create, AString separators)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>PathMap&lt; T &gt;</name>
+    <filename>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</filename>
+    <member kind="variable">
+      <type>ArrayList&lt; PathMap&lt; StoreT &gt; &gt;</type>
+      <name>childs</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a794248fa373df763bff19604c9ebb581</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>PathMap&lt; StoreT &gt;</type>
+      <name>parent</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>acedcb22c1d63f74a24ea222128201980</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>path</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>ae6abf0da37021edf19342fbba5e3f28e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>StoreT</type>
+      <name>value</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a1db5084a522b6b29d54eed9917105d49</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PathMap</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a44e73c451368d352713a232ed9c28a4a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PathMap</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a93e3eb6db3a9cb1d05637d9b5199c471</anchor>
+      <arglist>(PathMap&lt; StoreT &gt; parent)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>clear</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>ac8bb3912a3ce86b15842e79d0b421204</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>PathMap&lt; StoreT &gt;</type>
+      <name>Get</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>aaee8965b5a1fbb0de440b3d36f53fa79</anchor>
+      <arglist>(Substring key, boolean create, AString separators)</arglist>
+    </member>
+    <member kind="function">
+      <type>Iterator&lt; PathMap&lt; StoreT &gt; &gt;</type>
+      <name>iterator</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>adc6fa3b7ed3a0f2881db342e39ba7c64</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Remove</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a34f4f7743c42b4c5c5437db3e013ba12</anchor>
+      <arglist>(PathMap&lt; StoreT &gt; node)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>PathMap&lt; StoreT &gt;</type>
+      <name>get</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a56871a64731d19e2ade22fdd1f1b5554</anchor>
+      <arglist>(Substring key, boolean create, AString separators)</arglist>
     </member>
   </compound>
   <compound kind="enum">
@@ -6537,6 +7551,31 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>com::aworx::lox::core::Domain::PL</name>
+    <filename>classcom_1_1aworx_1_1lox_1_1core_1_1Domain_1_1PL.html</filename>
+    <member kind="variable">
+      <type>Inclusion</type>
+      <name>includeOtherPLs</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain_1_1PL.html</anchorfile>
+      <anchor>a70cdb4bc580f547571551ac86332863f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Object</type>
+      <name>logable</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain_1_1PL.html</anchorfile>
+      <anchor>ab7614a387226abfcb338940751eab5a8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PL</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain_1_1PL.html</anchorfile>
+      <anchor>a6cee92e3dd00da3cf65257ab37cfe851</anchor>
+      <arglist>(Object logable, Inclusion includeOtherPLs)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>com::aworx::lox::core::textlogger::PlainTextLogger</name>
     <filename>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html</filename>
     <base>com::aworx::lox::core::textlogger::TextLogger</base>
@@ -6551,22 +7590,22 @@
       <type></type>
       <name>PlainTextLogger</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html</anchorfile>
-      <anchor>a49d9615d6a1b2c20bd5024dcc4689832</anchor>
-      <arglist>(String name, String typeName)</arglist>
+      <anchor>a7c72cbb4a4ef82df0af8e32b4d27ec80</anchor>
+      <arglist>(String name, String typeName, boolean usesStdStreams)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>abstract boolean</type>
-      <name>doLogSubstring</name>
+      <name>logSubstring</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html</anchorfile>
-      <anchor>a16e74128adb226b2478b3a37378816ea</anchor>
+      <anchor>a51f9373d929e05f849dff3d233f521ba</anchor>
       <arglist>(AString buffer, int start, int length)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
-      <name>doTextLog</name>
+      <name>logText</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html</anchorfile>
-      <anchor>a14f8b03575770404280298d4d1876bda</anchor>
-      <arglist>(AString domain, Log.Level level, AString msg, int indent, CallerInfo caller, int lineNumber)</arglist>
+      <anchor>a71ee6354d9100d17cc375306ec2955dd</anchor>
+      <arglist>(Domain domain, Verbosity verbosity, AString msg, ScopeInfo scope, int lineNumber)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>abstract boolean</type>
@@ -6577,19 +7616,19 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>com::aworx::lib::config::Configuration::PrioAndPlugin</name>
-    <filename>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration_1_1PrioAndPlugin.html</filename>
+    <name>com::aworx::lib::config::Configuration::PluginAndPrio</name>
+    <filename>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration_1_1PluginAndPrio.html</filename>
     <member kind="variable">
       <type>ConfigurationPlugIn</type>
       <name>plugIn</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration_1_1PrioAndPlugin.html</anchorfile>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration_1_1PluginAndPrio.html</anchorfile>
       <anchor>a9580667a91e1962d6169a8416f0580b8</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>int</type>
       <name>prio</name>
-      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration_1_1PrioAndPlugin.html</anchorfile>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1config_1_1Configuration_1_1PluginAndPrio.html</anchorfile>
       <anchor>a6f8e491cf1d80eb127fe0c10ebbfc659</anchor>
       <arglist></arglist>
     </member>
@@ -6638,11 +7677,25 @@
       <arglist>(int type, String msg)</arglist>
     </member>
     <member kind="function">
+      <type>synchronized ReportWriter</type>
+      <name>peekWriter</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1Report.html</anchorfile>
+      <anchor>a8b3af6c81d20ae7fb134ac97f5568e6e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
       <type>synchronized void</type>
       <name>popHaltFlags</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1Report.html</anchorfile>
       <anchor>af5e3f59b7c299469be750c9556f29d83</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>synchronized void</type>
+      <name>popWriter</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1Report.html</anchorfile>
+      <anchor>a7871ba278fd3ae0c09739a1de194dd84</anchor>
+      <arglist>(ReportWriter checkWriter)</arglist>
     </member>
     <member kind="function">
       <type>synchronized void</type>
@@ -6652,10 +7705,10 @@
       <arglist>(boolean haltOnErrors, boolean haltOnWarnings)</arglist>
     </member>
     <member kind="function">
-      <type>synchronized ReportWriter</type>
-      <name>replaceWriter</name>
+      <type>synchronized void</type>
+      <name>pushWriter</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1Report.html</anchorfile>
-      <anchor>aa5ea50841420296d43e16e82ffcccb5d</anchor>
+      <anchor>a62143a94b68c059953ea6734fe9be0d9</anchor>
       <arglist>(ReportWriter newWriter)</arglist>
     </member>
     <member kind="variable" protection="protected" static="yes">
@@ -6680,16 +7733,23 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>ReportWriter</type>
-      <name>writer</name>
+      <type>Deque&lt; ReportWriter &gt;</type>
+      <name>writers</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1Report.html</anchorfile>
-      <anchor>abb89fd434c938300bd1b0e80d98fefc5</anchor>
+      <anchor>a41e462834183af7f77ae8cedec0ccdac</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="interface">
     <name>com::aworx::lib::ReportWriter</name>
     <filename>interfacecom_1_1aworx_1_1lib_1_1ReportWriter.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>NotifyActivation</name>
+      <anchorfile>interfacecom_1_1aworx_1_1lib_1_1ReportWriter.html</anchorfile>
+      <anchor>a9f03332e9e50d3d28eb466d31492a022</anchor>
+      <arglist>(Phase phase)</arglist>
+    </member>
     <member kind="function">
       <type>void</type>
       <name>report</name>
@@ -6717,35 +7777,1261 @@
     </member>
   </compound>
   <compound kind="enum">
-    <name>com::aworx::lox::Log::Scope</name>
-    <filename>enumcom_1_1aworx_1_1lox_1_1Log_1_1Scope.html</filename>
+    <name>com::aworx::lox::Scope</name>
+    <filename>enumcom_1_1aworx_1_1lox_1_1Scope.html</filename>
     <member kind="variable">
       <type></type>
       <name>CLASS</name>
-      <anchorfile>enumcom_1_1aworx_1_1lox_1_1Log_1_1Scope.html</anchorfile>
+      <anchorfile>enumcom_1_1aworx_1_1lox_1_1Scope.html</anchorfile>
       <anchor>ad5946acbc78d91b2bd0621fbf6a3c9a9</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type></type>
+      <name>GLOBAL</name>
+      <anchorfile>enumcom_1_1aworx_1_1lox_1_1Scope.html</anchorfile>
+      <anchor>a78d63915b0cc8b7545ac7e84c538896f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type></type>
       <name>METHOD</name>
-      <anchorfile>enumcom_1_1aworx_1_1lox_1_1Log_1_1Scope.html</anchorfile>
+      <anchorfile>enumcom_1_1aworx_1_1lox_1_1Scope.html</anchorfile>
       <anchor>a980085812d120b3761817608d332fecd</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type></type>
-      <name>NONE</name>
-      <anchorfile>enumcom_1_1aworx_1_1lox_1_1Log_1_1Scope.html</anchorfile>
-      <anchor>a899caa602e4fff675b17cdbab33607ec</anchor>
+      <name>PACKAGE</name>
+      <anchorfile>enumcom_1_1aworx_1_1lox_1_1Scope.html</anchorfile>
+      <anchor>a79a5eb01dd38711dea806b59b432475e</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type></type>
-      <name>PACKAGE</name>
-      <anchorfile>enumcom_1_1aworx_1_1lox_1_1Log_1_1Scope.html</anchorfile>
-      <anchor>a79a5eb01dd38711dea806b59b432475e</anchor>
+      <name>THREAD_INNER</name>
+      <anchorfile>enumcom_1_1aworx_1_1lox_1_1Scope.html</anchorfile>
+      <anchor>abd145edf116fded9bc67b69922f52ca0</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type></type>
+      <name>THREAD_OUTER</name>
+      <anchorfile>enumcom_1_1aworx_1_1lox_1_1Scope.html</anchorfile>
+      <anchor>aabf288453df4cb2f2a6eac9c4084df0e</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>com::aworx::lox::core::ScopeDump</name>
+    <filename>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>ScopeDump</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>aaa343104cb692f12504abbeb24011a8b</anchor>
+      <arglist>(HashMap&lt; Long, String &gt; threadDictionary, String noKeyHashKey, AString target, int maxKeyLength)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ScopeDump</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>a4bf755de82a6be70ebc627bb15ca414a</anchor>
+      <arglist>(HashMap&lt; Long, String &gt; threadDictionary, String noKeyHashKey, AString target)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>writeDomains</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>ace58c09cbe2b0f6b70148f40c356baa0</anchor>
+      <arglist>(ScopeStore&lt; AString &gt; store, int indentSpaces)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>writeMap</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>a9e6d3975872064f8fe4f2008d3e02e3a</anchor>
+      <arglist>(ScopeStore&lt;?&gt; store)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>writePrefixes</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>a85906de5c9c2ffbf1865c432590ab0f8</anchor>
+      <arglist>(ScopeStore&lt; Object &gt; store, int indentSpaces)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>key</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>ad966f5f8ca91d341b6cd80f4b38a8c1b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>maxKeyLength</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>ace5c16296f35665a0346922cdb706cc6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>String</type>
+      <name>noKeyHashKey</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>a03c7540cd5ea4b85dd17882e37621023</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>target</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>a782151d24530c70cef193f27597731cc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>tempAS</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>a5a04010d4c0003b3aba30583b7bf3d48</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>HashMap&lt; Long, String &gt;</type>
+      <name>threadDictionary</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>a28aec8792ccd6e67dd49f06d57c8a8bd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>AString</type>
+      <name>storeKeyToScope</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>a7da3fb64fbc0aa3841ec2139fb52d539</anchor>
+      <arglist>(PathMap map)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>AString</type>
+      <name>storeThreadToScope</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>abec54e4e22475d53dc9c2b7501243578</anchor>
+      <arglist>(Thread thread)</arglist>
+    </member>
+    <member kind="function" protection="package">
+      <type>int</type>
+      <name>writeMap</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>a69f79546013779feb3b3a8ac07b9a740</anchor>
+      <arglist>(HashMap&lt; AString,?&gt; map, String prefix)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>com::aworx::lox::core::ScopeInfo</name>
+    <filename>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</filename>
+    <member kind="variable">
+      <type>AString</type>
+      <name>className</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a7cc5b098bd04225b9970d6fa403f9415</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>fileName</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>ae6372d134a0fe65a56c8fe81f089ae59</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>lineNumber</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a44bf2f6ee91a35522c07c779325d3ef0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>methodName</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>adb209f246d40ce3b523787fc7776c0f3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>packageName</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a436e0978ded8aef84f28e7fa3044b3b1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Thread</type>
+      <name>thread</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>ac99b75d10f465c1160242dea4544069a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>long</type>
+      <name>threadID</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a60a653746c2fc588e8da8d1a4b444bb5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>threadName</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>af24ba4a8a819b679d1ac18505b2fe8a0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Ticks</type>
+      <name>timeStamp</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a4e72dac5d168369a754893772395f0d3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ScopeInfo</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a39ea87d23dba22e93c3d90ba37325ced</anchor>
+      <arglist>(String name, HashMap&lt; Long, String &gt; threadDictionary, Vector&lt; String &gt; omittablePackagePrefixes)</arglist>
+    </member>
+    <member kind="function">
+      <type>String</type>
+      <name>getLoxName</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>afecca9bb92ebd7fc350c17c1945a7414</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>set</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a809aae882275f23217600faf8d4720b0</anchor>
+      <arglist>(Thread thread)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>String</type>
+      <name>loxName</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>ac67ac13e1750351191b65faaa5791a00</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Vector&lt; String &gt;</type>
+      <name>omittablePackagePrefixes</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a066140f6d2db19be93bc0e9dff39c385</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>HashMap&lt; Long, String &gt;</type>
+      <name>threadDictionary</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a28aec8792ccd6e67dd49f06d57c8a8bd</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>com::aworx::lox::core::ScopeStore</name>
+    <filename>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</filename>
+    <templarg></templarg>
+    <member kind="variable">
+      <type>T</type>
+      <name>globalStore</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>af36769bffee28cc003eee0e1e7d1e858</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>PathMap&lt; T &gt;</type>
+      <name>languageStore</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a3cc97c81f5f73c882d4a1f5abbe41811</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>HashMap&lt; Thread, ArrayList&lt; T &gt; &gt;</type>
+      <name>threadInnerStore</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a55e770ae79d703ab411566db9ac7bce5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>HashMap&lt; Thread, ArrayList&lt; T &gt; &gt;</type>
+      <name>threadOuterStore</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a93281603675b390de6446a2ea12f5a2f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ScopeStore</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a08a5115b742cb5cd94f87c852a136f63</anchor>
+      <arglist>(ScopeInfo scopeInfo, boolean cfgSingleThreadValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>clear</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ac8bb3912a3ce86b15842e79d0b421204</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>get</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>af6ea056c8af82f08af9fd0d857967f9b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>InitAccess</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a1008f0a1310373bea762f3e081b2f3e0</anchor>
+      <arglist>(Scope scope, int packageLevel, Thread thread)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>initWalk</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ad095d2a58c808bf27afb171ae36e1ecc</anchor>
+      <arglist>(Scope startScope, T localObject)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>remove</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a54cecc745e1e2543e2fed9cf959fa25f</anchor>
+      <arglist>(T value)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>store</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ac93da3bff197b20c13337f5be31ad47c</anchor>
+      <arglist>(T value)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>walk</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a0d4d7106dbe5db8a9b40b8cfda79b3e1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>actPackageLevel</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a4c28e4823062c8f744be67dfadeda68f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>PathMap&lt; T &gt;</type>
+      <name>actPathMapNode</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a8032ce6cc2fb9ea0e10b5ea89dffe5e0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Scope</type>
+      <name>actScope</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ab420b6d519025a485c6345895ad174ee</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Thread</type>
+      <name>actThread</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a64257a7b447d7633ab917c0096ea1f7b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>boolean</type>
+      <name>cfgSingleThreadValue</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a6ca5693c62b74429f179fa806358cc01</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>languageKey</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>afff48198d20f5acb5e3b9f526f3aa89b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Substring</type>
+      <name>languageKeySubstr</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a3bf60f6469b0c69c146a974a7a4c08e4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>boolean</type>
+      <name>lazyLanguageNode</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>adf20d746bec29641f94f64972323990f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ScopeInfo</type>
+      <name>scopeInfo</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a609ba5315772ded9cdb21726e54ff69d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>separators</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>abf3c785f03af4e61a0b4f51bc3568635</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>boolean</type>
+      <name>walking</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ab7722550f3beb31970bb6f70819a71b0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>T</type>
+      <name>walkLocalObject</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa335ab4366e76a5d9ce668fc4afb82ff</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>walkNextThreadIdx</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a9928f44e5399d356c4380ab105e48941</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ArrayList&lt; T &gt;</type>
+      <name>walkThreadValues</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a55f3760fb348e88887914ae51172f1b4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>T</type>
+      <name>access</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a4edabc9f41871e01feed07e778694764</anchor>
+      <arglist>(int cmd, T value)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>getPathMapNode</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ac1caa12487494720c56e22b2cd33ee0f</anchor>
+      <arglist>(boolean create)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ScopeStore&lt; com::aworx::lib::strings::AString &gt;</name>
+    <filename>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</filename>
+    <member kind="variable">
+      <type>T</type>
+      <name>globalStore</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>af36769bffee28cc003eee0e1e7d1e858</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>PathMap&lt; T &gt;</type>
+      <name>languageStore</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a3cc97c81f5f73c882d4a1f5abbe41811</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>HashMap&lt; Thread, ArrayList&lt; T &gt; &gt;</type>
+      <name>threadInnerStore</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a55e770ae79d703ab411566db9ac7bce5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>HashMap&lt; Thread, ArrayList&lt; T &gt; &gt;</type>
+      <name>threadOuterStore</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a93281603675b390de6446a2ea12f5a2f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ScopeStore</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a08a5115b742cb5cd94f87c852a136f63</anchor>
+      <arglist>(ScopeInfo scopeInfo, boolean cfgSingleThreadValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>clear</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ac8bb3912a3ce86b15842e79d0b421204</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>get</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>af6ea056c8af82f08af9fd0d857967f9b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>InitAccess</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a1008f0a1310373bea762f3e081b2f3e0</anchor>
+      <arglist>(Scope scope, int packageLevel, Thread thread)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>initWalk</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ad095d2a58c808bf27afb171ae36e1ecc</anchor>
+      <arglist>(Scope startScope, T localObject)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>remove</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a54cecc745e1e2543e2fed9cf959fa25f</anchor>
+      <arglist>(T value)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>store</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ac93da3bff197b20c13337f5be31ad47c</anchor>
+      <arglist>(T value)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>walk</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a0d4d7106dbe5db8a9b40b8cfda79b3e1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>actPackageLevel</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a4c28e4823062c8f744be67dfadeda68f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>PathMap&lt; T &gt;</type>
+      <name>actPathMapNode</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a8032ce6cc2fb9ea0e10b5ea89dffe5e0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Scope</type>
+      <name>actScope</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ab420b6d519025a485c6345895ad174ee</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Thread</type>
+      <name>actThread</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a64257a7b447d7633ab917c0096ea1f7b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>boolean</type>
+      <name>cfgSingleThreadValue</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a6ca5693c62b74429f179fa806358cc01</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>languageKey</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>afff48198d20f5acb5e3b9f526f3aa89b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Substring</type>
+      <name>languageKeySubstr</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a3bf60f6469b0c69c146a974a7a4c08e4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>boolean</type>
+      <name>lazyLanguageNode</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>adf20d746bec29641f94f64972323990f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ScopeInfo</type>
+      <name>scopeInfo</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a609ba5315772ded9cdb21726e54ff69d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>separators</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>abf3c785f03af4e61a0b4f51bc3568635</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>boolean</type>
+      <name>walking</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ab7722550f3beb31970bb6f70819a71b0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>T</type>
+      <name>walkLocalObject</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa335ab4366e76a5d9ce668fc4afb82ff</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>walkNextThreadIdx</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a9928f44e5399d356c4380ab105e48941</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ArrayList&lt; T &gt;</type>
+      <name>walkThreadValues</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a55f3760fb348e88887914ae51172f1b4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>T</type>
+      <name>access</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a4edabc9f41871e01feed07e778694764</anchor>
+      <arglist>(int cmd, T value)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>getPathMapNode</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ac1caa12487494720c56e22b2cd33ee0f</anchor>
+      <arglist>(boolean create)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ScopeStore&lt; HashMap&lt; com::aworx::lib::strings::AString, com::aworx::lox::LogData &gt; &gt;</name>
+    <filename>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</filename>
+    <member kind="variable">
+      <type>T</type>
+      <name>globalStore</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>af36769bffee28cc003eee0e1e7d1e858</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>PathMap&lt; T &gt;</type>
+      <name>languageStore</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a3cc97c81f5f73c882d4a1f5abbe41811</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>HashMap&lt; Thread, ArrayList&lt; T &gt; &gt;</type>
+      <name>threadInnerStore</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a55e770ae79d703ab411566db9ac7bce5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>HashMap&lt; Thread, ArrayList&lt; T &gt; &gt;</type>
+      <name>threadOuterStore</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a93281603675b390de6446a2ea12f5a2f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ScopeStore</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a08a5115b742cb5cd94f87c852a136f63</anchor>
+      <arglist>(ScopeInfo scopeInfo, boolean cfgSingleThreadValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>clear</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ac8bb3912a3ce86b15842e79d0b421204</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>get</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>af6ea056c8af82f08af9fd0d857967f9b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>InitAccess</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a1008f0a1310373bea762f3e081b2f3e0</anchor>
+      <arglist>(Scope scope, int packageLevel, Thread thread)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>initWalk</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ad095d2a58c808bf27afb171ae36e1ecc</anchor>
+      <arglist>(Scope startScope, T localObject)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>remove</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a54cecc745e1e2543e2fed9cf959fa25f</anchor>
+      <arglist>(T value)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>store</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ac93da3bff197b20c13337f5be31ad47c</anchor>
+      <arglist>(T value)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>walk</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a0d4d7106dbe5db8a9b40b8cfda79b3e1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>actPackageLevel</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a4c28e4823062c8f744be67dfadeda68f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>PathMap&lt; T &gt;</type>
+      <name>actPathMapNode</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a8032ce6cc2fb9ea0e10b5ea89dffe5e0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Scope</type>
+      <name>actScope</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ab420b6d519025a485c6345895ad174ee</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Thread</type>
+      <name>actThread</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a64257a7b447d7633ab917c0096ea1f7b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>boolean</type>
+      <name>cfgSingleThreadValue</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a6ca5693c62b74429f179fa806358cc01</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>languageKey</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>afff48198d20f5acb5e3b9f526f3aa89b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Substring</type>
+      <name>languageKeySubstr</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a3bf60f6469b0c69c146a974a7a4c08e4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>boolean</type>
+      <name>lazyLanguageNode</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>adf20d746bec29641f94f64972323990f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ScopeInfo</type>
+      <name>scopeInfo</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a609ba5315772ded9cdb21726e54ff69d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>separators</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>abf3c785f03af4e61a0b4f51bc3568635</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>boolean</type>
+      <name>walking</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ab7722550f3beb31970bb6f70819a71b0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>T</type>
+      <name>walkLocalObject</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa335ab4366e76a5d9ce668fc4afb82ff</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>walkNextThreadIdx</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a9928f44e5399d356c4380ab105e48941</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ArrayList&lt; T &gt;</type>
+      <name>walkThreadValues</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a55f3760fb348e88887914ae51172f1b4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>T</type>
+      <name>access</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a4edabc9f41871e01feed07e778694764</anchor>
+      <arglist>(int cmd, T value)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>getPathMapNode</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ac1caa12487494720c56e22b2cd33ee0f</anchor>
+      <arglist>(boolean create)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ScopeStore&lt; HashMap&lt; com::aworx::lib::strings::AString, int[]&gt; &gt;</name>
+    <filename>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</filename>
+    <member kind="variable">
+      <type>T</type>
+      <name>globalStore</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>af36769bffee28cc003eee0e1e7d1e858</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>PathMap&lt; T &gt;</type>
+      <name>languageStore</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a3cc97c81f5f73c882d4a1f5abbe41811</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>HashMap&lt; Thread, ArrayList&lt; T &gt; &gt;</type>
+      <name>threadInnerStore</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a55e770ae79d703ab411566db9ac7bce5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>HashMap&lt; Thread, ArrayList&lt; T &gt; &gt;</type>
+      <name>threadOuterStore</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a93281603675b390de6446a2ea12f5a2f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ScopeStore</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a08a5115b742cb5cd94f87c852a136f63</anchor>
+      <arglist>(ScopeInfo scopeInfo, boolean cfgSingleThreadValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>clear</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ac8bb3912a3ce86b15842e79d0b421204</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>get</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>af6ea056c8af82f08af9fd0d857967f9b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>InitAccess</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a1008f0a1310373bea762f3e081b2f3e0</anchor>
+      <arglist>(Scope scope, int packageLevel, Thread thread)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>initWalk</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ad095d2a58c808bf27afb171ae36e1ecc</anchor>
+      <arglist>(Scope startScope, T localObject)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>remove</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a54cecc745e1e2543e2fed9cf959fa25f</anchor>
+      <arglist>(T value)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>store</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ac93da3bff197b20c13337f5be31ad47c</anchor>
+      <arglist>(T value)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>walk</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a0d4d7106dbe5db8a9b40b8cfda79b3e1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>actPackageLevel</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a4c28e4823062c8f744be67dfadeda68f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>PathMap&lt; T &gt;</type>
+      <name>actPathMapNode</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a8032ce6cc2fb9ea0e10b5ea89dffe5e0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Scope</type>
+      <name>actScope</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ab420b6d519025a485c6345895ad174ee</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Thread</type>
+      <name>actThread</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a64257a7b447d7633ab917c0096ea1f7b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>boolean</type>
+      <name>cfgSingleThreadValue</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a6ca5693c62b74429f179fa806358cc01</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>languageKey</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>afff48198d20f5acb5e3b9f526f3aa89b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Substring</type>
+      <name>languageKeySubstr</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a3bf60f6469b0c69c146a974a7a4c08e4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>boolean</type>
+      <name>lazyLanguageNode</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>adf20d746bec29641f94f64972323990f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ScopeInfo</type>
+      <name>scopeInfo</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a609ba5315772ded9cdb21726e54ff69d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>separators</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>abf3c785f03af4e61a0b4f51bc3568635</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>boolean</type>
+      <name>walking</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ab7722550f3beb31970bb6f70819a71b0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>T</type>
+      <name>walkLocalObject</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa335ab4366e76a5d9ce668fc4afb82ff</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>walkNextThreadIdx</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a9928f44e5399d356c4380ab105e48941</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ArrayList&lt; T &gt;</type>
+      <name>walkThreadValues</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a55f3760fb348e88887914ae51172f1b4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>T</type>
+      <name>access</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a4edabc9f41871e01feed07e778694764</anchor>
+      <arglist>(int cmd, T value)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>getPathMapNode</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ac1caa12487494720c56e22b2cd33ee0f</anchor>
+      <arglist>(boolean create)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ScopeStore&lt; Object &gt;</name>
+    <filename>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</filename>
+    <member kind="variable">
+      <type>T</type>
+      <name>globalStore</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>af36769bffee28cc003eee0e1e7d1e858</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>PathMap&lt; T &gt;</type>
+      <name>languageStore</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a3cc97c81f5f73c882d4a1f5abbe41811</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>HashMap&lt; Thread, ArrayList&lt; T &gt; &gt;</type>
+      <name>threadInnerStore</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a55e770ae79d703ab411566db9ac7bce5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>HashMap&lt; Thread, ArrayList&lt; T &gt; &gt;</type>
+      <name>threadOuterStore</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a93281603675b390de6446a2ea12f5a2f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ScopeStore</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a08a5115b742cb5cd94f87c852a136f63</anchor>
+      <arglist>(ScopeInfo scopeInfo, boolean cfgSingleThreadValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>clear</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ac8bb3912a3ce86b15842e79d0b421204</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>get</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>af6ea056c8af82f08af9fd0d857967f9b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>InitAccess</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a1008f0a1310373bea762f3e081b2f3e0</anchor>
+      <arglist>(Scope scope, int packageLevel, Thread thread)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>initWalk</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ad095d2a58c808bf27afb171ae36e1ecc</anchor>
+      <arglist>(Scope startScope, T localObject)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>remove</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a54cecc745e1e2543e2fed9cf959fa25f</anchor>
+      <arglist>(T value)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>store</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ac93da3bff197b20c13337f5be31ad47c</anchor>
+      <arglist>(T value)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>walk</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a0d4d7106dbe5db8a9b40b8cfda79b3e1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>actPackageLevel</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a4c28e4823062c8f744be67dfadeda68f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>PathMap&lt; T &gt;</type>
+      <name>actPathMapNode</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a8032ce6cc2fb9ea0e10b5ea89dffe5e0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Scope</type>
+      <name>actScope</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ab420b6d519025a485c6345895ad174ee</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Thread</type>
+      <name>actThread</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a64257a7b447d7633ab917c0096ea1f7b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>boolean</type>
+      <name>cfgSingleThreadValue</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a6ca5693c62b74429f179fa806358cc01</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>languageKey</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>afff48198d20f5acb5e3b9f526f3aa89b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Substring</type>
+      <name>languageKeySubstr</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a3bf60f6469b0c69c146a974a7a4c08e4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>boolean</type>
+      <name>lazyLanguageNode</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>adf20d746bec29641f94f64972323990f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ScopeInfo</type>
+      <name>scopeInfo</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a609ba5315772ded9cdb21726e54ff69d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>separators</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>abf3c785f03af4e61a0b4f51bc3568635</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>boolean</type>
+      <name>walking</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ab7722550f3beb31970bb6f70819a71b0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>T</type>
+      <name>walkLocalObject</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa335ab4366e76a5d9ce668fc4afb82ff</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>walkNextThreadIdx</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a9928f44e5399d356c4380ab105e48941</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ArrayList&lt; T &gt;</type>
+      <name>walkThreadValues</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a55f3760fb348e88887914ae51172f1b4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>T</type>
+      <name>access</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a4edabc9f41871e01feed07e778694764</anchor>
+      <arglist>(int cmd, T value)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>getPathMapNode</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ac1caa12487494720c56e22b2cd33ee0f</anchor>
+      <arglist>(boolean create)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -6801,6 +9087,46 @@
       <arglist>(CharSequence name, CharSequence value)</arglist>
     </member>
   </compound>
+  <compound kind="class">
+    <name>com::aworx::lib::threads::SmartLock</name>
+    <filename>classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html</filename>
+    <base>com::aworx::lib::threads::ThreadLock</base>
+    <member kind="function">
+      <type></type>
+      <name>SmartLock</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html</anchorfile>
+      <anchor>a90c2c49cbc4b52547424991f1665a8cb</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>addAcquirer</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html</anchorfile>
+      <anchor>a2ce5b11c43b859d5165e248babe09056</anchor>
+      <arglist>(ThreadLock newAcquirer)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>cntAcquirers</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html</anchorfile>
+      <anchor>a8b64790db152bb1bef56577a00fb4dac</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>removeAcquirer</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html</anchorfile>
+      <anchor>a817324df407019b77622de2291297f0c</anchor>
+      <arglist>(ThreadLock acquirerToRemove)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ArrayList&lt; ThreadLock &gt;</type>
+      <name>acquirers</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html</anchorfile>
+      <anchor>afb1e2e3e704c405582819edf6e5e19a0</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
   <compound kind="enum">
     <name>com::aworx::lib::config::IniFile::Status</name>
     <filename>enumcom_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Status.html</filename>
@@ -6824,6 +9150,25 @@
       <anchorfile>enumcom_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Status.html</anchorfile>
       <anchor>a509f04652b5e1b2d2b9e6bc121a87e50</anchor>
       <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>com::aworx::lox::core::textlogger::StringConverter</name>
+    <filename>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1StringConverter.html</filename>
+    <base>com::aworx::lox::core::textlogger::ObjectConverter</base>
+    <member kind="variable">
+      <type>String</type>
+      <name>fmtNullObject</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1StringConverter.html</anchorfile>
+      <anchor>a5b4240f9d910de65e0f07e5775ab6eef</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>boolean</type>
+      <name>convertObject</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1StringConverter.html</anchorfile>
+      <anchor>a021e85842bb9a42f78a8d455f894610d</anchor>
+      <arglist>(Object o, AString target)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -7180,6 +9525,13 @@
       <arglist>(String consumable)</arglist>
     </member>
     <member kind="function">
+      <type>Substring</type>
+      <name>split</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>abeb124bcc7753eb233167be4ab842a23</anchor>
+      <arglist>(int position, Substring target, int separatorWidth)</arglist>
+    </member>
+    <member kind="function">
       <type>int</type>
       <name>compareTo</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
@@ -7528,6 +9880,20 @@
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
       <anchor>ad146fa8579a5f8a876c4688cc5a68520</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>String</type>
+      <name>toString</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a6601c3db66b8885aa148561d2caa2d5c</anchor>
+      <arglist>(int regionStart, int regionLength)</arglist>
+    </member>
+    <member kind="function">
+      <type>String</type>
+      <name>toString</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a47ec4454a71d89d9beab4a2f3f843425</anchor>
+      <arglist>(int regionStart)</arglist>
     </member>
     <member kind="function">
       <type>long</type>
@@ -7929,6 +10295,13 @@
       <arglist>(String consumable)</arglist>
     </member>
     <member kind="function">
+      <type>Substring</type>
+      <name>split</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>abeb124bcc7753eb233167be4ab842a23</anchor>
+      <arglist>(int position, Substring target, int separatorWidth)</arglist>
+    </member>
+    <member kind="function">
       <type>int</type>
       <name>compareTo</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
@@ -8279,6 +10652,20 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
+      <type>String</type>
+      <name>toString</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a6601c3db66b8885aa148561d2caa2d5c</anchor>
+      <arglist>(int regionStart, int regionLength)</arglist>
+    </member>
+    <member kind="function">
+      <type>String</type>
+      <name>toString</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a47ec4454a71d89d9beab4a2f3f843425</anchor>
+      <arglist>(int regionStart)</arglist>
+    </member>
+    <member kind="function">
       <type>long</type>
       <name>toLong</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
@@ -8371,6 +10758,13 @@
       <anchor>a3a5f56162810aa1e371620c4c18cc82a</anchor>
       <arglist></arglist>
     </member>
+    <member kind="variable">
+      <type>boolean</type>
+      <name>hasIoError</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html</anchorfile>
+      <anchor>a2cec7319a52a70a78463db69c78ba967</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function">
       <type></type>
       <name>TextFileLogger</name>
@@ -8415,9 +10809,9 @@
     </member>
     <member kind="function" protection="protected">
       <type>boolean</type>
-      <name>doLogSubstring</name>
+      <name>logSubstring</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html</anchorfile>
-      <anchor>aaba50d6f95a026a7efe28b483802557c</anchor>
+      <anchor>a3a5b4278703e908f00ed28a013f24a68</anchor>
       <arglist>(AString buffer, int start, int length)</arglist>
     </member>
     <member kind="function" protection="protected">
@@ -8455,13 +10849,6 @@
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>fmtIndentString</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
-      <anchor>a608d11fc9207ee63d6c48388a1887ca5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
       <name>fmtMultiLineMsgHeadline</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
       <anchor>aeddddadb6299e40585333c787194c0fe</anchor>
@@ -8479,6 +10866,13 @@
       <name>fmtMultiLineSuffix</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
       <anchor>aa14f64bb6925d66238f6a40d009bb4e3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>fmtUnknownObject</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
+      <anchor>a918e5c8d432fa51c1f712cf19e270b0b</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -8510,11 +10904,18 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>ObjectConverter</type>
-      <name>objectConverter</name>
+      <type>ArrayList&lt; ObjectConverter &gt;</type>
+      <name>objectConverters</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
-      <anchor>a4fe0bca79500867e47e143d4a72009e3</anchor>
+      <anchor>a77f0058d7b3aff5fa594ac91a4bd525c</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>addAcquirer</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
+      <anchor>a2ce5b11c43b859d5165e248babe09056</anchor>
+      <arglist>(ThreadLock newAcquirer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -8522,6 +10923,20 @@
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
       <anchor>a8a9dd3a3b60a5a22981f97c40611f629</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>log</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
+      <anchor>a9e1196ab7e0b5d31dd0cca030667852f</anchor>
+      <arglist>(Domain domain, Verbosity verbosity, ArrayList&lt; Object &gt; logables, ScopeInfo scope)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>removeAcquirer</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
+      <anchor>a12966033fd4dc5ca71025ec88ecaa3d0</anchor>
+      <arglist>(ThreadLock acquirer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -8538,32 +10953,46 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>msgBuf</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
+      <anchor>aca76e783906a4030895a9797a98adb3f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
       <type>ArrayList&lt; String &gt;</type>
       <name>replacements</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
       <anchor>ac33de2423be274be480817abf43f445c</anchor>
       <arglist></arglist>
     </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>stdStreamLockRegistrationCounter</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
+      <anchor>a7e0257392907f8a498262a3d8516f04c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>boolean</type>
+      <name>usesStdStreams</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
+      <anchor>a374fb69f48d91d4f43333f953e129b1f</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function" protection="protected">
       <type></type>
       <name>TextLogger</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
-      <anchor>a77541b983eb0b7a2ee732d849b733783</anchor>
-      <arglist>(String name, String typeName)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>doLog</name>
-      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
-      <anchor>ae3744609850a36d0504a26479a44cb4d</anchor>
-      <arglist>(AString domain, Log.Level level, Object msgObject, int indent, CallerInfo caller)</arglist>
+      <anchor>ad0eccbe08e9902dbc2d4d03e68164580</anchor>
+      <arglist>(String name, String typeName, boolean usesStdStreams)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>abstract void</type>
-      <name>doTextLog</name>
+      <name>logText</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
-      <anchor>a0d2f1838c6403b062f5e7f481d97c51a</anchor>
-      <arglist>(AString domain, Log.Level level, AString msg, int indent, CallerInfo caller, int lineNumber)</arglist>
+      <anchor>ac695287fd565c875feb45c63c38237e2</anchor>
+      <arglist>(Domain domain, Verbosity verbosity, AString msg, ScopeInfo scope, int lineNumber)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>abstract void</type>
@@ -8620,16 +11049,23 @@
     </member>
     <member kind="function">
       <type>int</type>
-      <name>isAcquired</name>
+      <name>dbgCountAcquirements</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html</anchorfile>
-      <anchor>a9adc32cf625ac5e3dd95719481333a01</anchor>
+      <anchor>ad29885f7cc4063bd825c69d124b371b1</anchor>
       <arglist>(Thread thread)</arglist>
     </member>
     <member kind="function">
-      <type>boolean</type>
-      <name>isUnsafe</name>
+      <type>LockMode</type>
+      <name>getMode</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html</anchorfile>
-      <anchor>a9f4fae0b1f082007631fffc976bc8381</anchor>
+      <anchor>aa574ebfdad25f8544c7b8d49d1d54321</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>Safeness</type>
+      <name>getSafeness</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html</anchorfile>
+      <anchor>a8271af425015ebfee1e5b5f61d26b4fe</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
@@ -8641,9 +11077,9 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>setMode</name>
+      <name>setSafeness</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html</anchorfile>
-      <anchor>accd20afd278e33ecf16409e4b6587607</anchor>
+      <anchor>a7090fd12b34b064560dcef8900a3f31a</anchor>
       <arglist>(Safeness safeness)</arglist>
     </member>
     <member kind="function">
@@ -8652,6 +11088,13 @@
       <anchorfile>classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html</anchorfile>
       <anchor>ad146fa8579a5f8a876c4688cc5a68520</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>boolean</type>
+      <name>createOwnerStackTrace</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html</anchorfile>
+      <anchor>a29d24e2a4f8d9298112a72dbc2cd8d9f</anchor>
+      <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>int</type>
@@ -8679,6 +11122,13 @@
       <name>owner</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html</anchorfile>
       <anchor>a194df7b1414f1a1181802f255faff967</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Exception</type>
+      <name>ownerException</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html</anchorfile>
+      <anchor>ace1ce0972ea4912552ad81f0a892db49</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -9368,6 +11818,13 @@
     <filename>classcom_1_1aworx_1_1lib_1_1Util.html</filename>
     <member kind="function" static="yes">
       <type>static AString</type>
+      <name>getProcessName</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1Util.html</anchorfile>
+      <anchor>a8c1a49698b4a5979387e66e8063e7a53</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static AString</type>
       <name>getSpaces</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1Util.html</anchorfile>
       <anchor>ac591c0eff29c069255799a28f789e6c2</anchor>
@@ -9393,6 +11850,13 @@
       <anchorfile>classcom_1_1aworx_1_1lib_1_1Util.html</anchorfile>
       <anchor>a1df55aabc89ed8637f777ba1095f6eb1</anchor>
       <arglist>(PrintStream os, int qty)</arglist>
+    </member>
+    <member kind="variable" protection="private" static="yes">
+      <type>static AString</type>
+      <name>processName</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1Util.html</anchorfile>
+      <anchor>acdefe8c9e0fc3c1abb1655ea13d4f3d0</anchor>
+      <arglist></arglist>
     </member>
     <member kind="variable" protection="private" static="yes">
       <type>static byte[]</type>
@@ -9442,6 +11906,45 @@
     </member>
   </compound>
   <compound kind="enum">
+    <name>com::aworx::lox::Verbosity</name>
+    <filename>enumcom_1_1aworx_1_1lox_1_1Verbosity.html</filename>
+    <member kind="variable">
+      <type></type>
+      <name>ERROR</name>
+      <anchorfile>enumcom_1_1aworx_1_1lox_1_1Verbosity.html</anchorfile>
+      <anchor>a9eaada089c4de774cfc8b7aea4b9379a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type></type>
+      <name>INFO</name>
+      <anchorfile>enumcom_1_1aworx_1_1lox_1_1Verbosity.html</anchorfile>
+      <anchor>ab1764b91c3b44a5988564bbfe1d6e352</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type></type>
+      <name>OFF</name>
+      <anchorfile>enumcom_1_1aworx_1_1lox_1_1Verbosity.html</anchorfile>
+      <anchor>aba437f58ad654d395b18d209a1a8c21c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type></type>
+      <name>VERBOSE</name>
+      <anchorfile>enumcom_1_1aworx_1_1lox_1_1Verbosity.html</anchorfile>
+      <anchor>a03169c2c7e2ff706233c78422b0daf3a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type></type>
+      <name>WARNING</name>
+      <anchorfile>enumcom_1_1aworx_1_1lox_1_1Verbosity.html</anchorfile>
+      <anchor>a1dfc73ab73898d3f4f348d462a5d126a</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="enum">
     <name>com::aworx::lib::enums::Whitespaces</name>
     <filename>enumcom_1_1aworx_1_1lib_1_1enums_1_1Whitespaces.html</filename>
     <member kind="variable">
@@ -9469,6 +11972,7 @@
     <name>com::aworx::lib</name>
     <filename>namespacecom_1_1aworx_1_1lib.html</filename>
     <namespace>com::aworx::lib::config</namespace>
+    <namespace>com::aworx::lib::containers</namespace>
     <namespace>com::aworx::lib::enums</namespace>
     <namespace>com::aworx::lib::strings</namespace>
     <namespace>com::aworx::lib::threads</namespace>
@@ -9489,10 +11993,16 @@
     <class kind="class">com::aworx::lib::config::IniFile</class>
   </compound>
   <compound kind="namespace">
+    <name>com::aworx::lib::containers</name>
+    <filename>namespacecom_1_1aworx_1_1lib_1_1containers.html</filename>
+    <class kind="class">com::aworx::lib::containers::PathMap</class>
+  </compound>
+  <compound kind="namespace">
     <name>com::aworx::lib::enums</name>
     <filename>namespacecom_1_1aworx_1_1lib_1_1enums.html</filename>
     <class kind="enum">com::aworx::lib::enums::Alignment</class>
     <class kind="enum">com::aworx::lib::enums::Case</class>
+    <class kind="enum">com::aworx::lib::enums::ContainerOp</class>
     <class kind="enum">com::aworx::lib::enums::Create</class>
     <class kind="enum">com::aworx::lib::enums::CurrentData</class>
     <class kind="enum">com::aworx::lib::enums::Inclusion</class>
@@ -9515,6 +12025,7 @@
   <compound kind="namespace">
     <name>com::aworx::lib::threads</name>
     <filename>namespacecom_1_1aworx_1_1lib_1_1threads.html</filename>
+    <class kind="class">com::aworx::lib::threads::SmartLock</class>
     <class kind="class">com::aworx::lib::threads::ThreadLock</class>
   </compound>
   <compound kind="namespace">
@@ -9531,11 +12042,15 @@
     <namespace>com::aworx::lox::core</namespace>
     <namespace>com::aworx::lox::loggers</namespace>
     <namespace>com::aworx::lox::tools</namespace>
+    <class kind="class">com::aworx::lox::ALox</class>
     <class kind="class">com::aworx::lox::ALoxReportWriter</class>
     <class kind="class">com::aworx::lox::ESC</class>
     <class kind="class">com::aworx::lox::Log</class>
     <class kind="class">com::aworx::lox::LogBuf</class>
+    <class kind="class">com::aworx::lox::LogData</class>
     <class kind="class">com::aworx::lox::Lox</class>
+    <class kind="enum">com::aworx::lox::Scope</class>
+    <class kind="enum">com::aworx::lox::Verbosity</class>
   </compound>
   <compound kind="namespace">
     <name>com::aworx::lox::android</name>
@@ -9546,17 +12061,20 @@
     <name>com::aworx::lox::core</name>
     <filename>namespacecom_1_1aworx_1_1lox_1_1core.html</filename>
     <namespace>com::aworx::lox::core::textlogger</namespace>
-    <class kind="class">com::aworx::lox::core::CallerInfo</class>
     <class kind="class">com::aworx::lox::core::Domain</class>
     <class kind="class">com::aworx::lox::core::Logger</class>
+    <class kind="class">com::aworx::lox::core::ScopeDump</class>
+    <class kind="class">com::aworx::lox::core::ScopeInfo</class>
+    <class kind="class">com::aworx::lox::core::ScopeStore</class>
   </compound>
   <compound kind="namespace">
     <name>com::aworx::lox::core::textlogger</name>
     <filename>namespacecom_1_1aworx_1_1lox_1_1core_1_1textlogger.html</filename>
     <class kind="class">com::aworx::lox::core::textlogger::AutoSizes</class>
     <class kind="class">com::aworx::lox::core::textlogger::MetaInfo</class>
-    <class kind="class">com::aworx::lox::core::textlogger::ObjectConverter</class>
+    <class kind="interface">com::aworx::lox::core::textlogger::ObjectConverter</class>
     <class kind="class">com::aworx::lox::core::textlogger::PlainTextLogger</class>
+    <class kind="class">com::aworx::lox::core::textlogger::StringConverter</class>
     <class kind="class">com::aworx::lox::core::textlogger::TextLogger</class>
   </compound>
   <compound kind="namespace">
@@ -9602,27 +12120,25 @@
     <title>ALox for Java Tutorial</title>
     <filename>javatutorial</filename>
     <docanchor file="javatutorial" title="1. Hello ALox">tutjava_hello_alox</docanchor>
-    <docanchor file="javatutorial" title="2. Adding ALox to a Project">tutjava_adding_ALox</docanchor>
-    <docanchor file="javatutorial" title="2.1 Create a tutorial project or equip your current project with ALox">tutjava_createproject</docanchor>
-    <docanchor file="javatutorial" title="2.2. Create an instance of class &quot;Logger&quot;">tutjava_ha1</docanchor>
-    <docanchor file="javatutorial" title="2.3. Add code to create and set a *log domain*">tutjava_ha_3</docanchor>
-    <docanchor file="javatutorial" title="2.4. Add log code">tutjava_ha_4</docanchor>
-    <docanchor file="javatutorial" title="2.5. Run your application">tutjava_ha_5</docanchor>
-    <docanchor file="javatutorial" title="2.6. A quick note on pruning">tutjava_ha_6</docanchor>
-    <docanchor file="javatutorial" title="3. Log levels and log domains">tutjava_llld</docanchor>
-    <docanchor file="javatutorial" title="3.1. Log code with different log levels">tutjava_llld_1</docanchor>
-    <docanchor file="javatutorial" title="3.2. Default domains">tutjava_llld_2</docanchor>
-    <docanchor file="javatutorial" title="3.3. Where to place ALox log code">tutjava_llld_3</docanchor>
-    <docanchor file="javatutorial" title="4. Some more Details">tutjava_more</docanchor>
-    <docanchor file="javatutorial" title="4.1 Stop reading here?">tutjava_more_1</docanchor>
-    <docanchor file="javatutorial" title="4.2 Using the log buffer singleton">tutjava_more_logbuf</docanchor>
-    <docanchor file="javatutorial" title="4.3 Conditional logging">tutjava_more_conditional</docanchor>
-    <docanchor file="javatutorial" title="4.4 LogTools: Log complex things easily">tutjava_more_logtools</docanchor>
-    <docanchor file="javatutorial" title="4.4.1 Instance(): Log any object recursively">tutjava_more_logtools_instance</docanchor>
-    <docanchor file="javatutorial" title="4.4.2 Exception(): Log an exception recursively (with inner exceptions)">tutjava_more_logtools_exception</docanchor>
-    <docanchor file="javatutorial" title="4.5 Indentation">tutjava_more_indentation</docanchor>
-    <docanchor file="javatutorial" title="4.6 Directing log output to distinct loggers">tutjava_more_seplog</docanchor>
-    <docanchor file="javatutorial" title="4.7 ALox configuration and internal log messages">tutjava_more_config</docanchor>
-    <docanchor file="javatutorial" title="Further reading">tutjava_end</docanchor>
+    <docanchor file="javatutorial" title="2. Classes Log and Lox">tutjava_lox</docanchor>
+    <docanchor file="javatutorial" title="3 Create a tutorial project or equip your current project with ALox">tutjava_createproject</docanchor>
+    <docanchor file="javatutorial" title="4. Class Logger">tutjava_logger</docanchor>
+    <docanchor file="javatutorial" title="5. Run the Application">tutjava_run</docanchor>
+    <docanchor file="javatutorial" title="5.2. Run your application within your IDE">tutjava_run_ide</docanchor>
+    <docanchor file="javatutorial" title="5.2. A quick note on pruning">tutjava_run_release</docanchor>
+    <docanchor file="javatutorial" title="6. Controlling the  &apos;Verbosity&apos;">tutjava_verbosity</docanchor>
+    <docanchor file="javatutorial" title="7. Log Domains">tutjava_logdomains</docanchor>
+    <docanchor file="javatutorial" title="8. Hierarchical Log Domains">tutjava_logdomains_hierarchical</docanchor>
+    <docanchor file="javatutorial" title="9. Scope Domains">tutjava_scope_domains</docanchor>
+    <docanchor file="javatutorial" title="10. Conditional logging">tutjava_conditional</docanchor>
+    <docanchor file="javatutorial" title="11. Prefixes">tutjava_log_prefix</docanchor>
+    <docanchor file="javatutorial" title="12. LogTools: Log Complex Data">tutjava_logtools</docanchor>
+    <docanchor file="javatutorial" title="12.1 Instance(): Log any object recursively">tutjava_more_logtools_instance</docanchor>
+    <docanchor file="javatutorial" title="12.2 Exception(): Log an exception recursively (with inner exceptions)">tutjava_more_logtools_exception</docanchor>
+    <docanchor file="javatutorial" title="13. Using the Log-Buffer Singleton">tutjava_logbuf</docanchor>
+    <docanchor file="javatutorial" title="14. Name Your Threads">tutjava_threadnames</docanchor>
+    <docanchor file="javatutorial" title="15. ALox Log Data">tutjava_logdata</docanchor>
+    <docanchor file="javatutorial" title="16. ALox Configuration Information and Internal Log Messages">tutjava_config</docanchor>
+    <docanchor file="javatutorial" title="Further Reading">tutjava_end</docanchor>
   </compound>
 </tagfile>

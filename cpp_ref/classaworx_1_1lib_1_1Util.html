@@ -145,8 +145,10 @@ Collaboration diagram for Util:</div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Public Static Methods</h2></td></tr>
-<tr class="memitem:a887f6daaa639283cba0d5d5eb6ce5aba"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">aworx::AString</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1Util.html#a887f6daaa639283cba0d5d5eb6ce5aba">GetSpaces</a> (int minSize=128)</td></tr>
-<tr class="separator:a887f6daaa639283cba0d5d5eb6ce5aba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59010cc79be20c6026095241b52c564f"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">aworx::AString</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1Util.html#a59010cc79be20c6026095241b52c564f">GetSpaces</a> ()</td></tr>
+<tr class="separator:a59010cc79be20c6026095241b52c564f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e3ea965460f027ed5e65b9df82bdeae"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">aworx::AString</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1Util.html#a3e3ea965460f027ed5e65b9df82bdeae">GetSpacesUnsafe</a> (int minSize)</td></tr>
+<tr class="separator:a3e3ea965460f027ed5e65b9df82bdeae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45f5d6b6d0a3d2c68d86a11cac8750e8"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1Util.html#a45f5d6b6d0a3d2c68d86a11cac8750e8">WriteSpaces</a> (std::ostream &amp;os, int qty)</td></tr>
 <tr class="separator:a45f5d6b6d0a3d2c68d86a11cac8750e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -156,7 +158,7 @@ Private Static Fields</h2></td></tr>
 <tr class="separator:af2abf169487119d618ac7a542e28e5c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a887f6daaa639283cba0d5d5eb6ce5aba"></a>
+<a class="anchor" id="a59010cc79be20c6026095241b52c564f"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -164,10 +166,36 @@ Private Static Fields</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">aworx::AString</a> &amp; GetSpaces </td>
+          <td class="memname">static const <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">aworx::AString</a>&amp; GetSpaces </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Receives a const AString full of spaces.</p>
+<dl class="section return"><dt>Returns</dt><dd>A const AString filled with spaces. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a3e3ea965460f027ed5e65b9df82bdeae"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="namespaceaworx.html#a51ace28d988aa0a7ab391f6aaec35f60">aworx::AString</a> &amp; GetSpacesUnsafe </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>minSize</em> = <code>128</code></td><td>)</td>
+          <td class="paramname"><em>minSize</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -178,10 +206,11 @@ Private Static Fields</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Receives a const AString full of spaces. </p><dl class="section attention"><dt>Attention</dt><dd>Parameter <code>minSize</code> should be omitted and the size of the object returned accepted. Requesting a higher size, might result in slightly more efficiency. In multithreaded processes, changing the size must be performed during bootstrap, e.g. directly after invoking <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a368faebfbb1d770d76d5e073266a3deb">ALIB::Init</a> by calling this method with the appropriate size.</dd></dl>
+<p> Receives a const AString full of spaces.</p>
+<dl class="section attention"><dt>Attention</dt><dd>In multithreaded processes, changing the size of the internal spaces string must be performed during bootstrap, e.g. directly after invoking <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a368faebfbb1d770d76d5e073266a3deb">ALIB::Init</a> by calling this method with the appropriate size.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">minSize</td><td>The minimum number of spaces that should be available in the returned AString. Defaults to 128. See notes in method description!</td></tr>
+    <tr><td class="paramname">minSize</td><td>The minimum number of spaces that should be available in the returned AString </td></tr>
   </table>
   </dd>
 </dl>
@@ -261,7 +290,7 @@ Private Static Fields</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:18 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:16 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

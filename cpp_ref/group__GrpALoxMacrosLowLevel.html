@@ -127,13 +127,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Macros</h2></td></tr>
 <tr class="memitem:ga2cde43a12bd2be40baa4896e409d642c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a>&#160;&#160;&#160;__declspec(dllexport)</td></tr>
 <tr class="separator:ga2cde43a12bd2be40baa4896e409d642c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga105a9f44250c23d6bb37df63aa9d9cbe"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga105a9f44250c23d6bb37df63aa9d9cbe">LOG_ACQUIRE</a>&#160;&#160;&#160;LOG_LOX.AcquireAndSetCI( <a class="el" href="group__GrpALibMacros.html#gab1836c6de18fd089b123e40e22472f4d">ALIB_SRC_INFO_PARAMS</a> );   <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga71f7449b6ad8bbd0ba22f897d7338a22">LOG_LOX</a></td></tr>
+<tr class="memitem:ga105a9f44250c23d6bb37df63aa9d9cbe"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga105a9f44250c23d6bb37df63aa9d9cbe">LOG_ACQUIRE</a>&#160;&#160;&#160;{ <a class="el" href="namespaceaworx.html#abf1258bbd9cf9772a1559f4ceb37fde4">aworx::Lox</a>&amp; log= <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga71f7449b6ad8bbd0ba22f897d7338a22">LOG_LOX</a>; log.SetScopeInfo( <a class="el" href="group__GrpALibMacros.html#gab1836c6de18fd089b123e40e22472f4d">ALIB_SRC_INFO_PARAMS</a> );</td></tr>
 <tr class="separator:ga105a9f44250c23d6bb37df63aa9d9cbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga71f7449b6ad8bbd0ba22f897d7338a22"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga71f7449b6ad8bbd0ba22f897d7338a22">LOG_LOX</a>&#160;&#160;&#160;(*<a class="el" href="classaworx_1_1lox_1_1Log.html#a43f74deff280835e63510eac2ceef1df">aworx::lox::Log::LOX</a>)</td></tr>
+<tr class="memitem:ga71f7449b6ad8bbd0ba22f897d7338a22"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga71f7449b6ad8bbd0ba22f897d7338a22">LOG_LOX</a>&#160;&#160;&#160;(*<a class="el" href="classaworx_1_1lox_1_1ALox.html#ae55ef9a26260880cde159c9d7591cb6a">aworx::ALox::Log</a>())</td></tr>
 <tr class="separator:ga71f7449b6ad8bbd0ba22f897d7338a22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0d5795316ecfccc7b40b43c01bf62b0e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga0d5795316ecfccc7b40b43c01bf62b0e">LOG_RELEASE</a>&#160;&#160;&#160;LOG_LOX.Release();</td></tr>
+<tr class="memitem:ga0d5795316ecfccc7b40b43c01bf62b0e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga0d5795316ecfccc7b40b43c01bf62b0e">LOG_RELEASE</a>&#160;&#160;&#160;log.Release(); }</td></tr>
 <tr class="separator:ga0d5795316ecfccc7b40b43c01bf62b0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9ac629621d8152810e41e19931c990a1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga9ac629621d8152810e41e19931c990a1">LOX_ACQUIRE</a>&#160;&#160;&#160;LOX_LOX.AcquireAndSetCI( <a class="el" href="group__GrpALibMacros.html#gab1836c6de18fd089b123e40e22472f4d">ALIB_SRC_INFO_PARAMS</a> );   <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga1f170b96d3ead37b7f530134e64bf121">LOX_LOX</a></td></tr>
+<tr class="memitem:ga9ac629621d8152810e41e19931c990a1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga9ac629621d8152810e41e19931c990a1">LOX_ACQUIRE</a>&#160;&#160;&#160;LOX_LOX.SetScopeInfo( <a class="el" href="group__GrpALibMacros.html#gab1836c6de18fd089b123e40e22472f4d">ALIB_SRC_INFO_PARAMS</a> );</td></tr>
 <tr class="separator:ga9ac629621d8152810e41e19931c990a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1f170b96d3ead37b7f530134e64bf121"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALoxMacrosLowLevel.html#ga1f170b96d3ead37b7f530134e64bf121">LOX_LOX</a></td></tr>
 <tr class="separator:ga1f170b96d3ead37b7f530134e64bf121"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -159,11 +159,11 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define LOG_ACQUIRE&#160;&#160;&#160;LOG_LOX.AcquireAndSetCI( <a class="el" href="group__GrpALibMacros.html#gab1836c6de18fd089b123e40e22472f4d">ALIB_SRC_INFO_PARAMS</a> );   <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga71f7449b6ad8bbd0ba22f897d7338a22">LOG_LOX</a></td>
+          <td class="memname">#define LOG_ACQUIRE&#160;&#160;&#160;{ <a class="el" href="namespaceaworx.html#abf1258bbd9cf9772a1559f4ceb37fde4">aworx::Lox</a>&amp; log= <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga71f7449b6ad8bbd0ba22f897d7338a22">LOG_LOX</a>; log.SetScopeInfo( <a class="el" href="group__GrpALibMacros.html#gab1836c6de18fd089b123e40e22472f4d">ALIB_SRC_INFO_PARAMS</a> );</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Macro that is placed at the beginning of almost all macros of type <a class="el" href="group__GrpMacrosDebugLog.html">ALox Macros For Debug Logging</a>. Provides caller information (provided that <a class="el" href="group__GrpALoxCodeSelectorSymbols.html#ga392381bb9caea53c133ce68c32cee4e1">ALOX_DBG_LOG_CI</a> is set) to the lox and places the debug lox instance access code using <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga71f7449b6ad8bbd0ba22f897d7338a22">LOG_LOX</a>. </p>
+<p>Macro that is placed at the beginning of almost all macros of type <a class="el" href="group__GrpMacrosDebugLog.html">ALox Macros For Debug Logging</a>. Provides scope information (provided that <a class="el" href="group__GrpALoxCodeSelectorSymbols.html#ga392381bb9caea53c133ce68c32cee4e1">ALOX_DBG_LOG_CI</a> is set) to the lox and places the debug lox instance access code using <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga71f7449b6ad8bbd0ba22f897d7338a22">LOG_LOX</a>. </p>
 
 </div>
 </div>
@@ -172,7 +172,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define LOG_LOX&#160;&#160;&#160;(*<a class="el" href="classaworx_1_1lox_1_1Log.html#a43f74deff280835e63510eac2ceef1df">aworx::lox::Log::LOX</a>)</td>
+          <td class="memname">#define LOG_LOX&#160;&#160;&#160;(*<a class="el" href="classaworx_1_1lox_1_1ALox.html#ae55ef9a26260880cde159c9d7591cb6a">aworx::ALox::Log</a>())</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -186,11 +186,11 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define LOG_RELEASE&#160;&#160;&#160;LOG_LOX.Release();</td>
+          <td class="memname">#define LOG_RELEASE&#160;&#160;&#160;log.Release(); }</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Macro that is placed at the end of almost all macros of type <a class="el" href="group__GrpMacrosDebugLog.html">ALox Macros For Debug Logging</a>. Releases the lox which was acquired when passing caller information (in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga105a9f44250c23d6bb37df63aa9d9cbe">LOG_ACQUIRE</a>.). </p>
+<p>Macro that is placed at the end of almost all macros of type <a class="el" href="group__GrpMacrosDebugLog.html">ALox Macros For Debug Logging</a>. Releases the lox which was acquired when passing scope information (in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga105a9f44250c23d6bb37df63aa9d9cbe">LOG_ACQUIRE</a>.). </p>
 
 </div>
 </div>
@@ -199,11 +199,11 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define LOX_ACQUIRE&#160;&#160;&#160;LOX_LOX.AcquireAndSetCI( <a class="el" href="group__GrpALibMacros.html#gab1836c6de18fd089b123e40e22472f4d">ALIB_SRC_INFO_PARAMS</a> );   <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga1f170b96d3ead37b7f530134e64bf121">LOX_LOX</a></td>
+          <td class="memname">#define LOX_ACQUIRE&#160;&#160;&#160;LOX_LOX.SetScopeInfo( <a class="el" href="group__GrpALibMacros.html#gab1836c6de18fd089b123e40e22472f4d">ALIB_SRC_INFO_PARAMS</a> );</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Macro that is placed at the beginning of almost all macros of type <a class="el" href="group__GrpMacrosReleaseLog.html">ALox Macros For Release Logging</a>. Provides caller information (provided that <a class="el" href="group__GrpALoxCodeSelectorSymbols.html#ga4b0e38e300ec824146da5e868f2c6290">ALOX_REL_LOG_CI</a> is set) to the lox and places the release lox instance access code using <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga1f170b96d3ead37b7f530134e64bf121">LOX_LOX</a>. </p>
+<p>Macro that is placed at the beginning of almost all macros of type <a class="el" href="group__GrpMacrosReleaseLog.html">ALox Macros For Release Logging</a>. Provides scope information (provided that <a class="el" href="group__GrpALoxCodeSelectorSymbols.html#ga4b0e38e300ec824146da5e868f2c6290">ALOX_REL_LOG_CI</a> is set) to the lox and places the release lox instance access code using <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga1f170b96d3ead37b7f530134e64bf121">LOX_LOX</a>. </p>
 
 </div>
 </div>
@@ -231,7 +231,7 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Macro that is placed at the end of almost all macros of type <a class="el" href="group__GrpMacrosDebugLog.html">ALox Macros For Debug Logging</a>. Releases the lox which was acquired when passing caller information (in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga105a9f44250c23d6bb37df63aa9d9cbe">LOG_ACQUIRE</a>.). </p>
+<p>Macro that is placed at the end of almost all macros of type <a class="el" href="group__GrpMacrosDebugLog.html">ALox Macros For Debug Logging</a>. Releases the lox which was acquired when passing scope information (in macro <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga105a9f44250c23d6bb37df63aa9d9cbe">LOG_ACQUIRE</a>.). </p>
 
 </div>
 </div>
@@ -239,7 +239,7 @@ Macros</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:18 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:16 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

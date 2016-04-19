@@ -125,6 +125,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions_vars_g.html#index_g"><span>g</span></a></li>
       <li><a href="functions_vars_h.html#index_h"><span>h</span></a></li>
       <li><a href="functions_vars_i.html#index_i"><span>i</span></a></li>
+      <li><a href="functions_vars_k.html#index_k"><span>k</span></a></li>
       <li><a href="functions_vars_l.html#index_l"><span>l</span></a></li>
       <li><a href="functions_vars_m.html#index_m"><span>m</span></a></li>
       <li><a href="functions_vars_n.html#index_n"><span>n</span></a></li>
@@ -164,8 +165,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>tabReference
 : <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#ad464d10c2231d8bbfa23f5dcaa15af92">AString</a>
 </li>
+<li>target
+: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html#a782151d24530c70cef193f27597731cc">ScopeDump</a>
+</li>
+<li>tAString
+: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a4eab9ca32845e6e56169e1df28225791">Domain</a>
+</li>
 <li>tempAS
-: <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a5a04010d4c0003b3aba30583b7bf3d48">Lox</a>
+: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html#a5a04010d4c0003b3aba30583b7bf3d48">ScopeDump</a>
 </li>
 <li>tempBuf
 : <a class="el" href="classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#ad8bcff62308a450db0f7e00b6937a67d">LogTools</a>
@@ -180,14 +187,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>theSpaces
 : <a class="el" href="classcs_1_1aworx_1_1lib_1_1Util.html#af2abf169487119d618ac7a542e28e5c0">Util</a>
 </li>
-<li>ThreadDictionary
-: <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a9449abe368a2e9a9694a52437b02348b">Lox</a>
+<li>thread
+: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html#ac99b75d10f465c1160242dea4544069a">ScopeInfo</a>
 </li>
-<li>ThreadID
-: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#a762284c02117c5070871b37484d70b4e">CallerInfo</a>
+<li>threadDictionary
+: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html#af17a69632804467db73cb111c6afde9c">ScopeDump</a>
+, <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html#af17a69632804467db73cb111c6afde9c">ScopeInfo</a>
+, <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#af17a69632804467db73cb111c6afde9c">Lox</a>
 </li>
-<li>ThreadName
-: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#ac2edbbf8ece484cc8424036fdaadd651">CallerInfo</a>
+<li>threadID
+: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html#a88110d06c2b8b5584d31b5be3f13af46">ScopeInfo</a>
+</li>
+<li>threadInnerStore
+: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#a240666a6464f6e9ab8ff41204aeeadc6">ScopeStore&lt; T &gt;</a>
+</li>
+<li>threadName
+: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html#af24ba4a8a819b679d1ac18505b2fe8a0">ScopeInfo</a>
+</li>
+<li>threadOuterStore
+: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#a6063faf8a8c096e1399eb43af9b96841">ScopeStore&lt; T &gt;</a>
 </li>
 <li>ticks
 : <a class="el" href="classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html#af0b811e653c51fb98ab202e920af2afe">Ticks</a>
@@ -235,33 +253,70 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>TimeOfLastLog
 : <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html#a00e19a7e5a1a93ab45e5895a67e6e2eb">Logger</a>
 </li>
-<li>TimeStamp
-: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html#a5a79026581184f7e7977b1827a104b24">CallerInfo</a>
+<li>timeStamp
+: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#a9d00e3de2101c520bb78acc73c75d3e4">ScopeInfo.SourceFile</a>
+, <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html#a4e72dac5d168369a754893772395f0d3">ScopeInfo</a>
 </li>
-<li>tmpDomainName
-: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html#ab3455c59a6cb0194878d7942ff4eb825">Logger</a>
+<li>tmpAS
+: <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a43a6d226488086cf9563b431ccbe5c69">Lox</a>
 </li>
-<li>tok
-: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a8a66329d15c440f4546f72bfe913c4a4">MetaInfo</a>
+<li>tmpAString
+: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ab6307f6d6ae7eb38fdcd9f372e798366">MetaInfo</a>
+</li>
+<li>tmpConfigValue
+: <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a2313c9e8c9b7afdf186b4331ab7fbbd7">Lox</a>
+</li>
+<li>tmpSubstitutionPath
+: <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a3586a087b92907c9c32173cecc2f78a3">Lox</a>
+</li>
+<li>tmpSubstitutionPathInternalDomains
+: <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#ae2265ed8cb8c01d3e57fe59f77929ccb">Lox</a>
 </li>
 <li>toolBuf
 : <a class="el" href="classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#accf10243655bbcecc845e197c4350e8c">LogTools</a>
 </li>
+<li>trimmedPath
+: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#a481b33f9672072cf4fa7bba094e041ed">ScopeInfo.SourceFile</a>
+</li>
+<li>TrimOffset
+: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html#a400a3c8a83ee22ccb635bb8a96a1d6ca">ScopeInfo.SourcePathTrimRule</a>
+</li>
 <li>TrueValues
 : <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a12369eaf915d9637d932edb3268d2e55">Configuration</a>
+</li>
+<li>trueValuesBoolean
+: <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a65337581a93a3179f7578aa6b483915b">ALIB</a>
+</li>
+<li>trueValuesCase
+: <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a0a20ce9d8843a85788d87d662e71c35d">ALIB</a>
+</li>
+<li>trueValuesInclusion
+: <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#af9e96e2665866b3811a07ba6261b80c2">ALIB</a>
+</li>
+<li>tSubstring
+: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#ae02ecb257cadbd45d5280d878055873a">Domain</a>
+</li>
+<li>tSubstring2
+: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#ac2fc5db593e64d47fe51e0989418ef72">Domain</a>
+</li>
+<li>tTok
+: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a7e48c9b876240a28cb1ec476593f3d10">MetaInfo</a>
 </li>
 <li>Type
 : <a class="el" href="classcs_1_1aworx_1_1lib_1_1Report_1_1Message.html#ae011432eaca3858364b05a111f4011d3">Report.Message</a>
 </li>
-<li>TypeName
-: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html#ab7a1acc8625d9adcdc2c86de8045352f">Logger</a>
+<li>type
+: <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html#ab6f4e6d3fde00ce906e46494f60dfe7a">Lox.DomainSubstitutionRule</a>
+</li>
+<li>typeName
+: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html#ab702590cb21a529418c7bd6439c4337a">Logger</a>
 </li>
 </ul>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:19 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:17 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

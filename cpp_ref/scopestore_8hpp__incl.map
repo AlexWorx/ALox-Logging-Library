@@ -1,0 +1,25 @@
+<map id="scopestore.hpp" name="scopestore.hpp">
+<area shape="rect" id="node2" href="$alox_8hpp.html" title="alox/alox.hpp" alt="" coords="1144,80,1243,107"/>
+<area shape="rect" id="node3" href="$alib_8hpp.html" title="alib/alib.hpp" alt="" coords="1343,304,1433,331"/>
+<area shape="rect" id="node23" href="$alox__symbols_8hpp.html" title="internals/alox_symbols.hpp" alt="" coords="777,155,957,181"/>
+<area shape="rect" id="node24" href="$alox__macros_8hpp.html" title="internals/alox_macros.hpp" alt="" coords="981,155,1155,181"/>
+<area shape="rect" id="node26" href="$aloxtypesandenums_8hpp.html" title="aloxtypesandenums.hpp" alt="" coords="451,155,613,181"/>
+<area shape="rect" id="node27" href="$log_8hpp.html" title="log.hpp" alt="" coords="637,155,701,181"/>
+<area shape="rect" id="node28" href="$lox_8hpp.html" title="lox.hpp" alt="" coords="1332,155,1396,181"/>
+<area shape="rect" id="node4" href="$symbols_8hpp.html" title="alib/core/symbols.hpp" alt="" coords="5,379,155,405"/>
+<area shape="rect" id="node5" href="$macros_8hpp.html" title="alib/core/macros.hpp" alt="" coords="178,379,321,405"/>
+<area shape="rect" id="node13" href="$enums_8hpp.html" title="alib/core/enums.hpp" alt="" coords="991,379,1129,405"/>
+<area shape="rect" id="node14" href="$report_8hpp.html" title="alib/core/report.hpp" alt="" coords="1153,379,1287,405"/>
+<area shape="rect" id="node15" href="$cstring_8hpp.html" title="alib/strings/cstring.hpp" alt="" coords="1311,379,1465,405"/>
+<area shape="rect" id="node16" href="$string_8hpp.html" title="alib/strings/string.hpp" alt="" coords="1489,379,1636,405"/>
+<area shape="rect" id="node17" href="$tstring_8hpp.html" title="alib/strings/tstring.hpp" alt="" coords="1661,379,1811,405"/>
+<area shape="rect" id="node18" href="$stringliteral_8hpp.html" title="alib/strings/stringliteral.hpp" alt="" coords="1835,379,2013,405"/>
+<area shape="rect" id="node19" href="$astring_8hpp.html" title="alib/strings/astring.hpp" alt="" coords="2037,379,2190,405"/>
+<area shape="rect" id="node20" href="$preallocatedstring_8hpp.html" title="alib/strings/preallocatedstring.hpp" alt="" coords="2215,379,2431,405"/>
+<area shape="rect" id="node21" href="$applyto_8hpp.html" title="alib/strings/applyto.hpp" alt="" coords="2455,379,2611,405"/>
+<area shape="rect" id="node22" href="$applyformat_8hpp.html" title="alib/strings/applyformat.hpp" alt="" coords="2635,379,2818,405"/>
+<area shape="rect" id="node29" href="$threadlock_8hpp.html" title="alib/threads/threadlock.hpp" alt="" coords="1444,229,1623,256"/>
+<area shape="rect" id="node30" href="$scopeinfo_8hpp.html" title="alox/core/scopeinfo.hpp" alt="" coords="1697,229,1857,256"/>
+<area shape="rect" id="node32" href="$logger_8hpp.html" title="alox/core/logger.hpp" alt="" coords="1281,229,1420,256"/>
+<area shape="rect" id="node33" href="$domain_8hpp.html" title="alox/core/domain.hpp" alt="" coords="1060,229,1207,256"/>
+</map>

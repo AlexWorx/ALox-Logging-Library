@@ -157,11 +157,11 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Disables the generation of caller information using the built-in preprocessor macros like "__FILE__" and "__LINE__" for ALox debug logging statements</p>
+<p>Disables the generation of scope information using the built-in preprocessor macros like "__FILE__" and "__LINE__" for ALox debug logging statements</p>
 <p>Passing this Symbol to the compiler, makes ALox to leave the code selection symbol <a class="el" href="group__GrpALoxCodeSelectorSymbols.html#ga392381bb9caea53c133ce68c32cee4e1">ALOX_DBG_LOG_CI</a> undefined.<br />
  Must not be used in conjunction with <a class="el" href="group__GrpALoxCompilerSymbols.html#ga9920512a7b2c48a248b5cfb1643c7cac">ALOX_DBG_LOG_CI_ON</a>.</p>
 <p>If neither <b>ALOX_DBG_LOG_CI_ON</b> nor <b>ALOX_DBG_LOG_CIO_OFF</b> are specified, then <a class="el" href="group__GrpALoxCompilerSymbols.html#ga9920512a7b2c48a248b5cfb1643c7cac">ALOX_DBG_LOG_CI_ON</a> is the default.</p>
-<dl class="section note"><dt>Note</dt><dd>The ALox default domain mechanism as well as the ALox code markers rely on caller information. These mechanisms are therefore not available to debug logging when this symbol is set. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The ALox Scope Domain mechanism as well as the ALox features <em>Lox.Once</em> and <em>Log Data</em> rely on caller information. These mechanisms are therefore not available to debug logging when this symbol is set. </dd></dl>
 
 </div>
 </div>
@@ -174,10 +174,10 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Explicitly enables the generation of caller information using the built-in preprocessor macros like "__FILE__" and "__LINE__" for ALox debug logging statements</p>
+<p>Explicitly enables the generation of scope information using the built-in preprocessor macros like "__FILE__" and "__LINE__" for ALox debug logging statements</p>
 <p>Passing this Symbol to the compiler, makes ALox define the code selection symbol <a class="el" href="group__GrpALoxCodeSelectorSymbols.html#ga392381bb9caea53c133ce68c32cee4e1">ALOX_DBG_LOG_CI</a>. Must not be used in conjunction with <a class="el" href="group__GrpALoxCompilerSymbols.html#gabf2ce25e392b218c30b6b0af8280ddf7">ALOX_DBG_LOG_CI_OFF</a>.</p>
 <p>If neither <b>ALOX_DBG_LOG_CI_ON</b> nor <b>ALOX_DBG_LOG_CIO_OFF</b> are specified, ALox will enable caller source information for debug logging. In other words, <b>ALOX_DBG_LOG_CI_ON</b> is the default and passing the symbol to the compiler is not mandatory.</p>
-<dl class="section note"><dt>Note</dt><dd>The ALox default domain mechanism as well as the ALox code markers rely on caller information. These mechanisms are therefore not available to debug logging unless this symbol is set. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The ALox <em>Scope Domain</em> mechanism as well as the ALox features <em>Lox.Once</em> and <em>Log Data</em> rely on caller information. These mechanisms are therefore not available to debug logging unless this symbol is set. </dd></dl>
 
 </div>
 </div>
@@ -190,9 +190,9 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Explicitly disables debug logging by leaving the code selection symbol <a class="el" href="group__GrpALoxCodeSelectorSymbols.html#ga2c6ba32fb7e34be7cee2100578b84a6e">ALOX_DBG_LOG</a> undefined. Any debug log statements that are embedded in code by using the <a class="el" href="group__GrpMacrosDebugLog.html">ALox Macros For Debug Logging</a>, will get pruned.</p>
+<p>Explicitly disables debug logging by leaving the code selection symbol <a class="el" href="group__GrpALoxCodeSelectorSymbols.html#ga2c6ba32fb7e34be7cee2100578b84a6e">ALOX_DBG_LOG</a> undefined. Any debug <em>Log Statements</em> that are embedded in code by using the <a class="el" href="group__GrpMacrosDebugLog.html">ALox Macros For Debug Logging</a>, will get pruned.</p>
 <p>Must not be used in conjunction with <a class="el" href="group__GrpALoxCompilerSymbols.html#ga1d6b17b1dc814c44f312baf8d6f56688">ALOX_DBG_LOG_ON</a>.</p>
-<p>If neither <b>ALOX_DBG_LOG_ON</b> nor <b>ALOX_DBG_LOG_OFF</b> are specified, ALox will determine the inclusion of debug log statements by evaluating the (partly standardized) NDEBUG macro that is used by most 'assert' libraries. Hence, if NDEBUG is set, ALOX_DBG_LOG will not be defined. </p>
+<p>If neither <b>ALOX_DBG_LOG_ON</b> nor <b>ALOX_DBG_LOG_OFF</b> are specified, ALox will determine the inclusion of debug <em>Log Statements</em> by evaluating the (partly standardized) NDEBUG macro that is used by most 'assert' libraries. Hence, if NDEBUG is set, ALOX_DBG_LOG will not be defined. </p>
 
 </div>
 </div>
@@ -207,7 +207,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <p>Explicitly enables debug logging by defining the code selection symbol <a class="el" href="group__GrpALoxCodeSelectorSymbols.html#ga2c6ba32fb7e34be7cee2100578b84a6e">ALOX_DBG_LOG</a>.</p>
 <p>Must not be used in conjunction with <a class="el" href="group__GrpALoxCompilerSymbols.html#gaf2de46ee4b30ee640266f7ac5de25bb9">ALOX_DBG_LOG_OFF</a>.</p>
-<p>If neither <b>ALOX_DBG_LOG_ON</b> nor <b>ALOX_DBG_LOG_OFF</b> are specified, ALox will determine the inclusion of debug log statements by evaluating the (partly standardized) NDEBUG macro that is used by most 'assert' libraries. Hence, if NDEBUG is set, ALOX_DBG_LOG will not be defined.</p>
+<p>If neither <b>ALOX_DBG_LOG_ON</b> nor <b>ALOX_DBG_LOG_OFF</b> are specified, ALox will determine the inclusion of debug <em>Log Statements</em> by evaluating the (partly standardized) NDEBUG macro that is used by most 'assert' libraries. Hence, if NDEBUG is set, ALOX_DBG_LOG will not be defined.</p>
 
 </div>
 </div>
@@ -233,11 +233,11 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Disables the generation of caller information using the built-in preprocessor macros like "__FILE__" and "__LINE__" for ALox release logging statements</p>
+<p>Disables the generation of scope information using the built-in preprocessor macros like "__FILE__" and "__LINE__" for ALox release logging statements</p>
 <p>Passing this Symbol to the compiler, makes ALox to leave the code selection symbol <a class="el" href="group__GrpALoxCodeSelectorSymbols.html#ga4b0e38e300ec824146da5e868f2c6290">ALOX_REL_LOG_CI</a> undefined.<br />
  Must not be used in conjunction with <a class="el" href="group__GrpALoxCompilerSymbols.html#ga85c683ba401d4c9216c96a9a17a9e9a9">ALOX_REL_LOG_CI_ON</a>.</p>
 <p>If neither <b>ALOX_REL_LOG_CI_ON</b> nor <b>ALOX_REL_LOG_CIO_OFF</b> are specified, then <a class="el" href="group__GrpALoxCompilerSymbols.html#ga9723e112c2b491520922d1fdfef60504">ALOX_REL_LOG_CI_OFF</a> is the default. In other words: passing the symbol to the compiler is not mandatory.</p>
-<dl class="section note"><dt>Note</dt><dd>The ALox default domain mechanism as well as the ALox code markers rely on caller information. These mechanisms are therefore not available to release logging unless <a class="el" href="group__GrpALoxCompilerSymbols.html#ga85c683ba401d4c9216c96a9a17a9e9a9">ALOX_REL_LOG_CI_ON</a> is set. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The ALox <em>Scope Domain</em> mechanism as well as the ALox features <em>Lox.Once</em> and <em>Log Data</em> rely on caller information. These mechanisms are therefore not available to release logging unless <a class="el" href="group__GrpALoxCompilerSymbols.html#ga85c683ba401d4c9216c96a9a17a9e9a9">ALOX_REL_LOG_CI_ON</a> is set. </dd></dl>
 
 </div>
 </div>
@@ -250,12 +250,12 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Explicitly enables the generation of caller information using the built-in preprocessor macros like "__FILE__" and "__LINE__" for ALox release logging statements</p>
+<p>Explicitly enables the generation of scope information using the built-in preprocessor macros like "__FILE__" and "__LINE__" for ALox release logging statements</p>
 <p>Passing this Symbol to the compiler, makes ALox define the code selection symbol <a class="el" href="group__GrpALoxCodeSelectorSymbols.html#ga4b0e38e300ec824146da5e868f2c6290">ALOX_REL_LOG_CI</a>.<br />
  Must not be used in conjunction with <a class="el" href="group__GrpALoxCompilerSymbols.html#ga9723e112c2b491520922d1fdfef60504">ALOX_REL_LOG_CI_OFF</a>.</p>
 <p>If neither <b>ALOX_REL_LOG_CI_ON</b> nor <b>ALOX_REL_LOG_CIO_OFF</b> are specified, ALox will disable caller source information for release logging.</p>
-<p>Enabling source info for for release logging is seldom wanted. Release executables should not generate log output that an end user is not able to understand. It can make sense however, if release log information from the field goes back to the software development team. Furthermore, it can be very helpful to enable caller information for release log statements in the debug version of a compilation unit.</p>
-<dl class="section note"><dt>Note</dt><dd>The ALox default domain mechanism as well as the ALox code markers rely on caller information. These mechanisms are therefore not available to release logging unless this symbol is set. </dd></dl>
+<p>Enabling source info for for release logging is seldom wanted. Release executables should not generate log output that an end user is not able to understand. It can make sense however, if release log information from the field goes back to the software development team. Furthermore, it can be very helpful to enable scope information for release <em>Log Statements</em> in the debug version of a compilation unit.</p>
+<dl class="section note"><dt>Note</dt><dd>The ALox <em>Scope Domain</em> mechanism as well as the ALox features <em>Lox.Once</em> and <em>Log Data</em> rely on caller information. These mechanisms are therefore not available to debug logging unless this symbol is set. </dd></dl>
 
 </div>
 </div>
@@ -268,7 +268,7 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Explicitly disables release logging by leaving the code selection symbol <a class="el" href="group__GrpALoxCodeSelectorSymbols.html#ga4d0c70512b17f1dd4fa3556f79dd2689">ALOX_REL_LOG</a> undefined. Any release log statements that are embedded in code by using the <a class="el" href="group__GrpMacrosReleaseLog.html">ALox Macros For Release Logging</a>, will get pruned.</p>
+<p>Explicitly disables release logging by leaving the code selection symbol <a class="el" href="group__GrpALoxCodeSelectorSymbols.html#ga4d0c70512b17f1dd4fa3556f79dd2689">ALOX_REL_LOG</a> undefined. Any release <em>Log Statements</em> that are embedded in code by using the <a class="el" href="group__GrpMacrosReleaseLog.html">ALox Macros For Release Logging</a>, will get pruned.</p>
 <p>Must not be used in conjunction with <a class="el" href="group__GrpALoxCompilerSymbols.html#ga56671e8b3fa44f19acb0d9c4c4403682">ALOX_REL_LOG_ON</a>.</p>
 <p>If neither <b>ALOX_REL_LOG_ON</b> nor <b>ALOX_REL_LOG_OFF</b> are specified, release logging implemented by ALox release log macros is enabled. Therefore, this symbol is provided only for completeness. There is no real need to pass it to the compiler.</p>
 <p>Remember, that any release logging that is not implemented using the ALox release logging macros, but instead using the ALox classes in the source code directly, is not affected by this macro. </p>
@@ -295,7 +295,7 @@ Macros</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:18 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:16 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

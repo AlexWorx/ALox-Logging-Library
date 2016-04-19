@@ -125,6 +125,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Inner Classes</a> &#124;
 <a href="#pub-static-attribs">Public Static Fields</a> &#124;
 <a href="#pub-attribs">Public Fields</a> &#124;
 <a href="#pub-methods">Public Methods</a> &#124;
@@ -138,58 +139,93 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Collaboration diagram for Domain:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classcs_1_1aworx_1_1lox_1_1core_1_1Domain__coll__graph.svg" width="1104" height="444"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classcs_1_1aworx_1_1lox_1_1core_1_1Domain__coll__graph.svg" width="199" height="156"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
-<p> Objects of this class represent a logging <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a>. Each log statement refers to such a domain which can be defined specifically for different parts of your application like assemblies, libraries, namespaces, specific code files or even for a single log call. Domains can be created with path separators '/', for example 'COMM/SOCKET' could be the domain for log calls in a socket class, residing within a communication library. The advantage of creating paths and this way trees of domains, is that a whole bunch of logging domains can be altered (in respect of logging verbosity) by just changing their root domain. </p><dl class="section note"><dt>Note</dt><dd>This class should not be used directly. Nevertheless the interface is kept public which is a general design decision for the classes of ALox libraries. </dd></dl>
+<p> Objects of this class represent a <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a></em> of <a class="el" href="classcs_1_1aworx_1_1lox_1_1ALox.html">ALox</a>. This class is internally used by class <b><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html">Lox</a></b>. </p>
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Inner Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html">LoggerData</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain_1_1PL.html">PL</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Public Static Fields</h2></td></tr>
-<tr class="memitem:afb75ecb5fef3bcf61597efd190ca0114"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#afb75ecb5fef3bcf61597efd190ca0114">DomainSeparatorChars</a> =&quot;\\|/&quot;</td></tr>
-<tr class="separator:afb75ecb5fef3bcf61597efd190ca0114"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26e905aa8211afa259b751fd3889ab62"><td class="memItemLeft" align="right" valign="top">static readonly char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a26e905aa8211afa259b751fd3889ab62">PathSeparator</a> ='/'</td></tr>
+<tr class="separator:a26e905aa8211afa259b751fd3889ab62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Fields</h2></td></tr>
-<tr class="memitem:a0de551a5eb98c9fa084c954655523d7b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0de551a5eb98c9fa084c954655523d7b"></a>
-<a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a0de551a5eb98c9fa084c954655523d7b">Name</a></td></tr>
-<tr class="memdesc:a0de551a5eb98c9fa084c954655523d7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the domain. For root domains, this is null. <br /></td></tr>
+<tr class="memitem:a2c80e5630abe5d5042ddb4b85c0c3562"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a2c80e5630abe5d5042ddb4b85c0c3562">CntLogCalls</a> =0</td></tr>
+<tr class="separator:a2c80e5630abe5d5042ddb4b85c0c3562"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a661e9caf3cdf02afbe7da9a0510ad11a"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html">LoggerData</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a661e9caf3cdf02afbe7da9a0510ad11a">Data</a></td></tr>
+<tr class="separator:a661e9caf3cdf02afbe7da9a0510ad11a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a6c0d3ee72cd24b4333894999aadcd0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a2a6c0d3ee72cd24b4333894999aadcd0">FullPath</a></td></tr>
+<tr class="separator:a2a6c0d3ee72cd24b4333894999aadcd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0de551a5eb98c9fa084c954655523d7b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a0de551a5eb98c9fa084c954655523d7b">Name</a></td></tr>
 <tr class="separator:a0de551a5eb98c9fa084c954655523d7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8dc3c25005f0e2de28d10fb5d12b97cb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8dc3c25005f0e2de28d10fb5d12b97cb"></a>
-<a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a8dc3c25005f0e2de28d10fb5d12b97cb">Parent</a></td></tr>
-<tr class="memdesc:a8dc3c25005f0e2de28d10fb5d12b97cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">The parent domain. For root domains, this is null. <br /></td></tr>
+<tr class="memitem:a8dc3c25005f0e2de28d10fb5d12b97cb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a8dc3c25005f0e2de28d10fb5d12b97cb">Parent</a></td></tr>
 <tr class="separator:a8dc3c25005f0e2de28d10fb5d12b97cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d2032ef55cc34830125ac40dcec1afb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2d2032ef55cc34830125ac40dcec1afb"></a>
-List&lt; <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a2d2032ef55cc34830125ac40dcec1afb">SubDomains</a></td></tr>
-<tr class="memdesc:a2d2032ef55cc34830125ac40dcec1afb"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of sub domains (recursion). <br /></td></tr>
+<tr class="memitem:a5ed8e1ef394df43aa6cc12506276a617"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain_1_1PL.html">PL</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a5ed8e1ef394df43aa6cc12506276a617">PrefixLogables</a> = new List&lt;<a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain_1_1PL.html">PL</a>&gt;()</td></tr>
+<tr class="separator:a5ed8e1ef394df43aa6cc12506276a617"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d2032ef55cc34830125ac40dcec1afb"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a2d2032ef55cc34830125ac40dcec1afb">SubDomains</a></td></tr>
 <tr class="separator:a2d2032ef55cc34830125ac40dcec1afb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae02ecb257cadbd45d5280d878055873a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#ae02ecb257cadbd45d5280d878055873a">tSubstring</a> = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>()</td></tr>
+<tr class="separator:ae02ecb257cadbd45d5280d878055873a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2fc5db593e64d47fe51e0989418ef72"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#ac2fc5db593e64d47fe51e0989418ef72">tSubstring2</a> = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>()</td></tr>
+<tr class="separator:ac2fc5db593e64d47fe51e0989418ef72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Methods</h2></td></tr>
 <tr class="memitem:a637c01c7001a9eb7a5734fe7bc00a03f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a637c01c7001a9eb7a5734fe7bc00a03f">Domain</a> (<a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a> parent, <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> name)</td></tr>
 <tr class="separator:a637c01c7001a9eb7a5734fe7bc00a03f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec4b8a62a68d36086748848daaa311fb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#aec4b8a62a68d36086748848daaa311fb">Find</a> (<a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> domainPath, ref bool wasCreated)</td></tr>
-<tr class="separator:aec4b8a62a68d36086748848daaa311fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b35d5ba376191a0aa5b9ed52b8f05e9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html#a10ac165398697ce1d642d739cc3b170f">Log.DomainLevel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a6b35d5ba376191a0aa5b9ed52b8f05e9">GetLevel</a> ()</td></tr>
-<tr class="separator:a6b35d5ba376191a0aa5b9ed52b8f05e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a729bb906d248e54d997101d8faf8e1c0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a729bb906d248e54d997101d8faf8e1c0">IsActive</a> (<a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log.Level</a> <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a1a9f7325c08dd31ecae733ac275a3791">level</a>)</td></tr>
-<tr class="separator:a729bb906d248e54d997101d8faf8e1c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5180f23126f59ef4c5d8510cd7734c6c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a5180f23126f59ef4c5d8510cd7734c6c">SetLevel</a> (<a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html#a10ac165398697ce1d642d739cc3b170f">Log.DomainLevel</a> domainLevel, <a class="el" href="namespacecs_1_1aworx_1_1lib_1_1enums.html#aeae0c2d4659a32ef54bd221d1a3da4e6">Propagation</a> propagation=Propagation.ToDescendants)</td></tr>
-<tr class="separator:a5180f23126f59ef4c5d8510cd7734c6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d7d51ec7a45008ee27dc01eeaa554b5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a8d7d51ec7a45008ee27dc01eeaa554b5">AddLogger</a> (<a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> logger)</td></tr>
+<tr class="separator:a8d7d51ec7a45008ee27dc01eeaa554b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99a4aca5fd12818f7a0718ff1bf37c9d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a99a4aca5fd12818f7a0718ff1bf37c9d">CountLoggers</a> ()</td></tr>
+<tr class="separator:a99a4aca5fd12818f7a0718ff1bf37c9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a676c1ab572c27144403cc8f3c5130a32"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a676c1ab572c27144403cc8f3c5130a32">Find</a> (<a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> domainPathAS, <a class="el" href="namespacecs_1_1aworx_1_1lib_1_1enums.html#ab9aab17a5e54a8bae6915bc24db13a17">Case</a> sensitivity, int maxCreate, ref bool wasCreated)</td></tr>
+<tr class="separator:a676c1ab572c27144403cc8f3c5130a32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20db10bae0149b8f99461370b2b3fd48"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a20db10bae0149b8f99461370b2b3fd48">GetCount</a> (int loggerNo)</td></tr>
+<tr class="separator:a20db10bae0149b8f99461370b2b3fd48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74ba68166dee3359939d25f87e648cbe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a74ba68166dee3359939d25f87e648cbe">GetLogger</a> (String loggerName)</td></tr>
+<tr class="separator:a74ba68166dee3359939d25f87e648cbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e773b21b6ffe7b6a17bbe83512a3a0e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a8e773b21b6ffe7b6a17bbe83512a3a0e">GetLogger</a> (int no)</td></tr>
+<tr class="separator:a8e773b21b6ffe7b6a17bbe83512a3a0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a835882c4b701366e371067694c2cdb64"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a835882c4b701366e371067694c2cdb64">GetLoggerNo</a> (String loggerName)</td></tr>
+<tr class="separator:a835882c4b701366e371067694c2cdb64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac16fe810a3f5e87102c9e4a768b766e8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#ac16fe810a3f5e87102c9e4a768b766e8">GetLoggerNo</a> (<a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> logger)</td></tr>
+<tr class="separator:ac16fe810a3f5e87102c9e4a768b766e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fd0d5e74c9ce237644735d17cbc7119"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a6fd0d5e74c9ce237644735d17cbc7119">GetPriority</a> (int loggerNo)</td></tr>
+<tr class="separator:a6fd0d5e74c9ce237644735d17cbc7119"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a576265a11bfb3c852dd461267fc674b7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a576265a11bfb3c852dd461267fc674b7">GetRoot</a> ()</td></tr>
+<tr class="separator:a576265a11bfb3c852dd461267fc674b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19ec6c97f7e17ca51908a7174e43f2bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a19ec6c97f7e17ca51908a7174e43f2bd">GetVerbosity</a> (int loggerNo)</td></tr>
+<tr class="separator:a19ec6c97f7e17ca51908a7174e43f2bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6dc8fbb3427c720adda3ed3a807f9902"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a6dc8fbb3427c720adda3ed3a807f9902">IsActive</a> (int loggerNo, <a class="el" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> statement)</td></tr>
+<tr class="separator:a6dc8fbb3427c720adda3ed3a807f9902"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9aa2e7ebee563c92c3335f9a3b4a574c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a9aa2e7ebee563c92c3335f9a3b4a574c">RemoveLogger</a> (int loggerNo)</td></tr>
+<tr class="separator:a9aa2e7ebee563c92c3335f9a3b4a574c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72b26b0cca06a87932744d5f625efbfa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a72b26b0cca06a87932744d5f625efbfa">SetVerbosity</a> (int loggerNo, <a class="el" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> verbosity, int priority)</td></tr>
+<tr class="separator:a72b26b0cca06a87932744d5f625efbfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a012fbb0f39e57c0a44ec83dd408fcda3"><td class="memItemLeft" align="right" valign="top">override String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a012fbb0f39e57c0a44ec83dd408fcda3">ToString</a> ()</td></tr>
 <tr class="separator:a012fbb0f39e57c0a44ec83dd408fcda3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Fields</h2></td></tr>
-<tr class="memitem:a1a9f7325c08dd31ecae733ac275a3791"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1a9f7325c08dd31ecae733ac275a3791"></a>
-<a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html#a10ac165398697ce1d642d739cc3b170f">Log.DomainLevel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a1a9f7325c08dd31ecae733ac275a3791">level</a></td></tr>
-<tr class="memdesc:a1a9f7325c08dd31ecae733ac275a3791"><td class="mdescLeft">&#160;</td><td class="mdescRight">The actual user setting for the log level of the domain. <br /></td></tr>
-<tr class="separator:a1a9f7325c08dd31ecae733ac275a3791"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4eab9ca32845e6e56169e1df28225791"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a4eab9ca32845e6e56169e1df28225791">tAString</a> =new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>()</td></tr>
+<tr class="separator:a4eab9ca32845e6e56169e1df28225791"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Methods</h2></td></tr>
-<tr class="memitem:aaff461fc11e5cfa90c7a349137bc7574"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#aaff461fc11e5cfa90c7a349137bc7574">findRecursive</a> (<a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> domainPath, int dpStartIdx, ref bool wasCreated)</td></tr>
-<tr class="separator:aaff461fc11e5cfa90c7a349137bc7574"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7d48a4bbb7151b268d7a126f6034db1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#ad7d48a4bbb7151b268d7a126f6034db1">addLoggerRecursive</a> (<a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> logger)</td></tr>
+<tr class="separator:ad7d48a4bbb7151b268d7a126f6034db1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affa07a1beec86ae2835f8d87d1da7022"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#affa07a1beec86ae2835f8d87d1da7022">findRecursive</a> (<a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> domainPath, <a class="el" href="namespacecs_1_1aworx_1_1lib_1_1enums.html#ab9aab17a5e54a8bae6915bc24db13a17">Case</a> sensitivity, int maxCreate, ref bool wasCreated)</td></tr>
+<tr class="separator:affa07a1beec86ae2835f8d87d1da7022"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b032fcdfc7306d529107bcd28145b66"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a1b032fcdfc7306d529107bcd28145b66">removeLoggerRecursive</a> (int loggerNo)</td></tr>
+<tr class="separator:a1b032fcdfc7306d529107bcd28145b66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a637c01c7001a9eb7a5734fe7bc00a03f"></a>
@@ -219,11 +255,6 @@ Protected Methods</h2></td></tr>
 <p> Constructor for domain. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">parent</td><td>The parent domain. For root domains, this is null. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
     <tr><td class="paramname">name</td><td>The name of the domain. For root domains, this is null. </td></tr>
   </table>
   </dd>
@@ -232,7 +263,80 @@ Protected Methods</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="aec4b8a62a68d36086748848daaa311fb"></a>
+<a class="anchor" id="a8d7d51ec7a45008ee27dc01eeaa554b5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int AddLogger </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a>&#160;</td>
+          <td class="paramname"><em>logger</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Adds a new entry in field <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a661e9caf3cdf02afbe7da9a0510ad11a">Data</a> and recursively demands the same from its sub-domains. Checks if a logger with the same name exists.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">logger</td><td>The logger to add. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></em>, -1 if a logger with the same name exists already. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad7d48a4bbb7151b268d7a126f6034db1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void addLoggerRecursive </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a>&#160;</td>
+          <td class="paramname"><em>logger</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Internal, recursive helper of <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a8d7d51ec7a45008ee27dc01eeaa554b5">AddLogger</a>. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">logger</td><td>The logger to add. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a99a4aca5fd12818f7a0718ff1bf37c9d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CountLoggers </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Returns the number of loggers stored in this domain (the same for all domains within a tree). </p><dl class="section return"><dt>Returns</dt><dd>The number of loggers attached. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a676c1ab572c27144403cc8f3c5130a32"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -240,7 +344,19 @@ Protected Methods</h2></td></tr>
           <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a> Find </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td>
-          <td class="paramname"><em>domainPath</em>, </td>
+          <td class="paramname"><em>domainPathAS</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespacecs_1_1aworx_1_1lib_1_1enums.html#ab9aab17a5e54a8bae6915bc24db13a17">Case</a>&#160;</td>
+          <td class="paramname"><em>sensitivity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>maxCreate</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -256,10 +372,12 @@ Protected Methods</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Searches a domain. If not found, the domain is (or branch of domains are) created in the domain tree. If the path String starts with a domain separator character, then the search (and creation) is done starting from the root domain of this domain and not from this domain.</p>
+<p> Searches a domain. If not found, the domain is (or path of domains are) created in the domain tree. If the path string starts with the character defined in <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a26e905aa8211afa259b751fd3889ab62">PathSeparator</a>, then the search (and creation) is done starting from the root domain of this domain and not from this domain.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname">domainPath</td><td>Path and domain to search. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">domainPathAS</td><td>Path and domain to search. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">sensitivity</td><td>Denotes if domain name search is treated case sensitive or not. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">maxCreate</td><td>The maximum number of sub domains that are created if not found at the end of the path. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">wasCreated</td><td>Output parameter that is set <code>true</code> if domain was not found and hence created. </td></tr>
   </table>
   </dd>
@@ -268,7 +386,7 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aaff461fc11e5cfa90c7a349137bc7574"></a>
+<a class="anchor" id="affa07a1beec86ae2835f8d87d1da7022"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -278,14 +396,20 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a> findRecursive </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>&#160;</td>
           <td class="paramname"><em>domainPath</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="namespacecs_1_1aworx_1_1lib_1_1enums.html#ab9aab17a5e54a8bae6915bc24db13a17">Case</a>&#160;</td>
+          <td class="paramname"><em>sensitivity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>dpStartIdx</em>, </td>
+          <td class="paramname"><em>maxCreate</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -306,11 +430,12 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> The internal recursive helper to implement the <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#aec4b8a62a68d36086748848daaa311fb">Find()</a> interface.</p>
+<p> Internal, recursive helper of <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a676c1ab572c27144403cc8f3c5130a32">Find</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">domainPath</td><td>Path to search. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">dpStartIdx</td><td>The current scan position in the domain string. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">sensitivity</td><td>Denotes if domain name search is treated case sensitive or not. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">maxCreate</td><td>The maximum number of sub domains that are created if not found at the end of the path. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">wasCreated</td><td>Output parameter that is set <code>true</code> if domain was not found and hence created. </td></tr>
   </table>
   </dd>
@@ -319,12 +444,156 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a6b35d5ba376191a0aa5b9ed52b8f05e9"></a>
+<a class="anchor" id="a20db10bae0149b8f99461370b2b3fd48"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html#a10ac165398697ce1d642d739cc3b170f">Log.DomainLevel</a> GetLevel </td>
+          <td class="memname">int GetCount </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>loggerNo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Returns the number of log calls for this domain and logger. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">loggerNo</td><td>The number of the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></em> whose <em>Verbosity</em> is requested. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of calls executed by this logger on this domain. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a74ba68166dee3359939d25f87e648cbe"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> GetLogger </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>loggerName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Searches and returns the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></em> given by name. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">loggerName</td><td>The logger to search. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></em> found corresponding to given name. If the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></em> does not exist, null is returned. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8e773b21b6ffe7b6a17bbe83512a3a0e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> GetLogger </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>no</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Returns logger of given number. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">no</td><td>The number of the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></em> to return. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></em> found with number <code>no</code>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a835882c4b701366e371067694c2cdb64"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int GetLoggerNo </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>loggerName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Returns the number of the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></em> specified by name. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">loggerName</td><td>The logger name to search. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></em> found corresponding to given name. If the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></em> does not exist, -1 is returned. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac16fe810a3f5e87102c9e4a768b766e8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int GetLoggerNo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a>&#160;</td>
+          <td class="paramname"><em>logger</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Returns the number of a the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></em>. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">logger</td><td>The logger to search. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></em>. If the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></em> does not exist, -1 is returned. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a6fd0d5e74c9ce237644735d17cbc7119"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int GetPriority </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>loggerNo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Returns the priority of the <em>Verbosity</em> setting for the given logger number. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">loggerNo</td><td>The number of the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></em> whose <em>Verbosity</em> is requested. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The priority. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a576265a11bfb3c852dd461267fc674b7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a> GetRoot </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -332,51 +601,49 @@ Protected Methods</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Returns the domains log level. If this is set to INHERIT, the effective value is evaluated (recursively) from the parent's domain.</p>
-<dl class="section return"><dt>Returns</dt><dd>The found/defined domain log level. </dd></dl>
+<p> Returns the root domain of this object. </p><dl class="section return"><dt>Returns</dt><dd>The root domain of this object </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a729bb906d248e54d997101d8faf8e1c0"></a>
+<a class="anchor" id="a19ec6c97f7e17ca51908a7174e43f2bd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> GetVerbosity </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>loggerNo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Returns the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> Domains' Verbosity</em> for the given logger number. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">loggerNo</td><td>The number of the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></em> whose <em>Verbosity</em> is requested. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The found/defined domain <em>Verbosity</em>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a6dc8fbb3427c720adda3ed3a807f9902"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">bool IsActive </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log.Level</a>&#160;</td>
-          <td class="paramname"><em>level</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<hr/>
-<p> Determines if the domain is active in respect to the given <a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5">Log.Level</a> and the current domain level.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">level</td><td>The log level to check. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if domain is active (log should be performed) </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a5180f23126f59ef4c5d8510cd7734c6c"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SetLevel </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html#a10ac165398697ce1d642d739cc3b170f">Log.DomainLevel</a>&#160;</td>
-          <td class="paramname"><em>domainLevel</em>, </td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>loggerNo</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespacecs_1_1aworx_1_1lib_1_1enums.html#aeae0c2d4659a32ef54bd221d1a3da4e6">Propagation</a>&#160;</td>
-          <td class="paramname"><em>propagation</em> = <code>Propagation.ToDescendants</code>&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>&#160;</td>
+          <td class="paramname"><em>statement</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -386,14 +653,112 @@ Protected Methods</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Sets the level of this domain and optionally of all its sub domains to the specified value. </p><dl class="section note"><dt>Note</dt><dd>The root domain's level can not be set to DomainLevel.Inherit. Such request would be ignored.</dd></dl>
+<p> Determines if the domain is active in respect to the given Verbosity.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">domainLevel</td><td>The domain level value to set. </td></tr>
-    <tr><td class="paramname">propagation</td><td>If <code>Propagation.ToDescendants</code> (the default), the level is set for all sub-domains currently existing. If <code>Propagation.None</code>, then only this domain is changed. </td></tr>
+    <tr><td class="paramname">loggerNo</td><td>The number of the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></em> whose <em>Verbosity</em> is to be evaluated against <code>level</code>. </td></tr>
+    <tr><td class="paramname">statement</td><td>The <em>Verbosity</em> to check. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if domain is active (log should be performed) </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9aa2e7ebee563c92c3335f9a3b4a574c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RemoveLogger </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>loggerNo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Removes an new entry in field <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a661e9caf3cdf02afbe7da9a0510ad11a">Data</a> and recursively demands the same from its sub-domains. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">loggerNo</td><td>The number of the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></em> to be removed </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a1b032fcdfc7306d529107bcd28145b66"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void removeLoggerRecursive </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>loggerNo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Internal, recursive helper of <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a9aa2e7ebee563c92c3335f9a3b4a574c">RemoveLogger</a>. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">loggerNo</td><td>The number of the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></em> to be removed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a72b26b0cca06a87932744d5f625efbfa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a> SetVerbosity </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>loggerNo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313">Verbosity</a>&#160;</td>
+          <td class="paramname"><em>verbosity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>priority</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Sets the verbosity for a logger of this domain of all its sub domains to the specified value. If given priority is lower than those actually stored, nothing is set and recursion is stopped.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">loggerNo</td><td>The number of the <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></em> to set the <em>Verbosity</em> for. </td></tr>
+    <tr><td class="paramname">verbosity</td><td>The verbosity value to set. </td></tr>
+    <tr><td class="paramname">priority</td><td>The priority of the setting. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The new <em>Verbosity</em>. </dd></dl>
 
 </div>
 </div>
@@ -410,12 +775,80 @@ Protected Methods</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> This is for debugging purposes. E.g. this enables the <em>Monodevelop</em> IDE to display object descriptions in the debugger. </p><dl class="section return"><dt>Returns</dt><dd>A human readable string representation of this object. </dd></dl>
+<p> This is for debugging purposes and for configuration output. E.g. this enables the <em>Monodevelop</em> IDE to display object descriptions in the debugger. </p><dl class="section return"><dt>Returns</dt><dd>A human readable string representation of this object. </dd></dl>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="afb75ecb5fef3bcf61597efd190ca0114"></a>
+<a class="anchor" id="a2c80e5630abe5d5042ddb4b85c0c3562"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CntLogCalls =0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A counter for the quantity of calls on this domain. The does not include:</p><ul>
+<li>logs when no <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></em> was set</li>
+<li>conditional logs that were suppressed Otherwise, it includes all log calls, even when no <em><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></em> was enabled on this domain. </li>
+</ul>
+
+</div>
+</div>
+<a class="anchor" id="a661e9caf3cdf02afbe7da9a0510ad11a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;<a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html">LoggerData</a>&gt; Data</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Data stored per logger. The index is corresponding to the list of loggers in 'our' <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html">Lox</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a2a6c0d3ee72cd24b4333894999aadcd0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> FullPath</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The full path of the domain (set in the constructor once) . </p>
+
+</div>
+</div>
+<a class="anchor" id="a0de551a5eb98c9fa084c954655523d7b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> Name</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The name of the domain. For root domains, this is null. </p>
+
+</div>
+</div>
+<a class="anchor" id="a8dc3c25005f0e2de28d10fb5d12b97cb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a> Parent</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The parent domain. For root domains, this is null. </p>
+
+</div>
+</div>
+<a class="anchor" id="a26e905aa8211afa259b751fd3889ab62"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -423,7 +856,7 @@ Protected Methods</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">String DomainSeparatorChars =&quot;\\|/&quot;</td>
+          <td class="memname">readonly char PathSeparator ='/'</td>
         </tr>
       </table>
   </td>
@@ -432,7 +865,80 @@ Protected Methods</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Contains all characters allowed for domain separation (slash, backslash and pipe symbol) </p>
+<p><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a> separation character </p>
+
+</div>
+</div>
+<a class="anchor" id="a5ed8e1ef394df43aa6cc12506276a617"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;<a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain_1_1PL.html">PL</a>&gt; PrefixLogables = new List&lt;<a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain_1_1PL.html">PL</a>&gt;()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><em>Prefix Logables</em> associated with this domain. </p>
+
+</div>
+</div>
+<a class="anchor" id="a2d2032ef55cc34830125ac40dcec1afb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;<a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a>&gt; SubDomains</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A list of sub domains. </p>
+
+</div>
+</div>
+<a class="anchor" id="a4eab9ca32845e6e56169e1df28225791"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> tAString =new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>A reusable AString . </p>
+
+</div>
+</div>
+<a class="anchor" id="ae02ecb257cadbd45d5280d878055873a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> tSubstring = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A reusable substring . </p>
+
+</div>
+</div>
+<a class="anchor" id="ac2fc5db593e64d47fe51e0989418ef72"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> tSubstring2 = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A reusable substring . </p>
 
 </div>
 </div>
@@ -443,7 +949,7 @@ Protected Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:19 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:17 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

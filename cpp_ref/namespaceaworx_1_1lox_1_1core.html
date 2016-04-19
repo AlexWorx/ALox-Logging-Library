@@ -118,7 +118,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#namespaces">Nested namespaces</a> &#124;
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#typedef-members">Typedefs</a>  </div>
   <div class="headertitle">
 <div class="title">aworx::lox::core Namespace Reference</div>  </div>
 </div><!--header-->
@@ -126,7 +127,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="details" id="details"></a><h2 class="groupheader">Namespace Description</h2>
 <div class="textblock"><hr/>
 <p> This is the C++ namespace for internal main classes and other things belonging to the <em>ALox Logging Library</em>.</p>
-<p>Types and interfaces found in this namespace are not designed for access by users of the library. However, if extending ALox, e.g. by implementing new custom <em>loggers</em>, things found here provide an important foundation.</p>
+<p>Types and interfaces found in this namespace are not designed for access by users of the library. However, if extending <a class="el" href="classaworx_1_1lox_1_1ALox.html">ALox</a>, e.g. by implementing new custom <em>loggers</em>, things found here provide an important foundation.</p>
 <p>Developed by A-Worx GmbH and published under the MIT license. </p>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
@@ -136,18 +137,45 @@ Nested namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1Domain.html">Domain</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lox_1_1core_1_1Logable.html">Logable</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1Logger.html">Logger</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeDump.html">ScopeDump</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeInfo.html">ScopeInfo</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeStore.html">ScopeStore</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeStoreType.html">ScopeStoreType</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a89b734aa261b747d9edc7a459bfc9db8"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lox_1_1core.html#a89b734aa261b747d9edc7a459bfc9db8">Logables</a> = std::vector&lt; <a class="el" href="structaworx_1_1lox_1_1core_1_1Logable.html">core::Logable</a> * &gt;</td></tr>
+<tr class="separator:a89b734aa261b747d9edc7a459bfc9db8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a class="anchor" id="a89b734aa261b747d9edc7a459bfc9db8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceaworx_1_1lox_1_1core.html#a89b734aa261b747d9edc7a459bfc9db8">Logables</a> =  std::vector&lt;<a class="el" href="structaworx_1_1lox_1_1core_1_1Logable.html">core::Logable</a>*&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A list of logables as provided to method <a class="el" href="classaworx_1_1lox_1_1core_1_1Logger.html#af6b022d80e4b67918067714afb8cab48">Logger::Log</a>. </p>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:19 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:16 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

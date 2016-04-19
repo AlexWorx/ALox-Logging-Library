@@ -1,5 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node2" href="$structaworx_1_1lib_1_1strings_1_1IsApplicable.html" title="IsApplicable\&lt; Type \&gt;" alt="" coords="147,5,294,32"/>
-<area shape="rect" id="node3" href="$structaworx_1_1lib_1_1strings_1_1IsTerminatable.html" title="IsTerminatable\&lt; Type \&gt;" alt="" coords="140,56,301,83"/>
-<area shape="rect" id="node4" href="$structaworx_1_1lib_1_1strings_1_1ToStringDefined.html" title="ToStringDefined\&lt; Type \&gt;" alt="" coords="136,107,305,133"/>
+<area shape="rect" id="node2" href="$structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01lox_1_1core_1_1Logger_01_6_01_4.html" title="IsApplicable\&lt; const\l lox::core::Logger &amp; \&gt;" alt="" coords="151,5,299,47"/>
+<area shape="rect" id="node3" href="$structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01std_1_1string_01_6_01_4.html" title="IsApplicable\&lt; const\l std::string &amp; \&gt;" alt="" coords="157,71,294,112"/>
+<area shape="rect" id="node4" href="$structaworx_1_1lib_1_1strings_1_1IsTerminatable_3_01AString_01_4.html" title="IsTerminatable\&lt; AString \&gt;" alt="" coords="138,137,313,163"/>
+<area shape="rect" id="node5" href="$structaworx_1_1lib_1_1strings_1_1IsTerminatable_3_01PreallocatedString_3_01TCapacity_01_4_01_4.html" title="IsTerminatable\&lt; Preallocated\lString\&lt; TCapacity \&gt; \&gt;" alt="" coords="129,188,321,229"/>
+<area shape="rect" id="node6" href="$structaworx_1_1lib_1_1strings_1_1ToStringDefined_3_01const_01std_1_1string_01_6_01_4.html" title="ToStringDefined\&lt; const\l std::string &amp; \&gt;" alt="" coords="145,253,305,295"/>
 </map>

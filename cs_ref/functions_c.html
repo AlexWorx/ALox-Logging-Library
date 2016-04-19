@@ -125,6 +125,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions_g.html#index_g"><span>g</span></a></li>
       <li><a href="functions_h.html#index_h"><span>h</span></a></li>
       <li><a href="functions_i.html#index_i"><span>i</span></a></li>
+      <li><a href="functions_k.html#index_k"><span>k</span></a></li>
       <li><a href="functions_l.html#index_l"><span>l</span></a></li>
       <li><a href="functions_m.html#index_m"><span>m</span></a></li>
       <li><a href="functions_n.html#index_n"><span>n</span></a></li>
@@ -159,14 +160,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="textblock">Here is a list of all documented class members with links to the class documentation for each member:</div>
 
 <h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
-<li>caller
-: <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a661374595beb4ef6cdcd0417c8c47f0d">Lox</a>
+<li>cache
+: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html#a8172732d53b7b0dd16f60c75645cb871">ScopeInfo</a>
+</li>
+<li>cacheRun
+: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html#a0331e5ec7e807478bf6ba315527528ac">ScopeInfo</a>
+</li>
+<li>cacheSize
+: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html#a21f5d4e833c67e26ce27afd3d9f23288">ScopeInfo</a>
 </li>
 <li>callerDateTime
 : <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a321e35a5312d2e9709fd591b7e5d54a5">MetaInfo</a>
 </li>
 <li>Capacity()
 : <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#a1d6db7bdf7da56cb3e4bcb16ac4c1e71">AString</a>
+</li>
+<li>cfgSingleThreadValue
+: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#ac8ebbb91a987a22c90eae5a4c72ecbc0">ScopeStore&lt; T &gt;</a>
 </li>
 <li>CharAt()
 : <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#ad39028e22d5dbd8b2521066e3ce92f03">AString</a>
@@ -189,13 +199,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>CharAtStart_NC()
 : <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#a9f75f09e3de12741b0ea7d1675446a6d">AString</a>
 </li>
+<li>checkScopeInformation()
+: <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#acf7d46373119e1daa39fd32539724938">Lox</a>
+</li>
+<li>childNo
+: <a class="el" href="classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap_1_1NodeAndChild.html#ac10cf46c3127cd5d178f7dafd27307eb">PathMap&lt; StoreT &gt;.NodeAndChild</a>
+</li>
+<li>Childs
+: <a class="el" href="classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap.html#a25ae884191777afd8c57142b526550ec">PathMap&lt; StoreT &gt;</a>
+</li>
 <li>Clear()
 : <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html#aa71d36872f416feaa853788a7a7a7ef8">IniFile</a>
+, <a class="el" href="classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap.html#aa71d36872f416feaa853788a7a7a7ef8">PathMap&lt; StoreT &gt;</a>
 , <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#a34dd5d801f01e4f8d9f6a4cb435da6e1">AString</a>
 , <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html#aa71d36872f416feaa853788a7a7a7ef8">Substring</a>
+, <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#aa71d36872f416feaa853788a7a7a7ef8">ScopeStore&lt; T &gt;</a>
 </li>
 <li>ClearReplacements()
 : <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a17d8436509bfd6902d02a1a7628c9708">TextLogger</a>
+</li>
+<li>ClearSourcePathTrimRules()
+: <a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html#a320973a22d1a85189096272f8b2714c6">Log</a>
+, <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a563bdeaa837bf7799b7327ed874b5280">Lox</a>
 </li>
 <li>closeFile()
 : <a class="el" href="classcs_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html#ab2ff17b940ae7aca4827d832ceeaeda4">TextFileLogger</a>
@@ -206,11 +231,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>CmdLineCP
 : <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#aeab3fc98a76ae513a4527528bd9ed304">Configuration</a>
 </li>
+<li>CntAcquirers()
+: <a class="el" href="classcs_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html#a8d7f3cb41c747cf4c508db08fc60fe9f">SmartLock</a>
+</li>
 <li>CntLogCalls
-: <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a2c80e5630abe5d5042ddb4b85c0c3562">Lox</a>
+: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a2c80e5630abe5d5042ddb4b85c0c3562">Domain</a>
+, <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html#a2c80e5630abe5d5042ddb4b85c0c3562">Domain.LoggerData</a>
+, <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a2c80e5630abe5d5042ddb4b85c0c3562">Lox</a>
 </li>
 <li>CntLogs
-: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html#a7859d287690c28acd561a307d23679bf">Logger</a>
+: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html#ac0d4236906004de0129b9ff90108fdff">Logger</a>
 </li>
 <li>cntSamples
 : <a class="el" href="classcs_1_1aworx_1_1lib_1_1time_1_1TickWatch.html#a3203b85b99c75b91922c0147ac0ca04b">TickWatch</a>
@@ -229,7 +259,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Variable.html#a13a7dbf15cba4c8849fdd8044b185475">IniFile.Variable</a>
 </li>
 <li>CompareTo()
-: <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#a27cac7c0abadb7a24f046ce1a816a700">AString</a>
+: <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#a7220d9aa28b3517400944674e92d6428">AString</a>
 , <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1CString.html#a6cc424b278c7b64653cc9e5058d92fb1">CString</a>
 , <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a7220d9aa28b3517400944674e92d6428">Substring</a>
 </li>
@@ -238,7 +268,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>ConfigCategoryName
 : <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#affcf83e8b52935dd94b74c1a47cf7e0a">ALIB</a>
-, <a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html#affcf83e8b52935dd94b74c1a47cf7e0a">Log</a>
+, <a class="el" href="classcs_1_1aworx_1_1lox_1_1ALox.html#affcf83e8b52935dd94b74c1a47cf7e0a">ALox</a>
 </li>
 <li>Configuration()
 : <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac6f755b1f8e1c7532b3ebfd4f19b7c0c">Configuration</a>
@@ -249,17 +279,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>ConsoleLogger()
 : <a class="el" href="classcs_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html#acbda79ab3af8a8f70b52ab830e57ab30">ConsoleLogger</a>
 </li>
-<li>ConsumableSourcePathPrefixString
-: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ad5e8a7d9f2c872ab23a2332e6583d908">MetaInfo</a>
+<li>ConsoleReportWriter()
+: <a class="el" href="classcs_1_1aworx_1_1lib_1_1ConsoleReportWriter.html#aa79313b30414299d171786d881144df7">ConsoleReportWriter</a>
 </li>
 <li>Consume()
-: <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html#abc61ae90824a932de2b70928446a357f">Substring</a>
+: <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a5be537ec41aadc78a5e95199fd75f96b">Substring</a>
 </li>
 <li>ConsumeFloat()
 : <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a51f8fc04bb7e897f3398120d02985e3f">Substring</a>
 </li>
 <li>ConsumeFromEnd()
-: <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html#ab281947b532d33eb6fa904199195ab1c">Substring</a>
+: <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a2b85d5489d20e058e11640ba867df0ce">Substring</a>
 </li>
 <li>ConsumeInteger()
 : <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a1bb71d566b30b6ea1c03cf30384401d0">Substring</a>
@@ -268,21 +298,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a483c136dde5d3309014cb4ec52f9ffe9">Substring</a>
 </li>
 <li>ContainsAt()
-: <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#a686926c3c76635cb4645b0a9880d566b">AString</a>
+: <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#a6ff40679dc673975fd4b1dd4769a4307">AString</a>
 , <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1CString.html#a590068643fbdfc5f011e8175913959f4">CString</a>
-, <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a932a686a017e3717248e7fa80c416a57">Substring</a>
+, <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a686926c3c76635cb4645b0a9880d566b">Substring</a>
 </li>
 <li>Contents
 : <a class="el" href="classcs_1_1aworx_1_1lib_1_1Report_1_1Message.html#a879ba4d7413f0b6f7fa64331b41eed8f">Report.Message</a>
 </li>
 <li>ConvertObject()
-: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html#a0ba6332bdc61bc28bdc5c9d0106f12c4">ObjectConverter</a>
+: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html#a38f08c6715a886c5d1867bfb250adb1d">ObjectConverter</a>
+, <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1StringConverter.html#a1a0031697ff24b742c6f1f4e249514ae">StringConverter</a>
 </li>
 <li>convSWToDT
 : <a class="el" href="classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html#ad91e3ebd169964f5636d6d006cd445fb">Ticks</a>
 </li>
 <li>CopyTo()
 : <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a98ecf2479f109eb0a26e3df3657b0d42">Substring</a>
+</li>
+<li>CountLoggers()
+: <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a99a4aca5fd12818f7a0718ff1bf37c9d">Domain</a>
 </li>
 <li>CreateConsoleLogger()
 : <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a8db44d29b6867559f393ad860a0a1782">Lox</a>
@@ -304,7 +338,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:19 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:17 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

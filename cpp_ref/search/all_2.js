@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['begin',['Begin',['../namespaceaworx_1_1lib_1_1enums.html#ae1c5184dc404edf057ed537bcfddef84a1a06729125544cab7cee73195fc044f0',1,'aworx::lib::enums']]],
+  ['begin',['Begin',['../namespaceaworx_1_1lib_1_1enums.html#ae1c5184dc404edf057ed537bcfddef84a1a06729125544cab7cee73195fc044f0',1,'aworx::lib::enums::Begin()'],['../namespaceaworx_1_1lib_1_1containers.html#a3c9cd89161562d9d1c346f6f82666108',1,'aworx::lib::containers::begin()']]],
   ['bg_5fblack',['BG_BLACK',['../classaworx_1_1lox_1_1ESC.html#aa82c6a3b4740dbc8469c438cb508c9fc',1,'aworx::lox::ESC']]],
   ['bg_5fblue',['BG_BLUE',['../classaworx_1_1lox_1_1ESC.html#a32c9da22aa2e2219e6110c71c0862cab',1,'aworx::lox::ESC']]],
   ['bg_5fcyan',['BG_CYAN',['../classaworx_1_1lox_1_1ESC.html#ad3ea7c45421a7fe41bef9fccf446beab',1,'aworx::lox::ESC']]],

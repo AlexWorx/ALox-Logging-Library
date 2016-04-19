@@ -1,6 +1,5 @@
 <map id="ticks.hpp" name="ticks.hpp">
-<area shape="rect" id="node2" href="$callerinfo_8hpp.html" title="callerinfo.hpp" alt="" coords="57,80,156,107"/>
-<area shape="rect" id="node3" href="$lox_8hpp.html" title="lox.hpp" alt="" coords="5,155,69,181"/>
-<area shape="rect" id="node5" href="$logger_8hpp.html" title="logger.hpp" alt="" coords="79,304,161,331"/>
-<area shape="rect" id="node4" href="$alox_8hpp.html" title="alox.hpp" alt="" coords="49,229,119,256"/>
+<area shape="rect" id="node2" href="$scopeinfo_8hpp.html" title="scopeinfo.hpp" alt="" coords="24,80,127,107"/>
+<area shape="rect" id="node3" href="$lox_8hpp.html" title="lox.hpp" alt="" coords="9,155,73,181"/>
+<area shape="rect" id="node4" href="$alox_8hpp.html" title="alox.hpp" alt="" coords="5,229,76,256"/>
 </map>

@@ -1,7 +1,9 @@
 var searchData=
 [
   ['safeness',['Safeness',['cpp_ref/namespaceaworx.html#ae44933ed0bc5c2462dce430a034dd6b0',1,'aworx']]],
+  ['scope',['Scope',['cpp_ref/namespaceaworx.html#aef58f56e96f194bf0b5f765175f6ebd6',1,'aworx']]],
   ['sliteral',['SLiteral',['cpp_ref/namespaceaworx.html#af631a26bf70ad6d6143973fadf779747',1,'aworx']]],
+  ['smartlock',['SmartLock',['cpp_ref/namespaceaworx.html#aee1cd004a3010e8ee798517d96c1ffca',1,'aworx']]],
   ['string',['String',['cpp_ref/namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d',1,'aworx']]],
   ['string128',['String128',['cpp_ref/namespaceaworx.html#a2841f1443c3b2f3d6066d5774cf69dbc',1,'aworx']]],
   ['string16',['String16',['cpp_ref/namespaceaworx.html#a148a217c34a72b4360462205858b8f0e',1,'aworx']]],

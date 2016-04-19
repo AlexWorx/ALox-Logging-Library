@@ -271,6 +271,8 @@ Public Methods</h2></td></tr>
 <tr class="separator:a5ffdb31a8fd9043456f6cb415b9b35f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73d7abe933760d2cbf08445a361b6ea6"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a73d7abe933760d2cbf08445a361b6ea6">consumeFromEnd</a> (String consumable)</td></tr>
 <tr class="separator:a73d7abe933760d2cbf08445a361b6ea6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abeb124bcc7753eb233167be4ab842a23"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#abeb124bcc7753eb233167be4ab842a23">split</a> (int position, <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> target, int separatorWidth)</td></tr>
+<tr class="separator:abeb124bcc7753eb233167be4ab842a23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Comparison</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><h6></h6>
 <h2></h2>
@@ -387,6 +389,10 @@ Public Methods</h2></td></tr>
 <tr class="separator:acb86696215ae6af1c1c2e02a30b5791a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad146fa8579a5f8a876c4688cc5a68520"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#ad146fa8579a5f8a876c4688cc5a68520">toString</a> ()</td></tr>
 <tr class="separator:ad146fa8579a5f8a876c4688cc5a68520"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6601c3db66b8885aa148561d2caa2d5c"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a6601c3db66b8885aa148561d2caa2d5c">toString</a> (int regionStart, int regionLength)</td></tr>
+<tr class="separator:a6601c3db66b8885aa148561d2caa2d5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47ec4454a71d89d9beab4a2f3f843425"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a47ec4454a71d89d9beab4a2f3f843425">toString</a> (int regionStart)</td></tr>
+<tr class="separator:a47ec4454a71d89d9beab4a2f3f843425"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9f12018a3dc0397e2b476831a88086c5"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a9f12018a3dc0397e2b476831a88086c5">toLong</a> (char[] whiteSpaces)</td></tr>
 <tr class="separator:a9f12018a3dc0397e2b476831a88086c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab829689f28f070c86c61a702d2efdd41"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#ab829689f28f070c86c61a702d2efdd41">toLong</a> ()</td></tr>
@@ -3049,6 +3055,49 @@ Protected Fields</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="abeb124bcc7753eb233167be4ab842a23"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> split </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>&#160;</td>
+          <td class="paramname"><em>target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>separatorWidth</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Splits this substring into two parts. What remains in this object is the region from 0 to <code>position</code>. <code>target</code> receives the rest. If optional parameter <code>separatorWidth</code> is given, this is subtracted from the front of <code>target</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">position</td><td>The index where this object is split. </td></tr>
+    <tr><td class="paramname">target</td><td>The target substring to receive the right part of the string. </td></tr>
+    <tr><td class="paramname">separatorWidth</td><td>This does not change what remains in this object, but defines the number of characters that are cut from the front of the <code>target</code>. Defaults to 0.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>this</code> to allow concatenated calls. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="af6c7f8c72148b5fe6f2890b7edf4ce3b"></a>
 <div class="memitem">
 <div class="memproto">
@@ -3458,6 +3507,67 @@ Protected Fields</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a6601c3db66b8885aa148561d2caa2d5c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String toString </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>regionStart</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>regionLength</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Creates a String containing a copy of a region of the this <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">regionStart</td><td>The start index of the region in this to create the string from. </td></tr>
+    <tr><td class="paramname">regionLength</td><td>The maximum length of the region to create the string from. Defaults to Integer.MAX_VALUE.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A String that represents the specified sub region of this object. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a47ec4454a71d89d9beab4a2f3f843425"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String toString </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>regionStart</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Overloaded version providing default parameter <code>regionLength</code> as <code>Integer.MAX_VALUE</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">regionStart</td><td>The start index of the region in this to create the string from.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A String that represents the specified sub region of this object. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="ac98a4a0190373fe92a4ae3bddb6cd92f"></a>
 <div class="memitem">
 <div class="memproto">
@@ -3649,7 +3759,7 @@ Protected Fields</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:20 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:18 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

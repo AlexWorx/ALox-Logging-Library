@@ -6,7 +6,6 @@ var searchData=
   ['filecomments',['FileComments',['../classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html#a83074eb05e084e3cc5d0f9f3bb78f01b',1,'cs::aworx::lib::config::IniFile']]],
   ['filename',['FileName',['../classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html#a8bea19241a8e12acb6725e40dd6f2d74',1,'cs.aworx.lib.config.IniFile.FileName()'],['../classcs_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html#a5066dd8adab56e4ea54fe46b9db3bd9a',1,'cs.aworx.lox.loggers.TextFileLogger.FileName()']]],
   ['fmtexcnull',['FmtExcNull',['../classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#aa8eaf49e43df1021c2d606be3fa2a105',1,'cs::aworx::lox::tools::LogTools']]],
-  ['fmtindentstring',['FmtIndentString',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a84b11e4ba9304e158d4f091d2c6e9d7e',1,'cs::aworx::lox::core::textlogger::TextLogger']]],
   ['fmtinstarrayprefix',['FmtInstArrayPrefix',['../classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#aff77a89c541f9f77d08d78b65b9f775b',1,'cs::aworx::lox::tools::LogTools']]],
   ['fmtinstarraysuffix',['FmtInstArraySuffix',['../classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a68066b4c4f41944bfb93f3b58af2cc58',1,'cs::aworx::lox::tools::LogTools']]],
   ['fmtinstcycrefprefix',['FmtInstCycRefPrefix',['../classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#ad56bd642c748ee1addec1188df481eae',1,'cs::aworx::lox::tools::LogTools']]],
@@ -24,10 +23,12 @@ var searchData=
   ['fmtmultilinemsgheadline',['FmtMultiLineMsgHeadline',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#ab3423baaf4b67d0e7cfa757203aaf872',1,'cs::aworx::lox::core::textlogger::TextLogger']]],
   ['fmtmultilineprefix',['FmtMultiLinePrefix',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a74da3f13d354d7b4b31aa8fefa7e7115',1,'cs::aworx::lox::core::textlogger::TextLogger']]],
   ['fmtmultilinesuffix',['FmtMultiLineSuffix',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a7daa8e01ebd6550ac7f2a0efacf3ef39',1,'cs::aworx::lox::core::textlogger::TextLogger']]],
-  ['fmtnullobject',['FmtNullObject',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html#ac281d117b6e931783195f52f70bfa5b3',1,'cs::aworx::lox::core::textlogger::ObjectConverter']]],
+  ['fmtnullobject',['FmtNullObject',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1StringConverter.html#ac281d117b6e931783195f52f70bfa5b3',1,'cs::aworx::lox::core::textlogger::StringConverter']]],
+  ['fmtunknownobject',['FmtUnknownObject',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a3051aebc3f205a04fc1196a5433d78e5',1,'cs::aworx::lox::core::textlogger::TextLogger']]],
   ['forcescientificformat',['ForceScientificFormat',['../classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#ae4968ebb3e654b4b07f58e13d2786dae',1,'cs::aworx::lib::strings::NumberFormat']]],
   ['format',['Format',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a5f73a9d6a9bfabaa4a33c34831006d07',1,'cs::aworx::lox::core::textlogger::MetaInfo']]],
   ['formatsb',['formatSB',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a85c8d54f584a622009048d0536f6160f',1,'cs::aworx::lox::core::textlogger::MetaInfo']]],
   ['fractionaldigits',['FractionalDigits',['../classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a6c90dcda5ed7d0ecdbc8ec0aa9c76ac3',1,'cs::aworx::lib::strings::NumberFormat']]],
+  ['fullpath',['FullPath',['../classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a2a6c0d3ee72cd24b4333894999aadcd0',1,'cs::aworx::lox::core::Domain']]],
   ['func',['Func',['../classcs_1_1aworx_1_1lib_1_1Report_1_1Message.html#a39c230199b392ed588e57b8950add07f',1,'cs::aworx::lib::Report::Message']]]
 ];

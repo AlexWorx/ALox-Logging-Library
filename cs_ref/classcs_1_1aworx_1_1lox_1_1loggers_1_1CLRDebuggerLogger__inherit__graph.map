@@ -1,5 +1,7 @@
 <map id="CLRDebuggerLogger" name="CLRDebuggerLogger">
-<area shape="rect" id="node2" href="$classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html" title="PlainTextLogger" alt="" coords="19,155,135,181"/>
-<area shape="rect" id="node3" href="$classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html" title="TextLogger" alt="" coords="34,80,121,107"/>
-<area shape="rect" id="node4" href="$classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="47,5,108,32"/>
+<area shape="rect" id="node2" href="$classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html" title="PlainTextLogger" alt="" coords="19,304,135,331"/>
+<area shape="rect" id="node3" href="$classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html" title="TextLogger" alt="" coords="34,229,121,256"/>
+<area shape="rect" id="node4" href="$classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="47,155,108,181"/>
+<area shape="rect" id="node5" href="$classcs_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html" title="SmartLock" alt="" coords="35,80,120,107"/>
+<area shape="rect" id="node6" href="$classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="32,5,123,32"/>
 </map>

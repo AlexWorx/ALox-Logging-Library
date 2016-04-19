@@ -145,7 +145,7 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>If defined, debug log statements are enabled. Hence, users of ALox can conditionally compile special debug logging code that normally belongs to corresponding debug logging statements. This is useful for example, to conditionally compile code that calculates and gathers information to do some more complex log output.</p>
+<p>If defined, debug <em>Log Statements</em> are enabled. Hence, users of ALox can conditionally compile special debug logging code that normally belongs to corresponding debug logging statements. This is useful for example, to conditionally compile code that calculates and gathers information to do some more complex log output.</p>
 <p>See <a class="el" href="group__GrpALoxCompilerSymbols.html#ga1d6b17b1dc814c44f312baf8d6f56688">ALOX_DBG_LOG_ON</a> and <a class="el" href="group__GrpALoxCompilerSymbols.html#gaf2de46ee4b30ee640266f7ac5de25bb9">ALOX_DBG_LOG_OFF</a> for information about how to manipulate this symbol. </p>
 
 </div>
@@ -159,8 +159,8 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>If defined, caller information is passed to ALox on invocation of debug log statements. Hence, users of ALox can conditionally compile special debug logging code that normally belongs to corresponding debug logging statements based on this symbol. A sample would be the definition of different log line meta information formats, depending on the availability of caller information.</p>
-<dl class="section note"><dt>Note</dt><dd>The ALox default domain mechanism as well as the ALox code markers rely on caller information. These mechanisms are therefore not available to debug logging unless this symbol is defined.</dd></dl>
+<p>If defined, scope information is passed to ALox on invocation of debug <em>Log Statements</em>. Hence, users of ALox can conditionally compile special debug logging code that normally belongs to corresponding debug logging statements based on this symbol. A sample would be the definition of different log line meta information formats, depending on the availability of scope information.</p>
+<dl class="section note"><dt>Note</dt><dd>The ALox <em>Scope Domain</em> mechanism as well as the ALox features <em>Lox.Once</em> and <em>Log Data</em> rely on caller information. These mechanisms are therefore not available to debug logging unless this symbol is set.</dd></dl>
 <p>See <a class="el" href="group__GrpALoxCompilerSymbols.html#ga9920512a7b2c48a248b5cfb1643c7cac">ALOX_DBG_LOG_CI_ON</a> and <a class="el" href="group__GrpALoxCompilerSymbols.html#gabf2ce25e392b218c30b6b0af8280ddf7">ALOX_DBG_LOG_CI_OFF</a> for information about how to manipulate this symbol. </p>
 
 </div>
@@ -174,7 +174,7 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>If defined, release log statements are enabled. Hence, users of ALox can conditionally compile special debug logging code that normally belongs to corresponding debug logging statements. This is useful for example, to conditionally compile code that calculates and gathers information to do some more complex log output.</p>
+<p>If defined, release <em>Log Statements</em> are enabled. Hence, users of ALox can conditionally compile special debug logging code that normally belongs to corresponding debug logging statements. This is useful for example, to conditionally compile code that calculates and gathers information to do some more complex log output.</p>
 <p>See <a class="el" href="group__GrpALoxCompilerSymbols.html#ga56671e8b3fa44f19acb0d9c4c4403682">ALOX_REL_LOG_ON</a> and <a class="el" href="group__GrpALoxCompilerSymbols.html#gae77944a12e0a9b9bc2657cb7298d70f4">ALOX_REL_LOG_OFF</a> for information about how to manipulate this symbol. </p>
 
 </div>
@@ -188,9 +188,9 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>If defined, caller information is passed to ALox on invocation of release log statements when using the <a class="el" href="group__GrpMacrosReleaseLog.html">ALox Macros For Release Logging</a>.<br />
- Hence, users of ALox can conditionally compile special debug logging code that normally belongs to corresponding debug logging statements based on this symbol. A sample would be the definition of different log line meta-information formats, depending on the availability of caller information.</p>
-<dl class="section note"><dt>Note</dt><dd>The ALox default domain mechanism as well as the ALox code markers rely on caller information. These mechanisms are therefore not available to release logging unless this symbol is defined.</dd></dl>
+<p>If defined, scope information is passed to ALox on invocation of release log statements when using the <a class="el" href="group__GrpMacrosReleaseLog.html">ALox Macros For Release Logging</a>.<br />
+ Hence, users of ALox can conditionally compile special debug logging code that normally belongs to corresponding debug logging statements based on this symbol. A sample would be the definition of different log line meta-information formats, depending on the availability of scope information.</p>
+<dl class="section note"><dt>Note</dt><dd>The ALox <em>Scope Domain</em> mechanism as well as the ALox features <em>Lox.Once</em> and <em>Log Data</em> rely on caller information. These mechanisms are therefore not available to debug logging unless this symbol is set.</dd></dl>
 <p>See <a class="el" href="group__GrpALoxCompilerSymbols.html#ga85c683ba401d4c9216c96a9a17a9e9a9">ALOX_REL_LOG_CI_ON</a> and <a class="el" href="group__GrpALoxCompilerSymbols.html#ga9723e112c2b491520922d1fdfef60504">ALOX_REL_LOG_CI_OFF</a> for information about how to manipulate this symbol. </p>
 
 </div>
@@ -199,7 +199,7 @@ Macros</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:18 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:16 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

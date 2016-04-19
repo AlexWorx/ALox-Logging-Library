@@ -126,7 +126,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Inner Classes</a> &#124;
-<a href="#pub-attribs">Public Fields</a> &#124;
 <a href="#pub-static-methods">Public Static Methods</a> &#124;
 <a href="#pub-methods">Public Methods</a> &#124;
 <a href="#pro-static-attribs">Protected Static Fields</a> &#124;
@@ -139,21 +138,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Collaboration diagram for Report:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classcs_1_1aworx_1_1lib_1_1Report__coll__graph.svg" width="311" height="219"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classcs_1_1aworx_1_1lib_1_1Report__coll__graph.svg" width="194" height="219"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
-<p> This class provides a simple facility to collect what is called a <em>'report'</em>. Reports are maintenance messages, similar to error messages, but is not aiming to replace any sort of error handling. (Sending a <em>'report'</em> usually precedes raising an error.) Also, <em>reports</em> are not replacing any debug or release logging facility, which is not part of ALib. Much more, logging libraries might provide a derived object of type <a class="el" href="interfacecs_1_1aworx_1_1lib_1_1ReportWriter.html">ReportWriter</a> to plug into ALib report facility. This way, the concepts of logging and reports get unified. (As a sample, <em>ALox Logging Library </em> which builds on ALib does so.)</p>
-<p>While a process can create different objects of this class, usually, the default instance, received by <a class="el" href="classcs_1_1aworx_1_1lib_1_1Report.html#ad49d9009e0885cb55639c77ba3de98f7">GetDefault</a>. is sufficient and all warnings and errors will be directed to this one. ALib itself directs all messages to the default instance.</p>
+<p> This class provides a simple facility to collect what is called a <em>'report'</em>. Reports are maintenance messages, mostly error and warning messages, but is not aiming to replace any sort of error handling. (In ALib itself, sending a <em>'report'</em> usually precedes raising an error.) Also, <em>reports</em> are not replacing any debug or release logging facility, which is not part of ALib. Much more, logging libraries might provide a derived object of type <a class="el" href="interfacecs_1_1aworx_1_1lib_1_1ReportWriter.html">ReportWriter</a> to plug into ALib report facility. This way, the concepts of logging and reports get unified. (As a sample, <em>ALox Logging Library </em> which builds on ALib does so.)</p>
+<p>While a process can create different objects of this class, usually, the default instance, received by <a class="el" href="classcs_1_1aworx_1_1lib_1_1Report.html#ad49d9009e0885cb55639c77ba3de98f7">GetDefault</a>. is sufficient and all warnings and errors will be directed to this one. ALib itself directs all internal reports to the default instance.</p>
 <p>This class uses a singleton of type <a class="el" href="interfacecs_1_1aworx_1_1lib_1_1ReportWriter.html">ReportWriter</a> to actually write the reports. By default, an object of type <a class="el" href="classcs_1_1aworx_1_1lib_1_1ConsoleReportWriter.html">ConsoleReportWriter</a> is attached.</p>
-<p>The reporting method, <a class="el" href="classcs_1_1aworx_1_1lib_1_1Report.html#acf57520593f877afd6cb6d0e0c8b9e95">DoReport</a> will check the flags provided with <a class="el" href="classcs_1_1aworx_1_1lib_1_1Report.html#a7983ee7befb74df86990b506dfaaf6a0">PushHaltFlags</a> which causes the method to invoke <em>System.Diagnostics.Debug.Assert</em>. Such assertions are effective only in the debug compilation of the library/executable. Custom <em>'ReportWriters'</em> might take action (e.g. for security reasons) and e.g. terminate the application also in release compilations.</p>
-<p>To simplify things, a set of static methods are defined in class <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html">ALIB</a> wich are deemed to be pruned in release versions of the compilation unit. These are:</p>
+<p>The reporting method, <a class="el" href="classcs_1_1aworx_1_1lib_1_1Report.html#acf57520593f877afd6cb6d0e0c8b9e95">DoReport</a> will check the flags provided with <a class="el" href="classcs_1_1aworx_1_1lib_1_1Report.html#a7983ee7befb74df86990b506dfaaf6a0">PushHaltFlags</a> for message types <code>0</code> (errors) and <code>1</code> (warnings), and may invoke <em>assert()</em>. Such assertions are effective only in the debug compilation of the library/executable. Custom <em>'ReportWriters'</em> might take action (e.g. for security reasons) and e.g. terminate the application also in release compilations.</p>
+<p>To simplify things, a set of static methods are defined in class <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html">ALIB</a> which are deemed to be pruned in release versions of the compilation unit. These are:</p>
 <ul>
-<li><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a248c962b2cc43bb5bc22e737edc1d387">ALIB.ERROR</a></li>
-<li><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a9f64661c7f0a50b63aff2cdeb392fb87">ALIB.WARNING</a></li>
-<li><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a2ea4f7aebadaee20aace5e26a9a3b82d">ALIB.ASSERT</a></li>
-<li><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a461f3c6899e74f132b890f5fc3a4a8da">ALIB.ASSERT_ERROR</a></li>
-<li><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#ac2584577aa4b713feb87ce5f4bf457ad">ALIB.ASSERT_WARNING</a></li>
+<li><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a258a4168abf071ddd99f34df5adc7f8f">ALIB.REPORT</a></li>
+<li><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a0c498e86d070eb1abd8d9e430e34c4ab">ALIB.ERROR</a></li>
+<li><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a4f68fcea1fcdbd6fc3bf956ab306bd5b">ALIB.WARNING</a></li>
+<li><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a7e510ecadc41e9b8a21653c9af833a6d">ALIB.ASSERT</a></li>
+<li><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a94cfb52be9cdb81cabc39538df6e795f">ALIB.ASSERT_ERROR</a></li>
+<li><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a56f42d5bd5ba7623ebced4455b4c5411">ALIB.ASSERT_WARNING</a></li>
 </ul>
 <p>The use of these methods is recommended and preferred over the direct use of class <a class="el" href="classcs_1_1aworx_1_1lib_1_1Report.html">Report</a> whenever pure debug reports are intended. </p>
 </div><table class="memberdecls">
@@ -161,11 +161,6 @@ Collaboration diagram for Report:</div>
 Inner Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1Report_1_1Message.html">Message</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Public Fields</h2></td></tr>
-<tr class="memitem:acb7b398cf74d59e8bdb0e6810fb791d8"><td class="memItemLeft" align="right" valign="top">Stack&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1Report.html#acb7b398cf74d59e8bdb0e6810fb791d8">haltAfterReport</a> = new Stack&lt;int&gt;()</td></tr>
-<tr class="separator:acb7b398cf74d59e8bdb0e6810fb791d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Public Static Methods</h2></td></tr>
@@ -178,12 +173,16 @@ Public Methods</h2></td></tr>
 <tr class="separator:a62bc0d20ce17d1ee1289cfccd4c0ce68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf57520593f877afd6cb6d0e0c8b9e95"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1Report.html#acf57520593f877afd6cb6d0e0c8b9e95">DoReport</a> (int type, String msg, [CallerFilePath] String csf=&quot;&quot;, [CallerLineNumber] int cln=0, [CallerMemberName] String cmn=&quot;&quot;)</td></tr>
 <tr class="separator:acf57520593f877afd6cb6d0e0c8b9e95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a853554a6bfceb828824e8da38d635d79"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interfacecs_1_1aworx_1_1lib_1_1ReportWriter.html">ReportWriter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1Report.html#a853554a6bfceb828824e8da38d635d79">PeekWriter</a> ()</td></tr>
+<tr class="separator:a853554a6bfceb828824e8da38d635d79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade3d2cc17cc7c56d59b88a15ee247ca0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1Report.html#ade3d2cc17cc7c56d59b88a15ee247ca0">PopHaltFlags</a> ()</td></tr>
 <tr class="separator:ade3d2cc17cc7c56d59b88a15ee247ca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fb0c9cbe48e62060b8fa53408f2fcd5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1Report.html#a7fb0c9cbe48e62060b8fa53408f2fcd5">PopWriter</a> (<a class="el" href="interfacecs_1_1aworx_1_1lib_1_1ReportWriter.html">ReportWriter</a> checkWriter)</td></tr>
+<tr class="separator:a7fb0c9cbe48e62060b8fa53408f2fcd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7983ee7befb74df86990b506dfaaf6a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1Report.html#a7983ee7befb74df86990b506dfaaf6a0">PushHaltFlags</a> (bool haltOnErrors, bool haltOnWarnings)</td></tr>
 <tr class="separator:a7983ee7befb74df86990b506dfaaf6a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55ce4c99a4d8d27b766949daea9731be"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interfacecs_1_1aworx_1_1lib_1_1ReportWriter.html">ReportWriter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1Report.html#a55ce4c99a4d8d27b766949daea9731be">ReplaceWriter</a> (<a class="el" href="interfacecs_1_1aworx_1_1lib_1_1ReportWriter.html">ReportWriter</a> newWriter)</td></tr>
-<tr class="separator:a55ce4c99a4d8d27b766949daea9731be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67565ee05d7a6ab5ef72d936cd17b0cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1Report.html#a67565ee05d7a6ab5ef72d936cd17b0cc">PushWriter</a> (<a class="el" href="interfacecs_1_1aworx_1_1lib_1_1ReportWriter.html">ReportWriter</a> newWriter)</td></tr>
+<tr class="separator:a67565ee05d7a6ab5ef72d936cd17b0cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-attribs"></a>
 Protected Static Fields</h2></td></tr>
@@ -192,12 +191,14 @@ Protected Static Fields</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Fields</h2></td></tr>
+<tr class="memitem:acb7b398cf74d59e8bdb0e6810fb791d8"><td class="memItemLeft" align="right" valign="top">Stack&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1Report.html#acb7b398cf74d59e8bdb0e6810fb791d8">haltAfterReport</a> = new Stack&lt;int&gt;()</td></tr>
+<tr class="separator:acb7b398cf74d59e8bdb0e6810fb791d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae10600cb6914f091adfbbde00bbfdcd7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1Report.html#ae10600cb6914f091adfbbde00bbfdcd7">Lock</a> =new <a class="el" href="classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a>()</td></tr>
 <tr class="separator:ae10600cb6914f091adfbbde00bbfdcd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acb62b28ab9467a03c940908b8f6649d3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1Report.html#acb62b28ab9467a03c940908b8f6649d3">recursionBlocker</a> = false</td></tr>
 <tr class="separator:acb62b28ab9467a03c940908b8f6649d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb89fd434c938300bd1b0e80d98fefc5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interfacecs_1_1aworx_1_1lib_1_1ReportWriter.html">ReportWriter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1Report.html#abb89fd434c938300bd1b0e80d98fefc5">writer</a> =new <a class="el" href="classcs_1_1aworx_1_1lib_1_1ConsoleReportWriter.html">ConsoleReportWriter</a>()</td></tr>
-<tr class="separator:abb89fd434c938300bd1b0e80d98fefc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cced29036e4120a234178a3a76d0991"><td class="memItemLeft" align="right" valign="top">Stack&lt; <a class="el" href="interfacecs_1_1aworx_1_1lib_1_1ReportWriter.html">ReportWriter</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1Report.html#a3cced29036e4120a234178a3a76d0991">writers</a> =new Stack&lt;<a class="el" href="interfacecs_1_1aworx_1_1lib_1_1ReportWriter.html">ReportWriter</a>&gt;()</td></tr>
+<tr class="separator:a3cced29036e4120a234178a3a76d0991"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a62bc0d20ce17d1ee1289cfccd4c0ce68"></a>
@@ -266,8 +267,8 @@ Protected Fields</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">type</td><td>The report type. </td></tr>
     <tr><td class="paramname">msg</td><td>The report message. </td></tr>
-    <tr><td class="paramname">csf</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
     <tr><td class="paramname">cln</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
+    <tr><td class="paramname">csf</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
     <tr><td class="paramname">cmn</td><td>(Optional) Caller info, compiler generated. Please omit. </td></tr>
   </table>
   </dd>
@@ -300,6 +301,25 @@ Protected Fields</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a853554a6bfceb828824e8da38d635d79"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="interfacecs_1_1aworx_1_1lib_1_1ReportWriter.html">ReportWriter</a> PeekWriter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Retrieves the actual report writer.</p>
+<dl class="section note"><dt>Note</dt><dd>This method should not be used to retrieve the writer and use it. It should be used only to test the installation. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The actual report writer in place. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="ade3d2cc17cc7c56d59b88a15ee247ca0"></a>
 <div class="memitem">
 <div class="memproto">
@@ -314,6 +334,30 @@ Protected Fields</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Restores the previous values after an invocation to <a class="el" href="classcs_1_1aworx_1_1lib_1_1Report.html#a7983ee7befb74df86990b506dfaaf6a0">PushHaltFlags</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a7fb0c9cbe48e62060b8fa53408f2fcd5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PopWriter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="interfacecs_1_1aworx_1_1lib_1_1ReportWriter.html">ReportWriter</a>&#160;</td>
+          <td class="paramname"><em>checkWriter</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Restores the previous writer after setting a new one using <a class="el" href="classcs_1_1aworx_1_1lib_1_1Report.html#a67565ee05d7a6ab5ef72d936cd17b0cc">PushWriter</a>. It is important to keep the right order when pushing and popping writers, as there lifetime is externally managed. (In standard use-cases, only one, app-specific writer should be pushed anyhow). To give a little assurance, this method <a class="el" href="classcs_1_1aworx_1_1lib_1_1Report.html#a7fb0c9cbe48e62060b8fa53408f2fcd5">PopWriter</a> takes the same parameter as <a class="el" href="classcs_1_1aworx_1_1lib_1_1Report.html#a67565ee05d7a6ab5ef72d936cd17b0cc">PushWriter</a> does, to verify if the one to be removed is really the topmost.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">checkWriter</td><td>The previously pushed writer (for checking of call order). </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -351,12 +395,12 @@ Protected Fields</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a55ce4c99a4d8d27b766949daea9731be"></a>
+<a class="anchor" id="a67565ee05d7a6ab5ef72d936cd17b0cc"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="interfacecs_1_1aworx_1_1lib_1_1ReportWriter.html">ReportWriter</a> ReplaceWriter </td>
+          <td class="memname">void PushWriter </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="interfacecs_1_1aworx_1_1lib_1_1ReportWriter.html">ReportWriter</a>&#160;</td>
           <td class="paramname"><em>newWriter</em></td><td>)</td>
@@ -365,14 +409,13 @@ Protected Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Replaces the current <b>ReportWriter</b> singleton by the one provided. If null is provided, a new instance of <a class="el" href="classcs_1_1aworx_1_1lib_1_1ConsoleReportWriter.html">ConsoleReportWriter</a> is created and set.</p>
+<p> Sets a new writer. The actual writer is implemented as a stack. It is important to keep the right order when pushing and popping writers, as there lifetime is externally managed. (In standard use-cases, only one, app-specific writer should be pushed anyhow). To give a little assurance, method <a class="el" href="classcs_1_1aworx_1_1lib_1_1Report.html#a7fb0c9cbe48e62060b8fa53408f2fcd5">PopWriter</a> takes the same parameter as this method does, to verify if if the one to be removed is really the topmost.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">newWriter</td><td>The <b>ReportWriter</b> to set. </td></tr>
+    <tr><td class="paramname">newWriter</td><td>The writer to use. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The former <b>ReportWriter</b>. </dd></dl>
 
 </div>
 </div>
@@ -401,13 +444,21 @@ Protected Fields</h2></td></tr>
 <a class="anchor" id="acb7b398cf74d59e8bdb0e6810fb791d8"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">Stack&lt;int&gt; haltAfterReport = new Stack&lt;int&gt;()</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>A stack of integers. The topmost value is used to decide, whether program execution is halted on message of type 'error' (type 0, bit 0) or of type 'warning' (type &gt; 0, bit 1). Can be set at runtime by just overwriting the value. </p>
+<p>A stack of integers. The topmost value is used to decide, whether program execution is halted on message of type 'error' (type <code>0</code>, bit <code>0</code>) or of type 'warning' (type <code>1</code>, bit <code>1</code>). Can be set at runtime using methods <a class="el" href="classcs_1_1aworx_1_1lib_1_1Report.html#a7983ee7befb74df86990b506dfaaf6a0">PushHaltFlags</a> and <a class="el" href="classcs_1_1aworx_1_1lib_1_1Report.html#ade3d2cc17cc7c56d59b88a15ee247ca0">PopHaltFlags</a>. </p>
 
 </div>
 </div>
@@ -453,7 +504,7 @@ Protected Fields</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="abb89fd434c938300bd1b0e80d98fefc5"></a>
+<a class="anchor" id="a3cced29036e4120a234178a3a76d0991"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -461,7 +512,7 @@ Protected Fields</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="interfacecs_1_1aworx_1_1lib_1_1ReportWriter.html">ReportWriter</a> writer =new <a class="el" href="classcs_1_1aworx_1_1lib_1_1ConsoleReportWriter.html">ConsoleReportWriter</a>()</td>
+          <td class="memname">Stack&lt;<a class="el" href="interfacecs_1_1aworx_1_1lib_1_1ReportWriter.html">ReportWriter</a>&gt; writers =new Stack&lt;<a class="el" href="interfacecs_1_1aworx_1_1lib_1_1ReportWriter.html">ReportWriter</a>&gt;()</td>
         </tr>
       </table>
   </td>
@@ -470,7 +521,7 @@ Protected Fields</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>The <a class="el" href="interfacecs_1_1aworx_1_1lib_1_1ReportWriter.html">ReportWriter</a>. </p>
+<p>A stack of writers. The topmost one is the actual. Can be set at runtime using methods <a class="el" href="classcs_1_1aworx_1_1lib_1_1Report.html#a67565ee05d7a6ab5ef72d936cd17b0cc">PushWriter</a> and <a class="el" href="classcs_1_1aworx_1_1lib_1_1Report.html#a7fb0c9cbe48e62060b8fa53408f2fcd5">PopWriter</a>. </p>
 
 </div>
 </div>
@@ -481,7 +532,7 @@ Protected Fields</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:19 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:17 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

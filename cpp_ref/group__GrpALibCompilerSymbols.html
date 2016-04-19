@@ -129,10 +129,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:ga749e93d24d210c48e3b9b31a09727b82"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibCompilerSymbols.html#ga749e93d24d210c48e3b9b31a09727b82">ALIB_AVOID_ANALYZER_WARNINGS_OFF</a></td></tr>
+<tr class="separator:ga749e93d24d210c48e3b9b31a09727b82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacaa316e613cf0f7bc021130c1b4e2f33"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibCompilerSymbols.html#gacaa316e613cf0f7bc021130c1b4e2f33">ALIB_AVOID_ANALYZER_WARNINGS_ON</a></td></tr>
+<tr class="separator:gacaa316e613cf0f7bc021130c1b4e2f33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga141eac004cc6915d6217ddd591b46b4c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibCompilerSymbols.html#ga141eac004cc6915d6217ddd591b46b4c">ALIB_DEBUG_OFF</a></td></tr>
 <tr class="separator:ga141eac004cc6915d6217ddd591b46b4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3afdbe5a480e0328d115f7b6fb17f5f9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibCompilerSymbols.html#ga3afdbe5a480e0328d115f7b6fb17f5f9">ALIB_DEBUG_ON</a></td></tr>
 <tr class="separator:ga3afdbe5a480e0328d115f7b6fb17f5f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaffe4a144b888498c743d7b81d983d84b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibCompilerSymbols.html#gaffe4a144b888498c743d7b81d983d84b">ALIB_DEBUG_STRINGS_OFF</a></td></tr>
+<tr class="separator:gaffe4a144b888498c743d7b81d983d84b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga2992625b88f70b1e01564be4e7eba2fb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibCompilerSymbols.html#ga2992625b88f70b1e01564be4e7eba2fb">ALIB_DEBUG_STRINGS_ON</a></td></tr>
 <tr class="separator:ga2992625b88f70b1e01564be4e7eba2fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3495a2abef09ec42f2f17bc642f86cb5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GrpALibCompilerSymbols.html#ga3495a2abef09ec42f2f17bc642f86cb5">ALIB_DLL_EXPORTS</a></td></tr>
@@ -151,6 +157,33 @@ Macros</h2></td></tr>
 <tr class="separator:ga40a577eb60771e76df0ba0f3d8b4d322"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="ga749e93d24d210c48e3b9b31a09727b82"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ALIB_AVOID_ANALYZER_WARNINGS_OFF</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Disables certain debug code. See <a class="el" href="group__GrpALibCompilerSymbols.html#gacaa316e613cf0f7bc021130c1b4e2f33">ALIB_AVOID_ANALYZER_WARNINGS_ON</a>. This symbol represents the default behavior and is provided for completeness. </p>
+
+</div>
+</div>
+<a class="anchor" id="gacaa316e613cf0f7bc021130c1b4e2f33"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ALIB_AVOID_ANALYZER_WARNINGS_ON</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This compiler symbol enables additional debug code that tries to prevent external analysis tools (e.g. <a href="https://www.valgrind.org/">Valgrind</a>) to raise unnecessary warnings or errors.</p>
+<p>When provided, it defines <a class="el" href="group__GrpALibCodeSelectorSymbols.html#ga22453f45d36d0fa8790b74a270f027c8">ALIB_AVOID_ANALYZER_WARNINGS</a>. </p>
+
+</div>
+</div>
 <a class="anchor" id="ga141eac004cc6915d6217ddd591b46b4c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -175,6 +208,19 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <p>This compiler symbol forces ALib to compile in debug mode by defining the code selection symbol <a class="el" href="group__GrpALibCodeSelectorSymbols.html#gac56d0d10d022f28ce6bacdc612b4a743">ALIB_DEBUG</a>. Plausibility and assertion checks are performed in this mode.<br />
  If neither this symbol nor <a class="el" href="group__GrpALibCompilerSymbols.html#ga141eac004cc6915d6217ddd591b46b4c">ALIB_DEBUG_OFF</a> is provided, then ALib headers rely on the symbol <b>NDEBUG</b>. If NDEBUG is given, <a class="el" href="group__GrpALibCodeSelectorSymbols.html#gac56d0d10d022f28ce6bacdc612b4a743">ALIB_DEBUG</a> is not set. Otherwise it is. </p>
+
+</div>
+</div>
+<a class="anchor" id="gaffe4a144b888498c743d7b81d983d84b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ALIB_DEBUG_STRINGS_OFF</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Disables certain debug code within class AString. See <a class="el" href="group__GrpALibCompilerSymbols.html#ga2992625b88f70b1e01564be4e7eba2fb">ALIB_DEBUG_STRINGS_ON</a>. This symbol represents the default behavior and is provided for completeness. </p>
 
 </div>
 </div>
@@ -289,7 +335,7 @@ Macros</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:18 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:16 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

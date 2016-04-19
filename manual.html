@@ -109,29 +109,55 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <div class="textblock"><p>This is the manual of the ALox Logging Ecosystem. This manual applies to all platforms and programming languages that ALox supports. By nature, the different implementations of ALox written in different programming languages, differ. Sometimes in details, sometimes differences are more than that.</p>
 <p>As a matter of fact, this manual provides a more abstract and high level view on ALox. Such general understanding of the the ALox architecture and design concepts, might be important to maximize the use of ALox.</p>
-<p>If you have not worked with ALox, yet, and have not read one of the tutorials, we recommend to walk through one of the language specific tutorials in the corresponding programming language specific documentation first. There, you might find information on how to setup up ALox projects for the platform you are using. The language specific documentation is always reachable through the main menu of this book (above). They are:</p>
+<p>If you have not worked with ALox, yet, and have not read one of the tutorials, we <b>highly recommend to walk through one of the language specific tutorials</b> found in the corresponding programming language specific documentation first. There, you also might find information on how to setup up ALox projects for the platform you are using. The language specific documentation is always reachable through the main menu of this book (above). They are:</p>
 <ul>
 <li><a href="cpp_ref/cppmainpage.html">ALox for C++</a></li>
 <li><a href="cs_ref/csmainpage.html">ALox for C#</a></li>
 <li><a href="java_ref/javamainpage.html">ALox for Java</a></li>
 </ul>
-<dl class="section note"><dt>Note</dt><dd><b>Differences of ALox for C++, C# and Java</b>:<br />
- As ALox is available for C++, C# and Java, the class and member names within this document may vary a little per language. Especially the class <b>Log</b> has no interface in C++ while in C# and Java its' interface is a copy of that of class <b>Lox</b>, made for pruning the code. In contrast, in C++ the macros Log_xxx and Lox_xxx are used to provide pruned and non-pruned access to methods of class Lox. Please remember this, when reading this manual and translate the references used herein to the right ones of the language of your choice.</dd></dl>
+<p><b>Orthogonality of ALox and its API</b>:<br />
+ Reading this manual, you will see that some topics might become a little complex, maybe more complex than what you might expect from a logging framework that you probably just want to use for rather 'simple' debug-logging.<br />
+ The good news is that ALox' features and API is design are to a high degree 'orthogonal'. Orthogonality in API design means that features that you do not use, do not know and that you might not be even interested in, are not even visible when using ALox. This is mainly reached by three things:</p><ul>
+<li>Simplified method invocations by omitting all optional parameters (in Java overloaded methods omitting these parameters)</li>
+<li>Reasonable default values for optional parameters</li>
+<li>Automatic internal prerequisites when ALox 'detects' that a feature is not used.</li>
+</ul>
+<p>This way, you can use ALox in an extremely simple way, just as if ALox <em>was</em> extremely simple. And maybe just over time, you start reading this book and go into details that you need to conquer a next, more complex use case. For productively using ALox, the tutorials should do!</p>
+<p><b>Differences of ALox for C++, C# and Java</b>:<br />
+ As ALox is available for C++, C# and Java, the class and member names within this document may vary a little per language. Fore example, class <b>Log</b> does not provide a mirrored version of the interface of class <b>Lox</b> in C++ as it has in C# and Java versions of ALox, where this is used for pruning exactly this interface out of release code. In contrast, in C++ the macros <b>Log_xxx</b> and <b>Lox_xxx</b> are used to provide pruned and non-pruned access to methods of class Lox. Which means an underscore in C++ '_' replaces a dot '.' in Java/C#.</p>
+<p>Also, in Java, interface methods generally start with a non-capital letter, while in C# and C++ the same method starts with a capital one. Please remember, that such details are not an error in the user manual, but we have just decided not to hint to this fact all of the time.</p>
+<p>Wherever reasonable, language specific differences are named and briefly explained.</p>
 <h1>Contents</h1>
-<ol type="1">
-<li><a class="el" href="man_intro.html">About ALox</a></li>
-<li><a class="el" href="man_features_and_limitations.html">Features and Limitations</a></li>
-<li><a class="el" href="man_alox_architecture.html">Overview of the ALox architecture</a></li>
-<li><a class="el" href="man_levelsanddomains.html">Log Levels, Log Domains and Log Domain Levels</a></li>
-<li><a class="el" href="man_loggers.html">Details on ALox Loggers</a></li>
-<li><a class="el" href="man_debug_and_release_logging.html">Differences of Debug- and Release-Logging</a></li>
-<li><a class="el" href="group__GrpALoxConfigVars.html">ALox Configuration Variables</a> </li>
-</ol>
+<h3>Using ALox</h3>
+<p><a class="el" href="man_intro.html">01 - About ALox</a> <br />
+ <a class="el" href="man_features_and_limitations.html">02 - Features and Limitations</a> <br />
+ <a class="el" href="man_alox_terminology.html">03 - Terminology and Key Concepts</a> <br />
+ <a class="el" href="man_logdomains.html">04 - Log Domains</a> <br />
+ <a class="el" href="man_scopes.html">05 - Scopes in ALox</a> <br />
+ <a class="el" href="man_log_once.html">06 - Lox.Once()</a> <br />
+ <a class="el" href="man_prefix_logables.html">07 - Prefix Logables</a> <br />
+ <a class="el" href="man_log_data.html">08 - Log Data (Debug Variables)</a> <br />
+ <a class="el" href="man_multi_threaded.html">09 - Multi-Threaded Processes</a> <br />
+ <a class="el" href="man_debug_and_release_logging.html">10 - Differences of Debug- and Release-Logging</a> <br />
+ <a class="el" href="man_internal_domains.html">11 - Internal Logging</a> <br />
+ <a class="el" href="man_external_verbosity_configuration.html">12 - External Verbosity Configuration</a> <br />
+ <a class="el" href="man_trim_source_path.html">13 - Trimming Source File Paths and Clickable IDE Output</a> <br />
+ <a class="el" href="man_domain_substitution.html">14 - Log Domain Substitution</a> <br />
+ <a class="el" href="man_colorful_loggers.html">15 - Colorful Loggers</a> <br />
+</p>
+<h3>Reference Appendix</h3>
+<p><a class="el" href="group__GrpALoxConfigVars.html">I - Configuration Variables</a> <br />
+ <a class="el" href="man_apdx_auto_config.html">II - ALox Auto-Configuration and Orthogonality</a> <br />
+</p>
+<h3>Extending ALox</h3>
+<p><a class="el" href="man_ext_namespaces.html">A - Namespaces</a> <br />
+ <a class="el" href="man_ext_loggers.html">B - Loggers and Implementing Custom Types</a> <br />
+ </p>
 </div></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:21 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:19 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

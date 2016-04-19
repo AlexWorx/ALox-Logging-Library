@@ -255,9 +255,9 @@ Public Methods</h2></td></tr>
 <tr class="memitem:aa7292ca793aceb1572d65a8ee444e97c"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true&gt; </td></tr>
 <tr class="memitem:aa7292ca793aceb1572d65a8ee444e97c"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#aa7292ca793aceb1572d65a8ee444e97c">LastIndexOfAny</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;needles, <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a217539925b78b2eed40ae7817d5bee52">enums::Inclusion</a> inclusion, int startIdx=<a class="el" href="classaworx_1_1lib_1_1strings_1_1CString.html#a702a7d928cd1d34c5aa2f26dd97e199e">CString::MaxLen</a>) const </td></tr>
 <tr class="separator:aa7292ca793aceb1572d65a8ee444e97c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af92525461d86384ebb32f56c9d5dc5f2"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true&gt; </td></tr>
-<tr class="memitem:af92525461d86384ebb32f56c9d5dc5f2"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#af92525461d86384ebb32f56c9d5dc5f2">IndexOfAS</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;needle, int startIdx=0, <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ab9aab17a5e54a8bae6915bc24db13a17">enums::Case</a> sensitivity=<a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ab9aab17a5e54a8bae6915bc24db13a17a8f21fcdc233ba4078679ca628453d06b">enums::Case::Sensitive</a>) const </td></tr>
-<tr class="separator:af92525461d86384ebb32f56c9d5dc5f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc427de75c146cf8618a397833edaa9a"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true&gt; </td></tr>
+<tr class="memitem:adc427de75c146cf8618a397833edaa9a"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#adc427de75c146cf8618a397833edaa9a">IndexOfSubstring</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;needle, int startIdx=0, <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ab9aab17a5e54a8bae6915bc24db13a17">enums::Case</a> sensitivity=<a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ab9aab17a5e54a8bae6915bc24db13a17a8f21fcdc233ba4078679ca628453d06b">enums::Case::Sensitive</a>) const </td></tr>
+<tr class="separator:adc427de75c146cf8618a397833edaa9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Conversion</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><h6></h6>
 <h2></h2>
@@ -389,7 +389,9 @@ Protected Fields</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Constructs this object to represent a region of another String (respectively a region of any string object whose type implicitly constructs a temporary String).<br />
- The region is adjusted to [0 ... <em>as.Length()</em>]. </p><dl class="params"><dt>Parameters</dt><dd>
+ The region is adjusted to [0 ... <em>as.Length()</em>].</p>
+<dl class="section note"><dt>Note</dt><dd>When constructing an <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">aworx::String</a> from a region of another <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">aworx::String</a>, this constructor is preferable over the overloaded <b><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a863a723eb56ea0b5fab9a838c5f27658">String(const char*, int)</a></b> (although often the same calculation of parameters has to be performed), because this constructor checks the bounds!</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">src</td><td>The src from that we will represent a region. </td></tr>
     <tr><td class="paramname">regionStart</td><td>The start of the region within the given String. </td></tr>
@@ -1175,7 +1177,7 @@ Protected Fields</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="af92525461d86384ebb32f56c9d5dc5f2"></a>
+<a class="anchor" id="adc427de75c146cf8618a397833edaa9a"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1183,7 +1185,7 @@ Protected Fields</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int IndexOfAS </td>
+          <td class="memname">int IndexOfSubstring </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;&#160;</td>
           <td class="paramname"><em>needle</em>, </td>
@@ -1803,7 +1805,7 @@ Protected Fields</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:19 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:16 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

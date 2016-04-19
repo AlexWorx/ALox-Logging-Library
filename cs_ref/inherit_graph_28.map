@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html" title="Tokenizer" alt="" coords="5,5,84,32"/>
+<area shape="rect" id="node1" href="$interfacecs_1_1aworx_1_1lib_1_1ReportWriter.html" title="ReportWriter" alt="" coords="5,31,101,57"/>
+<area shape="rect" id="node2" href="$classcs_1_1aworx_1_1lib_1_1ConsoleReportWriter.html" title="ConsoleReportWriter" alt="" coords="149,5,293,32"/>
+<area shape="rect" id="node3" href="$classcs_1_1aworx_1_1lox_1_1ALoxReportWriter.html" title="ALoxReportWriter" alt="" coords="158,56,285,83"/>
 </map>

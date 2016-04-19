@@ -1,8 +1,0 @@
-<map id="Log.ALoxReportWriter" name="Log.ALoxReportWriter">
-<area shape="rect" id="node2" href="$interfacecs_1_1aworx_1_1lib_1_1ReportWriter.html" title="ReportWriter" alt="" coords="11,219,107,245"/>
-<area shape="rect" id="node3" href="$classcs_1_1aworx_1_1lox_1_1Lox.html" title="Lox" alt="" coords="131,219,174,245"/>
-<area shape="rect" id="node4" href="$classcs_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html" title="CallerInfo" alt="" coords="113,106,192,133"/>
-<area shape="rect" id="node5" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="5,7,71,33"/>
-<area shape="rect" id="node6" href="$classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html" title="Ticks" alt="" coords="193,7,248,33"/>
-<area shape="rect" id="node7" href="$classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="222,106,313,133"/>
-</map>

@@ -170,29 +170,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 3.1. Add existing ALox library project to your solution</h2>
 <p>Choose the right class library project that fits well to your own project target and platform.</p>
 <p>The projects for <b>Mono Develop</b> are found in: </p><pre class="fragment">    ALOX_LIB_PATH/build/ide.cs.monodevelop/ALox-CS.xxx-DLL-xxx
-</pre><p>Your, choices are: </p><table  border="1">
+</pre><p>Your, choices are: xx</p>
+<table class="doxtable">
 <tr>
-<th><center>Project Name</center>  </th><th><center>Description</center> <p class="endtd"></p>
-</th></tr>
+<th><center>Project Name</center> </th><th><center>Description</center>  </th></tr>
 <tr>
-<td>ALox-CS-.Net45-DLL  </td><td>For .Net 4.5 projects that do <em>not</em> use ALox release logging </td></tr>
+<td>ALox-CS-.Net45-DLL </td><td>For .Net 4.5 projects that do <em>not</em> use ALox release logging </td></tr>
 <tr>
-<td>ALox-CS-.Net45-DLL-Release-Log  </td><td>For .Net 4.5 projects that intent to use ALox release logging (besides debug logging) </td></tr>
+<td>ALox-CS-.Net45-DLL-Release-Log </td><td>For .Net 4.5 projects that intent to use ALox release logging (besides debug logging) </td></tr>
 </table>
 <p>The projects for <b>Visual Studio</b> are found in: </p><pre class="fragment">    ALOX_LIB_PATH\build\ide.cs.vstudio\ALox-CS.xxx-DLL-xxx
 </pre><p>Your, choices are:</p>
-<table  border="1">
+<table class="doxtable">
 <tr>
-<th><center>Project Name</center>  </th><th><center>Description</center> <p class="endtd"></p>
-</th></tr>
+<th><center>Project Name</center> </th><th><center>Description</center>  </th></tr>
 <tr>
-<td>ALox-CS-.Net45-DLL  </td><td>For .Net 4.5 projects that do <em>not</em> use ALox release logging </td></tr>
+<td>ALox-CS-.Net45-DLL </td><td>For .Net 4.5 projects that do <em>not</em> use ALox release logging </td></tr>
 <tr>
-<td>ALox-CS-.Net45-DLL-Release-Log  </td><td>For .Net 4.5 projects that intent to use ALox release logging (besides debug logging) </td></tr>
+<td>ALox-CS-.Net45-DLL-Release-Log </td><td>For .Net 4.5 projects that intent to use ALox release logging (besides debug logging) </td></tr>
 <tr>
-<td>ALox-CS-.WP80-DLL  </td><td>For windows Phone 8 projects that do <em>not</em> use ALox release logging </td></tr>
+<td>ALox-CS-.WP80-DLL </td><td>For windows Phone 8 projects that do <em>not</em> use ALox release logging </td></tr>
 <tr>
-<td>ALox-CS-.WP80-DLL-Release-Log  </td><td>For windows Phone 8 projects that intent to use ALox release logging (besides debug logging) </td></tr>
+<td>ALox-CS-.WP80-DLL-Release-Log </td><td>For windows Phone 8 projects that intent to use ALox release logging (besides debug logging) </td></tr>
 </table>
 <dl class="section note"><dt>Note</dt><dd>If you do not know the difference between debug and release logging, <a href="../faq.html#faq_debug_vs_release_logging">see the FAQ</a> </dd></dl>
 <dl class="section user"><dt></dt><dd></dd></dl>
@@ -202,7 +201,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>Those projects named <em>ALox-CS-???-DLL-Release-Log</em> have the <a class="el" href="csmacros.html">Conditional Compilation Symbols</a> <em>ALOX_REL_LOG</em> set in their release configuration.</li>
 <li>Due to this, ALox features are still included in the release version of these projects' assemblies. (Only, class <a class="el" href="classcs_1_1aworx_1_1lox_1_1Log.html">Log</a> gets its interface replaced by thin stub methods in release mode.).</li>
 <li>The size of the release assembly slightly increases if you use the release log enabled projects.</li>
-<li>Temporary or long-term pruning of the release log statements in your code is still enabled when you use the release log versions of the library!<br />
+<li>Temporary or long-term pruning of the release <em>Log Statements</em> in your code is still enabled when you use the release log versions of the library!<br />
  Therefore: Only, if you never want to use release logging, choose the smaller library that only enables debug logging. </li>
 </ul>
 </dd></dl>
@@ -272,8 +271,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </ul>
 <h1><a class="anchor" id="cssetup_testsetup"></a>
 5. Test your setup</h1>
-<p>To test your setup, add minimum ALox functionality to your project as described in the first chapter of <a class="el" href="cstutorial.html">ALox for C# Tutorial</a> into your main method or anywhere you think it is appropriate:</p>
-<div class="fragment"><div class="line">    Log.AddDebugLogger();</div><div class="line">    Log.SetDomain( <span class="stringliteral">&quot;APP&quot;</span>, Log.DomainLevel.InfoWarningsAndErrors );</div><div class="line"></div><div class="line">    Log.Info( <span class="stringliteral">&quot;APP&quot;</span>, <span class="stringliteral">&quot;Hello ALox&quot;</span> );</div></div><!-- fragment --><p> You are set if:</p><ul>
+<p>To test your setup, add minimum ALox functionality to your project as described in the first chapter of <a class="el" href="cstutorial.html">ALox for C# Tutorial</a> into your main method or anywhere you think it is appropriate: </p><pre class="fragment">    Log.Info( "Hello ALox" );
+</pre><p>You are set if:</p><ul>
 <li>your project compiles and runs without error</li>
 <li>you see the log output when running the debug version</li>
 <li>you do not see the log output when running the release version</li>
@@ -292,7 +291,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>Once you are set, make sure to read:</p>
 <ul>
 <li><a class="el" href="cstutorial.html">ALox for C# Tutorial</a></li>
-<li>A short chapter <a class="el" href="cspruning.html">Pruning ALox Code in C# from Release Builts</a> that describes how pruning debug log statements from the code is implemented in ALox for C#. This is needed to understand how to use ALox without getting compilation errors in debug and release versions.</li>
+<li>A short chapter <a class="el" href="cspruning.html">Pruning ALox Code in C# from Release Builts</a> that describes how pruning debug <em>Log Statements</em> from the code is implemented in ALox for C#. This is needed to understand how to use ALox without getting compilation errors in debug and release versions.</li>
 <li>Some further info about ALox features and its architecture in <a href="../manual.html">ALox User Manual</a></li>
 <li>The <a href="annotated.html">C# Class Reference</a>. </li>
 </ul>
@@ -300,7 +299,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:19 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:17 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

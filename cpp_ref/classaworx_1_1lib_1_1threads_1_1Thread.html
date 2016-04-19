@@ -125,6 +125,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-static-attribs">Public Static Fields</a> &#124;
 <a href="#pub-static-methods">Public Static Methods</a> &#124;
 <a href="#pub-methods">Public Methods</a> &#124;
 <a href="#friends">Friends</a> &#124;
@@ -152,6 +153,11 @@ Collaboration diagram for Thread:</div>
 <div class="textblock"><hr/>
 <p> This class mimics class <a class="el" href="classaworx_1_1lib_1_1threads_1_1Thread.html">Thread</a> of the Java runtime library. For general information of multi-threading support provided by ALib, see <a class="el" href="namespaceaworx_1_1lib_1_1threads.html">aworx::lib::threads</a>. </p>
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Public Static Fields</h2></td></tr>
+<tr class="memitem:ab74d46f09db54cfc6e3c0d55baca5bfc"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1Thread.html#ab74d46f09db54cfc6e3c0d55baca5bfc">NullThreadId</a> = 0</td></tr>
+<tr class="separator:ab74d46f09db54cfc6e3c0d55baca5bfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Public Static Methods</h2></td></tr>
 <tr class="memitem:a003163fa39a645018d798dc5f78d1489"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1Thread.html#a003163fa39a645018d798dc5f78d1489">_Init_ALib</a> ()</td></tr>
@@ -306,7 +312,7 @@ Protected Methods</h2></td></tr>
 <p> Constructor without a parameter specifying a <a class="el" href="classaworx_1_1lib_1_1threads_1_1Runnable.html">Runnable</a>. Such thread will not execute any code unless a specialized class is derived that overwrites the Run method.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>The designated name of the thread. If the name provided is empty or, nullptr, the name of the thread will be set to match a string representation of the thread id. </td></tr>
+    <tr><td class="paramname">name</td><td>The designated name of the thread. If the name provided is empty or, <code>nullptr</code>, the name of the thread will be set to match a string representation of the thread id. </td></tr>
   </table>
   </dd>
 </dl>
@@ -442,7 +448,7 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Returns an object representing the thread that invoke this call.</p>
+<p> Returns an object representing the thread that invoked this call.</p>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the current <a class="el" href="classaworx_1_1lib_1_1threads_1_1Thread.html">Thread</a>. </dd></dl>
 
 </div>
@@ -801,6 +807,27 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ab74d46f09db54cfc6e3c0d55baca5bfc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr int NullThreadId = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>This is a value that may be passed as a value indicating an undefined (null) thread </p>
+
+</div>
+</div>
 <a class="anchor" id="af96dc80019779aec1839595c875b104e"></a>
 <div class="memitem">
 <div class="memproto">
@@ -851,7 +878,7 @@ Protected Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:19 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:16 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

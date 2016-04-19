@@ -1,16 +1,18 @@
 <map id="alox.hpp" name="alox.hpp">
 <area shape="rect" id="node2" href="$log_8hpp.html" title="log.hpp" alt="" coords="5,80,69,107"/>
-<area shape="rect" id="node3" href="$alox__console__loggers_8hpp.html" title="alox_console_loggers.hpp" alt="" coords="567,453,739,480"/>
-<area shape="rect" id="node4" href="$callerinfo_8hpp.html" title="callerinfo.hpp" alt="" coords="463,80,561,107"/>
-<area shape="rect" id="node6" href="$logger_8hpp.html" title="logger.hpp" alt="" coords="599,155,681,181"/>
-<area shape="rect" id="node7" href="$textlogger_8hpp.html" title="textlogger.hpp" alt="" coords="601,229,705,256"/>
-<area shape="rect" id="node8" href="$plaintextlogger_8hpp.html" title="plaintextlogger.hpp" alt="" coords="195,304,325,331"/>
-<area shape="rect" id="node9" href="$consolelogger_8hpp.html" title="consolelogger.hpp" alt="" coords="37,379,163,405"/>
-<area shape="rect" id="node10" href="$memorylogger_8hpp.html" title="memorylogger.hpp" alt="" coords="187,379,317,405"/>
-<area shape="rect" id="node11" href="$textfilelogger_8hpp.html" title="textfilelogger.hpp" alt="" coords="341,379,462,405"/>
-<area shape="rect" id="node12" href="$vstudiologger_8hpp.html" title="vstudiologger.hpp" alt="" coords="486,379,610,405"/>
-<area shape="rect" id="node13" href="$ansilogger_8hpp.html" title="ansilogger.hpp" alt="" coords="767,304,873,331"/>
-<area shape="rect" id="node14" href="$windowsconsolelogger_8hpp.html" title="windowsconsolelogger.hpp" alt="" coords="564,304,743,331"/>
-<area shape="rect" id="node15" href="$domain_8hpp.html" title="domain.hpp" alt="" coords="586,80,675,107"/>
-<area shape="rect" id="node5" href="$lox_8hpp.html" title="lox.hpp" alt="" coords="480,155,544,181"/>
+<area shape="rect" id="node3" href="$lox_8hpp.html" title="lox.hpp" alt="" coords="241,155,305,181"/>
+<area shape="rect" id="node4" href="$alox__console__loggers_8hpp.html" title="alox_console_loggers.hpp" alt="" coords="742,379,914,405"/>
+<area shape="rect" id="node5" href="$domain_8hpp.html" title="domain.hpp" alt="" coords="169,80,258,107"/>
+<area shape="rect" id="node6" href="$logger_8hpp.html" title="logger.hpp" alt="" coords="544,80,627,107"/>
+<area shape="rect" id="node7" href="$textlogger_8hpp.html" title="textlogger.hpp" alt="" coords="675,155,779,181"/>
+<area shape="rect" id="node8" href="$plaintextlogger_8hpp.html" title="plaintextlogger.hpp" alt="" coords="992,229,1123,256"/>
+<area shape="rect" id="node9" href="$consolelogger_8hpp.html" title="consolelogger.hpp" alt="" coords="663,304,790,331"/>
+<area shape="rect" id="node10" href="$memorylogger_8hpp.html" title="memorylogger.hpp" alt="" coords="866,304,995,331"/>
+<area shape="rect" id="node11" href="$textfilelogger_8hpp.html" title="textfilelogger.hpp" alt="" coords="1019,304,1141,331"/>
+<area shape="rect" id="node12" href="$vstudiologger_8hpp.html" title="vstudiologger.hpp" alt="" coords="1165,304,1289,331"/>
+<area shape="rect" id="node13" href="$ansilogger_8hpp.html" title="ansilogger.hpp" alt="" coords="608,229,715,256"/>
+<area shape="rect" id="node14" href="$windowsconsolelogger_8hpp.html" title="windowsconsolelogger.hpp" alt="" coords="739,229,917,256"/>
+<area shape="rect" id="node15" href="$scopedump_8hpp.html" title="scopedump.hpp" alt="" coords="427,155,541,181"/>
+<area shape="rect" id="node16" href="$scopestore_8hpp.html" title="scopestore.hpp" alt="" coords="409,80,519,107"/>
+<area shape="rect" id="node17" href="$scopeinfo_8hpp.html" title="scopeinfo.hpp" alt="" coords="282,80,385,107"/>
 </map>

@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>ALox: Features and Limitations</title>
+<title>ALox: 02 - Features and Limitations</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -104,7 +104,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">Features and Limitations </div>  </div>
+<div class="title">02 - Features and Limitations </div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><h6></h6>
@@ -116,16 +116,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li><b>Auto-configuration</b> (if not configured by your code) based on OS (GNU/Linux, Windows) and <b>detecting IDE</b> (VStudio, Eclipse, QTCreator, etc.). Minimal intrusiveness in respect to <em>cluttering</em> your code and what you need to make it really work.</li>
 <li>Formatted, <b>colorful, configurable log output</b> with support for ANSI compatible consoles and Windows OS consoles.</li>
 <li>Log lines **'clickable' in IDE** to jump to the corresponding source code line (depending on IDE).</li>
-<li>Automatic collection of <b>meta information</b> like time stamp, time-difference to previous log, executing thread, caller information (source file, line number, class, method, etc.), domain (the 'topic' of the log output).</li>
-<li><b>Hierarchical 'Log-Domains'</b>, (like for example "MYAPP/UI", "MYAPP/DATABASE" that allow the classification of different log statements into user defined topics. Such domains can be controlled (recursively) at runtime to allow the programmer to concentrate on the area of current interest.</li>
-<li>Defaulting 'Log-Domains' for <b>source scope</b>, like <em>file</em>, <em>class</em>, <em>method</em>, which allows to omit the log-domain parameter from the log statements (again: leads to short, clean and readable log statements).</li>
+<li>Automatic collection of <b>meta information</b> like time stamp, time-difference to previous log, executing thread or executing source scope information (platform/language dependend).</li>
+<li><b>Hierarchical 'Log-Domains'</b>, (like for example "MYAPP/UI", "MYAPP/DATABASE" that allow the classification of different <em>Log Statements</em> into user defined topics. Verbosity is controlled per domain to allow the programmer to concentrate on the area of current interest.</li>
+<li>Defaulting 'Log-Domains' for <b>source scopes</b>, like <em>file</em>, <em>class</em> or <em>method</em>, which allows to omit the log-domain parameter from the <em>Log Statements</em> (again: leads to short, clean and readable <em>Log Statements</em>).</li>
+<li>Defaulting 'Log-Domains' for <b>thread scopes</b>, which allows to control the verbosity of the log output on a per thread basis.</li>
 <li>Support for <b>CMake</b>, <b>Eclipse</b>, <b>Visual Studio</b>, <b>QT Creator</b>, <b>Mono Develop</b> in combination with <b>GNU/Linux</b>, <b>Windows</b>, <b>Windows Phone</b> and <b>Android</b>. (Windows Phone in current versions not tested any more). Porting to other platforms should be easy.</li>
-<li>Very <b>fast</b> to minimize runtime overhead of logging (We just broke our former record and did 1 million log lines in a second, including meta information. This was of-course the C++ version doing release logging on release executable).</li>
+<li>Very <b>fast</b> to minimize runtime overhead of logging (We just broke our former record and did <b>one million log lines in a second</b>, including meta information. This was of-course the C++ version doing release logging on release executable).</li>
 <li>Automatic removal, aka **'pruning'**, of <em>debug-log</em> statements from release code mostly without the need of preprocessor if/endif code cluttering. Optionally also automatic pruning of <em>release-log</em> statements. (In Java: implemented using <a href="http://proguard.sourceforge.net">Proguard</a>, with provision of ready to use configuration files.</li>
-<li>Multiple <b>parallel log streams</b> with different <em>filters</em> and verbosity levels, e.g. for logging to the console and in parallel into a file.</li>
+<li>Multiple <b>parallel log streams</b> with different <em>Verbosity</em>, e.g. for logging to the console and in parallel into a file.</li>
 <li><b>Extensible</b> with own loggers, which enables dedicated "data drains" (e.g. databases or Internet services) and custom output formatting. ALox provides a simple programming interface and internal architecture that is easy to learn, not overloaded by 'factories' and 'factory factories' ;-)</li>
-<li><b>Code markers</b> for debug logging (get pruned) to allow back tracing of conditions that happened previous to a log statement. (This is useful for example within exception handlers.)</li>
+<li>Logging of <b>arbitrary objects</b> which means the whole ALox architecture builds on logging 'objects' instead of just message strings. Only the implementation decides whether an object is - and if yes, how - an object is converted into a human readable string.</li>
+<li>Scope dependent <b>Log Data</b> to add debug variables that automatically get pruned like the debug-logging statements are.</li>
 <li><b>Conditional logging</b> (similar to assertions).</li>
+<li><b>Log Once</b> to restrict a log message or a set of log messages to appear only once (or up to n-times).</li>
 <li>Automatic (OK, half-automatic :-) mapping of thread IDs to <b>readable thread names</b></li>
 <li><b>LogTools</b> (in C# and Java) for<ul>
 <li>Recursive <b>logging of complex types</b> with one line of code using <em>class inspection/reflection</em>. Variable recursion depth and detection of cyclic references.</li>
@@ -133,25 +136,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>Logging <b>XML trees</b></li>
 </ul>
 </li>
-<li>C++ version accepts arbitrary <b>3rd party string types</b>. No need to convert, e.g. a <em>QString</em> before logging it although ALox is not built on QT! This goal was reached by underlying A-Worx utility library <em>ALib</em> (open source, MIT License) which greatly <a href="http://alexworx.github.io/ALox-Logging-Library/cpp_ref/namespaceaworx_1_1lib_1_1strings.html">solved that problem</a> using some <em>template meta programming</em> to relieve us from the (disastrous) string mix in the C++ world. On the same token, conversion of <b>user defined types</b> to loggable (string) objects is supported. After implementing the conversion once, you can just throw your custom types into ALox log statements, even as a part of a concatenated log message.</li>
+<li>C++ version accepts arbitrary <b>3rd party string types</b>. No need to convert, e.g. a <em>QString</em> before logging it although ALox is not built on QT! This goal was reached by underlying A-Worx utility library <em>ALib</em> (open source, MIT License) which greatly <a href="http://alexworx.github.io/ALox-Logging-Library/cpp_ref/namespaceaworx_1_1lib_1_1strings.html">solved that problem</a> using some <em>template meta programming</em> to relieve us from the (disastrous) string mix in the C++ world. On the same token, conversion of <b>user defined types</b> to logable (string) objects is supported. After implementing the conversion once, you can just throw your custom types into ALox <em>Log Statements</em>, even as a part of a concatenated log message.</li>
 <li>and finally: ALox is under <b>continuous development</b>. You're invited to contribute!</li>
 </ul>
 <h3>Future work... and today's limitations</h3>
 <ul>
 <li>Plug-ins for IDEs implementing dedicated ALox log output windows (planned is QT Creator).</li>
-<li>Log verbosity/domain configuration outside of source code (cfg-files, environment variables, command line interface, etc.)</li>
 <li>File loggers (Well, there is one, but this is very basic still)</li>
 <li>HTTP/SOAP/REST/Email loggers (send us your proposals for the right standards/backends to support first. Or better: Contribute us your source)</li>
 <li>Thread tools for analysis and assertions</li>
 <li>More on performance logging</li>
 </ul>
 <hr/>
-<p> Next chapter: <a class="el" href="man_alox_architecture.html">Overview of the ALox architecture</a> </p>
-</div></div><!-- contents -->
+ <center>Next chapter: <a class="el" href="man_alox_terminology.html">03 - Terminology and Key Concepts</a> </center> <center> <a class="el" href="manual.html">Back to index</a> </center> </div></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:21 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:18 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

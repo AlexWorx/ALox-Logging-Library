@@ -143,10 +143,10 @@ Collaboration diagram for Configuration:</div>
 <div class="textblock"><hr/>
 <p> This class is supposed to be a static singleton in class <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html">ALIB</a>. It holds a list of objects of type <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a>, sorted by their priority and provides a single user interface to query configuration data from those.</p>
 <p>By default, two configuration plug-ins are set up:</p><ul>
-<li>command line parameter configuration options (Priority 10)</li>
-<li>environment variable configuration options (Priority 20)</li>
+<li>command line parameter configuration options (Priority 400, provided in static constant field <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a7782ed756910f8f9910f8eabbbaa494c">PrioCmdLine</a>).</li>
+<li>environment variable configuration options (Priority 300, provided in static constant field <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a8d6d75f99cfd73825afe36e62603a950">PrioEnvVars</a>).</li>
 </ul>
-<p>An application specific instance of abstract class <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a> that uses appropriate configuration techniques (ini-files, registry entries, etc.) optionally completes this set. It is proposed to use a priority value of 30 for for custom configuration plug-ins. This way, environment variables could <em>overwrite</em> entries in configuration files and command line parameters could in turn <em>overwrite</em> environment variables.</p>
+<p>An application specific instance of abstract class <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a> that uses appropriate configuration techniques (ini-files, registry entries, etc.) optionally completes this set. It is proposed to use a priority value of 200 (provided in static constant field <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a925f0708313b8a27defb4bf7983d7dd6">PrioIniFile</a>) for custom configuration plug-ins. This way, environment variables could <em>overwrite</em> entries in configuration files and command line parameters could in turn <em>overwrite</em> environment variables.</p>
 <p>Variables are case insensitive for the built-in <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a> types <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugIn.html">CommandLinePlugIn</a> and <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html">EnvironmentPlugIn</a>.</p>
 <p>It is recommended to treat variable names case insensitive within custom implementations (specializations) of class <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a> as well.</p>
 <p>The interface methods of this class are implemented <em>synchronized</em>. When adding or removing plug-ins, the instance should by synchronized (locked) as well.</p>
@@ -159,7 +159,7 @@ Collaboration diagram for Configuration:</div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Inner Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_1_1PrioAndPlugin.html">PrioAndPlugin</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_1_1PluginAndPrio.html">PluginAndPrio</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -170,6 +170,12 @@ Public Fields</h2></td></tr>
 <tr class="separator:ac23bef185f6fad19b5a07cef057ccc23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20358334d7d6268d5c50b650ebf3e4b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a20358334d7d6268d5c50b650ebf3e4b8">NumberFormat</a> = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html">NumberFormat</a>()</td></tr>
 <tr class="separator:a20358334d7d6268d5c50b650ebf3e4b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7782ed756910f8f9910f8eabbbaa494c"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a7782ed756910f8f9910f8eabbbaa494c">PrioCmdLine</a> = 400</td></tr>
+<tr class="separator:a7782ed756910f8f9910f8eabbbaa494c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d6d75f99cfd73825afe36e62603a950"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a8d6d75f99cfd73825afe36e62603a950">PrioEnvVars</a> = 300</td></tr>
+<tr class="separator:a8d6d75f99cfd73825afe36e62603a950"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a925f0708313b8a27defb4bf7983d7dd6"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a925f0708313b8a27defb4bf7983d7dd6">PrioIniFile</a> = 200</td></tr>
+<tr class="separator:a925f0708313b8a27defb4bf7983d7dd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12369eaf915d9637d932edb3268d2e55"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a12369eaf915d9637d932edb3268d2e55">TrueValues</a></td></tr>
 <tr class="separator:a12369eaf915d9637d932edb3268d2e55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -179,14 +185,18 @@ Public Methods</h2></td></tr>
 <tr class="separator:ac6f755b1f8e1c7532b3ebfd4f19b7c0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ccbf58795003a2373c5a4dd9c90b3c5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a2ccbf58795003a2373c5a4dd9c90b3c5">Get</a> (Object category, Object name, <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> target)</td></tr>
 <tr class="separator:a2ccbf58795003a2373c5a4dd9c90b3c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f0305f62e5f91943705ea0ab805917e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a7f0305f62e5f91943705ea0ab805917e">Get</a> (Object category, Object name, ref int target, <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> temp=null)</td></tr>
-<tr class="separator:a7f0305f62e5f91943705ea0ab805917e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59e4d55061a2795dad8b2a7d16c8962f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a59e4d55061a2795dad8b2a7d16c8962f">Get</a> (Object category, Object name, ref double target, <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> temp=null)</td></tr>
-<tr class="separator:a59e4d55061a2795dad8b2a7d16c8962f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e26d8048410128ace5354ddf98845b7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a1e26d8048410128ace5354ddf98845b7">Get</a> (Object category, Object name, out int target, <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> temp=null)</td></tr>
+<tr class="separator:a1e26d8048410128ace5354ddf98845b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae424d19d485faa863786709b8a05778d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ae424d19d485faa863786709b8a05778d">Get</a> (Object category, Object name, out double target, <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> temp=null)</td></tr>
+<tr class="separator:ae424d19d485faa863786709b8a05778d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ccc2a92ad3cf97fb6cbcb0b7109bb57"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a9ccc2a92ad3cf97fb6cbcb0b7109bb57">InsertPlugin</a> (<a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a> plugin, int priority)</td></tr>
 <tr class="separator:a9ccc2a92ad3cf97fb6cbcb0b7109bb57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8e63074fffc396723b753ddc73ddc86"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#af8e63074fffc396723b753ddc73ddc86">IsTrue</a> (Object category, Object name, ref int pluginPriority, <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> temp=null)</td></tr>
-<tr class="separator:af8e63074fffc396723b753ddc73ddc86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acac4653b0703548c68814cd48a1d06af"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#acac4653b0703548c68814cd48a1d06af">IsTrue</a> (<a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> value)</td></tr>
+<tr class="separator:acac4653b0703548c68814cd48a1d06af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5616332a3373010be271f04f2e92f88f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a5616332a3373010be271f04f2e92f88f">IsTrue</a> (<a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> value)</td></tr>
+<tr class="separator:a5616332a3373010be271f04f2e92f88f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7436dad7e0361445d031a671d87d5f6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac7436dad7e0361445d031a671d87d5f6">IsTrue</a> (Object category, Object name, out int pluginPriority, <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> temp=null)</td></tr>
+<tr class="separator:ac7436dad7e0361445d031a671d87d5f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6629a76663a353272a1a12f547241d5e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a6629a76663a353272a1a12f547241d5e">IsTrue</a> (Object category, Object name, <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> temp=null)</td></tr>
 <tr class="separator:a6629a76663a353272a1a12f547241d5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab822760a99ecb38fba7f95c4d2fb700d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ab822760a99ecb38fba7f95c4d2fb700d">RemovePlugin</a> (<a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a> plugin)</td></tr>
@@ -200,10 +210,10 @@ Public Methods</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Fields</h2></td></tr>
-<tr class="memitem:ac90f5ae6de5fd6744c3bbc5bd6b86d1a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac90f5ae6de5fd6744c3bbc5bd6b86d1a"></a>
-List&lt; <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_1_1PrioAndPlugin.html">PrioAndPlugin</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac90f5ae6de5fd6744c3bbc5bd6b86d1a">plugins</a></td></tr>
-<tr class="memdesc:ac90f5ae6de5fd6744c3bbc5bd6b86d1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The plug-ins we have in our portfolio. <br /></td></tr>
-<tr class="separator:ac90f5ae6de5fd6744c3bbc5bd6b86d1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6fa102e37cb8bd5f57802ec7f51b54a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac6fa102e37cb8bd5f57802ec7f51b54a"></a>
+List&lt; <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_1_1PluginAndPrio.html">PluginAndPrio</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac6fa102e37cb8bd5f57802ec7f51b54a">plugins</a></td></tr>
+<tr class="memdesc:ac6fa102e37cb8bd5f57802ec7f51b54a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The plug-ins we have in our portfolio. <br /></td></tr>
+<tr class="separator:ac6fa102e37cb8bd5f57802ec7f51b54a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ac6f755b1f8e1c7532b3ebfd4f19b7c0c"></a>
@@ -283,7 +293,7 @@ List&lt; <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_
 
 </div>
 </div>
-<a class="anchor" id="a7f0305f62e5f91943705ea0ab805917e"></a>
+<a class="anchor" id="a1e26d8048410128ace5354ddf98845b7"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -302,7 +312,7 @@ List&lt; <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">ref int&#160;</td>
+          <td class="paramtype">out int&#160;</td>
           <td class="paramname"><em>target</em>, </td>
         </tr>
         <tr>
@@ -332,7 +342,7 @@ List&lt; <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_
 
 </div>
 </div>
-<a class="anchor" id="a59e4d55061a2795dad8b2a7d16c8962f"></a>
+<a class="anchor" id="ae424d19d485faa863786709b8a05778d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -351,7 +361,7 @@ List&lt; <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">ref double&#160;</td>
+          <td class="paramtype">out double&#160;</td>
           <td class="paramname"><em>target</em>, </td>
         </tr>
         <tr>
@@ -405,7 +415,7 @@ List&lt; <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Adds the given plug-in to the list of plug-ins used to query configuration values. </p><dl class="params"><dt>Parameters</dt><dd>
+<p> Adds the given plug-in to the list of plug-ins used to query configuration values. Higher numbers for parameter priority, prioritize this plug-in against those with lower values. Default values are provided with static constant fields <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a7782ed756910f8f9910f8eabbbaa494c">PrioCmdLine</a>, <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a8d6d75f99cfd73825afe36e62603a950">PrioEnvVars</a> and <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a925f0708313b8a27defb4bf7983d7dd6">PrioIniFile</a>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">plugin</td><td>The plug-in to insert. </td></tr>
     <tr><td class="paramname">priority</td><td>The priority of the plug-in. </td></tr>
@@ -415,7 +425,55 @@ List&lt; <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_
 
 </div>
 </div>
-<a class="anchor" id="af8e63074fffc396723b753ddc73ddc86"></a>
+<a class="anchor" id="acac4653b0703548c68814cd48a1d06af"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool IsTrue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Utility method that checks if a given value represents 'true'. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>The value to check</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns <code>true</code>, if the value represents 'true', <code>false</code> if not. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5616332a3373010be271f04f2e92f88f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool IsTrue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a>&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Utility method that checks if a given value represents 'true'. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>The value to check</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns <code>true</code>, if the value represents 'true', <code>false</code> if not. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac7436dad7e0361445d031a671d87d5f6"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -434,7 +492,7 @@ List&lt; <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">ref int&#160;</td>
+          <td class="paramtype">out int&#160;</td>
           <td class="paramname"><em>pluginPriority</em>, </td>
         </tr>
         <tr>
@@ -739,6 +797,45 @@ List&lt; <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_
 
 </div>
 </div>
+<a class="anchor" id="a7782ed756910f8f9910f8eabbbaa494c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int PrioCmdLine = 400</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Constant providing default priority for <b>IniFile</b> (or similar) plug-in. </p>
+
+</div>
+</div>
+<a class="anchor" id="a8d6d75f99cfd73825afe36e62603a950"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int PrioEnvVars = 300</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Constant providing default priority for environment variables plug-in. </p>
+
+</div>
+</div>
+<a class="anchor" id="a925f0708313b8a27defb4bf7983d7dd6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int PrioIniFile = 200</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Constant providing default priority for command-line parameters plug-in. </p>
+
+</div>
+</div>
 <a class="anchor" id="a12369eaf915d9637d932edb3268d2e55"></a>
 <div class="memitem">
 <div class="memproto">
@@ -760,7 +857,7 @@ List&lt; <a class="el" href="classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:19 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:17 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

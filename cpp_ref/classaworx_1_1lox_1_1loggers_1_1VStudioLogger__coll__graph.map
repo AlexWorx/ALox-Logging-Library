@@ -1,10 +1,9 @@
 <map id="VStudioLogger" name="VStudioLogger">
-<area shape="rect" id="node5" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html" title="TextLogger" alt="" coords="801,389,888,416"/>
-<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\l\&lt; TCapacity \&gt;" alt="" coords="183,193,311,234"/>
-<area shape="rect" id="node9" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html" title="MetaInfo" alt="" coords="539,357,612,384"/>
-<area shape="rect" id="node4" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html" title="PlainTextLogger" alt="" coords="937,389,1053,416"/>
-<area shape="rect" id="node6" href="$classaworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="545,465,606,492"/>
-<area shape="rect" id="node7" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html" title="AutoSizes" alt="" coords="534,516,617,543"/>
-<area shape="rect" id="node8" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="5,309,71,336"/>
-<area shape="rect" id="node10" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html" title="ObjectConverter" alt="" coords="517,567,634,593"/>
+<area shape="rect" id="node2" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html" title="PlainTextLogger" alt="" coords="857,188,973,215"/>
+<area shape="rect" id="node3" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html" title="TextLogger" alt="" coords="721,188,808,215"/>
+<area shape="rect" id="node4" href="$classaworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="467,5,528,32"/>
+<area shape="rect" id="node5" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html" title="AutoSizes" alt="" coords="456,56,539,83"/>
+<area shape="rect" id="node7" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="141,188,206,215"/>
+<area shape="rect" id="node9" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html" title="MetaInfo" alt="" coords="461,316,534,343"/>
+<area shape="rect" id="node8" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="5,188,69,215"/>
 </map>

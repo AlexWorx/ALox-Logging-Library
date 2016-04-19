@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['value',['Value',['../classcs_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Variable.html#a3af185df6d34594e87ac3b8dac9b6b85',1,'cs::aworx::lib::config::IniFile::Variable']]],
-  ['values',['values',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html#a37671896b86a975f51e992392f49ca08',1,'cs::aworx::lox::core::textlogger::AutoSizes']]],
-  ['variables',['Variables',['../classcs_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Section.html#ac92596745ac4d7e5a6c6e8300cabfc01',1,'cs::aworx::lib::config::IniFile::Section']]],
-  ['version',['Version',['../classcs_1_1aworx_1_1lib_1_1ALIB.html#a811fc76ba0094b56a1ddbe6ac8d78915',1,'cs.aworx.lib.ALIB.Version()'],['../classcs_1_1aworx_1_1lox_1_1Log.html#a811fc76ba0094b56a1ddbe6ac8d78915',1,'cs.aworx.lox.Log.Version()']]]
+  ['url_5fend',['URL_END',['../classcs_1_1aworx_1_1lox_1_1ESC.html#ae6c49bf947cc01705f08d5996bcfed7f',1,'cs::aworx::lox::ESC']]],
+  ['url_5fstart',['URL_START',['../classcs_1_1aworx_1_1lox_1_1ESC.html#ab67c85a196edb1097933824e1d9e6185',1,'cs::aworx::lox::ESC']]],
+  ['usesstdstreams',['usesStdStreams',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a521df36fef7aa1dc1979a93cd4db2e83',1,'cs::aworx::lox::core::textlogger::TextLogger']]]
 ];

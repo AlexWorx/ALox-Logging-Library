@@ -3,6 +3,7 @@ var searchData=
   ['android',['android',['../namespacecom_1_1aworx_1_1lox_1_1android.html',1,'com::aworx::lox']]],
   ['aworx',['aworx',['../namespacecom_1_1aworx.html',1,'com']]],
   ['config',['config',['../namespacecom_1_1aworx_1_1lib_1_1config.html',1,'com::aworx::lib']]],
+  ['containers',['containers',['../namespacecom_1_1aworx_1_1lib_1_1containers.html',1,'com::aworx::lib']]],
   ['core',['core',['../namespacecom_1_1aworx_1_1lox_1_1core.html',1,'com::aworx::lox']]],
   ['enums',['enums',['../namespacecom_1_1aworx_1_1lib_1_1enums.html',1,'com::aworx::lib']]],
   ['lib',['lib',['../namespacecom_1_1aworx_1_1lib.html',1,'com::aworx']]],

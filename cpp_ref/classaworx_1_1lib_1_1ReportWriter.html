@@ -140,13 +140,14 @@ Inheritance diagram for ReportWriter:</div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
-<p> Interface for ALIB <a class="el" href="classaworx_1_1lib_1_1ReportWriter.html">ReportWriter</a>. The <b>ReportWriter</b> is invoked on internal ALIB errors caused by illegal arguments or other wrong ALIB use. By default, a simple implementation is installed that just uses cout/cerr to print the error and warning messages to the application's standard output. Applications may implement their own <a class="el" href="classaworx_1_1lib_1_1ReportWriter.html">ReportWriter</a>.</p>
-<dl class="section see"><dt>See also</dt><dd>Class <a class="el" href="classaworx_1_1lib_1_1Report.html">Report</a>. </dd></dl>
+<p> Interface that defines a writer for for ALib <a class="el" href="classaworx_1_1lib_1_1Report.html">Report</a>. By default, a simple implementation is installed that just uses <code>out</code> and <code>cerr</code>. Applications may implement their own <a class="el" href="classaworx_1_1lib_1_1ReportWriter.html">ReportWriter</a>. </p>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Methods</h2></td></tr>
 <tr class="memitem:aacb613601745319beb402a265be497e5"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1ReportWriter.html#aacb613601745319beb402a265be497e5">~ReportWriter</a> ()</td></tr>
 <tr class="separator:aacb613601745319beb402a265be497e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff02ec3de8e94bd4d906e89168849ac8"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1ReportWriter.html#aff02ec3de8e94bd4d906e89168849ac8">NotifyActivation</a> (<a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ae1c5184dc404edf057ed537bcfddef84">enums::Phase</a> phase)=0</td></tr>
+<tr class="separator:aff02ec3de8e94bd4d906e89168849ac8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a3ec6ba9fc90c059952efc82b021d63"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1ReportWriter.html#a3a3ec6ba9fc90c059952efc82b021d63">Report</a> (const <a class="el" href="classaworx_1_1lib_1_1Report_1_1Message.html">Report::Message</a> &amp;report)=0</td></tr>
 <tr class="separator:a3a3ec6ba9fc90c059952efc82b021d63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -177,6 +178,39 @@ Public Methods</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="aff02ec3de8e94bd4d906e89168849ac8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void NotifyActivation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ae1c5184dc404edf057ed537bcfddef84">enums::Phase</a>&#160;</td>
+          <td class="paramname"><em>phase</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Notify activation/deactivation </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">phase</td><td>Information if activated or deactivated. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="classaworx_1_1lox_1_1ALoxReportWriter.html#a810c6fafc7e815f40da0a7e1f30e2233">ALoxReportWriter</a>, and <a class="el" href="classaworx_1_1lib_1_1ConsoleReportWriter.html#a060e63e8c473550f7964f35ba21704bc">ConsoleReportWriter</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a3a3ec6ba9fc90c059952efc82b021d63"></a>
 <div class="memitem">
 <div class="memproto">
@@ -206,7 +240,7 @@ Public Methods</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classaworx_1_1lib_1_1ConsoleReportWriter.html#a4e22fecd02d1d3b1b079178c29c54d90">ConsoleReportWriter</a>, and <a class="el" href="classaworx_1_1lox_1_1ALoxReportWriter.html#a3ad9ad01d27945bd76295c63aa1f5457">ALoxReportWriter</a>.</p>
+<p>Implemented in <a class="el" href="classaworx_1_1lox_1_1ALoxReportWriter.html#a3ad9ad01d27945bd76295c63aa1f5457">ALoxReportWriter</a>, and <a class="el" href="classaworx_1_1lib_1_1ConsoleReportWriter.html#a4e22fecd02d1d3b1b079178c29c54d90">ConsoleReportWriter</a>.</p>
 
 </div>
 </div>
@@ -217,7 +251,7 @@ Public Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:18 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:16 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

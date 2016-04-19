@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['ide_2fbuild_20system_20setup',['IDE/Build system Setup',['cpp_ref/cppsetup.html',1,'']]],
-  ['ide_20setup_20alox_20for_20c_23',['IDE setup ALox for C#',['cs_ref/cssetup.html',1,'']]]
+  ['change_20log',['Change Log',['../changelog.html',1,'']]],
+  ['c_2b_2b_20reference',['C++ Reference',['cpp_ref/cppmainpage.html',1,'']]],
+  ['conditional_20compilation_20symbols',['Conditional Compilation Symbols',['cs_ref/csmacros.html',1,'']]],
+  ['c_23_20reference',['C# Reference',['cs_ref/csmainpage.html',1,'']]]
 ];

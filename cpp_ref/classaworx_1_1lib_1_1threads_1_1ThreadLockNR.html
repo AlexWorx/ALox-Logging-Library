@@ -142,12 +142,12 @@ Inheritance diagram for ThreadLockNR:</div>
 <div class="dynheader">
 Collaboration diagram for ThreadLockNR:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lib_1_1threads_1_1ThreadLockNR__coll__graph.svg" width="122" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lib_1_1threads_1_1ThreadLockNR__coll__graph.svg" width="220" height="294"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
 <p> This class is a simple wrapper around std::mutex (provided solely to reach compatibility of <a class="el" href="classaworx_1_1lib_1_1ALIB.html">ALIB</a> across programming languages) and hence allows <em>mutual exclusive access</em> to resources, by protecting data from concurrent access by different threads.</p>
-<p>Unlike class <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a>, this class <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html">ThreadLockNR</a> does not use an internal counter to allow recursive calls to <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#affeac79a4a864890b2e1862d388bfad3">Acquire()</a> and <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#a84a1506acc1e04455ebc3bc724265872">Release()</a>. Also, no owner is recorded, no <a class="el" href="classaworx_1_1lib_1_1ALIB.html">ALIB</a> <a class="el" href="classaworx_1_1lib_1_1ReportWriter.html">ReportWriter</a> is invoked on misuse and no time limit warnings are supported. Consider using <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a> in most cases. The advantage of <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html">ThreadLockNR</a> is that it operates several times faster than <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a>. So, for very time critical sections with frequent Lock.Release()use of <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html">ThreadLockNR</a> can be taken into consideration.</p>
+<p>Unlike class <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a>, this class <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html">ThreadLockNR</a> does not use an internal counter to allow recursive calls to <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#a07a42f9930e2b2f9b94a3d47d3088532">Acquire()</a> and <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#a84a1506acc1e04455ebc3bc724265872">Release()</a>. Also, no owner is recorded, no <a class="el" href="classaworx_1_1lib_1_1ALIB.html">ALIB</a> <a class="el" href="classaworx_1_1lib_1_1ReportWriter.html">ReportWriter</a> is invoked on misuse and no time limit warnings are supported. Consider using <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a> in most cases. The advantage of <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html">ThreadLockNR</a> is that it operates several times faster than <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a>. So, for very time critical sections with frequent Lock.Release()use of <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html">ThreadLockNR</a> can be taken into consideration.</p>
 <dl class="section attention"><dt>Attention</dt><dd>Nested (recursive) acquisitions are not supported and lead to undefined behavior. </dd></dl>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -156,8 +156,8 @@ Public Methods</h2></td></tr>
 <tr class="separator:ab5925d1db9fdc30ccd8e7f713ec94777"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2dd19f8e7eb364c570f32d320c470ff"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#ad2dd19f8e7eb364c570f32d320c470ff">~ThreadLockNR</a> ()</td></tr>
 <tr class="separator:ad2dd19f8e7eb364c570f32d320c470ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:affeac79a4a864890b2e1862d388bfad3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#affeac79a4a864890b2e1862d388bfad3">Acquire</a> ()</td></tr>
-<tr class="separator:affeac79a4a864890b2e1862d388bfad3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07a42f9930e2b2f9b94a3d47d3088532"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#a07a42f9930e2b2f9b94a3d47d3088532">Acquire</a> (const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;file, int line, const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;func)</td></tr>
+<tr class="separator:a07a42f9930e2b2f9b94a3d47d3088532"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f6f0840b4d4e758e93644c2fd389896"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a8c800527afe0a8a6c71ae4cceda6bf9d">enums::Safeness</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#a6f6f0840b4d4e758e93644c2fd389896">Mode</a> ()</td></tr>
 <tr class="separator:a6f6f0840b4d4e758e93644c2fd389896"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a84a1506acc1e04455ebc3bc724265872"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#a84a1506acc1e04455ebc3bc724265872">Release</a> ()</td></tr>
@@ -171,6 +171,13 @@ Protected Fields</h2></td></tr>
 <tr class="separator:a9426fc5fde1af618b0afd97ff21c1b6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a925e97cfc2fb5e3b27bd06f805668a9d"><td class="memItemLeft" align="right" valign="top">std::mutex *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#a925e97cfc2fb5e3b27bd06f805668a9d">mutex</a> = nullptr</td></tr>
 <tr class="separator:a925e97cfc2fb5e3b27bd06f805668a9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classaworx_1_1lib_1_1Ownable"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classaworx_1_1lib_1_1Ownable')"><img src="closed.png" alt="-"/>&#160;Protected Fields inherited from <a class="el" href="classaworx_1_1lib_1_1Ownable.html">Ownable</a></td></tr>
+<tr class="memitem:a7d085fb917fb26fa76fad94d9296665d inherit pro_attribs_classaworx_1_1lib_1_1Ownable"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1Ownable.html#a7d085fb917fb26fa76fad94d9296665d">acquirementLineNumber</a></td></tr>
+<tr class="separator:a7d085fb917fb26fa76fad94d9296665d inherit pro_attribs_classaworx_1_1lib_1_1Ownable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34743946c0a8598a13feea2b3c7944eb inherit pro_attribs_classaworx_1_1lib_1_1Ownable"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html">strings::TString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1Ownable.html#a34743946c0a8598a13feea2b3c7944eb">acquirementMethodName</a> =nullptr</td></tr>
+<tr class="separator:a34743946c0a8598a13feea2b3c7944eb inherit pro_attribs_classaworx_1_1lib_1_1Ownable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9f15c83b17c4bab35858650c98c44d5 inherit pro_attribs_classaworx_1_1lib_1_1Ownable"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html">strings::TString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1Ownable.html#ae9f15c83b17c4bab35858650c98c44d5">acquirementSourcefile</a> =nullptr</td></tr>
+<tr class="separator:ae9f15c83b17c4bab35858650c98c44d5 inherit pro_attribs_classaworx_1_1lib_1_1Ownable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ab5925d1db9fdc30ccd8e7f713ec94777"></a>
@@ -230,7 +237,7 @@ Protected Fields</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="affeac79a4a864890b2e1862d388bfad3"></a>
+<a class="anchor" id="a07a42f9930e2b2f9b94a3d47d3088532"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -240,8 +247,25 @@ Protected Fields</h2></td></tr>
         <tr>
           <td class="memname">virtual void Acquire </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>line</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
+          <td class="paramname"><em>func</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -251,9 +275,16 @@ Protected Fields</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> <a class="el" href="classaworx_1_1lib_1_1threads_1_1Thread.html">Thread</a> which invokes this method gets registered as the current owner of this object, until the same thread releases the ownership invoking <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#a84a1506acc1e04455ebc3bc724265872">Release</a>. In the case that this object is already owned by another thread, the invoking thread is suspended until ownership can be gained. Multiple (nested) calls to this method are not supported and lead to undefined behavior. </p>
+<p> <a class="el" href="classaworx_1_1lib_1_1threads_1_1Thread.html">Thread</a> which invokes this method gets registered as the current owner of this object, until the same thread releases the ownership invoking <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#a84a1506acc1e04455ebc3bc724265872">Release</a>. In the case that this object is already owned by another thread, the invoking thread is suspended until ownership can be gained. Multiple (nested) calls to this method are not supported and lead to undefined behavior. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>Caller information. Available only in debug compilations. </td></tr>
+    <tr><td class="paramname">line</td><td>Caller information. Available only in debug compilations. </td></tr>
+    <tr><td class="paramname">func</td><td>Caller information. Available only in debug compilations. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Implements <a class="el" href="classaworx_1_1lib_1_1Ownable.html#a72e29e3a91bbf0ab80b0b19bc7975a39">Ownable</a>.</p>
+<p>Reimplemented from <a class="el" href="classaworx_1_1lib_1_1Ownable.html#a07a42f9930e2b2f9b94a3d47d3088532">Ownable</a>.</p>
 
 </div>
 </div>
@@ -303,7 +334,7 @@ Protected Fields</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Releases ownership of this object. If <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#affeac79a4a864890b2e1862d388bfad3">Acquire</a> was called multiple times before, the same number of calls to this method have to be performed to release ownership. </p>
+<p> Releases ownership of this object. If <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#a07a42f9930e2b2f9b94a3d47d3088532">Acquire</a> was called multiple times before, the same number of calls to this method have to be performed to release ownership. </p>
 
 <p>Implements <a class="el" href="classaworx_1_1lib_1_1Ownable.html#a4dc7ecb0d192d6cccc9287daaf0eca0f">Ownable</a>.</p>
 
@@ -390,7 +421,7 @@ Protected Fields</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:19 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:16 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

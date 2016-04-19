@@ -71,7 +71,7 @@
 <g id="node4" class="node"><title>Node4</title>
 <polygon fill="white" stroke="#bfbfbf" points="407.5,-118.066 407.5,-148.066 565.5,-148.066 565.5,-118.066 407.5,-118.066"/>
 <text text-anchor="start" x="415.5" y="-136.066" font-family="Helvetica,sans-Serif" font-size="10.00">ArrayList&lt; com.aworx.lib.config.</text>
-<text text-anchor="middle" x="486.5" y="-125.066" font-family="Helvetica,sans-Serif" font-size="10.00">Configuration.PrioAndPlugin &gt;</text>
+<text text-anchor="middle" x="486.5" y="-125.066" font-family="Helvetica,sans-Serif" font-size="10.00">Configuration.PluginAndPrio &gt;</text>
 </g>
 <!-- Node4&#45;&gt;Node3 -->
 <g id="edge3" class="edge"><title>Node4&#45;&gt;Node3</title>

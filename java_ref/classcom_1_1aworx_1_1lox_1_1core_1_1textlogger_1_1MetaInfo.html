@@ -135,15 +135,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Collaboration diagram for MetaInfo:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo__coll__graph.svg" width="903" height="322"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo__coll__graph.svg" width="924" height="324"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
-<p> This class is a sort of plug-in for the <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a> class. Its purpose is to assemble the meta information of each log line (things like timestamps, thread information, level and domain, etc.).</p>
+<p> This class is a sort of plug-in for the <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a> class. Its purpose is to assemble the meta information of each log line (things like timestamps, thread information, verbosity and domain, etc.).</p>
 <p>To manipulate the meta information log output, three options exist:</p><ul>
 <li>by just changing the <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ade879c363f20d8d0acb216f8bf40d1af">format</a> string (at runtime).</li>
-<li>by creating a derived class that introduces a new version of method <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ac7e974853e784255fa22fd766ffa0f5e">processVariable()</a> to handle one or more format variable differently or to introduce new variables.</li>
-<li>by creating a derived class that introduces a new version of method <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#afad264ab5150512279bf200e88157d79">write()</a> to completely control the meta information output. </li>
+<li>by creating a derived class that introduces a new version of method <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#adf6ac072abe740c98bda2cc007851b18">processVariable()</a> to handle one or more format variable differently or to introduce new variables.</li>
+<li>by creating a derived class that introduces a new version of method <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a043ad9162f01c0cd87781fc900883630">write()</a> to completely control the meta information output. </li>
 </ul>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -152,16 +152,8 @@ Public Fields</h2></td></tr>
 <tr class="separator:a6b15b781aa433d02829c8c74e71c795f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae00c40256e7c69ef39832f0a602f8fdd"><td class="memItemLeft" align="right" valign="top">SimpleDateFormat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ae00c40256e7c69ef39832f0a602f8fdd">dateFormatter</a></td></tr>
 <tr class="separator:ae00c40256e7c69ef39832f0a602f8fdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade879c363f20d8d0acb216f8bf40d1af"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ade879c363f20d8d0acb216f8bf40d1af">format</a> = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>( &quot;(%CF:%CL) %CM():%A8[%TE +%TI] [%t] %L [%O] %A1(%#): &quot;)</td></tr>
+<tr class="memitem:ade879c363f20d8d0acb216f8bf40d1af"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ade879c363f20d8d0acb216f8bf40d1af">format</a> = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>( &quot;(%SF:%SL) %SM():%A5[%TC +%TL][%tN]%V[%D]%A1(%#): &quot;)</td></tr>
 <tr class="separator:ade879c363f20d8d0acb216f8bf40d1af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8322b6ecc21496710ca2c4bb50d4cec"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ae8322b6ecc21496710ca2c4bb50d4cec">logLevelError</a> = &quot;[ERR]&quot;</td></tr>
-<tr class="separator:ae8322b6ecc21496710ca2c4bb50d4cec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15ed110e8ee4220103779d9df1d1d31a"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a15ed110e8ee4220103779d9df1d1d31a">logLevelInfo</a> = &quot; &quot;</td></tr>
-<tr class="separator:a15ed110e8ee4220103779d9df1d1d31a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a43bbe77b119f7f752815048f0552d6ce"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a43bbe77b119f7f752815048f0552d6ce">logLevelVerbose</a> = &quot;[***]&quot;</td></tr>
-<tr class="separator:a43bbe77b119f7f752815048f0552d6ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6eacb25f7d4c74adb2ada7ccbcd36f3d"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a6eacb25f7d4c74adb2ada7ccbcd36f3d">logLevelWarning</a> = &quot;[WRN]&quot;</td></tr>
-<tr class="separator:a6eacb25f7d4c74adb2ada7ccbcd36f3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac083b4aac0faf389e3a70ef7f8212e54"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ac083b4aac0faf389e3a70ef7f8212e54">logNumberMinDigits</a> = 3</td></tr>
 <tr class="separator:ac083b4aac0faf389e3a70ef7f8212e54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1410aced7386eb84cc3da7ccbfdd2c96"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a1410aced7386eb84cc3da7ccbfdd2c96">timeDiffDays</a> = &quot; days&quot;</td></tr>
@@ -192,6 +184,14 @@ String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 <tr class="separator:ab07f305b621e1b1dce257bd84dd113d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb350e099bc2a47cf6c85fa0db340748"><td class="memItemLeft" align="right" valign="top">SimpleDateFormat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#aeb350e099bc2a47cf6c85fa0db340748">timeOfDayFormatter</a></td></tr>
 <tr class="separator:aeb350e099bc2a47cf6c85fa0db340748"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6e4166544675a2fed05d47c7b6707f3"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ab6e4166544675a2fed05d47c7b6707f3">verbosityError</a> = &quot;[ERR]&quot;</td></tr>
+<tr class="separator:ab6e4166544675a2fed05d47c7b6707f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a218a62323db198131078f60ea48fe537"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a218a62323db198131078f60ea48fe537">verbosityInfo</a> = &quot; &quot;</td></tr>
+<tr class="separator:a218a62323db198131078f60ea48fe537"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fa3d4ab8021da100c82279eb136ba64"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a9fa3d4ab8021da100c82279eb136ba64">verbosityVerbose</a> = &quot;[***]&quot;</td></tr>
+<tr class="separator:a9fa3d4ab8021da100c82279eb136ba64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ae1dae497ee2986b38b6f4c51907560"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a8ae1dae497ee2986b38b6f4c51907560">verbosityWarning</a> = &quot;[WRN]&quot;</td></tr>
+<tr class="separator:a8ae1dae497ee2986b38b6f4c51907560"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Fields</h2></td></tr>
@@ -215,22 +215,26 @@ Protected Fields</h2></td></tr>
 <tr class="separator:add986b1c980b4ef85ba51f1c2fbabf36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe17394f84cf5bdb4891727e32f49300"><td class="memItemLeft" align="right" valign="top">StringBuffer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#afe17394f84cf5bdb4891727e32f49300">tempSBuf</a> = new StringBuffer()</td></tr>
 <tr class="separator:afe17394f84cf5bdb4891727e32f49300"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a66329d15c440f4546f72bfe913c4a4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8a66329d15c440f4546f72bfe913c4a4"></a>
-<a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html">Tokenizer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a8a66329d15c440f4546f72bfe913c4a4">tok</a> = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html">Tokenizer</a>()</td></tr>
-<tr class="memdesc:a8a66329d15c440f4546f72bfe913c4a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tokenizer used in <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#afad264ab5150512279bf200e88157d79">write</a>. <br /></td></tr>
-<tr class="separator:a8a66329d15c440f4546f72bfe913c4a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6307f6d6ae7eb38fdcd9f372e798366"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ab6307f6d6ae7eb38fdcd9f372e798366">tmpAString</a> = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>()</td></tr>
+<tr class="separator:ab6307f6d6ae7eb38fdcd9f372e798366"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e48c9b876240a28cb1ec476593f3d10"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7e48c9b876240a28cb1ec476593f3d10"></a>
+<a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html">Tokenizer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a7e48c9b876240a28cb1ec476593f3d10">tTok</a> = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html">Tokenizer</a>()</td></tr>
+<tr class="memdesc:a7e48c9b876240a28cb1ec476593f3d10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tokenizer used in <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a043ad9162f01c0cd87781fc900883630">write</a>. <br /></td></tr>
+<tr class="separator:a7e48c9b876240a28cb1ec476593f3d10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af092cd717d73525692163f7b819cfa5e"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#af092cd717d73525692163f7b819cfa5e">warnedOnce</a> = false</td></tr>
+<tr class="separator:af092cd717d73525692163f7b819cfa5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Methods</h2></td></tr>
-<tr class="memitem:ac7e974853e784255fa22fd766ffa0f5e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ac7e974853e784255fa22fd766ffa0f5e">processVariable</a> (<a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a> logger, <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> domain, Log.Level level, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a> caller, <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> dest, <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> variable)</td></tr>
-<tr class="separator:ac7e974853e784255fa22fd766ffa0f5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afad264ab5150512279bf200e88157d79"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#afad264ab5150512279bf200e88157d79">write</a> (<a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a> logger, <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> buf, <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> domain, Log.Level level, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a> caller)</td></tr>
-<tr class="separator:afad264ab5150512279bf200e88157d79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf6ac072abe740c98bda2cc007851b18"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#adf6ac072abe740c98bda2cc007851b18">processVariable</a> (<a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a> logger, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a> domain, <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a> verbosity, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html">ScopeInfo</a> scope, <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> dest, <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html">Substring</a> variable)</td></tr>
+<tr class="separator:adf6ac072abe740c98bda2cc007851b18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a043ad9162f01c0cd87781fc900883630"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a043ad9162f01c0cd87781fc900883630">write</a> (<a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html">TextLogger</a> logger, <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> buf, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a> domain, <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a> verbosity, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html">ScopeInfo</a> scope)</td></tr>
+<tr class="separator:a043ad9162f01c0cd87781fc900883630"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a54b0e0ca4a269b9add4e5cb42b517e0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a54b0e0ca4a269b9add4e5cb42b517e0a">writeTimeDiff</a> (<a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> buf, long diffNanos)</td></tr>
 <tr class="separator:a54b0e0ca4a269b9add4e5cb42b517e0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="ac7e974853e784255fa22fd766ffa0f5e"></a>
+<a class="anchor" id="adf6ac072abe740c98bda2cc007851b18"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -246,20 +250,20 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a>&#160;</td>
           <td class="paramname"><em>domain</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Log.Level&#160;</td>
-          <td class="paramname"><em>level</em>, </td>
+          <td class="paramtype"><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a>&#160;</td>
+          <td class="paramname"><em>verbosity</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a>&#160;</td>
-          <td class="paramname"><em>caller</em>, </td>
+          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html">ScopeInfo</a>&#160;</td>
+          <td class="paramname"><em>scope</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -290,9 +294,9 @@ Protected Methods</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">logger</td><td>The logger that we are embedded in. </td></tr>
-    <tr><td class="paramname">domain</td><td>The log domain name. </td></tr>
-    <tr><td class="paramname">level</td><td>The log level. This has been checked to be active already on this stage and is provided to be able to be logged out only. </td></tr>
-    <tr><td class="paramname">caller</td><td>Once compiler generated and passed forward to here. </td></tr>
+    <tr><td class="paramname">domain</td><td>The <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a></em>. </td></tr>
+    <tr><td class="paramname">verbosity</td><td>The verbosity. This has been checked to be active already on this stage and is provided to be able to be logged out only. </td></tr>
+    <tr><td class="paramname">scope</td><td>Information about the scope of the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em>.. </td></tr>
     <tr><td class="paramname">dest</td><td>The buffer to write meta information into. </td></tr>
     <tr><td class="paramname">variable</td><td>The variable to read (may have more characters appended)</td></tr>
   </table>
@@ -302,7 +306,7 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="afad264ab5150512279bf200e88157d79"></a>
+<a class="anchor" id="a043ad9162f01c0cd87781fc900883630"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -324,20 +328,20 @@ Protected Methods</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a>&#160;</td>
           <td class="paramname"><em>domain</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Log.Level&#160;</td>
-          <td class="paramname"><em>level</em>, </td>
+          <td class="paramtype"><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a>&#160;</td>
+          <td class="paramname"><em>verbosity</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a>&#160;</td>
-          <td class="paramname"><em>caller</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html">ScopeInfo</a>&#160;</td>
+          <td class="paramname"><em>scope</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -352,14 +356,14 @@ Protected Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Parses the <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ade879c363f20d8d0acb216f8bf40d1af">format</a> string and logs meta information into the log buffer. For each variable found, method <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ac7e974853e784255fa22fd766ffa0f5e">processVariable</a> is invoked. Hence, to add new variables, the latter method can be overwritten by descendants. Overwriting this method is recommended for formatter classes that do not rely on format strings.</p>
+<p> Parses the <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ade879c363f20d8d0acb216f8bf40d1af">format</a> string and logs meta information into the log buffer. For each variable found, method <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#adf6ac072abe740c98bda2cc007851b18">processVariable</a> is invoked. Hence, to add new variables, the latter method can be overwritten by descendants. Overwriting this method is recommended for formatter classes that do not rely on format strings.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">logger</td><td>The logger that we are embedded in. </td></tr>
     <tr><td class="paramname">buf</td><td>The buffer to write meta information into. </td></tr>
-    <tr><td class="paramname">domain</td><td>The log domain name. </td></tr>
-    <tr><td class="paramname">level</td><td>The log level. This has been checked to be active already on this stage and is provided to be able to be logged out only. </td></tr>
-    <tr><td class="paramname">caller</td><td>Once compiler generated and passed forward to here. </td></tr>
+    <tr><td class="paramname">domain</td><td>The <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a></em>. </td></tr>
+    <tr><td class="paramname">verbosity</td><td>The verbosity. This has been checked to be active already on this stage and is provided to be able to be logged out only. </td></tr>
+    <tr><td class="paramname">scope</td><td>Information about the scope of the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em>.. </td></tr>
   </table>
   </dd>
 </dl>
@@ -428,7 +432,7 @@ Protected Methods</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Flag to indicate if calendar instance was set during one doLog() call </p>
+<p>Flag to indicate if calendar instance was set during one logText call </p>
 
 </div>
 </div>
@@ -496,7 +500,7 @@ Protected Methods</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Internal object to retrieve formatted log date. This field has to be set to null, when the field <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a6b15b781aa433d02829c8c74e71c795f">dateFormat</a> gets modified and log operations have been scheduled since the creation of the logger (respectively since the last change of that format). </p>
+<p>Internal object to retrieve formatted log date. This field has to be set to null, when the field <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a6b15b781aa433d02829c8c74e71c795f">dateFormat</a> gets modified and log operations have been scheduled since the creation of the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></em> (respectively since the last change of that format). </p>
 
 </div>
 </div>
@@ -517,7 +521,7 @@ Protected Methods</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Flag to indicate if date instance was set during one doLog() call </p>
+<p>Flag to indicate if date instance was set during one logText call </p>
 
 </div>
 </div>
@@ -610,81 +614,32 @@ Protected Methods</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> format = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>( &quot;(%CF:%CL) %CM():%A8[%TE +%TI] [%t] %L [%O] %A1(%#): &quot;)</td>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> format = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>( &quot;(%SF:%SL) %SM():%A5[%TC +%TL][%tN]%V[%D]%A1(%#): &quot;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p>The line format specifies the (automated) log output that is prepended to each log line before the log message itself.</p>
 <p>The string supports replacement variables that begin with a % sign</p><ul>
-<li>CF: The caller's source file name</li>
-<li>CL: The line number in the caller's source file</li>
-<li>CP: The caller's package name</li>
-<li>CC: The caller's class name</li>
-<li>CM: The caller's method name</li>
-<li>D: Date</li>
-<li>TD: Time of day</li>
-<li>TE: Time elapsed since the <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> was created or it's timer was reset</li>
-<li>TI: Time elapsed since the last log call</li>
-<li>t: Thread information</li>
-<li>L: The log level</li>
-<li>O: <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> domain</li>
+<li>SF: The callers' source file name</li>
+<li>SP: The callers' package name</li>
+<li>SC: The callers' class name</li>
+<li>SL: The line number in the callers' source file</li>
+<li>SM: The method name</li>
+<li>TD: The date the log call was invoked</li>
+<li>TT: Time of day the log call was invoked</li>
+<li>TC: Time elapsed since the <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> was created or its timer was reset</li>
+<li>TL: Time elapsed since the last log call</li>
+<li>tN: Thread name</li>
+<li>tI: Thread ID</li>
+<li>V: The verbosity</li>
+<li>D: <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> domain</li>
 <li>%#: The log call counter (like a line counter, but counting multi lines as one)</li>
 <li>An: An auto-adjusted tabulator. This grows whenever it needs, but never shrinks. The optional integer number n specifies how much extra space is added when tab is adjusted. Setting this to a higher value avoids too many adjustments at the beginning of a log session.</li>
-<li>N: The name of the logger. This might be useful if multiple loggers write to the same output stream (e.g. Console). </li>
+<li>LG: The name of the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></em>. This might be useful if multiple loggers write to the same output stream (e.g. Console).</li>
+<li>LX: The name of the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a></em>.</li>
+<li>P: The name of the process / application.</li>
 </ul>
-
-</div>
-</div>
-<a class="anchor" id="ae8322b6ecc21496710ca2c4bb50d4cec"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String logLevelError = &quot;[ERR]&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>The output for the log level "Error". </p>
-
-</div>
-</div>
-<a class="anchor" id="a15ed110e8ee4220103779d9df1d1d31a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String logLevelInfo = &quot; &quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>The output for the log level "Info". </p>
-
-</div>
-</div>
-<a class="anchor" id="a43bbe77b119f7f752815048f0552d6ce"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String logLevelVerbose = &quot;[***]&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>The output for the log level "Verbose". </p>
-
-</div>
-</div>
-<a class="anchor" id="a6eacb25f7d4c74adb2ada7ccbcd36f3d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String logLevelWarning = &quot;[WRN]&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>The output for the log level "Warning". </p>
-
+<p>Defaults to </p><div class="fragment"><div class="line"><span class="stringliteral">&quot;(%SF:%SL) %SM():%A5[%TC +%TL][%tN]%V[%D]%A1(%#): &quot;</span> </div></div><!-- fragment --> 
 </div>
 </div>
 <a class="anchor" id="ac083b4aac0faf389e3a70ef7f8212e54"></a>
@@ -868,7 +823,101 @@ Protected Methods</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Internal object to retrieve formatted time of day. This field has to be set to null, when the field <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ab07f305b621e1b1dce257bd84dd113d2">timeOfDayFormat</a> gets modified and log operations have been scheduled since the creation of the logger (respectively since the last change of that format). </p>
+<p>Internal object to retrieve formatted time of day. This field has to be set to null, when the field <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ab07f305b621e1b1dce257bd84dd113d2">timeOfDayFormat</a> gets modified and log operations have been scheduled since the creation of the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></em> (respectively since the last change of that format). </p>
+
+</div>
+</div>
+<a class="anchor" id="ab6307f6d6ae7eb38fdcd9f372e798366"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> tmpAString = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>A reusable AString . </p>
+
+</div>
+</div>
+<a class="anchor" id="ab6e4166544675a2fed05d47c7b6707f3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String verbosityError = &quot;[ERR]&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The output for the <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a></em> "Error". </p>
+
+</div>
+</div>
+<a class="anchor" id="a218a62323db198131078f60ea48fe537"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String verbosityInfo = &quot; &quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The output for the <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a></em> "Info". </p>
+
+</div>
+</div>
+<a class="anchor" id="a9fa3d4ab8021da100c82279eb136ba64"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String verbosityVerbose = &quot;[***]&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The output for the <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a></em> "Verbose". </p>
+
+</div>
+</div>
+<a class="anchor" id="a8ae1dae497ee2986b38b6f4c51907560"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String verbosityWarning = &quot;[WRN]&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The output for the <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a></em> "Warning". </p>
+
+</div>
+</div>
+<a class="anchor" id="af092cd717d73525692163f7b819cfa5e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean warnedOnce = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Helper flag that indicates if a format warning report was already issued </p>
 
 </div>
 </div>
@@ -879,7 +928,7 @@ Protected Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:20 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:18 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

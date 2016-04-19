@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classaworx_1_1lox_1_1Log.html" title="Log" alt="" coords="5,5,48,32"/>
+<area shape="rect" id="node2" href="$structaworx_1_1lib_1_1strings_1_1IsApplicable.html" title="IsApplicable\&lt; Type \&gt;" alt="" coords="147,5,294,32"/>
+<area shape="rect" id="node3" href="$structaworx_1_1lib_1_1strings_1_1IsTerminatable.html" title="IsTerminatable\&lt; Type \&gt;" alt="" coords="140,56,301,83"/>
+<area shape="rect" id="node4" href="$structaworx_1_1lib_1_1strings_1_1ToStringDefined.html" title="ToStringDefined\&lt; Type \&gt;" alt="" coords="136,107,305,133"/>
 </map>

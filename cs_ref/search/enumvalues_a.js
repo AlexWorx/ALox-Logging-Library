@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['recursive',['Recursive',['../namespacecs_1_1aworx_1_1lib_1_1enums.html#a00fc859257c8f09ff9198dde28121961a556c3dd912453ae5cb3095cd5054e6f4',1,'cs::aworx::lib::enums']]],
-  ['right',['Right',['../namespacecs_1_1aworx_1_1lib_1_1enums.html#acdfaca60ec19c0265bac2692d7982726a92b09c7c48c520c3c55e497875da437c',1,'cs::aworx::lib::enums']]]
+  ['off',['Off',['../namespacecs_1_1aworx_1_1lib_1_1enums.html#a9f3c28a2cb05bdcc618b542e49bfda3fad15305d7a4e34e02489c74a5ef542f36',1,'cs.aworx.lib.enums.Off()'],['../namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313ad15305d7a4e34e02489c74a5ef542f36',1,'cs.aworx.lox.Off()']]],
+  ['ok',['OK',['../classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html#a67a0db04d321a74b7e7fcfd3f1a3f70bae0aa021e21dddbd6d8cecec71e9cf564',1,'cs::aworx::lib::config::IniFile']]],
+  ['on',['On',['../namespacecs_1_1aworx_1_1lib_1_1enums.html#a9f3c28a2cb05bdcc618b542e49bfda3fa521c36a31c2762741cf0f8890cbe05e3',1,'cs::aworx::lib::enums']]]
 ];

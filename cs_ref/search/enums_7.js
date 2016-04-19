@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['whitespaces',['Whitespaces',['../namespacecs_1_1aworx_1_1lib_1_1enums.html#ad4a46f9fb632511f6be7c53e05f330f7',1,'cs::aworx::lib::enums']]]
+  ['verbosity',['Verbosity',['../namespacecs_1_1aworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313',1,'cs::aworx::lox']]]
 ];

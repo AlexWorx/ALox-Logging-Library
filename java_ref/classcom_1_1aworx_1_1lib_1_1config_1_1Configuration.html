@@ -125,6 +125,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Inner Classes</a> &#124;
+<a href="#pub-static-attribs">Public Static Fields</a> &#124;
 <a href="#pub-attribs">Public Fields</a> &#124;
 <a href="#pub-methods">Public Methods</a> &#124;
 <a href="#pro-attribs">Protected Fields</a> &#124;
@@ -142,18 +143,27 @@ Collaboration diagram for Configuration:</div>
 <div class="textblock"><hr/>
 <p> This class is supposed to be a static singleton in class <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html">ALIB</a>. It holds a list of objects of type <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a>, sorted by their priority and provides a single user interface to query configuration data from those.</p>
 <p>By default, two configuration plug-ins are set up:</p><ul>
-<li>command line parameter configuration options (Priority 10)</li>
-<li>environment variable configuration options (Priority 20)</li>
+<li>command line parameter configuration options (Priority 400, provided in static constant field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac1f233d6ee7b092b2ccd53bb12a51911">PRIO_CMD_LINE</a>).</li>
+<li>environment variable configuration options (Priority 300, provided in static constant field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac51f528297704c7c6c1a965d03b8e02f">PRIO_ENV_VARS</a>).</li>
 </ul>
-<p>An application specific instance of abstract class <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a> that uses appropriate configuration techniques (ini-files, registry entries, etc.) optionally completes this set. It is proposed to use a priority value of 30 for for custom configuration plug-ins. This way, environment variables could <em>overwrite</em> entries in configuration files and command line parameters could in turn <em>overwrite</em> environment variables.</p>
+<p>An application specific instance of abstract class <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a> that uses appropriate configuration techniques (ini-files, registry entries, etc.) optionally completes this set. It is proposed to use a priority value of 200 (provided in static constant field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a84df1450d5fdbfd98e7bc29bb04957ea">PRIO_INI_FILE</a>) for custom configuration plug-ins. This way, environment variables could <em>overwrite</em> entries in configuration files and command line parameters could in turn <em>overwrite</em> environment variables.</p>
 <p>Variables are case insensitive for the built-in <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a> types <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugIn.html">CommandLinePlugIn</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html">EnvironmentPlugIn</a>.</p>
 <p>It is recommended to treat variable names case insensitive within custom implementations (specializations) of class <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a> as well.</p>
 <p>The interface methods of this class are implemented <em>synchronized</em>. When adding or removing plug-ins, the instance should by synchronized (locked) as well. </p>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Inner Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration_1_1PrioAndPlugin.html">PrioAndPlugin</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration_1_1PluginAndPrio.html">PluginAndPrio</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Public Static Fields</h2></td></tr>
+<tr class="memitem:ac1f233d6ee7b092b2ccd53bb12a51911"><td class="memItemLeft" align="right" valign="top">static final int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac1f233d6ee7b092b2ccd53bb12a51911">PRIO_CMD_LINE</a> = 400</td></tr>
+<tr class="separator:ac1f233d6ee7b092b2ccd53bb12a51911"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac51f528297704c7c6c1a965d03b8e02f"><td class="memItemLeft" align="right" valign="top">static final int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac51f528297704c7c6c1a965d03b8e02f">PRIO_ENV_VARS</a> = 300</td></tr>
+<tr class="separator:ac51f528297704c7c6c1a965d03b8e02f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84df1450d5fdbfd98e7bc29bb04957ea"><td class="memItemLeft" align="right" valign="top">static final int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a84df1450d5fdbfd98e7bc29bb04957ea">PRIO_INI_FILE</a> = 200</td></tr>
+<tr class="separator:a84df1450d5fdbfd98e7bc29bb04957ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Fields</h2></td></tr>
@@ -182,6 +192,8 @@ Public Methods</h2></td></tr>
 <tr class="separator:a280da246de4750bcb1dfc8294eeaead2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc91dfb893771044af6ffc52daa83a23"><td class="memItemLeft" align="right" valign="top">synchronized void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#abc91dfb893771044af6ffc52daa83a23">insertPlugin</a> (<a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a> plugin, int priority)</td></tr>
 <tr class="separator:abc91dfb893771044af6ffc52daa83a23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac99ae832b810701fd58549162db17169"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac99ae832b810701fd58549162db17169">isTrue</a> (<a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> value)</td></tr>
+<tr class="separator:ac99ae832b810701fd58549162db17169"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0b881c9b6d07d88a226ff8d66a808917"><td class="memItemLeft" align="right" valign="top">synchronized boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a0b881c9b6d07d88a226ff8d66a808917">isTrue</a> (CharSequence category, CharSequence name, int[] pluginPriority, <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> temp)</td></tr>
 <tr class="separator:a0b881c9b6d07d88a226ff8d66a808917"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade5ede0492e50120e29d1bfb1cc23290"><td class="memItemLeft" align="right" valign="top">synchronized boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ade5ede0492e50120e29d1bfb1cc23290">isTrue</a> (CharSequence category, CharSequence name, int[] pluginPriority)</td></tr>
@@ -213,10 +225,10 @@ Public Methods</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Fields</h2></td></tr>
-<tr class="memitem:a85f65b76d03e1858d74701fcf970ad58"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a85f65b76d03e1858d74701fcf970ad58"></a>
-ArrayList&lt; <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration_1_1PrioAndPlugin.html">PrioAndPlugin</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a85f65b76d03e1858d74701fcf970ad58">plugins</a></td></tr>
-<tr class="memdesc:a85f65b76d03e1858d74701fcf970ad58"><td class="mdescLeft">&#160;</td><td class="mdescRight">The plug-ins we have in our portfolio. <br /></td></tr>
-<tr class="separator:a85f65b76d03e1858d74701fcf970ad58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12e29cc98de32e97d6e851d9c7c43d6b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a12e29cc98de32e97d6e851d9c7c43d6b"></a>
+ArrayList&lt; <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration_1_1PluginAndPrio.html">PluginAndPrio</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a12e29cc98de32e97d6e851d9c7c43d6b">plugins</a></td></tr>
+<tr class="memdesc:a12e29cc98de32e97d6e851d9c7c43d6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The plug-ins we have in our portfolio. <br /></td></tr>
+<tr class="separator:a12e29cc98de32e97d6e851d9c7c43d6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a68005b0337daa4b2abbeee3eceb15d99"></a>
@@ -502,13 +514,37 @@ ArrayList&lt; <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configur
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Adds the given plug-in to the list of plug-ins used to query configuration values. </p><dl class="params"><dt>Parameters</dt><dd>
+<p> Adds the given plug-in to the list of plug-ins used to query configuration values. Higher numbers for parameter priority, prioritize this plug-in against those with lower values. Default values are provided with static constant fields <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac1f233d6ee7b092b2ccd53bb12a51911">PRIO_CMD_LINE</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac51f528297704c7c6c1a965d03b8e02f">PRIO_ENV_VARS</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a84df1450d5fdbfd98e7bc29bb04957ea">PRIO_INI_FILE</a>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">plugin</td><td>The plug-in to insert. </td></tr>
     <tr><td class="paramname">priority</td><td>The priority of the plug-in. </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="ac99ae832b810701fd58549162db17169"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean isTrue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Utility method that checks if a given value represents 'true'. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>The value to check</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns <code>true</code>, if the value represents 'true', <code>false</code> if not. </dd></dl>
 
 </div>
 </div>
@@ -1186,6 +1222,69 @@ The use of this character is specific to a plug-ins' implementation. Defaults to
 
 </div>
 </div>
+<a class="anchor" id="ac1f233d6ee7b092b2ccd53bb12a51911"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">final int PRIO_CMD_LINE = 400</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Constant providing default priority for <b>IniFile</b> (or similar) plug-in. </p>
+
+</div>
+</div>
+<a class="anchor" id="ac51f528297704c7c6c1a965d03b8e02f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">final int PRIO_ENV_VARS = 300</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Constant providing default priority for environment variables plug-in. </p>
+
+</div>
+</div>
+<a class="anchor" id="a84df1450d5fdbfd98e7bc29bb04957ea"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">final int PRIO_INI_FILE = 200</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Constant providing default priority for command-line parameters plug-in. </p>
+
+</div>
+</div>
 <a class="anchor" id="a15741414029ba6d8a9289b31d230d5b3"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1207,7 +1306,7 @@ The use of this character is specific to a plug-ins' implementation. Defaults to
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:20 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:18 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

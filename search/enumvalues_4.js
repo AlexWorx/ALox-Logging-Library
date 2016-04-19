@@ -1,12 +1,5 @@
 var searchData=
 [
-  ['eclipsecdt',['EclipseCDT',['cpp_ref/classaworx_1_1lib_1_1system_1_1System.html#aeae50cdd350e3deaae33d2900b0a72f2aac3b9401d30402b6f3f9c930e92eba6a',1,'aworx::lib::system::System']]],
-  ['end',['End',['cs_ref/namespacecs_1_1aworx_1_1lib_1_1enums.html#ae1c5184dc404edf057ed537bcfddef84a87557f11575c0ad78e4e28abedc13b6e',1,'cs::aworx::lib::enums::End()'],['cpp_ref/namespaceaworx_1_1lib_1_1enums.html#ae1c5184dc404edf057ed537bcfddef84a87557f11575c0ad78e4e28abedc13b6e',1,'aworx::lib::enums::End()']]],
-  ['erorwritingfile',['ErorWritingFile',['cpp_ref/classaworx_1_1lib_1_1config_1_1IniFile.html#a67a0db04d321a74b7e7fcfd3f1a3f70baa3dfa29533b3745c447fff71696df7b0',1,'aworx::lib::config::IniFile']]],
-  ['error',['Error',['cs_ref/classcs_1_1aworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5a902b0d55fddef6f8d651fe1035b7d4bd',1,'cs::aworx::lox::Log::Error()'],['cpp_ref/classaworx_1_1lox_1_1Log.html#a221b779e6bb7b8d40677d7642bfefac5a902b0d55fddef6f8d651fe1035b7d4bd',1,'aworx::lox::Log::Error()'],['cpp_ref/namespaceaworx_1_1lib_1_1enums.html#a28287671eaf7406afd604bd055ba4066a902b0d55fddef6f8d651fe1035b7d4bd',1,'aworx::lib::enums::Error()']]],
-  ['error_5fopening_5ffile',['ERROR_OPENING_FILE',['cs_ref/classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html#a67a0db04d321a74b7e7fcfd3f1a3f70bae9843112228a2d7dd433c3525dce578c',1,'cs::aworx::lib::config::IniFile']]],
-  ['error_5fwriting_5ffile',['ERROR_WRITING_FILE',['cs_ref/classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html#a67a0db04d321a74b7e7fcfd3f1a3f70ba75d3e6ea3c658980029d41d69944b163',1,'cs::aworx::lib::config::IniFile']]],
-  ['erroropeningfile',['ErrorOpeningFile',['cpp_ref/classaworx_1_1lib_1_1config_1_1IniFile.html#a67a0db04d321a74b7e7fcfd3f1a3f70bad083aedf850e5989f336e50d1a539d44',1,'aworx::lib::config::IniFile']]],
-  ['errors',['Errors',['cs_ref/classcs_1_1aworx_1_1lox_1_1Log.html#a10ac165398697ce1d642d739cc3b170fa5ef0c737746fae2ca90e66c39333f8f6',1,'cs::aworx::lox::Log::Errors()'],['cpp_ref/classaworx_1_1lox_1_1Log.html#a10ac165398697ce1d642d739cc3b170fa5ef0c737746fae2ca90e66c39333f8f6',1,'aworx::lox::Log::Errors()']]],
-  ['exclude',['Exclude',['cs_ref/namespacecs_1_1aworx_1_1lib_1_1enums.html#a217539925b78b2eed40ae7817d5bee52a843f2812f595e7ec7c5036e89fde02d6',1,'cs::aworx::lib::enums::Exclude()'],['cpp_ref/namespaceaworx_1_1lib_1_1enums.html#a217539925b78b2eed40ae7817d5bee52a843f2812f595e7ec7c5036e89fde02d6',1,'aworx::lib::enums::Exclude()']]]
+  ['fileexists',['FileExists',['cpp_ref/namespaceaworx_1_1lib_1_1enums.html#a28287671eaf7406afd604bd055ba4066aea1776502570f06ddc0569c079cb9ee2',1,'aworx::lib::enums']]],
+  ['filename',['Filename',['cs_ref/namespacecs_1_1aworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a1351017ac6423911223bc19a8cb7c653',1,'cs::aworx::lox::Filename()'],['cpp_ref/namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a1351017ac6423911223bc19a8cb7c653',1,'aworx::lox::Filename()']]]
 ];

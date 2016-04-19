@@ -139,16 +139,19 @@ Inheritance diagram for ALoxReportWriter:</div>
 <div class="dynheader">
 Collaboration diagram for ALoxReportWriter:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classcom_1_1aworx_1_1lox_1_1ALoxReportWriter__coll__graph.svg" width="1138" height="550"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classcom_1_1aworx_1_1lox_1_1ALoxReportWriter__coll__graph.svg" width="1271" height="1090"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
-<p> The <b>ReportWriter</b> for ALib when using ALox. An instance of this class is created in method <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#ab01c271e8f023ec9a79476a928418759">Log.addDebugLogger</a> and registered with ALib. </p>
+<p> The <b>ReportWriter</b> for ALib when using <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a>. An instance of this class is created in method <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#afd7ff33d8bad2b6577c6ff34156743ce">Log.addDebugLogger</a> and registered with ALib.<br />
+ Uses internal domain <code>'$/REPORT'</code> for logging. </p>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Methods</h2></td></tr>
 <tr class="memitem:a0bf141375d34781d9d1aba4cbedf4c3e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1ALoxReportWriter.html#a0bf141375d34781d9d1aba4cbedf4c3e">ALoxReportWriter</a> (<a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a> <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALoxReportWriter.html#aff12beb5eb706efdffb65183b87431df">lox</a>)</td></tr>
 <tr class="separator:a0bf141375d34781d9d1aba4cbedf4c3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f03332e9e50d3d28eb466d31492a022"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1ALoxReportWriter.html#a9f03332e9e50d3d28eb466d31492a022">NotifyActivation</a> (<a class="el" href="enumcom_1_1aworx_1_1lib_1_1enums_1_1Phase.html">Phase</a> phase)</td></tr>
+<tr class="separator:a9f03332e9e50d3d28eb466d31492a022"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa7880db249327f80eaabd7c7be516744"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1ALoxReportWriter.html#aa7880db249327f80eaabd7c7be516744">report</a> (Report.Message report)</td></tr>
 <tr class="separator:aa7880db249327f80eaabd7c7be516744"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -182,6 +185,31 @@ Protected Fields</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a9f03332e9e50d3d28eb466d31492a022"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NotifyActivation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="enumcom_1_1aworx_1_1lib_1_1enums_1_1Phase.html">Phase</a>&#160;</td>
+          <td class="paramname"><em>phase</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Notify activation/deactivation </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">phase</td><td>Information if activated or deactivated. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="interfacecom_1_1aworx_1_1lib_1_1ReportWriter.html#a9f03332e9e50d3d28eb466d31492a022">ReportWriter</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="aa7880db249327f80eaabd7c7be516744"></a>
 <div class="memitem">
 <div class="memproto">
@@ -196,7 +224,7 @@ Protected Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> an ALib report using ALox. </p><dl class="params"><dt>Parameters</dt><dd>
+<p> <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> an ALib report using <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">report</td><td>The error message. </td></tr>
   </table>
@@ -230,13 +258,13 @@ Protected Fields</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>Log.java</li>
+<li>ALox.java</li>
 </ul>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:20 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:18 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

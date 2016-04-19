@@ -149,21 +149,17 @@ Conditional Compilation Symbols</h1>
 </ul>
 <ul>
 <li><b>ALOX_NO_REFLECTION</b><br />
- This symbol deactivates the use of reflection in class <a class="el" href="classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html">LogTools</a>. This is useful for target platforms that do not allow instance inspection using reflection techniques. The method <a class="el" href="classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a2fe80db61affa775074be23675d518ba">LogTools.Instance</a> will be available but just convert your object into readable text using <em>ToString()</em>. </li>
+ This symbol deactivates the use of reflection in class <a class="el" href="classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html">LogTools</a>. This is useful for target platforms that do not allow instance inspection using reflection techniques. The method <a class="el" href="classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a7fdc89d8d1b5a9702b2102827c1363b0">LogTools.Instance</a> will be available but just convert your object into readable text using <em>ToString()</em>. </li>
 </ul>
 <ul>
 <li><b>ALOX_NO_XML</b><br />
- This symbol deactivates the use of <em>System.Xml.Linq</em> library in class <a class="el" href="classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html">LogTools</a>. This is useful for target platforms that do not support this library. The method <a class="el" href="classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#ac25c0cc25b178a10ef7441a1bccb2a74">LogTools.XML</a> will not be available however. </li>
-</ul>
-<ul>
-<li><b>ALOX_NO_THREADS</b><br />
- This symbol deactivates any mechanisms to protect ALox logging in multi-threaded environments. Use this symbol only if you are sure to operate single threaded. (Even if your application does not create a new thread directly, e.g. UI driven applications are generally multi threaded. The advantage of using this compile symbol is to increase ALox performance by around 8% (when logging in-memory). For console logging the performance gain is much less. So, only in very critical situations this symbol should be used. </li>
+ This symbol deactivates the use of <em>System.Xml.Linq</em> library in class <a class="el" href="classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html">LogTools</a>. This is useful for target platforms that do not support this library. The method <a class="el" href="classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a0b989698b726018a437b6a4beb364dac">LogTools.XML</a> will not be available however. </li>
 </ul>
 </div></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:19 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:17 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

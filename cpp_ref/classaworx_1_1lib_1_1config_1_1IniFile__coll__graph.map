@@ -1,13 +1,13 @@
 <map id="IniFile" name="IniFile">
-<area shape="rect" id="node2" href="$classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html" title="ConfigurationPlugIn" alt="" coords="167,573,303,600"/>
-<area shape="rect" id="node10" href="$classaworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html" title="EnvironmentPlugIn" alt="" coords="527,600,659,627"/>
-<area shape="rect" id="node11" href="$classaworx_1_1lib_1_1config_1_1CommandLinePlugIn.html" title="CommandLinePlugIn" alt="" coords="521,549,664,576"/>
-<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1config_1_1Configuration.html" title="Configuration" alt="" coords="896,549,995,576"/>
-<area shape="rect" id="node4" href="$classaworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="547,499,638,525"/>
-<area shape="rect" id="node6" href="$classaworx_1_1lib_1_1strings_1_1NumberFormat.html" title="NumberFormat" alt="" coords="538,347,647,373"/>
-<area shape="rect" id="node7" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="203,257,267,284"/>
-<area shape="rect" id="node15" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="560,192,625,219"/>
-<area shape="rect" id="node8" href="$classaworx_1_1lib_1_1strings_1_1String.html" title="String" alt="" coords="5,257,61,284"/>
-<area shape="rect" id="node13" href="$classaworx_1_1lib_1_1config_1_1IniFile_1_1Section.html" title="Section" alt="" coords="1167,220,1234,247"/>
-<area shape="rect" id="node16" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\l\&lt; 32 \&gt;" alt="" coords="881,139,1009,181"/>
+<area shape="rect" id="node2" href="$classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html" title="ConfigurationPlugIn" alt="" coords="167,121,303,148"/>
+<area shape="rect" id="node9" href="$classaworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html" title="EnvironmentPlugIn" alt="" coords="527,93,659,120"/>
+<area shape="rect" id="node11" href="$classaworx_1_1lib_1_1config_1_1CommandLinePlugIn.html" title="CommandLinePlugIn" alt="" coords="521,144,664,171"/>
+<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1config_1_1Configuration.html" title="Configuration" alt="" coords="896,195,995,221"/>
+<area shape="rect" id="node4" href="$classaworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="547,43,638,69"/>
+<area shape="rect" id="node5" href="$classaworx_1_1lib_1_1strings_1_1NumberFormat.html" title="NumberFormat" alt="" coords="538,460,647,487"/>
+<area shape="rect" id="node6" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="203,484,267,511"/>
+<area shape="rect" id="node15" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="560,511,625,537"/>
+<area shape="rect" id="node7" href="$classaworx_1_1lib_1_1strings_1_1String.html" title="String" alt="" coords="5,371,61,397"/>
+<area shape="rect" id="node13" href="$classaworx_1_1lib_1_1config_1_1IniFile_1_1Section.html" title="Section" alt="" coords="1167,507,1234,533"/>
+<area shape="rect" id="node16" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\l\&lt; 32 \&gt;" alt="" coords="881,433,1009,474"/>
 </map>

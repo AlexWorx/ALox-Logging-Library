@@ -136,60 +136,107 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Inheritance diagram for Logger:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classcom_1_1aworx_1_1lox_1_1core_1_1Logger__inherit__graph.svg" width="544" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classcom_1_1aworx_1_1lox_1_1core_1_1Logger__inherit__graph.svg" width="548" height="411"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for Logger:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classcom_1_1aworx_1_1lox_1_1core_1_1Logger__coll__graph.svg" width="1988" height="1167"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classcom_1_1aworx_1_1lox_1_1core_1_1Logger__coll__graph.svg" width="384" height="324"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
-<p> This is central class of the ALox logging implementation. It is <b>not</b> recommended to use this class directly for logging. Instead, use the simple and convenient static interface class <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> or, for release logging and other more complex operations use a <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a> instance. The class is abstract. To implement an own log stream, derive a new <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> class and implement the abstract method <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#adf2d4a3039b4c8e4f2f24289af899838">doLog()</a>. </p>
+<p> This is central class of the <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a> logging implementation. It is <b>not</b> recommended to use this class directly for logging. Instead, use the simple and convenient static interface class <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> or, for release logging and other more complex operations use a <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a> instance. The class is abstract. To implement an own log stream, derive a new <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> class and implement the abstract method <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#afb6fb454e24c653a10c6966754960298">log</a>. </p>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Fields</h2></td></tr>
 <tr class="memitem:a875cc7d46740caba1725c2f6580804e2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a875cc7d46740caba1725c2f6580804e2">cntLogs</a></td></tr>
 <tr class="separator:a875cc7d46740caba1725c2f6580804e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7073fb6d6486e166ea6116e36bbecf2"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#ad7073fb6d6486e166ea6116e36bbecf2">isDisabled</a> = false</td></tr>
-<tr class="separator:ad7073fb6d6486e166ea6116e36bbecf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a2326f35466e54c36c070829245c557"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a9a2326f35466e54c36c070829245c557">name</a></td></tr>
-<tr class="separator:a9a2326f35466e54c36c070829245c557"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d7e603d6dfc10acdcb5977896ff6815"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a2d7e603d6dfc10acdcb5977896ff6815">rootDomain</a> = new <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a>( null, null )</td></tr>
-<tr class="separator:a2d7e603d6dfc10acdcb5977896ff6815"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a882bb8a05cd44097f6e32eba9231d87e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html">Ticks</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a882bb8a05cd44097f6e32eba9231d87e">timeOfCreation</a> = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html">Ticks</a>()</td></tr>
 <tr class="separator:a882bb8a05cd44097f6e32eba9231d87e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a086aaa689b170f76cb4730aebbf01349"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html">Ticks</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a086aaa689b170f76cb4730aebbf01349">timeOfLastLog</a> = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html">Ticks</a>()</td></tr>
 <tr class="separator:a086aaa689b170f76cb4730aebbf01349"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab702590cb21a529418c7bd6439c4337a"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#ab702590cb21a529418c7bd6439c4337a">typeName</a></td></tr>
-<tr class="separator:ab702590cb21a529418c7bd6439c4337a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_attribs_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock')"><img src="closed.png" alt="-"/>&#160;Public Fields inherited from <a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a></td></tr>
+<tr class="memitem:acad859886dc19036f76e572c2daf2caa inherit pub_attribs_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#acad859886dc19036f76e572c2daf2caa">recursionWarningThreshold</a> = 10</td></tr>
+<tr class="separator:acad859886dc19036f76e572c2daf2caa inherit pub_attribs_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5b12a96be437f82f5da54b813614ba7 inherit pub_attribs_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#ae5b12a96be437f82f5da54b813614ba7">waitWarningTimeLimitInMillis</a> = 1000</td></tr>
+<tr class="separator:ae5b12a96be437f82f5da54b813614ba7 inherit pub_attribs_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Methods</h2></td></tr>
-<tr class="memitem:ac0639589481c5277d8990402ce40d1d3"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#ac0639589481c5277d8990402ce40d1d3">line</a> (<a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> domain, Log.Level level, Object msgObject, int indent, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a> caller)</td></tr>
-<tr class="separator:ac0639589481c5277d8990402ce40d1d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa04d2808f596473483133bade2030231"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#aa04d2808f596473483133bade2030231">setDomain</a> (String domain, Log.DomainLevel domainLevel, <a class="el" href="enumcom_1_1aworx_1_1lib_1_1enums_1_1Propagation.html">Propagation</a> propagation)</td></tr>
-<tr class="separator:aa04d2808f596473483133bade2030231"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1bd909b7fe445e5f6b94516529cd4a73"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a1bd909b7fe445e5f6b94516529cd4a73">setDomain</a> (<a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> domain, Log.DomainLevel domainLevel, <a class="el" href="enumcom_1_1aworx_1_1lib_1_1enums_1_1Propagation.html">Propagation</a> propagation)</td></tr>
-<tr class="separator:a1bd909b7fe445e5f6b94516529cd4a73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acfea987a1279622cfb8a5e0393fe33d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#acfea987a1279622cfb8a5e0393fe33d7">setDomain</a> (String domain, Log.DomainLevel domainLevel)</td></tr>
-<tr class="separator:acfea987a1279622cfb8a5e0393fe33d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78ee178b6a73658d65ca60da4d1e6683"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a78ee178b6a73658d65ca60da4d1e6683">getName</a> ()</td></tr>
+<tr class="separator:a78ee178b6a73658d65ca60da4d1e6683"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f0f20d4149a5730b858d8faff891de4"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a9f0f20d4149a5730b858d8faff891de4">getTypeName</a> ()</td></tr>
+<tr class="separator:a9f0f20d4149a5730b858d8faff891de4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb6fb454e24c653a10c6966754960298"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#afb6fb454e24c653a10c6966754960298">log</a> (<a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a> domain, <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a> verbosity, ArrayList&lt; Object &gt; logables, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html">ScopeInfo</a> scope)</td></tr>
+<tr class="separator:afb6fb454e24c653a10c6966754960298"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad146fa8579a5f8a876c4688cc5a68520"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#ad146fa8579a5f8a876c4688cc5a68520">toString</a> ()</td></tr>
 <tr class="separator:ad146fa8579a5f8a876c4688cc5a68520"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock')"><img src="closed.png" alt="-"/>&#160;Public Methods inherited from <a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html">SmartLock</a></td></tr>
+<tr class="memitem:a90c2c49cbc4b52547424991f1665a8cb inherit pub_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html#a90c2c49cbc4b52547424991f1665a8cb">SmartLock</a> ()</td></tr>
+<tr class="separator:a90c2c49cbc4b52547424991f1665a8cb inherit pub_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ce5b11c43b859d5165e248babe09056 inherit pub_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html#a2ce5b11c43b859d5165e248babe09056">addAcquirer</a> (<a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a> newAcquirer)</td></tr>
+<tr class="separator:a2ce5b11c43b859d5165e248babe09056 inherit pub_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b64790db152bb1bef56577a00fb4dac inherit pub_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html#a8b64790db152bb1bef56577a00fb4dac">cntAcquirers</a> ()</td></tr>
+<tr class="separator:a8b64790db152bb1bef56577a00fb4dac inherit pub_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a817324df407019b77622de2291297f0c inherit pub_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html#a817324df407019b77622de2291297f0c">removeAcquirer</a> (<a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a> acquirerToRemove)</td></tr>
+<tr class="separator:a817324df407019b77622de2291297f0c inherit pub_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock')"><img src="closed.png" alt="-"/>&#160;Public Methods inherited from <a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a></td></tr>
+<tr class="memitem:ad866d94468fb30b56fc5cf53211eb2ab inherit pub_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#ad866d94468fb30b56fc5cf53211eb2ab">ThreadLock</a> ()</td></tr>
+<tr class="separator:ad866d94468fb30b56fc5cf53211eb2ab inherit pub_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a941c69e99c914375ea3e48632d391e3c inherit pub_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#a941c69e99c914375ea3e48632d391e3c">ThreadLock</a> (<a class="el" href="enumcom_1_1aworx_1_1lib_1_1enums_1_1LockMode.html">LockMode</a> <a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#a22778d029b4af3e865c273d2ad677cb6">lockMode</a>)</td></tr>
+<tr class="separator:a941c69e99c914375ea3e48632d391e3c inherit pub_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d3560d7d5fcebaea61592083590e0cf inherit pub_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#a1d3560d7d5fcebaea61592083590e0cf">ThreadLock</a> (<a class="el" href="enumcom_1_1aworx_1_1lib_1_1enums_1_1LockMode.html">LockMode</a> <a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#a22778d029b4af3e865c273d2ad677cb6">lockMode</a>, <a class="el" href="enumcom_1_1aworx_1_1lib_1_1enums_1_1Safeness.html">Safeness</a> safeness)</td></tr>
+<tr class="separator:a1d3560d7d5fcebaea61592083590e0cf inherit pub_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9f5b35a212d21af601a8213ed325871 inherit pub_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#af9f5b35a212d21af601a8213ed325871">acquire</a> ()</td></tr>
+<tr class="separator:af9f5b35a212d21af601a8213ed325871 inherit pub_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad29885f7cc4063bd825c69d124b371b1 inherit pub_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#ad29885f7cc4063bd825c69d124b371b1">dbgCountAcquirements</a> (Thread thread)</td></tr>
+<tr class="separator:ad29885f7cc4063bd825c69d124b371b1 inherit pub_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa574ebfdad25f8544c7b8d49d1d54321 inherit pub_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top"><a class="el" href="enumcom_1_1aworx_1_1lib_1_1enums_1_1LockMode.html">LockMode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#aa574ebfdad25f8544c7b8d49d1d54321">getMode</a> ()</td></tr>
+<tr class="separator:aa574ebfdad25f8544c7b8d49d1d54321 inherit pub_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8271af425015ebfee1e5b5f61d26b4fe inherit pub_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top"><a class="el" href="enumcom_1_1aworx_1_1lib_1_1enums_1_1Safeness.html">Safeness</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#a8271af425015ebfee1e5b5f61d26b4fe">getSafeness</a> ()</td></tr>
+<tr class="separator:a8271af425015ebfee1e5b5f61d26b4fe inherit pub_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23b477d0e2d399f75d585d154c346591 inherit pub_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#a23b477d0e2d399f75d585d154c346591">release</a> ()</td></tr>
+<tr class="separator:a23b477d0e2d399f75d585d154c346591 inherit pub_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7090fd12b34b064560dcef8900a3f31a inherit pub_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#a7090fd12b34b064560dcef8900a3f31a">setSafeness</a> (<a class="el" href="enumcom_1_1aworx_1_1lib_1_1enums_1_1Safeness.html">Safeness</a> safeness)</td></tr>
+<tr class="separator:a7090fd12b34b064560dcef8900a3f31a inherit pub_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad146fa8579a5f8a876c4688cc5a68520 inherit pub_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#ad146fa8579a5f8a876c4688cc5a68520">toString</a> ()</td></tr>
+<tr class="separator:ad146fa8579a5f8a876c4688cc5a68520 inherit pub_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Fields</h2></td></tr>
-<tr class="memitem:ac83b466ab167e961c5c709935cae1132"><td class="memItemLeft" align="right" valign="top">boolean[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#ac83b466ab167e961c5c709935cae1132">outputParam</a> = new boolean[1]</td></tr>
-<tr class="separator:ac83b466ab167e961c5c709935cae1132"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab3455c59a6cb0194878d7942ff4eb825"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#ab3455c59a6cb0194878d7942ff4eb825">tmpDomainName</a> = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>()</td></tr>
-<tr class="separator:ab3455c59a6cb0194878d7942ff4eb825"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a2326f35466e54c36c070829245c557"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a9a2326f35466e54c36c070829245c557">name</a></td></tr>
+<tr class="separator:a9a2326f35466e54c36c070829245c557"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab702590cb21a529418c7bd6439c4337a"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#ab702590cb21a529418c7bd6439c4337a">typeName</a></td></tr>
+<tr class="separator:ab702590cb21a529418c7bd6439c4337a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock')"><img src="closed.png" alt="-"/>&#160;Protected Fields inherited from <a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html">SmartLock</a></td></tr>
+<tr class="memitem:afb1e2e3e704c405582819edf6e5e19a0 inherit pro_attribs_classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock"><td class="memItemLeft" align="right" valign="top">ArrayList&lt; <a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html#afb1e2e3e704c405582819edf6e5e19a0">acquirers</a> = new ArrayList&lt;<a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a>&gt;()</td></tr>
+<tr class="separator:afb1e2e3e704c405582819edf6e5e19a0 inherit pro_attribs_classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock')"><img src="closed.png" alt="-"/>&#160;Protected Fields inherited from <a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a></td></tr>
+<tr class="memitem:a29d24e2a4f8d9298112a72dbc2cd8d9f inherit pro_attribs_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#a29d24e2a4f8d9298112a72dbc2cd8d9f">createOwnerStackTrace</a> = false</td></tr>
+<tr class="separator:a29d24e2a4f8d9298112a72dbc2cd8d9f inherit pro_attribs_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f41e1e3070abd18f7cdfdb9a95b3d9c inherit pro_attribs_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#a7f41e1e3070abd18f7cdfdb9a95b3d9c">lockCount</a></td></tr>
+<tr class="separator:a7f41e1e3070abd18f7cdfdb9a95b3d9c inherit pro_attribs_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22778d029b4af3e865c273d2ad677cb6 inherit pro_attribs_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top"><a class="el" href="enumcom_1_1aworx_1_1lib_1_1enums_1_1LockMode.html">LockMode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#a22778d029b4af3e865c273d2ad677cb6">lockMode</a></td></tr>
+<tr class="separator:a22778d029b4af3e865c273d2ad677cb6 inherit pro_attribs_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cc9273ae9737bab384e14ef7d4b5c7a inherit pro_attribs_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top">Object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#a4cc9273ae9737bab384e14ef7d4b5c7a">mutex</a></td></tr>
+<tr class="separator:a4cc9273ae9737bab384e14ef7d4b5c7a inherit pro_attribs_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a194df7b1414f1a1181802f255faff967 inherit pro_attribs_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top">Thread&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#a194df7b1414f1a1181802f255faff967">owner</a></td></tr>
+<tr class="separator:a194df7b1414f1a1181802f255faff967 inherit pro_attribs_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace1ce0972ea4912552ad81f0a892db49 inherit pro_attribs_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top">Exception&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#ace1ce0972ea4912552ad81f0a892db49">ownerException</a></td></tr>
+<tr class="separator:ace1ce0972ea4912552ad81f0a892db49 inherit pro_attribs_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c693612d852a9e000481199e9c24f4c inherit pro_attribs_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html">Ticks</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#a5c693612d852a9e000481199e9c24f4c">waitTime</a> = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html">Ticks</a>()</td></tr>
+<tr class="separator:a5c693612d852a9e000481199e9c24f4c inherit pro_attribs_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Methods</h2></td></tr>
 <tr class="memitem:ad5d85bd2edd6cf4e166d9744f6e97f16"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#ad5d85bd2edd6cf4e166d9744f6e97f16">Logger</a> (String <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#a9a2326f35466e54c36c070829245c557">name</a>, String <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#ab702590cb21a529418c7bd6439c4337a">typeName</a>)</td></tr>
 <tr class="separator:ad5d85bd2edd6cf4e166d9744f6e97f16"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf2d4a3039b4c8e4f2f24289af899838"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#adf2d4a3039b4c8e4f2f24289af899838">doLog</a> (<a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> domain, Log.Level level, Object msgObject, int indent, <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a> caller)</td></tr>
-<tr class="separator:adf2d4a3039b4c8e4f2f24289af899838"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pac_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td colspan="2" onclick="javascript:toggleInherit('pac_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock')"><img src="closed.png" alt="-"/>&#160;Package Access Methods inherited from <a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a></td></tr>
+<tr class="memitem:ac63ec3ac8a7140adbc9897fc8be1f270 inherit pac_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#ac63ec3ac8a7140adbc9897fc8be1f270">constructor</a> (<a class="el" href="enumcom_1_1aworx_1_1lib_1_1enums_1_1LockMode.html">LockMode</a> <a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#a22778d029b4af3e865c273d2ad677cb6">lockMode</a>, <a class="el" href="enumcom_1_1aworx_1_1lib_1_1enums_1_1Safeness.html">Safeness</a> safeness)</td></tr>
+<tr class="separator:ac63ec3ac8a7140adbc9897fc8be1f270 inherit pac_methods_classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ad5d85bd2edd6cf4e166d9744f6e97f16"></a>
@@ -227,8 +274,8 @@ Protected Methods</h2></td></tr>
 <p> Constructs a logger.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>The name of the logger. If empty, it defaults to the type name. </td></tr>
-    <tr><td class="paramname">typeName</td><td>The type of the logger. </td></tr>
+    <tr><td class="paramname">name</td><td>The name of the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></em>. If empty, it defaults to the type name. </td></tr>
+    <tr><td class="paramname">typeName</td><td>The type of the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></em>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -236,7 +283,41 @@ Protected Methods</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="adf2d4a3039b4c8e4f2f24289af899838"></a>
+<a class="anchor" id="a78ee178b6a73658d65ca60da4d1e6683"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String getName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Returns the name of this logger. The name has to be unique for all <em>Loggers</em> attached to a <b>Lox</b>. </p><dl class="section return"><dt>Returns</dt><dd>The loggers name. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9f0f20d4149a5730b858d8faff891de4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String getTypeName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Returns the constant type name of this logger. The type name is defined by the class and hence provides a sort of run-time type information. </p><dl class="section return"><dt>Returns</dt><dd>The loggers type name. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="afb6fb454e24c653a10c6966754960298"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -244,34 +325,28 @@ Protected Methods</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">abstract void doLog </td>
+          <td class="memname">abstract void log </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a>&#160;</td>
           <td class="paramname"><em>domain</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Log.Level&#160;</td>
-          <td class="paramname"><em>level</em>, </td>
+          <td class="paramtype"><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a>&#160;</td>
+          <td class="paramname"><em>verbosity</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Object&#160;</td>
-          <td class="paramname"><em>msgObject</em>, </td>
+          <td class="paramtype">ArrayList&lt; Object &gt;&#160;</td>
+          <td class="paramname"><em>logables</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>indent</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a>&#160;</td>
-          <td class="paramname"><em>caller</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html">ScopeInfo</a>&#160;</td>
+          <td class="paramname"><em>scope</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -281,195 +356,19 @@ Protected Methods</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">abstract</span><span class="mlabel">protected</span></span>  </td>
+<span class="mlabels"><span class="mlabel">abstract</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> This is the central method that derived logger classes have to implement to log a message.</p>
+<p> This is the central method that derived logger classes have to implement to log a message. When it is invoked the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Domains' <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Verbosity.html">Verbosity</a></em> was already checked against parameter <code>verbosity</code>. The only action to take is to perform the log itself.<br />
+ Parameter <code>logables</code> contains at least one object, the one provided with the log statement. Other objects that might be included in the list, are <em>Prefix Objects</em> corresponding to the <code>scope</code>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">domain</td><td>The log domain name. The domain is already checked on this stage and is provided to be able to be logged out only. </td></tr>
-    <tr><td class="paramname">level</td><td>The log level. This has been checked to be active already on this stage and is provided to be able to be logged out only. </td></tr>
-    <tr><td class="paramname">msgObject</td><td>The log message object (mostly a String or AString). </td></tr>
-    <tr><td class="paramname">indent</td><td>The indentation in the output. </td></tr>
-    <tr><td class="paramname">caller</td><td>Once compiler generated and passed forward to here. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="ac0639589481c5277d8990402ce40d1d3"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">boolean line </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td>
-          <td class="paramname"><em>domain</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Log.Level&#160;</td>
-          <td class="paramname"><em>level</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Object&#160;</td>
-          <td class="paramname"><em>msgObject</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>indent</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html">CallerInfo</a>&#160;</td>
-          <td class="paramname"><em>caller</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<hr/>
-<p> This is the method to log a message. Internally it calls the abstract method <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#adf2d4a3039b4c8e4f2f24289af899838">doLog()</a> to let derived classes perform the log.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">domain</td><td>The log domain name (has to be provided in capital letters). </td></tr>
-    <tr><td class="paramname">level</td><td>The log level. This is checked against the level setting of the given domain. </td></tr>
-    <tr><td class="paramname">msgObject</td><td>The log message object (mostly a String or AString). </td></tr>
-    <tr><td class="paramname">indent</td><td>The desired indentation in the output. </td></tr>
-    <tr><td class="paramname">caller</td><td>Information on the caller. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><code>false</code> if the domain was not found and automatically created with level <b><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Log_1_1DomainLevel.html#a8771f4952654026ffa7275448f8d7f76">Log.DomainLevel.INHERIT</a></b>. <code>true</code> otherwise. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="aa04d2808f596473483133bade2030231"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void setDomain </td>
-          <td>(</td>
-          <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>domain</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Log.DomainLevel&#160;</td>
-          <td class="paramname"><em>domainLevel</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="enumcom_1_1aworx_1_1lib_1_1enums_1_1Propagation.html">Propagation</a>&#160;</td>
-          <td class="paramname"><em>propagation</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<hr/>
-<p> Same as <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#aa04d2808f596473483133bade2030231">setDomain</a>( AString, <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Log_1_1DomainLevel.html">Log.DomainLevel</a>, Propagation ) "setDomain" but takes parameter <code>domain</code> as type String. This will be converted to capital letters.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">domain</td><td>The log domain name as String (will be converted to capital letters). </td></tr>
-    <tr><td class="paramname">domainLevel</td><td>The domains log level to be set. </td></tr>
-    <tr><td class="paramname">propagation</td><td>(Optional) If <code>Propagation::ToDescendants</code>, which is the default, the level is set for all sub-domains recursively. If <code>Propagation::None</code>, then only this domain is changed. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a1bd909b7fe445e5f6b94516529cd4a73"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void setDomain </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td>
-          <td class="paramname"><em>domain</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Log.DomainLevel&#160;</td>
-          <td class="paramname"><em>domainLevel</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="enumcom_1_1aworx_1_1lib_1_1enums_1_1Propagation.html">Propagation</a>&#160;</td>
-          <td class="paramname"><em>propagation</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<hr/>
-<p> Sets the domains' log level and (by default) all it's sub domains recursively. In the case that sub domains should be set to a different log level, then this function has to be called for such sub domains after the call to the parent domain (or recursion has to be switched off, using the parameter <code>propagation</code>). It is not necessary to register/create a domain before setting its log level and log levels can be set and modified any time. </p><dl class="section note"><dt>Note</dt><dd>It is recommended to set domain levels for one or more loggers using <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a14433cbe7c50daf92ad1123dabab29c7">Lox.setDomain</a>, which invokes this method internally. This method may be used directly in cases when certain dedicated domains (e.g. <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a67901e9f160da1261843f911d9a0c7a8">Lox.internalDomain</a> are to be manipulated for a logger, regardless in which context (<a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html">Lox</a>) it is used.</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">domain</td><td>The log domain name as AString (has to be provided in capital letters). </td></tr>
-    <tr><td class="paramname">domainLevel</td><td>The domains log level to be set. </td></tr>
-    <tr><td class="paramname">propagation</td><td>(Optional) If <code>Propagation::ToDescendants</code>, which is the default, the level is set for all sub-domains recursively. If <code>Propagation::None</code>, then only this domain is changed. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="acfea987a1279622cfb8a5e0393fe33d7"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void setDomain </td>
-          <td>(</td>
-          <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>domain</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Log.DomainLevel&#160;</td>
-          <td class="paramname"><em>domainLevel</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<hr/>
-<p> Overloaded method that provides default paramter <code>propagation</code> with value <b><a class="el" href="enumcom_1_1aworx_1_1lib_1_1enums_1_1Propagation.html#a28a2607444247b781afbecd75fee9e93" title="Propagate changes to descendants/childs/subcomponents. ">Propagation.TO_DESCENDANTS</a></b>.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">domain</td><td>The log domain name as String (will be converted to capital letters). </td></tr>
-    <tr><td class="paramname">domainLevel</td><td>The domains log level to be set. </td></tr>
+    <tr><td class="paramname">domain</td><td>The <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a></em>. </td></tr>
+    <tr><td class="paramname">verbosity</td><td>The verbosity. </td></tr>
+    <tr><td class="paramname">logables</td><td>The list of objects to log. </td></tr>
+    <tr><td class="paramname">scope</td><td>Information about the scope of the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em>.. </td></tr>
   </table>
   </dd>
 </dl>
@@ -507,33 +406,7 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ad7073fb6d6486e166ea6116e36bbecf2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">boolean isDisabled = false</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>A flag to disable the logger. </p>
-
-</div>
-</div>
 <a class="anchor" id="a9a2326f35466e54c36c070829245c557"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String name</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>The name of the logger. Can be used to receive a reference to a logger and for filtering. <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> names are case insensitive. If no name is specified with the constructor, the name will by the same as <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#ab702590cb21a529418c7bd6439c4337a">typeName</a>. </p>
-
-</div>
-</div>
-<a class="anchor" id="ac83b466ab167e961c5c709935cae1132"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -541,7 +414,7 @@ Protected Methods</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">boolean [] outputParam = new boolean[1]</td>
+          <td class="memname">String name</td>
         </tr>
       </table>
   </td>
@@ -550,20 +423,7 @@ Protected Methods</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Internal one-time allocated boolean[] used as output parameter. </p>
-
-</div>
-</div>
-<a class="anchor" id="a2d7e603d6dfc10acdcb5977896ff6815"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a> rootDomain = new <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html">Domain</a>( null, null )</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>The root domain "/". All registered or just used domains become a sub domain of this root. If a sub domains log level is not explicitly set, such sub domain inherits the level setting of the root domain. Therefore, the log level setting of the root domain determines how unknown domains got logged. The default level of the root domain is <a class="el" href="enumcom_1_1aworx_1_1lox_1_1Log_1_1DomainLevel.html#aba437f58ad654d395b18d209a1a8c21c">Log.DomainLevel.OFF</a>. </p>
+<p>The name of the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></em>. Used as a reference to a logger. All loggers attached to a <b>Lox</b> have to differ in their names. If no name is specified with the constructor, the name will by the same as <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html#ab702590cb21a529418c7bd6439c4337a">typeName</a>. </p>
 
 </div>
 </div>
@@ -576,7 +436,7 @@ Protected Methods</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The creation time of the logger </p>
+<p>The creation time of the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></em> </p>
 
 </div>
 </div>
@@ -593,7 +453,7 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ab3455c59a6cb0194878d7942ff4eb825"></a>
+<a class="anchor" id="ab702590cb21a529418c7bd6439c4337a"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -601,7 +461,7 @@ Protected Methods</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> tmpDomainName = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>()</td>
+          <td class="memname">String typeName</td>
         </tr>
       </table>
   </td>
@@ -610,20 +470,7 @@ Protected Methods</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Internal one-time allocated string. </p>
-
-</div>
-</div>
-<a class="anchor" id="ab702590cb21a529418c7bd6439c4337a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String typeName</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>The type name of the logger. This is equal to the default <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a> name. </p>
+<p>The type name of the <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html">Logger</a></em>. This is set by the derived class similar to the class name. </p>
 
 </div>
 </div>
@@ -634,7 +481,7 @@ Protected Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:20 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:18 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

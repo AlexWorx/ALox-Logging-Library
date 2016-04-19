@@ -1,5 +1,8 @@
 var searchData=
 [
+  ['scopedump_2ehpp',['scopedump.hpp',['../scopedump_8hpp.html',1,'']]],
+  ['scopeinfo_2ehpp',['scopeinfo.hpp',['../scopeinfo_8hpp.html',1,'']]],
+  ['scopestore_2ehpp',['scopestore.hpp',['../scopestore_8hpp.html',1,'']]],
   ['std_5fiostream_2ehpp',['std_iostream.hpp',['../std__iostream_8hpp.html',1,'']]],
   ['std_5fstring_2ehpp',['std_string.hpp',['../std__string_8hpp.html',1,'']]],
   ['string_2ehpp',['string.hpp',['../string_8hpp.html',1,'']]],

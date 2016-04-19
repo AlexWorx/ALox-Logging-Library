@@ -32,6 +32,13 @@
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
+      <type>static SmartLock</type>
+      <name>StdOutputStreamsLock</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
+      <anchor>aa44d863f975cf49f3cf879b53f080a07</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
       <type>static readonly int</type>
       <name>Version</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
@@ -49,29 +56,29 @@
       <type>static void</type>
       <name>ASSERT</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
-      <anchor>a2ea4f7aebadaee20aace5e26a9a3b82d</anchor>
-      <arglist>(bool cond, [CallerFilePath] String csf=&quot;&quot;, [CallerLineNumber] int cln=0, [CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a7e510ecadc41e9b8a21653c9af833a6d</anchor>
+      <arglist>(bool cond, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>ASSERT_ERROR</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
-      <anchor>a461f3c6899e74f132b890f5fc3a4a8da</anchor>
-      <arglist>(bool cond, String msg, [CallerFilePath] String csf=&quot;&quot;, [CallerLineNumber] int cln=0, [CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a94cfb52be9cdb81cabc39538df6e795f</anchor>
+      <arglist>(bool cond, String msg, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>ASSERT_WARNING</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
-      <anchor>ac2584577aa4b713feb87ce5f4bf457ad</anchor>
-      <arglist>(bool cond, String msg, [CallerFilePath] String csf=&quot;&quot;, [CallerLineNumber] int cln=0, [CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a56f42d5bd5ba7623ebced4455b4c5411</anchor>
+      <arglist>(bool cond, String msg, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>ERROR</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
-      <anchor>a248c962b2cc43bb5bc22e737edc1d387</anchor>
-      <arglist>(String msg, [CallerFilePath] String csf=&quot;&quot;, [CallerLineNumber] int cln=0, [CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a0c498e86d070eb1abd8d9e430e34c4ab</anchor>
+      <arglist>(String msg, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
@@ -79,6 +86,34 @@
       <anchorfile>classcs_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
       <anchor>aa35acc025eeb16aa37ee19849a520e73</anchor>
       <arglist>(bool useEnv=true, String[] args=null)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static bool</type>
+      <name>ReadBoolean</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
+      <anchor>af971932d642ede1447637ae4fd9ff5d1</anchor>
+      <arglist>(Substring src)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static Case</type>
+      <name>ReadCase</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
+      <anchor>ad78868208b2acd77b3672935fa03c520</anchor>
+      <arglist>(Substring src)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static Inclusion</type>
+      <name>ReadInclusion</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
+      <anchor>ad340c1b588be870b8e3ad85c1f56895b</anchor>
+      <arglist>(Substring src)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>REPORT</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
+      <anchor>a258a4168abf071ddd99f34df5adc7f8f</anchor>
+      <arglist>(int type, String msg, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
@@ -119,8 +154,8 @@
       <type>static void</type>
       <name>WARNING</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
-      <anchor>a9f64661c7f0a50b63aff2cdeb392fb87</anchor>
-      <arglist>(String msg, [CallerFilePath] String csf=&quot;&quot;, [CallerLineNumber] int cln=0, [CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a4f68fcea1fcdbd6fc3bf956ab306bd5b</anchor>
+      <arglist>(String msg, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="variable" protection="private" static="yes">
       <type>static bool</type>
@@ -136,6 +171,27 @@
       <anchor>a1fdc2bf5595c2e64dc06d987769834eb</anchor>
       <arglist></arglist>
     </member>
+    <member kind="variable" protection="private" static="yes">
+      <type>static char[]</type>
+      <name>trueValuesBoolean</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
+      <anchor>a65337581a93a3179f7578aa6b483915b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private" static="yes">
+      <type>static char[]</type>
+      <name>trueValuesCase</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
+      <anchor>a0a20ce9d8843a85788d87d662e71c35d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private" static="yes">
+      <type>static char[]</type>
+      <name>trueValuesInclusion</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
+      <anchor>af9e96e2665866b3811a07ba6261b80c2</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="property" static="yes">
       <type>static bool</type>
       <name>SysInfo_HasConsoleWindow</name>
@@ -145,27 +201,129 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>cs::aworx::lox::Log::ALoxReportWriter</name>
-    <filename>classcs_1_1aworx_1_1lox_1_1Log_1_1ALoxReportWriter.html</filename>
+    <name>cs::aworx::lox::ALox</name>
+    <filename>classcs_1_1aworx_1_1lox_1_1ALox.html</filename>
+    <member kind="variable" static="yes">
+      <type>static String</type>
+      <name>ConfigCategoryName</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>affcf83e8b52935dd94b74c1a47cf7e0a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static readonly String</type>
+      <name>InternalDomains</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a7b6260c97ca73f960a2b5aabd5cc91ae</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static readonly int</type>
+      <name>Revision</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>abee878df7a0627f72de2e62aa99f2969</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static readonly int</type>
+      <name>Version</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a811fc76ba0094b56a1ddbe6ac8d78915</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static Lox</type>
+      <name>Get</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a43ea367a64b98d76d0f18955bf0e5a04</anchor>
+      <arglist>(String name, Create create=Create.Never)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Init</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>aa35acc025eeb16aa37ee19849a520e73</anchor>
+      <arglist>(bool useEnv=true, String[] args=null)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static Verbosity</type>
+      <name>ReadVerbosity</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a160a34b72b21073f9131fec8bbcbaef1</anchor>
+      <arglist>(Substring src)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Register</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>ab56e2c69e5a62ed580b0509e63193eb5</anchor>
+      <arglist>(Lox lox, ContainerOp operation)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Reset</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a77ad624cc83a2a71aa4d5ad991d811d7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static AString</type>
+      <name>ToString</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a271183f689345a65e91a058a706bea78</anchor>
+      <arglist>(Scope scope, int pathLevel, AString target)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static AString</type>
+      <name>ToString</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a880c9d3857667a9f7d942247b85db93e</anchor>
+      <arglist>(Verbosity verbosity, int priority, AString target)</arglist>
+    </member>
+    <member kind="variable" protection="private" static="yes">
+      <type>static bool</type>
+      <name>isInitialized</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a1fdc2bf5595c2e64dc06d987769834eb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private" static="yes">
+      <type>static List&lt; Lox &gt;</type>
+      <name>loxes</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>a4d25137196004fe0c966841330055e85</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>cs::aworx::lox::ALoxReportWriter</name>
+    <filename>classcs_1_1aworx_1_1lox_1_1ALoxReportWriter.html</filename>
     <base>cs::aworx::lib::ReportWriter</base>
     <member kind="function">
       <type></type>
       <name>ALoxReportWriter</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log_1_1ALoxReportWriter.html</anchorfile>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALoxReportWriter.html</anchorfile>
       <anchor>a0bf141375d34781d9d1aba4cbedf4c3e</anchor>
       <arglist>(Lox lox)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>NotifyActivation</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALoxReportWriter.html</anchorfile>
+      <anchor>acf69c4476e8a29645ad3dee986ef8a28</anchor>
+      <arglist>(Phase phase)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Report</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log_1_1ALoxReportWriter.html</anchorfile>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALoxReportWriter.html</anchorfile>
       <anchor>a6ff64b0b8bf46ac6b46d8bcdba2ec990</anchor>
       <arglist>(Report.Message report)</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>Lox</type>
       <name>lox</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log_1_1ALoxReportWriter.html</anchorfile>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALoxReportWriter.html</anchorfile>
       <anchor>aff12beb5eb706efdffb65183b87431df</anchor>
       <arglist></arglist>
     </member>
@@ -178,8 +336,8 @@
       <type></type>
       <name>AnsiConsoleLogger</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiConsoleLogger.html</anchorfile>
-      <anchor>af8b8a58890028fb40a52dad51156fa38</anchor>
-      <arglist>(String name=&quot;ANSI_CONSOLE&quot;)</arglist>
+      <anchor>a3a67eabb6cf45eff59ea238bb12662ed</anchor>
+      <arglist>(String name=null)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -498,8 +656,8 @@
       <type></type>
       <name>AnsiLogger</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>ae65203106b0bdd842018eaa6c9359c2f</anchor>
-      <arglist>(System.IO.TextWriter textWriter, String name=null)</arglist>
+      <anchor>ae5c54d4423df9948737d77d3d528a41c</anchor>
+      <arglist>(System.IO.TextWriter textWriter, bool usesStdStreams, String name=null, String typeName=&quot;ANSI&quot;)</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>String[]</type>
@@ -517,10 +675,10 @@
     </member>
     <member kind="function" protection="protected">
       <type>override void</type>
-      <name>doTextLog</name>
+      <name>logText</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html</anchorfile>
-      <anchor>a9f4d4817f9f3191f4a2a26c96fea0bdb</anchor>
-      <arglist>(AString domain, Log.Level level, AString msg, int indent, CallerInfo caller, int lineNumber)</arglist>
+      <anchor>a0bd892b2dd861bd2e4b3084c643ee857</anchor>
+      <arglist>(Domain domain, Verbosity verbosity, AString msg, ScopeInfo scope, int lineNumber)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>override void</type>
@@ -871,6 +1029,13 @@
     </member>
     <member kind="function">
       <type>AString</type>
+      <name>_NC</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>aa8b6b86ed17b2e40947b52a0cbe00340</anchor>
+      <arglist>(Object src)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
       <name>_</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>aa742f81a8e2b6eb9161f40f8626315e8</anchor>
@@ -1144,6 +1309,13 @@
     </member>
     <member kind="function">
       <type>int</type>
+      <name>LastIndexOf</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>ac6469cc04e3887be0e077b391a1fcb6b</anchor>
+      <arglist>(char needle, int startIndex=int.MaxValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
       <name>LastIndexOfAny</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>a2efb8093a3367df0c789eee107e85efd</anchor>
@@ -1234,10 +1406,10 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>string</type>
+      <type>String</type>
       <name>ToString</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
-      <anchor>a281ea2c92f6f2ea2a6462632839d7a74</anchor>
+      <anchor>a713ab2d9944128a1d253741da0e1de8d</anchor>
       <arglist>(int regionStart, int regionLength=int.MaxValue)</arglist>
     </member>
     <member kind="function">
@@ -1676,6 +1848,13 @@
     </member>
     <member kind="function">
       <type>AString</type>
+      <name>_NC</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>aa8b6b86ed17b2e40947b52a0cbe00340</anchor>
+      <arglist>(Object src)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
       <name>_</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>aa742f81a8e2b6eb9161f40f8626315e8</anchor>
@@ -2012,6 +2191,13 @@
     </member>
     <member kind="function">
       <type>int</type>
+      <name>LastIndexOf</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>ac6469cc04e3887be0e077b391a1fcb6b</anchor>
+      <arglist>(char needle, int startIndex=int.MaxValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
       <name>LastIndexOfAny</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>a2efb8093a3367df0c789eee107e85efd</anchor>
@@ -2102,10 +2288,10 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>string</type>
+      <type>String</type>
       <name>ToString</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
-      <anchor>a281ea2c92f6f2ea2a6462632839d7a74</anchor>
+      <anchor>a713ab2d9944128a1d253741da0e1de8d</anchor>
       <arglist>(int regionStart, int regionLength=int.MaxValue)</arglist>
     </member>
     <member kind="function">
@@ -2262,59 +2448,6 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>cs::aworx::lox::core::CallerInfo</name>
-    <filename>classcs_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html</filename>
-    <member kind="variable">
-      <type>int</type>
-      <name>LineNumber</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>abc72cc909922c33908e48159b106efa3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>MethodName</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>aa8885cdf3586b80bd9905b60bf9529d9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>SourceFileName</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>a2728e8e0ff2895fccb263584a374f97e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>ThreadID</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>a762284c02117c5070871b37484d70b4e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>AString</type>
-      <name>ThreadName</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>ac2edbbf8ece484cc8424036fdaadd651</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>Ticks</type>
-      <name>TimeStamp</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>a5a79026581184f7e7977b1827a104b24</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>Set</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html</anchorfile>
-      <anchor>a57555728289b3e873ec939e3a20bc084</anchor>
-      <arglist>(String callerSourceFileName, int callerLineNumber, String callerMemberName, Dictionary&lt; int, String &gt; threadDictionary)</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
     <name>cs::aworx::lox::loggers::CLRDebuggerLogger</name>
     <filename>classcs_1_1aworx_1_1lox_1_1loggers_1_1CLRDebuggerLogger.html</filename>
     <base>cs::aworx::lox::core::textlogger::PlainTextLogger</base>
@@ -2327,9 +2460,9 @@
     </member>
     <member kind="function" protection="protected">
       <type>override bool</type>
-      <name>doLogSubstring</name>
+      <name>logSubstring</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1loggers_1_1CLRDebuggerLogger.html</anchorfile>
-      <anchor>aa1ae12f7ee4e81a2f8777809f6fc5c0c</anchor>
+      <anchor>a064e8e44293d86433b2d183f685a7f66</anchor>
       <arglist>(AString buffer, int start, int length)</arglist>
     </member>
     <member kind="function" protection="protected">
@@ -2409,10 +2542,10 @@
     </member>
     <member kind="function" protection="protected">
       <type>override void</type>
-      <name>doTextLog</name>
+      <name>logText</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1loggers_1_1ColorConsoleLogger.html</anchorfile>
-      <anchor>a9f4d4817f9f3191f4a2a26c96fea0bdb</anchor>
-      <arglist>(AString domain, Log.Level level, AString msg, int indent, CallerInfo caller, int lineNumber)</arglist>
+      <anchor>a0bd892b2dd861bd2e4b3084c643ee857</anchor>
+      <arglist>(Domain domain, Verbosity verbosity, AString msg, ScopeInfo scope, int lineNumber)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>override void</type>
@@ -2451,7 +2584,7 @@
   <compound kind="class">
     <name>cs::aworx::lib::config::Configuration</name>
     <filename>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</filename>
-    <class kind="class">cs::aworx::lib::config::Configuration::PrioAndPlugin</class>
+    <class kind="class">cs::aworx::lib::config::Configuration::PluginAndPrio</class>
     <member kind="variable">
       <type>CommandLinePlugIn</type>
       <name>CmdLineCP</name>
@@ -2471,6 +2604,27 @@
       <name>NumberFormat</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
       <anchor>a20358334d7d6268d5c50b650ebf3e4b8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>const int</type>
+      <name>PrioCmdLine</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>a7782ed756910f8f9910f8eabbbaa494c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>const int</type>
+      <name>PrioEnvVars</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>a8d6d75f99cfd73825afe36e62603a950</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>const int</type>
+      <name>PrioIniFile</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>a925f0708313b8a27defb4bf7983d7dd6</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -2498,15 +2652,15 @@
       <type>int</type>
       <name>Get</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a7f0305f62e5f91943705ea0ab805917e</anchor>
-      <arglist>(Object category, Object name, ref int target, AString temp=null)</arglist>
+      <anchor>a1e26d8048410128ace5354ddf98845b7</anchor>
+      <arglist>(Object category, Object name, out int target, AString temp=null)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>Get</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>a59e4d55061a2795dad8b2a7d16c8962f</anchor>
-      <arglist>(Object category, Object name, ref double target, AString temp=null)</arglist>
+      <anchor>ae424d19d485faa863786709b8a05778d</anchor>
+      <arglist>(Object category, Object name, out double target, AString temp=null)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -2519,8 +2673,22 @@
       <type>bool</type>
       <name>IsTrue</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>af8e63074fffc396723b753ddc73ddc86</anchor>
-      <arglist>(Object category, Object name, ref int pluginPriority, AString temp=null)</arglist>
+      <anchor>acac4653b0703548c68814cd48a1d06af</anchor>
+      <arglist>(AString value)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>IsTrue</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>a5616332a3373010be271f04f2e92f88f</anchor>
+      <arglist>(Substring value)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>IsTrue</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
+      <anchor>ac7436dad7e0361445d031a671d87d5f6</anchor>
+      <arglist>(Object category, Object name, out int pluginPriority, AString temp=null)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
@@ -2558,10 +2726,10 @@
       <arglist>(Object category, Object name, double value, Object comments=null, AString temp=null)</arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>List&lt; PrioAndPlugin &gt;</type>
+      <type>List&lt; PluginAndPrio &gt;</type>
       <name>plugins</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html</anchorfile>
-      <anchor>ac90f5ae6de5fd6744c3bbc5bd6b86d1a</anchor>
+      <anchor>ac6fa102e37cb8bd5f57802ec7f51b54a</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -2586,15 +2754,15 @@
       <type>virtual bool</type>
       <name>Get</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html</anchorfile>
-      <anchor>a111788d68fdb2a2a63f9e01e2e0a6452</anchor>
-      <arglist>(Object category, Object name, ref int target, AString temp)</arglist>
+      <anchor>ab7fa66b1fe91cc5afd4bf70e6a4b965b</anchor>
+      <arglist>(Object category, Object name, out int target, AString temp)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual bool</type>
       <name>Get</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html</anchorfile>
-      <anchor>a2c406851632e37437e58a556ae7cd24e</anchor>
-      <arglist>(Object category, Object name, ref double target, AString temp)</arglist>
+      <anchor>a5cc3608f623b8ff2ead3fbebba2f52c2</anchor>
+      <arglist>(Object category, Object name, out double target, AString temp)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual bool</type>
@@ -2638,9 +2806,9 @@
     </member>
     <member kind="function" protection="protected">
       <type>override bool</type>
-      <name>doLogSubstring</name>
+      <name>logSubstring</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html</anchorfile>
-      <anchor>aa1ae12f7ee4e81a2f8777809f6fc5c0c</anchor>
+      <anchor>a064e8e44293d86433b2d183f685a7f66</anchor>
       <arglist>(AString buffer, int start, int length)</arglist>
     </member>
     <member kind="function" protection="protected">
@@ -2662,12 +2830,33 @@
     <name>cs::aworx::lib::ConsoleReportWriter</name>
     <filename>classcs_1_1aworx_1_1lib_1_1ConsoleReportWriter.html</filename>
     <base>cs::aworx::lib::ReportWriter</base>
+    <member kind="variable" static="yes">
+      <type>static readonly ConsoleReportWriter</type>
+      <name>Singleton</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1ConsoleReportWriter.html</anchorfile>
+      <anchor>a07ce732a5e5933f2f1a6082beff70bb9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>NotifyActivation</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1ConsoleReportWriter.html</anchorfile>
+      <anchor>aaba205e9917de3bc9d7f05accccaa890</anchor>
+      <arglist>(enums.Phase phase)</arglist>
+    </member>
     <member kind="function" virtualness="virtual">
       <type>virtual void</type>
       <name>Report</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1ConsoleReportWriter.html</anchorfile>
       <anchor>a0ec00af869093da2883b97884ba49b04</anchor>
       <arglist>(Report.Message report)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type></type>
+      <name>ConsoleReportWriter</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1ConsoleReportWriter.html</anchorfile>
+      <anchor>aa79313b30414299d171786d881144df7</anchor>
+      <arglist>()</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -2768,11 +2957,34 @@
   <compound kind="class">
     <name>cs::aworx::lox::core::Domain</name>
     <filename>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</filename>
+    <class kind="class">cs::aworx::lox::core::Domain::LoggerData</class>
+    <class kind="class">cs::aworx::lox::core::Domain::PL</class>
     <member kind="variable" static="yes">
-      <type>static String</type>
-      <name>DomainSeparatorChars</name>
+      <type>static readonly char</type>
+      <name>PathSeparator</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
-      <anchor>afb75ecb5fef3bcf61597efd190ca0114</anchor>
+      <anchor>a26e905aa8211afa259b751fd3889ab62</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>CntLogCalls</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a2c80e5630abe5d5042ddb4b85c0c3562</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>List&lt; LoggerData &gt;</type>
+      <name>Data</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a661e9caf3cdf02afbe7da9a0510ad11a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>FullPath</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a2a6c0d3ee72cd24b4333894999aadcd0</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -2790,10 +3002,31 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
+      <type>List&lt; PL &gt;</type>
+      <name>PrefixLogables</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a5ed8e1ef394df43aa6cc12506276a617</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
       <type>List&lt; Domain &gt;</type>
       <name>SubDomains</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
       <anchor>a2d2032ef55cc34830125ac40dcec1afb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Substring</type>
+      <name>tSubstring</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>ae02ecb257cadbd45d5280d878055873a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Substring</type>
+      <name>tSubstring2</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>ac2fc5db593e64d47fe51e0989418ef72</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -2804,32 +3037,102 @@
       <arglist>(Domain parent, AString name)</arglist>
     </member>
     <member kind="function">
+      <type>int</type>
+      <name>AddLogger</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a8d7d51ec7a45008ee27dc01eeaa554b5</anchor>
+      <arglist>(Logger logger)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>CountLoggers</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a99a4aca5fd12818f7a0718ff1bf37c9d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
       <type>Domain</type>
       <name>Find</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
-      <anchor>aec4b8a62a68d36086748848daaa311fb</anchor>
-      <arglist>(AString domainPath, ref bool wasCreated)</arglist>
+      <anchor>a676c1ab572c27144403cc8f3c5130a32</anchor>
+      <arglist>(AString domainPathAS, Case sensitivity, int maxCreate, ref bool wasCreated)</arglist>
     </member>
     <member kind="function">
-      <type>Log.DomainLevel</type>
-      <name>GetLevel</name>
+      <type>int</type>
+      <name>GetCount</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
-      <anchor>a6b35d5ba376191a0aa5b9ed52b8f05e9</anchor>
+      <anchor>a20db10bae0149b8f99461370b2b3fd48</anchor>
+      <arglist>(int loggerNo)</arglist>
+    </member>
+    <member kind="function">
+      <type>Logger</type>
+      <name>GetLogger</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a74ba68166dee3359939d25f87e648cbe</anchor>
+      <arglist>(String loggerName)</arglist>
+    </member>
+    <member kind="function">
+      <type>Logger</type>
+      <name>GetLogger</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a8e773b21b6ffe7b6a17bbe83512a3a0e</anchor>
+      <arglist>(int no)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>GetLoggerNo</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a835882c4b701366e371067694c2cdb64</anchor>
+      <arglist>(String loggerName)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>GetLoggerNo</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>ac16fe810a3f5e87102c9e4a768b766e8</anchor>
+      <arglist>(Logger logger)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>GetPriority</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a6fd0d5e74c9ce237644735d17cbc7119</anchor>
+      <arglist>(int loggerNo)</arglist>
+    </member>
+    <member kind="function">
+      <type>Domain</type>
+      <name>GetRoot</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a576265a11bfb3c852dd461267fc674b7</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>Verbosity</type>
+      <name>GetVerbosity</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a19ec6c97f7e17ca51908a7174e43f2bd</anchor>
+      <arglist>(int loggerNo)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>IsActive</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
-      <anchor>a729bb906d248e54d997101d8faf8e1c0</anchor>
-      <arglist>(Log.Level level)</arglist>
+      <anchor>a6dc8fbb3427c720adda3ed3a807f9902</anchor>
+      <arglist>(int loggerNo, Verbosity statement)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
-      <name>SetLevel</name>
+      <name>RemoveLogger</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
-      <anchor>a5180f23126f59ef4c5d8510cd7734c6c</anchor>
-      <arglist>(Log.DomainLevel domainLevel, Propagation propagation=Propagation.ToDescendants)</arglist>
+      <anchor>a9aa2e7ebee563c92c3335f9a3b4a574c</anchor>
+      <arglist>(int loggerNo)</arglist>
+    </member>
+    <member kind="function">
+      <type>Verbosity</type>
+      <name>SetVerbosity</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a72b26b0cca06a87932744d5f625efbfa</anchor>
+      <arglist>(int loggerNo, Verbosity verbosity, int priority)</arglist>
     </member>
     <member kind="function">
       <type>override String</type>
@@ -2839,18 +3142,75 @@
       <arglist>()</arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>Log.DomainLevel</type>
-      <name>level</name>
+      <type>AString</type>
+      <name>tAString</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
-      <anchor>a1a9f7325c08dd31ecae733ac275a3791</anchor>
+      <anchor>a4eab9ca32845e6e56169e1df28225791</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>addLoggerRecursive</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>ad7d48a4bbb7151b268d7a126f6034db1</anchor>
+      <arglist>(Logger logger)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>Domain</type>
       <name>findRecursive</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
-      <anchor>aaff461fc11e5cfa90c7a349137bc7574</anchor>
-      <arglist>(AString domainPath, int dpStartIdx, ref bool wasCreated)</arglist>
+      <anchor>affa07a1beec86ae2835f8d87d1da7022</anchor>
+      <arglist>(Substring domainPath, Case sensitivity, int maxCreate, ref bool wasCreated)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>removeLoggerRecursive</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a1b032fcdfc7306d529107bcd28145b66</anchor>
+      <arglist>(int loggerNo)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>cs::aworx::lox::Lox::DomainSubstitutionRule</name>
+    <filename>classcs_1_1aworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html</filename>
+    <member kind="enumeration">
+      <type></type>
+      <name>Type</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html</anchorfile>
+      <anchor>a1d1cfd8ffb84e947f82999c682b666a7</anchor>
+      <arglist></arglist>
+      <enumvalue file="classcs_1_1aworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html" anchor="a1d1cfd8ffb84e947f82999c682b666a7a1649aed298f99d587e2eb30c1db5946b">Exact</enumvalue>
+      <enumvalue file="classcs_1_1aworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html" anchor="a1d1cfd8ffb84e947f82999c682b666a7a9d1a2cba952f9245c54397bbbf3e8183">StartsWith</enumvalue>
+      <enumvalue file="classcs_1_1aworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html" anchor="a1d1cfd8ffb84e947f82999c682b666a7a213068b7e25d045126e9b1702fae80db">EndsWith</enumvalue>
+      <enumvalue file="classcs_1_1aworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html" anchor="a1d1cfd8ffb84e947f82999c682b666a7a7ba559a2b304b4c6d34d67ed77f80345">Substring</enumvalue>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>Replacement</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html</anchorfile>
+      <anchor>a3d6fe0de93ec46de2845bdcda24d2934</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>Search</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html</anchorfile>
+      <anchor>ac79327a806c2cf96807aa72e4f9f8974</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Type</type>
+      <name>type</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html</anchorfile>
+      <anchor>ab6f4e6d3fde00ce906e46494f60dfe7a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>DomainSubstitutionRule</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html</anchorfile>
+      <anchor>a8b30f3a721abf15d09f442304685e83e</anchor>
+      <arglist>(String s, String r)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -3143,6 +3503,13 @@
       <anchor>a5003f05d1e4e22ea4d388aec7caa2147</anchor>
       <arglist></arglist>
     </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>ReplaceToReadable</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ESC.html</anchorfile>
+      <anchor>a36be376e030b51e61759c3d91e9c18d4</anchor>
+      <arglist>(AString target, int startIdx)</arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>cs::aworx::lib::config::IniFile</name>
@@ -3318,48 +3685,6 @@
   <compound kind="class">
     <name>cs::aworx::lox::Log</name>
     <filename>classcs_1_1aworx_1_1lox_1_1Log.html</filename>
-    <member kind="enumeration">
-      <type></type>
-      <name>DomainLevel</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a10ac165398697ce1d642d739cc3b170f</anchor>
-      <arglist></arglist>
-      <enumvalue file="classcs_1_1aworx_1_1lox_1_1Log.html" anchor="a10ac165398697ce1d642d739cc3b170fad15305d7a4e34e02489c74a5ef542f36">Off</enumvalue>
-      <enumvalue file="classcs_1_1aworx_1_1lox_1_1Log.html" anchor="a10ac165398697ce1d642d739cc3b170fa5ef0c737746fae2ca90e66c39333f8f6">Errors</enumvalue>
-      <enumvalue file="classcs_1_1aworx_1_1lox_1_1Log.html" anchor="a10ac165398697ce1d642d739cc3b170fac97dda1f78d8fbb5a4f489ab1b51ff4d">WarningsAndErrors</enumvalue>
-      <enumvalue file="classcs_1_1aworx_1_1lox_1_1Log.html" anchor="a10ac165398697ce1d642d739cc3b170fa377a1a5cb4724b1fb5993b36459d6570">InfoWarningsAndErrors</enumvalue>
-      <enumvalue file="classcs_1_1aworx_1_1lox_1_1Log.html" anchor="a10ac165398697ce1d642d739cc3b170fab1c94ca2fbc3e78fc30069c8d0f01680">All</enumvalue>
-      <enumvalue file="classcs_1_1aworx_1_1lox_1_1Log.html" anchor="a10ac165398697ce1d642d739cc3b170fac49484faf79e2388b580e49444d6ac11">Inherit</enumvalue>
-    </member>
-    <member kind="enumeration">
-      <type></type>
-      <name>Level</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a221b779e6bb7b8d40677d7642bfefac5</anchor>
-      <arglist></arglist>
-      <enumvalue file="classcs_1_1aworx_1_1lox_1_1Log.html" anchor="a221b779e6bb7b8d40677d7642bfefac5ad4a9fa383ab700c5bdd6f31cf7df0faf">Verbose</enumvalue>
-      <enumvalue file="classcs_1_1aworx_1_1lox_1_1Log.html" anchor="a221b779e6bb7b8d40677d7642bfefac5a4059b0251f66a18cb56f544728796875">Info</enumvalue>
-      <enumvalue file="classcs_1_1aworx_1_1lox_1_1Log.html" anchor="a221b779e6bb7b8d40677d7642bfefac5a0eaadb4fcb48a0a0ed7bc9868be9fbaa">Warning</enumvalue>
-      <enumvalue file="classcs_1_1aworx_1_1lox_1_1Log.html" anchor="a221b779e6bb7b8d40677d7642bfefac5a902b0d55fddef6f8d651fe1035b7d4bd">Error</enumvalue>
-    </member>
-    <member kind="enumeration">
-      <type></type>
-      <name>Scope</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>aaecc53892786f2fa11e682f633af84c6</anchor>
-      <arglist></arglist>
-      <enumvalue file="classcs_1_1aworx_1_1lox_1_1Log.html" anchor="aaecc53892786f2fa11e682f633af84c6a6adf97f83acf6453d4a6a4b1070f3754">None</enumvalue>
-      <enumvalue file="classcs_1_1aworx_1_1lox_1_1Log.html" anchor="aaecc53892786f2fa11e682f633af84c6aad9c9150641994c9937a1bce42884a31">SourceFile</enumvalue>
-      <enumvalue file="classcs_1_1aworx_1_1lox_1_1Log.html" anchor="aaecc53892786f2fa11e682f633af84c6a4c3880bb027f159e801041b1021e88e8">Method</enumvalue>
-    </member>
-    <class kind="class">cs::aworx::lox::Log::ALoxReportWriter</class>
-    <member kind="variable" static="yes">
-      <type>static String</type>
-      <name>ConfigCategoryName</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>affcf83e8b52935dd94b74c1a47cf7e0a</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="variable" static="yes">
       <type>static TextLogger</type>
       <name>DebugLogger</name>
@@ -3375,53 +3700,39 @@
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
+      <type>static TextLogger</type>
+      <name>IDELogger</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a310bb1907f5565fa503e4ab259abdf3d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
       <type>static Lox</type>
       <name>LOX</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
       <anchor>a9291aece8829db000d6508daa16f67fc</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable" static="yes">
-      <type>static readonly int</type>
-      <name>Revision</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>abee878df7a0627f72de2e62aa99f2969</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static readonly int</type>
-      <name>Version</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a811fc76ba0094b56a1ddbe6ac8d78915</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>AddDebugLogger</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a5ffc84c0ede270c1d09b4820eac46241</anchor>
-      <arglist>(Lox lox=null, bool replaceDefaultReportWriter=true)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>AddLogger</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a8ced556c1d5520ea16168f17554b7228</anchor>
-      <arglist>(Logger logger, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a289d55c41f1955839796edfb71e233e4</anchor>
+      <arglist>(Lox lox=null, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>Assert</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>aee095ff4374fa0a92674287dc27a08d1</anchor>
-      <arglist>(bool trueOrLog, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>aeb6d86fd18514088310c6c5bee5e1e4d</anchor>
+      <arglist>(bool condition, String domain, Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>Assert</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a3d4802c79d9f529479edeab504bbe7fb</anchor>
-      <arglist>(bool trueOrLog, String domain, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>af46decccedb3466a6cf570b06de6bc4b</anchor>
+      <arglist>(bool condition, Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static AString</type>
@@ -3439,115 +3750,269 @@
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
-      <name>Error</name>
+      <name>ClearSourcePathTrimRules</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>aaad724a6f491718ebea94e5bdc304eaf</anchor>
-      <arglist>(Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a320973a22d1a85189096272f8b2714c6</anchor>
+      <arglist>(Inclusion global=Inclusion.Include, bool allowAutoRule=true)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Entry</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a8b6af17a265ea4fe913d3168e2e46b94</anchor>
+      <arglist>(String domain, Verbosity verbosity, Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Entry</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>ab5bf81900ef34b11bae3996bf8d23887</anchor>
+      <arglist>(Verbosity verbosity, Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>Error</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a4bc5c80a505faceb3cbb2adbcafe3fff</anchor>
-      <arglist>(String msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a2170a3c4caf6b1aee294eed8c5237c15</anchor>
+      <arglist>(String domain, Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>Error</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>afbd8c7a382e995b163bc98a3bdad137e</anchor>
-      <arglist>(String domain, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>acece3abb7e1a1575395253e33912c998</anchor>
+      <arglist>(Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static Logger</type>
       <name>GetLogger</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a81583fc2028aa1ccb925afaa0d63a224</anchor>
-      <arglist>(String loggerName)</arglist>
+      <anchor>a1271d2cda12c9b1e9b77ff7bdfaccc1c</anchor>
+      <arglist>(String loggerName, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
-      <name>GetMarker</name>
+      <name>If</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a4576b25512979ba59a7180486b18874a</anchor>
-      <arglist>(Object[] markerPointer, Log.Scope scope, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>aa3cf204f4e7eec768249c89bcd2623eb</anchor>
+      <arglist>(bool condition, String domain, Verbosity verbosity, Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
-      <name>Info</name>
+      <name>If</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a8d4eed10072fbce336d60fd926d7c698</anchor>
-      <arglist>(Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>Info</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a02b135237e1930051093b3a930a6bbbb</anchor>
-      <arglist>(String msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a4ae26eb2280882770039dc5d43e307fa</anchor>
+      <arglist>(bool condition, Verbosity verbosity, Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>Info</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>ac3b403e887df378d8bdb9c480432e4b4</anchor>
-      <arglist>(String domain, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>ac679516f9b85f9bce52ff796aef44c3f</anchor>
+      <arglist>(String domain, Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
-      <name>Init</name>
+      <name>Info</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>aa35acc025eeb16aa37ee19849a520e73</anchor>
-      <arglist>(bool useEnv=true, String[] args=null)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>Line</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>af545c26975f606a7ea708d954d1c6db8</anchor>
-      <arglist>(bool doLog, String domain, Level level, Object msg, int indent=0, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>Line</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a4da83abd593e5558182f7ebe0b9bd789</anchor>
-      <arglist>(String domain, Level level, Object msg, int indent=0, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>Line</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>adf23b6f4fc2211516fa1bbf5df64e5bc</anchor>
-      <arglist>(Level level, Object msg, int indent=0, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a3b547c4144b5fa689e0787263c8b7484</anchor>
+      <arglist>(Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>LogConfig</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>ae2f57078a4a860f7e16adfe726d81338</anchor>
-      <arglist>(String domain, Log.Level level, String headLine, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>ae01c4ca7007ec2c40192bad82d28d185</anchor>
+      <arglist>(String domain, Verbosity verbosity, String headLine, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>MapThreadName</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a99487aa02122a2ddf46146259faeda1c</anchor>
-      <arglist>(String threadName, int id=-1, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a20ea0bbb83c816a00c22db2be9fbc0fb</anchor>
+      <arglist>(String threadName, int id=-1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a1604dbf5514d0e85e28d05ce1f4638db</anchor>
+      <arglist>(String domain, Verbosity verbosity, Object logable, String group, Scope scope=Scope.Global, int pathLevel=0, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a7bd08109e38539f6d1affc1ebf3210f7</anchor>
+      <arglist>(Verbosity verbosity, Object logable, String group, Scope scope, int pathLevel=0, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a96ebb40555288499fc462f5231caf40c</anchor>
+      <arglist>(Verbosity verbosity, Object logable, String group, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>ac73f053d801b8f47f9340afb50826db5</anchor>
+      <arglist>(Verbosity verbosity, Object logable, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a52ddc632f3731c752ebd19a5b9ba4dc7</anchor>
+      <arglist>(Object logable, String group, Scope scope, int pathLevel=0, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>aa3d86bf90a42be9d68ce953ddd28a5f9</anchor>
+      <arglist>(String domain, Verbosity verbosity, Object logable, Scope scope=Scope.Global, int pathLevel=0, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>ac19d864dff5b05ff0a792713306a323b</anchor>
+      <arglist>(Verbosity verbosity, Object logable, Scope scope, int pathLevel=0, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>aa1ed485f545b3163cbcd8e70c5bf650e</anchor>
+      <arglist>(Object logable, Scope scope, int pathLevel=0, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>af1ac01298d45ee3d9e4865f312a7c0dc</anchor>
+      <arglist>(Object logable, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>ab93e631f528a813b0ed6cb3734e6b5d3</anchor>
+      <arglist>(Object logable, String group, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a7b4f41af8abc79ed56e221b5b49d813e</anchor>
+      <arglist>(String domain, Verbosity verbosity, String logable, String group, Scope scope=Scope.Global, int pathLevel=0, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a1ecad97013fd47641368e041f819c6ef</anchor>
+      <arglist>(Verbosity verbosity, String logable, String group, Scope scope, int pathLevel=0, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>abdc17f79616e36d6d74804987d572877</anchor>
+      <arglist>(Verbosity verbosity, String logable, String group, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a2b9dc2208bc77b7fbb05d4c240e325e6</anchor>
+      <arglist>(Verbosity verbosity, String logable, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a325a0c5017b06f30652681259c0af5e1</anchor>
+      <arglist>(String logable, String group, Scope scope, int pathLevel=0, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a986a0f09d5a4e04dbf569f77905d3bab</anchor>
+      <arglist>(String domain, Verbosity verbosity, String logable, Scope scope=Scope.Global, int pathLevel=0, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a9581579c6f4f2fab86fecd1d2779fdc8</anchor>
+      <arglist>(Verbosity verbosity, String logable, Scope scope, int pathLevel=0, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a915e58b82a2d17e56d7bb3b85a67f51a</anchor>
+      <arglist>(String logable, Scope scope, int pathLevel=0, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>af8bf897b90d76a16b0c97f3dfdf5e416</anchor>
+      <arglist>(String logable, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a31c7104f457c1e0ac88400e96ee263e9</anchor>
+      <arglist>(String logable, String group, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>RemoveDebugLogger</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a7b326b485cd7ff059bcc3dff4b7e8476</anchor>
-      <arglist>(Lox lox=null)</arglist>
+      <anchor>a8781f54f973625a112bea445f2745de0</anchor>
+      <arglist>(Lox lox=null, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
-      <name>RemoveLoggers</name>
+      <name>RemoveLogger</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a853059201cdf7a94f49da10501e6d013</anchor>
-      <arglist>(String loggerFilter=null)</arglist>
+      <anchor>a1a79677ebab3a50a4991dea9a2d35a87</anchor>
+      <arglist>(Logger logger, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>RemoveLogger</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a2dc3fc393da0f64b297ea213e45d2a16</anchor>
+      <arglist>(Logger logger, ref bool wasFound, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>RemoveLogger</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a974861260d35e002f98b8912bad8e9d5</anchor>
+      <arglist>(String loggerName, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>RemoveLogger</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a4583690ba03d07e1cdbdfda9540ec8f4</anchor>
+      <arglist>(String loggerName, ref Logger logger, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>RemoveThreadDomain</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>ad0cb08e4aa4bb95f8905a3c57ecbeaf1</anchor>
+      <arglist>(String scopeDomain, Scope scope, Thread thread=null, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
@@ -3557,74 +4022,116 @@
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static void</type>
-      <name>SetDomain</name>
+      <type>static LogData</type>
+      <name>Retrieve</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a6904a1c24801f8c6ba1f4e58fdec5963</anchor>
-      <arglist>(String domain, Log.Scope scope, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>ac69e3b33667806b75ada3ee7dd3e9ff8</anchor>
+      <arglist>(String key, Scope scope=Scope.Global, int pathLevel=0, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static LogData</type>
+      <name>Retrieve</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>af92f0fdb42a9ef032805cc31e7b0252d</anchor>
+      <arglist>(Scope scope=Scope.Global, int pathLevel=0, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>SetDomain</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a58e44628f46d3667a044e603e33b6d93</anchor>
-      <arglist>(String domain, DomainLevel domainLevel, String loggerFilter=null, Propagation propagation=Propagation.ToDescendants, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>aa7399eea0d5af964734fc610ca493cf9</anchor>
+      <arglist>(String scopeDomain, Scope scope, int pathLevel=0, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>SetDomain</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a73aba0c91d273872c68765d610d49dc3</anchor>
-      <arglist>(String domain, Log.Scope scope, Log.DomainLevel domainLevel, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>af2934838015e78cb50656d35a36f8295</anchor>
+      <arglist>(String scopeDomain, Scope scope, Thread thread, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
-      <name>SetDomain</name>
+      <name>SetDomainSubstitutionRule</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a3ebfff19debaebaf32531d7d6dd26f0f</anchor>
-      <arglist>(String domain, Log.Scope scope, Log.DomainLevel domainLevel, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a79586fb3722f67ce0878183fb6b3c5c3</anchor>
+      <arglist>(String domainPath, String replacement, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
-      <name>SetLogger</name>
+      <name>SetPrefix</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a7a69f021a52ba21a3ff7914a143469c9</anchor>
-      <arglist>(cs.aworx.lib.enums.Switch newState, String loggerFilter, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>aff75b1b260ce4f5881b734f88ee722d3</anchor>
+      <arglist>(Object logable, Scope scope, int pathLevel=0, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
-      <name>SetMarker</name>
+      <name>SetPrefix</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>ad302d68c6786a82d3c21eb749fb40015</anchor>
-      <arglist>(Object marker, Log.Scope scope, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a7ce0914263a550f8ee039b294ec233ba</anchor>
+      <arglist>(Object logable, Scope scope, Thread thread, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>SetPrefix</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>af596f5a002631600099478f5595eb101</anchor>
+      <arglist>(Object logable, String domain=null, Inclusion otherPLs=Inclusion.Include, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>SetSourcePathTrimRule</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>adf890c3d090231217be9c1767a3cf881</anchor>
+      <arglist>(String path, Inclusion includeString=Inclusion.Exclude, int trimOffset=0, Case sensitivity=Case.Ignore, Inclusion global=Inclusion.Include)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>SetStartTime</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a1bd69f9755411a857b06d5cd5bf4be69</anchor>
-      <arglist>(DateTime?startTime=null, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>ae179e742c50a2be9f87f7687d9c05ecd</anchor>
+      <arglist>(DateTime?startTime=null, String loggerName=null, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>SetVerbosity</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>af8d70b58238a9e3c350eadc40ac14b5b</anchor>
+      <arglist>(Logger logger, Verbosity verbosity, String domain=&quot;/&quot;, int priority=Lox.PrioSource, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>SetVerbosity</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>aec4a0d937a4032031f64d91393502684</anchor>
+      <arglist>(String loggerName, Verbosity verbosity, String domain=&quot;/&quot;, int priority=Lox.PrioSource, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Store</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a9b77b1522c2dc125f732983b147902d3</anchor>
+      <arglist>(LogData data, String key, Scope scope=Scope.Global, int pathLevel=0, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Store</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a3224f5904c94e22a5f3fd3964a01afc6</anchor>
+      <arglist>(LogData data, Scope scope=Scope.Global, int pathLevel=0, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>Verbose</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>ae7cd2d23b5a04d9cc3a073cf3b58121e</anchor>
-      <arglist>(Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>aea91181dfaf6d7a76da1e0097f8222f9</anchor>
+      <arglist>(String domain, Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>Verbose</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>af163509f8d2823e746d0a0ef2eb1cc52</anchor>
-      <arglist>(String msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>Verbose</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>aef109fd14f5ee0cc93c271dc40c576ea</anchor>
-      <arglist>(String domain, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a2bf45ce217e854274fabc4532a58eab3</anchor>
+      <arglist>(Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
@@ -3637,60 +4144,79 @@
       <type>static void</type>
       <name>Warning</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a1c5a83906517e5233bfde85c6dde7a81</anchor>
-      <arglist>(Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a4b46cd5e5bad249e520d4e0ec3139a94</anchor>
+      <arglist>(String domain, Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>Warning</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a2976160bd251c4faad246a99a7bee95e</anchor>
-      <arglist>(String msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a241c6a53b6762f8d468dd8213af40eb7</anchor>
+      <arglist>(Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>Warning</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a9eefa1e047d6b4eb185e8b6dfec21472</anchor>
-      <arglist>(String domain, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
-    </member>
-    <member kind="variable" protection="private" static="yes">
-      <type>static bool</type>
-      <name>isInitialized</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>a1fdc2bf5595c2e64dc06d987769834eb</anchor>
+  </compound>
+  <compound kind="class">
+    <name>cs::aworx::lox::LogData</name>
+    <filename>classcs_1_1aworx_1_1lox_1_1LogData.html</filename>
+    <member kind="variable">
+      <type>int</type>
+      <name>IntegerValue</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1LogData.html</anchorfile>
+      <anchor>a65a3775caf9d6718458869ad29c1ab8a</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Object</type>
+      <name>ObjectValue</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1LogData.html</anchorfile>
+      <anchor>a4db816b4c247f7479ba790d720e302fa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>StringValue</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1LogData.html</anchorfile>
+      <anchor>ae2bc4ad5fb100c1514db295fe5278ebd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>LogData</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1LogData.html</anchorfile>
+      <anchor>aa51e1a063f903f6cf8a6487a9dfb5d79</anchor>
+      <arglist>(Object s=null, int i=0, Object o=null)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>LogData</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1LogData.html</anchorfile>
+      <anchor>a38ef51bbceafc91f7861d0e9335238bf</anchor>
+      <arglist>(int i, Object o=null)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>ToString</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1LogData.html</anchorfile>
+      <anchor>a189983f29bf69a3c36f58c5beeea2200</anchor>
+      <arglist>(AString target)</arglist>
+    </member>
+    <member kind="function">
+      <type>override String</type>
+      <name>ToString</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1LogData.html</anchorfile>
+      <anchor>a012fbb0f39e57c0a44ec83dd408fcda3</anchor>
+      <arglist>()</arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>cs::aworx::lox::core::Logger</name>
     <filename>classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html</filename>
+    <base>cs::aworx::lib::threads::SmartLock</base>
     <member kind="variable">
-      <type>uint</type>
+      <type>int</type>
       <name>CntLogs</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>a7859d287690c28acd561a307d23679bf</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>IsDisabled</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>abada4ef55f947626e50d53b5cb8a31cc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>Name</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>a934fa09ba291a97f43720640e4d83f25</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>Domain</type>
-      <name>RootDomain</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>a8c3be195312b12e47828c3b647f8add1</anchor>
+      <anchor>ac0d4236906004de0129b9ff90108fdff</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -3707,33 +4233,26 @@
       <anchor>a00e19a7e5a1a93ab45e5895a67e6e2eb</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable">
+    <member kind="function">
       <type>String</type>
-      <name>TypeName</name>
+      <name>GetName</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>ab7a1acc8625d9adcdc2c86de8045352f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual bool</type>
-      <name>Line</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>ac0ac9ab9fa44ffc597b20dd6a044d772</anchor>
-      <arglist>(AString domain, Log.Level level, Object msgObject, int indent, CallerInfo caller)</arglist>
+      <anchor>ac299469a5542b6a91f0e70b28e0d1345</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
-      <name>SetDomain</name>
+      <type>String</type>
+      <name>GetTypeName</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>a122416e30207f27bc01d0a38fa89618f</anchor>
-      <arglist>(String domain, Log.DomainLevel domainLevel, Propagation propagation=Propagation.ToDescendants)</arglist>
+      <anchor>a1aab7f7cbd1b20eee4af53f66fb1e24c</anchor>
+      <arglist>()</arglist>
     </member>
-    <member kind="function">
-      <type>void</type>
-      <name>SetDomain</name>
+    <member kind="function" virtualness="pure">
+      <type>abstract void</type>
+      <name>Log</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>a9b5821af98374162ebcbceefc1ec0f40</anchor>
-      <arglist>(AString domain, Log.DomainLevel domainLevel, Propagation propagation)</arglist>
+      <anchor>a190bb68f9aa44fb53725398e6663549e</anchor>
+      <arglist>(Domain domain, Verbosity verbosity, List&lt; Object &gt; logables, ScopeInfo scope)</arglist>
     </member>
     <member kind="function">
       <type>override String</type>
@@ -3743,10 +4262,17 @@
       <arglist>()</arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>AString</type>
-      <name>tmpDomainName</name>
+      <type>String</type>
+      <name>name</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>ab3455c59a6cb0194878d7942ff4eb825</anchor>
+      <anchor>a9a2326f35466e54c36c070829245c557</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>String</type>
+      <name>typeName</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
+      <anchor>ab702590cb21a529418c7bd6439c4337a</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" protection="protected">
@@ -3756,12 +4282,44 @@
       <anchor>ad5d85bd2edd6cf4e166d9744f6e97f16</anchor>
       <arglist>(String name, String typeName)</arglist>
     </member>
-    <member kind="function" protection="protected" virtualness="pure">
-      <type>abstract void</type>
-      <name>doLog</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html</anchorfile>
-      <anchor>adf2d4a3039b4c8e4f2f24289af899838</anchor>
-      <arglist>(AString domain, Log.Level level, Object msgObject, int indent, CallerInfo caller)</arglist>
+  </compound>
+  <compound kind="class">
+    <name>cs::aworx::lox::core::Domain::LoggerData</name>
+    <filename>classcs_1_1aworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html</filename>
+    <member kind="variable">
+      <type>int</type>
+      <name>CntLogCalls</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html</anchorfile>
+      <anchor>a2c80e5630abe5d5042ddb4b85c0c3562</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Logger</type>
+      <name>Logger</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html</anchorfile>
+      <anchor>a42bd749bb12fae89508e2020e2f451bf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Verbosity</type>
+      <name>LoggerVerbosity</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html</anchorfile>
+      <anchor>a312c13a4f141e167f5b82a483b9a9edd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>Priority</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html</anchorfile>
+      <anchor>a4450b0bad265ba3bd24e994f70aec802</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>LoggerData</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html</anchorfile>
+      <anchor>af3bde5b7060fb57e76b308c36a86f283</anchor>
+      <arglist>(Logger logger)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -3890,64 +4448,64 @@
       <type>static void</type>
       <name>Exception</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>afc842a4c97fba750a7459c6a7016a9d9</anchor>
-      <arglist>(String domain, Log.Level level, Exception e, String headline=null, int indent=0, Lox lox=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a841e4ff59ae79bc6967b927ecc64f27b</anchor>
+      <arglist>(String domain, Verbosity verbosity, Exception e, String headline=null, Lox lox=null, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>Exception</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>a66ae777e225caa3a816e9d50fabe159f</anchor>
-      <arglist>(Log.Level level, Exception e, String headline=null, int indent=0, Lox lox=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a3723e17ede2737789f94947523a5fecc</anchor>
+      <arglist>(Verbosity verbosity, Exception e, String headline=null, Lox lox=null, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>Exception</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>a45c6bc127d70ac0cf8be2f57fdb0c552</anchor>
-      <arglist>(Exception e, String headline=null, int indent=0, Lox lox=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a3523f47dd0ba9ee33837c38586da6520</anchor>
+      <arglist>(Exception e, String headline=null, Lox lox=null, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>Instance</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>a2fe80db61affa775074be23675d518ba</anchor>
-      <arglist>(String domain, Log.Level level, Object o, int maxRecursion, String headline=null, int indent=0, Lox lox=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a7fdc89d8d1b5a9702b2102827c1363b0</anchor>
+      <arglist>(String domain, Verbosity verbosity, Object o, int maxRecursion, String headline=null, Lox lox=null, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>Instance</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>abafcf461fb3cd01cc81c14a8b9573309</anchor>
-      <arglist>(Log.Level level, Object o, int maxRecursion, String headline=null, int indent=0, Lox lox=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a3588c7ac043e56b7e8d6414417c6436b</anchor>
+      <arglist>(Verbosity verbosity, Object o, int maxRecursion, String headline=null, Lox lox=null, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>XML</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>ac25c0cc25b178a10ef7441a1bccb2a74</anchor>
-      <arglist>(String domain, Log.Level level, XDocument xDocument, String headLine=null, int indent=0, Lox lox=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a0b989698b726018a437b6a4beb364dac</anchor>
+      <arglist>(String domain, Verbosity verbosity, XDocument xDocument, String headLine=null, Lox lox=null, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>XML</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>a5e344feafc8ffdaef2a654393ac57204</anchor>
-      <arglist>(Log.Level level, XDocument xDocument, String headLine, int indent=0, Lox lox=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a7d4d471babd18d84980930dda6d658e3</anchor>
+      <arglist>(Verbosity verbosity, XDocument xDocument, String headLine, Lox lox=null, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>XML</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>a7c93d3f5007d74bd4806a97ef33bdb2e</anchor>
-      <arglist>(String domain, Log.Level level, XElement xElement, String headLine=null, int indent=0, Lox lox=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a3af526ea4171c80f73ba78ff0d22faa8</anchor>
+      <arglist>(String domain, Verbosity verbosity, XElement xElement, String headLine=null, Lox lox=null, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>XML</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html</anchorfile>
-      <anchor>acc389c99e2680bf119bef50f73a51cb3</anchor>
-      <arglist>(Log.Level level, XElement xElement, String headLine, int indent=0, Lox lox=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a79ea529efa65e0dea769cbbf1d672be9</anchor>
+      <arglist>(Verbosity verbosity, XElement xElement, String headLine, Lox lox=null, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="variable" protection="protected" static="yes">
       <type>static int</type>
@@ -4065,6 +4623,8 @@
   <compound kind="class">
     <name>cs::aworx::lox::Lox</name>
     <filename>classcs_1_1aworx_1_1lox_1_1Lox.html</filename>
+    <base>cs::aworx::lib::threads::ThreadLock</base>
+    <class kind="class">cs::aworx::lox::Lox::DomainSubstitutionRule</class>
     <member kind="variable">
       <type>int</type>
       <name>CntLogCalls</name>
@@ -4073,38 +4633,24 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>int</type>
-      <name>ErrIfNoDefaultDomain</name>
+      <type>Case</type>
+      <name>DomainSensitivity</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>aaaef02f6a1dff7969d2fa1e39a7b9755</anchor>
+      <anchor>ac63dd33538dff8703707b14fc6d04d52</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>String</type>
-      <name>InternalDomain</name>
+      <type>const int</type>
+      <name>PrioProtected</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>aed8c5ed6af267304f7aae60589a589c3</anchor>
+      <anchor>a849f8b775a1ebb6a8fbafe525f821056</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>ThreadLock</type>
-      <name>Lock</name>
+      <type>const int</type>
+      <name>PrioSource</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ae10600cb6914f091adfbbde00bbfdcd7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>NullDomain</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a14ff0f6a97bd25b6c22c0a820049fbe8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>Dictionary&lt; int, String &gt;</type>
-      <name>ThreadDictionary</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a9449abe368a2e9a9694a52437b02348b</anchor>
+      <anchor>a89856c713ec12c927fa2aac115a02926</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" static="yes">
@@ -4118,29 +4664,22 @@
       <type></type>
       <name>Lox</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>adeecd070b47db04dfac1b186f99a95d2</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>AddLogger</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>acf0a999558902558b312a55f0f98e39b</anchor>
-      <arglist>(Logger logger, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>acc9b602f88cd6d950fdb225dfc1f6e41</anchor>
+      <arglist>(String name, bool doRegister=true)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Assert</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a70fd049804a5fd33235779bc0c728ad3</anchor>
-      <arglist>(bool cond, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a8a25cb542264517df1cd9bf3b68529dc</anchor>
+      <arglist>(bool condition, String domain, Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Assert</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a35d0b0e246d2105f24f22daa3efd63a8</anchor>
-      <arglist>(bool cond, String domain, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>ac514387e77fb7000a0e9ab873ea28be1</anchor>
+      <arglist>(bool condition, Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>AString</type>
@@ -4158,212 +4697,429 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>Error</name>
+      <name>ClearSourcePathTrimRules</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ae6a54af27a36df2b4f1ade1c5e3a6b26</anchor>
-      <arglist>(Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a563bdeaa837bf7799b7327ed874b5280</anchor>
+      <arglist>(Inclusion global=Inclusion.Include, bool allowAutoRule=true)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Entry</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a0c5d5fd659b79971751fec88e927a2dd</anchor>
+      <arglist>(String domain, Verbosity verbosity, Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Entry</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a0cae33a9cef65aeca47089ba92c83e26</anchor>
+      <arglist>(Verbosity verbosity, Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Error</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>aa2ae02b6dceda1a272a87cb1840a4d3b</anchor>
-      <arglist>(String msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>ae386987ba0c75db9f271b1f36bb73f1f</anchor>
+      <arglist>(String domain, Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Error</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>aa175be4be1461484939e26caef684102</anchor>
-      <arglist>(String domain, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a91b714bc923b74d8079930a79ac8a3e9</anchor>
+      <arglist>(Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>Logger</type>
       <name>GetLogger</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a74ba68166dee3359939d25f87e648cbe</anchor>
-      <arglist>(String loggerName)</arglist>
+      <anchor>a9ee22f7cc87689c66373d303a9677d67</anchor>
+      <arglist>(String loggerName, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>String</type>
+      <name>GetName</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ac299469a5542b6a91f0e70b28e0d1345</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>void</type>
-      <name>GetMarker</name>
+      <name>If</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>aface0c1255d1c75523c654b095c2dc56</anchor>
-      <arglist>(Object[] markerPointer, Log.Scope scope, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a6d626c0840136bfdbc0e87e38f2d479c</anchor>
+      <arglist>(bool condition, String domain, Verbosity verbosity, Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>If</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a027d046dda82ebbd3c9d8cb5a5de39cf</anchor>
+      <arglist>(bool condition, Verbosity verbosity, Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Info</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a861890f074da5b826d5b7802c955874c</anchor>
-      <arglist>(Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>ab28973053e893cbff09ae78c1c3a57be</anchor>
+      <arglist>(String domain, Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Info</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a1fec7ffaa01b2634d41465465b3db376</anchor>
-      <arglist>(String msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a1d96704370f2b9bee3cf5a64f454c445</anchor>
+      <arglist>(Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
-      <name>Info</name>
+      <type>bool</type>
+      <name>IsRegistered</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a4806ffdc267673deca9e08b9cf0b8c78</anchor>
-      <arglist>(String domain, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>Line</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a92a07a47e1dc6dd3bd09428f02e4f835</anchor>
-      <arglist>(bool doLog, String domain, Log.Level level, Object msg, int indent=0, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>Line</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a369c3716dd8697a8824fe3992fb39e7f</anchor>
-      <arglist>(String domain, Log.Level level, Object msg, int indent=0, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>Line</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a43d5b54bca91e52364461f111829a55d</anchor>
-      <arglist>(Log.Level level, Object msg, int indent=0, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a7232acc9ffe4595630e4abdaf6918ef9</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>LogConfig</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a833586c138334739ddad9eede52cb909</anchor>
-      <arglist>(String domain, Log.Level level, String headLine, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a3592a8dbdcc93787ee5dfe8ce70df118</anchor>
+      <arglist>(String domain, Verbosity verbosity, String headLine, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>MapThreadName</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a8f5b159dea287785d7d38be9288ab054</anchor>
-      <arglist>(String threadName, int id=-1, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a54e58279baec04de7972bc4a5ac4d6e4</anchor>
+      <arglist>(String threadName, int id=-1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a6bb283bb478fc96d04717f8767d722f7</anchor>
+      <arglist>(String domain, Verbosity verbosity, Object logable, String group, Scope scope=Scope.Global, int pathLevel=0, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a5f409150c95f0138df8c46a8dc707005</anchor>
+      <arglist>(Verbosity verbosity, Object logable, String group, Scope scope, int pathLevel=0, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a05855ef4132e9b7f7b1e540a6155ac0b</anchor>
+      <arglist>(Verbosity verbosity, Object logable, String group, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a1636fe924b8ad75b44093d049f3b196a</anchor>
+      <arglist>(Verbosity verbosity, Object logable, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>afeb5ebc043da36b3d871e5800aa309b2</anchor>
+      <arglist>(Object logable, String group, Scope scope, int pathLevel=0, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a8ab75eec498e2de53d56d76c24a6f65e</anchor>
+      <arglist>(String domain, Verbosity verbosity, Object logable, Scope scope=Scope.Global, int pathLevel=0, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a7a016036708be127ff84fa1ba799afca</anchor>
+      <arglist>(Verbosity verbosity, Object logable, Scope scope, int pathLevel=0, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ac06ef164a8d16156b1b36400f9b18897</anchor>
+      <arglist>(Object logable, Scope scope, int pathLevel=0, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a9d6bf41f36a092d9fdee66213f72a659</anchor>
+      <arglist>(Object logable, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a1328ad7442ff160d1473144af8981b1d</anchor>
+      <arglist>(Object logable, String group, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ad98e16296e2f8304b2a61691f9411cf0</anchor>
+      <arglist>(String domain, Verbosity verbosity, String logable, String group, Scope scope=Scope.Global, int pathLevel=0, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a8453234d62cbcfd7db6056ca19011308</anchor>
+      <arglist>(Verbosity verbosity, String logable, String group, Scope scope, int pathLevel=0, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a1c8b0c352d14677d8ad3352cd3066987</anchor>
+      <arglist>(Verbosity verbosity, String logable, String group, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a1ccf254b4d3d1a3abec984996b9ca7bf</anchor>
+      <arglist>(Verbosity verbosity, String logable, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a01714172a2d71651dbdaf9711fa7b3bb</anchor>
+      <arglist>(String logable, String group, Scope scope, int pathLevel=0, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a11d6678de0d7281814fe0be99d3359ec</anchor>
+      <arglist>(String domain, Verbosity verbosity, String logable, Scope scope=Scope.Global, int pathLevel=0, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a7e7872923b6fdb7fe13282bb0d931589</anchor>
+      <arglist>(Verbosity verbosity, String logable, Scope scope, int pathLevel=0, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a66f9e3530764a8f21f2a3594ce970a1a</anchor>
+      <arglist>(String logable, Scope scope, int pathLevel=0, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a0ec9f9227abecde1316cd8df1ef00435</anchor>
+      <arglist>(String logable, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>aafb65c8be51387da492d53fe229d166f</anchor>
+      <arglist>(String logable, String group, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>RemoveLogger</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a7594d8f630b763d4f83ab48ad926f396</anchor>
-      <arglist>(Logger logger)</arglist>
+      <anchor>a6ff46242d1899057c8a7124527ee0521</anchor>
+      <arglist>(Logger logger, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
-      <name>RemoveLoggers</name>
+      <name>RemoveLogger</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>af07a94c1e4cf8e5d66b6852e04b08624</anchor>
-      <arglist>(String loggerFilter=null)</arglist>
+      <anchor>a85c10a52e1c0596e3ac5c49c97c05f7c</anchor>
+      <arglist>(Logger logger, ref bool wasFound, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>RemoveLogger</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>acfdf11e432f9ff3ac17d61d6293d7374</anchor>
+      <arglist>(String loggerName, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>RemoveLogger</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a0bfb3c2f76abc22c45a38cad5d69c0a5</anchor>
+      <arglist>(String loggerName, ref Logger logger, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>RemoveThreadDomain</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>af3f0ceda5a710c45879b4d25224aad49</anchor>
+      <arglist>(String scopeDomain, Scope scope, Thread thread=null, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogData</type>
+      <name>Retrieve</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>abb473d1f2702196f82a4cfd078d45f8d</anchor>
+      <arglist>(String key, Scope scope=Scope.Global, int pathLevel=0, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>LogData</type>
+      <name>Retrieve</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a98ebab033e537b0fd4158055c6c5fddd</anchor>
+      <arglist>(Scope scope=Scope.Global, int pathLevel=0, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>SetDomain</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a457f426687e79824eec2895798af1830</anchor>
-      <arglist>(String domain, Log.Scope scope, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a7e3f6dee21600c53e79dd72a718f1c9e</anchor>
+      <arglist>(String scopeDomain, Scope scope, int pathLevel=0, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>SetDomain</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a3685670c11543c975d710c98ca7c7f40</anchor>
-      <arglist>(String domain, Log.DomainLevel domainLevel, String loggerFilter=null, Propagation propagation=Propagation.ToDescendants, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a31dc01c5143370fa24715021db37474f</anchor>
+      <arglist>(String scopeDomain, Scope scope, Thread thread, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
-      <name>SetDomain</name>
+      <name>SetDomainSubstitutionRule</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a9de8563dce83ffc876cca963f72b519e</anchor>
-      <arglist>(String domain, Log.Scope scope, Log.DomainLevel domainLevel, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>ad02747a6295e7875c14a77996d9728cd</anchor>
+      <arglist>(String domainPath, String replacement, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
-      <name>SetDomain</name>
+      <name>SetPrefix</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a9bbfaa552fdc5d8fbb42aa4a1d0b3647</anchor>
-      <arglist>(String domain, Log.DomainLevel domainLevel, Log.Scope scope, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a3e47858f995e85610c154d5f17299615</anchor>
+      <arglist>(Object logable, Scope scope, int pathLevel=0, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
-      <name>SetLogger</name>
+      <name>SetPrefix</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ac67b00eb07da08f6423e8157be3ac084</anchor>
-      <arglist>(cs.aworx.lib.enums.Switch newState, String loggerFilter, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a2940060c1939219eefbcedff2168eaa9</anchor>
+      <arglist>(Object logable, Scope scope, Thread thread, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
-      <name>SetMarker</name>
+      <name>SetPrefix</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a81953e8bd2915702eccfad989570e156</anchor>
-      <arglist>(Object marker, Log.Scope scope, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>ac69496baa95a957d48f1cec5c53296d0</anchor>
+      <arglist>(Object logable, String domain=null, Inclusion otherPLs=Inclusion.Include, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetSourcePathTrimRule</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a58eb18efb6ce282cac35cc9476cfe79d</anchor>
+      <arglist>(String path, Inclusion includeString=Inclusion.Exclude, int trimOffset=0, Case sensitivity=Case.Ignore, Inclusion global=Inclusion.Include)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>SetStartTime</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ac4e1e9de43f94c25f2b2eb7be54f7a7a</anchor>
-      <arglist>(DateTime?startTime=null, String loggerFilter=null, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>af9ae268e10c8a99d675ce8a1c1268f1a</anchor>
+      <arglist>(DateTime?startTime=null, String loggerName=null, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetVerbosity</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>abd831519fc241771dd0be79fa8bc7d5c</anchor>
+      <arglist>(Logger logger, Verbosity verbosity, String domain=&quot;/&quot;, int priority=Lox.PrioSource, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetVerbosity</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>afdc0abb8b39da45f5232f219a84ef05c</anchor>
+      <arglist>(String loggerName, Verbosity verbosity, String domain=&quot;/&quot;, int priority=Lox.PrioSource, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Store</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a43c8005008bdf5654bac8f84aae8d03b</anchor>
+      <arglist>(LogData data, String key, Scope scope=Scope.Global, int pathLevel=0, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Store</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a57185c980eaa3dc97f9de3965a10fd88</anchor>
+      <arglist>(LogData data, Scope scope=Scope.Global, int pathLevel=0, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Verbose</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>aaf5e3df48abc6a754ee07dd993b13d07</anchor>
-      <arglist>(Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a47fe738147a06f7df9c77a16cc2ebe1a</anchor>
+      <arglist>(String domain, Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Verbose</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a18706951762c1dcb4ad72ec399a58e0c</anchor>
-      <arglist>(String msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>Verbose</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a4dbf92fb71a193b0433238cbe3052a11</anchor>
-      <arglist>(String domain, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>ae54b8d469e2c739a30bdc53f08d09981</anchor>
+      <arglist>(Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Warning</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a683a6aa22be8c620d60c49267ef94e8a</anchor>
-      <arglist>(Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a3808da2f4940dc2ae891bf6487c72392</anchor>
+      <arglist>(String domain, Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Warning</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a3de656356ad723885a8e345742c3f31e</anchor>
-      <arglist>(String msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>Warning</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>aad904dcf59b775d6050f63d25dbce9fa</anchor>
-      <arglist>(String domain, Object msg, int indent=0, [CallerFilePath] String csf=&quot;&quot;,[CallerLineNumber] int cln=0,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+      <anchor>a8906b8712e5945aca807ca0583d04cc7</anchor>
+      <arglist>(Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>CallerInfo</type>
-      <name>caller</name>
+      <type>Domain</type>
+      <name>domains</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a661374595beb4ef6cdcd0417c8c47f0d</anchor>
+      <anchor>a9dd0eff01eb6972483137d6fc87a8c49</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>Dictionary&lt; AString, AString &gt;</type>
-      <name>defaultDomains</name>
+      <type>List&lt; DomainSubstitutionRule &gt;</type>
+      <name>domainSubstitutions</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a7301773dfbda817921e99637adc6ff30</anchor>
+      <anchor>a5a21926d960c820bfe97700a6f2ddaeb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Domain</type>
+      <name>internalDomains</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>aa921f3f43ab67608196f46723182a3c4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>intMsg</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>adc7950715b5ea60bbbfe297cf70fb70f</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -4381,17 +5137,38 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>List&lt; Logger &gt;</type>
-      <name>loggers</name>
+      <type>List&lt; Object &gt;</type>
+      <name>logObjects</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a0078398c1e76599b6e0852ffe2937af9</anchor>
+      <anchor>acebf4e1770184abbc4063f3fa4a3f298</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>Dictionary&lt; AString, Object &gt;</type>
-      <name>markers</name>
+      <type>int</type>
+      <name>maxDomainPathLength</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a5eab0b79172487be1b04eebcd4ed5736</anchor>
+      <anchor>a71f136dd9dc7e9d48c33ad54ae5d802f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>maxLoggerNameLength</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a905f7b109e0f5efe1313db829261b824</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>readonly String</type>
+      <name>noKeyHashKey</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a5fd3c3902aaade239ed5880da1f9a9fc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>oneTimeWarningCircularDS</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a1ff634203235e02dab39d057469ec3db</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -4403,38 +5180,178 @@
     </member>
     <member kind="variable" protection="protected">
       <type>AString</type>
-      <name>tempAS</name>
+      <name>resDomainInternal</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a5a04010d4c0003b3aba30583b7bf3d48</anchor>
+      <anchor>a919b9402cb4cf96d550863ca08f476f3</anchor>
       <arglist></arglist>
     </member>
-    <member kind="function" protection="private" static="yes">
-      <type>static bool</type>
-      <name>simpleWildcardFilter</name>
+    <member kind="variable" protection="protected">
+      <type>ScopeStore&lt; AString &gt;</type>
+      <name>scopeDomains</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a904bdd5c05e9810befbf6cbb43201923</anchor>
-      <arglist>(Logger logger, string loggerFilter)</arglist>
+      <anchor>aaccfbdf474a57acad4f6433b37786d94</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ScopeInfo</type>
+      <name>scopeInfo</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a609ba5315772ded9cdb21726e54ff69d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ScopeStore&lt; Dictionary&lt; AString, LogData &gt; &gt;</type>
+      <name>scopeLogData</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>af21de4c1bb89488014dbba2d6c8a34d7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ScopeStore&lt; Dictionary&lt; AString, int[]&gt; &gt;</type>
+      <name>scopeLogOnce</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>af52e429b5927e9a5c300ea877e2e6e10</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ScopeStore&lt; Object &gt;</type>
+      <name>scopePrefixes</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>abb5ec5897d6c69b61b8593ad57ebe16a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Dictionary&lt; int, String &gt;</type>
+      <name>threadDictionary</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>af17a69632804467db73cb111c6afde9c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>tmpAS</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a43a6d226488086cf9563b431ccbe5c69</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>tmpConfigValue</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a2313c9e8c9b7afdf186b4331ab7fbbd7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>tmpSubstitutionPath</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a3586a087b92907c9c32173cecc2f78a3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>tmpSubstitutionPathInternalDomains</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ae2265ed8cb8c01d3e57fe59f77929ccb</anchor>
+      <arglist></arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>void</type>
+      <type>bool</type>
+      <name>checkScopeInformation</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>acf7d46373119e1daa39fd32539724938</anchor>
+      <arglist>(Scope scope, int pathLevel, String internalDomain)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Domain</type>
       <name>evaluateResultDomain</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a0211ab31ad0b19ced6cf693f7f56e838</anchor>
-      <arglist>(String domain)</arglist>
+      <anchor>a00b9b5dedced60246e16ad39d66e2538</anchor>
+      <arglist>(String domainPath)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
-      <name>internalLog</name>
+      <name>getAllVerbosities</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>aa4cbc7d10fb7a53ae1b3f903512f6f75</anchor>
-      <arglist>(Log.Level level, AString msg)</arglist>
+      <anchor>a47d2dd08f0748552ebd6399637223df1</anchor>
+      <arglist>(Logger logger, Domain dom, AString cfgStr, int cfgPriority)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>getVerbosityFromConfig</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ab8cf66e80845561dcaa3183af626661d</anchor>
+      <arglist>(Logger logger, Domain dom, AString cfgStr, int cfgPriority)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>bool</type>
+      <name>isThreadReleatedScope</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ab863574cc06556b1b5d037dd42d07099</anchor>
+      <arglist>(Scope scope, int cln, String csf, String cmn)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>log</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a2bf47438610d8ce34fa37f81892b0150</anchor>
+      <arglist>(Domain dom, Verbosity verbosity, Object logable, Inclusion prefixes)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>logConfigCollectPrefixes</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a03444bb7da0a5dede116dc2decd51238</anchor>
+      <arglist>(Domain domain, int indentSpaces, AString target)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>logConfigDomainRecursive</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a6b0703f05803dd21c44fa3ffb1d71e7d</anchor>
-      <arglist>(Domain domain, int indent, String domPath, AString buf)</arglist>
+      <anchor>a12d11e9840b1a4aa1d45d6ad02a7e6ca</anchor>
+      <arglist>(Domain domain, AString buf)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>logConfigDomsWithDiffVerb</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a0982b3444ac36cd108ca6eada7a59c84</anchor>
+      <arglist>(Domain domain, int loggerNo, List&lt; Domain &gt; results)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>logInternal</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a41785b58f7f928a11d27ff14a8fa4274</anchor>
+      <arglist>(Verbosity verbosity, String subDomain, AString logable)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>once</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a9869a663b366431edf267e0f4b8bb344</anchor>
+      <arglist>(String domain, Verbosity verbosity, Object logable, String group, Scope scope, int pathLevel, int quantity, int cln, String csf, String cmn)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setDomainImpl</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a2627087e4a30fc736e8c29a601b6393b</anchor>
+      <arglist>(String scopeDomain, Scope scope, int pathLevel, bool removeNTRSD, Thread thread, int cln, String csf, String cmn)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setPrefixImpl</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a9d5fd3a263af67cb1f267833799fe7b0</anchor>
+      <arglist>(Object logable, Scope scope, int pathLevel, Thread thread, int cln, String csf, String cmn)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>Domain</type>
+      <name>findDomain</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ae3be7b75d20b907c107c20de77069bac</anchor>
+      <arglist>(Domain domainSystem, AString domainPath)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -4457,9 +5374,9 @@
     </member>
     <member kind="function" protection="protected">
       <type>override bool</type>
-      <name>doLogSubstring</name>
+      <name>logSubstring</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html</anchorfile>
-      <anchor>aa1ae12f7ee4e81a2f8777809f6fc5c0c</anchor>
+      <anchor>a064e8e44293d86433b2d183f685a7f66</anchor>
       <arglist>(AString buffer, int start, int length)</arglist>
     </member>
     <member kind="function" protection="protected">
@@ -4528,13 +5445,6 @@
     <filename>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</filename>
     <member kind="variable">
       <type>String</type>
-      <name>ConsumableSourcePathPrefixString</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>ad5e8a7d9f2c872ab23a2332e6583d908</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
       <name>DateFormat</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
       <anchor>a73be91892f104afd96a32ab547e2cf45</anchor>
@@ -4548,38 +5458,24 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>String</type>
-      <name>LogLevelError</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a56bad526d2a9b0e8fac8774a8e81079d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>LogLevelInfo</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a642a10ae2076aa7365fd8ac920ee9ff9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>LogLevelVerbose</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a3948fa2550cec5c1b96c46eaef7d1110</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>LogLevelWarning</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a796b4686ca6cd82427e5026fa7a13656</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
       <type>int</type>
       <name>LogNumberMinDigits</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
       <anchor>a72c44479ec3d128c1208b49e4b8ede08</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>NoMethodInfo</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
+      <anchor>a60c732c17bf0287ea7b7bc95605a1c85</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>NoSourceFileInfo</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
+      <anchor>a05eadb2de7c82f98d6d1917805549be4</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -4659,12 +5555,40 @@
       <anchor>ae3289ae62c777551c12429268fea0988</anchor>
       <arglist></arglist>
     </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>VerbosityError</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
+      <anchor>ac2ec121b83db306f8533450c888383f1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>VerbosityInfo</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
+      <anchor>a3fd79e6e280850a848439e486e5599c2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>VerbosityVerbose</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
+      <anchor>a4732c7e0541164b28a8b4bc709a19515</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>VerbosityWarning</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
+      <anchor>a5ca90f578f826e4ba0815e84264ce13b</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function" virtualness="virtual">
       <type>virtual int</type>
       <name>Write</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a73a26af0308c9b9dbf0a8882d0a4f9e4</anchor>
-      <arglist>(TextLogger logger, AString buffer, AString domain, Log.Level level, CallerInfo caller)</arglist>
+      <anchor>a10c3088ed8ba2fd40d0462904ba95f96</anchor>
+      <arglist>(TextLogger logger, AString buffer, Domain domain, Verbosity verbosity, ScopeInfo scope)</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>DateTime</type>
@@ -4709,18 +5633,32 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>Tokenizer</type>
-      <name>tok</name>
+      <type>AString</type>
+      <name>tmpAString</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a8a66329d15c440f4546f72bfe913c4a4</anchor>
+      <anchor>ab6307f6d6ae7eb38fdcd9f372e798366</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Tokenizer</type>
+      <name>tTok</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
+      <anchor>a7e48c9b876240a28cb1ec476593f3d10</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>warnedOnce</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
+      <anchor>a83ccaa242c5dcfb1d9a5d5d1e2ba5087</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual int</type>
       <name>processVariable</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a29295bc9771428483565ee6cb928b31c</anchor>
-      <arglist>(TextLogger logger, AString domain, Log.Level level, CallerInfo caller, AString dest, Substring variable)</arglist>
+      <anchor>a2e6b840882032a2f8e5c23aa022d22ff</anchor>
+      <arglist>(TextLogger logger, Domain domain, Verbosity verbosity, ScopeInfo scope, AString dest, Substring variable)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
@@ -4728,6 +5666,31 @@
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
       <anchor>a8e4cc4982f400a8cbb57209fb7ee224a</anchor>
       <arglist>(AString buf, long diffNanos)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>cs::aworx::lib::containers::PathMap::NodeAndChild</name>
+    <filename>classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap_1_1NodeAndChild.html</filename>
+    <member kind="variable">
+      <type>int</type>
+      <name>childNo</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap_1_1NodeAndChild.html</anchorfile>
+      <anchor>ac10cf46c3127cd5d178f7dafd27307eb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>PathMap&lt; StoreT &gt;</type>
+      <name>node</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap_1_1NodeAndChild.html</anchorfile>
+      <anchor>a21dc2e5ee5a8b3975ebec79d8da68679</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NodeAndChild</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap_1_1NodeAndChild.html</anchorfile>
+      <anchor>ae846cfbc11fe4720d9693082c96458ea</anchor>
+      <arglist>(PathMap&lt; StoreT &gt; node, int childNo)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -4835,26 +5798,187 @@
   <compound kind="class">
     <name>cs::aworx::lox::core::textlogger::ObjectConverter</name>
     <filename>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html</filename>
-    <member kind="variable">
-      <type>String</type>
-      <name>FmtNullObject</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html</anchorfile>
-      <anchor>ac281d117b6e931783195f52f70bfa5b3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual AString</type>
+    <member kind="function" virtualness="pure">
+      <type>abstract bool</type>
       <name>ConvertObject</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html</anchorfile>
-      <anchor>a0ba6332bdc61bc28bdc5c9d0106f12c4</anchor>
-      <arglist>(Object o)</arglist>
+      <anchor>a38f08c6715a886c5d1867bfb250adb1d</anchor>
+      <arglist>(Object o, AString target)</arglist>
     </member>
-    <member kind="variable" protection="protected">
-      <type>AString</type>
-      <name>buffer</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html</anchorfile>
-      <anchor>aaf50e38674e1c356539d73525486b1d5</anchor>
+  </compound>
+  <compound kind="class">
+    <name>cs::aworx::lib::containers::PathMap</name>
+    <filename>classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</filename>
+    <templarg></templarg>
+    <class kind="class">cs::aworx::lib::containers::PathMap::NodeAndChild</class>
+    <member kind="variable">
+      <type>List&lt; PathMap&lt; StoreT &gt; &gt;</type>
+      <name>Childs</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a25ae884191777afd8c57142b526550ec</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>PathMap&lt; StoreT &gt;</type>
+      <name>Parent</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a98f7d710ee0779c2bec209d8c22fbbbe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>Path</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a5e583dd1bf88abfb28487df2f676a6e8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>StoreT</type>
+      <name>Value</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>acc64411e4973d80d6983e983f9ce7f0e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PathMap</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a2a112640c1c8ffcf640b766f2a18bcd8</anchor>
+      <arglist>(PathMap&lt; StoreT &gt; parent=null)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Clear</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>aa71d36872f416feaa853788a7a7a7ef8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>PathMap&lt; StoreT &gt;</type>
+      <name>Get</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a634d1015ca5cd0061c94522e53bb6375</anchor>
+      <arglist>(Substring key, bool create, AString separators)</arglist>
+    </member>
+    <member kind="function">
+      <type>IEnumerator&lt; PathMap&lt; StoreT &gt; &gt;</type>
+      <name>GetEnumerator</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a9b2c420dbe7d7b85ff9a3db7f99e7d63</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Remove</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a34f4f7743c42b4c5c5437db3e013ba12</anchor>
+      <arglist>(PathMap&lt; StoreT &gt; node)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>PathMap&lt; StoreT &gt;</type>
+      <name>get</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>aaa7c8b4943529a389ccafc5a5d49e7a1</anchor>
+      <arglist>(Substring key, bool create, AString separators)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>PathMap&lt; T &gt;</name>
+    <filename>classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</filename>
+    <member kind="variable">
+      <type>List&lt; PathMap&lt; StoreT &gt; &gt;</type>
+      <name>Childs</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a25ae884191777afd8c57142b526550ec</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>PathMap&lt; StoreT &gt;</type>
+      <name>Parent</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a98f7d710ee0779c2bec209d8c22fbbbe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>Path</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a5e583dd1bf88abfb28487df2f676a6e8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>StoreT</type>
+      <name>Value</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>acc64411e4973d80d6983e983f9ce7f0e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PathMap</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a2a112640c1c8ffcf640b766f2a18bcd8</anchor>
+      <arglist>(PathMap&lt; StoreT &gt; parent=null)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Clear</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>aa71d36872f416feaa853788a7a7a7ef8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>PathMap&lt; StoreT &gt;</type>
+      <name>Get</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a634d1015ca5cd0061c94522e53bb6375</anchor>
+      <arglist>(Substring key, bool create, AString separators)</arglist>
+    </member>
+    <member kind="function">
+      <type>IEnumerator&lt; PathMap&lt; StoreT &gt; &gt;</type>
+      <name>GetEnumerator</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a9b2c420dbe7d7b85ff9a3db7f99e7d63</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Remove</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>a34f4f7743c42b4c5c5437db3e013ba12</anchor>
+      <arglist>(PathMap&lt; StoreT &gt; node)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>PathMap&lt; StoreT &gt;</type>
+      <name>get</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap.html</anchorfile>
+      <anchor>aaa7c8b4943529a389ccafc5a5d49e7a1</anchor>
+      <arglist>(Substring key, bool create, AString separators)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>cs::aworx::lox::core::Domain::PL</name>
+    <filename>classcs_1_1aworx_1_1lox_1_1core_1_1Domain_1_1PL.html</filename>
+    <member kind="variable">
+      <type>Inclusion</type>
+      <name>IncludeOtherPLs</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain_1_1PL.html</anchorfile>
+      <anchor>a70d196645ee1890701dc5148f1af5308</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Object</type>
+      <name>Logable</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain_1_1PL.html</anchorfile>
+      <anchor>a3d56dedd09174aaf80ef55ff192d6299</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PL</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain_1_1PL.html</anchorfile>
+      <anchor>a6cee92e3dd00da3cf65257ab37cfe851</anchor>
+      <arglist>(Object logable, Inclusion includeOtherPLs)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -4872,22 +5996,22 @@
       <type></type>
       <name>PlainTextLogger</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html</anchorfile>
-      <anchor>a49d9615d6a1b2c20bd5024dcc4689832</anchor>
-      <arglist>(String name, String typeName)</arglist>
+      <anchor>a1d76e082df6b761a8e09e8a6c44bd91c</anchor>
+      <arglist>(String name, String typeName, bool usesStdStreams)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="pure">
       <type>abstract bool</type>
-      <name>doLogSubstring</name>
+      <name>logSubstring</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html</anchorfile>
-      <anchor>a514f37d6f2158ad5b26a09b5fdc22b7a</anchor>
+      <anchor>a31fa17f677cdff401f4e94e6f3b885fd</anchor>
       <arglist>(AString buffer, int start, int length)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>override void</type>
-      <name>doTextLog</name>
+      <name>logText</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html</anchorfile>
-      <anchor>a9f4d4817f9f3191f4a2a26c96fea0bdb</anchor>
-      <arglist>(AString domain, Log.Level level, AString msg, int indent, CallerInfo caller, int lineNumber)</arglist>
+      <anchor>a0bd892b2dd861bd2e4b3084c643ee857</anchor>
+      <arglist>(Domain domain, Verbosity verbosity, AString msg, ScopeInfo scope, int lineNumber)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="pure">
       <type>abstract bool</type>
@@ -4898,19 +6022,19 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>cs::aworx::lib::config::Configuration::PrioAndPlugin</name>
-    <filename>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_1_1PrioAndPlugin.html</filename>
+    <name>cs::aworx::lib::config::Configuration::PluginAndPrio</name>
+    <filename>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_1_1PluginAndPrio.html</filename>
     <member kind="variable">
       <type>ConfigurationPlugIn</type>
       <name>plugIn</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_1_1PrioAndPlugin.html</anchorfile>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_1_1PluginAndPrio.html</anchorfile>
       <anchor>a9580667a91e1962d6169a8416f0580b8</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>int</type>
       <name>prio</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_1_1PrioAndPlugin.html</anchorfile>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_1_1PluginAndPrio.html</anchorfile>
       <anchor>a6f8e491cf1d80eb127fe0c10ebbfc659</anchor>
       <arglist></arglist>
     </member>
@@ -4919,13 +6043,6 @@
     <name>cs::aworx::lib::Report</name>
     <filename>classcs_1_1aworx_1_1lib_1_1Report.html</filename>
     <class kind="class">cs::aworx::lib::Report::Message</class>
-    <member kind="variable">
-      <type>Stack&lt; int &gt;</type>
-      <name>haltAfterReport</name>
-      <anchorfile>classcs_1_1aworx_1_1lib_1_1Report.html</anchorfile>
-      <anchor>acb7b398cf74d59e8bdb0e6810fb791d8</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="function" static="yes">
       <type>static Report</type>
       <name>GetDefault</name>
@@ -4948,11 +6065,25 @@
       <arglist>(int type, String msg, [CallerFilePath] String csf=&quot;&quot;, [CallerLineNumber] int cln=0, [CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
+      <type>ReportWriter</type>
+      <name>PeekWriter</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1Report.html</anchorfile>
+      <anchor>a853554a6bfceb828824e8da38d635d79</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
       <type>void</type>
       <name>PopHaltFlags</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1Report.html</anchorfile>
       <anchor>ade3d2cc17cc7c56d59b88a15ee247ca0</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>PopWriter</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1Report.html</anchorfile>
+      <anchor>a7fb0c9cbe48e62060b8fa53408f2fcd5</anchor>
+      <arglist>(ReportWriter checkWriter)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -4962,10 +6093,10 @@
       <arglist>(bool haltOnErrors, bool haltOnWarnings)</arglist>
     </member>
     <member kind="function">
-      <type>ReportWriter</type>
-      <name>ReplaceWriter</name>
+      <type>void</type>
+      <name>PushWriter</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1Report.html</anchorfile>
-      <anchor>a55ce4c99a4d8d27b766949daea9731be</anchor>
+      <anchor>a67565ee05d7a6ab5ef72d936cd17b0cc</anchor>
       <arglist>(ReportWriter newWriter)</arglist>
     </member>
     <member kind="variable" protection="protected" static="yes">
@@ -4973,6 +6104,13 @@
       <name>defaultReport</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1Report.html</anchorfile>
       <anchor>a9088fab9d3df935215bb0bb30f7b2250</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Stack&lt; int &gt;</type>
+      <name>haltAfterReport</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1Report.html</anchorfile>
+      <anchor>acb7b398cf74d59e8bdb0e6810fb791d8</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -4990,10 +6128,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>ReportWriter</type>
-      <name>writer</name>
+      <type>Stack&lt; ReportWriter &gt;</type>
+      <name>writers</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1Report.html</anchorfile>
-      <anchor>abb89fd434c938300bd1b0e80d98fefc5</anchor>
+      <anchor>a3cced29036e4120a234178a3a76d0991</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -5002,10 +6140,1343 @@
     <filename>interfacecs_1_1aworx_1_1lib_1_1ReportWriter.html</filename>
     <member kind="function">
       <type>void</type>
+      <name>NotifyActivation</name>
+      <anchorfile>interfacecs_1_1aworx_1_1lib_1_1ReportWriter.html</anchorfile>
+      <anchor>ab71b7807b7ebe4c18f427b6b8d972a6e</anchor>
+      <arglist>(enums.Phase phase)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
       <name>Report</name>
       <anchorfile>interfacecs_1_1aworx_1_1lib_1_1ReportWriter.html</anchorfile>
       <anchor>a6ff64b0b8bf46ac6b46d8bcdba2ec990</anchor>
       <arglist>(Report.Message report)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>cs::aworx::lox::core::ScopeDump</name>
+    <filename>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>ScopeDump</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>a94400cc20bba1954a73c239d046efa4d</anchor>
+      <arglist>(Dictionary&lt; int, String &gt; threadDictionary, String noKeyHashKey, AString target, int maxKeyLength=10)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>writeScopeDomains</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>a98e96d82d4a218b9514f961db71ca113</anchor>
+      <arglist>(ScopeStore&lt; AString &gt; store, int indentSpaces)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>writeScopePrefixes</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>a2cd9487df99848959c3e24fcd43e618a</anchor>
+      <arglist>(ScopeStore&lt; Object &gt; store, int indentSpaces)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>writeStoreMap&lt; T &gt;</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>ac1132d4d94256fc41ed256a9111513c5</anchor>
+      <arglist>(ScopeStore&lt; Dictionary&lt; AString, T &gt;&gt; store)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>key</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>ad966f5f8ca91d341b6cd80f4b38a8c1b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>maxKeyLength</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>ace5c16296f35665a0346922cdb706cc6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>String</type>
+      <name>noKeyHashKey</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>a03c7540cd5ea4b85dd17882e37621023</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>target</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>a782151d24530c70cef193f27597731cc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>tempAS</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>a5a04010d4c0003b3aba30583b7bf3d48</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Dictionary&lt; int, String &gt;</type>
+      <name>threadDictionary</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>af17a69632804467db73cb111c6afde9c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>AString</type>
+      <name>storeKeyToScope&lt; T &gt;</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>af6a02409d887b0362ea8a9df7b771130</anchor>
+      <arglist>(PathMap&lt; T &gt; map)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>AString</type>
+      <name>storeThreadToScope</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>abec54e4e22475d53dc9c2b7501243578</anchor>
+      <arglist>(Thread thread)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>int</type>
+      <name>writeStoreMapHelper&lt; T &gt;</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html</anchorfile>
+      <anchor>ad3c116c88cfeb433ec57b8de14180a31</anchor>
+      <arglist>(Dictionary&lt; AString, T &gt; map, String prefix)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>cs::aworx::lox::core::ScopeInfo</name>
+    <filename>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</filename>
+    <class kind="class">cs::aworx::lox::core::ScopeInfo::SourceFile</class>
+    <class kind="class">cs::aworx::lox::core::ScopeInfo::SourcePathTrimRule</class>
+    <member kind="variable" static="yes">
+      <type>static int</type>
+      <name>DefaultCacheSize</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a01d0e5f6ac830884f21e5086d1d91b94</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static List&lt; SourcePathTrimRule &gt;</type>
+      <name>GlobalSPTRs</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>ab71540b73dbdcd46b0b51327ad12a637</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static bool</type>
+      <name>GlobalSPTRsReadFromConfig</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a4b4cc9b47565ee962c6488358e236c65</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>List&lt; SourcePathTrimRule &gt;</type>
+      <name>LocalSPTRs</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>aafdb3d6c9ed8d33f17c646bb5836ccd4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ScopeInfo</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a876b0533f391ed24a70c9fa71b0bb5c9</anchor>
+      <arglist>(String name, Dictionary&lt; int, String &gt; threadDictionary)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>GetFileName</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>ab4e27279622f323a2ba5eec5b3a0dc0e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>GetFileNameWithoutExtension</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a753d80ac5c0c70a29443278081a13e00</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>String</type>
+      <name>GetFullPath</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>aa64862992a98f16cc8a8957e6ef1e794</anchor>
+      <arglist>(out int length)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>GetLineNumber</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>ae5c4253d48d562a076016c054d847ccc</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>String</type>
+      <name>GetLoxName</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>aa7f9faa1cc0271efa0367bc94c23e6b8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>String</type>
+      <name>GetMethod</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>af4a69c2e1b15ddc5d1d2608377ed37d9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>String</type>
+      <name>GetOrigFile</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a72612328138252cf63ecfc95415596c7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>Thread</type>
+      <name>GetThread</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a9f83f08cdf0f30299018d1c8d117ca46</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>GetThreadID</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a6ada61025e16fbfcd69fa53b531eb63a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>GetThreadName</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a36c61985764226f144bfcd48ed878b92</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>Ticks</type>
+      <name>GetTimeStamp</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a6578ecce057a50fb79f5ed15f310fed4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>AString</type>
+      <name>GetTrimmedPath</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>ae79c6287076c40c14285a0c765cda047</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Set</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a3094838f15426439bcd92ef30d3261a1</anchor>
+      <arglist>(int callerLineNumber, String callerSourceFileName, String callerMemberName, Thread thread)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetSourcePathTrimRule</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a0c3e34a1ee5b41fd2e4a0bd5d435334c</anchor>
+      <arglist>(String path, Inclusion includeString, int trimOffset, Case sensitivity, Inclusion global)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>AutoDetectTrimableSourcePath</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>ac69d17599ca644e4c9e9be0f42ca7361</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>SourceFile[]</type>
+      <name>cache</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a8172732d53b7b0dd16f60c75645cb871</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>long</type>
+      <name>cacheRun</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a0331e5ec7e807478bf6ba315527528ac</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>cacheSize</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a21f5d4e833c67e26ce27afd3d9f23288</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>String</type>
+      <name>loxName</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>ac67ac13e1750351191b65faaa5791a00</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>origLine</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>aea32b63d1b8fdc55f090b2b8b41b3d6b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>String</type>
+      <name>origMethod</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>aa2757fc0f52d1db858e322454919b57a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Thread</type>
+      <name>thread</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>ac99b75d10f465c1160242dea4544069a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Dictionary&lt; int, String &gt;</type>
+      <name>threadDictionary</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>af17a69632804467db73cb111c6afde9c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>threadID</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a88110d06c2b8b5584d31b5be3f13af46</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>threadName</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>af24ba4a8a819b679d1ac18505b2fe8a0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Ticks</type>
+      <name>timeStamp</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a4e72dac5d168369a754893772395f0d3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>SourceFile</type>
+      <name>actual</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
+      <anchor>a2e749596915ecb3f85da8a5e1f166437</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>cs::aworx::lox::core::ScopeStore</name>
+    <filename>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</filename>
+    <templarg></templarg>
+    <member kind="variable">
+      <type>T</type>
+      <name>globalStore</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>af36769bffee28cc003eee0e1e7d1e858</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>PathMap&lt; T &gt;</type>
+      <name>languageStore</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a3cc97c81f5f73c882d4a1f5abbe41811</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Dictionary&lt; Thread, List&lt; T &gt; &gt;</type>
+      <name>threadInnerStore</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a240666a6464f6e9ab8ff41204aeeadc6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Dictionary&lt; Thread, List&lt; T &gt; &gt;</type>
+      <name>threadOuterStore</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a6063faf8a8c096e1399eb43af9b96841</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ScopeStore</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a408e825c87807ce12e0931b9f537c1b6</anchor>
+      <arglist>(ScopeInfo scopeInfo, bool cfgSingleThreadValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Clear</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa71d36872f416feaa853788a7a7a7ef8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>Get</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ae25a8d58a6b45cb68029ab1a355e9a75</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>InitAccess</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a0e94a580e5073addc804774bd3ed4350</anchor>
+      <arglist>(Scope scope, int pathLevel, Thread thread)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>InitWalk</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a768fedd5b3e63d9c2929d5283197da5a</anchor>
+      <arglist>(Scope startScope, T localObject)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>Remove</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>abc8a787be0856b6bcf14e493a766ed80</anchor>
+      <arglist>(T value)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>Store</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a99667ce6af59c66379ba0b06f4ab3307</anchor>
+      <arglist>(T value)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>Walk</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ae472a89e1f51c6e6bf57c18cec94d6e6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>actPathLevel</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa5ede8468c729de0886d3bc84d31714e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>PathMap&lt; T &gt;</type>
+      <name>actPathMapNode</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a8032ce6cc2fb9ea0e10b5ea89dffe5e0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Scope</type>
+      <name>actScope</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ab420b6d519025a485c6345895ad174ee</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Thread</type>
+      <name>actThread</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a64257a7b447d7633ab917c0096ea1f7b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>cfgSingleThreadValue</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ac8ebbb91a987a22c90eae5a4c72ecbc0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>languageKey</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>afff48198d20f5acb5e3b9f526f3aa89b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Substring</type>
+      <name>languageKeySubstr</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a3bf60f6469b0c69c146a974a7a4c08e4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>lazyLanguageNode</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a531fce640b5915cd0496ba8c3c1058db</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ScopeInfo</type>
+      <name>scopeInfo</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a609ba5315772ded9cdb21726e54ff69d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>separators</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>abf3c785f03af4e61a0b4f51bc3568635</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>walking</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa99316a33a7768a6af77f01edda34ef3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>T</type>
+      <name>walkLocalObject</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa335ab4366e76a5d9ce668fc4afb82ff</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>walkNextThreadIdx</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a9928f44e5399d356c4380ab105e48941</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>List&lt; T &gt;</type>
+      <name>walkThreadValues</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa8bfb8fbaf597501f52826c0e01afcb9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>T</type>
+      <name>access</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a4edabc9f41871e01feed07e778694764</anchor>
+      <arglist>(int cmd, T value)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>getPathMapNode</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ad1305df36b6dfcde87eded99e9e9424b</anchor>
+      <arglist>(bool create)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ScopeStore&lt; AString &gt;</name>
+    <filename>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</filename>
+    <member kind="variable">
+      <type>T</type>
+      <name>globalStore</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>af36769bffee28cc003eee0e1e7d1e858</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>PathMap&lt; T &gt;</type>
+      <name>languageStore</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a3cc97c81f5f73c882d4a1f5abbe41811</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Dictionary&lt; Thread, List&lt; T &gt; &gt;</type>
+      <name>threadInnerStore</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a240666a6464f6e9ab8ff41204aeeadc6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Dictionary&lt; Thread, List&lt; T &gt; &gt;</type>
+      <name>threadOuterStore</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a6063faf8a8c096e1399eb43af9b96841</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ScopeStore</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a408e825c87807ce12e0931b9f537c1b6</anchor>
+      <arglist>(ScopeInfo scopeInfo, bool cfgSingleThreadValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Clear</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa71d36872f416feaa853788a7a7a7ef8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>Get</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ae25a8d58a6b45cb68029ab1a355e9a75</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>InitAccess</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a0e94a580e5073addc804774bd3ed4350</anchor>
+      <arglist>(Scope scope, int pathLevel, Thread thread)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>InitWalk</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a768fedd5b3e63d9c2929d5283197da5a</anchor>
+      <arglist>(Scope startScope, T localObject)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>Remove</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>abc8a787be0856b6bcf14e493a766ed80</anchor>
+      <arglist>(T value)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>Store</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a99667ce6af59c66379ba0b06f4ab3307</anchor>
+      <arglist>(T value)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>Walk</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ae472a89e1f51c6e6bf57c18cec94d6e6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>actPathLevel</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa5ede8468c729de0886d3bc84d31714e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>PathMap&lt; T &gt;</type>
+      <name>actPathMapNode</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a8032ce6cc2fb9ea0e10b5ea89dffe5e0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Scope</type>
+      <name>actScope</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ab420b6d519025a485c6345895ad174ee</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Thread</type>
+      <name>actThread</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a64257a7b447d7633ab917c0096ea1f7b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>cfgSingleThreadValue</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ac8ebbb91a987a22c90eae5a4c72ecbc0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>languageKey</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>afff48198d20f5acb5e3b9f526f3aa89b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Substring</type>
+      <name>languageKeySubstr</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a3bf60f6469b0c69c146a974a7a4c08e4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>lazyLanguageNode</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a531fce640b5915cd0496ba8c3c1058db</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ScopeInfo</type>
+      <name>scopeInfo</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a609ba5315772ded9cdb21726e54ff69d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>separators</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>abf3c785f03af4e61a0b4f51bc3568635</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>walking</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa99316a33a7768a6af77f01edda34ef3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>T</type>
+      <name>walkLocalObject</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa335ab4366e76a5d9ce668fc4afb82ff</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>walkNextThreadIdx</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a9928f44e5399d356c4380ab105e48941</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>List&lt; T &gt;</type>
+      <name>walkThreadValues</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa8bfb8fbaf597501f52826c0e01afcb9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>T</type>
+      <name>access</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a4edabc9f41871e01feed07e778694764</anchor>
+      <arglist>(int cmd, T value)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>getPathMapNode</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ad1305df36b6dfcde87eded99e9e9424b</anchor>
+      <arglist>(bool create)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ScopeStore&lt; Dictionary&lt; AString, cs::aworx::lox::LogData &gt; &gt;</name>
+    <filename>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</filename>
+    <member kind="variable">
+      <type>T</type>
+      <name>globalStore</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>af36769bffee28cc003eee0e1e7d1e858</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>PathMap&lt; T &gt;</type>
+      <name>languageStore</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a3cc97c81f5f73c882d4a1f5abbe41811</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Dictionary&lt; Thread, List&lt; T &gt; &gt;</type>
+      <name>threadInnerStore</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a240666a6464f6e9ab8ff41204aeeadc6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Dictionary&lt; Thread, List&lt; T &gt; &gt;</type>
+      <name>threadOuterStore</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a6063faf8a8c096e1399eb43af9b96841</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ScopeStore</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a408e825c87807ce12e0931b9f537c1b6</anchor>
+      <arglist>(ScopeInfo scopeInfo, bool cfgSingleThreadValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Clear</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa71d36872f416feaa853788a7a7a7ef8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>Get</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ae25a8d58a6b45cb68029ab1a355e9a75</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>InitAccess</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a0e94a580e5073addc804774bd3ed4350</anchor>
+      <arglist>(Scope scope, int pathLevel, Thread thread)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>InitWalk</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a768fedd5b3e63d9c2929d5283197da5a</anchor>
+      <arglist>(Scope startScope, T localObject)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>Remove</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>abc8a787be0856b6bcf14e493a766ed80</anchor>
+      <arglist>(T value)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>Store</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a99667ce6af59c66379ba0b06f4ab3307</anchor>
+      <arglist>(T value)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>Walk</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ae472a89e1f51c6e6bf57c18cec94d6e6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>actPathLevel</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa5ede8468c729de0886d3bc84d31714e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>PathMap&lt; T &gt;</type>
+      <name>actPathMapNode</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a8032ce6cc2fb9ea0e10b5ea89dffe5e0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Scope</type>
+      <name>actScope</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ab420b6d519025a485c6345895ad174ee</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Thread</type>
+      <name>actThread</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a64257a7b447d7633ab917c0096ea1f7b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>cfgSingleThreadValue</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ac8ebbb91a987a22c90eae5a4c72ecbc0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>languageKey</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>afff48198d20f5acb5e3b9f526f3aa89b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Substring</type>
+      <name>languageKeySubstr</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a3bf60f6469b0c69c146a974a7a4c08e4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>lazyLanguageNode</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a531fce640b5915cd0496ba8c3c1058db</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ScopeInfo</type>
+      <name>scopeInfo</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a609ba5315772ded9cdb21726e54ff69d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>separators</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>abf3c785f03af4e61a0b4f51bc3568635</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>walking</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa99316a33a7768a6af77f01edda34ef3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>T</type>
+      <name>walkLocalObject</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa335ab4366e76a5d9ce668fc4afb82ff</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>walkNextThreadIdx</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a9928f44e5399d356c4380ab105e48941</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>List&lt; T &gt;</type>
+      <name>walkThreadValues</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa8bfb8fbaf597501f52826c0e01afcb9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>T</type>
+      <name>access</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a4edabc9f41871e01feed07e778694764</anchor>
+      <arglist>(int cmd, T value)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>getPathMapNode</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ad1305df36b6dfcde87eded99e9e9424b</anchor>
+      <arglist>(bool create)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ScopeStore&lt; Dictionary&lt; AString, int[]&gt; &gt;</name>
+    <filename>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</filename>
+    <member kind="variable">
+      <type>T</type>
+      <name>globalStore</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>af36769bffee28cc003eee0e1e7d1e858</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>PathMap&lt; T &gt;</type>
+      <name>languageStore</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a3cc97c81f5f73c882d4a1f5abbe41811</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Dictionary&lt; Thread, List&lt; T &gt; &gt;</type>
+      <name>threadInnerStore</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a240666a6464f6e9ab8ff41204aeeadc6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Dictionary&lt; Thread, List&lt; T &gt; &gt;</type>
+      <name>threadOuterStore</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a6063faf8a8c096e1399eb43af9b96841</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ScopeStore</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a408e825c87807ce12e0931b9f537c1b6</anchor>
+      <arglist>(ScopeInfo scopeInfo, bool cfgSingleThreadValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Clear</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa71d36872f416feaa853788a7a7a7ef8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>Get</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ae25a8d58a6b45cb68029ab1a355e9a75</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>InitAccess</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a0e94a580e5073addc804774bd3ed4350</anchor>
+      <arglist>(Scope scope, int pathLevel, Thread thread)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>InitWalk</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a768fedd5b3e63d9c2929d5283197da5a</anchor>
+      <arglist>(Scope startScope, T localObject)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>Remove</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>abc8a787be0856b6bcf14e493a766ed80</anchor>
+      <arglist>(T value)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>Store</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a99667ce6af59c66379ba0b06f4ab3307</anchor>
+      <arglist>(T value)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>Walk</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ae472a89e1f51c6e6bf57c18cec94d6e6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>actPathLevel</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa5ede8468c729de0886d3bc84d31714e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>PathMap&lt; T &gt;</type>
+      <name>actPathMapNode</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a8032ce6cc2fb9ea0e10b5ea89dffe5e0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Scope</type>
+      <name>actScope</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ab420b6d519025a485c6345895ad174ee</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Thread</type>
+      <name>actThread</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a64257a7b447d7633ab917c0096ea1f7b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>cfgSingleThreadValue</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ac8ebbb91a987a22c90eae5a4c72ecbc0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>languageKey</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>afff48198d20f5acb5e3b9f526f3aa89b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Substring</type>
+      <name>languageKeySubstr</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a3bf60f6469b0c69c146a974a7a4c08e4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>lazyLanguageNode</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a531fce640b5915cd0496ba8c3c1058db</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ScopeInfo</type>
+      <name>scopeInfo</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a609ba5315772ded9cdb21726e54ff69d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>separators</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>abf3c785f03af4e61a0b4f51bc3568635</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>walking</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa99316a33a7768a6af77f01edda34ef3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>T</type>
+      <name>walkLocalObject</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa335ab4366e76a5d9ce668fc4afb82ff</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>walkNextThreadIdx</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a9928f44e5399d356c4380ab105e48941</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>List&lt; T &gt;</type>
+      <name>walkThreadValues</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa8bfb8fbaf597501f52826c0e01afcb9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>T</type>
+      <name>access</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a4edabc9f41871e01feed07e778694764</anchor>
+      <arglist>(int cmd, T value)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>getPathMapNode</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ad1305df36b6dfcde87eded99e9e9424b</anchor>
+      <arglist>(bool create)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ScopeStore&lt; Object &gt;</name>
+    <filename>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</filename>
+    <member kind="variable">
+      <type>T</type>
+      <name>globalStore</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>af36769bffee28cc003eee0e1e7d1e858</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>PathMap&lt; T &gt;</type>
+      <name>languageStore</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a3cc97c81f5f73c882d4a1f5abbe41811</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Dictionary&lt; Thread, List&lt; T &gt; &gt;</type>
+      <name>threadInnerStore</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a240666a6464f6e9ab8ff41204aeeadc6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Dictionary&lt; Thread, List&lt; T &gt; &gt;</type>
+      <name>threadOuterStore</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a6063faf8a8c096e1399eb43af9b96841</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ScopeStore</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a408e825c87807ce12e0931b9f537c1b6</anchor>
+      <arglist>(ScopeInfo scopeInfo, bool cfgSingleThreadValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Clear</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa71d36872f416feaa853788a7a7a7ef8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>Get</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ae25a8d58a6b45cb68029ab1a355e9a75</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>InitAccess</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a0e94a580e5073addc804774bd3ed4350</anchor>
+      <arglist>(Scope scope, int pathLevel, Thread thread)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>InitWalk</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a768fedd5b3e63d9c2929d5283197da5a</anchor>
+      <arglist>(Scope startScope, T localObject)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>Remove</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>abc8a787be0856b6bcf14e493a766ed80</anchor>
+      <arglist>(T value)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>Store</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a99667ce6af59c66379ba0b06f4ab3307</anchor>
+      <arglist>(T value)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>Walk</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ae472a89e1f51c6e6bf57c18cec94d6e6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>actPathLevel</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa5ede8468c729de0886d3bc84d31714e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>PathMap&lt; T &gt;</type>
+      <name>actPathMapNode</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a8032ce6cc2fb9ea0e10b5ea89dffe5e0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Scope</type>
+      <name>actScope</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ab420b6d519025a485c6345895ad174ee</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Thread</type>
+      <name>actThread</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a64257a7b447d7633ab917c0096ea1f7b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>cfgSingleThreadValue</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ac8ebbb91a987a22c90eae5a4c72ecbc0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>languageKey</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>afff48198d20f5acb5e3b9f526f3aa89b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Substring</type>
+      <name>languageKeySubstr</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a3bf60f6469b0c69c146a974a7a4c08e4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>lazyLanguageNode</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a531fce640b5915cd0496ba8c3c1058db</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ScopeInfo</type>
+      <name>scopeInfo</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a609ba5315772ded9cdb21726e54ff69d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>separators</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>abf3c785f03af4e61a0b4f51bc3568635</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>walking</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa99316a33a7768a6af77f01edda34ef3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>T</type>
+      <name>walkLocalObject</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa335ab4366e76a5d9ce668fc4afb82ff</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>walkNextThreadIdx</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a9928f44e5399d356c4380ab105e48941</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>List&lt; T &gt;</type>
+      <name>walkThreadValues</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>aa8bfb8fbaf597501f52826c0e01afcb9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>T</type>
+      <name>access</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>a4edabc9f41871e01feed07e778694764</anchor>
+      <arglist>(int cmd, T value)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>getPathMapNode</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
+      <anchor>ad1305df36b6dfcde87eded99e9e9424b</anchor>
+      <arglist>(bool create)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -5052,6 +7523,171 @@
       <anchorfile>classcs_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Section.html</anchorfile>
       <anchor>a7ea99350bd6274d3175f7c563a3d9ca8</anchor>
       <arglist>(Object name, Object value, AString comments=null)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>cs::aworx::lib::threads::SmartLock</name>
+    <filename>classcs_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html</filename>
+    <base>cs::aworx::lib::threads::ThreadLock</base>
+    <member kind="function">
+      <type></type>
+      <name>SmartLock</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html</anchorfile>
+      <anchor>a90c2c49cbc4b52547424991f1665a8cb</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual int</type>
+      <name>AddAcquirer</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html</anchorfile>
+      <anchor>a928a722b0dfb3602c10cc0304e8b29a4</anchor>
+      <arglist>(ThreadLock newAcquirer)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>CntAcquirers</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html</anchorfile>
+      <anchor>a8d7f3cb41c747cf4c508db08fc60fe9f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual int</type>
+      <name>RemoveAcquirer</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html</anchorfile>
+      <anchor>ad515b5c22c7c371301d238a69677aba1</anchor>
+      <arglist>(ThreadLock acquirerToRemove)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>List&lt; ThreadLock &gt;</type>
+      <name>acquirers</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html</anchorfile>
+      <anchor>a66085887a31524e438d083b30aebd164</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>cs::aworx::lox::core::ScopeInfo::SourceFile</name>
+    <filename>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html</filename>
+    <member kind="variable">
+      <type>bool</type>
+      <name>lazyName</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html</anchorfile>
+      <anchor>afbb19dec261998d7314020c867e986d5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>lazyNameWOExt</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html</anchorfile>
+      <anchor>a6c3770fbdfb42ce16f192d1991386269</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>lazyTrimmedPath</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html</anchorfile>
+      <anchor>a373c2b29a02975ba423efd04fdd49206</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>name</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html</anchorfile>
+      <anchor>a854ed5ff2038053c383f709d65e69315</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>nameWOExt</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html</anchorfile>
+      <anchor>a5b7a5fa587c4c0a2cd5c233932db96b3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>origFile</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html</anchorfile>
+      <anchor>ad90cac804f58fc5ce1493d5d78b0d4eb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>origFilePathSeparator</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html</anchorfile>
+      <anchor>a92c278f6e653f2ff33c65cd197d61239</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>long</type>
+      <name>timeStamp</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html</anchorfile>
+      <anchor>a9d00e3de2101c520bb78acc73c75d3e4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>trimmedPath</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html</anchorfile>
+      <anchor>a481b33f9672072cf4fa7bba094e041ed</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>cs::aworx::lox::core::ScopeInfo::SourcePathTrimRule</name>
+    <filename>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html</filename>
+    <member kind="variable">
+      <type>Inclusion</type>
+      <name>IncludeString</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html</anchorfile>
+      <anchor>a4dfbe3fa1c6cd975f1a6a3b17dc6ac8d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>IsPrefix</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html</anchorfile>
+      <anchor>af3bc9a519dad021ce04b07599d610ccd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>Path</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html</anchorfile>
+      <anchor>a5e583dd1bf88abfb28487df2f676a6e8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Case</type>
+      <name>Sensitivity</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html</anchorfile>
+      <anchor>a48bf193d2228373a7e76ba4e08137017</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>TrimOffset</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html</anchorfile>
+      <anchor>a400a3c8a83ee22ccb635bb8a96a1d6ca</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>cs::aworx::lox::core::textlogger::StringConverter</name>
+    <filename>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1StringConverter.html</filename>
+    <base>cs::aworx::lox::core::textlogger::ObjectConverter</base>
+    <member kind="variable">
+      <type>String</type>
+      <name>FmtNullObject</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1StringConverter.html</anchorfile>
+      <anchor>ac281d117b6e931783195f52f70bfa5b3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>override bool</type>
+      <name>ConvertObject</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1StringConverter.html</anchorfile>
+      <anchor>a1a0031697ff24b742c6f1f4e249514ae</anchor>
+      <arglist>(Object o, AString target)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -5324,6 +7960,13 @@
       <arglist>(out double result, NumberFormat numberFormat=null, char[] whitespaces=null)</arglist>
     </member>
     <member kind="function">
+      <type>Substring</type>
+      <name>Split</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a76bef0bf0651d7fe9c71fce5103726a0</anchor>
+      <arglist>(int position, Substring target, int separatorWidth=0)</arglist>
+    </member>
+    <member kind="function">
       <type>int</type>
       <name>IndexOf</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
@@ -5553,6 +8196,13 @@
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
       <anchor>a012fbb0f39e57c0a44ec83dd408fcda3</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>String</type>
+      <name>ToString</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a713ab2d9944128a1d253741da0e1de8d</anchor>
+      <arglist>(int regionStart, int regionLength=int.MaxValue)</arglist>
     </member>
     <member kind="function">
       <type>override int</type>
@@ -5814,6 +8464,13 @@
       <arglist>(out double result, NumberFormat numberFormat=null, char[] whitespaces=null)</arglist>
     </member>
     <member kind="function">
+      <type>Substring</type>
+      <name>Split</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a76bef0bf0651d7fe9c71fce5103726a0</anchor>
+      <arglist>(int position, Substring target, int separatorWidth=0)</arglist>
+    </member>
+    <member kind="function">
       <type>int</type>
       <name>IndexOf</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
@@ -6045,6 +8702,13 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
+      <type>String</type>
+      <name>ToString</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
+      <anchor>a713ab2d9944128a1d253741da0e1de8d</anchor>
+      <arglist>(int regionStart, int regionLength=int.MaxValue)</arglist>
+    </member>
+    <member kind="function">
       <type>override int</type>
       <name>GetHashCode</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
@@ -6061,6 +8725,13 @@
       <name>FileName</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html</anchorfile>
       <anchor>a5066dd8adab56e4ea54fe46b9db3bd9a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>hasIoError</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html</anchorfile>
+      <anchor>aef8156626509284bebb701bfd5a93699</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -6093,9 +8764,9 @@
     </member>
     <member kind="function" protection="protected">
       <type>override bool</type>
-      <name>doLogSubstring</name>
+      <name>logSubstring</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html</anchorfile>
-      <anchor>aa1ae12f7ee4e81a2f8777809f6fc5c0c</anchor>
+      <anchor>a064e8e44293d86433b2d183f685a7f66</anchor>
       <arglist>(AString buffer, int start, int length)</arglist>
     </member>
     <member kind="function" protection="protected">
@@ -6133,13 +8804,6 @@
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>FmtIndentString</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
-      <anchor>a84b11e4ba9304e158d4f091d2c6e9d7e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
       <name>FmtMultiLineMsgHeadline</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
       <anchor>ab3423baaf4b67d0e7cfa757203aaf872</anchor>
@@ -6157,6 +8821,13 @@
       <name>FmtMultiLineSuffix</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
       <anchor>a7daa8e01ebd6550ac7f2a0efacf3ef39</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>FmtUnknownObject</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
+      <anchor>a3051aebc3f205a04fc1196a5433d78e5</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -6188,11 +8859,18 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>ObjectConverter</type>
-      <name>ObjectConverter</name>
+      <type>List&lt; ObjectConverter &gt;</type>
+      <name>ObjectConverters</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
-      <anchor>aaf08965c7f26235af09debd323433507</anchor>
+      <anchor>a58ee05619501312c5cbced4d319ba3fc</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>override int</type>
+      <name>AddAcquirer</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
+      <anchor>a2d5ec0c94f254cea7d5ca7ec57e5ce7b</anchor>
+      <arglist>(ThreadLock newAcquirer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -6200,6 +8878,20 @@
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
       <anchor>a17d8436509bfd6902d02a1a7628c9708</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>override void</type>
+      <name>Log</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
+      <anchor>a74e61f2547940b813fbbdd1e266aa4f9</anchor>
+      <arglist>(Domain domain, Verbosity verbosity, List&lt; Object &gt; logables, ScopeInfo scope)</arglist>
+    </member>
+    <member kind="function">
+      <type>override int</type>
+      <name>RemoveAcquirer</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
+      <anchor>abe7f7db426d801b56a3b1d720aeae4bd</anchor>
+      <arglist>(ThreadLock acquirer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -6216,32 +8908,46 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
+      <type>AString</type>
+      <name>msgBuf</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
+      <anchor>aca76e783906a4030895a9797a98adb3f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
       <type>List&lt; String &gt;</type>
       <name>replacements</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
       <anchor>ae5f1155ccf5f33d2d3fc3202bb88bf8f</anchor>
       <arglist></arglist>
     </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>stdStreamLockRegistrationCounter</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
+      <anchor>a7e0257392907f8a498262a3d8516f04c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>usesStdStreams</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
+      <anchor>a521df36fef7aa1dc1979a93cd4db2e83</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function" protection="protected">
       <type></type>
       <name>TextLogger</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
-      <anchor>a77541b983eb0b7a2ee732d849b733783</anchor>
-      <arglist>(String name, String typeName)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>override void</type>
-      <name>doLog</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
-      <anchor>a3f2a29817947567c9a29c42d196a0599</anchor>
-      <arglist>(AString domain, Log.Level level, Object msgObject, int indent, CallerInfo caller)</arglist>
+      <anchor>ab29f67ea0c130275039d964a6007b899</anchor>
+      <arglist>(String name, String typeName, bool usesStdStreams)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="pure">
       <type>abstract void</type>
-      <name>doTextLog</name>
+      <name>logText</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html</anchorfile>
-      <anchor>a0d2f1838c6403b062f5e7f481d97c51a</anchor>
-      <arglist>(AString domain, Log.Level level, AString msg, int indent, CallerInfo caller, int lineNumber)</arglist>
+      <anchor>ac695287fd565c875feb45c63c38237e2</anchor>
+      <arglist>(Domain domain, Verbosity verbosity, AString msg, ScopeInfo scope, int lineNumber)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="pure">
       <type>abstract void</type>
@@ -6279,21 +8985,28 @@
       <type>void</type>
       <name>Acquire</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html</anchorfile>
-      <anchor>ab91dc804181f48b0b445ac1299c36c05</anchor>
-      <arglist>()</arglist>
+      <anchor>a30a46f5d25053020b247022edbe809fb</anchor>
+      <arglist>([CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
-      <name>IsAcquired</name>
+      <name>DbgCountAcquirements</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html</anchorfile>
-      <anchor>ae10bdbe9c2585660ee93c3996d01adf5</anchor>
+      <anchor>a6130c195e474e31cbef9ec804df3975b</anchor>
       <arglist>(Thread thread=null)</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
-      <name>IsUnsafe</name>
+      <type>LockMode</type>
+      <name>GetMode</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html</anchorfile>
-      <anchor>abf2bccd9812728e715f73c27dac06614</anchor>
+      <anchor>a1132bd16d6162743fe5b845b7b7a9542</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>Safeness</type>
+      <name>GetSafeness</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html</anchorfile>
+      <anchor>a28f9606b0ea97d99ca27039c8cd8a4d5</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
@@ -6305,9 +9018,9 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>SetMode</name>
+      <name>SetSafeness</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html</anchorfile>
-      <anchor>a42d11494af6c497b55ad6ca5ff31a283</anchor>
+      <anchor>a3ae079b9f52c5c97cf15d7a260ac73e2</anchor>
       <arglist>(Safeness safeness)</arglist>
     </member>
     <member kind="function">
@@ -6881,6 +9594,13 @@
     <filename>classcs_1_1aworx_1_1lib_1_1Util.html</filename>
     <member kind="function" static="yes">
       <type>static AString</type>
+      <name>GetProcessName</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1Util.html</anchorfile>
+      <anchor>aae6339810b52486635477009dc74dba8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static AString</type>
       <name>GetSpaces</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1Util.html</anchorfile>
       <anchor>a4d9227d105bfa4362fe3cbee757d76a2</anchor>
@@ -6899,6 +9619,13 @@
       <anchorfile>classcs_1_1aworx_1_1lib_1_1Util.html</anchorfile>
       <anchor>a686102820dbd3dfb49891bbcf06aa74c</anchor>
       <arglist>(TextWriter os, int qty)</arglist>
+    </member>
+    <member kind="variable" protection="private" static="yes">
+      <type>static AString</type>
+      <name>processName</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1Util.html</anchorfile>
+      <anchor>acdefe8c9e0fc3c1abb1655ea13d4f3d0</anchor>
+      <arglist></arglist>
     </member>
     <member kind="variable" protection="private" static="yes">
       <type>static AString</type>
@@ -6955,6 +9682,7 @@
     <name>cs::aworx::lib</name>
     <filename>namespacecs_1_1aworx_1_1lib.html</filename>
     <namespace>cs::aworx::lib::config</namespace>
+    <namespace>cs::aworx::lib::containers</namespace>
     <namespace>cs::aworx::lib::enums</namespace>
     <namespace>cs::aworx::lib::strings</namespace>
     <namespace>cs::aworx::lib::threads</namespace>
@@ -6973,6 +9701,11 @@
     <class kind="class">cs::aworx::lib::config::ConfigurationPlugIn</class>
     <class kind="class">cs::aworx::lib::config::EnvironmentPlugIn</class>
     <class kind="class">cs::aworx::lib::config::IniFile</class>
+  </compound>
+  <compound kind="namespace">
+    <name>cs::aworx::lib::containers</name>
+    <filename>namespacecs_1_1aworx_1_1lib_1_1containers.html</filename>
+    <class kind="class">cs::aworx::lib::containers::PathMap</class>
   </compound>
   <compound kind="namespace">
     <name>cs::aworx::lib::enums</name>
@@ -6995,6 +9728,18 @@
       <arglist></arglist>
       <enumvalue file="namespacecs_1_1aworx_1_1lib_1_1enums.html" anchor="ab9aab17a5e54a8bae6915bc24db13a17a8f21fcdc233ba4078679ca628453d06b">Sensitive</enumvalue>
       <enumvalue file="namespacecs_1_1aworx_1_1lib_1_1enums.html" anchor="ab9aab17a5e54a8bae6915bc24db13a17afd038fc7f319e48f3115d92bf5bdbef9">Ignore</enumvalue>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>ContainerOp</name>
+      <anchorfile>namespacecs_1_1aworx_1_1lib_1_1enums.html</anchorfile>
+      <anchor>af6d9cc1e6686eca6e60d57d959cf57fb</anchor>
+      <arglist></arglist>
+      <enumvalue file="namespacecs_1_1aworx_1_1lib_1_1enums.html" anchor="af6d9cc1e6686eca6e60d57d959cf57fbaa458be0f08b7e4ff3c0f633c100176c0">Insert</enumvalue>
+      <enumvalue file="namespacecs_1_1aworx_1_1lib_1_1enums.html" anchor="af6d9cc1e6686eca6e60d57d959cf57fba1063e38cb53d94d386f21227fcd84717">Remove</enumvalue>
+      <enumvalue file="namespacecs_1_1aworx_1_1lib_1_1enums.html" anchor="af6d9cc1e6686eca6e60d57d959cf57fbac55582518cba2c464f29f5bae1c68def">Get</enumvalue>
+      <enumvalue file="namespacecs_1_1aworx_1_1lib_1_1enums.html" anchor="af6d9cc1e6686eca6e60d57d959cf57fba1d5c1a7fde77e84c993d6fea61f88c2a">GetCreate</enumvalue>
+      <enumvalue file="namespacecs_1_1aworx_1_1lib_1_1enums.html" anchor="af6d9cc1e6686eca6e60d57d959cf57fba686e697538050e4664636337cc3b834f">Create</enumvalue>
     </member>
     <member kind="enumeration">
       <type></type>
@@ -7090,6 +9835,7 @@
   <compound kind="namespace">
     <name>cs::aworx::lib::threads</name>
     <filename>namespacecs_1_1aworx_1_1lib_1_1threads.html</filename>
+    <class kind="class">cs::aworx::lib::threads::SmartLock</class>
     <class kind="class">cs::aworx::lib::threads::ThreadLock</class>
   </compound>
   <compound kind="namespace">
@@ -7104,17 +9850,47 @@
     <namespace>cs::aworx::lox::core</namespace>
     <namespace>cs::aworx::lox::loggers</namespace>
     <namespace>cs::aworx::lox::tools</namespace>
+    <class kind="class">cs::aworx::lox::ALox</class>
+    <class kind="class">cs::aworx::lox::ALoxReportWriter</class>
     <class kind="class">cs::aworx::lox::ESC</class>
     <class kind="class">cs::aworx::lox::Log</class>
+    <class kind="class">cs::aworx::lox::LogData</class>
     <class kind="class">cs::aworx::lox::Lox</class>
+    <member kind="enumeration">
+      <type></type>
+      <name>Scope</name>
+      <anchorfile>namespacecs_1_1aworx_1_1lox.html</anchorfile>
+      <anchor>aaecc53892786f2fa11e682f633af84c6</anchor>
+      <arglist></arglist>
+      <enumvalue file="namespacecs_1_1aworx_1_1lox.html" anchor="aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8">Global</enumvalue>
+      <enumvalue file="namespacecs_1_1aworx_1_1lox.html" anchor="aaecc53892786f2fa11e682f633af84c6a1ee3f312b05c55202500569aadfc8d9b">ThreadOuter</enumvalue>
+      <enumvalue file="namespacecs_1_1aworx_1_1lox.html" anchor="aaecc53892786f2fa11e682f633af84c6aac70412e939d72a9234cdebb1af5867b">Path</enumvalue>
+      <enumvalue file="namespacecs_1_1aworx_1_1lox.html" anchor="aaecc53892786f2fa11e682f633af84c6a1351017ac6423911223bc19a8cb7c653">Filename</enumvalue>
+      <enumvalue file="namespacecs_1_1aworx_1_1lox.html" anchor="aaecc53892786f2fa11e682f633af84c6a4c3880bb027f159e801041b1021e88e8">Method</enumvalue>
+      <enumvalue file="namespacecs_1_1aworx_1_1lox.html" anchor="aaecc53892786f2fa11e682f633af84c6ae46b159c990fae9e712309bdb4d7b7c4">ThreadInner</enumvalue>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>Verbosity</name>
+      <anchorfile>namespacecs_1_1aworx_1_1lox.html</anchorfile>
+      <anchor>abf3be10d03894afb391f3a2935e3b313</anchor>
+      <arglist></arglist>
+      <enumvalue file="namespacecs_1_1aworx_1_1lox.html" anchor="abf3be10d03894afb391f3a2935e3b313ad4a9fa383ab700c5bdd6f31cf7df0faf">Verbose</enumvalue>
+      <enumvalue file="namespacecs_1_1aworx_1_1lox.html" anchor="abf3be10d03894afb391f3a2935e3b313a4059b0251f66a18cb56f544728796875">Info</enumvalue>
+      <enumvalue file="namespacecs_1_1aworx_1_1lox.html" anchor="abf3be10d03894afb391f3a2935e3b313a0eaadb4fcb48a0a0ed7bc9868be9fbaa">Warning</enumvalue>
+      <enumvalue file="namespacecs_1_1aworx_1_1lox.html" anchor="abf3be10d03894afb391f3a2935e3b313a902b0d55fddef6f8d651fe1035b7d4bd">Error</enumvalue>
+      <enumvalue file="namespacecs_1_1aworx_1_1lox.html" anchor="abf3be10d03894afb391f3a2935e3b313ad15305d7a4e34e02489c74a5ef542f36">Off</enumvalue>
+    </member>
   </compound>
   <compound kind="namespace">
     <name>cs::aworx::lox::core</name>
     <filename>namespacecs_1_1aworx_1_1lox_1_1core.html</filename>
     <namespace>cs::aworx::lox::core::textlogger</namespace>
-    <class kind="class">cs::aworx::lox::core::CallerInfo</class>
     <class kind="class">cs::aworx::lox::core::Domain</class>
     <class kind="class">cs::aworx::lox::core::Logger</class>
+    <class kind="class">cs::aworx::lox::core::ScopeDump</class>
+    <class kind="class">cs::aworx::lox::core::ScopeInfo</class>
+    <class kind="class">cs::aworx::lox::core::ScopeStore</class>
   </compound>
   <compound kind="namespace">
     <name>cs::aworx::lox::core::textlogger</name>
@@ -7123,6 +9899,7 @@
     <class kind="class">cs::aworx::lox::core::textlogger::MetaInfo</class>
     <class kind="class">cs::aworx::lox::core::textlogger::ObjectConverter</class>
     <class kind="class">cs::aworx::lox::core::textlogger::PlainTextLogger</class>
+    <class kind="class">cs::aworx::lox::core::textlogger::StringConverter</class>
     <class kind="class">cs::aworx::lox::core::textlogger::TextLogger</class>
   </compound>
   <compound kind="namespace">
@@ -7186,28 +9963,26 @@
     <title>ALox for C# Tutorial</title>
     <filename>cstutorial</filename>
     <docanchor file="cstutorial" title="1. Hello ALox">tutcs_hello_alox</docanchor>
-    <docanchor file="cstutorial" title="2. Adding ALox to a Project">tutcs_adding_ALox</docanchor>
-    <docanchor file="cstutorial" title="2.1 Create a tutorial project or equip your current project with ALox">tutcs_createproject</docanchor>
-    <docanchor file="cstutorial" title="2.2. Create an instance of class &quot;Logger&quot;">tutcs_ha1</docanchor>
-    <docanchor file="cstutorial" title="2.3. Add code to create and set a *log domain*">tutcs_ha_3</docanchor>
-    <docanchor file="cstutorial" title="2.4. Add log code">tutcs_ha_4</docanchor>
-    <docanchor file="cstutorial" title="2.5. Run your application within your IDE">tutcs_ha_5</docanchor>
-    <docanchor file="cstutorial" title="2.6. Build a release version">tutcs_ha_6</docanchor>
-    <docanchor file="cstutorial" title="3. Log levels and log domains">tutcs_llld</docanchor>
-    <docanchor file="cstutorial" title="3.1. Log code with different log levels">tutcs_llld_1</docanchor>
-    <docanchor file="cstutorial" title="3.2. Default domains">tutcs_llld_2</docanchor>
-    <docanchor file="cstutorial" title="3.3. Where to place ALox log code">tutcs_llld_3</docanchor>
-    <docanchor file="cstutorial" title="4. Some more Details">tutcs_more</docanchor>
-    <docanchor file="cstutorial" title="4.1 Stop reading here?">tutcs_more_1</docanchor>
-    <docanchor file="cstutorial" title="4.2 Using the log buffer singleton">tutcs_more_logbuf</docanchor>
-    <docanchor file="cstutorial" title="4.3 Conditional logging">tutcs_more_conditional</docanchor>
-    <docanchor file="cstutorial" title="4.4 LogTools: Log complex things easily">tutcs_more_logtools</docanchor>
-    <docanchor file="cstutorial" title="4.4.1 Instance(): Log any object recursively">tutcs_more_logtools_instance</docanchor>
-    <docanchor file="cstutorial" title="4.4.2 Exception(): Log an exception recursively (with inner exceptions)">tutcs_more_logtools_exception</docanchor>
-    <docanchor file="cstutorial" title="4.4.3 XML(): Log out an XML document or element">tutcs_more_logtools_xml</docanchor>
-    <docanchor file="cstutorial" title="4.5 Indentation">tutcs_more_indentation</docanchor>
-    <docanchor file="cstutorial" title="4.6 Directing log output to distinct loggers">tutcs_more_seplog</docanchor>
-    <docanchor file="cstutorial" title="4.7 ALox configuration and internal log messages">tutcs_more_config</docanchor>
-    <docanchor file="cstutorial" title="Further reading">tutcs_end</docanchor>
+    <docanchor file="cstutorial" title="2. Classes Log and Lox">tutcs_lox</docanchor>
+    <docanchor file="cstutorial" title="3 Create a tutorial project or equip your current project with ALox">tutcs_createproject</docanchor>
+    <docanchor file="cstutorial" title="4. Class &quot;Logger&quot;">tutcs_logger</docanchor>
+    <docanchor file="cstutorial" title="5. Run the Application">tutcs_run</docanchor>
+    <docanchor file="cstutorial" title="5.1. Run your application within your IDE">tutcs_run_ide</docanchor>
+    <docanchor file="cstutorial" title="2.6. Build a release version">tutcs_run_release</docanchor>
+    <docanchor file="cstutorial" title="6. Controlling the &apos;Verbosity&apos;">tutcs_verbosity</docanchor>
+    <docanchor file="cstutorial" title="7. Log Domains">tutcs_logdomains</docanchor>
+    <docanchor file="cstutorial" title="8. Hierarchical Log Domains">tutcs_logdomains_hierarchical</docanchor>
+    <docanchor file="cstutorial" title="9. Scope Domains">tutcs_scope_domains</docanchor>
+    <docanchor file="cstutorial" title="10. Conditional logging">tutcs_conditional</docanchor>
+    <docanchor file="cstutorial" title="11. Prefixes">tutcs_log_prefix</docanchor>
+    <docanchor file="cstutorial" title="12. LogTools: Log Complex Data">tutcs_logtools</docanchor>
+    <docanchor file="cstutorial" title="12.1 Instance(): Log any object recursively">tutcs_more_logtools_instance</docanchor>
+    <docanchor file="cstutorial" title="12.2 Exception(): Log an exception recursively (with inner exceptions)">tutcs_more_logtools_exception</docanchor>
+    <docanchor file="cstutorial" title="12.3 XML(): Log out an XML document or element">tutcs_more_logtools_xml</docanchor>
+    <docanchor file="cstutorial" title="13. Using the Log-Buffer Singleton">tutcs_logbuf</docanchor>
+    <docanchor file="cstutorial" title="14. Name Your Threads">tutcs_threadnames</docanchor>
+    <docanchor file="cstutorial" title="15. ALox Log Data">tutcs_logdata</docanchor>
+    <docanchor file="cstutorial" title="16. ALox Configuration Information and Internal Log Messages">tutcs_config</docanchor>
+    <docanchor file="cstutorial" title="Further Reading">tutcs_end</docanchor>
   </compound>
 </tagfile>

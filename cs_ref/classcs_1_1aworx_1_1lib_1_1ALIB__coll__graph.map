@@ -1,9 +1,10 @@
 <map id="ALIB" name="ALIB">
-<area shape="rect" id="node2" href="$classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html" title="Configuration" alt="" coords="169,97,267,124"/>
-<area shape="rect" id="node4" href="$classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html" title="ConfigurationPlugIn" alt="" coords="102,187,238,213"/>
-<area shape="rect" id="node3" href="$classcs_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html" title="EnvironmentPlugIn" alt="" coords="5,263,137,289"/>
-<area shape="rect" id="node5" href="$classcs_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugIn.html" title="CommandLinePlugIn" alt="" coords="188,263,331,289"/>
-<area shape="rect" id="node6" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html" title="NumberFormat" alt="" coords="163,7,273,33"/>
-<area shape="rect" id="node7" href="$classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="366,97,457,124"/>
-<area shape="rect" id="node8" href="$classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html" title="Ticks" alt="" coords="384,7,439,33"/>
+<area shape="rect" id="node2" href="$classcs_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html" title="SmartLock" alt="" coords="5,187,91,213"/>
+<area shape="rect" id="node3" href="$classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="93,97,184,124"/>
+<area shape="rect" id="node4" href="$classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html" title="Ticks" alt="" coords="111,7,166,33"/>
+<area shape="rect" id="node5" href="$classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html" title="Configuration" alt="" coords="239,187,337,213"/>
+<area shape="rect" id="node7" href="$classcs_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html" title="ConfigurationPlugIn" alt="" coords="351,276,487,303"/>
+<area shape="rect" id="node6" href="$classcs_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html" title="EnvironmentPlugIn" alt="" coords="254,352,386,379"/>
+<area shape="rect" id="node8" href="$classcs_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugIn.html" title="CommandLinePlugIn" alt="" coords="437,352,579,379"/>
+<area shape="rect" id="node9" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html" title="NumberFormat" alt="" coords="233,97,343,124"/>
 </map>

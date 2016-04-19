@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['data',['data',['../classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html#abafe607151d468281bbf327834cecc60',1,'com::aworx::lox::core::Domain']]],
   ['dateformat',['dateFormat',['../classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a6b15b781aa433d02829c8c74e71c795f',1,'com::aworx::lox::core::textlogger::MetaInfo']]],
   ['dateformatter',['dateFormatter',['../classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ae00c40256e7c69ef39832f0a602f8fdd',1,'com::aworx::lox::core::textlogger::MetaInfo']]],
   ['dateinstanceset',['dateInstanceSet',['../classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a2799fc5b4b9bce013ac467ebad2d5dba',1,'com::aworx::lox::core::textlogger::MetaInfo']]],
@@ -11,11 +12,12 @@ var searchData=
   ['decimalpointcharacters',['decimalPointCharacters',['../classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a1af04840cf05f19242a523fe94d03762',1,'com::aworx::lib::strings::NumberFormat']]],
   ['default_5fwhitespaces',['DEFAULT_WHITESPACES',['../classcom_1_1aworx_1_1lib_1_1strings_1_1CString.html#adf335b90f078b735d79bfb3ea1ba52fa',1,'com::aworx::lib::strings::CString']]],
   ['defaultcommentprefix',['defaultCommentPrefix',['../classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html#a64f15ea58b1a7c2e0c7c4acf0618e4ff',1,'com::aworx::lib::config::IniFile']]],
-  ['defaultdomains',['defaultDomains',['../classcom_1_1aworx_1_1lox_1_1Lox.html#a28fa24d887dd394d69e4b12f9d6002a5',1,'com::aworx::lox::Lox']]],
   ['defaultfileextension',['DefaultFileExtension',['../classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html#a2eaa2333f2f0f3ee2b95eb569798ec80',1,'com::aworx::lib::config::IniFile']]],
   ['defaultfmtdate',['defaultfmtDate',['../classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a917c9b55d2f0a57a7e467b01193f20f5',1,'com::aworx::lox::core::textlogger::MetaInfo']]],
   ['defaultfmttimeofday',['defaultfmtTimeOfDay',['../classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a7fcc81983c7adc0ded7cf48f504fe001',1,'com::aworx::lox::core::textlogger::MetaInfo']]],
   ['defaultreport',['defaultReport',['../classcom_1_1aworx_1_1lib_1_1Report.html#a9088fab9d3df935215bb0bb30f7b2250',1,'com::aworx::lib::Report']]],
   ['delim',['delim',['../classcom_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Variable.html#ab56c67e0ed9605b4078e2135f791c4ed',1,'com.aworx.lib.config.IniFile.Variable.delim()'],['../classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html#ab56c67e0ed9605b4078e2135f791c4ed',1,'com.aworx.lib.strings.Tokenizer.delim()']]],
-  ['domainseparatorchars',['domainSeparatorChars',['../classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html#aa25dea88ec319cb6f8954e150ec0c542',1,'com::aworx::lox::core::Domain']]]
+  ['domains',['domains',['../classcom_1_1aworx_1_1lox_1_1Lox.html#a9dd0eff01eb6972483137d6fc87a8c49',1,'com::aworx::lox::Lox']]],
+  ['domainsensitivity',['domainSensitivity',['../classcom_1_1aworx_1_1lox_1_1Lox.html#ad046f0da21b58c1b1fb6940df0c7fd0a',1,'com::aworx::lox::Lox']]],
+  ['domainsubstitutions',['domainSubstitutions',['../classcom_1_1aworx_1_1lox_1_1Lox.html#aa77f5563b87a6b4860cc7da68e337e69',1,'com::aworx::lox::Lox']]]
 ];

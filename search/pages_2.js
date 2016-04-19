@@ -1,5 +1,9 @@
 var searchData=
 [
-  ['differences_20of_20debug_2d_20and_20release_2dlogging',['Differences of Debug- and Release-Logging',['../man_debug_and_release_logging.html',1,'']]],
-  ['details_20on_20alox_20loggers',['Details on ALox Loggers',['../man_loggers.html',1,'']]]
+  ['alox_20and_20the_20c_2b_2b_20preprocessor',['ALox and the C++ Preprocessor',['cpp_ref/cppprepro.html',1,'']]],
+  ['alox_20for_20c_2b_2b_20tutorial',['ALox for C++ Tutorial',['cpp_ref/cpptutorial.html',1,'']]],
+  ['alox_20for_20c_23_20tutorial',['ALox for C# Tutorial',['cs_ref/cstutorial.html',1,'']]],
+  ['alox_20main_20page',['ALox Main Page',['../index.html',1,'']]],
+  ['alox_20for_20java_20tutorial',['ALox for Java Tutorial',['java_ref/javatutorial.html',1,'']]],
+  ['a_20_2d_20namespaces',['A - Namespaces',['../man_ext_namespaces.html',1,'']]]
 ];

@@ -146,7 +146,7 @@ Inheritance diagram for IniFile:</div>
 <div class="dynheader">
 Collaboration diagram for IniFile:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lib_1_1config_1_1IniFile__coll__graph.svg" width="1784" height="744"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lib_1_1config_1_1IniFile__coll__graph.svg" width="1784" height="767"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
@@ -185,7 +185,7 @@ Inner Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Public Static Fields</h2></td></tr>
-<tr class="memitem:a2eaa2333f2f0f3ee2b95eb569798ec80"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a2eaa2333f2f0f3ee2b95eb569798ec80">DefaultFileExtension</a> = &quot;.alib.ini&quot;</td></tr>
+<tr class="memitem:a2eaa2333f2f0f3ee2b95eb569798ec80"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a2eaa2333f2f0f3ee2b95eb569798ec80">DefaultFileExtension</a> = &quot;.ini&quot;</td></tr>
 <tr class="separator:a2eaa2333f2f0f3ee2b95eb569798ec80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -303,9 +303,10 @@ Protected Methods</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Constructs an instance of this class and reads the file. If no file name is given, the file name is set to the process name with extension found in public static field <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a2eaa2333f2f0f3ee2b95eb569798ec80">DefaultFileExtension</a> and the file path will be set to <a class="el" href="classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0a01255de311d629c078914c471e45ec28">Directory::SpecialFolder::HOME_CONFIG</a>.</p>
+<p>If the given file name <code>filePathAndName</code> starts with '*', no file is read and field <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#a297ce080be0d2d8b0f5245def3fd1b79">AutoSave</a> is set to <code>false</code>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">filePathAndName</td><td>The name (and path) of the file to read and write. Defaults to nullptr. </td></tr>
+    <tr><td class="paramname">filePathAndName</td><td>The name (and path) of the file to read and write. Provide "*" to suppress reading a file. Defaults to nullptr. </td></tr>
   </table>
   </dd>
 </dl>
@@ -954,7 +955,7 @@ Protected Methods</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> DefaultFileExtension = &quot;.alib.ini&quot;</td>
+          <td class="memname"><a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> DefaultFileExtension = &quot;.ini&quot;</td>
         </tr>
       </table>
   </td>
@@ -963,7 +964,7 @@ Protected Methods</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>The standard file extension used for ALib configuration files. Defaults to ".alib.ini" </p>
+<p>The standard file extension used for ALib configuration files. Defaults to ".ini" </p>
 
 </div>
 </div>
@@ -1062,7 +1063,7 @@ Protected Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:18 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:16 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

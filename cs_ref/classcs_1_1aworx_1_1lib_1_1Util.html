@@ -135,7 +135,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Collaboration diagram for Util:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classcs_1_1aworx_1_1lib_1_1Util__coll__graph.svg" width="111" height="127"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classcs_1_1aworx_1_1lib_1_1Util__coll__graph.svg" width="130" height="142"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
@@ -143,6 +143,8 @@ Collaboration diagram for Util:</div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Public Static Methods</h2></td></tr>
+<tr class="memitem:aae6339810b52486635477009dc74dba8"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1Util.html#aae6339810b52486635477009dc74dba8">GetProcessName</a> ()</td></tr>
+<tr class="separator:aae6339810b52486635477009dc74dba8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4d9227d105bfa4362fe3cbee757d76a2"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1Util.html#a4d9227d105bfa4362fe3cbee757d76a2">GetSpaces</a> (int minSize=128)</td></tr>
 <tr class="separator:a4d9227d105bfa4362fe3cbee757d76a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a042e7db882962ef542966abe9d0a39"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1Util.html#a1a042e7db882962ef542966abe9d0a39">WriteSpaces</a> (StreamWriter os, int qty)</td></tr>
@@ -152,10 +154,37 @@ Public Static Methods</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
 Private Static Fields</h2></td></tr>
-<tr class="memitem:af2abf169487119d618ac7a542e28e5c0"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1Util.html#af2abf169487119d618ac7a542e28e5c0">theSpaces</a> = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>()</td></tr>
+<tr class="memitem:acdefe8c9e0fc3c1abb1655ea13d4f3d0"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1Util.html#acdefe8c9e0fc3c1abb1655ea13d4f3d0">processName</a> = null</td></tr>
+<tr class="separator:acdefe8c9e0fc3c1abb1655ea13d4f3d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2abf169487119d618ac7a542e28e5c0"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1Util.html#af2abf169487119d618ac7a542e28e5c0">theSpaces</a> =new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>()</td></tr>
 <tr class="separator:af2abf169487119d618ac7a542e28e5c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="aae6339810b52486635477009dc74dba8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> GetProcessName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Receives the name of the process. Evaluated only once, can't change. </p><dl class="section return"><dt>Returns</dt><dd>The name of the process. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a4d9227d105bfa4362fe3cbee757d76a2"></a>
 <div class="memitem">
 <div class="memproto">
@@ -274,6 +303,27 @@ Private Static Fields</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="acdefe8c9e0fc3c1abb1655ea13d4f3d0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> processName = null</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The process name, retrieved once on request </p>
+
+</div>
+</div>
 <a class="anchor" id="af2abf169487119d618ac7a542e28e5c0"></a>
 <div class="memitem">
 <div class="memproto">
@@ -282,7 +332,7 @@ Private Static Fields</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> theSpaces = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>()</td>
+          <td class="memname"><a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> theSpaces =new <a class="el" href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>()</td>
         </tr>
       </table>
   </td>
@@ -302,7 +352,7 @@ Private Static Fields</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:19 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:17 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

@@ -187,11 +187,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  </p><dl class="section note"><dt>Note</dt><dd>It is a good idea, to not copy the code, but to add the sources as links to their original place where you unpacked ALox. In Eclipse (Luna), linking source folders is found under "Project Properties", "Java Build Path", tab "Source" and then button "Link Source". The advantage of linking the source folders is that updating the source (e.g. with Git) updates them in your projects as well. Furthermore, if you might want to push your fixes or improvements to us using Git, the sources in the original folder need to be modified by you.</dd></dl>
 <p>For <b>Android</b>, ALox provides a dedicated logger class that supports Android LogCat outputs. Therefore, to support Android projects, this logger class has to be added to your Android project (or Android ALox library project) into your project. For Android, in addition add folder: </p><pre class="fragment">    ALOXLIBPATH/src.java/alox.android
 </pre><p>To stream ALox logging into LogCat create a logger of type <a class="el" href="classcom_1_1aworx_1_1lox_1_1android_1_1AndroidLogCatLogger.html">AndroidLogCatLogger</a> instead of type <a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html">ConsoleLogger</a> as follows:</p>
-<div class="fragment"><div class="line">Log.addLogger( <span class="keyword">new</span> AndroidLogCatLogger() );</div></div><!-- fragment --><p>Attention: The normal <a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html">ConsoleLogger</a> will not produce any visible output using the Android Emulator or a debugging device.</p>
+<div class="fragment"><div class="line">Log.setVerbosity( <span class="keyword">new</span> AndroidLogCatLogger(<span class="stringliteral">&quot;LogCat&quot;</span>), Verbosity.VERBOSE );</div></div><!-- fragment --><p>Attention: The normal <a class="el" href="classcom_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html">ConsoleLogger</a> will not produce any visible output using the Android Emulator or a debugging device.</p>
 <h2><a class="anchor" id="javasetup_testnow"></a>
 1.4 Test your setup</h2>
 <p>To test your setup, add minimum ALox functionality to your project as described in the first chapter of <a class="el" href="javatutorial.html">ALox for Java Tutorial</a> into your main method or anywhere you think it is appropriate:</p>
-<div class="fragment"><div class="line">    Log.addDebugLogger();</div><div class="line">    Log.setDomain( <span class="stringliteral">&quot;APP&quot;</span>, Log.DomainLevel.INFO_WARNINGS_AND_ERRORS );</div><div class="line"></div><div class="line">    Log.info( <span class="stringliteral">&quot;APP&quot;</span>,    <span class="stringliteral">&quot;Hello ALox&quot;</span> );</div></div><!-- fragment --><h1><a class="anchor" id="javasetup_pruning"></a>
+<div class="fragment"><div class="line">    Log.addDebugLogger();</div><div class="line"></div><div class="line">    Log.removeDebugLogger();</div><div class="line">    Log.setVerbosity( tutLog= <span class="keyword">new</span> MemoryLogger( <span class="stringliteral">&quot;Tutlog&quot;</span> ), Verbosity.VERBOSE );</div><div class="line"></div><div class="line">    Log.addDebugLogger();</div><div class="line">    Log.info( <span class="stringliteral">&quot;Hello ALox&quot;</span> );</div></div><!-- fragment --><h1><a class="anchor" id="javasetup_pruning"></a>
 2. Pruning ALox Code in Java</h1>
 <h2><a class="anchor" id="javasetup_pruning_what_is_pruning"></a>
 2.1 What is Pruning?</h2>
@@ -216,7 +216,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 2.2 What to Prune</h2>
 <p>There are two possible configurations that differ in the breadth of pruning:</p><ul>
 <li><em>Pruning with release logging enabled</em><br />
- This is the configuration you need if just your debug log statements are to be pruned. Use this, if you use ALox to perform some release logging.</li>
+ This is the configuration you need if just your debug <em>Log Statements</em> are to be pruned. Use this, if you use ALox to perform some release logging.</li>
 <li><em>Pruning all ALox code</em><br />
  This is the configuration you need to prune just all ALox code out of your library or executable. Use this, if you exclusively use ALox for debug logging purposes.</li>
 </ul>
@@ -224,7 +224,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  </dd></dl>
 <dl class="section user"><dt></dt><dd></dd></dl>
 <dl class="section note"><dt>Note</dt><dd>For debug logging, you should build your message strings using class <a class="el" href="classcom_1_1aworx_1_1lox_1_1LogBuf.html">LogBuf</a> and preferably the singleton of that acquired with method <a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html#a53c5060b0096f40c1001f96ff7ba80de">Log.buf()</a>. <br />
- See <a class="el" href="javatutorial.html#tutjava_more_logbuf">Using the log buffer singleton</a> for more information on how to use this.<br />
+ See <a class="el" href="javatutorial.html#tutjava_logbuf">Using the log buffer singleton</a> for more information on how to use this.<br />
  Otherwise some remainders of unused strings and string concatenation code might remain. This is because ProGuard removes the method calls but not ultimately all parameter creation code of such method invocations. Using class <em>LogBuf</em> you are sure that this gets pruned.<br />
  While class <em>LogBuf</em> is only available in ALox for Java, your logging code will look the same as in other environments, because <em>LogBuf</em> mimics the interface of class <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>.</dd></dl>
 <h2><a class="anchor" id="javasetup_pruning_proguard_platforms"></a>
@@ -320,19 +320,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="fragment"><div class="line">ALOX_LIB_PATH/build/ide.java.eclipse.luna/ALox-Java-Android-Test-Release-Log/src/<a class="code" href="namespacecom.html">com</a>/aworx/alox_java_android_test_release_log/ALoxJavaAndroidTestReleaseLog.java</div></div><!-- fragment --><p>to get a first understanding of ALox release logging.</p>
 <h2><a class="anchor" id="javasetup_pruning_obfuscating"></a>
 2.4 Obfuscating the code</h2>
-<p>As mentioned already, <em>ProGuard</em> provides an optional feature to obfuscate your code. Again, this is only optional and obfuscation has benefits but also some disadvantages. In respect to ALox, obfuscation introduces one little difficulty related to all methods that work with the "caller scope". Most remarkably, most default domain setting will stop working, because packages, class names and file names get mangled heavily.<br />
- The implication is, that any release logging statements (debug log is not affected as this is either way pruned from your release binaries) must not use default domains. In other words, for each invocation of a log call (again, only of release logging!) the domain name has to be explicitly set.</p>
-<p>For release logging in combination with obfuscation, you might want to suppress the output of caller information in the log line (see <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#aad96483110212e8fa0d6a9490fcd2e02">TextLogger.metaInfo</a> for information on how to do that).</p>
-<p>On the same token, the methods <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#ac22f5751d25bc89b3f8a93f330b0fdf7">Lox.setMarker()</a> and <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a36637a46434eba0c17faa8c0b0f82159">Lox.getMarker()</a> will not work properly if you obfuscate. This is also not a severe restriction, as these function have been introduced to ALox to support debug logging code and hence are good to be pruned! For release logging, similar functionality can be included directly into the code.</p>
-<p>Finally, it is obvious that <a class="el" href="classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a46eedcc7353667a139db8f4f70e6a20c">LogToools.instance()</a> will not show readable results when your classes become obfuscated.</p>
+<p>As mentioned already, <em>ProGuard</em> provides an optional feature to obfuscate your code. Again, this is only optional and obfuscation has benefits but also some disadvantages. In respect to ALox, obfuscation introduces one little difficulty related to all methods that work with the "caller scope". Most remarkably, most Scope Domain setting will stop working, because packages, class names and file names get mangled heavily.<br />
+ The implication is, that any release logging statements (debug log is not affected as this is either way pruned from your release binaries) must not use Scope Domains. In other words, for each invocation of a log call (again, only of release logging!) the <em>Log Domain</em> has to be explicitly set.</p>
+<p>For release logging in combination with obfuscation, you might want to suppress the output of scope information in the log line (see <a class="el" href="classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#aad96483110212e8fa0d6a9490fcd2e02">TextLogger.metaInfo</a> for information on how to do that).</p>
+<p>On the same token, the methods <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#afd6a91bb2c6eaee017b0ccbd4cccd447">Lox.setDomain</a>, <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a3379a132338bd43fb84bd769dc1fd2c4">Lox.store</a>/ <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#ab4159eca3fb8c6f996a46f22c2cc442a">retrieve</a> and <a class="el" href="classcom_1_1aworx_1_1lox_1_1Lox.html#a3379a132338bd43fb84bd769dc1fd2c4">Lox.once</a> will not work properly with language-related <em>Scopes</em> if you obfuscate. For more information on this, refer to the user manual chapters about <em>Scope Domains</em>, <em>Scopes</em> and features building on <em>Scopes</em>.</p>
+<p>Finally, it is obvious that <a class="el" href="classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#adea42ddd53fb309518d7f4f48450dbde">LogTools.instance()</a> will not show readable results when your classes become obfuscated.</p>
 <h2><a class="anchor" id="javasetup_pruning_result"></a>
 2.5 Mission accomplished: Perfect Auto Pruning of ALox code!</h2>
 <p>The result of the things said above incorporate <b>six great news</b> for you:</p>
 <ol type="1">
 <li>You can safely use all methods of classes <em>Log</em> and <em>LogTools</em> without any special treatment for pruning within your code.</li>
-<li>The impact of using ALox debug log statements in respect to execution speed in the release version of your application is exactly ZERO, because the methods do not make it into your release executable!</li>
+<li>The impact of using ALox debug <em>Log Statements</em> in respect to execution speed in the release version of your application is exactly ZERO, because the methods do not make it into your release executable!</li>
 <li>The impact of using ALox in respect to the footprint of your executable extremely small (all that remains are some empty classes with a few stubs). This remains true, even if thousands of new features would come in future versions of ALox!</li>
-<li>All debug log statements, including all textual messages you are adding to your log calls, are completely pruned from the release executable! Your "debug secrets" can not be reverse engineered, they are just gone!</li>
+<li>All debug <em>Log Statements</em>, including all textual messages you are adding to your log calls, are completely pruned from the release executable! Your "debug secrets" can not be reverse engineered, they are just gone!</li>
 <li>Even if you mix debug and release logging features of ALox the above stays true, except that the footprint of the ALox library is a little higher (e.g. it is 50kb in V1.1.0) !</li>
 </ol>
 <dl class="section note"><dt>Note</dt><dd>This is all true for Java. For other platforms check out platform specific sections of ALox pruning techniques.</dd></dl>
@@ -342,7 +342,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:20 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:18 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

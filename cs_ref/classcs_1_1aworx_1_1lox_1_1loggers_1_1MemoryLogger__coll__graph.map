@@ -1,19 +1,13 @@
 <map id="MemoryLogger" name="MemoryLogger">
-<area shape="rect" id="node2" href="$classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html" title="PlainTextLogger" alt="" coords="291,413,407,440"/>
-<area shape="rect" id="node3" href="$classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html" title="TextLogger" alt="" coords="305,323,392,349"/>
-<area shape="rect" id="node8" href="$classcs_1_1aworx_1_1lox_1_1Log.html" title="Log" alt="" coords="614,504,657,531"/>
-<area shape="rect" id="node4" href="$classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="329,683,390,709"/>
-<area shape="rect" id="node5" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="476,111,541,137"/>
-<area shape="rect" id="node7" href="$classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html" title="Domain" alt="" coords="602,593,669,620"/>
-<area shape="rect" id="node11" href="$classcs_1_1aworx_1_1lox_1_1Lox.html" title="Lox" alt="" coords="675,323,718,349"/>
-<area shape="rect" id="node12" href="$classcs_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html" title="CallerInfo" alt="" coords="724,210,803,237"/>
-<area shape="rect" id="node15" href="$classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html" title="ObjectConverter" alt="" coords="313,210,430,237"/>
-<area shape="rect" id="node16" href="$classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html" title="MetaInfo" alt="" coords="125,210,199,237"/>
-<area shape="rect" id="node6" href="$classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html" title="Ticks" alt="" coords="935,111,989,137"/>
-<area shape="rect" id="node13" href="$classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="917,210,1007,237"/>
-<area shape="rect" id="node9" href="$classcs_1_1aworx_1_1lox_1_1Log_1_1ALoxReportWriter.html" title="Log.ALoxReportWriter" alt="" coords="691,413,841,440"/>
-<area shape="rect" id="node10" href="$interfacecs_1_1aworx_1_1lib_1_1ReportWriter.html" title="ReportWriter" alt="" coords="742,323,838,349"/>
-<area shape="rect" id="node14" href="$classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html" title="AutoSizes" alt="" coords="454,210,537,237"/>
-<area shape="rect" id="node17" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html" title="Tokenizer" alt="" coords="5,111,84,137"/>
-<area shape="rect" id="node18" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html" title="Substring" alt="" coords="6,5,83,32"/>
+<area shape="rect" id="node2" href="$classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html" title="PlainTextLogger" alt="" coords="79,503,195,529"/>
+<area shape="rect" id="node3" href="$classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html" title="TextLogger" alt="" coords="148,427,235,453"/>
+<area shape="rect" id="node4" href="$classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="359,336,421,363"/>
+<area shape="rect" id="node5" href="$classcs_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html" title="SmartLock" alt="" coords="418,201,503,228"/>
+<area shape="rect" id="node6" href="$classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="415,97,506,124"/>
+<area shape="rect" id="node7" href="$classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html" title="Ticks" alt="" coords="371,7,425,33"/>
+<area shape="rect" id="node8" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="52,201,117,228"/>
+<area shape="rect" id="node10" href="$classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html" title="MetaInfo" alt="" coords="155,336,228,363"/>
+<area shape="rect" id="node9" href="$classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html" title="AutoSizes" alt="" coords="253,336,335,363"/>
+<area shape="rect" id="node11" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html" title="Tokenizer" alt="" coords="221,201,300,228"/>
+<area shape="rect" id="node12" href="$classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html" title="Substring" alt="" coords="222,97,299,124"/>
 </map>

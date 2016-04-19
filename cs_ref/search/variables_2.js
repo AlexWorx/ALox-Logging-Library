@@ -14,5 +14,5 @@ var searchData=
   ['blue',['BLUE',['../classcs_1_1aworx_1_1lox_1_1ESC.html#a482bba397389d91be57d6e0605f9f162',1,'cs::aworx::lox::ESC']]],
   ['bold',['BOLD',['../classcs_1_1aworx_1_1lox_1_1ESC.html#a79517c1ad930e5746fa9b41936adbea6',1,'cs::aworx::lox::ESC']]],
   ['buf',['Buf',['../classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a6a6be65c62f7ad0671d250f11c8564bf',1,'cs::aworx::lib::strings::Substring']]],
-  ['buffer',['buffer',['../classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#a8317b33b8c004741d95935199d964be9',1,'cs.aworx.lib.strings.AString.buffer()'],['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html#aaf50e38674e1c356539d73525486b1d5',1,'cs.aworx.lox.core.textlogger.ObjectConverter.buffer()']]]
+  ['buffer',['buffer',['../classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#a8317b33b8c004741d95935199d964be9',1,'cs::aworx::lib::strings::AString']]]
 ];

@@ -1,21 +1,14 @@
 <map id="AndroidLogCatLogger" name="AndroidLogCatLogger">
-<area shape="rect" id="node2" href="$classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html" title="TextLogger" alt="" coords="1123,863,1209,889"/>
-<area shape="rect" id="node8" href="$classcom_1_1aworx_1_1lox_1_1Log.html" title="Log" alt="" coords="1471,468,1514,495"/>
-<area shape="rect" id="node3" href="$classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="1907,644,1968,671"/>
-<area shape="rect" id="node4" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="171,677,237,704"/>
-<area shape="rect" id="node7" href="$classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html" title="Domain" alt="" coords="1720,589,1787,616"/>
-<area shape="rect" id="node9" href="$classcom_1_1aworx_1_1lox_1_1LogBuf.html" title="LogBuf" alt="" coords="706,561,769,588"/>
-<area shape="rect" id="node12" href="$classcom_1_1aworx_1_1lox_1_1Lox.html" title="Lox" alt="" coords="885,353,927,380"/>
-<area shape="rect" id="node19" href="$classcom_1_1aworx_1_1lox_1_1core_1_1CallerInfo.html" title="CallerInfo" alt="" coords="467,433,546,460"/>
-<area shape="rect" id="node22" href="$classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html" title="ObjectConverter" alt="" coords="679,737,796,764"/>
-<area shape="rect" id="node23" href="$classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html" title="MetaInfo" alt="" coords="869,927,943,953"/>
-<area shape="rect" id="node25" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html" title="Substring" alt="" coords="165,936,243,963"/>
-<area shape="rect" id="node6" href="$classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html" title="Ticks" alt="" coords="177,69,231,96"/>
-<area shape="rect" id="node14" href="$classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="461,83,552,109"/>
-<area shape="rect" id="node10" href="$classcom_1_1aworx_1_1lox_1_1ALoxReportWriter.html" title="ALoxReportWriter" alt="" coords="1103,353,1229,380"/>
-<area shape="rect" id="node11" href="$interfacecom_1_1aworx_1_1lib_1_1ReportWriter.html" title="ReportWriter" alt="" coords="858,303,954,329"/>
-<area shape="rect" id="node15" href="$enumcom_1_1aworx_1_1lib_1_1enums_1_1LockMode.html" title="LockMode" alt="" coords="163,160,245,187"/>
-<area shape="rect" id="node24" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html" title="Tokenizer" alt="" coords="467,1145,546,1172"/>
-<area shape="rect" id="node26" href="$classcom_1_1aworx_1_1lib_1_1time_1_1TickSpan.html" title="TickSpan" alt="" coords="468,892,545,919"/>
-<area shape="rect" id="node32" href="$classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html" title="AutoSizes" alt="" coords="865,1145,947,1172"/>
+<area shape="rect" id="node2" href="$classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html" title="TextLogger" alt="" coords="1300,291,1387,317"/>
+<area shape="rect" id="node3" href="$classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="985,36,1046,63"/>
+<area shape="rect" id="node4" href="$classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html" title="SmartLock" alt="" coords="605,67,691,93"/>
+<area shape="rect" id="node5" href="$classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="287,125,377,152"/>
+<area shape="rect" id="node6" href="$enumcom_1_1aworx_1_1lib_1_1enums_1_1LockMode.html" title="LockMode" alt="" coords="18,125,101,152"/>
+<area shape="rect" id="node7" href="$classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html" title="Ticks" alt="" coords="32,59,87,85"/>
+<area shape="rect" id="node9" href="$classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html" title="MetaInfo" alt="" coords="979,257,1052,284"/>
+<area shape="rect" id="node10" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html" title="Tokenizer" alt="" coords="609,351,687,377"/>
+<area shape="rect" id="node11" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html" title="Substring" alt="" coords="293,257,371,284"/>
+<area shape="rect" id="node15" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="615,147,681,173"/>
+<area shape="rect" id="node13" href="$classcom_1_1aworx_1_1lib_1_1time_1_1TickSpan.html" title="TickSpan" alt="" coords="609,401,687,428"/>
+<area shape="rect" id="node21" href="$classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html" title="AutoSizes" alt="" coords="974,425,1057,452"/>
 </map>

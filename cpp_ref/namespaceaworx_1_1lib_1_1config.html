@@ -124,21 +124,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <a name="details" id="details"></a><h2 class="groupheader">Namespace Description</h2>
 <div class="textblock"><hr/>
-<p> This namespace provides tools to read and write configuration data using different mechanisms reading and writing such data.</p>
-<p>The different 'mechanisms' are implemented through plug-ins, namely objects of types derived from class <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a>.</p>
-<p>The plug-ins are gathered (plugged into) an object of type <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a>. This object is usually a singleton and class <a class="el" href="classaworx_1_1lib_1_1ALIB.html">ALIB</a> creates and provides this singleton as a static field already. Class <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a> offers an interface to retrieve and store configuration variables using the plug-ins. The plug-ins have a fixed priority. Values are retrieved and stored by looping through the plug-ins in their defined order. As soon as one plug-in confirms to have found (or stored) the variable, the loop ends. This way, plug-ins may "overrule" each other.</p>
+<p> This namespace provides tools to read and write configuration data using different mechanisms.</p>
+<p>The different 'mechanisms' are implemented through plug-ins, namely objects of types derived from abstract class <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a>.</p>
+<p>The plug-ins are gathered (plugged into) an object of type <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html">Configuration</a>. Class <a class="el" href="classaworx_1_1lib_1_1ALIB.html">ALIB</a> creates a static singleton of this class for public access.</p>
+<p>Class <b>Configuration</b> offers an interface to retrieve and store configuration variables using the plug-ins. The plug-ins are attached to the <b>Configuration</b> with a unique priority. Values are retrieved and stored by looping through the plug-ins sorted by priority. As soon as one plug-in confirms to have found (or stored) the variable, the loop ends. This way, plug-ins may "overrule" each other in respect to retrieving configuration data.</p>
 <p>Three different plug-ins are implemented within ALib already:</p><ul>
 <li>Class <a class="el" href="classaworx_1_1lib_1_1config_1_1CommandLinePlugIn.html">CommandLinePlugIn</a>:<br />
- Reads parameter values of the form -[-]CategoryName_VariableName=value from the command line. This plug-in has a proposed priority of 10. This plug-in does not write values.</li>
+ Reads parameter values of the form -[-]CategoryName_VariableName=value from the command line. This plug-in has a proposed priority of 300, defined in static field <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#a1baac67c511294bc3317b956ea196b11">Configuration::PrioCmdLine</a>. This plug-in does not write values.</li>
 <li>Class <a class="el" href="classaworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html">EnvironmentPlugIn</a>:<br />
- Reads system defined environment variables (see <a href="https://en.wikipedia.org/wiki/Environment_variable">Wikipedia</a> of the form CategoryName_VariableName=value This plug-in has a proposed priority of 20. This plug-in does not write values.</li>
+ Reads system defined environment variables (see <a href="https://en.wikipedia.org/wiki/Environment_variable">Wikipedia</a> of the form <code>CategoryName_VariableName=value</code>. This plug-in has a proposed priority of 200, defined in static field <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#aff7062a012b6acdf15fcfb20ab184975">Configuration::PrioEnvVars</a>. This plug-in does not write values.</li>
 <li>Class <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html">IniFile</a>:<br />
- Reads and writes quite standard INI files (see <a href="https://en.wikipedia.org/wiki/INI_file">Wikipedia</a>. This plug-in has a proposed priority of 30. This plug-in also write values.</li>
+ Reads and writes quite standard INI files (see <a href="https://en.wikipedia.org/wiki/INI_file">Wikipedia</a>. This plug-in has a proposed priority of 100, defined in static field <a class="el" href="classaworx_1_1lib_1_1config_1_1Configuration.html#ac0e213817eb829a4d7b3f1960814a781">Configuration::PrioIniFile</a>. This plug-in reads and writes values.</li>
 </ul>
-<p>The priorities of the the three default plug-ins implemented within <a class="el" href="classaworx_1_1lib_1_1ALIB.html">ALIB</a> util classes are:</p>
-<p>Command Line Arguments -&gt; Environment Variables -&gt; INI file</p>
-<p>This means, that whatever is stored in an INI file, can be overwritten by setting an environment variable, and both settings can in turn be overwritten by specifying a corresponding command line parameter when launching the process.</p>
-<dl class="section note"><dt>Note</dt><dd>Instead of using the provided class <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html">IniFile</a> class, it is recommended to use application/platform specific mechanisms for writing configuration data. The INI file method is designed for simplicity and smaller applications. </dd></dl>
+<p>With these default priorities set, whatever is stored in an INI file, can be overwritten by setting an environment variable, and both settings can in turn be overwritten by specifying a corresponding command line parameter when launching the process.</p>
+<dl class="section note"><dt>Note</dt><dd>Instead of using provided class <b>IniFile</b>, it is recommended to use application/platform specific mechanisms for writing configuration data. Class <b>IniFile</b> is designed for simplicity and smaller applications. </dd></dl>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
@@ -157,7 +156,7 @@ Classes</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:18 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:16 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

@@ -1,10 +1,10 @@
 <map id="configuration.hpp" name="configuration.hpp">
-<area shape="rect" id="node2" href="$threadlock_8hpp.html" title="alib/threads/threadlock.hpp" alt="" coords="1411,80,1589,107"/>
-<area shape="rect" id="node30" href="$numberformat_8hpp.html" title="alib/strings/numberformat.hpp" alt="" coords="1613,80,1808,107"/>
-<area shape="rect" id="node31" href="$plugins_8hpp.html" title="alib/config/plugins.hpp" alt="" coords="1833,80,1983,107"/>
+<area shape="rect" id="node2" href="$threadlock_8hpp.html" title="alib/threads/threadlock.hpp" alt="" coords="1359,80,1537,107"/>
+<area shape="rect" id="node31" href="$numberformat_8hpp.html" title="alib/strings/numberformat.hpp" alt="" coords="1561,80,1756,107"/>
+<area shape="rect" id="node32" href="$plugins_8hpp.html" title="alib/config/plugins.hpp" alt="" coords="1781,80,1931,107"/>
 <area shape="rect" id="node3" href="$alib_8hpp.html" title="alib/alib.hpp" alt="" coords="1343,229,1433,256"/>
-<area shape="rect" id="node23" href="$ownable_8hpp.html" title="alib/core/ownable.hpp" alt="" coords="1426,155,1574,181"/>
-<area shape="rect" id="node24" href="$thread_8hpp.html" title="thread.hpp" alt="" coords="1637,155,1720,181"/>
+<area shape="rect" id="node24" href="$ownable_8hpp.html" title="alib/core/ownable.hpp" alt="" coords="1426,155,1574,181"/>
+<area shape="rect" id="node25" href="$thread_8hpp.html" title="thread.hpp" alt="" coords="1637,155,1720,181"/>
 <area shape="rect" id="node4" href="$symbols_8hpp.html" title="alib/core/symbols.hpp" alt="" coords="5,304,155,331"/>
 <area shape="rect" id="node5" href="$macros_8hpp.html" title="alib/core/macros.hpp" alt="" coords="178,304,321,331"/>
 <area shape="rect" id="node13" href="$enums_8hpp.html" title="alib/core/enums.hpp" alt="" coords="991,304,1129,331"/>

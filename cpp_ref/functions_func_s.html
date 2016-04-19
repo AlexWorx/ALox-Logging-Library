@@ -167,6 +167,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="classaworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html#a88428c9e1d24723bb630c1a6b906ea33">ConfigurationPlugIn</a>
 , <a class="el" href="classaworx_1_1lib_1_1config_1_1IniFile.html#ae35f02909be48392acc4a3632f42f5d0">IniFile</a>
 </li>
+<li>ScopeDump()
+: <a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeDump.html#a62e1dda70b97ff9daa0b12f0e5670b80">ScopeDump</a>
+</li>
+<li>ScopeInfo()
+: <a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#a6af06b1fa6e8772eff948e87947fbb3b">ScopeInfo</a>
+</li>
+<li>ScopeStore()
+: <a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeStore.html#ab2e398fa8b1dfdd80338f081ee495717">ScopeStore&lt; StoreT &gt;</a>
+</li>
 <li>SearchAndReplace()
 : <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a5bf64f32d0163186492461fb2c3e4300">AString</a>
 </li>
@@ -188,6 +197,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="classaworx_1_1lib_1_1time_1_1Ticks.html#a614cfe7992438ee53cfd9440848c39e7">Ticks</a>
 , <a class="el" href="classaworx_1_1lib_1_1time_1_1TicksCalendarTime.html#aede0204d6bf28f6b7f2546f0d8c6370d">TicksCalendarTime</a>
 , <a class="el" href="classaworx_1_1lib_1_1time_1_1TickSpan.html#a3eb34a60738ebd4fd7e0782b8dd3cc25">TickSpan</a>
+, <a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#aef667a335cd43ee15210ae8f002037dd">ScopeInfo</a>
 </li>
 <li>SetBuffer()
 : <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a4c82c5367836f6886f1505c803ce4058">AString</a>
@@ -196,8 +206,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#ab2cf143ab3c019c18b6ada0ea87a6370">AString</a>
 </li>
 <li>SetDomain()
-: <a class="el" href="classaworx_1_1lox_1_1core_1_1Logger.html#ac449bb9b0f280d33286db8463f48e287">Logger</a>
-, <a class="el" href="classaworx_1_1lox_1_1Lox.html#a8546fd2c39a9ee72596df9a57cd82083">Lox</a>
+: <a class="el" href="classaworx_1_1lox_1_1Lox.html#a8a61a1c73d6a94b505c0baf9e6108bbb">Lox</a>
+</li>
+<li>setDomainImpl()
+: <a class="el" href="classaworx_1_1lox_1_1Lox.html#a34fa0de31f161bd2fe77dc0295c76952">Lox</a>
+</li>
+<li>SetDomainSubstitutionRule()
+: <a class="el" href="classaworx_1_1lox_1_1Lox.html#a57e92057e7a33c93ff16a677df6db52b">Lox</a>
 </li>
 <li>SetFromEpochSeconds()
 : <a class="el" href="classaworx_1_1lib_1_1time_1_1Ticks.html#a53a9f29f45a8cd2b3d2f265e0604e012">Ticks</a>
@@ -215,18 +230,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a0c14574ea5ef859e15b51f288c40f5da">AString</a>
 , <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a0c14574ea5ef859e15b51f288c40f5da">Substring</a>
 </li>
-<li>SetLevel()
-: <a class="el" href="classaworx_1_1lox_1_1core_1_1Domain.html#a24b654c80579e9df23400b6c618f31ed">Domain</a>
-</li>
-<li>SetLogger()
-: <a class="el" href="classaworx_1_1lox_1_1Lox.html#af59433acecdc611018aad891528e1efa">Lox</a>
-</li>
-<li>SetMarker()
-: <a class="el" href="classaworx_1_1lox_1_1Lox.html#a848fdd8b93afc2b2c89d526d4d128e3e">Lox</a>
-</li>
 <li>SetMode()
-: <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a7ba75d036f96e4ea3d2b451677bdeba5">ThreadLock</a>
-, <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#a7ba75d036f96e4ea3d2b451677bdeba5">ThreadLockNR</a>
+: <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html#a7ba75d036f96e4ea3d2b451677bdeba5">ThreadLockNR</a>
 </li>
 <li>SetName()
 : <a class="el" href="classaworx_1_1lib_1_1threads_1_1Thread.html#a6b96e15f0d3f46e1d07fc90f2d80fe04">Thread</a>
@@ -235,21 +240,38 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a787c9800970197d19a5452ac456d64f1">AString</a>
 , <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a3805c0af8d0d8c718fabbfce10236da3">Substring</a>
 </li>
+<li>SetPrefix()
+: <a class="el" href="classaworx_1_1lox_1_1Lox.html#a7c865720d8a1df7f2df6ee0b130abca9">Lox</a>
+</li>
+<li>setPrefixImpl()
+: <a class="el" href="classaworx_1_1lox_1_1Lox.html#a042f2376d21a1d317f632ac4b889e444">Lox</a>
+</li>
 <li>SetRaw()
 : <a class="el" href="classaworx_1_1lib_1_1time_1_1Ticks.html#a64e12c028b0905f2419bf7e488102f06">Ticks</a>
 </li>
 <li>SetReplacement()
 : <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#adcc3e44d96eefbb58460dc913c54af6a">TextLogger</a>
 </li>
+<li>SetSafeness()
+: <a class="el" href="classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a906fc408a38b0d414e232328d82cdb72">ThreadLock</a>
+</li>
+<li>SetScopeInfo()
+: <a class="el" href="classaworx_1_1lox_1_1Lox.html#a81ef55056de37ef21728a427ee665120">Lox</a>
+</li>
+<li>SetSourcePathTrimRule()
+: <a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#aaccc72216941cd9da1aa1bf22010e313">ScopeInfo</a>
+, <a class="el" href="classaworx_1_1lox_1_1Lox.html#ace0e192fa14eb0d6a522e06e69e5402b">Lox</a>
+</li>
 <li>SetStartTime()
 : <a class="el" href="classaworx_1_1lib_1_1time_1_1TickWatch.html#aad3f9a5a16ca34c75b8db8d065e0c47e">TickWatch</a>
-, <a class="el" href="classaworx_1_1lox_1_1Lox.html#ae31d4b72ea1bc7513fd341b6dc99053f">Lox</a>
+, <a class="el" href="classaworx_1_1lox_1_1Lox.html#af0daf981d6d3e6bee367e90c2cdd7711">Lox</a>
 </li>
-<li>simpleWildcardFilter()
-: <a class="el" href="classaworx_1_1lox_1_1Lox.html#a7f1ea36a1e2ce90d2ced8b3e5fa71084">Lox</a>
+<li>SetVerbosity()
+: <a class="el" href="classaworx_1_1lox_1_1core_1_1Domain.html#a72b26b0cca06a87932744d5f625efbfa">Domain</a>
+, <a class="el" href="classaworx_1_1lox_1_1Lox.html#a31dbb9788d52da7bc7376da0a03a3730">Lox</a>
 </li>
 <li>Since()
-: <a class="el" href="classaworx_1_1lib_1_1time_1_1Ticks.html#a8b1a3d7efe592bf648dfbd0cb42df127">Ticks</a>
+: <a class="el" href="classaworx_1_1lib_1_1time_1_1Ticks.html#a152d260d4d1411a09d9c14fa4ae2eeb2">Ticks</a>
 </li>
 <li>SleepMicros()
 : <a class="el" href="classaworx_1_1lib_1_1ALIB.html#ad450f3684e2b0fbb9e79124eb9e63146">ALIB</a>
@@ -259,6 +281,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>SleepNanos()
 : <a class="el" href="classaworx_1_1lib_1_1ALIB.html#a2597856ee4c535ad62f07982ae9e483b">ALIB</a>
+</li>
+<li>SmartLock()
+: <a class="el" href="classaworx_1_1lib_1_1threads_1_1SmartLock.html#a90c2c49cbc4b52547424991f1665a8cb">SmartLock</a>
 </li>
 <li>Split()
 : <a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html#a9ba2f83672cd35b574cba0788a923f36">Substring</a>
@@ -271,8 +296,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>StartsWith()
 : <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a874e198025e872dc30012ccdaef4ea71">String</a>
 </li>
+<li>Store()
+: <a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a5361906d7ce4b2ca6c3f676c85cf01fd">ScopeStore&lt; StoreT &gt;</a>
+, <a class="el" href="classaworx_1_1lox_1_1Lox.html#a7e726e7707a926643b25ede72388fcc2">Lox</a>
+</li>
+<li>storeImpl()
+: <a class="el" href="classaworx_1_1lox_1_1Lox.html#a9c14c75a9aa3b27f5bedefebed8998f0">Lox</a>
+</li>
+<li>storeKeyToScope()
+: <a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeDump.html#a5a2f983c8c5be78a45fbbeb8c4bde6a4">ScopeDump</a>
+</li>
+<li>storeThreadToScope()
+: <a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeDump.html#aa8e35644877b44cceea3c76ef1961b6c">ScopeDump</a>
+</li>
 <li>String()
-: <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#adcffeb665e497d8c0909063e4b5df871">String</a>
+: <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a79bdef100f3c7887fd120a7a98d8062c">String</a>
+</li>
+<li>StringConverter()
+: <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1StringConverter.html#a3ac0b7af1e751b339f2ea93813e4120c">StringConverter</a>
 </li>
 <li>StringLiteral()
 : <a class="el" href="classaworx_1_1lib_1_1strings_1_1StringLiteral.html#a4b8fba33694e7534bd9ce9f0feae415d">StringLiteral&lt; TLength &gt;</a>
@@ -287,14 +328,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="classaworx_1_1lib_1_1strings_1_1CString.html#a06e5d82687b5f75828132a6258091abe">CString</a>
 </li>
 <li>Sub()
-: <a class="el" href="classaworx_1_1lib_1_1time_1_1Ticks.html#a32d565c619412910f6e8b056a4401f0f">Ticks</a>
+: <a class="el" href="classaworx_1_1lib_1_1time_1_1Ticks.html#a5419f99b5b82a0f3ca26c92466418003">Ticks</a>
 </li>
 </ul>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 15 2016 11:32:19 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 19 2016 14:36:16 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

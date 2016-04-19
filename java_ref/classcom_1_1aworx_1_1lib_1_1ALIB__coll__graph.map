@@ -1,7 +1,11 @@
 <map id="ALIB" name="ALIB">
-<area shape="rect" id="node2" href="$classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html" title="Configuration" alt="" coords="357,78,456,105"/>
-<area shape="rect" id="node7" href="$classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html" title="ConfigurationPlugIn" alt="" coords="545,122,681,149"/>
-<area shape="rect" id="node5" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html" title="NumberFormat" alt="" coords="58,175,167,202"/>
-<area shape="rect" id="node6" href="$classcom_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html" title="EnvironmentPlugIn" alt="" coords="736,85,868,111"/>
-<area shape="rect" id="node8" href="$classcom_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugIn.html" title="CommandLinePlugIn" alt="" coords="731,147,873,174"/>
+<area shape="rect" id="node2" href="$classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="274,81,365,107"/>
+<area shape="rect" id="node12" href="$classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html" title="SmartLock" alt="" coords="573,38,658,65"/>
+<area shape="rect" id="node3" href="$enumcom_1_1aworx_1_1lib_1_1enums_1_1LockMode.html" title="LockMode" alt="" coords="18,54,101,81"/>
+<area shape="rect" id="node4" href="$classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html" title="Ticks" alt="" coords="32,158,87,185"/>
+<area shape="rect" id="node5" href="$classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html" title="Configuration" alt="" coords="566,211,665,238"/>
+<area shape="rect" id="node10" href="$classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html" title="ConfigurationPlugIn" alt="" coords="851,230,987,257"/>
+<area shape="rect" id="node8" href="$classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html" title="NumberFormat" alt="" coords="265,309,374,335"/>
+<area shape="rect" id="node9" href="$classcom_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html" title="EnvironmentPlugIn" alt="" coords="1042,193,1174,219"/>
+<area shape="rect" id="node11" href="$classcom_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugIn.html" title="CommandLinePlugIn" alt="" coords="1037,255,1179,282"/>
 </map>
