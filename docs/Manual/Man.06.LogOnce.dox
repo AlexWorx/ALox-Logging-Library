@@ -21,18 +21,18 @@ Both types are 'interwoven' and form the complete set, as denoted in enum-class
 <b>%Scope</b>
 ([C++] (@ref      #aworx::lox::Scope),
  [C#]  (@ref  #cs::aworx::lox::Scope),
- [Java](@ref #com::aworx::lox::Scope) ).
+ [Java](@ref #com::aworx::lox::Scope)).
 
 The most important use of \e Scopes in ALox is for setting and using <em>Scope Domains</em>
 which helps sorting and controlling the log output tremendously. Further information on
 this topic is found in chapter \ref man_logdomains.
-This chapter provides details about a feature that we simple call <b>Lox.Once</b>.
+This chapter provides details about a feature that we simple call \b %Lox.Once.
 
 Using ALox, you have probably come across method
 <b>%Lox.Once</b>
 ([C++] (@ref      #aworx::lox::Lox::Once),
  [C#]  (@ref  #cs::aworx::lox::Lox::Once),
- [Java](@ref #com::aworx::lox::Lox::once) ), with its various parameters and overloaded versions
+ [Java](@ref #com::aworx::lox::Lox::once)), with its various parameters and overloaded versions
 which omit and default the parameters.
 
 As the name indicates, this method is used to execute a <em>Log Statement</em> only once. A first use case of such
@@ -47,9 +47,9 @@ clutter. Its nice and readable, just as <em>Log Statements</em> should be.
 \note The samples in this chapter showcases ALox for C#. With the other language implementations
       the code looks very similar. With Java, due to a lack of the language in respect to resolving
       (quite easily resolvable!) overloading ambiguities, there might be less options to omit parameters and
-      some variants have slightly different order in the parameters.
+      some variants have a slightly different order in the parameters.
 
-The concept of method \c Log.Once goes quite beyond this simple sample. Before we go to the
+The concept of method \b %Log.Once goes quite beyond this simple sample. Before we go to the
 real interesting things, lets first quickly introduce other parameters that are optional to all
 other variations of this method:
 - As with all <em>Log Statements</em>, a <b>domain path</b> can be given:
@@ -75,7 +75,7 @@ other variations of this method:
   more than one \e %Logger (or none) is attached to the \b Lox, still the counter is increased by
   exactly \c 1.
 
-- Then, although the method is name 'Once', parameter \p quantity allows to specify a different
+- Then, although the method is named 'Once', parameter \p quantity allows to specify a different
   number of occurrences:
 
   \snippet "UT_dox_manual.cs"        Man_LogOnce___4
@@ -118,7 +118,7 @@ already performed logs between them.
 
 \note
   Of-course, such \e Group keys do not need to be registered and their use is not limited. As
-  always, ALox just manages internally what the use feeds in. Even if parameter \p quantity is provided
+  always, ALox just manages internally what the user feeds in. Even if parameter \p quantity is provided
   and it differs between \b Log.Once statements that belong to the same group, ALox does what you
   might expect:
   - The counter is shared and increased with each executed (!) statement.
@@ -158,7 +158,7 @@ Their biggest disadvantage: There is only one \b Log.Once counter per \e %Scope.
 does not support two different sets of methods that independently from each other get counted.
 
 On the other hand, the advantage of \e Groups is: Statements from completely different \e Scopes
-can be grouped and unlike with \e Scopes, there is an unlimited number of \e Groups possible.
+can be grouped and there is an unlimited number of \e Groups possible.
 
 There is one thing, that can only be achieved with \e Scopes and this is when using
 \b Scope.ThreadOuter or \b Scope.ThreadInner. This attaches the \b Log.Once counter to
@@ -176,7 +176,7 @@ The parameter list of
 <b>%Lox.Once</b>
 ([C++] (@ref      #aworx::lox::Lox::Once),
  [C#]  (@ref  #cs::aworx::lox::Lox::Once),
- [Java](@ref #com::aworx::lox::Lox::once) ), and some of its overloaded variants, allow to provide
+ [Java](@ref #com::aworx::lox::Lox::once)), and some of its overloaded variants, allow to provide
 both, a \e Group name and a \e %Scope.
 To understand the consequence, its best to explain how ALox internally handles \e Groups.<br>
 \e Groups of-course are implemented with hash-tables. Their key is a \e String, the \e Group name,
@@ -189,8 +189,8 @@ seem to work independently from any scope.<br>
 The other way round, if parameter \p group is omitted, then there are two options for ALox: If
 parameter \p scope is given and is not equal to \e %Scope.Global, then ALox uses a default
 \e Group key. Because this is the same for all such invocations, the statement is bound to the
-given \e Scope and to nothing else. In the second case, when \e %Scope.Global is given with no
-\e Group, ALox switches to \e %Scope.Filename (In Java \e %Scope.CLASS) and creates the \e Group
+given \e Scope and to nothing else. In the second case, when \e %Scope.Global is given (still with no
+\e Group), ALox switches to \e %Scope.Filename (In Java \e %Scope.CLASS) and creates the \e Group
 key from the line number of the invocation. This way, the 'parameterless' invocation of \b LogOnce,
 results in binding the counter exclusively to this single \b Lox.Once statement.
 

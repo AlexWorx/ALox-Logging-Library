@@ -14,15 +14,15 @@ import com.aworx.lib.ALIB;
 
 /** ********************************************************************************************
  * By providing this class, the AWorx library brings it's own implementation for converting integer
- * and double values to character string representations and vice versa. 
+ * and double values to character string representations and vice versa.
  * This was implemented for the following reasons:
  * - To avoid problems with locale specific formats, especially the decimal separator
  *   character, which sometimes is ' . ' and sometimes is ' , '. This definition generally is
  *   a process wide setting, leading to race conditions in multi-threaded
  *   applications, which are a common source of faults and addressing them introduces
  *   another performance overhead.
- * - To be able to parse different formats without switching the locale (and even with being 
- *   tolerant about format that is read)   
+ * - To be able to parse different formats without switching the locale (and even with being
+ *   tolerant about format that is read)
  * - The possibility for the calling code to receive information about the location
  *   (the end) of a parsed floating point value, to continue processing a string
  *   behind this location.
@@ -30,7 +30,7 @@ import com.aworx.lib.ALIB;
  *   AWorx library)
  * - Performance optimization (C# and Java versions avoid unnecessary temporary object
  *   allocations)
- *   
+ *
  * As an example, when writing float data into a configuration file, class
  * \ref com::aworx::lib::config::ConfigurationPlugIn "ConfigurationPlugIn" ignores the systems locale
  * setting and writes all data using '.' as decimal separator. When reading values, both ' . '
@@ -40,7 +40,7 @@ import com.aworx.lib.ALIB;
  * is gained is that floats are read without throwing exceptions regardless of the locale
  * that was set when they were written. Therefore configuration files are consistent
  * and readable across all software installations.
- * 
+ *
  * Instances created, have default values set, independent from the current locale setting
  * of the system. To initialize this classes fields to reflect the current locale, invoke
  * #setFromLocale().
@@ -85,18 +85,18 @@ public class NumberFormat
     // #########################################################################################
 
     /**
-     * The default static number format object, used by various methods. It therefore acts as the 
+     * The default static number format object, used by various methods. It therefore acts as the
      * global default settings of the currently running process.<br>
      * Method
      * \ref com::aworx::lib::ALIB::init "ALIB.init" invokes #setFromLocale() on this object.
      */
-     
+
     public static  NumberFormat      global                                     =new NumberFormat();
-     
+
     /**
      *  Defines the decimal point character when converting a floating point number to a string
-     *  representation with method #floatToString. Also, method #stringToFloat accepts the 
-     *  character provided in this field aside to those provided in #decimalPointCharacters.<br> 
+     *  representation with method #floatToString. Also, method #stringToFloat accepts the
+     *  character provided in this field aside to those provided in #decimalPointCharacters.<br>
      *  The field defaults to '.'. By invoking #setFromLocale(), the current locale's setting is
      *  determined.
      */
@@ -106,17 +106,17 @@ public class NumberFormat
      *  Defines all characters that will be accepted by #stringToFloat as the separator
      *  of integral and fractional part of the value read.<br>
      *  Defaults to ".,".<br>
-     *  The advantage of allowing both common symbols is that standard numbers are accepted 
+     *  The advantage of allowing both common symbols is that standard numbers are accepted
      *  independent of the current locale setting. However, the thousand separator commonly
      *  is the opposite of the 'dot' standard. This class does not support parsing or writing
      *  values with thousand separators anyhow. Therefore, accepting both here is no limitation.<br>
      *  Note: In addition to the characters provided in this field, method stringToFloat accepts
-     *  the single character set in #decimalPointCharacter as well.    
+     *  the single character set in #decimalPointCharacter as well.
      */
     public  char[]                    decimalPointCharacters                          = {'.',',' };
 
     /**
-     *  Defines the decimal exponent symbol of string representations of floating point numbers 
+     *  Defines the decimal exponent symbol of string representations of floating point numbers
      *  when written or parsed in scientific notation by methods #stringToFloat and #floatToString.<br>
      *  Method #stringToFloat accepts characters 'e' and 'E' in addition to the string
      *  set in this field.<br>
@@ -132,7 +132,7 @@ public class NumberFormat
      *  Defaults to false, as some systems will not accept a plus sign on the exponent value.
      */
     public  boolean                   writeExponentPlusSign                                = false;
-    
+
     /**
      * Defines the minimum digits written for the integral part when converting a floating point
      * value into a string.<br>
@@ -144,43 +144,43 @@ public class NumberFormat
      * The default value is -1, which writes a minimum of 1 digit.
      * Scientific notation gets disabled when either this field or field #fractionalDigits is set to
      * any positive value, unless #forceScientificFormat evaluates to true. In the latter case,
-     * both fields can also be used to set a fixed number of digits for the integer and the 
-     * fractional part in scientific format. 
+     * both fields can also be used to set a fixed number of digits for the integer and the
+     * fractional part in scientific format.
      */
     public int                        minIntegralDigits                                       = -1;
 
     /**
      * Defines the number of digits written for the fractional part when converting a floating point
      * value into a string.<br>
-     * If the fractional part of the number provided has less digits then trailing '0' 
+     * If the fractional part of the number provided has less digits then trailing '0'
      * digits are added.<br>
-     * If the fractional part of the number provided has more digits then the fractional part is 
+     * If the fractional part of the number provided has more digits then the fractional part is
      * rounded accordingly.<br>
      * The maximum value allowed is 15.<br>
      * The default value is -1, which writes as many digits as available in the provided float
-     * variable, with a minimum of 1 digit. 
-     * Scientific notation gets disabled when either this field or field #minIntegralDigits is set 
+     * variable, with a minimum of 1 digit.
+     * Scientific notation gets disabled when either this field or field #minIntegralDigits is set
      * to any positive value, unless #forceScientificFormat evaluates to true. In the latter case,
-     * both fields can also be used to set a fixed number of digits for the integer and the 
-     * fractional part in scientific format. 
+     * both fields can also be used to set a fixed number of digits for the integer and the
+     * fractional part in scientific format.
      */
     public int                        fractionalDigits                                        = -1;
-    
+
     /**
      *  If false, the default, method #floatToString writes scientific format only if both fields,
-     *  #minIntegralDigits and #fractionalDigits are evaluating to -1 and only for numbers smaller 
+     *  #minIntegralDigits and #fractionalDigits are evaluating to -1 and only for numbers smaller
      *  than 10^-4 or larger than 10^+6.<br>
      *  If true, scientific format is always used.<br>
      */
     public  boolean                   forceScientificFormat                                = false;
-    
-    
+
+
     // #############################################################################################
     //  Interface
     // #############################################################################################
-    
+
     /** ****************************************************************************************
-     * Sets the the the fields #decimalPointCharacter and #decimalExponentSeparator 
+     * Sets the the the fields #decimalPointCharacter and #decimalExponentSeparator
      * to reflect the current system locale's setting.
      ******************************************************************************************/
     public void setFromLocale()
@@ -337,11 +337,11 @@ public class NumberFormat
      *  value of the exponent of this multiplicand is appended, separated by the string defined in
      *  #decimalExponentSeparator.
      *
-     *  The output format is dependent on various settings provided in the fields of this class. 
+     *  The output format is dependent on various settings provided in the fields of this class.
      *
      * @param value     The double value to append.
      * @param buffer    The character array to write the value into.
-     *                  Depending on the value given and the format settings, a maximum of 
+     *                  Depending on the value given and the format settings, a maximum of
      *                  32 characters need to be allocated prior to invoking this method.
      * @param idx       The index within the buffer to start writing to.
      *
@@ -559,7 +559,7 @@ public class NumberFormat
         {
             for (int i= 0; i< decimalExponentSeparator.length ; i++)
                 buffer[idx++]= decimalExponentSeparator[i];
-                
+
             if ( exp10 < 0 )
                 buffer[idx++]= '-';
             else if ( writeExponentPlusSign )
@@ -574,7 +574,7 @@ public class NumberFormat
      * Reads a floating point value from the given character array at the given position.
      * The given output parameter is set to point to first character that does not belong to
      * the number.
-     * If no number is found a the given index, zero is returned and the output parameter is
+     * If no number is found at the given index, zero is returned and the output parameter is
      * set to the original start index.
      *
      * Leading whitespace characters are <em>not</em> ignored (parsing will fail).
@@ -591,7 +591,7 @@ public class NumberFormat
      *                 If parsing fails, it will be set to the value of parameter idx.
      *                 Therefore, this parameter can be used to check if a value was found.
      *
-     * @return  The parsed value. In addition, on success, the output parameter newIdx is set 
+     * @return  The parsed value. In addition, on success, the output parameter newIdx is set
      *          to point to the first character behind any found float number.
      ******************************************************************************************/
     public double stringToFloat( char[] buffer, int idx, int maxIdx,  int[] newIdx )
@@ -638,7 +638,7 @@ public class NumberFormat
 
             // no dot following?
             if (      idx > maxIdx
-                  ||  (     buffer[idx] != decimalPointCharacter 
+                  ||  (     buffer[idx] != decimalPointCharacter
                         &&  CString.indexOf( buffer[idx], decimalPointCharacters ) < 0 )
                )
             {
@@ -663,17 +663,17 @@ public class NumberFormat
         // read eNNN
         if ( idx < maxIdx + 1)
         {
-            boolean eSepFound=  false;    
+            boolean eSepFound=  false;
             if ( idx < maxIdx + decimalExponentSeparator.length )
             {
                 int pos= 0;
-                while (     pos < decimalExponentSeparator.length 
+                while (     pos < decimalExponentSeparator.length
                         &&  decimalExponentSeparator[pos] == buffer[idx+pos] )
                     pos++;
                 if ( eSepFound= ( pos == decimalExponentSeparator.length ) )
                     idx+= pos;
             }
-            
+
             if ( !eSepFound && (buffer[idx] == 'e' || buffer[idx] == 'E') )
             {
                 eSepFound= true;

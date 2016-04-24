@@ -230,7 +230,7 @@ class Domain
         }
 
         /** ****************************************************************************************
-         * Returns the number of a the \e Logger.
+         * Returns the number of the \e Logger.
          * @param logger  The logger to search.
          * @return The number of the \e Logger. If the \e Logger does not exist, -1 is returned.
          ******************************************************************************************/

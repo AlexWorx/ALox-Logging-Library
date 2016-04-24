@@ -41,7 +41,7 @@ public class CString
 
         /** ****************************************************************************************
          * Checks if a given CharSequence is empty or has a length of zero.
-         * \note Mimics  corresponding method in C# class String. 
+         * \note Mimics  corresponding method in C# class String.
          * @param cs   The CharSequence to check.
          *
          * @return  Returns true if given String is empty or 0.
@@ -61,7 +61,7 @@ public class CString
          *
          * @return  True if adjusted range is empty.
          ******************************************************************************************/
-        
+
         public static boolean adjustRegion(int referenceLength, int regionStart, int regionLength,
                                            int[] target  )
         {
@@ -106,14 +106,14 @@ public class CString
          * @param needleLength  The length of the needle within the character array.
          * @param haystack      The character array to look in for the needle.
          * @param haystackPos   The position to look at in \p haystack.
-         * @param haystackLimit The length of the \p haystack (may be equal or less than 
+         * @param haystackLimit The length of the \p haystack (may be equal or less than
          *                      haystack.length().
          * @param sensitivity   Case sensitivity of the comparison.
          *
          * @return  \c true if the needle is found at the given position. \c false otherwise.
          ******************************************************************************************/
         static
-        public boolean containsAt( char[] needle,    int needleStart, int needleLength, 
+        public boolean containsAt( char[] needle,    int needleStart, int needleLength,
                                    char[] haystack,  int haystackPos, int haystackLimit, Case sensitivity )
         {
             int cmpEnd= haystackPos + needleLength;
@@ -139,7 +139,7 @@ public class CString
                 while ( haystackPos < cmpEnd )
                 {
                     //@SuppressWarnings ("null")
-                    if(     needle  [ needleStart++ ] 
+                    if(     needle  [ needleStart++ ]
                          != haystack[ haystackPos++ ]  )
 
                         return false;
@@ -156,14 +156,14 @@ public class CString
          * @param needle        The string to search.
          * @param haystack      The character array to look in for the needle.
          * @param haystackPos   The position to look at in \p haystack.
-         * @param haystackLimit The length of the \p haystack (may be equal or less than 
+         * @param haystackLimit The length of the \p haystack (may be equal or less than
          *                      haystack.length().
          * @param sensitivity   Case sensitivity of the comparison.
          *
          * @return  \c true if the sequence is found at the given position. \c false otherwise.
          ******************************************************************************************/
         static
-        public boolean containsAt( CharSequence needle, 
+        public boolean containsAt( CharSequence needle,
                                    char[] haystack,  int haystackPos, int haystackLimit, Case sensitivity )
         {
             // check null argument or length 0
@@ -208,12 +208,12 @@ public class CString
     // #########################################################################################
 
         /** ****************************************************************************************
-         * Compares a given region of a CharSequence with the a in a \e char[].<br>
+         * Compares a given region of a CharSequence with a in a \e char[].<br>
          * No parameter checks are performed. Null and empty checks and proper region bounds
-         * have to be provided (this is a helper method for other compareTo methods). 
+         * have to be provided (this is a helper method for other compareTo methods).
          *
          * @param needle         An object of type \e CharSequence that is compared to \p haystack.
-         * @param needleStart    The start of the region in \p needle that is to be compared. 
+         * @param needleStart    The start of the region in \p needle that is to be compared.
          * @param needleLength   The length of the region in \p needle.
          * @param haystack       The character buffer that is compared.
          * @param haystackStart  The start of the substring within \p haystack.
@@ -221,9 +221,9 @@ public class CString
          * @param sensitivity    Case sensitivity of the operation.
          *
          * @return
-         *  -  0 if \p haystack and \p needle are \e null or if both have a length of 0 or if 
+         *  -  0 if \p haystack and \p needle are \e null or if both have a length of 0 or if
          *     both  share the same content.
-         *  - <0 if \p haystack is \e nulled and \p needle is not or if \p haystack is smaller 
+         *  - <0 if \p haystack is \e nulled and \p needle is not or if \p haystack is smaller
          *    than \p needle.
          *  - >0 if \p haystack is not \e nulled but \p needle is or if \p haystack is greater
          *    than \p needle.
@@ -350,7 +350,7 @@ public class CString
 
 
     /** ****************************************************************************************
-     * Searches a \e CharSequence in a region of a character array. 
+     * Searches a \e CharSequence in a region of a character array.
      *
      * @param needle          The CharSequence to search.
      * @param haystack        Character array that is searched in.
@@ -364,8 +364,8 @@ public class CString
      * @return  \e -1 if the String is not found. Otherwise the index of first occurrence relative
      *          to \p haystackStart.
      ******************************************************************************************/
-    public static int indexOfString( CharSequence needle, 
-                                     char[] haystack, int haystackStart, int haystackLength, 
+    public static int indexOfString( CharSequence needle,
+                                     char[] haystack, int haystackStart, int haystackLength,
                                      Case sensitivity )
     {
         // checks
@@ -377,13 +377,13 @@ public class CString
         int hayStackEnd= haystackStart + haystackLength;
         if ( sensitivity == Case.SENSITIVE )
         {
-            char firstChar= needle.charAt( 0 );     
+            char firstChar= needle.charAt( 0 );
             while ( haystackStart + needleLength <= hayStackEnd )
             {
                 if ( haystack[ haystackStart ] == firstChar )
                 {
                     int  cmpLen= 1;
-                    while (     cmpLen != needleLength 
+                    while (     cmpLen != needleLength
                             &&  haystack[ haystackStart + cmpLen ] == needle.charAt( cmpLen ) )
                         cmpLen++;
                     if ( cmpLen == needleLength )
@@ -402,8 +402,8 @@ public class CString
                 if ( Character.toLowerCase( haystack[ haystackStart ] ) == firstChar )
                 {
                     int  cmpLen= 1;
-                    while (     cmpLen != needleLength 
-                            &&     Character.toLowerCase( haystack[ haystackStart + cmpLen ] )  
+                    while (     cmpLen != needleLength
+                            &&     Character.toLowerCase( haystack[ haystackStart + cmpLen ] )
                                 == Character.toLowerCase( needle.charAt( cmpLen ) ) )
                         cmpLen++;
                     if ( cmpLen == needleLength )
@@ -555,7 +555,7 @@ public class CString
 
         // search
         @SuppressWarnings ("null")
-        char firstChar= Character.toLowerCase( needle.charAt( 0 ) );       
+        char firstChar= Character.toLowerCase( needle.charAt( 0 ) );
         while ( startIdx < sInLen )
         {
             int        cmpLen= 0;

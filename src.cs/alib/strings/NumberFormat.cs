@@ -200,7 +200,7 @@ public class NumberFormat
     /** ****************************************************************************************
      * Reads a (long) integer from the given character array at the given position.
      * The output parameter is set to point to first character that is not a number.
-     * If no number is found a the given index, zero is returned and the output parameter is
+     * If no number is found at the given index, zero is returned and the output parameter is
      * set to the original start index.
      *
      * Leading whitespace characters are <em>not</em> ignored (parsing will fail).
@@ -322,7 +322,7 @@ public class NumberFormat
      *  Reads a floating point value from the character array at the given position.
      *  The given in/output parameter is set to point to the first character that does not
      *  belong to the number.<br>
-     *  If no number is found a the given index, zero is returned and the parameter \p idx
+     *  If no number is found at the given index, zero is returned and the parameter \p idx
      *  reset to its original value.
      *
      *  Leading whitespace characters are <em>not</em> ignored (parsing will fail).

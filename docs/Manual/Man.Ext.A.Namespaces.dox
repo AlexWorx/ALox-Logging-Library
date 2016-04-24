@@ -40,7 +40,7 @@ Lets start with two namespaces:
 - <b>\[com.|cs.\]%aworx.lox</b>
   ([C++](@ref #aworx::lox),
   [C#]  (@ref #cs::aworx::lox),
-  [Java](@ref #com::aworx::lox) )<br>
+  [Java](@ref #com::aworx::lox))<br>
   This is the main and basic namespace of ALox. The central class is
   <b>Lox</b>
   ([C++] (@ref #aworx::lox::Lox),
@@ -52,7 +52,7 @@ Lets start with two namespaces:
 - <b>\[com.|cs.\]%aworx.lox.core</b>
  ([C++](@ref #aworx::lox::core),
  [C#]  (@ref #cs::aworx::lox::core),
- [Java](@ref #com::aworx::lox::core) ) <br>
+ [Java](@ref #com::aworx::lox::core)) <br>
   As the name says, within this namespace (package) you will find the core classes needed for
   logging. Besides the abstract class
   <b>Logger</b>
@@ -98,7 +98,7 @@ A third namespace is:
 - <b>\[com.|cs.\]%aworx.lox.loggers</b>
  ([C++](@ref #aworx::lox::loggers),
  [C#]  (@ref #cs::aworx::lox::loggers),
- [Java](@ref #com::aworx::lox::loggers) ) <br>
+ [Java](@ref #com::aworx::lox::loggers)) <br>
 This namespace provide ready to use *Logger* types, e.g.
   <b>AnsiConsoleLogger</b>
   ([C++] (@ref #aworx::lox::loggers::AnsiConsoleLogger),
@@ -253,7 +253,7 @@ intentionally by adding basic 'structs', constants and enums, like
 <b>\[com.|cs.\]%aworx.lox</b>
  ([C++](@ref      #aworx::lox),
  [C#]  (@ref  #cs::aworx::lox),
- [Java](@ref #com::aworx::lox) ) for convenience. The same applies to class
+ [Java](@ref #com::aworx::lox)) for convenience. The same applies to class
 <b>%ESC</b>
   ([C++] (@ref      #aworx::lox::ESC),
    [C#]  (@ref  #cs::aworx::lox::ESC),

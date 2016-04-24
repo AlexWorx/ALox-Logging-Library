@@ -21,7 +21,7 @@ For a better understanding of what is explained in this chapter, it might be adv
   <b>%Scope</b>
   ([C++] (@ref      #aworx::lox::Scope),
    [C#]  (@ref  #cs::aworx::lox::Scope),
-   [Java](@ref #com::aworx::lox::Scope) ).
+   [Java](@ref #com::aworx::lox::Scope)).
 
 - Chapter \ref man_log_once
 
@@ -32,7 +32,7 @@ For a better understanding of what is explained in this chapter, it might be adv
   <b>%Lox.Once</b>
   ([C++] (@ref      #aworx::lox::Lox::Once),
    [C#]  (@ref  #cs::aworx::lox::Lox::Once),
-   [Java](@ref #com::aworx::lox::Lox::once) ), which are explained in a high degree of detail in
+   [Java](@ref #com::aworx::lox::Lox::once)), which are explained in a high degree of detail in
   the above mentioned chapter, is not repeated here. If all aspects of using \b %Lox.Once are
   understood, those can be quite easily adopted to what is described in this section!
 
@@ -42,8 +42,8 @@ For a better understanding of what is explained in this chapter, it might be adv
 
 The concept of <em>Log Data</em> is a feature used for debugging. The goal that is aimed here
 is similar to the goal of debug-<em>Log Statements</em> themselves. As a reminder, those are:
-- Have a process log out debug messages, that help to understand what a software is during
-  the implementation phase
+- Have a process log out debug messages, that help to understand a software during
+  the implementation phase.
 - Avoid adding \b temporary 'debug output statements'. Instead use \b permanent code, which
   can be disabled and preserved for later use, when needed.
 
@@ -68,23 +68,23 @@ generated giving more information about where and why the exception occurred.
   There are other, standardized, reliable and efficient ways to store thread-local data.
 
 \~Comment ####################################################################################### \~
-# 3 Using Log Data #  {#man_log_data_using}
+# 3. Using Log Data #  {#man_log_data_using}
 
 The interface for setting and retrieving <em>Log Data</em> is provided with methods
 <b>%Lox.Store</b>
 ([C++] (@ref      #aworx::lox::Lox::Store),
  [C#]  (@ref  #cs::aworx::lox::Lox::Store),
- [Java](@ref #com::aworx::lox::Lox::store) ), and
+ [Java](@ref #com::aworx::lox::Lox::store)), and
 <b>%Lox.Retrieve</b>
 ([C++] (@ref      #aworx::lox::Lox::Retrieve),
  [C#]  (@ref  #cs::aworx::lox::Lox::Retrieve),
- [Java](@ref #com::aworx::lox::Lox::retrieve) ).
+ [Java](@ref #com::aworx::lox::Lox::retrieve)).
 
 The type of data stored is
 <b>%LogData</b>
 ([C++] (@ref      #aworx::lox::LogData),
  [C#]  (@ref  #cs::aworx::lox::LogData),
- [Java](@ref #com::aworx::lox::LogData) ). This class is designed in typical [Bauhaus code style](\ref faq_bauhaus)
+ [Java](@ref #com::aworx::lox::LogData)). This class is designed in typical [Bauhaus code style](\ref faq_bauhaus)
 code style used by ALox. This way, it provides three public members, which can be set with
 variations of its constructor and otherwise accessed as wanted. There is an integer value, an
 AString and an Object (C++: \c void*) found which have no other functionality defined by its
@@ -95,7 +95,7 @@ While in Chapter \ref man_log_once of this manual, it was explained in detail ho
 <b>%Lox.Once</b>
 ([C++] (@ref      #aworx::lox::Lox::Once),
  [C#]  (@ref  #cs::aworx::lox::Lox::Once),
- [Java](@ref #com::aworx::lox::Lox::once) ), can be omitted, how one of them can be used and what
+ [Java](@ref #com::aworx::lox::Lox::once)), can be omitted, how one of them can be used and what
 happens when both are used, we do not want to repeat these details in this chapter.
 
 Instead we want to discuss the differences:
@@ -103,8 +103,9 @@ Instead we want to discuss the differences:
 - Parameter \p group of method \b %Log.Once is named \p key in methods \b %Log.Store / \b %Log.Retrieve.
 - If both parameters (\p group and \p scope) are omitted, \b %Log.Once defaults to the 'most inner \e Scope possible'
   (by switching the \e %Scope.Filename and creating a unique key from the line number), which
-  is the single log line itself. In contrast to this, \b %Log.Store / \b %Log.Retrieve in the parameterless refers
-  to the 'most outer \e Scope possible', hence a global singleton object (singleton in respect to the instance of class \b %Lox used).
+  is the single log line itself. In contrast to this, \b %Log.Store / \b %Log.Retrieve in the
+  parameterless version refers to the 'most outer \e Scope possible', hence a global singleton object
+   (singleton in respect to the instance of class \b %Lox used).
 
 As a result, the use of <em>Log Data</em> can be summarized as follows:
 - An otherwise parameterless invocation the methods \b %Log.Store / \b %Log.Retrieve stores and retrieves

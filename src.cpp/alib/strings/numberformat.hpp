@@ -185,7 +185,7 @@ class NumberFormat
      *  Reads a (64bit) integer value a string at the given position.
      *  The position is an in/output parameter. If provided, it is set to point to the first
      *  character that does not belong to the number.<br>
-     *  If no number is found a the given index, zero is returned and the parameter is
+     *  If no number is found at the given index, zero is returned and the parameter is
      *  set to the original start index.
      *
      *  Leading whitespace characters are <em>not</em> ignored (parsing will fail).
@@ -254,7 +254,7 @@ class NumberFormat
      *  Reads a floating point value from a string at the given position.
      *  The position is an in/output parameter. If provided, it is set to point to the first
      *  character that does not belong to the number.<br>
-     *  If no number is found a the given index, zero is returned and the parameter \p idx
+     *  If no number is found at the given index, zero is returned and the parameter \p idx
      *  reset to its original value.
      *
      *  Leading whitespace characters are <em>not</em> ignored (parsing will fail).

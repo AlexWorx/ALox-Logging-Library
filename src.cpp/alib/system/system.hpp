@@ -86,7 +86,7 @@ class System
          *  - Otherwise, on Unix like OS\c true is returned
          *  - On Windows OS it is determined if a console window is attached to the process
          *    using system call \e GetConsoleWindow() and compare its result to \e NULL.
-         *  @return \c true if a the application has a console window attached.
+         *  @return \c true if the application has a console window attached.
          ******************************************************************************************/
         ALIB_API
         static bool                 HasConsoleWindow();
@@ -96,7 +96,7 @@ class System
          * within \ref aworx::lib::ALIB::Init "ALIB::Init".
          * \see Field #DebuggerProcessName.
          *
-         * @return \c true if a the application is run in a debugger.
+         * @return \c true if the application is run in a debugger.
          ******************************************************************************************/
         ALIB_API
         static bool                 IsDebuggerPresent();

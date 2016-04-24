@@ -78,7 +78,7 @@ output to avoid clashing of output data in multi-threaded applications.
    ([C++] (@ref      #aworx::lib::config::Configuration),
     [C#]  (@ref  #cs::aworx::lib::config::Configuration),
     [Java](@ref #com::aworx::lib::config::Configuration)) proposing default priorities for the
-standard plug-ins to attach. On the same token the previously hard-coded numbers where revised
+standard plug-ins to attach. On the same token, the previously hard-coded numbers where revised
 and their sort-order switched (higher value is now higher priority).
 
 
@@ -602,7 +602,7 @@ More important general changes are:
   <b>IniFile</b>
     ([C++](@ref #aworx::lib::config::IniFile),
     [C#]  (@ref #cs::aworx::lib::config::IniFile),
-    [Java](@ref #com::aworx::lib::config::IniFile)) ) and this way survive the lifetime of a
+    [Java](@ref #com::aworx::lib::config::IniFile))) and this way survive the lifetime of a
   process.
 
 - Added IDE specific \e Loggers for Visual Studio (C++/C#) and MonoDevelop (C#).
@@ -626,7 +626,7 @@ More important general changes are:
   <b>tutorials</b>
     ([C++](@ref cpptutorial),
     [C#]  (@ref cstutorial),
-    [Java](@ref javatutorial)) ) and chapter "Log Levels, Log Domains and Log Domain Levels".
+    [Java](@ref javatutorial)) and chapter "Log Levels, Log Domains and Log Domain Levels".
   in the ALox user manual.
 
 - Renamed internal class \b LogDomain to \b Domain. Similar as with aforementioned tendency to

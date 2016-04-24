@@ -29,7 +29,7 @@ chapter
 Class <b>Lox</b>
 ([C++] (@ref      #aworx::lox::Lox),
  [C#]  (@ref  #cs::aworx::lox::Lox),
- [Java](@ref #com::aworx::lox::Lox) ) maintains the tree, inserts <em>Log Domains</em> 'on the fly' and
+ [Java](@ref #com::aworx::lox::Lox)) maintains the tree, inserts <em>Log Domains</em> 'on the fly' and
 manages the \e Verbosity on a per <em>Log Domain</em> and \e %Logger basis.
 
 For internal <em>Log Statement</em>, ALox uses a second, separate domain tree. The separation is made to keep the
@@ -43,7 +43,7 @@ To set or modify the \e Verbosity of internal <em>Log Domains</em>, static field
 <b>%ALox.InternalDomains</b>
 ([C++] (@ref      #aworx::lox::ALox.InternalDomains),
  [C#]  (@ref  #cs::aworx::lox::ALox.InternalDomains),
- [Java](@ref #com::aworx::lox::ALox.INTERNAL_DOMAINS) ) has to be used as follows:
+ [Java](@ref #com::aworx::lox::ALox.INTERNAL_DOMAINS)) has to be used as follows:
 
 \snippet "UT_dox_manual.cs"        Man_InternalDomains___2
 

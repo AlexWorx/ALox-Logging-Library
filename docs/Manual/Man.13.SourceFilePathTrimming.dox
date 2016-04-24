@@ -102,7 +102,7 @@ When things become more complex, it is advisable to add <em>Source Path Trim Rul
 A user of ALox may use method
 <b>%Lox.SetSourcePathTrimRule</b>
 ([C++] (@ref      #aworx::lox::Lox::SetSourcePathTrimRule),
- [C#]  (@ref  #cs::aworx::lox::Lox::SetSourcePathTrimRule) ), to add <em>Source Path Trim Rules</em>.
+ [C#]  (@ref  #cs::aworx::lox::Lox::SetSourcePathTrimRule)), to add <em>Source Path Trim Rules</em>.
 
 \note
   For all details, please see the reference documentation corresponding to the programming
@@ -179,7 +179,7 @@ by underlying utility library ALib.
  <b>%aworx::lib::config</b>
     ([C++] (@ref      #aworx::lib::config),
      [C#]  (@ref  #cs::aworx::lib::config),
-     [Java](@ref #com::aworx::lib::config) ) ).
+     [Java](@ref #com::aworx::lib::config)).
 
 When an instance of class \b %Lox is constructed, two a configuration variables are tried to
 be read:
@@ -231,7 +231,7 @@ goes wrong with source path trimming, e.g. when you are not sure if a rule was r
 external configuration variables, you can use method
 <b>%Lox.LogConfig</b>
 ([C++] (@ref      #aworx::lox::Lox::LogConfig),
- [C#]  (@ref  #cs::aworx::lox::Lox::LogConfig) ) to dump out the current state of a \b %Lox.
+ [C#]  (@ref  #cs::aworx::lox::Lox::LogConfig)) to dump out the current state of a \b %Lox.
 Besides rules set manually or using configuration variables, if exists, also the auto-generated
 rule is displayed.
 
@@ -242,7 +242,7 @@ rule is displayed.
 In very special situations (e.g. ALox uses it for unit testing) method
 <b>%Lox.ClearSourcePathTrimRules</b>
 ([C++] (@ref      #aworx::lox::Lox::ClearSourcePathTrimRules),
- [C#]  (@ref  #cs::aworx::lox::Lox::ClearSourcePathTrimRules) ), can be used to clear the
+ [C#]  (@ref  #cs::aworx::lox::Lox::ClearSourcePathTrimRules)), can be used to clear the
 rules of a \b %Lox instance, optionally including all global rules.
 
 \note
@@ -258,7 +258,7 @@ retrieved in hash-tables with keys containing the source path.<br>
 Furthermore, the output of method
 <b>%Lox.LogConfig</b>
 ([C++] (@ref      #aworx::lox::Lox::LogConfig),
- [C#]  (@ref  #cs::aworx::lox::Lox::LogConfig) ), might be better readable with these shorter
+ [C#]  (@ref  #cs::aworx::lox::Lox::LogConfig)), might be better readable with these shorter
 paths.
 
 It is also important to consider that when using \e Scope.Path, especially in combination with
@@ -275,7 +275,7 @@ then the directory prior to the tree of namespace directories should be included
   This section is about textual logging with the use of \e Loggers derived from class
   <b>%TextLogger</b>
     ([C++] (@ref      #aworx::lox::core::textlogger::TextLogger),
-     [C#]  (@ref  #cs::aworx::lox::core::textlogger::TextLogger) ), provided with ALox. For other
+     [C#]  (@ref  #cs::aworx::lox::core::textlogger::TextLogger)), provided with ALox. For other
   \e Loggers, other considerations might apply.
 
 Due to the rich meta information that ALox provides, the log output lines quickly become quite wide.
@@ -285,7 +285,7 @@ distinguish all files properly, can help a lot to reduce such width.
 Class
 <b>%MetaInfo</b>
   ([C++] (@ref      #aworx::lox::core::textlogger::MetaInfo),
-   [C#]  (@ref  #cs::aworx::lox::core::textlogger::MetaInfo) ), with its instance found in every
+   [C#]  (@ref  #cs::aworx::lox::core::textlogger::MetaInfo)), with its instance found in every
 ALox \b TextLogger, provides a format string to structure the meta info.
 For the source path, two format parameters exists:
 - <b>%SP</b>: Provides the full path name

@@ -524,11 +524,11 @@ namespaces (packages)
 - <b>\[com.|cs.\]%aworx.lox.core</b>
  ([C++](@ref      #aworx::lox::core),
  [C#]  (@ref  #cs::aworx::lox::core),
- [Java](@ref #com::aworx::lox::core) ) and
+ [Java](@ref #com::aworx::lox::core)) and
 - <b>\[com.|cs.\]%aworx.lox.core::textlogger</b>
  ([C++](@ref      #aworx::lox::core::textlogger),
  [C#]  (@ref  #cs::aworx::lox::core::textlogger),
- [Java](@ref #com::aworx::lox::core::textlogger) )
+ [Java](@ref #com::aworx::lox::core::textlogger))
 
 you can checkout which 'ready to use' \e %Logger implementations are available today for your
 preferred language version of ALox, by referring to the reference documentation of namespace (package)
@@ -536,7 +536,7 @@ preferred language version of ALox, by referring to the reference documentation 
 - <b>\[com.|cs.\]%aworx.lox.loggers</b>
  ([C++](@ref #aworx::lox::loggers),
  [C#]  (@ref #cs::aworx::lox::loggers),
- [Java](@ref #com::aworx::lox::loggers) ).
+ [Java](@ref #com::aworx::lox::loggers)).
 
 For convenience, method
 <b>%Lox.CreateConsoleLogger</b>

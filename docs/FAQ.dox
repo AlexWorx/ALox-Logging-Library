@@ -130,7 +130,11 @@ Here is \ref man_loggers_textlogger "how you do that"!
 <br>
 # Why is ALox introducing a set of own utility classes? # {#faq_aworx_util}
 We would not say that ALox is "introducing" an own set of utility classes. ALox
-only builds upon such a set called *ALib*. They are located in namespace *com.aworx*.
+only builds upon such a set called *ALib*. They are located and documented in namespace
+<b>[com::|cs::]%aworx::lib</b>
+ ([C++] (@ref      #aworx::lib),
+  [C#]  (@ref  #cs::aworx::lib),
+  [Java](@ref #com::aworx::lib)).
 We know that there are other, better and much more complete sets in the world. Our
 motivation is twofold: we design these classes that their interface is almost
 identical across programming languages. This helps us porting ALox to other

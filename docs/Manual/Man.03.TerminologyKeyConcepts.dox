@@ -30,7 +30,7 @@ Before we explain those, we want to start with defining terms used in this manua
 
 ALox is designed to support different log streams. A log stream is a destination of log messages
 and can be the IDE console, the terminal console, a file, a web service or anything that accepts
-data streams. The abstract class
+data streams. Abstract class
 <b>Logger</b>
   ([C++] (@ref #aworx::lox::core::Logger),
    [C#]  (@ref #cs::aworx::lox::core::Logger),
@@ -106,8 +106,8 @@ for technical reasons, follows different approaches in its different language ve
 ## 1.3. Log Statements ## {#man_alox_tak_terminology_statements}
 
 When this manual and the reference documentation of ALox are referring to a <b>'Log Statement'</b>,
-this means a piece of (user) code that  invokes an %ALox interface method that actually performs
-a log output.
+this means a piece of (user) code that invokes an %ALox interface method that potentially performs
+log output.
 
 Of-course, each <em>Log Statement</em> incorporates the provision of a \e Logable to ALox. Hence,
 those interface methods of the ALox API that carry a parameter named \p 'logable' can easily
@@ -154,13 +154,14 @@ of <em>Log Statements</em>. The values of this attribute are defined in enum cla
 <b>%Verbosity</b>
 ([C++] (@ref      #aworx::lox::Verbosity),
  [C#]  (@ref  #cs::aworx::lox::Verbosity),
- [Java](@ref #com::aworx::lox::Verbosity) )
+ [Java](@ref #com::aworx::lox::Verbosity))
 
 Some of the interface methods that comprise <em>Log Statements</em> carry the \e %Verbosity in their
 method name, e.g. \c %warning() or \c %verbose(). Other, specialized methods offer a parameter
-named \p verbosity of type \b %Verbosity to set this.
+named \p verbosity of type \b %Verbosity.
 
-Besides <em>Log Statements</em>, \e Verbosity is also an attribute of <em>Log Domains</em>. As every <em>Log Statement</em> has a <em>Log Domain</em> and \e Verbosity
+Besides <em>Log Statements</em>, \e Verbosity is also an attribute of <em>Log Domains</em>.
+As every <em>Log Statement</em> has a <em>Log Domain</em> and a \e Verbosity
 associated with it, ALox is able to match both values against each other to decide whether a
 <em>Log Statement</em> is executed or not.
 
@@ -177,8 +178,8 @@ flexible. This is described later.
 The \b %Scope is a next attribute any <em>Log Statement</em> possesses. The different types of scopes are nested into
 each other and some of the possible values are similar to what the programming languages that
 %ALox is written in provide. For example the \e %Scope.Method is similar to what a variable that
-is defined in a class method has. It is visible only in exactly this method. However, ALox
-\e Scopes are different and the main reason is that ALox is not able to detect scopes in the
+is defined in a class method has as a scope from a language perspective: it is visible only in exactly this method.
+But in ALox, \e Scopes are different and the main reason is that ALox is not able to detect scopes in the
 same way as a compiler of a programming language is. Therefore, we are talking about <b>language
 related scopes</b>. In C++ and C# those are:
 
@@ -206,21 +207,16 @@ All information about this topic is found in chapter
 <b>%Scope</b>
 ([C++] (@ref      #aworx::lox::Scope),
  [C#]  (@ref  #cs::aworx::lox::Scope),
- [Java](@ref #com::aworx::lox::Scope) ).
+ [Java](@ref #com::aworx::lox::Scope)).
 
 ## 1.7. Scope Domains ## {#man_alox_terminology_scopedomains}
-Attention, now it becomes tricky! We have seen that <em>Log Domains</em> are assigning each <em>Log Statement</em>
-to a group of those. The same is true for \e Scopes: Each <em>Log Statement</em> belongs to
-a \e Scope, correctly even to a set of nested \e Scope values. The benefit of the grouping
+Attention, now it becomes tricky! Each <em>Log Statement</em> belongs to
+a \e Scope, precisely, even to a set of nested \e Scope values. The benefit of the grouping
 by \e Scopes is that it is done automatically by ALox. The \e Scope is detected from the position
 of the <em>Log Statement</em> within the source code and from the thread that is executing it.
-On the other hand, the advantage of the grouping by <em>Log Domain</em> is that with using parameter \p domain
-with a <em>Log Statement</em>, we are absolutely free to choose any group we like, independent from the location
-of the <em>Log Statement</em>.
-
-<b>'Scope Domains'</b> combine the two benefits. A <em>Scope Domain</em> is a default domain set by the user of
-%ALox for a specific \e %Scope. Once such default value is set, %ALox uses this domain for each
-<em>Log Statement</em> located within that \e %Scope. This way, <em>Log Statement</em> get their <em>Log Domain</em> associated 'automatically' as well.
+A <b>Scope Domain</b> is a default domain set by the user of %ALox for a specific \e %Scope.
+Once such default value is set, %ALox uses this domain for each <em>Log Statement</em> located within that \e %Scope.
+This way, <em>Log Statements</em> get their <em>Log Domain</em> associated 'automatically'.
 
 As a sample, a <em>Scope Domain</em> \c "DB" could be set as the default <em>Log Domain</em> for \e %Scope.Filename
 (Java: \e %Scope.CLASS) that contains code that stores and retrieves data from a
@@ -231,6 +227,9 @@ added to each statement into the source code. This has several advantages: less 
 code clutter by <em>Log Statements</em>, copied <em>Log Statements</em> magically switch their domain when
 'pasted' into a different scope, and so forth.
 
+As you see, there are two ways to assign a <em>Scope Domain</em> to a <em>Log Statement</em>: Either
+by providing optional parameter \p domain with a <em>Log Statement</em>, or by setting a <em>Scope Domain</em>
+and omitting the parameter.
 
 ## 1.8. Tree of Log Domains and Domain Path ## {#man_alox_terminology_logdomaintree}
 By having <em>Scope Domains</em> which associate a 'default domain' with a <em>Log Statement</em> that resides in a certain \e Scope
@@ -244,7 +243,11 @@ This means that %ALox organizes <em>Log Domain</em> hierarchically, hence this c
 The concatenation starts from the most 'outer' \e Scope and ends at the most 'inner'. The value of optional
 parameter \p domain is appended close to the end - but not completely at the end.
 
-The details of how this works is explained in a dedicated chapter: \ref man_logdomains.
+Besides 'mixing' <em>Scope Domains</em> and parameter \p domain, ALox also allows to 'overwrite'
+<em>Scope Domains</em> with parameter \p domain.
+
+Using the techniques in the right manner, is one of the keys to efficiently use ALox.
+The details of how this is done is explained in a dedicated chapter: \ref man_logdomains.
 
 
 \~Comment ####################################################################################### \~
@@ -267,7 +270,7 @@ quickly summarized. We have:
   3. A \e Scope, which gives a different, automatic way of grouping <em>Log Statements</em>.
 - <b>Scope Domains:</b>
   Those are acting as 'default domains' and are collected and concatenated by %ALox to form,
-  together with parameter \p domain of a <em>Log Statement</em> a 'domain path' identifying the e resulting, final
+  together with parameter \p domain of a <em>Log Statement</em> a 'domain path' identifying the resulting, final
   <em>Log Domain</em> of a <em>Log Statement</em>.
 
 Now, the most prominent class of %ALox which acts almost like a "single point of contact" comes
@@ -279,17 +282,18 @@ into the game: Class
 
 This class keeps it all together! This is what class  \b %Lox does:
 
-- It provides this part of the %ALox API that are interface methods that comprise <em>Log Statements</em>.
-- It manages a set of <em>Loggers</em> which writes the \e Logables of <em>Log Statements</em>.
+- It provides the most important parts of the %ALox API, especially those interface methods that comprise <em>Log Statements</em>.
+- It manages a set of <em>Loggers</em> which write the \e Logables of <em>Log Statements</em>.
 - It maintains a tree of hierarchically organized <em>Log Domains</em>
 - It stores a \e Verbosity value for <em>Log Domains</em>, which
   is the counter-value of a <em>Log Statements</em>' \e Verbosity and determines if a <em>Log Statement</em> is executed or not.
+  This is done on a per-\e Logger basis.
 - It automatically determines the \e Scope of a <em>Log Statement</em> and manages the associated
-  <em>Scope Domain</em>
+  nested <em>Scope Domains</em>.
 - It provides other nice features related to \e Scopes, like \ref man_log_once, \ref man_prefix_logables
-  or man_log_data
+  or \ref man_log_data
 - It collects some meta information like timestamps or counters.
-- It provides a dictionary to translate thread IDs in human readable (logable) thread names
+- It provides a dictionary to translate thread IDs in human readable (logable) thread names.
 
 It becomes clear that this class is an ALox users' main interface into logging. After ALox was
 set-up once (probably in the bootstrap section of a software), and <em>Loggers</em> are created,
@@ -412,13 +416,12 @@ types of messages into different streams and manipulate the verbosity for
 each stream accordingly.
 
 \note
-  Differences in C++:
+  Differences of language implementations:
   - In C# and Java, the only reason to introduce class \b Log and to mimic the interface of \b Lox
     with it, was that this opend the possibility for efficient pruning of debug <em>Log Statements</em>.
-  - Once having static class \b Log, it became the natural scope for defining  important enums and constants
   - In C++, pruning is realized by reprocessor macros. Hence, class \b Log there does not mimic
-    any interface method of \b Lox. Still class \b Log exists and is thhe home for the same enums and
-    constants that are found in C# and Java versions.
+    any interface method of \b Lox as said above. Still class \b Log exists and provides
+    the remaining methods specific to debug-logging.
 \note
   For more details on pruning and the use of class *Log*, consult the language specific
   documentation:
@@ -467,12 +470,12 @@ Pure static class
 were registered with it. Registration is done by default when constructing a Lox.
 The advantage of that registration is that a \b %Lox can be retrieved statically using
 <b>%ALox.Get</b>
-  ([C++]      (@ref #aworx::lox::ALox::Get(const TString&, Create),
-   [C#]   (@ref #cs::aworx::lox::ALox::Get(String, Create),
-   [Java](@ref #com::aworx::lox::ALox::get(String, Create)). This is convenient because this way, references
+  ([C++]      (@ref #aworx::lox::ALox::Get(const TString&, Create)),
+   [C#]   (@ref #cs::aworx::lox::ALox::Get(String, Create)),
+   [Java](@ref #com::aworx::lox::ALox::get(String, Create))). This is convenient because this way, references
 of a \b %Lox do not be passed around or otherwise made public.
 
-However, there might be situations, when the this way <em>'public availability'</em> of a \b %Lox
+But there might be situations, when the this <em>'public availability'</em> of a \b %Lox
 instance is not wanted. For this case, optional parameter \p doRegister may be set to \c false
 when invoking constructor
 <b>%Lox.Lox</b>

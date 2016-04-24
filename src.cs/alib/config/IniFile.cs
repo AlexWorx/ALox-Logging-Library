@@ -39,7 +39,7 @@ namespace cs.aworx.lib.config  {
      *    and after the equal sign ('=').
      *  - Lines that start (apart from whitespace) with either a double
      *    slash "//", a sharp sign '#' or a semicolon ';' are comment lines.
-     *  - Comments can not stay in a the same line with section names or variables.
+     *  - Comments can not reside in the same line together with section names or variables.
      *  - Variables definitions are being continued (values are concatenated) if the line ends
      *    with a backslash ('\'). Whitespaces in continued lines are ignored but can be 'escaped'.
      *    Comment lines in-between continued lines are not recognized as such.

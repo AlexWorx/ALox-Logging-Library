@@ -266,7 +266,7 @@ public class Domain
     }
 
     /** ****************************************************************************************
-     * Returns the number of a the \e Logger.
+     * Returns the number of a \e Logger.
      * @param logger  The logger to search.
      * @return The number of the \e Logger. If the \e Logger does not exist, -1 is returned.
      ******************************************************************************************/
@@ -428,7 +428,7 @@ public class Domain
                 tAString._(i!=0 ? ", " : "" )
                         ._('(')
                             ._('[')._(ld.CntLogCalls,3)._( "], " );
-                            ALox.ToString( ld.LoggerVerbosity, ld.Priority, tAString ) 
+                            ALox.ToString( ld.LoggerVerbosity, ld.Priority, tAString )
                         ._( ')' );
             }
         return tAString._(" }").ToString();
@@ -492,8 +492,8 @@ public class Domain
                             break;
                         }
                     }
-    
-                    // domain found? 
+
+                    // domain found?
                     if ( subDomain != null )
                         break;
 
@@ -501,14 +501,14 @@ public class Domain
                     if( !fixedOnce )
                     {
                         fixedOnce= true;
-        
+
                         bool illegalCharacterFound= false;
                         for( int cp= 0; cp< domainPath.Length() ; ++cp )
                         {
                             char c= domainPath.CharAt(cp);
                             if (     c <  '-' || c > 'z'
-                                  || c == '<' || c == '>'    
-                                  || c == '[' || c == ']'    
+                                  || c == '<' || c == '>'
+                                  || c == '[' || c == ']'
                                   || c == '=' || c == '?' || c == ';' || c == ':'
                                   || c == '\\'|| c == '\''|| c == '.' || c == ','
                                )
@@ -517,11 +517,11 @@ public class Domain
                                 domainPath.Buf[domainPath.Start + cp]= '#';
                             }
                         }
-        
+
                         if ( illegalCharacterFound )
                             continue;
                      }
-        
+
                     // create
                     if ( maxCreate == 0 )
                         return null;

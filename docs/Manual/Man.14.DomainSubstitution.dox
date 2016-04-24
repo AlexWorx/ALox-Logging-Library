@@ -16,7 +16,7 @@
 <em>Domain Substitution</em> is a concept of ALox that allows to manipulate the effective domain of <em>Log Statements</em> without changing
 neither these statements nor the <em>Scope Domains</em> that apply to them. Therefore, <em>Domain Substitution</em> is useful when
 those changes can not be performed (e.g. because the corresponding ALox code is residing in
-a library) or because the a temporary "redirect" of certain domains is wanted.
+a library) or because a temporary "redirect" of certain domains is wanted.
 
 As with <em>Scope Domain</em> settings, the concept of <em>Domain Substitution</em> in general should not be 'overused'. Otherwise, things
 might get complicated.
@@ -25,7 +25,7 @@ The rules are set and removed with method
 <b>%Lox.SetDomainSubstitutionRule</b>
 ([C++] (@ref      #aworx::lox::Lox::SetDomainSubstitutionRule),
  [C#]  (@ref  #cs::aworx::lox::Lox::SetDomainSubstitutionRule),
- [Java](@ref #com::aworx::lox::Lox::setDomainSubstitutionRule) ), which accepts two parameters:
+ [Java](@ref #com::aworx::lox::Lox::setDomainSubstitutionRule)), which accepts two parameters:
 - \p domainPath:<br>
   The domain path (substring) that is to be searched and replaced. For the search, a simple
   \e 'wildcard' mechanism is aplied: It is allowed to use character <c> '*'</c> at the beginning and/or
@@ -63,7 +63,7 @@ of method
 <b>%Lox.SetDomainSubstitutionRule</b>
 ([C++] (@ref      #aworx::lox::Lox::SetDomainSubstitutionRule),
  [C#]  (@ref  #cs::aworx::lox::Lox::SetDomainSubstitutionRule),
- [Java](@ref #com::aworx::lox::Lox::setDomainSubstitutionRule) ) ).
+ [Java](@ref #com::aworx::lox::Lox::setDomainSubstitutionRule))).
 
 This amount of loops should be more than enough for all major use cases. Even a third
 loop is necessary very seldom.
@@ -88,7 +88,7 @@ by underlying utility library ALib.
  <b>%aworx::lib::config</b>
     ([C++] (@ref      #aworx::lib::config),
      [C#]  (@ref  #cs::aworx::lib::config),
-     [Java](@ref #com::aworx::lib::config) ) ).
+     [Java](@ref #com::aworx::lib::config)).
 
 The constructor of class \b %Lox tries to read a configuration variable named
 \c ALOX_LOXNAME_DOMAIN_SUBSTITUTION.

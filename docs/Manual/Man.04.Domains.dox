@@ -20,7 +20,7 @@ you have read and understood the chapter \ref man_alox_terminology.
 Let us quickly recapture what was explained already on <em>Log Domains</em> in the previous chapter
 and the tutorials.
 It is very common to logging libraries to provide a system that allows to control the verboseness
-of the log output, by matching what ALox calls a \e Verbosity associated.
+of the log output, by matching what ALox calls a \e Verbosity associated to <em>Log Statements</em>.
 ALox allows to divide the overall set of <em>Log Statements</em> into sub-sets that belong to different
 topics or 'areas of interest'. These topics are called <em>Log Domains</em> and each
 <em>Log Statement</em> has one associated.
@@ -36,18 +36,18 @@ in class \b Lox is simply called \b SetVerbosity(). As you see in the reference 
 <b>%Lox.SetVerbosity</b>
 ([C++] (@ref      #aworx::lox::Lox::SetVerbosity),
  [C#]  (@ref  #cs::aworx::lox::Lox::SetVerbosity),
- [Java](@ref #com::aworx::lox::Lox::setVerbosity) ), this method as a minimum requires a value for
+ [Java](@ref #com::aworx::lox::Lox::setVerbosity)), this method as a minimum requires a value for
 the \e Logger that is affected and the
 <b>%Verbosity</b>
 ([C++] (@ref      #aworx::lox::Verbosity),
  [C#]  (@ref  #cs::aworx::lox::Verbosity),
- [Java](@ref #com::aworx::lox::Verbosity) )
+ [Java](@ref #com::aworx::lox::Verbosity))
 that is to be set. The third parameter,
 the <em>Log Domain</em> defaults to "/" if not given. Omitting parameter \p domain with this method
 tells ALox to set \e all <em>Log Domains</em> to the same \b Verbosity.
 
-\note Other parameters of method \b SetVerbosity found in the reference documentation are explained later
-      in this chapter and in chapter \ref man_external_verbosity_configuration.
+\note The fourth parameter of method \b SetVerbosity found in the reference documentation is not
+      covered in this chapter. The impatient reader might refer to \ref man_external_verbosity_configuration.
 
 This probably sounds more complex than it is. If you think about it for a second, it should become obvious.
 As a sample, this mechanism allows to log warning and error messages of an application
@@ -160,12 +160,12 @@ of *Scope Domains*.
 <b>%Lox.SetDomain</b>
 ([C++] (@ref      #aworx::lox::Lox::SetDomain(const TString&, Scope, int)),
  [C#]  (@ref  #cs::aworx::lox::Lox::SetDomain),
- [Java](@ref #com::aworx::lox::Lox::setDomain) ). This method,
-along with the <em>Log Domain</em>, requires a parameter of type
+ [Java](@ref #com::aworx::lox::Lox::setDomain)). This method,
+along with parameter \p scopeDomain, requires a parameter of type
 <b>%Scope</b>
 ([C++] (@ref      #aworx::lox::Scope),
  [C#]  (@ref  #cs::aworx::lox::Scope),
- [Java](@ref #com::aworx::lox::Scope) ) that determines the \b 'Scope' that the given
+ [Java](@ref #com::aworx::lox::Scope)) that determines the \b 'Scope' that the given
 domain path should default to.
 
 
@@ -175,20 +175,20 @@ is related to <b>the thread that is executing the <em>Log Statement</em></b>, he
 
 \attention
   For this chapter, explaining the benefit of being able to assign <em>Scope Domains</em> to \e Scopes, we are
-  simplifying ALox \e Scope features to a bare minimum in this chapter.
+  simplifying ALox \e Scope features to a bare minimum.
   We are deferring the full explanation of possible \e Scope settings to chapter \ref man_scopes.
 
 We start really simple and look at
 <b>%Scope.Method</b>
 ([C++] (@ref      #aworx::lox::Scope::Method),
  [C#]  (@ref  #cs::aworx::lox::Scope::Method),
- [Java](@ref #com::aworx::lox::Scope::METHOD) ) which denotes that the <em>Scope Domain</em>
+ [Java](@ref #com::aworx::lox::Scope::METHOD)) which denotes that the <em>Scope Domain</em>
 given with method
 <b>%Lox.SetDomain</b>
 ([C++] (@ref      #aworx::lox::Lox::SetDomain(const TString&, Scope, int)),
  [C#]  (@ref  #cs::aworx::lox::Lox::SetDomain),
- [Java](@ref #com::aworx::lox::Lox::setDomain) ). This method,
-should apply to all <em>Log Statements</em> of the current method. Here is a sample:
+ [Java](@ref #com::aworx::lox::Lox::setDomain)) should apply to all <em>Log Statements</em>
+of the current method. Here is a sample:
 
 \snippet "UT_dox_manual.cs"        Man_DOMAINS___3
 
@@ -199,7 +199,7 @@ could be:
 
 \verbinclude  docs/ALox.CS/generated/Man_Domains_3.txt
 
-\note As you see, ALox' default meta information output of this sample and the following ones was reduced.
+\note For this and the following samples, ALox' default meta information output was reduced.
 
 We have already gained some advantages from this most simple use of a <em>Scope Domain</em>
 1. Less typing (we can omit the <em>Log Domain</em>)
@@ -226,7 +226,7 @@ As can bee seen in the output:
 \verbinclude  docs/ALox.CS/generated/Man_Domains_5.txt
 
 The difference of the sample is that while we previously always used a '/' at the beginning of
-the domains we used, now within the <em>Log Statement</em> this was omitted. This caused ALox to concatenate
+domains, now for parameter \p domain of the last <em>Log Statement</em> this was omitted. This caused ALox to concatenate
 the domain provided in the <em>Log Statement</em> with the <em>Scope Domain</em> set, to a new domain path.
 
 This mechanism does not need too much further explanation, as this is similar to file system
@@ -258,8 +258,9 @@ The output would be:
 The previous samples used <b>%Scope.Method</b>. Another important \e Scope 'level' is
 <b>%Scope.Filename</b>
 ([C++] (@ref      #aworx::lox::Scope::Filename),
- [C#]  (@ref  #cs::aworx::lox::Scope::Filename)), respectively in the Java version of ALox
-\ref #com::aworx::lox::Scope::CLASS "Scope.CLASS".
+ [C#]  (@ref  #cs::aworx::lox::Scope::Filename)), respectively in the Java version of ALox,
+<b>%Scope.CLASS</b>
+([Java] (@ref #com::aworx::lox::Scope::CLASS)).
 
 As mentioned before, we are not going into the details of the extended \e Scope definition of
 ALox (those are given in \ref man_scopes), but what is very important to understand is that
@@ -344,7 +345,7 @@ Some remarks:
 
 The usual way to use ALox is to separate the code that sets the \e Verbosity of <em>Log Domains</em>
 into a single location, normally somewhere in the 'boot-strapping part of a process. This is
-probably the same location where the used \e Loggers and also \e Lox objects are created and
+probably the same location where the \e Loggers used and also \e Lox objects are created and
 configured.
 
 It is of-course tempting to quickly (temporily) increase \e the Verbosity of the <em>Log Domain(s)</em>
@@ -352,7 +353,7 @@ that a code unit uses while working on that code unit. Method
 <b>%Lox.SetVerbosity</b>
 ([C++] (@ref      #aworx::lox::Lox::SetVerbosity),
  [C#]  (@ref  #cs::aworx::lox::Lox::SetVerbosity),
- [Java](@ref #com::aworx::lox::Lox::setVerbosity) ), properly uses the current \e Scope, so that a statement
+ [Java](@ref #com::aworx::lox::Lox::setVerbosity)), properly uses the current \e Scope, so that a statement
 like this:
 \snippet "UT_dox_manual.cs"        Man_DOMAINS___RelativePaths_Set
 properly sets the evaluated <em>Scope Domain</em>. However, if such code lines are inserted,
@@ -368,7 +369,7 @@ Verbosity of any domain from within the code, but by using external configuratio
 
 The separation has good reasons: A portion of the code that logs using a certain set of domains
 should not modify these <em>Log Domains' Verbosity</em>. One day such code could be moved into a library and then
-such changes are merely irreversible (well, in-fact they still are, but this is also only explained in
+such changes are merely irreversible (well, in-fact this misbehavior can be 'healed', but this is also only explained in
 chapter \ref man_external_verbosity_configuration).
 
 \~Comment ####################################################################################### \~
@@ -399,7 +400,7 @@ For this reason, within this chapter of the manual (which is all about understan
 <b>%Lox.SetVerbosity</b>
 ([C++] (@ref      #aworx::lox::Lox::SetVerbosity),
  [C#]  (@ref  #cs::aworx::lox::Lox::SetVerbosity),
- [Java](@ref #com::aworx::lox::Lox::setVerbosity) ) that can be omitted because it has a default value,
+ [Java](@ref #com::aworx::lox::Lox::setVerbosity)) that can be omitted because it has a default value,
 was not even named.
 Using this parameter allows to restrict the setting of the \e Verbosity of to a domain and
 and allows to include arbitrary sets of sub-domains or not, by assigning a priority to
@@ -431,7 +432,7 @@ Not all printable characters are allowed for domain names. The exact definition 
 characters is:
 - All characters between
   ASCII code 46 (Hex 0x2E, char <c>'0'</c>) and
-  ASCII code 122 (Hex 0x7A, char <c>'0'</c>),
+  ASCII code 122 (Hex 0x7A, char <c>'z'</c>),
 - excluding characters \c < \c > \c [ \c ] \c . \c ,  \c = \c ? \c ; \c : \c \\ and <c>'</c>.
 
 Of-course the domain path separator \c / is 'implicitly' not allowed in a domain name. The use
@@ -446,7 +447,7 @@ public flag
 <b>%Lox.DomainSensitivity</b>
 ([C++] (@ref      #aworx::lox::Lox::DomainSensitivity),
  [C#]  (@ref  #cs::aworx::lox::Lox::DomainSensitivity),
- [Java](@ref #com::aworx::lox::Lox::domainSensitivity) ), which is not recommended to do. The standard
+ [Java](@ref #com::aworx::lox::Lox::domainSensitivity)), which is not recommended to do. The standard
 is to always provide domain names in capital letters. If this rule is applied, the sensitivity setting
 is worthless anyhow.
 

@@ -451,10 +451,10 @@ public class AString
          ******************************************************************************************/
         public AString InsertAt( AString  src, int pos )
         {
-            
+
             return src != null ? InsertAt( src.buffer, 0, src.length, pos )
                                : this;
-        }       
+        }
 
         /** ****************************************************************************************
          * Inserts a Substring at a given position.
@@ -518,7 +518,7 @@ public class AString
                 int srcLength= src.Length;
                 if ( !resizeRegion( pos, 0, srcLength ) )
                     return this;
-    
+
                 src.CopyTo( 0, buffer, pos, srcLength );
             }
             return this;
@@ -643,7 +643,7 @@ public class AString
                 int srcLength= src.Length;
                 if ( !resizeRegion( regionStart, regionLength, srcLength ) )
                     return this;
-    
+
                 src.CopyTo( 0, buffer, regionStart, srcLength );
             }
             return this;
@@ -1081,7 +1081,7 @@ public class AString
             if ( src is Substring ) return _NC( (Substring) src );
             if ( src is String    ) return _NC( (String)    src );
             if ( src is char[]    ) return _NC( (char[])    src );
-                                            
+
                                     return _NC( src.ToString()  );
         }
 
@@ -1707,7 +1707,7 @@ public class AString
      ##@{ ########################################################################################*/
 
         /** ****************************************************************************************
-         * Compares a given region of a given string with the a region of this instance. Regions that are
+         * Compares a given region of a given string with a region of this instance. Regions that are
          * out of bounds get adjusted and then compared.
          *
          * @param needle             An object of type String that is compared to this.
@@ -1751,7 +1751,7 @@ public class AString
         }
 
         /** ****************************************************************************************
-         * Compares a given region of a given string with the a region of this instance. Regions that are
+         * Compares a given region of a given string with a region of this instance. Regions that are
          * out of bounds get adjusted and then compared.
          *
          * @param needle              An object of type AString that is compared to this.
@@ -1796,7 +1796,7 @@ public class AString
 
 
         /** ****************************************************************************************
-         * Compares a given region of a given string with the a region of this instance. Regions that are
+         * Compares a given region of a given string with a region of this instance. Regions that are
          * out of bounds get adjusted and then compared.
          *
          * @param needle              An object of type char[] that is compared to this.

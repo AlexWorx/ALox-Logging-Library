@@ -903,7 +903,7 @@ public class Substring
      ##@{ ########################################################################################*/
 
         /** ****************************************************************************************
-         * Compares a given region of a given string with the a region of this instance. Regions that are
+         * Compares a given region of a given string with a region of this instance. Regions that are
          * out of bounds get adjusted and then compared.
          *
          * @param needle             An object of type String that is compared to this.
@@ -947,7 +947,7 @@ public class Substring
         }
 
         /** ****************************************************************************************
-         * Compares a given region of a given string with the a region of this instance. Regions that are
+         * Compares a given region of a given string with a region of this instance. Regions that are
          * out of bounds get adjusted and then compared.
          *
          * @param needle              An object of type AString that is compared to this.
@@ -992,7 +992,7 @@ public class Substring
 
 
         /** ****************************************************************************************
-         * Compares a given region of a given string with the a region of this instance. Regions that are
+         * Compares a given region of a given string with a region of this instance. Regions that are
          * out of bounds get adjusted and then compared.
          *
          * @param needle              An object of type char[] that is compared to this.

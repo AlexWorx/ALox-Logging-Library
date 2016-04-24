@@ -51,7 +51,7 @@ ALox has some concepts that need a little more time to understand.
 Before we see more code, we have to take some prerequisites.
 
 ALox is designed to support <b>debug logging</b> (log output that should appear only in the debug version of your software) as well
-as <b>release logging</b>. In C# such pruning is done method annotations and <em>\#if / \#endif</em>
+as <b>release logging</b>. In C# such pruning is done using method annotations and <em>\#if / \#endif</em>
 statements. We have duplicated the central interface class: The duplicate contains method stubs just
 invoking the original one, but these stubs are conditionally compiled, hence pruned in release.
 

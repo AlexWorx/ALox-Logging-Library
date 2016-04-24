@@ -422,11 +422,11 @@ public class AString implements CharSequence
                 int srcLength= src.length();
                 if ( !resizeRegion( pos, 0, srcLength ) )
                     return this;
-    
+
                 for ( int i= 0 ; i < srcLength ; i++ )
                     buffer[pos + i]= src.charAt( i );
             }
-            
+
             return this;
         }
 
@@ -492,7 +492,7 @@ public class AString implements CharSequence
                 int srcLength= src.length();
                 if ( !resizeRegion( regionStart, regionLength, srcLength ) )
                     return this;
-    
+
                 for ( int i= 0 ; i < srcLength ; i++ )
                     buffer[regionStart + i]= src.charAt( i );
             }
@@ -1467,8 +1467,8 @@ public class AString implements CharSequence
          *
          *  \attention Non checking variant of original method.
          *             See \ref JAVA_ASTRING_NC "Non-checking methods" for <em>_NC</em> method
-         *             variants.         
-         *             
+         *             variants.
+         *
          * @param object The object whose string representation is to be appended.
          *
          * @return    \c this to allow concatenated calls.
@@ -1599,7 +1599,7 @@ public class AString implements CharSequence
      ##@{ ########################################################################################*/
 
         /** ****************************************************************************************
-         * Compares a given region of a string with the a region of this instance.
+         * Compares a given region of a string with a region of this instance.
          * Regions that are out of bounds get adjusted and then compared.
          *
          * @param cmpString       An object of type String, StringBuffer or AString that is
@@ -1644,7 +1644,7 @@ public class AString implements CharSequence
         }
 
         /** ****************************************************************************************
-         * Compares a given region of a string with the a region of this instance.
+         * Compares a given region of a string with a region of this instance.
          * Regions that are out of bounds get adjusted and then compared.
          *
          * @param cmpString       An object of type String, StringBuffer or AString that is

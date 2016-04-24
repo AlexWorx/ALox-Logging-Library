@@ -60,12 +60,12 @@ Language specific documentation is given with:
 - The <b>Tutorials</b>
   ([C++] ( cpp_ref/cpptutorial.html  ),
    [C#]  (  cs_ref/cstutorial.html   ),
-   [Java](java_ref/javatutorial.html ) )
+   [Java](java_ref/javatutorial.html ))
 
 - The <b>Reference Documentation</b>
   ([C++] ( cpp_ref/annotated.html ),
    [C#]  (  cs_ref/annotated.html ),
-   [Java](java_ref/annotated.html ) )
+   [Java](java_ref/annotated.html ))
 <p>
 All created with marvelous [Doxygen](http://www.stack.nl/~dimitri/doxygen/)!
 

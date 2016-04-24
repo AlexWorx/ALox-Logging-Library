@@ -23,7 +23,7 @@ to have read and understood chapters
 This chapter will \e not repeat every detail covered already in the aforementioned chapters.
 
 \e Logables in ALox for Java/C# are of type <c>class </c> Object, in ALox for C++ of type
-<c>const void*</c>, accompanied by a type info parameter. Therefore, a user defined derived type
+<c>const void*</c>, accompanied by a type info parameter. Therefore, a user-defined derived type
 of class \c Logger, might expect (at least accept) any array-type, hence multiple objects to
 be logged out.<br>
 When looking at method
@@ -32,8 +32,8 @@ When looking at method
    [C#]  (@ref  #cs::aworx::lox::core::Logger::Log),
    [Java](@ref #com::aworx::lox::core::Logger::log)) we can see that a \e Logger by default
 receives an array of \e Logables. One part of the answer to this is, that if an array-type
-is be passed as parameter \p logable to a <em>Log Statement</em>, this array will appear as one of the \e Logables
-of the list passed to the \e Loggers. In other words, ALox passes lists the same as other
+is passed as parameter \p logable to a <em>Log Statement</em>, this array will appear as one of the \e Logables
+of the list passed to the \e Loggers. In other words, ALox passes lists of objects the same as other
 'objects' to the \e Logger.
 
 So, where do the other \e Logables passed to the \e Logger now come from? The answer is: Those
@@ -49,12 +49,12 @@ For the first way of setting and removing <em>Prefix Logables</em> method
 <b>%Lox.SetPrefix</b>
 ([C++] (@ref      #aworx::lox::Lox::SetPrefix(const void*,int, Scope, int)),
  [C#]  (@ref  #cs::aworx::lox::Lox::SetPrefix),
- [Java](@ref #com::aworx::lox::Lox::setPrefix) ) is used. The method and its overloaded versions
+ [Java](@ref #com::aworx::lox::Lox::setPrefix)) is used. The method and its overloaded versions
 is very similar to method
 <b>%Lox.SetDomain</b>
 ([C++] (@ref      #aworx::lox::Lox::SetDomain(const TString&, Scope, int)),
  [C#]  (@ref  #cs::aworx::lox::Lox::SetDomain),
- [Java](@ref #com::aworx::lox::Lox::setDomain) ) used for setting <em>Scope Domains</em>.
+ [Java](@ref #com::aworx::lox::Lox::setDomain)) used for setting <em>Scope Domains</em>.
 Besides the difference in the name, the only
 difference is the first parameter, which is a \e Logable instead of a domain path string.
 
@@ -71,18 +71,18 @@ corresponding to
 <b>%Lox.RemoveThreadDomain</b>
 ([C++] (@ref      #aworx::lox::Lox::RemoveThreadDomain),
  [C#]  (@ref  #cs::aworx::lox::Lox::RemoveThreadDomain),
- [Java](@ref #com::aworx::lox::Lox::removeThreadDomain) ), which provides a little extra flexibility
+ [Java](@ref #com::aworx::lox::Lox::removeThreadDomain)), which provides a little extra flexibility
 of maintaining <em>Scope Domains</em> in contrast to maintaining <em>Prefix Logables</em>.
 
+\~Comment ####################################################################################### \~
 ## 2.2 Setting Prefix Logables According to the Log Domain##
-Besides setting <em>Prefix Logables</em> which are bound to a given \e Scope the same as <em>Scope Domains</em> do, there is an alternative
-for <em>Prefix Logables</em>. Those can in addition be
-The second way of setting and removing <em>Prefix Logables</em> which are bound to a <em>Log Domain</em>.
+Besides binding <em>Prefix Logables</em> to a  \e Scope, ALox provides an alternative
+and this s binding <em>Prefix Logables</em> to a <em>Log Domain</em>.
 The method for doing this is
 <b>%Lox.SetPrefix</b>
 ([C++] (@ref      #aworx::lox::Lox::SetPrefix(const void*,int, const TString&,lib::enums::Inclusion )),
- [C#]  (@ref  #cs::aworx::lox::Lox::SetPrefix(Object,String,Inclusion ,int,String,String) ),
- [Java](@ref #com::aworx::lox::Lox::setPrefix(Object,String,Inclusion)) ) is used.
+ [C#]  (@ref  #cs::aworx::lox::Lox::SetPrefix(Object,String,Inclusion ,int,String,String)),
+ [Java](@ref #com::aworx::lox::Lox::setPrefix(Object,String,Inclusion))).
 
 The method accepts a <em>Log Domain</em> path which may be absolute (starting with \c "/" or relative). If
 relative the normal evaluation of a resulting domain path taking <em>Scope Domains</em> into account applies.<br>
@@ -97,18 +97,18 @@ In the same fashion as <em>Scope Domains</em> are concatenated, ALox adds <em>Pr
 that are passed to each \e Logger instance. Consequently, the list that a \e Logger receives
 is filled as follows:
 
-1. <em>Prefix Logables</em> of \e %Scope.Global
+1. <em>Prefix Logable</em> of \e %Scope.Global
 2. <em>Prefix Logables</em> of \e %Scope.ThreadOuter (can be more than one)
-3. <em>Prefix Logables</em> of \e %Scope.Path (PACKAGE)
-4. <em>Prefix Logables</em> of \e %Scope.Filename (CLASS)
-5. <em>Prefix Logables</em> of \e %Scope.Method
+3. <em>Prefix Logable</em> of \e %Scope.Path (PACKAGE)
+4. <em>Prefix Logable</em> of \e %Scope.Filename (CLASS)
+5. <em>Prefix Logable</em> of \e %Scope.Method
 6. The <em>Prefix Logables</em> of the parent <em>Log Domain</em> in the order of there setting (recursively prepended!)
 7. The <em>Prefix Logables</em> of the <em>Log Domain</em> in the order of there setting
-8. The \e Logable of the <em>Log Statement</em>
+8. <b>The \e Logable of the <em>Log Statement</em> itself</b>
 9. <em>Prefix Logables</em> of \e %Scope.ThreadInner (can be more than one)
 
-If in \b 6. or \b 7. an <em>Prefix Logable</em> was passed with optional parameter \p otherPLs valued
-\b %Inclusion.Exclude, then starting after this object, the collection of further <em>Prefix Logables</em> is stopped.
+If in \b 6. or \b 7. a <em>Prefix Logable</em> was passed with optional parameter \p otherPLs valued
+\b %Inclusion.Exclude, then after adding this \e Logable, the collection of further <em>Prefix Logables</em> is stopped.
 Because all objects are collected in reverse order, starting with objects of \e %Scope.ThreadInner,
 this means that objects otherwise collected in \b 1. to \b 5. (respectively \b 6.) are not added.
 This allows to have a setting of a <em>Prefix Logable</em> which is bound to a domain to 'overwrite' those bound to
@@ -131,16 +131,16 @@ objects, what ALox supports and logging textual (string) messages, what is by fa
 application for ALox.
 
 ## 4.1 Textual Logging #
-When logging textual messages - when using abstract class
+When logging textual messages (more precisely: when using \e Loggers derived from abstract class
 <b>TextLogger</b>
   ([C++] (@ref #aworx::lox::core::textlogger::TextLogger),
    [C#]  (@ref #cs::aworx::lox::core::textlogger::TextLogger),
-   [Java](@ref #com::aworx::lox::core::textlogger::TextLogger)) just as all
-textual \e Loggers delivered with ALox do - the impact of <em>Prefix Logable</em> is simple. Class \b %TextLogger
-simply concatenates all (string) objects found in the list of \e Logables to the buffer which
-is passed to the abstract method implemented by derived classes.
+   [Java](@ref #com::aworx::lox::core::textlogger::TextLogger)) as just as all
+textual \e Loggers delivered with ALox are),  the impact of <em>Prefix Logable</em> is simple. Class \b %TextLogger
+just concatenates all (textual) objects found in the list of \e Logables in the output buffer which
+then is passed to the abstract logging method implemented by derived classes.
 
-\note For more information on \e Loggers and \e %TextLogger, see \ref man_colorful_loggers and
+\note For more information on \e Loggers and \e %TextLogger, see chapters \ref man_colorful_loggers and
       \ref man_ext_loggers.
 
 This explains the term \e 'prefix': Apart from <em>Prefix Logables</em> of \e %Scope.ThreadInner, all <em>Prefix Logables</em> are
@@ -223,7 +223,7 @@ ALox is used to support.
 
 One of the design goals of the ALox Logging Library is to avoid code clutter when using it.
 In a perfect world, <em>Log Statements</em> would be as clear and easy to read as comment lines.
-As C++ does not provide life-cycle management for allocated data (as Java and C# do), and this
+C++ does not provide life-cycle management for allocated data (as Java and C# do) and this
 causes a potential problem when using <em>Prefix Logables</em>.
 
 When logging <b>arbitrary objects</b>, the use cases
@@ -244,7 +244,7 @@ We think, as this is a matter of logging arbitrary objects, which is considered 
 of ALox anyhow, extra code should not be anything to be concerned about.
 
 With <b>textual logging</b>, especially in the case of debug logging, this is different. Here,
-the designers of ALox are concerned about extra code, and extra 'intrusiveness' of ALox!
+the designers of ALox are concerned about extra code wich increases the 'intrusiveness' of ALox!
 Therefore, the following rule applies. For \e Logables of \p type \c 0, hence especially when using
 the overloaded version of C++ method
 \ref aworx::lox::Lox::SetPrefix(const TString&, Scope, int) "Lox.SetPrefix" which accepts
@@ -252,7 +252,7 @@ a <c>const TString&</c> as a \b Logable, then ALox internally creates a copy of 
 Of-course, when such <em>Prefix Logable</em> is removed, ALox deletes it. The benefit of this is huge: A user
 of ALox does not need to care about keeping string-type <em>Prefix Logables</em> 'alive' after setting them. This
 means, any locally assembled, short-living string can be passed to method \b %Lox.SetPrefix and
-right afterwards, it can be deleted or removed by C++ from the stack if the scope is left.
+right afterwards, it can be deleted or removed by C++ from the stack if the (C++ -)scope is left.
 
 It is important to understand the impact:
 - With string-type <em>Prefix Logables</em>, you do not need to worry about the life cycle of the string passed
@@ -261,9 +261,9 @@ It is important to understand the impact:
 - Unlike, with ALox for C#/Java, setting an \b %AString as <em>Prefix Logable</em> with \p type \c 0 and
   changing the instance after it was set, does \e not change the prefix object.
 
-The latter is of-course a the drawback of this convenience design. The way out is to set an
+The latter is of-course a drawback of this convenience design. The way out is to set an
 external \b %AString by using the overloaded version of the method which allows to explicitly
-set the type of the <em>Prefix Logable</em> and using \c -1 for the parameter \p type. This type value explicityl
+set the type of the <em>Prefix Logable</em> and using \c -1 for the parameter \p type. This type value explicitly
 specifies external objects of type \b %AString.
 
 
@@ -284,7 +284,7 @@ This is what this chapter has covered in respect to <em>Prefix Logables</em>:
   the life-cycle of such <em>Prefix Logables</em>. If arbitrary objects are used, the user of ALox has to ensure that
   <em>Prefix Logables</em> survive until the last corresponding <em>Log Statement</em> is executed.
 
-As with other features that are using ALox \e Scopes, on the first sight, this seems to be
+As with other features using ALox \e Scopes, on the first sight, this seems to be
 a little complicated. Especially when looking at the list given in
 \ref man_prefix_logables_processing "How ALox Processes Prefix Logables".
 But when you look at the use cases, it becomes clear, that from the nine options of that list,

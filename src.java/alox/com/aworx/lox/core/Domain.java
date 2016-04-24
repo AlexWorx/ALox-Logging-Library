@@ -161,7 +161,7 @@ public class Domain
             dom= dom.parent;
         }
         while( dom != null );
-            
+
     }
 
     /** ****************************************************************************************
@@ -266,7 +266,7 @@ public class Domain
     }
 
     /** ****************************************************************************************
-     * Returns the number of a the \e Logger.
+     * Returns the number of a \e Logger.
      * @param logger  The logger to search.
      * @return The number of the \e Logger. If the \e Logger does not exist, -1 is returned.
      ******************************************************************************************/
@@ -428,7 +428,7 @@ public class Domain
                 tAString._(i!=0 ? ", " : "" )
                         ._('(')
                             ._('[')._(ld.cntLogCalls,3)._( "], " );
-                            ALox.toString( ld.loggerVerbosity, ld.priority, tAString ) 
+                            ALox.toString( ld.loggerVerbosity, ld.priority, tAString )
                         ._(')');
             }
         return tAString._(" }").toString();
@@ -493,36 +493,36 @@ public class Domain
                             break;
                         }
                     }
-    
+
                     // domain found?
                     if ( subDomain != null )
                         break;
-                        
+
                     // try and fix name
                     if( !fixedOnce )
                     {
                         fixedOnce= true;
-        
+
                         boolean illegalCharacterFound= false;
                         for( int cp= 0; cp< domainPath.length() ; ++cp )
                         {
                             char c= domainPath.charAt(cp);
                             if (     c <  '-' || c > 'z'
-                                  || c == '<' || c == '>'    
-                                  || c == '[' || c == ']'    
+                                  || c == '<' || c == '>'
+                                  || c == '[' || c == ']'
                                   || c == '=' || c == '?' || c == ';' || c == ':'
-                                  || c == '\\'|| c == '\''|| c == '.' || c == ','     
+                                  || c == '\\'|| c == '\''|| c == '.' || c == ','
                                )
                             {
                                 illegalCharacterFound= true;
                                 domainPath.buf[domainPath.start + cp]= '#';
                             }
                         }
-        
+
                         if ( illegalCharacterFound )
                             continue;
                      }
-        
+
                     // create
                     if ( maxCreate == 0 )
                         return null;
