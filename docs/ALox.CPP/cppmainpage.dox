@@ -69,9 +69,9 @@ The following information is found in the C++ sub pages:
 
 ## IDE / Built System Setup ##
 The C++ Version got tested on the following platform combinations:
-- CMake 3.2 on GNU/Linux (Arch Linux), with GNU Compiler Collection 5.1
-- QT Creator V. 3.4 on GNU/Linux (Arch Linux), with GNU Compiler Collection 5.1
-- Visual Studio 2013 on Microsoft Windows 8.1
+- CMake 3.5.2 on GNU/Linux (Arch Linux), with GNU Compiler Collection 6.1.1
+- QT Creator V. 4.0.0 on GNU/Linux (Arch Linux), with GNU Compiler Collection 6.1.1
+- Visual Studio 2015 Update 2 on Microsoft Windows 10
 
 Check out \ref cppsetup for details of how to compile and use ALox in your C++ environment.
 

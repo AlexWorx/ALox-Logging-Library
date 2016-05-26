@@ -16,7 +16,7 @@
 #define HPP_ALIB_MACROS 1
 
 // #################################################################################################
-// Compile veryfier flags. Compiled statically into ALIB::CompilationFlags and are used to detect
+// Compile verifier flags. Compiled statically into ALIB::CompilationFlags and are used to detect
 // incompatible flag settings.
 // #################################################################################################
 

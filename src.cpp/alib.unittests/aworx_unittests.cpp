@@ -26,9 +26,16 @@ namespace ut_aworx {
 // #################################################################################################
 // Fields
 // #################################################################################################
+#if defined(_MSC_VER)
+    #pragma warning( push )
+    #pragma warning( disable : 4592 )
+#endif
 String128 ALIBUnitTesting::LastAutoSizes;
 AString   ALIBUnitTesting::GeneratedSamplesDir;
 String    ALIBUnitTesting::GeneratedSamplesSearchDir= "docs/ALox.CPP/";
+#if defined(_MSC_VER)
+    #pragma warning( pop )
+#endif
 
 // #################################################################################################
 // Constructors/destructor

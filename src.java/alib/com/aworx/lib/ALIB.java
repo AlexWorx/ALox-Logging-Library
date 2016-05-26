@@ -76,7 +76,7 @@ public final class ALIB
          * revision \e 0. Pure maintenance releases that do not change the interface of ALox
          * are holding the same #version but an increased number in this field.
          */
-        public static final int         revision                                                 =0;
+        public static final int         revision                                                 =1;
 
 
         /**
@@ -356,7 +356,7 @@ public final class ALIB
     // #############################################################################################
 
         /** ****************************************************************************************
-         * Sleeps for the given nmber of milliseconds.
+         * Sleeps for the given number of milliseconds.
          * Variants of this method are #sleepMicros and #sleepNanos.
          *
          * @param millisecs Sleep time in milliseconds.
@@ -367,7 +367,7 @@ public final class ALIB
         }
 
         /** ****************************************************************************************
-         * Sleeps for the given nmber of microseconds.
+         * Sleeps for the given number of microseconds.
          * Variants of this method are #sleepMillis and #sleepNanos.
          * @param microsecs Sleep time in microseconds.
          ******************************************************************************************/
@@ -377,7 +377,7 @@ public final class ALIB
         }
 
         /** ****************************************************************************************
-         * Sleeps for the given nmber of nanoseconds.
+         * Sleeps for the given number of nanoseconds.
          * Variants of this method are #sleepMillis and #sleepNanos.
          *
          * @param nanosecs Sleep time in nanoseconds.

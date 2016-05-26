@@ -101,10 +101,7 @@ class Log
          * and will be registered with the standard \b %Lox used for debug-logging with the same
          * \e Verbosities as \c "DEBUG_LOGGER" is.
          *
-         * Finally, in the case that the original ALib ConsoleReportWriter is still in place,
-         * \ref aworx::lib::Report::PushWriter "Report.PushWriter" is invoked to provide a
-         * ReportWriter of type
-         * \ref aworx::lox::ALoxReportWriter "ALoxReportWriter".
+         * Finally, this method also invokes #AddALibReportWriter.
          *
          * @param lox  The lox to add the debug logger(s) to.
          ******************************************************************************************/
@@ -112,13 +109,36 @@ class Log
 
         /** ****************************************************************************************
          *  Removes the \e Logger(s) and which was (were) created by \ref AddDebugLogger.
-         *  This method also invokes
-         *  \ref aworx::lib::Report::PopWriter "Report::Pop"
-         *  to install a default \ref aworx::lib::ReportWriter "ReportWriter" for ALib.
+         *  This method also invokes #RemoveALibReportWriter.
          *
          *  @param lox The lox to remove the debug logger(s) from.
          ******************************************************************************************/
         ALOX_API static void      RemoveDebugLogger( Lox* lox );
+
+        /** ****************************************************************************************
+         * In the case that the original ALib ConsoleReportWriter is still in place,
+         * \ref aworx::lib::Report::PushWriter "Report.PushWriter" is invoked to provide a
+         * ReportWriter of type
+         * \ref aworx::lox::ALoxReportWriter "ALoxReportWriter".
+         *
+         * \note
+         * This method is effective only in debug compilations. Usually it is invoked indirectly by
+         * using method #AddDebugLogger. Applications that do not use that method (e.g. because
+         * they are using release logging exclusively), should invoke this method on bootstrap
+         * providing their (release) lox.
+         * In this case, the \e Verbosity of the internal domain used by class
+         * \ref aworx::lox::ALoxReportWriter "ALoxReportWriter" has to be set for the
+         * the logger(s) in given \p lox in question.
+         *
+         * @param lox  The lox that the
+         *             \ref aworx::lox::ALoxReportWriter "ALoxReportWriter" created will be using.
+         ******************************************************************************************/
+        ALOX_API static void      AddALibReportWriter( Lox* lox );
+
+        /** ****************************************************************************************
+         * Removes the report writer created with #AddALibReportWriter.
+         ******************************************************************************************/
+        ALOX_API static void      RemoveALibReportWriter();
 
     #endif // ALOX_DBG_LOG
 

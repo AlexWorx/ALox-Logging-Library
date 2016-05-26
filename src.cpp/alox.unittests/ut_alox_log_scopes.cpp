@@ -631,7 +631,7 @@ UT_METHOD(Log_Once_Test)
     UT_EQ( 1, ml.CntLogs ); ml.CntLogs= 0;
     LogOnceTestThread thread;
     thread.Start();
-    while( thread.IsAlive() );
+    while( thread.IsAlive() )
         ALIB::SleepMicros(1);
     UT_EQ( 2, ml.CntLogs ); ml.CntLogs= 0;
     Log_Once( Verbosity::Info, "Once(Scope::ThreadOuter) 2x - main thread", Scope::ThreadOuter, 0, 2 );

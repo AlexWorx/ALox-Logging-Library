@@ -15,6 +15,62 @@ The first released version was Version 1.0.1 in **May 2013**.
 
 This change log is sorted reversely in respect to chronology.
 
+
+\~Comment ####################################################################################### \~
+\~Comment #############################  V. 1604  Revision 0 #################################### \~
+\~Comment ####################################################################################### \~
+## Version 1604, Revision 1, released May 26th, 2016 ##
+
+<b>Changes in ALib:</b>
+- New optional parameter in constructor and method \b %Set of class
+  <b>Tokenizer</b>
+    ([C++] (@ref      #aworx::lib::strings::Tokenizer),
+     [C#]  (@ref  #cs::aworx::lib::strings::Tokenizer),
+     [Java](@ref #com::aworx::lib::strings::Tokenizer)) which allows to automatically skip
+  empty tokens.
+- C++ Version:
+    - Missing empty constructor was added to class
+      [Tokenizer] (@ref      #aworx::lib::strings::Tokenizer).
+    - New macros
+      #ALIB_STRINGS_APPLYTO_DECLARATION,
+      #ALIB_STRINGS_APPLYTO_DEFINITION and
+      #ALIB_STRINGS_APPLYTO_INLINE
+      to simplify the extension of partially implemented template method \b %ApplyTo for custom
+      'applicable' types.
+    - Compilation error in file applyto.hpp fixed. This started occurring in optimized release
+      compilations with newest [GCC](https://gcc.gnu.org) version 6.1 (release 2016-04-27).
+      (The code - from the new compiler perspective - did "invalid type punning of pointer types".
+      There are some interesting discussions to find in the Internet around this topic since years.)
+    - Version number in CMake file fixed.
+- Java Version:
+    - Method \b %ALIB.REPORT was added to Proguard configuration file (pruning). On the same token,
+      pruning script names and documentation were aligned.
+
+<b>Changes in ALox:</b>
+- Method
+  <b>ALox.Get</b>
+    ([C++](@ref      #aworx::lox::ALox::Get),
+    [C#]  (@ref  #cs::aworx::lox::ALox::Get),
+    [Java](@ref #com::aworx::lox::ALox::get)) now compares the given name of the \b %Lox
+  in case insensitive manner. On the same token, naming of \b %Lox and \b %Logger got aligned: both
+  now internally convert given names to upper case on creation. Any search is case insensitive.
+
+- New methods
+  <b>Log.AddALibReportWriter</b>
+    ([C++](@ref      #aworx::lox::Log::AddALibReportWriter),
+    [C#]  (@ref  #cs::aworx::lox::Log::AddALibReportWriter),
+    [Java](@ref #com::aworx::lox::Log::addALibReportWriter)) and
+  <b>Log.RemoveALibReportWriter</b>
+    ([C++](@ref      #aworx::lox::Log::RemoveALibReportWriter),
+    [C#]  (@ref  #cs::aworx::lox::Log::RemoveALibReportWriter),
+    [Java](@ref #com::aworx::lox::Log::removeALibReportWriter)) introduced, to more easily support
+  ALib reports in debug versions of applications that use release logging exclusively.
+  Details are documented in \ref man_debug_and_release_logging and sample code got updated accordingly.
+
+<b>Changes in Tools:</b>
+- Extended the "DoxygenGraphTemplateInstanceRemover" tool, to remove more unnecessary template
+  instantiation types from doxygen dot files.
+
 \~Comment ####################################################################################### \~
 \~Comment #############################  V. 1604  Revision 0 #################################### \~
 \~Comment ####################################################################################### \~

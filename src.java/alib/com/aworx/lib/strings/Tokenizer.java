@@ -61,16 +61,16 @@ public class Tokenizer
         /**  A %Substring that represents the part of the underlying data that has not been
          *   tokenized, yet.
          */
-        public Substring      rest;
+        public Substring      rest                                                = new Substring();
 
         /** The actual token, which was returned the last recent invocation of #next() or #rest().
          *  It is allowed to manipulate this field any time, for example changing its whitespace
          *  characters definition.*/
-        public Substring      actual                                             = new Substring();
+        public Substring      actual                                              = new Substring();
 
         /** The white space characters used to trim the tokens.
          *  Defaults to CString.DEFAULT_WHITESPACES */
-        public char[]         whitespaces                             =CString.DEFAULT_WHITESPACES;
+        public char[]         whitespaces                              =CString.DEFAULT_WHITESPACES;
 
 
     // #############################################################################################
@@ -80,12 +80,14 @@ public class Tokenizer
         /**  The most recently set delimiter used by default for the next token extraction. */
         protected char        delim;
 
+        /**  If \c true, empty tokens are omitted.  */
+        protected boolean     skipEmptyTokens;
 
     // #############################################################################################
     //  Constructors/Destructor
     // #############################################################################################
         /** ****************************************************************************************
-         *  Constructs an empty tokenizer.
+         * Constructs an empty tokenizer. Before use, method #set to initialize needs to be invoked.
          ******************************************************************************************/
         public Tokenizer()
         {
@@ -95,47 +97,105 @@ public class Tokenizer
         /** ****************************************************************************************
          *  Constructs a tokenizer to work on a given cstring.
          *
-         * @param  str        The character array to use as the source for the tokens.
+         * @param  src             The string to be tokenized.
+         * @param  delim           The delimiter that separates the tokens. Can be changed with 
+         *                         every next token.
+         * @param  skipEmptyTokens If \c true, empty tokens are omitted.
+         *                         Optional and defaults to \c false.
+         ******************************************************************************************/
+        public Tokenizer( String src, char delim, boolean skipEmptyTokens  )
+        {
+            set( src, delim, skipEmptyTokens );
+        }
+
+        /** ****************************************************************************************
+         *  Constructs a tokenizer to work on a given cstring.
+         *
+         * @param  src        The character array to use as the source for the tokens.
          * @param  delim      The delimiter that separates the tokens. Can be changed with every
          *                    next token.
          ******************************************************************************************/
-        public Tokenizer( String str, char delim  )
+        public Tokenizer( String src, char delim  )
         {
-            rest= new Substring( str );
-            this.delim=    delim;
+            set( src, delim, false );
         }
 
         /** ****************************************************************************************
          *  Constructs a tokenizer to work on a given
          *  \ref com::aworx::lib::strings::AString "AString".
          *
-         * @param  astring    The AString to use as the source for the tokens.
+         * @param  src             The string to be tokenized.
+         * @param  delim           The delimiter that separates the tokens. Can be changed with 
+         *                         every next token.
+         * @param  skipEmptyTokens If \c true, empty tokens are omitted.
+         *                         Optional and defaults to \c false.
+         ******************************************************************************************/
+        public Tokenizer( AString src, char delim, boolean skipEmptyTokens  )
+        {
+            set( src, delim, skipEmptyTokens );
+        }
+
+        /** ****************************************************************************************
+         *  Constructs a tokenizer to work on a given
+         *  \ref com::aworx::lib::strings::AString "AString".
+         *
+         * @param  src        The AString to use as the source for the tokens.
          * @param  delim      The delimiter that separates the tokens. Can be changed with every
          *                    next token.
          ******************************************************************************************/
-        public Tokenizer( AString astring, char delim  )
+        public Tokenizer( AString src, char delim  )
         {
-            rest= new Substring( astring );
-            this.delim=    delim;
+            set( src, delim, false );
         }
 
         /** ****************************************************************************************
          *  Constructs a tokenizer to work on a given
          *  \ref com::aworx::lib::strings::Substring "Substring".
          *
-         * @param  substring  The substring to use as the source for the tokens.
+         * @param  src             The string to be tokenized.
+         * @param  delim           The delimiter that separates the tokens. Can be changed with 
+         *                         every next token.
+         * @param  skipEmptyTokens If \c true, empty tokens are omitted.
+         *                         Optional and defaults to \c false.
+         ******************************************************************************************/
+        public Tokenizer( Substring src, char delim, boolean skipEmptyTokens  )
+        {
+            set( src, delim, skipEmptyTokens );
+        }
+        
+        /** ****************************************************************************************
+         *  Constructs a tokenizer to work on a given
+         *  \ref com::aworx::lib::strings::Substring "Substring".
+         *
+         * @param  src        The substring to use as the source for the tokens.
          * @param  delim      The delimiter that separates the tokens. Can be changed with every
          *                    next token.
          ******************************************************************************************/
-        public Tokenizer( Substring substring, char delim  )
+        public Tokenizer( Substring src, char delim  )
         {
-            rest= new Substring( substring );
-            this.delim=    delim;
+            set( src, delim, false );
         }
 
     // #############################################################################################
     //  Interface
     // #############################################################################################
+        /** ****************************************************************************************
+         *  Sets the tokenizer to the new source and delim.
+         *
+         * @param  str             The character array to use as the source for the tokens.
+         * @param  delim           The delimiter that separates the tokens. Can be changed with
+         *                         every next token.
+         * @param  skipEmptyTokens If \c true, empty tokens are omitted.
+         *                         Optional and defaults to \c false.
+         ******************************************************************************************/
+        public void set( String str, char delim, boolean skipEmptyTokens  )
+        {
+            this.delim=             delim;
+            this.skipEmptyTokens=   skipEmptyTokens;
+            rest.set( str );
+            actual.setNull();
+        }
+
         /** ****************************************************************************************
          *  Sets the tokenizer to the new source and delim.
          *
@@ -145,8 +205,23 @@ public class Tokenizer
          ******************************************************************************************/
         public void set( String str, char delim  )
         {
-            this.delim=    delim;
-            rest.set( str );
+            set( str, delim, false );
+        }
+
+        /** ****************************************************************************************
+         *  Constructs a tokenizer to work on a given AString.
+         *
+         * @param  astring         The AString to use as the source for the tokens.
+         * @param  delim           The delimiter that separates the tokens. Can be changed with
+         *                         every next token.
+         * @param  skipEmptyTokens If \c true, empty tokens are omitted.
+         *                         Optional and defaults to \c false.
+         ******************************************************************************************/
+        public void set( AString astring, char delim, boolean skipEmptyTokens  )
+        {
+            this.delim=             delim;
+            this.skipEmptyTokens=   skipEmptyTokens;
+            rest.set( astring );
             actual.setNull();
         }
 
@@ -159,8 +234,23 @@ public class Tokenizer
          ******************************************************************************************/
         public void set( AString astring, char delim  )
         {
-            this.delim=    delim;
-            rest.set( astring );
+            set( astring, delim, false );
+        }
+
+        /** ****************************************************************************************
+         *  Constructs a tokenizer to work on a given Substring.
+         *
+         * @param  substring       The substring to use as the source for the tokens.
+         * @param  delim           The delimiter that separates the tokens. Can be changed with 
+         *                         every next token.
+         * @param  skipEmptyTokens If \c true, empty tokens are omitted.
+         *                         Optional and defaults to \c false.
+         ******************************************************************************************/
+        public void set( Substring substring, char delim, boolean skipEmptyTokens  )
+        {
+            this.delim=             delim;
+            this.skipEmptyTokens=   skipEmptyTokens;
+            rest.set( substring );
             actual.setNull();
         }
 
@@ -173,9 +263,7 @@ public class Tokenizer
          ******************************************************************************************/
         public void set( Substring substring, char delim  )
         {
-            this.delim=    delim;
-            rest.set( substring );
-            actual.setNull();
+            set( substring, delim, false );
         }
 
         /** ****************************************************************************************
@@ -208,30 +296,34 @@ public class Tokenizer
             if ( newDelim != '\0' )
                 delim= newDelim;
 
-            // set buf, start and find end
-            actual.buf=   rest.buf;
-            actual.start= rest.start;
-
-            int nextDelimiter= rest.indexOf( delim );
-            if ( nextDelimiter >= 0 )
+            do
             {
-                rest.start+=  nextDelimiter + 1;
-                actual.end=      rest.start  - 2;
+                // set buf, start and find end
+                actual.buf=   rest.buf;
+                actual.start= rest.start;
+    
+                int nextDelimiter= rest.indexOf( delim );
+                if ( nextDelimiter >= 0 )
+                {
+                    rest.start+=  nextDelimiter + 1;
+                    actual.end=      rest.start  - 2;
+                }
+                else
+                {
+                    actual.end=  rest.end;
+                    rest.setNull();
+                }
+    
+    
+                // trim
+                if ( trimming == Whitespaces.TRIM )
+                {
+                    actual.trimStart( whitespaces );
+                    actual.trimEnd( whitespaces );
+                }
             }
-            else
-            {
-                actual.end=  rest.end;
-                rest.setNull();
-            }
-
-
-            // trim
-            if ( trimming == Whitespaces.TRIM )
-            {
-                actual.trimStart( whitespaces );
-                actual.trimEnd( whitespaces );
-            }
-
+            while( skipEmptyTokens && actual.isEmpty() && rest.isNotNull() );
+            
             return actual;
         }
 
@@ -250,7 +342,10 @@ public class Tokenizer
          *                   Defaults to \c Whitespaces.TRIM.
          * @return true if a next token was available, false if not.
          ******************************************************************************************/
-        public Substring  next( Whitespaces trimming )  { return next( trimming, '\0'); }
+        public Substring  next( Whitespaces trimming )  
+        { 
+            return next( trimming, '\0'); 
+        }
 
         /** ****************************************************************************************
          * Returns the next token, which is afterwards also available through field #actual.
@@ -263,7 +358,10 @@ public class Tokenizer
          * For clarification, see the explanation and sample code in this classes documentation.
          * @return true if a next token was available, false if not.
          ******************************************************************************************/
-        public Substring  next()                        { return next( Whitespaces.TRIM, '\0'); }
+        public Substring  next()                        
+        { 
+            return next( Whitespaces.TRIM, '\0'); 
+        }
 
         /** ****************************************************************************************
          * Returns the currently remaining string (without searching for further delimiter
@@ -290,14 +388,21 @@ public class Tokenizer
          * After this call #hasNext will return false and #next will return a nulled Substring.
          * @return The rest of the original source string, which was not returned by #next(), yet.
          ******************************************************************************************/
-        public Substring  getRest()       { return getRest( Whitespaces.TRIM ); }
+        public Substring  getRest()       
+        { 
+            return getRest( Whitespaces.TRIM ); 
+        }
 
         /** ****************************************************************************************
          * If this returns true, a call to #next will be successful and will return a
          * Substring which is not nulled.
          * @return true if a next token is available.
          ******************************************************************************************/
-        public boolean    hasNext()       { return !rest.isNull(); }
+        public boolean    hasNext()       
+        { 
+            return rest.isNotNull() && ( !skipEmptyTokens || rest.isNotEmpty() ); 
+        }
+
 
 
     /** ****************************************************************************************

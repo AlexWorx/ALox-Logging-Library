@@ -75,15 +75,17 @@ template<>  int ApplyTo( AString& target, const Format::Field& field)
     // align Right
     if ( field.alignment == Alignment::Right )
     {
-        if( padSize > 0 )       target.InsertChars <false>( field.padChar, padSize );
-                                target.Apply       <false>( field.contents );
+        if( padSize > 0 )
+            target.InsertChars <false>( field.padChar, padSize );
+        target.Apply<false>( field.contents );
         return width;
     }
 
     // align Center
     int leftPadding= padSize / 2;
-    if( leftPadding > 0 )       target.InsertChars <false> ( field.padChar, leftPadding  );
-                                target.Apply       <false> ( field.contents );
+    if( leftPadding > 0 )
+        target.InsertChars<false> ( field.padChar, leftPadding  );
+    target.Apply<false> ( field.contents );
     if( padSize > leftPadding ) target.InsertChars <false> ( field.padChar, padSize - leftPadding );
 
     return width;

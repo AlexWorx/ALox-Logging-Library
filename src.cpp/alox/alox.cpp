@@ -23,21 +23,18 @@
 #endif
 
 
-
-
 using namespace std;
 using namespace aworx;
 namespace aworx { namespace lox {
 
 
-
 // #################################################################################################
 // Version and check flags
 // #################################################################################################
-const int            ALox::Version=                                            ALIB_VERSION_VERYFIER;
-const int            ALox::Revision=                                                               1;
-const uint32_t       ALox::CompilationFlags=                             ALOX_COMPATIBILITY_VERYFIER;
-const uint32_t       ALox::ALibCompilationFlags=                         ALIB_COMPATIBILITY_VERYFIER;
+const int            ALox::Version=                                           ALIB_VERSION_VERYFIER;
+const int            ALox::Revision=                                                              1;
+const uint32_t       ALox::CompilationFlags=                            ALOX_COMPATIBILITY_VERYFIER;
+const uint32_t       ALox::ALibCompilationFlags=                        ALIB_COMPATIBILITY_VERYFIER;
 std::pair <const char*, uint32_t> ALox::CompilationFlagMeanings[]=
 {
     { "ALOX_DBG_LOG"            , ALOX_DBG_LOG_VFYBIT         },
@@ -53,15 +50,24 @@ std::pair <const char*, uint32_t> ALox::CompilationFlagMeanings[]=
 ALoxReportWriter::ALoxReportWriter ( Lox* lox )
 {
     this->lox= lox;
-    lox->Verbose( ALox::InternalDomains, "ALoxReportWriter set" );
+
+    #if defined( ALIB_DEBUG )
+        lox->Acquire( ALIB_DBG_SRC_INFO_PARAMS );
+
+            lox->Verbose( ALox::InternalDomains, "ALoxReportWriter set" );
+
+        lox->Release ();
+    #else
+
+    #endif
 }
 
-void lox::ALoxReportWriter::Report( const lib::Report::Message& report )
+void ALoxReportWriter::Report( const lib::Report::Message& report )
 {
     #if defined( ALIB_DEBUG )
         lox->Acquire( report.File, report.Line, report.Func );
 
-            lox->Entry( String16() << ALox::InternalDomains << "REPORT",
+            lox->Entry( ALoxReportWriter::LogDomain(),
                         report.Type == 0 ? Verbosity::Error   :
                         report.Type == 1 ? Verbosity::Warning :
                         report.Type == 2 ? Verbosity::Info    :
@@ -72,6 +78,22 @@ void lox::ALoxReportWriter::Report( const lib::Report::Message& report )
     #else
         (void) report;
     #endif
+}
+
+#if defined(_MSC_VER)
+    #pragma warning( push )
+    #pragma warning( disable : 4592 )
+#endif
+String16 ALoxReportWriter::reportDomain;
+#if defined(_MSC_VER)
+    #pragma warning( pop )
+#endif
+
+String& ALoxReportWriter::LogDomain()
+{
+    if( reportDomain.IsEmpty() )
+        reportDomain << ALox::InternalDomains << "REPORT";
+    return reportDomain;
 }
 
 // #################################################################################################
@@ -186,10 +208,12 @@ std::vector<Lox*> ALox::loxes;
 Lox*     ALox::Get( const TString& name, Create create )
 {
     OWN(ALIB::Lock)
+
     // search
     for( auto it : loxes )
-        if( it->GetName().Equals( name ) )
+        if( it->GetName().Equals( name, Case::Ignore ) )
             return it;
+
 
     // create?
     if ( create == Create::IfNotExistent )

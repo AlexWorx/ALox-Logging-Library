@@ -174,7 +174,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src.cpp\alib.unittests\aworx_unittests.hpp" />
-    <ClInclude Include="..\..\..\src.cpp\alox.unittests\ut_alox_log_scopes.hpp" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
@@ -198,7 +197,7 @@
     <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_alox_log_scopes_helper.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_alox_log_scopes_helper_sub2.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_alox_lox.cpp" />
-    <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_dox_reference_manual.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_dox_manual.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_dox_tutorial.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_dox_tutorial_minimum.cpp" />
     <ClCompile Include="stdafx_alox_unittests.cpp">

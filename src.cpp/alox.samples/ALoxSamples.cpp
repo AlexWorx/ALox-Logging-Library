@@ -48,6 +48,11 @@ void ReleaseLog()
     // let the system choose an appropriate console logger
     Lox_Prune( TextLogger* releaseLogger= Lox::CreateConsoleLogger(); )
 
+    // In debug compilations, we still install a report writer.
+    // Note that we are using debug-macro prefixed "Log_" as in release versions, no ALib reports are written.
+    Log_Prune( Log::AddALibReportWriter( &LOX_LOX ); )
+    Log_Prune( Lox_SetVerbosity( releaseLogger, Verbosity::Verbose, lox::ALoxReportWriter::LogDomain() ); )
+
     // if makefile did not specify scope info for release logging (which is standard behavior),
     // we set a format string without scope information.
     #if !defined( ALOX_REL_LOG_CI )
@@ -56,6 +61,11 @@ void ReleaseLog()
 
     Lox_SetVerbosity( releaseLogger, Verbosity::Info );
     Lox_Info ( "Hello ALox, this is release logging" );
+
+
+    // shutdown
+    Log_Prune( Log::RemoveALibReportWriter() ); // note: using "Log_" -macro as above!
+
     Lox_RemoveLogger( releaseLogger );
     Lox_Prune( delete releaseLogger; )
 

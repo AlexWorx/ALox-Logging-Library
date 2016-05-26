@@ -234,7 +234,7 @@ public class Domain
     {
         loggerName= loggerName.ToUpper();
         for ( int i= 0; i < Data.Count; i++  )
-                if ( loggerName.Equals( Data[i].Logger.GetName().ToUpper()) )
+                if ( loggerName.Equals( Data[i].Logger.GetName() ) )
                 return Data[i].Logger;
         return null;
     }
@@ -260,7 +260,7 @@ public class Domain
     {
         loggerName= loggerName.ToUpper();
         for ( int i= 0; i < Data.Count ; i++  )
-            if ( loggerName.Equals( Data[i].Logger.GetName().ToUpper()) )
+            if ( loggerName.Equals( Data[i].Logger.GetName()) )
                 return i;
         return -1;
     }

@@ -8,6 +8,7 @@ package com.aworx.lox.core;
 
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Vector;
 
 import com.aworx.lib.strings.AString;
@@ -72,7 +73,8 @@ public class ScopeInfo
 
         /** ****************************************************************************************
          * Constructs a scope info.
-         * @param name              The name of the Lox we belong to
+         * @param name              The name of the Lox we belong to.
+         *                          Will be converted to upper case. 
          * @param threadDictionary  A dictionary to map thread IDs to user friendly names which is
          *                          managed outside of this class.
          * @param omittablePackagePrefixes A list of prefixes of package names that are ignored, when
@@ -82,7 +84,7 @@ public class ScopeInfo
         public ScopeInfo( String name,  HashMap <Long, String> threadDictionary,
                           Vector<String> omittablePackagePrefixes                    )
         {
-            this.loxName=                   name.toUpperCase();
+            this.loxName=                   name.toUpperCase( Locale.US );
             this.threadDictionary=          threadDictionary;
             this.omittablePackagePrefixes=  omittablePackagePrefixes;
         } 

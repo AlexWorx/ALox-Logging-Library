@@ -26,7 +26,7 @@
 # initialize things
 # -------------------------------------------------------------------------------------------------
     # set version
-    set( ALIB_VERSION       "1601"     )
+    set( ALIB_VERSION       "1604R1"     )
 
     if (ALIB_SRC_DIR)
         message( "ALib_Base.cmake: Already included (included twice!)" )

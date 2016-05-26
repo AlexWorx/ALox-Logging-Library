@@ -278,25 +278,25 @@ using *ProGuard*. Go ahead as follows:
 
 - Launch
 
-        ./start-SimpleTests.[sh|bat]
+        ./Samples.[sh|bat]
 
   and check the un-pruned output of the test
 - Launch
 
-        ./proguard.prune-alox-debug.[sh|bat]
-        ./start-SimpleTests-Pruned.[sh|bat]
+        ./proguard-prune-alox-debug.[sh|bat]
+        ./Samples-Pruned.[sh|bat]
 
 and check the output of the test with debug logging pruned
 - Launch
 
-        ./proguard.prune-alox-all.[sh|bat]
-        ./start-SimpleTests-Pruned.[sh|bat]
+        ./proguard-prune-alox-all.[sh|bat]
+        ./Samples-Pruned.[sh|bat]
 
 and check the output of the test with all logging pruned
 
 \note
   If you look into the script files that invoke *ProGuard*
-  (\c proguard.prune-alox-debug.[sh|bat] and \c proguard.prune-alox-all.[sh|bat])
+  (\c proguard-prune-alox-debug.[sh|bat] and \c proguard-prune-alox-all.[sh|bat])
   you will see that the Java runtime library is passed as another parameter. This parameter might
   be moved into the \c *.pro configuration files as well. To have them here, seems more appropriate,
   as this way, the current Java environment activated on your machine is used.

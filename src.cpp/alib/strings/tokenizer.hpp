@@ -103,40 +103,55 @@ class Tokenizer
         /**  The most recently set delimiter used by default for the next token extraction. */
         char           delim;
 
+        /**  If \c true, empty tokens are omitted.  */
+        bool           skipEmptyTokens;
+
 
     // #############################################################################################
     //  Constructors/Destructor
     // #############################################################################################
     public:
         /** ****************************************************************************************
+         * Constructs an empty tokenizer. Before use, method #Set to initialize needs to be invoked.
+         ******************************************************************************************/
+        Tokenizer()
+        {
+        }
+
+        /** ****************************************************************************************
          * Constructs a tokenizer to work on a given string.
          *
-         * @param  src    The string to be tokenized
-         * @param  delim  The delimiter that separates the tokens. Can be changed with every
-         *                next token.
+         * @param  src             The string to be tokenized.
+         * @param  delim           The delimiter that separates the tokens. Can be changed with
+         *                         every next token.
+         * @param  skipEmptyTokens If \c true, empty tokens are omitted.
+         *                         Optional and defaults to \c false.
          ******************************************************************************************/
-        Tokenizer( const String& src, char delim )
+        Tokenizer( const String& src, char delim, bool skipEmptyTokens= false )
         : Rest(src)
-        {
-            this->delim=    delim;
-        }
+        , delim(delim)
+        , skipEmptyTokens(skipEmptyTokens)
+        {}
 
     // #############################################################################################
     //  Interface
     // #############################################################################################
     public:
         /** ****************************************************************************************
-         *  Resets a tokenizer to work on a given string.
+         * Resets a tokenizer to work on a given string.
          *
-         * @param  src    The string to be tokenized
-         * @param  delim  The delimiter that separates the tokens. Can be changed with every
-         *                next token.
+         * @param  src             The string to be tokenized
+         * @param  delim           The delimiter that separates the tokens. Can be changed with
+         *                         every next token.
+         * @param  skipEmptyTokens If \c true, empty tokens are omitted.
+         *                         Optional and defaults to \c false.
          ******************************************************************************************/
-        void Set( const String& src, char delim )
+        void Set( const String& src, char delim, bool skipEmptyTokens= false )
         {
-            Rest.Set( src );
-            this->delim=  delim;
             Actual.SetNull();
+            Rest.Set( src );
+            this->delim=            delim;
+            this->skipEmptyTokens=  skipEmptyTokens;
         }
 
         /** ****************************************************************************************
@@ -184,7 +199,7 @@ class Tokenizer
          * Substring which is not \e nulled.
          * @return \c true if a next token is available.
          ******************************************************************************************/
-        bool        HasNext()       { return Rest.IsNotNull(); }
+        bool        HasNext()       { return Rest.IsNotNull() && ( !skipEmptyTokens || Rest.IsNotEmpty() ); }
 
 }; // class Tokenizer
 

@@ -85,7 +85,7 @@ ScopeInfo::ScopeInfo( const TString& name, const std::map<int, String32>&  threa
                 SourcePathTrimRule& rule=trimInfoList->back();
 
                 ruleTok.Next();
-                if( ! ( rule.IsPrefix= !ruleTok.Actual.StartsWith( "*" ) ) )
+                if( ( rule.IsPrefix= !ruleTok.Actual.StartsWith( "*" ) ) == false )
                     ruleTok.Actual.Consume(1);
                 rule.Path._( ruleTok.Actual );
                 if ( rule.Path.CharAtEnd() == '*' )
@@ -198,7 +198,7 @@ void  ScopeInfo::SetSourcePathTrimRule( const TString& path, Inclusion includeSt
     SourcePathTrimRule& rule= trimInfoList->back();
 
     // if path starts with '*', it is not a prefix. We store without *
-    rule.Path._(path, (rule.IsPrefix= (path.CharAtStart() != '*') ) ? 0 : 1 );
+    rule.Path._(path, (rule.IsPrefix= (path.CharAtStart() != '*') ) == true  ? 0 : 1 );
     if ( rule.Path.CharAtEnd() == '*' )
         rule.Path.DeleteEnd( 1 );
     if ( rule.Path.IsEmpty() )

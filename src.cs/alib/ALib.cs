@@ -74,7 +74,7 @@ public static class ALIB
          * revision \e 0. Pure bug-fix releases that do not change the interface of ALib
          * are holding the same #Version but an increased number in this field.
          */
-        public static readonly  int                    Revision                                  =0;
+        public static readonly  int                    Revision                                  =1;
 
         /**
          * This is the configuration singleton for ALib.
@@ -136,15 +136,15 @@ public static class ALIB
          * standard output and error information.
          *
          * If the 'entity' that is registering is not of type
-         * \ref cs::aworx::lib::threads::ThreadLock "ThreadLock" it is allowed to provide \c nullptr
+         * \ref cs::aworx::lib::threads::ThreadLock "ThreadLock" it is allowed to provide \c null
          * in the parameter of method \b AddAcquirer. In this case, the process of adding and
          * removing \e acquirers is not performed in a thread safe way. Therefore it is advised
-         * to register so called anonymous (\c nullptr) \e acquirers only at bootstrap time, when
+         * to register so called anonymous (\c null) \e acquirers only at bootstrap time, when
          * no parallel threads were started, yet.
          *
          * If an application is deemed to always write to the standard output streams from within
          * multiple threads, an alternative to registering each writing entity, is to
-         * invoke \b AddAcquirer just two times in a row with \c nullptr at the start of a process
+         * invoke \b AddAcquirer just two times in a row with \c null at the start of a process
          * and then never do this again (and never de-register). This way, no thread needs
          * to register/unregister but threads may still \b Acquire and \b Release the lock without
          * being registered. In other words, once a smart lock is enabled, subsequent registrations

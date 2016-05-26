@@ -250,6 +250,7 @@ public class Lox : ThreadLock
          * @param name       The name of the Lox. Can be logged out, e.g. by setting
          *                   cs::aworx::lox::textlogger::MetaInfo::Format "MetaInfo.Format"
          *                   accordingly.
+         *                   Will be converted to upper case. 
          * @param doRegister If \c true, this object is registered with static class
          *                   \ref cs::aworx::lox::ALox "ALox".
          *                   Optional and defaults to \c true.

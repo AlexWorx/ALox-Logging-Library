@@ -330,8 +330,9 @@ class ALox
          * registered and returned.
          *
          * @param name      The name of the \b %Lox to search and optionally to create.
+         *                  Comparison is case insensitive.
          * @param create    Denotes whether a \b %Lox that was not found is created.
-         *                  Optional and defaults to \b Create::Never.
+         *                  Optional and defaults to \b %Create::Never.
          * @return The \b Lox found, \c nullptr in case of failure.
          ******************************************************************************************/
         ALOX_API static
@@ -420,25 +421,35 @@ class    ALoxReportWriter : public aworx::lib::ReportWriter
         /** The \b Lox to report to */
         Lox*        lox;
 
+        /** The internal domain to report into */
+        static String16                    reportDomain;
+
     public:
-    /** ************************************************************************************
+    /** ********************************************************************************************
      * Constructs an \b %ALoxReportWriter.
      * @param lox    The \b Lox to report to.
-     **************************************************************************************/
+     **********************************************************************************************/
      ALOX_API
      ALoxReportWriter ( Lox* lox );
 
-    /** ****************************************************************************************
+    /** ********************************************************************************************
      * Notify activation/deactivation
-     ******************************************************************************************/
+     **********************************************************************************************/
     virtual void NotifyActivation  ( Phase ) { }
 
 
-    /** ************************************************************************************
+    /** ********************************************************************************************
      * Write ALib reports using ALox.
      * @param report The report to log.
-     **************************************************************************************/
+     **********************************************************************************************/
      virtual void Report  ( const lib::Report::Message& report );
+
+    /** ********************************************************************************************
+     * Returns the domain used to write reports.
+     * @return The report log domain.
+     **********************************************************************************************/
+     ALOX_API
+     static String& LogDomain();
 };// class ALoxReportWriter
 
 

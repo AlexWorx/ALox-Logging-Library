@@ -182,7 +182,9 @@ class Logger : public aworx::SmartLock
          * that invokes the constructor. If different compile options are set, we have a chance to
          * detect them here.
          * @param name     The name of the \e Logger. If empty, it defaults to the type name.
+         *                 Will be converted to upper case.
          * @param typeName The type of the \e Logger.
+         *                 Will be converted to upper case.
          ******************************************************************************************/
         inline
         Logger( const String& name, const String& typeName )
@@ -194,6 +196,8 @@ class Logger : public aworx::SmartLock
         {
             if ( this->name.IsEmpty() )
                 this->name << typeName;
+            this->name    .ToUpper();
+            this->typeName.ToUpper();
         }
 
         /** ****************************************************************************************

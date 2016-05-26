@@ -40,6 +40,88 @@
     #pragma warning( disable : 4127 )
 #endif
 
+/** ************************************************************************************************
+ * @ingroup GrpALibMacros
+ * @{
+ *
+ * \def ALIB_STRINGS_APPLYTO_DECLARATION
+ * Macro to declare method \b %ApplyTo (including template type \b %IsApplicable) for a custom
+ * type. Parameter \p type has to exclude specifiers \c const and \c &.<br>
+ * This macro has to be positioned outside any namespace and the given type has to include
+ * the its full namespace qualification.
+ *
+ * This macro is to be used in combination with macro #ALIB_STRINGS_APPLYTO_DEFINITION.<br>
+ * As an alternative to the two macros, #ALIB_STRINGS_APPLYTO_INLINE might be used, which will
+ * declare and define the method \c inline.
+ *
+ * \see \ref alib_namespace_strings_astring_applyto "Applying Objects to AStrings"
+ *
+ * @param TYPE The type to declare to be applicable to an instance of class AString.
+ **************************************************************************************************/
+#define ALIB_STRINGS_APPLYTO_DECLARATION(TYPE)                                          \
+namespace aworx { namespace lib { namespace  strings {                                  \
+    template<>  struct       IsApplicable<const TYPE &> : public std::true_type {};     \
+    template<>  int ApplyTo( AString& target, const TYPE & );                           \
+}}}
+
+
+/** ************************************************************************************************
+ * \def ALIB_STRINGS_APPLYTO_DEFINITION
+ * Macro to implement method \b %ApplyTo for a custom type.
+ * Parameter \p type has to exclude specifiers \c const and \c &.<br>
+ * This macro has to be positioned outside any namespace and the given type has to include
+ * the its full namespace qualification.
+ *
+ * This macro is to be used in combination with macro #ALIB_STRINGS_APPLYTO_DECLARATION.<br>
+ * As an alternative to the two macros, #ALIB_STRINGS_APPLYTO_INLINE might be used, which will
+ * declare and define the method \c inline.
+ *
+ * Parameter \p IMPLEMENTATION, which has to provide the source code that applies the value
+ * of a type, does not need to contain curly braces and has to refer to variables \p target
+ * (the AString) and \p src (the value that is to be applied to the AString).
+ *
+ * \see \ref alib_namespace_strings_astring_applyto "Applying Objects to AStrings"
+ *
+ * @param TYPE           The type to implement method \b %ApplyTo for.
+ * @param IMPLEMENTATION The implementation code.
+ **************************************************************************************************/
+#define ALIB_STRINGS_APPLYTO_DEFINITION(TYPE, IMPLEMENTATION)                            \
+template<>  int aworx::lib::strings::ApplyTo( AString& target, const TYPE & src )        \
+{                                                                                        \
+    IMPLEMENTATION                                                                       \
+}
+
+/** ************************************************************************************************
+ * \def ALIB_STRINGS_APPLYTO_INLINE
+ * Macro to define method \b %ApplyTo (including template type \b %IsApplicable) for a custom
+ * type. Parameter \p type has to exclude specifiers \c const and \c &.<br>
+ * This macro has to be positioned outside any namespace and the given type has to include
+ * the its full namespace qualification.
+ *
+ * This macro is for declaring and defining the method inline (usually used in a header file).
+ * As an alternative, macros #ALIB_STRINGS_APPLYTO_DECLARATION (header file) and
+ * #ALIB_STRINGS_APPLYTO_DEFINITION (source file) might be used to avoid redundant inline code
+ * generation.
+ *
+ * Parameter \p IMPLEMENTATION, which has to provide the source code that applies the value
+ * of a type, does not need to contain curly braces and may has to refer to variables \p target
+ * (the AString) and \p src (the value that is to be applied to the AString).
+ *
+ * \see \ref alib_namespace_strings_astring_applyto "Applying Objects to AStrings"
+ *
+ * @param TYPE           The type to declare to be applicable to an instance of class AString.
+ * @param IMPLEMENTATION The implementation code.
+ **************************************************************************************************/
+#define ALIB_STRINGS_APPLYTO_INLINE(TYPE, IMPLEMENTATION)                                       \
+namespace aworx { namespace lib { namespace  strings {                                          \
+    template<>  struct       IsApplicable<const TYPE &> : public std::true_type {};             \
+    template<>  inline   int ApplyTo( AString& target, const TYPE & src )                       \
+    {                                                                                           \
+        IMPLEMENTATION                                                                          \
+    }                                                                                           \
+}}}
+
+/** @} */
 
 // #################################################################################################
 // includes
@@ -147,6 +229,11 @@ namespace                   strings {
      *       \ref aworx::lib::time::TicksCalendarTime "TicksCalendarTime" should be used to
      *       implement more options.
      *
+     * Easy declaration and definition of method \b %ApplyTo (and template class \b %IsApplicable)
+     * is supported with macros
+     * - #ALIB_STRINGS_APPLYTO_DECLARATION,
+     * - #ALIB_STRINGS_APPLYTO_DEFINITION and alternatively macro
+     * - #ALIB_STRINGS_APPLYTO_INLINE.
      *
      * @param   target The object of type %AString that will have object \p src applied.
      * @param   src    The source object of arbitrary type will get applied to %AString \p target.
@@ -163,6 +250,9 @@ namespace                   strings {
      **********************************************************************************************/
     template<typename T>  inline int ApplyTo( AString& target, const T src )
     {
+        (void) target;
+        (void) src;
+
         #if defined(_MSC_VER)
             #pragma warning( push )
             #pragma warning( disable : 4127 ) //conditional expression is constant
@@ -178,16 +268,6 @@ namespace                   strings {
             ||  std::is_base_of  <String, TPlain > ::value
             ||  IsApplicable <const TPlain&> ::value
         , "ALib: T is not a known type to append to AString. Implement ApplyTo<T>() to enable conversion.");
-
-        // fetch AStrings
-        if ( std::is_base_of<String, typename std::remove_reference<T>::type>::value )
-        {
-
-            if( ((String&)src).IsNull() )
-                return -1;
-             target.Append<false>( ((String&)src).Buffer(), ((String&)src).Length() );
-             return ((String&)src).Length();
-        }
 
         ALIB_DEBUG_CODE( target.Apply("ApplyTo<Unknown Type>") );
         ALIB_WARNING("Unknown type for ApplyTo()");
@@ -212,15 +292,6 @@ namespace                   strings {
      **********************************************************************************************/
     template<typename T>  inline int ApplyTo_NC( AString& target, const T src )
     {
-        // fetch AStrings
-        if ( std::is_base_of<String, typename std::remove_reference<T>::type>::value )
-        {
-            ALIB_ASSERT_ERROR( ((String&)src).IsNotNull(),  "Nulled String object passed to NC method" )
-
-            target.Append<false>( ((String&)src).Buffer(), ((String&)src).Length() );
-            return ((String&)src).Length();
-        }
-
         // by default use non checking apply
         return ApplyTo<T>( target, src );
     }

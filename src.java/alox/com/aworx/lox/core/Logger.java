@@ -16,6 +16,7 @@
 package com.aworx.lox.core;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import com.aworx.lib.strings.CString;
 import com.aworx.lib.threads.SmartLock;
@@ -92,12 +93,14 @@ public abstract class Logger extends SmartLock
          * Constructs a logger.
          *
          * @param name     The name of the \e Logger. If empty, it defaults to the type name.
+         *                 Will be converted to upper case. 
          * @param typeName The type of the \e Logger.
+         *                 Will be converted to upper case. 
          ******************************************************************************************/
         protected Logger( String name, String typeName )
         {
-            this.name=      !CString.isNullOrEmpty( name ) ? name : typeName;
-            this.typeName=  typeName;
+            this.typeName=  typeName.toUpperCase( Locale.US );
+            this.name=      !CString.isNullOrEmpty( name ) ? name.toUpperCase( Locale.US ) : this.typeName;
         }
 
     // #############################################################################################

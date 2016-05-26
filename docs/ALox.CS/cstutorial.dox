@@ -371,7 +371,7 @@ we do with directories in a file system. In the sample above, <em>Log Domains</e
 Sub-<em>Log Domains</em> of <em>Log Domain</em> "UI".
 
 With this information, it is important to understand that method
-\ref cs::aworx::lox::Lox::SetVerbosity "Lox::SetVerbosity" always sets the given <em>Log Domain</em> and
+\ref cs::aworx::lox::Lox::SetVerbosity "Lox.SetVerbosity" always sets the given <em>Log Domain</em> and
 <b>all its sub-domains</b> to the \e Verbosity value provided. Consequently, the following statement
 switches <em>Log Domains</em> \b "UI", \b "UI/MOUSE" and \b "UI/DLG" to the same \e %Verbosity.Warning:
 
@@ -779,8 +779,8 @@ ALox API, the data is nicely 'encapsulated' and the probability of creating side
 reduced in comparison to other ways to introduce temporary variables used for debugging.
 
 The methods to store and retrieve <em>Log Data</em> with ALox are
-\ref cs::aworx::lox::Lox::Store "Lox::Store" and
-\ref cs::aworx::lox::Lox::Retrieve "Lox::Retrieve". The objects stored are of type
+\ref cs::aworx::lox::Lox::Store "Lox.Store" and
+\ref cs::aworx::lox::Lox::Retrieve "Lox.Retrieve". The objects stored are of type
 \ref cs::aworx::lox::LogData "LogData". In the C++ implementation of ALox it is notable, that
 these objects are deleted internally when overwritten or an instance of class \b %Lox is deleted.
 Therefore, these objects need to be heap-allocated.
@@ -844,13 +844,13 @@ To summarize: We have to ways to look into ALox:
 1. Method [Log.LogConfig()](@ref #cs::aworx::lox::Log::LogConfig) logs a "snapshot" of the current states. The advantage of this is,
    that it is all logged sequentially in one place and does not clutter your log output.
 2. By setting the \e Verbosity of the internal <em>Log Domain</em>
-   \ref cs::aworx::lox::ALox::InternalDomains "ALox::InternalDomains"
+   \ref cs::aworx::lox::ALox::InternalDomains "ALox.InternalDomains"
    to a more verbose level. While this clutters your log output and you
    might have to search the pieces in your overall log stream, the advantage here is that you see the scope information and therefore
    you see "where" a certain manipulation of the settings took place...and you can click on it!
 
 \note
-    The internal <em>Log Domain</em> found in static, read-only field \ref cs::aworx::lox::ALox::InternalDomains "ALox::InternalDomains"
+    The internal <em>Log Domain</em> found in static, read-only field \ref cs::aworx::lox::ALox::InternalDomains "ALox.InternalDomains"
     is not just a domain name string. In fact it specifies a completely different <b>domain tree</b>
     which is not related to those domains created when using ALox. Even when changing
     the \e Verbosity for a \e Logger on the root domain \c /, this domain is not affected, because

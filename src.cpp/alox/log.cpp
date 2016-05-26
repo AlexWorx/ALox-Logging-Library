@@ -78,27 +78,22 @@ namespace aworx {
 
         // add a default console logger
         DebugLogger= Lox::CreateConsoleLogger("DEBUG_LOGGER");
-        {
-            // add logger
-            lox->SetVerbosity( DebugLogger, Verbosity::Verbose );
-            lox->SetVerbosity( DebugLogger, Verbosity::Warning, ALox::InternalDomains );
 
-            // replace ALibs' ReportWriter by an ALox ReportWriter
-            if ( lib::Report::GetDefault().PeekWriter() == &lib::ConsoleReportWriter::Singleton  )
-                lib::Report::GetDefault().PushWriter( DebugReportWriter= new ALoxReportWriter( lox ) );
-        }
+        // add logger
+        lox->SetVerbosity( DebugLogger, Verbosity::Verbose );
+        lox->SetVerbosity( DebugLogger, Verbosity::Warning, ALox::InternalDomains );
+
+        // replace ALibs' ReportWriter by an ALox ReportWriter
+        Log::AddALibReportWriter( lox );
+
     }
 
     void Log::RemoveDebugLogger( Lox* lox )
     {
-        // replace the report writer (if we replaced it before)
-        if ( DebugReportWriter != nullptr )
-        {
-            lib::Report::GetDefault().PopWriter( DebugReportWriter );
-            delete DebugReportWriter;
-            DebugReportWriter=  nullptr;
-        }
+        // remove ALox specific report writer of ALib
+        Log::RemoveALibReportWriter();
 
+        // remove debug logger(s)
         ALIB_ASSERT_WARNING( DebugLogger != nullptr, "Log::RemoveDebugLogger(): no debug logger to remove." );
 
         if ( DebugLogger != nullptr )
@@ -122,6 +117,33 @@ namespace aworx {
 
 #endif // ALOX_DBG_LOG
 
+// #################################################################################################
+// ALib Report Writer installation
+// #################################################################################################
+#if defined(ALOX_DBG_LOG)
+
+    void Log::AddALibReportWriter( Lox* lox )
+    {
+        ALIB_ASSERT_WARNING( DebugReportWriter == nullptr, "Log::AddReportWriter(): ALoxReportWriter already created." );
+
+        // replace ALibs' ReportWriter by an ALox ReportWriter
+        if ( lib::Report::GetDefault().PeekWriter() == &lib::ConsoleReportWriter::Singleton  )
+            lib::Report::GetDefault().PushWriter( DebugReportWriter= new ALoxReportWriter( lox ) );
+    }
+
+    void Log::RemoveALibReportWriter()
+    {
+        ALIB_ASSERT_WARNING( DebugReportWriter != nullptr, "Log::RemoveReportWriter(): No ALoxReportWriter to remove." );
+
+        // replace the report writer (if we replaced it before)
+        if ( DebugReportWriter != nullptr )
+        {
+            lib::Report::GetDefault().PopWriter( DebugReportWriter );
+            delete DebugReportWriter;
+            DebugReportWriter=  nullptr;
+        }
+    }
+#endif // ALOX_DBG_LOG
 
 }}// namespace aworx::lox
 

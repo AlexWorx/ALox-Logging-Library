@@ -9,63 +9,14 @@ package com.aworx.lox;
 import java.util.ArrayList;
 
 import com.aworx.lib.ALIB;
-import com.aworx.lib.Report;
-import com.aworx.lib.ReportWriter;
 import com.aworx.lib.config.Configuration;
 import com.aworx.lib.enums.Alignment;
 import com.aworx.lib.enums.ContainerOp;
 import com.aworx.lib.enums.Create;
 import com.aworx.lib.enums.Inclusion;
-import com.aworx.lib.enums.Phase;
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.CString;
 import com.aworx.lib.strings.Substring;
-
-// #############################################################################################
-// Define and set ALox based ALib \b %ReportWriter
-// #############################################################################################
-
-    /** ****************************************************************************************
-     * The \b %ReportWriter for ALib when using ALox. An instance of this class is
-     * created in method \ref com::aworx::lox::Log::addDebugLogger "Log.addDebugLogger"
-     * and registered with ALib.<br>
-     * Uses internal domain <c>'$/REPORT'</c> for logging.
-     ******************************************************************************************/
-    class ALoxReportWriter implements ReportWriter
-    {
-        /** The \b Lox to report to */
-        protected   Lox        lox;
-
-        /** ************************************************************************************
-         * Constructs an \b %ALoxReportWriter.
-         * @param lox    The \b Lox to report to.
-         **************************************************************************************/
-        public ALoxReportWriter ( Lox lox ) { this.lox= lox; }
-
-        /** ****************************************************************************************
-         * Notify activation/deactivation
-         * @param phase     Information if activated or deactivated.
-         ******************************************************************************************/
-        @Override
-        public void NotifyActivation( Phase phase )
-        {
-        }
-
-        /** ************************************************************************************
-         * Log an ALib report using ALox.
-         * @param report  The error message.
-         **************************************************************************************/
-        @Override
-        public void report  (Report.Message report)
-        {
-            lox.entry( ALox.INTERNAL_DOMAINS + "REPORT",
-                       report.type == 0 ? Verbosity.ERROR      :
-                       report.type == 1 ? Verbosity.WARNING    :
-                       report.type == 2 ? Verbosity.INFO       :
-                                          Verbosity.VERBOSE,
-                       report.contents );
-        }
-    }
 
 /** ************************************************************************************************
  * This is a 100% static class that holds constants and 'global' methods of the
@@ -261,6 +212,7 @@ public abstract class ALox
          * registered and returned.
          *
          * @param name      The name of the \b %Lox to search and optionally to create.
+         *                  Comparison is case insensitive.
          * @param create    Denotes whether a \b %Lox that was not found is created.
          *                  Optional and defaults to \b Create.NEVER.
          * @return The \b Lox found, \c null in case of failure.
@@ -272,7 +224,7 @@ public abstract class ALox
 
                 // search
                 for( Lox it : loxes )
-                    if( it.getName().equals( name ) )
+                    if( it.getName().equalsIgnoreCase( name ) )
                         return it;
 
                 // create?

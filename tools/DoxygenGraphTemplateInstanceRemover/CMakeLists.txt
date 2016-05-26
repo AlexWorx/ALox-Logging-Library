@@ -14,14 +14,15 @@
 # -------------------------------------------------------------------------------------------------
 # General
 # -------------------------------------------------------------------------------------------------
-project( "DoxygenGraphTemplateInstanceRemover" )
-cmake_minimum_required(VERSION 2.8)
 
-# this defaults to a release version!
-if ( "${CMAKE_BUILD_TYPE}" STREQUAL ""    )
-    MESSAGE( STATUS "Default build type 'Release' chosen" )
-    set( CMAKE_BUILD_TYPE "Release" )
-endif()
+    project( "DoxygenGraphTemplateInstanceRemover" )
+    cmake_minimum_required(VERSION 2.8)
+
+    # this defaults to a release version!
+    if ( "${CMAKE_BUILD_TYPE}" STREQUAL ""    )
+        MESSAGE( STATUS "Default build type 'Release' chosen" )
+        set( CMAKE_BUILD_TYPE "Release" )
+    endif()
 
 ## -------------------------------------------------------------------------------------------------
 ## find libraries

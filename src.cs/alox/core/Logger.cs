@@ -97,15 +97,17 @@ public abstract class Logger : SmartLock
     // #############################################################################################
 
         /** ****************************************************************************************
-         *  Constructs a logger.
+         * Constructs a logger.
          * @param name     The name of the \e Logger. If empty, it defaults to the type name.
+         *                 Will be converted to upper case. 
          * @param typeName The type of the \e Logger.
+         *                 Will be converted to upper case. 
          ******************************************************************************************/
         protected Logger( String name, String typeName )
         {
             // save parameters
-            this.typeName=  typeName;
-            this.name=      !String.IsNullOrEmpty( name ) ? name : typeName;
+            this.typeName=  typeName.ToUpper();
+            this.name=      !String.IsNullOrEmpty( name ) ? name.ToUpper() : this.typeName;
         }
 
     // #############################################################################################

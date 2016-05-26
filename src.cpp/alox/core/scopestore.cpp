@@ -97,7 +97,7 @@ template<> std::map<AString, LogData*>* ScopeStoreType<std::map<AString, LogData
 #define CMD_INSERT 0
 #define CMD_REMOVE 1
 #define CMD_GET    2
-#endif
+
 
 // #################################################################################################
 // Constructor/Destructor
@@ -433,5 +433,6 @@ StoreT ScopeStore<StoreT>::access(  int cmd, StoreT value  )
     }
 }
 
+#endif // doxygen parser
 
 }}} // namespace aworx::lox::core

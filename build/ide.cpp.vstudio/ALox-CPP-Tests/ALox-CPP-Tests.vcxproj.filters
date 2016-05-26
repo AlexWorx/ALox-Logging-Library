@@ -22,9 +22,6 @@
     <ClInclude Include="..\..\..\src.cpp\alib.unittests\aworx_unittests.hpp">
       <Filter>tests.alib</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src.cpp\alox.unittests\ut_alox_log_scopes.hpp">
-      <Filter>tests.alox</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx_alox_unittests.cpp">
@@ -93,10 +90,10 @@
     <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_alox_lox.cpp">
       <Filter>tests.alox</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_dox_reference_manual.cpp">
+    <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_dox_tutorial.cpp">
       <Filter>tests.alox</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_dox_tutorial.cpp">
+    <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_dox_manual.cpp">
       <Filter>tests.alox</Filter>
     </ClCompile>
   </ItemGroup>

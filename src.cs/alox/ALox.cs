@@ -221,8 +221,9 @@ public static class ALox
          * registered and returned.
          *
          * @param name      The name of the \b %Lox to search and optionally to create.
+         *                  Comparison is case insensitive.
          * @param create    Denotes whether a \b %Lox that was not found is created.
-         *                  Optional and defaults to Create::Never.
+         *                  Optional and defaults to \b %Create.Never.
          * @return The \b Lox found, \c null in case of failure.
          ******************************************************************************************/
         public static
@@ -231,6 +232,7 @@ public static class ALox
             try { ALIB.Lock.Acquire();
 
                 // search
+                name= name.ToUpper();
                 foreach( Lox it in loxes )
                     if( it.GetName().Equals( name ) )
                         return it;
@@ -364,7 +366,7 @@ public class    ALoxReportWriter : ReportWriter
      **************************************************************************************/
     public void Report  (Report.Message report)
     {
-        lox.Entry( ALox.InternalDomains + "REPORT",
+        lox.Entry( ALoxReportWriter.LogDomain(),
                         report.Type == 0 ? Verbosity.Error
                    :    report.Type == 1 ? Verbosity.Warning
                    :    report.Type == 2 ? Verbosity.Info
@@ -372,6 +374,15 @@ public class    ALoxReportWriter : ReportWriter
                    report.Contents,
                    report.Line, report.File, report.Func );
     }
+
+    /** ********************************************************************************************
+     * Returns the domain used to write reports.
+     * @return The report log domain.
+     **********************************************************************************************/
+     public static String LogDomain() 
+     {
+        return ALox.InternalDomains + "REPORT"; 
+     }
 }
 
 

@@ -205,6 +205,61 @@ we recommend the following principles:
   <em>Verbosity</em> and <em>Log Domains</em>. This allows to control the verbosity of the library
   in granular way.
 
+
+### The ALib Report Writer ###
+ALib, the utility library that ALox builds on, provides a concept for writing reports. This
+mechanism is used to report problems in debug-versions of ALib and optionally of software using
+ALib. With class
+<b>%ALoxReportWriter</b>
+([C++](@ref      #aworx::lox::ALoxReportWriter),
+[C#]  (@ref  #cs::aworx::lox::ALoxReportWriter),
+[Java](@ref #com::aworx::lox::ALoxReportWriter)), %ALox implements such mechanism to direct ALib
+reports to an %ALox \e %Logger. This is all transparently set up and destructed with methods
+<b>%Log.AddDebugLogger</b>
+  ([C++](@ref      #aworx::lox::Log::AddDebugLogger),
+  [C#]  (@ref  #cs::aworx::lox::Log::AddDebugLogger),
+  [Java](@ref #com::aworx::lox::Log::addDebugLogger)) and
+<b>%Log.RemoveDebugLogger</b>
+  ([C++](@ref      #aworx::lox::Log::RemoveDebugLogger),
+  [C#]  (@ref  #cs::aworx::lox::Log::RemoveDebugLogger),
+  [Java](@ref #com::aworx::lox::Log::removeDebugLogger)).
+
+Applications that do not use debug logging may want to use methods
+<b>%Log.AddALibReportWriter</b>
+  ([C++](@ref      #aworx::lox::Log::AddALibReportWriter),
+  [C#]  (@ref  #cs::aworx::lox::Log::AddALibReportWriter),
+  [Java](@ref #com::aworx::lox::Log::addALibReportWriter)) and
+<b>%Log.RemoveALibReportWriter</b>
+  ([C++](@ref      #aworx::lox::Log::RemoveALibReportWriter),
+  [C#]  (@ref  #cs::aworx::lox::Log::RemoveALibReportWriter),
+  [Java](@ref #com::aworx::lox::Log::removeALibReportWriter)) to install a report writer
+in debug compilations.
+
+It is important to set the verbosity of the (internal) domain provided with method
+<b>ALoxReportWriter.LogDomain</b>
+([C++](@ref      #aworx::lox::ALoxReportWriter.LogDomain()),
+[C#]  (@ref  #cs::aworx::lox::ALoxReportWriter.LogDomain()),
+[Java](@ref #com::aworx::lox::ALoxReportWriter.logDomain())), to a proper \e Verbosity, to
+enable the logging of any reports.
+
+A demonstration of how to do this is found in the ALox release logging sample code (language specific).
+
+\note
+  ALox for C++ does not provide a corresponding preprocessor macro.
+  Instead, macro \b Log_Prune (not \b %Lox_Prune!) should be used to perform the
+  the invocation of \b %Log::AddALibReportWriter and %Log::RemoveALibReportWriter in debug builds.
+  The following code samples a proper bootstrap:
+  \snippet "ut_dox_manual.cpp"     DOX_ALOX_INSTALL_REPORT_WRITER
+  Upon termination, such report writer is to be removed as sampled here:
+  \snippet "ut_dox_manual.cpp"     DOX_ALOX_INSTALL_REPORT_WRITER_2
+
+
+
+
+
+
+
+
 ### Other differences of Debug and Release Logging ###
 
 Appendix reference chapter \ref man_apdx_auto_config might hint to other differences of

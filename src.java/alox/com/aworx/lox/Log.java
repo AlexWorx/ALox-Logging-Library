@@ -51,10 +51,7 @@ public abstract class Log
          * - Verbosity.VERBOSE for the root domain <c> '/'</c> and
          * - Verbosity.WARNING for internal domains.
          *
-         * Finally, in the case that the original ALib ConsoleReportWriter is still in place,
-         * \ref com::aworx::lib::Report::pushWriter "Report.pushWriter" is invoked to provide a
-         * ReportWriter of type
-         * \ref com::aworx::lox::ALoxReportWriter "ALoxReportWriter".
+         * Finally, this method invokes #addALibReportWriter.
          *
          * @param lox The lox to add the debug logger(s) to. If null, the static debug object
          *            #LOX is used.
@@ -70,13 +67,11 @@ public abstract class Log
             // add a default console logger
             debugLogger= Lox.createConsoleLogger( "DEBUG_LOGGER" );
 
-            // add logger
             lox.setVerbosity( debugLogger, Verbosity.VERBOSE,                  "/" );
             lox.setVerbosity( debugLogger, Verbosity.WARNING, ALox.INTERNAL_DOMAINS );
 
             // replace the ReportWriter
-            if ( Report.getDefault().peekWriter() == ConsoleReportWriter.SINGLETON  )
-                Report.getDefault().pushWriter( debugReportWriter= new ALoxReportWriter( lox ) );
+            Log.addALibReportWriter( lox );
         }
 
         /** ************************************************************************************
@@ -100,19 +95,15 @@ public abstract class Log
         public static void removeDebugLogger( Lox lox )
         {
             // replace the report writer (if we replaced it before)
-            if( debugReportWriter != null )
-            {
-                Report.getDefault().popWriter( debugReportWriter );
-                debugReportWriter= null;
-            }
+            Log.removeALibReportWriter();
 
-            if ( lox == null )
-                lox= LOX;
-
+            // remove debug logger(s)
             ALIB.ASSERT_ERROR( debugLogger != null, "No debug logger to remove." );
 
             if ( debugLogger != null )
             {
+                if ( lox == null )
+                    lox= LOX;
                 lox.removeLogger( debugLogger );
                 debugLogger= null;
             }
@@ -125,6 +116,51 @@ public abstract class Log
         {
             removeDebugLogger( LOX );
         }
+
+
+        /** ************************************************************************************
+         * In the case that the original ALib ConsoleReportWriter is still in place,
+         * \ref com::aworx::lib::Report::pushWriter "Report.pushWriter" is invoked to provide a
+         * ReportWriter of type
+         * \ref com::aworx::lox::ALoxReportWriter "ALoxReportWriter".
+         *
+         * \note
+         * This method is effective only in debug compilations. Usually it is invoked indirectly by
+         * using method #addDebugLogger. Applications that do not use that method (e.g. because
+         * they are using release logging exclusively), should invoke this method on bootstrap
+         * providing their (release) lox.
+         * In this case, the \e Verbosity of the internal domain used by class
+         * \ref aworx::lox::ALoxReportWriter "ALoxReportWriter" has to be set for the
+         * the logger(s) in given \p lox in question.
+         *
+         * @param lox  The lox that the
+         *             \ref aworx::lox::ALoxReportWriter "ALoxReportWriter" created will be using.
+         **************************************************************************************/
+        public static void addALibReportWriter( Lox lox )
+        {
+            ALIB.ASSERT_WARNING( debugReportWriter == null, 
+                                 "Log.addReportWriter(): ALoxReportWriter already created." );
+
+            // replace the ReportWriter
+            if ( Report.getDefault().peekWriter() == ConsoleReportWriter.SINGLETON  )
+                Report.getDefault().pushWriter( debugReportWriter= new ALoxReportWriter( lox ) );
+        }
+
+        /** ************************************************************************************
+         * Removes the report writer created with #addALibReportWriter.
+         **************************************************************************************/
+        public static void removeALibReportWriter()
+        {
+            ALIB.ASSERT_WARNING( debugReportWriter != null, 
+                                 "Log.removeReportWriter(): No ALoxReportWriter to remove." );
+            // replace the report writer (if we replaced it before)
+            if( debugReportWriter != null )
+            {
+                Report.getDefault().popWriter( debugReportWriter );
+                debugReportWriter= null;
+            }
+        }
+
 
         /// This is a static singleton of type class Lox which is used for standard
         /// debug logging statements.

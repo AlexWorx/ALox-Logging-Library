@@ -42,22 +42,26 @@ Substring&    Tokenizer::Next( enums::Whitespaces trimming, char newDelim )
     if ( newDelim != '\0' )
         delim= newDelim;
 
-    int nextDelimiter= Rest.IndexOf( delim );
-
-    if ( nextDelimiter >= 0 )
+    do
     {
-        Actual.Set<false>( Rest, 0   , nextDelimiter  );
-        Rest  .Set<false>( Rest,       nextDelimiter + 1, Rest.Length() - (nextDelimiter + 1) );
-    }
-    else
-    {
-        Actual.Set( Rest );
-        Rest  .SetNull();
-    }
+        int nextDelimiter= Rest.IndexOf( delim );
 
-    // trim
-    if ( trimming == enums::Whitespaces::Trim )
-        Actual.Trim( Whitespaces );
+        if ( nextDelimiter >= 0 )
+        {
+            Actual.Set<false>( Rest, 0   , nextDelimiter  );
+            Rest  .Set<false>( Rest,       nextDelimiter + 1, Rest.Length() - (nextDelimiter + 1) );
+        }
+        else
+        {
+            Actual.Set( Rest );
+            Rest  .SetNull();
+        }
+
+        // trim
+        if ( trimming == enums::Whitespaces::Trim )
+            Actual.Trim( Whitespaces );
+    }
+    while( skipEmptyTokens && Actual.IsEmpty() && Rest.IsNotNull() );
 
     return Actual;
 }

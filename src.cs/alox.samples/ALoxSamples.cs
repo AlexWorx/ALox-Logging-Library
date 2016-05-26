@@ -86,6 +86,12 @@ class AloxSamples
         // let the system choose an appropriate console logger
         TextLogger releaseLogger=  Lox.CreateConsoleLogger();
 
+        // In debug compilations, we still install a report writer.
+        Log.AddALibReportWriter( lox );
+        #if ALOX_DBG_LOG 
+            lox.SetVerbosity( releaseLogger, Verbosity.Verbose, ALoxReportWriter.LogDomain() );
+        #endif
+
         // we set a format string without scope information (as this is of-course not available in release logging)
         #if ALOX_DBG_LOG || ALOX_REL_LOG
             releaseLogger.MetaInfo.Format= new AString( "[%TC +%TL][%tN]%V[%D]%A1(%#): " );
@@ -94,6 +100,8 @@ class AloxSamples
 
         lox.Info ( "A_DOMAIN", "Hello ALox, this is release logging" );
 
+        // cleanup
+        Log.RemoveALibReportWriter();
         lox.RemoveLogger( releaseLogger );
     }
 

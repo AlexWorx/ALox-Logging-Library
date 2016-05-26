@@ -8,7 +8,7 @@
 #![DOXYGEN_PROGUARD_CONFIG]
 ### input/output ###
 -injars ../ALox-Java-1.6/bin
--injars bin/ALoxSamples.class 
+-injars bin/ALoxSamples.class
 -outjars bin.pruned
 
 ### for testing ###
@@ -26,6 +26,7 @@
 # Pruning AWorx Library assertions and debug messages
 -assumenosideeffects    class   com.aworx.lib.ALIB
  {
+     void REPORT        ( int, java.lang.String ) ;
      void ERROR         ( java.lang.String ) ;
      void WARNING       ( java.lang.String ) ;
      void ASSERT        ( boolean ) ;

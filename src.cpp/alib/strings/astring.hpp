@@ -166,6 +166,7 @@ template<typename T>   int ApplyTo_NC( AString& , const T );
  *     needed to be handled (for those cases where the difference between a \e nulled and an empty
  *     string is irrelevant).
  *
+ * \anchor  alib_namespace_strings_astring_applyto
  * <b>Applying Objects to AStrings</b><p>
  * The concept of appending things to a string is generalized in the C++
  * implementation of this class and named <em>applying</em> instead. While applying string
@@ -188,6 +189,13 @@ template<typename T>   int ApplyTo_NC( AString& , const T );
  * - Operator operator <<(const T&)
  * - Method #_(const T&) (which is a synonym for <em>operator << </em> but allowing non-checked invocations)
  * - Operator operator=(const T&)
+ *
+ * Easy declaration and definition of method \b %ApplyTo (and template class \b %IsApplicable)
+ * is supported with macros #ALIB_STRINGS_APPLYTO_DECLARATION, #ALIB_STRINGS_APPLYTO_DEFINITION
+ * and #ALIB_STRINGS_APPLYTO_INLINE.
+ *
+ * For more information refer to documentation of partially specialized template method
+ * \ref aworx::lib::strings::ApplyTo( AString& target, const T src ) "ApplyTo" and
  *
  * \anchor alib_namespace_strings_astring_application_vs_interface
  * <b>Application Instead of Explicit Interface Methods</b><p>
@@ -1423,7 +1431,7 @@ class AString : public TString
                     return -1;
 
                 int mbLength;
-                #if defined(_WIN32)
+                #if defined(_MSC_VER)
                     #pragma warning( push )
                     #pragma warning( disable : 4996 )
 
@@ -1524,6 +1532,15 @@ class AString : public TString
                                        : ApplyTo_NC<        TPod &>( *this, (TPod&) **(int**) &src );
                 }
 
+                // pointer to ALib String type
+                else if ( std::is_base_of<String, typename std::remove_pointer<T>::type>::value )
+                {
+                    if ( TCheck && (*(String**) &src)->IsNull() )
+                        return -1;
+                    Append<TCheck>(          (*(String**) &src)->Buffer(),
+                                     result= (*(String**) &src)->Length()   );
+                }
+
                 // pointers to class types?
                 else
                     result= TCheck ? ApplyTo   <const TPod &>( *this, *(TPod *&)  src )
@@ -1543,6 +1560,15 @@ class AString : public TString
                 else if ( std::is_pod<TPod>::value )
                     result= TCheck ? ApplyTo   <        TPod &>( *this, (TPod&) *(int*) &src )
                                    : ApplyTo_NC<        TPod &>( *this, (TPod&) *(int*) &src );
+
+                // reference to ALib String type
+                else if ( std::is_base_of<String, typename std::remove_reference<T>::type>::value )
+                {
+                    if ( TCheck && ((String&) *(int*) &src).IsNull() )
+                        return -1;
+                    Append<TCheck>(         ((String&) *(int*) &src).Buffer(),
+                                    result= ((String&) *(int*) &src).Length() );
+                }
 
                 // references classtypes? -> by const reference
                 else

@@ -35,7 +35,14 @@ const int            ALIB::Revision=                                    1;
 
 
 bool                 ALIB::initialized                                                     =false;
+#if defined(_MSC_VER)
+    #pragma warning( push )
+    #pragma warning( disable : 4592 )
+#endif
 String               ALIB::ConfigCategoryName                                              ="ALIB";
+#if defined(_MSC_VER)
+    #pragma warning( pop )
+#endif
 Configuration        ALIB::Config;
 
 bool                 ALIB::WaitForKeyPressOnTermination                                    =false;

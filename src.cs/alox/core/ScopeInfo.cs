@@ -152,7 +152,8 @@ public class ScopeInfo
 
         /** ****************************************************************************************
          * Constructs a scope info.
-         * @param name              The name of the Lox we belong to
+         * @param name              The name of the Lox we belong to.
+         *                          Will be converted to upper case. 
          * @param threadDictionary  A dictionary to map thread IDs to user friendly names which is
          *                          managed outside of this class.
          ******************************************************************************************/

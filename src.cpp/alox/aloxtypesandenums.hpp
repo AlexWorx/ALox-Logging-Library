@@ -252,7 +252,7 @@ struct LogData
  * The name of the class was intentionally chosen to be short, because the escape codes
  * defined with this class will be concatenated to log strings like that:
  *
- * \snippet "ut_dox_reference_manual.cpp"     DOX_ALOX_ESC
+ * \snippet "ut_dox_manual.cpp"     DOX_ALOX_ESC
  **************************************************************************************************/
 class ESC
 {

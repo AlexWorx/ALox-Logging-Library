@@ -30,7 +30,7 @@ namespace ut_alox {
 UT_CLASS()
 
 //##################################################################################################
-// SAMPLE code of class documentation
+// SAMPLE code of class ESC documentation
 //##################################################################################################
 
 void docSampleESC()
@@ -48,6 +48,29 @@ UT_METHOD( ALoxDocSamples )
 
     UT_PRINT("*** ALox Sample tests: ESC ***")
     docSampleESC();
+}
+
+
+//##################################################################################################
+// SAMPLE code installing a report writer
+//##################################################################################################
+
+void docSampleInstallReportWriter()
+{
+Log_Prune( Lox lox("RELEASE");               )
+Log_Prune( Logger* myReleaseLogger= nullptr; )
+
+#define LOX_LOX lox
+
+//! [DOX_ALOX_INSTALL_REPORT_WRITER]
+Log_Prune( Log::AddALibReportWriter( &LOX_LOX ); )
+Log_Prune( Lox_SetVerbosity( myReleaseLogger, Verbosity::Verbose, lox::ALoxReportWriter::LogDomain() ); )
+//! [DOX_ALOX_INSTALL_REPORT_WRITER]
+
+//! [DOX_ALOX_INSTALL_REPORT_WRITER_2]
+Log_Prune( Log::RemoveALibReportWriter() );
+//! [DOX_ALOX_INSTALL_REPORT_WRITER_2]
+
 }
 
 

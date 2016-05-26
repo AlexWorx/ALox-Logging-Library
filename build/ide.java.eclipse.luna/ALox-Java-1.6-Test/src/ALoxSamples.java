@@ -34,13 +34,19 @@ public class ALoxSamples
         // let the system choose an appropriate console logger
         TextLogger releaseLogger= Lox.createConsoleLogger();
 
+        // In debug compilations, we still install a report writer.
+        Log.addALibReportWriter( lox );
+        lox.setVerbosity( releaseLogger, Verbosity.VERBOSE, ALoxReportWriter.logDomain() );
+
         // we set a format string without scope information (as this is of-course not available in release logging)
         releaseLogger.metaInfo.format= new AString( "[%TC +%TL][%tN]%V[%D]%A1(%#): " );
         lox.setVerbosity( releaseLogger, Verbosity.INFO, "A_DOMAIN" );
 
         lox.info ( "A_DOMAIN", "Hello ALox, this is release logging" );
 
-        lox.removeLogger( releaseLogger );
+        // cleanup
+        Log.removeALibReportWriter();
+        lox.removeLogger( releaseLogger );        
     }
 
 

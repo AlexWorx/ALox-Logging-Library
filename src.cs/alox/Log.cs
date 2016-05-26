@@ -153,10 +153,7 @@ public static class Log
          * and will be registered with the standard \b %Lox used for debug-logging with the same
          * \e Verbosities as \c "DEBUG_LOGGER" is.
          *
-         * Finally, in the case that the original ALib ConsoleReportWriter is still in place,
-         * \ref cs::aworx::lib::Report::PushWriter "Report.PushWriter" is invoked to provide a
-         * ReportWriter of type
-         * \ref cs::aworx::lox::ALoxReportWriter "ALoxReportWriter".
+         * Finally, this method invokes #AddALibReportWriter.
          *
          * @param lox The lox to add the debug logger(s) to. If null, the static debug object
          *            #LOX is used. Defaults to null.
@@ -189,15 +186,12 @@ public static class Log
 
                 // add a default console logger
                 DebugLogger= Lox.CreateConsoleLogger("DEBUG_LOGGER");
-                {
-                    // add logger
-                    lox.SetVerbosity( DebugLogger, Verbosity.Verbose, "/"                 , Lox.PrioSource ,cln,csf,cmn );
-                    lox.SetVerbosity( DebugLogger, Verbosity.Warning, ALox.InternalDomains, Lox.PrioSource ,cln,csf,cmn );
+                
+                lox.SetVerbosity( DebugLogger, Verbosity.Verbose, "/"                 , Lox.PrioSource ,cln,csf,cmn );
+                lox.SetVerbosity( DebugLogger, Verbosity.Warning, ALox.InternalDomains, Lox.PrioSource ,cln,csf,cmn );
 
-                    // replace the ReportWriter
-                    if ( Report.GetDefault().PeekWriter() == ConsoleReportWriter.Singleton  )
-                       Report.GetDefault().PushWriter( DebugReportWriter= new ALoxReportWriter( lox ) );
-                }
+                // replace the ReportWriter
+                Log.AddALibReportWriter( lox );
 
             #endif
         }
@@ -221,16 +215,14 @@ public static class Log
         {
             #if ALOX_DBG_LOG
                 // replace the report writer (if we replaced it before)
-                if( DebugReportWriter != null )
-                {
-                    Report.GetDefault().PopWriter( DebugReportWriter );
-                    DebugReportWriter= null;
-                }
+                Log.RemoveALibReportWriter();
+
+                // remove debug logger(s)
+                ALIB.ASSERT_WARNING( DebugLogger != null, "No debug logger to remove." );
 
                 if ( lox == null )
                     lox= LOX;
 
-                ALIB.ASSERT_WARNING( DebugLogger != null, "No debug logger to remove." );
                 if ( DebugLogger != null )
                 {
                     lox.RemoveLogger( DebugLogger,  cln,csf,cmn );
@@ -246,6 +238,65 @@ public static class Log
             #endif
         }
 
+        /** ************************************************************************************
+         * In the case that the original ALib ConsoleReportWriter is still in place,
+         * \ref cs::aworx::lib::Report::PushWriter "Report.PushWriter" is invoked to provide a
+         * ReportWriter of type
+         * \ref cs::aworx::lox::ALoxReportWriter "ALoxReportWriter".
+         *
+         * \note
+         * This method is effective only in debug compilations. Usually it is invoked indirectly by
+         * using method #AddDebugLogger. Applications that do not use that method (e.g. because
+         * they are using release logging exclusively), should invoke this method on bootstrap
+         * providing their (release) lox.
+         * In this case, the \e Verbosity of the internal domain used by class
+         * \ref aworx::lox::ALoxReportWriter "ALoxReportWriter" has to be set for the
+         * the logger(s) in given \p lox in question.
+         *
+         * @param lox  The lox that the
+         *             \ref aworx::lox::ALoxReportWriter "ALoxReportWriter" created will be using.
+         *
+         * @param cln (Optional) Caller info, compiler generated. Please omit.
+         * @param csf (Optional) Caller info, compiler generated. Please omit.
+         * @param cmn (Optional) Caller info, compiler generated. Please omit.
+         **************************************************************************************/
+        [Conditional("ALOX_DBG_LOG")]
+        public static void AddALibReportWriter( Lox lox= null,
+        [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
+        {
+            #if ALOX_DBG_LOG
+
+                ALIB.ASSERT_WARNING( DebugReportWriter == null, 
+                                     "Log.AddReportWriter(): ALoxReportWriter already created." );
+
+                // replace the ReportWriter
+                if ( Report.GetDefault().PeekWriter() == ConsoleReportWriter.Singleton  )
+                   Report.GetDefault().PushWriter( DebugReportWriter= new ALoxReportWriter( lox ) );
+            #endif
+        }
+
+        /** ************************************************************************************
+         * Removes the report writer created with #AddALibReportWriter.
+         *
+         * @param cln (Optional) Caller info, compiler generated. Please omit.
+         * @param csf (Optional) Caller info, compiler generated. Please omit.
+         * @param cmn (Optional) Caller info, compiler generated. Please omit.
+         **************************************************************************************/
+        [Conditional("ALOX_DBG_LOG")]
+        public static void RemoveALibReportWriter( 
+        [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
+        {
+            #if ALOX_DBG_LOG
+                ALIB.ASSERT_WARNING( DebugReportWriter != null, 
+                                     "Log.RemoveReportWriter(): No ALoxReportWriter to remove." );
+                // replace the report writer (if we replaced it before)
+                if( DebugReportWriter != null )
+                {
+                    Report.GetDefault().PopWriter( DebugReportWriter );
+                    DebugReportWriter= null;
+                }
+            #endif
+        }
         /** ************************************************************************************
          * This method is convenient to use in console applications at the end of the main()
          * method. It checks if this process has a console window and a Visual Studio debug
