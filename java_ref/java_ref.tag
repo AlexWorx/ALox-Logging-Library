@@ -310,6 +310,13 @@
     <name>com::aworx::lox::ALoxReportWriter</name>
     <filename>classcom_1_1aworx_1_1lox_1_1ALoxReportWriter.html</filename>
     <base>com::aworx::lib::ReportWriter</base>
+    <member kind="function" static="yes">
+      <type>static String</type>
+      <name>logDomain</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1ALoxReportWriter.html</anchorfile>
+      <anchor>aff660c518047fe44f32e13bd23f6140e</anchor>
+      <arglist>()</arglist>
+    </member>
     <member kind="function">
       <type></type>
       <name>ALoxReportWriter</name>
@@ -4455,6 +4462,13 @@
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
+      <name>addALibReportWriter</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>aaaa03038087117cb2c50a382a2917526</anchor>
+      <arglist>(Lox lox)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
       <name>addDebugLogger</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
       <anchor>afd7ff33d8bad2b6577c6ff34156743ce</anchor>
@@ -4683,6 +4697,13 @@
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
       <anchor>ad0f6aae2970b4e61196acdc4ce40aae5</anchor>
       <arglist>(Object logable, int quantity, Scope scope)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>removeALibReportWriter</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>ae13d0d07cebfd2f67addfe6d69c0ffb7</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
@@ -11718,22 +11739,43 @@
       <type></type>
       <name>Tokenizer</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html</anchorfile>
-      <anchor>a81d875271cb4b26d1c32cc27db48c838</anchor>
-      <arglist>(String str, char delim)</arglist>
+      <anchor>af743bd88871a04097e616ff9f3a8cffe</anchor>
+      <arglist>(String src, char delim, boolean skipEmptyTokens)</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>Tokenizer</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html</anchorfile>
-      <anchor>a461a11c846c48e6c8e58ae00d0575a6a</anchor>
-      <arglist>(AString astring, char delim)</arglist>
+      <anchor>a123725276b584a57a2e3153acabacc0a</anchor>
+      <arglist>(String src, char delim)</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>Tokenizer</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html</anchorfile>
-      <anchor>a22342f5449d696115f4e4cda6549df8d</anchor>
-      <arglist>(Substring substring, char delim)</arglist>
+      <anchor>a0ea908efa927e9f499bb99dd210dd1ff</anchor>
+      <arglist>(AString src, char delim, boolean skipEmptyTokens)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Tokenizer</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html</anchorfile>
+      <anchor>af929d9165c416916ca5acfb968adf23a</anchor>
+      <arglist>(AString src, char delim)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Tokenizer</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html</anchorfile>
+      <anchor>af833a408e8647730659c201706557220</anchor>
+      <arglist>(Substring src, char delim, boolean skipEmptyTokens)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Tokenizer</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html</anchorfile>
+      <anchor>a81aae564054121f1c94c43efca10d6e1</anchor>
+      <arglist>(Substring src, char delim)</arglist>
     </member>
     <member kind="function">
       <type>Substring</type>
@@ -11781,6 +11823,13 @@
       <type>void</type>
       <name>set</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html</anchorfile>
+      <anchor>a92214f094afb0e6cb53556ae8f5e44be</anchor>
+      <arglist>(String str, char delim, boolean skipEmptyTokens)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>set</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html</anchorfile>
       <anchor>a0863975efdce55e33289184a2024ddcd</anchor>
       <arglist>(String str, char delim)</arglist>
     </member>
@@ -11788,8 +11837,22 @@
       <type>void</type>
       <name>set</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html</anchorfile>
+      <anchor>ad7285b2472053ff6cb9310a3e4fd5858</anchor>
+      <arglist>(AString astring, char delim, boolean skipEmptyTokens)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>set</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html</anchorfile>
       <anchor>a1f16714d7f8a2ce61926860e05d4f6aa</anchor>
       <arglist>(AString astring, char delim)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>set</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html</anchorfile>
+      <anchor>ac511864a2039ae3092ed79116a5410ad</anchor>
+      <arglist>(Substring substring, char delim, boolean skipEmptyTokens)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -11810,6 +11873,13 @@
       <name>delim</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html</anchorfile>
       <anchor>ab56c67e0ed9605b4078e2135f791c4ed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>boolean</type>
+      <name>skipEmptyTokens</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html</anchorfile>
+      <anchor>ac0980bd12e0dbf5546fc84325df9ed79</anchor>
       <arglist></arglist>
     </member>
   </compound>

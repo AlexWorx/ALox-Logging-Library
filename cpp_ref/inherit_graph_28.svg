@@ -31,184 +31,184 @@
 <polygon fill="midnightblue" stroke="midnightblue" points="65.4941,-32.2652 55.0251,-33.893 64.2242,-39.149 65.4941,-32.2652"/>
 </g>
 <!-- Node16 -->
-<g id="node16" class="node"><title>Node16</title>
-<g id="a_node16"><a xlink:href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html" target="_top" xlink:title="ThreadLockNR">
+<g id="node3" class="node"><title>Node16</title>
+<g id="a_node3"><a xlink:href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html" target="_top" xlink:title="ThreadLockNR">
 <polygon fill="white" stroke="black" points="91,-0.5 91,-19.5 174,-19.5 174,-0.5 91,-0.5"/>
 <text text-anchor="middle" x="132.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">ThreadLockNR</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node16 -->
-<g id="edge15" class="edge"><title>Node1&#45;&gt;Node16</title>
+<g id="edge2" class="edge"><title>Node1&#45;&gt;Node16</title>
 <path fill="none" stroke="midnightblue" d="M65.1304,-22.2429C73.4016,-20.7172 82.2325,-19.0882 90.6645,-17.5328"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="64.2242,-18.851 55.0251,-24.107 65.4941,-25.7348 64.2242,-18.851"/>
 </g>
 <!-- Node3 -->
-<g id="node3" class="node"><title>Node3</title>
-<g id="a_node3"><a xlink:href="classaworx_1_1lib_1_1config_1_1Configuration.html" target="_top" xlink:title="Configuration">
+<g id="node4" class="node"><title>Node3</title>
+<g id="a_node4"><a xlink:href="classaworx_1_1lib_1_1config_1_1Configuration.html" target="_top" xlink:title="Configuration">
 <polygon fill="white" stroke="black" points="210,-76.5 210,-95.5 284,-95.5 284,-76.5 210,-76.5"/>
 <text text-anchor="middle" x="247" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">Configuration</text>
 </a>
 </g>
 </g>
 <!-- Node2&#45;&gt;Node3 -->
-<g id="edge2" class="edge"><title>Node2&#45;&gt;Node3</title>
+<g id="edge3" class="edge"><title>Node2&#45;&gt;Node3</title>
 <path fill="none" stroke="midnightblue" d="M171.471,-60.8259C186.567,-65.9247 203.632,-71.6891 217.621,-76.4141"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="172.483,-57.4733 161.889,-57.589 170.243,-64.1052 172.483,-57.4733"/>
 </g>
 <!-- Node4 -->
-<g id="node4" class="node"><title>Node4</title>
-<g id="a_node4"><a xlink:href="classaworx_1_1lib_1_1threads_1_1SmartLock.html" target="_top" xlink:title="SmartLock">
+<g id="node5" class="node"><title>Node4</title>
+<g id="a_node5"><a xlink:href="classaworx_1_1lib_1_1threads_1_1SmartLock.html" target="_top" xlink:title="SmartLock">
 <polygon fill="white" stroke="black" points="215,-38.5 215,-57.5 279,-57.5 279,-38.5 215,-38.5"/>
 <text text-anchor="middle" x="247" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">SmartLock</text>
 </a>
 </g>
 </g>
 <!-- Node2&#45;&gt;Node4 -->
-<g id="edge3" class="edge"><title>Node2&#45;&gt;Node4</title>
+<g id="edge4" class="edge"><title>Node2&#45;&gt;Node4</title>
 <path fill="none" stroke="midnightblue" d="M176.928,-48C189.493,-48 202.959,-48 214.634,-48"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="176.645,-44.5001 166.645,-48 176.645,-51.5001 176.645,-44.5001"/>
 </g>
 <!-- Node15 -->
-<g id="node15" class="node"><title>Node15</title>
-<g id="a_node15"><a xlink:href="classaworx_1_1lox_1_1Lox.html" target="_top" xlink:title="Lox">
+<g id="node6" class="node"><title>Node15</title>
+<g id="a_node6"><a xlink:href="classaworx_1_1lox_1_1Lox.html" target="_top" xlink:title="Lox">
 <polygon fill="white" stroke="black" points="231,-0.5 231,-19.5 263,-19.5 263,-0.5 231,-0.5"/>
 <text text-anchor="middle" x="247" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">Lox</text>
 </a>
 </g>
 </g>
 <!-- Node2&#45;&gt;Node15 -->
-<g id="edge14" class="edge"><title>Node2&#45;&gt;Node15</title>
+<g id="edge5" class="edge"><title>Node2&#45;&gt;Node15</title>
 <path fill="none" stroke="midnightblue" d="M171.508,-35.1618C191.792,-28.3101 215.626,-20.2595 230.769,-15.1446"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="170.243,-31.8948 161.889,-38.411 172.483,-38.5267 170.243,-31.8948"/>
 </g>
 <!-- Node5 -->
-<g id="node5" class="node"><title>Node5</title>
-<g id="a_node5"><a xlink:href="classaworx_1_1lox_1_1core_1_1Logger.html" target="_top" xlink:title="Logger">
+<g id="node7" class="node"><title>Node5</title>
+<g id="a_node7"><a xlink:href="classaworx_1_1lox_1_1core_1_1Logger.html" target="_top" xlink:title="Logger">
 <polygon fill="white" stroke="black" points="320,-38.5 320,-57.5 366,-57.5 366,-38.5 320,-38.5"/>
 <text text-anchor="middle" x="343" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">Logger</text>
 </a>
 </g>
 </g>
 <!-- Node4&#45;&gt;Node5 -->
-<g id="edge4" class="edge"><title>Node4&#45;&gt;Node5</title>
+<g id="edge6" class="edge"><title>Node4&#45;&gt;Node5</title>
 <path fill="none" stroke="midnightblue" d="M289.353,-48C299.875,-48 310.779,-48 319.916,-48"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="289.04,-44.5001 279.04,-48 289.04,-51.5001 289.04,-44.5001"/>
 </g>
 <!-- Node6 -->
-<g id="node6" class="node"><title>Node6</title>
-<g id="a_node6"><a xlink:href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html" target="_top" xlink:title="TextLogger">
+<g id="node8" class="node"><title>Node6</title>
+<g id="a_node8"><a xlink:href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html" target="_top" xlink:title="TextLogger">
 <polygon fill="white" stroke="black" points="402,-38.5 402,-57.5 467,-57.5 467,-38.5 402,-38.5"/>
 <text text-anchor="middle" x="434.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">TextLogger</text>
 </a>
 </g>
 </g>
 <!-- Node5&#45;&gt;Node6 -->
-<g id="edge5" class="edge"><title>Node5&#45;&gt;Node6</title>
+<g id="edge7" class="edge"><title>Node5&#45;&gt;Node6</title>
 <path fill="none" stroke="midnightblue" d="M376.243,-48C384.574,-48 393.534,-48 401.835,-48"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="376.124,-44.5001 366.124,-48 376.124,-51.5001 376.124,-44.5001"/>
 </g>
 <!-- Node7 -->
-<g id="node7" class="node"><title>Node7</title>
-<g id="a_node7"><a xlink:href="classaworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html" target="_top" xlink:title="PlainTextLogger">
+<g id="node9" class="node"><title>Node7</title>
+<g id="a_node9"><a xlink:href="classaworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html" target="_top" xlink:title="PlainTextLogger">
 <polygon fill="white" stroke="black" points="520.5,-95.5 520.5,-114.5 607.5,-114.5 607.5,-95.5 520.5,-95.5"/>
 <text text-anchor="middle" x="564" y="-102.5" font-family="Helvetica,sans-Serif" font-size="10.00">PlainTextLogger</text>
 </a>
 </g>
 </g>
 <!-- Node6&#45;&gt;Node7 -->
-<g id="edge6" class="edge"><title>Node6&#45;&gt;Node7</title>
+<g id="edge8" class="edge"><title>Node6&#45;&gt;Node7</title>
 <path fill="none" stroke="midnightblue" d="M466.273,-61.7574C489.569,-72.1719 520.972,-86.2108 541.59,-95.4284"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="467.398,-58.4266 456.841,-57.5405 464.541,-64.8171 467.398,-58.4266"/>
 </g>
 <!-- Node12 -->
-<g id="node12" class="node"><title>Node12</title>
-<g id="a_node12"><a xlink:href="classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html" target="_top" xlink:title="AnsiLogger">
+<g id="node10" class="node"><title>Node12</title>
+<g id="a_node10"><a xlink:href="classaworx_1_1lox_1_1loggers_1_1AnsiLogger.html" target="_top" xlink:title="AnsiLogger">
 <polygon fill="white" stroke="black" points="531.5,-38.5 531.5,-57.5 596.5,-57.5 596.5,-38.5 531.5,-38.5"/>
 <text text-anchor="middle" x="564" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">AnsiLogger</text>
 </a>
 </g>
 </g>
 <!-- Node6&#45;&gt;Node12 -->
-<g id="edge11" class="edge"><title>Node6&#45;&gt;Node12</title>
+<g id="edge9" class="edge"><title>Node6&#45;&gt;Node12</title>
 <path fill="none" stroke="midnightblue" d="M477.069,-48C494.734,-48 514.994,-48 531.404,-48"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="477.017,-44.5001 467.017,-48 477.017,-51.5001 477.017,-44.5001"/>
 </g>
 <!-- Node14 -->
-<g id="node14" class="node"><title>Node14</title>
-<g id="a_node14"><a xlink:href="classaworx_1_1lox_1_1loggers_1_1WindowsConsoleLogger.html" target="_top" xlink:title="WindowsConsoleLogger">
+<g id="node11" class="node"><title>Node14</title>
+<g id="a_node11"><a xlink:href="classaworx_1_1lox_1_1loggers_1_1WindowsConsoleLogger.html" target="_top" xlink:title="WindowsConsoleLogger">
 <polygon fill="white" stroke="black" points="503,-0.5 503,-19.5 625,-19.5 625,-0.5 503,-0.5"/>
 <text text-anchor="middle" x="564" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">WindowsConsoleLogger</text>
 </a>
 </g>
 </g>
 <!-- Node6&#45;&gt;Node14 -->
-<g id="edge13" class="edge"><title>Node6&#45;&gt;Node14</title>
+<g id="edge10" class="edge"><title>Node6&#45;&gt;Node14</title>
 <path fill="none" stroke="midnightblue" d="M476.991,-35.6342C494.515,-30.4112 514.605,-24.4235 530.96,-19.5491"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="475.601,-32.3962 467.017,-38.6067 477.6,-39.1046 475.601,-32.3962"/>
 </g>
 <!-- Node8 -->
-<g id="node8" class="node"><title>Node8</title>
-<g id="a_node8"><a xlink:href="classaworx_1_1lox_1_1loggers_1_1ConsoleLogger.html" target="_top" xlink:title="ConsoleLogger">
+<g id="node12" class="node"><title>Node8</title>
+<g id="a_node12"><a xlink:href="classaworx_1_1lox_1_1loggers_1_1ConsoleLogger.html" target="_top" xlink:title="ConsoleLogger">
 <polygon fill="white" stroke="black" points="670.5,-171.5 670.5,-190.5 752.5,-190.5 752.5,-171.5 670.5,-171.5"/>
 <text text-anchor="middle" x="711.5" y="-178.5" font-family="Helvetica,sans-Serif" font-size="10.00">ConsoleLogger</text>
 </a>
 </g>
 </g>
 <!-- Node7&#45;&gt;Node8 -->
-<g id="edge7" class="edge"><title>Node7&#45;&gt;Node8</title>
+<g id="edge11" class="edge"><title>Node7&#45;&gt;Node8</title>
 <path fill="none" stroke="midnightblue" d="M588.13,-120.243C607.202,-132.439 635.216,-149.508 661,-162 668.041,-165.411 675.864,-168.652 683.173,-171.459"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="589.833,-117.176 579.534,-114.688 586.033,-123.055 589.833,-117.176"/>
 </g>
 <!-- Node9 -->
-<g id="node9" class="node"><title>Node9</title>
-<g id="a_node9"><a xlink:href="classaworx_1_1lox_1_1loggers_1_1MemoryLogger.html" target="_top" xlink:title="MemoryLogger">
+<g id="node13" class="node"><title>Node9</title>
+<g id="a_node13"><a xlink:href="classaworx_1_1lox_1_1loggers_1_1MemoryLogger.html" target="_top" xlink:title="MemoryLogger">
 <polygon fill="white" stroke="black" points="671,-133.5 671,-152.5 752,-152.5 752,-133.5 671,-133.5"/>
 <text text-anchor="middle" x="711.5" y="-140.5" font-family="Helvetica,sans-Serif" font-size="10.00">MemoryLogger</text>
 </a>
 </g>
 </g>
 <!-- Node7&#45;&gt;Node9 -->
-<g id="edge8" class="edge"><title>Node7&#45;&gt;Node9</title>
+<g id="edge12" class="edge"><title>Node7&#45;&gt;Node9</title>
 <path fill="none" stroke="midnightblue" d="M611.653,-117.184C631.853,-122.46 655.148,-128.544 674.048,-133.48"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="612.276,-113.73 601.716,-114.589 610.507,-120.502 612.276,-113.73"/>
 </g>
 <!-- Node10 -->
-<g id="node10" class="node"><title>Node10</title>
-<g id="a_node10"><a xlink:href="classaworx_1_1lox_1_1loggers_1_1TextFileLogger.html" target="_top" xlink:title="TextFileLogger">
+<g id="node14" class="node"><title>Node10</title>
+<g id="a_node14"><a xlink:href="classaworx_1_1lox_1_1loggers_1_1TextFileLogger.html" target="_top" xlink:title="TextFileLogger">
 <polygon fill="white" stroke="black" points="671,-95.5 671,-114.5 752,-114.5 752,-95.5 671,-95.5"/>
 <text text-anchor="middle" x="711.5" y="-102.5" font-family="Helvetica,sans-Serif" font-size="10.00">TextFileLogger</text>
 </a>
 </g>
 </g>
 <!-- Node7&#45;&gt;Node10 -->
-<g id="edge9" class="edge"><title>Node7&#45;&gt;Node10</title>
+<g id="edge13" class="edge"><title>Node7&#45;&gt;Node10</title>
 <path fill="none" stroke="midnightblue" d="M617.946,-105C635.446,-105 654.601,-105 670.922,-105"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="617.868,-101.5 607.868,-105 617.868,-108.5 617.868,-101.5"/>
 </g>
 <!-- Node11 -->
-<g id="node11" class="node"><title>Node11</title>
-<g id="a_node11"><a xlink:href="classaworx_1_1lox_1_1loggers_1_1VStudioLogger.html" target="_top" xlink:title="VStudioLogger">
+<g id="node15" class="node"><title>Node11</title>
+<g id="a_node15"><a xlink:href="classaworx_1_1lox_1_1loggers_1_1VStudioLogger.html" target="_top" xlink:title="VStudioLogger">
 <polygon fill="white" stroke="black" points="671.5,-57.5 671.5,-76.5 751.5,-76.5 751.5,-57.5 671.5,-57.5"/>
 <text text-anchor="middle" x="711.5" y="-64.5" font-family="Helvetica,sans-Serif" font-size="10.00">VStudioLogger</text>
 </a>
 </g>
 </g>
 <!-- Node7&#45;&gt;Node11 -->
-<g id="edge10" class="edge"><title>Node7&#45;&gt;Node11</title>
+<g id="edge14" class="edge"><title>Node7&#45;&gt;Node11</title>
 <path fill="none" stroke="midnightblue" d="M611.653,-92.8157C631.853,-87.54 655.148,-81.4562 674.048,-76.5201"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="610.507,-89.4976 601.716,-95.411 612.276,-96.2704 610.507,-89.4976"/>
 </g>
 <!-- Node13 -->
-<g id="node13" class="node"><title>Node13</title>
-<g id="a_node13"><a xlink:href="classaworx_1_1lox_1_1loggers_1_1AnsiConsoleLogger.html" target="_top" xlink:title="AnsiConsoleLogger">
+<g id="node16" class="node"><title>Node13</title>
+<g id="a_node16"><a xlink:href="classaworx_1_1lox_1_1loggers_1_1AnsiConsoleLogger.html" target="_top" xlink:title="AnsiConsoleLogger">
 <polygon fill="white" stroke="black" points="661,-19.5 661,-38.5 762,-38.5 762,-19.5 661,-19.5"/>
 <text text-anchor="middle" x="711.5" y="-26.5" font-family="Helvetica,sans-Serif" font-size="10.00">AnsiConsoleLogger</text>
 </a>
 </g>
 </g>
 <!-- Node12&#45;&gt;Node13 -->
-<g id="edge12" class="edge"><title>Node12&#45;&gt;Node13</title>
+<g id="edge15" class="edge"><title>Node12&#45;&gt;Node13</title>
 <path fill="none" stroke="midnightblue" d="M606.71,-42.5533C623.635,-40.3432 643.318,-37.7729 660.966,-35.4684"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="606.034,-39.1118 596.571,-43.8773 606.94,-46.0529 606.034,-39.1118"/>
 </g>

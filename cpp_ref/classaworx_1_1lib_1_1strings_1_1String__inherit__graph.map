@@ -1,7 +1,7 @@
 <map id="String" name="String">
 <area shape="rect" id="node4" href="$classaworx_1_1lib_1_1strings_1_1Substring.html" title="Substring" alt="" coords="109,5,187,32"/>
 <area shape="rect" id="node5" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="116,56,180,83"/>
-<area shape="rect" id="node2" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\l\&lt; TCapacity \&gt;" alt="" coords="445,74,573,115"/>
-<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1strings_1_1StringLiteral.html" title="StringLiteral\&lt; TLength \&gt;" alt="" coords="235,31,397,57"/>
-<area shape="rect" id="node6" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="283,81,349,108"/>
+<area shape="rect" id="node2" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\&lt;TCapacity\&gt;" alt="" coords="437,81,641,108"/>
+<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1strings_1_1StringLiteral.html" title="StringLiteral\&lt;TLength\&gt;" alt="" coords="235,31,389,57"/>
+<area shape="rect" id="node6" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="279,81,345,108"/>
 </map>

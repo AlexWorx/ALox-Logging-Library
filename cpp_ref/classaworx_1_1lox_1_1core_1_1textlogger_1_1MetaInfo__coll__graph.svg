@@ -39,36 +39,36 @@
 <text text-anchor="middle" x="58.0455" y="-70" font-family="Helvetica,sans-Serif" font-size="10.00">...</text>
 </g>
 <!-- Node4 -->
-<g id="node4" class="node"><title>Node4</title>
-<g id="a_node4"><a xlink:href="classaworx_1_1lib_1_1strings_1_1AString.html" target="_top" xlink:title="AString">
+<g id="node3" class="node"><title>Node4</title>
+<g id="a_node3"><a xlink:href="classaworx_1_1lib_1_1strings_1_1AString.html" target="_top" xlink:title="AString">
 <polygon fill="white" stroke="black" points="108.545,-118 108.545,-137 157.545,-137 157.545,-118 108.545,-118"/>
 <text text-anchor="middle" x="133.045" y="-125" font-family="Helvetica,sans-Serif" font-size="10.00">AString</text>
 </a>
 </g>
 </g>
 <!-- Node2&#45;&gt;Node4 -->
-<g id="edge4" class="edge"><title>Node2&#45;&gt;Node4</title>
+<g id="edge2" class="edge"><title>Node2&#45;&gt;Node4</title>
 <path fill="none" stroke="midnightblue" d="M63.3302,-218.707C73.0007,-210.173 84.759,-199.057 94.0455,-188 108.185,-171.165 121.517,-148.975 128.328,-137.016"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="60.7695,-216.294 55.484,-225.476 65.3421,-221.594 60.7695,-216.294"/>
 </g>
+<!-- Node4&#45;&gt;Node1 -->
+<g id="edge4" class="edge"><title>Node4&#45;&gt;Node1</title>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M133.045,-107.664C133.045,-82.3651 133.045,-38.4353 133.045,-19.782"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="129.546,-107.819 133.045,-117.819 136.546,-107.819 129.546,-107.819"/>
+<text text-anchor="middle" x="150.045" y="-41" font-family="Helvetica,sans-Serif" font-size="10.00"> Format</text>
+</g>
 <!-- Node3 -->
-<g id="node3" class="node"><title>Node3</title>
-<g id="a_node3"><a xlink:href="classaworx_1_1lib_1_1strings_1_1String.html" target="_top" xlink:title="String">
+<g id="node4" class="node"><title>Node3</title>
+<g id="a_node4"><a xlink:href="classaworx_1_1lib_1_1strings_1_1String.html" target="_top" xlink:title="String">
 <polygon fill="white" stroke="black" points="24.0455,-282.5 24.0455,-301.5 66.0455,-301.5 66.0455,-282.5 24.0455,-282.5"/>
 <text text-anchor="middle" x="45.0455" y="-289.5" font-family="Helvetica,sans-Serif" font-size="10.00">String</text>
 </a>
 </g>
 </g>
 <!-- Node3&#45;&gt;Node2 -->
-<g id="edge2" class="edge"><title>Node3&#45;&gt;Node2</title>
+<g id="edge3" class="edge"><title>Node3&#45;&gt;Node2</title>
 <path fill="none" stroke="midnightblue" d="M45.0455,-272.117C45.0455,-262.817 45.0455,-252.056 45.0455,-244.715"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="41.5456,-272.406 45.0455,-282.406 48.5456,-272.406 41.5456,-272.406"/>
-</g>
-<!-- Node4&#45;&gt;Node1 -->
-<g id="edge3" class="edge"><title>Node4&#45;&gt;Node1</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M133.045,-107.664C133.045,-82.3651 133.045,-38.4353 133.045,-19.782"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="129.546,-107.819 133.045,-117.819 136.546,-107.819 129.546,-107.819"/>
-<text text-anchor="middle" x="150.045" y="-41" font-family="Helvetica,sans-Serif" font-size="10.00"> Format</text>
 </g>
 <!-- Node5 -->
 <g id="node5" class="node"><title>Node5</title>

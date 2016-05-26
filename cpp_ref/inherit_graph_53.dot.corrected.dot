@@ -4,8 +4,8 @@ digraph "Graphical Class Hierarchy"
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
   Node1 [label="String",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1String.html"];
-  Node5 [label="PreallocatedString\l\< TCapacity \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html"];
-  Node10 [label="StringLiteral\< TLength \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1StringLiteral.html"];
+  Node5 [label="PreallocatedString\<TCapacity\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html"];
+  Node10 [label="StringLiteral\<TLength\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1StringLiteral.html"];
   Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];

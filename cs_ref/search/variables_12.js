@@ -46,6 +46,6 @@ var searchData=
   ['tsubstring',['tSubstring',['../classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#ae02ecb257cadbd45d5280d878055873a',1,'cs::aworx::lox::core::Domain']]],
   ['tsubstring2',['tSubstring2',['../classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#ac2fc5db593e64d47fe51e0989418ef72',1,'cs::aworx::lox::core::Domain']]],
   ['ttok',['tTok',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a7e48c9b876240a28cb1ec476593f3d10',1,'cs::aworx::lox::core::textlogger::MetaInfo']]],
-  ['type',['type',['../classcs_1_1aworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html#ab6f4e6d3fde00ce906e46494f60dfe7a',1,'cs.aworx.lox.Lox.DomainSubstitutionRule.type()'],['../classcs_1_1aworx_1_1lib_1_1Report_1_1Message.html#ae011432eaca3858364b05a111f4011d3',1,'cs.aworx.lib.Report.Message.Type()']]],
+  ['type',['Type',['../classcs_1_1aworx_1_1lib_1_1Report_1_1Message.html#ae011432eaca3858364b05a111f4011d3',1,'cs.aworx.lib.Report.Message.Type()'],['../classcs_1_1aworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html#ab6f4e6d3fde00ce906e46494f60dfe7a',1,'cs.aworx.lox.Lox.DomainSubstitutionRule.type()']]],
   ['typename',['typeName',['../classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html#ab702590cb21a529418c7bd6439c4337a',1,'cs::aworx::lox::core::Logger']]]
 ];

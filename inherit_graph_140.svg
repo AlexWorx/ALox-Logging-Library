@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="none" points="-4,4 -4,-255 891,-255 891,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<g id="a_node1"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html" target="_top" xlink:title="cs::aworx::lib::threads\l::ThreadLock">
+<g id="a_node1"><a doxygen="ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html" target="_top" xlink:title="cs::aworx::lib::threads\l::ThreadLock">
 <polygon fill="white" stroke="black" points="0,-27.5 0,-57.5 113,-57.5 113,-27.5 0,-27.5"/>
 <text text-anchor="start" x="8" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">cs::aworx::lib::threads</text>
 <text text-anchor="middle" x="56.5" y="-34.5" font-family="Helvetica,sans-Serif" font-size="10.00">::ThreadLock</text>
@@ -20,7 +20,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/classcs_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html" target="_top" xlink:title="cs::aworx::lib::threads\l::SmartLock">
+<g id="a_node2"><a doxygen="ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/classcs_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html" target="_top" xlink:title="cs::aworx::lib::threads\l::SmartLock">
 <polygon fill="white" stroke="black" points="149,-49.5 149,-79.5 262,-79.5 262,-49.5 149,-49.5"/>
 <text text-anchor="start" x="157" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00">cs::aworx::lib::threads</text>
 <text text-anchor="middle" x="205.5" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">::SmartLock</text>
@@ -34,7 +34,7 @@
 </g>
 <!-- Node13 -->
 <g id="node13" class="node"><title>Node13</title>
-<g id="a_node13"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/classcs_1_1aworx_1_1lox_1_1Lox.html" target="_top" xlink:title="cs::aworx::lox::Lox">
+<g id="a_node13"><a doxygen="ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/classcs_1_1aworx_1_1lox_1_1Lox.html" target="_top" xlink:title="cs::aworx::lox::Lox">
 <polygon fill="white" stroke="black" points="155.5,-11 155.5,-30 255.5,-30 255.5,-11 155.5,-11"/>
 <text text-anchor="middle" x="205.5" y="-18" font-family="Helvetica,sans-Serif" font-size="10.00">cs::aworx::lox::Lox</text>
 </a>
@@ -47,7 +47,7 @@
 </g>
 <!-- Node3 -->
 <g id="node3" class="node"><title>Node3</title>
-<g id="a_node3"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html" target="_top" xlink:title="cs::aworx::lox::core\l::Logger">
+<g id="a_node3"><a doxygen="ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html" target="_top" xlink:title="cs::aworx::lox::core\l::Logger">
 <polygon fill="white" stroke="black" points="298,-49.5 298,-79.5 401,-79.5 401,-49.5 298,-49.5"/>
 <text text-anchor="start" x="306" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00">cs::aworx::lox::core</text>
 <text text-anchor="middle" x="349.5" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">::Logger</text>
@@ -61,7 +61,7 @@
 </g>
 <!-- Node4 -->
 <g id="node4" class="node"><title>Node4</title>
-<g id="a_node4"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html" target="_top" xlink:title="cs::aworx::lox::core\l::textlogger::TextLogger">
+<g id="a_node4"><a doxygen="ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html" target="_top" xlink:title="cs::aworx::lox::core\l::textlogger::TextLogger">
 <polygon fill="white" stroke="black" points="437,-49.5 437,-79.5 557,-79.5 557,-49.5 437,-49.5"/>
 <text text-anchor="start" x="445" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00">cs::aworx::lox::core</text>
 <text text-anchor="middle" x="497" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">::textlogger::TextLogger</text>
@@ -75,7 +75,7 @@
 </g>
 <!-- Node5 -->
 <g id="node5" class="node"><title>Node5</title>
-<g id="a_node5"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html" target="_top" xlink:title="cs::aworx::lox::core\l::textlogger::PlainTextLogger">
+<g id="a_node5"><a doxygen="ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html" target="_top" xlink:title="cs::aworx::lox::core\l::textlogger::PlainTextLogger">
 <polygon fill="white" stroke="black" points="593,-122.5 593,-152.5 735,-152.5 735,-122.5 593,-122.5"/>
 <text text-anchor="start" x="601" y="-140.5" font-family="Helvetica,sans-Serif" font-size="10.00">cs::aworx::lox::core</text>
 <text text-anchor="middle" x="664" y="-129.5" font-family="Helvetica,sans-Serif" font-size="10.00">::textlogger::PlainTextLogger</text>
@@ -89,7 +89,7 @@
 </g>
 <!-- Node10 -->
 <g id="node10" class="node"><title>Node10</title>
-<g id="a_node10"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html" target="_top" xlink:title="cs::aworx::lox::loggers\l::AnsiLogger">
+<g id="a_node10"><a doxygen="ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html" target="_top" xlink:title="cs::aworx::lox::loggers\l::AnsiLogger">
 <polygon fill="white" stroke="black" points="606,-49.5 606,-79.5 722,-79.5 722,-49.5 606,-49.5"/>
 <text text-anchor="start" x="614" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00">cs::aworx::lox::loggers</text>
 <text text-anchor="middle" x="664" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">::AnsiLogger</text>
@@ -103,7 +103,7 @@
 </g>
 <!-- Node12 -->
 <g id="node12" class="node"><title>Node12</title>
-<g id="a_node12"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/classcs_1_1aworx_1_1lox_1_1loggers_1_1ColorConsoleLogger.html" target="_top" xlink:title="cs::aworx::lox::loggers\l::ColorConsoleLogger">
+<g id="a_node12"><a doxygen="ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/classcs_1_1aworx_1_1lox_1_1loggers_1_1ColorConsoleLogger.html" target="_top" xlink:title="cs::aworx::lox::loggers\l::ColorConsoleLogger">
 <polygon fill="white" stroke="black" points="606,-0.5 606,-30.5 722,-30.5 722,-0.5 606,-0.5"/>
 <text text-anchor="start" x="614" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">cs::aworx::lox::loggers</text>
 <text text-anchor="middle" x="664" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">::ColorConsoleLogger</text>
@@ -117,7 +117,7 @@
 </g>
 <!-- Node6 -->
 <g id="node6" class="node"><title>Node6</title>
-<g id="a_node6"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/classcs_1_1aworx_1_1lox_1_1loggers_1_1CLRDebuggerLogger.html" target="_top" xlink:title="cs::aworx::lox::loggers\l::CLRDebuggerLogger">
+<g id="a_node6"><a doxygen="ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/classcs_1_1aworx_1_1lox_1_1loggers_1_1CLRDebuggerLogger.html" target="_top" xlink:title="cs::aworx::lox::loggers\l::CLRDebuggerLogger">
 <polygon fill="white" stroke="black" points="771,-220.5 771,-250.5 887,-250.5 887,-220.5 771,-220.5"/>
 <text text-anchor="start" x="779" y="-238.5" font-family="Helvetica,sans-Serif" font-size="10.00">cs::aworx::lox::loggers</text>
 <text text-anchor="middle" x="829" y="-227.5" font-family="Helvetica,sans-Serif" font-size="10.00">::CLRDebuggerLogger</text>
@@ -131,7 +131,7 @@
 </g>
 <!-- Node7 -->
 <g id="node7" class="node"><title>Node7</title>
-<g id="a_node7"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/classcs_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html" target="_top" xlink:title="cs::aworx::lox::loggers\l::ConsoleLogger">
+<g id="a_node7"><a doxygen="ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/classcs_1_1aworx_1_1lox_1_1loggers_1_1ConsoleLogger.html" target="_top" xlink:title="cs::aworx::lox::loggers\l::ConsoleLogger">
 <polygon fill="white" stroke="black" points="771,-171.5 771,-201.5 887,-201.5 887,-171.5 771,-171.5"/>
 <text text-anchor="start" x="779" y="-189.5" font-family="Helvetica,sans-Serif" font-size="10.00">cs::aworx::lox::loggers</text>
 <text text-anchor="middle" x="829" y="-178.5" font-family="Helvetica,sans-Serif" font-size="10.00">::ConsoleLogger</text>
@@ -145,7 +145,7 @@
 </g>
 <!-- Node8 -->
 <g id="node8" class="node"><title>Node8</title>
-<g id="a_node8"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/classcs_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html" target="_top" xlink:title="cs::aworx::lox::loggers\l::MemoryLogger">
+<g id="a_node8"><a doxygen="ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/classcs_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html" target="_top" xlink:title="cs::aworx::lox::loggers\l::MemoryLogger">
 <polygon fill="white" stroke="black" points="771,-122.5 771,-152.5 887,-152.5 887,-122.5 771,-122.5"/>
 <text text-anchor="start" x="779" y="-140.5" font-family="Helvetica,sans-Serif" font-size="10.00">cs::aworx::lox::loggers</text>
 <text text-anchor="middle" x="829" y="-129.5" font-family="Helvetica,sans-Serif" font-size="10.00">::MemoryLogger</text>
@@ -159,7 +159,7 @@
 </g>
 <!-- Node9 -->
 <g id="node9" class="node"><title>Node9</title>
-<g id="a_node9"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/classcs_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html" target="_top" xlink:title="cs::aworx::lox::loggers\l::TextFileLogger">
+<g id="a_node9"><a doxygen="ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/classcs_1_1aworx_1_1lox_1_1loggers_1_1TextFileLogger.html" target="_top" xlink:title="cs::aworx::lox::loggers\l::TextFileLogger">
 <polygon fill="white" stroke="black" points="771,-73.5 771,-103.5 887,-103.5 887,-73.5 771,-73.5"/>
 <text text-anchor="start" x="779" y="-91.5" font-family="Helvetica,sans-Serif" font-size="10.00">cs::aworx::lox::loggers</text>
 <text text-anchor="middle" x="829" y="-80.5" font-family="Helvetica,sans-Serif" font-size="10.00">::TextFileLogger</text>
@@ -173,7 +173,7 @@
 </g>
 <!-- Node11 -->
 <g id="node11" class="node"><title>Node11</title>
-<g id="a_node11"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiConsoleLogger.html" target="_top" xlink:title="cs::aworx::lox::loggers\l::AnsiConsoleLogger">
+<g id="a_node11"><a doxygen="ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiConsoleLogger.html" target="_top" xlink:title="cs::aworx::lox::loggers\l::AnsiConsoleLogger">
 <polygon fill="white" stroke="black" points="771,-24.5 771,-54.5 887,-54.5 887,-24.5 771,-24.5"/>
 <text text-anchor="start" x="779" y="-42.5" font-family="Helvetica,sans-Serif" font-size="10.00">cs::aworx::lox::loggers</text>
 <text text-anchor="middle" x="829" y="-31.5" font-family="Helvetica,sans-Serif" font-size="10.00">::AnsiConsoleLogger</text>

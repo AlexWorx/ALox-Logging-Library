@@ -1,7 +1,7 @@
 <map id="Domain" name="Domain">
-<area shape="rect" id="node5" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\l\&lt; TCapacity \&gt;" alt="" coords="233,62,361,103"/>
-<area shape="rect" id="node6" href="$classaworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="475,123,536,149"/>
-<area shape="rect" id="node9" href="$structaworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html" title="LoggerData" alt="" coords="628,131,717,157"/>
+<area shape="rect" id="node5" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\&lt;TCapacity\&gt;" alt="" coords="233,69,437,96"/>
+<area shape="rect" id="node6" href="$classaworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="551,123,612,149"/>
+<area shape="rect" id="node9" href="$structaworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html" title="LoggerData" alt="" coords="704,131,793,157"/>
 <area shape="rect" id="node7" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="119,69,184,96"/>
 <area shape="rect" id="node8" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="5,69,69,96"/>
 </map>

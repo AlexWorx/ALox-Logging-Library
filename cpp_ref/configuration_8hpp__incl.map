@@ -1,20 +1,20 @@
 <map id="configuration.hpp" name="configuration.hpp">
 <area shape="rect" id="node2" href="$threadlock_8hpp.html" title="alib/threads/threadlock.hpp" alt="" coords="1359,80,1537,107"/>
-<area shape="rect" id="node31" href="$numberformat_8hpp.html" title="alib/strings/numberformat.hpp" alt="" coords="1561,80,1756,107"/>
-<area shape="rect" id="node32" href="$plugins_8hpp.html" title="alib/config/plugins.hpp" alt="" coords="1781,80,1931,107"/>
-<area shape="rect" id="node3" href="$alib_8hpp.html" title="alib/alib.hpp" alt="" coords="1343,229,1433,256"/>
-<area shape="rect" id="node24" href="$ownable_8hpp.html" title="alib/core/ownable.hpp" alt="" coords="1426,155,1574,181"/>
-<area shape="rect" id="node25" href="$thread_8hpp.html" title="thread.hpp" alt="" coords="1637,155,1720,181"/>
-<area shape="rect" id="node4" href="$symbols_8hpp.html" title="alib/core/symbols.hpp" alt="" coords="5,304,155,331"/>
-<area shape="rect" id="node5" href="$macros_8hpp.html" title="alib/core/macros.hpp" alt="" coords="178,304,321,331"/>
-<area shape="rect" id="node13" href="$enums_8hpp.html" title="alib/core/enums.hpp" alt="" coords="991,304,1129,331"/>
-<area shape="rect" id="node14" href="$report_8hpp.html" title="alib/core/report.hpp" alt="" coords="1153,304,1287,331"/>
-<area shape="rect" id="node15" href="$cstring_8hpp.html" title="alib/strings/cstring.hpp" alt="" coords="1311,304,1465,331"/>
-<area shape="rect" id="node16" href="$string_8hpp.html" title="alib/strings/string.hpp" alt="" coords="1489,304,1636,331"/>
-<area shape="rect" id="node17" href="$tstring_8hpp.html" title="alib/strings/tstring.hpp" alt="" coords="1661,304,1811,331"/>
-<area shape="rect" id="node18" href="$stringliteral_8hpp.html" title="alib/strings/stringliteral.hpp" alt="" coords="1835,304,2013,331"/>
-<area shape="rect" id="node19" href="$astring_8hpp.html" title="alib/strings/astring.hpp" alt="" coords="2037,304,2190,331"/>
-<area shape="rect" id="node20" href="$preallocatedstring_8hpp.html" title="alib/strings/preallocatedstring.hpp" alt="" coords="2215,304,2431,331"/>
-<area shape="rect" id="node21" href="$applyto_8hpp.html" title="alib/strings/applyto.hpp" alt="" coords="2455,304,2611,331"/>
-<area shape="rect" id="node22" href="$applyformat_8hpp.html" title="alib/strings/applyformat.hpp" alt="" coords="2635,304,2818,331"/>
+<area shape="rect" id="node4" href="$numberformat_8hpp.html" title="alib/strings/numberformat.hpp" alt="" coords="1561,80,1756,107"/>
+<area shape="rect" id="node5" href="$plugins_8hpp.html" title="alib/config/plugins.hpp" alt="" coords="1781,80,1931,107"/>
+<area shape="rect" id="node6" href="$alib_8hpp.html" title="alib/alib.hpp" alt="" coords="1343,229,1433,256"/>
+<area shape="rect" id="node7" href="$ownable_8hpp.html" title="alib/core/ownable.hpp" alt="" coords="1426,155,1574,181"/>
+<area shape="rect" id="node8" href="$thread_8hpp.html" title="thread.hpp" alt="" coords="1637,155,1720,181"/>
+<area shape="rect" id="node9" href="$symbols_8hpp.html" title="alib/core/symbols.hpp" alt="" coords="5,304,155,331"/>
+<area shape="rect" id="node10" href="$macros_8hpp.html" title="alib/core/macros.hpp" alt="" coords="178,304,321,331"/>
+<area shape="rect" id="node18" href="$enums_8hpp.html" title="alib/core/enums.hpp" alt="" coords="991,304,1129,331"/>
+<area shape="rect" id="node19" href="$report_8hpp.html" title="alib/core/report.hpp" alt="" coords="1153,304,1287,331"/>
+<area shape="rect" id="node20" href="$cstring_8hpp.html" title="alib/strings/cstring.hpp" alt="" coords="1311,304,1465,331"/>
+<area shape="rect" id="node21" href="$string_8hpp.html" title="alib/strings/string.hpp" alt="" coords="1489,304,1636,331"/>
+<area shape="rect" id="node22" href="$tstring_8hpp.html" title="alib/strings/tstring.hpp" alt="" coords="1661,304,1811,331"/>
+<area shape="rect" id="node23" href="$stringliteral_8hpp.html" title="alib/strings/stringliteral.hpp" alt="" coords="1835,304,2013,331"/>
+<area shape="rect" id="node24" href="$astring_8hpp.html" title="alib/strings/astring.hpp" alt="" coords="2037,304,2190,331"/>
+<area shape="rect" id="node25" href="$preallocatedstring_8hpp.html" title="alib/strings/preallocatedstring.hpp" alt="" coords="2215,304,2431,331"/>
+<area shape="rect" id="node26" href="$applyto_8hpp.html" title="alib/strings/applyto.hpp" alt="" coords="2455,304,2611,331"/>
+<area shape="rect" id="node27" href="$applyformat_8hpp.html" title="alib/strings/applyformat.hpp" alt="" coords="2635,304,2818,331"/>
 </map>

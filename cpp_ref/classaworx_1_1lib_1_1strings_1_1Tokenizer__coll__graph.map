@@ -1,7 +1,7 @@
 <map id="Tokenizer" name="Tokenizer">
-<area shape="rect" id="node2" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\l\&lt; 16 \&gt;" alt="" coords="5,287,133,328"/>
-<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="59,183,125,209"/>
-<area shape="rect" id="node4" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="65,81,129,108"/>
-<area shape="rect" id="node5" href="$classaworx_1_1lib_1_1strings_1_1String.html" title="String" alt="" coords="113,5,169,32"/>
-<area shape="rect" id="node6" href="$classaworx_1_1lib_1_1strings_1_1Substring.html" title="Substring" alt="" coords="131,132,208,159"/>
+<area shape="rect" id="node2" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\&lt;TCapacity\&gt;" alt="" coords="5,287,209,313"/>
+<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="127,183,192,209"/>
+<area shape="rect" id="node4" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="139,81,203,108"/>
+<area shape="rect" id="node5" href="$classaworx_1_1lib_1_1strings_1_1String.html" title="String" alt="" coords="187,5,243,32"/>
+<area shape="rect" id="node6" href="$classaworx_1_1lib_1_1strings_1_1Substring.html" title="Substring" alt="" coords="207,132,285,159"/>
 </map>

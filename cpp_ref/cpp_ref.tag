@@ -767,6 +767,27 @@
     <namespace>aworx</namespace>
     <namespace>aworx::lib</namespace>
     <namespace>aworx::lib::strings</namespace>
+    <member kind="define">
+      <type>#define</type>
+      <name>ALIB_STRINGS_APPLYTO_DECLARATION</name>
+      <anchorfile>group__GrpALibMacros.html</anchorfile>
+      <anchor>ga7ef8eaf71cad1c7be73ef8e61dc65177</anchor>
+      <arglist>(TYPE)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ALIB_STRINGS_APPLYTO_DEFINITION</name>
+      <anchorfile>group__GrpALibMacros.html</anchorfile>
+      <anchor>ga87261d3411f0175bbc3efab49720023f</anchor>
+      <arglist>(TYPE, IMPLEMENTATION)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ALIB_STRINGS_APPLYTO_INLINE</name>
+      <anchorfile>group__GrpALibMacros.html</anchorfile>
+      <anchor>gaf3673497e1c2e5436ad2b369c135658f</anchor>
+      <arglist>(TYPE, IMPLEMENTATION)</arglist>
+    </member>
     <member kind="function">
       <type>int</type>
       <name>ApplyTo</name>
@@ -885,6 +906,27 @@
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
       <anchor>abcd4a1d202f1c13b510ec14cd55d3a7a</anchor>
       <arglist>(AString &amp;target, const T src)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ALIB_STRINGS_APPLYTO_DECLARATION</name>
+      <anchorfile>group__GrpALibMacros.html</anchorfile>
+      <anchor>ga7ef8eaf71cad1c7be73ef8e61dc65177</anchor>
+      <arglist>(TYPE)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ALIB_STRINGS_APPLYTO_DEFINITION</name>
+      <anchorfile>group__GrpALibMacros.html</anchorfile>
+      <anchor>ga87261d3411f0175bbc3efab49720023f</anchor>
+      <arglist>(TYPE, IMPLEMENTATION)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ALIB_STRINGS_APPLYTO_INLINE</name>
+      <anchorfile>group__GrpALibMacros.html</anchorfile>
+      <anchor>gaf3673497e1c2e5436ad2b369c135658f</anchor>
+      <arglist>(TYPE, IMPLEMENTATION)</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -2865,6 +2907,13 @@
     <name>aworx::lox::ALoxReportWriter</name>
     <filename>classaworx_1_1lox_1_1ALoxReportWriter.html</filename>
     <base>aworx::lib::ReportWriter</base>
+    <member kind="function" static="yes">
+      <type>static ALOX_API String &amp;</type>
+      <name>LogDomain</name>
+      <anchorfile>classaworx_1_1lox_1_1ALoxReportWriter.html</anchorfile>
+      <anchor>a25d1e81288f8b2a044f14e2577bc73cf</anchor>
+      <arglist>()</arglist>
+    </member>
     <member kind="function">
       <type>ALOX_API</type>
       <name>ALoxReportWriter</name>
@@ -2885,6 +2934,13 @@
       <anchorfile>classaworx_1_1lox_1_1ALoxReportWriter.html</anchorfile>
       <anchor>a3ad9ad01d27945bd76295c63aa1f5457</anchor>
       <arglist>(const lib::Report::Message &amp;report)</arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static String16</type>
+      <name>reportDomain</name>
+      <anchorfile>classaworx_1_1lox_1_1ALoxReportWriter.html</anchorfile>
+      <anchor>add18036b208027dee62ed16031695ac5</anchor>
+      <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>Lox *</type>
@@ -3940,6 +3996,7 @@
     <docanchor file="classaworx_1_1lib_1_1strings_1_1AString">alib_namespace_strings_astring_move</docanchor>
     <docanchor file="classaworx_1_1lib_1_1strings_1_1AString">alib_namespace_strings_astring_write_access</docanchor>
     <docanchor file="classaworx_1_1lib_1_1strings_1_1AString">alib_namespace_strings_astring_nullable</docanchor>
+    <docanchor file="classaworx_1_1lib_1_1strings_1_1AString">alib_namespace_strings_astring_applyto</docanchor>
     <docanchor file="classaworx_1_1lib_1_1strings_1_1AString">alib_namespace_strings_astring_application_vs_interface</docanchor>
   </compound>
   <compound kind="class">
@@ -5381,10 +5438,24 @@
     </member>
     <member kind="function" static="yes">
       <type>static ALOX_API void</type>
+      <name>AddALibReportWriter</name>
+      <anchorfile>classaworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>abb8bfbfc93fc3b5b0d8bd9bcac6b7235</anchor>
+      <arglist>(Lox *lox)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static ALOX_API void</type>
       <name>AddDebugLogger</name>
       <anchorfile>classaworx_1_1lox_1_1Log.html</anchorfile>
       <anchor>a06444d2e7a321e26fe1d4c309cb8ed49</anchor>
       <arglist>(Lox *lox)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static ALOX_API void</type>
+      <name>RemoveALibReportWriter</name>
+      <anchorfile>classaworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a9bd252035e8769cec5f74ca014b46817</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static ALOX_API void</type>
@@ -8265,21 +8336,21 @@
       <type>ALOX_API</type>
       <name>ScopeStore</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
-      <anchor>ab2e398fa8b1dfdd80338f081ee495717</anchor>
+      <anchor>ac7a74581c38faf240883a9a395547d5a</anchor>
       <arglist>(ScopeInfo &amp;scopeInfo, bool cfgSingleThreadValue)</arglist>
     </member>
     <member kind="function">
       <type>ALOX_API</type>
       <name>~ScopeStore</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
-      <anchor>af76396d4a8d1de67fe742bf4cdc3fbab</anchor>
+      <anchor>a9bff9f3eb2193028b398787f43ca19d1</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>ALOX_API void</type>
       <name>Clear</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
-      <anchor>aa71d36872f416feaa853788a7a7a7ef8</anchor>
+      <anchor>a8276b692283d7725759466633f2c8211</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
@@ -8293,14 +8364,14 @@
       <type>ALOX_API void</type>
       <name>InitAccess</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
-      <anchor>aeaa3f65207097ff85093acc485223a44</anchor>
+      <anchor>a15cc8a2338769a04748e8964f2659b42</anchor>
       <arglist>(Scope scope, int pathLevel, int threadID)</arglist>
     </member>
     <member kind="function">
       <type>ALOX_API void</type>
       <name>InitWalk</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
-      <anchor>ae264cb9b825bd34050766c256a2504df</anchor>
+      <anchor>a5c609208e4e06536121b94f6896fab1e</anchor>
       <arglist>(Scope startScope, StoreT localObject)</arglist>
     </member>
     <member kind="function">
@@ -8321,7 +8392,7 @@
       <type>ALOX_API StoreT</type>
       <name>Walk</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
-      <anchor>abf60f56ae3a9568c4c963460cb4cf9b7</anchor>
+      <anchor>a262f597e568a196dcb284fb1c859c8d6</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -8451,21 +8522,21 @@
       <type>ALOX_API</type>
       <name>ScopeStore</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
-      <anchor>ab2e398fa8b1dfdd80338f081ee495717</anchor>
+      <anchor>ac7a74581c38faf240883a9a395547d5a</anchor>
       <arglist>(ScopeInfo &amp;scopeInfo, bool cfgSingleThreadValue)</arglist>
     </member>
     <member kind="function">
       <type>ALOX_API</type>
       <name>~ScopeStore</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
-      <anchor>af76396d4a8d1de67fe742bf4cdc3fbab</anchor>
+      <anchor>a9bff9f3eb2193028b398787f43ca19d1</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>ALOX_API void</type>
       <name>Clear</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
-      <anchor>aa71d36872f416feaa853788a7a7a7ef8</anchor>
+      <anchor>a8276b692283d7725759466633f2c8211</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
@@ -8479,14 +8550,14 @@
       <type>ALOX_API void</type>
       <name>InitAccess</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
-      <anchor>aeaa3f65207097ff85093acc485223a44</anchor>
+      <anchor>a15cc8a2338769a04748e8964f2659b42</anchor>
       <arglist>(Scope scope, int pathLevel, int threadID)</arglist>
     </member>
     <member kind="function">
       <type>ALOX_API void</type>
       <name>InitWalk</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
-      <anchor>ae264cb9b825bd34050766c256a2504df</anchor>
+      <anchor>a5c609208e4e06536121b94f6896fab1e</anchor>
       <arglist>(Scope startScope, aworx::lib::strings::AString *localObject)</arglist>
     </member>
     <member kind="function">
@@ -8507,7 +8578,7 @@
       <type>ALOX_API aworx::lib::strings::AString *</type>
       <name>Walk</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
-      <anchor>abf60f56ae3a9568c4c963460cb4cf9b7</anchor>
+      <anchor>a262f597e568a196dcb284fb1c859c8d6</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -8637,21 +8708,21 @@
       <type>ALOX_API</type>
       <name>ScopeStore</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
-      <anchor>ab2e398fa8b1dfdd80338f081ee495717</anchor>
+      <anchor>ac7a74581c38faf240883a9a395547d5a</anchor>
       <arglist>(ScopeInfo &amp;scopeInfo, bool cfgSingleThreadValue)</arglist>
     </member>
     <member kind="function">
       <type>ALOX_API</type>
       <name>~ScopeStore</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
-      <anchor>af76396d4a8d1de67fe742bf4cdc3fbab</anchor>
+      <anchor>a9bff9f3eb2193028b398787f43ca19d1</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>ALOX_API void</type>
       <name>Clear</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
-      <anchor>aa71d36872f416feaa853788a7a7a7ef8</anchor>
+      <anchor>a8276b692283d7725759466633f2c8211</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
@@ -8665,14 +8736,14 @@
       <type>ALOX_API void</type>
       <name>InitAccess</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
-      <anchor>aeaa3f65207097ff85093acc485223a44</anchor>
+      <anchor>a15cc8a2338769a04748e8964f2659b42</anchor>
       <arglist>(Scope scope, int pathLevel, int threadID)</arglist>
     </member>
     <member kind="function">
       <type>ALOX_API void</type>
       <name>InitWalk</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
-      <anchor>ae264cb9b825bd34050766c256a2504df</anchor>
+      <anchor>a5c609208e4e06536121b94f6896fab1e</anchor>
       <arglist>(Scope startScope, core::aworx::lox::core::Logable *localObject)</arglist>
     </member>
     <member kind="function">
@@ -8693,7 +8764,7 @@
       <type>ALOX_API core::aworx::lox::core::Logable *</type>
       <name>Walk</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
-      <anchor>abf60f56ae3a9568c4c963460cb4cf9b7</anchor>
+      <anchor>a262f597e568a196dcb284fb1c859c8d6</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -8823,21 +8894,21 @@
       <type>ALOX_API</type>
       <name>ScopeStore</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
-      <anchor>ab2e398fa8b1dfdd80338f081ee495717</anchor>
+      <anchor>ac7a74581c38faf240883a9a395547d5a</anchor>
       <arglist>(ScopeInfo &amp;scopeInfo, bool cfgSingleThreadValue)</arglist>
     </member>
     <member kind="function">
       <type>ALOX_API</type>
       <name>~ScopeStore</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
-      <anchor>af76396d4a8d1de67fe742bf4cdc3fbab</anchor>
+      <anchor>a9bff9f3eb2193028b398787f43ca19d1</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>ALOX_API void</type>
       <name>Clear</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
-      <anchor>aa71d36872f416feaa853788a7a7a7ef8</anchor>
+      <anchor>a8276b692283d7725759466633f2c8211</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
@@ -8851,14 +8922,14 @@
       <type>ALOX_API void</type>
       <name>InitAccess</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
-      <anchor>aeaa3f65207097ff85093acc485223a44</anchor>
+      <anchor>a15cc8a2338769a04748e8964f2659b42</anchor>
       <arglist>(Scope scope, int pathLevel, int threadID)</arglist>
     </member>
     <member kind="function">
       <type>ALOX_API void</type>
       <name>InitWalk</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
-      <anchor>ae264cb9b825bd34050766c256a2504df</anchor>
+      <anchor>a5c609208e4e06536121b94f6896fab1e</anchor>
       <arglist>(Scope startScope, std::map&lt; aworx::lib::strings::AString, aworx::lox::LogData * &gt; *localObject)</arglist>
     </member>
     <member kind="function">
@@ -8879,7 +8950,7 @@
       <type>ALOX_API std::map&lt; aworx::lib::strings::AString, aworx::lox::LogData * &gt; *</type>
       <name>Walk</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
-      <anchor>abf60f56ae3a9568c4c963460cb4cf9b7</anchor>
+      <anchor>a262f597e568a196dcb284fb1c859c8d6</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -9009,21 +9080,21 @@
       <type>ALOX_API</type>
       <name>ScopeStore</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
-      <anchor>ab2e398fa8b1dfdd80338f081ee495717</anchor>
+      <anchor>ac7a74581c38faf240883a9a395547d5a</anchor>
       <arglist>(ScopeInfo &amp;scopeInfo, bool cfgSingleThreadValue)</arglist>
     </member>
     <member kind="function">
       <type>ALOX_API</type>
       <name>~ScopeStore</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
-      <anchor>af76396d4a8d1de67fe742bf4cdc3fbab</anchor>
+      <anchor>a9bff9f3eb2193028b398787f43ca19d1</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>ALOX_API void</type>
       <name>Clear</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
-      <anchor>aa71d36872f416feaa853788a7a7a7ef8</anchor>
+      <anchor>a8276b692283d7725759466633f2c8211</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
@@ -9037,14 +9108,14 @@
       <type>ALOX_API void</type>
       <name>InitAccess</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
-      <anchor>aeaa3f65207097ff85093acc485223a44</anchor>
+      <anchor>a15cc8a2338769a04748e8964f2659b42</anchor>
       <arglist>(Scope scope, int pathLevel, int threadID)</arglist>
     </member>
     <member kind="function">
       <type>ALOX_API void</type>
       <name>InitWalk</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
-      <anchor>ae264cb9b825bd34050766c256a2504df</anchor>
+      <anchor>a5c609208e4e06536121b94f6896fab1e</anchor>
       <arglist>(Scope startScope, std::map&lt; aworx::lib::strings::AString, int &gt; *localObject)</arglist>
     </member>
     <member kind="function">
@@ -9065,7 +9136,7 @@
       <type>ALOX_API std::map&lt; aworx::lib::strings::AString, int &gt; *</type>
       <name>Walk</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeStore.html</anchorfile>
-      <anchor>abf60f56ae3a9568c4c963460cb4cf9b7</anchor>
+      <anchor>a262f597e568a196dcb284fb1c859c8d6</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -11892,8 +11963,15 @@
       <type></type>
       <name>Tokenizer</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1Tokenizer.html</anchorfile>
-      <anchor>ac02aa3ab5a834c7357ef278512efa27e</anchor>
-      <arglist>(const String &amp;src, char delim)</arglist>
+      <anchor>a09b5373670bea8a8e4ef7645889bad72</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Tokenizer</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Tokenizer.html</anchorfile>
+      <anchor>aec862d2011e01f63cc367fb40c1e6ade</anchor>
+      <arglist>(const String &amp;src, char delim, bool skipEmptyTokens=false)</arglist>
     </member>
     <member kind="function">
       <type>Substring &amp;</type>
@@ -11920,14 +11998,21 @@
       <type>void</type>
       <name>Set</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1Tokenizer.html</anchorfile>
-      <anchor>a77fcc3c671e0e6e80d1c1007ef2f69d6</anchor>
-      <arglist>(const String &amp;src, char delim)</arglist>
+      <anchor>a0e0b8ea460fe939a3a6f133e0619042a</anchor>
+      <arglist>(const String &amp;src, char delim, bool skipEmptyTokens=false)</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>char</type>
       <name>delim</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1Tokenizer.html</anchorfile>
       <anchor>ab56c67e0ed9605b4078e2135f791c4ed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>skipEmptyTokens</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1Tokenizer.html</anchorfile>
+      <anchor>a30e566108b40ef50fce0d40509d0413d</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -13162,15 +13247,15 @@
       <type>int</type>
       <name>ApplyTo</name>
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>aa8fb47b820e77796083d2c3eb13d56b2</anchor>
-      <arglist>(AString &amp;target, const T src)</arglist>
+      <anchor>a3166349c4945294de1c31b25b77da647</anchor>
+      <arglist>(AString &amp;target, const Format::Double &amp;fmt)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>ApplyTo</name>
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>a3166349c4945294de1c31b25b77da647</anchor>
-      <arglist>(AString &amp;target, const Format::Double &amp;fmt)</arglist>
+      <anchor>aa8fb47b820e77796083d2c3eb13d56b2</anchor>
+      <arglist>(AString &amp;target, const T src)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
@@ -13183,36 +13268,15 @@
       <type>ALIB_API int</type>
       <name>ApplyTo</name>
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>a51d3c0fe2a4125c45c804c1fb1509b3e</anchor>
-      <arglist>(AString &amp;target, const wchar_t *src)</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>ApplyTo</name>
-      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>af0bcfa090927eb989e55774a396d73fd</anchor>
-      <arglist>(AString &amp;target, bool &amp;b)</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>ApplyTo</name>
-      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>a70a7ab6f429b5e5e3361d9758b6807d9</anchor>
-      <arglist>(AString &amp;target, enums::Switch &amp;value)</arglist>
+      <anchor>a17dfe1060a698974265db6b780c709fa</anchor>
+      <arglist>(AString &amp;target, const Format::Tab &amp;tab)</arglist>
     </member>
     <member kind="function">
       <type>ALIB_API int</type>
       <name>ApplyTo</name>
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>a17dfe1060a698974265db6b780c709fa</anchor>
-      <arglist>(AString &amp;target, const Format::Tab &amp;tab)</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>ApplyTo</name>
-      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>a99617b411c1009b148f37391abf0d789</anchor>
-      <arglist>(AString &amp;target, enums::Case &amp;value)</arglist>
+      <anchor>a51d3c0fe2a4125c45c804c1fb1509b3e</anchor>
+      <arglist>(AString &amp;target, const wchar_t *src)</arglist>
     </member>
     <member kind="function">
       <type>ALIB_API int</type>
@@ -13225,8 +13289,8 @@
       <type>int</type>
       <name>ApplyTo</name>
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>a9fad3de9eb89a67a1bc095c3fd5ffc56</anchor>
-      <arglist>(AString &amp;target, enums::Alignment &amp;value)</arglist>
+      <anchor>af0bcfa090927eb989e55774a396d73fd</anchor>
+      <arglist>(AString &amp;target, bool &amp;b)</arglist>
     </member>
     <member kind="function">
       <type>ALIB_API int</type>
@@ -13239,13 +13303,6 @@
       <type>int</type>
       <name>ApplyTo</name>
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>a829332713d7be0bbde5b1862e1ec837b</anchor>
-      <arglist>(AString &amp;target, enums::Inclusion &amp;value)</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>ApplyTo</name>
-      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
       <anchor>aff08105164bdbc38149bdea8526b0fe1</anchor>
       <arglist>(AString &amp;target, int8_t &amp;value)</arglist>
     </member>
@@ -13253,8 +13310,8 @@
       <type>int</type>
       <name>ApplyTo</name>
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>a380a2e715c58148cf81b7e31c4ef1bd9</anchor>
-      <arglist>(AString &amp;target, enums::CurrentData &amp;value)</arglist>
+      <anchor>a70a7ab6f429b5e5e3361d9758b6807d9</anchor>
+      <arglist>(AString &amp;target, enums::Switch &amp;value)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
@@ -13267,8 +13324,8 @@
       <type>int</type>
       <name>ApplyTo</name>
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>af43cf0906d4f7d8f1b6ed6dd6454d361</anchor>
-      <arglist>(AString &amp;target, enums::Safeness &amp;value)</arglist>
+      <anchor>a99617b411c1009b148f37391abf0d789</anchor>
+      <arglist>(AString &amp;target, enums::Case &amp;value)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
@@ -13281,8 +13338,8 @@
       <type>int</type>
       <name>ApplyTo</name>
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>ad795b43f0a24b4c0e6147e223e051546</anchor>
-      <arglist>(AString &amp;target, enums::Responsibility &amp;value)</arglist>
+      <anchor>a9fad3de9eb89a67a1bc095c3fd5ffc56</anchor>
+      <arglist>(AString &amp;target, enums::Alignment &amp;value)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
@@ -13295,8 +13352,8 @@
       <type>int</type>
       <name>ApplyTo</name>
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>a0dcce3ad139fe6f9c313fdfe9be5fed2</anchor>
-      <arglist>(AString &amp;target, enums::Timezone &amp;value)</arglist>
+      <anchor>a829332713d7be0bbde5b1862e1ec837b</anchor>
+      <arglist>(AString &amp;target, enums::Inclusion &amp;value)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
@@ -13309,8 +13366,8 @@
       <type>int</type>
       <name>ApplyTo</name>
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>a3b71964dfcfc46db8bfe4369a60b48c3</anchor>
-      <arglist>(AString &amp;target, enums::LockMode &amp;value)</arglist>
+      <anchor>a380a2e715c58148cf81b7e31c4ef1bd9</anchor>
+      <arglist>(AString &amp;target, enums::CurrentData &amp;value)</arglist>
     </member>
     <member kind="function">
       <type>ALIB_API int</type>
@@ -13323,8 +13380,8 @@
       <type>int</type>
       <name>ApplyTo</name>
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>a59c043f8dd398835f7266e1bb2c630bf</anchor>
-      <arglist>(AString &amp;target, enums::Whitespaces &amp;value)</arglist>
+      <anchor>af43cf0906d4f7d8f1b6ed6dd6454d361</anchor>
+      <arglist>(AString &amp;target, enums::Safeness &amp;value)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
@@ -13337,8 +13394,8 @@
       <type>int</type>
       <name>ApplyTo</name>
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>abe6407ebad387df4da89aeed389e712e</anchor>
-      <arglist>(AString &amp;target, enums::Create &amp;value)</arglist>
+      <anchor>ad795b43f0a24b4c0e6147e223e051546</anchor>
+      <arglist>(AString &amp;target, enums::Responsibility &amp;value)</arglist>
     </member>
     <member kind="function">
       <type>ALIB_API int</type>
@@ -13351,8 +13408,8 @@
       <type>int</type>
       <name>ApplyTo</name>
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>a58b0f925b58b64d308bc299f3fe25281</anchor>
-      <arglist>(AString &amp;target, enums::Propagation &amp;value)</arglist>
+      <anchor>a0dcce3ad139fe6f9c313fdfe9be5fed2</anchor>
+      <arglist>(AString &amp;target, enums::Timezone &amp;value)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
@@ -13360,6 +13417,13 @@
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
       <anchor>a0c48317b4a34060b56d3e5c581e509e1</anchor>
       <arglist>(AString &amp;target, int64_t &amp;value)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>ApplyTo</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>a3b71964dfcfc46db8bfe4369a60b48c3</anchor>
+      <arglist>(AString &amp;target, enums::LockMode &amp;value)</arglist>
     </member>
     <member kind="function">
       <type>ALIB_API int</type>
@@ -13372,8 +13436,22 @@
       <type>int</type>
       <name>ApplyTo</name>
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>a59c043f8dd398835f7266e1bb2c630bf</anchor>
+      <arglist>(AString &amp;target, enums::Whitespaces &amp;value)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>ApplyTo</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
       <anchor>ac2e8c17181156fa7a4a2f3cb94dc15a3</anchor>
       <arglist>(AString &amp;target, uint64_t &amp;value)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>ApplyTo</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>abe6407ebad387df4da89aeed389e712e</anchor>
+      <arglist>(AString &amp;target, enums::Create &amp;value)</arglist>
     </member>
     <member kind="function">
       <type>ALIB_API int</type>
@@ -13381,6 +13459,13 @@
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
       <anchor>ad9a951e16433abb2461bca80d0c2ad8e</anchor>
       <arglist>(AString &amp;target, const Format::Double &amp;fmt)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>ApplyTo</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>a58b0f925b58b64d308bc299f3fe25281</anchor>
+      <arglist>(AString &amp;target, enums::Propagation &amp;value)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
@@ -13878,6 +13963,27 @@
       <anchorfile>group__GrpALibMacros.html</anchorfile>
       <anchor>ga428418e97842561b5fa5118c120954a9</anchor>
       <arglist>(ownable)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ALIB_STRINGS_APPLYTO_DECLARATION</name>
+      <anchorfile>group__GrpALibMacros.html</anchorfile>
+      <anchor>ga7ef8eaf71cad1c7be73ef8e61dc65177</anchor>
+      <arglist>(TYPE)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ALIB_STRINGS_APPLYTO_DEFINITION</name>
+      <anchorfile>group__GrpALibMacros.html</anchorfile>
+      <anchor>ga87261d3411f0175bbc3efab49720023f</anchor>
+      <arglist>(TYPE, IMPLEMENTATION)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ALIB_STRINGS_APPLYTO_INLINE</name>
+      <anchorfile>group__GrpALibMacros.html</anchorfile>
+      <anchor>gaf3673497e1c2e5436ad2b369c135658f</anchor>
+      <arglist>(TYPE, IMPLEMENTATION)</arglist>
     </member>
   </compound>
   <compound kind="group">

@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="none" points="-4,4 -4,-46 125,-46 125,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<g id="a_node1"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html" target="_top" xlink:title="ScopeStore\&lt; Dictionary\l\&lt; AString, cs::aworx::\llox::LogData \&gt; \&gt;">
+<g id="a_node1"><a doxygen="ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html" target="_top" xlink:title="ScopeStore\&lt; Dictionary\l\&lt; AString, cs::aworx::\llox::LogData \&gt; \&gt;">
 <polygon fill="white" stroke="black" points="-7.10543e-15,-0.5 -7.10543e-15,-41.5 121,-41.5 121,-0.5 -7.10543e-15,-0.5"/>
 <text text-anchor="start" x="8" y="-29.5" font-family="Helvetica,sans-Serif" font-size="10.00">ScopeStore&lt; Dictionary</text>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; AString, cs::aworx::</text>

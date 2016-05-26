@@ -28,54 +28,54 @@
 <polygon fill="midnightblue" stroke="midnightblue" points="179.973,-112.752 190.563,-112.444 182.092,-106.08 179.973,-112.752"/>
 </g>
 <!-- Node4 -->
-<g id="node4" class="node"><title>Node4</title>
-<g id="a_node4"><a xlink:href="memorylogger_8hpp.html" target="_top" xlink:title="memorylogger.hpp">
+<g id="node3" class="node"><title>Node4</title>
+<g id="a_node3"><a xlink:href="memorylogger_8hpp.html" target="_top" xlink:title="memorylogger.hpp">
 <polygon fill="white" stroke="black" points="113,-56.5 113,-75.5 210,-75.5 210,-56.5 113,-56.5"/>
 <text text-anchor="middle" x="161.5" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">memorylogger.hpp</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node4 -->
-<g id="edge3" class="edge"><title>Node1&#45;&gt;Node4</title>
+<g id="edge2" class="edge"><title>Node1&#45;&gt;Node4</title>
 <path fill="none" stroke="midnightblue" d="M201.17,-105.253C191.235,-95.6731 178.912,-83.7906 170.661,-75.8339"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="198.875,-107.902 208.503,-112.324 203.734,-102.863 198.875,-107.902"/>
 </g>
 <!-- Node5 -->
-<g id="node5" class="node"><title>Node5</title>
-<g id="a_node5"><a xlink:href="textfilelogger_8hpp.html" target="_top" xlink:title="textfilelogger.hpp">
+<g id="node4" class="node"><title>Node5</title>
+<g id="a_node4"><a xlink:href="textfilelogger_8hpp.html" target="_top" xlink:title="textfilelogger.hpp">
 <polygon fill="white" stroke="black" points="228,-56.5 228,-75.5 319,-75.5 319,-56.5 228,-56.5"/>
 <text text-anchor="middle" x="273.5" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">textfilelogger.hpp</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node5 -->
-<g id="edge4" class="edge"><title>Node1&#45;&gt;Node5</title>
+<g id="edge3" class="edge"><title>Node1&#45;&gt;Node5</title>
 <path fill="none" stroke="midnightblue" d="M233.83,-105.253C243.765,-95.6731 256.088,-83.7906 264.339,-75.8339"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="231.266,-102.863 226.497,-112.324 236.125,-107.902 231.266,-102.863"/>
 </g>
 <!-- Node6 -->
-<g id="node6" class="node"><title>Node6</title>
-<g id="a_node6"><a xlink:href="vstudiologger_8hpp.html" target="_top" xlink:title="vstudiologger.hpp">
+<g id="node5" class="node"><title>Node6</title>
+<g id="a_node5"><a xlink:href="vstudiologger_8hpp.html" target="_top" xlink:title="vstudiologger.hpp">
 <polygon fill="white" stroke="black" points="337,-56.5 337,-75.5 430,-75.5 430,-56.5 337,-56.5"/>
 <text text-anchor="middle" x="383.5" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">vstudiologger.hpp</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node6 -->
-<g id="edge5" class="edge"><title>Node1&#45;&gt;Node6</title>
+<g id="edge4" class="edge"><title>Node1&#45;&gt;Node6</title>
 <path fill="none" stroke="midnightblue" d="M253.453,-109.304C284.732,-99.1294 329.321,-84.6246 357.32,-75.5164"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="252.23,-106.022 243.803,-112.444 254.395,-112.678 252.23,-106.022"/>
 </g>
 <!-- Node3 -->
-<g id="node3" class="node"><title>Node3</title>
-<g id="a_node3"><a xlink:href="alox__console__loggers_8hpp.html" target="_top" xlink:title="alox_console_loggers.hpp">
+<g id="node6" class="node"><title>Node3</title>
+<g id="a_node6"><a xlink:href="alox__console__loggers_8hpp.html" target="_top" xlink:title="alox_console_loggers.hpp">
 <polygon fill="white" stroke="black" points="151,-0.5 151,-19.5 280,-19.5 280,-0.5 151,-0.5"/>
 <text text-anchor="middle" x="215.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">alox_console_loggers.hpp</text>
 </a>
 </g>
 </g>
 <!-- Node2&#45;&gt;Node3 -->
-<g id="edge2" class="edge"><title>Node2&#45;&gt;Node3</title>
+<g id="edge5" class="edge"><title>Node2&#45;&gt;Node3</title>
 <path fill="none" stroke="midnightblue" d="M83.8862,-53.3044C115.542,-43.1294 160.668,-28.6246 189.004,-19.5164"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="82.5693,-50.0513 74.1201,-56.4435 84.7114,-56.7155 82.5693,-50.0513"/>
 </g>

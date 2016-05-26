@@ -4,6 +4,7 @@ var searchData=
   ['acquire',['Acquire',['../classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#a30a46f5d25053020b247022edbe809fb',1,'cs::aworx::lib::threads::ThreadLock']]],
   ['add',['Add',['../classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html#a22a9dbaffec3fa638c13c5ae2e8a3a5b',1,'cs.aworx.lib.time.Ticks.Add(Ticks other)'],['../classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html#a9773a1eac7cae145f7bc6eec351002a9',1,'cs.aworx.lib.time.Ticks.Add(long value)']]],
   ['addacquirer',['AddAcquirer',['../classcs_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html#a928a722b0dfb3602c10cc0304e8b29a4',1,'cs.aworx.lib.threads.SmartLock.AddAcquirer()'],['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a2d5ec0c94f254cea7d5ca7ec57e5ce7b',1,'cs.aworx.lox.core.textlogger.TextLogger.AddAcquirer()']]],
+  ['addalibreportwriter',['AddALibReportWriter',['../classcs_1_1aworx_1_1lox_1_1Log.html#a51f4e70fd5c180cef5b235e03d44ece1',1,'cs::aworx::lox::Log']]],
   ['adddebuglogger',['AddDebugLogger',['../classcs_1_1aworx_1_1lox_1_1Log.html#a289d55c41f1955839796edfb71e233e4',1,'cs::aworx::lox::Log']]],
   ['addescapesequences',['addEscapeSequences',['../classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html#a39b2b60ef9b81321769cf0ef697107a0',1,'cs::aworx::lib::config::IniFile']]],
   ['addlogger',['AddLogger',['../classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a8d7d51ec7a45008ee27dc01eeaa554b5',1,'cs::aworx::lox::core::Domain']]],

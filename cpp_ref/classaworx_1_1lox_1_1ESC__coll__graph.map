@@ -1,5 +1,5 @@
 <map id="ESC" name="ESC">
-<area shape="rect" id="node2" href="$classaworx_1_1lib_1_1strings_1_1StringLiteral.html" title="StringLiteral\&lt; 3 \&gt;" alt="" coords="5,157,128,184"/>
-<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="35,81,99,108"/>
-<area shape="rect" id="node4" href="$classaworx_1_1lib_1_1strings_1_1String.html" title="String" alt="" coords="39,5,95,32"/>
+<area shape="rect" id="node2" href="$classaworx_1_1lib_1_1strings_1_1StringLiteral.html" title="StringLiteral\&lt;TLength\&gt;" alt="" coords="5,157,160,184"/>
+<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="51,81,115,108"/>
+<area shape="rect" id="node4" href="$classaworx_1_1lib_1_1strings_1_1String.html" title="String" alt="" coords="55,5,111,32"/>
 </map>

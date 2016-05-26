@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="none" points="-4,4 -4,-84 323,-84 323,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<g id="a_node1"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/interfacecs_1_1aworx_1_1lib_1_1ReportWriter.html" target="_top" xlink:title="cs::aworx::lib::ReportWriter">
+<g id="a_node1"><a doxygen="ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/interfacecs_1_1aworx_1_1lib_1_1ReportWriter.html" target="_top" xlink:title="cs::aworx::lib::ReportWriter">
 <polygon fill="white" stroke="black" points="0,-30 0,-49 137,-49 137,-30 0,-30"/>
 <text text-anchor="middle" x="68.5" y="-37" font-family="Helvetica,sans-Serif" font-size="10.00">cs::aworx::lib::ReportWriter</text>
 </a>
@@ -19,7 +19,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/classcs_1_1aworx_1_1lib_1_1ConsoleReportWriter.html" target="_top" xlink:title="cs::aworx::lib::ConsoleReport\lWriter">
+<g id="a_node2"><a doxygen="ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/classcs_1_1aworx_1_1lib_1_1ConsoleReportWriter.html" target="_top" xlink:title="cs::aworx::lib::ConsoleReport\lWriter">
 <polygon fill="white" stroke="black" points="173,-49.5 173,-79.5 319,-79.5 319,-49.5 173,-49.5"/>
 <text text-anchor="start" x="181" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00">cs::aworx::lib::ConsoleReport</text>
 <text text-anchor="middle" x="246" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">Writer</text>
@@ -33,7 +33,7 @@
 </g>
 <!-- Node3 -->
 <g id="node3" class="node"><title>Node3</title>
-<g id="a_node3"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/classcs_1_1aworx_1_1lox_1_1ALoxReportWriter.html" target="_top" xlink:title="cs::aworx::lox::ALoxReport\lWriter">
+<g id="a_node3"><a doxygen="ALox/html/cs_ref/cs_ref.tag:cs_ref/" xlink:href="cs_ref/classcs_1_1aworx_1_1lox_1_1ALoxReportWriter.html" target="_top" xlink:title="cs::aworx::lox::ALoxReport\lWriter">
 <polygon fill="white" stroke="black" points="178,-0.5 178,-30.5 314,-30.5 314,-0.5 178,-0.5"/>
 <text text-anchor="start" x="186" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">cs::aworx::lox::ALoxReport</text>
 <text text-anchor="middle" x="246" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">Writer</text>

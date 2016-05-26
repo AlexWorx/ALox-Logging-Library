@@ -41,28 +41,28 @@
 <polygon fill="midnightblue" stroke="midnightblue" points="73.2042,-106.541 82.2343,-112.083 78.6309,-102.12 73.2042,-106.541"/>
 </g>
 <!-- Node5 -->
-<g id="node5" class="node"><title>Node5</title>
-<g id="a_node5"><a xlink:href="lox_8hpp.html" target="_top" xlink:title="lox.hpp">
+<g id="node4" class="node"><title>Node5</title>
+<g id="a_node4"><a xlink:href="lox_8hpp.html" target="_top" xlink:title="lox.hpp">
 <polygon fill="white" stroke="black" points="109.5,-56.5 109.5,-75.5 157.5,-75.5 157.5,-56.5 109.5,-56.5"/>
 <text text-anchor="middle" x="133.5" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">lox.hpp</text>
 </a>
 </g>
 </g>
 <!-- Node2&#45;&gt;Node5 -->
-<g id="edge4" class="edge"><title>Node2&#45;&gt;Node5</title>
+<g id="edge3" class="edge"><title>Node2&#45;&gt;Node5</title>
 <path fill="none" stroke="midnightblue" d="M103.235,-104.144C110.901,-94.7357 120.133,-83.4046 126.369,-75.7511"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="100.369,-102.12 96.7657,-112.083 105.796,-106.541 100.369,-102.12"/>
 </g>
 <!-- Node4 -->
-<g id="node4" class="node"><title>Node4</title>
-<g id="a_node4"><a xlink:href="inifile_8hpp.html" target="_top" xlink:title="inifile.hpp">
+<g id="node5" class="node"><title>Node4</title>
+<g id="a_node5"><a xlink:href="inifile_8hpp.html" target="_top" xlink:title="inifile.hpp">
 <polygon fill="white" stroke="black" points="16.5,-0.5 16.5,-19.5 74.5,-19.5 74.5,-0.5 16.5,-0.5"/>
 <text text-anchor="middle" x="45.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">inifile.hpp</text>
 </a>
 </g>
 </g>
 <!-- Node3&#45;&gt;Node4 -->
-<g id="edge3" class="edge"><title>Node3&#45;&gt;Node4</title>
+<g id="edge4" class="edge"><title>Node3&#45;&gt;Node4</title>
 <path fill="none" stroke="midnightblue" d="M45.5,-45.8045C45.5,-36.9102 45.5,-26.7798 45.5,-19.7511"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="42.0001,-46.083 45.5,-56.083 49.0001,-46.083 42.0001,-46.083"/>
 </g>

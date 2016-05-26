@@ -299,6 +299,13 @@
     <name>cs::aworx::lox::ALoxReportWriter</name>
     <filename>classcs_1_1aworx_1_1lox_1_1ALoxReportWriter.html</filename>
     <base>cs::aworx::lib::ReportWriter</base>
+    <member kind="function" static="yes">
+      <type>static String</type>
+      <name>LogDomain</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALoxReportWriter.html</anchorfile>
+      <anchor>a4002c872da10e52dc7bf420db8152d5f</anchor>
+      <arglist>()</arglist>
+    </member>
     <member kind="function">
       <type></type>
       <name>ALoxReportWriter</name>
@@ -3715,6 +3722,13 @@
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
+      <name>AddALibReportWriter</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a51f4e70fd5c180cef5b235e03d44ece1</anchor>
+      <arglist>(Lox lox=null, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
       <name>AddDebugLogger</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
       <anchor>a289d55c41f1955839796edfb71e233e4</anchor>
@@ -3971,6 +3985,13 @@
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
       <anchor>a31c7104f457c1e0ac88400e96ee263e9</anchor>
       <arglist>(String logable, String group, int quantity=1, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>RemoveALibReportWriter</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
+      <anchor>a04655f5108990f3de583f88e6358c096</anchor>
+      <arglist>([CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
@@ -9515,22 +9536,22 @@
       <type></type>
       <name>Tokenizer</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html</anchorfile>
-      <anchor>a81d875271cb4b26d1c32cc27db48c838</anchor>
-      <arglist>(String str, char delim)</arglist>
+      <anchor>a2131876dd22b64e66b5bbc8942629b57</anchor>
+      <arglist>(String src, char delim, bool skipEmptyTokens=false)</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>Tokenizer</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html</anchorfile>
-      <anchor>a461a11c846c48e6c8e58ae00d0575a6a</anchor>
-      <arglist>(AString astring, char delim)</arglist>
+      <anchor>a95fe8b564a2317cb77241c586bb08e7c</anchor>
+      <arglist>(AString src, char delim, bool skipEmptyTokens=false)</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>Tokenizer</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html</anchorfile>
-      <anchor>a22342f5449d696115f4e4cda6549df8d</anchor>
-      <arglist>(Substring substring, char delim)</arglist>
+      <anchor>a5c0ac1273c734a1d9d7cca21e8a6a135</anchor>
+      <arglist>(Substring src, char delim, bool skipEmptyTokens=false)</arglist>
     </member>
     <member kind="function">
       <type>Substring</type>
@@ -9557,22 +9578,22 @@
       <type>void</type>
       <name>Set</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html</anchorfile>
-      <anchor>ae8ae7f063fc2007372865907bbeda4f4</anchor>
-      <arglist>(String str, char delim)</arglist>
+      <anchor>a4cc04e693937dd929f2d5be5d1a3b080</anchor>
+      <arglist>(String src, char delim, bool skipEmptyTokens=false)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Set</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html</anchorfile>
-      <anchor>aee36055cd759f5d6c35dd3623bbd4305</anchor>
-      <arglist>(AString astring, char delim)</arglist>
+      <anchor>a3d840ba8cd94d9f3d82cce9813fed1fb</anchor>
+      <arglist>(AString src, char delim, bool skipEmptyTokens=false)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Set</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html</anchorfile>
-      <anchor>a3bb80d9100ef80c50a3dbb65492073ef</anchor>
-      <arglist>(Substring substring, char delim)</arglist>
+      <anchor>aef3dd45f2cf56e8d9bef531f6fb2748a</anchor>
+      <arglist>(Substring src, char delim, bool skipEmptyTokens=false)</arglist>
     </member>
     <member kind="function">
       <type>override String</type>
@@ -9586,6 +9607,13 @@
       <name>delim</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html</anchorfile>
       <anchor>ab56c67e0ed9605b4078e2135f791c4ed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>skipEmptyTokens</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html</anchorfile>
+      <anchor>a30e566108b40ef50fce0d40509d0413d</anchor>
       <arglist></arglist>
     </member>
   </compound>

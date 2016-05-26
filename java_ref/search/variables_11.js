@@ -14,6 +14,7 @@ var searchData=
   ['sessionvalues',['sessionValues',['../classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html#a6a37f7be21e831947390945d22439e13',1,'com::aworx::lox::core::textlogger::AutoSizes']]],
   ['single_5flocks',['SINGLE_LOCKS',['../enumcom_1_1aworx_1_1lib_1_1enums_1_1LockMode.html#a0ff653041a18929c6006abb2bc2e649b',1,'com::aworx::lib::enums::LockMode']]],
   ['singleton',['SINGLETON',['../classcom_1_1aworx_1_1lib_1_1ConsoleReportWriter.html#a95a006d0fea5ad2857dc32521003e314',1,'com::aworx::lib::ConsoleReportWriter']]],
+  ['skipemptytokens',['skipEmptyTokens',['../classcom_1_1aworx_1_1lib_1_1strings_1_1Tokenizer.html#ac0980bd12e0dbf5546fc84325df9ed79',1,'com::aworx::lib::strings::Tokenizer']]],
   ['spacesbyte',['spacesByte',['../classcom_1_1aworx_1_1lib_1_1Util.html#a586df6e0dcf3ded0b0fee688354943f3',1,'com::aworx::lib::Util']]],
   ['start',['start',['../classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a37722a150250e2a5a98e5e0d11e53449',1,'com::aworx::lib::strings::Substring']]],
   ['starts_5fwith',['STARTS_WITH',['../enumcom_1_1aworx_1_1lox_1_1Lox_1_1DSRType.html#a11a679ee22aa82acaf5cef4a713f4b0b',1,'com::aworx::lox::Lox::DSRType']]],

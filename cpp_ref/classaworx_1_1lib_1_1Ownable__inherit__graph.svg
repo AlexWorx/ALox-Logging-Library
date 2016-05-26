@@ -28,41 +28,41 @@
 <polygon fill="midnightblue" stroke="midnightblue" points="154.034,-162.838 163.239,-168.083 159.314,-158.242 154.034,-162.838"/>
 </g>
 <!-- Node7 -->
-<g id="node7" class="node"><title>Node7</title>
-<g id="a_node7"><a xlink:href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html" target="_top" xlink:title="ThreadLockNR">
+<g id="node3" class="node"><title>Node7</title>
+<g id="a_node3"><a xlink:href="classaworx_1_1lib_1_1threads_1_1ThreadLockNR.html" target="_top" xlink:title="ThreadLockNR">
 <polygon fill="white" stroke="black" points="176.5,-112.5 176.5,-131.5 259.5,-131.5 259.5,-112.5 176.5,-112.5"/>
 <text text-anchor="middle" x="218" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00">ThreadLockNR</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node7 -->
-<g id="edge6" class="edge"><title>Node1&#45;&gt;Node7</title>
+<g id="edge2" class="edge"><title>Node1&#45;&gt;Node7</title>
 <path fill="none" stroke="midnightblue" d="M185.421,-160.431C193.658,-150.967 203.654,-139.483 210.383,-131.751"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="182.686,-158.242 178.761,-168.083 187.966,-162.838 182.686,-158.242"/>
 </g>
 <!-- Node3 -->
-<g id="node3" class="node"><title>Node3</title>
-<g id="a_node3"><a xlink:href="classaworx_1_1lib_1_1config_1_1Configuration.html" target="_top" xlink:title="Configuration">
+<g id="node4" class="node"><title>Node3</title>
+<g id="a_node4"><a xlink:href="classaworx_1_1lib_1_1config_1_1Configuration.html" target="_top" xlink:title="Configuration">
 <polygon fill="white" stroke="black" points="0,-56.5 0,-75.5 74,-75.5 74,-56.5 0,-56.5"/>
 <text text-anchor="middle" x="37" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">Configuration</text>
 </a>
 </g>
 </g>
 <!-- Node2&#45;&gt;Node3 -->
-<g id="edge2" class="edge"><title>Node2&#45;&gt;Node3</title>
+<g id="edge3" class="edge"><title>Node2&#45;&gt;Node3</title>
 <path fill="none" stroke="midnightblue" d="M101.284,-106.901C85.3311,-96.9986 64.5025,-84.0705 50.9434,-75.6545"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="99.6797,-110.024 110.022,-112.324 103.371,-104.077 99.6797,-110.024"/>
 </g>
 <!-- Node4 -->
-<g id="node4" class="node"><title>Node4</title>
-<g id="a_node4"><a xlink:href="classaworx_1_1lib_1_1threads_1_1SmartLock.html" target="_top" xlink:title="SmartLock">
+<g id="node5" class="node"><title>Node4</title>
+<g id="a_node5"><a xlink:href="classaworx_1_1lib_1_1threads_1_1SmartLock.html" target="_top" xlink:title="SmartLock">
 <polygon fill="white" stroke="black" points="92,-56.5 92,-75.5 156,-75.5 156,-56.5 92,-56.5"/>
 <text text-anchor="middle" x="124" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">SmartLock</text>
 </a>
 </g>
 </g>
 <!-- Node2&#45;&gt;Node4 -->
-<g id="edge3" class="edge"><title>Node2&#45;&gt;Node4</title>
+<g id="edge4" class="edge"><title>Node2&#45;&gt;Node4</title>
 <path fill="none" stroke="midnightblue" d="M124,-101.805C124,-92.9102 124,-82.7798 124,-75.7511"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="120.5,-102.083 124,-112.083 127.5,-102.083 120.5,-102.083"/>
 </g>
@@ -80,15 +80,15 @@
 <polygon fill="midnightblue" stroke="midnightblue" points="140.127,-103.283 134.604,-112.324 144.56,-108.7 140.127,-103.283"/>
 </g>
 <!-- Node5 -->
-<g id="node5" class="node"><title>Node5</title>
-<g id="a_node5"><a xlink:href="classaworx_1_1lox_1_1core_1_1Logger.html" target="_top" xlink:title="Logger">
+<g id="node7" class="node"><title>Node5</title>
+<g id="a_node7"><a xlink:href="classaworx_1_1lox_1_1core_1_1Logger.html" target="_top" xlink:title="Logger">
 <polygon fill="white" stroke="red" points="101,-0.5 101,-19.5 147,-19.5 147,-0.5 101,-0.5"/>
 <text text-anchor="middle" x="124" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">Logger</text>
 </a>
 </g>
 </g>
 <!-- Node4&#45;&gt;Node5 -->
-<g id="edge4" class="edge"><title>Node4&#45;&gt;Node5</title>
+<g id="edge6" class="edge"><title>Node4&#45;&gt;Node5</title>
 <path fill="none" stroke="midnightblue" d="M124,-45.8045C124,-36.9102 124,-26.7798 124,-19.7511"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="120.5,-46.083 124,-56.083 127.5,-46.083 120.5,-46.083"/>
 </g>

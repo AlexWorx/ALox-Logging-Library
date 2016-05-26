@@ -4,10 +4,10 @@ digraph "ScopeInfo"
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
   Node1 [label="ScopeInfo",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
-  Node2 [label="map\< K, T \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip="STL class. "];
-  Node9 [label="vector\< aworx::lox\l::core::ScopeInfo::SourcePath\lTrimRule \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
-  Node16 [label="map\< std::thread::id,\l aworx::lib::threads\l::Thread * \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
-  Node12 [label="PreallocatedString\l\< TCapacity \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html"];
+  Node2 [label="map\<K, T\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip="STL class. "];
+  Node9 [label="vector\<ScopeInfo::SourcePathTrimRule\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node16 [label="map\<thread::id, Thread *\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node12 [label="PreallocatedString\<TCapacity\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html"];
   Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" threadDictionary" ,fontname="Helvetica"];
   Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" keys" ,fontname="Helvetica"];
   Node4 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" elements" ,fontname="Helvetica"];

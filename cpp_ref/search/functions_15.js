@@ -21,7 +21,7 @@ var searchData=
   ['_7eplaintextlogger',['~PlainTextLogger',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html#a2780280e08368bd1ee9de360d1c07a6e',1,'aworx::lox::core::textlogger::PlainTextLogger']]],
   ['_7ereportwriter',['~ReportWriter',['../classaworx_1_1lib_1_1ReportWriter.html#aacb613601745319beb402a265be497e5',1,'aworx::lib::ReportWriter']]],
   ['_7erunnable',['~Runnable',['../classaworx_1_1lib_1_1threads_1_1Runnable.html#a93a94435fb3d643aacf328fcc497d9ab',1,'aworx::lib::threads::Runnable']]],
-  ['_7escopestore',['~ScopeStore',['../classaworx_1_1lox_1_1core_1_1ScopeStore.html#af76396d4a8d1de67fe742bf4cdc3fbab',1,'aworx::lox::core::ScopeStore']]],
+  ['_7escopestore',['~ScopeStore',['../classaworx_1_1lox_1_1core_1_1ScopeStore.html#a9bff9f3eb2193028b398787f43ca19d1',1,'aworx::lox::core::ScopeStore']]],
   ['_7esection',['~Section',['../classaworx_1_1lib_1_1config_1_1IniFile_1_1Section.html#ad718550e15dc3c8a9fd66717dd17e5d5',1,'aworx::lib::config::IniFile::Section']]],
   ['_7estringconverter',['~StringConverter',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1StringConverter.html#a8aa76811d77f8707068ed596468fc849',1,'aworx::lox::core::textlogger::StringConverter']]],
   ['_7etextfilelogger',['~TextFileLogger',['../classaworx_1_1lox_1_1loggers_1_1TextFileLogger.html#accac5141ecc60e6bca547cceb61ef1ba',1,'aworx::lox::loggers::TextFileLogger']]],

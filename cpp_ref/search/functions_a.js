@@ -9,6 +9,7 @@ var searchData=
   ['logconfig',['LogConfig',['../classaworx_1_1lox_1_1Lox.html#ade5edb3b47eee24a0185ac0b7efa8c17',1,'aworx::lox::Lox']]],
   ['logconfigdomainrecursive',['logConfigDomainRecursive',['../classaworx_1_1lox_1_1Lox.html#ad82cd87b2f33a36a7dd4a750f0d3441f',1,'aworx::lox::Lox']]],
   ['logdata',['LogData',['../structaworx_1_1lox_1_1LogData.html#ab02c224dd1a0fe3c79062f5db7f377a1',1,'aworx::lox::LogData::LogData(const aworx::String &amp;s, int i, void *o=nullptr)'],['../structaworx_1_1lox_1_1LogData.html#a7f543b15e40eaffc6e2c9d0512043c4c',1,'aworx::lox::LogData::LogData(const aworx::String &amp;s, void *o=nullptr)'],['../structaworx_1_1lox_1_1LogData.html#ad1a67523d8979e36e2fa85d426486507',1,'aworx::lox::LogData::LogData(int i, void *o=nullptr)'],['../structaworx_1_1lox_1_1LogData.html#ad81b9241db781fd2d40299166c50340d',1,'aworx::lox::LogData::LogData(void *o=nullptr)']]],
+  ['logdomain',['LogDomain',['../classaworx_1_1lox_1_1ALoxReportWriter.html#a25d1e81288f8b2a044f14e2577bc73cf',1,'aworx::lox::ALoxReportWriter']]],
   ['logger',['Logger',['../classaworx_1_1lox_1_1core_1_1Logger.html#aee3bfe16d6478e9f80bf37786712bfe9',1,'aworx::lox::core::Logger']]],
   ['loggerdata',['LoggerData',['../structaworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html#a7665b2385a58790b8ef821caeea4f7bf',1,'aworx::lox::core::Domain::LoggerData']]],
   ['loginternal',['logInternal',['../classaworx_1_1lox_1_1Lox.html#a921cc772993edd15813cbe3daa4777f4',1,'aworx::lox::Lox']]],

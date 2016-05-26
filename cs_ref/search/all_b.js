@@ -30,6 +30,7 @@ var searchData=
   ['logconfigdomswithdiffverb',['logConfigDomsWithDiffVerb',['../classcs_1_1aworx_1_1lox_1_1Lox.html#a0982b3444ac36cd108ca6eada7a59c84',1,'cs::aworx::lox::Lox']]],
   ['logdata',['LogData',['../classcs_1_1aworx_1_1lox_1_1LogData.html#aa51e1a063f903f6cf8a6487a9dfb5d79',1,'cs.aworx.lox.LogData.LogData(Object s=null, int i=0, Object o=null)'],['../classcs_1_1aworx_1_1lox_1_1LogData.html#a38ef51bbceafc91f7861d0e9335238bf',1,'cs.aworx.lox.LogData.LogData(int i, Object o=null)']]],
   ['logdata',['LogData',['../classcs_1_1aworx_1_1lox_1_1LogData.html',1,'cs::aworx::lox']]],
+  ['logdomain',['LogDomain',['../classcs_1_1aworx_1_1lox_1_1ALoxReportWriter.html#a4002c872da10e52dc7bf420db8152d5f',1,'cs::aworx::lox::ALoxReportWriter']]],
   ['logger',['Logger',['../classcs_1_1aworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html#a42bd749bb12fae89508e2020e2f451bf',1,'cs.aworx.lox.core.Domain.LoggerData.Logger()'],['../classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html#ad5d85bd2edd6cf4e166d9744f6e97f16',1,'cs.aworx.lox.core.Logger.Logger()']]],
   ['logger',['Logger',['../classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html',1,'cs::aworx::lox::core']]],
   ['loggerdata',['LoggerData',['../classcs_1_1aworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html#af3bde5b7060fb57e76b308c36a86f283',1,'cs::aworx::lox::core::Domain::LoggerData']]],

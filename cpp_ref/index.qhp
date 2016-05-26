@@ -5,7 +5,7 @@
   <filterSection>
     <filterAttribute>doxygen</filterAttribute>
     <toc>
-      <section title="ALox V. 1604 R. 0" ref="index.html">
+      <section title="ALox V. 1604 R. 1" ref="index.html">
         <section title="ALox Home" ref="../index.html" />
         <section title="FAQ" ref="../faq.html" />
         <section title="Manual" ref="../manual.html" />
@@ -360,14 +360,16 @@
                       <section title="Buffer" ref="structaworx_1_1lib_1_1strings_1_1TMPLiteral.html#ab5858da312ca4522c5c241ed9153a2e6" />
                     </section>
                     <section title="Tokenizer" ref="classaworx_1_1lib_1_1strings_1_1Tokenizer.html">
-                      <section title="Tokenizer" ref="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#ac02aa3ab5a834c7357ef278512efa27e" />
+                      <section title="Tokenizer" ref="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a09b5373670bea8a8e4ef7645889bad72" />
+                      <section title="Tokenizer" ref="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#aec862d2011e01f63cc367fb40c1e6ade" />
                       <section title="GetRest" ref="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#ad8bca63647be16f18c25123486a41d19" />
                       <section title="HasNext" ref="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a3551d22502a58cdc93b15d14f3fb87c2" />
                       <section title="Next" ref="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a55ffaac69d1ce7232db83470a8390db8" />
-                      <section title="Set" ref="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a77fcc3c671e0e6e80d1c1007ef2f69d6" />
+                      <section title="Set" ref="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a0e0b8ea460fe939a3a6f133e0619042a" />
                       <section title="Actual" ref="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a2eefe9530c5f2042ddfa20e26b34328b" />
                       <section title="delim" ref="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#ab56c67e0ed9605b4078e2135f791c4ed" />
                       <section title="Rest" ref="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a5c8c6045e5fe301e78496fd5e9c7bfab" />
+                      <section title="skipEmptyTokens" ref="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a30e566108b40ef50fce0d40509d0413d" />
                       <section title="Whitespaces" ref="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#ade1a53d31b95db4ed98b03ff74a8b472" />
                     </section>
                     <section title="ToStringDefined" ref="structaworx_1_1lib_1_1strings_1_1ToStringDefined.html" />
@@ -913,17 +915,17 @@
                       <section title="timeStamp" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#a4e72dac5d168369a754893772395f0d3" />
                     </section>
                     <section title="ScopeStore" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html">
-                      <section title="ScopeStore" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#ab2e398fa8b1dfdd80338f081ee495717" />
-                      <section title="~ScopeStore" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#af76396d4a8d1de67fe742bf4cdc3fbab" />
+                      <section title="ScopeStore" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#ac7a74581c38faf240883a9a395547d5a" />
+                      <section title="~ScopeStore" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a9bff9f3eb2193028b398787f43ca19d1" />
                       <section title="access" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a9d948185e80ad3706923867cfe608317" />
-                      <section title="Clear" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#aa71d36872f416feaa853788a7a7a7ef8" />
+                      <section title="Clear" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a8276b692283d7725759466633f2c8211" />
                       <section title="Get" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a19b162b0d416fc5be7f1f6a91c718c3e" />
                       <section title="getPathMapNode" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#ad1305df36b6dfcde87eded99e9e9424b" />
-                      <section title="InitAccess" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#aeaa3f65207097ff85093acc485223a44" />
-                      <section title="InitWalk" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#ae264cb9b825bd34050766c256a2504df" />
+                      <section title="InitAccess" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a15cc8a2338769a04748e8964f2659b42" />
+                      <section title="InitWalk" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a5c609208e4e06536121b94f6896fab1e" />
                       <section title="Remove" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a4b6e9ae247a950ed1b5d5d82c72b1440" />
                       <section title="Store" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a5361906d7ce4b2ca6c3f676c85cf01fd" />
-                      <section title="Walk" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#abf60f56ae3a9568c4c963460cb4cf9b7" />
+                      <section title="Walk" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a262f597e568a196dcb284fb1c859c8d6" />
                       <section title="actPathLevel" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#aa5ede8468c729de0886d3bc84d31714e" />
                       <section title="actPathMapNode" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a77c6ecbc68ffa22251428b4763a3d3b7" />
                       <section title="actScope" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#ab420b6d519025a485c6345895ad174ee" />
@@ -1082,9 +1084,11 @@
                   </section>
                   <section title="ALoxReportWriter" ref="classaworx_1_1lox_1_1ALoxReportWriter.html">
                     <section title="ALoxReportWriter" ref="classaworx_1_1lox_1_1ALoxReportWriter.html#a4b218cdb1f7e96e6cd3a851cca5f7c76" />
+                    <section title="LogDomain" ref="classaworx_1_1lox_1_1ALoxReportWriter.html#a25d1e81288f8b2a044f14e2577bc73cf" />
                     <section title="NotifyActivation" ref="classaworx_1_1lox_1_1ALoxReportWriter.html#a810c6fafc7e815f40da0a7e1f30e2233" />
                     <section title="Report" ref="classaworx_1_1lox_1_1ALoxReportWriter.html#a3ad9ad01d27945bd76295c63aa1f5457" />
                     <section title="lox" ref="classaworx_1_1lox_1_1ALoxReportWriter.html#a337184443073b338364d604916737ba8" />
+                    <section title="reportDomain" ref="classaworx_1_1lox_1_1ALoxReportWriter.html#add18036b208027dee62ed16031695ac5" />
                   </section>
                   <section title="ESC" ref="classaworx_1_1lox_1_1ESC.html">
                     <section title="ReplaceToReadable" ref="classaworx_1_1lox_1_1ESC.html#a8bf7915da932619dd2686e9f9f96317d" />
@@ -1118,7 +1122,9 @@
                     <section title="YELLOW" ref="classaworx_1_1lox_1_1ESC.html#a929f0d422bc023cdd33e11f92a47bb6c" />
                   </section>
                   <section title="Log" ref="classaworx_1_1lox_1_1Log.html">
+                    <section title="AddALibReportWriter" ref="classaworx_1_1lox_1_1Log.html#abb8bfbfc93fc3b5b0d8bd9bcac6b7235" />
                     <section title="AddDebugLogger" ref="classaworx_1_1lox_1_1Log.html#a06444d2e7a321e26fe1d4c309cb8ed49" />
+                    <section title="RemoveALibReportWriter" ref="classaworx_1_1lox_1_1Log.html#a9bd252035e8769cec5f74ca014b46817" />
                     <section title="RemoveDebugLogger" ref="classaworx_1_1lox_1_1Log.html#a6d4775cac3c6e185f454a5e1fbf9325a" />
                     <section title="DebugLogger" ref="classaworx_1_1lox_1_1Log.html#a6dab5611a4ba1574d65dfcdcb0f77cd9" />
                     <section title="DebugReportWriter" ref="classaworx_1_1lox_1_1Log.html#a3fc6107634a1988540d4f827c3586233" />
@@ -1563,6 +1569,9 @@
       <keyword name="ApplyTo" id="applyformat.hpp::ApplyTo" ref="applyformat_8hpp.html#ad9a951e16433abb2461bca80d0c2ad8e" />
       <keyword name="ApplyTo" id="applyformat.hpp::ApplyTo" ref="applyformat_8hpp.html#abc006ddec9bb08e63d7e764a785e715b" />
       <keyword name="ApplyTo" id="applyformat.hpp::ApplyTo" ref="applyformat_8hpp.html#aef0aaba9060d3dd6bcb3914d2b7cc538" />
+      <keyword name="ALIB_STRINGS_APPLYTO_DECLARATION" id="applyto.hpp::ALIB_STRINGS_APPLYTO_DECLARATION" ref="applyto_8hpp.html#ga7ef8eaf71cad1c7be73ef8e61dc65177" />
+      <keyword name="ALIB_STRINGS_APPLYTO_DEFINITION" id="applyto.hpp::ALIB_STRINGS_APPLYTO_DEFINITION" ref="applyto_8hpp.html#ga87261d3411f0175bbc3efab49720023f" />
+      <keyword name="ALIB_STRINGS_APPLYTO_INLINE" id="applyto.hpp::ALIB_STRINGS_APPLYTO_INLINE" ref="applyto_8hpp.html#gaf3673497e1c2e5436ad2b369c135658f" />
       <keyword name="ApplyTo" id="applyto.hpp::ApplyTo" ref="applyto_8hpp.html#aa8fb47b820e77796083d2c3eb13d56b2" />
       <keyword name="ApplyTo" id="applyto.hpp::ApplyTo" ref="applyto_8hpp.html#aaaeb23f90707241659667c910e61bbe9" />
       <keyword name="ApplyTo" id="applyto.hpp::ApplyTo" ref="applyto_8hpp.html#a51d3c0fe2a4125c45c804c1fb1509b3e" />
@@ -1742,6 +1751,9 @@
       <keyword name="ALIB_WARN_ONCE_IF_NOT" id="GrpALibMacros::ALIB_WARN_ONCE_IF_NOT" ref="group__GrpALibMacros.html#ga532a206ad57a4b4f4b1a1e110e8b0cd6" />
       <keyword name="ALIB_DEBUG_CODE" id="GrpALibMacros::ALIB_DEBUG_CODE" ref="group__GrpALibMacros.html#gad2c895310139b3c6988218f2d71896ee" />
       <keyword name="OWN" id="GrpALibMacros::OWN" ref="group__GrpALibMacros.html#ga428418e97842561b5fa5118c120954a9" />
+      <keyword name="ALIB_STRINGS_APPLYTO_DECLARATION" id="GrpALibMacros::ALIB_STRINGS_APPLYTO_DECLARATION" ref="group__GrpALibMacros.html#ga7ef8eaf71cad1c7be73ef8e61dc65177" />
+      <keyword name="ALIB_STRINGS_APPLYTO_DEFINITION" id="GrpALibMacros::ALIB_STRINGS_APPLYTO_DEFINITION" ref="group__GrpALibMacros.html#ga87261d3411f0175bbc3efab49720023f" />
+      <keyword name="ALIB_STRINGS_APPLYTO_INLINE" id="GrpALibMacros::ALIB_STRINGS_APPLYTO_INLINE" ref="group__GrpALibMacros.html#gaf3673497e1c2e5436ad2b369c135658f" />
       <keyword name="ALib Compilation Symbols" id="ALib Compilation Symbols" ref="group__GrpALibCompilerSymbols.html" />
       <keyword name="ALIB_AVOID_ANALYZER_WARNINGS_OFF" id="GrpALibCompilerSymbols::ALIB_AVOID_ANALYZER_WARNINGS_OFF" ref="group__GrpALibCompilerSymbols.html#ga749e93d24d210c48e3b9b31a09727b82" />
       <keyword name="ALIB_AVOID_ANALYZER_WARNINGS_ON" id="GrpALibCompilerSymbols::ALIB_AVOID_ANALYZER_WARNINGS_ON" ref="group__GrpALibCompilerSymbols.html#gacaa316e613cf0f7bc021130c1b4e2f33" />
@@ -2183,38 +2195,38 @@
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a9a404410b1aaf03e4115c05414d6bbf5" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a07f1969f5176f25927efd6c3b869dd69" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a10cbaebe29c1bc6e2147b1c25d6ba6ac" />
-      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#aa8fb47b820e77796083d2c3eb13d56b2" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a3166349c4945294de1c31b25b77da647" />
+      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#aa8fb47b820e77796083d2c3eb13d56b2" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#aaaeb23f90707241659667c910e61bbe9" />
-      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a51d3c0fe2a4125c45c804c1fb1509b3e" />
-      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#af0bcfa090927eb989e55774a396d73fd" />
-      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a70a7ab6f429b5e5e3361d9758b6807d9" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a17dfe1060a698974265db6b780c709fa" />
-      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a99617b411c1009b148f37391abf0d789" />
+      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a51d3c0fe2a4125c45c804c1fb1509b3e" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a5874b01f193017660c4748a8a5fc1fde" />
-      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a9fad3de9eb89a67a1bc095c3fd5ffc56" />
+      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#af0bcfa090927eb989e55774a396d73fd" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#ae7cf6b7c301dca2c1b7efd7d9cf3fd1a" />
-      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a829332713d7be0bbde5b1862e1ec837b" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#aff08105164bdbc38149bdea8526b0fe1" />
-      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a380a2e715c58148cf81b7e31c4ef1bd9" />
+      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a70a7ab6f429b5e5e3361d9758b6807d9" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a4e06f646e714741651dbcc70c18f7277" />
-      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#af43cf0906d4f7d8f1b6ed6dd6454d361" />
+      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a99617b411c1009b148f37391abf0d789" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#aa619192ac17ef191b23c4a62c98c6b0e" />
-      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#ad795b43f0a24b4c0e6147e223e051546" />
+      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a9fad3de9eb89a67a1bc095c3fd5ffc56" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a182592417855344b2161faa31b88745e" />
-      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a0dcce3ad139fe6f9c313fdfe9be5fed2" />
+      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a829332713d7be0bbde5b1862e1ec837b" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a3ebd14cfce8c2eda7ed1dcbca395a33c" />
-      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a3b71964dfcfc46db8bfe4369a60b48c3" />
+      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a380a2e715c58148cf81b7e31c4ef1bd9" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#af234ce05458a46a76cc5a593041895b3" />
-      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a59c043f8dd398835f7266e1bb2c630bf" />
+      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#af43cf0906d4f7d8f1b6ed6dd6454d361" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#aff0544080e363cd67465fc12539c06c1" />
-      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#abe6407ebad387df4da89aeed389e712e" />
+      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#ad795b43f0a24b4c0e6147e223e051546" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a68ce4d16395dd82846afb86689c512df" />
-      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a58b0f925b58b64d308bc299f3fe25281" />
+      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a0dcce3ad139fe6f9c313fdfe9be5fed2" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a0c48317b4a34060b56d3e5c581e509e1" />
+      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a3b71964dfcfc46db8bfe4369a60b48c3" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a0683fedae1a6920e13588d534152f4da" />
+      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a59c043f8dd398835f7266e1bb2c630bf" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#ac2e8c17181156fa7a4a2f3cb94dc15a3" />
+      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#abe6407ebad387df4da89aeed389e712e" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#ad9a951e16433abb2461bca80d0c2ad8e" />
+      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a58b0f925b58b64d308bc299f3fe25281" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#abc006ddec9bb08e63d7e764a785e715b" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#aef0aaba9060d3dd6bcb3914d2b7cc538" />
       <keyword name="ApplyTo&lt; const lox::core::Logger &amp; &gt;" id="aworx::lib::strings::ApplyTo&lt; const lox::core::Logger &amp; &gt;" ref="namespaceaworx_1_1lib_1_1strings.html#a9293db3b9b449a46d07d91e1b8964183" />
@@ -2669,12 +2681,14 @@
       <keyword name="Actual" id="aworx::lib::strings::Tokenizer::Actual" ref="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a2eefe9530c5f2042ddfa20e26b34328b" />
       <keyword name="Rest" id="aworx::lib::strings::Tokenizer::Rest" ref="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a5c8c6045e5fe301e78496fd5e9c7bfab" />
       <keyword name="Whitespaces" id="aworx::lib::strings::Tokenizer::Whitespaces" ref="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#ade1a53d31b95db4ed98b03ff74a8b472" />
-      <keyword name="Tokenizer" id="aworx::lib::strings::Tokenizer::Tokenizer" ref="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#ac02aa3ab5a834c7357ef278512efa27e" />
+      <keyword name="Tokenizer" id="aworx::lib::strings::Tokenizer::Tokenizer" ref="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a09b5373670bea8a8e4ef7645889bad72" />
+      <keyword name="Tokenizer" id="aworx::lib::strings::Tokenizer::Tokenizer" ref="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#aec862d2011e01f63cc367fb40c1e6ade" />
       <keyword name="GetRest" id="aworx::lib::strings::Tokenizer::GetRest" ref="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#ad8bca63647be16f18c25123486a41d19" />
       <keyword name="HasNext" id="aworx::lib::strings::Tokenizer::HasNext" ref="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a3551d22502a58cdc93b15d14f3fb87c2" />
       <keyword name="Next" id="aworx::lib::strings::Tokenizer::Next" ref="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a55ffaac69d1ce7232db83470a8390db8" />
-      <keyword name="Set" id="aworx::lib::strings::Tokenizer::Set" ref="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a77fcc3c671e0e6e80d1c1007ef2f69d6" />
+      <keyword name="Set" id="aworx::lib::strings::Tokenizer::Set" ref="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a0e0b8ea460fe939a3a6f133e0619042a" />
       <keyword name="delim" id="aworx::lib::strings::Tokenizer::delim" ref="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#ab56c67e0ed9605b4078e2135f791c4ed" />
+      <keyword name="skipEmptyTokens" id="aworx::lib::strings::Tokenizer::skipEmptyTokens" ref="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a30e566108b40ef50fce0d40509d0413d" />
       <keyword name="aworx::lib::strings::ToStringDefined" id="aworx::lib::strings::ToStringDefined" ref="structaworx_1_1lib_1_1strings_1_1ToStringDefined.html" />
       <keyword name="aworx::lib::strings::ToStringDefined&lt; const std::string &amp; &gt;" id="aworx::lib::strings::ToStringDefined&lt; const std::string &amp; &gt;" ref="structaworx_1_1lib_1_1strings_1_1ToStringDefined_3_01const_01std_1_1string_01_6_01_4.html" />
       <keyword name="aworx::lib::strings::TString" id="aworx::lib::strings::TString" ref="classaworx_1_1lib_1_1strings_1_1TString.html" />
@@ -3008,10 +3022,12 @@
       <keyword name="initInternal" id="aworx::lox::ALox::initInternal" ref="classaworx_1_1lox_1_1ALox.html#a11c523fe94ea435258a293ab80a6afed" />
       <keyword name="ALox" id="aworx::lox::ALox::ALox" ref="classaworx_1_1lox_1_1ALox.html#aa6e6d60af89ba00a696f2882251907d9" />
       <keyword name="aworx::lox::ALoxReportWriter" id="aworx::lox::ALoxReportWriter" ref="classaworx_1_1lox_1_1ALoxReportWriter.html" />
+      <keyword name="LogDomain" id="aworx::lox::ALoxReportWriter::LogDomain" ref="classaworx_1_1lox_1_1ALoxReportWriter.html#a25d1e81288f8b2a044f14e2577bc73cf" />
       <keyword name="ALoxReportWriter" id="aworx::lox::ALoxReportWriter::ALoxReportWriter" ref="classaworx_1_1lox_1_1ALoxReportWriter.html#a4b218cdb1f7e96e6cd3a851cca5f7c76" />
       <keyword name="NotifyActivation" id="aworx::lox::ALoxReportWriter::NotifyActivation" ref="classaworx_1_1lox_1_1ALoxReportWriter.html#a810c6fafc7e815f40da0a7e1f30e2233" />
       <keyword name="Report" id="aworx::lox::ALoxReportWriter::Report" ref="classaworx_1_1lox_1_1ALoxReportWriter.html#a3ad9ad01d27945bd76295c63aa1f5457" />
       <keyword name="~ReportWriter" id="aworx::lib::ReportWriter::~ReportWriter" ref="classaworx_1_1lib_1_1ReportWriter.html#aacb613601745319beb402a265be497e5" />
+      <keyword name="reportDomain" id="aworx::lox::ALoxReportWriter::reportDomain" ref="classaworx_1_1lox_1_1ALoxReportWriter.html#add18036b208027dee62ed16031695ac5" />
       <keyword name="lox" id="aworx::lox::ALoxReportWriter::lox" ref="classaworx_1_1lox_1_1ALoxReportWriter.html#a337184443073b338364d604916737ba8" />
       <keyword name="aworx::lox::ESC" id="aworx::lox::ESC" ref="classaworx_1_1lox_1_1ESC.html" />
       <keyword name="BG_BLACK" id="aworx::lox::ESC::BG_BLACK" ref="classaworx_1_1lox_1_1ESC.html#aa82c6a3b4740dbc8469c438cb508c9fc" />
@@ -3047,7 +3063,9 @@
       <keyword name="DebugLogger" id="aworx::lox::Log::DebugLogger" ref="classaworx_1_1lox_1_1Log.html#a6dab5611a4ba1574d65dfcdcb0f77cd9" />
       <keyword name="DebugReportWriter" id="aworx::lox::Log::DebugReportWriter" ref="classaworx_1_1lox_1_1Log.html#a3fc6107634a1988540d4f827c3586233" />
       <keyword name="IDELogger" id="aworx::lox::Log::IDELogger" ref="classaworx_1_1lox_1_1Log.html#a7764bec073718f0cc7c022afbc17b4b9" />
+      <keyword name="AddALibReportWriter" id="aworx::lox::Log::AddALibReportWriter" ref="classaworx_1_1lox_1_1Log.html#abb8bfbfc93fc3b5b0d8bd9bcac6b7235" />
       <keyword name="AddDebugLogger" id="aworx::lox::Log::AddDebugLogger" ref="classaworx_1_1lox_1_1Log.html#a06444d2e7a321e26fe1d4c309cb8ed49" />
+      <keyword name="RemoveALibReportWriter" id="aworx::lox::Log::RemoveALibReportWriter" ref="classaworx_1_1lox_1_1Log.html#a9bd252035e8769cec5f74ca014b46817" />
       <keyword name="RemoveDebugLogger" id="aworx::lox::Log::RemoveDebugLogger" ref="classaworx_1_1lox_1_1Log.html#a6d4775cac3c6e185f454a5e1fbf9325a" />
       <keyword name="aworx::lox::LogData" id="aworx::lox::LogData" ref="structaworx_1_1lox_1_1LogData.html" />
       <keyword name="IntegerValue" id="aworx::lox::LogData::IntegerValue" ref="structaworx_1_1lox_1_1LogData.html#a65a3775caf9d6718458869ad29c1ab8a" />
@@ -3337,15 +3355,15 @@
       <keyword name="languageStore" id="aworx::lox::core::ScopeStore::languageStore" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a1251572d8e2460a60f89fd2372e71c63" />
       <keyword name="threadInnerStore" id="aworx::lox::core::ScopeStore::threadInnerStore" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a344205164cffc3c7c0a6191c9a716b8f" />
       <keyword name="threadOuterStore" id="aworx::lox::core::ScopeStore::threadOuterStore" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#aaedb67f0bf7ce679a991c7ee988e1cc4" />
-      <keyword name="ScopeStore" id="aworx::lox::core::ScopeStore::ScopeStore" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#ab2e398fa8b1dfdd80338f081ee495717" />
-      <keyword name="~ScopeStore" id="aworx::lox::core::ScopeStore::~ScopeStore" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#af76396d4a8d1de67fe742bf4cdc3fbab" />
-      <keyword name="Clear" id="aworx::lox::core::ScopeStore::Clear" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#aa71d36872f416feaa853788a7a7a7ef8" />
+      <keyword name="ScopeStore" id="aworx::lox::core::ScopeStore::ScopeStore" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#ac7a74581c38faf240883a9a395547d5a" />
+      <keyword name="~ScopeStore" id="aworx::lox::core::ScopeStore::~ScopeStore" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a9bff9f3eb2193028b398787f43ca19d1" />
+      <keyword name="Clear" id="aworx::lox::core::ScopeStore::Clear" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a8276b692283d7725759466633f2c8211" />
       <keyword name="Get" id="aworx::lox::core::ScopeStore::Get" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a19b162b0d416fc5be7f1f6a91c718c3e" />
-      <keyword name="InitAccess" id="aworx::lox::core::ScopeStore::InitAccess" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#aeaa3f65207097ff85093acc485223a44" />
-      <keyword name="InitWalk" id="aworx::lox::core::ScopeStore::InitWalk" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#ae264cb9b825bd34050766c256a2504df" />
+      <keyword name="InitAccess" id="aworx::lox::core::ScopeStore::InitAccess" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a15cc8a2338769a04748e8964f2659b42" />
+      <keyword name="InitWalk" id="aworx::lox::core::ScopeStore::InitWalk" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a5c609208e4e06536121b94f6896fab1e" />
       <keyword name="Remove" id="aworx::lox::core::ScopeStore::Remove" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a4b6e9ae247a950ed1b5d5d82c72b1440" />
       <keyword name="Store" id="aworx::lox::core::ScopeStore::Store" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a5361906d7ce4b2ca6c3f676c85cf01fd" />
-      <keyword name="Walk" id="aworx::lox::core::ScopeStore::Walk" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#abf60f56ae3a9568c4c963460cb4cf9b7" />
+      <keyword name="Walk" id="aworx::lox::core::ScopeStore::Walk" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a262f597e568a196dcb284fb1c859c8d6" />
       <keyword name="actPathLevel" id="aworx::lox::core::ScopeStore::actPathLevel" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#aa5ede8468c729de0886d3bc84d31714e" />
       <keyword name="actPathMapNode" id="aworx::lox::core::ScopeStore::actPathMapNode" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a77c6ecbc68ffa22251428b4763a3d3b7" />
       <keyword name="actScope" id="aworx::lox::core::ScopeStore::actScope" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#ab420b6d519025a485c6345895ad174ee" />

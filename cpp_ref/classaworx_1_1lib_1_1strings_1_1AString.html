@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1604 R. 0</span>
+   &#160;<span id="projectnumber">V. 1604 R. 1</span>
    </div>
   </td>
  </tr>
@@ -136,7 +136,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Inheritance diagram for AString:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lib_1_1strings_1_1AString__inherit__graph.svg" width="468" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lib_1_1strings_1_1AString__inherit__graph.svg" width="544" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for AString:</div>
@@ -181,7 +181,7 @@ In the case that it is <em>nulled</em>, using the assignment operator will set t
 <li>Even if an <b>AString</b> object is <em>nulled</em>, inherited method <a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html#af283db5a533654cb8a0fa2e110d4b20f">ToCString</a> will return a (zero terminated) valid empty <em>char*</em>. This has the advantage that in many situations the null-state is not needed to be handled (for those cases where the difference between a <em>nulled</em> and an empty string is irrelevant).</li>
 </ul>
 </dd></dl>
-<p><b>Applying Objects to AStrings</b></p>
+<p><a class="anchor" id="alib_namespace_strings_astring_applyto"></a> <b>Applying Objects to AStrings</b></p>
 <p>The concept of appending things to a string is generalized in the C++ implementation of this class and named <em>applying</em> instead. While applying string types is the same as appending string types in other language versions of ALib, the '<em>application</em>' of non-string types allows flexible and well readable code design.</p>
 <p>The central mechanism used to apply arbitrary types is similar to what is used by class <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> and the partially specialized template function <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a7cfd45024bf9222b42febac98fdcc146">ToString</a>. By implementing a new specialization of partially specialized template</p><ul>
 <li>function <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#aa8fb47b820e77796083d2c3eb13d56b2">ApplyTo</a> and</li>
@@ -194,6 +194,8 @@ In the case that it is <em>nulled</em>, using the assignment operator will set t
 <li>Method <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a635ad749475cecd00e3ec3603327d78c">_(const T&amp;)</a> (which is a synonym for <em>operator &lt;&lt; </em> but allowing non-checked invocations)</li>
 <li>Operator <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a6cfb898b4e0d87d08b6c0b115b690239">operator=(const T&amp;)</a></li>
 </ul>
+<p>Easy declaration and definition of method <b>ApplyTo</b> (and template class <b>IsApplicable</b>) is supported with macros <a class="el" href="group__GrpALibMacros.html#ga7ef8eaf71cad1c7be73ef8e61dc65177">ALIB_STRINGS_APPLYTO_DECLARATION</a>, <a class="el" href="group__GrpALibMacros.html#ga87261d3411f0175bbc3efab49720023f">ALIB_STRINGS_APPLYTO_DEFINITION</a> and <a class="el" href="group__GrpALibMacros.html#gaf3673497e1c2e5436ad2b369c135658f">ALIB_STRINGS_APPLYTO_INLINE</a>.</p>
+<p>For more information refer to documentation of partially specialized template method <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#aa8fb47b820e77796083d2c3eb13d56b2">ApplyTo</a> and</p>
 <p><a class="anchor" id="alib_namespace_strings_astring_application_vs_interface"></a> <b>Application Instead of Explicit Interface Methods</b></p>
 <p>Various methods that exist in the implementations of class <b>AString</b> in different programming languages versions of ALib, are missing in this C++ implementation. Here, they have been replaced by the concept of <em>applying</em> types. The following provides a list of predefined applicable types found in ALib:</p>
 <ul>
@@ -2393,7 +2395,7 @@ This method's description may sound (and the code may look) like having quite so
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Apr 24 2016 20:46:34 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu May 26 2016 13:01:45 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

@@ -1,0 +1,37 @@
+digraph "TextFileLogger"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="TextFileLogger",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node6 [label="vector\<AString\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node10 [label="vector\<ObjectConverter *\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node12 [label="basic_ofstream\<char\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip="STL class. "];
+  Node13 [label="basic_ostream\<Char\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip="STL class. "];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" AutoSizes" ,fontname="Helvetica"];
+  Node6 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" replacements" ,fontname="Helvetica"];
+  Node7 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" FileName" ,fontname="Helvetica"];
+  Node7 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" logBuf\nMultiLineDelimiter\nmsgBuf" ,fontname="Helvetica"];
+  Node7 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" elements" ,fontname="Helvetica"];
+  Node7 -> Node9 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Format" ,fontname="Helvetica"];
+  Node8 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" FmtUnknownObject\nFmtMultiLineMsgHeadline\nMultiLineDelimiterRepl\nFmtMultiLineSuffix\nFmtMultiLinePrefix" ,fontname="Helvetica"];
+  Node8 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 -> Node9 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" TimeDiffHours\nVerbosityInfo\nVerbosityWarning\nVerbosityVerbose\nTimeDiffMicros\nTimeElapsedDays\nVerbosityError\nTimeOfDayFormat\nDateFormat\nTimeDiffMins\n..." ,fontname="Helvetica"];
+  Node9 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" MetaInfo" ,fontname="Helvetica"];
+  Node10 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" ObjectConverters" ,fontname="Helvetica"];
+  Node11 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" os" ,fontname="Helvetica"];
+  Node12 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="PlainTextLogger",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html"];
+  Node3 [label="TextLogger",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html"];
+  Node4 [label="Logger",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$classaworx_1_1lox_1_1core_1_1Logger.html"];
+  Node5 [label="AutoSizes",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$classaworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html"];
+  Node7 [label="AString",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1AString.html"];
+  Node8 [label="TString",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1TString.html"];
+  Node9 [label="MetaInfo",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html"];
+  Node11 [label="ofstream",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip="STL class. "];
+}
+

@@ -12,6 +12,7 @@ var searchData=
   ['sensitivity',['Sensitivity',['../structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html#a48bf193d2228373a7e76ba4e08137017',1,'aworx::lox::core::ScopeInfo::SourcePathTrimRule']]],
   ['sessionvalues',['sessionValues',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html#ab984e4481cc3e39628583b38fedc8911',1,'aworx::lox::core::textlogger::AutoSizes']]],
   ['singleton',['Singleton',['../classaworx_1_1lib_1_1ConsoleReportWriter.html#a7814635efff621671f61ae49310a9d52',1,'aworx::lib::ConsoleReportWriter']]],
+  ['skipemptytokens',['skipEmptyTokens',['../classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a30e566108b40ef50fce0d40509d0413d',1,'aworx::lib::strings::Tokenizer']]],
   ['starttime',['startTime',['../classaworx_1_1lib_1_1time_1_1TickWatch.html#ad4a637681761e440fc76c0c91a3a2737',1,'aworx::lib::time::TickWatch']]],
   ['stat',['Stat',['../classaworx_1_1lib_1_1system_1_1ProcessInfo.html#aa1d0ce36cf7d7f9338610388ff42fa29',1,'aworx::lib::system::ProcessInfo']]],
   ['statpgrp',['statPGRP',['../classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a9dd69d834742023497d9c6f3eeaf3f82',1,'aworx::lib::system::ProcessInfo']]],

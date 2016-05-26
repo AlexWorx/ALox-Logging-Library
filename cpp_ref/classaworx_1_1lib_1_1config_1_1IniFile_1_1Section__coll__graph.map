@@ -1,5 +1,5 @@
 <map id="IniFile::Section" name="IniFile::Section">
-<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1config_1_1IniFile_1_1Variable.html" title="Variable" alt="" coords="100,200,169,227"/>
-<area shape="rect" id="node4" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="54,5,119,32"/>
-<area shape="rect" id="node5" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\l\&lt; 32 \&gt;" alt="" coords="180,81,308,123"/>
+<area shape="rect" id="node3" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\&lt;TCapacity\&gt;" alt="" coords="43,81,247,108"/>
+<area shape="rect" id="node4" href="$classaworx_1_1lib_1_1config_1_1IniFile_1_1Variable.html" title="Variable" alt="" coords="217,185,287,212"/>
+<area shape="rect" id="node5" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="113,5,178,32"/>
 </map>

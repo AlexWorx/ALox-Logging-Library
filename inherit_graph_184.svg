@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="none" points="-4,4 -4,-426 559,-426 559,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<g id="a_node1"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lib_1_1strings_1_1String.html" target="_top" xlink:title="aworx::lib::strings\l::String">
+<g id="a_node1"><a doxygen="ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lib_1_1strings_1_1String.html" target="_top" xlink:title="aworx::lib::strings\l::String">
 <polygon fill="white" stroke="black" points="0,-152 0,-182 94,-182 94,-152 0,-152"/>
 <text text-anchor="start" x="8" y="-170" font-family="Helvetica,sans-Serif" font-size="10.00">aworx::lib::strings</text>
 <text text-anchor="middle" x="47" y="-159" font-family="Helvetica,sans-Serif" font-size="10.00">::String</text>
@@ -20,7 +20,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lib_1_1strings_1_1Substring.html" target="_top" xlink:title="aworx::lib::strings\l::Substring">
+<g id="a_node2"><a doxygen="ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lib_1_1strings_1_1Substring.html" target="_top" xlink:title="aworx::lib::strings\l::Substring">
 <polygon fill="white" stroke="black" points="130,-177 130,-207 224,-207 224,-177 130,-177"/>
 <text text-anchor="start" x="138" y="-195" font-family="Helvetica,sans-Serif" font-size="10.00">aworx::lib::strings</text>
 <text text-anchor="middle" x="177" y="-184" font-family="Helvetica,sans-Serif" font-size="10.00">::Substring</text>
@@ -34,7 +34,7 @@
 </g>
 <!-- Node3 -->
 <g id="node3" class="node"><title>Node3</title>
-<g id="a_node3"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lib_1_1strings_1_1TString.html" target="_top" xlink:title="aworx::lib::strings\l::TString">
+<g id="a_node3"><a doxygen="ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lib_1_1strings_1_1TString.html" target="_top" xlink:title="aworx::lib::strings\l::TString">
 <polygon fill="white" stroke="black" points="130,-128 130,-158 224,-158 224,-128 130,-128"/>
 <text text-anchor="start" x="138" y="-146" font-family="Helvetica,sans-Serif" font-size="10.00">aworx::lib::strings</text>
 <text text-anchor="middle" x="177" y="-135" font-family="Helvetica,sans-Serif" font-size="10.00">::TString</text>
@@ -48,7 +48,7 @@
 </g>
 <!-- Node4 -->
 <g id="node4" class="node"><title>Node4</title>
-<g id="a_node4"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lib_1_1strings_1_1AString.html" target="_top" xlink:title="aworx::lib::strings\l::AString">
+<g id="a_node4"><a doxygen="ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lib_1_1strings_1_1AString.html" target="_top" xlink:title="aworx::lib::strings\l::AString">
 <polygon fill="white" stroke="black" points="277,-278 277,-308 371,-308 371,-278 277,-278"/>
 <text text-anchor="start" x="285" y="-296" font-family="Helvetica,sans-Serif" font-size="10.00">aworx::lib::strings</text>
 <text text-anchor="middle" x="324" y="-285" font-family="Helvetica,sans-Serif" font-size="10.00">::AString</text>
@@ -62,7 +62,7 @@
 </g>
 <!-- Node10 -->
 <g id="node10" class="node"><title>Node10</title>
-<g id="a_node10"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lib_1_1strings_1_1StringLiteral.html" target="_top" xlink:title="aworx::lib::strings\l::StringLiteral\&lt; TLength \&gt;">
+<g id="a_node10"><a doxygen="ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lib_1_1strings_1_1StringLiteral.html" target="_top" xlink:title="aworx::lib::strings\l::StringLiteral\&lt; TLength \&gt;">
 <polygon fill="white" stroke="black" points="260,-229 260,-259 388,-259 388,-229 260,-229"/>
 <text text-anchor="start" x="268" y="-247" font-family="Helvetica,sans-Serif" font-size="10.00">aworx::lib::strings</text>
 <text text-anchor="middle" x="324" y="-236" font-family="Helvetica,sans-Serif" font-size="10.00">::StringLiteral&lt; TLength &gt;</text>
@@ -76,7 +76,7 @@
 </g>
 <!-- Node11 -->
 <g id="node11" class="node"><title>Node11</title>
-<g id="a_node11"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lib_1_1strings_1_1StringLiteral.html" target="_top" xlink:title="StringLiteral\&lt; 10 \&gt;">
+<g id="a_node11"><a doxygen="ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lib_1_1strings_1_1StringLiteral.html" target="_top" xlink:title="StringLiteral\&lt; 10 \&gt;">
 <polygon fill="white" stroke="black" points="275.5,-190.5 275.5,-209.5 372.5,-209.5 372.5,-190.5 275.5,-190.5"/>
 <text text-anchor="middle" x="324" y="-197.5" font-family="Helvetica,sans-Serif" font-size="10.00">StringLiteral&lt; 10 &gt;</text>
 </a>
@@ -89,7 +89,7 @@
 </g>
 <!-- Node12 -->
 <g id="node12" class="node"><title>Node12</title>
-<g id="a_node12"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lib_1_1strings_1_1StringLiteral.html" target="_top" xlink:title="StringLiteral\&lt; 11 \&gt;">
+<g id="a_node12"><a doxygen="ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lib_1_1strings_1_1StringLiteral.html" target="_top" xlink:title="StringLiteral\&lt; 11 \&gt;">
 <polygon fill="white" stroke="black" points="275.5,-152.5 275.5,-171.5 372.5,-171.5 372.5,-152.5 275.5,-152.5"/>
 <text text-anchor="middle" x="324" y="-159.5" font-family="Helvetica,sans-Serif" font-size="10.00">StringLiteral&lt; 11 &gt;</text>
 </a>
@@ -102,7 +102,7 @@
 </g>
 <!-- Node13 -->
 <g id="node13" class="node"><title>Node13</title>
-<g id="a_node13"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lib_1_1strings_1_1StringLiteral.html" target="_top" xlink:title="StringLiteral\&lt; 2 \&gt;">
+<g id="a_node13"><a doxygen="ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lib_1_1strings_1_1StringLiteral.html" target="_top" xlink:title="StringLiteral\&lt; 2 \&gt;">
 <polygon fill="white" stroke="black" points="278,-114.5 278,-133.5 370,-133.5 370,-114.5 278,-114.5"/>
 <text text-anchor="middle" x="324" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">StringLiteral&lt; 2 &gt;</text>
 </a>
@@ -115,7 +115,7 @@
 </g>
 <!-- Node14 -->
 <g id="node14" class="node"><title>Node14</title>
-<g id="a_node14"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lib_1_1strings_1_1StringLiteral.html" target="_top" xlink:title="StringLiteral\&lt; 3 \&gt;">
+<g id="a_node14"><a doxygen="ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lib_1_1strings_1_1StringLiteral.html" target="_top" xlink:title="StringLiteral\&lt; 3 \&gt;">
 <polygon fill="white" stroke="black" points="278,-76.5 278,-95.5 370,-95.5 370,-76.5 278,-76.5"/>
 <text text-anchor="middle" x="324" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">StringLiteral&lt; 3 &gt;</text>
 </a>
@@ -128,7 +128,7 @@
 </g>
 <!-- Node15 -->
 <g id="node15" class="node"><title>Node15</title>
-<g id="a_node15"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lib_1_1strings_1_1StringLiteral.html" target="_top" xlink:title="StringLiteral\&lt; 4 \&gt;">
+<g id="a_node15"><a doxygen="ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lib_1_1strings_1_1StringLiteral.html" target="_top" xlink:title="StringLiteral\&lt; 4 \&gt;">
 <polygon fill="white" stroke="black" points="278,-38.5 278,-57.5 370,-57.5 370,-38.5 278,-38.5"/>
 <text text-anchor="middle" x="324" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">StringLiteral&lt; 4 &gt;</text>
 </a>
@@ -141,7 +141,7 @@
 </g>
 <!-- Node16 -->
 <g id="node16" class="node"><title>Node16</title>
-<g id="a_node16"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lib_1_1strings_1_1StringLiteral.html" target="_top" xlink:title="StringLiteral\&lt; 5 \&gt;">
+<g id="a_node16"><a doxygen="ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lib_1_1strings_1_1StringLiteral.html" target="_top" xlink:title="StringLiteral\&lt; 5 \&gt;">
 <polygon fill="white" stroke="black" points="278,-0.5 278,-19.5 370,-19.5 370,-0.5 278,-0.5"/>
 <text text-anchor="middle" x="324" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">StringLiteral&lt; 5 &gt;</text>
 </a>
@@ -154,7 +154,7 @@
 </g>
 <!-- Node5 -->
 <g id="node5" class="node"><title>Node5</title>
-<g id="a_node5"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" target="_top" xlink:title="aworx::lib::strings\l::PreallocatedString\l\&lt; TCapacity \&gt;">
+<g id="a_node5"><a doxygen="ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" target="_top" xlink:title="aworx::lib::strings\l::PreallocatedString\l\&lt; TCapacity \&gt;">
 <polygon fill="white" stroke="black" points="438.5,-380.5 438.5,-421.5 540.5,-421.5 540.5,-380.5 438.5,-380.5"/>
 <text text-anchor="start" x="446.5" y="-409.5" font-family="Helvetica,sans-Serif" font-size="10.00">aworx::lib::strings</text>
 <text text-anchor="start" x="446.5" y="-398.5" font-family="Helvetica,sans-Serif" font-size="10.00">::PreallocatedString</text>
@@ -169,7 +169,7 @@
 </g>
 <!-- Node6 -->
 <g id="node6" class="node"><title>Node6</title>
-<g id="a_node6"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" target="_top" xlink:title="aworx::lib::strings\l::PreallocatedString\&lt; 16 \&gt;">
+<g id="a_node6"><a doxygen="ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" target="_top" xlink:title="aworx::lib::strings\l::PreallocatedString\&lt; 16 \&gt;">
 <polygon fill="white" stroke="black" points="424,-332 424,-362 555,-362 555,-332 424,-332"/>
 <text text-anchor="start" x="432" y="-350" font-family="Helvetica,sans-Serif" font-size="10.00">aworx::lib::strings</text>
 <text text-anchor="middle" x="489.5" y="-339" font-family="Helvetica,sans-Serif" font-size="10.00">::PreallocatedString&lt; 16 &gt;</text>
@@ -183,7 +183,7 @@
 </g>
 <!-- Node7 -->
 <g id="node7" class="node"><title>Node7</title>
-<g id="a_node7"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" target="_top" xlink:title="aworx::lib::strings\l::PreallocatedString\l\&lt; 256 \&gt;">
+<g id="a_node7"><a doxygen="ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" target="_top" xlink:title="aworx::lib::strings\l::PreallocatedString\l\&lt; 256 \&gt;">
 <polygon fill="white" stroke="black" points="438.5,-272.5 438.5,-313.5 540.5,-313.5 540.5,-272.5 438.5,-272.5"/>
 <text text-anchor="start" x="446.5" y="-301.5" font-family="Helvetica,sans-Serif" font-size="10.00">aworx::lib::strings</text>
 <text text-anchor="start" x="446.5" y="-290.5" font-family="Helvetica,sans-Serif" font-size="10.00">::PreallocatedString</text>
@@ -198,7 +198,7 @@
 </g>
 <!-- Node8 -->
 <g id="node8" class="node"><title>Node8</title>
-<g id="a_node8"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" target="_top" xlink:title="aworx::lib::strings\l::PreallocatedString\&lt; 32 \&gt;">
+<g id="a_node8"><a doxygen="ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" target="_top" xlink:title="aworx::lib::strings\l::PreallocatedString\&lt; 32 \&gt;">
 <polygon fill="white" stroke="black" points="424,-224 424,-254 555,-254 555,-224 424,-224"/>
 <text text-anchor="start" x="432" y="-242" font-family="Helvetica,sans-Serif" font-size="10.00">aworx::lib::strings</text>
 <text text-anchor="middle" x="489.5" y="-231" font-family="Helvetica,sans-Serif" font-size="10.00">::PreallocatedString&lt; 32 &gt;</text>
@@ -212,7 +212,7 @@
 </g>
 <!-- Node9 -->
 <g id="node9" class="node"><title>Node9</title>
-<g id="a_node9"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" target="_top" xlink:title="aworx::lib::strings\l::PreallocatedString\&lt; 64 \&gt;">
+<g id="a_node9"><a doxygen="ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" target="_top" xlink:title="aworx::lib::strings\l::PreallocatedString\&lt; 64 \&gt;">
 <polygon fill="white" stroke="black" points="424,-175 424,-205 555,-205 555,-175 424,-175"/>
 <text text-anchor="start" x="432" y="-193" font-family="Helvetica,sans-Serif" font-size="10.00">aworx::lib::strings</text>
 <text text-anchor="middle" x="489.5" y="-182" font-family="Helvetica,sans-Serif" font-size="10.00">::PreallocatedString&lt; 64 &gt;</text>

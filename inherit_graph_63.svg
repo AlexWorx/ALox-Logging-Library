@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="none" points="-4,4 -4,-35 310,-35 310,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<g id="a_node1"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html" target="_top" xlink:title="aworx::lox::core::textlogger\l::ObjectConverter">
+<g id="a_node1"><a doxygen="ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html" target="_top" xlink:title="aworx::lox::core::textlogger\l::ObjectConverter">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-30.5 135,-30.5 135,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">aworx::lox::core::textlogger</text>
 <text text-anchor="middle" x="67.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">::ObjectConverter</text>
@@ -20,7 +20,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a doxygen="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lox_1_1core_1_1textlogger_1_1StringConverter.html" target="_top" xlink:title="aworx::lox::core::textlogger\l::StringConverter">
+<g id="a_node2"><a doxygen="ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" xlink:href="cpp_ref/classaworx_1_1lox_1_1core_1_1textlogger_1_1StringConverter.html" target="_top" xlink:title="aworx::lox::core::textlogger\l::StringConverter">
 <polygon fill="white" stroke="black" points="171,-0.5 171,-30.5 306,-30.5 306,-0.5 171,-0.5"/>
 <text text-anchor="start" x="179" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">aworx::lox::core::textlogger</text>
 <text text-anchor="middle" x="238.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">::StringConverter</text>

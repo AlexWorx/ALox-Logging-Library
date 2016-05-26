@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1604 R. 0</span>
+   &#160;<span id="projectnumber">V. 1604 R. 1</span>
    </div>
   </td>
  </tr>
@@ -137,7 +137,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Collaboration diagram for Log:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lox_1_1Log__coll__graph.svg" width="1999" height="918"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classaworx_1_1lox_1_1Log__coll__graph.svg" width="2122" height="1114"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><hr/>
@@ -155,12 +155,49 @@ Public Static Fields</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Public Static Methods</h2></td></tr>
+<tr class="memitem:abb8bfbfc93fc3b5b0d8bd9bcac6b7235"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Log.html#abb8bfbfc93fc3b5b0d8bd9bcac6b7235">AddALibReportWriter</a> (<a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> *lox)</td></tr>
+<tr class="separator:abb8bfbfc93fc3b5b0d8bd9bcac6b7235"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06444d2e7a321e26fe1d4c309cb8ed49"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Log.html#a06444d2e7a321e26fe1d4c309cb8ed49">AddDebugLogger</a> (<a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> *lox)</td></tr>
 <tr class="separator:a06444d2e7a321e26fe1d4c309cb8ed49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bd252035e8769cec5f74ca014b46817"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Log.html#a9bd252035e8769cec5f74ca014b46817">RemoveALibReportWriter</a> ()</td></tr>
+<tr class="separator:a9bd252035e8769cec5f74ca014b46817"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d4775cac3c6e185f454a5e1fbf9325a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__GrpALoxMacrosLowLevel.html#ga2cde43a12bd2be40baa4896e409d642c">ALOX_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1Log.html#a6d4775cac3c6e185f454a5e1fbf9325a">RemoveDebugLogger</a> (<a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> *lox)</td></tr>
 <tr class="separator:a6d4775cac3c6e185f454a5e1fbf9325a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="abb8bfbfc93fc3b5b0d8bd9bcac6b7235"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AddALibReportWriter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classaworx_1_1lox_1_1Lox.html">Lox</a> *&#160;</td>
+          <td class="paramname"><em>lox</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> In the case that the original ALib ConsoleReportWriter is still in place, <a class="el" href="classaworx_1_1lib_1_1Report.html#a15a55ca31cef913041443efc8a13494f">Report.PushWriter</a> is invoked to provide a ReportWriter of type <a class="el" href="classaworx_1_1lox_1_1ALoxReportWriter.html">ALoxReportWriter</a>.</p>
+<dl class="section note"><dt>Note</dt><dd>This method is effective only in debug compilations. Usually it is invoked indirectly by using method <a class="el" href="classaworx_1_1lox_1_1Log.html#a06444d2e7a321e26fe1d4c309cb8ed49">AddDebugLogger</a>. Applications that do not use that method (e.g. because they are using release logging exclusively), should invoke this method on bootstrap providing their (release) lox. In this case, the <em>Verbosity</em> of the internal domain used by class <a class="el" href="classaworx_1_1lox_1_1ALoxReportWriter.html">ALoxReportWriter</a> has to be set for the the logger(s) in given <code>lox</code> in question.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lox</td><td>The lox that the <a class="el" href="classaworx_1_1lox_1_1ALoxReportWriter.html">ALoxReportWriter</a> created will be using. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a06444d2e7a321e26fe1d4c309cb8ed49"></a>
 <div class="memitem">
 <div class="memproto">
@@ -195,13 +232,38 @@ Public Static Methods</h2></td></tr>
 <li><a class="el" href="namespaceaworx_1_1lox.html#abf3be10d03894afb391f3a2935e3b313a0eaadb4fcb48a0a0ed7bc9868be9fbaa">Verbosity::Warning</a> for internal domains.</li>
 </ul>
 <p>An optionally created second, IDE-specific <em>Logger</em> will be named <code>"IDE_LOGGER"</code> and will be registered with the standard <b>Lox</b> used for debug-logging with the same <em>Verbosities</em> as <code>"DEBUG_LOGGER"</code> is.</p>
-<p>Finally, in the case that the original ALib ConsoleReportWriter is still in place, <a class="el" href="classaworx_1_1lib_1_1Report.html#a15a55ca31cef913041443efc8a13494f">Report.PushWriter</a> is invoked to provide a ReportWriter of type <a class="el" href="classaworx_1_1lox_1_1ALoxReportWriter.html">ALoxReportWriter</a>.</p>
+<p>Finally, this method also invokes <a class="el" href="classaworx_1_1lox_1_1Log.html#abb8bfbfc93fc3b5b0d8bd9bcac6b7235">AddALibReportWriter</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">lox</td><td>The lox to add the debug logger(s) to. </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="a9bd252035e8769cec5f74ca014b46817"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RemoveALibReportWriter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Removes the report writer created with <a class="el" href="classaworx_1_1lox_1_1Log.html#abb8bfbfc93fc3b5b0d8bd9bcac6b7235">AddALibReportWriter</a>. </p>
 
 </div>
 </div>
@@ -227,7 +289,7 @@ Public Static Methods</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Removes the <em>Logger(s)</em> and which was (were) created by <a class="el" href="classaworx_1_1lox_1_1Log.html#a06444d2e7a321e26fe1d4c309cb8ed49">AddDebugLogger</a>. This method also invokes <a class="el" href="classaworx_1_1lib_1_1Report.html#a51cc05fbf386a19049a2e80bd32a0541">Report::Pop</a> to install a default <a class="el" href="classaworx_1_1lib_1_1ReportWriter.html">ReportWriter</a> for ALib.</p>
+<p> Removes the <em>Logger(s)</em> and which was (were) created by <a class="el" href="classaworx_1_1lox_1_1Log.html#a06444d2e7a321e26fe1d4c309cb8ed49">AddDebugLogger</a>. This method also invokes <a class="el" href="classaworx_1_1lox_1_1Log.html#a9bd252035e8769cec5f74ca014b46817">RemoveALibReportWriter</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">lox</td><td>The lox to remove the debug logger(s) from. </td></tr>
@@ -309,7 +371,7 @@ Public Static Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Apr 24 2016 20:46:34 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu May 26 2016 13:01:45 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>
