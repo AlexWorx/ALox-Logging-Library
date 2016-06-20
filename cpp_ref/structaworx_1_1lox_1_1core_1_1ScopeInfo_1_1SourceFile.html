@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1604 R. 1</span>
+   &#160;<span id="projectnumber">V. 1604 R. 2</span>
    </div>
   </td>
  </tr>
@@ -126,6 +126,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Public Fields</a> &#124;
+<a href="#pub-methods">Public Methods</a> &#124;
 <a href="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ScopeInfo::SourceFile Struct Reference</div>  </div>
@@ -136,7 +137,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Collaboration diagram for ScopeInfo::SourceFile:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile__coll__graph.svg" width="230" height="235"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile__coll__graph.svg" width="263" height="250"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <a name="details" id="details"></a><h2 class="groupheader">Class Description</h2>
 <div class="textblock"><p>Information of a single source file. Stored in field <a class="el" href="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#a0483fbbfacc1e2fedddd3360cf1b7a89">cache</a> </p>
@@ -151,13 +152,78 @@ Public Fields</h2></td></tr>
 <tr class="separator:ae612f42281f92db83f647e7bcb9634c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a792c2a0b64091058562faaf73b0b5e9e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#a792c2a0b64091058562faaf73b0b5e9e">origFile</a></td></tr>
 <tr class="separator:a792c2a0b64091058562faaf73b0b5e9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92c278f6e653f2ff33c65cd197d61239"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#a92c278f6e653f2ff33c65cd197d61239">origFilePathSeparator</a></td></tr>
-<tr class="separator:a92c278f6e653f2ff33c65cd197d61239"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9601f3d9397b2114f0236aeeca12097"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#ad9601f3d9397b2114f0236aeeca12097">origFilePathLength</a></td></tr>
+<tr class="separator:ad9601f3d9397b2114f0236aeeca12097"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad45eb797111ee6d571af7fffc9fc6d79"><td class="memItemLeft" align="right" valign="top">uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#ad45eb797111ee6d571af7fffc9fc6d79">timeStamp</a> = 0</td></tr>
 <tr class="separator:ad45eb797111ee6d571af7fffc9fc6d79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a457ff5532ac38a6fafc282764d6da378"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#a457ff5532ac38a6fafc282764d6da378">trimmedPath</a></td></tr>
 <tr class="separator:a457ff5532ac38a6fafc282764d6da378"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3d0c635ee10b56e2d9bfce8aa1cdbcd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#af3d0c635ee10b56e2d9bfce8aa1cdbcd">trimmedPathPrefix</a></td></tr>
+<tr class="separator:af3d0c635ee10b56e2d9bfce8aa1cdbcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Methods</h2></td></tr>
+<tr class="memitem:a3f53c24a9d5784b49a8a623a67145ec1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#a3f53c24a9d5784b49a8a623a67145ec1">SourceFile</a> ()</td></tr>
+<tr class="separator:a3f53c24a9d5784b49a8a623a67145ec1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f858bc0c63311c2b252faec076fbe28"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#a3f858bc0c63311c2b252faec076fbe28">Set</a> (const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;sourceFile)</td></tr>
+<tr class="separator:a3f858bc0c63311c2b252faec076fbe28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a3f53c24a9d5784b49a8a623a67145ec1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html">SourceFile</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Constructor </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a3f858bc0c63311c2b252faec076fbe28"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Set </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceaworx.html#af01fde7c67b5f30027a4135222bbde31">TString</a> &amp;&#160;</td>
+          <td class="paramname"><em>sourceFile</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Sets a new path and clears other values. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sourceFile</td><td>The source file that we represent. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a class="anchor" id="a54ee0033dccba3b71b4df46be20a8ed8"></a>
 <div class="memitem">
@@ -211,16 +277,16 @@ Public Fields</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a92c278f6e653f2ff33c65cd197d61239"></a>
+<a class="anchor" id="ad9601f3d9397b2114f0236aeeca12097"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int origFilePathSeparator</td>
+          <td class="memname">int origFilePathLength</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>index of last path separator in <a class="el" href="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#a792c2a0b64091058562faaf73b0b5e9e">origFile</a> </p>
+<p>Index of last path separator in <a class="el" href="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#a792c2a0b64091058562faaf73b0b5e9e">origFile</a> </p>
 
 </div>
 </div>
@@ -250,6 +316,19 @@ Public Fields</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="af3d0c635ee10b56e2d9bfce8aa1cdbcd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceaworx.html#ad13481d84c6e592a41d07c64f747c95d">String</a> trimmedPathPrefix</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Prefix for the trimmed path taken from trim rule. Has to be added on writing the trimmed path </p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li><a class="el" href="scopeinfo_8hpp_source.html">scopeinfo.hpp</a></li>
 </ul>
@@ -257,7 +336,7 @@ Public Fields</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu May 26 2016 13:01:45 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 20 2016 10:57:53 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['ide_20setup_20alox_20for_20c_23',['IDE setup ALox for C#',['../cssetup.html',1,'']]],
+  ['ide_20setup_20for_20alox_20for_20c_23',['IDE Setup for ALox for C#',['../cssetup.html',1,'']]],
   ['idelogger',['IDELogger',['../classcs_1_1aworx_1_1lox_1_1Log.html#a310bb1907f5565fa503e4ab259abdf3d',1,'cs::aworx::lox::Log']]],
   ['if',['If',['../classcs_1_1aworx_1_1lox_1_1Log.html#aa3cf204f4e7eec768249c89bcd2623eb',1,'cs.aworx.lox.Log.If(bool condition, String domain, Verbosity verbosity, Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)'],['../classcs_1_1aworx_1_1lox_1_1Log.html#a4ae26eb2280882770039dc5d43e307fa',1,'cs.aworx.lox.Log.If(bool condition, Verbosity verbosity, Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)'],['../classcs_1_1aworx_1_1lox_1_1Lox.html#a6d626c0840136bfdbc0e87e38f2d479c',1,'cs.aworx.lox.Lox.If(bool condition, String domain, Verbosity verbosity, Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)'],['../classcs_1_1aworx_1_1lox_1_1Lox.html#a027d046dda82ebbd3c9d8cb5a5de39cf',1,'cs.aworx.lox.Lox.If(bool condition, Verbosity verbosity, Object logable, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)']]],
   ['ifnotexistent',['IfNotExistent',['../namespacecs_1_1aworx_1_1lib_1_1enums.html#a55781bd0c78c4e5d47ce433f4eeeee85a44c32ea9ad0b836b68c25fdb717fa4b7',1,'cs::aworx::lib::enums']]],
@@ -49,7 +49,7 @@ var searchData=
   ['instvaluetabstop',['instValueTabStop',['../classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#ac586537acea9202be95f5cf793324550',1,'cs::aworx::lox::tools::LogTools']]],
   ['integertostring',['IntegerToString',['../classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a9b8d615738d22e6555ba805874d0c52e',1,'cs::aworx::lib::strings::NumberFormat']]],
   ['integervalue',['IntegerValue',['../classcs_1_1aworx_1_1lox_1_1LogData.html#a65a3775caf9d6718458869ad29c1ab8a',1,'cs::aworx::lox::LogData']]],
-  ['internaldomains',['internalDomains',['../classcs_1_1aworx_1_1lox_1_1Lox.html#aa921f3f43ab67608196f46723182a3c4',1,'cs.aworx.lox.Lox.internalDomains()'],['../classcs_1_1aworx_1_1lox_1_1ALox.html#a7b6260c97ca73f960a2b5aabd5cc91ae',1,'cs.aworx.lox.ALox.InternalDomains()']]],
+  ['internaldomains',['InternalDomains',['../classcs_1_1aworx_1_1lox_1_1ALox.html#a7b6260c97ca73f960a2b5aabd5cc91ae',1,'cs.aworx.lox.ALox.InternalDomains()'],['../classcs_1_1aworx_1_1lox_1_1Lox.html#aa921f3f43ab67608196f46723182a3c4',1,'cs.aworx.lox.Lox.internalDomains()']]],
   ['internalfrequency',['InternalFrequency',['../classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html#ae62f17585d560a30016408f33ace2912',1,'cs::aworx::lib::time::Ticks']]],
   ['intmsg',['intMsg',['../classcs_1_1aworx_1_1lox_1_1Lox.html#adc7950715b5ea60bbbfe297cf70fb70f',1,'cs::aworx::lox::Lox']]],
   ['isactive',['IsActive',['../classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a6dc8fbb3427c720adda3ed3a807f9902',1,'cs::aworx::lox::core::Domain']]],

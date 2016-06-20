@@ -1,26 +1,26 @@
 <map id="ALox" name="ALox">
-<area shape="rect" id="node2" title="STL class. " alt="" coords="1090,784,1178,811"/>
-<area shape="rect" id="node33" href="$classaworx_1_1lox_1_1core_1_1ScopeInfo.html" title="ScopeInfo" alt="" coords="1565,720,1646,747"/>
-<area shape="rect" id="node4" href="$classaworx_1_1lox_1_1core_1_1ScopeStore.html" title="ScopeStore\&lt;map\&lt;AString, LogData *\&gt; *\&gt;" alt="" coords="2045,1388,2311,1415"/>
-<area shape="rect" id="node35" href="$classaworx_1_1lox_1_1Lox.html" title="Lox" alt="" coords="2513,915,2556,941"/>
-<area shape="rect" id="node8" href="$classaworx_1_1lib_1_1containers_1_1PathMap.html" title="PathMap\&lt;map\&lt;AString, LogData *\&gt; *\&gt;" alt="" coords="1009,1425,1259,1452"/>
-<area shape="rect" id="node10" href="$classaworx_1_1lox_1_1core_1_1ScopeStore.html" title="ScopeStore\&lt;AString *\&gt;" alt="" coords="2099,480,2257,507"/>
-<area shape="rect" id="node11" href="$classaworx_1_1lib_1_1containers_1_1PathMap.html" title="PathMap\&lt;AString *\&gt;" alt="" coords="836,395,979,421"/>
-<area shape="rect" id="node16" href="$classaworx_1_1lox_1_1core_1_1ScopeStore.html" title="ScopeStore\&lt;map\&lt;AString, int\&gt; *\&gt;" alt="" coords="2067,915,2289,941"/>
-<area shape="rect" id="node20" href="$classaworx_1_1lib_1_1containers_1_1PathMap.html" title="PathMap\&lt;map\&lt;AString, int\&gt; *\&gt;" alt="" coords="1031,948,1237,975"/>
-<area shape="rect" id="node21" href="$classaworx_1_1lox_1_1core_1_1ScopeStore.html" title="ScopeStore\&lt;Logable *\&gt;" alt="" coords="2098,237,2258,264"/>
-<area shape="rect" id="node22" href="$classaworx_1_1lib_1_1containers_1_1PathMap.html" title="PathMap\&lt;Logable *\&gt;" alt="" coords="1289,255,1433,281"/>
-<area shape="rect" id="node41" href="$classaworx_1_1lox_1_1core_1_1Domain.html" title="Domain" alt="" coords="1101,1252,1167,1279"/>
-<area shape="rect" id="node29" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\&lt;TCapacity\&gt;" alt="" coords="602,1083,806,1109"/>
-<area shape="rect" id="node39" href="$classaworx_1_1lib_1_1threads_1_1Thread.html" title="Thread" alt="" coords="1103,1100,1165,1127"/>
-<area shape="rect" id="node40" href="$structaworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html" title="DomainSubstitutionRule" alt="" coords="1053,1049,1215,1076"/>
-<area shape="rect" id="node30" href="$classaworx_1_1lib_1_1strings_1_1StringLiteral.html" title="StringLiteral\&lt;TLength\&gt;" alt="" coords="2335,1513,2489,1540"/>
-<area shape="rect" id="node31" href="$classaworx_1_1lib_1_1strings_1_1String.html" title="String" alt="" coords="5,272,61,299"/>
-<area shape="rect" id="node32" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="117,593,181,620"/>
-<area shape="rect" id="node34" href="$structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html" title="SourceFile" alt="" coords="388,541,472,568"/>
-<area shape="rect" id="node37" href="$classaworx_1_1lib_1_1Ownable.html" title="Ownable" alt="" coords="497,1228,571,1255"/>
-<area shape="rect" id="node38" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="397,687,463,713"/>
-<area shape="rect" id="node36" href="$classaworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="1560,1245,1651,1272"/>
-<area shape="rect" id="node42" href="$classaworx_1_1lib_1_1time_1_1Ticks.html" title="Ticks" alt="" coords="1107,733,1161,760"/>
-<area shape="rect" id="node43" href="$structaworx_1_1lox_1_1core_1_1Logable.html" title="Logable" alt="" coords="1572,299,1639,325"/>
+<area shape="rect" id="node2" title="STL class. " alt="" coords="1123,784,1211,811"/>
+<area shape="rect" id="node33" href="$classaworx_1_1lox_1_1core_1_1ScopeInfo.html" title="ScopeInfo" alt="" coords="1598,720,1679,747"/>
+<area shape="rect" id="node4" href="$classaworx_1_1lox_1_1core_1_1ScopeStore.html" title="ScopeStore\&lt;map\&lt;AString, LogData *\&gt; *\&gt;" alt="" coords="2079,1387,2344,1413"/>
+<area shape="rect" id="node35" href="$classaworx_1_1lox_1_1Lox.html" title="Lox" alt="" coords="2547,915,2589,941"/>
+<area shape="rect" id="node8" href="$classaworx_1_1lib_1_1containers_1_1PathMap.html" title="PathMap\&lt;map\&lt;AString, LogData *\&gt; *\&gt;" alt="" coords="1043,1425,1292,1452"/>
+<area shape="rect" id="node10" href="$classaworx_1_1lox_1_1core_1_1ScopeStore.html" title="ScopeStore\&lt;AString *\&gt;" alt="" coords="2132,480,2291,507"/>
+<area shape="rect" id="node11" href="$classaworx_1_1lib_1_1containers_1_1PathMap.html" title="PathMap\&lt;AString *\&gt;" alt="" coords="869,396,1012,423"/>
+<area shape="rect" id="node16" href="$classaworx_1_1lox_1_1core_1_1ScopeStore.html" title="ScopeStore\&lt;map\&lt;AString, int\&gt; *\&gt;" alt="" coords="2101,915,2322,941"/>
+<area shape="rect" id="node20" href="$classaworx_1_1lib_1_1containers_1_1PathMap.html" title="PathMap\&lt;map\&lt;AString, int\&gt; *\&gt;" alt="" coords="1065,948,1270,975"/>
+<area shape="rect" id="node21" href="$classaworx_1_1lox_1_1core_1_1ScopeStore.html" title="ScopeStore\&lt;Logable *\&gt;" alt="" coords="2131,237,2291,264"/>
+<area shape="rect" id="node22" href="$classaworx_1_1lib_1_1containers_1_1PathMap.html" title="PathMap\&lt;Logable *\&gt;" alt="" coords="1323,255,1467,281"/>
+<area shape="rect" id="node41" href="$classaworx_1_1lox_1_1core_1_1Domain.html" title="Domain" alt="" coords="1134,1252,1201,1279"/>
+<area shape="rect" id="node29" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\&lt;TCapacity\&gt;" alt="" coords="635,1083,839,1109"/>
+<area shape="rect" id="node39" href="$classaworx_1_1lib_1_1threads_1_1Thread.html" title="Thread" alt="" coords="1136,1100,1199,1127"/>
+<area shape="rect" id="node40" href="$structaworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html" title="DomainSubstitutionRule" alt="" coords="1086,1049,1249,1076"/>
+<area shape="rect" id="node30" href="$classaworx_1_1lib_1_1strings_1_1StringLiteral.html" title="StringLiteral\&lt;TLength\&gt;" alt="" coords="2368,1512,2523,1539"/>
+<area shape="rect" id="node31" href="$classaworx_1_1lib_1_1strings_1_1String.html" title="String" alt="" coords="5,276,61,303"/>
+<area shape="rect" id="node32" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="133,595,197,621"/>
+<area shape="rect" id="node34" href="$structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html" title="SourceFile" alt="" coords="421,543,505,569"/>
+<area shape="rect" id="node37" href="$classaworx_1_1lib_1_1Ownable.html" title="Ownable" alt="" coords="531,1115,604,1141"/>
+<area shape="rect" id="node38" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="431,688,496,715"/>
+<area shape="rect" id="node36" href="$classaworx_1_1lib_1_1threads_1_1ThreadLock.html" title="ThreadLock" alt="" coords="1593,1248,1684,1275"/>
+<area shape="rect" id="node42" href="$classaworx_1_1lib_1_1time_1_1Ticks.html" title="Ticks" alt="" coords="1140,733,1195,760"/>
+<area shape="rect" id="node43" href="$structaworx_1_1lox_1_1core_1_1Logable.html" title="Logable" alt="" coords="1605,299,1672,325"/>
 </map>

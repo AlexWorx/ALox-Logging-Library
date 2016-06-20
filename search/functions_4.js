@@ -38,7 +38,7 @@ var searchData=
   ['create',['Create',['cpp_ref/classaworx_1_1lib_1_1system_1_1Directory.html#a4705a3d882c8aa61346f6175f1c83a30',1,'aworx::lib::system::Directory']]],
   ['createconsolelogger',['createConsoleLogger',['java_ref/classcom_1_1aworx_1_1lox_1_1Lox.html#ac11ae9b18eab12ce506fa0b4905d255b',1,'com::aworx::lox::Lox::createConsoleLogger(String name)'],['java_ref/classcom_1_1aworx_1_1lox_1_1Lox.html#a844dcfd6984c3ed11140ec0bfe729c15',1,'com::aworx::lox::Lox::createConsoleLogger()'],['cs_ref/classcs_1_1aworx_1_1lox_1_1Lox.html#a8db44d29b6867559f393ad860a0a1782',1,'cs::aworx::lox::Lox::CreateConsoleLogger()'],['cpp_ref/classaworx_1_1lox_1_1Lox.html#ae92c4ae884c3cd723deb9b5e8d27b6ac',1,'aworx::lox::Lox::CreateConsoleLogger()']]],
   ['creationtime',['creationTime',['java_ref/classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html#a7e6a9d9318b6c12c9ff42236db016e05',1,'com::aworx::lib::time::Ticks::creationTime()'],['cpp_ref/classaworx_1_1lib_1_1time_1_1Ticks.html#aac6aca1e8b6f497d214a46445e04b232',1,'aworx::lib::time::Ticks::CreationTime()']]],
-  ['current',['Current',['cpp_ref/classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a1e9c04463bb57d8ae52cc6f5470ab44b',1,'aworx::lib::system::ProcessInfo']]],
+  ['current',['Current',['cpp_ref/classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a759e289a0ea1b35c1bd0fea90896432e',1,'aworx::lib::system::ProcessInfo']]],
   ['currentdirectory',['CurrentDirectory',['cpp_ref/classaworx_1_1lib_1_1system_1_1Directory.html#a06845a767764e37766027392413e068f',1,'aworx::lib::system::Directory']]],
   ['currentthread',['CurrentThread',['cpp_ref/classaworx_1_1lib_1_1threads_1_1Thread.html#afbdb4b0df9aaf36f3ab6c4965178f0d6',1,'aworx::lib::threads::Thread']]]
 ];

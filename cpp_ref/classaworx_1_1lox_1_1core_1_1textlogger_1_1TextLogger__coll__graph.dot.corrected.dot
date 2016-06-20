@@ -7,7 +7,7 @@ digraph "TextLogger"
   Node5 [label="vector\<ThreadLock *\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node11 [label="vector\<int\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node12 [label="vector\<AString\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
-  Node15 [label="vector\<ObjectConverter *\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node16 [label="vector\<ObjectConverter *\>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node7 [label="PreallocatedString\<TCapacity\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html"];
   Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
@@ -16,21 +16,23 @@ digraph "TextLogger"
   Node5 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" acquirers" ,fontname="Helvetica"];
   Node6 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" TimeOfLastLog\nTimeOfCreation" ,fontname="Helvetica"];
   Node6 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" creationTime" ,fontname="Helvetica"];
+  Node6 -> Node13 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" MaxElapsedTime" ,fontname="Helvetica"];
   Node7 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" typeName\nname" ,fontname="Helvetica"];
+  Node7 -> Node13 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" VerbosityInfo\nVerbosityWarning\nVerbosityVerbose\nVerbosityError" ,fontname="Helvetica"];
   Node8 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" logBuf\nMultiLineDelimiter\nmsgBuf" ,fontname="Helvetica"];
   Node8 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node8 -> Node12 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" elements" ,fontname="Helvetica"];
   Node8 -> Node13 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Format" ,fontname="Helvetica"];
   Node9 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" FmtUnknownObject\nFmtMultiLineMsgHeadline\nMultiLineDelimiterRepl\nFmtMultiLineSuffix\nFmtMultiLinePrefix" ,fontname="Helvetica"];
   Node9 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node9 -> Node13 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" TimeDiffHours\nVerbosityInfo\nVerbosityWarning\nVerbosityVerbose\nTimeDiffMicros\nTimeElapsedDays\nVerbosityError\nTimeOfDayFormat\nDateFormat\nTimeDiffMins\n..." ,fontname="Helvetica"];
+  Node9 -> Node13 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" TimeDiffHours\nTimeDiffMicros\nTimeElapsedDays\nTimeOfDayFormat\nDateFormat\nTimeDiffMins\nTimeDiffSecs\nNoSourceFileInfo\nTimeDiffNone\nNoMethodInfo\n..." ,fontname="Helvetica"];
   Node10 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" AutoSizes" ,fontname="Helvetica"];
   Node11 -> Node10 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" values\nsessionValues" ,fontname="Helvetica"];
   Node12 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" replacements" ,fontname="Helvetica"];
   Node13 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" MetaInfo" ,fontname="Helvetica"];
-  Node14 -> Node13 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" callerDateTime" ,fontname="Helvetica"];
-  Node15 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" ObjectConverters" ,fontname="Helvetica"];
-  Node16 -> Node15 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" elements" ,fontname="Helvetica"];
+  Node15 -> Node13 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" callerDateTime" ,fontname="Helvetica"];
+  Node16 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" ObjectConverters" ,fontname="Helvetica"];
+  Node17 -> Node16 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" elements" ,fontname="Helvetica"];
   Node2 [label="Logger",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lox_1_1core_1_1Logger.html"];
   Node3 [label="SmartLock",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1threads_1_1SmartLock.html"];
   Node4 [label="ThreadLock",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1threads_1_1ThreadLock.html"];
@@ -39,7 +41,7 @@ digraph "TextLogger"
   Node9 [label="TString",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1TString.html"];
   Node10 [label="AutoSizes",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html"];
   Node13 [label="MetaInfo",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html"];
-  Node14 [label="TicksCalendarTime",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1time_1_1TicksCalendarTime.html"];
-  Node16 [label="ObjectConverter",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html"];
+  Node15 [label="TicksCalendarTime",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1time_1_1TicksCalendarTime.html"];
+  Node17 [label="ObjectConverter",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html"];
 }
 

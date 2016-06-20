@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>ALox: IDE/Build system Setup</title>
+<title>ALox: IDE Setup for ALox for C++</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1604 R. 1</span>
+   &#160;<span id="projectnumber">V. 1604 R. 2</span>
    </div>
   </td>
  </tr>
@@ -113,14 +113,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">IDE/Build system Setup </div>  </div>
+<div class="title">IDE Setup for ALox for C++ </div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
 <ul><li class="level1"><a href="#cppsetup_1">1. Introduction</a></li>
 <li class="level1"><a href="#cppsetup_download">2. Download</a></li>
 <li class="level1"><a href="#cppsetup_setup">3. Set up the Built System</a><ul><li class="level2"><a href="#cppsetup_cmake">3.1. Using ALox with CMake</a></li>
-<li class="level2"><a href="#cppsetup_qtcreator">3.2. Using ALox with QT Creator</a></li>
+<li class="level2"><a href="#cppsetup_qtcreator">3.2. Using ALox with QT Creator</a><ul><li class="level3"><a href="#cppsetup_qtcreator_clickable">3.2.3 Clickable Log Output with QT Creator</a></li>
+</ul>
+</li>
 <li class="level2"><a href="#cppsetup_vstudio">3.3. Using ALox with Visual Studio</a></li>
 <li class="level2"><a href="#cppsetup_vstudio1">3.3.1 Open provided DLL project</a></li>
 <li class="level2"><a href="#cppsetup_vstudio2">3.3.2. Set build dependency</a></li>
@@ -156,13 +158,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </ul>
 <p>As a sample: using CMake, the solution would be the <em>CMakeLists.txt</em> file, and the projects would be the targets within such file.</p>
 <p><br />
- </p>
+</p>
 <h1><a class="anchor" id="cppsetup_download"></a>
 2. Download</h1>
 <p>Unpack the ALox distribution (e.g. as zip) from <a href="https://github.com/AlexWorx/ALox-Logging-Library">Alox at GitHub</a> and move all its contents to a place where you commonly store 3rd party libraries your projects are using.</p>
-<p>In this tutorial, we call this folder the <b><em>ALOX_LIB_PATH</em></b>. After downloading and unpacking ALox within the folder <em>ALOX_LIB_PATH</em> you should find at least the following subfolders: </p><pre class="fragment">    ALOX_LIB_PATH\src.cpp
-    ALOX_LIB_PATH\build
-    ALOX_LIB_PATH\html
+<p>In this tutorial, we call this folder the <b><em>ALOX_LIB_PATH</em></b>. After downloading and unpacking ALox within the folder <em>ALOX_LIB_PATH</em> you should find at least the following subfolders: </p><pre class="fragment">    ALOX_LIB_PATH/src.cpp
+    ALOX_LIB_PATH/build
+    ALOX_LIB_PATH/html
 </pre><p><br />
  </p>
 <h1><a class="anchor" id="cppsetup_setup"></a>
@@ -252,8 +254,15 @@ cout: Do some release logging:
 </ul>
 <h2><a class="anchor" id="cppsetup_qtcreator"></a>
 3.2. Using ALox with QT Creator</h2>
-<p><em>QT Creator</em> has a built in CMake support which works really well (tested version is 3.6). Should you have problems in setting up ALox with <em>QT Creator</em>, it is advised to have a try on the CMake setup first. In this case, follow the instructions of the previous chapter <a class="el" href="cppsetup.html#cppsetup_cmake">3.1. Using ALox with CMake</a>. If this succeeds, you will know that your platform and CMake prerequisites are met.</p>
-<p>In menu <em>File</em> of <em>QT Creator</em> and choose <em>Open File or Project...</em> and select the file: </p><pre class="fragment">    ALOX_LIB_PATH/build/cmake.cpp/alox.samples/CMakeLists.txt
+<h3>3.2.1 Using QT Creator with QMake</h3>
+<p>The <b><em>ALOX_LIB_PATH</em></b> contains ready to use library, sample, and unit testing projects for <em>QT Creator</em> using its default build system QMake. Those are found in sub-folder: </p><pre class="fragment">    ALOX_LIB_PATH/build/ide.cpp.qtcreator/
+</pre><p>Please refer to the <a href="http://doc.qt.io/qtcreator/">QT Creator</a> and <a href="http://doc.qt.io/qt-5/qmake-manual.html">QMake</a> documentation for details on how to use them. </p>
+<p>If this is your way to go, please continue reading secion <a class="el" href="cppsetup.html#cppsetup_qtcreator_clickable">3.2.3 Clickable Log Output with QT Creator</a>.</p>
+<h3>3.2.2 Using QT Creator with QMake</h3>
+<p><em>QT Creator</em> has a built in CMake support which works really well (as of the time of this writing).</p>
+<dl class="section note"><dt>Note</dt><dd>A drawback of using QT Creator with CMake is that (unlike when using it with QMake) clickable log lines are not supported. More information is found in the next section: <a class="el" href="cppsetup.html#cppsetup_qtcreator_clickable">3.2.3 Clickable Log Output with QT Creator</a>. <br />
+ You should consider using QMake if clickable lines are as important to you as they are to us.</dd></dl>
+<p>To use the pre-build CMake files of ALox with <em>QT Creator</em>, open menu <em>File</em> of <em>QT Creator</em> and choose <em>Open File or Project...</em> and select the file: </p><pre class="fragment">    ALOX_LIB_PATH/build/cmake.cpp/alox.samples/CMakeLists.txt
 </pre><p>Follow the project setup as <em>QT Creator</em> documentation suggests. When the CMake run dialog appears, for debug builds, no arguments need to be passed. For release builds, provide </p><pre class="fragment">    -DCMAKE_BUILD_TYPE=Release
 </pre><p>as the CMake Arguments</p>
 <p>The ALox sample project is now ready to be build in <em>QT Creator</em></p>
@@ -270,6 +279,35 @@ cout: Do some release logging:
 [00:00.000 +010 µs] [MAIN]       [SIMPLE]: Hello ALox, this is release logging
 </pre><p>You are set! You have successfully compiled ALox and a sample project on your platform. Now it is your task to configure your own project in <em>QT Creator</em>, that is supposed to use ALox accordingly. For details on how to configure your CMake file, see previous section <a class="el" href="cppsetup.html#cppsetup_cmake">3.1. Using ALox with CMake</a>.</p>
 <p>When you're done, you can go ahead and <a class="el" href="cppsetup.html#cppsetup_testsetup">test your setup</a>!</p>
+<h3><a class="anchor" id="cppsetup_qtcreator_clickable"></a>
+3.2.3 Clickable Log Output with QT Creator</h3>
+<p>With <em>QT Creator</em>, to have 'clickable output lines' (meaning to have links from your applications' ALox log output to the location of the <em>Log Statement</em> in the source code) things get a little complicated. While ALox solves it all by default, we want to share our observations and conclusions quickly with you and explain how ALox handles it. The facts (as of <em>QT Creator</em> version 4.0) are:</p><ul>
+<li>When using CMake, there is no way (we have found no) to make <em>QT Creator</em> recognize source code links in application output window of QT Creator.</li>
+<li>When using QMake, the IDE recognizes source code information if the line starts with three spaces and the string <code>"Loc:"</code>. The information is then to be provided with square brackets.</li>
+<li>Unfortunately, the following restrictions apply:<ul>
+<li>no other square brackets must occur in the output line</li>
+<li>Any color information (ANSI color codes) which otherwise are recognized by QT Creator are removed. You can see colors flashing up shortly sometimes and then they disappear. The reason is obviously that QT Creator parses the output window and colorizes all source links it detects in blue - and removing all other color code!</li>
+</ul>
+</li>
+</ul>
+<p>Therefore, method <a class="el" href="classaworx_1_1lox_1_1Lox.html#ae92c4ae884c3cd723deb9b5e8d27b6ac">Log::CreateConsoleLogger</a> in ALox for C++ is implemented currently as follows:</p><ul>
+<li>Detect if QT Creator is a parent process of the running (ALox enabled) process.</li>
+<li>If yes, a plain (non-colorful!) logger of type <a class="el" href="classaworx_1_1lox_1_1loggers_1_1ConsoleLogger.html">ConsoleLogger</a> is created.</li>
+<li>The string <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a5f73a9d6a9bfabaa4a33c34831006d07">MetaInfo::Format</a> is modified to contain the <code>"   Loc: [..."</code> hint for <em>QT Creator</em>.</li>
+<li>All square brackets are removed from the format string.</li>
+<li>In addition, all square brackets are removed from Fields <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a9959513d319bcf3d5bbd6d4d49b2ef27">MetaInfo::VerbosityVerbose</a>, <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a807b208f28b840290a9784dbef53e5bc">MetaInfo::VerbosityInfo</a>, <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#aec7b4b89c7f2ec594514bd36388f7cc6">MetaInfo::VerbosityWarning</a> and <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a697a4af23750f87b2cc13aaaecc056eb">MetaInfo::VerbosityError</a>.</li>
+<li>Finally, using method <a class="el" href="classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#adcc3e44d96eefbb58460dc913c54af6a">TextLogger::SetReplacement</a> replacement rules are added which will replace all square brackets within a the contents of <em>Log Statments</em> by curly braces.</li>
+</ul>
+<p>This is not the nicest approach, but better than nothing!</p>
+<p>Of-course, this treatment has to be suppressed when using <em>QT Creator</em> in combination with CMake project files because in this case, clickable output is not supported at all, so we rather want to see colors and square brackets. Therefore, to suppress this behavior of ALox, set configuration variable <a href="group__GrpALoxConfigVars.html">ALOX_CONSOLE_TYPE</a> to value <code>NO_QT_CREATOR</code>.</p>
+<dl class="section note"><dt>Note</dt><dd>With the use of configuration variable <a href="group__GrpALoxConfigVars.html">ALOX_LOGGERNAME_FORMAT</a>, the detection and replacement scheme that is described above might not work! Therefore, in case of setting your custom format, you are responsible yourself to handle QT Creator rightfully and probably set configuration variable <a href="group__GrpALoxConfigVars.html">ALOX_CONSOLE_TYPE</a> to <code>NO_QT_CREATOR</code> to suppress ALox auto-configuration mechanics which might confuse your custom format!</dd></dl>
+<p>Finally, we have to tell you some news about which source paths are recognized by QTCreator. Well, we are not completely sure! Using CMake and all ALox logging residing in the main projects sources, minimum information - just the file name - seems to apply. We are showing trimmed source file paths by default (see <a href="..\man_trim_source_path.html">Trimming Source File Paths and Clickable IDE Output</a>). However, if libraries that do ALox log output are involved, the trimmed path is sometimes not enough. In this case, a source path trim rule should be created that turns relative source file paths (provided by QMake to the C++ compiler) into absolute ones.</p>
+<p>We have done this ourselves in the QMake version of the ALib/ALox unit test project. This is the snippet taken from the sources:</p>
+<div class="fragment"><div class="line">        utl= Lox::CreateConsoleLogger();</div><div class="line"></div><div class="line">        <span class="comment">// if QTCreator with QMake was detected, then use absolute paths</span></div><div class="line">        <span class="keywordflow">if</span>( utl-&gt;MetaInfo-&gt;Format.IndexOf( <span class="stringliteral">&quot;   Loc:&quot;</span> ) &gt;= 0  )</div><div class="line">        {</div><div class="line">            <a class="code" href="namespaceaworx.html#ae59166dff4149598acd5f636fe6760d8">Directory</a> moduleName( Directory::SpecialFolder::Module );</div><div class="line">            <span class="keywordtype">int</span> idx= moduleName.Path.IndexOf( <span class="stringliteral">&quot;/ALox/&quot;</span> );</div><div class="line">            <span class="keywordflow">if</span> ( idx &gt; 0 )</div><div class="line">            {</div><div class="line">                moduleName.Path.SetLength( idx + 5 );</div><div class="line">                lox.ClearSourcePathTrimRules( Inclusion::Include, <span class="keyword">false</span> );</div><div class="line">                lox.SetSourcePathTrimRule( <span class="stringliteral">&quot;*/src.cpp/&quot;</span>, Inclusion::Exclude, 0, Case::Ignore, Inclusion::Include,</div><div class="line">                                           moduleName.Path  );</div><div class="line">            }</div><div class="line">        }</div></div><!-- fragment --><p> Notes on the source code snippet above:</p><ul>
+<li>We are checking if the format string of the logger created by method method <a class="el" href="classaworx_1_1lox_1_1Lox.html#ae92c4ae884c3cd723deb9b5e8d27b6ac">Log::CreateConsoleLogger</a> contains the <em>QT Creator</em> format "   Loc:". This way, we are flexible and rely on the ALox detection and setting of config variable <b>ALOX_CONSOLE</b> which needs to be set when launching the CMake version of the unit tests.</li>
+<li>We are using class <a class="el" href="classaworx_1_1lib_1_1system_1_1Directory.html">Directory</a> to get the running executables path and within this, we search a known substring (<code>/Alox/</code>). As long as users keep this name, the replacement will work.</li>
+</ul>
+<p>In standard use cases, it is advisable to not use such code. Instead, just put a <a href="..\man_trim_source_path.html">Source Path Trim Rule</a> the in a users' local configuration file. This way, each team member can add his or her local, absolute path to the rule! When using several ALox enabled libraries, different rules may be needed.</p>
 <h2><a class="anchor" id="cppsetup_vstudio"></a>
 3.3. Using ALox with Visual Studio</h2>
 <p>When you are new to ALox and you just want to play around with it a bit, the easiest thing is to open the Visual studio solution found in </p><pre class="fragment">    ALOX_LIB_PATH/build/ide.cpp.vstudio/Solution/ALox-CPP.sln
@@ -339,7 +377,7 @@ cout: Do some release logging:
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu May 26 2016 13:01:45 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 20 2016 10:57:53 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

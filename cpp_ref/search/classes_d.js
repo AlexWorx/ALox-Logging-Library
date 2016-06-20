@@ -13,6 +13,8 @@ var searchData=
   ['tmpliteral',['TMPLiteral',['../structaworx_1_1lib_1_1strings_1_1TMPLiteral.html',1,'aworx::lib::strings']]],
   ['tokenizer',['Tokenizer',['../classaworx_1_1lib_1_1strings_1_1Tokenizer.html',1,'aworx::lib::strings']]],
   ['tostringdefined',['ToStringDefined',['../structaworx_1_1lib_1_1strings_1_1ToStringDefined.html',1,'aworx::lib::strings']]],
+  ['tostringdefined_3c_20const_20qbytearray_20_26_20_3e',['ToStringDefined&lt; const QByteArray &amp; &gt;',['../structaworx_1_1lib_1_1strings_1_1ToStringDefined_3_01const_01QByteArray_01_6_01_4.html',1,'aworx::lib::strings']]],
+  ['tostringdefined_3c_20const_20qlatin1string_20_26_20_3e',['ToStringDefined&lt; const QLatin1String &amp; &gt;',['../structaworx_1_1lib_1_1strings_1_1ToStringDefined_3_01const_01QLatin1String_01_6_01_4.html',1,'aworx::lib::strings']]],
   ['tostringdefined_3c_20const_20std_3a_3astring_20_26_20_3e',['ToStringDefined&lt; const std::string &amp; &gt;',['../structaworx_1_1lib_1_1strings_1_1ToStringDefined_3_01const_01std_1_1string_01_6_01_4.html',1,'aworx::lib::strings']]],
   ['tstring',['TString',['../classaworx_1_1lib_1_1strings_1_1TString.html',1,'aworx::lib::strings']]]
 ];

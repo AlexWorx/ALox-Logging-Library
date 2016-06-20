@@ -22,6 +22,7 @@
     <namespace>aworx::lib::config</namespace>
     <namespace>aworx::lib::enums</namespace>
     <namespace>aworx::lib::threads</namespace>
+    <namespace>aworx::lib::time</namespace>
     <member kind="typedef">
       <type>aworx::lib::ALIB</type>
       <name>ALIB</name>
@@ -582,6 +583,13 @@
       <arglist>(Scope scope, int pathLevel, AString &amp;target)</arglist>
     </member>
     <member kind="function">
+      <type>AString &amp;</type>
+      <name>ToStringPriority</name>
+      <anchorfile>namespaceaworx_1_1lox.html</anchorfile>
+      <anchor>a9f44bd15eb903fbdb8e70aee35a6267b</anchor>
+      <arglist>(int priority, AString &amp;target)</arglist>
+    </member>
+    <member kind="function">
       <type>const String</type>
       <name>ToStringX</name>
       <anchorfile>namespaceaworx_1_1lox.html</anchorfile>
@@ -803,10 +811,10 @@
       <arglist>(AString &amp;target, const char *src)</arglist>
     </member>
     <member kind="function">
-      <type>ALIB_API int</type>
+      <type>int</type>
       <name>ApplyTo</name>
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>a51d3c0fe2a4125c45c804c1fb1509b3e</anchor>
+      <anchor>a259d311e0220dbf28a4eb0dcb26b5b2e</anchor>
       <arglist>(AString &amp;target, const wchar_t *src)</arglist>
     </member>
     <member kind="function">
@@ -1025,9 +1033,9 @@
     </member>
     <member kind="variable">
       <type>constexpr char</type>
-      <name>PathSeparator</name>
+      <name>DirectorySeparator</name>
       <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>a262e7ce267358080f085b5a3f42e3a67</anchor>
+      <anchor>af71d56959787ac2eca9b0af4b02a7cec</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -1237,7 +1245,7 @@
       <anchorfile>namespaceaworx_1_1lib_1_1enums.html</anchorfile>
       <anchor>aeae0c2d4659a32ef54bd221d1a3da4e6</anchor>
       <arglist></arglist>
-      <enumvalue file="namespaceaworx_1_1lib_1_1enums.html" anchor="aeae0c2d4659a32ef54bd221d1a3da4e6a6adf97f83acf6453d4a6a4b1070f3754">None</enumvalue>
+      <enumvalue file="namespaceaworx_1_1lib_1_1enums.html" anchor="aeae0c2d4659a32ef54bd221d1a3da4e6a3f9823fc8c5bf8d5efbb0ad3be5f16c9">Omit</enumvalue>
       <enumvalue file="namespaceaworx_1_1lib_1_1enums.html" anchor="aeae0c2d4659a32ef54bd221d1a3da4e6aa9857b4deb35c57d5753f94fa00a028e">ToDescendants</enumvalue>
     </member>
     <member kind="enumeration">
@@ -2069,6 +2077,133 @@
     </member>
   </compound>
   <compound kind="file">
+    <name>qt.hpp</name>
+    <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alib/compatibility/</path>
+    <filename>qt_8hpp</filename>
+    <class kind="struct">aworx::lib::strings::IsApplicable&lt; const QByteArray &amp; &gt;</class>
+    <class kind="struct">aworx::lib::strings::IsApplicable&lt; const QChar &amp; &gt;</class>
+    <class kind="struct">aworx::lib::strings::IsApplicable&lt; const QLatin1String &amp; &gt;</class>
+    <class kind="struct">aworx::lib::strings::IsApplicable&lt; const QString &amp; &gt;</class>
+    <class kind="struct">aworx::lib::strings::IsApplicable&lt; const QVector&lt; uint &gt; &amp; &gt;</class>
+    <class kind="struct">aworx::lib::strings::ToStringDefined&lt; const QByteArray &amp; &gt;</class>
+    <class kind="struct">aworx::lib::strings::ToStringDefined&lt; const QLatin1String &amp; &gt;</class>
+    <namespace>aworx</namespace>
+    <namespace>aworx::lib</namespace>
+    <namespace>aworx::lib::strings</namespace>
+    <member kind="function">
+      <type>int</type>
+      <name>ApplyTo&lt; const QByteArray &amp; &gt;</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>aaaa769462357c0edf3ff0fe32762ab34</anchor>
+      <arglist>(AString &amp;target, const QByteArray &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>ApplyTo&lt; const QChar &amp; &gt;</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>ad03df92a9ab2db9413d0d744a3d331af</anchor>
+      <arglist>(AString &amp;target, const QChar &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>ApplyTo&lt; const QLatin1String &amp; &gt;</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>af8fca333ee4e6e6b045f9f9da0204942</anchor>
+      <arglist>(AString &amp;target, const QLatin1String &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>ApplyTo&lt; const QString &amp; &gt;</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>abfe4edade9b5bfad36a91655532cba0a</anchor>
+      <arglist>(AString &amp;target, const QString &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>ApplyTo&lt; const QVector&lt; uint &gt; &amp; &gt;</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>ac1bfcd6907c1a4ff2a3d8d7a11c2d64a</anchor>
+      <arglist>(AString &amp;target, const QVector&lt; uint &gt; &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>ApplyTo_NC&lt; const QByteArray &amp; &gt;</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>a18d141d95e478864e1524c0ff59a0858</anchor>
+      <arglist>(AString &amp;target, const QByteArray &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>ApplyTo_NC&lt; const QChar &amp; &gt;</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>aea11f14b701049f529e328d593fd44f7</anchor>
+      <arglist>(AString &amp;target, const QChar &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>ApplyTo_NC&lt; const QLatin1String &amp; &gt;</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>a88634e1a4fd136129352e4dededc3a8f</anchor>
+      <arglist>(AString &amp;target, const QLatin1String &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>QString &amp;</type>
+      <name>ToQString</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>a5d1e001e39bfac300f1a55a539a8f291</anchor>
+      <arglist>(const String &amp;as, QString &amp;target, int regionStart, int regionLength=CString::MaxLen, enums::CurrentData targetData=enums::CurrentData::Clear)</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>ToQString</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>ac9675b158cf3b39232281028804d99ed</anchor>
+      <arglist>(const String &amp;as, int regionStart, int regionLength=CString::MaxLen)</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>ToQString</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>a04894e3151c74673b9cf1161915e53f4</anchor>
+      <arglist>(const String &amp;as)</arglist>
+    </member>
+    <member kind="function">
+      <type>QString &amp;</type>
+      <name>ToQString</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>a4bd3ea63a15d596e1d1f0ddd1d3d8ee3</anchor>
+      <arglist>(const String &amp;as, QString &amp;target, enums::CurrentData targetData=enums::CurrentData::Clear)</arglist>
+    </member>
+    <member kind="function">
+      <type>const char *</type>
+      <name>ToString&lt; const QByteArray &amp; &gt;</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>a5656ff620ac4fd284bc3c656f724cf0c</anchor>
+      <arglist>(const QByteArray &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>ToString&lt; const QByteArray &amp; &gt;</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>a68ce5d72a3f7b2501bee8ab0d860b5e8</anchor>
+      <arglist>(const QByteArray &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>const char *</type>
+      <name>ToString&lt; const QLatin1String &amp; &gt;</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>ae439ab45f89f383544d206c8689f7742</anchor>
+      <arglist>(const QLatin1String &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>ToString&lt; const QLatin1String &amp; &gt;</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>a74551f891e3a8df8db324c327333e0b6</anchor>
+      <arglist>(const QLatin1String &amp;src)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
     <name>report.hpp</name>
     <path>/home/a/mnt/dev/A-Worx/ALox/src.cpp/alib/core/</path>
     <filename>report_8hpp</filename>
@@ -2715,6 +2850,13 @@
       <anchorfile>classaworx_1_1lib_1_1ALIB.html</anchorfile>
       <anchor>ab2c217951b4362bb6661a1e863105320</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static ALIB_API void</type>
+      <name>Sleep</name>
+      <anchorfile>classaworx_1_1lib_1_1ALIB.html</anchorfile>
+      <anchor>a36908c1eede2c297a37d4f1a342d7753</anchor>
+      <arglist>(const time::Ticks &amp;ticks)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static ALIB_API void</type>
@@ -3416,8 +3558,8 @@
       <type>ALIB_API void</type>
       <name>SetBuffer</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
-      <anchor>a4c82c5367836f6886f1505c803ce4058</anchor>
-      <arglist>(int newSize)</arglist>
+      <anchor>a0bdd4581fc80e9bba8ceb46e030c75ac</anchor>
+      <arglist>(int newCapacity)</arglist>
     </member>
     <member kind="function">
       <type>ALIB_API void</type>
@@ -3586,6 +3728,13 @@
       <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>a45cb08597c96cf62edb8ece124d8e4fc</anchor>
       <arglist>(const char *src, int srcLength)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API AString &amp;</type>
+      <name>Append</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a4e836e4a665a6ffd7cd1ee48dda06798</anchor>
+      <arglist>(const wchar_t *src, int srcLength)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
@@ -3759,8 +3908,8 @@
       <type>ALIB_API void</type>
       <name>SetBuffer</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
-      <anchor>a4c82c5367836f6886f1505c803ce4058</anchor>
-      <arglist>(int newSize)</arglist>
+      <anchor>a0bdd4581fc80e9bba8ceb46e030c75ac</anchor>
+      <arglist>(int newCapacity)</arglist>
     </member>
     <member kind="function">
       <type>ALIB_API void</type>
@@ -3929,6 +4078,13 @@
       <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
       <anchor>a45cb08597c96cf62edb8ece124d8e4fc</anchor>
       <arglist>(const char *src, int srcLength)</arglist>
+    </member>
+    <member kind="function">
+      <type>ALIB_API AString &amp;</type>
+      <name>Append</name>
+      <anchorfile>classaworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
+      <anchor>a4e836e4a665a6ffd7cd1ee48dda06798</anchor>
+      <arglist>(const wchar_t *src, int srcLength)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
@@ -4470,8 +4626,24 @@
       <enumvalue file="classaworx_1_1lib_1_1system_1_1Directory.html" anchor="a12c335c8e07182c17395a8f46f1965f0afa03eb688ad8aa1db593d33dabd89bad">Root</enumvalue>
       <enumvalue file="classaworx_1_1lib_1_1system_1_1Directory.html" anchor="a12c335c8e07182c17395a8f46f1965f0a222a267cc5778206b253be35ee3ddab5">Current</enumvalue>
       <enumvalue file="classaworx_1_1lib_1_1system_1_1Directory.html" anchor="a12c335c8e07182c17395a8f46f1965f0a8cf04a9734132302f96da8e113e80ce5">Home</enumvalue>
-      <enumvalue file="classaworx_1_1lib_1_1system_1_1Directory.html" anchor="a12c335c8e07182c17395a8f46f1965f0a01255de311d629c078914c471e45ec28">HOME_CONFIG</enumvalue>
+      <enumvalue file="classaworx_1_1lib_1_1system_1_1Directory.html" anchor="a12c335c8e07182c17395a8f46f1965f0ae94961474a646742838ed46f32f89a47">HomeConfig</enumvalue>
       <enumvalue file="classaworx_1_1lib_1_1system_1_1Directory.html" anchor="a12c335c8e07182c17395a8f46f1965f0ae55f75a29310d7b60f7ac1d390c8ae42">Module</enumvalue>
+      <enumvalue file="classaworx_1_1lib_1_1system_1_1Directory.html" anchor="a12c335c8e07182c17395a8f46f1965f0a9a438bd942f1f19e6a641028bcfb43ff">Temp</enumvalue>
+      <enumvalue file="classaworx_1_1lib_1_1system_1_1Directory.html" anchor="a12c335c8e07182c17395a8f46f1965f0ac42dbffd040a78993701573319deb9be">VarTemp</enumvalue>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static AString</type>
+      <name>evaluatedTempDir</name>
+      <anchorfile>classaworx_1_1lib_1_1system_1_1Directory.html</anchorfile>
+      <anchor>ad0c1b40acd899ebb5f0388779ed4d1dc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static AString</type>
+      <name>evaluatedVarTempDir</name>
+      <anchorfile>classaworx_1_1lib_1_1system_1_1Directory.html</anchorfile>
+      <anchor>a4b09df20093589aae45a102d72bca303</anchor>
+      <arglist></arglist>
     </member>
     <member kind="variable">
       <type>String256</type>
@@ -4549,6 +4721,13 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
+      <type>bool</type>
+      <name>ConfigurationRead</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a6b8f94546fd5c1c564c2bfe0fee6c770</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
       <type>std::vector&lt; LoggerData &gt;</type>
       <name>Data</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
@@ -4592,9 +4771,9 @@
     </member>
     <member kind="function" static="yes">
       <type>static constexpr char</type>
-      <name>PathSeparator</name>
+      <name>Separator</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
-      <anchor>a28fc603aa3aaa186e688d30802253538</anchor>
+      <anchor>a5d34c67477a6f6f1a0a3803f1300cf2e</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
@@ -5339,6 +5518,26 @@
   <compound kind="struct">
     <name>aworx::lib::strings::IsApplicable&lt; const lox::core::Logger &amp; &gt;</name>
     <filename>structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01lox_1_1core_1_1Logger_01_6_01_4.html</filename>
+  </compound>
+  <compound kind="struct">
+    <name>aworx::lib::strings::IsApplicable&lt; const QByteArray &amp; &gt;</name>
+    <filename>structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QByteArray_01_6_01_4.html</filename>
+  </compound>
+  <compound kind="struct">
+    <name>aworx::lib::strings::IsApplicable&lt; const QChar &amp; &gt;</name>
+    <filename>structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QChar_01_6_01_4.html</filename>
+  </compound>
+  <compound kind="struct">
+    <name>aworx::lib::strings::IsApplicable&lt; const QLatin1String &amp; &gt;</name>
+    <filename>structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QLatin1String_01_6_01_4.html</filename>
+  </compound>
+  <compound kind="struct">
+    <name>aworx::lib::strings::IsApplicable&lt; const QString &amp; &gt;</name>
+    <filename>structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QString_01_6_01_4.html</filename>
+  </compound>
+  <compound kind="struct">
+    <name>aworx::lib::strings::IsApplicable&lt; const QVector&lt; uint &gt; &amp; &gt;</name>
+    <filename>structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QVector_3_01uint_01_4_01_6_01_4.html</filename>
   </compound>
   <compound kind="struct">
     <name>aworx::lib::strings::IsApplicable&lt; const std::string &amp; &gt;</name>
@@ -6135,8 +6334,8 @@
       <type>void</type>
       <name>SetSourcePathTrimRule</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>ace0e192fa14eb0d6a522e06e69e5402b</anchor>
-      <arglist>(const TString &amp;path, Inclusion includeString=Inclusion::Exclude, int trimOffset=0, Case sensitivity=Case::Ignore, Inclusion global=Inclusion::Include)</arglist>
+      <anchor>a7370e8cf3cd1041f37ffc921805eb6a8</anchor>
+      <arglist>(const TString &amp;path, Inclusion includeString=Inclusion::Exclude, int trimOffset=0, Case sensitivity=Case::Ignore, Inclusion global=Inclusion::Include, const String &amp;trimReplacement=NullString, int priority=PrioSource)</arglist>
     </member>
     <member kind="function">
       <type>ALOX_API void</type>
@@ -6378,6 +6577,13 @@
     </member>
     <member kind="function" protection="protected">
       <type>ALOX_API void</type>
+      <name>getDomainPrefixFromConfig</name>
+      <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>a030358e0f73b889aaf603e4d3371a845</anchor>
+      <arglist>(core::Domain *dom)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>ALOX_API void</type>
       <name>getVerbosityFromConfig</name>
       <anchorfile>classaworx_1_1lox_1_1Lox.html</anchorfile>
       <anchor>a190a949c9c2cc69040e74ef491d257c6</anchor>
@@ -6579,6 +6785,13 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
+      <type>Ticks</type>
+      <name>MaxElapsedTime</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
+      <anchor>ade3c3fa6f130947ef6aa22e72a4d1efd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
       <type>TString</type>
       <name>NoMethodInfo</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
@@ -6670,32 +6883,39 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>TString</type>
+      <type>String16</type>
       <name>VerbosityError</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a69535f9bd8c5493447f323c5cf7f7401</anchor>
+      <anchor>a697a4af23750f87b2cc13aaaecc056eb</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>TString</type>
+      <type>String16</type>
       <name>VerbosityInfo</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a2417488cbf15cf08bf1c373b9aac3222</anchor>
+      <anchor>a807b208f28b840290a9784dbef53e5bc</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>TString</type>
+      <type>String16</type>
       <name>VerbosityVerbose</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>a78d18da89faf78000af7767edbd48249</anchor>
+      <anchor>a9959513d319bcf3d5bbd6d4d49b2ef27</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>TString</type>
+      <type>String16</type>
       <name>VerbosityWarning</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
-      <anchor>accf8a9e6cd0f83806e46a5b3998965d2</anchor>
+      <anchor>aec7b4b89c7f2ec594514bd36388f7cc6</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>MetaInfo</name>
+      <anchorfile>classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
+      <anchor>aef8deedd002add9fa92b6776af338ddb</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual</type>
@@ -7713,10 +7933,24 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>String32</type>
-      <name>ExecName</name>
+      <type>AString</type>
+      <name>ExecFileName</name>
       <anchorfile>classaworx_1_1lib_1_1system_1_1ProcessInfo.html</anchorfile>
-      <anchor>ab5fca5813a5614d7a284466c074bcacd</anchor>
+      <anchor>a4261537d8a445f836cc32174e8ff0fd9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>ExecFilePath</name>
+      <anchorfile>classaworx_1_1lib_1_1system_1_1ProcessInfo.html</anchorfile>
+      <anchor>a6e88f1772ab15c3f177dfa4deed1612b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>Name</name>
+      <anchorfile>classaworx_1_1lib_1_1system_1_1ProcessInfo.html</anchorfile>
+      <anchor>a0de551a5eb98c9fa084c954655523d7b</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -7755,10 +7989,10 @@
       <arglist></arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static const ProcessInfo &amp;</type>
+      <type>static ALIB_API const ProcessInfo &amp;</type>
       <name>Current</name>
       <anchorfile>classaworx_1_1lib_1_1system_1_1ProcessInfo.html</anchorfile>
-      <anchor>a1e9c04463bb57d8ae52cc6f5470ab44b</anchor>
+      <anchor>a759e289a0ea1b35c1bd0fea90896432e</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
@@ -8153,11 +8387,11 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>const String</type>
+      <type>void</type>
       <name>GetTrimmedPath</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
-      <anchor>aa35b14e49f6fa87ff1011fc2f3a4fcc3</anchor>
-      <arglist>()</arglist>
+      <anchor>ae5ec829e1c0f37b70424e49c9d1a8a9d</anchor>
+      <arglist>(AString &amp;target)</arglist>
     </member>
     <member kind="function">
       <type>ALIB_API void</type>
@@ -8170,8 +8404,8 @@
       <type>ALIB_API void</type>
       <name>SetSourcePathTrimRule</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
-      <anchor>aaccc72216941cd9da1aa1bf22010e313</anchor>
-      <arglist>(const TString &amp;path, Inclusion includeString, int trimOffset, Case sensitivity, Inclusion global)</arglist>
+      <anchor>ad05ff5575f97e91669507d5f63bc4e16</anchor>
+      <arglist>(const TString &amp;path, Inclusion includeString, int trimOffset, Case sensitivity, Inclusion global, const String &amp;trimReplacement, int priority)</arglist>
     </member>
     <member kind="variable" protection="protected" static="yes">
       <type>static ALIB_API std::vector&lt; SourcePathTrimRule &gt;</type>
@@ -8280,9 +8514,9 @@
     </member>
     <member kind="function" protection="protected">
       <type>int</type>
-      <name>getPathSeparator</name>
+      <name>getPathLength</name>
       <anchorfile>classaworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
-      <anchor>aa6d59afb05181160d621a1e9e8875a40</anchor>
+      <anchor>afa1ad0beb550abdf74f3394eb780afce</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected">
@@ -9390,9 +9624,9 @@
     </member>
     <member kind="variable">
       <type>int</type>
-      <name>origFilePathSeparator</name>
+      <name>origFilePathLength</name>
       <anchorfile>structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html</anchorfile>
-      <anchor>a92c278f6e653f2ff33c65cd197d61239</anchor>
+      <anchor>ad9601f3d9397b2114f0236aeeca12097</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -9408,6 +9642,27 @@
       <anchorfile>structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html</anchorfile>
       <anchor>a457ff5532ac38a6fafc282764d6da378</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>trimmedPathPrefix</name>
+      <anchorfile>structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html</anchorfile>
+      <anchor>af3d0c635ee10b56e2d9bfce8aa1cdbcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>SourceFile</name>
+      <anchorfile>structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html</anchorfile>
+      <anchor>a3f53c24a9d5784b49a8a623a67145ec1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Set</name>
+      <anchorfile>structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html</anchorfile>
+      <anchor>a3f858bc0c63311c2b252faec076fbe28</anchor>
+      <arglist>(const TString &amp;sourceFile)</arglist>
     </member>
   </compound>
   <compound kind="struct">
@@ -9435,6 +9690,13 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
+      <type>int</type>
+      <name>Priority</name>
+      <anchorfile>structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html</anchorfile>
+      <anchor>a4450b0bad265ba3bd24e994f70aec802</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
       <type>Case</type>
       <name>Sensitivity</name>
       <anchorfile>structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html</anchorfile>
@@ -9446,6 +9708,13 @@
       <name>TrimOffset</name>
       <anchorfile>structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html</anchorfile>
       <anchor>a400a3c8a83ee22ccb635bb8a96a1d6ca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>AString</type>
+      <name>TrimReplacement</name>
+      <anchorfile>structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html</anchorfile>
+      <anchor>aab1aeee9def0c8b2181dd7ad92551cbc</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -9470,8 +9739,8 @@
       <type></type>
       <name>String</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
-      <anchor>a79bdef100f3c7887fd120a7a98d8062c</anchor>
-      <arglist>(const String &amp;src, int regionStart, int regionLength)</arglist>
+      <anchor>a91744e23d962777f812b537979d5ce9e</anchor>
+      <arglist>(const String &amp;src, int regionStart, int regionLength=CString::MaxLen)</arglist>
     </member>
     <member kind="function">
       <type>constexpr</type>
@@ -9729,8 +9998,8 @@
       <type></type>
       <name>String</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1String.html</anchorfile>
-      <anchor>a79bdef100f3c7887fd120a7a98d8062c</anchor>
-      <arglist>(const String &amp;src, int regionStart, int regionLength)</arglist>
+      <anchor>a91744e23d962777f812b537979d5ce9e</anchor>
+      <arglist>(const String &amp;src, int regionStart, int regionLength=CString::MaxLen)</arglist>
     </member>
     <member kind="function">
       <type>constexpr</type>
@@ -10323,8 +10592,8 @@
       <type>Substring &amp;</type>
       <name>Split</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a9ba2f83672cd35b574cba0788a923f36</anchor>
-      <arglist>(int position, Substring &amp;target, int separatorWidth=0)</arglist>
+      <anchor>ad84c1d74d976618646e49aa7427b7151</anchor>
+      <arglist>(int position, Substring &amp;target, int separatorWidth=0, bool trim=false)</arglist>
     </member>
     <member kind="function">
       <type>Substring &amp;</type>
@@ -10477,8 +10746,8 @@
       <type>Substring &amp;</type>
       <name>Split</name>
       <anchorfile>classaworx_1_1lib_1_1strings_1_1Substring.html</anchorfile>
-      <anchor>a9ba2f83672cd35b574cba0788a923f36</anchor>
-      <arglist>(int position, Substring &amp;target, int separatorWidth=0)</arglist>
+      <anchor>ad84c1d74d976618646e49aa7427b7151</anchor>
+      <arglist>(int position, Substring &amp;target, int separatorWidth=0, bool trim=false)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -10506,13 +10775,6 @@
       <arglist></arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static const String &amp;</type>
-      <name>GetProcessName</name>
-      <anchorfile>classaworx_1_1lib_1_1system_1_1System.html</anchorfile>
-      <anchor>a3efcfee814940f4c1c1ad2a99d5e172a</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" static="yes">
       <type>static ALIB_API bool</type>
       <name>GetVariable</name>
       <anchorfile>classaworx_1_1lib_1_1system_1_1System.html</anchorfile>
@@ -10538,20 +10800,6 @@
       <name>RTE</name>
       <anchorfile>classaworx_1_1lib_1_1system_1_1System.html</anchorfile>
       <anchor>a28b473ab05b45948857c11c98973e6c2</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable" protection="protected" static="yes">
-      <type>static AString</type>
-      <name>processName</name>
-      <anchorfile>classaworx_1_1lib_1_1system_1_1System.html</anchorfile>
-      <anchor>acdefe8c9e0fc3c1abb1655ea13d4f3d0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function" protection="protected" static="yes">
-      <type>static ALIB_API void</type>
-      <name>getProcessName</name>
-      <anchorfile>classaworx_1_1lib_1_1system_1_1System.html</anchorfile>
-      <anchor>a14d31f74cb29b4e92cc090905256c8d1</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
@@ -11288,53 +11536,60 @@
       <arglist>(const String &amp;format, AString &amp;target)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>Ticks &amp;</type>
       <name>FromDays</name>
       <anchorfile>classaworx_1_1lib_1_1time_1_1Ticks.html</anchorfile>
-      <anchor>ade22d8be07ec20cef7e883706db3fe24</anchor>
+      <anchor>a64467b0a655d54c0532f9148b4474ee9</anchor>
       <arglist>(int days)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>Ticks &amp;</type>
       <name>FromHours</name>
       <anchorfile>classaworx_1_1lib_1_1time_1_1Ticks.html</anchorfile>
-      <anchor>a57b52b2e1e8b464a3959fd83575a48af</anchor>
+      <anchor>a2cc9107419ee7696e296bd899d9bbcbe</anchor>
       <arglist>(int hours)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>Ticks &amp;</type>
       <name>FromMicros</name>
       <anchorfile>classaworx_1_1lib_1_1time_1_1Ticks.html</anchorfile>
-      <anchor>a16a825623d5af98d25d329d0b9f56dcf</anchor>
+      <anchor>a271a2895ca829250aee715369cb70316</anchor>
       <arglist>(int_fast64_t micros)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>Ticks &amp;</type>
       <name>FromMillis</name>
       <anchorfile>classaworx_1_1lib_1_1time_1_1Ticks.html</anchorfile>
-      <anchor>ac6f86e6b884d65770873fca3c6f7b498</anchor>
+      <anchor>a3658f98994669745862df85e5b7ae923</anchor>
       <arglist>(int_fast64_t millis)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>Ticks &amp;</type>
       <name>FromMinutes</name>
       <anchorfile>classaworx_1_1lib_1_1time_1_1Ticks.html</anchorfile>
-      <anchor>ac1cc62dbe83f81c070b0307b75ce275a</anchor>
+      <anchor>ac444cc81ed42417f7d07aa6880b8c22a</anchor>
       <arglist>(int mins)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>Ticks &amp;</type>
       <name>FromNanos</name>
       <anchorfile>classaworx_1_1lib_1_1time_1_1Ticks.html</anchorfile>
-      <anchor>a4564b4390f9f8f71aae6df7109e62486</anchor>
+      <anchor>a7e6d2ec860a93ef3a799801db87b5602</anchor>
       <arglist>(int_fast64_t nanos)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>Ticks &amp;</type>
       <name>FromSeconds</name>
       <anchorfile>classaworx_1_1lib_1_1time_1_1Ticks.html</anchorfile>
-      <anchor>a5d07dd8ebb7243db9a95bfe07a18938a</anchor>
+      <anchor>ac45497fa700f7c67f22accfee553c323</anchor>
       <arglist>(int secs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>HasElapsed</name>
+      <anchorfile>classaworx_1_1lib_1_1time_1_1Ticks.html</anchorfile>
+      <anchor>a9a2c788835d7f696352b3648637f3a58</anchor>
+      <arglist>(Ticks waitTime)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
@@ -12020,6 +12275,14 @@
     <name>aworx::lib::strings::ToStringDefined</name>
     <filename>structaworx_1_1lib_1_1strings_1_1ToStringDefined.html</filename>
     <templarg></templarg>
+  </compound>
+  <compound kind="struct">
+    <name>aworx::lib::strings::ToStringDefined&lt; const QByteArray &amp; &gt;</name>
+    <filename>structaworx_1_1lib_1_1strings_1_1ToStringDefined_3_01const_01QByteArray_01_6_01_4.html</filename>
+  </compound>
+  <compound kind="struct">
+    <name>aworx::lib::strings::ToStringDefined&lt; const QLatin1String &amp; &gt;</name>
+    <filename>structaworx_1_1lib_1_1strings_1_1ToStringDefined_3_01const_01QLatin1String_01_6_01_4.html</filename>
   </compound>
   <compound kind="struct">
     <name>aworx::lib::strings::ToStringDefined&lt; const std::string &amp; &gt;</name>
@@ -12916,6 +13179,13 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
+      <type>constexpr char</type>
+      <name>DirectorySeparator</name>
+      <anchorfile>namespaceaworx.html</anchorfile>
+      <anchor>af71d56959787ac2eca9b0af4b02a7cec</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
       <type>constexpr lib::strings::String</type>
       <name>EmptyString</name>
       <anchorfile>namespaceaworx.html</anchorfile>
@@ -12934,13 +13204,6 @@
       <name>NullString</name>
       <anchorfile>namespaceaworx.html</anchorfile>
       <anchor>ab1ed6dcfbe4628dccefbdb5633b1bf01</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>constexpr char</type>
-      <name>PathSeparator</name>
-      <anchorfile>namespaceaworx.html</anchorfile>
-      <anchor>a262e7ce267358080f085b5a3f42e3a67</anchor>
       <arglist></arglist>
     </member>
     <docanchor file="namespaceaworx">CPP_AWORX_NS_SHORTCUTS</docanchor>
@@ -13076,7 +13339,7 @@
       <anchorfile>namespaceaworx_1_1lib_1_1enums.html</anchorfile>
       <anchor>aeae0c2d4659a32ef54bd221d1a3da4e6</anchor>
       <arglist></arglist>
-      <enumvalue file="namespaceaworx_1_1lib_1_1enums.html" anchor="aeae0c2d4659a32ef54bd221d1a3da4e6a6adf97f83acf6453d4a6a4b1070f3754">None</enumvalue>
+      <enumvalue file="namespaceaworx_1_1lib_1_1enums.html" anchor="aeae0c2d4659a32ef54bd221d1a3da4e6a3f9823fc8c5bf8d5efbb0ad3be5f16c9">Omit</enumvalue>
       <enumvalue file="namespaceaworx_1_1lib_1_1enums.html" anchor="aeae0c2d4659a32ef54bd221d1a3da4e6aa9857b4deb35c57d5753f94fa00a028e">ToDescendants</enumvalue>
     </member>
     <member kind="enumeration">
@@ -13165,6 +13428,11 @@
     <class kind="class">aworx::lib::strings::Format</class>
     <class kind="struct">aworx::lib::strings::IsApplicable</class>
     <class kind="struct">aworx::lib::strings::IsApplicable&lt; const lox::core::Logger &amp; &gt;</class>
+    <class kind="struct">aworx::lib::strings::IsApplicable&lt; const QByteArray &amp; &gt;</class>
+    <class kind="struct">aworx::lib::strings::IsApplicable&lt; const QChar &amp; &gt;</class>
+    <class kind="struct">aworx::lib::strings::IsApplicable&lt; const QLatin1String &amp; &gt;</class>
+    <class kind="struct">aworx::lib::strings::IsApplicable&lt; const QString &amp; &gt;</class>
+    <class kind="struct">aworx::lib::strings::IsApplicable&lt; const QVector&lt; uint &gt; &amp; &gt;</class>
     <class kind="struct">aworx::lib::strings::IsApplicable&lt; const std::string &amp; &gt;</class>
     <class kind="struct">aworx::lib::strings::IsTerminatable</class>
     <class kind="struct">aworx::lib::strings::IsTerminatable&lt; AString &gt;</class>
@@ -13178,6 +13446,8 @@
     <class kind="struct">aworx::lib::strings::TMPLiteral</class>
     <class kind="class">aworx::lib::strings::Tokenizer</class>
     <class kind="struct">aworx::lib::strings::ToStringDefined</class>
+    <class kind="struct">aworx::lib::strings::ToStringDefined&lt; const QByteArray &amp; &gt;</class>
+    <class kind="struct">aworx::lib::strings::ToStringDefined&lt; const QLatin1String &amp; &gt;</class>
     <class kind="struct">aworx::lib::strings::ToStringDefined&lt; const std::string &amp; &gt;</class>
     <class kind="class">aworx::lib::strings::TString</class>
     <member kind="function">
@@ -13186,13 +13456,6 @@
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
       <anchor>a40af8c9dcfc80a2b4a9e0d50ce506725</anchor>
       <arglist>(AString &amp;target, const ReadLineFromIStream &amp;cparam)</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>ApplyTo</name>
-      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>a259d311e0220dbf28a4eb0dcb26b5b2e</anchor>
-      <arglist>(AString &amp;target, const wchar_t *src)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
@@ -13258,13 +13521,6 @@
       <arglist>(AString &amp;target, const T src)</arglist>
     </member>
     <member kind="function">
-      <type>int</type>
-      <name>ApplyTo</name>
-      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>aaaeb23f90707241659667c910e61bbe9</anchor>
-      <arglist>(AString &amp;target, const char *src)</arglist>
-    </member>
-    <member kind="function">
       <type>ALIB_API int</type>
       <name>ApplyTo</name>
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
@@ -13272,11 +13528,11 @@
       <arglist>(AString &amp;target, const Format::Tab &amp;tab)</arglist>
     </member>
     <member kind="function">
-      <type>ALIB_API int</type>
+      <type>int</type>
       <name>ApplyTo</name>
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>a51d3c0fe2a4125c45c804c1fb1509b3e</anchor>
-      <arglist>(AString &amp;target, const wchar_t *src)</arglist>
+      <anchor>aaaeb23f90707241659667c910e61bbe9</anchor>
+      <arglist>(AString &amp;target, const char *src)</arglist>
     </member>
     <member kind="function">
       <type>ALIB_API int</type>
@@ -13289,8 +13545,8 @@
       <type>int</type>
       <name>ApplyTo</name>
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
-      <anchor>af0bcfa090927eb989e55774a396d73fd</anchor>
-      <arglist>(AString &amp;target, bool &amp;b)</arglist>
+      <anchor>a259d311e0220dbf28a4eb0dcb26b5b2e</anchor>
+      <arglist>(AString &amp;target, const wchar_t *src)</arglist>
     </member>
     <member kind="function">
       <type>ALIB_API int</type>
@@ -13298,6 +13554,13 @@
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
       <anchor>ae7cf6b7c301dca2c1b7efd7d9cf3fd1a</anchor>
       <arglist>(AString &amp;target, const Format::Int32 &amp;fmt)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>ApplyTo</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>af0bcfa090927eb989e55774a396d73fd</anchor>
+      <arglist>(AString &amp;target, bool &amp;b)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
@@ -13490,6 +13753,41 @@
     </member>
     <member kind="function">
       <type>int</type>
+      <name>ApplyTo&lt; const QByteArray &amp; &gt;</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>aaaa769462357c0edf3ff0fe32762ab34</anchor>
+      <arglist>(AString &amp;target, const QByteArray &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>ApplyTo&lt; const QChar &amp; &gt;</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>ad03df92a9ab2db9413d0d744a3d331af</anchor>
+      <arglist>(AString &amp;target, const QChar &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>ApplyTo&lt; const QLatin1String &amp; &gt;</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>af8fca333ee4e6e6b045f9f9da0204942</anchor>
+      <arglist>(AString &amp;target, const QLatin1String &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>ApplyTo&lt; const QString &amp; &gt;</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>abfe4edade9b5bfad36a91655532cba0a</anchor>
+      <arglist>(AString &amp;target, const QString &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>ApplyTo&lt; const QVector&lt; uint &gt; &amp; &gt;</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>ac1bfcd6907c1a4ff2a3d8d7a11c2d64a</anchor>
+      <arglist>(AString &amp;target, const QVector&lt; uint &gt; &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
       <name>ApplyTo&lt; const std::string &amp; &gt;</name>
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
       <anchor>a46d2b8074d6fd76918018ca6704e7cfc</anchor>
@@ -13501,6 +13799,27 @@
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
       <anchor>abcd4a1d202f1c13b510ec14cd55d3a7a</anchor>
       <arglist>(AString &amp;target, const T src)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>ApplyTo_NC&lt; const QByteArray &amp; &gt;</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>a18d141d95e478864e1524c0ff59a0858</anchor>
+      <arglist>(AString &amp;target, const QByteArray &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>ApplyTo_NC&lt; const QChar &amp; &gt;</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>aea11f14b701049f529e328d593fd44f7</anchor>
+      <arglist>(AString &amp;target, const QChar &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>ApplyTo_NC&lt; const QLatin1String &amp; &gt;</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>a88634e1a4fd136129352e4dededc3a8f</anchor>
+      <arglist>(AString &amp;target, const QLatin1String &amp;src)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
@@ -13538,6 +13857,34 @@
       <arglist>(std::istream *stream, AString &amp;string)</arglist>
     </member>
     <member kind="function">
+      <type>QString &amp;</type>
+      <name>ToQString</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>a5d1e001e39bfac300f1a55a539a8f291</anchor>
+      <arglist>(const String &amp;as, QString &amp;target, int regionStart, int regionLength=CString::MaxLen, enums::CurrentData targetData=enums::CurrentData::Clear)</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>ToQString</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>ac9675b158cf3b39232281028804d99ed</anchor>
+      <arglist>(const String &amp;as, int regionStart, int regionLength=CString::MaxLen)</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>ToQString</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>a04894e3151c74673b9cf1161915e53f4</anchor>
+      <arglist>(const String &amp;as)</arglist>
+    </member>
+    <member kind="function">
+      <type>QString &amp;</type>
+      <name>ToQString</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>a4bd3ea63a15d596e1d1f0ddd1d3d8ee3</anchor>
+      <arglist>(const String &amp;as, QString &amp;target, enums::CurrentData targetData=enums::CurrentData::Clear)</arglist>
+    </member>
+    <member kind="function">
       <type>std::string &amp;</type>
       <name>ToStdString</name>
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
@@ -13571,6 +13918,34 @@
       <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
       <anchor>a7cfd45024bf9222b42febac98fdcc146</anchor>
       <arglist>(const TString)</arglist>
+    </member>
+    <member kind="function">
+      <type>const char *</type>
+      <name>ToString&lt; const QByteArray &amp; &gt;</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>a5656ff620ac4fd284bc3c656f724cf0c</anchor>
+      <arglist>(const QByteArray &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>ToString&lt; const QByteArray &amp; &gt;</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>a68ce5d72a3f7b2501bee8ab0d860b5e8</anchor>
+      <arglist>(const QByteArray &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>const char *</type>
+      <name>ToString&lt; const QLatin1String &amp; &gt;</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>ae439ab45f89f383544d206c8689f7742</anchor>
+      <arglist>(const QLatin1String &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>ToString&lt; const QLatin1String &amp; &gt;</name>
+      <anchorfile>namespaceaworx_1_1lib_1_1strings.html</anchorfile>
+      <anchor>a74551f891e3a8df8db324c327333e0b6</anchor>
+      <arglist>(const QLatin1String &amp;src)</arglist>
     </member>
     <member kind="function">
       <type>const char *</type>
@@ -13680,6 +14055,13 @@
       <anchorfile>namespaceaworx_1_1lox.html</anchorfile>
       <anchor>a0883c50f69bfa5d7b121a59ba14d8464</anchor>
       <arglist>(Scope scope, int pathLevel, AString &amp;target)</arglist>
+    </member>
+    <member kind="function">
+      <type>AString &amp;</type>
+      <name>ToStringPriority</name>
+      <anchorfile>namespaceaworx_1_1lox.html</anchorfile>
+      <anchor>a9f44bd15eb903fbdb8e70aee35a6267b</anchor>
+      <arglist>(int priority, AString &amp;target)</arglist>
     </member>
     <member kind="function">
       <type>const String</type>
@@ -14684,13 +15066,14 @@
   </compound>
   <compound kind="page">
     <name>cppsetup</name>
-    <title>IDE/Build system Setup</title>
+    <title>IDE Setup for ALox for C++</title>
     <filename>cppsetup</filename>
     <docanchor file="cppsetup" title="1. Introduction">cppsetup_1</docanchor>
     <docanchor file="cppsetup" title="2. Download">cppsetup_download</docanchor>
     <docanchor file="cppsetup" title="3. Set up the Built System">cppsetup_setup</docanchor>
     <docanchor file="cppsetup" title="3.1. Using ALox with CMake">cppsetup_cmake</docanchor>
     <docanchor file="cppsetup" title="3.2. Using ALox with QT Creator">cppsetup_qtcreator</docanchor>
+    <docanchor file="cppsetup" title="3.2.3 Clickable Log Output with QT Creator">cppsetup_qtcreator_clickable</docanchor>
     <docanchor file="cppsetup" title="3.3. Using ALox with Visual Studio">cppsetup_vstudio</docanchor>
     <docanchor file="cppsetup" title="3.3.1 Open provided DLL project">cppsetup_vstudio1</docanchor>
     <docanchor file="cppsetup" title="3.3.2. Set build dependency">cppsetup_vstudio2</docanchor>

@@ -14,6 +14,6 @@ var searchData=
   ['black',['BLACK',['../classaworx_1_1lox_1_1ESC.html#a03fcfa32650e29154ebb6ddfc325f13a',1,'aworx::lox::ESC']]],
   ['blue',['BLUE',['../classaworx_1_1lox_1_1ESC.html#aae0f71c16c24eca46ba82cb778a4511e',1,'aworx::lox::ESC']]],
   ['bold',['BOLD',['../classaworx_1_1lox_1_1ESC.html#a9f9f2126d9e6edff3218927c04074dcb',1,'aworx::lox::ESC']]],
-  ['buffer',['buffer',['../classaworx_1_1lib_1_1strings_1_1String.html#adae84acc92cd77a04f6aaf533643a33a',1,'aworx::lib::strings::String::buffer()'],['../classaworx_1_1lib_1_1strings_1_1String.html#a5d5ce30daece7ec96d0b70ccc5d46002',1,'aworx::lib::strings::String::Buffer() const '],['../structaworx_1_1lib_1_1strings_1_1TMPLiteral.html#ab5858da312ca4522c5c241ed9153a2e6',1,'aworx::lib::strings::TMPLiteral::Buffer()']]],
+  ['buffer',['Buffer',['../classaworx_1_1lib_1_1strings_1_1String.html#a5d5ce30daece7ec96d0b70ccc5d46002',1,'aworx::lib::strings::String::Buffer()'],['../structaworx_1_1lib_1_1strings_1_1TMPLiteral.html#ab5858da312ca4522c5c241ed9153a2e6',1,'aworx::lib::strings::TMPLiteral::Buffer()'],['../classaworx_1_1lib_1_1strings_1_1String.html#adae84acc92cd77a04f6aaf533643a33a',1,'aworx::lib::strings::String::buffer()']]],
   ['buffersize',['BufferSize',['../classaworx_1_1lib_1_1strings_1_1ReadLineFromIStream.html#ae24de3d1938064e4a05dd06bc6b422d4',1,'aworx::lib::strings::ReadLineFromIStream']]]
 ];

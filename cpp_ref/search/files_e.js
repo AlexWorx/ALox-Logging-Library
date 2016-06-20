@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vstudiologger_2ehpp',['vstudiologger.hpp',['../vstudiologger_8hpp.html',1,'']]]
+  ['util_2ehpp',['util.hpp',['../util_8hpp.html',1,'']]]
 ];

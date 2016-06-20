@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="/home/a/mnt/dev/A-Worx/ALox/html/java_ref/java_ref.tag$classcom_1_1aworx_1_1lib_1_1config_1_1Configuration_1_1PluginAndPrio.html" title="com::aworx::lib::config\l::Configuration::PluginAndPrio" alt="" coords="5,5,203,47"/>
+<area shape="rect" id="node1" href="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag$classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html" title="aworx::lox::core::textlogger\l::ObjectConverter" alt="" coords="5,5,185,47"/>
+<area shape="rect" id="node2" href="/home/a/mnt/dev/A-Worx/ALox/html/cpp_ref/cpp_ref.tag$classaworx_1_1lox_1_1core_1_1textlogger_1_1StringConverter.html" title="aworx::lox::core::textlogger\l::StringConverter" alt="" coords="233,5,413,47"/>
 </map>

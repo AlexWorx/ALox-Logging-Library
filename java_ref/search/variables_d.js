@@ -7,7 +7,6 @@ var searchData=
   ['node',['node',['../classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap_1_1MyIterator_1_1NodeAndChild.html#a21dc2e5ee5a8b3975ebec79d8da68679',1,'com::aworx::lib::containers::PathMap::MyIterator::NodeAndChild']]],
   ['nodesandchilds',['nodesAndChilds',['../classcom_1_1aworx_1_1lib_1_1containers_1_1PathMap_1_1MyIterator.html#a9c6beaa9ac94219648f97be84c37bb87',1,'com::aworx::lib::containers::PathMap::MyIterator']]],
   ['nokeyhashkey',['noKeyHashKey',['../classcom_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html#a03c7540cd5ea4b85dd17882e37621023',1,'com.aworx.lox.core.ScopeDump.noKeyHashKey()'],['../classcom_1_1aworx_1_1lox_1_1Lox.html#a19fb2d2133544aa92f69196e9cb4ae86',1,'com.aworx.lox.Lox.noKeyHashKey()']]],
-  ['none',['NONE',['../enumcom_1_1aworx_1_1lib_1_1enums_1_1Propagation.html#a899caa602e4fff675b17cdbab33607ec',1,'com::aworx::lib::enums::Propagation']]],
   ['nullbuffer',['nullBuffer',['../classcom_1_1aworx_1_1lib_1_1strings_1_1CString.html#a4f39891fac58d3d4b775e7e2bbbdaaed',1,'com::aworx::lib::strings::CString']]],
   ['numberformat',['numberFormat',['../classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a0330374313c82399b6dd59c7db2acf58',1,'com::aworx::lib::config::Configuration']]]
 ];

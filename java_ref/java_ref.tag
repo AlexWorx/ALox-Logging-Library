@@ -110,6 +110,13 @@
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
+      <name>sleep</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
+      <anchor>a6d426a10c08ec8df066a784900ccc824</anchor>
+      <arglist>(Ticks ticks)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
       <name>sleepMicros</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
       <anchor>af6782d4dee54d5f911a4354da3eb3f24</anchor>
@@ -837,8 +844,8 @@
       <type>void</type>
       <name>setBuffer</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
-      <anchor>acc52438bfeefac449697c7f07ee2820d</anchor>
-      <arglist>(int newSize)</arglist>
+      <anchor>a62295912fc8c8a0d782ffde94eb1607c</anchor>
+      <arglist>(int newCapacity)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -1950,8 +1957,8 @@
       <type>void</type>
       <name>setBuffer</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
-      <anchor>acc52438bfeefac449697c7f07ee2820d</anchor>
-      <arglist>(int newSize)</arglist>
+      <anchor>a62295912fc8c8a0d782ffde94eb1607c</anchor>
+      <arglist>(int newCapacity)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -3735,6 +3742,13 @@
       <name>cntLogCalls</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
       <anchor>a898aebb032f3bceb8d879e7695f197d0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>boolean</type>
+      <name>configurationRead</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a2cdd8a5eae9f519716e5221dc724e540</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -6800,6 +6814,13 @@
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
+      <name>getDomainPrefixFromConfig</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ae82c0be2029cb514a781abdc70832904</anchor>
+      <arglist>(Domain dom)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
       <name>getVerbosityFromConfig</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
       <anchor>ab8cf66e80845561dcaa3183af626661d</anchor>
@@ -6980,6 +7001,13 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
+      <type>Ticks</type>
+      <name>maxElapsedTime</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
+      <anchor>aab7e8ad256f2d91335d3856403a903fd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
       <type>String</type>
       <name>timeDiffDays</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
@@ -7138,6 +7166,13 @@
       <name>elapsed</name>
       <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
       <anchor>ae8f62231f3b630ade0d816015f3b830d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Ticks</type>
+      <name>elapsedTime</name>
+      <anchorfile>classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
+      <anchor>a4b8b0e20585a7a402af421c023746735</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -7659,9 +7694,9 @@
     <filename>enumcom_1_1aworx_1_1lib_1_1enums_1_1Propagation.html</filename>
     <member kind="variable">
       <type></type>
-      <name>NONE</name>
+      <name>OMIT</name>
       <anchorfile>enumcom_1_1aworx_1_1lib_1_1enums_1_1Propagation.html</anchorfile>
-      <anchor>a899caa602e4fff675b17cdbab33607ec</anchor>
+      <anchor>a533a6521cc9dfa4bf8a9e5da0246a85e</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -11283,6 +11318,13 @@
       <arglist>(long secs)</arglist>
     </member>
     <member kind="function">
+      <type>boolean</type>
+      <name>hasElapsed</name>
+      <anchorfile>classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html</anchorfile>
+      <anchor>af8c2f08059a743b1d2de543b770d7cb8</anchor>
+      <arglist>(Ticks waitTime)</arglist>
+    </member>
+    <member kind="function">
       <type>long</type>
       <name>inDays</name>
       <anchorfile>classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html</anchorfile>
@@ -12168,7 +12210,7 @@
   </compound>
   <compound kind="page">
     <name>javasetup</name>
-    <title>Setup your IDE for Java Projects</title>
+    <title>IDE Setup for ALox for Java</title>
     <filename>javasetup</filename>
     <docanchor file="javasetup" title="1. Setting up your IDE">javasetup_1</docanchor>
     <docanchor file="javasetup" title="1.1 Download">javasetup_download</docanchor>

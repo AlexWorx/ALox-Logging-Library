@@ -1,17 +1,17 @@
 <map id="AnsiLogger" name="AnsiLogger">
-<area shape="rect" id="node17" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html" title="AutoSizes" alt="" coords="917,987,1000,1013"/>
-<area shape="rect" id="node9" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html" title="TextLogger" alt="" coords="1237,893,1323,920"/>
-<area shape="rect" id="node6" title="STL class. " alt="" coords="899,20,1018,47"/>
-<area shape="rect" id="node7" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\&lt;TCapacity\&gt;" alt="" coords="500,736,704,763"/>
-<area shape="rect" id="node10" href="$classaworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="928,707,989,733"/>
-<area shape="rect" id="node8" href="$classaworx_1_1lib_1_1strings_1_1StringLiteral.html" title="StringLiteral\&lt;TLength\&gt;" alt="" coords="1203,493,1357,520"/>
-<area shape="rect" id="node11" href="$classaworx_1_1lib_1_1threads_1_1SmartLock.html" title="SmartLock" alt="" coords="559,591,645,617"/>
-<area shape="rect" id="node12" href="$classaworx_1_1lib_1_1time_1_1Ticks.html" title="Ticks" alt="" coords="575,680,629,707"/>
-<area shape="rect" id="node13" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="259,784,324,811"/>
-<area shape="rect" id="node14" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html" title="MetaInfo" alt="" coords="565,928,639,955"/>
-<area shape="rect" id="node15" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="111,1033,175,1060"/>
-<area shape="rect" id="node16" href="$classaworx_1_1lib_1_1strings_1_1String.html" title="String" alt="" coords="5,1200,61,1227"/>
-<area shape="rect" id="node18" href="$classaworx_1_1lib_1_1time_1_1TicksCalendarTime.html" title="TicksCalendarTime" alt="" coords="224,835,359,861"/>
-<area shape="rect" id="node19" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html" title="ObjectConverter" alt="" coords="543,1156,661,1183"/>
-<area shape="rect" id="node20" title="STL class. " alt="" coords="565,20,639,47"/>
+<area shape="rect" id="node17" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html" title="AutoSizes" alt="" coords="864,1204,947,1231"/>
+<area shape="rect" id="node9" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html" title="TextLogger" alt="" coords="1183,1116,1270,1143"/>
+<area shape="rect" id="node6" title="STL class. " alt="" coords="846,20,965,47"/>
+<area shape="rect" id="node7" href="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html" title="PreallocatedString\&lt;TCapacity\&gt;" alt="" coords="447,744,651,771"/>
+<area shape="rect" id="node10" href="$classaworx_1_1lox_1_1core_1_1Logger.html" title="Logger" alt="" coords="875,784,936,811"/>
+<area shape="rect" id="node13" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html" title="MetaInfo" alt="" coords="869,972,942,999"/>
+<area shape="rect" id="node8" href="$classaworx_1_1lib_1_1strings_1_1StringLiteral.html" title="StringLiteral\&lt;TLength\&gt;" alt="" coords="1149,493,1304,520"/>
+<area shape="rect" id="node11" href="$classaworx_1_1lib_1_1threads_1_1SmartLock.html" title="SmartLock" alt="" coords="506,660,591,687"/>
+<area shape="rect" id="node12" href="$classaworx_1_1lib_1_1time_1_1Ticks.html" title="Ticks" alt="" coords="521,868,576,895"/>
+<area shape="rect" id="node14" href="$classaworx_1_1lib_1_1strings_1_1AString.html" title="AString" alt="" coords="224,1060,289,1087"/>
+<area shape="rect" id="node15" href="$classaworx_1_1lib_1_1strings_1_1TString.html" title="TString" alt="" coords="111,1060,175,1087"/>
+<area shape="rect" id="node16" href="$classaworx_1_1lib_1_1strings_1_1String.html" title="String" alt="" coords="5,1363,61,1389"/>
+<area shape="rect" id="node18" href="$classaworx_1_1lib_1_1time_1_1TicksCalendarTime.html" title="TicksCalendarTime" alt="" coords="481,927,616,953"/>
+<area shape="rect" id="node19" href="$classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html" title="ObjectConverter" alt="" coords="490,1364,607,1391"/>
+<area shape="rect" id="node20" title="STL class. " alt="" coords="511,20,586,47"/>
 </map>

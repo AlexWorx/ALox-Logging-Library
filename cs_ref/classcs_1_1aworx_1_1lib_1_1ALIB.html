@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1604 R. 1</span>
+   &#160;<span id="projectnumber">V. 1604 R. 2</span>
    </div>
   </td>
  </tr>
@@ -156,7 +156,7 @@ Public Static Fields</h2></td></tr>
 <tr class="separator:affcf83e8b52935dd94b74c1a47cf7e0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae10600cb6914f091adfbbde00bbfdcd7"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#ae10600cb6914f091adfbbde00bbfdcd7">Lock</a> =new <a class="el" href="classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a>(LockMode.SingleLocks)</td></tr>
 <tr class="separator:ae10600cb6914f091adfbbde00bbfdcd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abee878df7a0627f72de2e62aa99f2969"><td class="memItemLeft" align="right" valign="top">static readonly int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#abee878df7a0627f72de2e62aa99f2969">Revision</a> =1</td></tr>
+<tr class="memitem:abee878df7a0627f72de2e62aa99f2969"><td class="memItemLeft" align="right" valign="top">static readonly int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#abee878df7a0627f72de2e62aa99f2969">Revision</a> =2</td></tr>
 <tr class="separator:abee878df7a0627f72de2e62aa99f2969"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa44d863f975cf49f3cf879b53f080a07"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classcs_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html">SmartLock</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#aa44d863f975cf49f3cf879b53f080a07">StdOutputStreamsLock</a> = new <a class="el" href="classcs_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html">SmartLock</a>()</td></tr>
 <tr class="separator:aa44d863f975cf49f3cf879b53f080a07"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -185,6 +185,8 @@ Public Static Methods</h2></td></tr>
 <tr class="separator:ad340c1b588be870b8e3ad85c1f56895b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a258a4168abf071ddd99f34df5adc7f8f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a258a4168abf071ddd99f34df5adc7f8f">REPORT</a> (int type, String msg, [CallerLineNumber] int cln=0,[CallerFilePath] String csf=&quot;&quot;,[CallerMemberName] String cmn=&quot;&quot;)</td></tr>
 <tr class="separator:a258a4168abf071ddd99f34df5adc7f8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76ba0c4506d284d61ad75a9d6e62b6bc"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a76ba0c4506d284d61ad75a9d6e62b6bc">Sleep</a> (<a class="el" href="classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html">Ticks</a> ticks)</td></tr>
+<tr class="separator:a76ba0c4506d284d61ad75a9d6e62b6bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac05c5caf38ac3e7b07c8d7ff38f269d1"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#ac05c5caf38ac3e7b07c8d7ff38f269d1">SleepMicros</a> (long microsecs)</td></tr>
 <tr class="separator:ac05c5caf38ac3e7b07c8d7ff38f269d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a56b63ce54d6e27bb1d57a4ddbabfaba2"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a56b63ce54d6e27bb1d57a4ddbabfaba2">SleepMillis</a> (int millisecs)</td></tr>
@@ -669,6 +671,38 @@ Properties</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a76ba0c4506d284d61ad75a9d6e62b6bc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Sleep </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html">Ticks</a>&#160;</td>
+          <td class="paramname"><em>ticks</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Suspends the current thread by calling Thread.Sleep(). Provided for compatibility with other platform versions of ALib. Variants of this method are <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a56b63ce54d6e27bb1d57a4ddbabfaba2">SleepMillis</a>, <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#ac05c5caf38ac3e7b07c8d7ff38f269d1">SleepMicros</a> and <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#aba575f2ec01b01d870fb04cdc7f649ca">SleepNanos</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ticks</td><td>Sleep time in <b>Ticks</b>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="ac05c5caf38ac3e7b07c8d7ff38f269d1"></a>
 <div class="memitem">
 <div class="memproto">
@@ -691,7 +725,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> This is calling Thread.Sleep(). This is for compatibility with other platform versions of A-Worx Utility Classes. Variants of this method are <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a56b63ce54d6e27bb1d57a4ddbabfaba2">SleepMillis</a> and <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#aba575f2ec01b01d870fb04cdc7f649ca">SleepNanos</a>.</p>
+<p> Suspends the current thread by calling Thread.Sleep(). Provided for compatibility with other platform versions of ALib. Variants of this method are <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a76ba0c4506d284d61ad75a9d6e62b6bc">Sleep</a>, <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a56b63ce54d6e27bb1d57a4ddbabfaba2">SleepMillis</a> and <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#aba575f2ec01b01d870fb04cdc7f649ca">SleepNanos</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">microsecs</td><td>Sleep time in microseconds. </td></tr>
@@ -723,7 +757,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> This is calling Thread.Sleep(). This is for compatibility with other platform versions of A-Worx Utility Classes. Variants of this method are <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#ac05c5caf38ac3e7b07c8d7ff38f269d1">SleepMicros</a> and <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#aba575f2ec01b01d870fb04cdc7f649ca">SleepNanos</a>.</p>
+<p> Suspends the current thread by calling Thread.Sleep(). Provided for compatibility with other platform versions of ALib. Variants of this method are <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a76ba0c4506d284d61ad75a9d6e62b6bc">Sleep</a>, <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#ac05c5caf38ac3e7b07c8d7ff38f269d1">SleepMicros</a> and <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#aba575f2ec01b01d870fb04cdc7f649ca">SleepNanos</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">millisecs</td><td>Sleep time in milliseconds. </td></tr>
@@ -755,7 +789,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> This is calling Thread.Sleep(). This is for compatibility with other platform versions of A-Worx Utility Classes. Variants of this method are <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a56b63ce54d6e27bb1d57a4ddbabfaba2">SleepMillis</a> and <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#ac05c5caf38ac3e7b07c8d7ff38f269d1">SleepMicros</a>.</p>
+<p> Suspends the current thread by calling Thread.Sleep(). Provided for compatibility with other platform versions of ALib. Variants of this method are <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a76ba0c4506d284d61ad75a9d6e62b6bc">Sleep</a>, <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#a56b63ce54d6e27bb1d57a4ddbabfaba2">SleepMillis</a> and <a class="el" href="classcs_1_1aworx_1_1lib_1_1ALIB.html#ac05c5caf38ac3e7b07c8d7ff38f269d1">SleepMicros</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">nanosecs</td><td>Sleep time in microseconds. </td></tr>
@@ -990,7 +1024,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">readonly int Revision =1</td>
+          <td class="memname">readonly int Revision =2</td>
         </tr>
       </table>
   </td>
@@ -1168,7 +1202,7 @@ Logging library <b>ALox</b>, which is built on ALib, will register whenever a <e
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu May 26 2016 13:01:46 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 20 2016 10:57:54 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

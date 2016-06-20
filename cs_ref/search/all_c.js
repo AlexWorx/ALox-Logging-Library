@@ -3,6 +3,7 @@ var searchData=
   ['magenta',['MAGENTA',['../classcs_1_1aworx_1_1lox_1_1ESC.html#aabdeecbbe0dc98a98b3a3b1a4fa7a29b',1,'cs::aworx::lox::ESC']]],
   ['mapthreadname',['MapThreadName',['../classcs_1_1aworx_1_1lox_1_1Log.html#a20ea0bbb83c816a00c22db2be9fbc0fb',1,'cs.aworx.lox.Log.MapThreadName()'],['../classcs_1_1aworx_1_1lox_1_1Lox.html#a54e58279baec04de7972bc4a5ac4d6e4',1,'cs.aworx.lox.Lox.MapThreadName()']]],
   ['maxdomainpathlength',['maxDomainPathLength',['../classcs_1_1aworx_1_1lox_1_1Lox.html#a71f136dd9dc7e9d48c33ad54ae5d802f',1,'cs::aworx::lox::Lox']]],
+  ['maxelapsedtime',['MaxElapsedTime',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ade3c3fa6f130947ef6aa22e72a4d1efd',1,'cs::aworx::lox::core::textlogger::MetaInfo']]],
   ['maxkeylength',['maxKeyLength',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeDump.html#ace5c16296f35665a0346922cdb706cc6',1,'cs::aworx::lox::core::ScopeDump']]],
   ['maxloggernamelength',['maxLoggerNameLength',['../classcs_1_1aworx_1_1lox_1_1Lox.html#a905f7b109e0f5efe1313db829261b824',1,'cs::aworx::lox::Lox']]],
   ['memorylog',['MemoryLog',['../classcs_1_1aworx_1_1lox_1_1loggers_1_1MemoryLogger.html#ab885e710ebb2c0ae44ee92604a4d56f8',1,'cs::aworx::lox::loggers::MemoryLogger']]],

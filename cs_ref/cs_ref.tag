@@ -117,6 +117,13 @@
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
+      <name>Sleep</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
+      <anchor>a76ba0c4506d284d61ad75a9d6e62b6bc</anchor>
+      <arglist>(Ticks ticks)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
       <name>SleepMicros</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1ALIB.html</anchorfile>
       <anchor>ac05c5caf38ac3e7b07c8d7ff38f269d1</anchor>
@@ -279,6 +286,13 @@
       <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
       <anchor>a880c9d3857667a9f7d942247b85db93e</anchor>
       <arglist>(Verbosity verbosity, int priority, AString target)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static AString</type>
+      <name>ToStringPriority</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1ALox.html</anchorfile>
+      <anchor>afb67d885705e9294384fd70d315dd66b</anchor>
+      <arglist>(int priority, AString target)</arglist>
     </member>
     <member kind="variable" protection="private" static="yes">
       <type>static bool</type>
@@ -758,8 +772,8 @@
       <type>void</type>
       <name>SetBuffer</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
-      <anchor>a4c82c5367836f6886f1505c803ce4058</anchor>
-      <arglist>(int newSize)</arglist>
+      <anchor>a0bdd4581fc80e9bba8ceb46e030c75ac</anchor>
+      <arglist>(int newCapacity)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -1577,8 +1591,8 @@
       <type>void</type>
       <name>SetBuffer</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html</anchorfile>
-      <anchor>a4c82c5367836f6886f1505c803ce4058</anchor>
-      <arglist>(int newSize)</arglist>
+      <anchor>a0bdd4581fc80e9bba8ceb46e030c75ac</anchor>
+      <arglist>(int newCapacity)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -2968,9 +2982,9 @@
     <class kind="class">cs::aworx::lox::core::Domain::PL</class>
     <member kind="variable" static="yes">
       <type>static readonly char</type>
-      <name>PathSeparator</name>
+      <name>Separator</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
-      <anchor>a26e905aa8211afa259b751fd3889ab62</anchor>
+      <anchor>a0cf664481a30f323ace16993466d9698</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -2978,6 +2992,13 @@
       <name>CntLogCalls</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
       <anchor>a2c80e5630abe5d5042ddb4b85c0c3562</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>ConfigurationRead</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>a6b8f94546fd5c1c564c2bfe0fee6c770</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -3020,20 +3041,6 @@
       <name>SubDomains</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
       <anchor>a2d2032ef55cc34830125ac40dcec1afb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>Substring</type>
-      <name>tSubstring</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
-      <anchor>ae02ecb257cadbd45d5280d878055873a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>Substring</type>
-      <name>tSubstring2</name>
-      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
-      <anchor>ac2fc5db593e64d47fe51e0989418ef72</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -3153,6 +3160,20 @@
       <name>tAString</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
       <anchor>a4eab9ca32845e6e56169e1df28225791</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Substring</type>
+      <name>tSubstring</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>ae02ecb257cadbd45d5280d878055873a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Substring</type>
+      <name>tSubstring2</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html</anchorfile>
+      <anchor>ac2fc5db593e64d47fe51e0989418ef72</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" protection="protected">
@@ -4102,8 +4123,8 @@
       <type>static void</type>
       <name>SetSourcePathTrimRule</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Log.html</anchorfile>
-      <anchor>adf890c3d090231217be9c1767a3cf881</anchor>
-      <arglist>(String path, Inclusion includeString=Inclusion.Exclude, int trimOffset=0, Case sensitivity=Case.Ignore, Inclusion global=Inclusion.Include)</arglist>
+      <anchor>ac0790533fb32fb000a8440f3f13f8098</anchor>
+      <arglist>(String path, Inclusion includeString=Inclusion.Exclude, int trimOffset=0, Case sensitivity=Case.Ignore, Inclusion global=Inclusion.Include, String trimReplacement=null, int priority=Lox.PrioSource)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
@@ -5049,8 +5070,8 @@
       <type>void</type>
       <name>SetSourcePathTrimRule</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
-      <anchor>a58eb18efb6ce282cac35cc9476cfe79d</anchor>
-      <arglist>(String path, Inclusion includeString=Inclusion.Exclude, int trimOffset=0, Case sensitivity=Case.Ignore, Inclusion global=Inclusion.Include)</arglist>
+      <anchor>aff67fbbedcf9a983a7732dab13e7bc63</anchor>
+      <arglist>(String path, Inclusion includeString=Inclusion.Exclude, int trimOffset=0, Case sensitivity=Case.Ignore, Inclusion global=Inclusion.Include, String trimReplacement=null, int priority=Lox.PrioSource)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -5299,6 +5320,13 @@
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
+      <name>getDomainPrefixFromConfig</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
+      <anchor>ae82c0be2029cb514a781abdc70832904</anchor>
+      <arglist>(Domain dom)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
       <name>getVerbosityFromConfig</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1Lox.html</anchorfile>
       <anchor>ab8cf66e80845561dcaa3183af626661d</anchor>
@@ -5486,6 +5514,13 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
+      <type>Ticks</type>
+      <name>MaxElapsedTime</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
+      <anchor>ade3c3fa6f130947ef6aa22e72a4d1efd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
       <type>AString</type>
       <name>NoMethodInfo</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
@@ -5637,6 +5672,13 @@
       <name>detectTimeOfDayFormatChanges</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
       <anchor>ae2eb584a3f8074d9b14f56741ff2b628</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Ticks</type>
+      <name>elapsedTime</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html</anchorfile>
+      <anchor>a4b8b0e20585a7a402af421c023746735</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -6404,8 +6446,8 @@
       <type>void</type>
       <name>SetSourcePathTrimRule</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html</anchorfile>
-      <anchor>a0c3e34a1ee5b41fd2e4a0bd5d435334c</anchor>
-      <arglist>(String path, Inclusion includeString, int trimOffset, Case sensitivity, Inclusion global)</arglist>
+      <anchor>ae109b117ac87b92be2278dc3eea53784</anchor>
+      <arglist>(String path, Inclusion includeString, int trimOffset, Case sensitivity, Inclusion global, String trimReplacement, int priority)</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>bool</type>
@@ -7633,9 +7675,9 @@
     </member>
     <member kind="variable">
       <type>int</type>
-      <name>origFilePathSeparator</name>
+      <name>origFilePathLength</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html</anchorfile>
-      <anchor>a92c278f6e653f2ff33c65cd197d61239</anchor>
+      <anchor>ad9601f3d9397b2114f0236aeeca12097</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -7678,6 +7720,13 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
+      <type>int</type>
+      <name>Priority</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html</anchorfile>
+      <anchor>a4450b0bad265ba3bd24e994f70aec802</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
       <type>Case</type>
       <name>Sensitivity</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html</anchorfile>
@@ -7689,6 +7738,13 @@
       <name>TrimOffset</name>
       <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html</anchorfile>
       <anchor>a400a3c8a83ee22ccb635bb8a96a1d6ca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>TrimReplacement</name>
+      <anchorfile>classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html</anchorfile>
+      <anchor>ad8499d2bff27c3e8611570eb0f6b4b56</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -9203,6 +9259,13 @@
       <arglist>(long secs)</arglist>
     </member>
     <member kind="function">
+      <type>bool</type>
+      <name>HasElapsed</name>
+      <anchorfile>classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html</anchorfile>
+      <anchor>a9a2c788835d7f696352b3648637f3a58</anchor>
+      <arglist>(Ticks waitTime)</arglist>
+    </member>
+    <member kind="function">
       <type>long</type>
       <name>InDays</name>
       <anchorfile>classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html</anchorfile>
@@ -9820,7 +9883,7 @@
       <anchorfile>namespacecs_1_1aworx_1_1lib_1_1enums.html</anchorfile>
       <anchor>aeae0c2d4659a32ef54bd221d1a3da4e6</anchor>
       <arglist></arglist>
-      <enumvalue file="namespacecs_1_1aworx_1_1lib_1_1enums.html" anchor="aeae0c2d4659a32ef54bd221d1a3da4e6a6adf97f83acf6453d4a6a4b1070f3754">None</enumvalue>
+      <enumvalue file="namespacecs_1_1aworx_1_1lib_1_1enums.html" anchor="aeae0c2d4659a32ef54bd221d1a3da4e6a3f9823fc8c5bf8d5efbb0ad3be5f16c9">Omit</enumvalue>
       <enumvalue file="namespacecs_1_1aworx_1_1lib_1_1enums.html" anchor="aeae0c2d4659a32ef54bd221d1a3da4e6aa9857b4deb35c57d5753f94fa00a028e">ToDescendants</enumvalue>
     </member>
     <member kind="enumeration">
@@ -9973,7 +10036,7 @@
   </compound>
   <compound kind="page">
     <name>cssetup</name>
-    <title>IDE setup ALox for C#</title>
+    <title>IDE Setup for ALox for C#</title>
     <filename>cssetup</filename>
     <docanchor file="cssetup" title="1. Introduction">cssetup_1</docanchor>
     <docanchor file="cssetup" title="2. Download">cssetup_vs_download</docanchor>

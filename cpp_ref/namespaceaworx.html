@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1604 R. 1</span>
+   &#160;<span id="projectnumber">V. 1604 R. 2</span>
    </div>
   </td>
  </tr>
@@ -125,7 +125,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <dl class="section note"><dt>Note</dt><dd>While the Java language strongly proposes to use the complete 'reverse domain' name and therefore Java code published by A-Worx GmbH resides in namespace <em>com.aworx</em>, for C# we replaced the prefix <em>com.</em> with <em>cs.</em>, which leads to <em>cs.aworx</em>.<br />
  This was needed for having classes with the same names existing in C++, C# and Java not collide within the Doxygen documentation system.</dd></dl>
 <p>As far as it is planned today, there is nothing inside this namespace but other namespaces and - and this is true only for the <em>C++</em> side of things - type definitions used as shortcuts.</p>
-<p><a class="anchor" id="CPP_AWORX_NS_SHORTCUTS"></a> <b>Type Shortcuts in the C++ Namespace "aworx"</b></p>
+<p><a class="anchor" id="CPP_AWORX_NS_SHORTCUTS"></a> <b>Type Shortcuts of C++ Namespace "aworx"</b></p>
 <p>ALib and other libraries of A-Worx, <em>"mirror"</em> most classes into <b>namespace aworx</b> with using statements. For example, by having </p><pre class="fragment">using  String =  aworx::lib::strings::String;
 </pre><p> stated within <b>namespace aworx</b> in the header file of class <b>String</b>, this class is made available with just adding </p><pre class="fragment">using  aworx;
 </pre><p> to a source code. This is convenient when ALib is <em>used</em>, and also convenient for the classes of ALib itself and for 'sibling' libraries that reside underneath <b>namespace aworx</b>, for example logging library <em>ALox</em> with <b>namespace <a class="el" href="namespaceaworx_1_1lox.html">aworx::lox</a></b>. Such classes may refer to all mirrored classes in their (external!) header files without providing any namespace, because in C++, code that is located inside a namespace 'sees' all types defined in parent namespaces.<br />
@@ -141,7 +141,7 @@ using PAString= aworx::lib::strings::PreallocatedString&lt;TCapacity&gt;;
 </ul>
 <p><b>Domain-Specific Constants and Variables</b></p>
 <p>Similar to the concept of mirroring important interface classes into this <b>namespace aworx</b> (which is described in the previous paragraph), it is also agreed to place important global constants here. The impact and benefits are quite the same.<br />
- As a sample, see <a class="el" href="namespaceaworx.html#a262e7ce267358080f085b5a3f42e3a67">aworx::PathSeparator</a> which appears in this namespace as soon as header "alib/system/directory.hpp" is included. </p>
+ As a sample, see <a class="el" href="namespaceaworx.html#af71d56959787ac2eca9b0af4b02a7cec">aworx::DirectorySeparator</a> which appears in this namespace as soon as header "alib/system/directory.hpp" is included. </p>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Nested namespaces</h2></td></tr>
@@ -312,14 +312,14 @@ using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nam
 Variables</h2></td></tr>
 <tr class="memitem:a5feaaf6a8fb11e8ebbb0013ec9f27b01"><td class="memItemLeft" align="right" valign="top">static constexpr <a class="el" href="classaworx_1_1lib_1_1strings_1_1StringLiteral.html">lib::strings::StringLiteral</a>&lt; 4 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a5feaaf6a8fb11e8ebbb0013ec9f27b01">DefaultWhitespaces</a> { &quot; \n\r\t&quot; }</td></tr>
 <tr class="separator:a5feaaf6a8fb11e8ebbb0013ec9f27b01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af71d56959787ac2eca9b0af4b02a7cec"><td class="memItemLeft" align="right" valign="top">constexpr char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#af71d56959787ac2eca9b0af4b02a7cec">DirectorySeparator</a></td></tr>
+<tr class="separator:af71d56959787ac2eca9b0af4b02a7cec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3372961a8fb9d30455267babb4e6c26c"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">lib::strings::String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a3372961a8fb9d30455267babb4e6c26c">EmptyString</a> {&quot;&quot;, 0}</td></tr>
 <tr class="separator:a3372961a8fb9d30455267babb4e6c26c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca82326cfe712c18f9adb9f560a28553"><td class="memItemLeft" align="right" valign="top">static constexpr <a class="el" href="classaworx_1_1lib_1_1strings_1_1StringLiteral.html">lib::strings::StringLiteral</a>&lt; 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#aca82326cfe712c18f9adb9f560a28553">NewLine</a> { &quot;\n&quot; }</td></tr>
 <tr class="separator:aca82326cfe712c18f9adb9f560a28553"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1ed6dcfbe4628dccefbdb5633b1bf01"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">lib::strings::String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#ab1ed6dcfbe4628dccefbdb5633b1bf01">NullString</a></td></tr>
 <tr class="separator:ab1ed6dcfbe4628dccefbdb5633b1bf01"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a262e7ce267358080f085b5a3f42e3a67"><td class="memItemLeft" align="right" valign="top">constexpr char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx.html#a262e7ce267358080f085b5a3f42e3a67">PathSeparator</a></td></tr>
-<tr class="separator:a262e7ce267358080f085b5a3f42e3a67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a class="anchor" id="afc2895fe34753aa1cd88ed8845fbd88b"></a>
@@ -1072,6 +1072,19 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="af71d56959787ac2eca9b0af4b02a7cec"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr char DirectorySeparator</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The standard path separator character. Defaults to '\' on Windows OS, '/' else. Note: Available only with including "alib/system/directory.hpp" </p>
+
+</div>
+</div>
 <a class="anchor" id="a3372961a8fb9d30455267babb4e6c26c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1119,24 +1132,11 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a262e7ce267358080f085b5a3f42e3a67"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr char PathSeparator</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>The standard path separator character. Defaults to '\' on Windows OS, '/' else. Note: Available only with including "alib/system/directory.hpp" </p>
-
-</div>
-</div>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu May 26 2016 13:01:45 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 20 2016 10:57:53 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

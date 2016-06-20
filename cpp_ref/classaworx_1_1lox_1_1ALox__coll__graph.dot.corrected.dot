@@ -36,7 +36,7 @@ digraph "ALox"
   Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" ConfigCategoryName" ,fontname="Helvetica"];
   Node2 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 -> Node10 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" threadName" ,fontname="Helvetica"];
-  Node2 -> Node12 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" fullPath\nnameWOExt\nname\ntrimmedPath" ,fontname="Helvetica"];
+  Node2 -> Node12 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" fullPath\nnameWOExt\ntrimmedPathPrefix\nname\ntrimmedPath" ,fontname="Helvetica"];
   Node3 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" theLog" ,fontname="Helvetica"];
   Node3 -> Node44 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" elements" ,fontname="Helvetica"];
   Node4 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];

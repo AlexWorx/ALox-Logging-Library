@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ide_2fbuild_20system_20setup',['IDE/Build system Setup',['../cppsetup.html',1,'']]]
+  ['ide_20setup_20for_20alox_20for_20c_2b_2b',['IDE Setup for ALox for C++',['../cppsetup.html',1,'']]]
 ];

@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1604 R. 1</span>
+   &#160;<span id="projectnumber">V. 1604 R. 2</span>
    </div>
   </td>
  </tr>
@@ -2693,7 +2693,7 @@ have been added. While their parameter order is 'wrong' and therefore need <code
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Adds a <em>Domain Substitution</em>R. <em>Domain Substitution</em> is performed as a last step when evaluating the domain path of a <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em>, taking <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html">Scope</a> Domains</em> and the optional parameter <code>domain</code> of the statement into account.<br />
+<p> Adds a <em>Domain Substitution Rule</em>. <em>Domain Substitution</em> is performed as a last step when evaluating the domain path of a <em><a class="el" href="classcom_1_1aworx_1_1lox_1_1Log.html">Log</a> Statement</em>, taking <em><a class="el" href="enumcom_1_1aworx_1_1lox_1_1Scope.html">Scope</a> Domains</em> and the optional parameter <code>domain</code> of the statement into account.<br />
 </p>
 <p><b>Wildcards</b><br />
  Parameter <code>domainPath</code> supports <b>'wildcard'</b> character <code> '*'</code> at the its beginning and at its end (or both). This allows to have four types of rules:</p><ul>
@@ -2709,7 +2709,7 @@ have been added. While their parameter order is 'wrong' and therefore need <code
  Rules are applied in the order of their definition. After all rules have been applied this is repeated as long as at least one rule matched (up to ten times).</p>
 <p><b>Deletion of Rules</b> To delete a rule, invoke the method with same parameter <code>domainPath</code> and a 'nulled' or empty string for parameter <code>replacement</code>. To delete all rules, invoke the method with parameter <code>domainPath</code> 'nulled' or empty.</p>
 <p><b>Final remarks</b> Domain substitution is useful to permanently change ('redirect') domain paths of 3rd party code (e.g. libraries using <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a>) or log statements that must not be changed for other reasons. It is advised to not 'overuse' this feature, as side effects are inherent to the concept of <em>Domain Substitution</em>. For example, an unwanted side effect might be that <em>Prefix Logables</em> are not applicable to the substituted domain, while other <em>Prefix Logables</em> are bound to the resulting domain.</p>
-<p>For <b>Lox</b> objects that should be protected of external manipulation, it is advisable, to remove all <em>Domain Substitution</em>Rs right after the <b>Lox</b> was created by invoking this method with a nulled value for parameter <code>domainPath</code>. The reason is, that otherwise, through configuration files or command line parameters, domains of the <b>Lox</b> can be substituted and then the resulting domains <em>Verbosities</em> be <em>overwritten</em> using further configuration variables. Any prioritized <em>'internal'</em> setting of <em>Verbosities</em> this way could be circumvented!</p>
+<p>For <b>Lox</b> objects that should be protected of external manipulation, it is advisable, to remove all <em>Domain Substitution Rules</em> right after the <b>Lox</b> was created by invoking this method with a nulled value for parameter <code>domainPath</code>. The reason is, that otherwise, through configuration files or command line parameters, domains of the <b>Lox</b> can be substituted and then the resulting domains <em>Verbosities</em> be <em>overwritten</em> using further configuration variables. Any prioritized <em>'internal'</em> setting of <em>Verbosities</em> this way could be circumvented!</p>
 <p>For more information consult the <a class="el" href="classcom_1_1aworx_1_1lox_1_1ALox.html">ALox</a> user manual.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -3938,7 +3938,7 @@ Consequently, this method may be (mis-) used to modify the 'actual' (default) sc
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu May 26 2016 13:01:46 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 20 2016 10:57:55 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

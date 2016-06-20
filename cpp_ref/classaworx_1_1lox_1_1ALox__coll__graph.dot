@@ -31,7 +31,7 @@ digraph "ALox"
   Node6 -> Node10 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" origMethod" ,fontname="Helvetica"];
   Node12 -> Node10 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" cache\nactual" ,fontname="Helvetica"];
   Node12 [label="SourceFile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html"];
-  Node2 -> Node12 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" fullPath\nnameWOExt\nname\ntrimmedPath" ,fontname="Helvetica"];
+  Node2 -> Node12 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" fullPath\nnameWOExt\ntrimmedPathPrefix\nname\ntrimmedPath" ,fontname="Helvetica"];
   Node6 -> Node12 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" origFile" ,fontname="Helvetica"];
   Node13 -> Node10 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" timeStamp" ,fontname="Helvetica"];
   Node13 [label="Ticks",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1time_1_1Ticks.html"];

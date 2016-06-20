@@ -15,6 +15,7 @@ var searchData=
   ['comments',['Comments',['../classcs_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Variable.html#a13a7dbf15cba4c8849fdd8044b185475',1,'cs.aworx.lib.config.IniFile.Variable.Comments()'],['../classcs_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Section.html#a13a7dbf15cba4c8849fdd8044b185475',1,'cs.aworx.lib.config.IniFile.Section.Comments()']]],
   ['config',['Config',['../classcs_1_1aworx_1_1lib_1_1ALIB.html#a34430993f800b3bc4571bd4b9a6d9184',1,'cs::aworx::lib::ALIB']]],
   ['configcategoryname',['ConfigCategoryName',['../classcs_1_1aworx_1_1lib_1_1ALIB.html#affcf83e8b52935dd94b74c1a47cf7e0a',1,'cs.aworx.lib.ALIB.ConfigCategoryName()'],['../classcs_1_1aworx_1_1lox_1_1ALox.html#affcf83e8b52935dd94b74c1a47cf7e0a',1,'cs.aworx.lox.ALox.ConfigCategoryName()']]],
+  ['configurationread',['ConfigurationRead',['../classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a6b8f94546fd5c1c564c2bfe0fee6c770',1,'cs::aworx::lox::core::Domain']]],
   ['contents',['Contents',['../classcs_1_1aworx_1_1lib_1_1Report_1_1Message.html#a879ba4d7413f0b6f7fa64331b41eed8f',1,'cs::aworx::lib::Report::Message']]],
   ['convswtodt',['convSWToDT',['../classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html#ad91e3ebd169964f5636d6d006cd445fb',1,'cs::aworx::lib::time::Ticks']]],
   ['creationtime',['CreationTime',['../classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html#ab4e057eeeb0ecf2494933081c666ea43',1,'cs::aworx::lib::time::Ticks']]],

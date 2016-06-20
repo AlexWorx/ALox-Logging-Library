@@ -8,7 +8,7 @@ var searchData=
   ['actpathmapnode',['actPathMapNode',['../classaworx_1_1lox_1_1core_1_1ScopeStore.html#a77c6ecbc68ffa22251428b4763a3d3b7',1,'aworx::lox::core::ScopeStore']]],
   ['actscope',['actScope',['../classaworx_1_1lox_1_1core_1_1ScopeStore.html#ab420b6d519025a485c6345895ad174ee',1,'aworx::lox::core::ScopeStore']]],
   ['actthreadid',['actThreadID',['../classaworx_1_1lox_1_1core_1_1ScopeStore.html#afd0f796ebbfae3564416016c197c27b1',1,'aworx::lox::core::ScopeStore']]],
-  ['actual',['Actual',['../classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a2eefe9530c5f2042ddfa20e26b34328b',1,'aworx::lib::strings::Tokenizer::Actual()'],['../classaworx_1_1lox_1_1core_1_1ScopeInfo.html#a9e5d069be80c5f7ef34c1aa0abd7e169',1,'aworx::lox::core::ScopeInfo::actual()']]],
+  ['actual',['actual',['../classaworx_1_1lox_1_1core_1_1ScopeInfo.html#a9e5d069be80c5f7ef34c1aa0abd7e169',1,'aworx::lox::core::ScopeInfo::actual()'],['../classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a2eefe9530c5f2042ddfa20e26b34328b',1,'aworx::lib::strings::Tokenizer::Actual()']]],
   ['actualindex',['ActualIndex',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html#acf5441aa3a2d1bcc3dfd3519d7579fee',1,'aworx::lox::core::textlogger::AutoSizes']]],
   ['alibcompilationflags',['ALibCompilationFlags',['../classaworx_1_1lox_1_1ALox.html#ad73d0d3096f8469b1e8ba2f17fe9bb69',1,'aworx::lox::ALox']]],
   ['alignment',['alignment',['../classaworx_1_1lib_1_1strings_1_1Format_1_1Field.html#a2cc66511bdbd482fe68392125b584696',1,'aworx::lib::strings::Format::Field']]],

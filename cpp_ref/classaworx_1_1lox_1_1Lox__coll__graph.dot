@@ -40,7 +40,7 @@ digraph "Lox"
   Node4 -> Node12 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" origMethod" ,fontname="Helvetica"];
   Node16 -> Node12 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" cache\nactual" ,fontname="Helvetica"];
   Node16 [label="SourceFile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html"];
-  Node5 -> Node16 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" fullPath\nnameWOExt\nname\ntrimmedPath" ,fontname="Helvetica"];
+  Node5 -> Node16 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" fullPath\nnameWOExt\ntrimmedPathPrefix\nname\ntrimmedPath" ,fontname="Helvetica"];
   Node4 -> Node16 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" origFile" ,fontname="Helvetica"];
   Node17 -> Node12 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" timeStamp" ,fontname="Helvetica"];
   Node17 [label="Ticks",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1time_1_1Ticks.html"];
@@ -49,7 +49,7 @@ digraph "Lox"
   Node18 [label="vector\< aworx::lox\l::core::ScopeInfo::SourcePath\lTrimRule \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node19 -> Node18 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" elements" ,fontname="Helvetica"];
   Node19 [label="SourcePathTrimRule",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html"];
-  Node9 -> Node19 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Path" ,fontname="Helvetica"];
+  Node9 -> Node19 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" TrimReplacement\nPath" ,fontname="Helvetica"];
   Node20 -> Node12 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" loxName" ,fontname="Helvetica"];
   Node20 [label="PreallocatedString\l\< 32 \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html"];
   Node9 -> Node20 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];

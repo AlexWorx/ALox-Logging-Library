@@ -7,6 +7,7 @@ var searchData=
   ['getcreate',['GetCreate',['../namespacecs_1_1aworx_1_1lib_1_1enums.html#af6d9cc1e6686eca6e60d57d959cf57fba1d5c1a7fde77e84c993d6fea61f88c2a',1,'cs::aworx::lib::enums']]],
   ['getcumulated',['GetCumulated',['../classcs_1_1aworx_1_1lib_1_1time_1_1TickWatch.html#afa26a288553e5b8e69116f085d320564',1,'cs::aworx::lib::time::TickWatch']]],
   ['getdefault',['GetDefault',['../classcs_1_1aworx_1_1lib_1_1Report.html#ad49d9009e0885cb55639c77ba3de98f7',1,'cs::aworx::lib::Report']]],
+  ['getdomainprefixfromconfig',['getDomainPrefixFromConfig',['../classcs_1_1aworx_1_1lox_1_1Lox.html#ae82c0be2029cb514a781abdc70832904',1,'cs::aworx::lox::Lox']]],
   ['getenumerator',['GetEnumerator',['../classcs_1_1aworx_1_1lib_1_1containers_1_1PathMap.html#a9b2c420dbe7d7b85ff9a3db7f99e7d63',1,'cs::aworx::lib::containers::PathMap']]],
   ['getfilename',['GetFileName',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html#ab4e27279622f323a2ba5eec5b3a0dc0e',1,'cs::aworx::lox::core::ScopeInfo']]],
   ['getfilenamewithoutextension',['GetFileNameWithoutExtension',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html#a753d80ac5c0c70a29443278081a13e00',1,'cs::aworx::lox::core::ScopeInfo']]],

@@ -7,7 +7,7 @@ var searchData=
   ['line',['Line',['../classaworx_1_1lib_1_1Report_1_1Message.html#af5b2cae791582f6f4f975f6b25290977',1,'aworx::lib::Report::Message']]],
   ['lineswithreaderrors',['LinesWithReadErrors',['../classaworx_1_1lib_1_1config_1_1IniFile.html#a40fc3347bdd13c78626393bce4f4b7af',1,'aworx::lib::config::IniFile']]],
   ['localsptrs',['LocalSPTRs',['../classaworx_1_1lox_1_1core_1_1ScopeInfo.html#a1a109984041e560099b534dd1ab4c10c',1,'aworx::lox::core::ScopeInfo']]],
-  ['lock',['Lock',['../classaworx_1_1lib_1_1ALIB.html#a3a29620087f23e0c8989918e0ff9c9be',1,'aworx::lib::ALIB::Lock()'],['../classaworx_1_1lib_1_1Report.html#ad083e81bb83e9548b93f22631c5f0477',1,'aworx::lib::Report::lock()']]],
+  ['lock',['lock',['../classaworx_1_1lib_1_1Report.html#ad083e81bb83e9548b93f22631c5f0477',1,'aworx::lib::Report::lock()'],['../classaworx_1_1lib_1_1ALIB.html#a3a29620087f23e0c8989918e0ff9c9be',1,'aworx::lib::ALIB::Lock()']]],
   ['lockmode',['lockMode',['../classaworx_1_1lib_1_1threads_1_1ThreadLock.html#a5df502d54adfe465de472847d8dc6588',1,'aworx::lib::threads::ThreadLock']]],
   ['logbuf',['logBuf',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#a1c3b59e6dc2850f90df33ae9b4533334',1,'aworx::lox::core::textlogger::TextLogger']]],
   ['logger',['Logger',['../structaworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html#ab0f0a9542542d6c8782e1ad65fdc708b',1,'aworx::lox::core::Domain::LoggerData']]],

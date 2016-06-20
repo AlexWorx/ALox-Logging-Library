@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1604 R. 1</span>
+   &#160;<span id="projectnumber">V. 1604 R. 2</span>
    </div>
   </td>
  </tr>
@@ -196,8 +196,8 @@ Public Methods</h2></td></tr>
 <tr class="separator:ae79c6287076c40c14285a0c765cda047"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3094838f15426439bcd92ef30d3261a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html#a3094838f15426439bcd92ef30d3261a1">Set</a> (int callerLineNumber, String callerSourceFileName, String callerMemberName, Thread <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html#ac99b75d10f465c1160242dea4544069a">thread</a>)</td></tr>
 <tr class="separator:a3094838f15426439bcd92ef30d3261a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c3e34a1ee5b41fd2e4a0bd5d435334c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html#a0c3e34a1ee5b41fd2e4a0bd5d435334c">SetSourcePathTrimRule</a> (String path, <a class="el" href="namespacecs_1_1aworx_1_1lib_1_1enums.html#a217539925b78b2eed40ae7817d5bee52">Inclusion</a> includeString, int trimOffset, <a class="el" href="namespacecs_1_1aworx_1_1lib_1_1enums.html#ab9aab17a5e54a8bae6915bc24db13a17">Case</a> sensitivity, <a class="el" href="namespacecs_1_1aworx_1_1lib_1_1enums.html#a217539925b78b2eed40ae7817d5bee52">Inclusion</a> global)</td></tr>
-<tr class="separator:a0c3e34a1ee5b41fd2e4a0bd5d435334c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae109b117ac87b92be2278dc3eea53784"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html#ae109b117ac87b92be2278dc3eea53784">SetSourcePathTrimRule</a> (String path, <a class="el" href="namespacecs_1_1aworx_1_1lib_1_1enums.html#a217539925b78b2eed40ae7817d5bee52">Inclusion</a> includeString, int trimOffset, <a class="el" href="namespacecs_1_1aworx_1_1lib_1_1enums.html#ab9aab17a5e54a8bae6915bc24db13a17">Case</a> sensitivity, <a class="el" href="namespacecs_1_1aworx_1_1lib_1_1enums.html#a217539925b78b2eed40ae7817d5bee52">Inclusion</a> global, String trimReplacement, int priority)</td></tr>
+<tr class="separator:ae109b117ac87b92be2278dc3eea53784"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Fields</h2></td></tr>
@@ -475,7 +475,7 @@ Private Fields</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Tries to trim the source files' path. Sets variable <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#a481b33f9672072cf4fa7bba094e041ed">SourceFile.trimmedPath</a> to either the successfully trimmed path or to the non-trimmed one. This way, it is executed only once, at it is 'lazily' invoked by <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html#ae79c6287076c40c14285a0c765cda047">GetTrimmedPath()</a></p>
-<dl class="section return"><dt>Returns</dt><dd>The path of the source file, trimmed according to trim-information provided with <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html#a0c3e34a1ee5b41fd2e4a0bd5d435334c">SetSourcePathTrimRule</a> or detected according to <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html#ac69d17599ca644e4c9e9be0f42ca7361">AutoDetectTrimableSourcePath</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The path of the source file, trimmed according to trim-information provided with <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html#ae109b117ac87b92be2278dc3eea53784">SetSourcePathTrimRule</a> or detected according to <a class="el" href="classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html#ac69d17599ca644e4c9e9be0f42ca7361">AutoDetectTrimableSourcePath</a>. </dd></dl>
 
 </div>
 </div>
@@ -527,7 +527,7 @@ Private Fields</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a0c3e34a1ee5b41fd2e4a0bd5d435334c"></a>
+<a class="anchor" id="ae109b117ac87b92be2278dc3eea53784"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -559,7 +559,19 @@ Private Fields</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="namespacecs_1_1aworx_1_1lib_1_1enums.html#a217539925b78b2eed40ae7817d5bee52">Inclusion</a>&#160;</td>
-          <td class="paramname"><em>global</em>&#160;</td>
+          <td class="paramname"><em>global</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>trimReplacement</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>priority</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -569,7 +581,7 @@ Private Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Does the job for <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a58eb18efb6ce282cac35cc9476cfe79d">Lox.SetSourcePathTrimRule</a> and <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a563bdeaa837bf7799b7327ed874b5280">Lox.ClearSourcePathTrimRules</a>.</p>
+<p> Does the job for <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#aff67fbbedcf9a983a7732dab13e7bc63">Lox.SetSourcePathTrimRule</a> and <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a563bdeaa837bf7799b7327ed874b5280">Lox.ClearSourcePathTrimRules</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">path</td><td>The path to search for. If not starting with <code> '*'</code>, a prefix is searched. </td></tr>
@@ -577,6 +589,8 @@ Private Fields</h2></td></tr>
     <tr><td class="paramname">trimOffset</td><td>Adjusts the portion of <code>path</code> that is trimmed. 999999 to clear! </td></tr>
     <tr><td class="paramname">sensitivity</td><td>Determines if the comparison of <code>path</code> with a source files' path is performed case sensitive or not. </td></tr>
     <tr><td class="paramname">global</td><td>If Inclusion.Exclude, only this instance is affected. Otherwise the setting applies to all instances of class <b><a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html">Lox</a></b>. </td></tr>
+    <tr><td class="paramname">trimReplacement</td><td>Replacement string for trimmed portion of the path. </td></tr>
+    <tr><td class="paramname">priority</td><td>The priority of the setting. </td></tr>
   </table>
   </dd>
 </dl>
@@ -622,7 +636,7 @@ Private Fields</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>If true, next time a source path can not be trimmed successfully with custom trim information provided with <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#a58eb18efb6ce282cac35cc9476cfe79d">Lox.SetSourcePathTrimRule</a> some trim information is automatically created by comparing such source files' path with the path of the executable of the current process. </p>
+<p>If true, next time a source path can not be trimmed successfully with custom trim information provided with <a class="el" href="classcs_1_1aworx_1_1lox_1_1Lox.html#aff67fbbedcf9a983a7732dab13e7bc63">Lox.SetSourcePathTrimRule</a> some trim information is automatically created by comparing such source files' path with the path of the executable of the current process. </p>
 
 </div>
 </div>
@@ -941,7 +955,7 @@ Private Fields</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu May 26 2016 13:01:46 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 20 2016 10:57:54 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

@@ -5,7 +5,7 @@
   <filterSection>
     <filterAttribute>doxygen</filterAttribute>
     <toc>
-      <section title="ALox V. 1604 R. 1" ref="index.html">
+      <section title="ALox V. 1604 R. 2" ref="index.html">
         <section title="ALox Main Page" ref="index.html" />
         <section title="FAQ" ref="faq.html" />
         <section title="Manual" ref="manual.html">
@@ -53,11 +53,13 @@
       <keyword name="ALOX_NO_IDE_LOGGER" id="GrpALoxConfigVars::ALOX_NO_IDE_LOGGER" ref="group__GrpALoxConfigVars.html#gaae997c0e73d7487684ed839e4bdd4a17" />
       <keyword name="ALOX_CODE_PAGE" id="GrpALoxConfigVars::ALOX_CODE_PAGE" ref="group__GrpALoxConfigVars.html#gadb1d24a054196d1b178645be4e9a2422" />
       <keyword name="ALOX_LOGGERNAME_AUTO_SIZES" id="GrpALoxConfigVars::ALOX_LOGGERNAME_AUTO_SIZES" ref="group__GrpALoxConfigVars.html#ga0741a1d6212c64779093dc2357d0f672" />
+      <keyword name="ALOX_LOGGERNAME_MAX_ELAPSED_TIME" id="GrpALoxConfigVars::ALOX_LOGGERNAME_MAX_ELAPSED_TIME" ref="group__GrpALoxConfigVars.html#gab375e0c2170c55e8638985d007a3e6db" />
       <keyword name="ALOX_LOGGERNAME_FORMAT" id="GrpALoxConfigVars::ALOX_LOGGERNAME_FORMAT" ref="group__GrpALoxConfigVars.html#ga4afceac725b2d9036373691895259c67" />
       <keyword name="ALOX_LOXNAME_DOMAIN_SUBSTITUTION" id="GrpALoxConfigVars::ALOX_LOXNAME_DOMAIN_SUBSTITUTION" ref="group__GrpALoxConfigVars.html#ga33d3336fd34d7d8e0c05aaf56aa2a5fd" />
       <keyword name="ALOX_GLOBAL_SOURCE_PATH_TRIM_RULES" id="GrpALoxConfigVars::ALOX_GLOBAL_SOURCE_PATH_TRIM_RULES" ref="group__GrpALoxConfigVars.html#ga9fff149ffbfa1d599972b86ecb03aa71" />
       <keyword name="ALOX_LOXNAME_SOURCE_PATH_TRIM_RULES" id="GrpALoxConfigVars::ALOX_LOXNAME_SOURCE_PATH_TRIM_RULES" ref="group__GrpALoxConfigVars.html#ga4f3e16aa4e19916600ac66181e93b482" />
       <keyword name="ALOX_LOXNAME_LOGGERNAME_VERBOSITY" id="GrpALoxConfigVars::ALOX_LOXNAME_LOGGERNAME_VERBOSITY" ref="group__GrpALoxConfigVars.html#gabcd13580239d502881f74e45de96e46d" />
+      <keyword name="ALOX_LOXNAME_PREFIXES" id="GrpALoxConfigVars::ALOX_LOXNAME_PREFIXES" ref="group__GrpALoxConfigVars.html#ga299a0d20586716e77563f08a1cb77ebb" />
     </keywords>
     <files>
       <file>tabs.css</file>
@@ -306,6 +308,13 @@
       <file>inherit_graph_182.svg</file>
       <file>inherit_graph_183.svg</file>
       <file>inherit_graph_184.svg</file>
+      <file>inherit_graph_185.svg</file>
+      <file>inherit_graph_186.svg</file>
+      <file>inherit_graph_187.svg</file>
+      <file>inherit_graph_188.svg</file>
+      <file>inherit_graph_189.svg</file>
+      <file>inherit_graph_190.svg</file>
+      <file>inherit_graph_191.svg</file>
       <file>pages.html</file>
     </files>
   </filterSection>

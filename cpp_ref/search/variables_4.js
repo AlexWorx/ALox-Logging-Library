@@ -21,6 +21,7 @@ var searchData=
   ['defaultreport',['defaultReport',['../classaworx_1_1lib_1_1Report.html#a85731ee839db2fafc226b9a8281167f4',1,'aworx::lib::Report']]],
   ['defaultwhitespaces',['DefaultWhitespaces',['../namespaceaworx.html#a5feaaf6a8fb11e8ebbb0013ec9f27b01',1,'aworx']]],
   ['delim',['Delim',['../classaworx_1_1lib_1_1config_1_1IniFile_1_1Variable.html#a68297215ac82977611f5dee2062cc910',1,'aworx::lib::config::IniFile::Variable::Delim()'],['../classaworx_1_1lib_1_1strings_1_1Tokenizer.html#ab56c67e0ed9605b4078e2135f791c4ed',1,'aworx::lib::strings::Tokenizer::delim()']]],
+  ['directoryseparator',['DirectorySeparator',['../namespaceaworx.html#af71d56959787ac2eca9b0af4b02a7cec',1,'aworx']]],
   ['domains',['domains',['../classaworx_1_1lox_1_1Lox.html#af7a1bb606d5ac72b03aa6cf35988405a',1,'aworx::lox::Lox']]],
   ['domainsensitivity',['DomainSensitivity',['../classaworx_1_1lox_1_1Lox.html#ac63dd33538dff8703707b14fc6d04d52',1,'aworx::lox::Lox']]],
   ['domainsubstitutions',['domainSubstitutions',['../classaworx_1_1lox_1_1Lox.html#a7f3139c0b1ac2de972db69d485a9481e',1,'aworx::lox::Lox']]]

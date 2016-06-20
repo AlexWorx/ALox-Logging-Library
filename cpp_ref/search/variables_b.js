@@ -2,6 +2,7 @@ var searchData=
 [
   ['magenta',['MAGENTA',['../classaworx_1_1lox_1_1ESC.html#ad7302f67367bb64d92d430db2b966744',1,'aworx::lox::ESC']]],
   ['maxdomainpathlength',['maxDomainPathLength',['../classaworx_1_1lox_1_1Lox.html#a71f136dd9dc7e9d48c33ad54ae5d802f',1,'aworx::lox::Lox']]],
+  ['maxelapsedtime',['MaxElapsedTime',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ade3c3fa6f130947ef6aa22e72a4d1efd',1,'aworx::lox::core::textlogger::MetaInfo']]],
   ['maxkeylength',['maxKeyLength',['../classaworx_1_1lox_1_1core_1_1ScopeDump.html#ace5c16296f35665a0346922cdb706cc6',1,'aworx::lox::core::ScopeDump']]],
   ['maxlen',['MaxLen',['../classaworx_1_1lib_1_1strings_1_1CString.html#a702a7d928cd1d34c5aa2f26dd97e199e',1,'aworx::lib::strings::CString']]],
   ['maxlinewidth',['MaxLineWidth',['../classaworx_1_1lib_1_1strings_1_1ReadLineFromIStream.html#ac84b9d73bc2f084bd6485b1460038408',1,'aworx::lib::strings::ReadLineFromIStream']]],

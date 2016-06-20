@@ -39,6 +39,7 @@ var searchData=
   ['toolbuf',['toolBuf',['../classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#accf10243655bbcecc845e197c4350e8c',1,'cs::aworx::lox::tools::LogTools']]],
   ['trimmedpath',['trimmedPath',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#a481b33f9672072cf4fa7bba094e041ed',1,'cs::aworx::lox::core::ScopeInfo::SourceFile']]],
   ['trimoffset',['TrimOffset',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html#a400a3c8a83ee22ccb635bb8a96a1d6ca',1,'cs::aworx::lox::core::ScopeInfo::SourcePathTrimRule']]],
+  ['trimreplacement',['TrimReplacement',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html#ad8499d2bff27c3e8611570eb0f6b4b56',1,'cs::aworx::lox::core::ScopeInfo::SourcePathTrimRule']]],
   ['truevalues',['TrueValues',['../classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a12369eaf915d9637d932edb3268d2e55',1,'cs::aworx::lib::config::Configuration']]],
   ['truevaluesboolean',['trueValuesBoolean',['../classcs_1_1aworx_1_1lib_1_1ALIB.html#a65337581a93a3179f7578aa6b483915b',1,'cs::aworx::lib::ALIB']]],
   ['truevaluescase',['trueValuesCase',['../classcs_1_1aworx_1_1lib_1_1ALIB.html#a0a20ce9d8843a85788d87d662e71c35d',1,'cs::aworx::lib::ALIB']]],
@@ -46,6 +47,6 @@ var searchData=
   ['tsubstring',['tSubstring',['../classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#ae02ecb257cadbd45d5280d878055873a',1,'cs::aworx::lox::core::Domain']]],
   ['tsubstring2',['tSubstring2',['../classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#ac2fc5db593e64d47fe51e0989418ef72',1,'cs::aworx::lox::core::Domain']]],
   ['ttok',['tTok',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a7e48c9b876240a28cb1ec476593f3d10',1,'cs::aworx::lox::core::textlogger::MetaInfo']]],
-  ['type',['Type',['../classcs_1_1aworx_1_1lib_1_1Report_1_1Message.html#ae011432eaca3858364b05a111f4011d3',1,'cs.aworx.lib.Report.Message.Type()'],['../classcs_1_1aworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html#ab6f4e6d3fde00ce906e46494f60dfe7a',1,'cs.aworx.lox.Lox.DomainSubstitutionRule.type()']]],
+  ['type',['type',['../classcs_1_1aworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html#ab6f4e6d3fde00ce906e46494f60dfe7a',1,'cs.aworx.lox.Lox.DomainSubstitutionRule.type()'],['../classcs_1_1aworx_1_1lib_1_1Report_1_1Message.html#ae011432eaca3858364b05a111f4011d3',1,'cs.aworx.lib.Report.Message.Type()']]],
   ['typename',['typeName',['../classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html#ab702590cb21a529418c7bd6439c4337a',1,'cs::aworx::lox::core::Logger']]]
 ];

@@ -8,6 +8,7 @@ var searchData=
   ['search',['Search',['../classcs_1_1aworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html#ac79327a806c2cf96807aa72e4f9f8974',1,'cs::aworx::lox::Lox::DomainSubstitutionRule']]],
   ['sections',['Sections',['../classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html#a807ad28f27cb71f0929ecb47e6d49f4a',1,'cs::aworx::lib::config::IniFile']]],
   ['sensitivity',['Sensitivity',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html#a48bf193d2228373a7e76ba4e08137017',1,'cs::aworx::lox::core::ScopeInfo::SourcePathTrimRule']]],
+  ['separator',['Separator',['../classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a0cf664481a30f323ace16993466d9698',1,'cs::aworx::lox::core::Domain']]],
   ['separators',['separators',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#abf3c785f03af4e61a0b4f51bc3568635',1,'cs::aworx::lox::core::ScopeStore']]],
   ['sessionvalues',['sessionValues',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html#a6a37f7be21e831947390945d22439e13',1,'cs::aworx::lox::core::textlogger::AutoSizes']]],
   ['singleton',['Singleton',['../classcs_1_1aworx_1_1lib_1_1ConsoleReportWriter.html#a07ce732a5e5933f2f1a6082beff70bb9',1,'cs::aworx::lib::ConsoleReportWriter']]],

@@ -22,6 +22,7 @@ var searchData=
   ['compilationflags',['CompilationFlags',['../classaworx_1_1lib_1_1ALIB.html#abbfe1aff131ede76ea8f259b2282b26e',1,'aworx::lib::ALIB::CompilationFlags()'],['../classaworx_1_1lox_1_1ALox.html#abbfe1aff131ede76ea8f259b2282b26e',1,'aworx::lox::ALox::CompilationFlags()']]],
   ['config',['Config',['../classaworx_1_1lib_1_1ALIB.html#a34430993f800b3bc4571bd4b9a6d9184',1,'aworx::lib::ALIB']]],
   ['configcategoryname',['ConfigCategoryName',['../classaworx_1_1lib_1_1ALIB.html#affcf83e8b52935dd94b74c1a47cf7e0a',1,'aworx::lib::ALIB::ConfigCategoryName()'],['../classaworx_1_1lox_1_1ALox.html#addc024f6c6dbb007e99c6becdc4d3649',1,'aworx::lox::ALox::ConfigCategoryName()']]],
+  ['configurationread',['ConfigurationRead',['../classaworx_1_1lox_1_1core_1_1Domain.html#a6b8f94546fd5c1c564c2bfe0fee6c770',1,'aworx::lox::core::Domain']]],
   ['consoletitle',['ConsoleTitle',['../classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a39dfc3f00493a74b8ab6907dec8c80ae',1,'aworx::lib::system::ProcessInfo']]],
   ['contents',['contents',['../classaworx_1_1lib_1_1strings_1_1Format_1_1Field.html#ae26b1a80a32917acc6107e4bfc13ed40',1,'aworx::lib::strings::Format::Field::contents()'],['../classaworx_1_1lib_1_1Report_1_1Message.html#afa76585979183dca208a5db82709e8af',1,'aworx::lib::Report::Message::Contents()']]],
   ['creationtime',['creationTime',['../classaworx_1_1lib_1_1time_1_1Ticks.html#ac4aaa87e2fbf873c653a97f4a1d49d13',1,'aworx::lib::time::Ticks']]],

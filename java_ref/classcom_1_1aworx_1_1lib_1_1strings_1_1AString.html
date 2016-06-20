@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1604 R. 1</span>
+   &#160;<span id="projectnumber">V. 1604 R. 2</span>
    </div>
   </td>
  </tr>
@@ -145,7 +145,7 @@ Collaboration diagram for AString:</div>
 <p> A mutable string, that provides public access to its internal buffer and fields. First of all, the existence of this class is motivated to reach a certain level of compatibility between source code that uses the <a class="el" href="namespacecom_1_1aworx_1_1lib.html">ALib</a> across different languages (currently Java, C# and C++) whose implementations share a similar AString class.</p>
 <p>As the given C#/Java StringBuilder/Buffer classes are either "sealed" and/or do not provide direct access to the internal buffer, to avoid conversion to new immutable strings in certain situations, the A-Worx Library implements its own string class. More complex functions, like extended formatting operations are not supported and remain the domain of the language specific class libraries.</p>
 <p><b>Null-state:</b></p>
-<p>Class AString is 'nullable', which means, that an instance may have no internal character array allocated. If constructed with zero size, a null pointer or another <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> which is 'nulled' (but not a non-null, zero length string object of any type), the allocation size is 0. Nevertheless, method <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a8317b33b8c004741d95935199d964be9">buffer</a> will return a valid empty <em>char[]</em> (a static singleton). This has the advantage that in many situations the null-state is not needed to handled specially (those cases where the difference between a nulled and an empty string is irrelevant). Consequently, it makes a difference if an AString is constructed using <em><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a0b7e6f9a4638528a39ba8d41a9edca55">AString()</a></em> or "AString(\""). This allows to differentiate between 'nulled' AStrings and empty AStrings, which is quite handy in certain situations. An object that was filled already can be reset to represent null by either assigning a nulled <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>, by invoking <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#acc52438bfeefac449697c7f07ee2820d">setBuffer(0)</a> or by invoking <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a91e28e1274cd18a6413c67bf55356cf6">setNull</a> on the instance. See also methods <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a3955e9d38b6e94e7b698888396f48311">isNull</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#aca3372d101217451abc48e720f4930c7">isNotNull</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#ad7becd1f37b2db660d2335aec66075c8">capacity</a>. The methods <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a993d8ca66ce01ea3656df8e6bc72ed93">equals</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a9c17bf8d64bedbdf1c2e5a9ee1e95fec">compareTo</a> allow <code>null</code> comparisons. e.g. an nulled AString equals to another nulled <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> but not to a zero length, not nulled <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>.</p>
+<p>Class AString is 'nullable', which means, that an instance may have no internal character array allocated. If constructed with zero size, a null pointer or another <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> which is 'nulled' (but not a non-null, zero length string object of any type), the allocation size is 0. Nevertheless, method <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a8317b33b8c004741d95935199d964be9">buffer</a> will return a valid empty <em>char[]</em> (a static singleton). This has the advantage that in many situations the null-state is not needed to handled specially (those cases where the difference between a nulled and an empty string is irrelevant). Consequently, it makes a difference if an AString is constructed using <em><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a0b7e6f9a4638528a39ba8d41a9edca55">AString()</a></em> or "AString(\""). This allows to differentiate between 'nulled' AStrings and empty AStrings, which is quite handy in certain situations. An object that was filled already can be reset to represent null by either assigning a nulled <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>, by invoking <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a62295912fc8c8a0d782ffde94eb1607c">setBuffer(0)</a> or by invoking <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a91e28e1274cd18a6413c67bf55356cf6">setNull</a> on the instance. See also methods <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a3955e9d38b6e94e7b698888396f48311">isNull</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#aca3372d101217451abc48e720f4930c7">isNotNull</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#ad7becd1f37b2db660d2335aec66075c8">capacity</a>. The methods <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a993d8ca66ce01ea3656df8e6bc72ed93">equals</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a9c17bf8d64bedbdf1c2e5a9ee1e95fec">compareTo</a> allow <code>null</code> comparisons. e.g. an nulled AString equals to another nulled <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a> but not to a zero length, not nulled <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>.</p>
 <p><a class="anchor" id="JAVA_ASTRING_NC"></a></p>
 <p><b>Non-checking methods</b></p>
 <p>In general, AString methods are internally checking the provided parameters. For example, method <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a336b72f4d70d93433fbc310931c54589">_( CharSequence src, int regionStart, int regionLength )</a> is adjusting the provided region information to fit to the size of the provided AString (in Java CharSequence).<br />
@@ -185,8 +185,8 @@ Public Methods</h2></td></tr>
 </div></td></tr>
 <tr class="memitem:ae9d3221d50200a46437b1564cc3a74e7"><td class="memItemLeft" align="right" valign="top">char[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#ae9d3221d50200a46437b1564cc3a74e7">buffer</a> ()</td></tr>
 <tr class="separator:ae9d3221d50200a46437b1564cc3a74e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc52438bfeefac449697c7f07ee2820d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#acc52438bfeefac449697c7f07ee2820d">setBuffer</a> (int newSize)</td></tr>
-<tr class="separator:acc52438bfeefac449697c7f07ee2820d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62295912fc8c8a0d782ffde94eb1607c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a62295912fc8c8a0d782ffde94eb1607c">setBuffer</a> (int newCapacity)</td></tr>
+<tr class="separator:a62295912fc8c8a0d782ffde94eb1607c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a544c841a729a599581d35985d69663b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a544c841a729a599581d35985d69663b3">ensureRemainingCapacity</a> (int spaceNeeded)</td></tr>
 <tr class="separator:a544c841a729a599581d35985d69663b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7becd1f37b2db660d2335aec66075c8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#ad7becd1f37b2db660d2335aec66075c8">capacity</a> ()</td></tr>
@@ -3456,7 +3456,7 @@ Java std library interface implementation</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Returns false if no buffer space is allocated, true otherwise. This might be the case, if constructed with <em><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a0b7e6f9a4638528a39ba8d41a9edca55">AString()</a></em> or <em>AString(0)</em>, by invoking <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#acc52438bfeefac449697c7f07ee2820d">setBuffer(0)</a> or <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a91e28e1274cd18a6413c67bf55356cf6">setNull</a>.</p>
+<p> Returns false if no buffer space is allocated, true otherwise. This might be the case, if constructed with <em><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a0b7e6f9a4638528a39ba8d41a9edca55">AString()</a></em> or <em>AString(0)</em>, by invoking <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a62295912fc8c8a0d782ffde94eb1607c">setBuffer(0)</a> or <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a91e28e1274cd18a6413c67bf55356cf6">setNull</a>.</p>
 <dl class="section return"><dt>Returns</dt><dd>true if no buffer is allocated. </dd></dl>
 
 </div>
@@ -3474,7 +3474,7 @@ Java std library interface implementation</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Returns true if no buffer space is allocated, false otherwise. This might be the case, if constructed with <em><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a0b7e6f9a4638528a39ba8d41a9edca55">AString()</a></em> or <em>AString(0)</em>, by invoking <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#acc52438bfeefac449697c7f07ee2820d">setBuffer(0)</a> or <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a91e28e1274cd18a6413c67bf55356cf6">setNull</a>.</p>
+<p> Returns true if no buffer space is allocated, false otherwise. This might be the case, if constructed with <em><a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a0b7e6f9a4638528a39ba8d41a9edca55">AString()</a></em> or <em>AString(0)</em>, by invoking <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a62295912fc8c8a0d782ffde94eb1607c">setBuffer(0)</a> or <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a91e28e1274cd18a6413c67bf55356cf6">setNull</a>.</p>
 <dl class="section return"><dt>Returns</dt><dd>true if no buffer is allocated. </dd></dl>
 
 </div>
@@ -4014,7 +4014,7 @@ Java std library interface implementation</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="acc52438bfeefac449697c7f07ee2820d"></a>
+<a class="anchor" id="a62295912fc8c8a0d782ffde94eb1607c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -4022,7 +4022,7 @@ Java std library interface implementation</h2></td></tr>
           <td class="memname">void setBuffer </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>newSize</em></td><td>)</td>
+          <td class="paramname"><em>newCapacity</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -4036,7 +4036,7 @@ Java std library interface implementation</h2></td></tr>
 <dl class="section note"><dt>Note</dt><dd>Any methods of this class that extend the length of the string represented, will invoke this method if the current buffer size is not sufficient. If a future string length of an AString is predictable, then it is advisable to allocate such size upfront to avoid recurring allocations.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">newSize</td><td>The new size for the allocation buffer. </td></tr>
+    <tr><td class="paramname">newCapacity</td><td>The new capacity of the internal buffer. </td></tr>
   </table>
   </dd>
 </dl>
@@ -4127,7 +4127,7 @@ Java std library interface implementation</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Set the actual length of the stored string. Using this method, the string can only be shortened. To change the internal allocation size, see <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#acc52438bfeefac449697c7f07ee2820d">setBuffer</a>.</p>
+<p> Set the actual length of the stored string. Using this method, the string can only be shortened. To change the internal allocation size, see <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a62295912fc8c8a0d782ffde94eb1607c">setBuffer</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">newLength</td><td>The new length of the <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html">AString</a>. Must be smaller than the current length.</td></tr>
@@ -4152,7 +4152,7 @@ Java std library interface implementation</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Set the actual length of the stored string. Using this method, the string can only be shortened. To change the internal allocation size, see <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#acc52438bfeefac449697c7f07ee2820d">setBuffer</a>. </p><dl class="section attention"><dt>Attention</dt><dd>Non checking variant of original method. See <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#JAVA_ASTRING_NC">Non-checking methods</a> for <em>_NC</em> method variants.</dd></dl>
+<p> Set the actual length of the stored string. Using this method, the string can only be shortened. To change the internal allocation size, see <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a62295912fc8c8a0d782ffde94eb1607c">setBuffer</a>. </p><dl class="section attention"><dt>Attention</dt><dd>Non checking variant of original method. See <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#JAVA_ASTRING_NC">Non-checking methods</a> for <em>_NC</em> method variants.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">newLength</td><td>The new length of the AString. Must be between 0 and the current length. </td></tr>
@@ -4175,7 +4175,7 @@ Java std library interface implementation</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Invokes <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#acc52438bfeefac449697c7f07ee2820d">setBuffer(0)</a> or <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a91e28e1274cd18a6413c67bf55356cf6">setNull</a>. </p><dl class="section return"><dt>Returns</dt><dd>true if no buffer is allocated. </dd></dl>
+<p> Invokes <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a62295912fc8c8a0d782ffde94eb1607c">setBuffer(0)</a> or <a class="el" href="classcom_1_1aworx_1_1lib_1_1strings_1_1AString.html#a91e28e1274cd18a6413c67bf55356cf6">setNull</a>. </p><dl class="section return"><dt>Returns</dt><dd>true if no buffer is allocated. </dd></dl>
 
 </div>
 </div>
@@ -5536,7 +5536,7 @@ Java std library interface implementation</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu May 26 2016 13:01:46 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 20 2016 10:57:55 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

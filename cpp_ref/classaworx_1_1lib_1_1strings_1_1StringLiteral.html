@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1604 R. 1</span>
+   &#160;<span id="projectnumber">V. 1604 R. 2</span>
    </div>
   </td>
  </tr>
@@ -153,7 +153,7 @@ class aworx::lib::strings::StringLiteral&lt; TLength &gt;</h3>
  For example, template method <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#ac243bc3f2d0f61eb45d49f488ddbcb63">AString::operator&lt;&lt;(const T&amp;)</a> which internally makes use of template method <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a4dbe5fba1e5c5ed69d12d57b3eb49ef7">AString::Apply</a> will append ASLiterals (up to a certain amount of characters) without doing a copy loop.</p>
 <p>The class is useful to assign string literals to objects, including their lengths and pass them around, hence the name.<br />
 </p>
-<dl class="section note"><dt>Note</dt><dd>This class <b>StringLiteral</b>, when used in source code as well as in documentations, is oftenly referred to using the synonym '<b>SLiteral</b>'. For more information about the synonymous names of ALib string classes, refer to <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#alib_namespace_strings_class_overview">String Classes Overview</a> and <a class="el" href="namespaceaworx.html#CPP_AWORX_NS_SHORTCUTS">Type Shortcuts in the aworx Namespace</a>.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>This class <b>StringLiteral</b>, when used in source code as well as in documentations, is oftenly referred to using the synonym '<b>SLiteral</b>'. For more information about the synonymous names of ALib string classes, refer to <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#alib_namespace_strings_class_overview">String Classes Overview</a> and <a class="el" href="namespaceaworx.html#CPP_AWORX_NS_SHORTCUTS">Type Shortcuts of Namespace aworx</a>.</dd></dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">TLength</td><td>The length of the represented string. </td></tr>
@@ -205,8 +205,8 @@ Public Methods</h2></td></tr>
 <tr class="separator:adcffeb665e497d8c0909063e4b5df871 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a863a723eb56ea0b5fab9a838c5f27658 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a863a723eb56ea0b5fab9a838c5f27658">String</a> (const char *<a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#adae84acc92cd77a04f6aaf533643a33a">buffer</a>, int contentLength)</td></tr>
 <tr class="separator:a863a723eb56ea0b5fab9a838c5f27658 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79bdef100f3c7887fd120a7a98d8062c inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a79bdef100f3c7887fd120a7a98d8062c">String</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;src, int regionStart, int regionLength)</td></tr>
-<tr class="separator:a79bdef100f3c7887fd120a7a98d8062c inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91744e23d962777f812b537979d5ce9e inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a91744e23d962777f812b537979d5ce9e">String</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;src, int regionStart, int regionLength=<a class="el" href="classaworx_1_1lib_1_1strings_1_1CString.html#a702a7d928cd1d34c5aa2f26dd97e199e">CString::MaxLen</a>)</td></tr>
+<tr class="separator:a91744e23d962777f812b537979d5ce9e inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b1f593a0b9b71d210993cea0727b419 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a2b1f593a0b9b71d210993cea0727b419 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a2b1f593a0b9b71d210993cea0727b419">String</a> (const T &amp;src)</td></tr>
 <tr class="separator:a2b1f593a0b9b71d210993cea0727b419 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -421,7 +421,7 @@ Additional Inherited Members</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu May 26 2016 13:01:45 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 20 2016 10:57:53 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

@@ -18,6 +18,7 @@ var searchData=
   ['comments',['comments',['../classcom_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Variable.html#a61ad1915b74bbe1d88054839516d1873',1,'com.aworx.lib.config.IniFile.Variable.comments()'],['../classcom_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Section.html#a61ad1915b74bbe1d88054839516d1873',1,'com.aworx.lib.config.IniFile.Section.comments()']]],
   ['config',['config',['../classcom_1_1aworx_1_1lib_1_1ALIB.html#a0910717551963df697d192900a7f4f59',1,'com::aworx::lib::ALIB']]],
   ['configcategoryname',['configCategoryName',['../classcom_1_1aworx_1_1lib_1_1ALIB.html#a25cfe93aaf9615cfe8d411514c1f1499',1,'com.aworx.lib.ALIB.configCategoryName()'],['../classcom_1_1aworx_1_1lox_1_1ALox.html#a25cfe93aaf9615cfe8d411514c1f1499',1,'com.aworx.lox.ALox.configCategoryName()']]],
+  ['configurationread',['configurationRead',['../classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html#a2cdd8a5eae9f519716e5221dc724e540',1,'com::aworx::lox::core::Domain']]],
   ['contents',['contents',['../classcom_1_1aworx_1_1lib_1_1Report_1_1Message.html#aac402167ae7224b2af77f7f9944ee5f0',1,'com::aworx::lib::Report::Message']]],
   ['create',['CREATE',['../enumcom_1_1aworx_1_1lib_1_1enums_1_1ContainerOp.html#a953f73df78d66c15d03328d5d077a171',1,'com::aworx::lib::enums::ContainerOp']]],
   ['createownerstacktrace',['createOwnerStackTrace',['../classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html#a29d24e2a4f8d9298112a72dbc2cd8d9f',1,'com::aworx::lib::threads::ThreadLock']]],

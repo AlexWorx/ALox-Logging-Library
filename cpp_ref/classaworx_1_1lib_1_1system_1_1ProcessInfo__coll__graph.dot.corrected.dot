@@ -6,8 +6,7 @@ digraph "ProcessInfo"
   Node2 [label="PreallocatedString\<TCapacity\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html"];
   Node1 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" current" ,fontname="Helvetica"];
   Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" PID\nPPID" ,fontname="Helvetica"];
-  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" ExecName" ,fontname="Helvetica"];
-  Node3 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" StatState\nStat\nCmdLine\nstatPGRP\nConsoleTitle" ,fontname="Helvetica"];
+  Node3 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" StatState\nStat\nCmdLine\nstatPGRP\nExecFilePath\nName\nConsoleTitle\nExecFileName" ,fontname="Helvetica"];
   Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node4 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node3 [label="AString",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1AString.html"];

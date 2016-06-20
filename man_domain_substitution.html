@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1604 R. 1</span>
+   &#160;<span id="projectnumber">V. 1604 R. 2</span>
    </div>
   </td>
  </tr>
@@ -134,28 +134,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 3. Substitution Rules and External Configuration</h1>
 <h2><a class="anchor" id="man_domain_substitution_config_using"></a>
 3.1 Using External Configuration</h2>
-<p>Setting <em>Domain Substitution</em>Rs <em>'from within the source code'</em> is easy and straightforward. However, when working in a team such changes might not be appreciated by other team members. In this and other situations it is advisable to retrieve <em>Domain Substitution</em>R from external configuration data, command-line parameters or other sources at run-time.</p>
-<p>For <em>Domain Substitution</em>Rs and also other configuration data, ALox leverages the configuration facility provided by underlying utility library ALib.</p>
+<p>Setting <em>Domain Substitution Rules</em> <em>'from within the source code'</em> is easy and straightforward. However, when working in a team such changes might not be appreciated by other team members. In this and other situations it is advisable to retrieve <em>Domain Substitution Rules</em> from external configuration data, command-line parameters or other sources at run-time.</p>
+<p>For <em>Domain Substitution Rules</em> and also other configuration data, ALox leverages the configuration facility provided by underlying utility library ALib.</p>
 <dl class="section note"><dt>Note</dt><dd>For general information on ALox configuration variables consult <a class="el" href="group__GrpALoxConfigVars.html">I - Configuration Variables</a>.<br />
  For information on how to pass configuration data from custom sources to ALox, refer to namespace documentation <b>aworx::lib::config</b> (<a class="elRef" doxygen="ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" href="cpp_ref/namespaceaworx_1_1lib_1_1config.html">C++</a>, <a class="elRef" doxygen="ALox/html/cs_ref/cs_ref.tag:cs_ref/" href="cs_ref/namespacecs_1_1aworx_1_1lib_1_1config.html">C#</a>, <a class="elRef" doxygen="ALox/html/java_ref/java_ref.tag:java_ref/" href="java_ref/namespacecom_1_1aworx_1_1lib_1_1config.html">Java</a>).</dd></dl>
-<p>The constructor of class <b>Lox</b> tries to read a configuration variable named <code>ALOX_LOXNAME_DOMAIN_SUBSTITUTION</code>. When setting the variable, the substring <code>'LOXNAME'</code> needs to be replaced by the name of the <b>Lox</b> in question. The variable itself may contain a list of <em>Domain Substitution</em>Rs separated by semicolons <code> ';'</code>. Each rule consists of two strings which correspond to the two parameters of method <b>Lox.SetDomainSubstitutionRule</b> (<a class="elRef" doxygen="ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" href="cpp_ref/classaworx_1_1lox_1_1Lox.html#a57e92057e7a33c93ff16a677df6db52b">C++</a>, <a class="elRef" doxygen="ALox/html/cs_ref/cs_ref.tag:cs_ref/" href="cs_ref/classcs_1_1aworx_1_1lox_1_1Lox.html#ad02747a6295e7875c14a77996d9728cd">C#</a>, <a class="elRef" doxygen="ALox/html/java_ref/java_ref.tag:java_ref/" href="java_ref/classcom_1_1aworx_1_1lox_1_1Lox.html#a28c3f7dfb6142e509a46adbfbd309264">Java</a>). These two strings are to be separated by <code>'-&gt;'</code>.</p>
-<p>As an example, an ini-File of an application might have the following sub-section:</p>
-<div class="fragment"><div class="line">[ALOX]</div><div class="line">MYLOX_DOMAIN_SUBSTITUTION= /A_DOM -&gt; /BETTER_NAME   ; \</div><div class="line">                           /UI    -&gt; /LIBS/UI</div></div><!-- fragment --><p> With variable <code>ALOX_MYLOX_DOMAIN_SUBSTITUTION</code> set in the ini-File, a <b>Lox</b> named <code>'MYLOX'</code> would receive the two rules specified.</p>
+<p>The constructor of class <b>Lox</b> tries to read a configuration variable named <code>ALOX_LOXNAME_DOMAIN_SUBSTITUTION</code>. When setting the variable, the substring <code>'LOXNAME'</code> needs to be replaced by the name of the <b>Lox</b> in question. The variable itself may contain a list of <em>Domain Substitution Rules</em> separated by semicolons <code> ';'</code>. Each rule consists of two strings which correspond to the two parameters of method <b>Lox.SetDomainSubstitutionRule</b> (<a class="elRef" doxygen="ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" href="cpp_ref/classaworx_1_1lox_1_1Lox.html#a57e92057e7a33c93ff16a677df6db52b">C++</a>, <a class="elRef" doxygen="ALox/html/cs_ref/cs_ref.tag:cs_ref/" href="cs_ref/classcs_1_1aworx_1_1lox_1_1Lox.html#ad02747a6295e7875c14a77996d9728cd">C#</a>, <a class="elRef" doxygen="ALox/html/java_ref/java_ref.tag:java_ref/" href="java_ref/classcom_1_1aworx_1_1lox_1_1Lox.html#a28c3f7dfb6142e509a46adbfbd309264">Java</a>). These two strings are to be separated by <code>'-&gt;'</code>.</p>
+<p>As an example, an INI file of an application might have the following sub-section:</p>
+<div class="fragment"><div class="line">[ALOX]</div><div class="line">MYLOX_DOMAIN_SUBSTITUTION= /A_DOM -&gt; /BETTER_NAME   ; \</div><div class="line">                           /UI    -&gt; /LIBS/UI</div></div><!-- fragment --><p> With variable <code>ALOX_MYLOX_DOMAIN_SUBSTITUTION</code> set in the INI file, a <b>Lox</b> named <code>'MYLOX'</code> would receive the two rules specified.</p>
 <h2><a class="anchor" id="man_domain_substitution_config_prevent"></a>
 3.2 Preventing The Use Of External Configuration</h2>
-<p>Sometimes it might be wanted that <em>Domain Substitution</em>R are not manipulatable externally. A reason could be that by the nature of these rules, unauthorized users are enabled to change the <em>Log Domains</em> and hence also to change their <em>Verbosity</em>, which otherwise can be prevented for protection (see <a class="el" href="man_external_verbosity_configuration.html">12 - External Verbosity Configuration</a>).</p>
+<p>Sometimes it might be wanted that <em>Domain Substitution Rules</em> are not manipulatable externally. A reason could be that by the nature of these rules, unauthorized users are enabled to change the <em>Log Domains</em> and hence also to change their <em>Verbosity</em>, which otherwise can be prevented for protection (see <a class="el" href="man_external_verbosity_configuration.html">12 - External Verbosity Configuration</a>).</p>
 <p>ALox does not provide an explicit interface to prevent reading the rules from the configuration. The simple way out, is to delete all rules after the creation of the <b>lox</b>:</p>
 <div class="fragment"><div class="line">myLox= <span class="keyword">new</span> <a class="codeRef" doxygen="ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" href="cpp_ref/classaworx_1_1lox_1_1Lox.html">Lox</a>( <span class="stringliteral">&quot;MyLox&quot;</span> );                      <span class="comment">// name will be converted to upper case</span></div><div class="line">myLox.SetDomainSubstitutionRule( null, null );  <span class="comment">// clear rules eventually read in constructor</span></div></div><!-- fragment --><h1><a class="anchor" id="man_domain_substitution_wrapup"></a>
 4. Final Remarks</h1>
 <p><em>Domain Substitution</em> rules are always applied to all <em>Loggers</em> within a <b>Lox</b>.</p>
 <p>As noted already, <em>Domain Substitution</em> should be used with care and in case of doubt, thought well. Different alternatives to setting a <em>Domain Substitution</em> exist. For example, to manipulate the domain of methods executed within a library, a thread-related <em>Scope Domain</em> setting may be set prior to invoking library methods.</p>
 <p><em>Prefix Logables</em> that have been set for a domain that gets substituted, of-course do <em>not</em> apply to the substitution domain. In contrast, a <em>Log Statement</em> whose resulting domain gets substituted works just as it was using the new domain within its invocation and <em>Scope Domain</em> setting. Therefore, <em>Domain Substitution</em> settings - if at all - should be made at the beginning of a processes life-cycle and then should not be altered. In this case, also <em>Prefix Logables</em> will be 'transferred' to the substitution domain, providing that the commands that are setting them use relative domain paths.</p>
+<p><em>Domain Substitution</em> may not be used to substitute <em>Log Domains</em> of the standard domain tree with those of the internal tree or vice versa.</p>
 <hr/>
  <center>Next chapter: <a class="el" href="man_colorful_loggers.html">15 - Colorful Loggers</a> </center> <center> <a class="el" href="manual.html">Back to index</a> </center> </div></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu May 26 2016 13:01:47 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 20 2016 10:57:55 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

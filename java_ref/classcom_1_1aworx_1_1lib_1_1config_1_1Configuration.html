@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1604 R. 1</span>
+   &#160;<span id="projectnumber">V. 1604 R. 2</span>
    </div>
   </td>
  </tr>
@@ -146,7 +146,7 @@ Collaboration diagram for Configuration:</div>
 <li>command line parameter configuration options (Priority 400, provided in static constant field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac1f233d6ee7b092b2ccd53bb12a51911">PRIO_CMD_LINE</a>).</li>
 <li>environment variable configuration options (Priority 300, provided in static constant field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac51f528297704c7c6c1a965d03b8e02f">PRIO_ENV_VARS</a>).</li>
 </ul>
-<p>An application specific instance of abstract class <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a> that uses appropriate configuration techniques (ini-files, registry entries, etc.) optionally completes this set. It is proposed to use a priority value of 200 (provided in static constant field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a84df1450d5fdbfd98e7bc29bb04957ea">PRIO_INI_FILE</a>) for custom configuration plug-ins. This way, environment variables could <em>overwrite</em> entries in configuration files and command line parameters could in turn <em>overwrite</em> environment variables.</p>
+<p>An application specific instance of abstract class <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a> that uses appropriate configuration techniques (INI files, registry entries, etc.) optionally completes this set. It is proposed to use a priority value of 200 (provided in static constant field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a84df1450d5fdbfd98e7bc29bb04957ea">PRIO_INI_FILE</a>) for custom configuration plug-ins. This way, environment variables could <em>overwrite</em> entries in configuration files and command line parameters could in turn <em>overwrite</em> environment variables.</p>
 <p>Variables are case insensitive for the built-in <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a> types <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugIn.html">CommandLinePlugIn</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html">EnvironmentPlugIn</a>.</p>
 <p>It is recommended to treat variable names case insensitive within custom implementations (specializations) of class <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a> as well.</p>
 <p>The interface methods of this class are implemented <em>synchronized</em>. When adding or removing plug-ins, the instance should by synchronized (locked) as well. </p>
@@ -538,7 +538,8 @@ ArrayList&lt; <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configur
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Utility method that checks if a given value represents 'true'. </p><dl class="params"><dt>Parameters</dt><dd>
+<p> Utility method that checks if a given value represents boolean <b>true</b>. Uses field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a15741414029ba6d8a9289b31d230d5b3">trueValues</a>. Comparisons are made case insensitive.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">value</td><td>The value to check</td></tr>
   </table>
@@ -584,7 +585,8 @@ ArrayList&lt; <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configur
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Uses <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ab5e7c7327d8354546217c00c3119cfaa">get</a> to read a string value and returns true if this variable holds one of the values found in the <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a15741414029ba6d8a9289b31d230d5b3">trueValues</a> string list. By default, this string list contains the strings "true", "yes" and "1" (case insensitive comparison). </p><dl class="params"><dt>Parameters</dt><dd>
+<p> Uses <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ab5e7c7327d8354546217c00c3119cfaa">get</a> to read a string value and returns true if this variable holds one of the values found in the <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a15741414029ba6d8a9289b31d230d5b3">trueValues</a> string list.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">category</td><td>The category of the variable. (AString compatible type expected.) </td></tr>
     <tr><td class="paramname">name</td><td>The name of the environment variable to read (AString compatible type expected.) </td></tr>
@@ -593,7 +595,7 @@ ArrayList&lt; <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configur
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns true, if the environment variable is defined and has one of the values found in field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a15741414029ba6d8a9289b31d230d5b3">trueValues</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns <code>true</code>, if the environment variable is defined and has one of the values found in field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a15741414029ba6d8a9289b31d230d5b3">trueValues</a>. </dd></dl>
 
 </div>
 </div>
@@ -627,7 +629,8 @@ ArrayList&lt; <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configur
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Uses <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ab5e7c7327d8354546217c00c3119cfaa">get</a> to read a string value and returns true if this variable holds one of the values found in the <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a15741414029ba6d8a9289b31d230d5b3">trueValues</a> string list. By default, this string list contains the strings "true", "yes" and "1" (case insensitive comparison). </p><dl class="params"><dt>Parameters</dt><dd>
+<p> Uses <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ab5e7c7327d8354546217c00c3119cfaa">get</a> to read a string value and returns true if this variable holds one of the values found in the <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a15741414029ba6d8a9289b31d230d5b3">trueValues</a> string list.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">category</td><td>The category of the variable. (AString compatible type expected.) </td></tr>
     <tr><td class="paramname">name</td><td>The name of the environment variable to read (AString compatible type expected.) </td></tr>
@@ -635,7 +638,7 @@ ArrayList&lt; <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configur
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns true, if the environment variable is defined and has one of the values found in field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a15741414029ba6d8a9289b31d230d5b3">trueValues</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns <code>true</code>, if the environment variable is defined and has one of the values found in field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a15741414029ba6d8a9289b31d230d5b3">trueValues</a>. </dd></dl>
 
 </div>
 </div>
@@ -663,14 +666,15 @@ ArrayList&lt; <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configur
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Uses <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ab5e7c7327d8354546217c00c3119cfaa">get</a> to read a string value and returns true if this variable holds one of the values found in the <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a15741414029ba6d8a9289b31d230d5b3">trueValues</a> string list. By default, this string list contains the strings "true", "yes" and "1" (case insensitive comparison). </p><dl class="params"><dt>Parameters</dt><dd>
+<p> Uses <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ab5e7c7327d8354546217c00c3119cfaa">get</a> to read a string value and returns true if this variable holds one of the values found in the <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a15741414029ba6d8a9289b31d230d5b3">trueValues</a> string list.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">category</td><td>The category of the variable. (AString compatible type expected.) </td></tr>
     <tr><td class="paramname">name</td><td>The name of the environment variable to read (AString compatible type expected.)</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns true, if the environment variable is defined and has one of the values found in field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a15741414029ba6d8a9289b31d230d5b3">trueValues</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns <code>true</code>, if the environment variable is defined and has one of the values found in field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a15741414029ba6d8a9289b31d230d5b3">trueValues</a>. </dd></dl>
 
 </div>
 </div>
@@ -704,7 +708,8 @@ ArrayList&lt; <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configur
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Uses <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ab5e7c7327d8354546217c00c3119cfaa">get</a> to read a string value and returns true if this variable holds one of the values found in the <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a15741414029ba6d8a9289b31d230d5b3">trueValues</a> string list. By default, this string list contains the strings "true", "yes" and "1" (case insensitive comparison). </p><dl class="params"><dt>Parameters</dt><dd>
+<p> Uses <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ab5e7c7327d8354546217c00c3119cfaa">get</a> to read a string value and returns true if this variable holds one of the values found in the <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a15741414029ba6d8a9289b31d230d5b3">trueValues</a> string list.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">category</td><td>The category of the variable. (AString compatible type expected.) </td></tr>
     <tr><td class="paramname">name</td><td>The name of the environment variable to read (AString compatible type expected.) </td></tr>
@@ -712,7 +717,7 @@ ArrayList&lt; <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configur
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns true, if the environment variable is defined and has one of the values found in field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a15741414029ba6d8a9289b31d230d5b3">trueValues</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns <code>true</code>, if the environment variable is defined and has one of the values found in field <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a15741414029ba6d8a9289b31d230d5b3">trueValues</a>. </dd></dl>
 
 </div>
 </div>
@@ -1294,7 +1299,7 @@ The use of this character is specific to a plug-ins' implementation. Defaults to
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Values considered to indicate "true". Defaults to "1", "true", "yes" and "ok". Comparisons are made case insensitive.</p>
+<p>Values considered to indicate "true". Defaults to { "1", "true", "t", "yes", "y", "on", "ok" }. See methods <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac99ae832b810701fd58549162db17169">isTrue</a>.</p>
 <p>Application specific values (e.g. localization languages) might be added by publicly accessing this field and adding new values (or removing existing). </p>
 
 </div>
@@ -1306,7 +1311,7 @@ The use of this character is specific to a plug-ins' implementation. Defaults to
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu May 26 2016 13:01:46 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 20 2016 10:57:55 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

@@ -5,7 +5,7 @@
   <filterSection>
     <filterAttribute>doxygen</filterAttribute>
     <toc>
-      <section title="ALox V. 1604 R. 1" ref="index.html">
+      <section title="ALox V. 1604 R. 2" ref="index.html">
         <section title="ALox Home" ref="../index.html" />
         <section title="FAQ" ref="../faq.html" />
         <section title="Manual" ref="../manual.html" />
@@ -161,6 +161,7 @@
                       <section title="_" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a5997f9405428b49e5fd680e62ee41c45" />
                       <section title="_dbgCheck" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a8747c38ac0ef9f863ede544d51ff6721" />
                       <section title="Append" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a45cb08597c96cf62edb8ece124d8e4fc" />
+                      <section title="Append" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a4e836e4a665a6ffd7cd1ee48dda06798" />
                       <section title="Apply" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a4dbe5fba1e5c5ed69d12d57b3eb49ef7" />
                       <section title="Capacity" ref="classaworx_1_1lib_1_1strings_1_1AString.html#ad07c7e740f0be42afb0c1eda25361864" />
                       <section title="Clear" ref="classaworx_1_1lib_1_1strings_1_1AString.html#ae4d5af65574550e39830297e4496f81b" />
@@ -181,7 +182,7 @@
                       <section title="ReplaceSubstring" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a17e140dfb247b527da7f6e253601e6b3" />
                       <section title="SearchAndReplace" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a5bf64f32d0163186492461fb2c3e4300" />
                       <section title="SearchAndReplaceAll" ref="classaworx_1_1lib_1_1strings_1_1AString.html#ada2d3b01c31c088c8e04676c6e50e78b" />
-                      <section title="SetBuffer" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a4c82c5367836f6886f1505c803ce4058" />
+                      <section title="SetBuffer" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a0bdd4581fc80e9bba8ceb46e030c75ac" />
                       <section title="SetBuffer" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a0c8474e9c19a45b535f1b460aac3847b" />
                       <section title="SetCharAt" ref="classaworx_1_1lib_1_1strings_1_1AString.html#ab2cf143ab3c019c18b6ada0ea87a6370" />
                       <section title="SetLength" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a0c14574ea5ef859e15b51f288c40f5da" />
@@ -250,6 +251,11 @@
                     </section>
                     <section title="IsApplicable" ref="structaworx_1_1lib_1_1strings_1_1IsApplicable.html" />
                     <section title="IsApplicable&lt; const lox::core::Logger &amp; &gt;" ref="structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01lox_1_1core_1_1Logger_01_6_01_4.html" />
+                    <section title="IsApplicable&lt; const QByteArray &amp; &gt;" ref="structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QByteArray_01_6_01_4.html" />
+                    <section title="IsApplicable&lt; const QChar &amp; &gt;" ref="structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QChar_01_6_01_4.html" />
+                    <section title="IsApplicable&lt; const QLatin1String &amp; &gt;" ref="structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QLatin1String_01_6_01_4.html" />
+                    <section title="IsApplicable&lt; const QString &amp; &gt;" ref="structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QString_01_6_01_4.html" />
+                    <section title="IsApplicable&lt; const QVector&lt; uint &gt; &amp; &gt;" ref="structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QVector_3_01uint_01_4_01_6_01_4.html" />
                     <section title="IsApplicable&lt; const std::string &amp; &gt;" ref="structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01std_1_1string_01_6_01_4.html" />
                     <section title="IsTerminatable" ref="structaworx_1_1lib_1_1strings_1_1IsTerminatable.html" />
                     <section title="IsTerminatable&lt; AString &gt;" ref="structaworx_1_1lib_1_1strings_1_1IsTerminatable_3_01AString_01_4.html" />
@@ -290,7 +296,7 @@
                     <section title="String" ref="classaworx_1_1lib_1_1strings_1_1String.html">
                       <section title="String" ref="classaworx_1_1lib_1_1strings_1_1String.html#adcffeb665e497d8c0909063e4b5df871" />
                       <section title="String" ref="classaworx_1_1lib_1_1strings_1_1String.html#a863a723eb56ea0b5fab9a838c5f27658" />
-                      <section title="String" ref="classaworx_1_1lib_1_1strings_1_1String.html#a79bdef100f3c7887fd120a7a98d8062c" />
+                      <section title="String" ref="classaworx_1_1lib_1_1strings_1_1String.html#a91744e23d962777f812b537979d5ce9e" />
                       <section title="String" ref="classaworx_1_1lib_1_1strings_1_1String.html#a2b1f593a0b9b71d210993cea0727b419" />
                       <section title="AdjustRegion" ref="classaworx_1_1lib_1_1strings_1_1String.html#afe13e5000dc11709e5da14d928f838b7" />
                       <section title="Buffer" ref="classaworx_1_1lib_1_1strings_1_1String.html#a5d5ce30daece7ec96d0b70ccc5d46002" />
@@ -350,7 +356,7 @@
                       <section title="Set" ref="classaworx_1_1lib_1_1strings_1_1Substring.html#abd670ace7a547520a1de51e09af48d16" />
                       <section title="SetLength" ref="classaworx_1_1lib_1_1strings_1_1Substring.html#a0c14574ea5ef859e15b51f288c40f5da" />
                       <section title="SetNull" ref="classaworx_1_1lib_1_1strings_1_1Substring.html#a3805c0af8d0d8c718fabbfce10236da3" />
-                      <section title="Split" ref="classaworx_1_1lib_1_1strings_1_1Substring.html#a9ba2f83672cd35b574cba0788a923f36" />
+                      <section title="Split" ref="classaworx_1_1lib_1_1strings_1_1Substring.html#ad84c1d74d976618646e49aa7427b7151" />
                       <section title="Trim" ref="classaworx_1_1lib_1_1strings_1_1Substring.html#a7ab157d58b1dcdec6b1962e2ed9580dc" />
                       <section title="TrimEnd" ref="classaworx_1_1lib_1_1strings_1_1Substring.html#a96cf750c8bd36acaa7510d08c4709567" />
                       <section title="TrimStart" ref="classaworx_1_1lib_1_1strings_1_1Substring.html#ad35eefd241e9ac52278c696d28671760" />
@@ -373,6 +379,8 @@
                       <section title="Whitespaces" ref="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#ade1a53d31b95db4ed98b03ff74a8b472" />
                     </section>
                     <section title="ToStringDefined" ref="structaworx_1_1lib_1_1strings_1_1ToStringDefined.html" />
+                    <section title="ToStringDefined&lt; const QByteArray &amp; &gt;" ref="structaworx_1_1lib_1_1strings_1_1ToStringDefined_3_01const_01QByteArray_01_6_01_4.html" />
+                    <section title="ToStringDefined&lt; const QLatin1String &amp; &gt;" ref="structaworx_1_1lib_1_1strings_1_1ToStringDefined_3_01const_01QLatin1String_01_6_01_4.html" />
                     <section title="ToStringDefined&lt; const std::string &amp; &gt;" ref="structaworx_1_1lib_1_1strings_1_1ToStringDefined_3_01const_01std_1_1string_01_6_01_4.html" />
                     <section title="TString" ref="classaworx_1_1lib_1_1strings_1_1TString.html">
                       <section title="TString" ref="classaworx_1_1lib_1_1strings_1_1TString.html#a6d715743a3937ea101a8deda34d993dc" />
@@ -397,8 +405,10 @@
                         <section title="Root" ref="classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0afa03eb688ad8aa1db593d33dabd89bad" />
                         <section title="Current" ref="classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0a222a267cc5778206b253be35ee3ddab5" />
                         <section title="Home" ref="classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0a8cf04a9734132302f96da8e113e80ce5" />
-                        <section title="HOME_CONFIG" ref="classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0a01255de311d629c078914c471e45ec28" />
+                        <section title="HomeConfig" ref="classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0ae94961474a646742838ed46f32f89a47" />
                         <section title="Module" ref="classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0ae55f75a29310d7b60f7ac1d390c8ae42" />
+                        <section title="Temp" ref="classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0a9a438bd942f1f19e6a641028bcfb43ff" />
+                        <section title="VarTemp" ref="classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0ac42dbffd040a78993701573319deb9be" />
                       </section>
                       <section title="Directory" ref="classaworx_1_1lib_1_1system_1_1Directory.html#afb2dc4e4a36ed39171b54c55bc38d136" />
                       <section title="Directory" ref="classaworx_1_1lib_1_1system_1_1Directory.html#a3d2aef8216e51d8fea90c4f4b4f26959" />
@@ -408,12 +418,14 @@
                       <section title="CurrentDirectory" ref="classaworx_1_1lib_1_1system_1_1Directory.html#a06845a767764e37766027392413e068f" />
                       <section title="Exists" ref="classaworx_1_1lib_1_1system_1_1Directory.html#a348d7a37454d70c73f2b7e4106b5389a" />
                       <section title="IsValid" ref="classaworx_1_1lib_1_1system_1_1Directory.html#a1865c345633bd315a4095b999bbd2e6d" />
+                      <section title="evaluatedTempDir" ref="classaworx_1_1lib_1_1system_1_1Directory.html#ad0c1b40acd899ebb5f0388779ed4d1dc" />
+                      <section title="evaluatedVarTempDir" ref="classaworx_1_1lib_1_1system_1_1Directory.html#a4b09df20093589aae45a102d72bca303" />
                       <section title="Path" ref="classaworx_1_1lib_1_1system_1_1Directory.html#a7a1498c6111483e7acf3a52bef418c09" />
                     </section>
                     <section title="ProcessInfo" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html">
                       <section title="ProcessInfo" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a4219f7fc14fa3ed88a6511e0efc33e90" />
                       <section title="ProcessInfo" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#abd0dc1bed4dd3aa2cb51255d42b77f3b" />
-                      <section title="Current" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a1e9c04463bb57d8ae52cc6f5470ab44b" />
+                      <section title="Current" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a759e289a0ea1b35c1bd0fea90896432e" />
                       <section title="get" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#ac9e6c4357814bf5e9689600968ec16fc" />
                       <section title="Get" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#aca957846d7a97dfd4a2d168ff1230a39" />
                       <section title="getStatField" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a98338111ca0a208ada56d8e901e1fdd7" />
@@ -421,7 +433,9 @@
                       <section title="CmdLine" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a38741324f2f4c6aa56dc430d4388a76c" />
                       <section title="ConsoleTitle" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a39dfc3f00493a74b8ab6907dec8c80ae" />
                       <section title="current" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#afabfc6a52ba3d7842fe4c2b0bdc7cf6d" />
-                      <section title="ExecName" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#ab5fca5813a5614d7a284466c074bcacd" />
+                      <section title="ExecFileName" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a4261537d8a445f836cc32174e8ff0fd9" />
+                      <section title="ExecFilePath" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a6e88f1772ab15c3f177dfa4deed1612b" />
+                      <section title="Name" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a0de551a5eb98c9fa084c954655523d7b" />
                       <section title="PID" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#ab3394b1e9c9810e4172bb26364932511" />
                       <section title="PPID" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a2e9f2dde638643f2724049a1c5e559f2" />
                       <section title="Stat" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#aa1d0ce36cf7d7f9338610388ff42fa29" />
@@ -438,14 +452,11 @@
                         <section title="Desktop" ref="classaworx_1_1lib_1_1system_1_1System.html#aeae50cdd350e3deaae33d2900b0a72f2a2310408a63388fe57e3a4177168a8798" />
                         <section title="MobileDevice" ref="classaworx_1_1lib_1_1system_1_1System.html#aeae50cdd350e3deaae33d2900b0a72f2aeaf6ea57c3dde8d4f04202a0115c613f" />
                       </section>
-                      <section title="GetProcessName" ref="classaworx_1_1lib_1_1system_1_1System.html#a3efcfee814940f4c1c1ad2a99d5e172a" />
-                      <section title="getProcessName" ref="classaworx_1_1lib_1_1system_1_1System.html#a14d31f74cb29b4e92cc090905256c8d1" />
                       <section title="GetVariable" ref="classaworx_1_1lib_1_1system_1_1System.html#a7bd3327e84e88d8704a95585c57ee7ed" />
                       <section title="HasConsoleWindow" ref="classaworx_1_1lib_1_1system_1_1System.html#a62821694d315ff9e9b417531bce97ce6" />
                       <section title="IsDebuggerPresent" ref="classaworx_1_1lib_1_1system_1_1System.html#ad0e7333ca518b4965afb347b0c072680" />
                       <section title="RTE" ref="classaworx_1_1lib_1_1system_1_1System.html#a28b473ab05b45948857c11c98973e6c2" />
                       <section title="DebuggerProcessName" ref="classaworx_1_1lib_1_1system_1_1System.html#a1c6688a1a1c7568ff374b4ccd279b041" />
-                      <section title="processName" ref="classaworx_1_1lib_1_1system_1_1System.html#acdefe8c9e0fc3c1abb1655ea13d4f3d0" />
                     </section>
                   </section>
                   <section title="threads" ref="namespaceaworx_1_1lib_1_1threads.html">
@@ -529,13 +540,14 @@
                       <section title="Age" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#afc3ea69a2be2bc54667e14ba3fa8cb83" />
                       <section title="CreationTime" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#aac6aca1e8b6f497d214a46445e04b232" />
                       <section title="Format" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#aa0befe92a960e53ffbe042855f5d5ec3" />
-                      <section title="FromDays" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#ade22d8be07ec20cef7e883706db3fe24" />
-                      <section title="FromHours" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#a57b52b2e1e8b464a3959fd83575a48af" />
-                      <section title="FromMicros" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#a16a825623d5af98d25d329d0b9f56dcf" />
-                      <section title="FromMillis" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#ac6f86e6b884d65770873fca3c6f7b498" />
-                      <section title="FromMinutes" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#ac1cc62dbe83f81c070b0307b75ce275a" />
-                      <section title="FromNanos" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#a4564b4390f9f8f71aae6df7109e62486" />
-                      <section title="FromSeconds" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#a5d07dd8ebb7243db9a95bfe07a18938a" />
+                      <section title="FromDays" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#a64467b0a655d54c0532f9148b4474ee9" />
+                      <section title="FromHours" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#a2cc9107419ee7696e296bd899d9bbcbe" />
+                      <section title="FromMicros" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#a271a2895ca829250aee715369cb70316" />
+                      <section title="FromMillis" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#a3658f98994669745862df85e5b7ae923" />
+                      <section title="FromMinutes" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#ac444cc81ed42417f7d07aa6880b8c22a" />
+                      <section title="FromNanos" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#a7e6d2ec860a93ef3a799801db87b5602" />
+                      <section title="FromSeconds" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#ac45497fa700f7c67f22accfee553c323" />
+                      <section title="HasElapsed" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#a9a2c788835d7f696352b3648637f3a58" />
                       <section title="InDays" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#a9397bc3e901c7e8e901763a554fdcbc8" />
                       <section title="InEpochSeconds" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#ad96f1b87ddca623ddecf2821280bfcb2" />
                       <section title="InFileTime" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#aa21af34c932595e5cc84deab77531bff" />
@@ -630,6 +642,7 @@
                   <section title="ALIB" ref="classaworx_1_1lib_1_1ALIB.html">
                     <section title="Init" ref="classaworx_1_1lib_1_1ALIB.html#a368faebfbb1d770d76d5e073266a3deb" />
                     <section title="IsInitialized" ref="classaworx_1_1lib_1_1ALIB.html#ab2c217951b4362bb6661a1e863105320" />
+                    <section title="Sleep" ref="classaworx_1_1lib_1_1ALIB.html#a36908c1eede2c297a37d4f1a342d7753" />
                     <section title="SleepMicros" ref="classaworx_1_1lib_1_1ALIB.html#ad450f3684e2b0fbb9e79124eb9e63146" />
                     <section title="SleepMillis" ref="classaworx_1_1lib_1_1ALIB.html#a975f9e2b2decf461ca35d96c76d64f87" />
                     <section title="SleepNanos" ref="classaworx_1_1lib_1_1ALIB.html#a2597856ee4c535ad62f07982ae9e483b" />
@@ -719,6 +732,7 @@
                         <section title="values" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html#ad80b3fe86185c92f73dddc2805963dc0" />
                       </section>
                       <section title="MetaInfo" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html">
+                        <section title="MetaInfo" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#aef8deedd002add9fa92b6776af338ddb" />
                         <section title="~MetaInfo" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a7d8a1047142018ffc32e85ca0bf21df0" />
                         <section title="processVariable" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#adea560dbe05cd27b8d3313d5bd202817" />
                         <section title="Write" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a037523cdb14e8bae567b8fef2d102009" />
@@ -728,6 +742,7 @@
                         <section title="Format" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a5f73a9d6a9bfabaa4a33c34831006d07" />
                         <section title="FormatWarning" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a9b4dcaaa0d0c31151f28626b539b2c78" />
                         <section title="LogNumberMinDigits" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a72c44479ec3d128c1208b49e4b8ede08" />
+                        <section title="MaxElapsedTime" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ade3c3fa6f130947ef6aa22e72a4d1efd" />
                         <section title="NoMethodInfo" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a3feb1a3fdbbde8059ca3007d9a7421d6" />
                         <section title="NoSourceFileInfo" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#af44d2da6f43116de8557910776f9b1f1" />
                         <section title="TimeDiffDays" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a7b75d4c8a835d33c6dac1bd7416ed70a" />
@@ -741,10 +756,10 @@
                         <section title="TimeDiffSecs" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a41fbed046e377a2f835b2f7e9c93c758" />
                         <section title="TimeElapsedDays" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a090fd75d30917282f140e5fcdde1fe3a" />
                         <section title="TimeOfDayFormat" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a78d44b9a457f1b8a1e175b3fe7043f8f" />
-                        <section title="VerbosityError" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a69535f9bd8c5493447f323c5cf7f7401" />
-                        <section title="VerbosityInfo" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a2417488cbf15cf08bf1c373b9aac3222" />
-                        <section title="VerbosityVerbose" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a78d18da89faf78000af7767edbd48249" />
-                        <section title="VerbosityWarning" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#accf8a9e6cd0f83806e46a5b3998965d2" />
+                        <section title="VerbosityError" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a697a4af23750f87b2cc13aaaecc056eb" />
+                        <section title="VerbosityInfo" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a807b208f28b840290a9784dbef53e5bc" />
+                        <section title="VerbosityVerbose" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a9959513d319bcf3d5bbd6d4d49b2ef27" />
+                        <section title="VerbosityWarning" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#aec7b4b89c7f2ec594514bd36388f7cc6" />
                       </section>
                       <section title="ObjectConverter" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html">
                         <section title="~ObjectConverter" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html#a6e913a253720dcb333b6205b4272709d" />
@@ -815,12 +830,13 @@
                       <section title="GetRoot" ref="classaworx_1_1lox_1_1core_1_1Domain.html#a3fbb171d3b615727af29167b4cb61c4b" />
                       <section title="GetVerbosity" ref="classaworx_1_1lox_1_1core_1_1Domain.html#a19ec6c97f7e17ca51908a7174e43f2bd" />
                       <section title="IsActive" ref="classaworx_1_1lox_1_1core_1_1Domain.html#a6dc8fbb3427c720adda3ed3a807f9902" />
-                      <section title="PathSeparator" ref="classaworx_1_1lox_1_1core_1_1Domain.html#a28fc603aa3aaa186e688d30802253538" />
                       <section title="RemoveLogger" ref="classaworx_1_1lox_1_1core_1_1Domain.html#a9aa2e7ebee563c92c3335f9a3b4a574c" />
                       <section title="removeLoggerRecursive" ref="classaworx_1_1lox_1_1core_1_1Domain.html#a1b032fcdfc7306d529107bcd28145b66" />
+                      <section title="Separator" ref="classaworx_1_1lox_1_1core_1_1Domain.html#a5d34c67477a6f6f1a0a3803f1300cf2e" />
                       <section title="SetVerbosity" ref="classaworx_1_1lox_1_1core_1_1Domain.html#a72b26b0cca06a87932744d5f625efbfa" />
                       <section title="ToString" ref="classaworx_1_1lox_1_1core_1_1Domain.html#a40a66924a70652623c5e6bceaff3d62e" />
                       <section title="CntLogCalls" ref="classaworx_1_1lox_1_1core_1_1Domain.html#a2c80e5630abe5d5042ddb4b85c0c3562" />
+                      <section title="ConfigurationRead" ref="classaworx_1_1lox_1_1core_1_1Domain.html#a6b8f94546fd5c1c564c2bfe0fee6c770" />
                       <section title="Data" ref="classaworx_1_1lox_1_1core_1_1Domain.html#ae084fa950af8593b424bb0f75fba7a0f" />
                       <section title="FullPath" ref="classaworx_1_1lox_1_1core_1_1Domain.html#a5249fc60e18f9a0e7e7ffd24a20dbec9" />
                       <section title="Name" ref="classaworx_1_1lox_1_1core_1_1Domain.html#ab3c68b8a64bf47454f94bde4ebb6de0b" />
@@ -862,20 +878,25 @@
                     </section>
                     <section title="ScopeInfo" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html">
                       <section title="SourceFile" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html">
+                        <section title="SourceFile" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#a3f53c24a9d5784b49a8a623a67145ec1" />
+                        <section title="Set" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#a3f858bc0c63311c2b252faec076fbe28" />
                         <section title="fullPath" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#a54ee0033dccba3b71b4df46be20a8ed8" />
                         <section title="name" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#a9a2326f35466e54c36c070829245c557" />
                         <section title="nameWOExt" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#ae612f42281f92db83f647e7bcb9634c4" />
                         <section title="origFile" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#a792c2a0b64091058562faaf73b0b5e9e" />
-                        <section title="origFilePathSeparator" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#a92c278f6e653f2ff33c65cd197d61239" />
+                        <section title="origFilePathLength" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#ad9601f3d9397b2114f0236aeeca12097" />
                         <section title="timeStamp" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#ad45eb797111ee6d571af7fffc9fc6d79" />
                         <section title="trimmedPath" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#a457ff5532ac38a6fafc282764d6da378" />
+                        <section title="trimmedPathPrefix" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#af3d0c635ee10b56e2d9bfce8aa1cdbcd" />
                       </section>
                       <section title="SourcePathTrimRule" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html">
                         <section title="IncludeString" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html#a4dfbe3fa1c6cd975f1a6a3b17dc6ac8d" />
                         <section title="IsPrefix" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html#af3bc9a519dad021ce04b07599d610ccd" />
                         <section title="Path" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html#a5e583dd1bf88abfb28487df2f676a6e8" />
+                        <section title="Priority" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html#a4450b0bad265ba3bd24e994f70aec802" />
                         <section title="Sensitivity" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html#a48bf193d2228373a7e76ba4e08137017" />
                         <section title="TrimOffset" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html#a400a3c8a83ee22ccb635bb8a96a1d6ca" />
+                        <section title="TrimReplacement" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html#aab1aeee9def0c8b2181dd7ad92551cbc" />
                       </section>
                       <section title="ThreadDictionary" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#a99735dc703a3e0c252ea69a22c1687d2" />
                       <section title="ScopeInfo" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#a6af06b1fa6e8772eff948e87947fbb3b" />
@@ -887,14 +908,14 @@
                       <section title="GetLoxName" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#acda6a047a2327d0ef0819057a0e5c580" />
                       <section title="GetMethod" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#a8bdcd510e436ae95bce067beae21b69a" />
                       <section title="GetOrigFile" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#af4805883509db0aa99eb41e0e75b305d" />
-                      <section title="getPathSeparator" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#aa6d59afb05181160d621a1e9e8875a40" />
+                      <section title="getPathLength" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#afa1ad0beb550abdf74f3394eb780afce" />
                       <section title="GetThreadID" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#a6ada61025e16fbfcd69fa53b531eb63a" />
                       <section title="GetThreadNameAndID" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#ae0a6b0dbae09af09760197641e5a4025" />
                       <section title="GetTimeStamp" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#aac63d502ad9e3127e63ecc389c36d078" />
-                      <section title="GetTrimmedPath" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#aa35b14e49f6fa87ff1011fc2f3a4fcc3" />
+                      <section title="GetTrimmedPath" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#ae5ec829e1c0f37b70424e49c9d1a8a9d" />
                       <section title="operator=" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#a79aef84c80ea77a4800b7aa7179d1aa3" />
                       <section title="Set" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#aef667a335cd43ee15210ae8f002037dd" />
-                      <section title="SetSourcePathTrimRule" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#aaccc72216941cd9da1aa1bf22010e313" />
+                      <section title="SetSourcePathTrimRule" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#ad05ff5575f97e91669507d5f63bc4e16" />
                       <section title="trimPath" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#adce30083ede7f1172f4f92c5b627e837" />
                       <section title="aworx::lox::Lox" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#a0c15f2cd1f2b0ad7d58ddd04a5e03094" />
                       <section title="actual" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#a9e5d069be80c5f7ef34c1aa0abd7e169" />
@@ -1176,6 +1197,7 @@
                     <section title="evaluateResultDomain" ref="classaworx_1_1lox_1_1Lox.html#a9b58060c77090803e3cf92866bd90ce4" />
                     <section title="findDomain" ref="classaworx_1_1lox_1_1Lox.html#af4d7254610ffa1da2fbcf77ed19251ed" />
                     <section title="getAllVerbosities" ref="classaworx_1_1lox_1_1Lox.html#a4054bdb8cd2fe4f7a1bd9b583fde528c" />
+                    <section title="getDomainPrefixFromConfig" ref="classaworx_1_1lox_1_1Lox.html#a030358e0f73b889aaf603e4d3371a845" />
                     <section title="GetLogger" ref="classaworx_1_1lox_1_1Lox.html#a829395dc991b4aed5a09ef5aa77e3e12" />
                     <section title="GetName" ref="classaworx_1_1lox_1_1Lox.html#ace2e04c6099b72fe8d100d8736286990" />
                     <section title="getVerbosityFromConfig" ref="classaworx_1_1lox_1_1Lox.html#a190a949c9c2cc69040e74ef491d257c6" />
@@ -1226,7 +1248,7 @@
                     <section title="SetPrefix" ref="classaworx_1_1lox_1_1Lox.html#a6da7c7ea4a8b7956e37772963bf885ce" />
                     <section title="setPrefixImpl" ref="classaworx_1_1lox_1_1Lox.html#a042f2376d21a1d317f632ac4b889e444" />
                     <section title="SetScopeInfo" ref="classaworx_1_1lox_1_1Lox.html#a81ef55056de37ef21728a427ee665120" />
-                    <section title="SetSourcePathTrimRule" ref="classaworx_1_1lox_1_1Lox.html#ace0e192fa14eb0d6a522e06e69e5402b" />
+                    <section title="SetSourcePathTrimRule" ref="classaworx_1_1lox_1_1Lox.html#a7370e8cf3cd1041f37ffc921805eb6a8" />
                     <section title="SetStartTime" ref="classaworx_1_1lox_1_1Lox.html#a1e977d06d962d8afce696058345f94f4" />
                     <section title="SetStartTime" ref="classaworx_1_1lox_1_1Lox.html#a717cc8dfcf1a68396ca4bd060eca1c75" />
                     <section title="SetStartTime" ref="classaworx_1_1lox_1_1Lox.html#af0daf981d6d3e6bee367e90c2cdd7711" />
@@ -1382,9 +1404,16 @@
               <section title="Tokenizer" ref="classaworx_1_1lib_1_1strings_1_1Tokenizer.html" />
               <section title="true_type">
                 <section title="IsApplicable&lt; const lox::core::Logger &amp; &gt;" ref="structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01lox_1_1core_1_1Logger_01_6_01_4.html" />
+                <section title="IsApplicable&lt; const QByteArray &amp; &gt;" ref="structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QByteArray_01_6_01_4.html" />
+                <section title="IsApplicable&lt; const QChar &amp; &gt;" ref="structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QChar_01_6_01_4.html" />
+                <section title="IsApplicable&lt; const QLatin1String &amp; &gt;" ref="structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QLatin1String_01_6_01_4.html" />
+                <section title="IsApplicable&lt; const QString &amp; &gt;" ref="structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QString_01_6_01_4.html" />
+                <section title="IsApplicable&lt; const QVector&lt; uint &gt; &amp; &gt;" ref="structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QVector_3_01uint_01_4_01_6_01_4.html" />
                 <section title="IsApplicable&lt; const std::string &amp; &gt;" ref="structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01std_1_1string_01_6_01_4.html" />
                 <section title="IsTerminatable&lt; AString &gt;" ref="structaworx_1_1lib_1_1strings_1_1IsTerminatable_3_01AString_01_4.html" />
                 <section title="IsTerminatable&lt; PreallocatedString&lt; TCapacity &gt; &gt;" ref="structaworx_1_1lib_1_1strings_1_1IsTerminatable_3_01PreallocatedString_3_01TCapacity_01_4_01_4.html" />
+                <section title="ToStringDefined&lt; const QByteArray &amp; &gt;" ref="structaworx_1_1lib_1_1strings_1_1ToStringDefined_3_01const_01QByteArray_01_6_01_4.html" />
+                <section title="ToStringDefined&lt; const QLatin1String &amp; &gt;" ref="structaworx_1_1lib_1_1strings_1_1ToStringDefined_3_01const_01QLatin1String_01_6_01_4.html" />
                 <section title="ToStringDefined&lt; const std::string &amp; &gt;" ref="structaworx_1_1lib_1_1strings_1_1ToStringDefined_3_01const_01std_1_1string_01_6_01_4.html" />
               </section>
               <section title="Format::UInt32" ref="classaworx_1_1lib_1_1strings_1_1Format_1_1UInt32.html" />
@@ -1548,6 +1577,7 @@
       <keyword name="ReadVerbosity" id="aloxtypesandenums.hpp::ReadVerbosity" ref="aloxtypesandenums_8hpp.html#a198631ef025eac410d87373b39c7280f" />
       <keyword name="ToString" id="aloxtypesandenums.hpp::ToString" ref="aloxtypesandenums_8hpp.html#ade21849436cde3af69157368d5e5a27e" />
       <keyword name="ToString" id="aloxtypesandenums.hpp::ToString" ref="aloxtypesandenums_8hpp.html#a0883c50f69bfa5d7b121a59ba14d8464" />
+      <keyword name="ToStringPriority" id="aloxtypesandenums.hpp::ToStringPriority" ref="aloxtypesandenums_8hpp.html#a9f44bd15eb903fbdb8e70aee35a6267b" />
       <keyword name="ToStringX" id="aloxtypesandenums.hpp::ToStringX" ref="aloxtypesandenums_8hpp.html#abfd92f16f9c0e36069f30ffa03a5d96d" />
       <keyword name="AnsiConsoleLogger" id="ansilogger.hpp::AnsiConsoleLogger" ref="ansilogger_8hpp.html#a1ea18f3cfd0faa27d99ecc1c9532b445" />
       <keyword name="AnsiLogger" id="ansilogger.hpp::AnsiLogger" ref="ansilogger_8hpp.html#afbcb9cbc8853ce81a9d690e2a8923889" />
@@ -1574,7 +1604,7 @@
       <keyword name="ALIB_STRINGS_APPLYTO_INLINE" id="applyto.hpp::ALIB_STRINGS_APPLYTO_INLINE" ref="applyto_8hpp.html#gaf3673497e1c2e5436ad2b369c135658f" />
       <keyword name="ApplyTo" id="applyto.hpp::ApplyTo" ref="applyto_8hpp.html#aa8fb47b820e77796083d2c3eb13d56b2" />
       <keyword name="ApplyTo" id="applyto.hpp::ApplyTo" ref="applyto_8hpp.html#aaaeb23f90707241659667c910e61bbe9" />
-      <keyword name="ApplyTo" id="applyto.hpp::ApplyTo" ref="applyto_8hpp.html#a51d3c0fe2a4125c45c804c1fb1509b3e" />
+      <keyword name="ApplyTo" id="applyto.hpp::ApplyTo" ref="applyto_8hpp.html#a259d311e0220dbf28a4eb0dcb26b5b2e" />
       <keyword name="ApplyTo" id="applyto.hpp::ApplyTo" ref="applyto_8hpp.html#af0bcfa090927eb989e55774a396d73fd" />
       <keyword name="ApplyTo" id="applyto.hpp::ApplyTo" ref="applyto_8hpp.html#a70a7ab6f429b5e5e3361d9758b6807d9" />
       <keyword name="ApplyTo" id="applyto.hpp::ApplyTo" ref="applyto_8hpp.html#a99617b411c1009b148f37391abf0d789" />
@@ -1595,7 +1625,7 @@
       <keyword name="Configuration" id="configuration.hpp::Configuration" ref="configuration_8hpp.html#a9b321d2f72b975b304aa678e20344e7a" />
       <keyword name="ConsoleLogger" id="consolelogger.hpp::ConsoleLogger" ref="consolelogger_8hpp.html#acfbbfc11d98646c37dbf27e3ede11644" />
       <keyword name="Directory" id="directory.hpp::Directory" ref="directory_8hpp.html#ae59166dff4149598acd5f636fe6760d8" />
-      <keyword name="PathSeparator" id="directory.hpp::PathSeparator" ref="directory_8hpp.html#a262e7ce267358080f085b5a3f42e3a67" />
+      <keyword name="DirectorySeparator" id="directory.hpp::DirectorySeparator" ref="directory_8hpp.html#af71d56959787ac2eca9b0af4b02a7cec" />
       <keyword name="Alignment" id="enums.hpp::Alignment" ref="enums_8hpp.html#a96dde4be24b9217d6bef30b22d7dfd4c" />
       <keyword name="Case" id="enums.hpp::Case" ref="enums_8hpp.html#ac497730bb253c7efcfee90f6de02a0ba" />
       <keyword name="ContainerOp" id="enums.hpp::ContainerOp" ref="enums_8hpp.html#a79b40b1cf65e889763d9ac0858268172" />
@@ -1667,6 +1697,22 @@
       <keyword name="String64" id="preallocatedstring.hpp::String64" ref="preallocatedstring_8hpp.html#ac2fdc487456a994238ba4284b3859c41" />
       <keyword name="String8" id="preallocatedstring.hpp::String8" ref="preallocatedstring_8hpp.html#ab35696c2e8d79567a528a4b6da788eb3" />
       <keyword name="ProcessInfo" id="process.hpp::ProcessInfo" ref="process_8hpp.html#a8644368b56cf61a16e37300584a1d4e2" />
+      <keyword name="ApplyTo&lt; const QByteArray &amp; &gt;" id="qt.hpp::ApplyTo&lt; const QByteArray &amp; &gt;" ref="qt_8hpp.html#aaaa769462357c0edf3ff0fe32762ab34" />
+      <keyword name="ApplyTo&lt; const QChar &amp; &gt;" id="qt.hpp::ApplyTo&lt; const QChar &amp; &gt;" ref="qt_8hpp.html#ad03df92a9ab2db9413d0d744a3d331af" />
+      <keyword name="ApplyTo&lt; const QLatin1String &amp; &gt;" id="qt.hpp::ApplyTo&lt; const QLatin1String &amp; &gt;" ref="qt_8hpp.html#af8fca333ee4e6e6b045f9f9da0204942" />
+      <keyword name="ApplyTo&lt; const QString &amp; &gt;" id="qt.hpp::ApplyTo&lt; const QString &amp; &gt;" ref="qt_8hpp.html#abfe4edade9b5bfad36a91655532cba0a" />
+      <keyword name="ApplyTo&lt; const QVector&lt; uint &gt; &amp; &gt;" id="qt.hpp::ApplyTo&lt; const QVector&lt; uint &gt; &amp; &gt;" ref="qt_8hpp.html#ac1bfcd6907c1a4ff2a3d8d7a11c2d64a" />
+      <keyword name="ApplyTo_NC&lt; const QByteArray &amp; &gt;" id="qt.hpp::ApplyTo_NC&lt; const QByteArray &amp; &gt;" ref="qt_8hpp.html#a18d141d95e478864e1524c0ff59a0858" />
+      <keyword name="ApplyTo_NC&lt; const QChar &amp; &gt;" id="qt.hpp::ApplyTo_NC&lt; const QChar &amp; &gt;" ref="qt_8hpp.html#aea11f14b701049f529e328d593fd44f7" />
+      <keyword name="ApplyTo_NC&lt; const QLatin1String &amp; &gt;" id="qt.hpp::ApplyTo_NC&lt; const QLatin1String &amp; &gt;" ref="qt_8hpp.html#a88634e1a4fd136129352e4dededc3a8f" />
+      <keyword name="ToQString" id="qt.hpp::ToQString" ref="qt_8hpp.html#a5d1e001e39bfac300f1a55a539a8f291" />
+      <keyword name="ToQString" id="qt.hpp::ToQString" ref="qt_8hpp.html#ac9675b158cf3b39232281028804d99ed" />
+      <keyword name="ToQString" id="qt.hpp::ToQString" ref="qt_8hpp.html#a04894e3151c74673b9cf1161915e53f4" />
+      <keyword name="ToQString" id="qt.hpp::ToQString" ref="qt_8hpp.html#a4bd3ea63a15d596e1d1f0ddd1d3d8ee3" />
+      <keyword name="ToString&lt; const QByteArray &amp; &gt;" id="qt.hpp::ToString&lt; const QByteArray &amp; &gt;" ref="qt_8hpp.html#a5656ff620ac4fd284bc3c656f724cf0c" />
+      <keyword name="ToString&lt; const QByteArray &amp; &gt;" id="qt.hpp::ToString&lt; const QByteArray &amp; &gt;" ref="qt_8hpp.html#a68ce5d72a3f7b2501bee8ab0d860b5e8" />
+      <keyword name="ToString&lt; const QLatin1String &amp; &gt;" id="qt.hpp::ToString&lt; const QLatin1String &amp; &gt;" ref="qt_8hpp.html#ae439ab45f89f383544d206c8689f7742" />
+      <keyword name="ToString&lt; const QLatin1String &amp; &gt;" id="qt.hpp::ToString&lt; const QLatin1String &amp; &gt;" ref="qt_8hpp.html#a74551f891e3a8df8db324c327333e0b6" />
       <keyword name="ApplyTo" id="std_iostream.hpp::ApplyTo" ref="std__iostream_8hpp.html#a26459c1c77708cf6f56a2419734d9978" />
       <keyword name="operator&lt;&lt;" id="std_iostream.hpp::operator&lt;&lt;" ref="std__iostream_8hpp.html#a7c480abd39fa10f40a8af566cf1f4dda" />
       <keyword name="operator&lt;&lt;" id="std_iostream.hpp::operator&lt;&lt;" ref="std__iostream_8hpp.html#a9a3fcc93b836b62a2ebbca22d3732520" />
@@ -1715,7 +1761,7 @@
       <keyword name="WindowsConsoleLogger" id="windowsconsolelogger.hpp::WindowsConsoleLogger" ref="windowsconsolelogger_8hpp.html#ad427fd161e0ad8bd4c8835c5a643cc3f" />
       <keyword name="C++ Reference" id="C++ Reference" ref="cppmainpage.html" />
       <keyword name="ALox and the C++ Preprocessor" id="ALox and the C++ Preprocessor" ref="cppprepro.html" />
-      <keyword name="IDE/Build system Setup" id="IDE/Build system Setup" ref="cppsetup.html" />
+      <keyword name="IDE Setup for ALox for C++" id="IDE Setup for ALox for C++" ref="cppsetup.html" />
       <keyword name="ALox for C++ Tutorial" id="ALox for C++ Tutorial" ref="cpptutorial.html" />
       <keyword name="ALib  Macros" id="ALib  Macros" ref="group__GrpALibMacros.html" />
       <keyword name="ALIB_STRINGIFY" id="GrpALibMacros::ALIB_STRINGIFY" ref="group__GrpALibMacros.html#ga3f61373916523c0c97327c83b2d6132e" />
@@ -1921,10 +1967,10 @@
       <keyword name="Whitespaces" id="aworx::Whitespaces" ref="namespaceaworx.html#a0c07eb477a798a2088b4619390c54e72" />
       <keyword name="WindowsConsoleLogger" id="aworx::WindowsConsoleLogger" ref="namespaceaworx.html#ad427fd161e0ad8bd4c8835c5a643cc3f" />
       <keyword name="DefaultWhitespaces" id="aworx::DefaultWhitespaces" ref="namespaceaworx.html#a5feaaf6a8fb11e8ebbb0013ec9f27b01" />
+      <keyword name="DirectorySeparator" id="aworx::DirectorySeparator" ref="namespaceaworx.html#af71d56959787ac2eca9b0af4b02a7cec" />
       <keyword name="EmptyString" id="aworx::EmptyString" ref="namespaceaworx.html#a3372961a8fb9d30455267babb4e6c26c" />
       <keyword name="NewLine" id="aworx::NewLine" ref="namespaceaworx.html#aca82326cfe712c18f9adb9f560a28553" />
       <keyword name="NullString" id="aworx::NullString" ref="namespaceaworx.html#ab1ed6dcfbe4628dccefbdb5633b1bf01" />
-      <keyword name="PathSeparator" id="aworx::PathSeparator" ref="namespaceaworx.html#a262e7ce267358080f085b5a3f42e3a67" />
       <keyword name="aworx::lib" id="aworx::lib" ref="namespaceaworx_1_1lib.html" />
       <keyword name="aworx::lib::ALIB" id="aworx::lib::ALIB" ref="classaworx_1_1lib_1_1ALIB.html" />
       <keyword name="CompilationFlagMeanings" id="aworx::lib::ALIB::CompilationFlagMeanings" ref="classaworx_1_1lib_1_1ALIB.html#a075d789701e32425e80a4e766354d005" />
@@ -1938,6 +1984,7 @@
       <keyword name="WaitForKeyPressOnTermination" id="aworx::lib::ALIB::WaitForKeyPressOnTermination" ref="classaworx_1_1lib_1_1ALIB.html#ada43e256e3815ef07e1fa43666e356da" />
       <keyword name="Init" id="aworx::lib::ALIB::Init" ref="classaworx_1_1lib_1_1ALIB.html#a368faebfbb1d770d76d5e073266a3deb" />
       <keyword name="IsInitialized" id="aworx::lib::ALIB::IsInitialized" ref="classaworx_1_1lib_1_1ALIB.html#ab2c217951b4362bb6661a1e863105320" />
+      <keyword name="Sleep" id="aworx::lib::ALIB::Sleep" ref="classaworx_1_1lib_1_1ALIB.html#a36908c1eede2c297a37d4f1a342d7753" />
       <keyword name="SleepMicros" id="aworx::lib::ALIB::SleepMicros" ref="classaworx_1_1lib_1_1ALIB.html#ad450f3684e2b0fbb9e79124eb9e63146" />
       <keyword name="SleepMillis" id="aworx::lib::ALIB::SleepMillis" ref="classaworx_1_1lib_1_1ALIB.html#a975f9e2b2decf461ca35d96c76d64f87" />
       <keyword name="SleepNanos" id="aworx::lib::ALIB::SleepNanos" ref="classaworx_1_1lib_1_1ALIB.html#a2597856ee4c535ad62f07982ae9e483b" />
@@ -2169,7 +2216,7 @@
       <keyword name="SingleLocks" id="aworx::lib::enums::SingleLocks" ref="namespaceaworx_1_1lib_1_1enums.html#a00fc859257c8f09ff9198dde28121961a67b491789a29d0c717a2b4ebe369a936" />
       <keyword name="Begin" id="aworx::lib::enums::Begin" ref="namespaceaworx_1_1lib_1_1enums.html#ae1c5184dc404edf057ed537bcfddef84a1a06729125544cab7cee73195fc044f0" />
       <keyword name="End" id="aworx::lib::enums::End" ref="namespaceaworx_1_1lib_1_1enums.html#ae1c5184dc404edf057ed537bcfddef84a87557f11575c0ad78e4e28abedc13b6e" />
-      <keyword name="None" id="aworx::lib::enums::None" ref="namespaceaworx_1_1lib_1_1enums.html#aeae0c2d4659a32ef54bd221d1a3da4e6a6adf97f83acf6453d4a6a4b1070f3754" />
+      <keyword name="Omit" id="aworx::lib::enums::Omit" ref="namespaceaworx_1_1lib_1_1enums.html#aeae0c2d4659a32ef54bd221d1a3da4e6a3f9823fc8c5bf8d5efbb0ad3be5f16c9" />
       <keyword name="ToDescendants" id="aworx::lib::enums::ToDescendants" ref="namespaceaworx_1_1lib_1_1enums.html#aeae0c2d4659a32ef54bd221d1a3da4e6aa9857b4deb35c57d5753f94fa00a028e" />
       <keyword name="KeepWithSender" id="aworx::lib::enums::KeepWithSender" ref="namespaceaworx_1_1lib_1_1enums.html#ab5305b978950ba3946cf79a4bccbf7afa2540530a938da82bfe62957f4aff599b" />
       <keyword name="Transfer" id="aworx::lib::enums::Transfer" ref="namespaceaworx_1_1lib_1_1enums.html#ab5305b978950ba3946cf79a4bccbf7afa6950810f0d2bba97a6f710c7b965b84e" />
@@ -2187,7 +2234,6 @@
       <keyword name="Keep" id="aworx::lib::enums::Keep" ref="namespaceaworx_1_1lib_1_1enums.html#ad4a46f9fb632511f6be7c53e05f330f7a02bce93bff905887ad2233110bf9c49e" />
       <keyword name="aworx::lib::strings" id="aworx::lib::strings" ref="namespaceaworx_1_1lib_1_1strings.html" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725" />
-      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a259d311e0220dbf28a4eb0dcb26b5b2e" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a4f19ceb8dc5cb5fb75e0e008fc0b62c9" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#aeefaeb91f4a057ddf48252b58e7f168d" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a71883c7c0a41a97d63c3606296a07c80" />
@@ -2197,12 +2243,12 @@
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a10cbaebe29c1bc6e2147b1c25d6ba6ac" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a3166349c4945294de1c31b25b77da647" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#aa8fb47b820e77796083d2c3eb13d56b2" />
-      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#aaaeb23f90707241659667c910e61bbe9" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a17dfe1060a698974265db6b780c709fa" />
-      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a51d3c0fe2a4125c45c804c1fb1509b3e" />
+      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#aaaeb23f90707241659667c910e61bbe9" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a5874b01f193017660c4748a8a5fc1fde" />
-      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#af0bcfa090927eb989e55774a396d73fd" />
+      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a259d311e0220dbf28a4eb0dcb26b5b2e" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#ae7cf6b7c301dca2c1b7efd7d9cf3fd1a" />
+      <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#af0bcfa090927eb989e55774a396d73fd" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#aff08105164bdbc38149bdea8526b0fe1" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a70a7ab6f429b5e5e3361d9758b6807d9" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#a4e06f646e714741651dbcc70c18f7277" />
@@ -2230,18 +2276,34 @@
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#abc006ddec9bb08e63d7e764a785e715b" />
       <keyword name="ApplyTo" id="aworx::lib::strings::ApplyTo" ref="namespaceaworx_1_1lib_1_1strings.html#aef0aaba9060d3dd6bcb3914d2b7cc538" />
       <keyword name="ApplyTo&lt; const lox::core::Logger &amp; &gt;" id="aworx::lib::strings::ApplyTo&lt; const lox::core::Logger &amp; &gt;" ref="namespaceaworx_1_1lib_1_1strings.html#a9293db3b9b449a46d07d91e1b8964183" />
+      <keyword name="ApplyTo&lt; const QByteArray &amp; &gt;" id="aworx::lib::strings::ApplyTo&lt; const QByteArray &amp; &gt;" ref="namespaceaworx_1_1lib_1_1strings.html#aaaa769462357c0edf3ff0fe32762ab34" />
+      <keyword name="ApplyTo&lt; const QChar &amp; &gt;" id="aworx::lib::strings::ApplyTo&lt; const QChar &amp; &gt;" ref="namespaceaworx_1_1lib_1_1strings.html#ad03df92a9ab2db9413d0d744a3d331af" />
+      <keyword name="ApplyTo&lt; const QLatin1String &amp; &gt;" id="aworx::lib::strings::ApplyTo&lt; const QLatin1String &amp; &gt;" ref="namespaceaworx_1_1lib_1_1strings.html#af8fca333ee4e6e6b045f9f9da0204942" />
+      <keyword name="ApplyTo&lt; const QString &amp; &gt;" id="aworx::lib::strings::ApplyTo&lt; const QString &amp; &gt;" ref="namespaceaworx_1_1lib_1_1strings.html#abfe4edade9b5bfad36a91655532cba0a" />
+      <keyword name="ApplyTo&lt; const QVector&lt; uint &gt; &amp; &gt;" id="aworx::lib::strings::ApplyTo&lt; const QVector&lt; uint &gt; &amp; &gt;" ref="namespaceaworx_1_1lib_1_1strings.html#ac1bfcd6907c1a4ff2a3d8d7a11c2d64a" />
       <keyword name="ApplyTo&lt; const std::string &amp; &gt;" id="aworx::lib::strings::ApplyTo&lt; const std::string &amp; &gt;" ref="namespaceaworx_1_1lib_1_1strings.html#a46d2b8074d6fd76918018ca6704e7cfc" />
       <keyword name="ApplyTo_NC" id="aworx::lib::strings::ApplyTo_NC" ref="namespaceaworx_1_1lib_1_1strings.html#abcd4a1d202f1c13b510ec14cd55d3a7a" />
+      <keyword name="ApplyTo_NC&lt; const QByteArray &amp; &gt;" id="aworx::lib::strings::ApplyTo_NC&lt; const QByteArray &amp; &gt;" ref="namespaceaworx_1_1lib_1_1strings.html#a18d141d95e478864e1524c0ff59a0858" />
+      <keyword name="ApplyTo_NC&lt; const QChar &amp; &gt;" id="aworx::lib::strings::ApplyTo_NC&lt; const QChar &amp; &gt;" ref="namespaceaworx_1_1lib_1_1strings.html#aea11f14b701049f529e328d593fd44f7" />
+      <keyword name="ApplyTo_NC&lt; const QLatin1String &amp; &gt;" id="aworx::lib::strings::ApplyTo_NC&lt; const QLatin1String &amp; &gt;" ref="namespaceaworx_1_1lib_1_1strings.html#a88634e1a4fd136129352e4dededc3a8f" />
       <keyword name="ApplyTo_NC&lt; const std::string &amp; &gt;" id="aworx::lib::strings::ApplyTo_NC&lt; const std::string &amp; &gt;" ref="namespaceaworx_1_1lib_1_1strings.html#ac8de1e5cfd3f85418261ced125aed661" />
       <keyword name="operator&lt;&lt;" id="aworx::lib::strings::operator&lt;&lt;" ref="namespaceaworx_1_1lib_1_1strings.html#a7c480abd39fa10f40a8af566cf1f4dda" />
       <keyword name="operator&lt;&lt;" id="aworx::lib::strings::operator&lt;&lt;" ref="namespaceaworx_1_1lib_1_1strings.html#a9a3fcc93b836b62a2ebbca22d3732520" />
       <keyword name="operator&gt;&gt;" id="aworx::lib::strings::operator&gt;&gt;" ref="namespaceaworx_1_1lib_1_1strings.html#a357b7d2e804cb32ac765641afa415eee" />
       <keyword name="operator&gt;&gt;" id="aworx::lib::strings::operator&gt;&gt;" ref="namespaceaworx_1_1lib_1_1strings.html#a3b4a073d715b00201505dc87ffdcb73e" />
+      <keyword name="ToQString" id="aworx::lib::strings::ToQString" ref="namespaceaworx_1_1lib_1_1strings.html#a5d1e001e39bfac300f1a55a539a8f291" />
+      <keyword name="ToQString" id="aworx::lib::strings::ToQString" ref="namespaceaworx_1_1lib_1_1strings.html#ac9675b158cf3b39232281028804d99ed" />
+      <keyword name="ToQString" id="aworx::lib::strings::ToQString" ref="namespaceaworx_1_1lib_1_1strings.html#a04894e3151c74673b9cf1161915e53f4" />
+      <keyword name="ToQString" id="aworx::lib::strings::ToQString" ref="namespaceaworx_1_1lib_1_1strings.html#a4bd3ea63a15d596e1d1f0ddd1d3d8ee3" />
       <keyword name="ToStdString" id="aworx::lib::strings::ToStdString" ref="namespaceaworx_1_1lib_1_1strings.html#acee8df0c9711c319807b3661f1046dfd" />
       <keyword name="ToStdString" id="aworx::lib::strings::ToStdString" ref="namespaceaworx_1_1lib_1_1strings.html#a69456b076a8fce4982a9d3790796d424" />
       <keyword name="ToStdString" id="aworx::lib::strings::ToStdString" ref="namespaceaworx_1_1lib_1_1strings.html#a039f938c7e403c09e0271e4f353123bf" />
       <keyword name="ToStdString" id="aworx::lib::strings::ToStdString" ref="namespaceaworx_1_1lib_1_1strings.html#a8f1c5a17c57b3b54f2f46e58bef50487" />
       <keyword name="ToString" id="aworx::lib::strings::ToString" ref="namespaceaworx_1_1lib_1_1strings.html#a7cfd45024bf9222b42febac98fdcc146" />
+      <keyword name="ToString&lt; const QByteArray &amp; &gt;" id="aworx::lib::strings::ToString&lt; const QByteArray &amp; &gt;" ref="namespaceaworx_1_1lib_1_1strings.html#a5656ff620ac4fd284bc3c656f724cf0c" />
+      <keyword name="ToString&lt; const QByteArray &amp; &gt;" id="aworx::lib::strings::ToString&lt; const QByteArray &amp; &gt;" ref="namespaceaworx_1_1lib_1_1strings.html#a68ce5d72a3f7b2501bee8ab0d860b5e8" />
+      <keyword name="ToString&lt; const QLatin1String &amp; &gt;" id="aworx::lib::strings::ToString&lt; const QLatin1String &amp; &gt;" ref="namespaceaworx_1_1lib_1_1strings.html#ae439ab45f89f383544d206c8689f7742" />
+      <keyword name="ToString&lt; const QLatin1String &amp; &gt;" id="aworx::lib::strings::ToString&lt; const QLatin1String &amp; &gt;" ref="namespaceaworx_1_1lib_1_1strings.html#a74551f891e3a8df8db324c327333e0b6" />
       <keyword name="ToString&lt; const std::string &amp; &gt;" id="aworx::lib::strings::ToString&lt; const std::string &amp; &gt;" ref="namespaceaworx_1_1lib_1_1strings.html#a8d85e610e17c69e9ece8b558735519e0" />
       <keyword name="ToString&lt; const std::string &amp; &gt;" id="aworx::lib::strings::ToString&lt; const std::string &amp; &gt;" ref="namespaceaworx_1_1lib_1_1strings.html#ae0fc15801fea6b54738ca715ed192cf0" />
       <keyword name="aworx::lib::strings::AString" id="aworx::lib::strings::AString" ref="classaworx_1_1lib_1_1strings_1_1AString.html" />
@@ -2254,7 +2316,7 @@
       <keyword name="~AString" id="aworx::lib::strings::AString::~AString" ref="classaworx_1_1lib_1_1strings_1_1AString.html#ab93ea5df790ecc39b4f09e84cbd9805c" />
       <keyword name="operator=" id="aworx::lib::strings::AString::operator=" ref="classaworx_1_1lib_1_1strings_1_1AString.html#ab5e4f0275095724f12cb477527d2f33b" />
       <keyword name="operator=" id="aworx::lib::strings::AString::operator=" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a6cfb898b4e0d87d08b6c0b115b690239" />
-      <keyword name="SetBuffer" id="aworx::lib::strings::AString::SetBuffer" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a4c82c5367836f6886f1505c803ce4058" />
+      <keyword name="SetBuffer" id="aworx::lib::strings::AString::SetBuffer" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a0bdd4581fc80e9bba8ceb46e030c75ac" />
       <keyword name="SetBuffer" id="aworx::lib::strings::AString::SetBuffer" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a0c8474e9c19a45b535f1b460aac3847b" />
       <keyword name="SetLength" id="aworx::lib::strings::AString::SetLength" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a0c14574ea5ef859e15b51f288c40f5da" />
       <keyword name="EnsureRemainingCapacity" id="aworx::lib::strings::AString::EnsureRemainingCapacity" ref="classaworx_1_1lib_1_1strings_1_1AString.html#afa227b35c03708d90f56d9b3280163f1" />
@@ -2279,6 +2341,7 @@
       <keyword name="TrimStart" id="aworx::lib::strings::AString::TrimStart" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a4aacb9ead9be86623c688267f76760cf" />
       <keyword name="TrimEnd" id="aworx::lib::strings::AString::TrimEnd" ref="classaworx_1_1lib_1_1strings_1_1AString.html#abfb73aa66ba9e9ebedecd9de6ee6ed9b" />
       <keyword name="Append" id="aworx::lib::strings::AString::Append" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a45cb08597c96cf62edb8ece124d8e4fc" />
+      <keyword name="Append" id="aworx::lib::strings::AString::Append" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a4e836e4a665a6ffd7cd1ee48dda06798" />
       <keyword name="Apply" id="aworx::lib::strings::AString::Apply" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a4dbe5fba1e5c5ed69d12d57b3eb49ef7" />
       <keyword name="_" id="aworx::lib::strings::AString::_" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a635ad749475cecd00e3ec3603327d78c" />
       <keyword name="_" id="aworx::lib::strings::AString::_" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a5997f9405428b49e5fd680e62ee41c45" />
@@ -2302,7 +2365,7 @@
       <keyword name="TString" id="aworx::lib::strings::TString::TString" ref="classaworx_1_1lib_1_1strings_1_1TString.html#abe0c3a5e03ba9a10bd9b19a22a261499" />
       <keyword name="String" id="aworx::lib::strings::String::String" ref="classaworx_1_1lib_1_1strings_1_1String.html#adcffeb665e497d8c0909063e4b5df871" />
       <keyword name="String" id="aworx::lib::strings::String::String" ref="classaworx_1_1lib_1_1strings_1_1String.html#a863a723eb56ea0b5fab9a838c5f27658" />
-      <keyword name="String" id="aworx::lib::strings::String::String" ref="classaworx_1_1lib_1_1strings_1_1String.html#a79bdef100f3c7887fd120a7a98d8062c" />
+      <keyword name="String" id="aworx::lib::strings::String::String" ref="classaworx_1_1lib_1_1strings_1_1String.html#a91744e23d962777f812b537979d5ce9e" />
       <keyword name="String" id="aworx::lib::strings::String::String" ref="classaworx_1_1lib_1_1strings_1_1String.html#a2b1f593a0b9b71d210993cea0727b419" />
       <keyword name="Buffer" id="aworx::lib::strings::String::Buffer" ref="classaworx_1_1lib_1_1strings_1_1String.html#a5d5ce30daece7ec96d0b70ccc5d46002" />
       <keyword name="Length" id="aworx::lib::strings::String::Length" ref="classaworx_1_1lib_1_1strings_1_1String.html#a6e891964a37680c01e21dedac6ffe670" />
@@ -2388,6 +2451,11 @@
       <keyword name="UInt64" id="aworx::lib::strings::Format::UInt64::UInt64" ref="classaworx_1_1lib_1_1strings_1_1Format_1_1UInt64.html#a8c277fa0e922affef8caced713b9a3c1" />
       <keyword name="aworx::lib::strings::IsApplicable" id="aworx::lib::strings::IsApplicable" ref="structaworx_1_1lib_1_1strings_1_1IsApplicable.html" />
       <keyword name="aworx::lib::strings::IsApplicable&lt; const lox::core::Logger &amp; &gt;" id="aworx::lib::strings::IsApplicable&lt; const lox::core::Logger &amp; &gt;" ref="structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01lox_1_1core_1_1Logger_01_6_01_4.html" />
+      <keyword name="aworx::lib::strings::IsApplicable&lt; const QByteArray &amp; &gt;" id="aworx::lib::strings::IsApplicable&lt; const QByteArray &amp; &gt;" ref="structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QByteArray_01_6_01_4.html" />
+      <keyword name="aworx::lib::strings::IsApplicable&lt; const QChar &amp; &gt;" id="aworx::lib::strings::IsApplicable&lt; const QChar &amp; &gt;" ref="structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QChar_01_6_01_4.html" />
+      <keyword name="aworx::lib::strings::IsApplicable&lt; const QLatin1String &amp; &gt;" id="aworx::lib::strings::IsApplicable&lt; const QLatin1String &amp; &gt;" ref="structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QLatin1String_01_6_01_4.html" />
+      <keyword name="aworx::lib::strings::IsApplicable&lt; const QString &amp; &gt;" id="aworx::lib::strings::IsApplicable&lt; const QString &amp; &gt;" ref="structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QString_01_6_01_4.html" />
+      <keyword name="aworx::lib::strings::IsApplicable&lt; const QVector&lt; uint &gt; &amp; &gt;" id="aworx::lib::strings::IsApplicable&lt; const QVector&lt; uint &gt; &amp; &gt;" ref="structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QVector_3_01uint_01_4_01_6_01_4.html" />
       <keyword name="aworx::lib::strings::IsApplicable&lt; const std::string &amp; &gt;" id="aworx::lib::strings::IsApplicable&lt; const std::string &amp; &gt;" ref="structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01std_1_1string_01_6_01_4.html" />
       <keyword name="aworx::lib::strings::IsTerminatable" id="aworx::lib::strings::IsTerminatable" ref="structaworx_1_1lib_1_1strings_1_1IsTerminatable.html" />
       <keyword name="aworx::lib::strings::IsTerminatable&lt; AString &gt;" id="aworx::lib::strings::IsTerminatable&lt; AString &gt;" ref="structaworx_1_1lib_1_1strings_1_1IsTerminatable_3_01AString_01_4.html" />
@@ -2423,7 +2491,7 @@
       <keyword name="~AString" id="aworx::lib::strings::AString::~AString" ref="classaworx_1_1lib_1_1strings_1_1AString.html#ab93ea5df790ecc39b4f09e84cbd9805c" />
       <keyword name="operator=" id="aworx::lib::strings::AString::operator=" ref="classaworx_1_1lib_1_1strings_1_1AString.html#ab5e4f0275095724f12cb477527d2f33b" />
       <keyword name="operator=" id="aworx::lib::strings::AString::operator=" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a6cfb898b4e0d87d08b6c0b115b690239" />
-      <keyword name="SetBuffer" id="aworx::lib::strings::AString::SetBuffer" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a4c82c5367836f6886f1505c803ce4058" />
+      <keyword name="SetBuffer" id="aworx::lib::strings::AString::SetBuffer" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a0bdd4581fc80e9bba8ceb46e030c75ac" />
       <keyword name="SetBuffer" id="aworx::lib::strings::AString::SetBuffer" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a0c8474e9c19a45b535f1b460aac3847b" />
       <keyword name="SetLength" id="aworx::lib::strings::AString::SetLength" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a0c14574ea5ef859e15b51f288c40f5da" />
       <keyword name="EnsureRemainingCapacity" id="aworx::lib::strings::AString::EnsureRemainingCapacity" ref="classaworx_1_1lib_1_1strings_1_1AString.html#afa227b35c03708d90f56d9b3280163f1" />
@@ -2448,6 +2516,7 @@
       <keyword name="TrimStart" id="aworx::lib::strings::AString::TrimStart" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a4aacb9ead9be86623c688267f76760cf" />
       <keyword name="TrimEnd" id="aworx::lib::strings::AString::TrimEnd" ref="classaworx_1_1lib_1_1strings_1_1AString.html#abfb73aa66ba9e9ebedecd9de6ee6ed9b" />
       <keyword name="Append" id="aworx::lib::strings::AString::Append" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a45cb08597c96cf62edb8ece124d8e4fc" />
+      <keyword name="Append" id="aworx::lib::strings::AString::Append" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a4e836e4a665a6ffd7cd1ee48dda06798" />
       <keyword name="Apply" id="aworx::lib::strings::AString::Apply" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a4dbe5fba1e5c5ed69d12d57b3eb49ef7" />
       <keyword name="_" id="aworx::lib::strings::AString::_" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a635ad749475cecd00e3ec3603327d78c" />
       <keyword name="_" id="aworx::lib::strings::AString::_" ref="classaworx_1_1lib_1_1strings_1_1AString.html#a5997f9405428b49e5fd680e62ee41c45" />
@@ -2472,7 +2541,7 @@
       <keyword name="TString" id="aworx::lib::strings::TString::TString" ref="classaworx_1_1lib_1_1strings_1_1TString.html#abe0c3a5e03ba9a10bd9b19a22a261499" />
       <keyword name="String" id="aworx::lib::strings::String::String" ref="classaworx_1_1lib_1_1strings_1_1String.html#adcffeb665e497d8c0909063e4b5df871" />
       <keyword name="String" id="aworx::lib::strings::String::String" ref="classaworx_1_1lib_1_1strings_1_1String.html#a863a723eb56ea0b5fab9a838c5f27658" />
-      <keyword name="String" id="aworx::lib::strings::String::String" ref="classaworx_1_1lib_1_1strings_1_1String.html#a79bdef100f3c7887fd120a7a98d8062c" />
+      <keyword name="String" id="aworx::lib::strings::String::String" ref="classaworx_1_1lib_1_1strings_1_1String.html#a91744e23d962777f812b537979d5ce9e" />
       <keyword name="String" id="aworx::lib::strings::String::String" ref="classaworx_1_1lib_1_1strings_1_1String.html#a2b1f593a0b9b71d210993cea0727b419" />
       <keyword name="Buffer" id="aworx::lib::strings::String::Buffer" ref="classaworx_1_1lib_1_1strings_1_1String.html#a5d5ce30daece7ec96d0b70ccc5d46002" />
       <keyword name="Length" id="aworx::lib::strings::String::Length" ref="classaworx_1_1lib_1_1strings_1_1String.html#a6e891964a37680c01e21dedac6ffe670" />
@@ -2525,7 +2594,7 @@
       <keyword name="aworx::lib::strings::String" id="aworx::lib::strings::String" ref="classaworx_1_1lib_1_1strings_1_1String.html" />
       <keyword name="String" id="aworx::lib::strings::String::String" ref="classaworx_1_1lib_1_1strings_1_1String.html#adcffeb665e497d8c0909063e4b5df871" />
       <keyword name="String" id="aworx::lib::strings::String::String" ref="classaworx_1_1lib_1_1strings_1_1String.html#a863a723eb56ea0b5fab9a838c5f27658" />
-      <keyword name="String" id="aworx::lib::strings::String::String" ref="classaworx_1_1lib_1_1strings_1_1String.html#a79bdef100f3c7887fd120a7a98d8062c" />
+      <keyword name="String" id="aworx::lib::strings::String::String" ref="classaworx_1_1lib_1_1strings_1_1String.html#a91744e23d962777f812b537979d5ce9e" />
       <keyword name="String" id="aworx::lib::strings::String::String" ref="classaworx_1_1lib_1_1strings_1_1String.html#a2b1f593a0b9b71d210993cea0727b419" />
       <keyword name="Buffer" id="aworx::lib::strings::String::Buffer" ref="classaworx_1_1lib_1_1strings_1_1String.html#a5d5ce30daece7ec96d0b70ccc5d46002" />
       <keyword name="Length" id="aworx::lib::strings::String::Length" ref="classaworx_1_1lib_1_1strings_1_1String.html#a6e891964a37680c01e21dedac6ffe670" />
@@ -2578,7 +2647,7 @@
       <keyword name="TString" id="aworx::lib::strings::TString::TString" ref="classaworx_1_1lib_1_1strings_1_1TString.html#abe0c3a5e03ba9a10bd9b19a22a261499" />
       <keyword name="String" id="aworx::lib::strings::String::String" ref="classaworx_1_1lib_1_1strings_1_1String.html#adcffeb665e497d8c0909063e4b5df871" />
       <keyword name="String" id="aworx::lib::strings::String::String" ref="classaworx_1_1lib_1_1strings_1_1String.html#a863a723eb56ea0b5fab9a838c5f27658" />
-      <keyword name="String" id="aworx::lib::strings::String::String" ref="classaworx_1_1lib_1_1strings_1_1String.html#a79bdef100f3c7887fd120a7a98d8062c" />
+      <keyword name="String" id="aworx::lib::strings::String::String" ref="classaworx_1_1lib_1_1strings_1_1String.html#a91744e23d962777f812b537979d5ce9e" />
       <keyword name="String" id="aworx::lib::strings::String::String" ref="classaworx_1_1lib_1_1strings_1_1String.html#a2b1f593a0b9b71d210993cea0727b419" />
       <keyword name="Buffer" id="aworx::lib::strings::String::Buffer" ref="classaworx_1_1lib_1_1strings_1_1String.html#a5d5ce30daece7ec96d0b70ccc5d46002" />
       <keyword name="Length" id="aworx::lib::strings::String::Length" ref="classaworx_1_1lib_1_1strings_1_1String.html#a6e891964a37680c01e21dedac6ffe670" />
@@ -2637,10 +2706,10 @@
       <keyword name="ConsumeInteger" id="aworx::lib::strings::Substring::ConsumeInteger" ref="classaworx_1_1lib_1_1strings_1_1Substring.html#a5a68f106a868e841f97fac80c946cee0" />
       <keyword name="ConsumeLong" id="aworx::lib::strings::Substring::ConsumeLong" ref="classaworx_1_1lib_1_1strings_1_1Substring.html#ae6fb29c871e36492716451fc3081bad6" />
       <keyword name="ConsumeFloat" id="aworx::lib::strings::Substring::ConsumeFloat" ref="classaworx_1_1lib_1_1strings_1_1Substring.html#abdbc41364a58d285b7f12ab88543aa5f" />
-      <keyword name="Split" id="aworx::lib::strings::Substring::Split" ref="classaworx_1_1lib_1_1strings_1_1Substring.html#a9ba2f83672cd35b574cba0788a923f36" />
+      <keyword name="Split" id="aworx::lib::strings::Substring::Split" ref="classaworx_1_1lib_1_1strings_1_1Substring.html#ad84c1d74d976618646e49aa7427b7151" />
       <keyword name="String" id="aworx::lib::strings::String::String" ref="classaworx_1_1lib_1_1strings_1_1String.html#adcffeb665e497d8c0909063e4b5df871" />
       <keyword name="String" id="aworx::lib::strings::String::String" ref="classaworx_1_1lib_1_1strings_1_1String.html#a863a723eb56ea0b5fab9a838c5f27658" />
-      <keyword name="String" id="aworx::lib::strings::String::String" ref="classaworx_1_1lib_1_1strings_1_1String.html#a79bdef100f3c7887fd120a7a98d8062c" />
+      <keyword name="String" id="aworx::lib::strings::String::String" ref="classaworx_1_1lib_1_1strings_1_1String.html#a91744e23d962777f812b537979d5ce9e" />
       <keyword name="String" id="aworx::lib::strings::String::String" ref="classaworx_1_1lib_1_1strings_1_1String.html#a2b1f593a0b9b71d210993cea0727b419" />
       <keyword name="Buffer" id="aworx::lib::strings::String::Buffer" ref="classaworx_1_1lib_1_1strings_1_1String.html#a5d5ce30daece7ec96d0b70ccc5d46002" />
       <keyword name="Length" id="aworx::lib::strings::String::Length" ref="classaworx_1_1lib_1_1strings_1_1String.html#a6e891964a37680c01e21dedac6ffe670" />
@@ -2690,6 +2759,8 @@
       <keyword name="delim" id="aworx::lib::strings::Tokenizer::delim" ref="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#ab56c67e0ed9605b4078e2135f791c4ed" />
       <keyword name="skipEmptyTokens" id="aworx::lib::strings::Tokenizer::skipEmptyTokens" ref="classaworx_1_1lib_1_1strings_1_1Tokenizer.html#a30e566108b40ef50fce0d40509d0413d" />
       <keyword name="aworx::lib::strings::ToStringDefined" id="aworx::lib::strings::ToStringDefined" ref="structaworx_1_1lib_1_1strings_1_1ToStringDefined.html" />
+      <keyword name="aworx::lib::strings::ToStringDefined&lt; const QByteArray &amp; &gt;" id="aworx::lib::strings::ToStringDefined&lt; const QByteArray &amp; &gt;" ref="structaworx_1_1lib_1_1strings_1_1ToStringDefined_3_01const_01QByteArray_01_6_01_4.html" />
+      <keyword name="aworx::lib::strings::ToStringDefined&lt; const QLatin1String &amp; &gt;" id="aworx::lib::strings::ToStringDefined&lt; const QLatin1String &amp; &gt;" ref="structaworx_1_1lib_1_1strings_1_1ToStringDefined_3_01const_01QLatin1String_01_6_01_4.html" />
       <keyword name="aworx::lib::strings::ToStringDefined&lt; const std::string &amp; &gt;" id="aworx::lib::strings::ToStringDefined&lt; const std::string &amp; &gt;" ref="structaworx_1_1lib_1_1strings_1_1ToStringDefined_3_01const_01std_1_1string_01_6_01_4.html" />
       <keyword name="aworx::lib::strings::TString" id="aworx::lib::strings::TString" ref="classaworx_1_1lib_1_1strings_1_1TString.html" />
       <keyword name="operator[]" id="aworx::lib::strings::TString::operator[]" ref="classaworx_1_1lib_1_1strings_1_1TString.html#a0b3b9871d2fc6522c1f2aedf67b8b1c2" />
@@ -2703,7 +2774,7 @@
       <keyword name="ToFloat" id="aworx::lib::strings::TString::ToFloat" ref="classaworx_1_1lib_1_1strings_1_1TString.html#aefab2dff23cb4a711c8efdd73e85c15e" />
       <keyword name="String" id="aworx::lib::strings::String::String" ref="classaworx_1_1lib_1_1strings_1_1String.html#adcffeb665e497d8c0909063e4b5df871" />
       <keyword name="String" id="aworx::lib::strings::String::String" ref="classaworx_1_1lib_1_1strings_1_1String.html#a863a723eb56ea0b5fab9a838c5f27658" />
-      <keyword name="String" id="aworx::lib::strings::String::String" ref="classaworx_1_1lib_1_1strings_1_1String.html#a79bdef100f3c7887fd120a7a98d8062c" />
+      <keyword name="String" id="aworx::lib::strings::String::String" ref="classaworx_1_1lib_1_1strings_1_1String.html#a91744e23d962777f812b537979d5ce9e" />
       <keyword name="String" id="aworx::lib::strings::String::String" ref="classaworx_1_1lib_1_1strings_1_1String.html#a2b1f593a0b9b71d210993cea0727b419" />
       <keyword name="Buffer" id="aworx::lib::strings::String::Buffer" ref="classaworx_1_1lib_1_1strings_1_1String.html#a5d5ce30daece7ec96d0b70ccc5d46002" />
       <keyword name="Length" id="aworx::lib::strings::String::Length" ref="classaworx_1_1lib_1_1strings_1_1String.html#a6e891964a37680c01e21dedac6ffe670" />
@@ -2745,6 +2816,8 @@
       <keyword name="vbuffer" id="aworx::lib::strings::String::vbuffer" ref="classaworx_1_1lib_1_1strings_1_1String.html#ab060ffba71bd8a3d7067a38950b39a82" />
       <keyword name="aworx::lib::system" id="aworx::lib::system" ref="namespaceaworx_1_1lib_1_1system.html" />
       <keyword name="aworx::lib::system::Directory" id="aworx::lib::system::Directory" ref="classaworx_1_1lib_1_1system_1_1Directory.html" />
+      <keyword name="evaluatedTempDir" id="aworx::lib::system::Directory::evaluatedTempDir" ref="classaworx_1_1lib_1_1system_1_1Directory.html#ad0c1b40acd899ebb5f0388779ed4d1dc" />
+      <keyword name="evaluatedVarTempDir" id="aworx::lib::system::Directory::evaluatedVarTempDir" ref="classaworx_1_1lib_1_1system_1_1Directory.html#a4b09df20093589aae45a102d72bca303" />
       <keyword name="Path" id="aworx::lib::system::Directory::Path" ref="classaworx_1_1lib_1_1system_1_1Directory.html#a7a1498c6111483e7acf3a52bef418c09" />
       <keyword name="Create" id="aworx::lib::system::Directory::Create" ref="classaworx_1_1lib_1_1system_1_1Directory.html#a4705a3d882c8aa61346f6175f1c83a30" />
       <keyword name="CurrentDirectory" id="aworx::lib::system::Directory::CurrentDirectory" ref="classaworx_1_1lib_1_1system_1_1Directory.html#a06845a767764e37766027392413e068f" />
@@ -2757,18 +2830,22 @@
       <keyword name="Root" id="aworx::lib::system::Directory::Root" ref="classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0afa03eb688ad8aa1db593d33dabd89bad" />
       <keyword name="Current" id="aworx::lib::system::Directory::Current" ref="classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0a222a267cc5778206b253be35ee3ddab5" />
       <keyword name="Home" id="aworx::lib::system::Directory::Home" ref="classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0a8cf04a9734132302f96da8e113e80ce5" />
-      <keyword name="HOME_CONFIG" id="aworx::lib::system::Directory::HOME_CONFIG" ref="classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0a01255de311d629c078914c471e45ec28" />
+      <keyword name="HomeConfig" id="aworx::lib::system::Directory::HomeConfig" ref="classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0ae94961474a646742838ed46f32f89a47" />
       <keyword name="Module" id="aworx::lib::system::Directory::Module" ref="classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0ae55f75a29310d7b60f7ac1d390c8ae42" />
+      <keyword name="Temp" id="aworx::lib::system::Directory::Temp" ref="classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0a9a438bd942f1f19e6a641028bcfb43ff" />
+      <keyword name="VarTemp" id="aworx::lib::system::Directory::VarTemp" ref="classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0ac42dbffd040a78993701573319deb9be" />
       <keyword name="aworx::lib::system::ProcessInfo" id="aworx::lib::system::ProcessInfo" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html" />
       <keyword name="CmdLine" id="aworx::lib::system::ProcessInfo::CmdLine" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a38741324f2f4c6aa56dc430d4388a76c" />
       <keyword name="ConsoleTitle" id="aworx::lib::system::ProcessInfo::ConsoleTitle" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a39dfc3f00493a74b8ab6907dec8c80ae" />
-      <keyword name="ExecName" id="aworx::lib::system::ProcessInfo::ExecName" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#ab5fca5813a5614d7a284466c074bcacd" />
+      <keyword name="ExecFileName" id="aworx::lib::system::ProcessInfo::ExecFileName" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a4261537d8a445f836cc32174e8ff0fd9" />
+      <keyword name="ExecFilePath" id="aworx::lib::system::ProcessInfo::ExecFilePath" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a6e88f1772ab15c3f177dfa4deed1612b" />
+      <keyword name="Name" id="aworx::lib::system::ProcessInfo::Name" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a0de551a5eb98c9fa084c954655523d7b" />
       <keyword name="PID" id="aworx::lib::system::ProcessInfo::PID" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#ab3394b1e9c9810e4172bb26364932511" />
       <keyword name="PPID" id="aworx::lib::system::ProcessInfo::PPID" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a2e9f2dde638643f2724049a1c5e559f2" />
       <keyword name="Stat" id="aworx::lib::system::ProcessInfo::Stat" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#aa1d0ce36cf7d7f9338610388ff42fa29" />
       <keyword name="statPGRP" id="aworx::lib::system::ProcessInfo::statPGRP" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a9dd69d834742023497d9c6f3eeaf3f82" />
       <keyword name="StatState" id="aworx::lib::system::ProcessInfo::StatState" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#aa313b8c5a87a49b703b0887651b1eef7" />
-      <keyword name="Current" id="aworx::lib::system::ProcessInfo::Current" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a1e9c04463bb57d8ae52cc6f5470ab44b" />
+      <keyword name="Current" id="aworx::lib::system::ProcessInfo::Current" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a759e289a0ea1b35c1bd0fea90896432e" />
       <keyword name="ProcessInfo" id="aworx::lib::system::ProcessInfo::ProcessInfo" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#abd0dc1bed4dd3aa2cb51255d42b77f3b" />
       <keyword name="Get" id="aworx::lib::system::ProcessInfo::Get" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#aca957846d7a97dfd4a2d168ff1230a39" />
       <keyword name="Environment" id="aworx::lib::system::ProcessInfo::Environment" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#ad07f4de926e4e68b49b17ab4d13369d3" />
@@ -2778,13 +2855,10 @@
       <keyword name="getStatField" id="aworx::lib::system::ProcessInfo::getStatField" ref="classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a98338111ca0a208ada56d8e901e1fdd7" />
       <keyword name="aworx::lib::system::System" id="aworx::lib::system::System" ref="classaworx_1_1lib_1_1system_1_1System.html" />
       <keyword name="DebuggerProcessName" id="aworx::lib::system::System::DebuggerProcessName" ref="classaworx_1_1lib_1_1system_1_1System.html#a1c6688a1a1c7568ff374b4ccd279b041" />
-      <keyword name="GetProcessName" id="aworx::lib::system::System::GetProcessName" ref="classaworx_1_1lib_1_1system_1_1System.html#a3efcfee814940f4c1c1ad2a99d5e172a" />
       <keyword name="GetVariable" id="aworx::lib::system::System::GetVariable" ref="classaworx_1_1lib_1_1system_1_1System.html#a7bd3327e84e88d8704a95585c57ee7ed" />
       <keyword name="HasConsoleWindow" id="aworx::lib::system::System::HasConsoleWindow" ref="classaworx_1_1lib_1_1system_1_1System.html#a62821694d315ff9e9b417531bce97ce6" />
       <keyword name="IsDebuggerPresent" id="aworx::lib::system::System::IsDebuggerPresent" ref="classaworx_1_1lib_1_1system_1_1System.html#ad0e7333ca518b4965afb347b0c072680" />
       <keyword name="RTE" id="aworx::lib::system::System::RTE" ref="classaworx_1_1lib_1_1system_1_1System.html#a28b473ab05b45948857c11c98973e6c2" />
-      <keyword name="processName" id="aworx::lib::system::System::processName" ref="classaworx_1_1lib_1_1system_1_1System.html#acdefe8c9e0fc3c1abb1655ea13d4f3d0" />
-      <keyword name="getProcessName" id="aworx::lib::system::System::getProcessName" ref="classaworx_1_1lib_1_1system_1_1System.html#a14d31f74cb29b4e92cc090905256c8d1" />
       <keyword name="Unknown" id="aworx::lib::system::System::Unknown" ref="classaworx_1_1lib_1_1system_1_1System.html#aeae50cdd350e3deaae33d2900b0a72f2a88183b946cc5f0e8c96b2e66e1c74a7e" />
       <keyword name="EclipseCDT" id="aworx::lib::system::System::EclipseCDT" ref="classaworx_1_1lib_1_1system_1_1System.html#aeae50cdd350e3deaae33d2900b0a72f2aac3b9401d30402b6f3f9c930e92eba6a" />
       <keyword name="QTCreator" id="aworx::lib::system::System::QTCreator" ref="classaworx_1_1lib_1_1system_1_1System.html#aeae50cdd350e3deaae33d2900b0a72f2abd58134b67d16f4a15d1f36d60e2f5b0" />
@@ -2892,13 +2966,14 @@
       <keyword name="Add" id="aworx::lib::time::Ticks::Add" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#a41b1e94505a539e23c9e1ab3d1a32bc8" />
       <keyword name="Age" id="aworx::lib::time::Ticks::Age" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#afc3ea69a2be2bc54667e14ba3fa8cb83" />
       <keyword name="Format" id="aworx::lib::time::Ticks::Format" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#aa0befe92a960e53ffbe042855f5d5ec3" />
-      <keyword name="FromDays" id="aworx::lib::time::Ticks::FromDays" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#ade22d8be07ec20cef7e883706db3fe24" />
-      <keyword name="FromHours" id="aworx::lib::time::Ticks::FromHours" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#a57b52b2e1e8b464a3959fd83575a48af" />
-      <keyword name="FromMicros" id="aworx::lib::time::Ticks::FromMicros" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#a16a825623d5af98d25d329d0b9f56dcf" />
-      <keyword name="FromMillis" id="aworx::lib::time::Ticks::FromMillis" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#ac6f86e6b884d65770873fca3c6f7b498" />
-      <keyword name="FromMinutes" id="aworx::lib::time::Ticks::FromMinutes" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#ac1cc62dbe83f81c070b0307b75ce275a" />
-      <keyword name="FromNanos" id="aworx::lib::time::Ticks::FromNanos" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#a4564b4390f9f8f71aae6df7109e62486" />
-      <keyword name="FromSeconds" id="aworx::lib::time::Ticks::FromSeconds" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#a5d07dd8ebb7243db9a95bfe07a18938a" />
+      <keyword name="FromDays" id="aworx::lib::time::Ticks::FromDays" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#a64467b0a655d54c0532f9148b4474ee9" />
+      <keyword name="FromHours" id="aworx::lib::time::Ticks::FromHours" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#a2cc9107419ee7696e296bd899d9bbcbe" />
+      <keyword name="FromMicros" id="aworx::lib::time::Ticks::FromMicros" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#a271a2895ca829250aee715369cb70316" />
+      <keyword name="FromMillis" id="aworx::lib::time::Ticks::FromMillis" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#a3658f98994669745862df85e5b7ae923" />
+      <keyword name="FromMinutes" id="aworx::lib::time::Ticks::FromMinutes" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#ac444cc81ed42417f7d07aa6880b8c22a" />
+      <keyword name="FromNanos" id="aworx::lib::time::Ticks::FromNanos" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#a7e6d2ec860a93ef3a799801db87b5602" />
+      <keyword name="FromSeconds" id="aworx::lib::time::Ticks::FromSeconds" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#ac45497fa700f7c67f22accfee553c323" />
+      <keyword name="HasElapsed" id="aworx::lib::time::Ticks::HasElapsed" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#a9a2c788835d7f696352b3648637f3a58" />
       <keyword name="InDays" id="aworx::lib::time::Ticks::InDays" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#a9397bc3e901c7e8e901763a554fdcbc8" />
       <keyword name="InEpochSeconds" id="aworx::lib::time::Ticks::InEpochSeconds" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#ad96f1b87ddca623ddecf2821280bfcb2" />
       <keyword name="InFileTime" id="aworx::lib::time::Ticks::InFileTime" ref="classaworx_1_1lib_1_1time_1_1Ticks.html#aa21af34c932595e5cc84deab77531bff" />
@@ -2988,6 +3063,7 @@
       <keyword name="ReadVerbosity" id="aworx::lox::ReadVerbosity" ref="namespaceaworx_1_1lox.html#a198631ef025eac410d87373b39c7280f" />
       <keyword name="ToString" id="aworx::lox::ToString" ref="namespaceaworx_1_1lox.html#ade21849436cde3af69157368d5e5a27e" />
       <keyword name="ToString" id="aworx::lox::ToString" ref="namespaceaworx_1_1lox.html#a0883c50f69bfa5d7b121a59ba14d8464" />
+      <keyword name="ToStringPriority" id="aworx::lox::ToStringPriority" ref="namespaceaworx_1_1lox.html#a9f44bd15eb903fbdb8e70aee35a6267b" />
       <keyword name="ToStringX" id="aworx::lox::ToStringX" ref="namespaceaworx_1_1lox.html#abfd92f16f9c0e36069f30ffa03a5d96d" />
       <keyword name="Global" id="aworx::lox::Global" ref="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a4cc6684df7b4a92b1dec6fce3264fac8" />
       <keyword name="ThreadOuter" id="aworx::lox::ThreadOuter" ref="namespaceaworx_1_1lox.html#aaecc53892786f2fa11e682f633af84c6a1ee3f312b05c55202500569aadfc8d9b" />
@@ -3142,7 +3218,7 @@
       <keyword name="SetPrefix" id="aworx::lox::Lox::SetPrefix" ref="classaworx_1_1lox_1_1Lox.html#ac257a2345d3c5d4223b9861cd32309dd" />
       <keyword name="SetPrefix" id="aworx::lox::Lox::SetPrefix" ref="classaworx_1_1lox_1_1Lox.html#a6da7c7ea4a8b7956e37772963bf885ce" />
       <keyword name="SetScopeInfo" id="aworx::lox::Lox::SetScopeInfo" ref="classaworx_1_1lox_1_1Lox.html#a81ef55056de37ef21728a427ee665120" />
-      <keyword name="SetSourcePathTrimRule" id="aworx::lox::Lox::SetSourcePathTrimRule" ref="classaworx_1_1lox_1_1Lox.html#ace0e192fa14eb0d6a522e06e69e5402b" />
+      <keyword name="SetSourcePathTrimRule" id="aworx::lox::Lox::SetSourcePathTrimRule" ref="classaworx_1_1lox_1_1Lox.html#a7370e8cf3cd1041f37ffc921805eb6a8" />
       <keyword name="SetStartTime" id="aworx::lox::Lox::SetStartTime" ref="classaworx_1_1lox_1_1Lox.html#a1e977d06d962d8afce696058345f94f4" />
       <keyword name="SetStartTime" id="aworx::lox::Lox::SetStartTime" ref="classaworx_1_1lox_1_1Lox.html#a717cc8dfcf1a68396ca4bd060eca1c75" />
       <keyword name="SetStartTime" id="aworx::lox::Lox::SetStartTime" ref="classaworx_1_1lox_1_1Lox.html#af0daf981d6d3e6bee367e90c2cdd7711" />
@@ -3192,6 +3268,7 @@
       <keyword name="evaluateResultDomain" id="aworx::lox::Lox::evaluateResultDomain" ref="classaworx_1_1lox_1_1Lox.html#a9b58060c77090803e3cf92866bd90ce4" />
       <keyword name="findDomain" id="aworx::lox::Lox::findDomain" ref="classaworx_1_1lox_1_1Lox.html#af4d7254610ffa1da2fbcf77ed19251ed" />
       <keyword name="getAllVerbosities" id="aworx::lox::Lox::getAllVerbosities" ref="classaworx_1_1lox_1_1Lox.html#a4054bdb8cd2fe4f7a1bd9b583fde528c" />
+      <keyword name="getDomainPrefixFromConfig" id="aworx::lox::Lox::getDomainPrefixFromConfig" ref="classaworx_1_1lox_1_1Lox.html#a030358e0f73b889aaf603e4d3371a845" />
       <keyword name="getVerbosityFromConfig" id="aworx::lox::Lox::getVerbosityFromConfig" ref="classaworx_1_1lox_1_1Lox.html#a190a949c9c2cc69040e74ef491d257c6" />
       <keyword name="isThreadReleatedScope" id="aworx::lox::Lox::isThreadReleatedScope" ref="classaworx_1_1lox_1_1Lox.html#a09cea8594a917bd4a8e004acbf452b66" />
       <keyword name="log" id="aworx::lox::Lox::log" ref="classaworx_1_1lox_1_1Lox.html#abf4f36065b0fc241ec6610d58a4e267a" />
@@ -3215,13 +3292,14 @@
       <keyword name="Logables" id="aworx::lox::core::Logables" ref="namespaceaworx_1_1lox_1_1core.html#a89b734aa261b747d9edc7a459bfc9db8" />
       <keyword name="aworx::lox::core::Domain" id="aworx::lox::core::Domain" ref="classaworx_1_1lox_1_1core_1_1Domain.html" />
       <keyword name="CntLogCalls" id="aworx::lox::core::Domain::CntLogCalls" ref="classaworx_1_1lox_1_1core_1_1Domain.html#a2c80e5630abe5d5042ddb4b85c0c3562" />
+      <keyword name="ConfigurationRead" id="aworx::lox::core::Domain::ConfigurationRead" ref="classaworx_1_1lox_1_1core_1_1Domain.html#a6b8f94546fd5c1c564c2bfe0fee6c770" />
       <keyword name="Data" id="aworx::lox::core::Domain::Data" ref="classaworx_1_1lox_1_1core_1_1Domain.html#ae084fa950af8593b424bb0f75fba7a0f" />
       <keyword name="FullPath" id="aworx::lox::core::Domain::FullPath" ref="classaworx_1_1lox_1_1core_1_1Domain.html#a5249fc60e18f9a0e7e7ffd24a20dbec9" />
       <keyword name="Name" id="aworx::lox::core::Domain::Name" ref="classaworx_1_1lox_1_1core_1_1Domain.html#ab3c68b8a64bf47454f94bde4ebb6de0b" />
       <keyword name="Parent" id="aworx::lox::core::Domain::Parent" ref="classaworx_1_1lox_1_1core_1_1Domain.html#a1d350b8d568b2886bda3a5f093adc1bc" />
       <keyword name="PrefixLogables" id="aworx::lox::core::Domain::PrefixLogables" ref="classaworx_1_1lox_1_1core_1_1Domain.html#a07cbccb2eb45cd2c64f468b04ef7f397" />
       <keyword name="SubDomains" id="aworx::lox::core::Domain::SubDomains" ref="classaworx_1_1lox_1_1core_1_1Domain.html#a45607390dc4f3ea0f79c1ee1a08a777b" />
-      <keyword name="PathSeparator" id="aworx::lox::core::Domain::PathSeparator" ref="classaworx_1_1lox_1_1core_1_1Domain.html#a28fc603aa3aaa186e688d30802253538" />
+      <keyword name="Separator" id="aworx::lox::core::Domain::Separator" ref="classaworx_1_1lox_1_1core_1_1Domain.html#a5d34c67477a6f6f1a0a3803f1300cf2e" />
       <keyword name="Domain" id="aworx::lox::core::Domain::Domain" ref="classaworx_1_1lox_1_1core_1_1Domain.html#a30f0d2a14dee624bd33d7852e9bb8670" />
       <keyword name="~Domain" id="aworx::lox::core::Domain::~Domain" ref="classaworx_1_1lox_1_1core_1_1Domain.html#aab7e32c77383bf3d384c5c1ab492cd2c" />
       <keyword name="AddLogger" id="aworx::lox::core::Domain::AddLogger" ref="classaworx_1_1lox_1_1core_1_1Domain.html#af6b2bbb7cabe76ef457594558aac85f8" />
@@ -3314,9 +3392,9 @@
       <keyword name="GetThreadID" id="aworx::lox::core::ScopeInfo::GetThreadID" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#a6ada61025e16fbfcd69fa53b531eb63a" />
       <keyword name="GetThreadNameAndID" id="aworx::lox::core::ScopeInfo::GetThreadNameAndID" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#ae0a6b0dbae09af09760197641e5a4025" />
       <keyword name="GetTimeStamp" id="aworx::lox::core::ScopeInfo::GetTimeStamp" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#aac63d502ad9e3127e63ecc389c36d078" />
-      <keyword name="GetTrimmedPath" id="aworx::lox::core::ScopeInfo::GetTrimmedPath" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#aa35b14e49f6fa87ff1011fc2f3a4fcc3" />
+      <keyword name="GetTrimmedPath" id="aworx::lox::core::ScopeInfo::GetTrimmedPath" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#ae5ec829e1c0f37b70424e49c9d1a8a9d" />
       <keyword name="Set" id="aworx::lox::core::ScopeInfo::Set" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#aef667a335cd43ee15210ae8f002037dd" />
-      <keyword name="SetSourcePathTrimRule" id="aworx::lox::core::ScopeInfo::SetSourcePathTrimRule" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#aaccc72216941cd9da1aa1bf22010e313" />
+      <keyword name="SetSourcePathTrimRule" id="aworx::lox::core::ScopeInfo::SetSourcePathTrimRule" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#ad05ff5575f97e91669507d5f63bc4e16" />
       <keyword name="aworx::lox::Lox" id="aworx::lox::core::ScopeInfo::aworx::lox::Lox" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#a0c15f2cd1f2b0ad7d58ddd04a5e03094" />
       <keyword name="GlobalSPTRs" id="aworx::lox::core::ScopeInfo::GlobalSPTRs" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#a3ff8b25900c8fb4a39086e55a4de2f15" />
       <keyword name="GlobalSPTRsReadFromConfig" id="aworx::lox::core::ScopeInfo::GlobalSPTRsReadFromConfig" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#a4b4cc9b47565ee962c6488358e236c65" />
@@ -3333,7 +3411,7 @@
       <keyword name="threadDictionary" id="aworx::lox::core::ScopeInfo::threadDictionary" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#ab89d14dc857db74727211f5fcf3c138f" />
       <keyword name="threadName" id="aworx::lox::core::ScopeInfo::threadName" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#ab0235bb40987a8310ebd7e8500b96975" />
       <keyword name="timeStamp" id="aworx::lox::core::ScopeInfo::timeStamp" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#a4e72dac5d168369a754893772395f0d3" />
-      <keyword name="getPathSeparator" id="aworx::lox::core::ScopeInfo::getPathSeparator" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#aa6d59afb05181160d621a1e9e8875a40" />
+      <keyword name="getPathLength" id="aworx::lox::core::ScopeInfo::getPathLength" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#afa1ad0beb550abdf74f3394eb780afce" />
       <keyword name="trimPath" id="aworx::lox::core::ScopeInfo::trimPath" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#adce30083ede7f1172f4f92c5b627e837" />
       <keyword name="operator=" id="aworx::lox::core::ScopeInfo::operator=" ref="classaworx_1_1lox_1_1core_1_1ScopeInfo.html#a79aef84c80ea77a4800b7aa7179d1aa3" />
       <keyword name="aworx::lox::core::ScopeInfo::SourceFile" id="aworx::lox::core::ScopeInfo::SourceFile" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html" />
@@ -3341,15 +3419,20 @@
       <keyword name="name" id="aworx::lox::core::ScopeInfo::SourceFile::name" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#a9a2326f35466e54c36c070829245c557" />
       <keyword name="nameWOExt" id="aworx::lox::core::ScopeInfo::SourceFile::nameWOExt" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#ae612f42281f92db83f647e7bcb9634c4" />
       <keyword name="origFile" id="aworx::lox::core::ScopeInfo::SourceFile::origFile" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#a792c2a0b64091058562faaf73b0b5e9e" />
-      <keyword name="origFilePathSeparator" id="aworx::lox::core::ScopeInfo::SourceFile::origFilePathSeparator" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#a92c278f6e653f2ff33c65cd197d61239" />
+      <keyword name="origFilePathLength" id="aworx::lox::core::ScopeInfo::SourceFile::origFilePathLength" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#ad9601f3d9397b2114f0236aeeca12097" />
       <keyword name="timeStamp" id="aworx::lox::core::ScopeInfo::SourceFile::timeStamp" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#ad45eb797111ee6d571af7fffc9fc6d79" />
       <keyword name="trimmedPath" id="aworx::lox::core::ScopeInfo::SourceFile::trimmedPath" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#a457ff5532ac38a6fafc282764d6da378" />
+      <keyword name="trimmedPathPrefix" id="aworx::lox::core::ScopeInfo::SourceFile::trimmedPathPrefix" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#af3d0c635ee10b56e2d9bfce8aa1cdbcd" />
+      <keyword name="SourceFile" id="aworx::lox::core::ScopeInfo::SourceFile::SourceFile" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#a3f53c24a9d5784b49a8a623a67145ec1" />
+      <keyword name="Set" id="aworx::lox::core::ScopeInfo::SourceFile::Set" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#a3f858bc0c63311c2b252faec076fbe28" />
       <keyword name="aworx::lox::core::ScopeInfo::SourcePathTrimRule" id="aworx::lox::core::ScopeInfo::SourcePathTrimRule" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html" />
       <keyword name="IncludeString" id="aworx::lox::core::ScopeInfo::SourcePathTrimRule::IncludeString" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html#a4dfbe3fa1c6cd975f1a6a3b17dc6ac8d" />
       <keyword name="IsPrefix" id="aworx::lox::core::ScopeInfo::SourcePathTrimRule::IsPrefix" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html#af3bc9a519dad021ce04b07599d610ccd" />
       <keyword name="Path" id="aworx::lox::core::ScopeInfo::SourcePathTrimRule::Path" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html#a5e583dd1bf88abfb28487df2f676a6e8" />
+      <keyword name="Priority" id="aworx::lox::core::ScopeInfo::SourcePathTrimRule::Priority" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html#a4450b0bad265ba3bd24e994f70aec802" />
       <keyword name="Sensitivity" id="aworx::lox::core::ScopeInfo::SourcePathTrimRule::Sensitivity" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html#a48bf193d2228373a7e76ba4e08137017" />
       <keyword name="TrimOffset" id="aworx::lox::core::ScopeInfo::SourcePathTrimRule::TrimOffset" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html#a400a3c8a83ee22ccb635bb8a96a1d6ca" />
+      <keyword name="TrimReplacement" id="aworx::lox::core::ScopeInfo::SourcePathTrimRule::TrimReplacement" ref="structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html#aab1aeee9def0c8b2181dd7ad92551cbc" />
       <keyword name="aworx::lox::core::ScopeStore" id="aworx::lox::core::ScopeStore" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html" />
       <keyword name="globalStore" id="aworx::lox::core::ScopeStore::globalStore" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#ad5f544834c72f2e639cda32bfdf4914b" />
       <keyword name="languageStore" id="aworx::lox::core::ScopeStore::languageStore" ref="classaworx_1_1lox_1_1core_1_1ScopeStore.html#a1251572d8e2460a60f89fd2372e71c63" />
@@ -3396,6 +3479,7 @@
       <keyword name="Format" id="aworx::lox::core::textlogger::MetaInfo::Format" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a5f73a9d6a9bfabaa4a33c34831006d07" />
       <keyword name="FormatWarning" id="aworx::lox::core::textlogger::MetaInfo::FormatWarning" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a9b4dcaaa0d0c31151f28626b539b2c78" />
       <keyword name="LogNumberMinDigits" id="aworx::lox::core::textlogger::MetaInfo::LogNumberMinDigits" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a72c44479ec3d128c1208b49e4b8ede08" />
+      <keyword name="MaxElapsedTime" id="aworx::lox::core::textlogger::MetaInfo::MaxElapsedTime" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ade3c3fa6f130947ef6aa22e72a4d1efd" />
       <keyword name="NoMethodInfo" id="aworx::lox::core::textlogger::MetaInfo::NoMethodInfo" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a3feb1a3fdbbde8059ca3007d9a7421d6" />
       <keyword name="NoSourceFileInfo" id="aworx::lox::core::textlogger::MetaInfo::NoSourceFileInfo" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#af44d2da6f43116de8557910776f9b1f1" />
       <keyword name="TimeDiffDays" id="aworx::lox::core::textlogger::MetaInfo::TimeDiffDays" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a7b75d4c8a835d33c6dac1bd7416ed70a" />
@@ -3409,10 +3493,11 @@
       <keyword name="TimeDiffSecs" id="aworx::lox::core::textlogger::MetaInfo::TimeDiffSecs" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a41fbed046e377a2f835b2f7e9c93c758" />
       <keyword name="TimeElapsedDays" id="aworx::lox::core::textlogger::MetaInfo::TimeElapsedDays" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a090fd75d30917282f140e5fcdde1fe3a" />
       <keyword name="TimeOfDayFormat" id="aworx::lox::core::textlogger::MetaInfo::TimeOfDayFormat" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a78d44b9a457f1b8a1e175b3fe7043f8f" />
-      <keyword name="VerbosityError" id="aworx::lox::core::textlogger::MetaInfo::VerbosityError" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a69535f9bd8c5493447f323c5cf7f7401" />
-      <keyword name="VerbosityInfo" id="aworx::lox::core::textlogger::MetaInfo::VerbosityInfo" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a2417488cbf15cf08bf1c373b9aac3222" />
-      <keyword name="VerbosityVerbose" id="aworx::lox::core::textlogger::MetaInfo::VerbosityVerbose" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a78d18da89faf78000af7767edbd48249" />
-      <keyword name="VerbosityWarning" id="aworx::lox::core::textlogger::MetaInfo::VerbosityWarning" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#accf8a9e6cd0f83806e46a5b3998965d2" />
+      <keyword name="VerbosityError" id="aworx::lox::core::textlogger::MetaInfo::VerbosityError" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a697a4af23750f87b2cc13aaaecc056eb" />
+      <keyword name="VerbosityInfo" id="aworx::lox::core::textlogger::MetaInfo::VerbosityInfo" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a807b208f28b840290a9784dbef53e5bc" />
+      <keyword name="VerbosityVerbose" id="aworx::lox::core::textlogger::MetaInfo::VerbosityVerbose" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a9959513d319bcf3d5bbd6d4d49b2ef27" />
+      <keyword name="VerbosityWarning" id="aworx::lox::core::textlogger::MetaInfo::VerbosityWarning" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#aec7b4b89c7f2ec594514bd36388f7cc6" />
+      <keyword name="MetaInfo" id="aworx::lox::core::textlogger::MetaInfo::MetaInfo" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#aef8deedd002add9fa92b6776af338ddb" />
       <keyword name="~MetaInfo" id="aworx::lox::core::textlogger::MetaInfo::~MetaInfo" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a7d8a1047142018ffc32e85ca0bf21df0" />
       <keyword name="Write" id="aworx::lox::core::textlogger::MetaInfo::Write" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a037523cdb14e8bae567b8fef2d102009" />
       <keyword name="callerDateTime" id="aworx::lox::core::textlogger::MetaInfo::callerDateTime" ref="classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a594357dd2afccbf86f5b6dfcdda82bbf" />
@@ -4133,6 +4218,7 @@
       <file>plugins_8hpp_source.html</file>
       <file>preallocatedstring_8hpp_source.html</file>
       <file>process_8hpp_source.html</file>
+      <file>qt_8hpp_source.html</file>
       <file>report_8hpp_source.html</file>
       <file>scopedump_8hpp_source.html</file>
       <file>scopeinfo_8hpp_source.html</file>
@@ -4229,6 +4315,8 @@
       <file>preallocatedstring_8hpp__incl.svg</file>
       <file>preallocatedstring_8hpp__dep__incl.svg</file>
       <file>process_8hpp.html</file>
+      <file>qt_8hpp.html</file>
+      <file>qt_8hpp__incl.svg</file>
       <file>report_8hpp.html</file>
       <file>report_8hpp__incl.svg</file>
       <file>report_8hpp__dep__incl.svg</file>
@@ -4393,6 +4481,21 @@
       <file>structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01lox_1_1core_1_1Logger_01_6_01_4.html</file>
       <file>structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01lox_1_1core_1_1Logger_01_6_01_4__inherit__graph.svg</file>
       <file>structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01lox_1_1core_1_1Logger_01_6_01_4__coll__graph.svg</file>
+      <file>structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QByteArray_01_6_01_4.html</file>
+      <file>structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QByteArray_01_6_01_4__inherit__graph.svg</file>
+      <file>structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QByteArray_01_6_01_4__coll__graph.svg</file>
+      <file>structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QChar_01_6_01_4.html</file>
+      <file>structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QChar_01_6_01_4__inherit__graph.svg</file>
+      <file>structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QChar_01_6_01_4__coll__graph.svg</file>
+      <file>structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QLatin1String_01_6_01_4.html</file>
+      <file>structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QLatin1String_01_6_01_4__inherit__graph.svg</file>
+      <file>structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QLatin1String_01_6_01_4__coll__graph.svg</file>
+      <file>structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QString_01_6_01_4.html</file>
+      <file>structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QString_01_6_01_4__inherit__graph.svg</file>
+      <file>structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QString_01_6_01_4__coll__graph.svg</file>
+      <file>structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QVector_3_01uint_01_4_01_6_01_4.html</file>
+      <file>structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QVector_3_01uint_01_4_01_6_01_4__inherit__graph.svg</file>
+      <file>structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QVector_3_01uint_01_4_01_6_01_4__coll__graph.svg</file>
       <file>structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01std_1_1string_01_6_01_4.html</file>
       <file>structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01std_1_1string_01_6_01_4__inherit__graph.svg</file>
       <file>structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01std_1_1string_01_6_01_4__coll__graph.svg</file>
@@ -4434,6 +4537,12 @@
       <file>structaworx_1_1lib_1_1strings_1_1ToStringDefined.html</file>
       <file>structaworx_1_1lib_1_1strings_1_1ToStringDefined__inherit__graph.svg</file>
       <file>structaworx_1_1lib_1_1strings_1_1ToStringDefined__coll__graph.svg</file>
+      <file>structaworx_1_1lib_1_1strings_1_1ToStringDefined_3_01const_01QByteArray_01_6_01_4.html</file>
+      <file>structaworx_1_1lib_1_1strings_1_1ToStringDefined_3_01const_01QByteArray_01_6_01_4__inherit__graph.svg</file>
+      <file>structaworx_1_1lib_1_1strings_1_1ToStringDefined_3_01const_01QByteArray_01_6_01_4__coll__graph.svg</file>
+      <file>structaworx_1_1lib_1_1strings_1_1ToStringDefined_3_01const_01QLatin1String_01_6_01_4.html</file>
+      <file>structaworx_1_1lib_1_1strings_1_1ToStringDefined_3_01const_01QLatin1String_01_6_01_4__inherit__graph.svg</file>
+      <file>structaworx_1_1lib_1_1strings_1_1ToStringDefined_3_01const_01QLatin1String_01_6_01_4__coll__graph.svg</file>
       <file>structaworx_1_1lib_1_1strings_1_1ToStringDefined_3_01const_01std_1_1string_01_6_01_4.html</file>
       <file>structaworx_1_1lib_1_1strings_1_1ToStringDefined_3_01const_01std_1_1string_01_6_01_4__inherit__graph.svg</file>
       <file>structaworx_1_1lib_1_1strings_1_1ToStringDefined_3_01const_01std_1_1string_01_6_01_4__coll__graph.svg</file>
@@ -4771,7 +4880,6 @@
       <file>namespacemembers_func.html</file>
       <file>namespacemembers_func.html</file>
       <file>namespacemembers_func.html</file>
-      <file>namespacemembers_vars.html</file>
       <file>namespacemembers_vars.html</file>
       <file>namespacemembers_vars.html</file>
       <file>namespacemembers_vars.html</file>

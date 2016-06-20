@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1604 R. 1</span>
+   &#160;<span id="projectnumber">V. 1604 R. 2</span>
    </div>
   </td>
  </tr>
@@ -134,6 +134,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>Besides binding <em>Prefix Logables</em> to a <em>Scope</em>, ALox provides an alternative and this s binding <em>Prefix Logables</em> to a <em>Log Domain</em>. The method for doing this is <b>Lox.SetPrefix</b> (<a class="elRef" doxygen="ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" href="cpp_ref/classaworx_1_1lox_1_1Lox.html#ac257a2345d3c5d4223b9861cd32309dd">C++</a>, <a class="elRef" doxygen="ALox/html/cs_ref/cs_ref.tag:cs_ref/" href="cs_ref/classcs_1_1aworx_1_1lox_1_1Lox.html#ac69496baa95a957d48f1cec5c53296d0">C#</a>, <a class="elRef" doxygen="ALox/html/java_ref/java_ref.tag:java_ref/" href="java_ref/classcom_1_1aworx_1_1lox_1_1Lox.html#a9bda0b407a8e700abe7a3008c3cb8d5a">Java</a>).</p>
 <p>The method accepts a <em>Log Domain</em> path which may be absolute (starting with <code>"/"</code> or relative). If relative the normal evaluation of a resulting domain path taking <em>Scope Domains</em> into account applies.<br />
  A third optional parameter allows to make the setting exclusive in respect to <em>Prefix Logables</em> which are set according to a <em>Scope</em>. By default, the exclusivity is not set.</p>
+<dl class="section note"><dt>Note</dt><dd>Alternatively, <em>Prefix Logables</em> bound to a <em>Log Domain</em> can set using configuration variable <a href="group__GrpALoxConfigVars.html">ALOX_LOXNAME_PREFIXES</a>. Of-course, this allows only string-type-<em>Prefix Logables</em> to be set.<br />
+ For general information on ALox configuration variables consult <a class="el" href="group__GrpALoxConfigVars.html">I - Configuration Variables</a>.<br />
+ For information on how to pass configuration data from custom sources to ALox, refer to namespace documentation <b>aworx::lib::config</b> (<a class="elRef" doxygen="ALox/html/cpp_ref/cpp_ref.tag:cpp_ref/" href="cpp_ref/namespaceaworx_1_1lib_1_1config.html">C++</a>, <a class="elRef" doxygen="ALox/html/cs_ref/cs_ref.tag:cs_ref/" href="cs_ref/namespacecs_1_1aworx_1_1lib_1_1config.html">C#</a>, <a class="elRef" doxygen="ALox/html/java_ref/java_ref.tag:java_ref/" href="java_ref/namespacecom_1_1aworx_1_1lib_1_1config.html">Java</a>).</dd></dl>
 <h1><a class="anchor" id="man_prefix_logables_processing"></a>
 3. How ALox Processes Prefix Logables</h1>
 <p>With any sort of <em>Log Statement</em> in ALox, the <em>Prefix Logables</em> are collected according to the <em>Scope</em> and the <em>Log Domain</em> of that <em>Log Statement</em>. In the same fashion as <em>Scope Domains</em> are concatenated, ALox adds <em>Prefix Logables</em> to the list of <em>Logables</em> that are passed to each <em>Logger</em> instance. Consequently, the list that a <em>Logger</em> receives is filled as follows:</p>
@@ -200,7 +203,7 @@ UT_dox_manual.cs(352):Log_SetPrefix()     [/]: Data File: Closed.</pre><p>A next
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu May 26 2016 13:01:47 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 20 2016 10:57:55 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

@@ -1,6 +1,7 @@
 var searchData=
 [
   ['elapsed',['elapsed',['java_ref/classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#ae8f62231f3b630ade0d816015f3b830d',1,'com::aworx::lox::core::textlogger::MetaInfo']]],
+  ['elapsedtime',['elapsedTime',['cs_ref/classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a4b8b0e20585a7a402af421c023746735',1,'cs::aworx::lox::core::textlogger::MetaInfo::elapsedTime()'],['java_ref/classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html#a4b8b0e20585a7a402af421c023746735',1,'com::aworx::lox::core::textlogger::MetaInfo::elapsedTime()']]],
   ['empty',['EMPTY',['java_ref/classcom_1_1aworx_1_1lib_1_1strings_1_1CString.html#a96bf3bbfadb40d0a50ab8d48f6f6ef55',1,'com::aworx::lib::strings::CString']]],
   ['emptystring',['EmptyString',['cpp_ref/namespaceaworx.html#a3372961a8fb9d30455267babb4e6c26c',1,'aworx']]],
   ['end',['END',['java_ref/enumcom_1_1aworx_1_1lib_1_1enums_1_1Phase.html#a1de54bd922161dd5c6a353647f448fd6',1,'com::aworx::lib::enums::Phase::END()'],['java_ref/classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html#abce9f5dc9c83f2639b72024fdee5d388',1,'com::aworx::lib::strings::Substring::end()'],['cs_ref/classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html#a8fd2246e5257c4d309bf3777e74f54bf',1,'cs::aworx::lib::strings::Substring::End()']]],
@@ -11,9 +12,12 @@ var searchData=
   ['error_5fopening_5ffile',['ERROR_OPENING_FILE',['java_ref/enumcom_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Status.html#a68e39564c8829e5ea3ac9e672309ddf4',1,'com::aworx::lib::config::IniFile::Status']]],
   ['error_5fwriting_5ffile',['ERROR_WRITING_FILE',['java_ref/enumcom_1_1aworx_1_1lib_1_1config_1_1IniFile_1_1Status.html#ad575011f8e5ef367500990a314013727',1,'com::aworx::lib::config::IniFile::Status']]],
   ['escapesequences',['EscapeSequences',['cs_ref/classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html#ae78db2be8b8bb16919846bf36e308ec4',1,'cs::aworx::lib::config::IniFile::EscapeSequences()'],['cpp_ref/classaworx_1_1lib_1_1config_1_1IniFile.html#a90c6ad78caa206911f41e45552d63c6c',1,'aworx::lib::config::IniFile::EscapeSequences()'],['java_ref/classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html#a1feeea4683a0d9f680f3a719ac07745f',1,'com::aworx::lib::config::IniFile::escapeSequences()']]],
+  ['evaluatedtempdir',['evaluatedTempDir',['cpp_ref/classaworx_1_1lib_1_1system_1_1Directory.html#ad0c1b40acd899ebb5f0388779ed4d1dc',1,'aworx::lib::system::Directory']]],
+  ['evaluatedvartempdir',['evaluatedVarTempDir',['cpp_ref/classaworx_1_1lib_1_1system_1_1Directory.html#a4b09df20093589aae45a102d72bca303',1,'aworx::lib::system::Directory']]],
   ['exact',['EXACT',['java_ref/enumcom_1_1aworx_1_1lox_1_1Lox_1_1DSRType.html#a4d7ced7e91082dd7db8ca474c3ff96ac',1,'com::aworx::lox::Lox::DSRType']]],
   ['exceptionbaos',['exceptionBAOS',['java_ref/classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a5737c70ed077c93996f8dc1b1a45afd4',1,'com::aworx::lox::tools::LogTools']]],
   ['exceptionps',['exceptionPS',['java_ref/classcom_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a1faac34f3e6f3def40a11d8b59d9b00f',1,'com::aworx::lox::tools::LogTools']]],
   ['exclude',['EXCLUDE',['java_ref/enumcom_1_1aworx_1_1lib_1_1enums_1_1Inclusion.html#a68675e302dc131913045dd7e20320bb1',1,'com::aworx::lib::enums::Inclusion']]],
-  ['execname',['ExecName',['cpp_ref/classaworx_1_1lib_1_1system_1_1ProcessInfo.html#ab5fca5813a5614d7a284466c074bcacd',1,'aworx::lib::system::ProcessInfo']]]
+  ['execfilename',['ExecFileName',['cpp_ref/classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a4261537d8a445f836cc32174e8ff0fd9',1,'aworx::lib::system::ProcessInfo']]],
+  ['execfilepath',['ExecFilePath',['cpp_ref/classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a6e88f1772ab15c3f177dfa4deed1612b',1,'aworx::lib::system::ProcessInfo']]]
 ];

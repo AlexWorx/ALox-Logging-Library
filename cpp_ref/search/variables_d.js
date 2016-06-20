@@ -5,7 +5,7 @@ var searchData=
   ['objectvalue',['ObjectValue',['../structaworx_1_1lox_1_1LogData.html#af6e8b41d2b8786b1ce8f27c38f70ab43',1,'aworx::lox::LogData']]],
   ['onetimewarningcirculards',['oneTimeWarningCircularDS',['../classaworx_1_1lox_1_1Lox.html#a1ff634203235e02dab39d057469ec3db',1,'aworx::lox::Lox']]],
   ['origfile',['origFile',['../structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#a792c2a0b64091058562faaf73b0b5e9e',1,'aworx::lox::core::ScopeInfo::SourceFile']]],
-  ['origfilepathseparator',['origFilePathSeparator',['../structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#a92c278f6e653f2ff33c65cd197d61239',1,'aworx::lox::core::ScopeInfo::SourceFile']]],
+  ['origfilepathlength',['origFilePathLength',['../structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html#ad9601f3d9397b2114f0236aeeca12097',1,'aworx::lox::core::ScopeInfo::SourceFile']]],
   ['originalconsoleattributes',['originalConsoleAttributes',['../classaworx_1_1lox_1_1loggers_1_1WindowsConsoleLogger.html#a149584f1eda778dd1322190ddd5b00de',1,'aworx::lox::loggers::WindowsConsoleLogger']]],
   ['origline',['origLine',['../classaworx_1_1lox_1_1core_1_1ScopeInfo.html#aea32b63d1b8fdc55f090b2b8b41b3d6b',1,'aworx::lox::core::ScopeInfo']]],
   ['origmethod',['origMethod',['../classaworx_1_1lox_1_1core_1_1ScopeInfo.html#ad28921e2af5d6ded371d6d1b33ade6a3',1,'aworx::lox::core::ScopeInfo']]],

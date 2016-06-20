@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1604 R. 1</span>
+   &#160;<span id="projectnumber">V. 1604 R. 2</span>
    </div>
   </td>
  </tr>
@@ -148,7 +148,7 @@ Collaboration diagram for ConfigurationPlugIn:</div>
 <p>Different attached plug-ins of type <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html#a7be57a5ed92198b336f33405511cc5d4">ConfigurationPlugIn</a> differentiate in their priority. This way, certain configuration methods can 'overwrite' values from other sources. See <a class="el" href="namespacecom_1_1aworx_1_1lib_1_1config.html">com.aworx.lib.config</a> for more information on priorities.</p>
 <p>The plug-in also may have the ability to write data. The default implementation for writing configuration data returns constant false, indicating that this plug-in never writes anything (e.g. command line parameter plug-in, environment variable plug-in).</p>
 <p>Category and Variable names are character case insensitive for the built-in <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a> types <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html">EnvironmentPlugIn</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugIn.html">CommandLinePlugIn</a>. It is recommended to to ignore character case in custom specializations of class <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1ConfigurationPlugIn.html">ConfigurationPlugIn</a> as well.</p>
-<p>Variables belong to categories. The built-in ConfigurationPlugIns types <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugIn.html">CommandLinePlugIn</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html">EnvironmentPlugIn</a> just concatenate the category and the variable name with an underscore '_'. This means, if variable <em>IDE</em> in category <em><a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html">ALIB</a></em> is accessed, those plug-ins would check command line parameter <em>&ndash;ALIB_IDE=xyz</em> respectively environment variable <em>ALIB_IDE</em> </p>
+<p>Variables belong to categories. The built-in ConfigurationPlugIns types <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1CommandLinePlugIn.html">CommandLinePlugIn</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1config_1_1EnvironmentPlugIn.html">EnvironmentPlugIn</a> just concatenate the category and the variable name with an underscore '_'. This means, if variable <em>LOCALE</em> in category <em><a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html">ALIB</a></em> is accessed, those plug-ins would check command line parameter <em>&ndash;ALIB_LOCALE=xyz</em> respectively environment variable <em>ALIB_LOCALE</em> </p>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Fields</h2></td></tr>
@@ -547,7 +547,7 @@ The use of this character is specific to a plug-ins' implementation.</td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu May 26 2016 13:01:46 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 20 2016 10:57:55 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

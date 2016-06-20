@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1604 R. 1</span>
+   &#160;<span id="projectnumber">V. 1604 R. 2</span>
    </div>
   </td>
  </tr>
@@ -155,6 +155,8 @@ Inner Classes</h2></td></tr>
 Public Fields</h2></td></tr>
 <tr class="memitem:a2c80e5630abe5d5042ddb4b85c0c3562"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1Domain.html#a2c80e5630abe5d5042ddb4b85c0c3562">CntLogCalls</a> =0</td></tr>
 <tr class="separator:a2c80e5630abe5d5042ddb4b85c0c3562"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b8f94546fd5c1c564c2bfe0fee6c770"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1Domain.html#a6b8f94546fd5c1c564c2bfe0fee6c770">ConfigurationRead</a> =false</td></tr>
+<tr class="separator:a6b8f94546fd5c1c564c2bfe0fee6c770"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae084fa950af8593b424bb0f75fba7a0f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structaworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html">LoggerData</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1Domain.html#ae084fa950af8593b424bb0f75fba7a0f">Data</a></td></tr>
 <tr class="separator:ae084fa950af8593b424bb0f75fba7a0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5249fc60e18f9a0e7e7ffd24a20dbec9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceaworx.html#ac2fdc487456a994238ba4284b3859c41">String64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1Domain.html#a5249fc60e18f9a0e7e7ffd24a20dbec9">FullPath</a></td></tr>
@@ -170,8 +172,8 @@ Public Fields</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Public Static Methods</h2></td></tr>
-<tr class="memitem:a28fc603aa3aaa186e688d30802253538"><td class="memItemLeft" align="right" valign="top">static constexpr char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1Domain.html#a28fc603aa3aaa186e688d30802253538">PathSeparator</a> ()</td></tr>
-<tr class="separator:a28fc603aa3aaa186e688d30802253538"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d34c67477a6f6f1a0a3803f1300cf2e"><td class="memItemLeft" align="right" valign="top">static constexpr char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lox_1_1core_1_1Domain.html#a5d34c67477a6f6f1a0a3803f1300cf2e">Separator</a> ()</td></tr>
+<tr class="separator:a5d34c67477a6f6f1a0a3803f1300cf2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Methods</h2></td></tr>
@@ -397,7 +399,7 @@ Protected Methods</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr/>
-<p> Searches a domain. If not found, the domain is (or path of domains are) created in the domain tree. If the path string starts with the character defined with <a class="el" href="classaworx_1_1lox_1_1core_1_1Domain.html#a28fc603aa3aaa186e688d30802253538">PathSeparator</a>, then the search (and creation) is done starting from the root domain of this domain and not from this domain.</p>
+<p> Searches a domain. If not found, the domain is (or path of domains are) created in the domain tree. If the path string starts with the character defined with <a class="el" href="classaworx_1_1lox_1_1core_1_1Domain.html#a5d34c67477a6f6f1a0a3803f1300cf2e">Separator</a>, then the search (and creation) is done starting from the root domain of this domain and not from this domain.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">domainPath</td><td>Path and domain to search. </td></tr>
@@ -762,30 +764,6 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a28fc603aa3aaa186e688d30802253538"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static constexpr char PathSeparator </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Returns the domain path separation character. </dd></dl>
-
-</div>
-</div>
 <a class="anchor" id="a9aa2e7ebee563c92c3335f9a3b4a574c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -845,6 +823,30 @@ Protected Methods</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="a5d34c67477a6f6f1a0a3803f1300cf2e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static constexpr char Separator </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns the domain path separation character. </dd></dl>
 
 </div>
 </div>
@@ -940,6 +942,19 @@ Protected Methods</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a6b8f94546fd5c1c564c2bfe0fee6c770"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ConfigurationRead =false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Flag to which is set when verbosity configuration data was read. </p>
+
+</div>
+</div>
 <a class="anchor" id="ae084fa950af8593b424bb0f75fba7a0f"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1026,7 +1041,7 @@ Protected Methods</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu May 26 2016 13:01:45 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 20 2016 10:57:53 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

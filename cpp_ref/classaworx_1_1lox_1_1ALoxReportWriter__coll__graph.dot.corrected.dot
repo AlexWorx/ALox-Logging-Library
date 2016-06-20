@@ -55,7 +55,7 @@ digraph "ALoxReportWriter"
   Node5 -> Node14 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" origFile" ,fontname="Helvetica"];
   Node6 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node6 -> Node12 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" threadName" ,fontname="Helvetica"];
-  Node6 -> Node14 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" fullPath\nnameWOExt\nname\ntrimmedPath" ,fontname="Helvetica"];
+  Node6 -> Node14 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" fullPath\nnameWOExt\ntrimmedPathPrefix\nname\ntrimmedPath" ,fontname="Helvetica"];
   Node7 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" lox" ,fontname="Helvetica"];
   Node8 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node9 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];

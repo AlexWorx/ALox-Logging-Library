@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1604 R. 1</span>
+   &#160;<span id="projectnumber">V. 1604 R. 2</span>
    </div>
   </td>
  </tr>
@@ -155,7 +155,7 @@ Public Static Fields</h2></td></tr>
 <tr class="separator:a25cfe93aaf9615cfe8d411514c1f1499"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77074852c5d95a31cab43e8c85871c64"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#a77074852c5d95a31cab43e8c85871c64">lock</a> =new <a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html">ThreadLock</a>(<a class="el" href="enumcom_1_1aworx_1_1lib_1_1enums_1_1LockMode.html#a0ff653041a18929c6006abb2bc2e649b">LockMode.SINGLE_LOCKS</a>)</td></tr>
 <tr class="separator:a77074852c5d95a31cab43e8c85871c64"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80915412cfca1d0f550c217f30d3083c"><td class="memItemLeft" align="right" valign="top">static final int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#a80915412cfca1d0f550c217f30d3083c">revision</a> =1</td></tr>
+<tr class="memitem:a80915412cfca1d0f550c217f30d3083c"><td class="memItemLeft" align="right" valign="top">static final int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#a80915412cfca1d0f550c217f30d3083c">revision</a> =2</td></tr>
 <tr class="separator:a80915412cfca1d0f550c217f30d3083c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e06b7976acfefcb37439832378a1070"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html">SmartLock</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#a3e06b7976acfefcb37439832378a1070">stdOutputStreamsLock</a> = new <a class="el" href="classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html">SmartLock</a>()</td></tr>
 <tr class="separator:a3e06b7976acfefcb37439832378a1070"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -182,6 +182,8 @@ Public Static Methods</h2></td></tr>
 <tr class="separator:ae4b235120820112ab5945a12adf01a3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc3da8c7951c4bb457d04494c04a4ba6"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#afc3da8c7951c4bb457d04494c04a4ba6">REPORT</a> (int type, String msg)</td></tr>
 <tr class="separator:afc3da8c7951c4bb457d04494c04a4ba6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d426a10c08ec8df066a784900ccc824"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#a6d426a10c08ec8df066a784900ccc824">sleep</a> (<a class="el" href="classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html">Ticks</a> ticks)</td></tr>
+<tr class="separator:a6d426a10c08ec8df066a784900ccc824"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6782d4dee54d5f911a4354da3eb3f24"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#af6782d4dee54d5f911a4354da3eb3f24">sleepMicros</a> (long microsecs)</td></tr>
 <tr class="separator:af6782d4dee54d5f911a4354da3eb3f24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acbd1afce84112c5a5b085586afcf7ff5"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#acbd1afce84112c5a5b085586afcf7ff5">sleepMillis</a> (int millisecs)</td></tr>
@@ -547,6 +549,38 @@ Private Static Fields</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a6d426a10c08ec8df066a784900ccc824"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void sleep </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcom_1_1aworx_1_1lib_1_1time_1_1Ticks.html">Ticks</a>&#160;</td>
+          <td class="paramname"><em>ticks</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Suspends the current thread for the given number of milliseconds. Variants of this method are <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#acbd1afce84112c5a5b085586afcf7ff5">sleepMillis</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#af6782d4dee54d5f911a4354da3eb3f24">sleepMicros</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#aaf74d000ba9b2b39cbffaa8d09b38cad">sleepNanos</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ticks</td><td>Sleep time in <b>Ticks</b>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="af6782d4dee54d5f911a4354da3eb3f24"></a>
 <div class="memitem">
 <div class="memproto">
@@ -569,7 +603,7 @@ Private Static Fields</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Sleeps for the given number of microseconds. Variants of this method are <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#acbd1afce84112c5a5b085586afcf7ff5">sleepMillis</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#aaf74d000ba9b2b39cbffaa8d09b38cad">sleepNanos</a>. </p><dl class="params"><dt>Parameters</dt><dd>
+<p> Suspends the current thread for the given number of microseconds. Variants of this method are <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#a6d426a10c08ec8df066a784900ccc824">sleep</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#acbd1afce84112c5a5b085586afcf7ff5">sleepMillis</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#aaf74d000ba9b2b39cbffaa8d09b38cad">sleepNanos</a>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">microsecs</td><td>Sleep time in microseconds. </td></tr>
   </table>
@@ -600,7 +634,7 @@ Private Static Fields</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Sleeps for the given number of milliseconds. Variants of this method are <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#af6782d4dee54d5f911a4354da3eb3f24">sleepMicros</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#aaf74d000ba9b2b39cbffaa8d09b38cad">sleepNanos</a>.</p>
+<p> Suspends the current thread for the given number of milliseconds. Variants of this method are <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#a6d426a10c08ec8df066a784900ccc824">sleep</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#af6782d4dee54d5f911a4354da3eb3f24">sleepMicros</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#aaf74d000ba9b2b39cbffaa8d09b38cad">sleepNanos</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">millisecs</td><td>Sleep time in milliseconds. </td></tr>
@@ -632,7 +666,7 @@ Private Static Fields</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Sleeps for the given number of nanoseconds. Variants of this method are <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#acbd1afce84112c5a5b085586afcf7ff5">sleepMillis</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#aaf74d000ba9b2b39cbffaa8d09b38cad">sleepNanos</a>.</p>
+<p> Suspends the current thread for the given number of nanoseconds. Variants of this method are <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#a6d426a10c08ec8df066a784900ccc824">sleep</a>, <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#acbd1afce84112c5a5b085586afcf7ff5">sleepMillis</a> and <a class="el" href="classcom_1_1aworx_1_1lib_1_1ALIB.html#aaf74d000ba9b2b39cbffaa8d09b38cad">sleepNanos</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">nanosecs</td><td>Sleep time in nanoseconds. </td></tr>
@@ -821,7 +855,7 @@ Private Static Fields</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">final int revision =1</td>
+          <td class="memname">final int revision =2</td>
         </tr>
       </table>
   </td>
@@ -953,7 +987,7 @@ Logging library <b>ALox</b>, which is built on ALib, will register whenever a <e
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu May 26 2016 13:01:46 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 20 2016 10:57:55 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

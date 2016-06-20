@@ -26,7 +26,7 @@ digraph "ScopeStore&lt; StoreT &gt;"
   Node9 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node11 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" cache\nactual" ,fontname="Helvetica"];
   Node11 [label="SourceFile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourceFile.html"];
-  Node9 -> Node11 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" fullPath\nnameWOExt\nname\ntrimmedPath" ,fontname="Helvetica"];
+  Node9 -> Node11 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" fullPath\nnameWOExt\ntrimmedPathPrefix\nname\ntrimmedPath" ,fontname="Helvetica"];
   Node10 -> Node11 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" origFile" ,fontname="Helvetica"];
   Node12 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" timeStamp" ,fontname="Helvetica"];
   Node12 [label="Ticks",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1time_1_1Ticks.html"];
@@ -35,7 +35,7 @@ digraph "ScopeStore&lt; StoreT &gt;"
   Node13 [label="vector\< aworx::lox\l::core::ScopeInfo::SourcePath\lTrimRule \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node14 -> Node13 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" elements" ,fontname="Helvetica"];
   Node14 [label="SourcePathTrimRule",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structaworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html"];
-  Node15 -> Node14 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Path" ,fontname="Helvetica"];
+  Node15 -> Node14 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" TrimReplacement\nPath" ,fontname="Helvetica"];
   Node15 [label="AString",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1AString.html"];
   Node10 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node16 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" loxName" ,fontname="Helvetica"];

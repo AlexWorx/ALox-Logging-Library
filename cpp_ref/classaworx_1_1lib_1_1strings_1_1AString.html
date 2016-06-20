@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1604 R. 1</span>
+   &#160;<span id="projectnumber">V. 1604 R. 2</span>
    </div>
   </td>
  </tr>
@@ -150,7 +150,7 @@ Collaboration diagram for AString:</div>
 <li><b>Internal buffers</b><br />
  This is the standard case and implements a buffer that is allocated from <em>free memory</em> (aka 'the heap') that eventually grows over time and never shrinks, unless explicitly demanded by the user of the class. Those buffers are deleted when objects of this type are deleted.</li>
 <li><b>External buffers</b><br />
- Set with method <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a4c82c5367836f6886f1505c803ce4058">SetBuffer</a>. These buffers don't get deleted. However, if their capacity is exceeded, they will get automatically replaced by an internal buffer. (See field <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#ae6e756e6f5ccc142f9fc3ceb6ba18cf0">ReplaceExternalBuffer</a> to control warnings on that in debug compilation).</li>
+ Set with method <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a0bdd4581fc80e9bba8ceb46e030c75ac">SetBuffer</a>. These buffers don't get deleted. However, if their capacity is exceeded, they will get automatically replaced by an internal buffer. (See field <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#ae6e756e6f5ccc142f9fc3ceb6ba18cf0">ReplaceExternalBuffer</a> to control warnings on that in debug compilation).</li>
 </ul>
 <p><b>Construction/Destruction</b></p>
 <p>The following ways of construction are provided:</p><ul>
@@ -159,11 +159,11 @@ Collaboration diagram for AString:</div>
 <li><b>Construction with initial capacity</b><br />
  With constructor <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a8d15090f040cca48bcb7f1875de0fe3e">AString(int)</a>, an initial length can be provided. This construction variant should be used, if the maximum length the object that will be reached during its lifetime is predictable, because it avoids iterative, increasing buffer allocations that otherwise would be performed until that size is reached once. Furthermore there are constructors</li>
 <li><b>Construction with external buffers</b><br />
- With constructor <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a56a710a7a5bc7604ce80ae47265f5835">AString(char*, int)</a>, an external buffer is set. This constructor is protected and therefore accessible by derived classes' constructors only. This is to avoid an otherwise likely common misunderstanding that this constructor would copy the contents of a provided cstring. For users of this class, the alternative to this constructor is using a combination of the default constructor and method <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a4c82c5367836f6886f1505c803ce4058">SetBuffer</a> which has exactly the same effect.</li>
+ With constructor <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a56a710a7a5bc7604ce80ae47265f5835">AString(char*, int)</a>, an external buffer is set. This constructor is protected and therefore accessible by derived classes' constructors only. This is to avoid an otherwise likely common misunderstanding that this constructor would copy the contents of a provided cstring. For users of this class, the alternative to this constructor is using a combination of the default constructor and method <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a0bdd4581fc80e9bba8ceb46e030c75ac">SetBuffer</a> which has exactly the same effect.</li>
 <li><b>Construction with strings</b><br />
  Constructors <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#aebc985ab1428055a05aee879e173910a">AString(const T&amp;)</a>, <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a>(const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a>&amp;, int, int=) and copy constructor <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a4f3aebb5fc9bc80c4f569df5d6450025">AString(const AString&amp;)</a> will allocate an internal buffer of the capacity needed and copy the contents of the given string type.</li>
 </ul>
-<p>Destruction will free internally allocated buffers. </p><dl class="section note"><dt>Note</dt><dd>Method <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a4c82c5367836f6886f1505c803ce4058">SetBuffer</a> provides a boolean parameter that also allows to let an object of this class take control on the provided buffer, namely delete it in the destructor. In this case, a buffer set with this method is considered an internal buffer, rather than an external one.</dd></dl>
+<p>Destruction will free internally allocated buffers. </p><dl class="section note"><dt>Note</dt><dd>Method <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a0bdd4581fc80e9bba8ceb46e030c75ac">SetBuffer</a> provides a boolean parameter that also allows to let an object of this class take control on the provided buffer, namely delete it in the destructor. In this case, a buffer set with this method is considered an internal buffer, rather than an external one.</dd></dl>
 <p><a class="anchor" id="alib_namespace_strings_astring_move"></a><b>Move constructor and move assignment</b></p>
 <p>This class provides a (noexcept) move constructor which grabs the buffer of a given movable <b>AString</b>, as long as this given object does not use an external buffer. In the latter case, the contents is copied like in the copy constructor.<br />
  This class does not provide a move assignment operator. The rational for this is that normally a "more temporary" <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> would be assigned to a "less temporary" one. In this case, it would be not helpful to replace the allocated storage, each time. </p><dl class="section note"><dt>Note</dt><dd>In general, while assignment of other objects of type <b>AString</b> is possible through <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#ab5e4f0275095724f12cb477527d2f33b">operator=(const AString&amp;)</a>, the advised code style is to use a combination of <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#ae4d5af65574550e39830297e4496f81b">Clear</a> and append <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a05403e545a0fa8171456199085790c1c">_()</a> (e.g. <em>myString._()._(otherString)</em>) to do the assignment instead. This leads to exactly the same result as long as the <b>AString</b> that is assigned is not <em>nulled</em>.<br />
@@ -175,7 +175,7 @@ In the case that it is <em>nulled</em>, using the assignment operator will set t
 <p>In addition to this, a bunch of methods allow the modification of characters. <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a8068d1bbfd60c6cb178bdc0b2084ab9b">operator[]</a> is returning a reference to a char in contrast to the same operator defined in class <b>String</b>. This allows assignments of values when using an object with this operator as an lvalue.</p>
 <p><a class="anchor" id="alib_namespace_strings_astring_nullable"></a> <b>Nullable AStrings</b></p>
 <p>As discussed in the namespace documentation (<a class="el" href="namespaceaworx_1_1lib_1_1strings.html#alib_namespace_strings_nullable">alib_namespace_strings_nullable</a>) parent class <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> provides an interface to detect <em><em>nulled</em></em> objects. This concept is duly implemented in this class. An object of type <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a56a710a7a5bc7604ce80ae47265f5835">AString</a> is <em><em>nulled</em></em> when no internal buffer is allocated or external buffer is set.</p>
-<p>If default constructed, constructed with zero size, a null pointer, or any other string type object which is <em>nulled</em>, no buffer is created and hence the new object is in <em><em>nulled</em></em> state and inherited method <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a055d87b78f69c9d039b7e12ead7aa6b6">aworx::lib::strings::String::IsNull</a> "IsNull" will return <code>true</code> for that object. Consequently, it makes a difference if an <b>AString</b> is constructed using <em><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a135d849a18470b04a1f4cf761de3a17c">AString()</a></em> or <em><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a>("")</em>. This allows to differentiate between <em>nulled</em> AStrings and empty <b>AStrings</b>, which is quite handy in certain situations. An object that was filled already can be reset to represent null by either assigning a nullptr, by invoking <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a4c82c5367836f6886f1505c803ce4058">SetBuffer(0)</a> or by invoking <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a787c9800970197d19a5452ac456d64f1">SetNull</a> on the instance. (See also methods <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a055d87b78f69c9d039b7e12ead7aa6b6">IsNull</a>, <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#aaaf24e0ec4b4b51df542cd654230c3da">IsNotNull</a> and <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#ad07c7e740f0be42afb0c1eda25361864">Capacity</a>.) The methods <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#aa30b895dcfaf0574aca843b212ee2602">Equals</a>, <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#aa9596ce7ca16857d887ae619a42d231c">CompareTo</a> and the overloaded comparison <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a5458d43552b4f83c721cc967f091cc4c">operator==</a> and <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a9582e8e8e4b37606065566ec88f9626d">operator!=</a> allow nullptr comparisons. e.g. a <em><em>nulled</em></em> <b>AString</b> equals to another <em><em>nulled</em></em> <b>AString</b> but not to an empty but not <em><em>nulled</em></em> <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a>.</p>
+<p>If default constructed, constructed with zero size, a null pointer, or any other string type object which is <em>nulled</em>, no buffer is created and hence the new object is in <em><em>nulled</em></em> state and inherited method <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a055d87b78f69c9d039b7e12ead7aa6b6">aworx::lib::strings::String::IsNull</a> "IsNull" will return <code>true</code> for that object. Consequently, it makes a difference if an <b>AString</b> is constructed using <em><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a135d849a18470b04a1f4cf761de3a17c">AString()</a></em> or <em><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a>("")</em>. This allows to differentiate between <em>nulled</em> AStrings and empty <b>AStrings</b>, which is quite handy in certain situations. An object that was filled already can be reset to represent null by either assigning a nullptr, by invoking <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a0bdd4581fc80e9bba8ceb46e030c75ac">SetBuffer(0)</a> or by invoking <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a787c9800970197d19a5452ac456d64f1">SetNull</a> on the instance. (See also methods <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a055d87b78f69c9d039b7e12ead7aa6b6">IsNull</a>, <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#aaaf24e0ec4b4b51df542cd654230c3da">IsNotNull</a> and <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#ad07c7e740f0be42afb0c1eda25361864">Capacity</a>.) The methods <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#aa30b895dcfaf0574aca843b212ee2602">Equals</a>, <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#aa9596ce7ca16857d887ae619a42d231c">CompareTo</a> and the overloaded comparison <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a5458d43552b4f83c721cc967f091cc4c">operator==</a> and <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a9582e8e8e4b37606065566ec88f9626d">operator!=</a> allow nullptr comparisons. e.g. a <em><em>nulled</em></em> <b>AString</b> equals to another <em><em>nulled</em></em> <b>AString</b> but not to an empty but not <em><em>nulled</em></em> <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a>.</p>
 <p>To make this more clear, note the following <b>sample code</b> which does not throw an assertion: </p><div class="fragment"><div class="line">    <span class="comment">// Default constructor does not allocate space, yet.</span></div><div class="line">    <span class="comment">// The instance is &quot;nulled&quot;.</span></div><div class="line">    <a class="code" href="classaworx_1_1lib_1_1strings_1_1AString.html#a135d849a18470b04a1f4cf761de3a17c">AString</a> aString;</div><div class="line">    assert(  aString.IsNull()                 );</div><div class="line">    assert(  aString.Equals( <a class="code" href="namespaceaworx.html#ab1ed6dcfbe4628dccefbdb5633b1bf01">NullString</a> )     );</div><div class="line">    assert(  aString == <span class="keyword">nullptr</span> );</div><div class="line"></div><div class="line">    <span class="comment">// Assign an empty string. Now the AString is not nullptr any more</span></div><div class="line">    aString= <span class="stringliteral">&quot;&quot;</span>;</div><div class="line">    assert(  aString.IsNotNull()              );</div><div class="line">    assert( !aString.Equals   ( <a class="code" href="namespaceaworx.html#ab1ed6dcfbe4628dccefbdb5633b1bf01">NullString</a> )  );</div><div class="line">    assert(  aString != <span class="keyword">nullptr</span> );</div><div class="line"></div><div class="line">    <span class="comment">// Assign nullptr</span></div><div class="line">    aString= <span class="keyword">nullptr</span>;</div><div class="line">    assert(  aString.IsNull()                 );</div><div class="line">    assert(  aString.Equals   ( <a class="code" href="namespaceaworx.html#ab1ed6dcfbe4628dccefbdb5633b1bf01">NullString</a> )  );</div><div class="line">    assert(  aString == <span class="keyword">nullptr</span> );</div></div><!-- fragment --> <dl class="section note"><dt>Note</dt><dd><ul>
 <li>As mentioned above, to avoid loosing an allocated buffer, use a combination of <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#ae4d5af65574550e39830297e4496f81b">Clear</a> and append <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a05403e545a0fa8171456199085790c1c">_()</a> to perform assignments with other string types instead of using one of the assignment operators (<a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#ab5e4f0275095724f12cb477527d2f33b">operator=</a>). No check for <em><em>nulled</em></em> string is needed when appending them to an object of this type.</li>
 <li>Even if an <b>AString</b> object is <em>nulled</em>, inherited method <a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html#af283db5a533654cb8a0fa2e110d4b20f">ToCString</a> will return a (zero terminated) valid empty <em>char*</em>. This has the advantage that in many situations the null-state is not needed to be handled (for those cases where the difference between a <em>nulled</em> and an empty string is irrelevant).</li>
@@ -256,8 +256,8 @@ Public Methods</h2></td></tr>
 <tr><td colspan="2"><div class="groupText"><h6></h6>
 <h2></h2>
 </div></td></tr>
-<tr class="memitem:a4c82c5367836f6886f1505c803ce4058"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a4c82c5367836f6886f1505c803ce4058">SetBuffer</a> (int newSize)</td></tr>
-<tr class="separator:a4c82c5367836f6886f1505c803ce4058"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bdd4581fc80e9bba8ceb46e030c75ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a0bdd4581fc80e9bba8ceb46e030c75ac">SetBuffer</a> (int newCapacity)</td></tr>
+<tr class="separator:a0bdd4581fc80e9bba8ceb46e030c75ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c8474e9c19a45b535f1b460aac3847b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a0c8474e9c19a45b535f1b460aac3847b">SetBuffer</a> (char *extBuffer, int extBufferSize, int extLength=0, <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ab5305b978950ba3946cf79a4bccbf7af">enums::Responsibility</a> responsibility=<a class="el" href="namespaceaworx_1_1lib_1_1enums.html#ab5305b978950ba3946cf79a4bccbf7afa2540530a938da82bfe62957f4aff599b">enums::Responsibility::KeepWithSender</a>)</td></tr>
 <tr class="separator:a0c8474e9c19a45b535f1b460aac3847b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c14574ea5ef859e15b51f288c40f5da"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true&gt; </td></tr>
@@ -328,6 +328,8 @@ Public Methods</h2></td></tr>
 <tr class="memitem:a45cb08597c96cf62edb8ece124d8e4fc"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true&gt; </td></tr>
 <tr class="memitem:a45cb08597c96cf62edb8ece124d8e4fc"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a45cb08597c96cf62edb8ece124d8e4fc">Append</a> (const char *src, int srcLength)</td></tr>
 <tr class="separator:a45cb08597c96cf62edb8ece124d8e4fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e836e4a665a6ffd7cd1ee48dda06798"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a4e836e4a665a6ffd7cd1ee48dda06798">Append</a> (const wchar_t *src, int srcLength)</td></tr>
+<tr class="separator:a4e836e4a665a6ffd7cd1ee48dda06798"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4dbe5fba1e5c5ed69d12d57b3eb49ef7"><td class="memTemplParams" colspan="2">template&lt;bool TCheck = true, class T &gt; </td></tr>
 <tr class="memitem:a4dbe5fba1e5c5ed69d12d57b3eb49ef7"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a4dbe5fba1e5c5ed69d12d57b3eb49ef7">Apply</a> (const T &amp;src)</td></tr>
 <tr class="separator:a4dbe5fba1e5c5ed69d12d57b3eb49ef7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -389,8 +391,8 @@ Public Methods</h2></td></tr>
 <tr class="separator:adcffeb665e497d8c0909063e4b5df871 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a863a723eb56ea0b5fab9a838c5f27658 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a863a723eb56ea0b5fab9a838c5f27658">String</a> (const char *<a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#adae84acc92cd77a04f6aaf533643a33a">buffer</a>, int contentLength)</td></tr>
 <tr class="separator:a863a723eb56ea0b5fab9a838c5f27658 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79bdef100f3c7887fd120a7a98d8062c inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a79bdef100f3c7887fd120a7a98d8062c">String</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;src, int regionStart, int regionLength)</td></tr>
-<tr class="separator:a79bdef100f3c7887fd120a7a98d8062c inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91744e23d962777f812b537979d5ce9e inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a91744e23d962777f812b537979d5ce9e">String</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;src, int regionStart, int regionLength=<a class="el" href="classaworx_1_1lib_1_1strings_1_1CString.html#a702a7d928cd1d34c5aa2f26dd97e199e">CString::MaxLen</a>)</td></tr>
+<tr class="separator:a91744e23d962777f812b537979d5ce9e inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b1f593a0b9b71d210993cea0727b419 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a2b1f593a0b9b71d210993cea0727b419 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html#a2b1f593a0b9b71d210993cea0727b419">String</a> (const T &amp;src)</td></tr>
 <tr class="separator:a2b1f593a0b9b71d210993cea0727b419 inherit pub_methods_classaworx_1_1lib_1_1strings_1_1String"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -974,6 +976,42 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">src</td><td>A pointer to the cstring to append. </td></tr>
+    <tr><td class="paramname">srcLength</td><td>The length of the portion of the cstring to append.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>*this</code> to allow concatenated calls. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a4e836e4a665a6ffd7cd1ee48dda06798"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp; Append </td>
+          <td>(</td>
+          <td class="paramtype">const wchar_t *&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>srcLength</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Appends a portion of a wide cstring.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">src</td><td>A pointer to the wide cstring to append. </td></tr>
     <tr><td class="paramname">srcLength</td><td>The length of the portion of the cstring to append.</td></tr>
   </table>
   </dd>
@@ -1842,7 +1880,7 @@ This method's description may sound (and the code may look) like having quite so
 
 </div>
 </div>
-<a class="anchor" id="a4c82c5367836f6886f1505c803ce4058"></a>
+<a class="anchor" id="a0bdd4581fc80e9bba8ceb46e030c75ac"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -1850,7 +1888,7 @@ This method's description may sound (and the code may look) like having quite so
           <td class="memname">void SetBuffer </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>newSize</em></td><td>)</td>
+          <td class="paramname"><em>newCapacity</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -1861,7 +1899,7 @@ This method's description may sound (and the code may look) like having quite so
 <li>The string represented by this instance is copied to the new buffer. If this is larger than the new buffer size, the string is cut at the end to fit.</li>
 <li>If the desired new size is 0, then the currently allocated buffer will be released and the objects state is <em>nulled</em>.</li>
 <li>If the current buffers' life-cycle is managed externally (e.g. was set using <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a0c8474e9c19a45b535f1b460aac3847b">SetBuffer(char*,int,int, enums::Responsibility)</a> with parameter <code>responsibility</code> being <code>Responsibility::KeepWithSender</code>), this method will replace the buffer by a new one, even if the new requested size is the same as the external buffers' size. In other words, the only case when this method does not replace the current buffer is when the current buffers' life-cycle is (already) internally managed and it has the same size than what is requested.</li>
-<li>In the C++ version of ALib, the <code>true</code> allocation size is + 1 of what is given in parameter <code>newSize</code>. This is is to duly apply to a constraint given by parent <a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html#a6d715743a3937ea101a8deda34d993dc">TString</a>.</li>
+<li>In the C++ version of ALib, the <code>true</code> allocation size is + 1 of what is given in parameter <code>newCapacity</code>. This is is to duly apply to a constraint given by parent <a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html#a6d715743a3937ea101a8deda34d993dc">TString</a>.</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>Any methods of this class that extend the length of the string represented, will invoke this method if the current buffer size is not sufficient. If a future string length of an <b>AString</b> is predictable, then it is advisable to allocate such size prior to start appending the data to avoid recurring allocations (performance optimization). </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>If currently an external buffer is set (this means a buffer whose life-cycle is not controlled by this instance), an one-time warning per instance is issued. To enable/disable this warning use macro<ul>
@@ -1871,7 +1909,7 @@ This method's description may sound (and the code may look) like having quite so
 </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">newSize</td><td>The new size for the allocation buffer. </td></tr>
+    <tr><td class="paramname">newCapacity</td><td>The new capacity of the internal buffer. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2051,7 +2089,7 @@ This method's description may sound (and the code may look) like having quite so
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Invokes <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a4c82c5367836f6886f1505c803ce4058">SetBuffer(0)</a>. </p><dl class="section return"><dt>Returns</dt><dd><code>*this</code> to allow concatenated calls. </dd></dl>
+<p> Invokes <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#a0bdd4581fc80e9bba8ceb46e030c75ac">SetBuffer(0)</a>. </p><dl class="section return"><dt>Returns</dt><dd><code>*this</code> to allow concatenated calls. </dd></dl>
 
 </div>
 </div>
@@ -2395,7 +2433,7 @@ This method's description may sound (and the code may look) like having quite so
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu May 26 2016 13:01:45 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 20 2016 10:57:53 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

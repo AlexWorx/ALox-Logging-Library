@@ -199,15 +199,15 @@
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M58.3966,-155.506C87.3949,-155.694 130.366,-157.465 167,-165 171.85,-165.998 299.681,-211.973 356.365,-232.396"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="58.3849,-152.006 48.3829,-155.5 58.3809,-159.006 58.3849,-152.006"/>
 <text text-anchor="middle" x="126" y="-278" font-family="Helvetica,sans-Serif" font-size="10.00"> TimeDiffHours</text>
-<text text-anchor="middle" x="126" y="-267" font-family="Helvetica,sans-Serif" font-size="10.00">VerbosityInfo</text>
-<text text-anchor="middle" x="126" y="-256" font-family="Helvetica,sans-Serif" font-size="10.00">VerbosityWarning</text>
-<text text-anchor="middle" x="126" y="-245" font-family="Helvetica,sans-Serif" font-size="10.00">VerbosityVerbose</text>
-<text text-anchor="middle" x="126" y="-234" font-family="Helvetica,sans-Serif" font-size="10.00">TimeDiffMicros</text>
-<text text-anchor="middle" x="126" y="-223" font-family="Helvetica,sans-Serif" font-size="10.00">TimeElapsedDays</text>
-<text text-anchor="middle" x="126" y="-212" font-family="Helvetica,sans-Serif" font-size="10.00">VerbosityError</text>
-<text text-anchor="middle" x="126" y="-201" font-family="Helvetica,sans-Serif" font-size="10.00">TimeOfDayFormat</text>
-<text text-anchor="middle" x="126" y="-190" font-family="Helvetica,sans-Serif" font-size="10.00">DateFormat</text>
-<text text-anchor="middle" x="126" y="-179" font-family="Helvetica,sans-Serif" font-size="10.00">TimeDiffMins</text>
+<text text-anchor="middle" x="126" y="-267" font-family="Helvetica,sans-Serif" font-size="10.00">TimeDiffMicros</text>
+<text text-anchor="middle" x="126" y="-256" font-family="Helvetica,sans-Serif" font-size="10.00">TimeElapsedDays</text>
+<text text-anchor="middle" x="126" y="-245" font-family="Helvetica,sans-Serif" font-size="10.00">TimeOfDayFormat</text>
+<text text-anchor="middle" x="126" y="-234" font-family="Helvetica,sans-Serif" font-size="10.00">DateFormat</text>
+<text text-anchor="middle" x="126" y="-223" font-family="Helvetica,sans-Serif" font-size="10.00">TimeDiffMins</text>
+<text text-anchor="middle" x="126" y="-212" font-family="Helvetica,sans-Serif" font-size="10.00">TimeDiffSecs</text>
+<text text-anchor="middle" x="126" y="-201" font-family="Helvetica,sans-Serif" font-size="10.00">NoSourceFileInfo</text>
+<text text-anchor="middle" x="126" y="-190" font-family="Helvetica,sans-Serif" font-size="10.00">TimeDiffNone</text>
+<text text-anchor="middle" x="126" y="-179" font-family="Helvetica,sans-Serif" font-size="10.00">NoMethodInfo</text>
 <text text-anchor="middle" x="126" y="-168" font-family="Helvetica,sans-Serif" font-size="10.00">...</text>
 </g>
 <!-- Node11&#45;&gt;Node1 -->

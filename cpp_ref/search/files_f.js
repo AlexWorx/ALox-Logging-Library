@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['windowsconsolelogger_2ehpp',['windowsconsolelogger.hpp',['../windowsconsolelogger_8hpp.html',1,'']]]
+  ['vstudiologger_2ehpp',['vstudiologger.hpp',['../vstudiologger_8hpp.html',1,'']]]
 ];

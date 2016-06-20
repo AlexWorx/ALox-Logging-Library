@@ -9,7 +9,7 @@ var searchData=
   ['insttypetabstop',['instTypeTabStop',['../classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a1cfe4bbb4fae0ca0db99d3fe768ffa64',1,'cs::aworx::lox::tools::LogTools']]],
   ['instvaluetabstop',['instValueTabStop',['../classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#ac586537acea9202be95f5cf793324550',1,'cs::aworx::lox::tools::LogTools']]],
   ['integervalue',['IntegerValue',['../classcs_1_1aworx_1_1lox_1_1LogData.html#a65a3775caf9d6718458869ad29c1ab8a',1,'cs::aworx::lox::LogData']]],
-  ['internaldomains',['internalDomains',['../classcs_1_1aworx_1_1lox_1_1Lox.html#aa921f3f43ab67608196f46723182a3c4',1,'cs.aworx.lox.Lox.internalDomains()'],['../classcs_1_1aworx_1_1lox_1_1ALox.html#a7b6260c97ca73f960a2b5aabd5cc91ae',1,'cs.aworx.lox.ALox.InternalDomains()']]],
+  ['internaldomains',['InternalDomains',['../classcs_1_1aworx_1_1lox_1_1ALox.html#a7b6260c97ca73f960a2b5aabd5cc91ae',1,'cs.aworx.lox.ALox.InternalDomains()'],['../classcs_1_1aworx_1_1lox_1_1Lox.html#aa921f3f43ab67608196f46723182a3c4',1,'cs.aworx.lox.Lox.internalDomains()']]],
   ['internalfrequency',['InternalFrequency',['../classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html#ae62f17585d560a30016408f33ace2912',1,'cs::aworx::lib::time::Ticks']]],
   ['intmsg',['intMsg',['../classcs_1_1aworx_1_1lox_1_1Lox.html#adc7950715b5ea60bbbfe297cf70fb70f',1,'cs::aworx::lox::Lox']]],
   ['isbackgroundlight',['IsBackgroundLight',['../classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html#ab9537e130d3c02801775f8c1941eb9a3',1,'cs.aworx.lox.loggers.AnsiLogger.IsBackgroundLight()'],['../classcs_1_1aworx_1_1lox_1_1loggers_1_1ColorConsoleLogger.html#ab9537e130d3c02801775f8c1941eb9a3',1,'cs.aworx.lox.loggers.ColorConsoleLogger.IsBackgroundLight()']]],

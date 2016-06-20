@@ -18,10 +18,13 @@ var searchData=
   ['esc',['ESC',['../classaworx_1_1lox_1_1ESC.html',1,'aworx::lox']]],
   ['esc',['ESC',['../namespaceaworx.html#a41196e8ca29644376437095a102ad9ec',1,'aworx']]],
   ['escapesequences',['EscapeSequences',['../classaworx_1_1lib_1_1config_1_1IniFile.html#a90c6ad78caa206911f41e45552d63c6c',1,'aworx::lib::config::IniFile']]],
+  ['evaluatedtempdir',['evaluatedTempDir',['../classaworx_1_1lib_1_1system_1_1Directory.html#ad0c1b40acd899ebb5f0388779ed4d1dc',1,'aworx::lib::system::Directory']]],
+  ['evaluatedvartempdir',['evaluatedVarTempDir',['../classaworx_1_1lib_1_1system_1_1Directory.html#a4b09df20093589aae45a102d72bca303',1,'aworx::lib::system::Directory']]],
   ['evaluateresultdomain',['evaluateResultDomain',['../classaworx_1_1lox_1_1Lox.html#a9b58060c77090803e3cf92866bd90ce4',1,'aworx::lox::Lox']]],
   ['exact',['Exact',['../structaworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html#a1d1cfd8ffb84e947f82999c682b666a7a1649aed298f99d587e2eb30c1db5946b',1,'aworx::lox::Lox::DomainSubstitutionRule']]],
   ['exclude',['Exclude',['../namespaceaworx_1_1lib_1_1enums.html#a217539925b78b2eed40ae7817d5bee52a843f2812f595e7ec7c5036e89fde02d6',1,'aworx::lib::enums']]],
-  ['execname',['ExecName',['../classaworx_1_1lib_1_1system_1_1ProcessInfo.html#ab5fca5813a5614d7a284466c074bcacd',1,'aworx::lib::system::ProcessInfo']]],
+  ['execfilename',['ExecFileName',['../classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a4261537d8a445f836cc32174e8ff0fd9',1,'aworx::lib::system::ProcessInfo']]],
+  ['execfilepath',['ExecFilePath',['../classaworx_1_1lib_1_1system_1_1ProcessInfo.html#a6e88f1772ab15c3f177dfa4deed1612b',1,'aworx::lib::system::ProcessInfo']]],
   ['exists',['Exists',['../classaworx_1_1lib_1_1system_1_1Directory.html#a348d7a37454d70c73f2b7e4106b5389a',1,'aworx::lib::system::Directory']]],
   ['export',['Export',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1AutoSizes.html#aac883c890047d2981a5d7450a10111f9',1,'aworx::lox::core::textlogger::AutoSizes']]]
 ];

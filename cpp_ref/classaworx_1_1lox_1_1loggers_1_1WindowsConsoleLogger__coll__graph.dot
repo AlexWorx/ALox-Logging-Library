@@ -29,13 +29,17 @@ digraph "WindowsConsoleLogger"
   Node8 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" FmtUnknownObject\nFmtMultiLineMsgHeadline\nMultiLineDelimiterRepl\nFmtMultiLineSuffix\nFmtMultiLinePrefix" ,fontname="Helvetica"];
   Node12 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" MetaInfo" ,fontname="Helvetica"];
   Node12 [label="MetaInfo",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html"];
-  Node8 -> Node12 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" TimeDiffHours\nVerbosityInfo\nVerbosityWarning\nVerbosityVerbose\nTimeDiffMicros\nTimeElapsedDays\nVerbosityError\nTimeOfDayFormat\nDateFormat\nTimeDiffMins\n..." ,fontname="Helvetica"];
+  Node8 -> Node12 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" TimeDiffHours\nTimeDiffMicros\nTimeElapsedDays\nTimeOfDayFormat\nDateFormat\nTimeDiffMins\nTimeDiffSecs\nNoSourceFileInfo\nTimeDiffNone\nNoMethodInfo\n..." ,fontname="Helvetica"];
+  Node13 -> Node12 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" VerbosityInfo\nVerbosityWarning\nVerbosityVerbose\nVerbosityError" ,fontname="Helvetica"];
+  Node13 [label="PreallocatedString\l\< 16 \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1strings_1_1PreallocatedString.html"];
+  Node7 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 -> Node12 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" MaxElapsedTime" ,fontname="Helvetica"];
   Node7 -> Node12 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Format" ,fontname="Helvetica"];
-  Node13 -> Node12 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" callerDateTime" ,fontname="Helvetica"];
-  Node13 [label="TicksCalendarTime",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1time_1_1TicksCalendarTime.html"];
+  Node14 -> Node12 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" callerDateTime" ,fontname="Helvetica"];
+  Node14 [label="TicksCalendarTime",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lib_1_1time_1_1TicksCalendarTime.html"];
   Node7 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" logBuf\nMultiLineDelimiter\nmsgBuf" ,fontname="Helvetica"];
-  Node14 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" ObjectConverters" ,fontname="Helvetica"];
-  Node14 [label="vector\< aworx::lox\l::core::textlogger::\lObjectConverter * \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
-  Node15 -> Node14 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" elements" ,fontname="Helvetica"];
-  Node15 [label="ObjectConverter",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html"];
+  Node15 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" ObjectConverters" ,fontname="Helvetica"];
+  Node15 [label="vector\< aworx::lox\l::core::textlogger::\lObjectConverter * \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node16 -> Node15 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" elements" ,fontname="Helvetica"];
+  Node16 [label="ObjectConverter",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classaworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html"];
 }

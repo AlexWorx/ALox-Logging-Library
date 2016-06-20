@@ -1,7 +1,6 @@
 var searchData=
 [
   ['pathmap',['PathMap',['../classaworx_1_1lib_1_1containers_1_1PathMap.html#aaccccfd0b10107ddbacf38c91f873caa',1,'aworx::lib::containers::PathMap']]],
-  ['pathseparator',['PathSeparator',['../classaworx_1_1lox_1_1core_1_1Domain.html#a28fc603aa3aaa186e688d30802253538',1,'aworx::lox::core::Domain']]],
   ['peekwriter',['PeekWriter',['../classaworx_1_1lib_1_1Report.html#ac3c72f0916841cb53a007d099a86e4d3',1,'aworx::lib::Report']]],
   ['plaintextlogger',['PlainTextLogger',['../classaworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html#a2f3dfc9db13a16de7292abe4ca45bc82',1,'aworx::lox::core::textlogger::PlainTextLogger']]],
   ['pophaltflags',['PopHaltFlags',['../classaworx_1_1lib_1_1Report.html#ade3d2cc17cc7c56d59b88a15ee247ca0',1,'aworx::lib::Report']]],

@@ -47,7 +47,7 @@
   <td id="projectlogo"><img alt="Logo" src="A-Worx-Logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ALox
-   &#160;<span id="projectnumber">V. 1604 R. 1</span>
+   &#160;<span id="projectnumber">V. 1604 R. 2</span>
    </div>
   </td>
  </tr>
@@ -127,21 +127,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="textblock"><hr/>
 <h1><a class="anchor" id="alib_namespace_strings_intro"></a>
 Introduction</h1>
-<p>This namespace of ALib provides classes that operate on character strings (following <a class="el" href="namespaceaworx_1_1lib.html">the principle design goals of ALib</a>). As the given C#/Java StringBuilder/Buffer classes are either "sealed" and/or do not provide direct access to the internal buffer, to avoid conversion to new immutable strings in certain situations, ALib implements its own string class. More complex functions, like extended formatting operations are not supported and remain the domain of the language specific class libraries.</p>
+<p>This namespace of ALib provides classes that operate on character strings (following <a class="el" href="namespaceaworx_1_1lib.html">the principle design goals of ALib</a>). As the given C#/Java StringBuilder/Buffer classes are either "sealed" and/or do not provide direct access to the internal buffer, to avoid conversion to new immutable strings in certain situations, ALib implements its own string class.</p>
 <p>In contrast to the Java and C# versions of ALib, which merely provide a central string class named <b>AString</b> along with <b>Substring</b>, things became a little more complex in ALib for C++. The following feature overview illustrate the reasons for this:</p>
 <ul>
-<li>Implicit conversion of external, user defined string types when passing data into ALib. This includes of-course compatibility with <em>std::string</em> and <em>cstrings</em> (<em>char*</em>), but also 3rd party types like e.g. <em>QString</em>.</li>
-<li>Conversion/construction through template meta programming, with minimum (almost no) runtime overhead.</li>
+<li>Implicit conversion of external, user defined string types when passing data into ALib. This includes of-course compatibility with <em>std::string</em> and <em>cstrings</em> (<em>char*</em>), but also 3rd party types like e.g. <em>QString</em> <br />
+ The conversion/construction is implemented with template meta programming, resulting in minimum (almost no) runtime overhead.</li>
 <li>Support for user defined types that get 'applied' to strings. (Mostly concatenated, but also more complex string algorithms can be implemented without changing ALib sources.)</li>
 <li>Stack allocated strings that avoid overhead of dynamic memory allocation, but in case of unexpected capacity demands, automatically switch to a dynamic data model.</li>
 <li>Fast processing of C++ string literals and other string types whose length is known at compile time (no strlen(), for short types no memcpy() ).</li>
 <li>Zero terminated and non-zero-terminated strings with mostly implicit termination.</li>
-<li>'Nullable' state that avoids nullptr checks and enables to work with references everywhere.</li>
+<li>'Nullable' state that on the one hand avoids nullptr checks by allowing to work with references everywhere (even when a nulled state is required).</li>
 <li>Conversion to and from wide character strings.</li>
 <li>'Non-checking' versions of many string methods are available to avoid redundant parameter checks.</li>
 <li>Built-in debugging mechanics.</li>
 <li>But still: as much as possible/reasonable compatibility with strings in ALib for JAVA/C#.</li>
 </ul>
+<p>ALib strings in C++ are single byte strings. Conversion to and from unicode strings are available. It is the users responsibility that any internal encoding (e.g. UTF8) is consistently applied when using ALib strings.</p>
 <h1><a class="anchor" id="alib_namespace_strings_class_overview"></a>
 Classes overview</h1>
 <p>To understand the rationale behind introducing different string types, it is easiest to go quickly through them one by one. The classes are:</p><ul>
@@ -152,7 +153,7 @@ Classes overview</h1>
 <li><a class="el" href="classaworx_1_1lib_1_1strings_1_1StringLiteral.html">StringLiteral</a></li>
 <li><a class="el" href="classaworx_1_1lib_1_1strings_1_1Substring.html">Substring</a></li>
 </ul>
-<dl class="section note"><dt>Note</dt><dd>As described in <a class="el" href="namespaceaworx.html#CPP_AWORX_NS_SHORTCUTS">Type Shortcuts in the aworx Namespace</a>, the type names of ALib are 'mirrored' into namespace <b>aworx</b>. As there is a limitation with template types, classes <a class="el" href="classaworx_1_1lib_1_1strings_1_1StringLiteral.html">StringLiteral</a> and <a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">PreallocatedString</a> got renamed in namespace <b>aworx</b>. Their names are mapped to <code>SLiteral</code> and <code>PAString</code>.<br />
+<dl class="section note"><dt>Note</dt><dd>As described in <a class="el" href="namespaceaworx.html#CPP_AWORX_NS_SHORTCUTS">Type Shortcuts of Namespace aworx</a>, the type names of ALib are 'mirrored' into namespace <b>aworx</b>. As there is a limitation with template types, classes <a class="el" href="classaworx_1_1lib_1_1strings_1_1StringLiteral.html">StringLiteral</a> and <a class="el" href="classaworx_1_1lib_1_1strings_1_1PreallocatedString.html">PreallocatedString</a> got renamed in namespace <b>aworx</b>. Their names are mapped to <code>SLiteral</code> and <code>PAString</code>.<br />
  The latter names are probably even more common in the documentation. Just remember that <b>StringLiteral</b> and <b>SLiteral</b> are synonyms, the same as <b>PreallocatedString</b> and <b>PAString</b> are.</dd></dl>
 <h2><a class="anchor" id="alib_namespace_strings_class_overview_as"></a>
 Class String</h2>
@@ -270,7 +271,14 @@ Compatibility with External Libraries</h1>
 </ul>
 </li>
 </ul>
-<dl class="section note"><dt>Note</dt><dd>Support for other Libraries to come...</dd></dl>
+<h2>QT Library</h2>
+<ul>
+<li><p class="startli">String classes of the <a href="https://www.qt.io">QT library</a> are supported trough header file <em>"alib/compatibility/qt.hpp"</em>.</p>
+<p class="startli">General information about the use of QT strings with ALox is given in documentation of method <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#abfe4edade9b5bfad36a91655532cba0a">ApplyTo&lt;const QString&amp;&gt;</a>.</p>
+</li>
+</ul>
+<h2>Other Libraries</h2>
+<dl class="section note"><dt>Note</dt><dd>Support for other Libraries to come... Feel free to send us your work!</dd></dl>
 <h1><a class="anchor" id="alib_namespace_strings_debugging"></a>
 Debugging ALib String Classes</h1>
 <p>In some situations during the development using ALib string classes, some additional debug checking is helpful. Among such situations are:</p><ul>
@@ -292,6 +300,16 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1strings_1_1IsApplicable.html">IsApplicable</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01lox_1_1core_1_1Logger_01_6_01_4.html">IsApplicable&lt; const lox::core::Logger &amp; &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QByteArray_01_6_01_4.html">IsApplicable&lt; const QByteArray &amp; &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QChar_01_6_01_4.html">IsApplicable&lt; const QChar &amp; &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QLatin1String_01_6_01_4.html">IsApplicable&lt; const QLatin1String &amp; &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QString_01_6_01_4.html">IsApplicable&lt; const QString &amp; &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01QVector_3_01uint_01_4_01_6_01_4.html">IsApplicable&lt; const QVector&lt; uint &gt; &amp; &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1strings_1_1IsApplicable_3_01const_01std_1_1string_01_6_01_4.html">IsApplicable&lt; const std::string &amp; &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -319,6 +337,10 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1strings_1_1ToStringDefined.html">ToStringDefined</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1strings_1_1ToStringDefined_3_01const_01QByteArray_01_6_01_4.html">ToStringDefined&lt; const QByteArray &amp; &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1strings_1_1ToStringDefined_3_01const_01QLatin1String_01_6_01_4.html">ToStringDefined&lt; const QLatin1String &amp; &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaworx_1_1lib_1_1strings_1_1ToStringDefined_3_01const_01std_1_1string_01_6_01_4.html">ToStringDefined&lt; const std::string &amp; &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html">TString</a></td></tr>
@@ -329,9 +351,6 @@ Functions</h2></td></tr>
 <tr class="memitem:a40af8c9dcfc80a2b4a9e0d50ce506725"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
 <tr class="memitem:a40af8c9dcfc80a2b4a9e0d50ce506725"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">ApplyTo</a> (<a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;target, const <a class="el" href="classaworx_1_1lib_1_1strings_1_1ReadLineFromIStream.html">ReadLineFromIStream</a> &amp;cparam)</td></tr>
 <tr class="separator:a40af8c9dcfc80a2b4a9e0d50ce506725"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a259d311e0220dbf28a4eb0dcb26b5b2e"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
-<tr class="memitem:a259d311e0220dbf28a4eb0dcb26b5b2e"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a259d311e0220dbf28a4eb0dcb26b5b2e">ApplyTo</a> (<a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;target, const wchar_t *src)</td></tr>
-<tr class="separator:a259d311e0220dbf28a4eb0dcb26b5b2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f19ceb8dc5cb5fb75e0e008fc0b62c9"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
 <tr class="memitem:a4f19ceb8dc5cb5fb75e0e008fc0b62c9"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a4f19ceb8dc5cb5fb75e0e008fc0b62c9">ApplyTo</a> (<a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;target, const <a class="el" href="classaworx_1_1lib_1_1strings_1_1Format_1_1Tab.html">Format::Tab</a> &amp;tab)</td></tr>
 <tr class="separator:a4f19ceb8dc5cb5fb75e0e008fc0b62c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -359,24 +378,24 @@ Functions</h2></td></tr>
 <tr class="memitem:aa8fb47b820e77796083d2c3eb13d56b2"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:aa8fb47b820e77796083d2c3eb13d56b2"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#aa8fb47b820e77796083d2c3eb13d56b2">ApplyTo</a> (<a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;target, const T src)</td></tr>
 <tr class="separator:aa8fb47b820e77796083d2c3eb13d56b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaaeb23f90707241659667c910e61bbe9"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
-<tr class="memitem:aaaeb23f90707241659667c910e61bbe9"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#aaaeb23f90707241659667c910e61bbe9">ApplyTo</a> (<a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;target, const char *src)</td></tr>
-<tr class="separator:aaaeb23f90707241659667c910e61bbe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17dfe1060a698974265db6b780c709fa"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
 <tr class="memitem:a17dfe1060a698974265db6b780c709fa"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a17dfe1060a698974265db6b780c709fa">ApplyTo</a> (<a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;target, const <a class="el" href="classaworx_1_1lib_1_1strings_1_1Format_1_1Tab.html">Format::Tab</a> &amp;tab)</td></tr>
 <tr class="separator:a17dfe1060a698974265db6b780c709fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51d3c0fe2a4125c45c804c1fb1509b3e"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
-<tr class="memitem:a51d3c0fe2a4125c45c804c1fb1509b3e"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a51d3c0fe2a4125c45c804c1fb1509b3e">ApplyTo</a> (<a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;target, const wchar_t *src)</td></tr>
-<tr class="separator:a51d3c0fe2a4125c45c804c1fb1509b3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaaeb23f90707241659667c910e61bbe9"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
+<tr class="memitem:aaaeb23f90707241659667c910e61bbe9"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#aaaeb23f90707241659667c910e61bbe9">ApplyTo</a> (<a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;target, const char *src)</td></tr>
+<tr class="separator:aaaeb23f90707241659667c910e61bbe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5874b01f193017660c4748a8a5fc1fde"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
 <tr class="memitem:a5874b01f193017660c4748a8a5fc1fde"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a5874b01f193017660c4748a8a5fc1fde">ApplyTo</a> (<a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;target, const <a class="el" href="classaworx_1_1lib_1_1strings_1_1Format_1_1Field.html">Format::Field</a> &amp;field)</td></tr>
 <tr class="separator:a5874b01f193017660c4748a8a5fc1fde"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0bcfa090927eb989e55774a396d73fd"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
-<tr class="memitem:af0bcfa090927eb989e55774a396d73fd"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#af0bcfa090927eb989e55774a396d73fd">ApplyTo</a> (<a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;target, bool &amp;b)</td></tr>
-<tr class="separator:af0bcfa090927eb989e55774a396d73fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a259d311e0220dbf28a4eb0dcb26b5b2e"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
+<tr class="memitem:a259d311e0220dbf28a4eb0dcb26b5b2e"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a259d311e0220dbf28a4eb0dcb26b5b2e">ApplyTo</a> (<a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;target, const wchar_t *src)</td></tr>
+<tr class="separator:a259d311e0220dbf28a4eb0dcb26b5b2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7cf6b7c301dca2c1b7efd7d9cf3fd1a"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
 <tr class="memitem:ae7cf6b7c301dca2c1b7efd7d9cf3fd1a"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#ae7cf6b7c301dca2c1b7efd7d9cf3fd1a">ApplyTo</a> (<a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;target, const <a class="el" href="classaworx_1_1lib_1_1strings_1_1Format_1_1Int32.html">Format::Int32</a> &amp;fmt)</td></tr>
 <tr class="separator:ae7cf6b7c301dca2c1b7efd7d9cf3fd1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0bcfa090927eb989e55774a396d73fd"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
+<tr class="memitem:af0bcfa090927eb989e55774a396d73fd"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#af0bcfa090927eb989e55774a396d73fd">ApplyTo</a> (<a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;target, bool &amp;b)</td></tr>
+<tr class="separator:af0bcfa090927eb989e55774a396d73fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff08105164bdbc38149bdea8526b0fe1"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
 <tr class="memitem:aff08105164bdbc38149bdea8526b0fe1"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#aff08105164bdbc38149bdea8526b0fe1">ApplyTo</a> (<a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;target, int8_t &amp;value)</td></tr>
 <tr class="separator:aff08105164bdbc38149bdea8526b0fe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -458,12 +477,36 @@ Functions</h2></td></tr>
 <tr class="memitem:a9293db3b9b449a46d07d91e1b8964183"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
 <tr class="memitem:a9293db3b9b449a46d07d91e1b8964183"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a9293db3b9b449a46d07d91e1b8964183">ApplyTo&lt; const lox::core::Logger &amp; &gt;</a> (<a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;target, const <a class="el" href="classaworx_1_1lox_1_1core_1_1Logger.html">lox::core::Logger</a> &amp;logger)</td></tr>
 <tr class="separator:a9293db3b9b449a46d07d91e1b8964183"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaaa769462357c0edf3ff0fe32762ab34"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
+<tr class="memitem:aaaa769462357c0edf3ff0fe32762ab34"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#aaaa769462357c0edf3ff0fe32762ab34">ApplyTo&lt; const QByteArray &amp; &gt;</a> (<a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;target, const QByteArray &amp;src)</td></tr>
+<tr class="separator:aaaa769462357c0edf3ff0fe32762ab34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad03df92a9ab2db9413d0d744a3d331af"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
+<tr class="memitem:ad03df92a9ab2db9413d0d744a3d331af"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#ad03df92a9ab2db9413d0d744a3d331af">ApplyTo&lt; const QChar &amp; &gt;</a> (<a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;target, const QChar &amp;src)</td></tr>
+<tr class="separator:ad03df92a9ab2db9413d0d744a3d331af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8fca333ee4e6e6b045f9f9da0204942"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
+<tr class="memitem:af8fca333ee4e6e6b045f9f9da0204942"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#af8fca333ee4e6e6b045f9f9da0204942">ApplyTo&lt; const QLatin1String &amp; &gt;</a> (<a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;target, const QLatin1String &amp;src)</td></tr>
+<tr class="separator:af8fca333ee4e6e6b045f9f9da0204942"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfe4edade9b5bfad36a91655532cba0a"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
+<tr class="memitem:abfe4edade9b5bfad36a91655532cba0a"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#abfe4edade9b5bfad36a91655532cba0a">ApplyTo&lt; const QString &amp; &gt;</a> (<a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;target, const QString &amp;src)</td></tr>
+<tr class="separator:abfe4edade9b5bfad36a91655532cba0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1bfcd6907c1a4ff2a3d8d7a11c2d64a"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
+<tr class="memitem:ac1bfcd6907c1a4ff2a3d8d7a11c2d64a"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#ac1bfcd6907c1a4ff2a3d8d7a11c2d64a">ApplyTo&lt; const QVector&lt; uint &gt; &amp; &gt;</a> (<a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;target, const QVector&lt; uint &gt; &amp;src)</td></tr>
+<tr class="separator:ac1bfcd6907c1a4ff2a3d8d7a11c2d64a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46d2b8074d6fd76918018ca6704e7cfc"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
 <tr class="memitem:a46d2b8074d6fd76918018ca6704e7cfc"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a46d2b8074d6fd76918018ca6704e7cfc">ApplyTo&lt; const std::string &amp; &gt;</a> (<a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;target, const std::string &amp;src)</td></tr>
 <tr class="separator:a46d2b8074d6fd76918018ca6704e7cfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abcd4a1d202f1c13b510ec14cd55d3a7a"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:abcd4a1d202f1c13b510ec14cd55d3a7a"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#abcd4a1d202f1c13b510ec14cd55d3a7a">ApplyTo_NC</a> (<a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;target, const T src)</td></tr>
 <tr class="separator:abcd4a1d202f1c13b510ec14cd55d3a7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18d141d95e478864e1524c0ff59a0858"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
+<tr class="memitem:a18d141d95e478864e1524c0ff59a0858"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a18d141d95e478864e1524c0ff59a0858">ApplyTo_NC&lt; const QByteArray &amp; &gt;</a> (<a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;target, const QByteArray &amp;src)</td></tr>
+<tr class="separator:a18d141d95e478864e1524c0ff59a0858"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea11f14b701049f529e328d593fd44f7"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
+<tr class="memitem:aea11f14b701049f529e328d593fd44f7"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#aea11f14b701049f529e328d593fd44f7">ApplyTo_NC&lt; const QChar &amp; &gt;</a> (<a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;target, const QChar &amp;src)</td></tr>
+<tr class="separator:aea11f14b701049f529e328d593fd44f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88634e1a4fd136129352e4dededc3a8f"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
+<tr class="memitem:a88634e1a4fd136129352e4dededc3a8f"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a88634e1a4fd136129352e4dededc3a8f">ApplyTo_NC&lt; const QLatin1String &amp; &gt;</a> (<a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;target, const QLatin1String &amp;src)</td></tr>
+<tr class="separator:a88634e1a4fd136129352e4dededc3a8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8de1e5cfd3f85418261ced125aed661"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
 <tr class="memitem:ac8de1e5cfd3f85418261ced125aed661"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#ac8de1e5cfd3f85418261ced125aed661">ApplyTo_NC&lt; const std::string &amp; &gt;</a> (<a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;target, const std::string &amp;src)</td></tr>
 <tr class="separator:ac8de1e5cfd3f85418261ced125aed661"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -475,6 +518,14 @@ Functions</h2></td></tr>
 <tr class="separator:a357b7d2e804cb32ac765641afa415eee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b4a073d715b00201505dc87ffdcb73e"><td class="memItemLeft" align="right" valign="top">std::istream *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a3b4a073d715b00201505dc87ffdcb73e">operator&gt;&gt;</a> (std::istream *stream, <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;string)</td></tr>
 <tr class="separator:a3b4a073d715b00201505dc87ffdcb73e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d1e001e39bfac300f1a55a539a8f291"><td class="memItemLeft" align="right" valign="top">QString &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a5d1e001e39bfac300f1a55a539a8f291">ToQString</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;as, QString &amp;target, int regionStart, int regionLength=<a class="el" href="classaworx_1_1lib_1_1strings_1_1CString.html#a702a7d928cd1d34c5aa2f26dd97e199e">CString::MaxLen</a>, <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a9345007d67faa05253932092d54d10d4">enums::CurrentData</a> targetData=<a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a9345007d67faa05253932092d54d10d4adc30bc0c7914db5918da4263fce93ad2">enums::CurrentData::Clear</a>)</td></tr>
+<tr class="separator:a5d1e001e39bfac300f1a55a539a8f291"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9675b158cf3b39232281028804d99ed"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#ac9675b158cf3b39232281028804d99ed">ToQString</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;as, int regionStart, int regionLength=<a class="el" href="classaworx_1_1lib_1_1strings_1_1CString.html#a702a7d928cd1d34c5aa2f26dd97e199e">CString::MaxLen</a>)</td></tr>
+<tr class="separator:ac9675b158cf3b39232281028804d99ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04894e3151c74673b9cf1161915e53f4"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a04894e3151c74673b9cf1161915e53f4">ToQString</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;as)</td></tr>
+<tr class="separator:a04894e3151c74673b9cf1161915e53f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bd3ea63a15d596e1d1f0ddd1d3d8ee3"><td class="memItemLeft" align="right" valign="top">QString &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a4bd3ea63a15d596e1d1f0ddd1d3d8ee3">ToQString</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;as, QString &amp;target, <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a9345007d67faa05253932092d54d10d4">enums::CurrentData</a> targetData=<a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a9345007d67faa05253932092d54d10d4adc30bc0c7914db5918da4263fce93ad2">enums::CurrentData::Clear</a>)</td></tr>
+<tr class="separator:a4bd3ea63a15d596e1d1f0ddd1d3d8ee3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acee8df0c9711c319807b3661f1046dfd"><td class="memItemLeft" align="right" valign="top">std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#acee8df0c9711c319807b3661f1046dfd">ToStdString</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;as, std::string &amp;target, int regionStart, int regionLength=<a class="el" href="classaworx_1_1lib_1_1strings_1_1CString.html#a702a7d928cd1d34c5aa2f26dd97e199e">CString::MaxLen</a>, <a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a9345007d67faa05253932092d54d10d4">enums::CurrentData</a> targetData=<a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a9345007d67faa05253932092d54d10d4adc30bc0c7914db5918da4263fce93ad2">enums::CurrentData::Clear</a>)</td></tr>
 <tr class="separator:acee8df0c9711c319807b3661f1046dfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69456b076a8fce4982a9d3790796d424"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a69456b076a8fce4982a9d3790796d424">ToStdString</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;as, int regionStart, int regionLength=<a class="el" href="classaworx_1_1lib_1_1strings_1_1CString.html#a702a7d928cd1d34c5aa2f26dd97e199e">CString::MaxLen</a>)</td></tr>
@@ -486,6 +537,18 @@ Functions</h2></td></tr>
 <tr class="memitem:a7cfd45024bf9222b42febac98fdcc146"><td class="memTemplParams" colspan="2">template&lt;typename TString , typename TReturn &gt; </td></tr>
 <tr class="memitem:a7cfd45024bf9222b42febac98fdcc146"><td class="memTemplItemLeft" align="right" valign="top">TReturn&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a7cfd45024bf9222b42febac98fdcc146">ToString</a> (const <a class="el" href="classaworx_1_1lib_1_1strings_1_1TString.html">TString</a>)</td></tr>
 <tr class="separator:a7cfd45024bf9222b42febac98fdcc146"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5656ff620ac4fd284bc3c656f724cf0c"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
+<tr class="memitem:a5656ff620ac4fd284bc3c656f724cf0c"><td class="memTemplItemLeft" align="right" valign="top">const char *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a5656ff620ac4fd284bc3c656f724cf0c">ToString&lt; const QByteArray &amp; &gt;</a> (const QByteArray &amp;src)</td></tr>
+<tr class="separator:a5656ff620ac4fd284bc3c656f724cf0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68ce5d72a3f7b2501bee8ab0d860b5e8"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
+<tr class="memitem:a68ce5d72a3f7b2501bee8ab0d860b5e8"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a68ce5d72a3f7b2501bee8ab0d860b5e8">ToString&lt; const QByteArray &amp; &gt;</a> (const QByteArray &amp;src)</td></tr>
+<tr class="separator:a68ce5d72a3f7b2501bee8ab0d860b5e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae439ab45f89f383544d206c8689f7742"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
+<tr class="memitem:ae439ab45f89f383544d206c8689f7742"><td class="memTemplItemLeft" align="right" valign="top">const char *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#ae439ab45f89f383544d206c8689f7742">ToString&lt; const QLatin1String &amp; &gt;</a> (const QLatin1String &amp;src)</td></tr>
+<tr class="separator:ae439ab45f89f383544d206c8689f7742"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74551f891e3a8df8db324c327333e0b6"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
+<tr class="memitem:a74551f891e3a8df8db324c327333e0b6"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a74551f891e3a8df8db324c327333e0b6">ToString&lt; const QLatin1String &amp; &gt;</a> (const QLatin1String &amp;src)</td></tr>
+<tr class="separator:a74551f891e3a8df8db324c327333e0b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d85e610e17c69e9ece8b558735519e0"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
 <tr class="memitem:a8d85e610e17c69e9ece8b558735519e0"><td class="memTemplItemLeft" align="right" valign="top">const char *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a8d85e610e17c69e9ece8b558735519e0">ToString&lt; const std::string &amp; &gt;</a> (const std::string &amp;src)</td></tr>
 <tr class="separator:a8d85e610e17c69e9ece8b558735519e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -527,45 +590,6 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of characters appended to target. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a259d311e0220dbf28a4eb0dcb26b5b2e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int aworx::lib::strings::ApplyTo </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;&#160;</td>
-          <td class="paramname"><em>target</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const wchar_t *&#160;</td>
-          <td class="paramname"><em>src</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<hr/>
-<p> This method converts the provided wide character string (zero-terminated array of wchar_t) and appends it to the <code>target</code>. The conversion is done using</p><ul>
-<li><em>wcsnrtombs</em> on glibc platforms (e.g. Linux)</li>
-<li><em>WideCharToMultiByte(CP_UTF8,...)</em> on Windows platform. <dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">target</td><td>The object that <b>Apply</b> was invoked on. </td></tr>
-    <tr><td class="paramname">src</td><td>The wide character string to append to <code>target</code>. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The number of characters appended to target. </dd></dl>
-</li>
-</ul>
 
 </div>
 </div>
@@ -898,7 +922,7 @@ Functions</h2></td></tr>
 <p>Optionally it is possible to also implement a sibling template function <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#abcd4a1d202f1c13b510ec14cd55d3a7a">ApplyTo_NC</a>. If function <em>ApplyTo_NC</em> is specialized in parallel to a specialization of this function, <em>ApplyTo_NC</em> will be used if a non-checking method of class AString is used to apply an object. See <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#alib_namespace_strings_nonchecking">'Non-Checking' Methods of ALib String Classes</a> for more information.</p>
 <p>For basic user defined string types that get adopted to ALib string system using function <em>ToString</em>, it is advisable to also generate a specialization of this function and of struct <em>IsApplicable</em>. Therefore, the sample provided with method <em>ToString</em> demonstrates also this function. See template function <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a7cfd45024bf9222b42febac98fdcc146">ToString</a> for that sample.</p>
 <p>Built-in specializations of this function and according type definitions exist, as listed in reference documentation of class <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a>. As a sample, one type and according specialization is class <a class="el" href="classaworx_1_1lib_1_1strings_1_1Format_1_1Field.html">Format::Field</a>. The invocation is simple and nicely readable: </p><div class="fragment"><div class="line"><a class="code" href="classaworx_1_1lib_1_1strings_1_1AString.html">aworx::AString</a> centered;</div><div class="line">centered &lt;&lt; <span class="charliteral">&#39;*&#39;</span> &lt;&lt; Format::Field( <span class="stringliteral">&quot;Hello&quot;</span>, 15, Alignment::Center ) &lt;&lt; <span class="charliteral">&#39;*&#39;</span>;</div><div class="line">cout &lt;&lt; centered &lt;&lt; endl;</div></div><!-- fragment --><p> which produces: </p><div class="fragment"><div class="line">*     Hello     *</div></div><!-- fragment --><p> The next sample implements this function for ALib class <a class="el" href="classaworx_1_1lib_1_1time_1_1Ticks.html">Ticks</a> to print out a formatted date: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="alib_8hpp.html">alib/alib.hpp</a>&quot;</span></div><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="ticks_8hpp.html">alib/time/ticks.hpp</a>&quot;</span></div><div class="line"></div><div class="line"><span class="comment">// get support for  ostream operator&lt;&lt;() on String objects</span></div><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="std__string_8hpp.html">alib/compatibility/std_string.hpp</a>&quot;</span></div><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="std__iostream_8hpp.html">alib/compatibility/std_iostream.hpp</a>&quot;</span></div><div class="line"></div><div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div><div class="line"><span class="preprocessor">#include &lt;iomanip&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">using namespace </span><a class="code" href="namespacestd.html">std</a>;</div><div class="line"><span class="keyword">using namespace </span><a class="code" href="namespaceaworx.html">aworx</a>;</div><div class="line"></div><div class="line"><span class="comment">// Partial template function implementation of ApplyTo for objects of type class Ticks</span></div><div class="line"><span class="comment">// (has to be declared in namespace aworx::lib::strings)</span></div><div class="line"><span class="keyword">namespace </span><a class="code" href="namespaceaworx.html">aworx</a> { <span class="keyword">namespace </span>lib { <span class="keyword">namespace </span>strings {</div><div class="line"></div><div class="line">    <span class="comment">// we have to define the helper struct IsApplicable. Its whole reason of existence is</span></div><div class="line">    <span class="comment">// to be able to throw compile time errors for types that do not have an ApplyTo</span></div><div class="line">    <span class="comment">// specialization</span></div><div class="line">    <span class="keyword">template</span>&lt;&gt;  <span class="keyword">struct       </span>IsApplicable&lt;const <a class="code" href="namespaceaworx.html">aworx</a>::<a class="code" href="classaworx_1_1lib_1_1time_1_1Ticks.html">lib::time::Ticks</a>&amp;&gt; : <span class="keyword">public</span> std::true_type {};</div><div class="line"></div><div class="line">    <span class="comment">// And now the ApplyTo specialization itself</span></div><div class="line">    <span class="keyword">template</span>&lt;&gt;  <span class="keyword">inline</span>   <span class="keywordtype">int</span> <a class="code" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">ApplyTo</a>( <a class="code" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a>&amp; target, <span class="keyword">const</span> <a class="code" href="classaworx_1_1lib_1_1time_1_1Ticks.html">aworx::lib::time::Ticks</a>&amp; ticks )</div><div class="line">    {</div><div class="line">        <a class="code" href="namespaceaworx.html#a0607ccd659418fa7cb9922b2c4ba5f1d">time::TicksCalendarTime</a> calendarTime;</div><div class="line">        calendarTime.<a class="code" href="classaworx_1_1lib_1_1time_1_1TicksCalendarTime.html#aede0204d6bf28f6b7f2546f0d8c6370d">Set</a>( ticks, Timezone::UTC );</div><div class="line">        calendarTime.Format( <span class="stringliteral">&quot;yyyy-MM-dd HH:mm&quot;</span>, target );</div><div class="line">        <span class="keywordflow">return</span> 16; <span class="comment">// The exact number not too relevant. But has to be &gt; 0 if something was written!</span></div><div class="line">    }</div><div class="line"></div><div class="line">}}} <span class="comment">// closing namespace</span></div></div><!-- fragment --><p> With this definition included, user code might now do this: </p><div class="fragment"><div class="line"><a class="code" href="classaworx_1_1lib_1_1strings_1_1AString.html">aworx::AString</a> sample( <span class="stringliteral">&quot;Today is: &quot;</span> );</div><div class="line">sample &lt;&lt;  <a class="code" href="namespaceaworx.html#ad270463709a4ae7e7098df40e803e458">Ticks</a>();</div><div class="line">cout &lt;&lt; sample &lt;&lt; endl;</div></div><!-- fragment --><p> The output will be something like this:</p>
-<div class="fragment"><div class="line">Today is: 2016-05-26 10:59</div></div><!-- fragment --> <dl class="section note"><dt>Note</dt><dd>This sample is kept simple. In real life, class <a class="el" href="classaworx_1_1lib_1_1time_1_1TicksCalendarTime.html">TicksCalendarTime</a> should be used to implement more options.</dd></dl>
+<div class="fragment"><div class="line">Today is: 2016-06-20 08:57</div></div><!-- fragment --> <dl class="section note"><dt>Note</dt><dd>This sample is kept simple. In real life, class <a class="el" href="classaworx_1_1lib_1_1time_1_1TicksCalendarTime.html">TicksCalendarTime</a> should be used to implement more options.</dd></dl>
 <p>Easy declaration and definition of method <b>ApplyTo</b> (and template class <b>IsApplicable</b>) is supported with macros</p><ul>
 <li><a class="el" href="group__GrpALibMacros.html#ga7ef8eaf71cad1c7be73ef8e61dc65177">ALIB_STRINGS_APPLYTO_DECLARATION</a>,</li>
 <li><a class="el" href="group__GrpALibMacros.html#ga87261d3411f0175bbc3efab49720023f">ALIB_STRINGS_APPLYTO_DEFINITION</a> and alternatively macro</li>
@@ -913,6 +937,42 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>If an append operation is implemented with a specialization, the number of characters that got appended should be returned ('should' here means that at least a non zero, positive value has to be returned) and -1 if the object <code>src</code> which is to be applied represented a <em>nulled</em> object. Returning -1 causes the <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> to be <em>nulled</em> if the apply operation was invoked through <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html#ab5e4f0275095724f12cb477527d2f33b">AString assignment operator</a>.</dd></dl>
 <p>If nothing is supposed to be append, this method must return 0. </p>
+
+</div>
+</div>
+<a class="anchor" id="a17dfe1060a698974265db6b780c709fa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> int aworx::lib::strings::ApplyTo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;&#160;</td>
+          <td class="paramname"><em>target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classaworx_1_1lib_1_1strings_1_1Format_1_1Tab.html">Format::Tab</a> &amp;&#160;</td>
+          <td class="paramname"><em>tab</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Specialization of template method <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">ApplyTo</a> for applicable type <a class="el" href="classaworx_1_1lib_1_1strings_1_1Format_1_1Tab.html">Format::Tab</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td>The object that <b>Apply</b> was invoked on. </td></tr>
+    <tr><td class="paramname">tab</td><td>The object to <em>apply</em>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of characters appended to target. </dd></dl>
 
 </div>
 </div>
@@ -959,81 +1019,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a17dfe1060a698974265db6b780c709fa"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> int aworx::lib::strings::ApplyTo </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;&#160;</td>
-          <td class="paramname"><em>target</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classaworx_1_1lib_1_1strings_1_1Format_1_1Tab.html">Format::Tab</a> &amp;&#160;</td>
-          <td class="paramname"><em>tab</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<hr/>
-<p> Specialization of template method <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">ApplyTo</a> for applicable type <a class="el" href="classaworx_1_1lib_1_1strings_1_1Format_1_1Tab.html">Format::Tab</a>.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">target</td><td>The object that <b>Apply</b> was invoked on. </td></tr>
-    <tr><td class="paramname">tab</td><td>The object to <em>apply</em>. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The number of characters appended to target. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a51d3c0fe2a4125c45c804c1fb1509b3e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> int aworx::lib::strings::ApplyTo </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;&#160;</td>
-          <td class="paramname"><em>target</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const wchar_t *&#160;</td>
-          <td class="paramname"><em>src</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<hr/>
-<p> This method converts the provided wide character string (zero-terminated array of wchar_t) and appends it to the <code>target</code>. The conversion is done using</p><ul>
-<li><em>wcsnrtombs</em> on glibc platforms (e.g. Linux)</li>
-<li><em>WideCharToMultiByte(CP_UTF8,...)</em> on Windows platform. <dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">target</td><td>The object that <b>Apply</b> was invoked on. </td></tr>
-    <tr><td class="paramname">src</td><td>The wide character string to append to <code>target</code>. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The number of characters appended to target. </dd></dl>
-</li>
-</ul>
-
-</div>
-</div>
 <a class="anchor" id="a5874b01f193017660c4748a8a5fc1fde"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1063,6 +1048,89 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">target</td><td>The object that <b>Apply</b> was invoked on. </td></tr>
     <tr><td class="paramname">field</td><td>The object to <em>apply</em>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of characters appended to target. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a259d311e0220dbf28a4eb0dcb26b5b2e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int aworx::lib::strings::ApplyTo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;&#160;</td>
+          <td class="paramname"><em>target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const wchar_t *&#160;</td>
+          <td class="paramname"><em>src</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> This method converts the provided wide character string (zero-terminated array of wchar_t) and appends it to the <code>target</code>. The conversion is done using</p><ul>
+<li><em>wcsnrtombs</em> on glibc platforms (e.g. Linux)</li>
+<li><em>WideCharToMultiByte(CP_UTF8,...)</em> on Windows platform. <dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td>The object that <b>Apply</b> was invoked on. </td></tr>
+    <tr><td class="paramname">src</td><td>The wide character string to append to <code>target</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of characters appended to target. </dd></dl>
+</li>
+</ul>
+
+</div>
+</div>
+<a class="anchor" id="ae7cf6b7c301dca2c1b7efd7d9cf3fd1a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> int aworx::lib::strings::ApplyTo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;&#160;</td>
+          <td class="paramname"><em>target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classaworx_1_1lib_1_1strings_1_1Format_1_1Int32.html">Format::Int32</a> &amp;&#160;</td>
+          <td class="paramname"><em>fmt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<hr/>
+<p> Specialization of template method <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">ApplyTo</a> for applicable type <a class="el" href="classaworx_1_1lib_1_1strings_1_1Format_1_1Int32.html">Format::Int32</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td>The object that <b>Apply</b> was invoked on. </td></tr>
+    <tr><td class="paramname">fmt</td><td>The format object. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1106,42 +1174,6 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">target</td><td>The object that <b>Apply</b> was invoked on. </td></tr>
     <tr><td class="paramname">b</td><td>The boolean to write to <code>target</code>. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The number of characters appended to target. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ae7cf6b7c301dca2c1b7efd7d9cf3fd1a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="group__GrpALibMacros.html#ga74fe706f3101d8e1e21555f772da2849">ALIB_API</a> int aworx::lib::strings::ApplyTo </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;&#160;</td>
-          <td class="paramname"><em>target</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classaworx_1_1lib_1_1strings_1_1Format_1_1Int32.html">Format::Int32</a> &amp;&#160;</td>
-          <td class="paramname"><em>fmt</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<hr/>
-<p> Specialization of template method <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">ApplyTo</a> for applicable type <a class="el" href="classaworx_1_1lib_1_1strings_1_1Format_1_1Int32.html">Format::Int32</a>.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">target</td><td>The object that <b>Apply</b> was invoked on. </td></tr>
-    <tr><td class="paramname">fmt</td><td>The format object. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2272,10 +2304,256 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Specialization of template method <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">ApplyTo</a> for applicable type <b>std::string</b>. See <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">ApplyTo</a> for more information </p><dl class="params"><dt>Parameters</dt><dd>
+<p> Specialization of template method <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">ApplyTo</a> for applicable type <b>std::string</b>. See <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">ApplyTo</a> for more information. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">target</td><td>The <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> to append <code>src</code> to. </td></tr>
     <tr><td class="paramname">logger</td><td>The logger to apply. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The length of the given string <code>src</code> which was appended to <code>target</code>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aaaa769462357c0edf3ff0fe32762ab34"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">aworx::lib::strings::ApplyTo</a>&lt; const QByteArray &amp; &gt; </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;&#160;</td>
+          <td class="paramname"><em>target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QByteArray &amp;&#160;</td>
+          <td class="paramname"><em>src</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Specialization of template method <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">ApplyTo</a> for applicable type <b>QByteArray</b>. See <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">ApplyTo</a> for general information.<br />
+ For more information about using QT strings with ALib, see <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#abfe4edade9b5bfad36a91655532cba0a">ApplyTo&lt;const QString&amp;&gt;</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td>The <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> to append <code>src</code> to. </td></tr>
+    <tr><td class="paramname">src</td><td>The source string to take the buffer from. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The length of the given string <code>src</code> which was appended to <code>target</code>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad03df92a9ab2db9413d0d744a3d331af"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">aworx::lib::strings::ApplyTo</a>&lt; const QChar &amp; &gt; </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;&#160;</td>
+          <td class="paramname"><em>target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QChar &amp;&#160;</td>
+          <td class="paramname"><em>src</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Specialization of template method <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">ApplyTo</a> for applicable type <b>QChar</b>. See <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">ApplyTo</a> for general information.<br />
+ For more information about using QT strings with ALib, see <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#abfe4edade9b5bfad36a91655532cba0a">ApplyTo&lt;const QString&amp;&gt;</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td>The <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> to append <code>src</code> to. </td></tr>
+    <tr><td class="paramname">src</td><td>The source string to take the buffer from. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The length of the given string <code>src</code> which was appended to <code>target</code>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af8fca333ee4e6e6b045f9f9da0204942"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">aworx::lib::strings::ApplyTo</a>&lt; const QLatin1String &amp; &gt; </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;&#160;</td>
+          <td class="paramname"><em>target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QLatin1String &amp;&#160;</td>
+          <td class="paramname"><em>src</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Specialization of template method <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">ApplyTo</a> for applicable type <b>QLatin1String</b>. See <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">ApplyTo</a> for general information.<br />
+ For more information about using QT strings with ALib, see <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#abfe4edade9b5bfad36a91655532cba0a">ApplyTo&lt;const QString&amp;&gt;</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td>The <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> to append <code>src</code> to. </td></tr>
+    <tr><td class="paramname">src</td><td>The source string to take the buffer from. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The length of the given string <code>src</code> which was appended to <code>target</code>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="abfe4edade9b5bfad36a91655532cba0a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">aworx::lib::strings::ApplyTo</a>&lt; const QString &amp; &gt; </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;&#160;</td>
+          <td class="paramname"><em>target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>src</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Specialization of template method <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">ApplyTo</a> for applicable type <b>QString</b>. See <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">ApplyTo</a> for general information.</p>
+<p><b>Information On ALib And QT String Compatibility:</b><br />
+ ALib string classes are designed to support 3rd-party string types in a non-intrusive fashion. Template meta programming in two areas made this possible:</p><ul>
+<li>Implicit conversion of external strings to class <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">aworx::String</a>, which allows to pass 3rd party strings to method accepting parameters of type <b>const aworx::String&amp;</b> without conversion.</li>
+<li><em>Application</em> of arbitrary types to objects of class <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">aworx::AString</a>. Here, the term <em>"application"</em> most means concatenating a string representation of an object to the <b><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a></b> object. (This is all documented in reference manual of namespace <a class="el" href="namespaceaworx_1_1lib_1_1strings.html">aworx::lib::strings</a>.)</li>
+</ul>
+<p>String classes of the <a href="https://www.qt.io">QT library</a> are supported trough header file <em>"alib/compatibility/qt.hpp"</em>.</p>
+<p><b>Implicit Conversion:</b><br />
+ Unfortunately, objects of class <b>QString</b> can not be implicitly converted (embedded) in thin and lightweight class <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">aworx::String</a>. The reason for this is, that ALib strings are single byte strings, while <b>QString</b> represent (two byte) unicode strings. Therefore, template struct <a class="el" href="structaworx_1_1lib_1_1strings_1_1ToStringDefined.html">ToStringDefined</a> and method <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a7cfd45024bf9222b42febac98fdcc146">ToString</a> can not be implemented for class <b>QString</b> and objects of this class can not be simply passed to methods accepting parameters of type <b>const aworx::String&amp;</b>.</p>
+<p>The way out is the use of classes <b>QByteArray</b> and <b>QLatin1String</b>. For these QT classes, an implicit conversion exists and this way objects of these types are implicitly converted to <b>aworx::String</b> types. Class <b>QString</b> provides methods to convert to these classes. Passing a <b>QString</b> object to a method expecting a <b>const aworx::String&amp;</b> can be done a follows </p><pre class="fragment"> MyMethodExpectingALibString( myQString.toLocal8Bit() );
+ MyMethodExpectingALibString( myQString.toUtf8()      );
+ MyMethodExpectingALibString( myQString.toLatin1()    );
+</pre><dl class="section note"><dt>Note</dt><dd>The encoding of strings represented by ALib strings is user defined. Therefore, it is up to the user to decide which of the above conversion methods of <b>QString</b> is to be used. In most cases, method <b>toLocal8Bit</b> should be the right choice. Also, ALib strings uses the current locale to convert characters of type wchar_t (or arrays of them) when <em>applying</em> to class <b>AString</b> as well.</dd></dl>
+<p>The obvious drawback of this approach is that a conversion has to take place and that this conversion implies a temporary allocation of heap memory for the data stored in the (stack-allocated) <b>QByteArray</b> object.</p>
+<p><b>Appending QT Strings To AString Objects (ApplyTo):</b><br />
+ Template method <b>ApplyTo</b> is partial implemented for the following QT types:</p><ul>
+<li><b>ApplyTo&lt;const QString&amp;&gt;</b> (this method)</li>
+<li><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#ad03df92a9ab2db9413d0d744a3d331af">ApplyTo&lt;const QChar&amp;&gt;</a></li>
+<li><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#af8fca333ee4e6e6b045f9f9da0204942">ApplyTo&lt;const QLatin1String&amp;&gt;</a></li>
+<li><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#aaaa769462357c0edf3ff0fe32762ab34">ApplyTo&lt;const QByteArray&amp;&gt;</a></li>
+<li><a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">aworx::lib::strings::ApplyTo</a>&lt;const QVector&lt;uint&gt;&amp;&gt;(<a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a>&amp;,const QVector&lt;uint&gt;&amp;) "ApplyTo&lt;const QVector&lt;uint&gt;&amp;&gt;"</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td>The <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> to append <code>src</code> to. </td></tr>
+    <tr><td class="paramname">src</td><td>The source string to take the buffer from. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The length of the given string <code>src</code> which was appended to <code>target</code>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac1bfcd6907c1a4ff2a3d8d7a11c2d64a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">aworx::lib::strings::ApplyTo</a>&lt; const QVector&lt; uint &gt; &amp; &gt; </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;&#160;</td>
+          <td class="paramname"><em>target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QVector&lt; uint &gt; &amp;&#160;</td>
+          <td class="paramname"><em>src</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Specialization of template method <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">ApplyTo</a> for applicable type <b>QVector&lt;uint&gt;</b>. It is expected that the data in the QVector contains UCS4 data, e.g. generated with method <b>QString::toUcs4</b>.<br />
+ See <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">ApplyTo</a> for general information.<br />
+ For more information about using QT strings with ALib, see <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#abfe4edade9b5bfad36a91655532cba0a">ApplyTo&lt;const QString&amp;&gt;</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td>The <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> to append <code>src</code> to. </td></tr>
+    <tr><td class="paramname">src</td><td>The source string to take the buffer from. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2315,7 +2593,7 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <hr/>
-<p> Specialization of template method <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">ApplyTo</a> for applicable type <b>std::string</b>. See <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">ApplyTo</a> for more information </p><dl class="params"><dt>Parameters</dt><dd>
+<p> Specialization of template method <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">ApplyTo</a> for applicable type <b>std::string</b>. See <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a40af8c9dcfc80a2b4a9e0d50ce506725">ApplyTo</a> for more information. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">target</td><td>The <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> to append <code>src</code> to. </td></tr>
     <tr><td class="paramname">src</td><td>The source string to take the buffer from. </td></tr>
@@ -2367,6 +2645,141 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>If an append operation is implemented with a specialization, the number of characters that got appended should be returned and -1 if the object <code>src</code> to apply represented a <em>nulled</em> object. I nothing is supposed to be append, this method must return 0. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a18d141d95e478864e1524c0ff59a0858"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#abcd4a1d202f1c13b510ec14cd55d3a7a">aworx::lib::strings::ApplyTo_NC</a>&lt; const QByteArray &amp; &gt; </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;&#160;</td>
+          <td class="paramname"><em>target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QByteArray &amp;&#160;</td>
+          <td class="paramname"><em>src</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Specialization of (optional) non-checking version of template method <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#abcd4a1d202f1c13b510ec14cd55d3a7a">ApplyTo_NC</a> for applicable type <b>QByteArray</b>.<br />
+ For more information about using QT strings with ALib, see <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#abfe4edade9b5bfad36a91655532cba0a">ApplyTo&lt;const QString&amp;&gt;</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td>The <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> to append <code>src</code> to. </td></tr>
+    <tr><td class="paramname">src</td><td>The source string to take the buffer from. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The length of the given string <code>src</code> which was appended to <code>target</code>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aea11f14b701049f529e328d593fd44f7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#abcd4a1d202f1c13b510ec14cd55d3a7a">aworx::lib::strings::ApplyTo_NC</a>&lt; const QChar &amp; &gt; </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;&#160;</td>
+          <td class="paramname"><em>target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QChar &amp;&#160;</td>
+          <td class="paramname"><em>src</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Specialization of (optional) non-checking version of template method <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#abcd4a1d202f1c13b510ec14cd55d3a7a">ApplyTo_NC</a> for applicable type <b>QChar</b>.<br />
+ For more information about using QT strings with ALib, see <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#abfe4edade9b5bfad36a91655532cba0a">ApplyTo&lt;const QString&amp;&gt;</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td>The <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> to append <code>src</code> to. </td></tr>
+    <tr><td class="paramname">src</td><td>The source string to take the buffer from. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The length of the given string <code>src</code> which was appended to <code>target</code>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a88634e1a4fd136129352e4dededc3a8f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#abcd4a1d202f1c13b510ec14cd55d3a7a">aworx::lib::strings::ApplyTo_NC</a>&lt; const QLatin1String &amp; &gt; </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> &amp;&#160;</td>
+          <td class="paramname"><em>target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QLatin1String &amp;&#160;</td>
+          <td class="paramname"><em>src</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Specialization of (optional) non-checking version of template method <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#abcd4a1d202f1c13b510ec14cd55d3a7a">ApplyTo_NC</a> for applicable type <b>QLatin1String</b>.<br />
+ For more information about using QT strings with ALib, see <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#abfe4edade9b5bfad36a91655532cba0a">ApplyTo&lt;const QString&amp;&gt;</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td>The <a class="el" href="classaworx_1_1lib_1_1strings_1_1AString.html">AString</a> to append <code>src</code> to. </td></tr>
+    <tr><td class="paramname">src</td><td>The source string to take the buffer from. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The length of the given string <code>src</code> which was appended to <code>target</code>. </dd></dl>
 
 </div>
 </div>
@@ -2583,6 +2996,210 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The ostream to allow concatenated operations. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5d1e001e39bfac300f1a55a539a8f291"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString&amp; aworx::lib::strings::ToQString </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>as</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString &amp;&#160;</td>
+          <td class="paramname"><em>target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>regionStart</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>regionLength</em> = <code><a class="el" href="classaworx_1_1lib_1_1strings_1_1CString.html#a702a7d928cd1d34c5aa2f26dd97e199e">CString::MaxLen</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a9345007d67faa05253932092d54d10d4">enums::CurrentData</a>&#160;</td>
+          <td class="paramname"><em>targetData</em> = <code><a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a9345007d67faa05253932092d54d10d4adc30bc0c7914db5918da4263fce93ad2">enums::CurrentData::Clear</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Copies or appends a region of a given <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> into a QString. The region is adjusted to the length of the String.<br />
+ For more information about using QT strings with ALib, see <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#abfe4edade9b5bfad36a91655532cba0a">ApplyTo&lt;const QString&amp;&gt;</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">as</td><td>The <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> to convert into a QString. </td></tr>
+    <tr><td class="paramname">target</td><td>A result QString to copy the specified region into. </td></tr>
+    <tr><td class="paramname">regionStart</td><td>The start index of the region to be copied. </td></tr>
+    <tr><td class="paramname">regionLength</td><td>The maximum length of the region to be copied. Defaults to <a class="el" href="classaworx_1_1lib_1_1strings_1_1CString.html#a702a7d928cd1d34c5aa2f26dd97e199e">CString::MaxLen</a>. </td></tr>
+    <tr><td class="paramname">targetData</td><td>If <code>CurrentData::Keep</code>, the target <code>QString</code> is not cleared before the result is written. Defaults to <code><a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a9345007d67faa05253932092d54d10d4adc30bc0c7914db5918da4263fce93ad2" title="Chooses to clear existing data. ">CurrentData::Clear</a></code>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The (modified) QString&amp; result that was provided (for concatenation of calls). </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac9675b158cf3b39232281028804d99ed"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString aworx::lib::strings::ToQString </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>as</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>regionStart</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>regionLength</em> = <code><a class="el" href="classaworx_1_1lib_1_1strings_1_1CString.html#a702a7d928cd1d34c5aa2f26dd97e199e">CString::MaxLen</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Copies a region of a given <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> into a QString which is created. The region is adjusted to the length of the String.<br />
+ For more information about using QT strings with ALib, see <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#abfe4edade9b5bfad36a91655532cba0a">ApplyTo&lt;const QString&amp;&gt;</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">as</td><td>The <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> to convert into a QString. </td></tr>
+    <tr><td class="paramname">regionStart</td><td>The start index of the region in this to create the QString from. </td></tr>
+    <tr><td class="paramname">regionLength</td><td>The maximum length of the region to be copied. Defaults to <a class="el" href="classaworx_1_1lib_1_1strings_1_1CString.html#a702a7d928cd1d34c5aa2f26dd97e199e">CString::MaxLen</a>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A string that represents the specified sub region of this object. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a04894e3151c74673b9cf1161915e53f4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString aworx::lib::strings::ToQString </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>as</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Copies the contents of a given <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> into the given QString.<br />
+ For more information about using QT strings with ALib, see <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#abfe4edade9b5bfad36a91655532cba0a">ApplyTo&lt;const QString&amp;&gt;</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">as</td><td>The <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> to convert into a QString. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A QString that represents this object. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a4bd3ea63a15d596e1d1f0ddd1d3d8ee3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString&amp; aworx::lib::strings::ToQString </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>as</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString &amp;&#160;</td>
+          <td class="paramname"><em>target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a9345007d67faa05253932092d54d10d4">enums::CurrentData</a>&#160;</td>
+          <td class="paramname"><em>targetData</em> = <code><a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a9345007d67faa05253932092d54d10d4adc30bc0c7914db5918da4263fce93ad2">enums::CurrentData::Clear</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Copies the contents of a given <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> into the given QString.<br />
+ For more information about using QT strings with ALib, see <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#abfe4edade9b5bfad36a91655532cba0a">ApplyTo&lt;const QString&amp;&gt;</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">as</td><td>The <a class="el" href="classaworx_1_1lib_1_1strings_1_1String.html">String</a> to convert into a QString. </td></tr>
+    <tr><td class="paramname">target</td><td>A target QString to copy the contents of this String into. </td></tr>
+    <tr><td class="paramname">targetData</td><td>If <code>CurrentData::Keep</code>, parameter <code>target</code> is not cleared before the result is written. Defaults to <code><a class="el" href="namespaceaworx_1_1lib_1_1enums.html#a9345007d67faa05253932092d54d10d4adc30bc0c7914db5918da4263fce93ad2" title="Chooses to clear existing data. ">CurrentData::Clear</a></code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The (modified) result that was provided (for concatenation of calls). </dd></dl>
 
 </div>
 </div>
@@ -2822,6 +3439,142 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a5656ff620ac4fd284bc3c656f724cf0c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a7cfd45024bf9222b42febac98fdcc146">aworx::lib::strings::ToString</a>&lt; const QByteArray &amp; &gt; </td>
+          <td>(</td>
+          <td class="paramtype">const QByteArray &amp;&#160;</td>
+          <td class="paramname"><em>src</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Specialization of template function <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a7cfd45024bf9222b42febac98fdcc146">ToString</a> for type <b>QByteArray</b>.<br />
+ For more information about using QT strings with ALib, see <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#abfe4edade9b5bfad36a91655532cba0a">ApplyTo&lt;const QString&amp;&gt;</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">src</td><td>The source string to take the buffer from. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The value of <em>src.data()</em>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a68ce5d72a3f7b2501bee8ab0d860b5e8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a7cfd45024bf9222b42febac98fdcc146">aworx::lib::strings::ToString</a>&lt; const QByteArray &amp; &gt; </td>
+          <td>(</td>
+          <td class="paramtype">const QByteArray &amp;&#160;</td>
+          <td class="paramname"><em>src</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Specialization of template function <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a7cfd45024bf9222b42febac98fdcc146">ToString</a> for type <b>QByteArray</b>.<br />
+ For more information about using QT strings with ALib, see <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#abfe4edade9b5bfad36a91655532cba0a">ApplyTo&lt;const QString&amp;&gt;</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">src</td><td>The source string to take the length from. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The length of <code>src</code>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae439ab45f89f383544d206c8689f7742"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a7cfd45024bf9222b42febac98fdcc146">aworx::lib::strings::ToString</a>&lt; const QLatin1String &amp; &gt; </td>
+          <td>(</td>
+          <td class="paramtype">const QLatin1String &amp;&#160;</td>
+          <td class="paramname"><em>src</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Specialization of template function <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a7cfd45024bf9222b42febac98fdcc146">ToString</a> for type <b>QLatin1String</b>.<br />
+ For more information about using QT strings with ALib, see <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#abfe4edade9b5bfad36a91655532cba0a">ApplyTo&lt;const QString&amp;&gt;</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">src</td><td>The source string to take the buffer from. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The value of <em>src.data()</em>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a74551f891e3a8df8db324c327333e0b6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a7cfd45024bf9222b42febac98fdcc146">aworx::lib::strings::ToString</a>&lt; const QLatin1String &amp; &gt; </td>
+          <td>(</td>
+          <td class="paramtype">const QLatin1String &amp;&#160;</td>
+          <td class="paramname"><em>src</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<hr/>
+<p> Specialization of template function <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#a7cfd45024bf9222b42febac98fdcc146">ToString</a> for type <b>QLatin1String</b>.<br />
+ For more information about using QT strings with ALib, see <a class="el" href="namespaceaworx_1_1lib_1_1strings.html#abfe4edade9b5bfad36a91655532cba0a">ApplyTo&lt;const QString&amp;&gt;</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">src</td><td>The source string to take the length from. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The length of <code>src</code>. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a8d85e610e17c69e9ece8b558735519e0"></a>
 <div class="memitem">
 <div class="memproto">
@@ -2892,7 +3645,7 @@ Functions</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu May 26 2016 13:01:45 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 20 2016 10:57:53 for ALox by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

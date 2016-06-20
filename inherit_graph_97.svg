@@ -11,10 +11,10 @@
 <polygon fill="white" stroke="none" points="-4,4 -4,-35 123,-35 123,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<g id="a_node1"><a doxygen="ALox/html/java_ref/java_ref.tag:java_ref/" xlink:href="java_ref/classcom_1_1aworx_1_1lib_1_1strings_1_1Substring.html" target="_top" xlink:title="com::aworx::lib::strings\l::Substring">
+<g id="a_node1"><a doxygen="ALox/html/java_ref/java_ref.tag:java_ref/" xlink:href="java_ref/enumcom_1_1aworx_1_1lib_1_1enums_1_1Whitespaces.html" target="_top" xlink:title="com::aworx::lib::enums\l::Whitespaces">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-30.5 119,-30.5 119,-0.5 0,-0.5"/>
-<text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">com::aworx::lib::strings</text>
-<text text-anchor="middle" x="59.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">::Substring</text>
+<text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">com::aworx::lib::enums</text>
+<text text-anchor="middle" x="59.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">::Whitespaces</text>
 </a>
 </g>
 </g>
