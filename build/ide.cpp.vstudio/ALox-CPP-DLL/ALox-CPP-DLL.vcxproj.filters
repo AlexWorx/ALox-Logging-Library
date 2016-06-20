@@ -294,9 +294,6 @@
     <ClCompile Include="..\..\..\src.cpp\alox\core\domain.cpp">
       <Filter>alox\core</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\applyto.cpp">
-      <Filter>alib\strings</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src.cpp\alib\strings\astring.cpp">
       <Filter>alib\strings</Filter>
     </ClCompile>

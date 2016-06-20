@@ -213,23 +213,23 @@ public class AString implements CharSequence
          *        If a future string length of an %AString is predictable, then it is advisable
          *        to allocate such size upfront to avoid recurring allocations.
          *
-         * @param newSize    The new size for the allocation buffer.
+         * @param newCapacity   The new capacity of the internal buffer.
          ******************************************************************************************/
-        public    void     setBuffer( int newSize )
+        public    void     setBuffer( int newCapacity )
         {
             // default parameter -1: -> set to current length
-            if ( newSize == -1 )
-                newSize= length;
+            if ( newCapacity == -1 )
+                newCapacity= length;
 
             // check
-            if ( buffer.length == newSize )
+            if ( buffer.length == newCapacity )
                 return;
 
             // As a side effect, flag has value as dirty
             hash= 0;
 
             // set uninitialized
-            if ( newSize == 0 )
+            if ( newCapacity == 0 )
             {
                 buffer=        CString.nullBuffer;
                 length=        0;
@@ -237,12 +237,12 @@ public class AString implements CharSequence
             }
 
             // create new Buffer and copy data
-            char[] newBuffer=    new char[ newSize ];
+            char[] newBuffer=    new char[ newCapacity ];
             if ( length > 0 )
             {
                 // we might have been cut with this operation
-                if ( length > newSize  )
-                    length= newSize;
+                if ( length > newCapacity  )
+                    length= newCapacity;
                 System.arraycopy( buffer, 0, newBuffer, 0, length );
             }
 

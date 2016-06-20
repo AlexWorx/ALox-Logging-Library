@@ -20,10 +20,8 @@ namespace cs.aworx.lib.containers  {
 /** ************************************************************************************************
  * This class implements a map suitable for keys that are hierarchically organized.
  * While the class works with any type of keys, it is efficient only if keys are rather
- * long and similar to each other. A good example for such similar, hierarchical keys are
- * file path names.<br>
- * Each portion of any key inserted is stored only once. The insert and receive operations
- * (both performed with method #Get) are performed in O(<key length>).
+ * long and similar to each other. 
+ * Each portion of any key inserted is stored only once. 
  *
  * \note
  *   This class is not considered as complete and final in the current version of %ALib.
@@ -242,13 +240,11 @@ public class PathMap<StoreT>
                 return this;
             }
 
-            // return us, or if this is not a real node, our parent
-            if( Parent == null || idx == 0 ||  separators.IndexOf( Path.CharAt_NC( idx - 1 ) ) >= 0 )
+            // return if this is the root or a real node
+            if( Parent == null ||  separators.IndexOf( Path.CharAt_NC( idx - 1 ) ) >= 0 )
                 return this;
-            else
-                return Parent;
+            return Parent;
         }
-
 }
 
 } // namespace / EOF

@@ -26,7 +26,7 @@
 # initialize things
 # -------------------------------------------------------------------------------------------------
     # set version
-    set( ALIB_VERSION       "1604R1"     )
+    set( ALIB_VERSION       "1604R2"     )
 
     if (ALIB_SRC_DIR)
         message( "ALib_Base.cmake: Already included (included twice!)" )
@@ -149,7 +149,7 @@ set( ALIB_EXTERNAL_LIBS ${ALIB_EXTERNAL_LIBS}         ${CMAKE_THREAD_LIBS_INIT} 
 
     if     ( ${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU"    )
         # add -H to generate output "!/x" for use of precompiled header
-        set( AWORX_COMPILE_FLAGS "-Wall -Wextra -Werror -std=c++11" )
+        set( AWORX_COMPILE_FLAGS "-Wall -Wextra -Werror -std=c++11 -fPIC" )
 
         # add coverage flags to GCC
         if( ${AWORX_COVERAGE_COMPILE} )

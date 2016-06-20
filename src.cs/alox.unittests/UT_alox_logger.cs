@@ -316,6 +316,55 @@ namespace ut_cs_aworx_lox
     }
 
     /** ********************************************************************************************
+    * Log_TextLogger_FormatConfig
+    **********************************************************************************************/
+    void testFormatConfig( String testFormat,
+                           String expFmt,
+                           String expFmtError    = null,
+                           String expFmtWarning  = null,
+                           String expFmtInfo     = null,
+                           String expFmtVerbose  = null
+                         )
+    {
+        IniFile iniFile= new IniFile("*"); // don't read
+        iniFile.Save( ALox.ConfigCategoryName, "TESTML_FORMAT", testFormat   );
+        ALIB.Config.InsertPlugin( iniFile, Configuration.PrioIniFile );
+        MemoryLogger ml= new MemoryLogger("TESTML");
+    
+                                     UT_EQ( expFmt, ml.MetaInfo.Format );
+        if( expFmtError  != null ) { UT_EQ( expFmtError  , ml.MetaInfo.VerbosityError   ); }
+        if( expFmtWarning!= null ) { UT_EQ( expFmtWarning, ml.MetaInfo.VerbosityWarning ); }
+        if( expFmtInfo   != null ) { UT_EQ( expFmtInfo   , ml.MetaInfo.VerbosityInfo    ); }
+        if( expFmtVerbose!= null ) { UT_EQ( expFmtVerbose, ml.MetaInfo.VerbosityVerbose ); }
+    
+        ALIB.Config.RemovePlugin( iniFile );
+    }
+    
+    
+    #if ALIB_MONO_DEVELOP
+        [Test ()]
+    #endif
+    #if ALIB_VSTUDIO
+        [TestMethod]
+        #if !WINDOWS_PHONE
+            [TestCategory("CS_ALox")]
+        #endif
+    #endif
+    public void Log_TextLogger_FormatConfig()
+    {
+        UT_INIT();
+    
+        testFormatConfig( "Test"                                , "Test"                     );
+        testFormatConfig( "\"Test"                              , "\"Test"                   );
+        testFormatConfig( "\"Test\""                            , "Test"                     );
+        testFormatConfig( "  \" Test  \"  s"                    , " Test  "                  );
+    
+        testFormatConfig( " Test , a ,b, c,d  "                 , "Test", "a","b","c","d"    );
+        testFormatConfig( "\" Test, a ,b, c,d  "                , "\" Test", "a","b","c","d" );
+        testFormatConfig( "\" Test \", a ,b, c,d  "             , " Test ", "a","b","c","d"  );
+    }
+    
+    /** ********************************************************************************************
      * Log.TestVerbositySetting
      **********************************************************************************************/
     #if ALOX_DBG_LOG || ALOX_REL_LOG

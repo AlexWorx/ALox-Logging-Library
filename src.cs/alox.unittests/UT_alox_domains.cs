@@ -273,7 +273,7 @@ namespace ut_cs_aworx_lox
     {
         UT_INIT();
 
-        // create ini file
+        // create INI file
         String iniFileContents=
              "[ALOX]\n"
             +"TESTMEMLOGGER_FORMAT= \"<%D>\"  \n"

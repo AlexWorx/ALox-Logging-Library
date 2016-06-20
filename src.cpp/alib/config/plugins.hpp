@@ -49,9 +49,10 @@ namespace                   config {
  *
  *  Variables belong to categories. The built-in ConfigurationPlugIns types
  *  CommandLinePlugIn and EnvironmentPlugIn just concatenate
- *  the category and the variable name with an underscore '_'. This means, if variable <em>IDE</em>
+ *  the category and the variable name with an underscore '_'.
+ *  This means, if variable <em>LOCALE</em>
  *  in category <em>ALIB</em> is accessed, those plug-ins would check command line parameter
- *  <em>--ALIB_IDE=xyz</em> respectively environment variable <em>ALIB_IDE</em>
+ *  <em>--ALIB_LOCALE=xyz</em> respectively environment variable <em>ALIB_LOCALE</em>
  **************************************************************************************************/
 class ConfigurationPlugIn
 {
@@ -180,18 +181,18 @@ class ConfigurationPlugIn
 };
 
 /** ************************************************************************************************
- *  Specialization of abstract interface class #ConfigurationPlugIn, which takes all command line
- *  parameters in the constructor and reads variable values from those parameters on request.
- *  Its priority value is fixed to 10.
+ * Specialization of abstract interface class #ConfigurationPlugIn, which takes all command line
+ * parameters in the constructor and reads variable values from those parameters on request.
+ * Its priority value is fixed to 10.
  *
- *  Variable categories are used as a prefix together with an underscore '_'.
- *  This means, if variable <em>IDE</em> in category <em>ALIB</em> is accessed, the command line
- *  parameter <em>--ALIB_IDE=xyz</em> is read.
+ * Variable categories are used as a prefix together with an underscore '_'.
+ * This means, if variable <em>LOCALE</em> in category <em>ALIB</em> is accessed, the command line
+ * parameter <em>--ALIB_LOCALE=xyz</em> is read.
  *
- *  Command line variables may be passed with either one hyphen ('-') or two ('--').
- *  Both are accepted.
+ * Command line variables may be passed with either one hyphen ('-') or two ('--').
+ * Both are accepted.
  *
- *  Category and Variable names are insensitive in respect to character case.
+ * Category and Variable names are insensitive in respect to character case.
  **************************************************************************************************/
 class CommandLinePlugIn : public ConfigurationPlugIn
 {
@@ -204,51 +205,51 @@ class CommandLinePlugIn : public ConfigurationPlugIn
     public:
 
         /** ****************************************************************************************
-         *  Constructor which takes the standard C main() function parameters as arguments
+         * Constructor which takes the standard C main() function parameters as arguments
          *
-         * \note In standard application scenarios, this constructor is invoked by method
-         *       \ref aworx::lib::ALIB::Init "ALIB::Init".
+         *\note In standard application scenarios, this constructor is invoked by method
+         *      \ref aworx::lib::ALIB::Init "ALIB::Init".
          *
-         * \note On the Windows platform, the Microsoft compiler provides the global variables
-         *       <em>__argc</em> and <em>__argv</em> (respectively <em>__wargv</em> for wide
-         *       character binaries. These variables a can be used if this method is invoked
-         *       outside of the <em>main()</em> method.
+         *\note On the Windows platform, the Microsoft compiler provides the global variables
+         *      <em>__argc</em> and <em>__argv</em> (respectively <em>__wargv</em> for wide
+         *      character binaries. These variables a can be used if this method is invoked
+         *      outside of the <em>main()</em> method.
          *
-         *  @param argc    The number of arguments in argv
-         *  @param argv    The list of command line arguments.
-         *  @param wArgs   If \c true, parameter argv is of type '*<em>wchar_t **</em>', otherwise
-         *                 of type '<em>char **</em>'.
-         *                 Defaults to \c false.
+         * @param argc    The number of arguments in argv
+         * @param argv    The list of command line arguments.
+         * @param wArgs   If \c true, parameter argv is of type '*<em>wchar_t **</em>', otherwise
+         *                of type '<em>char **</em>'.
+         *                Defaults to \c false.
          ******************************************************************************************/
         CommandLinePlugIn( int argc, void** argv= nullptr, bool wArgs= false );
 
         /** ****************************************************************************************
-         *  Virtual Destructor.
+         * Virtual Destructor.
          ******************************************************************************************/
         virtual ~CommandLinePlugIn() {}
 
         /** ****************************************************************************************
-         *  Retrieves the string value of a configuration setting.
-         *  @param category  The category of the  variable.
-         *  @param name      The name of the configuration variable to be retrieved.
-         *  @param target    A reference to an empty AString to take the result.
-         *  @return \c true if variable was found within this configuration source, \c false if not.
+         * Retrieves the string value of a configuration setting.
+         * @param category  The category of the  variable.
+         * @param name      The name of the configuration variable to be retrieved.
+         * @param target    A reference to an empty AString to take the result.
+         * @return \c true if variable was found within this configuration source, \c false if not.
          ******************************************************************************************/
         ALIB_API virtual bool  Get( const String& category, const String& name, AString& target );
 
 };
 
 /** ************************************************************************************************
- *  Specialization of abstract interface class #ConfigurationPlugIn, retrieves configuration
- *  data from the system environment.
+ * Specialization of abstract interface class #ConfigurationPlugIn, retrieves configuration
+ * data from the system environment.
  *
- *  This plug-ins' priority value is fixed to 10.
+ * This plug-ins' priority value is fixed to 10.
  *
- *  Variable categories are used as a prefix together with an underscore '_'.
- *  This means, if variable <em>IDE</em> in category <em>ALIB</em> is accessed, the environment
- *  variable <em>ALIB_IDE</em> is read.
+ * Variable categories are used as a prefix together with an underscore '_'.
+ * This means, if variable <em>LOCALE</em> in category <em>ALIB</em> is accessed, the environment
+ * variable <em>ALIB_LOCALE</em> is read.
  *
- *  Category and Variable names are insensitive in respect to character case.
+ * Category and Variable names are insensitive in respect to character case.
 **************************************************************************************************/
 class EnvironmentPlugIn : public ConfigurationPlugIn
 {
@@ -257,7 +258,7 @@ class EnvironmentPlugIn : public ConfigurationPlugIn
     public:
 
         /** ****************************************************************************************
-         *  Constructor.
+         * Constructor.
          ******************************************************************************************/
         EnvironmentPlugIn();
 
@@ -267,11 +268,11 @@ class EnvironmentPlugIn : public ConfigurationPlugIn
         virtual ~EnvironmentPlugIn() {}
 
         /** ****************************************************************************************
-         *  Retrieves the string value of a configuration setting.
-         *  @param category  The category of the  variable.
-         *  @param name      The name of the configuration variable to be retrieved.
-         *  @param target    A reference to an empty AString to take the result.
-         *  @return \c true if variable was found within this configuration source, \c false if not.
+         * Retrieves the string value of a configuration setting.
+         * @param category  The category of the  variable.
+         * @param name      The name of the configuration variable to be retrieved.
+         * @param target    A reference to an empty AString to take the result.
+         * @return \c true if variable was found within this configuration source, \c false if not.
          ******************************************************************************************/
         ALIB_API virtual bool  Get( const String& category, const String& name,  AString& target  );
 };

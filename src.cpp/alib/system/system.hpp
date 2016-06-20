@@ -142,38 +142,6 @@ class System
                                     enums::CurrentData targetData  =enums::CurrentData::Clear,
                                     enums::Case        sensitivity =enums::Case::Ignore          );
 
-
-    // #############################################################################################
-    // Others
-    // #############################################################################################
-        /** ****************************************************************************************
-         * Receives the name of the process. Evaluated only once, can't change.
-         * @return The name of the process.
-         ******************************************************************************************/
-        inline
-        static
-        const String& GetProcessName()
-        {
-            if( processName.IsNull() )
-                getProcessName();
-
-            return processName;
-        }
-
-    // #############################################################################################
-    // Internals
-    // #############################################################################################
-        protected:
-
-        /** The process name, retrieved once on request  */
-        static AString              processName;
-        /** ****************************************************************************************
-         * Invoked only once in a life-time. Receives the process name.
-         ******************************************************************************************/
-        ALIB_API
-        static void getProcessName();
-
-
 };// class System
 
 }} // namespace lib::system

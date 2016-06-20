@@ -273,7 +273,7 @@ New, unknown <em>Log Domains</em> inherit their \b Verbosity from their parent, 
   [Java](@ref com::aworx::lox::Lox::setVerbosity)) is used.
 
 Furthermore, when obtaining \e Verbosity settings from external configuration, a natural
-prioritization is applied: First ini-File settings, which are overwritten by environment variable
+prioritization is applied: First INI file settings, which are overwritten by environment variable
 settings, which are overwritten by command-line parameters. All of them are overwriting
 settings made invocations of \b %Lox.SetVerbosity in the source code - as long as optional
 parameter \p priority is not given.<br>
@@ -315,7 +315,7 @@ background that are not obvious to the user. For example:
    [C#]  (@ref  cs::aworx::lox::core::textlogger::AutoSizes),
    [Java](@ref com::aworx::lox::core::textlogger::AutoSizes)), class \b %TextLogger
  formats the log output into columns that grow over time.
- In the moment a write-enabled configuration plug-in is attached (e.g. an ini-File), such sizes
+ In the moment a write-enabled configuration plug-in is attached (e.g. an INI file), such sizes
  are restored when a process is re-launched. Also automatic shrinking happens. This is done
  when next detects that the tabulator and field sizes of a previous session it used, have been
  higher than needed after all. In the next run, the smaller sizes are restored.

@@ -24,55 +24,62 @@
 
 #define     ALIB_VERSION_VERYFIER              1604
 
+#define ALIB_DEBUG_VFYBIT                  (1 << 0)
 #if defined(ALIB_DEBUG)
-    #define ALIB_DEBUG_VFYBIT                  +(1 << 0)
+    #define ALIB_DEBUG_VFYVAL              ALIB_DEBUG_VFYBIT
 #else
-    #define ALIB_DEBUG_VFYBIT                  +0
+    #define ALIB_DEBUG_VFYVAL              0
 #endif
 
+#define ALIB_FEAT_THREADS_VFYBIT           (1 << 1)
 #if defined(ALIB_FEAT_THREADS)
-    #define ALIB_FEAT_THREADS_VFYBIT           +(1 << 1)
+    #define ALIB_FEAT_THREADS_VFYVAL       ALIB_FEAT_THREADS_VFYBIT
 #else
-    #define ALIB_FEAT_THREADS_VFYBIT           +0
+    #define ALIB_FEAT_THREADS_VFYVAL       0
 #endif
 
+#define ALIB_DEBUG_STRINGS_VFYBIT          (1 << 2)
 #if defined(ALIB_DEBUG_STRINGS)
-    #define ALIB_DEBUG_STRINGS_VFYBIT          +(1 << 2)
+    #define ALIB_DEBUG_STRINGS_VFYVAL      ALIB_DEBUG_STRINGS_VFYBIT
 #else
-    #define ALIB_DEBUG_STRINGS_VFYBIT          +0
+    #define ALIB_DEBUG_STRINGS_VFYVAL      0
 #endif
 
+#define ALIB_GTEST_VFYBIT                  (1 << 16)
 #if defined(ALIB_GTEST)
-    #define ALIB_GTEST_VFYBIT                  +(1 << 16)
+    #define ALIB_GTEST_VFYVAL              ALIB_GTEST_VFYBIT
 #else
-    #define ALIB_GTEST_VFYBIT                  +0
+    #define ALIB_GTEST_VFYVAL              0
 #endif
 
+#define ALIB_QTCREATOR_VFYBIT              (1 << 17)
 #if defined(ALIB_QTCREATOR)
-    #define ALIB_QTCREATOR_VFYBIT              +(1 << 17)
+    #define ALIB_QTCREATOR_VFYVAL          ALIB_QTCREATOR_VFYBIT
 #else
-    #define ALIB_QTCREATOR_VFYBIT              +0
+    #define ALIB_QTCREATOR_VFYVAL          +0
 #endif
 
+#define ALIB_ECLIPSE_CDT_VFYBIT            (1 << 18)
 #if defined(ALIB_ECLIPSE_CDT)
-    #define ALIB_ECLIPSE_CDT_VFYBIT            +(1 << 18)
+    #define ALIB_ECLIPSE_CDT_VFYVAL        ALIB_ECLIPSE_CDT_VFYBIT
 #else
-    #define ALIB_ECLIPSE_CDT_VFYBIT            +0
+    #define ALIB_ECLIPSE_CDT_VFYVAL        0
 #endif
 
+#define ALIB_VSTUDIO_VFYBIT                (1 << 19)
 #if defined(ALIB_VSTUDIO)
-    #define ALIB_VSTUDIO_VFYBIT                +(1 << 19)
+    #define ALIB_VSTUDIO_VFYVAL            ALIB_VSTUDIO_VFYBIT
 #else
-    #define ALIB_VSTUDIO_VFYBIT                +0
+    #define ALIB_VSTUDIO_VFYVAL            0
 #endif
 
-#define    ALIB_COMPATIBILITY_VERYFIER  ( ALIB_DEBUG_VFYBIT         \
-                                          ALIB_FEAT_THREADS_VFYBIT  \
-                                          ALIB_DEBUG_STRINGS_VFYBIT \
-                                          ALIB_GTEST_VFYBIT         \
-                                          ALIB_QTCREATOR_VFYBIT     \
-                                          ALIB_ECLIPSE_CDT_VFYBIT   \
-                                          ALIB_VSTUDIO_VFYBIT       \
+#define    ALIB_COMPATIBILITY_VERYFIER  (   ALIB_DEBUG_VFYVAL         \
+                                          + ALIB_FEAT_THREADS_VFYVAL  \
+                                          + ALIB_DEBUG_STRINGS_VFYVAL \
+                                          + ALIB_GTEST_VFYVAL         \
+                                          + ALIB_QTCREATOR_VFYVAL     \
+                                          + ALIB_ECLIPSE_CDT_VFYVAL   \
+                                          + ALIB_VSTUDIO_VFYVAL       \
                                )
 #endif
 
@@ -115,10 +122,10 @@
     #define ALIB_CONCAT(a,b)      ALIB_CONCAT_X(a,b)
 
 /**
- *  \def  ALIB_API
- *  Used to export/import C++ symbols into a dynamic link library.
- *  Defined when compiling ALib classes into a DLL under Windows/MSC.
- *  Dependent on \ref ALIB_DLL_EXPORTS.<br>
+ * \def  ALIB_API
+ * Used to export/import C++ symbols into a dynamic link library.
+ * Defined when compiling ALib classes into a DLL under Windows/MSC.
+ * Dependent on \ref ALIB_DLL_EXPORTS.<br>
  */
 #if defined( _MSC_VER )
     #ifdef ALIB_DLL_EXPORTS
@@ -193,78 +200,78 @@
  **********************************************************************************************/
 
 /**
- *  \def  ALIB_REPORT
- *  Invokes \ref aworx::lib::Report::DoReport "Report::DoReport".
- *  This macro is pruned from release code.
+ * \def  ALIB_REPORT
+ * Invokes \ref aworx::lib::Report::DoReport "Report::DoReport".
+ * This macro is pruned from release code.
  *
- *  \def  ALIB_REPORT_S512
- *  Invokes \ref aworx::lib::Report::DoReport "Report::DoReport".<br>
- *  This macro is pruned from release code.<br>
- *  This macro variant, suffixed <em>_AS</em>, creates a
- *  \ref aworx::lib::strings::PreallocatedString "String512". Parameter \p msg can consist of sequences of
- *  strings and values concatenated using <em>operator<<</em>.
+ * \def  ALIB_REPORT_S512
+ * Invokes \ref aworx::lib::Report::DoReport "Report::DoReport".<br>
+ * This macro is pruned from release code.<br>
+ * This macro variant, suffixed <em>_AS</em>, creates a
+ * \ref aworx::lib::strings::PreallocatedString "String512". Parameter \p msg can consist of sequences of
+ * strings and values concatenated using <em>operator<<</em>.
  *
- *  \def  ALIB_ERROR
- *  Invokes \ref aworx::lib::Report::DoReport "Report::DoReport" with report type \0.
- *  This macro is pruned from release code.
+ * \def  ALIB_ERROR
+ * Invokes \ref aworx::lib::Report::DoReport "Report::DoReport" with report type \0.
+ * This macro is pruned from release code.
  *
- *  \def  ALIB_ERROR_S512
- *  Invokes \ref aworx::lib::Report::DoReport "Report::DoReport with report type \0".<br>
- *  This macro is pruned from release code.<br>
- *  This macro variant, suffixed <em>_AS</em>, creates a
- *  \ref aworx::lib::strings::PreallocatedString "String512". Parameter \p msg can consist of sequences of
- *  strings and values concatenated using <em>operator<<</em>.
- *
- *
- *  \def  ALIB_WARNING
- *  Invokes \ref aworx::lib::Report::DoReport "Report::DoReport with report type \1".
- *  This macro is pruned from release code.
- *
- *  \def  ALIB_WARNING_S512
- *  Invokes \ref aworx::lib::Report::DoReport "Report::DoReport with report type \1".<br>
- *  This macro is pruned from release code.<br>
- *  This macro variant, suffixed <em>_AS</em>, creates a
- *  \ref aworx::lib::strings::PreallocatedString "String512". Parameter \p msg can consist of sequences of
- *  strings and values concatenated using <em>operator<<</em>.
+ * \def  ALIB_ERROR_S512
+ * Invokes \ref aworx::lib::Report::DoReport "Report::DoReport with report type \0".<br>
+ * This macro is pruned from release code.<br>
+ * This macro variant, suffixed <em>_AS</em>, creates a
+ * \ref aworx::lib::strings::PreallocatedString "String512". Parameter \p msg can consist of sequences of
+ * strings and values concatenated using <em>operator<<</em>.
  *
  *
- *  \def  ALIB_ASSERT
- *  If given condition is \c false, method
- *  \ref aworx::lib::Report::DoReport "Report::DoReport" gets invoked with the standard message
- *  "Internal Error" and report type \0.
- *  This macro is pruned from release code.
+ * \def  ALIB_WARNING
+ * Invokes \ref aworx::lib::Report::DoReport "Report::DoReport with report type \1".
+ * This macro is pruned from release code.
+ *
+ * \def  ALIB_WARNING_S512
+ * Invokes \ref aworx::lib::Report::DoReport "Report::DoReport with report type \1".<br>
+ * This macro is pruned from release code.<br>
+ * This macro variant, suffixed <em>_AS</em>, creates a
+ * \ref aworx::lib::strings::PreallocatedString "String512". Parameter \p msg can consist of sequences of
+ * strings and values concatenated using <em>operator<<</em>.
  *
  *
- *  \def  ALIB_ASSERT_ERROR
- *  If given condition is \c false, method
- *  \ref aworx::lib::Report::DoReport "Report::DoReport" gets invoked with the given message
- *  and report type \0.
- *  This macro is pruned from release code.
- *
- *  \def  ALIB_ASSERT_ERROR_S512
- *  If given condition is \c false, method
- *  \ref aworx::lib::Report::DoReport "Report::DoReport" gets invoked with the given message
- *  and report type \0.<br>
- *  This macro is pruned from release code.<br>
- *  This macro variant, suffixed <em>_AS</em>, creates a
- *  \ref aworx::lib::strings::PreallocatedString "String512". Parameter \p msg can consist of sequences of
- *  strings and values concatenated using <em>operator<<</em>.
+ * \def  ALIB_ASSERT
+ * If given condition is \c false, method
+ * \ref aworx::lib::Report::DoReport "Report::DoReport" gets invoked with the standard message
+ * "Internal Error" and report type \0.
+ * This macro is pruned from release code.
  *
  *
- *  \def  ALIB_ASSERT_WARNING
- *  If given condition is \c false, method
- *  \ref aworx::lib::Report::DoReport "Report::DoReport" gets invoked with the given message
- *  and report type \1.
- *  This macro is pruned from release code.
+ * \def  ALIB_ASSERT_ERROR
+ * If given condition is \c false, method
+ * \ref aworx::lib::Report::DoReport "Report::DoReport" gets invoked with the given message
+ * and report type \0.
+ * This macro is pruned from release code.
  *
- *  \def  ALIB_ASSERT_WARNING_S512
- *  If given condition is \c false, method
- *  \ref aworx::lib::Report::DoReport "Report::DoReport" gets invoked with the given message
- *  and report type \1.<br>
- *  This macro is pruned from release code.<br>
- *  This macro variant, suffixed <em>_AS</em>, creates a
- *  \ref aworx::lib::strings::PreallocatedString "String512". Parameter \p msg can consist of sequences of
- *  strings and values concatenated using <em>operator<<</em>.
+ * \def  ALIB_ASSERT_ERROR_S512
+ * If given condition is \c false, method
+ * \ref aworx::lib::Report::DoReport "Report::DoReport" gets invoked with the given message
+ * and report type \0.<br>
+ * This macro is pruned from release code.<br>
+ * This macro variant, suffixed <em>_AS</em>, creates a
+ * \ref aworx::lib::strings::PreallocatedString "String512". Parameter \p msg can consist of sequences of
+ * strings and values concatenated using <em>operator<<</em>.
+ *
+ *
+ * \def  ALIB_ASSERT_WARNING
+ * If given condition is \c false, method
+ * \ref aworx::lib::Report::DoReport "Report::DoReport" gets invoked with the given message
+ * and report type \1.
+ * This macro is pruned from release code.
+ *
+ * \def  ALIB_ASSERT_WARNING_S512
+ * If given condition is \c false, method
+ * \ref aworx::lib::Report::DoReport "Report::DoReport" gets invoked with the given message
+ * and report type \1.<br>
+ * This macro is pruned from release code.<br>
+ * This macro variant, suffixed <em>_AS</em>, creates a
+ * \ref aworx::lib::strings::PreallocatedString "String512". Parameter \p msg can consist of sequences of
+ * strings and values concatenated using <em>operator<<</em>.
  */
 
 #if defined(ALIB_DEBUG) && !defined( IS_DOXYGEN_PARSER )
@@ -296,25 +303,24 @@
 #endif
 
 /**
- *  \def  ALIB_ASSERT_RESULT_EQUALS
- *  Asserts that a return value of a function call equals the given expected value.
- *  In release compilation, the function is still invoked, but no check is performed.
+ * \def  ALIB_ASSERT_RESULT_EQUALS
+ * Asserts that a return value of a function call equals the given expected value.
+ * In release compilation, the function is still invoked, but no check is performed.
  *
  *
- *  \def  ALIB_ASSERT_RESULT_NOT_EQUALS
- *  Asserts that a return value of a function call is not equal to the given value.
- *  In release compilation, the function is still invoked, but no check is performed.
+ * \def  ALIB_ASSERT_RESULT_NOT_EQUALS
+ * Asserts that a return value of a function call is not equal to the given value.
+ * In release compilation, the function is still invoked, but no check is performed.
  *
  *
- *  \def  ALIB_ASSERT_RESULT_GREATER_THAN
- *  Asserts that a return value of a function call is greater than the given value.
- *  In release compilation, the function is still invoked, but no check is performed.
+ * \def  ALIB_ASSERT_RESULT_GREATER_THAN
+ * Asserts that a return value of a function call is greater than the given value.
+ * In release compilation, the function is still invoked, but no check is performed.
  *
  *
- *  \def  ALIB_ASSERT_RESULT_LESS_THAN
- *  Asserts that a return value of a function call is less than the given expected value.
- *  In release compilation, the function is still invoked, but no check is performed.
- *
+ * \def  ALIB_ASSERT_RESULT_LESS_THAN
+ * Asserts that a return value of a function call is less than the given expected value.
+ * In release compilation, the function is still invoked, but no check is performed.
  */
 #if !defined( IS_DOXYGEN_PARSER )
     #if defined(ALIB_DEBUG)

@@ -29,8 +29,11 @@ namespace                   system {
  **************************************************************************************************/
 class Directory
 {
-    public:
 
+    // #############################################################################################
+    // Types
+    // #############################################################################################
+    public:
         /** ****************************************************************************************
          * Denotes upper and lower case character conversions
          ******************************************************************************************/
@@ -52,18 +55,75 @@ class Directory
              * - If within this a directory \e ".config" exists, it is used, otherwise
              * - if within this the directories \e "AppData/Roaming" exist, this is used.
              */
-            HOME_CONFIG,
+            HomeConfig,
 
-            /** The directory of the executable. (Not implemented, yet) */
-            Module
+            /** The directory of the executable of the process. */
+            Module,
 
+            /**
+             * A directory to be used for creation of temporary files.
+             *
+             * - On GNU/Linux OS this defaults to <c>/tmp</c>.
+             * - On Windows OS, environment variables TMP and TEMP are evaluated.<br>
+             *
+             * If the directory does not exist, then (on all OS), a new directory named \c ".tmp"
+             * is created in the users' home directory and returned (if not existent already).
+             * If this fails, the home directory itself is returned.
+             *
+             * \note With the potential creation of the directory \c ".tmp" in the users' home
+             *       directory, a small \c readme.txt file is created containing  the name of
+             *       the running application and the reason of the creation.
+             *
+             * To overrule this behavior, public static variable #evaluatedTempDir
+             * may be set arbitrarily prior to using this enum value.
+             */
+            Temp,
+
+            /**
+             * A directory to be used for creation of temporary files that survives reboots of the
+             * host machine.
+             *
+             * - On GNU/Linux OS this defaults to <c>/var/tmp</c>.
+             * - On Windows OS, environment variables TMP and TEMP are evaluated (same as
+             *   with \b %SpecialFolder::Temp).<br>
+             *
+             * If the directory does not exist, then (on all OS), a new directory named \c ".var.tmp"
+             * is created in the users' home directory and returned (if not existent already).
+             * If this fails, the home directory itself is returned.
+             *
+             * \note With the potential creation of the directory \c ".var.tmp" in the users' home
+             *       directory, a small \c readme.txt file is created, containing the name of
+             *       the running application and the reason of the creation.
+             *
+             * To overrule this behavior, public static variable #evaluatedVarTempDir
+             * may be set arbitrarily prior to using this enum value.
+             */
+            VarTemp,
         };
 
-    public:
     // #############################################################################################
     // Fields
     // #############################################################################################
     public:
+
+        /**
+         * Singleton containing the path for the use of enum value
+         * \ref SpecialFolder "SpecialFolder::Temp".
+         * This is evaluated once with the first use of \b %SpecialFolder::Temp.
+         * To change the default behavior of evaluation, this variable may be filled with a propper
+         * path prior to using enum \b %SpecialFolder::Temp.
+         */
+        static      AString         evaluatedTempDir;
+
+        /**
+         * Singleton containing the path for the use of enum value
+         * \ref SpecialFolder "SpecialFolder::VarTemp".
+         * This is evaluated once with the first use of \b %SpecialFolder::VarTemp.
+         * To change the default behavior of evaluation, this variable may be filled with a propper
+         * path prior to using enum \b %SpecialFolder::VarTemp.
+         */
+        static      AString         evaluatedVarTempDir;
+
         /// The path of the directory represented by this instance
         String256      Path;
 
@@ -74,7 +134,7 @@ class Directory
         /** ****************************************************************************************
          * Constructs an object representing one of the known special directories.
          * @param special  The special directory to initialize this instance to.
-         * @returns \c true if the change was successfull, \c false otherwise.
+         * @returns \c true if the change was successful, \c false otherwise.
          ******************************************************************************************/
         inline                  Directory( SpecialFolder special )
         {
@@ -108,7 +168,7 @@ class Directory
          * If the resulting destination directory is not valid, \c false is returned and the
          * field #Path stays intact.
          * @param    path  The relative or absolute path to change to.
-         * @returns \c true if the change was successfull, \c false otherwise.
+         * @returns \c true if the change was successful, \c false otherwise.
          ******************************************************************************************/
         ALIB_API   bool         Change( const String& path );
 
@@ -158,7 +218,7 @@ using     Directory=       aworx::lib::system::Directory;
  * The standard path separator character. Defaults to '\\' on Windows OS, '/' else.
  * Note: Available only with including "alib/system/directory.hpp"
  */
-constexpr char    PathSeparator
+constexpr char    DirectorySeparator
 #if defined(IS_DOXYGEN_PARSER)
     ;
 #else

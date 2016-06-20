@@ -720,7 +720,6 @@ public void Tut_LogData()
 
     // access without prior setting
     {
-        Log.info( "Working on file version " + Log.retrieve( "FILE_VERSION" ).integerValue );
         SaveTutorialOutput( "Tut_LogData2.txt", tutLog.memoryLog );
         tutLog.memoryLog.clear();
     }

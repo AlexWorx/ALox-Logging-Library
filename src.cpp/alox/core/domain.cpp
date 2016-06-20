@@ -84,7 +84,7 @@ Domain* Domain::Find( Substring domainPath, Case sensitivity, int maxCreate, boo
     int lenBeforeTrim= domainPath.Length();
 
     // if string is empty (resp. contains only separator characters), return ourselves
-    while ( domainPath.Consume( Domain::PathSeparator() ) )
+    while ( domainPath.Consume( Domain::Separator() ) )
         ;
     if( domainPath.IsEmpty() )
     {
@@ -106,8 +106,8 @@ Domain* Domain::Find( Substring domainPath, Case sensitivity, int maxCreate, boo
 Domain* Domain::findRecursive( Substring& domainPath, Case sensitivity, int maxCreate, bool* wasCreated )
 {
     //--- get act sub-name and rest of path
-    domainPath.Consume( Domain::PathSeparator() );
-    int endSubName= domainPath.IndexOf( Domain::PathSeparator() );
+    domainPath.Consume( Domain::Separator() );
+    int endSubName= domainPath.IndexOf( Domain::Separator() );
 
     ALIB_ASSERT_ERROR( endSubName != 0, "Internal Error" );
 

@@ -102,7 +102,7 @@
 
     #define  UT_CLASS()                   TEST_CLASS(TESTCLASSNAME)                                             \
                                            {  private:  const char* aworxTestName= ALIB_STRINGIFY(test_name);   \
-                                              public:                                                           
+                                              public:
 
     #define  UT_CLASS_END                  };
 
@@ -118,13 +118,13 @@
 #endif
 
 
-#define UT_INIT(...)        aworx::AString sc (__FILE__);                       \
-                            int idx= sc.LastIndexOf( aworx::PathSeparator );    \
-                            sc.DeleteStart( idx + 1 );                          \
-                            idx= sc.LastIndexOf( '.' );                         \
-                            if( idx > 0 )                                       \
-                                sc.Delete( idx );                               \
-                            ALIBUnitTesting ut( sc, aworxTestName );            \
+#define UT_INIT(...)        aworx::AString sc (__FILE__);                           \
+                            int idx= sc.LastIndexOf( aworx::DirectorySeparator );   \
+                            sc.DeleteStart( idx + 1 );                              \
+                            idx= sc.LastIndexOf( '.' );                             \
+                            if( idx > 0 )                                           \
+                                sc.Delete( idx );                                   \
+                            ALIBUnitTesting ut( sc, aworxTestName );                \
                             UT_PRINT( "################### Unit Test: " << sc << '.' << aworxTestName << "() ###################" );
 
 

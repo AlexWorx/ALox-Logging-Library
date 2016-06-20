@@ -113,7 +113,7 @@ public abstract class ALox
          * revision \e 0. Pure maintenance releases that do not change the interface of ALox
          * are holding the same #version but an increased number in this field.
          */
-        public static final int         revision                                                 =0;
+        public static final int         revision                                                 =2;
 
         /**
          * The name of the configuration category of configuration variables used by ALox.<br>
@@ -137,7 +137,7 @@ public abstract class ALox
          *   Sub-Domain | Description
          *   - - - - - -| - - - - - - - - - - - - - - - - - - -
          *   LGR        | Used when \e %Loggers are registered, retrieved or removed from a \b %Lox and when the \e Verbosity of a <em>Log Domain</em> for a \e %Logger is changed.<br>In addition used with method \b %Lox.SetStartTime.
-         *   DMN        | Used when <em>Log Domains</em> are registered (on first use), when <em>Scope Domains</em> are set or removed and when <em>Domain Substitution</em>Rs are set.
+         *   DMN        | Used when <em>Log Domains</em> are registered (on first use), when <em>Scope Domains</em> are set or removed and when <em>Domain Substitution Rules</em> are set.
          *   PFX        | Used when <em>Prefix Logables</em> are set or removed.
          *   THR        | Used with method \b %Lox.MapThreadName.
          *   LGD        | Used with storing and retrieving <em>Log Data</em> objects.

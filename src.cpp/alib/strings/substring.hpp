@@ -734,12 +734,13 @@ class Substring : public String
          * @param separatorWidth  This does not change what remains in this object, but defines
          *                        the number of characters that are cut from the front of the
          *                        \p target. Defaults to 0.
+         * @param trim            If \c true, both substrings will be trimmed.
          *
          * @return \c *this to allow concatenated calls.
          ******************************************************************************************/
         template <bool TCheck= true>
         inline
-        Substring& Split( int position, Substring& target, int separatorWidth  =0 )
+        Substring& Split( int position, Substring& target, int separatorWidth  =0, bool trim= false )
 
         {
             if ( TCheck )
@@ -756,6 +757,11 @@ class Substring : public String
 
             target.Set( this, position + separatorWidth, length - position - separatorWidth );
             length= position;
+            if( trim )
+            {
+                this ->Trim();
+                target.Trim();
+            }
             return *this;
         }
 

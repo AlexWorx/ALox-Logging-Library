@@ -71,7 +71,7 @@ In other versioning schemes, this would have been version **2.0**.
     * Logging **Exceptions** (recursively with inner exceptions)
     * Logging **XML trees**
 
-* C++ version accepts arbitrary **3rd party string types**. No need to convert, e.g. a *QString* before logging it although ALox is not built on QT! This goal was reached by underlying A-Worx utility library *ALib* (open source, MIT License) which greatly [solved that problem](http://alexworx.github.io/ALox-Logging-Library/cpp_ref/namespaceaworx_1_1lib_1_1strings.html) using some *template meta programming* to relieve us from the (disastrous) string mix in the C++ world.
+* C++ version accepts arbitrary **3rd party string types**. This goal was reached by underlying A-Worx utility library *ALib* (open source, MIT License) which greatly [solved that problem](http://alexworx.github.io/ALox-Logging-Library/cpp_ref/namespaceaworx_1_1lib_1_1strings.html) using some *template meta programming* to relieve us from the (disastrous) string mix in the C++ world.
   On the same token, conversion of **user defined types** to loggable (string) objects is supported. After implementing the conversion once, you can just throw your custom types into ALox log statements, even as a part of a concatenated log message.
 
 * and finally: ALox is under **continuous development**. You're invited to contribute!

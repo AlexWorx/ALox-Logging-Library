@@ -63,7 +63,7 @@ namespace                   strings {
  *       oftenly referred to using the synonym '<b>%SLiteral</b>'. For more information about
  *       the synonymous names of ALib string classes, refer to
  *       \ref alib_namespace_strings_class_overview "String Classes Overview" and
- *       \ref CPP_AWORX_NS_SHORTCUTS "Type Shortcuts in the aworx Namespace".
+ *       \ref CPP_AWORX_NS_SHORTCUTS "Type Shortcuts of Namespace aworx".
  *
  * @tparam TLength The length of the represented string.
 ***************************************************************************************************/

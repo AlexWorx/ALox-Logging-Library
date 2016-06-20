@@ -28,7 +28,7 @@
 #endif
 
 #define TESTCLASSNAME       CPP_ALox_Log_Scopes
-#include "aworx_unittests.hpp"
+#include "alib.unittests/aworx_unittests.hpp"
 
 using namespace std;
 using namespace ut_aworx;
@@ -45,11 +45,18 @@ void ScopeInfoCacheTest4() { Log_Info("Test Method 4"); }
 void LSD()      {  Log_SetDomain( "LSD",  Scope::Method );    Log_Info( "" );    }
 void LSD_A()    {  Log_SetDomain( "A",    Scope::Method );    Log_Info( "" );    }
 void LSD_A_B()  {  Log_SetDomain( "B",    Scope::Method );    Log_Info( "" );    }
+void LSD2_A_B() {  Log_SetDomain( "B2",   Scope::Method );    Log_Info( "" );    }
+void LSD2_A()   {  Log_SetDomain( "A2",   Scope::Method );    Log_Info( "" );    }
+void LSD2()     {  Log_SetDomain( "LSD2", Scope::Method );    Log_Info( "" );    }
 
 
 #if defined (ALOX_DBG_LOG)
     extern void Log_ScopeDomains_Helper();
     extern void Log_ScopeDomains_Helper2();
+    void Log_ScopeDomains_Helper2B()
+    {
+        Log_Info("");
+    }
 
     class DomainTestThread : public Thread
     {
@@ -178,7 +185,9 @@ UT_METHOD(Log_LineFormat)
             testML->MemoryLog.Clear();  testML->AutoSizes.Reset(); Log_Info("");     UT_EQ( "te.processhost.managed.exe", testML->MemoryLog );
         #else
             testML->MemoryLog.Clear();  testML->AutoSizes.Reset(); Log_Info("");     UT_TRUE(       testML->MemoryLog.Equals( "ALib_ALox_UT")
-                                                                                                ||  testML->MemoryLog.StartsWith( "memcheck-" )  ); // valgrind
+                                                                                                ||  testML->MemoryLog.StartsWith( "QTC_ALox_UnitTe" )  // QMake project
+                                                                                                ||  testML->MemoryLog.StartsWith( "memcheck-" )         // valgrind
+                                                                                            );
         #endif
 
 
@@ -323,11 +332,11 @@ UT_METHOD(Log_Prefix)
 
 UT_METHOD(Log_ScopeDomains)
 {
-    // we have tell alox to include more directories in the scope path, prior to initializing
-    // the unit test, because this will also set such value
-    Log_SetSourcePathTrimRule( "*/alox/src.cpp/", Inclusion::Exclude );
-
     UT_INIT();
+
+    // we have tell alox to include more directories in the scope path
+    Log_ClearSourcePathTrimRules( Inclusion::Include, false );
+    Log_SetSourcePathTrimRule( "*/src.cpp/", Inclusion::Exclude, 0, Case::Ignore, Inclusion::Include, "/test/test2/test3" );
 
     Log_AddDebugLogger();
     MemoryLogger ml;
@@ -339,6 +348,9 @@ UT_METHOD(Log_ScopeDomains)
     LSD();         UT_EQ( "@/LSD#",      ml.MemoryLog );   ml.MemoryLog._(); ml.AutoSizes.Reset();
     LSD_A();       UT_EQ( "@/A#",        ml.MemoryLog );   ml.MemoryLog._(); ml.AutoSizes.Reset();
     LSD_A_B();     UT_EQ( "@/B#",        ml.MemoryLog );   ml.MemoryLog._(); ml.AutoSizes.Reset();
+    LSD2_A_B();    UT_EQ( "@/B2#",       ml.MemoryLog );   ml.MemoryLog._(); ml.AutoSizes.Reset();
+    LSD2_A();      UT_EQ( "@/A2#",       ml.MemoryLog );   ml.MemoryLog._(); ml.AutoSizes.Reset();
+    LSD2();        UT_EQ( "@/LSD2#",     ml.MemoryLog );   ml.MemoryLog._(); ml.AutoSizes.Reset();
     DDCHECK( "","@/#"              ,ml );
 
     // scope global
@@ -387,6 +399,8 @@ UT_METHOD(Log_ScopeDomains)
     Log_ScopeDomains_Helper2();   UT_EQ( "@/GLOBAL/PO50/PO2/PO1/PATH/H2FILE/H2METHOD#", ml.MemoryLog );  ml.MemoryLog._(); ml.AutoSizes.Reset();
 
                                                      DDCHECK( "","@/GLOBAL/PO50/PO2/PO1/PATH/FILE/METHOD#" , ml );
+
+    Log_ScopeDomains_Helper2B();  UT_EQ( "@/GLOBAL/PO50/PO2/PO1/PATH/FILE#"           , ml.MemoryLog );  ml.MemoryLog._(); ml.AutoSizes.Reset();
 
     Log_ScopeDomains_HPPHelper(); UT_EQ( "@/GLOBAL/PO50/PO2/PO1/PATH/FILE#",          ml.MemoryLog );  ml.MemoryLog._(); ml.AutoSizes.Reset();
 
@@ -461,12 +475,13 @@ UT_METHOD(Log_ScopeDomains)
 
 UT_METHOD(Lox_ScopeDomains)
 {
-    Lox lox("ReleaseLox");
-    // we have tell alox to include more directories in the scope path, prior to initializing
-    // the unit test, because this will also set such value
-    Lox_SetSourcePathTrimRule( "*/alox/src.cpp/", Inclusion::Exclude );
-
     UT_INIT();
+
+    Lox lox("ReleaseLox");
+
+    // we have to tell alox to include more directories in the scope path
+    Log_ClearSourcePathTrimRules( Inclusion::Include, false );
+    Log_SetSourcePathTrimRule( "*/src.cpp/", Inclusion::Exclude, 0, Case::Ignore, Inclusion::Include, "/test/test2/test3" );
 
     aworx::TextLogger* consoleLogger= Lox::CreateConsoleLogger();
     MemoryLogger ml;

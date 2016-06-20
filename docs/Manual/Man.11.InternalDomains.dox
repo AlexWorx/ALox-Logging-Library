@@ -87,7 +87,7 @@ The list of sub-domains used by ALox is given in the following table:
 Sub-Domain | Description
 - - - - - -| - - - - - - - - - - - - - - - - - - -
 LGR        | Used when \e %Loggers are registered, retrieved or removed from a \b %Lox and when the \e Verbosity of a <em>Log Domain</em> for a \e %Logger is changed.<br>In addition used with method \b %Lox.SetStartTime.
-DMN        | Used when <em>Log Domains</em> are registered (on first use), when <em>Scope Domains</em> are set or removed and when <em>Domain Substitution</em>Rs are set.
+DMN        | Used when <em>Log Domains</em> are registered (on first use), when <em>Scope Domains</em> are set or removed and when <em>Domain Substitution Rules</em> are set.
 PFX        | Used when <em>Prefix Logables</em> are set or removed.
 THR        | Used with method \b %Lox.MapThreadName.
 LGD        | Used with storing and retrieving <em>Log Data</em> objects.

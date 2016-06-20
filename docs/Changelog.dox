@@ -17,7 +17,137 @@ This change log is sorted reversely in respect to chronology.
 
 
 \~Comment ####################################################################################### \~
-\~Comment #############################  V. 1604  Revision 0 #################################### \~
+\~Comment #############################  V. 1604  Revision 2 #################################### \~
+\~Comment ####################################################################################### \~
+## Version 1604, Revision 2, released June 20th, 2016 ##
+
+<b>Changes in ALib:</b>
+- Added alternatives "t" and "y" to default setting of field
+  <b>Config.TrueValues</b>
+    ([C++](@ref      #aworx::lib::config::Configuration::TrueValues),
+    [C#]  (@ref  #cs::aworx::lib::config::Configuration::TrueValues),
+    [Java](@ref #com::aworx::lib::config::Configuration::trueValues)).
+- Renamed enumeration property \b %Propagation.None to \b %Propagation.Omit due to possible name
+  clashes in C++ (e.g. when working with prehistoric headers like "X11/Xlib.h").
+
+- Added method
+  <b>Ticks.HasElapsed</b>
+    ([C++](@ref      #aworx::lib::time::Ticks::HasElapsed),
+    [C#]  (@ref  #cs::aworx::lib::time::Ticks::HasElapsed),
+    [Java](@ref #com::aworx::lib::time::Ticks::hasElapsed)).
+
+- Added method
+  <b>ALIB.Sleep</b>
+    ([C++](@ref      #aworx::lib::ALIB::Sleep( const Ticks& )),
+    [C#]  (@ref  #cs::aworx::lib::ALIB::Sleep( Ticks )),
+    [Java](@ref #com::aworx::lib::ALIB::sleep( Ticks ))).
+
+
+- C++ Version:
+    - Added QT support in respect to compatibility of ALib strings and the QT class library.<br>
+      See \ref aworx::lib::strings::ApplyTo<const QString&>(AString&,const QString&) "ApplyTo<const QString&>"
+      for more information.<br>
+      On the same token, added option \b -fPIC to the compile flags "ALib_Base_cmake" to be
+      compatible with QT compilations. This should be revised in the future (compilation flags
+      and support of other compiler suites are on the to-do list anyhow).
+    - Compilation flag verification fixed. When flag of library and user compilation
+      unit were not matching, the output lists about the non-matching flags was wrong.
+    - Fixed move constructor of class \b %AString.
+    - Fixed method \b %AString::ApplyTo for type \b Format::Tab which occurred when parameter
+      \p reference was negative and the last newline character sequence was at the end of the string.
+    - Added default value to parameter \p regionLength of constructor
+      \ref aworx::lib::strings::String::String(const String&, int, int) "String::String".
+    - Added parameter \b trim defaulting to \c true to method
+      \ref aworx::lib::strings::Substring::Split(int, Substring&, int, bool) "Substring::Split".
+    - Added a nullptr check to function <c>std::ostream& operator<<( std::ostream& stream, const String& string )</c>
+    - Renamed \b %PathSeparator to
+      \ref aworx::lib::system::DirectorySeparator "DirectorySeparator".
+    - Windows OS version of class \b %ProcessInfo now correctly sets the length of field \b CmdLine.
+    - Method \ref aworx::lib::system::System::GetVariable "System::GetVariable" under Windows OS
+      now correctly returns \c true, when the variable was found.
+    - Updated external CMake module [cotire](https://github.com/sakra/cotire/) to recent version
+      (precompiled header support).
+    - Added QT Creator debug helper for class
+      \ref aworx::lib::time::Ticks "Ticks".
+    - Fixed \ref aworx::lib::system::ProcessInfo "ProcessInfo" in respect to rightfully detecting
+      the path of the executable of the process. This is now also used by
+      \ref aworx::lib::system::Directory::Change "Directory::Change(SpecialFolder::Module)".
+    - Added new enumerations \c Temp and \c VarTemp to enum class
+      \ref aworx::lib::system::Directory::SpecialFolder "SpecialFolder".
+
+
+<b>Changes in ALox:</b>
+
+- It is now possible to control the verbosity of the root domain from within external
+  configuration (bug fix).
+- Fixed a bug in default domain evaluation of \b %Scope.Method and \b %Scope.Filename
+  (in Java \b %Scope.CLASS).
+- The internal domain tree can now be addressed using various
+  [configuration variables](group__GrpALoxConfigVars.html)
+  using string \b "INTERNAL_DOMAINS".
+- New variable
+  [ALOX_LOXNAME_PREFIXES](group__GrpALoxConfigVars.html)
+  which allows to set per domain prefixes using external configuration data.
+- Elapsed time values of standard \e %Loggers of type \b %TextLogger are now shortened by default
+  in meta information display to fit to the size that is probably needed.
+  Using configuration variable [ALOX_LOGGERNAME_MAX_ELAPSED_TIME](group__GrpALoxConfigVars.html)
+  the information about the maximum length of a session (minutes, hours, days) is automatically
+  stored  and retrieved with the next session (if e.g. an INI file is attached to the
+  configuration system).
+- Configuration variable  [ALOX_LOGGERNAME_FORMAT](group__GrpALoxConfigVars.html) was extended
+  to support quoted format strings (i.e. to avoid trimming of spaces in the format string).
+  In addition, fields
+   - <b>%MetaInfo.VerbosityError</b>
+     ([C++]      (@ref #aworx::lox::core::textlogger::MetaInfo.VerbosityError),
+      [C#]   (@ref #cs::aworx::lox::core::textlogger::MetaInfo.VerbosityError),
+      [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo.verbosityError))
+   - <b>%MetaInfo.VerbosityWarning</b>
+     ([C++]      (@ref #aworx::lox::core::textlogger::MetaInfo.VerbosityWarning),
+      [C#]   (@ref #cs::aworx::lox::core::textlogger::MetaInfo.VerbosityWarning),
+      [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo.verbosityWarning))
+   - <b>%MetaInfo.VerbosityInfo</b>
+     ([C++]      (@ref #aworx::lox::core::textlogger::MetaInfo.VerbosityInfo),
+      [C#]   (@ref #cs::aworx::lox::core::textlogger::MetaInfo.VerbosityInfo),
+      [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo.verbosityInfo))
+   - <b>%MetaInfo.VerbosityVerbose</b>
+     ([C++]      (@ref #aworx::lox::core::textlogger::MetaInfo.VerbosityVerbose),
+      [C#]   (@ref #cs::aworx::lox::core::textlogger::MetaInfo.VerbosityVerbose),
+      [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo.verbosityVerbose)) can be set by appending
+   values for those, separated by commas.
+
+
+- Fixed the text file logger sample.
+- C++ and C# Version:
+    - Fixed log configuration output in respect to source path trim rules. Labels "Global" and
+      "Local" are now shown correctly.
+    - Added optional parameter \p trimReplacement to method
+        <b>Lox.SetSourcePathTrimRule</b>
+            ([C++](@ref      #aworx::lox::Lox::SetSourcePathTrimRule),
+            [C#]  (@ref  #cs::aworx::lox::Lox::SetSourcePathTrimRule)))
+      as well as to the corresponding configuration variables
+      [ALOX_GLOBAL_SOURCE_PATH_TRIM_RULES](group__GrpALoxConfigVars.html) and
+      [ALOX_LOXNAME_SOURCE_PATH_TRIM_RULES](group__GrpALoxConfigVars.html).
+    - Added optional parameter \p priority to method
+        <b>Lox.SetSourcePathTrimRule</b>
+            ([C++](@ref      #aworx::lox::Lox::SetSourcePathTrimRule),
+            [C#]  (@ref  #cs::aworx::lox::Lox::SetSourcePathTrimRule)))
+      allowing to prioritize rules, especially those provided via configuration variables.
+      (Note: this change may affect current projects in respect to <em>Source Path Trim Rules</em>.
+      Nevertheless, we declare this version as a revision only.)
+
+- C++ Version:
+    - Fixed method \b %ALox::Reset to remove also static global source path trim rules.
+      (This method is provided for debug and unit test purposes mainly).
+    - Added automatic detection and configuration of log format of processes running
+      within <em>QT Creator</em> to support clickable ALox log output. For more details,
+      see \ref cppsetup_qtcreator_clickable.
+
+- C# and Java Version:
+    - Added the use of an INI-file in sample application.
+
+
+\~Comment ####################################################################################### \~
+\~Comment #############################  V. 1604  Revision 1 #################################### \~
 \~Comment ####################################################################################### \~
 ## Version 1604, Revision 1, released May 26th, 2016 ##
 
@@ -154,7 +284,7 @@ Before the changes get listed here, the motivation to do so should be explained:
 - Support <em>Scope Domain</em> settings of nested scopes to be concatenated if relative domain
   paths are given.
 
-- Support 'external' configuration of \e Verbosity settings (via INI-files,
+- Support 'external' configuration of \e Verbosity settings (via INI files,
   command line parameters, environment variables, etc.). This way, the control of the log output
   was extended from being available to the programmer, to being available to the user of a
   software as well. Therefore, a certain level of protection against either faulty or unauthorized
@@ -609,7 +739,7 @@ More important general changes are:
 - AWorx Library learned to read <b>configuration data</b>. Providing a plug-in concept, any application
   and platform specific, existing configuration mechanism can be attached. <br>
   By default, configuration data can be generated from environment variables and command line
-  parameters. In addition, a basic class for reading and writing "INI-Files" is provided for the
+  parameters. In addition, a basic class for reading and writing "INI files" is provided for the
   case that the application using ALox (ALib) does not provide their own storage mechanism.
 
   See namespace

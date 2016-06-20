@@ -210,31 +210,31 @@ public class AString
          *  - The string represented by this instance is copied to the new buffer.
          *    If this is larger than the new buffer size, the string is cut at the end to fit.
          *  - If the desired new size is 0, then the currently allocated buffer will be released.
-         *    In this case method #Buffer will  still return an empty constant character array (using an internal
-         *    singleton) but method #IsNull will return true.
+         *    In this case method #Buffer will  still return an empty constant character array 
+         *    (using an internal singleton) but method #IsNull will return true.
          *
          *  \note Any methods of this class that extend the length of the string represented, will
          *        invoke this method if the current buffer size is not sufficient.
          *        If a future string length of an %AString is predictable, then it is advisable
          *        to allocate such size upfront to avoid recurring allocations.
          *
-         * @param newSize    The new size for the allocation buffer.
+         * @param newCapacity   The new capacity of the internal buffer.
          ******************************************************************************************/
-        public    void         SetBuffer( int newSize )
+        public    void         SetBuffer( int newCapacity )
         {
             // default parameter -1: -> set to current length
-            if ( newSize == -1 )
-                newSize= length;
+            if ( newCapacity == -1 )
+                newCapacity= length;
 
             // check
-            if ( buffer.Length == newSize )
+            if ( buffer.Length == newCapacity )
                 return;
 
             // As a side effect, flag has value as dirty
             hash= 0;
 
             // set uninitialized
-            if ( newSize == 0 )
+            if ( newCapacity == 0 )
             {
                 buffer=  CString.NullBuffer;
                 length=  0;
@@ -242,12 +242,12 @@ public class AString
             }
 
             // create new Buffer and copy data
-            char[] newBuffer=    new char[ newSize ];
+            char[] newBuffer=    new char[ newCapacity ];
             if ( length > 0 )
             {
                 // we might have been cut with this operation
-                if ( length > newSize  )
-                    length= newSize;
+                if ( length > newCapacity  )
+                    length= newCapacity;
                 Array.Copy( buffer, newBuffer, length );
             }
 

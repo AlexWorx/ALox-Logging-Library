@@ -74,7 +74,7 @@ public static class ALIB
          * revision \e 0. Pure bug-fix releases that do not change the interface of ALib
          * are holding the same #Version but an increased number in this field.
          */
-        public static readonly  int                    Revision                                  =1;
+        public static readonly  int                    Revision                                  =2;
 
         /**
          * This is the configuration singleton for ALib.
@@ -442,9 +442,22 @@ public static class ALIB
         // #############################################################################################
 
         /** ****************************************************************************************
-         * This is calling Thread.Sleep(). This is for compatibility with other platform
-         * versions of A-Worx Utility Classes.
-         * Variants of this method are #SleepMicros and #SleepNanos.
+         * Suspends the current thread by calling Thread.Sleep().
+         * Provided for compatibility with other platform versions of ALib.
+         * Variants of this method are #SleepMillis, #SleepMicros and #SleepNanos.
+         *
+         * @param ticks    Sleep time in \b %Ticks.
+         ******************************************************************************************/
+        public static void Sleep(Ticks ticks)
+        {
+            if ( ticks.Raw() > 0 )
+                Thread.Sleep( TimeSpan.FromTicks( ticks.Raw() ) );
+        }
+
+        /** ****************************************************************************************
+         * Suspends the current thread by calling Thread.Sleep().
+         * Provided for compatibility with other platform versions of ALib.
+         * Variants of this method are #Sleep, #SleepMicros and #SleepNanos.
          *
          * @param millisecs    Sleep time in milliseconds.
          ******************************************************************************************/
@@ -455,9 +468,9 @@ public static class ALIB
         }
 
         /** ****************************************************************************************
-         * This is calling Thread.Sleep(). This is for compatibility with other platform
-         * versions of A-Worx Utility Classes.
-         * Variants of this method are #SleepMillis and #SleepNanos.
+         * Suspends the current thread by calling Thread.Sleep().
+         * Provided for compatibility with other platform versions of ALib.
+         * Variants of this method are #Sleep, #SleepMillis and #SleepNanos.
          *
          * @param microsecs    Sleep time in microseconds.
          ******************************************************************************************/
@@ -468,9 +481,9 @@ public static class ALIB
         }
 
         /** ****************************************************************************************
-         * This is calling Thread.Sleep(). This is for compatibility with other platform
-         * versions of A-Worx Utility Classes.
-         * Variants of this method are #SleepMillis and #SleepMicros.
+         * Suspends the current thread by calling Thread.Sleep().
+         * Provided for compatibility with other platform versions of ALib.
+         * Variants of this method are #Sleep, #SleepMillis and #SleepMicros.
          *
          * @param nanosecs    Sleep time in microseconds.
          ******************************************************************************************/

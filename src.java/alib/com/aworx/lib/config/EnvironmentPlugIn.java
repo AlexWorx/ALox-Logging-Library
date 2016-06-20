@@ -10,32 +10,32 @@ package com.aworx.lib.config;
 import com.aworx.lib.strings.AString;
 
 /** ************************************************************************************************
- *  Specialization of abstract interface class #ConfigurationPlugIn, retrieves configuration 
- *  data from the system environment.
- *  
- *  This plug-ins' priority value is fixed to 10.
- * 
- *  Variable categories are used as a prefix together with an underscore '_'.
- *  This means, if variable <em>IDE</em> in category <em>ALIB</em> is accessed, the environment
- *  variable <em>ALIB_IDE</em> is read.
- * 
- *  Category and Variable names are insensitive in respect to character case.
+ * Specialization of abstract interface class #ConfigurationPlugIn, retrieves configuration
+ * data from the system environment.
+ *
+ * This plug-ins' priority value is fixed to 10.
+ *
+ * Variable categories are used as a prefix together with an underscore '_'.
+ * This means, if variable <em>LOCALE</em> in category <em>ALIB</em> is accessed, the environment
+ * variable <em>ALIB_LOCALE</em> is read.
+ *
+ * Category and Variable names are insensitive in respect to character case.
  **************************************************************************************************/
 public class EnvironmentPlugIn extends ConfigurationPlugIn
 {
     /** ****************************************************************************************
-     *  Constructor.
+     * Constructor.
      ******************************************************************************************/
     public EnvironmentPlugIn() {}
 
     /** ****************************************************************************************
-     *  Retrieves the string value of a configuration setting.
-     *  @param category  The category of the  variable.
-     *                   (AString compatible type expected.)
-     *  @param name      The name of the configuration variable to be retrieved.
-     *                   (AString compatible type expected.)
-     *  @param target    A reference to an empty AString to take the result.
-     *  @return true if variable was found within this configuration source, false if not.
+     * Retrieves the string value of a configuration setting.
+     * @param category  The category of the  variable.
+     *                  (AString compatible type expected.)
+     * @param name      The name of the configuration variable to be retrieved.
+     *                  (AString compatible type expected.)
+     * @param target    A reference to an empty AString to take the result.
+     * @return true if variable was found within this configuration source, false if not.
      ******************************************************************************************/
 
     @Override

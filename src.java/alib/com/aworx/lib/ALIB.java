@@ -47,6 +47,7 @@ import com.aworx.lib.strings.NumberFormat;
 import com.aworx.lib.strings.Substring;
 import com.aworx.lib.threads.SmartLock;
 import com.aworx.lib.threads.ThreadLock;
+import com.aworx.lib.time.Ticks;
 
 /** ************************************************************************************************
  * This class is a 100% static placeholder for global methods and fields of
@@ -76,7 +77,7 @@ public final class ALIB
          * revision \e 0. Pure maintenance releases that do not change the interface of ALox
          * are holding the same #version but an increased number in this field.
          */
-        public static final int         revision                                                 =1;
+        public static final int         revision                                                 =2;
 
 
         /**
@@ -356,8 +357,19 @@ public final class ALIB
     // #############################################################################################
 
         /** ****************************************************************************************
-         * Sleeps for the given number of milliseconds.
-         * Variants of this method are #sleepMicros and #sleepNanos.
+         * Suspends the current thread for the given number of milliseconds.
+         * Variants of this method are #sleepMillis, #sleepMicros and #sleepNanos.
+         *
+         * @param ticks Sleep time in \b %Ticks.
+         ******************************************************************************************/
+        public  static void sleep( Ticks ticks )
+        {
+            sleepNanos ( ticks.inNanos() );
+        }
+
+        /** ****************************************************************************************
+         * Suspends the current thread for the given number of milliseconds.
+         * Variants of this method are #sleep, #sleepMicros and #sleepNanos.
          *
          * @param millisecs Sleep time in milliseconds.
          ******************************************************************************************/
@@ -367,8 +379,8 @@ public final class ALIB
         }
 
         /** ****************************************************************************************
-         * Sleeps for the given number of microseconds.
-         * Variants of this method are #sleepMillis and #sleepNanos.
+         * Suspends the current thread for the given number of microseconds.
+         * Variants of this method are #sleep, #sleepMillis and #sleepNanos.
          * @param microsecs Sleep time in microseconds.
          ******************************************************************************************/
         public  static void sleepMicros( long microsecs )
@@ -377,8 +389,8 @@ public final class ALIB
         }
 
         /** ****************************************************************************************
-         * Sleeps for the given number of nanoseconds.
-         * Variants of this method are #sleepMillis and #sleepNanos.
+         * Suspends the current thread for the given number of nanoseconds.
+         * Variants of this method are #sleep, #sleepMillis and #sleepNanos.
          *
          * @param nanosecs Sleep time in nanoseconds.
          ******************************************************************************************/

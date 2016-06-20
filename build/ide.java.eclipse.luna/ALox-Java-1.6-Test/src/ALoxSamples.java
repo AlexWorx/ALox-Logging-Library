@@ -17,6 +17,7 @@ import com.aworx.lox.*;
 import com.aworx.lox.core.textlogger.TextLogger;
 import com.aworx.lox.loggers.AnsiConsoleLogger;
 import com.aworx.lox.loggers.MemoryLogger;
+import com.aworx.lox.loggers.TextFileLogger;
 
 public class ALoxSamples
 {
@@ -327,8 +328,11 @@ public class ALoxSamples
     {
         Log.setDomain( "TEXTFILE_TEST", Scope.METHOD    );
         Log.info( "Creating a text file logger with file 'Test.log.txt'" );
-        Log.setVerbosity( "TEXTFILE", Verbosity.VERBOSE, "TEXTFILE_TEST" );
-
+        
+        TextFileLogger tfl= new TextFileLogger( "Test.log.txt" );
+        Log.setVerbosity( tfl, Verbosity.VERBOSE );
+        Log.setVerbosity( tfl, Verbosity.ERROR, ALox.INTERNAL_DOMAINS );  
+        
         Log.verbose( "A verbose message (goes to textfile logger as well)" );
         Log.info   ( "An info message  (goes to textfile logger as well)" );
         Log.warning( "A warning message  (goes to textfile logger as well)" );
@@ -372,7 +376,7 @@ public class ALoxSamples
     {
         ALox.init( true, args );
 
-        // open and attach ini-file
+        // open and attach INI file
         IniFile iniFile= new IniFile( null );
         ALIB.config.insertPlugin( iniFile, Configuration.PRIO_INI_FILE );
 
@@ -409,7 +413,7 @@ public class ALoxSamples
         ALox.reset();
         System.out.println();
 
-        // have a try on colors and styles
+        // text file logger
         System.out.println( "PRINT: TextFile Logger" );
             test.textFileLogger();
         ALox.reset();

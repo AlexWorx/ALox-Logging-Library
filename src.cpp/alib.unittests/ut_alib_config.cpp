@@ -35,9 +35,9 @@ namespace ut_aworx {
 
 UT_CLASS()
 
-//---------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //--- Read and write a configuration file
-//---------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 UT_METHOD(CommandLineArgs)
 {
@@ -69,10 +69,10 @@ UT_METHOD(CommandLineArgs)
     UT_EQ( Configuration::PrioCmdLine,    cfg.Get   ( "",      "Whitespaces",   v      ) );   UT_EQ( "Hello Test",    v   );
     UT_EQ( Configuration::PrioCmdLine,    cfg.Get   ( "",      "HOME",          v      ) );   UT_EQ( "overwritten",   v   );
     UT_EQ( Configuration::PrioCmdLine,    cfg.Get   ( "",      "integer",       iv     ) );   UT_EQ( 42,              iv  );
-    UT_EQ(                              0,    cfg.Get   ( "",      "notexistant",   iv     ) );   UT_EQ( 0,               iv  );
+    UT_EQ(                              0,    cfg.Get   ( "",      "notexistent",   iv     ) );   UT_EQ( 0,               iv  );
     UT_EQ( Configuration::PrioCmdLine,    cfg.Get   ( "",      "integer",       iv     ) );   UT_EQ( 42,              iv  );
     UT_EQ( Configuration::PrioCmdLine,    cfg.Get   ( "",      "double",        dv     ) );   UT_EQ( 3.14,            dv  );
-    UT_EQ(                              0,    cfg.Get   ( "",      "notexistant",   dv     ) );   UT_EQ( 0.0,             dv  );
+    UT_EQ(                              0,    cfg.Get   ( "",      "notexistent",   dv     ) );   UT_EQ( 0.0,             dv  );
     UT_EQ( Configuration::PrioCmdLine,    cfg.Get   ( "",      "double",        dv     ) );   UT_EQ( 3.14,            dv  );
     UT_EQ( Configuration::PrioCmdLine,    cfg.Get   ( "ALIB",  "test",           v     ) );   UT_EQ( "passed",        v   );
 }
@@ -107,17 +107,17 @@ UT_METHOD(CommandLineArgsWChar)
     UT_EQ( Configuration::PrioCmdLine,    cfg.Get   ( "",      "Whitespaces",   v      ) );   UT_EQ( "Hello Test",    v   );
     UT_EQ( Configuration::PrioCmdLine,    cfg.Get   ( "",      "HOME",          v      ) );   UT_EQ( "overwritten",   v   );
     UT_EQ( Configuration::PrioCmdLine,    cfg.Get   ( "",      "integer",       iv     ) );   UT_EQ( 42,              iv  );
-    UT_EQ(                              0,    cfg.Get   ( "",      "notexistant",   iv     ) );   UT_EQ( 0,               iv  );
+    UT_EQ(                              0,    cfg.Get   ( "",      "notexistent",   iv     ) );   UT_EQ( 0,               iv  );
     UT_EQ( Configuration::PrioCmdLine,    cfg.Get   ( "",      "integer",       iv     ) );   UT_EQ( 42,              iv  );
     UT_EQ( Configuration::PrioCmdLine,    cfg.Get   ( "",      "double",        dv     ) );   UT_EQ( 3.14,            dv  );
-    UT_EQ(                              0,    cfg.Get   ( "",      "notexistant",   dv     ) );   UT_EQ( 0.0,             dv  );
+    UT_EQ(                              0,    cfg.Get   ( "",      "notexistent",   dv     ) );   UT_EQ( 0.0,             dv  );
     UT_EQ( Configuration::PrioCmdLine,    cfg.Get   ( "",      "double",        dv     ) );   UT_EQ( 3.14,            dv  );
     UT_EQ( Configuration::PrioCmdLine,    cfg.Get   ( "ALIB",  "test",           v     ) );   UT_EQ( "passed",        v   );
 }
 
-//---------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //--- Read and write a configuration file
-//---------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 UT_METHOD(IniFiles)
 {
@@ -227,7 +227,7 @@ UT_METHOD(IniFiles)
     UT_TRUE( ALIB::Config.IsTrue( "Great Section",  "SECTION_CONTINUED" ) );
 
 
-    // check if environment variable "home" overwrites ini-file
+    // check if environment variable "home" overwrites INI file
     const char* HOME_ENV_NAME;
     #if defined(_WIN32)
         HOME_ENV_NAME= "HOmepATH";

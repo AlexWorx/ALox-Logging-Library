@@ -73,7 +73,7 @@ import com.aworx.lib.strings.NumberFormat;
  *
  * An application specific instance of abstract class
  * \ref com::aworx::lib::config::ConfigurationPlugIn "ConfigurationPlugIn"
- * that uses appropriate configuration techniques (ini-files, registry entries, etc.)
+ * that uses appropriate configuration techniques (INI files, registry entries, etc.)
  * optionally completes this set. It is proposed to use a priority value of 200
  * (provided in static constant field #PRIO_INI_FILE)  for custom configuration plug-ins.
  * This way, environment variables could \e overwrite entries in configuration files and
@@ -113,8 +113,9 @@ public class Configuration
     // public fields
     // #############################################################################################
         /**
-         * Values considered to indicate "true". Defaults to "1", "true", "yes" and "ok".
-         * Comparisons are made case insensitive.
+         * Values considered to indicate "true". Defaults to 
+         * { "1", "true", "t", "yes", "y", "on", "ok" }.
+         * See methods #isTrue.
          *
          * Application specific values (e.g. localization languages) might be added by publicly
          * accessing this field and adding new values (or removing existing).
@@ -170,11 +171,12 @@ public class Configuration
 
             // set default true values
             trueValues=     new ArrayList<AString>();
-            trueValues.add( new AString( "1" )    );
+            trueValues.add( new AString( "1"    ) );
             trueValues.add( new AString( "true" ) );
-            trueValues.add( new AString( "yes" )  );
-            trueValues.add( new AString( "on" )   );
-            trueValues.add( new AString( "ok" )   );
+            trueValues.add( new AString( "t"    ) );
+            trueValues.add( new AString( "yes"  ) );
+            trueValues.add( new AString( "on"   ) );
+            trueValues.add( new AString( "ok"   ) );
 
             // create command line plug-in
             if ( args != null && args.length > 0 )
@@ -394,7 +396,9 @@ public class Configuration
         }
 
         /** ****************************************************************************************
-         * Utility method that checks if a given value represents 'true'.
+         * Utility method that checks if a given value represents boolean \b true.
+         * Uses field #trueValues. Comparisons are made case insensitive.
+         *
          * @param value  The value to check
          *
          * @return   Returns \c true, if the value represents 'true', \c false if not.
@@ -413,8 +417,8 @@ public class Configuration
          * Uses
          * \ref get(CharSequence, CharSequence,AString) "get"
          * to read a string value and returns true if this variable holds one of the
-         * values found in the #trueValues string list. By default, this string list contains the
-         * strings "true", "yes" and "1" (case insensitive comparison).
+         * values found in the #trueValues string list. 
+         * 
          * @param category       The category of the  variable.
          *                       (AString compatible type expected.)
          * @param name           The name of the environment variable to read
@@ -428,7 +432,7 @@ public class Configuration
          *                       Defaults to null. Provide a local object to gain performance when
          *                       retrieving many variables in a row.
          *
-         * @return   Returns true, if the environment variable is defined and has one of the
+         * @return   Returns \c true, if the environment variable is defined and has one of the
          *           values found in field #trueValues.
          ******************************************************************************************/
         synchronized
@@ -452,8 +456,8 @@ public class Configuration
          * Uses
          * \ref get(CharSequence, CharSequence,AString) "get"
          * to read a string value and returns true if this variable holds one of the
-         * values found in the #trueValues string list. By default, this string list contains the
-         * strings "true", "yes" and "1" (case insensitive comparison).
+         * values found in the #trueValues string list. 
+         * 
          * @param category       The category of the  variable.
          *                       (AString compatible type expected.)
          * @param name           The name of the environment variable to read
@@ -464,7 +468,7 @@ public class Configuration
          *                       was defined at all (if false was returned) or even from which
          *                       configuration source the variable was read.
          *
-         * @return   Returns true, if the environment variable is defined and has one of the
+         * @return   Returns \c true, if the environment variable is defined and has one of the
          *           values found in field #trueValues.
          ******************************************************************************************/
         synchronized
@@ -477,14 +481,14 @@ public class Configuration
          * Uses
          * \ref get(CharSequence, CharSequence,AString) "get"
          * to read a string value and returns true if this variable holds one of the
-         * values found in the #trueValues string list. By default, this string list contains the
-         * strings "true", "yes" and "1" (case insensitive comparison).
+         * values found in the #trueValues string list. 
+         * 
          * @param category       The category of the  variable.
          *                       (AString compatible type expected.)
          * @param name           The name of the environment variable to read
          *                       (AString compatible type expected.)
          *
-         * @return   Returns true, if the environment variable is defined and has one of the
+         * @return   Returns \c true, if the environment variable is defined and has one of the
          *           values found in field #trueValues.
          ******************************************************************************************/
         synchronized
@@ -497,8 +501,8 @@ public class Configuration
          * Uses
          * \ref get(CharSequence, CharSequence,AString) "get"
          * to read a string value and returns true if this variable holds one of the
-         * values found in the #trueValues string list. By default, this string list contains the
-         * strings "true", "yes" and "1" (case insensitive comparison).
+         * values found in the #trueValues string list.
+         *  
          * @param category       The category of the  variable.
          *                       (AString compatible type expected.)
          * @param name           The name of the environment variable to read
@@ -507,7 +511,7 @@ public class Configuration
          *                       Defaults to null. Provide a local object to gain performance when
          *                       retrieving many variables in a row.
          *
-         * @return   Returns true, if the environment variable is defined and has one of the
+         * @return   Returns \c true, if the environment variable is defined and has one of the
          *           values found in field #trueValues.
          ******************************************************************************************/
         synchronized

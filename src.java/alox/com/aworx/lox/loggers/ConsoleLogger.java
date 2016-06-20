@@ -29,9 +29,6 @@ import com.aworx.lox.core.textlogger.PlainTextLogger;
  * can be used to force the use of <em>System.out.</em>.
  *
  * The name of the \e Logger defaults to "CONSOLE".
- *
- * E.g. in the Eclipse IDE, log lines are double-clickable to jump directly to the source code
- * that generated the log.
  **************************************************************************************************/
 public class ConsoleLogger extends PlainTextLogger
 {

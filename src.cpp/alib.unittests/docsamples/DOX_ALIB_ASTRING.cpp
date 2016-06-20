@@ -85,7 +85,7 @@ void docmentationSample()
 }
 
 
-#include "aworx_unittests.hpp"
+#include "alib.unittests/aworx_unittests.hpp"
 
 
 // Windows.h might bring in max/min macros

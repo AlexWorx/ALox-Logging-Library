@@ -8,6 +8,7 @@
 /**
 \page man_trim_source_path  13 - Trimming Source File Paths and Clickable IDE Output
 
+
 \tableofcontents
 
 In C++ and C#, ALox collects information about the source file name and this information
@@ -109,7 +110,7 @@ A user of ALox may use method
   version you are using as linked above.
 
 When you reconsider the sample above, manual setting leads to better results even in simple
-project. Reconsider source file:
+project. The sample used source file:
 
         /home/lisa/dev/myapp/src/ui/dialog.cpp
 
@@ -135,7 +136,8 @@ and that any random behavior of trimming is eliminated.
 
 \note
   If the platform (compiler) specific path separator is <c>'/'</c>, then characters
-  <c>'\'</c> found in parameter \p path when setting rules are replaced by <c>'\'</c> and vice versa.
+  <c>'\'</c> found in parameters \p path and \p trimReplacement when setting rules are
+  replaced by <c>'\'</c> and vice versa.
   This allows to specify paths and substrings thereof in a platform independent way.
   The same is true when rules are defined in external configuration variables, as described
   later in this chapter.
@@ -201,7 +203,7 @@ The same as parameter 3 (\p trimOffset) and 4 (\p sensitivity) are optional with
 <b>%Lox.SetSourcePathTrimRule</b>, providing them in the configuration variable is optional
 as well.
 
-As an example, an ini-File of an application might have the following sub-section:
+As an example, an INI file of an application might have the following sub-section:
 
 \snippet "UT_alox_lox.cs"        Man_SourcePathTrimming
 
@@ -212,7 +214,7 @@ declaration carry enum types
  [C#]  (@ref  #cs::aworx::lib::enums::Inclusion)) and
 <b>%Case</b>
 ([C++] (@ref      #aworx::lib::enums::Case),
- [C#]  (@ref  #cs::aworx::lib::enums::Case)), in the ini-File are expressed by boolean values
+ [C#]  (@ref  #cs::aworx::lib::enums::Case)), in the INI file are expressed by boolean values
 as follows:
 
 - \c %Inclusion::Include == \c true, \c %Inclusion::Exclude == \c false
@@ -220,9 +222,43 @@ as follows:
 <p>
 
 
+\~Comment ####################################################################################### \~
+## 1.4 Priorities of Trim Rules ##  {#man_trim_source_path_set_priorities}
+
+Different trim rules might be redundant or even contradict each other. Therefore the rules
+are equipped with a priority. Rules with higher priority are applied first.
+Once a rule matches, no further rule is applied.
+The priority is an integer value and is set as follows:
+- In the case that a rule is read from an external configuration
+  variable, the priority value is set to the priority value of the configuration plug-in that
+  provided the variable.
+- In the case that the the rule is set from within the source code, the priority is taken from
+  optional parameter \p priority of method
+  <b>%Lox.SetSourcePathTrimRule</b>
+    ([C++] (@ref      #aworx::lox::Lox::SetSourcePathTrimRule),
+     [C#]  (@ref  #cs::aworx::lox::Lox::SetSourcePathTrimRule)) which defaults to
+  <b>%Lox.PrioSource</b>
+    ([C++] (@ref      #aworx::lox::Lox::PrioSource),
+     [C#]  (@ref  #cs::aworx::lox::Lox::PrioSource)).
+- Rules that are automatically detected have a priority of <c>%Lox.PrioSource - 1</c>.
+
+
+\b %Lox.PrioSource is a lower priority than (the default) priorities of the configuration plug-ins.
+Therefore, the configuration variables by default \b overrule what is hard-coded as a
+<em>Source Path Trim Rule</em>.<br>
+To change this behavior, any other priority may be specified in the source code, especially
+the pre-defined value of:
+  <b>%Lox.PrioProtected</b>
+    ([C++] (@ref      #aworx::lox::Lox::PrioProtected),
+     [C#]  (@ref  #cs::aworx::lox::Lox::PrioProtected)) may be used. It allows the user to give the
+rule set in the source code the highest priority.
+
+\note The priority scheme used here is similar to what is described for \e Verbosity settings in
+      chapter \ref man_external_verbosity_configuration.
+
 
 \~Comment ####################################################################################### \~
-## 1.4 Verifying Trim Rules ##  {#man_trim_source_path_set_veryfy}
+## 1.5 Verifying Trim Rules ##  {#man_trim_source_path_set_veryfy}
 
 With most methods invoked on class \b Lox, internal log messages are provided
 (See \ref man_internal_domains). When setting <em>Source Path Trim Rules</em>, this is \b not the case. The rational
@@ -237,7 +273,7 @@ rule is displayed.
 
 
 \~Comment ####################################################################################### \~
-## 1.5 Removing Trim Rules ##  {#man_trim_source_path_set_remove}
+## 1.6 Removing Trim Rules ##  {#man_trim_source_path_set_remove}
 
 In very special situations (e.g. ALox uses it for unit testing) method
 <b>%Lox.ClearSourcePathTrimRules</b>
@@ -300,28 +336,47 @@ To adjust ALox to your IDE, you might have to play around a little. If your IDE 
 output lines, you might want to change the format of the meta info to match the pattern that your
 IDE requires.
 
-When you are sure, that your IDE does not support the links to the editor, then you're unfortuante
-and your way to go is displaying a (best possible) trimmed path.
+In addition, certain build systems/compilers might not provide the absolute path information
+in certain situations. In contrast, they might provide source directories in relative addressing
+in respect to a project file. This is at least true for C++. If then the IDE does not recognize
+the right origin of a relative path, this path needs correction to be absolute.
+ALox provides a feature to do such correction. An optional parameter of method
+<b>%Lox.SetSourcePathTrimRule</b>
+([C++] (@ref      #aworx::lox::Lox::SetSourcePathTrimRule),
+ [C#]  (@ref  #cs::aworx::lox::Lox::SetSourcePathTrimRule)) allows to specify a replacement string
+for what is cut by a rule. (This replacement string can of-course also be set using
+the configuration variables described in \ref man_trim_source_path_set_config.)
+Sometimes it might be needed to "fiddle around" with the options of the trim rules and the
+format of the \b %TextLogger output, until finally your IDE recognizes the source information
+correctly. But once succeeded, it proofs being worth the time!
 
-\note
-    As a sample, current Microsoft Visual Studio detects clickable output messages only in the
-    debug-output window. This means, only when you run your software in debug mode, the output
-    in the IDE which is created by special \e Logger type
-    - For C++: \ref     aworx::lox::loggers::VStudioLogger "VStudioLogger"
-    - For C#:  \ref cs::aworx::lox::loggers::CLRDebuggerLogger "CLRDebuggerLogger"
+When you are sure, that your IDE does not support the links to the editor, then you're unfortunate
+and your way to go is displaying a (best possible) trimmed path, to reduce overall log output width.
 
-\note
-    is clickable. By default, ALox therefore automatically creates these \e Logger types, in the moment it is
-    launched within that IDE - in debug mode!
+\~Comment ####################################################################################### \~
+## 3.1. Best practices with different IDEs ##  {#man_trim_source_path_set_bestpractice}
 
+The following list is our guess and experience. Information presented might be wrong or incomplete.<br>
+If you have experiences and solutions for your personal IDE, please contact us and share your
+information with us so that we can extend the list below.
 
 
+### 3.1.1 QTCreator ###  {#man_trim_source_path_set_bestpractice_qtcreator}
+  See \ref cppsetup_qtcreator_clickable for information on how to configure ALox for
+  [QT Creator](http://doc.qt.io/qtcreator/) rightfully.
 
+### 3.1.2 Microsoft Visual Studio ###  {#man_trim_source_path_set_bestpractice_vstudio}
 
+Current (V. 2015)
+[Microsoft Visual Studio](https://www.visualstudio.com/)y
+detects clickable output messages only in the
+debug-output window. This means, only when you run your software in debug mode, the output
+in the IDE which is created by special \e Logger type
+- For C++: \ref     aworx::lox::loggers::VStudioLogger "VStudioLogger"
+- For C#:  \ref cs::aworx::lox::loggers::CLRDebuggerLogger "CLRDebuggerLogger"
 
-
-
-
+is clickable. By default, ALox therefore automatically creates these \e Logger types, in the moment it is
+launched within that IDE. But only in debug mode (F5), unfortunately not in 'run mode' (CTRL-F5)!
 
 
 --------------------------------------------------------------------

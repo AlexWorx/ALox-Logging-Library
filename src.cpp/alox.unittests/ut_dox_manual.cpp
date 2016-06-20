@@ -17,7 +17,7 @@
 #include <vector>
 
 #define TESTCLASSNAME       CPP_Dox_ReferenceManual
-#include "aworx_unittests.hpp"
+#include "alib.unittests/aworx_unittests.hpp"
 
 using namespace std;
 using namespace ut_aworx;

@@ -316,13 +316,18 @@ public class ScopeStore<T>
             else
                 languageKey._( separators.charAt_NC(1) );
 
+
             // key: class
-            languageKey._( scopeInfo.className )
+            languageKey._( '-' ) // we need a prefix to have all methods share one start node which is not
+                                 // a separator-node
+                       ._( scopeInfo.className )
                        ._( separators.charAt_NC(0) );
 
             // key: method
             if ( actScope == Scope.METHOD )
-                languageKey._( scopeInfo.methodName )
+                languageKey._( '-' ) // we need a prefix to have all methods share one start node which is not
+                                     // a separator-node
+                           ._( scopeInfo.methodName )
                            ._( separators.charAt_NC(0) );
 
             actPathMapNode= languageStore.Get( languageKeySubstr.set(languageKey), create, separators );

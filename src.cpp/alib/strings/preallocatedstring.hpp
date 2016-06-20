@@ -31,37 +31,37 @@ namespace                   strings {
 
 
 /** ************************************************************************************************
- *  A simple class template specializing
- *  \ref aworx::lib::strings::AString "AString". All it does, is providing an internal character
- *  array of \e 'templated' as the default buffer to \b %AString. If an instance of this class
- *  is allocated on the stack, allocation and deallocation is performed in \e O(1).
- *  If an instance of this class is allocated on the heap (using new), then still some performance
- *  improvements apply, because besides the class object itself, no second memory allocation for
- *  the string buffer is performed.
+ * A simple class template specializing
+ * \ref aworx::lib::strings::AString "AString". All it does, is providing an internal character
+ * array of \e 'templated' as the default buffer to \b %AString. If an instance of this class
+ * is allocated on the stack, allocation and deallocation is performed in \e O(1).
+ * If an instance of this class is allocated on the heap (using new), then still some performance
+ * improvements apply, because besides the class object itself, no second memory allocation for
+ * the string buffer is performed.
  *
- *  If during the use of an instance of this class a larger buffer is needed, such buffer will get
- *  allocated from the heap. This means, the use of this class is safe and no restrictions apply.
- *  Of-course, for performance critical code sections, the predefined size should be chosen large
- *  enough to allow the internal buffer to survive the use.<br>
+ * If during the use of an instance of this class a larger buffer is needed, such buffer will get
+ * allocated from the heap. This means, the use of this class is safe and no restrictions apply.
+ * Of-course, for performance critical code sections, the predefined size should be chosen large
+ * enough to allow the internal buffer to survive the use.<br>
  *
- *  In debug compilations of ALib, parent class #AString optionally raises an one-time warning
- *  (using
- *  \ref aworx::lib::Report::DoReport "Report::DoReport") if an external buffer is replaced by a
- *  new (heap) allocation. (From an \b %AString perspective, this classes' internal buffer is an
- *  external one). For more information,  see
- *  \ref aworx::lib::strings::AString::SetBuffer "AString::SetBuffer".<p>
+ * In debug compilations of ALib, parent class #AString optionally raises an one-time warning
+ * (using
+ * \ref aworx::lib::Report::DoReport "Report::DoReport") if an external buffer is replaced by a
+ * new (heap) allocation. (From an \b %AString perspective, this classes' internal buffer is an
+ * external one). For more information,  see
+ * \ref aworx::lib::strings::AString::SetBuffer "AString::SetBuffer".<p>
  *
- *  \note For commonly used sizes, some convenient typedefs exists in namespace aworx.
- *        (See \ref CPP_AWORX_NS_SHORTCUTS "Type Shortcuts in the aworx Namespace".)
- *        Type definitions are #String16, #String32, #String64 ... #String1K, #String2K, #String4K.
- *  <p>
+ * \note For commonly used sizes, some convenient typedefs exists in namespace aworx.
+ *       (See \ref CPP_AWORX_NS_SHORTCUTS "Type Shortcuts of Namespace aworx".)
+ *       Type definitions are #String16, #String32, #String64 ... #String1K, #String2K, #String4K.
+ * <p>
  *
- *  \note The move constructor of this class will copy the buffer of the movable \b %AString or
- *        \b %PreallocatedString object rather, instead of moving it. This is to keep the statically allocated
- *        buffer in place. Only if the contents does fit into our TCapacity, the buffer is '\e stolen'
- *        (and an one-time warning is issued in debug compilations).<br>
- *        Like parent class \b %AString, this class does not provide move assignment. See
- *        \ref aworx::lib::strings::AString "AString" for the rational of this design decision.
+ * \note The move constructor of this class will copy the buffer of the movable \b %AString or
+ *       \b %PreallocatedString object rather, instead of moving it. This is to keep the statically allocated
+ *       buffer in place. Only if the contents does fit into our TCapacity, the buffer is '\e stolen'
+ *       (and an one-time warning is issued in debug compilations).<br>
+ *       Like parent class \b %AString, this class does not provide move assignment. See
+ *       \ref aworx::lib::strings::AString "AString" for the rational of this design decision.
  *
  * @tparam TCapacity The capacity of the buffer allocated inside the class with member #preAllocBuf.
  **************************************************************************************************/
@@ -80,7 +80,7 @@ class PreallocatedString : public AString
     // #############################################################################################
     public:
         /** ****************************************************************************************
-         *  Constructs an empty \b %PreallocatedString with an internal buffer of size \p TCapacity.
+         * Constructs an empty \b %PreallocatedString with an internal buffer of size \p TCapacity.
          ******************************************************************************************/
         constexpr
         PreallocatedString()
@@ -90,10 +90,10 @@ class PreallocatedString : public AString
         }
 
         /** ****************************************************************************************
-         *  Copy constructor.
-         *  Constructs an \b PreallocatedString<TCapacity> and invokes
-         *  \ref aworx::lib::strings::AString::Apply "AString::Apply"
-         *  to copy the contents of parameter \p copy.
+         * Copy constructor.
+         * Constructs an \b PreallocatedString<TCapacity> and invokes
+         * \ref aworx::lib::strings::AString::Apply "AString::Apply"
+         * to copy the contents of parameter \p copy.
          * @param copy The object to copy the contents from.
          ******************************************************************************************/
         PreallocatedString(const PreallocatedString& copy)

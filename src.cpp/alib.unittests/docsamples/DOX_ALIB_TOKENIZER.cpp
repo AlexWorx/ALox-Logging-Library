@@ -11,7 +11,7 @@
 #include "alib/compatibility/std_iostream.hpp"
 
 #define TESTCLASSNAME       CPP_ALib__Dox
-#include "aworx_unittests.hpp"
+#include "alib.unittests/aworx_unittests.hpp"
 
 #include <iostream>
 #include <iomanip>
@@ -19,8 +19,6 @@
 using namespace std;
 
 namespace ut_aworx {
-
-
 
 UT_CLASS()
 

@@ -238,6 +238,63 @@ def qdump__aworx__lib__system__Directory(d, value):
         d.putPlainChildren(value)
     return
 
+############################ ALIB System #############################
+
+#----- Ticks  ------
+def qdump__aworx__lib__time__Ticks(d, value):
+    dhResult=  "<error>"
+    ticks= value["ticks"]
+    seconds=     1000000000
+    minutes=     1000000000 * 60
+    hours=       minutes*60
+    milliseconds= 1000000
+    microseconds=1000
+    if ticks == 0:
+        dhResult= "<Uninitialized (0)>"
+    else:
+        origTicks= ticks
+        dhResult= ""
+
+        if origTicks >= hours:
+
+            dhResult+=  str(ticks/hours) + "h "
+            ticks-= int(ticks/hours) * hours
+
+        if origTicks >= seconds:
+
+            dhResult+=  "%02d:" %  (ticks/minutes)
+            ticks-= int(ticks/minutes) * minutes
+
+            dhResult+=   "%02d" %  (ticks/seconds)
+            ticks-= int(ticks/seconds)*seconds
+
+        if origTicks <  hours:
+            if origTicks >= seconds:
+                dhResult+= "  +"
+
+            ms= int(ticks/milliseconds)
+            if ms > 0:
+                dhResult+=  "%03dms " % ms
+                ticks-= ms * milliseconds
+
+        if origTicks <  minutes:
+
+            us= int(ticks/microseconds)
+            if us > 0:
+                dhResult+=  "%03dus " % us
+                ticks-= us * microseconds
+
+            dhResult+=  "%03dns " % ticks
+            ticks-= ticks/microseconds
+
+    d.putValue( dhResult )
+
+    #----- expands normal object ----
+    d.putNumChild(1)
+    if d.isExpanded():
+        d.putPlainChildren(value)
+    return
+
 
 ############################ ALIB Thread #############################
 

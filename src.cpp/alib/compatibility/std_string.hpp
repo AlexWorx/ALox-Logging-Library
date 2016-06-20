@@ -21,7 +21,7 @@
 #include <string>
 
 // #################################################################################################
-// AString / StdString compatibility Support
+// ALib String / std::string compatibility support
 // #################################################################################################
 
 namespace aworx {
@@ -32,7 +32,7 @@ namespace                   strings {
     /** ********************************************************************************************
      * Specialization of TMP 'function' (struct)
      * \ref aworx::lib::strings::ToStringDefined "ToStringDefined" for type \b std::string.
-     * See \ref aworx::lib::strings::ToStringDefined "ToStringDefined" for more information
+     * See \ref aworx::lib::strings::ToStringDefined "ToStringDefined" for more information.
      **********************************************************************************************/
     template<>   struct               ToStringDefined<const std::string&>   : public std::true_type {};
 
@@ -67,9 +67,9 @@ namespace                   strings {
     template<>   struct               IsApplicable<const std::string&>   : public std::true_type {};
 
     /** ********************************************************************************************
-     *  Specialization of template method
-     *  \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type \b std::string.
-     * See \ref aworx::lib::strings::ApplyTo "ApplyTo" for more information
+     * Specialization of template method
+     * \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type \b std::string.
+     * See \ref aworx::lib::strings::ApplyTo "ApplyTo" for more information.
      * @param  target The AString to append \p src to.
      * @param  src    The source string to take the buffer from.
      * @return The length of the given string \p src which was appended to \p target.
@@ -82,7 +82,7 @@ namespace                   strings {
 
     /** ********************************************************************************************
      *  Specialization of (optional) non-checking version of template method
-     *  \ref aworx::lib::strings::ApplyTo_NC "ApplyTo_NC" for applicable type \b std::string.
+     * \ref aworx::lib::strings::ApplyTo_NC "ApplyTo_NC" for applicable type \b std::string.
      *
      * @param  target The AString to append \p src to.
      * @param  src    The source string to take the buffer from.
@@ -143,7 +143,7 @@ namespace                   strings {
     std::string  ToStdString( const String& as, int regionStart, int regionLength= CString::MaxLen )
     {
         std::string retval;
-        ToStdString( as, retval, regionStart, regionLength);
+        ToStdString( as, retval, regionStart, regionLength, enums::CurrentData::Keep );
         return retval;
     }
 

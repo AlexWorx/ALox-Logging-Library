@@ -14,18 +14,18 @@ import com.aworx.lib.strings.Substring;
 
 
 /** ************************************************************************************************
- *  Specialization of abstract interface class #ConfigurationPlugIn, which takes all command line
- *  parameters in the constructor and reads variable values from those parameters on request.
- *  Its priority value is fixed to 10.
+ * Specialization of abstract interface class #ConfigurationPlugIn, which takes all command line
+ * parameters in the constructor and reads variable values from those parameters on request.
+ * Its priority value is fixed to 10.
  *
- *  Variable categories are used as a prefix together with an underscore '_'.
- *  This means, if variable <em>IDE</em> in category <em>ALIB</em> is accessed, the command line
- *  parameter <em>--ALIB_IDE=xyz</em> is read.
+ * Variable categories are used as a prefix together with an underscore '_'.
+ * This means, if variable <em>LOCALE</em> in category <em>ALIB</em> is accessed, the command line
+ * parameter <em>--ALIB_LOCALE=xyz</em> is read.
  *
- *  Command line variables may be passed with either one hyphen ('-') or two ('--').
- *  Both are accepted.
+ * Command line variables may be passed with either one hyphen ('-') or two ('--').
+ * Both are accepted.
  *
- *  Category and Variable names are insensitive in respect to character case.
+ * Category and Variable names are insensitive in respect to character case.
  **************************************************************************************************/
 public class CommandLinePlugIn extends ConfigurationPlugIn
 {
@@ -34,19 +34,19 @@ public class CommandLinePlugIn extends ConfigurationPlugIn
 
 
     /** ****************************************************************************************
-     *  Constructor which takes the standard C main() function parameters as arguments
-     *  @param args  The list of command line arguments.
+     * Constructor which takes the standard C main() function parameters as arguments
+     * @param args  The list of command line arguments.
      ******************************************************************************************/
     public CommandLinePlugIn( String[] args )   { this.args= args; }
 
     /** ****************************************************************************************
-     *  Retrieves the string value of a configuration setting.
-     *  @param category  The category of the  variable.
-     *                   (AString compatible type expected.)
-     *  @param name      The name of the configuration variable to be retrieved.
-     *                   (AString compatible type expected.)
-     *  @param target    A reference to an empty AString to take the result.
-     *  @return true if variable was found within this configuration source, false if not.
+     * Retrieves the string value of a configuration setting.
+     * @param category  The category of the  variable.
+     *                  (AString compatible type expected.)
+     * @param name      The name of the configuration variable to be retrieved.
+     *                  (AString compatible type expected.)
+     * @param target    A reference to an empty AString to take the result.
+     * @return true if variable was found within this configuration source, false if not.
      ******************************************************************************************/
     @Override
     public boolean  get( CharSequence category, CharSequence name, AString target )

@@ -31,7 +31,7 @@ namespace           lib {
 // #################################################################################################
 const uint32_t       ALIB::CompilationFlags=                            ALIB_COMPATIBILITY_VERYFIER;
 const int            ALIB::Version=                                     ALIB_VERSION_VERYFIER;
-const int            ALIB::Revision=                                    1;
+const int            ALIB::Revision=                                    2;
 
 
 bool                 ALIB::initialized                                                     =false;
@@ -79,8 +79,8 @@ bool ALIB::VerifyCompilationFlags( uint32_t flags )
     for( auto& p : CompilationFlagMeanings )
     {
         cnt++;
-        cout << setw(25) <<  p.first << '|' << setw(5) << (flags                  & p.second  ? " On" : " Off")
-                                     << "|" << setw(5) << (ALIB::CompilationFlags & p.second  ? " On" : " Off")
+        cout << setw(25) <<  p.first << '|' << setw(5) << (ALIB::CompilationFlags & p.second  ? " On" : " Off")
+                                     << "|" << setw(5) << (flags                  & p.second  ? " On" : " Off")
              << ( cnt > 3 ? "  (not critical)" : "" )
              << endl;
     }
@@ -249,6 +249,10 @@ void ALIB::SleepNanos( int nanosecs )
     #endif
 }
 
+void ALIB::Sleep( const time::Ticks& ticks )
+{
+     ALIB::SleepNanos( (int) ticks.InNanos() );
+}
 
 }}// namespace aworx::lib
 

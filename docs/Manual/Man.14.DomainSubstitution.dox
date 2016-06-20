@@ -73,12 +73,12 @@ loop is necessary very seldom.
 
 ## 3.1 Using External Configuration ## {#man_domain_substitution_config_using}
 
-Setting <em>Domain Substitution</em>Rs <em>'from within the source code'</em> is easy and straightforward. However, when
+Setting <em>Domain Substitution Rules</em> <em>'from within the source code'</em> is easy and straightforward. However, when
 working in a team such changes might not be appreciated by other team members. In this and
-other situations it is advisable to retrieve <em>Domain Substitution</em>R from external configuration data, command-line
+other situations it is advisable to retrieve <em>Domain Substitution Rules</em> from external configuration data, command-line
 parameters or other sources at run-time.
 
-For <em>Domain Substitution</em>Rs and also other configuration data, ALox leverages the configuration facility provided
+For <em>Domain Substitution Rules</em> and also other configuration data, ALox leverages the configuration facility provided
 by underlying utility library ALib.
 
 \note
@@ -94,7 +94,7 @@ The constructor of class \b %Lox tries to read a configuration variable named
 \c ALOX_LOXNAME_DOMAIN_SUBSTITUTION.
 When setting the variable, the substring <c>'LOXNAME'</c> needs to be replaced by the name of
 the \b %Lox in question.
-The variable itself may contain a list of <em>Domain Substitution</em>Rs separated by semicolons <c> ';'</c>.
+The variable itself may contain a list of <em>Domain Substitution Rules</em> separated by semicolons <c> ';'</c>.
 Each rule consists of two strings which correspond to the two parameters of method
 <b>%Lox.SetDomainSubstitutionRule</b>
 ([C++] (@ref      #aworx::lox::Lox::SetDomainSubstitutionRule),
@@ -102,11 +102,11 @@ Each rule consists of two strings which correspond to the two parameters of meth
  [Java](@ref #com::aworx::lox::Lox::setDomainSubstitutionRule)).
 These two strings are to be separated by <c>'->'</c>.
 
-As an example, an ini-File of an application might have the following sub-section:
+As an example, an INI file of an application might have the following sub-section:
 
 \snippet "UT_alox_domains.cs"        Man_DomSubst_Config
 
-With variable \c ALOX_MYLOX_DOMAIN_SUBSTITUTION set in the ini-File, a \b %Lox named <c>'MYLOX'</c>
+With variable \c ALOX_MYLOX_DOMAIN_SUBSTITUTION set in the INI file, a \b %Lox named <c>'MYLOX'</c>
 would receive the two rules specified.
 
 
@@ -114,7 +114,7 @@ would receive the two rules specified.
 \~Comment ####################################################################################### \~
 ## 3.2 Preventing The Use Of External Configuration ## {#man_domain_substitution_config_prevent}
 
-Sometimes it might be wanted that <em>Domain Substitution</em>R are not manipulatable externally. A reason could be that
+Sometimes it might be wanted that <em>Domain Substitution Rules</em> are not manipulatable externally. A reason could be that
 by the nature of these rules, unauthorized users are enabled to change the <em>Log Domains</em> and hence
 also to change their \e Verbosity, which otherwise can be prevented for protection
 (see \ref man_external_verbosity_configuration).
@@ -142,6 +142,9 @@ just as it was using the new domain within its invocation and <em>Scope Domain</
 Therefore, <em>Domain Substitution</em> settings - if at all - should be made at the beginning of a processes life-cycle
 and then should not be altered. In this case, also <em>Prefix Logables</em> will be 'transferred' to the substitution
 domain, providing that the commands that are setting them use relative domain paths.
+
+<em>Domain Substitution</em> may not be used to substitute <em>Log Domains</em> of the standard
+domain tree with those of the internal tree or vice versa.
 
 
 --------------------------------------------------------------------

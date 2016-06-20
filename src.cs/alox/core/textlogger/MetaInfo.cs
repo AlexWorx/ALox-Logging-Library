@@ -6,6 +6,7 @@
 // #################################################################################################
 using cs.aworx.lib.strings;
 using cs.aworx.lib.enums;
+using cs.aworx.lib.time;
 
 #if (ALOX_DBG_LOG || ALOX_REL_LOG)
 
@@ -57,7 +58,8 @@ public class MetaInfo
          *
          * - %tN: Thread name
          * - %tI: Thread ID
-         * - %V:  The verbosity
+         * - %V:  The verbosity. This is replaced by the corresponding strings found in fields
+         *        #VerbosityError, #VerbosityWarning, #VerbosityInfo and #VerbosityVerbose.
          * - %D:  Log domain
          * - %#:  The log call counter (like a line counter, but counting multi lines as one)
          * - %An: An auto-adjusted tabulator. This grows whenever it needs, but never shrinks. The
@@ -76,16 +78,16 @@ public class MetaInfo
         Format = new AString( "%Sp/%SF(%SL):%A5%SM() %A5[%TC +%TL][%tN]%V[%D]%A1(%#): " );
 
 
-        /// The output for the \e Verbosity "Error".
+        /** The replacement for variable \c %%V in field #Format if \e Verbosity is \c Error */
         public            String            VerbosityError                               = "[ERR]";
 
-        /// The output for the \e Verbosity "Warning".
+        /** The replacement for variable \c %%V in field #Format if \e Verbosity is \c Warning */
         public            String            VerbosityWarning                             = "[WRN]";
 
-        /// The output for the \e Verbosity "Info".
+        /** The replacement for variable \c %%V in field #Format if \e Verbosity is \c  Info */
         public            String            VerbosityInfo                                = "     ";
 
-        /// The output for the \e Verbosity "Verbose".
+        /** The replacement for variable \c %%V in field #Format if \e Verbosity is \c Verbose */
         public            String            VerbosityVerbose                             = "[***]";
 
         /// Format string for the output of the log date. For more information, see
@@ -134,12 +136,23 @@ public class MetaInfo
         /// Prefix for the domain.
         public            int               LogNumberMinDigits                          = 3;
 
+        /**
+         * The maximum time elapsed. Used to determine the width of the output when writing
+         * the elapsed time.
+         *
+         * This field will be read from the 
+         * configuration variable [ALOX_LOGGERNAME_MAX_ELAPSED_TIME](../group__GrpALoxConfigVars.html)
+         * when the \b %TextLogger that this object belongs to is attached to a \b %Lox 
+         * and written back on removal.
+         */
+        public            Ticks             MaxElapsedTime                           = new Ticks(0);
+
     // #############################################################################################
     // Internal fields
     // #############################################################################################
 
         /// Internal string builder used for formatting operations.
-        protected        StringBuilder     formatSB                                     = new StringBuilder( 64 );
+        protected        StringBuilder     formatSB                       = new StringBuilder( 64 );
 
         /// Reference to last date format string to detect changes at runtime.
         protected        String            detectDateFormatChanges;
@@ -161,6 +174,9 @@ public class MetaInfo
 
         /** A reusable AString . */
         protected        AString           tmpAString                                =new AString();
+
+        /** A reusable Ticks object. */
+        protected        Ticks             elapsedTime                                =new Ticks(0);
 
         /** Helper flag that indicates if a format warning report was already issued */
         protected        bool               warnedOnce                                      = false;
@@ -381,18 +397,20 @@ public class MetaInfo
                 // %TC: Time elapsed since created
                 else if ( c2 == 'C' )
                 {
-                    // create TimeSpan object (on the stack by using new! :)
-                    TimeSpan elapsed= new TimeSpan( scope.GetTimeStamp().Raw() - logger.TimeOfCreation.Raw() );
-
-                    if ( elapsed.Days > 0 )
-                        dest._( elapsed.Days )._( TimeElapsedDays );
-
-                    if ( elapsed.Hours > 0 )
-                        dest._( elapsed.Hours )    ._( ':' );
-
-                    dest ._( elapsed.Minutes, 2)._( ':' )
-                         ._( elapsed.Seconds, 2)._( '.' )
-                         ._( elapsed.Milliseconds, 3);
+                    elapsedTime.Set( scope.GetTimeStamp()  );
+                    elapsedTime.Sub( logger.TimeOfCreation );
+    
+                    if( MaxElapsedTime.Raw() < elapsedTime.Raw() )
+                        MaxElapsedTime.Set( elapsedTime );
+    
+                    long      maxElapsedSecs= MaxElapsedTime.InSeconds();
+                    TimeSpan  elapsed= new TimeSpan( elapsedTime.Raw() );
+    
+                    if ( maxElapsedSecs >= 60*60*24 )  dest._( elapsed.Days  )._NC( TimeElapsedDays );
+                    if ( maxElapsedSecs >= 60*60    )  dest._( elapsed.Hours  ,  maxElapsedSecs >= 60*60*10 ?  2 : 1 )._NC( ':' );
+                    if ( maxElapsedSecs >= 60       )  dest._( elapsed.Minutes,  maxElapsedSecs >= 10*60    ?  2 : 1 )._NC( ':' );
+                    dest._( elapsed.Seconds,  maxElapsedSecs > 9 ? 2 : 1          )._NC( '.' );
+                    dest._( elapsed.Milliseconds,  3 );
                 }
 
                 // %TL: Time elapsed since last log call

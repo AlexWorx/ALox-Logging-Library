@@ -26,36 +26,40 @@
 #if !defined( IS_DOXYGEN_PARSER )
 
 
+#define ALOX_DBG_LOG_VFYBIT                (1 << 0)
 #if defined(ALOX_DBG_LOG)
-    #define ALOX_DBG_LOG_VFYBIT                +(1 << 0)
+    #define ALOX_DBG_LOG_VFYVAL            ALOX_DBG_LOG_VFYBIT
 #else
-    #define ALOX_DBG_LOG_VFYBIT                +0
+    #define ALOX_DBG_LOG_VFYVAL            0
 #endif
 
+#define ALOX_DBG_LOG_CI_VFYBIT             (1 << 1)
 #if defined(ALOX_DBG_LOG_CI)
-    #define ALOX_DBG_LOG_CI_VFYBIT             +(1 << 0)
+    #define ALOX_DBG_LOG_CI_VFYVAL         ALOX_DBG_LOG_CI_VFYBIT
 #else
-    #define ALOX_DBG_LOG_CI_VFYBIT             +0
+    #define ALOX_DBG_LOG_CI_VFYVAL         0
 #endif
 
+#define ALOX_REL_LOG_VFYBIT                (1 << 2)
 #if defined(ALOX_REL_LOG)
-    #define ALOX_REL_LOG_VFYBIT                +(1 << 0)
+    #define ALOX_REL_LOG_VFYVAL            ALOX_REL_LOG_VFYBIT
 #else
-    #define ALOX_REL_LOG_VFYBIT                +0
+    #define ALOX_REL_LOG_VFYVAL            0
 #endif
 
+#define ALOX_REL_LOG_CI_VFYBIT             (1 << 3)
 #if defined(ALOX_REL_LOG_CI)
-    #define ALOX_REL_LOG_CI_VFYBIT             +(1 << 0)
+    #define ALOX_REL_LOG_CI_VFYVAL         ALOX_REL_LOG_CI_VFYBIT
 #else
-    #define ALOX_REL_LOG_CI_VFYBIT             +0
+    #define ALOX_REL_LOG_CI_VFYVAL         0
 #endif
 
 
-#define    ALOX_COMPATIBILITY_VERYFIER  ( ALOX_DBG_LOG_VFYBIT       \
-                                          ALOX_DBG_LOG_CI_VFYBIT    \
-                                          ALOX_REL_LOG_VFYBIT       \
-                                          ALOX_REL_LOG_CI_VFYBIT    \
-                                       )
+#define    ALOX_COMPATIBILITY_VERYFIER  (   ALOX_DBG_LOG_VFYVAL       \
+                                          + ALOX_DBG_LOG_CI_VFYVAL    \
+                                          + ALOX_REL_LOG_VFYVAL       \
+                                          + ALOX_REL_LOG_CI_VFYVAL    \
+                                        )
 #endif
 
 /**

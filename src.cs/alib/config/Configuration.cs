@@ -79,7 +79,7 @@ namespace cs.aworx.lib.config  {
      *
      * An application specific instance of abstract class
      * \ref cs::aworx::lib::config::ConfigurationPlugIn "ConfigurationPlugIn"
-     * that uses appropriate configuration techniques (ini-files, registry entries, etc.)
+     * that uses appropriate configuration techniques (INI files, registry entries, etc.)
      * optionally completes this set. It is proposed to use a priority value of 200
      * (provided in static constant field #PrioIniFile)  for custom configuration plug-ins.
      * This way, environment variables could \e overwrite entries in configuration files and
@@ -127,8 +127,9 @@ namespace cs.aworx.lib.config  {
         // public fields
         // #########################################################################################
             /**
-             * Values considered to indicate "true". Defaults to "1", "true", "yes" and "ok".
-             * Comparisons are made case insensitive.
+             * Values considered to indicate "true". Defaults to 
+             * { "1", "true", "t", "yes", "y", "on", "ok" }.
+             * See methods #IsTrue.
              *
              * Application specific values (e.g. localization languages) might be added by publicly
              * accessing this field and adding new values (or removing existing).
@@ -183,11 +184,13 @@ namespace cs.aworx.lib.config  {
 
                 // set default true values
                 TrueValues=     new List<AString>();
-                TrueValues.Add( new AString( "1" )    );
+                TrueValues.Add( new AString( "1"    ) );
                 TrueValues.Add( new AString( "true" ) );
-                TrueValues.Add( new AString( "yes" )  );
-                TrueValues.Add( new AString( "on" )   );
-                TrueValues.Add( new AString( "ok" )   );
+                TrueValues.Add( new AString( "t"    ) );
+                TrueValues.Add( new AString( "yes"  ) );
+                TrueValues.Add( new AString( "y"    ) );
+                TrueValues.Add( new AString( "on"   ) );
+                TrueValues.Add( new AString( "ok"   ) );
 
                 // create command line plug-in
                 if ( args != null && args.Length > 0 )
@@ -364,7 +367,9 @@ namespace cs.aworx.lib.config  {
             }
 
             /** ************************************************************************************
-             * Utility method that checks if a given value represents 'true'.
+             * Utility method that checks if a given value represents boolean \b true.
+             * Uses field #TrueValues. Comparisons are made case insensitive.
+             *
              * @param value  The value to check
              *
              * @return   Returns \c true, if the value represents 'true', \c false if not.
@@ -379,7 +384,9 @@ namespace cs.aworx.lib.config  {
             }
 
             /** ************************************************************************************
-             * Utility method that checks if a given value represents 'true'.
+             * Utility method that checks if a given value represents boolean \b true.
+             * Uses field #TrueValues. Comparisons are made case insensitive.
+             *
              * @param value  The value to check
              *
              * @return   Returns \c true, if the value represents 'true', \c false if not.
@@ -397,8 +404,8 @@ namespace cs.aworx.lib.config  {
              * Uses
              * \ref Get(Object, Object,AString) "Get"
              * to read a string value and returns true if this variable holds one of the
-             * values found in the #TrueValues string list. By default, this string list contains
-             * the strings "true", "yes" and "1" (case insensitive comparison).
+             * values found in the #TrueValues string list. 
+             *
              * @param category       The category of the  variable.
              *                       (AString compatible type expected.)
              * @param name           The name of the environment variable to read
@@ -412,7 +419,7 @@ namespace cs.aworx.lib.config  {
              *                       Defaults to null. Provide a local object to gain performance
              *                       when retrieving many variables in a row.
              *
-             * @return   Returns true, if the environment variable is defined and has one of the
+             * @return   Returns \c true, if the environment variable is defined and has one of the
              *           values found in field #TrueValues.
              **************************************************************************************/
             [MethodImpl(MethodImplOptions.Synchronized)]

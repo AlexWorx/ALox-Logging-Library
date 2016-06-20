@@ -9,7 +9,7 @@
 #include "alox/alox.hpp"
 
 #include "gtest/gtest.h"
-#include "aworx_unittests.hpp"
+#include "alib.unittests/aworx_unittests.hpp"
 
 #include "alib/compatibility/std_iostream.hpp"
 
@@ -42,7 +42,7 @@ int main( int argc, char **argv )
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Threads.ThreadSimple";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Threads.SmartLock";
 
-//    ::testing::GTEST_FLAG(filter) = "CPP_Environment*";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_System.Dir*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_Config.IniFiles";
 
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Tutorial*";
@@ -68,9 +68,11 @@ int main( int argc, char **argv )
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Log_Scopes.Log_Store*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Log_Scopes.Log_Prefix*";
 
-//    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Loggers.Log_TextLogger_RegisterStreamLocks*";
-//    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Loggers.Log_TextLogger_ObjectConverter*";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Logger.Log_TextLogger_RegisterStreamLocks*";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Logger.Log_TextLogger_ObjectConverter*";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Logger.Log_TextLogger_FormatConfig*";
 
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Compatiblity_QT.*";
 
     auto retval= RUN_ALL_TESTS();
 

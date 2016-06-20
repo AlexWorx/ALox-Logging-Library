@@ -37,9 +37,9 @@ namespace ut_cs_aworx_lib
 
 
 
-//---------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //--- Read and write a configuration file
-//---------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 #if ALIB_MONO_DEVELOP
     [Test ()]
 #endif
@@ -76,17 +76,17 @@ namespace ut_cs_aworx_lib
             UT_EQ( Configuration.PrioCmdLine,    cfg.Get   ( null,  "Whitespaces",   v            ) );   UT_EQ( "Hello Test",    v );
             UT_EQ( Configuration.PrioCmdLine,    cfg.Get   ( null,  "HOME",          v            ) );   UT_EQ( "overwritten",   v );
             UT_EQ( Configuration.PrioCmdLine,    cfg.Get   ( null,  "integer",       out iv       ) );   UT_EQ( 42,              iv );
-            UT_EQ(                             0,    cfg.Get   ( null,  "notexistant",   out iv       ) );   UT_EQ( 0,               iv );
+            UT_EQ(                             0,    cfg.Get   ( null,  "notexistent",   out iv       ) );   UT_EQ( 0,               iv );
             UT_EQ( Configuration.PrioCmdLine,    cfg.Get   ( null,  "integer",       out iv, temp ) );   UT_EQ( 42,              iv );
             UT_EQ( Configuration.PrioCmdLine,    cfg.Get   ( null,  "double",        out dv       ) );   UT_EQ( 3.14,            dv, 0.0 );
-            UT_EQ(                             0,    cfg.Get   ( null,  "notexistant",   out dv       ) );   UT_EQ( 0.0,             dv, 0.0 );
+            UT_EQ(                             0,    cfg.Get   ( null,  "notexistent",   out dv       ) );   UT_EQ( 0.0,             dv, 0.0 );
             UT_EQ( Configuration.PrioCmdLine,    cfg.Get   ( null,  "double",        out dv, temp ) );   UT_EQ( 3.14,            dv, 0.0 );
             UT_EQ( Configuration.PrioCmdLine,    cfg.Get   ( "ALIB", "test",         v            ) );   UT_EQ( "passed",        v );
 
         }
-//---------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //--- Read and write a configuration file
-//---------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 #if ALIB_MONO_DEVELOP
     [Test ()]
 #endif
@@ -195,7 +195,7 @@ namespace ut_cs_aworx_lib
             UT_TRUE( ALIB.Config.IsTrue( "Great Section",  "SECTION_CONTINUED" ) );
 
 
-            // check if environment variable "home" overwrites ini-file
+            // check if environment variable "home" overwrites INI file
             AString vIniFile= new AString();   iniFile.Get( "", "hOme", vIniFile );               UT_EQ( "overwritten_by_environment", vIniFile );
             AString vConfig=  new AString();
             int prio= ALIB.Config.Get( "", "hOme", vConfig );

@@ -22,6 +22,11 @@
     #pragma message ("Unknown Platform in file: " __FILE__ )
 #endif
 
+#if !defined (HPP_ALIB_COMPATIBILITY_STD_IOSTREAM)
+    #include "alib/compatibility/std_iostream.hpp"
+#endif
+
+#include <fstream>
 #include <cstdio>   // gives us FILENAME_MAX
 
 
@@ -33,68 +38,176 @@ namespace                   system {
 
 
 // #################################################################################################
+// Static variables
+// #################################################################################################
+AString         Directory::evaluatedTempDir;
+AString         Directory::evaluatedVarTempDir;
+
+// #################################################################################################
 // Change
 // #################################################################################################
+#if !defined(IS_DOXYGEN_PARSER)
+void createTempFolderInHomeDir( const String& folderName, AString& resultPath, const String& reasonMsg )
+{
+    // get home directory and set this as fallback result value
+    Directory homeTemp( Directory::SpecialFolder::Home );
+    resultPath=   homeTemp.Path;
+
+    // add given folder name and check if already exists
+    homeTemp.Path._( DirectorySeparator )._( folderName );
+    bool exists= Directory::Exists( homeTemp.Path );
+    if( !exists )
+    {
+        if( Directory::Create( homeTemp.Path ) == Result::OK )
+        {
+            exists= true;
+            AString fileName( homeTemp.Path ); fileName._( DirectorySeparator )._( "readme.txt" );
+
+            ofstream file ( fileName.ToCString() );
+            if ( file.is_open() )
+            {
+                const ProcessInfo& pi= ProcessInfo::Current();
+                file << "This folder was created by \"" << pi.CmdLine
+                     << "\"" << endl
+                     << "to be used for temporary files." << endl
+                     << reasonMsg
+                     << endl;
+                file.close();
+            }
+        }
+    }
+
+    // if existed or got created
+    if( exists )
+        resultPath=   homeTemp.Path;
+}
+#endif
 
 void Directory::Change( SpecialFolder special )
 {
     switch( special )
     {
-        case SpecialFolder::Root:       Path._( PathSeparator );
+        case SpecialFolder::Root:       Path._( DirectorySeparator );
                                         break;
         case SpecialFolder::Current:    Directory::CurrentDirectory( Path );
                                         break;
         case SpecialFolder::Home:
         {
 
-            #if defined (__GLIBC__)
-
+            #if defined (__unix__)
                 // get home path
                 if ( !System::GetVariable( "HOME", Path ) )
                     Path._( "~/" );
 
             #elif defined(_WIN32)
-                system::System::GetVariable( "HOMEDRIVE", Path );
-                system::System::GetVariable( "HOMEPATH",  Path, CurrentData::Keep );
+                if ( !System::GetVariable( "USERPROFILE", Path ) || !Directory::Exists( Path ) )
+                {
+                    System::GetVariable( "HOMEDRIVE", Path );
+                    System::GetVariable( "HOMEPATH",  Path, CurrentData::Keep );
+                }
             #else
                 #pragma message ("Unknown Platform in file: " __FILE__ )
             #endif
         }
         break;
 
-        case SpecialFolder::HOME_CONFIG:
+        case SpecialFolder::HomeConfig:
         {
-            #if defined (__GLIBC__)
-
-                // get home path, append '.config'
-                if ( !System::GetVariable( "HOME", Path ) )
-                    Path._( "~/" );
-
-            #elif defined(_WIN32)
-                system::System::GetVariable( "HOMEDRIVE", Path );
-                system::System::GetVariable( "HOMEPATH",  Path, CurrentData::Keep );
-            #else
-                #pragma message ("Unknown Platform in file: " __FILE__ )
-            #endif
-
+            Change( SpecialFolder::Home );
             // try ".config" and "AppData/Roaming" subdirectories.
             if ( !Change( ".config" ) )
-                  Change( String16("AppData") << PathSeparator << "Roaming" );
+                  Change( String16("AppData") << DirectorySeparator << "Roaming" );
         }
         break;
 
 
         case SpecialFolder::Module:
         {
-            const ProcessInfo& pi= ProcessInfo::Current();
-            #if defined (__GLIBC__)
-                ALIB_ASSERT_ERROR( pi.CmdLine.EndsWith( pi.ExecName), "Error in ALib (wrong assumption)" );
-                Path._(pi.CmdLine, 0, pi.CmdLine.Length() -  pi.ExecName.Length() - 1 );
-            #elif defined(_WIN32)
-                Path._(pi.CmdLine, 0, pi.CmdLine.LastIndexOf( PathSeparator ) );
-            #else
-                #pragma message ("Unknown Platform in file: " __FILE__ )
-            #endif
+            Path._()._( ProcessInfo::Current().ExecFilePath );
+        }
+        break;
+
+        case SpecialFolder::Temp:
+        {
+
+            if ( evaluatedTempDir.IsEmpty() )
+            {
+                #if defined (__unix__)
+
+                    const String reasonMsg=  "(The default temporary folder \"/tmp\" could not be found.)";
+
+                    if ( Directory::Exists( "/tmp" ) )
+                        evaluatedTempDir= "/tmp";
+
+                #elif defined(_WIN32)
+                    const String reasonMsg=  "(Environment variables TMP and TEMP either not set or not containing valid paths.)";
+                    AString testDir;
+                    if (     ( System::GetVariable( "TMP" , testDir ) && Directory::Exists( testDir ) )
+                         ||  ( System::GetVariable( "TEMP", testDir ) && Directory::Exists( testDir ) ) )
+                    {
+                        evaluatedTempDir= testDir;
+                    }
+                #else
+                    #pragma message ("Unknown Platform in file: " __FILE__ )
+                #endif
+
+
+                if( evaluatedTempDir.IsEmpty() )
+                {
+                    createTempFolderInHomeDir( ".tmp", evaluatedTempDir, reasonMsg );
+
+                    // If this did not work, use home
+                    if( evaluatedTempDir.IsEmpty() )
+                    {
+                        Change( SpecialFolder::Home );
+                        evaluatedTempDir= Path;
+                    }
+                }
+
+            }
+
+            // set path to evaluated dir name
+            Path= evaluatedTempDir;
+        }
+        break;
+
+        case SpecialFolder::VarTemp:
+        {
+            if ( evaluatedVarTempDir.IsEmpty() )
+            {
+                #if defined (__unix__)
+                    const String reasonMsg=  "(The default temporary folder \"/var/tmp\" could not be found.)";
+
+                    if ( Directory::Exists( "/var/tmp" ) )
+                        evaluatedVarTempDir= "/var/tmp";
+                #elif defined(_WIN32)
+                    const String reasonMsg=  "(Environment variables TMP and TEMP either not set or not containing valid paths.)";
+                    AString testDir;
+                    if (     ( System::GetVariable( "TMP" , testDir ) && Directory::Exists( testDir ) )
+                         ||  ( System::GetVariable( "TEMP", testDir ) && Directory::Exists( testDir ) ) )
+                    {
+                        evaluatedVarTempDir= testDir;
+                    }
+                #else
+                    #pragma message ("Unknown Platform in file: " __FILE__ )
+                #endif
+
+
+                if( evaluatedVarTempDir.IsEmpty() )
+                {
+                    createTempFolderInHomeDir( ".var.tmp", evaluatedVarTempDir, reasonMsg );
+
+                    // If this did not work, use home
+                    if( evaluatedVarTempDir.IsEmpty() )
+                    {
+                        Change( SpecialFolder::Home );
+                        evaluatedVarTempDir= Path;
+                    }
+                }
+
+            }
+            // now path to evaluated dir name
+            Path= evaluatedVarTempDir;
         }
         break;
     }
@@ -103,7 +216,7 @@ void Directory::Change( SpecialFolder special )
 bool Directory::Change( const String& path )
 {
     int origLength= Path.Length();
-    Path._<false>( PathSeparator )
+    Path._<false>( DirectorySeparator )
         ._( path );
 
     if( Directory::Exists( Path ) )

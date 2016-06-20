@@ -135,7 +135,7 @@
  * shortcuts.
  *
  *  \anchor CPP_AWORX_NS_SHORTCUTS
- * <b>Type Shortcuts in the C++ Namespace \"aworx\"</b><p>
+ * <b>Type Shortcuts of C++ Namespace \"aworx\"</b><p>
  * ALib and other libraries of A-Worx, \e \"mirror\" most classes into <b>namespace aworx</b>
  * with using statements. For example, by having
 \verbatim
@@ -184,7 +184,7 @@ using PAString= aworx::lib::strings::PreallocatedString<TCapacity>;
  * (which is described in the previous paragraph), it is also agreed to place important global
  * constants here. The impact and benefits are quite the same.<br>
  * As a sample, see
- * \ref aworx::PathSeparator which appears in this namespace as soon as header
+ * \ref aworx::DirectorySeparator which appears in this namespace as soon as header
  * "alib/system/directory.hpp" is included.
  *
  */
@@ -217,6 +217,7 @@ namespace           lib {
 namespace config  { class Configuration;    }
 namespace threads { class ThreadLockNR;     }
 namespace threads { class SmartLock;        }
+namespace time    { class Ticks;            }
 
 
 // #################################################################################################
@@ -469,27 +470,36 @@ class ALIB
     // #############################################################################################
     public:
         /** ****************************************************************************************
-         *  This is calling <em>std::this_thread::sleep_for</em>.
-         *  This is for compatibility with other platform versions of ALib.
-         *  Variants of this method are #SleepMicros and #SleepNanos.
+         * Suspends the current thread by calling <em>std::this_thread::sleep_for</em>.
+         * Provided for compatibility with other platform versions of ALib.
+         * Variants of this method are #SleepMillis, #SleepMicros and #SleepNanos.
+         *
+         * @param ticks Sleep time in \b %Ticks.
+         ******************************************************************************************/
+        ALIB_API static void Sleep( const time::Ticks& ticks );
+
+        /** ****************************************************************************************
+         * Suspends the current thread by calling <em>std::this_thread::sleep_for</em>.
+         * This is for compatibility with other platform versions of ALib.
+         * Variants of this method are #SleepMicros and #SleepNanos.
          *
          *  @param millisecs    Sleep time in milliseconds.
          ******************************************************************************************/
         ALIB_API  static void SleepMillis( int millisecs );
 
         /** ****************************************************************************************
-         *  This is calling <em>std::this_thread::sleep_for</em>.
-         *  This is for compatibility with other platform versions of ALib.
-         *    Variants of this method are #SleepMillis and #SleepNanos.
+         * Suspends the current thread by calling <em>std::this_thread::sleep_for</em>.
+         * This is for compatibility with other platform versions of ALib.
+         * Variants of this method are #SleepMillis and #SleepNanos.
          *
          * @param microsecs    Sleep time in milliseconds.
          ******************************************************************************************/
         ALIB_API  static void SleepMicros( int microsecs );
 
         /** ****************************************************************************************
-         *  This is calling <em>std::this_thread::sleep_for</em>.
-         *  This is for compatibility with other platform versions of ALib.
-         *  Variants of this method are #SleepMicros and #SleepMillis.
+         * Suspends the current thread by calling <em>std::this_thread::sleep_for</em>.
+         * This is for compatibility with other platform versions of ALib.
+         * Variants of this method are #SleepMicros and #SleepMillis.
          *
          * @param nanosecs    Sleep time in nanoseconds.
          ******************************************************************************************/

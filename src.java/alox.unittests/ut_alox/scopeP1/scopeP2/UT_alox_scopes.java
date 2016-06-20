@@ -178,6 +178,13 @@ public class UT_alox_scopes extends AUnitTest
     /** ********************************************************************************************
      * Log.DomainsDefault
      **********************************************************************************************/
+    void LSD()      {  Log.setDomain( "LSD",  Scope.METHOD );    Log.info( "" );    }
+    void LSD_A()    {  Log.setDomain( "A",    Scope.METHOD );    Log.info( "" );    }
+    void LSD_A_B()  {  Log.setDomain( "B",    Scope.METHOD );    Log.info( "" );    }
+    void LSD2_A_B() {  Log.setDomain( "B2",   Scope.METHOD );    Log.info( "" );    }
+    void LSD2_A()   {  Log.setDomain( "A2",   Scope.METHOD );    Log.info( "" );    }
+    void LSD2()     {  Log.setDomain( "LSD2", Scope.METHOD );    Log.info( "" );    }
+
     void SDCHECK( String exp, MemoryLogger ml )
     {
         UT_EQ( exp  , ml.memoryLog );
@@ -197,6 +204,16 @@ public class UT_alox_scopes extends AUnitTest
         Log.setVerbosity( ml, Verbosity.VERBOSE );
         Log.setVerbosity(Log.debugLogger, Verbosity.VERBOSE, ALox.INTERNAL_DOMAINS );
 
+        // test methods with extending names
+        LSD();         UT_EQ( "@/LSD#",      ml.memoryLog );   ml.memoryLog._(); ml.autoSizes.reset();
+        LSD_A();       UT_EQ( "@/A#",        ml.memoryLog );   ml.memoryLog._(); ml.autoSizes.reset();
+        LSD_A_B();     UT_EQ( "@/B#",        ml.memoryLog );   ml.memoryLog._(); ml.autoSizes.reset();
+        LSD2_A_B();    UT_EQ( "@/B2#",       ml.memoryLog );   ml.memoryLog._(); ml.autoSizes.reset();
+        LSD2_A();      UT_EQ( "@/A2#",       ml.memoryLog );   ml.memoryLog._(); ml.autoSizes.reset();
+        LSD2();        UT_EQ( "@/LSD2#",     ml.memoryLog );   ml.memoryLog._(); ml.autoSizes.reset();
+
+
+        // scope global
         Log.setDomain( "REPLACE",    Scope.GLOBAL      );  Log.info( "" ); SDCHECK( "@/REPLACE#"                    ,ml );
         Log.setDomain( "GLOBAL",     Scope.GLOBAL      );  Log.info( "" ); SDCHECK( "@/GLOBAL#"                     ,ml );
 
@@ -221,6 +238,8 @@ public class UT_alox_scopes extends AUnitTest
 
         // source path
         Log.setDomain( "REPLACE",    Scope.PACKAGE     );  Log.info( "" ); SDCHECK( "@/REPLACE/CLASS/METHOD#"         ,ml );
+        
+        
         Log.setDomain( "PACK",       Scope.PACKAGE     );  Log.info( "" ); SDCHECK( "@/PACK/CLASS/METHOD#"            ,ml );
         Log.setDomain( "REPLACE",    Scope.PACKAGE, 1  );  Log.info( "" ); SDCHECK( "@/REPLACE/PACK/CLASS/METHOD#"    ,ml );
         Log.setDomain( "PO1",        Scope.PACKAGE, 1  );  Log.info( "" ); SDCHECK( "@/PO1/PACK/CLASS/METHOD#"        ,ml );

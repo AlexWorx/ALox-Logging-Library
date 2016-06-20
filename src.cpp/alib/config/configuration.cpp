@@ -21,7 +21,9 @@ Configuration::Configuration()
     // set default true values
     TrueValues.emplace_back( "1"    );
     TrueValues.emplace_back( "true" );
+    TrueValues.emplace_back( "t"    );
     TrueValues.emplace_back( "yes"  );
+    TrueValues.emplace_back( "y"    );
     TrueValues.emplace_back( "on"   );
     TrueValues.emplace_back( "ok"   );
 }

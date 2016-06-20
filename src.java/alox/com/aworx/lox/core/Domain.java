@@ -107,6 +107,9 @@ public class Domain
     /** A list of sub domains. */
     public        ArrayList<Domain>             subDomains;
 
+    /** Flag to which is set when verbosity configuration data was read. */
+    public        boolean                       configurationRead                            =false;
+
     // #############################################################################################
     // Protected fields
     // #############################################################################################

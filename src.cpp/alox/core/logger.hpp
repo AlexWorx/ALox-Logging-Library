@@ -249,9 +249,9 @@ namespace             strings{
     template<>   struct               IsApplicable<const lox::core::Logger&>   : public std::true_type {};
 
     /** ********************************************************************************************
-     *  Specialization of template method
-     *  \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type \b std::string.
-     * See \ref aworx::lib::strings::ApplyTo "ApplyTo" for more information
+     * Specialization of template method
+     * \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type \b std::string.
+     * See \ref aworx::lib::strings::ApplyTo "ApplyTo" for more information.
      * @param  target The AString to append \p src to.
      * @param  logger The logger to apply.
      * @return The length of the given string \p src which was appended to \p target.

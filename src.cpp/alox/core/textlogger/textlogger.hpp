@@ -83,7 +83,7 @@ class ObjectConverter
 class StringConverter : public ObjectConverter
 {
     public:
-        /// Used to convert null values to string representation.
+        /** Used to convert null values to string representation. */
         TString          FmtNullObject                  ="ALox message object (type=0) is nullptr.";
 
     public:
@@ -189,10 +189,10 @@ class AutoSizes
         void        Import( const String& source, lib::enums::CurrentData session= lib::enums::CurrentData::Clear );
 
         /** ****************************************************************************************
-         *  Exports the current session values by converting the stored numbers to a string
-         *  representation and appending them to the given
-         *  \ref aworx::lib::strings::AString "AString" object.
-         *  The numbers in the string will be separated by ' ' characters (space).
+         * Exports the current session values by converting the stored numbers to a string
+         * representation and appending them to the given
+         * \ref aworx::lib::strings::AString "AString" object.
+         * The numbers in the string will be separated by ' ' characters (space).
          *
          * @param target       The \b %AString to receive the our values
          ******************************************************************************************/
@@ -238,7 +238,8 @@ class MetaInfo
          *
          * - %tN: Thread name
          * - %tI: Thread ID
-         * - %V:  The verbosity
+         * - %V:  The verbosity. This is replaced by the corresponding strings found in fields
+         *        #VerbosityError, #VerbosityWarning, #VerbosityInfo and #VerbosityVerbose.
          * - %D:  Log domain
          * - %#:  The log call counter (like a line counter, but counting multi lines as one)
          * - %An: An auto-adjusted tabulator. This grows whenever it needs, but never shrinks. The
@@ -287,64 +288,75 @@ class MetaInfo
         #endif
 
 
-        /// The output for the verbosity "Error".
-        TString    VerbosityError           ="[ERR]";
+        /** The replacement for variable \c %%V in field #Format if \e Verbosity is \c Error */
+        String16  VerbosityError           ="[ERR]";
 
-        /// The output for the verbosity "Warning".
-        TString    VerbosityWarning         ="[WRN]";
+        /** The replacement for variable \c %%V in field #Format if \e Verbosity is \c Warning */
+        String16  VerbosityWarning         ="[WRN]";
 
-        /// The output for the verbosity "Info".
-        TString    VerbosityInfo            ="     ";
+        /** The replacement for variable \c %%V in field #Format if \e Verbosity is \c  Info */
+        String16  VerbosityInfo            ="     ";
 
-        /// The output for the verbosity "Verbose".
-        TString    VerbosityVerbose         ="[***]";
+        /** The replacement for variable \c %%V in field #Format if \e Verbosity is \c Verbose */
+        String16  VerbosityVerbose         ="[***]";
 
-        /// Format string for the output of the log date. For more information, see
-        ///  "Standard Date and Time Format Strings" in .NET StringBuilder.AppendFormat()
+        /** Format string for the output of the log date. For more information, see
+             "Standard Date and Time Format Strings" in .NET StringBuilder.AppendFormat() */
         TString    DateFormat               ="yyyy-MM-dd";
 
-        /// Format string for the output of the time of day. For more information, see
-        ///  "Standard Date and Time Format Strings" in .NET StringBuilder.AppendFormat()
+        /** Format string for the output of the time of day. For more information, see
+             "Standard Date and Time Format Strings" in .NET StringBuilder.AppendFormat() */
         TString    TimeOfDayFormat          ="HH:mm:ss";
 
-        /// The word "Days" the out put of time elapsed (if longer than a day).
+        /** The word "Days" the out put of time elapsed (if longer than a day). */
         TString    TimeElapsedDays          =" Days ";
 
-        /// Minimum time difference to log in nanoseconds.  Below that #TimeDiffNone is written.
+        /** Minimum time difference to log in nanoseconds.  Below that #TimeDiffNone is written. */
         long       TimeDiffMinimum          =1000L;
 
-        /// Output for time difference if below reasonable (measurable) minimum defined in #TimeDiffMinimum.
+        /** Output for time difference if below reasonable (measurable) minimum defined in #TimeDiffMinimum. */
         TString    TimeDiffNone             ="---   ";
 
-        /// Entity nanoseconds for time difference outputs below 1000 microsecond.
+        /** Entity nanoseconds for time difference outputs below 1000 microsecond. */
         TString    TimeDiffNanos            =" ns";
 
-        /// Entity microseconds for time difference outputs below 1000 microseconds.
+        /** Entity microseconds for time difference outputs below 1000 microseconds. */
         TString    TimeDiffMicros           =" \xC2\xB5s"; // UTF-8 encoding of the greek 'm' letter;
 
-        /// Entity milliseconds for time difference outputs below 1000 milliseconds.
+        /** Entity milliseconds for time difference outputs below 1000 milliseconds. */
         TString    TimeDiffMillis           =" ms";
 
-        /// Format for time difference outputs between 10s and 99.9s.
+        /** Format for time difference outputs between 10s and 99.9s. */
         TString    TimeDiffSecs             =" s";
 
-        /// Format for time difference outputs between 100s and 60 min.
+        /** Format for time difference outputs between 100s and 60 min. */
         TString    TimeDiffMins             =" m";
 
-        /// Format for time difference outputs between 1h and 24h.
+        /** Format for time difference outputs between 1h and 24h. */
         TString    TimeDiffHours            =" h";
 
-        /// Format for time difference outputs of more than a day.
+        /** Format for time difference outputs of more than a day. */
         TString    TimeDiffDays             =" days";
 
-        /// Replacement string if no source info is available.
+        /** Replacement string if no source info is available. */
         TString    NoSourceFileInfo         ="---";
 
-        /// Replacement string if no source info is available.
+        /** Replacement string if no source info is available. */
         TString    NoMethodInfo             ="---";
 
-        /// The minimum digits to write for the log number (if used in format string).
+        /** The minimum digits to write for the log number (if used in format string). */
         int        LogNumberMinDigits       = 3;
+
+        /**
+         * The maximum time elapsed. Used to determine the width of the output when writing
+         * the elapsed time.
+         *
+         * This field will be read from the
+         * configuration variable [ALOX_LOGGERNAME_MAX_ELAPSED_TIME](../group__GrpALoxConfigVars.html)
+         * when the \b %TextLogger that this object belongs to is attached to a \b %Lox
+         * and written back on removal.
+         */
+        Ticks      MaxElapsedTime;
 
     // #############################################################################################
     // Internal fields
@@ -360,9 +372,14 @@ class MetaInfo
     // #############################################################################################
     public:
         /** ****************************************************************************************
-         * Virtual destructor of MetaInfo.
+         * Constructor.
          ******************************************************************************************/
-        virtual ~MetaInfo()          {}
+                 MetaInfo() : MaxElapsedTime(0)      {}
+
+        /** ****************************************************************************************
+         * Virtual destructor.
+         ******************************************************************************************/
+        virtual ~MetaInfo()                         {}
 
     // #############################################################################################
     // Public interface
@@ -395,11 +412,11 @@ class MetaInfo
     protected:
 
         /** ****************************************************************************************
-         *  Processes the next command found in the format string, by writing formatted information
-         *  into the given buffer.
-         *  The given
-         *  \ref aworx::lib::strings::Substring "Substring" holds the next command.
-         *  When method the returns, the command is cut from the front.
+         * Processes the next command found in the format string, by writing formatted information
+         * into the given buffer.
+         * The given
+         * \ref aworx::lib::strings::Substring "Substring" holds the next command.
+         * When method the returns, the command is cut from the front.
          *
          * @param logger       The logger that we are embedded in.
          * @param domain       The <em>Log Domain</em>.
@@ -495,12 +512,17 @@ class TextLogger : public Logger
         textlogger::MetaInfo*           MetaInfo;
 
         /**
-         *  Holds a list of values for auto tab positions and field sizes.
-         *  For each requested value, a corresponding array field is created on the fly.
-         *  If the format string get's changed and different (new) auto values should be used, then
-         *  this field should be reset after setting the new format string.
-         *  The other way round, it is also possible to preset set minimum values for tabs and field
-         *  sizes and hence avoid the columns growing during the lifetime of the Logger.
+         * Holds a list of values for auto tab positions and field sizes.
+         * For each requested value, a corresponding array field is created on the fly.
+         * If the format string get's changed and different (new) auto values should be used, then
+         * this field should be reset after setting the new format string.
+         * The other way round, it is also possible to preset set minimum values for tabs and field
+         * sizes and hence avoid the columns growing during the lifetime of the Logger.
+         *
+         * This field will be read from the
+         * configuration variable [ALOX_LOGGERNAME_AUTO_SIZES](../group__GrpALoxConfigVars.html)
+         * when the \b %TextLogger that we belong to is attached to a \b %Lox and written back
+         * on removal.
          */
         textlogger::AutoSizes           AutoSizes;
 

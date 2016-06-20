@@ -37,20 +37,20 @@
  *
  * @addtogroup GrpALibStringsMacros
  * @{ \def  ALIB_STRING_DBG_UNTERMINATE
- *  This macro serves for debugging the development (and potentially the use) of
- *  derived classes, eg. class \ref aworx::lib::strings::AString "AString".
- *  It is active only when compiler symbol \ref ALIB_DEBUG_STRINGS is set. When active,
- *  whenever the contents of an %AString instance is modified, the buffer is explicitly
- *  "unterminated" by writing a value of '\\1' at the termination position and the state is
- *  stored in field
- *  \ref aworx::lib::strings::TString::debugIsTerminated "debugIsTerminated"
- *  \ref aworx::lib::strings::TString::_dbgCheck "_dbgCheck".<br>
- *  Doing this, will also hint to buffers that reside in non-writable memory, hence
- *  it will hint to buffers that may not be used with this class.
+ * This macro serves for debugging the development (and potentially the use) of
+ * derived classes, eg. class \ref aworx::lib::strings::AString "AString".
+ * It is active only when compiler symbol \ref ALIB_DEBUG_STRINGS is set. When active,
+ * whenever the contents of an %AString instance is modified, the buffer is explicitly
+ * "unterminated" by writing a value of '\\1' at the termination position and the state is
+ * stored in field
+ * \ref aworx::lib::strings::TString::debugIsTerminated "debugIsTerminated"
+ * \ref aworx::lib::strings::TString::_dbgCheck "_dbgCheck".<br>
+ * Doing this, will also hint to buffers that reside in non-writable memory, hence
+ * it will hint to buffers that may not be used with this class.
  *
- *  The macro is active when conditional compilation symbol \ref ALIB_DEBUG_STRINGS_ON is set.
- *  In case \b ALIB_DEBUG_STRINGS_ON it is not set, but macro \ref ALIB_AVOID_ANALYZER_WARNINGS_ON
- *  is, still the string is un-terminated, but no checks are are performed.
+ * The macro is active when conditional compilation symbol \ref ALIB_DEBUG_STRINGS_ON is set.
+ * In case \b ALIB_DEBUG_STRINGS_ON it is not set, but macro \ref ALIB_AVOID_ANALYZER_WARNINGS_ON
+ * is, still the string is un-terminated, but no checks are are performed.
  * @}
  *
  */
@@ -260,10 +260,10 @@ class TString : public String
         {}
 
         /** ****************************************************************************************
-         *  This constructor overloads the powerful templated constructor
-         *  \ref aworx::lib::strings::String::String(const T&) "String::String(const T&)".
-         *  In addition to invoking that, it is asserted that the given value is terminated or
-         *  type T is terminatable. For more information see this classes' general description.
+         * This constructor overloads the powerful templated constructor
+         * \ref aworx::lib::strings::String::String(const T&) "String::String(const T&)".
+         * In addition to invoking that, it is asserted that the given value is terminated or
+         * type T is terminatable. For more information see this classes' general description.
          *
          * @param src  The string to represent by this object.
          ******************************************************************************************/

@@ -50,8 +50,18 @@ class ProcessInfo
             /** The parent's process id as AString. (Unix like OS only.)   */
             String16    PPID;
 
-            /** The name of the process' executable. (Unix like OS only.)   */
-            String32    ExecName;
+            /** The name of the process.<br> Under GNU/Linux this is read from /proc/nnn/stat and may
+             *  differ from #ExecFileName. Under Windows OS, it is he same as field #ExecFileName.  */
+            AString     Name;
+
+            /** The path of the executable (if available to us)   */
+            AString     ExecFilePath;
+
+            /** The file name of the executable (excluding #ExecFilePath). Under GNU/Linux,
+             *  if we have no access to read that value, field #ExecFilePath will be empty
+             *  while this field is filled with #Name.
+             */
+            AString     ExecFileName;
 
             /** The command line which invoked this process.      */
             AString     CmdLine;
@@ -71,12 +81,15 @@ class ProcessInfo
     // #############################################################################################
     #if defined( _WIN32 )
         public:
-            String16    PID;        // already doxed above
+            String16    PID;            // fields already doxed above
+            AString     CmdLine;
+            AString     Name;
+            AString     ExecFilePath;
+            AString     ExecFileName;
 
-            AString     CmdLine;    // already doxed above
-
-            /** For console processes, this is the title displayed in the title bar. (Windows OS only.) */
+             /** For console processes, this is the title displayed in the title bar. (Windows OS only.) */
             AString     ConsoleTitle;
+
     #endif
 
     // we must not work with #elif here, as doxygen would not document the else part
@@ -153,12 +166,8 @@ class ProcessInfo
          *
          * @return A constant reference to a \c %ProcessInfo object representing the current process.
          ******************************************************************************************/
-        static const ProcessInfo&         Current()
-        {
-            if ( current.PID.IsEmpty() )
-                current.get(nullptr);
-            return current;
-        }
+        ALIB_API static
+        const ProcessInfo&         Current();
 };
 
 }} // namespace lib::system

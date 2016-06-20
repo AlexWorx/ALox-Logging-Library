@@ -30,7 +30,7 @@
 #define TESTCLASSNAME       CPP_ALox_Lox
 
 
-#include "aworx_unittests.hpp"
+#include "alib.unittests/aworx_unittests.hpp"
 
 using namespace std;
 using namespace ut_aworx;
@@ -53,7 +53,7 @@ void check_MemLogStartsWith( const aworx::TString& exp, ALIBUnitTesting& ut, Mem
     if (doLog)
         Log_Info("");
 
-    if( PathSeparator == '/' )
+    if( DirectorySeparator == '/' )
     {
         UT_TRUE( memlog.MemoryLog.StartsWith( exp, Case::Ignore ) );
     }
@@ -62,6 +62,25 @@ void check_MemLogStartsWith( const aworx::TString& exp, ALIBUnitTesting& ut, Mem
         String256 expCorrected( exp );
         expCorrected.SearchAndReplaceAll( "/", "\\"  );
         UT_TRUE( memlog.MemoryLog.StartsWith( expCorrected, Case::Ignore ) );
+    }
+
+    memlog.MemoryLog.Clear();
+}
+
+void check_MemLogContains( const aworx::TString& exp, ALIBUnitTesting& ut, MemoryLogger& memlog, bool doLog= true )
+{
+    if (doLog)
+        Log_Info("");
+
+    if( DirectorySeparator == '/' )
+    {
+        UT_TRUE( memlog.MemoryLog.IndexOf( exp, 0, Case::Ignore ) >=0 );
+    }
+    else
+    {
+        String256 expCorrected( exp );
+        expCorrected.SearchAndReplaceAll( "/", "\\"  );
+        UT_TRUE( memlog.MemoryLog.IndexOf( expCorrected, 0, Case::Ignore ) >=0 );
     }
 
     memlog.MemoryLog.Clear();
@@ -453,25 +472,22 @@ UT_METHOD(Log_ScopeInfoCacheTest)
     Log_AddDebugLogger();
 
     Log_Prune( MemoryLogger memLogger;  )
-    if( PathSeparator == '/' )
+    if( DirectorySeparator == '/' )
         { Log_Prune( memLogger.MetaInfo->Format=  "%Sp/%SF@";   ) }
     else
         { Log_Prune( memLogger.MetaInfo->Format=  "%Sp\\%SF@";  ) }
 
     Log_SetVerbosity( &memLogger, Verbosity::Verbose );
 
-    ScopeInfoCacheTest1(); check_MemLogStartsWith( "alox.unittests/ut_alox_lox.cpp"               , ut, memLogger, false );
-
-    ScopeInfoCacheTest2(); check_MemLogStartsWith( "alox.unittests/ut_alox_log_domains.cpp"       , ut, memLogger, false );
-    ScopeInfoCacheTest3(); check_MemLogStartsWith( "alox.unittests/ut_alox_log_rel.cpp"           , ut, memLogger, false );
-
-    ScopeInfoCacheTest2(); check_MemLogStartsWith( "alox.unittests/ut_alox_log_domains.cpp"       , ut, memLogger, false );
-    ScopeInfoCacheTest3(); check_MemLogStartsWith( "alox.unittests/ut_alox_log_rel.cpp"           , ut, memLogger, false );
-
-    ScopeInfoCacheTest4(); check_MemLogStartsWith( "alox.unittests/ut_alox_log_scopes.cpp"        , ut, memLogger, false );
-    ScopeInfoCacheTest5(); check_MemLogStartsWith( "alox.unittests/ut_alox_log_scopes_helper.cpp" , ut, memLogger, false );
-    ScopeInfoCacheTest6(); check_MemLogStartsWith( "alox.unittests/ut_alox_lox.cpp"               , ut, memLogger, false );
-    ScopeInfoCacheTest7(); check_MemLogStartsWith( "alox.unittests/ut_dox_tutorial.cpp"           , ut, memLogger, false );
+    ScopeInfoCacheTest1(); check_MemLogContains( "alox.unittests/ut_alox_lox.cpp"               , ut, memLogger, false );
+    ScopeInfoCacheTest2(); check_MemLogContains( "alox.unittests/ut_alox_log_domains.cpp"       , ut, memLogger, false );
+    ScopeInfoCacheTest3(); check_MemLogContains( "alox.unittests/ut_alox_log_rel.cpp"           , ut, memLogger, false );
+    ScopeInfoCacheTest2(); check_MemLogContains( "alox.unittests/ut_alox_log_domains.cpp"       , ut, memLogger, false );
+    ScopeInfoCacheTest3(); check_MemLogContains( "alox.unittests/ut_alox_log_rel.cpp"           , ut, memLogger, false );
+    ScopeInfoCacheTest4(); check_MemLogContains( "alox.unittests/ut_alox_log_scopes.cpp"        , ut, memLogger, false );
+    ScopeInfoCacheTest5(); check_MemLogContains( "alox.unittests/ut_alox_log_scopes_helper.cpp" , ut, memLogger, false );
+    ScopeInfoCacheTest6(); check_MemLogContains( "alox.unittests/ut_alox_lox.cpp"               , ut, memLogger, false );
+    ScopeInfoCacheTest7(); check_MemLogContains( "alox.unittests/ut_dox_tutorial.cpp"           , ut, memLogger, false );
 
     Log_RemoveDebugLogger();
     Log_RemoveLogger( &memLogger );
@@ -500,12 +516,14 @@ UT_METHOD(Log_SetSourcePathTrimRuleTest)
         Log_Prune( memLogger.MemoryLog._();   )
 
     #else
-        check_MemLogStartsWith( "/home"               , ut, memLogger );
+        #if !defined(ALOX_UNITTESTS_QMAKE_BUILD)
+            check_MemLogStartsWith( "/home"               , ut, memLogger );
+        #endif
     #endif
 
     Log_SetSourcePathTrimRule( "*"         , Inclusion::Include     );  // illegal rule, not stored (debug into)
     Log_SetSourcePathTrimRule( "**"        , Inclusion::Include     );  // illegal rule, not stored (debug into)
-    Log_SetSourcePathTrimRule( "*/src.cpp/", Inclusion::Include     );
+    Log_SetSourcePathTrimRule( "*/src.cpp/", Inclusion::Include     );  check_MemLogStartsWith( "alox.unittests@"     , ut, memLogger );
     Log_SetSourcePathTrimRule( "*"         , Inclusion::Include     );  // illegal rule, not stored (debug into)
     Log_SetSourcePathTrimRule( "**"        , Inclusion::Include     );  // illegal rule, not stored (debug into)
                                                                         check_MemLogStartsWith( "alox.unittests@"     , ut, memLogger );
@@ -519,14 +537,16 @@ UT_METHOD(Log_SetSourcePathTrimRuleTest)
     Log_SetSourcePathTrimRule( "*/src.cpp/", Inclusion::Exclude     );  check_MemLogStartsWith( "/src.cpp"            , ut, memLogger );
 
     Log_ClearSourcePathTrimRules( Inclusion::Include, false )
-    Log_SetSourcePathTrimRule( "*/src.cpp/", Inclusion::Exclude, -3 );  check_MemLogStartsWith( "lox/src.cpp"         , ut, memLogger );
+    #if !defined(ALOX_UNITTESTS_QMAKE_BUILD)
+        Log_SetSourcePathTrimRule( "*/src.cpp/", Inclusion::Exclude, -3 );  check_MemLogStartsWith( "lox/src.cpp"         , ut, memLogger );
 
-    Log_ClearSourcePathTrimRules( Inclusion::Include, false )
-    Log_SetSourcePathTrimRule( "*/src.cpp/*",Inclusion::Exclude, -3 );  check_MemLogStartsWith( "lox/src.cpp"         , ut, memLogger );
+        Log_ClearSourcePathTrimRules( Inclusion::Include, false )
+        Log_SetSourcePathTrimRule( "*/src.cpp/*",Inclusion::Exclude, -3 );  check_MemLogStartsWith( "lox/src.cpp"         , ut, memLogger );
 
-    // clear only local rule. (the above rule was global)
-    Log_ClearSourcePathTrimRules( Inclusion::Exclude, false )
-                                                                        check_MemLogStartsWith( "lox/src.cpp"         , ut, memLogger );
+        // clear only local rule. (the above rule was global)
+        Log_ClearSourcePathTrimRules( Inclusion::Exclude, false )
+                                                                      check_MemLogStartsWith( "lox/src.cpp"         , ut, memLogger );
+    #endif
 
     // set local rules
     Log_ClearSourcePathTrimRules( Inclusion::Include, false )
@@ -543,7 +563,9 @@ UT_METHOD(Log_SetSourcePathTrimRuleTest)
     Log_SetSourcePathTrimRule( "*/SRC.Cpp/", Inclusion::Exclude, 0, Case::Sensitive, Inclusion::Exclude );
 
     #if !defined(_WIN32)
-        check_MemLogStartsWith( "/home"               , ut, memLogger );
+        #if !defined(ALOX_UNITTESTS_QMAKE_BUILD)
+            check_MemLogStartsWith( "/home"               , ut, memLogger );
+        #endif
     #else
         Log_Info( ""); UT_TRUE( memLogger.MemoryLog.CharAt(1) == ':' );
     #endif
@@ -588,7 +610,7 @@ UT_METHOD(Log_SetSourcePathTrimRuleExternal)
                 lox.SetVerbosity( &ml, Verbosity::Verbose );
 
                 lox.Info( "" );
-                if( PathSeparator == '/' )
+                if( DirectorySeparator == '/' )
                     { UT_TRUE(ml.MemoryLog.StartsWith("cpp/") );  }
                 else
                     { UT_TRUE(ml.MemoryLog.StartsWith("cpp\\") ); }
@@ -652,23 +674,30 @@ UT_METHOD(Log_SetSourcePathTrimRuleExternal)
 
             // test
             Lox lox("T_LOX", false);
-            lox.SetScopeInfo(ALIB_SRC_INFO_PARAMS);
+            #undef LOX_LOX
+            #define LOX_LOX lox
 
-                Logger* consoleLogger= Lox::CreateConsoleLogger("CONSOLE");
-                lox.SetVerbosity( "CONSOLE" , Verbosity::Verbose );
-                lox.SetVerbosity( "CONSOLE" , Verbosity::Verbose, ALox::InternalDomains );
+            Logger* consoleLogger= Lox::CreateConsoleLogger("CONSOLE");
+            Lox_SetVerbosity( "CONSOLE" , Verbosity::Verbose );
+            Lox_SetVerbosity( "CONSOLE" , Verbosity::Verbose, ALox::InternalDomains );
 
-                MemoryLogger ml("TESTML");
-                lox.SetVerbosity( &ml, Verbosity::Verbose );
+            MemoryLogger ml("TESTML");
+            Lox_SetVerbosity( &ml, Verbosity::Verbose );
 
-                lox.Info( "" ); UT_EQ( "ox.unittests"  , ml.MemoryLog ); ml.MemoryLog._(); ml.AutoSizes.Reset();
+            Lox_Info( "" ); UT_EQ( "ox.unittests"  , ml.MemoryLog ); ml.MemoryLog._(); ml.AutoSizes.Reset();
 
-                ALIB::Config.RemovePlugin( &iniFile );
-                lox.RemoveLogger( &ml );
-                lox.RemoveLogger( "CONSOLE" );
-                delete consoleLogger;
 
-            lox.Release();
+            // overwrite with source priority
+            Lox_SetSourcePathTrimRule( "*alox.u", Inclusion::Exclude, 0, Case::Ignore, Inclusion::Exclude, "REPLACE_1/" );
+            Lox_Info( "" ); UT_EQ( "ox.unittests"  , ml.MemoryLog ); ml.MemoryLog._(); ml.AutoSizes.Reset();
+            Lox_SetSourcePathTrimRule( "*alox.u", Inclusion::Exclude, 0, Case::Ignore, Inclusion::Exclude, "REPLACE_2/", Lox::PrioProtected );
+            Lox_Info( "" ); UT_TRUE( ml.MemoryLog.StartsWith( "REPLACE_2/" ) ); ml.MemoryLog._(); ml.AutoSizes.Reset();
+
+
+            ALIB::Config.RemovePlugin( &iniFile );
+            Lox_RemoveLogger( &ml );
+            Lox_RemoveLogger( "CONSOLE" );
+            delete consoleLogger;
         }
 
         // ignore case

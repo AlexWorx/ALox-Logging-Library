@@ -68,14 +68,14 @@ namespace ut_cs_aworx_lox
 
             MemoryLogger checkCnt=  new MemoryLogger( "CHECK");
             Log.SetVerbosity( checkCnt, Verbosity.Warning, ALox.InternalDomains );
-    
+
             MemoryLogger mem1= new MemoryLogger( "MEM" );
             MemoryLogger mem2= new MemoryLogger( "MEM" );
-    
+
             Log.SetVerbosity( mem1,     Verbosity.Info ); UT_EQ( 0, checkCnt.CntLogs );
             Log.SetVerbosity( mem2,     Verbosity.Info ); UT_EQ( 1, checkCnt.CntLogs );
             Log.SetVerbosity( "XYZ",    Verbosity.Info ); UT_EQ( 2, checkCnt.CntLogs );
-               
+
             Log.RemoveLogger( mem2     );                 UT_EQ( 3, checkCnt.CntLogs );
             Log.RemoveLogger( mem1     );                 UT_EQ( 3, checkCnt.CntLogs );
             Log.RemoveLogger( mem1     );                 UT_EQ( 4, checkCnt.CntLogs );
@@ -89,17 +89,17 @@ namespace ut_cs_aworx_lox
         {
             Log.AddDebugLogger();
             Lox lox= new Lox( "ReleaseLox" );
-    
+
             UT_TRUE( Log.DebugLogger.GetSafeness() == Safeness.Unsafe );
-    
+
             lox.SetVerbosity( Log.DebugLogger , Verbosity.Verbose );
-    
+
             UT_TRUE( Log.DebugLogger.GetSafeness() == Safeness.Safe );
-    
+
             lox.RemoveLogger( Log.DebugLogger );
-    
+
             UT_TRUE( Log.DebugLogger.GetSafeness() == Safeness.Unsafe );
-    
+
             Log.RemoveDebugLogger();
         }
     }
@@ -147,12 +147,12 @@ namespace ut_cs_aworx_lox
         if( Path.DirectorySeparatorChar == '/' )
             check_MemLogStartsWith( "/home"               , memLogger );
         else
-        { 
-            Log.Info( ""); 
+        {
+            Log.Info( "");
             UT_TRUE( memLogger.MemoryLog.CharAt(1) == ':' );
             memLogger.MemoryLog._();
         }
-        
+
         Log.SetSourcePathTrimRule( "*"         , Inclusion.Include     );  // illegal rule, not stored (debug into)
         Log.SetSourcePathTrimRule( "**"        , Inclusion.Include     );  // illegal rule, not stored (debug into)
         Log.SetSourcePathTrimRule( "*/src.cs/" , Inclusion.Include     );  check_MemLogStartsWith( "alox.unittests@"     , memLogger );
@@ -193,14 +193,14 @@ namespace ut_cs_aworx_lox
              check_MemLogStartsWith( "/home"               , memLogger );
         else
         {
-            Log.Info( ""); 
+            Log.Info( "");
             UT_TRUE( memLogger.MemoryLog.CharAt(1) == ':' );
-        }   
+        }
 
         Log.RemoveDebugLogger();
         Log.RemoveLogger( memLogger );
     }
-    #endif 
+    #endif
 
     /** ********************************************************************************************
      * Log_SetSourcePathTrimRuleExternal
@@ -220,7 +220,7 @@ namespace ut_cs_aworx_lox
 
         // for the unit tests to reset, we need an extra lox to be able to clear the global rules
         // beforewe initialize our main lox
-        Lox clearLox= new Lox("ClearingRules"); 
+        Lox clearLox= new Lox("ClearingRules");
 
         // global rule
         clearLox.ClearSourcePathTrimRules( Inclusion.Include, false );
@@ -229,32 +229,32 @@ namespace ut_cs_aworx_lox
             String iniFileContents=
                  "[ALOX]\n"
                 +"TESTML_FORMAT= \"%Sp\"  \n"
-    
+
                 +"GLOBAL_SOURCE_PATH_TRIM_RULES=  *src.cs/   , true  ;     \\   \n"
-                             +"    /usr/lib/libzip/include/  , false, 9, true"
+                             +"    /usr/local/lib/  , false, 9, true, /usr/lib/"
                 +"\n"
                ;
 /* SNIPPIT FOR Dox
 //! [Man_SourcePathTrimming]
 [ALOX]
 GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ; \
-                               /usr/lib/libzip/include/  , false, 9, true
+                               /usr/local/lib/  , false, 9, true, /usr/lib/
 //! [Man_SourcePathTrimming]
 */
             String fileName= Environment.CurrentDirectory + "/Log_ConfigTrimRules.ini";
             StreamWriter file= new StreamWriter( fileName );
             file.Write( iniFileContents );
             file.Close();
-    
+
             IniFile iniFile= new IniFile( fileName );
             iniFile.ReadFile();
             //iniFile.WriteFile(); // temporarily enable to see what we have written above
 
             ALIB.Config.InsertPlugin( iniFile, Configuration.PrioIniFile );
-            
+
             // test
             Lox lox= new Lox("T_LOX", false );
-    
+
             lox.SetVerbosity( Lox.CreateConsoleLogger("CONSOLE") , Verbosity.Verbose );
             lox.SetVerbosity( "CONSOLE"                          , Verbosity.Verbose, ALox.InternalDomains );
 
@@ -262,7 +262,7 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
             lox.SetVerbosity(ml, Verbosity.Verbose );
 
             lox.Info( "" );  UT_EQ("alox.unittests", ml.MemoryLog ); ml.MemoryLog._(); ml.AutoSizes.Reset();
-    
+
             ALIB.Config.RemovePlugin( iniFile );
             lox.RemoveLogger( ml );
             lox.RemoveLogger( "CONSOLE" );
@@ -274,17 +274,17 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
             // create iniFile
             IniFile iniFile= new IniFile("*"); // don't read
             iniFile.Save( ALox.ConfigCategoryName, "TESTML_FORMAT","%Sp"   );
-            iniFile.Save( ALox.ConfigCategoryName, "T_LOX_SOURCE_PATH_TRIM_RULES", 
-                             "*;**;*alox.u*, incl ;*;**"   // default values, 0, ignore" 
+            iniFile.Save( ALox.ConfigCategoryName, "T_LOX_SOURCE_PATH_TRIM_RULES",
+                             "*;**;*alox.u*, incl ;*;**"   // default values, 0, ignore"
                                                            // the * will be removed
                                                            // two illegal rules before and after
                     );
             ALIB.Config.InsertPlugin( iniFile, Configuration.PrioIniFile );
-            
+
 
             // test
             Lox lox= new Lox("T_LOX", false );
-    
+
             lox.SetVerbosity( Lox.CreateConsoleLogger("CONSOLE") , Verbosity.Verbose );
             lox.SetVerbosity( "CONSOLE"                          , Verbosity.Verbose, ALox.InternalDomains );
 
@@ -292,7 +292,7 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
             lox.SetVerbosity(ml, Verbosity.Verbose );
 
             lox.Info( "" ); UT_EQ( "nittests"  , ml.MemoryLog ); ml.MemoryLog._(); ml.AutoSizes.Reset();
-    
+
             ALIB.Config.RemovePlugin( iniFile );
             lox.RemoveLogger( ml );
             lox.RemoveLogger( "CONSOLE" );
@@ -303,15 +303,15 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
             // create iniFile
             IniFile iniFile= new IniFile("*"); // don't read
             iniFile.Save( ALox.ConfigCategoryName, "TESTML_FORMAT","%Sp"   );
-            iniFile.Save( ALox.ConfigCategoryName, "T_LOX_SOURCE_PATH_TRIM_RULES", 
-                             "*alox.u, excl, 2, sens"  
+            iniFile.Save( ALox.ConfigCategoryName, "T_LOX_SOURCE_PATH_TRIM_RULES",
+                             "*alox.u, excl, 2, sens"
                     );
             ALIB.Config.InsertPlugin( iniFile, Configuration.PrioIniFile );
-            
+
 
             // test
             Lox lox= new Lox("T_LOX", false );
-    
+
             lox.SetVerbosity( Lox.CreateConsoleLogger("CONSOLE") , Verbosity.Verbose );
             lox.SetVerbosity( "CONSOLE"                          , Verbosity.Verbose, ALox.InternalDomains );
 
@@ -319,7 +319,13 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
             lox.SetVerbosity(ml, Verbosity.Verbose );
 
             lox.Info( "" ); UT_EQ( "ox.unittests"  , ml.MemoryLog ); ml.MemoryLog._(); ml.AutoSizes.Reset();
-    
+
+            // overwrite with source priority
+            lox.SetSourcePathTrimRule( "*alox.u", Inclusion.Exclude, 0, Case.Ignore, Inclusion.Exclude, "REPLACE_1/" );
+            lox.Info( "" ); UT_EQ( "ox.unittests"  , ml.MemoryLog ); ml.MemoryLog._(); ml.AutoSizes.Reset();
+            lox.SetSourcePathTrimRule( "*alox.u", Inclusion.Exclude, 0, Case.Ignore, Inclusion.Exclude, "REPLACE_2/", Lox.PrioProtected );
+            lox.Info( "" ); UT_TRUE( ml.MemoryLog.StartsWith( "REPLACE_2/" ) ); ml.MemoryLog._(); ml.AutoSizes.Reset();
+
             ALIB.Config.RemovePlugin( iniFile );
             lox.RemoveLogger( ml );
             lox.RemoveLogger( "CONSOLE" );
@@ -331,15 +337,15 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
             // create iniFile
             IniFile iniFile= new IniFile("*"); // don't read
             iniFile.Save( ALox.ConfigCategoryName, "TESTML_FORMAT","%Sp"   );
-            iniFile.Save( ALox.ConfigCategoryName, "T_LOX_SOURCE_PATH_TRIM_RULES", 
-                             "*aLOX.U, exc, 2, ign"  
+            iniFile.Save( ALox.ConfigCategoryName, "T_LOX_SOURCE_PATH_TRIM_RULES",
+                             "*aLOX.U, exc, 2, ign"
                     );
             ALIB.Config.InsertPlugin( iniFile, Configuration.PrioIniFile );
-            
+
 
             // test
             Lox lox= new Lox("T_LOX", false );
-    
+
             lox.SetVerbosity( Lox.CreateConsoleLogger("CONSOLE") , Verbosity.Verbose );
             lox.SetVerbosity( "CONSOLE"                          , Verbosity.Verbose, ALox.InternalDomains );
 
@@ -347,7 +353,7 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
             lox.SetVerbosity(ml, Verbosity.Verbose );
 
             lox.Info( "" ); UT_EQ( "ox.unittests"  , ml.MemoryLog ); ml.MemoryLog._(); ml.AutoSizes.Reset();
-    
+
             ALIB.Config.RemovePlugin( iniFile );
             lox.RemoveLogger( ml );
             lox.RemoveLogger( "CONSOLE" );
@@ -358,26 +364,26 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
             // create iniFile
             IniFile iniFile= new IniFile("*"); // don't read
             iniFile.Save( ALox.ConfigCategoryName, "TESTML_FORMAT","%Sp"   );
-            iniFile.Save( ALox.ConfigCategoryName, "T_LOX_SOURCE_PATH_TRIM_RULES", 
-                             "*aLOX.U, excl, 2, sens"  
+            iniFile.Save( ALox.ConfigCategoryName, "T_LOX_SOURCE_PATH_TRIM_RULES",
+                             "*aLOX.U, excl, 2, sens"
                     );
             ALIB.Config.InsertPlugin( iniFile, Configuration.PrioIniFile );
-            
+
 
             // test
             Lox lox= new Lox("T_LOX", false );
-    
+
             lox.SetVerbosity( Lox.CreateConsoleLogger("CONSOLE") , Verbosity.Verbose );
             lox.SetVerbosity( "CONSOLE"                          , Verbosity.Verbose, ALox.InternalDomains );
 
             MemoryLogger ml= new MemoryLogger("TESTML");
             lox.SetVerbosity(ml, Verbosity.Verbose );
 
-            lox.Info( "" ); 
+            lox.Info( "" );
             if( Path.DirectorySeparatorChar == '/' )
-                UT_EQ( "src.cs/alox.unittests"  , ml.MemoryLog ); 
+                UT_EQ( "src.cs/alox.unittests"  , ml.MemoryLog );
             else
-                UT_EQ( "src.cs\\alox.unittests"  , ml.MemoryLog ); 
+                UT_EQ( "src.cs\\alox.unittests"  , ml.MemoryLog );
 
             ml.MemoryLog._(); ml.AutoSizes.Reset();
             ALIB.Config.RemovePlugin( iniFile );
@@ -577,7 +583,7 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
     #endif
     public void Log_AssertAndIf()
     {
-        #if ALOX_DBG_LOG 
+        #if ALOX_DBG_LOG
             UT_INIT();
 
             Log.AddDebugLogger();

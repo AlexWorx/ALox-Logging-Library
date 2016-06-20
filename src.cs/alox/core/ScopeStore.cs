@@ -320,12 +320,16 @@ public class ScopeStore<T>
                 languageKey._( separators[1] );
 
             // key: filename
-            languageKey._( scopeInfo.GetFileName() )
+            languageKey._( '-' ) // we need a prefix to have all classes share one start node which is not
+                                 // a separator-node
+                       ._( scopeInfo.GetFileName() )
                        ._( separators[0] );
 
             // key: method
             if ( actScope == Scope.Method )
-                languageKey._( scopeInfo.GetMethod() )
+                languageKey._( '-' ) // we need a prefix to have all methods share one start node which is not
+                                     // a separator-node
+                           ._( scopeInfo.GetMethod() )
                            ._( separators[0] );
 
             actPathMapNode= languageStore.Get( languageKeySubstr.Set(languageKey), create, separators );

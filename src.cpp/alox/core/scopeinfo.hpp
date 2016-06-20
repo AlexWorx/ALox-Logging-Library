@@ -81,11 +81,13 @@ class ScopeInfo
         /**  Defines portions of source paths to be ignored  */
         struct SourcePathTrimRule
         {
-            AString    Path;           ///< The path string
-            bool       IsPrefix;       ///< true if path was not starting with '\*' when provided.
-            Inclusion  IncludeString;  ///< Denotes if #Path itself should be included when trimmed
-            Case       Sensitivity;    ///< The sensitivity of the comparison when trimming
-            int        TrimOffset;     ///< Additional offset of the trim position
+            AString    Path;             ///< The path string
+            bool       IsPrefix;         ///< true if path was not starting with '\*' when provided.
+            Inclusion  IncludeString;    ///< Denotes if #Path itself should be included when trimmed
+            Case       Sensitivity;      ///< The sensitivity of the comparison when trimming
+            int        TrimOffset;       ///< Additional offset of the trim position
+            AString    TrimReplacement;  ///< Optional replacement string for trimmed paths'.
+            int        Priority;         ///< The priority of the rule. Depends on origin: source code, config...)
         };
 
         /**  List of trim definitions for portions of source paths to be ignored  */
@@ -150,14 +152,34 @@ class ScopeInfo
             /** Trimmed path of source file  (evaluated)  **/
             String                                  trimmedPath;
 
+            /** Prefix for the trimmed path taken from trim rule. Has to be added on writing
+             *  the trimmed path **/
+            String                                  trimmedPathPrefix;
+
             /** File name (evaluated)  **/
             String                                  name;
 
             /** File name without extension (evaluated)  **/
             String                                  nameWOExt;
 
-            /** index of last path separator in #origFile **/
-            int                                     origFilePathSeparator;
+            /** Index of last path separator in #origFile **/
+            int                                     origFilePathLength;
+
+            /** Constructor **/
+            SourceFile() {  Set( nullptr ); }
+
+            /** Sets a new path and clears other values.
+             *  @param sourceFile  The source file that we represent. **/
+            void Set( const TString& sourceFile )
+            {
+                origFile=           sourceFile;
+                origFilePathLength= -2;
+                fullPath=           nullptr;
+                trimmedPath=        nullptr;
+                name=               nullptr;
+                nameWOExt=          nullptr;
+            }
+
         };
 
 
@@ -199,8 +221,6 @@ class ScopeInfo
      // public interface
      // #############################################################################################
     public:
-
-
         /** ************************************************************************************
          * Stores C++ specific caller parameters and some other values like the time stamp.
          * Also, flags thread information as not received, yet.
@@ -216,27 +236,30 @@ class ScopeInfo
         ALIB_API
         void Set ( const TString& source, int lineNumber, const TString& method, Thread* thread );
 
-
         /** ****************************************************************************************
          * Does the job for
          * \ref aworx::lox::Lox::SetSourcePathTrimRule    "Lox::SetSourcePathTrimRule" and
          * \ref aworx::lox::Lox::ClearSourcePathTrimRules "Lox::ClearSourcePathTrimRules".
          *
-         * @param path          The path to search for. If not starting with <c> '*'</c>, a prefix
-         *                      is searched.
-         * @param includeString Determines if \p path should be included in the trimmed path or not.
-         * @param trimOffset    Adjusts the portion of \p path that is trimmed. 999999 to clear!
-         * @param sensitivity   Determines if the comparison of \p path with a source files' path
-         *                      is performed case sensitive or not.
-         * @param global        If Inclusion::Exclude, only this instance is affected. Otherwise
-         *                      the setting applies to all instances of class \b Lox.
-         ******************************************************************************************/
+         * @param path            The path to search for. If not starting with <c> '*'</c>,
+         *                        a prefix is searched.
+         * @param includeString   Determines if \p path should be included in the trimmed path or not.
+         * @param trimOffset      Adjusts the portion of \p path that is trimmed. 999999 to clear!
+         * @param sensitivity     Determines if the comparison of \p path with a source files' path
+         *                        is performed case sensitive or not.
+         * @param global          If Inclusion::Exclude, only this instance is affected. Otherwise
+         *                        the setting applies to all instances of class \b Lox.
+         * @param trimReplacement Replacement string for trimmed portion of the path.
+         * @param priority        The priority of the setting.
+        ******************************************************************************************/
         ALIB_API
-        void      SetSourcePathTrimRule( const TString& path,              Inclusion includeString,
+        void      SetSourcePathTrimRule( const TString& path,
+                                         Inclusion      includeString,
                                          int            trimOffset,
                                          Case           sensitivity,
-                                         Inclusion      global );
-
+                                         Inclusion      global,
+                                         const String&  trimReplacement,
+                                         int            priority                );
 
         /** ****************************************************************************************
          * Receives the name of the \b Lox we are belonging to (this is a 1:1 relationship).
@@ -268,7 +291,7 @@ class ScopeInfo
         {
             if( actual->fullPath.IsNull() )
             {
-                int idx= getPathSeparator();
+                int idx= getPathLength();
                 if( idx >= 0 )
                     actual->fullPath= String( actual->origFile.Buffer(), idx );
                 else
@@ -281,15 +304,17 @@ class ScopeInfo
         /** ****************************************************************************************
          * Receives the path of the source file, trimmed according to trim-information provided
          * with #SetSourcePathTrimRule or detected according to #AutoDetectTrimableSourcePath.
+         * @param target The target string to append the trimmed path to.
          * @return The trimmed path.
          ******************************************************************************************/
         inline
-        const String GetTrimmedPath()
+        void GetTrimmedPath( AString& target )
         {
             if( actual->trimmedPath.IsNull() )
                 trimPath();
 
-            return actual->trimmedPath;
+            target._( actual->trimmedPathPrefix )
+                  ._(actual->trimmedPath );
         }
 
         /** ****************************************************************************************
@@ -301,7 +326,7 @@ class ScopeInfo
         {
             if( actual->name.IsNull() )
             {
-                int idx= getPathSeparator();
+                int idx= getPathLength();
                 if( idx >= 0 )
                     actual->name= String( actual->origFile.Buffer() + idx + 1,
                                                            actual->origFile.Length() - idx - 1 );
@@ -421,11 +446,11 @@ class ScopeInfo
          * @return The index of the path separator in SourceFile::origFile.
          **************************************************************************************/
         inline
-        int             getPathSeparator()
+        int             getPathLength()
         {
-            if( actual->origFilePathSeparator == -1 )
+            if( actual->origFilePathLength == -1 )
                 return -1;
-            return ( actual->origFilePathSeparator= actual->origFile.LastIndexOf( aworx::PathSeparator ) );
+            return ( actual->origFilePathLength= actual->origFile.LastIndexOf( aworx::DirectorySeparator ) );
         }
 }; // class ScopeInfo
 

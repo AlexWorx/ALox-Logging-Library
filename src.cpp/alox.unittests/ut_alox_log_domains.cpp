@@ -21,7 +21,7 @@
 #endif
 
 #define TESTCLASSNAME       CPP_ALox_Log_Domains
-#include "aworx_unittests.hpp"
+#include "alib.unittests/aworx_unittests.hpp"
 
 using namespace std;
 using namespace ut_aworx;
@@ -249,7 +249,7 @@ UT_METHOD(Log_DomainSubstitutions_IniFile)
 {
     UT_INIT();
 
-    // create ini file
+    // create INI file
     const char* iniFileContents=
         "[ALOX]\n"
         "TESTMEMLOGGER_FORMAT= \"<%D>\"  \n"
@@ -336,8 +336,8 @@ UT_METHOD(Log_Domain_IniFile)
         lox.SetScopeInfo(ALIB_SRC_INFO_PARAMS);
             Logger* consoleLogger= Lox::CreateConsoleLogger("CONSOLE");
 
-            lox.SetVerbosity( "CONSOLE", Verbosity::Verbose );
-            lox.SetVerbosity( "CONSOLE"                           , Verbosity::Verbose, ALox::InternalDomains );
+            lox.SetVerbosity( consoleLogger, Verbosity::Verbose, "CONSOLE" );
+            lox.SetVerbosity( "CONSOLE"    , Verbosity::Verbose, ALox::InternalDomains );
 
             // pre-create one of the domains to test if loggers added later get config for existing domains
             lox.Verbose( "DOM_INFO"     , "test" );
@@ -428,7 +428,7 @@ UT_METHOD(Log_Domain_IniFile)
             lox.Info   ( "/A/B"         , "test" );    UT_EQ(  1, ml.CntLogs ); ml.CntLogs= 0;
             lox.Verbose( "/A/C"         , "test" );    UT_EQ(  1, ml.CntLogs ); ml.CntLogs= 0;
 
-            //lox.LogConfig( "", Verbosity::Info, "Configuration now is:" ); ml.MemoryLog._(); ml.AutoSizes.Reset();
+            //lox.LogConfig( "/CONSOLE", Verbosity::Info, "Configuration now is:" ); ml.MemoryLog._(); ml.AutoSizes.Reset();
 
             ALIB::Config.RemovePlugin( &iniFile );
             lox.RemoveLogger( &ml );

@@ -108,8 +108,8 @@ bool ALox::VerifyCompilationFlags( uint32_t flags )
     cout << std::left << setw(25) <<  "Symbol" << '|' << setw(5) << " Lib" <<'|' << " Comp. Unit"  <<endl;
     for( auto& p : CompilationFlagMeanings )
     {
-        cout << setw(25) <<  p.first << '|' << setw(5) << (flags                  & p.second  ? " On" : " Off")
-                                     << "|" << setw(5) << (ALIB::CompilationFlags & p.second  ? " On" : " Off")
+        cout << setw(25) <<  p.first << '|' << setw(5) << (ALox::CompilationFlags & p.second  ? " On" : " Off")
+                                     << "|" << setw(5) << (flags                  & p.second  ? " On" : " Off")
              << endl;
     }
 
@@ -267,6 +267,8 @@ void     ALox::Register( Lox* lox, ContainerOp operation )
 
 void        ALox::Reset()
 {
+    Lox("trimruleresetlox", false).Reset(); // this clears the global source path trim rules
+
     #if defined(ALOX_DBG_LOG)
         if (Log::DebugLogger != nullptr )
             Log_RemoveDebugLogger();

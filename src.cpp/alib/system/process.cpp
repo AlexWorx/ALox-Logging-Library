@@ -6,8 +6,17 @@
 // #################################################################################################
 #include "alib/stdafx_alib.h"
 
+
+#if !defined (HPP_ALIB_STRINGS_TOKENIZER)
+    #include "alib/strings/tokenizer.hpp"
+#endif
+
 #if !defined (HPP_ALIB_SYSTEM_PROCESSINFO)
     #include "alib/system/process.hpp"
+#endif
+
+#if !defined (HPP_ALIB_THREADS_THREADLOCK)
+    #include "alib/threads/threadlock.hpp"
 #endif
 
 #if defined (__GLIBCXX__)
@@ -22,6 +31,7 @@
     #include <fstream>
 #endif
 
+
 using namespace std;
 
 namespace aworx {
@@ -31,6 +41,20 @@ namespace                   system {
 // static instance representing current process
 ProcessInfo    ProcessInfo::current;
 
+const ProcessInfo&    ProcessInfo::Current()
+{
+    if( current.PID.IsEmpty()  )
+    {
+        // Own global lock and check if still nulled.
+        // (If not, this is a very unlikely parallel access )
+        OWN( ALIB::Lock );
+        if ( ProcessInfo::current.PID.IsEmpty() )
+            ProcessInfo::current.get(nullptr);
+    }
+    return current;
+}
+
+
 #if defined(__GLIBC__) && defined(__unix__)
     bool readProcFile( const TString& fileName, AString& result  )
     {
@@ -39,9 +63,11 @@ ProcessInfo    ProcessInfo::current;
         string buffer;
         getline(file, buffer);
 
-        // there might be double zeros at the end of the string. This is why we are appending
-        // the string using its c_str method instead of passing the string (which would be more
-        // efficient otherwise).
+        // spaces are replaced with '\0'. Revert this.
+        for( int i= buffer.size() -2 ; i>=0 ; --i )
+            if ( buffer[i] == '\0' )
+                buffer[i]= ' ';
+
         result.Clear()._( buffer.c_str() );
         file.close();
         return true;
@@ -50,24 +76,13 @@ ProcessInfo    ProcessInfo::current;
     bool ProcessInfo::getStatField( int fieldNo, AString& result )
     {
         result.Clear();
+        Tokenizer tok( Stat, ' ');
+        bool retval= true;
+        while ( --fieldNo >= 0 && (retval= tok.HasNext()) )
+            tok.Next();
 
-        // search startidx
-        int startIdx= 0;
-        for ( int i= 0; i < fieldNo; i++ )
-        {
-            startIdx= Stat.IndexOf( ' ', startIdx + 1 );
-            if( startIdx < 0 )
-                return false;
-        }
-        startIdx++;
-
-        // search end
-        int endIdx=  Stat.IndexOf( ' ', startIdx );
-        if ( endIdx < 0)
-            endIdx= Stat.Length();
-
-        result._<false>( Stat, startIdx, endIdx - startIdx );
-        return true;
+        result._( tok.Next() );
+        return retval;
     }
 
     bool ProcessInfo::get( const String& pid )
@@ -86,32 +101,52 @@ ProcessInfo    ProcessInfo::current;
         PID.Clear()._( newPID );
 
         // cmdline, stat from proc
+        String64 procDir("/proc/");  procDir._<false>( PID )._( '/' );
+        int      procPathLen= procDir.Length();
         {
-            String64 procDir("/proc/");
-            procDir._<false>( PID )._( '/' );
 
             // read things
-            int procPathLen= procDir.Length();   procDir << "cmdline";
-            readProcFile( procDir,  CmdLine  );
-            procDir.SetLength(procPathLen);      procDir << "stat";
-            readProcFile( procDir,  Stat     );
+            procDir << "cmdline"; readProcFile( procDir,  CmdLine  );  procDir.SetLength(procPathLen);
+            procDir << "stat";    readProcFile( procDir,  Stat     );  procDir.SetLength(procPathLen);
         }
 
         getStatField( 3, PPID );
-        getStatField( 1, ExecName );
-        AString& execName= ExecName;
-        ALIB_ASSERT_ERROR(                 execName.IsEmpty()
-                                ||   (     execName.Length() >= 2
-                                        && execName.CharAtStart<false>()=='('
-                                        && execName.CharAtEnd  <false>()==')' ),
+        getStatField( 1, Name );
+        ALIB_ASSERT_ERROR(                 Name.IsEmpty()
+                                ||   (     Name.Length() >= 2
+                                        && Name.CharAtStart<false>()=='('
+                                        && Name.CharAtEnd  <false>()==')' ),
                                 "Error reading process Info" )
 
-        if ( execName.CharAtEnd  () == ')' ) execName.DeleteEnd  <false>( 1 );
-        if ( execName.CharAtStart() == '(' ) execName.DeleteStart<false>( 1 );
-
+        if ( Name.CharAtEnd  () == ')' ) Name.DeleteEnd  <false>( 1 );
+        if ( Name.CharAtStart() == '(' ) Name.DeleteStart<false>( 1 );
         getStatField( 2, StatState );
         getStatField( 4, statPGRP );
 
+        // get executable path and name
+        ExecFileName._();
+        ExecFilePath._();
+
+        procDir << "exe";
+            char buffer[2048];
+            ssize_t length= readlink( procDir.ToCString(), buffer, 2048 );
+        procDir.SetLength(procPathLen);
+
+        if( length > 0 )
+        {
+            ExecFilePath.Append( buffer, length );
+            int idx= ExecFilePath.LastIndexOf( '/' );
+            ALIB_ASSERT_ERROR( idx>= 0,
+                                String256() << "Executable path does not contain directory separator character: "
+                                            << ExecFilePath );
+            ExecFileName._( ExecFilePath, idx + 1 );
+            ExecFilePath.SetLength( idx );
+        }
+        else
+        {
+            // obviously no rights to read the link. We use the process name
+            ExecFileName._( Name );
+        }
         return true;
     }
 
@@ -126,10 +161,25 @@ ProcessInfo    ProcessInfo::current;
         DWORD wPID= GetCurrentProcessId();
         PID    .Clear()._( (int)  wPID          );
 
+
         // get command line
-        char buf[256];
-        GetModuleFileNameA( NULL, buf, 256 );
-        CmdLine.Clear()._( buf );
+        CmdLine._()._( GetCommandLine() );
+
+        // get executable filename and path
+        ExecFileName._();
+        ExecFilePath._();
+        Name._();
+
+
+        char buf[MAX_PATH];
+        GetModuleFileNameA( NULL, buf, MAX_PATH );
+        ExecFilePath._()._( (const char*) buf );
+        int idx= ExecFilePath.LastIndexOf( '\\' );
+        ALIB_ASSERT_ERROR( idx>= 0,
+                            String256() << "Executable path does not contain directory separator character: "
+                                        << ExecFilePath );
+        Name= ExecFileName._( ExecFilePath, idx + 1 );
+        ExecFilePath.SetLength( idx );
 
         // get console title
         STARTUPINFOA startupInfo;

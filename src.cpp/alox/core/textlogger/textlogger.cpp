@@ -11,7 +11,9 @@
 #if !defined (HPP_ALIB_SYSTEM_DIRECTORY)
     #include "alib/system/directory.hpp"
 #endif
-
+#if !defined (HPP_ALIB_SYSTEM_PROCESSINFO)
+    #include "alib/system/process.hpp"
+#endif
 #if !defined (HPP_ALOX)
     #include "alox/alox.hpp"
 #endif
@@ -189,9 +191,11 @@ int MetaInfo::processVariable( TextLogger&        logger,
 
                 case 'p':   // Sp: trimmed path
                 {
-                    val= scope.GetTrimmedPath();
-                    if ( val.IsEmpty() )
-                        val= NoSourceFileInfo;
+                    int previousLength= dest.Length();
+                    scope.GetTrimmedPath( dest );
+                    if( dest.Length() != previousLength )
+                        return 0;
+                    val= NoSourceFileInfo;
                 } break;
 
                 case 'F':   // file name
@@ -271,7 +275,7 @@ int MetaInfo::processVariable( TextLogger&        logger,
                 // and b) a DateTime object, if the format is the unchanged standard. And it is faster anyhow.
                 if ( TimeOfDayFormat.Equals( "HH:mm:ss" ) )
                 {
-                    dest ._NC( Format::Int32(callerDateTime.Hour,    2) )._NC( ':' )
+                    dest._NC( Format::Int32(callerDateTime.Hour,    2) )._NC( ':' )
                         ._NC( Format::Int32(callerDateTime.Minute,  2) )._NC( ':' )
                         ._NC( Format::Int32(callerDateTime.Second,  2) );
                 }
@@ -284,14 +288,20 @@ int MetaInfo::processVariable( TextLogger&        logger,
             // %TC: Time elapsed since created
             else if ( c2 == 'C' )
             {
-                TickSpan elapsed( scope.GetTimeStamp(), logger.TimeOfCreation );
+                Ticks elapsedTime( scope.GetTimeStamp() );
+                elapsedTime.Sub( logger.TimeOfCreation );
 
-                if ( elapsed.Days  > 0 )    dest._NC( elapsed.Days  )._NC( TimeElapsedDays );
-                if ( elapsed.Hours > 0 )    dest._NC( elapsed.Hours )._NC( ':' );
+                if( MaxElapsedTime.Raw() < elapsedTime.Raw() )
+                    MaxElapsedTime.Set( elapsedTime );
 
-                dest._NC( Format::Int32(elapsed.Minutes,       2) )._NC( ':' )
-                   ._NC( Format::Int32(elapsed.Seconds,       2) )._NC( '.' )
-                   ._NC( Format::Int32(elapsed.Milliseconds,  3) );
+                int       maxElapsedSecs= MaxElapsedTime.InSeconds();
+                TickSpan  elapsed( elapsedTime );
+
+                if ( maxElapsedSecs >= 60*60*24 )  dest._NC( elapsed.Days  )._NC( TimeElapsedDays );
+                if ( maxElapsedSecs >= 60*60    )  dest._NC( Format::Int32(elapsed.Hours  ,  maxElapsedSecs >= 60*60*10 ?  2 : 1 ) )._NC( ':' );
+                if ( maxElapsedSecs >= 60       )  dest._NC( Format::Int32(elapsed.Minutes,  maxElapsedSecs >= 10*60    ?  2 : 1 ) )._NC( ':' );
+                dest._NC( Format::Int32(elapsed.Seconds,  maxElapsedSecs > 9 ? 2 : 1)          )._NC( '.' );
+                dest._NC( Format::Int32(elapsed.Milliseconds,  3) );
             }
 
             // %TL: Time elapsed since last log call
@@ -345,7 +355,7 @@ int MetaInfo::processVariable( TextLogger&        logger,
 
         case 'P':
         {
-            dest._NC( System::GetProcessName() );
+            dest._NC( ProcessInfo::Current().Name );
             return 0;
         }
 
@@ -568,7 +578,7 @@ TextLogger::TextLogger( const String& name, const String& typeName, bool  usesSt
     // evaluate config variable <name>_FORMAT / <typeName>_FORMAT
     {
         String64    variableName( name ); variableName._( "_FORMAT" );
-        String128   result;
+        String256   result;
         if ( ALIB::Config.Get( ALox::ConfigCategoryName, variableName, result ) == 0 )
         {
             variableName._()._( typeName )._( "_FORMAT" );
@@ -576,9 +586,36 @@ TextLogger::TextLogger( const String& name, const String& typeName, bool  usesSt
         }
 
         if( result.IsNotEmpty() )
-            MetaInfo->Format._()._( result );
-    }
+        {
+            MetaInfo->Format._();
+            Tokenizer tok;
 
+            // check if the format string starts with a quotation mark and a second quotation exists.
+            int formatQuotationLeft=  result.IndexOf( '\"' );
+            int formatQuotationRight= formatQuotationLeft >=0 ? result.LastIndexOf( '\"' ) : -1;
+
+            // quoted format string
+            if ( formatQuotationLeft < formatQuotationRight )
+            {
+                MetaInfo->Format._( result, formatQuotationLeft + 1, formatQuotationRight - formatQuotationLeft - 1 );
+                tok.Set( String( result, formatQuotationRight + 1 ), ',' );
+                tok.Next(); // consume format, which we already read
+            }
+
+            // normal unquoted read
+            else
+            {
+                tok.Set( result, ',' );
+                MetaInfo->Format._( tok.Next() );
+            }
+
+            // read other values
+            if( tok.HasNext() ) MetaInfo->VerbosityError  ._()._( tok.Next() );
+            if( tok.HasNext() ) MetaInfo->VerbosityWarning._()._( tok.Next() );
+            if( tok.HasNext() ) MetaInfo->VerbosityInfo   ._()._( tok.Next() );
+            if( tok.HasNext() ) MetaInfo->VerbosityVerbose._()._( tok.Next() );
+        }
+    }
 }
 
 TextLogger::~TextLogger()
@@ -611,6 +648,15 @@ int   TextLogger::AddAcquirer( ThreadLock* newAcquirer )
             AutoSizes.Import( Substring(autoSizes) );
     }
 
+    // import "max elapsed time" from configuration
+    {
+        // get auto sizes from last session
+        String64 maxElapsedStr;
+        String64 variableName( name ); variableName._( "_MAX_ELAPSED_TIME" );
+        if( ALIB::Config.Get( ALox::ConfigCategoryName, variableName, maxElapsedStr ) != 0 )
+            MetaInfo->MaxElapsedTime.SetRaw( maxElapsedStr.ToLong() );
+    }
+
     // call parents' implementation
     return Logger::AddAcquirer( newAcquirer );
 }
@@ -634,9 +680,20 @@ int   TextLogger::RemoveAcquirer( ThreadLock* acquirer )
     {
         String64 autoSizes;
         String64 variableName( name ); variableName._( "_AUTO_SIZES" );
+        String128 comment( "Auto size values of last run of Logger '"); comment._( name )._('\'');
         AutoSizes.Export( autoSizes );
-        ALIB::Config.Save( ALox::ConfigCategoryName, variableName, autoSizes,
-                            "Auto size values of last run" );
+        ALIB::Config.Save( ALox::ConfigCategoryName, variableName, autoSizes, comment   );
+    }
+
+    // export "max elapsed time" to configuration
+    {
+        String64 maxElapsedStr;
+        String64 variableName( name ); variableName._( "_MAX_ELAPSED_TIME" );
+        String128 comment( "Maximum elapsed time of all runs of Logger '");
+                  comment._( name )._("'\n(To reset elapsed time display width, set this to 0 manually)");
+
+        maxElapsedStr._( MetaInfo->MaxElapsedTime.Raw() );
+        ALIB::Config.Save( ALox::ConfigCategoryName, variableName, maxElapsedStr, comment );
     }
 
 

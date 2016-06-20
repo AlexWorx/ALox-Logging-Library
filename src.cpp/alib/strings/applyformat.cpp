@@ -40,6 +40,9 @@ template<>  int ApplyTo( AString& target, const Format::Tab& tab)
             // if new line has more than one character (windows) we have to now search the first
             // character that is not in newline
             reference= target.IndexOfAny<false>( NewLine, Inclusion::Exclude, reference );
+            if (reference < 0 )
+                reference= target.Length();
+
         }
     }
     int length=   target.Length();

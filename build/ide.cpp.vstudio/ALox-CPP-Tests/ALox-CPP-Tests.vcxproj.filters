@@ -48,9 +48,6 @@
     <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_strings_tokenizer.cpp">
       <Filter>tests.alib</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_system_environment.cpp">
-      <Filter>tests.alib</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_threads.cpp">
       <Filter>tests.alib</Filter>
     </ClCompile>
@@ -95,6 +92,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_dox_manual.cpp">
       <Filter>tests.alox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_system.cpp">
+      <Filter>tests.alib</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

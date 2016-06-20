@@ -17,6 +17,7 @@ import com.aworx.lib.ALIB;
 import com.aworx.lib.enums.Phase;
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.CString;
+import com.aworx.lib.strings.Tokenizer;
 import com.aworx.lib.threads.ThreadLock;
 import com.aworx.lox.ALox;
 import com.aworx.lox.ESC;
@@ -89,12 +90,17 @@ public abstract class TextLogger extends Logger
         public    MetaInfo                  metaInfo                    = new MetaInfo();
 
         /**
-         *  Holds a list of values for auto tab positions and field sizes.
-         *  For each requested value, a corresponding array field is created on the fly.
-         *  If the format string get's changed and different (new) auto values should be used, then
-         *  this field should be reset after setting the new format string.
-         *  The other way round, it is also possible to preset set minimum values for tabs and field
-         *  sizes and hence avoid the columns growing during the lifetime of the Logger.
+         * Holds a list of values for auto tab positions and field sizes.
+         * For each requested value, a corresponding array field is created on the fly.
+         * If the format string get's changed and different (new) auto values should be used, then
+         * this field should be reset after setting the new format string.
+         * The other way round, it is also possible to preset set minimum values for tabs and field
+         * sizes and hence avoid the columns growing during the lifetime of the Logger.
+         *
+         * This field will be read from the 
+         * configuration variable [ALOX_LOGGERNAME_AUTO_SIZES](../group__GrpALoxConfigVars.html)
+         * when the \b %TextLogger that we belong to is attached to a \b %Lox and written back 
+         * on removal.
          */
         public    AutoSizes                 autoSizes                   = new AutoSizes();
 
@@ -176,7 +182,36 @@ public abstract class TextLogger extends Logger
                 }
 
                 if( result.isNotEmpty() )
-                    metaInfo.format._()._( result );
+                {
+                    metaInfo.format._();
+                    Tokenizer tok= new Tokenizer();
+        
+                    // check if the format string starts with a quotation mark and a second quotation exists.
+                    int formatQuotationLeft=  result.indexOf( '\"' );
+                    int formatQuotationRight= formatQuotationLeft >=0 ? result.lastIndexOf( '\"' ) : -1;
+        
+                    // quoted format string
+                    if ( formatQuotationLeft < formatQuotationRight )
+                    {
+                        metaInfo.format._( result, formatQuotationLeft + 1, formatQuotationRight - formatQuotationLeft - 1 );
+                        result.deleteStart( formatQuotationRight + 1);
+                        tok.set( result, ',' );
+                        tok.next(); // consume format, which we already read
+                    }
+        
+                    // normal unquoted read
+                    else
+                    {
+                        tok.set( result, ',' );
+                        metaInfo.format._( tok.next() );
+                    }
+        
+                    // read other values
+                    if( tok.hasNext() ) metaInfo.verbosityError  = tok.next().toString();
+                    if( tok.hasNext() ) metaInfo.verbosityWarning= tok.next().toString();
+                    if( tok.hasNext() ) metaInfo.verbosityInfo   = tok.next().toString();
+                    if( tok.hasNext() ) metaInfo.verbosityVerbose= tok.next().toString();
+                }
             }
 
         }
@@ -207,13 +242,26 @@ public abstract class TextLogger extends Logger
                     ALIB.stdOutputStreamsLock.addAcquirer( this );
             }
 
+            AString variableName= new AString();
+            AString value=        new AString();
+
             // get auto sizes from last session
             {
-                AString autoSizes= new AString();
-                AString variableName= new AString(name); variableName._( "_AUTO_SIZES" );
-                if( ALIB.config.get( ALox.configCategoryName, variableName, autoSizes ) != 0 )
-                    this.autoSizes.importValues( autoSizes );
+                variableName._(name)._( "_AUTO_SIZES" );
+                if( ALIB.config.get( ALox.configCategoryName, variableName, value ) != 0 )
+                    autoSizes.importValues( value );
             }
+
+            // import "max elapsed time" from configuration
+            {
+                // get auto sizes from last session
+                value.clear();
+                variableName._()._( name )._( "_MAX_ELAPSED_TIME" );
+                if( ALIB.config.get( ALox.configCategoryName, variableName, value ) != 0 )
+                    metaInfo.maxElapsedTime.setRaw( value.toLong() );
+            }
+
+            
 
             // call parents' implementation
             return super.addAcquirer( newAcquirer );
@@ -239,13 +287,27 @@ public abstract class TextLogger extends Logger
                     ALIB.stdOutputStreamsLock.removeAcquirer( this );
             }
 
-            // export auto sizes to configuration
+            AString variableName= new AString();
+            AString value=        new AString();
+            AString comment=      new AString();
+
+            // export autosizes to configuration
             {
-                AString autoSizes= new AString();
-                AString variableName= new AString(name); variableName._( "_AUTO_SIZES" );
-                this.autoSizes.exportValues( autoSizes );
-                ALIB.config.save( ALox.configCategoryName, variableName, autoSizes,
-                                  "Auto size values of last run" );
+                variableName._()._(name)._( "_AUTO_SIZES" );
+                comment._( "Auto size values of last run of Logger '")._( name )._('\'');
+                autoSizes.exportValues( value );
+                ALIB.config.save( ALox.configCategoryName, variableName, value, comment );
+            }
+
+            // export "max elapsed time" to configuration
+            {
+                variableName._()._( name )._( "_MAX_ELAPSED_TIME" );
+                comment     ._()._( "Maximum elapsed time of all runs of Logger '")
+                            ._( name )
+                            ._("'\n(To reset elapsed time display width, set this to 0 manually)");
+        
+                value._()._( metaInfo.maxElapsedTime.raw() );
+                ALIB.config.save( ALox.configCategoryName, variableName, value, comment );
             }
 
             // call parents' implementation

@@ -98,11 +98,11 @@ namespace                   strings {
     };
 
     /** ********************************************************************************************
-     *  Specialization of template method
-     *  \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
-     *  \ref aworx::lib::strings::ReadLineFromIStream "ReadLineFromIStream".
+     * Specialization of template method
+     * \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
+     * \ref aworx::lib::strings::ReadLineFromIStream "ReadLineFromIStream".
      *  If the end of the input stream was reached, field
-     *  \ref aworx::lib::strings::ReadLineFromIStream::IsEOF "IsEOF" of parameter \p param  will
+     * \ref aworx::lib::strings::ReadLineFromIStream::IsEOF "IsEOF" of parameter \p param  will
      *  be set to \c true what indicates that a next read operation would fail.
      *  \note
      *    For setting field <em>IsEOF</em> the object will be casted to a non-constant reference.
@@ -128,7 +128,8 @@ namespace                   strings {
      **********************************************************************************************/
     inline std::ostream& operator<<( std::ostream& stream, const String& string )
     {
-        stream.write( string.Buffer(), string.Length() );
+        if ( string.IsNotEmpty() )
+            stream.write( string.Buffer(), string.Length() );
         return stream;
     }
 

@@ -66,7 +66,7 @@ IniFile::IniFile( const String& fileName )
 
     if ( fileName.IsNotEmpty() )
     {
-        // dont read anything
+        // don't read anything
         if ( fileName.StartsWith( "*" ) )
         {
             AutoSave= false;
@@ -77,17 +77,17 @@ IniFile::IniFile( const String& fileName )
     }
     else
     {
-        Directory dir( Directory::SpecialFolder::HOME_CONFIG );
+        Directory dir( Directory::SpecialFolder::HomeConfig );
         FileName._( dir.Path      )
-                ._( PathSeparator )
-                ._( System::GetProcessName()  );
+                ._( DirectorySeparator )
+                ._( ProcessInfo::Current().Name  );
 
         #if defined(_WIN32)
             if( FileName.EndsWith( ".exe" ) )
                 FileName.DeleteEnd( 4 );
         #endif
 
-        FileName._( DefaultFileExtension  );
+        FileName._( DefaultFileExtension );
     }
 
     ReadFile();

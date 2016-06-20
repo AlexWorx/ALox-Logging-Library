@@ -584,7 +584,7 @@ int main(int argc, char *argv[])
 
     Log_SetPrefix( String256() << FileName << ": " );
 
-    // read ini file
+    // read INI file
     Inifile= new IniFile("doxygenDotFixer.cfg");
     Log_Assert( Inifile->LastStatus == IniFile::Status::Ok , "IniFile not found" );
     Inifile->AutoSave=      true;

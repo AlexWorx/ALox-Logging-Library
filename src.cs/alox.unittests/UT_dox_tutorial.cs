@@ -887,8 +887,6 @@ public void Tut_LogData()
 
     Log.SetVerbosity( Log.DebugLogger, Verbosity.Verbose, ALox.InternalDomains );
 
-
-
     // access without prior setting
     {
         Log.Info( "Working on file version " + Log.Retrieve( "FILE_VERSION" ).IntegerValue );

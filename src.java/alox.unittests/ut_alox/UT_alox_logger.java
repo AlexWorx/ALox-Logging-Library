@@ -10,6 +10,9 @@ import org.junit.Test;
 
 import ut_com_aworx_uttools.AUnitTest;
 
+import com.aworx.lib.ALIB;
+import com.aworx.lib.config.Configuration;
+import com.aworx.lib.config.IniFile;
 import com.aworx.lib.strings.AString;
 import com.aworx.lox.*;
 import com.aworx.lox.core.textlogger.MetaInfo;
@@ -258,6 +261,49 @@ public class UT_alox_logger extends AUnitTest
         Log.removeLogger( ml );
         
     }
+    
+    /** ********************************************************************************************
+    * Log_TextLogger_FormatConfig
+    **********************************************************************************************/
+    void testFormatConfig( String testFormat,
+                           String expFmt,
+                           String expFmtError   ,
+                           String expFmtWarning ,
+                           String expFmtInfo    ,
+                           String expFmtVerbose 
+                         )
+    {
+        IniFile iniFile= new IniFile("*"); // don't read
+        iniFile.save( ALox.configCategoryName, "TESTML_FORMAT", testFormat   );
+        ALIB.config.insertPlugin( iniFile, Configuration.PRIO_INI_FILE );
+        MemoryLogger ml= new MemoryLogger("TESTML");
+    
+                                     UT_EQ( expFmt, ml.metaInfo.format );
+        if( expFmtError  != null ) { UT_EQ( expFmtError  , ml.metaInfo.verbosityError   ); }
+        if( expFmtWarning!= null ) { UT_EQ( expFmtWarning, ml.metaInfo.verbosityWarning ); }
+        if( expFmtInfo   != null ) { UT_EQ( expFmtInfo   , ml.metaInfo.verbosityInfo    ); }
+        if( expFmtVerbose!= null ) { UT_EQ( expFmtVerbose, ml.metaInfo.verbosityVerbose ); }
+    
+        ALIB.config.removePlugin( iniFile );
+    }
+    
+    
+    @SuppressWarnings("static-method")
+    @Test
+    public void Log_TextLogger_FormatConfig()
+    {
+        UT_INIT();
+    
+        testFormatConfig( "Test"                                , "Test"    ,null,null,null,null   );
+        testFormatConfig( "\"Test"                              , "\"Test"  ,null,null,null,null   );
+        testFormatConfig( "\"Test\""                            , "Test"    ,null,null,null,null   );
+        testFormatConfig( "  \" Test  \"  s"                    , " Test  " ,null,null,null,null   );
+    
+        testFormatConfig( " Test , a ,b, c,d  "                 , "Test", "a","b","c","d"    );
+        testFormatConfig( "\" Test, a ,b, c,d  "                , "\" Test", "a","b","c","d" );
+        testFormatConfig( "\" Test \", a ,b, c,d  "             , " Test ", "a","b","c","d"  );
+    }
+    
     
     /** ********************************************************************************************
      *     Log_TextLoggerTimeDiff

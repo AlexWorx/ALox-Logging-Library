@@ -23,9 +23,9 @@ public class UT_alib_strings_AStringAndSubstring extends AUnitTest
     AString     needleAString    = new AString();
     Substring   needleSubstring  = new Substring();
 
-    //---------------------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------------
     //--- Test Compare
-    //---------------------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------------
     void tStartsWith( String haystack, String needle, boolean expectedSensitive  , boolean expectedIgnoreCase )
     {
         haystackAString._()._( haystack );
@@ -259,9 +259,9 @@ public class UT_alib_strings_AStringAndSubstring extends AUnitTest
     }
 
 
-    //---------------------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------------
     //--- Test IndexOfChar
-    //---------------------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------------
     Substring haystackSubsPlain = new Substring();
     void tIndexOfChar(String haystack, char needle, int startPos, int expectedResult )
     {
@@ -316,9 +316,9 @@ public class UT_alib_strings_AStringAndSubstring extends AUnitTest
     }
 
 
-    //---------------------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------------
     //--- Test IndexOfString
-    //---------------------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------------
     void tIndexOfString(String haystack, String needle, int startPos, Case sensitivity, int expectedResult )
     {
         haystackAString._()._( haystack );
@@ -407,9 +407,9 @@ public class UT_alib_strings_AStringAndSubstring extends AUnitTest
         }
     }
 
-    //---------------------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------------
     //--- Test IndexOfAny
-    //---------------------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------------
     int DEF=99999;
     void tIndexOfAny(boolean forward, String haystack, String needles, int startPos, Inclusion inclusion, int expectedResult )
     {

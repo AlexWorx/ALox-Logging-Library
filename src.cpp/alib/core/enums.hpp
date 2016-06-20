@@ -152,7 +152,7 @@ enum class Create
  **************************************************************************************************/
 enum class Propagation
 {
-    None,          ///< Do not propagate changes.
+    Omit,          ///< Do not propagate changes.
     ToDescendants  ///< Propagate changes to descendants/childs/subcomponents.
 };
 

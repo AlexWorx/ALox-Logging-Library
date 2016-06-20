@@ -74,7 +74,8 @@ ScopeInfo::ScopeInfo( const TString& name, const std::map<int, String32>&  threa
 
         // get auto sizes from last session
         String512 rules;
-        if( ALIB::Config.Get( ALox::ConfigCategoryName, variableName, rules ) != 0 )
+        int priority= ALIB::Config.Get( ALox::ConfigCategoryName, variableName, rules );
+        if( priority != 0 )
         {
             Tokenizer rulesTok( rules, ';' );
             Substring ruleStr;
@@ -83,6 +84,7 @@ ScopeInfo::ScopeInfo( const TString& name, const std::map<int, String32>&  threa
                 Tokenizer ruleTok( ruleStr, ',' );
                 trimInfoList->emplace_back();
                 SourcePathTrimRule& rule=trimInfoList->back();
+                rule.Priority=          priority;
 
                 ruleTok.Next();
                 if( ( rule.IsPrefix= !ruleTok.Actual.StartsWith( "*" ) ) == false )
@@ -90,25 +92,25 @@ ScopeInfo::ScopeInfo( const TString& name, const std::map<int, String32>&  threa
                 rule.Path._( ruleTok.Actual );
                 if ( rule.Path.CharAtEnd() == '*' )
                     rule.Path.DeleteEnd( 1 );
+
                 if ( rule.Path.IsEmpty() )
                 {
                     trimInfoList->pop_back();
                     continue;
                 }
 
-                if( PathSeparator == '/' )
+                if( DirectorySeparator == '/' )
                     rule.Path.SearchAndReplaceAll( "\\", "/"  );
                 else
                     rule.Path.SearchAndReplaceAll( "/" , "\\" );
 
-                rule.IncludeString = lib::enums::ReadInclusion( ruleTok.Next() );
+                rule.IncludeString =    lib::enums::ReadInclusion( ruleTok.Next() );
                 ruleTok.Next().ConsumeInteger( rule.TrimOffset );
-                rule.Sensitivity = lib::enums::ReadCase( ruleTok.Next() );
+                rule.Sensitivity=       lib::enums::ReadCase( ruleTok.Next() );
+                rule.TrimReplacement=   ruleTok.Next();
             }
         }
-
     }
-
 }
 
 ScopeInfo::~ScopeInfo()
@@ -149,16 +151,7 @@ void ScopeInfo::Set ( const TString& sourceFileName, int lineNumber, const TStri
 
         // not found? Use the oldest
         if ( actual == nullptr )
-        {
-            actual= &cache[oldestIdx];
-
-            actual->origFile=    sourceFileName;
-            actual->origFilePathSeparator= -2;
-            actual->fullPath=       nullptr;
-            actual->trimmedPath=    nullptr;
-            actual->name=       nullptr;
-            actual->nameWOExt=  nullptr;
-        }
+            (actual= &cache[oldestIdx])->Set( sourceFileName );
 
         // mark as used
         actual->timeStamp= cacheRun;
@@ -168,12 +161,17 @@ void ScopeInfo::Set ( const TString& sourceFileName, int lineNumber, const TStri
     this->origMethod=  methodName;
 }
 
-void  ScopeInfo::SetSourcePathTrimRule( const TString& path, Inclusion includeString, int trimOffset,
-                                         Case sensitivity, Inclusion global )
+void  ScopeInfo::SetSourcePathTrimRule( const TString&  path,
+                                        Inclusion       includeString,
+                                        int             trimOffset,
+                                        Case            sensitivity,
+                                        Inclusion       global,
+                                        const String&   trimReplacement,
+                                        int             priority )
 {
     // clear cache to have lazy variables reset with the next invocation
     for ( int i= 0; i< cacheSize; i++ )
-        cache[i].origFile= nullptr;
+        cache[i].Set( nullptr );
 
     // clear command
     if ( trimOffset == 999999 )
@@ -193,9 +191,14 @@ void  ScopeInfo::SetSourcePathTrimRule( const TString& path, Inclusion includeSt
                    global == Inclusion::Include  ? &GlobalSPTRs
                                                  : &LocalSPTRs;
 
-    // add new entry
-    trimInfoList->emplace_back();
-    SourcePathTrimRule& rule= trimInfoList->back();
+    // insert sorted by priority
+    auto it= trimInfoList->begin();
+    while( it != trimInfoList->end() && priority < it->Priority  )
+        it++;
+
+    it= trimInfoList->insert(it, SourcePathTrimRule() );
+    SourcePathTrimRule& rule= *it;
+    rule.Priority= priority;
 
     // if path starts with '*', it is not a prefix. We store without *
     rule.Path._(path, (rule.IsPrefix= (path.CharAtStart() != '*') ) == true  ? 0 : 1 );
@@ -203,11 +206,11 @@ void  ScopeInfo::SetSourcePathTrimRule( const TString& path, Inclusion includeSt
         rule.Path.DeleteEnd( 1 );
     if ( rule.Path.IsEmpty() )
     {
-        trimInfoList->pop_back();
+        trimInfoList->erase( it );
         return;
     }
 
-    if( PathSeparator == '/' )
+    if( DirectorySeparator == '/' )
         rule.Path.SearchAndReplaceAll( "\\", "/"  );
     else
         rule.Path.SearchAndReplaceAll( "/" , "\\" );
@@ -215,6 +218,11 @@ void  ScopeInfo::SetSourcePathTrimRule( const TString& path, Inclusion includeSt
     rule.IncludeString=   includeString;
     rule.TrimOffset=      trimOffset;
     rule.Sensitivity=     sensitivity;
+    rule.TrimReplacement= trimReplacement;
+    if( DirectorySeparator == '/' )
+        rule.TrimReplacement.SearchAndReplaceAll( "\\", "/"  );
+    else
+        rule.TrimReplacement.SearchAndReplaceAll( "/" , "\\" );
 }
 
 
@@ -222,7 +230,7 @@ void ScopeInfo::trimPath()
 {
     bool trimmed= false;
 
-    int idx= getPathSeparator();
+    int idx= getPathLength();
     if( idx < 0 )
     {
         actual->trimmedPath= "";
@@ -249,7 +257,9 @@ void ScopeInfo::trimPath()
             if ( idx >= 0 )
             {
                 int startIdx= idx + ( ti.IncludeString == Inclusion::Include ? ti.Path.Length() : 0 ) + ti.TrimOffset;
-                actual->trimmedPath= String( actual->trimmedPath.Buffer(), startIdx, actual->trimmedPath.Length() - startIdx );
+                actual->trimmedPath=        String( actual->trimmedPath.Buffer(), startIdx, actual->trimmedPath.Length() - startIdx );
+                actual->trimmedPathPrefix=  ti.TrimReplacement;
+
                 trimmed= true;
                 break;
             }
@@ -284,7 +294,8 @@ void ScopeInfo::trimPath()
         {
             currentDir.SetLength<false>( i );
             TString origFile= actual->origFile;
-                SetSourcePathTrimRule( currentDir, Inclusion::Include, 0, Case::Ignore, Inclusion::Exclude );
+                SetSourcePathTrimRule( currentDir, Inclusion::Include, 0, Case::Ignore,
+                                       Inclusion::Exclude, NullString, Lox::PrioSource - 1 );
             actual->origFile= origFile;
             trimPath(); // one recursive call
         }

@@ -30,14 +30,14 @@ import com.aworx.lib.strings.NumberFormat;
  *  and
  *  \ref com::aworx::lib::config::CommandLinePlugIn "CommandLinePlugIn".
  *  It is recommended to to ignore character case in custom specializations of class
- *  \ref com::aworx::lib::config::ConfigurationPlugIn "ConfigurationPlugIn" 
+ *  \ref com::aworx::lib::config::ConfigurationPlugIn "ConfigurationPlugIn"
  *  as well.
  *
  *  Variables belong to categories. The built-in ConfigurationPlugIns types
  *  CommandLinePlugIn and EnvironmentPlugIn just concatenate
- *  the category and the variable name with an underscore '_'. This means, if variable <em>IDE</em>
+ *  the category and the variable name with an underscore '_'. This means, if variable <em>LOCALE</em>
  *  in category <em>ALIB</em> is accessed, those plug-ins would check command line parameter
- *  <em>--ALIB_IDE=xyz</em> respectively environment variable <em>ALIB_IDE</em>
+ *  <em>--ALIB_LOCALE=xyz</em> respectively environment variable <em>ALIB_LOCALE</em>
  **************************************************************************************************/
 public abstract class ConfigurationPlugIn
 {
@@ -96,11 +96,11 @@ public abstract class ConfigurationPlugIn
      *  and converts the value to type double.
      *  Descendants might overwrite this method.
      *
-     *  \note The conversion to double ignores the current locale setting and expects either a 
-     *        dot ('.') or a comma (',') as decimal operator. On the same token,the corresponding 
-     *        method #save(CharSequence, CharSequence, double, CharSequence, AString) 
-     *        writes always dots as separator characters, independent from local settings.  
-     *          
+     *  \note The conversion to double ignores the current locale setting and expects either a
+     *        dot ('.') or a comma (',') as decimal operator. On the same token,the corresponding
+     *        method #save(CharSequence, CharSequence, double, CharSequence, AString)
+     *        writes always dots as separator characters, independent from local settings.
+     *
      *  @param category  The category of the  variable.
      *                   (AString compatible type expected.)
      *  @param name      The name of the configuration variable to be retrieved.
@@ -181,9 +181,9 @@ public abstract class ConfigurationPlugIn
      *
      *  \note The floating point to string conversion ignores the current locale setting and
      *        writes a dot ('.') as decimal operator. On the same token, the corresponding method
-     *        #get(CharSequence, CharSequence, double[], AString ) 
+     *        #get(CharSequence, CharSequence, double[], AString )
      *        accepts both, a dot or a comma (',').
-     *  
+     *
      *  @param category  The category of the  variable.
      *                   (AString compatible type expected.)
      *  @param name      The name of the configuration variable to be retrieved.

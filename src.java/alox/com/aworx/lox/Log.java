@@ -130,15 +130,15 @@ public abstract class Log
          * they are using release logging exclusively), should invoke this method on bootstrap
          * providing their (release) lox.
          * In this case, the \e Verbosity of the internal domain used by class
-         * \ref aworx::lox::ALoxReportWriter "ALoxReportWriter" has to be set for the
+         * \ref com::aworx::lox::ALoxReportWriter "ALoxReportWriter" has to be set for the
          * the logger(s) in given \p lox in question.
          *
          * @param lox  The lox that the
-         *             \ref aworx::lox::ALoxReportWriter "ALoxReportWriter" created will be using.
+         *             \ref com::aworx::lox::ALoxReportWriter "ALoxReportWriter" created will be using.
          **************************************************************************************/
         public static void addALibReportWriter( Lox lox )
         {
-            ALIB.ASSERT_WARNING( debugReportWriter == null, 
+            ALIB.ASSERT_WARNING( debugReportWriter == null,
                                  "Log.addReportWriter(): ALoxReportWriter already created." );
 
             // replace the ReportWriter
@@ -151,7 +151,7 @@ public abstract class Log
          **************************************************************************************/
         public static void removeALibReportWriter()
         {
-            ALIB.ASSERT_WARNING( debugReportWriter != null, 
+            ALIB.ASSERT_WARNING( debugReportWriter != null,
                                  "Log.removeReportWriter(): No ALoxReportWriter to remove." );
             // replace the report writer (if we replaced it before)
             if( debugReportWriter != null )
@@ -544,7 +544,7 @@ public abstract class Log
     }
 
     /** ****************************************************************************************
-     * Adds a <em>Domain Substitution</em>R.
+     * Adds a <em>Domain Substitution Rule</em>.
      * <em>Domain Substitution</em> is performed as a last step when evaluating the domain path of a <em>Log Statement</em>,
      * taking <em>Scope Domains</em> and the optional parameter \p domain of the statement into
      * account.<br>
@@ -587,7 +587,7 @@ public abstract class Log
      * bound to the resulting domain.
      *
      * For \b %Lox objects that should be protected of external manipulation, it is advisable,
-     * to remove all <em>Domain Substitution</em>Rs right after the \b %Lox was created by invoking this method with
+     * to remove all <em>Domain Substitution Rules</em> right after the \b %Lox was created by invoking this method with
      * a nulled value for parameter \p domainPath. The reason is, that otherwise, through
      * configuration files or command line parameters, domains of the \b %Lox can be substituted
      * and then the resulting domains \e Verbosities be \e overwritten using further configuration

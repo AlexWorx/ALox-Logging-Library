@@ -38,8 +38,6 @@ namespace                    system {
     String      System::DebuggerProcessName= "gdb";
 #endif
 
-AString         System::processName;
-
 // #################################################################################################
 // TerminationCleanUp()
 // #################################################################################################
@@ -74,7 +72,7 @@ bool System::IsDebuggerPresent()
     while ( actPID.IsNotEmpty() )
     {
         ProcessInfo actPI( actPID );
-        if (actPI.ExecName.Equals( DebuggerProcessName ) )
+        if (actPI.Name.Equals( DebuggerProcessName ) )
             return true;
         actPID= actPI.PPID;
     }
@@ -144,10 +142,10 @@ System::RuntimeEnvironment   System::RTE()
     while ( actPID.IsNotEmpty())
     {
         ProcessInfo actPI( actPID );
-        if (actPI.ExecName.IsEmpty() )
+        if (actPI.Name.IsEmpty() )
             break;
         for(std::pair<String, RuntimeEnvironment> *v= values; v->first != nullptr ; v++)
-            if( actPI.ExecName.IndexOf<false>( v->first, 0, Case::Ignore ) >= 0 )
+            if( actPI.Name.IndexOf<false>( v->first, 0, Case::Ignore ) >= 0 )
                 return  v->second;
         actPID= actPI.PPID;
     }
@@ -186,7 +184,7 @@ bool System::GetVariable( const TString&  name,
 
         target._( env );
         free( env );
-        return false;
+        return true;
 
     #else
         // case sensitive is easy (but not supported under Windows)
@@ -219,46 +217,6 @@ bool System::GetVariable( const TString&  name,
     #endif
 }
 
-void System::getProcessName()
-{
-    // Own global lock and check if still nulled.
-    // (If not, this is a very unlikly parallel access )
-    OWN( ALIB::Lock );
-    if ( processName.IsNotNull() )
-        return;
-
-    #if defined (__unix__)
-        const ProcessInfo& pi= ProcessInfo::Current();
-        processName._( pi.ExecName );
-
-    #elif defined(_WIN32)
-        TCHAR szPath[ MAX_PATH ];
-        DWORD pathLen= GetModuleFileName( NULL, szPath, MAX_PATH );
-        if ( pathLen <= 0)
-        {
-            ALIB_WARNING( "Error retrieving module name" );
-            processName._( "UknProcess");
-        }
-        else
-        {
-            // convert to multi byte string and search last dir separator
-            String512 moduleFileName;
-            moduleFileName._( szPath );
-            int sepIdx= moduleFileName.LastIndexOfAny( "/\\", Inclusion::Include );
-            if ( sepIdx < 0)
-            {
-                ALIB_WARNING( "Error retrieving module name" );
-                processName._( "UknProcess");
-            }
-            else
-                processName._( moduleFileName, sepIdx + 1 );
-        }
-    #else
-        #pragma message ("Unknown Platform in file: " __FILE__ )
-        processName._( "UknProcessPlatform");
-    #endif
-
-}
 
 }}}// namespace aworx::lib::system
 

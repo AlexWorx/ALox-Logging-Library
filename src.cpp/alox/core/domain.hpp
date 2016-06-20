@@ -90,11 +90,13 @@ class Domain
          * - conditional logs that were suppressed
          * Otherwise, it includes all log calls, even when no \e Logger was enabled on this domain.
          */
-        int                                 CntLogCalls                                   =0;
+        int                                 CntLogCalls                                          =0;
 
         /** <em>Prefix Logables</em> associated with this domain. */
         std::vector<std::pair<Logable, Inclusion>>   PrefixLogables;
 
+        /** Flag to which is set when verbosity configuration data was read. */
+        bool                                ConfigurationRead                                =false;
 
     // #############################################################################################
     // Public interface
@@ -102,7 +104,7 @@ class Domain
     public:
          /** @return Returns the domain path separation character.  */
          static constexpr
-         char  PathSeparator()
+         char  Separator()
          {
             return '/';
          }
@@ -340,7 +342,7 @@ class Domain
         /** ****************************************************************************************
          * Searches a domain. If not found, the domain is (or path of domains are) created in
          * the domain tree.
-         * If the path string starts with the character defined with #PathSeparator, then
+         * If the path string starts with the character defined with #Separator, then
          * the search (and creation) is done starting from the root domain of this domain and not
          * from this domain.
          *

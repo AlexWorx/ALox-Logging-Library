@@ -187,7 +187,7 @@
     <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_strings_basic.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_strings_numberformat.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_strings_tokenizer.cpp" />
-    <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_system_environment.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_system.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_threads.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib.unittests\ut_alib_time.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alox.unittests\ut_alox_logger.cpp" />

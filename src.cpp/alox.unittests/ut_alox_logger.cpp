@@ -10,6 +10,9 @@
 #include "alox/alox_console_loggers.hpp"
 #include "alox/loggers/memorylogger.hpp"
 
+#if !defined (HPP_ALIB_CONFIG_INI_FILE)
+    #include "alib/config/inifile.hpp"
+#endif
 
 
 #include <iostream>
@@ -18,7 +21,7 @@
 #include <vector>
 
 #define TESTCLASSNAME       CPP_ALox_Logger
-#include "aworx_unittests.hpp"
+#include "alib.unittests/aworx_unittests.hpp"
 
 using namespace std;
 using namespace ut_aworx;
@@ -141,7 +144,7 @@ UT_METHOD(Log_Multiline)
 //        Log::DebugLogger->MetaInfo->MsgPrefixInfo=   ESC::MAGENTA;
 //        Log::DebugLogger->MetaInfo->MsgSuffix=       "###";
 //        Log::DebugLogger->MetaInfo->MsgSuffix=       ESC::FG_RESET;
-    Log::DebugLogger->FmtMultiLineSuffix=            "<<";
+//    Log::DebugLogger->FmtMultiLineSuffix=            "<<";
 
 
 
@@ -400,6 +403,46 @@ UT_METHOD(Log_TextLogger_RegisterStdStreamLocks)
      Log_RemoveDebugLogger();                              UT_TRUE( ((ThreadLock&)ALIB::StdOutputStreamsLock).GetSafeness() == Safeness::Unsafe   );
 }
 #endif // defined( ALOX_DBG_LOG )
+
+/** ********************************************************************************************
+* Log_TextLogger_FormatConfig
+**********************************************************************************************/
+void testFormatConfig( ALIBUnitTesting& ut, const String& testFormat,
+                       const String& expFmt,
+                       const String& expFmtError    = NullString,
+                       const String& expFmtWarning  = NullString,
+                       const String& expFmtInfo     = NullString,
+                       const String& expFmtVerbose  = NullString
+                     )
+{
+    IniFile iniFile("*"); // don't read
+    iniFile.Save( ALox::ConfigCategoryName, "TESTML_FORMAT", testFormat   );
+    ALIB::Config.InsertPlugin( &iniFile, Configuration::PrioIniFile );
+    MemoryLogger ml("TESTML");
+
+                                      UT_EQ( expFmt, ml.MetaInfo->Format );
+    if( expFmtError  .IsNotNull() ) { UT_EQ( expFmtError  , ml.MetaInfo->VerbosityError   ); }
+    if( expFmtWarning.IsNotNull() ) { UT_EQ( expFmtWarning, ml.MetaInfo->VerbosityWarning ); }
+    if( expFmtInfo   .IsNotNull() ) { UT_EQ( expFmtInfo   , ml.MetaInfo->VerbosityInfo    ); }
+    if( expFmtVerbose.IsNotNull() ) { UT_EQ( expFmtVerbose, ml.MetaInfo->VerbosityVerbose ); }
+
+    ALIB::Config.RemovePlugin( &iniFile );
+}
+
+
+UT_METHOD(Log_TextLogger_FormatConfig)
+{
+    UT_INIT();
+
+    testFormatConfig( ut, "Test"                                , "Test"                     );
+    testFormatConfig( ut, "\"Test"                              , "\"Test"                   );
+    testFormatConfig( ut, "\"Test\""                            , "Test"                     );
+    testFormatConfig( ut, "  \" Test  \"  s"                    , " Test  "                  );
+
+    testFormatConfig( ut, " Test , a ,b, c,d  "                 , "Test", "a","b","c","d"    );
+    testFormatConfig( ut, "\" Test, a ,b, c,d  "                , "\" Test", "a","b","c","d" );
+    testFormatConfig( ut, "\" Test \", a ,b, c,d  "             , " Test ", "a","b","c","d"  );
+}
 
 /** ********************************************************************************************
  * Log_LogLevelSetting

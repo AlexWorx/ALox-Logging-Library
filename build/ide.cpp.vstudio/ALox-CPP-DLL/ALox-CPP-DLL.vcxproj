@@ -230,7 +230,6 @@
     <ClCompile Include="..\..\..\src.cpp\alib\core\report.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\core\util.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\strings\applyformat.cpp" />
-    <ClCompile Include="..\..\..\src.cpp\alib\strings\applyto.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\strings\astring.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\strings\cstring.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\strings\numberformat.cpp" />

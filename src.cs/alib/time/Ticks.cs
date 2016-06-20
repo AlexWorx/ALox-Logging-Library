@@ -228,7 +228,6 @@ public class Ticks
             return result;
         }
 
-
         /** ****************************************************************************************
          * Returns the time span between the value represented by this instance and the given TickWatch.
          * If the given TickWatch represents an earlier point in time, the result is positive.
@@ -268,6 +267,17 @@ public class Ticks
             return    result;
         }
 
+        /** ****************************************************************************************
+         * Determines if this objects' age is higher than a given time span.
+         *
+         * @param waitTime  A \b %Ticks object representing a time span.
+         * @return  \c true if the given \b %Ticks object representing a time span is smaller
+         *          or equal than our age. \c false otherwise.
+         ******************************************************************************************/
+        public bool         HasElapsed( Ticks waitTime )
+        {
+            return Age().Raw()  >=  waitTime.Raw();
+        }
 
 
     // #############################################################################################

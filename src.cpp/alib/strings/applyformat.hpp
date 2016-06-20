@@ -274,7 +274,7 @@ namespace                   strings {
          * \ref aworx::lib::strings::ApplyTo "ApplyTo".<p>
          *  Appends a \e double value using the given format
          *  parameters or an existing object of type
-         *  \ref aworx::lib::strings::NumberFormat "NumberFormat".
+         * \ref aworx::lib::strings::NumberFormat "NumberFormat".
          ******************************************************************************************/
         class Double
         {
@@ -301,9 +301,9 @@ namespace                   strings {
 
 
     /** ********************************************************************************************
-     *  Specialization of template method
-     *  \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
-     *  \ref aworx::lib::strings::Format::Tab "Format::Tab".
+     * Specialization of template method
+     * \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
+     * \ref aworx::lib::strings::Format::Tab "Format::Tab".
      *
      * @param  target   The object that \b Apply was invoked on.
      * @param  tab      The object to \e apply.
@@ -319,9 +319,9 @@ namespace                   strings {
 
 
     /** ********************************************************************************************
-     *  Specialization of template method
-     *  \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
-     *  \ref aworx::lib::strings::Format::Field "Format::Field".
+     * Specialization of template method
+     * \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
+     * \ref aworx::lib::strings::Format::Field "Format::Field".
      *
      * @param target The object that \b Apply was invoked on.
      * @param field  The object to \e apply.
@@ -337,9 +337,9 @@ namespace                   strings {
 
 
     /** ********************************************************************************************
-     *  Specialization of template method
-     *  \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
-     *  \ref aworx::lib::strings::Format::Int32 "Format::Int32".
+     * Specialization of template method
+     * \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
+     * \ref aworx::lib::strings::Format::Int32 "Format::Int32".
      *
      * @param target The object that \b Apply was invoked on.
      * @param fmt    The format object.
@@ -354,10 +354,10 @@ namespace                   strings {
     #endif
 
     /**
-     *  Specialization of template method
-     *  \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
+     * Specialization of template method
+     * \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
      *   <em>int8_t</em>. Invokes
-     *  \ref aworx::lib::strings::Format::Int32 "Format::Int32(value, 1)".
+     * \ref aworx::lib::strings::Format::Int32 "Format::Int32(value, 1)".
      *
      * @param target The object that \b Apply was invoked on.
      * @param value  The value to write.
@@ -373,10 +373,10 @@ namespace                   strings {
     #endif
 
     /**
-     *  Specialization of template method
-     *  \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
+     * Specialization of template method
+     * \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
      *   <em>uint8_t</em>. Invokes
-     *  \ref aworx::lib::strings::Format::Int32 "Format::Int32(value, 1)".
+     * \ref aworx::lib::strings::Format::Int32 "Format::Int32(value, 1)".
      *
      * @param target The object that \b Apply was invoked on.
      * @param value  The value to write.
@@ -393,10 +393,10 @@ namespace                   strings {
 
 
     /**
-     *  Specialization of template method
-     *  \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
+     * Specialization of template method
+     * \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
      *   <em>int16_t</em>. Invokes
-     *  \ref aworx::lib::strings::Format::Int32 "Format::Int32(value, 1)".
+     * \ref aworx::lib::strings::Format::Int32 "Format::Int32(value, 1)".
      *
      * @param target The object that \b Apply was invoked on.
      * @param value  The value to write.
@@ -412,10 +412,10 @@ namespace                   strings {
     #endif
 
     /**
-     *  Specialization of template method
-     *  \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
+     * Specialization of template method
+     * \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
      *   <em>uint16_t</em>. Invokes
-     *  \ref aworx::lib::strings::Format::Int32 "Format::Int32(value, 1)".
+     * \ref aworx::lib::strings::Format::Int32 "Format::Int32(value, 1)".
      *
      * @param target The object that \b Apply was invoked on.
      * @param value  The value to write.
@@ -431,10 +431,10 @@ namespace                   strings {
     #endif
 
     /**
-     *  Specialization of template method
-     *  \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
+     * Specialization of template method
+     * \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
      *   <em>int32_t</em>. Invokes
-     *  \ref aworx::lib::strings::Format::Int32 "Format::Int32(value, 1)".
+     * \ref aworx::lib::strings::Format::Int32 "Format::Int32(value, 1)".
      *
      * @param target The object that \b Apply was invoked on.
      * @param value  The value to write.
@@ -452,9 +452,9 @@ namespace                   strings {
     #endif
 
     /** ********************************************************************************************
-     *  Specialization of template method
-     *  \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
-     *  \ref aworx::lib::strings::Format::UInt32 "Format::UInt32".
+     * Specialization of template method
+     * \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
+     * \ref aworx::lib::strings::Format::UInt32 "Format::UInt32".
      *
      * @param target The object that \b Apply was invoked on.
      * @param fmt    The format object.
@@ -469,10 +469,10 @@ namespace                   strings {
     #endif
 
     /**
-     *  Specialization of template method
-     *  \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
+     * Specialization of template method
+     * \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
      *  <em>uint32_t</em>. Invokes
-     *  \ref aworx::lib::strings::Format::UInt32 "Format::UInt32(value, 1)".
+     * \ref aworx::lib::strings::Format::UInt32 "Format::UInt32(value, 1)".
      *
      * @param target The object that \b Apply was invoked on.
      * @param value  The value to write.
@@ -490,9 +490,9 @@ namespace                   strings {
     #endif
 
     /** ********************************************************************************************
-     *  Specialization of template method
-     *  \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
-     *  \ref aworx::lib::strings::Format::Int64 "Format::Int64".
+     * Specialization of template method
+     * \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
+     * \ref aworx::lib::strings::Format::Int64 "Format::Int64".
      *
      * @param target The object that \b Apply was invoked on.
      * @param fmt    The format object.
@@ -507,10 +507,10 @@ namespace                   strings {
     #endif
 
     /**
-     *  Specialization of template method
-     *  \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
+     * Specialization of template method
+     * \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
      *  <em>int64_t</em>. Invokes
-     *  \ref aworx::lib::strings::Format::Int64 "Format::Int64(value, 1)".
+     * \ref aworx::lib::strings::Format::Int64 "Format::Int64(value, 1)".
      *
      * @param target The object that \b Apply was invoked on.
      * @param value  The value to write.
@@ -528,9 +528,9 @@ namespace                   strings {
     #endif
 
     /** ********************************************************************************************
-     *  Specialization of template method
-     *  \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
-     *  \ref aworx::lib::strings::Format::UInt64 "Format::UInt64".
+     * Specialization of template method
+     * \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
+     * \ref aworx::lib::strings::Format::UInt64 "Format::UInt64".
      *
      * @param target The object that \b Apply was invoked on.
      * @param fmt    The format object.
@@ -545,10 +545,10 @@ namespace                   strings {
     #endif
 
     /**
-     *  Specialization of template method
-     *  \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
+     * Specialization of template method
+     * \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
      *  <em>uint64_t</em>. Invokes
-     *  \ref aworx::lib::strings::Format::UInt64 "Format::UInt64(value, 1)".
+     * \ref aworx::lib::strings::Format::UInt64 "Format::UInt64(value, 1)".
      *
      * @param target The object that \b Apply was invoked on.
      * @param value  The value to write.
@@ -566,9 +566,9 @@ namespace                   strings {
     #endif
 
     /** ********************************************************************************************
-     *  Specialization of template method
-     *  \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
-     *  \ref aworx::lib::strings::Format::Double "Format::Double".
+     * Specialization of template method
+     * \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
+     * \ref aworx::lib::strings::Format::Double "Format::Double".
      *
      * @param target The object that \b Apply was invoked on.
      * @param fmt    The format object.
@@ -583,10 +583,10 @@ namespace                   strings {
     #endif
 
     /**
-     *  Specialization of template method
-     *  \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
+     * Specialization of template method
+     * \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
      *  <em>double</em>. Invokes
-     *  \ref aworx::lib::strings::Format::Double "Format::Double(value, nullptr)".
+     * \ref aworx::lib::strings::Format::Double "Format::Double(value, nullptr)".
      *
      * @param target The object that \b Apply was invoked on.
      * @param value  The value to write.
@@ -604,10 +604,10 @@ namespace                   strings {
     #endif
 
     /**
-     *  Specialization of template method
-     *  \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
+     * Specialization of template method
+     * \ref aworx::lib::strings::ApplyTo "ApplyTo" for applicable type
      *  <em>float</em>. Invokes
-     *  \ref aworx::lib::strings::Format::Double "Format::Double(value, nullptr)".
+     * \ref aworx::lib::strings::Format::Double "Format::Double(value, nullptr)".
      *
      * @param target The object that \b Apply was invoked on.
      * @param value  The value to write.

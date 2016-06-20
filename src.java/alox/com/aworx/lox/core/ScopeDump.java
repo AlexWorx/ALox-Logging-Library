@@ -307,13 +307,13 @@ public class ScopeDump
             if ( methodEnd >= 0 )
             {
                 target._NC( "()\"" );
-                target.replaceSubstring( " METHOD=\"", targetStart + classNameEnd, 1 );
+                target.replaceSubstring( " METHOD=\"", targetStart + classNameEnd, 2 );
             }
 
             if ( classNameEnd >= 0 )
             {
-                target.insertAt( "\""           , targetStart + classNameEnd   );
-                target.insertAt( " CLASS=\""    , targetStart + classNameStart );
+                target.insertAt        ( "\""           , targetStart + classNameEnd      );
+                target.replaceSubstring( " CLASS=\""    , targetStart + classNameStart, 1 );
             }
 
             int pos= classNameEnd > 0 ? classNameStart : target.length() - targetStart;

@@ -56,7 +56,7 @@ public class ScopeInfo
             public        String                    origFile;
 
             /** index of last path separator in #origFile **/
-            public        int                       origFilePathSeparator;
+            public        int                       origFilePathLength;
 
             /** Trimmed path of source file  (evaluated)  **/
             public        AString                   trimmedPath                  = new AString();
@@ -130,11 +130,13 @@ public class ScopeInfo
         /**  Defines portions of source paths to be ignored  */
         public class SourcePathTrimRule
         {
-            public AString    Path;                    ///< The search string
-            public bool       IsPrefix;                ///< true if path was not starting with '\*' when provided.
-            public Inclusion  IncludeString;           ///< Denotes if #Path itself should be included when trimmed
-            public Case       Sensitivity;             ///< The sensitivity of the comparison when trimming
-            public int        TrimOffset;              ///< Additional offset of the trim position
+            public AString    Path;             ///< The search string
+            public bool       IsPrefix;         ///< true if path was not starting with '\*' when provided.
+            public Inclusion  IncludeString;    ///< Denotes if #Path itself should be included when trimmed
+            public Case       Sensitivity;      ///< The sensitivity of the comparison when trimming
+            public int        TrimOffset;       ///< Additional offset of the trim position
+            public String     TrimReplacement;  ///< Optional replacement string for trimmed paths'.
+            public int        Priority;         ///< The priority of the rule. Depends on origin: source code, config...)
         }
 
         /**  List of trim definitions for portions of source paths to be ignored  */
@@ -153,7 +155,7 @@ public class ScopeInfo
         /** ****************************************************************************************
          * Constructs a scope info.
          * @param name              The name of the Lox we belong to.
-         *                          Will be converted to upper case. 
+         *                          Will be converted to upper case.
          * @param threadDictionary  A dictionary to map thread IDs to user friendly names which is
          *                          managed outside of this class.
          ******************************************************************************************/
@@ -195,7 +197,8 @@ public class ScopeInfo
 
                 // get auto sizes from last session
                 rules._();
-                if( ALIB.Config.Get( ALox.ConfigCategoryName, variableName, rules ) != 0 )
+                int priority= ALIB.Config.Get( ALox.ConfigCategoryName, variableName, rules );
+                if( priority != 0 )
                 {
                     Tokenizer rulesTok= new Tokenizer();
                     Tokenizer ruleTok = new Tokenizer();
@@ -206,6 +209,7 @@ public class ScopeInfo
                         try {
                             ruleTok.Set( ruleStr, ',' );
                             SourcePathTrimRule rule= new SourcePathTrimRule();
+                            rule.Priority= priority;
                             rule.Path= new AString();
                             ruleTok.Next();
                             if( ! ( rule.IsPrefix= !ruleTok.Actual.StartsWith( "*" ) ) )
@@ -228,7 +232,11 @@ public class ScopeInfo
                                 ruleTok.Next().ConsumeInteger( out rule.TrimOffset );
 
                             rule.Sensitivity = ALIB.ReadCase( ruleTok.Next() );
-                            trimInfoList.Add( rule);
+
+                            if ( ruleTok.HasNext () )
+                                rule.TrimReplacement= ruleTok.Next().ToString();
+
+                            trimInfoList.Add( rule );
                         }
                         catch( Exception )
                         {
@@ -286,7 +294,7 @@ public class ScopeInfo
                     actual= cache[oldestIdx];
 
                     actual.origFile=                callerSourceFileName;
-                    actual.origFilePathSeparator=   -2;
+                    actual.origFilePathLength=      -2;
                     actual.lazyTrimmedPath          =
                     actual.lazyName                 =
                     actual.lazyNameWOExt            =false;
@@ -328,18 +336,25 @@ public class ScopeInfo
          * \ref cs::aworx::lox::Lox::SetSourcePathTrimRule    "Lox.SetSourcePathTrimRule" and
          * \ref cs::aworx::lox::Lox::ClearSourcePathTrimRules "Lox.ClearSourcePathTrimRules".
          *
-         * @param path          The path to search for. If not starting with <c> '*'</c>, a prefix
-         *                      is searched.
-         * @param includeString Determines if \p path should be included in the trimmed path or not.
-         * @param trimOffset    Adjusts the portion of \p path that is trimmed. 999999 to clear!
-         * @param sensitivity   Determines if the comparison of \p path with a source files' path
-         *                      is performed case sensitive or not.
-         * @param global        If Inclusion.Exclude, only this instance is affected. Otherwise
-         *                      the setting applies to all instances of class \b Lox.
+         * @param path            The path to search for. If not starting with <c> '*'</c>,
+         *                        a prefix is searched.
+         * @param includeString   Determines if \p path should be included in the trimmed path
+         *                        or not.
+         * @param trimOffset      Adjusts the portion of \p path that is trimmed. 999999 to clear!
+         * @param sensitivity     Determines if the comparison of \p path with a source files' path
+         *                        is performed case sensitive or not.
+         * @param global          If Inclusion.Exclude, only this instance is affected. Otherwise
+         *                        the setting applies to all instances of class \b Lox.
+         * @param trimReplacement Replacement string for trimmed portion of the path.
+         * @param priority        The priority of the setting.
          ******************************************************************************************/
-        public void   SetSourcePathTrimRule( String path, Inclusion includeString, int trimOffset,
-                                             Case sensitivity,
-                                             Inclusion global )
+        public void   SetSourcePathTrimRule( String     path,
+                                             Inclusion  includeString,
+                                             int        trimOffset,
+                                             Case       sensitivity,
+                                             Inclusion  global,
+                                             String     trimReplacement,
+                                             int        priority            )
         {
             // unset current origFile to have lazy variables reset with the next invocation
             for ( int i= 0; i< cacheSize; i++ )
@@ -381,8 +396,15 @@ public class ScopeInfo
             rule.IncludeString=   includeString;
             rule.TrimOffset=      trimOffset;
             rule.Sensitivity=     sensitivity;
+            rule.TrimReplacement= trimReplacement;
 
-            trimInfoList.Add( rule );
+            // add rule ordered by priority
+            rule.Priority= priority;
+            int pos= 0;
+            while( pos < trimInfoList.Count && priority < trimInfoList[pos].Priority )
+                ++pos;
+
+            trimInfoList.Insert( pos, rule );
         }
 
 
@@ -413,10 +435,10 @@ public class ScopeInfo
          ******************************************************************************************/
         public String GetFullPath( out int length )
         {
-            if( actual.origFilePathSeparator == -2 )
-                actual.origFilePathSeparator= actual.origFile.LastIndexOf( Path.DirectorySeparatorChar );
+            if( actual.origFilePathLength == -2 )
+                actual.origFilePathLength= actual.origFile.LastIndexOf( Path.DirectorySeparatorChar );
 
-            length= actual.origFilePathSeparator >= 0 ? actual.origFilePathSeparator : 0;
+            length= actual.origFilePathLength >= 0 ? actual.origFilePathLength : 0;
             return  actual.origFile;
         }
 
@@ -436,17 +458,17 @@ public class ScopeInfo
 
             actual.trimmedPath._();
 
-            if( actual.origFilePathSeparator == -2 )
-                actual.origFilePathSeparator= actual.origFile.LastIndexOf( Path.DirectorySeparatorChar );
-            if( actual.origFilePathSeparator < 0 )
+            if( actual.origFilePathLength == -2 )
+                actual.origFilePathLength= actual.origFile.LastIndexOf( Path.DirectorySeparatorChar );
+            if( actual.origFilePathLength < 0 )
                 return actual.trimmedPath;
 
             // we rather search on an the AString object, because case insensitive search is so much
             // faster as with C# strings. Even if we have to remove a prefix afterwards!
-            actual.trimmedPath._( actual.origFile, 0, actual.origFilePathSeparator );
+            actual.trimmedPath._( actual.origFile, 0, actual.origFilePathLength );
 
             int trimPos= 0;
-
+            String  trimPrefix= null;
             // do 2 times, 0== local list, 1== global list
             for( int trimRuleNo= 0; trimRuleNo < 2 ; trimRuleNo++ )
             {
@@ -466,6 +488,7 @@ public class ScopeInfo
                     if ( idx >= 0 )
                     {
                         trimPos= idx + ( rule.IncludeString == Inclusion.Include ? rule.Path.Length() : 0 ) + rule.TrimOffset;
+                        trimPrefix= rule.TrimReplacement;
                         break;
                     }
                 }
@@ -475,7 +498,11 @@ public class ScopeInfo
             }
 
             if ( trimPos > 0 )
+            {
                 actual.trimmedPath.DeleteStart_NC( trimPos );
+                if( trimPrefix != null )
+                    actual.trimmedPath.InsertAt( trimPrefix, 0 );
+            }
 
             // if nothing was found and the flag is still set, try once to auto-detect rule
             // from the 'difference' of source path and current working directory
@@ -498,7 +525,9 @@ public class ScopeInfo
                 if ( i > 1 )
                 {
                     String origFile= actual.origFile;
-                        SetSourcePathTrimRule( currentDir.Substring( 0, i ), Inclusion.Include, 0, Case.Ignore, Inclusion.Exclude );
+                        SetSourcePathTrimRule( currentDir.Substring( 0, i ), Inclusion.Include, 0, Case.Ignore, Inclusion.Exclude, "",
+                                               Lox.PrioSource - 1 );
+
                     actual.origFile= origFile;
 
                     // one recursive call
@@ -522,10 +551,10 @@ public class ScopeInfo
 
             actual.lazyName= true;
             actual.name._();
-            if( actual.origFilePathSeparator == -2 )
-                actual.origFilePathSeparator= actual.origFile.LastIndexOf( Path.DirectorySeparatorChar );
-            if( actual.origFilePathSeparator >= 0 )
-                actual.name._( actual.origFile, actual.origFilePathSeparator + 1 );
+            if( actual.origFilePathLength == -2 )
+                actual.origFilePathLength= actual.origFile.LastIndexOf( Path.DirectorySeparatorChar );
+            if( actual.origFilePathLength >= 0 )
+                actual.name._( actual.origFile, actual.origFilePathLength + 1 );
 
             return actual.name;
         }

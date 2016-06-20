@@ -246,8 +246,8 @@ class AString : public TString
     // friends
     // #############################################################################################
 
-        // this is (unfortunately) needed to allow him stealing our buffer in the move constructor
-        // of our new friend
+        // this is (unfortunately) needed to allow PreallocatedString stealing our buffer in its
+        // move constructor.
         template <const int TCapacity> friend class PreallocatedString;
 
     /** ############################################################################################
@@ -412,8 +412,9 @@ class AString : public TString
             length=         move.length;
             capacity=       move.capacity;
 
-            // prevent moved objects' destructor to delete buffer
-            move.capacity=   0;
+            // clean moved object (buffer does not need to be nulled)
+            move.capacity=
+            move.length=     0;
 
             // in debug mode, more copying and more destructor prevention is needed
             #if defined(ALIB_DEBUG_STRINGS)
@@ -422,7 +423,6 @@ class AString : public TString
                 debugBufferWithMagicBytePadding= move.debugBufferWithMagicBytePadding;
 
                 move.buffer=  nullptr;
-                move.length=  0;
             #endif
         }
 
@@ -547,7 +547,7 @@ class AString : public TString
          *    replace the current buffer is when the current buffers' life-cycle is (already)
          *    internally managed and it has the same size than what is requested.
          *  - In the C++ version of ALib, the \c true allocation size is + 1 of what is given
-         *    in parameter \p newSize. This is is to duly apply to a constraint given by parent
+         *    in parameter \p newCapacity. This is is to duly apply to a constraint given by parent
          *    #TString.
          *
          *  \note Any methods of this class that extend the length of the string represented, will
@@ -566,9 +566,9 @@ class AString : public TString
          *    - \ref ALIB_WARN_ONCE_PER_INSTANCE_DISABLE(theInstanceInQuestion, ReplaceExternalBuffer).
 
          *
-         * @param newSize    The new size for the allocation buffer.
+         * @param newCapacity   The new capacity of the internal buffer.
          ******************************************************************************************/
-        ALIB_API  void    SetBuffer( int newSize );
+        ALIB_API  void    SetBuffer( int newCapacity );
 
 
 
@@ -707,14 +707,14 @@ class AString : public TString
             }
 
             // calc new size: in general grow by 50%
-            int newSize= capacity + (capacity / 2);
-            if ( newSize < length + minimumGrowth )
-                newSize+= minimumGrowth;
+            int newCapacity= capacity + (capacity / 2);
+            if ( newCapacity < length + minimumGrowth )
+                newCapacity+= minimumGrowth;
 
-            if ( newSize < 16 )
-                newSize= 16;
+            if ( newCapacity < 16 )
+                newCapacity= 16;
 
-            SetBuffer( newSize );
+            SetBuffer( newCapacity );
         }
 
         /** ****************************************************************************************
@@ -1310,6 +1310,18 @@ class AString : public TString
 
             return *this;
         }
+
+        /** ****************************************************************************************
+         * Appends a portion of a wide cstring.
+         *
+         * @param  src         A pointer to the wide cstring to append.
+         * @param  srcLength   The length of the portion of the cstring to append.
+         *
+         * @return    \c *this to allow concatenated calls.
+         ******************************************************************************************/
+        ALIB_API
+        AString& Append( const wchar_t* src, int srcLength );
+
 
         /** ****************************************************************************************
          *  This generic method allows to apply or 'use' this object with different types of other

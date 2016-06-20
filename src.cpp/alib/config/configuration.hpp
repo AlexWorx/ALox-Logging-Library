@@ -99,7 +99,7 @@ namespace                   config {
  *
  * An application specific instance of abstract class
  * \ref aworx::lib::config::ConfigurationPlugIn "ConfigurationPlugIn"
- * that uses appropriate configuration techniques (ini-files, registry entries, etc.)
+ * that uses appropriate configuration techniques (INI files, registry entries, etc.)
  * optionally completes this set. It is proposed to use a priority value of 200
  * (provided in static constant field #PrioIniFile)  for custom configuration plug-ins.
  * This way, environment variables could \e overwrite entries in configuration files and
@@ -132,8 +132,9 @@ class Configuration : public threads::ThreadLock
     // #############################################################################################
     public:
         /**
-         * Values considered to indicate "true". Defaults to { "1", "true", "yes", "on", "ok" }.
-         * Comparisons are made case insensitive.
+         * Values considered to indicate "true". Defaults to
+         * { "1", "true", "t", "yes", "y", "on", "ok" }.
+         * See methods #IsTrue.
          *
          * Application specific values (e.g. localization languages) might be added by publicly
          * accessing this field and adding new values (or removing existing).
@@ -280,7 +281,8 @@ class Configuration : public threads::ThreadLock
         /** ****************************************************************************************
          * Retrieves a floating point value from the configuration settings. This is done by asking
          * each of  the installed plug-ins. As soon as the first one returns a value for
-         * the given variable
+         * the given variable.
+         *
          * @param category       The category of the  variable.
          * @param name           The name of the configuration variable to be retrieved.
          * @param target         A reference to an double variable to take the result.
@@ -294,7 +296,9 @@ class Configuration : public threads::ThreadLock
 
 
         /** ****************************************************************************************
-         * Utility method that checks if a given value represents 'true'.
+         * Utility method that checks if a given value represents boolean \b true.
+         * Uses field #TrueValues. Comparisons are made case insensitive.
+         *
          * @param value  The value to check
          *
          * @return   Returns \c true, if the value represents 'true', \c false if not.
@@ -302,10 +306,10 @@ class Configuration : public threads::ThreadLock
         ALIB_API bool  IsTrue( const String&  value );
 
         /** ****************************************************************************************
-         * Uses *  \ref Get(const String&, const String&,AString&) "Get"
+         * Uses \ref Get(const String&, const String&,AString&) "Get"
          * to read a string value and returns \c true if this variable holds one of the
-         * values found in the #TrueValues string list. By default, this string list contains the
-         * strings "true", "yes" and "1" (case insensitive comparison).
+         * values found in the #TrueValues string list.
+         *
          * @param category       The category of the  variable.
          * @param name           The name of the environment variable to read
          *                       the variable was defined, to \c false otherwise.
@@ -315,7 +319,7 @@ class Configuration : public threads::ThreadLock
          *                       was defined at all (if \c false was returned) or even from which
          *                       configuration source the variable was read.
          *
-         * @return   Returns true, if the environment variable is defined and has one of the
+         * @return   Returns \b true, if the environment variable is defined and has one of the
          *           values found in field #TrueValues.
          ******************************************************************************************/
         ALIB_API bool  IsTrue( const String&  category,

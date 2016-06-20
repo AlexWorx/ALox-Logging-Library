@@ -51,7 +51,23 @@ ALIBUnitTesting::ALIBUnitTesting( const TString& domain, const TString& testName
     #if defined ( ALIB_VSTUDIO )
         utl= new VStudioUnitTestLogger();
     #else
+//! [IDESetupGuide_ADD_ABSOLUTE_PATH]
         utl= Lox::CreateConsoleLogger();
+
+        // if QTCreator with QMake was detected, then use absolute paths
+        if( utl->MetaInfo->Format.IndexOf( "   Loc:" ) >= 0  )
+        {
+            Directory moduleName( Directory::SpecialFolder::Module );
+            int idx= moduleName.Path.IndexOf( "/ALox/" );
+            if ( idx > 0 )
+            {
+                moduleName.Path.SetLength( idx + 5 );
+                lox.ClearSourcePathTrimRules( Inclusion::Include, false );
+                lox.SetSourcePathTrimRule( "*/src.cpp/", Inclusion::Exclude, 0, Case::Ignore, Inclusion::Include,
+                                           moduleName.Path  );
+            }
+        }
+//! [IDESetupGuide_ADD_ABSOLUTE_PATH]
     #endif
 
     if ( LastAutoSizes.IsNotEmpty() )

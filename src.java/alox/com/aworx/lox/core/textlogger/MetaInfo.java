@@ -21,6 +21,7 @@ import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.Substring;
 import com.aworx.lib.strings.Tokenizer;
 import com.aworx.lib.time.TickSpan;
+import com.aworx.lib.time.Ticks;
 import com.aworx.lox.Verbosity;
 import com.aworx.lox.core.ScopeInfo;
 import com.aworx.lox.core.Domain;
@@ -61,7 +62,8 @@ public class MetaInfo
          *
          * - %tN: Thread name
          * - %tI: Thread ID
-         * - %V:  The verbosity
+         * - %V:  The verbosity. This is replaced by the corresponding strings found in fields
+         *        #verbosityError, #verbosityWarning, #verbosityInfo and #verbosityVerbose.
          * - %D:  Log domain
          * - %#:  The log call counter (like a line counter, but counting multi lines as one)
          * - %An: An auto-adjusted tabulator. This grows whenever it needs, but never shrinks. The
@@ -80,17 +82,16 @@ public class MetaInfo
             =  new AString( "(%SF:%SL) %SM():%A5[%TC +%TL][%tN]%V[%D]%A1(%#): ");
 
 
-
-        /** The output for the \e Verbosity "Error". */
+        /** The replacement for variable \c %%V in field #format if \e Verbosity is \c ERROR */
         public    String                verbosityError           = "[ERR]";
 
-        /** The output for the \e Verbosity "Warning". */
+        /** The replacement for variable \c %%V in field #format if \e Verbosity is \c WARNING */
         public    String                verbosityWarning         = "[WRN]";
 
-        /** The output for the \e Verbosity "Info". */
+        /** The replacement for variable \c %%V in field #format if \e Verbosity is \c INFO */
         public    String                verbosityInfo            = "     ";
 
-        /** The output for the \e Verbosity "Verbose". */
+        /** The replacement for variable \c %%V in field #format if \e Verbosity is \c VERBOSE */
         public    String                verbosityVerbose         = "[***]";
 
         /** Format string for the output of the log date.
@@ -134,16 +135,30 @@ public class MetaInfo
         /** Prefix for the domain. */
         public    int                   logNumberMinDigits       = 3;
 
-        /**  Internal object to retrieve formatted log date. This field has to be set to null,
-         *   when the field #dateFormat gets modified and log operations have been scheduled
-         *   since the creation of the \e Logger (respectively since the last change of that format).  */
+        /**  
+         * Object to retrieve formatted log date. This field has to be set to null,
+         * when the field #dateFormat gets modified and log operations have been scheduled
+         * since the creation of the \e Logger (respectively since the last change of that format).  
+         */
         public    SimpleDateFormat      dateFormatter;
 
-        /**  Internal object to retrieve formatted time of day. This field has to be set to null,
-         *   when the field #timeOfDayFormat gets modified and log operations have been scheduled
-         *   since the creation of the \e Logger (respectively since the last change of that format).  */
+        /**
+         * Object to retrieve formatted time of day. This field has to be set to null,
+         * when the field #timeOfDayFormat gets modified and log operations have been scheduled
+         * since the creation of the \e Logger (respectively since the last change of that format). 
+         */
         public    SimpleDateFormat      timeOfDayFormatter;
 
+        /**
+         * The maximum time elapsed. Used to determine the width of the output when writing
+         * the elapsed time.
+         *
+         * This field will be read from the 
+         * configuration variable [ALOX_LOGGERNAME_MAX_ELAPSED_TIME](../group__GrpALoxConfigVars.html)
+         * when the \b %TextLogger that this object belongs to is attached to a \b %Lox 
+         * and written back on removal.
+         */
+        public    Ticks                 maxElapsedTime                           = new Ticks(0);
 
     // #############################################################################################
     // Internal fields
@@ -178,6 +193,9 @@ public class MetaInfo
 
         /**  A reusable object for displaying the elapsed time span  */
         protected TickSpan              elapsed                       = new TickSpan();
+
+        /**  A reusable object for displaying the elapsed time */
+        protected Ticks                 elapsedTime                   = new Ticks(0);
 
         /// Tokenizer used in #write.
         protected Tokenizer             tTok                          = new Tokenizer();
@@ -349,16 +367,20 @@ public class MetaInfo
                 // %TC: Time elapsed since created
                 else if ( c2 == 'C' )
                 {
-                    elapsed.set( scope.timeStamp.raw() - logger.timeOfCreation.raw() );
-
-                    if ( elapsed.days  > 0 )  dest._( elapsed.days  )._( timeElapsedDays );
-                    if ( elapsed.hours > 0 )  dest._( elapsed.hours )._( ':' );
-
-                    dest._( elapsed.minutes,      2)._( ':' )
-                        ._( elapsed.seconds,      2)._( '.' )
-                        ._( elapsed.milliseconds, 3);
-
-
+                    elapsedTime.set( scope.timeStamp );
+                    elapsedTime.sub( logger.timeOfCreation );
+    
+                    if( maxElapsedTime.raw() < elapsedTime.raw() )
+                        maxElapsedTime.set( elapsedTime );
+    
+                    long      maxElapsedSecs= maxElapsedTime.inSeconds();
+                    elapsed.set( elapsedTime );
+    
+                    if ( maxElapsedSecs >= 60*60*24 )  dest._( elapsed.days  )._NC( timeElapsedDays );
+                    if ( maxElapsedSecs >= 60*60    )  dest._( elapsed.hours  ,  maxElapsedSecs >= 60*60*10 ?  2 : 1 )._NC( ':' );
+                    if ( maxElapsedSecs >= 60       )  dest._( elapsed.minutes,  maxElapsedSecs >= 10*60    ?  2 : 1 )._NC( ':' );
+                    dest._( elapsed.seconds,  maxElapsedSecs > 9 ? 2 : 1          )._NC( '.' );
+                    dest._( elapsed.milliseconds,  3 );
                 }
 
                 // %TL: Time elapsed since last log call

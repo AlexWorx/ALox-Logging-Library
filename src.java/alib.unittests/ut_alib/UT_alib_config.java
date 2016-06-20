@@ -21,9 +21,9 @@ import com.aworx.lox.ALox;
 
 public class UT_alib_config extends AUnitTest
 {
-    //---------------------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------------
     //--- Test CommandLineArgs
-    //---------------------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------------
     @SuppressWarnings("static-method")
     @Test
     public void CommandLineArgs()
@@ -55,17 +55,17 @@ public class UT_alib_config extends AUnitTest
         UT_EQ( Configuration.PRIO_CMD_LINE,    cfg.get   ( null,  "Whitespaces",   v            ) );   UT_EQ( "Hello Test",    v.toString() );
         UT_EQ( Configuration.PRIO_CMD_LINE,    cfg.get   ( null,  "HOME",          v            ) );   UT_EQ( "overwritten",   v.toString() );
         UT_EQ( Configuration.PRIO_CMD_LINE,    cfg.get   ( null,  "integer",       iv           ) );   UT_EQ( 42,              iv[0] );
-        UT_EQ(                             0,    cfg.get   ( null,  "notexistant",   iv           ) );   UT_EQ( 0,               iv[0] );
+        UT_EQ(                             0,    cfg.get   ( null,  "notexistent",   iv           ) );   UT_EQ( 0,               iv[0] );
         UT_EQ( Configuration.PRIO_CMD_LINE,    cfg.get   ( null,  "integer",       iv, temp     ) );   UT_EQ( 42,              iv[0] );
         UT_EQ( Configuration.PRIO_CMD_LINE,    cfg.get   ( null,  "double",        dv           ) );   UT_EQ( 3.14,            dv[0], 0.0 );
-        UT_EQ(                             0,    cfg.get   ( null,  "notexistant",   dv           ) );   UT_EQ( 0.0,             dv[0], 0.0 );
+        UT_EQ(                             0,    cfg.get   ( null,  "notexistent",   dv           ) );   UT_EQ( 0.0,             dv[0], 0.0 );
         UT_EQ( Configuration.PRIO_CMD_LINE,    cfg.get   ( null,  "double",        dv, temp     ) );   UT_EQ( 3.14,            dv[0], 0.0 );
         UT_EQ( Configuration.PRIO_CMD_LINE,    cfg.get   ( "ALIB", "test",         v            ) );   UT_EQ( "passed",        v.toString() );
     }
 
-    //---------------------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------------
     //--- Test IniFile
-    //---------------------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------------
     @SuppressWarnings("static-method")
     @Test
     public void IniFile()
@@ -173,7 +173,7 @@ public class UT_alib_config extends AUnitTest
         UT_TRUE( ALIB.config.isTrue( "Great Section",  "SECTION_CONTINUED" ) );
 
 
-        // check if environment variable "home" overwrites ini-file
+        // check if environment variable "home" overwrites INI file
         AString vIniFile= new AString();   iniFile.get( "", "hOme", vIniFile );               UT_EQ( "overwritten_by_environment", vIniFile.toString() );
         AString vConfig=  new AString();
         int prio= ALIB.config.get( "", "hOme", vConfig );  UT_EQ( Configuration.PRIO_ENV_VARS, prio );

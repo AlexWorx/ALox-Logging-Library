@@ -40,14 +40,19 @@ AString& ToString( Verbosity verbosity, int priority, AString& target )
 {
     target._( Format::Field( aworx::lox::ToStringX( verbosity ), 7, Alignment::Left) );
     target._( '(' );
-         if ( priority ==           Lox::PrioSource    )  target._( "Source)   " );
-    else if ( priority ==           Lox::PrioProtected )  target._( "Protected)" );
-    else if ( priority == Configuration::PrioCmdLine   )  target._( "CmdLine)  " );
-    else if ( priority == Configuration::PrioEnvVars   )  target._( "EnvVars)  " );
-    else if ( priority == Configuration::PrioIniFile   )  target._( "IniFile)  " );
-    else                                                  target._( Format::Int32( priority, 1 ) )
-                                                                ._( ')' );
-    return target;
+    ToStringPriority( priority, target );
+    return target.InsertAt( ")", target.LastIndexOfAny( DefaultWhitespaces, Inclusion::Exclude )  + 1 );
+}
+
+AString& ToStringPriority( int priority, AString& target )
+{
+    if ( priority ==           Lox::PrioSource    )  return target._( "Source   " );
+    if ( priority ==           Lox::PrioProtected )  return target._( "Protected" );
+    if ( priority == Configuration::PrioCmdLine   )  return target._( "CmdLine  " );
+    if ( priority == Configuration::PrioEnvVars   )  return target._( "EnvVars  " );
+    if ( priority == Configuration::PrioIniFile   )  return target._( "IniFile  " );
+    String64 numStr;  numStr._( Format::Int32( priority, 1 ) );
+    return target._( Format::Field( numStr, 9, Alignment::Left ) );
 }
 
 

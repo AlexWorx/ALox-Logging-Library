@@ -10,9 +10,9 @@
 #define TESTCLASSNAME       CPP_ALib__Dox
 
 
-//---------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //--- DOCUMENTATION SAMPLEs
-//---------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 #include <iostream>
 #include <sstream>
 namespace std { stringstream testOutputStream1; }
@@ -133,7 +133,7 @@ namespace std { stringstream testOutputStream2; }
 #undef HPP_ALIB_COMPATIBILITY_STD_IOSTREAM // be
 
 //----------- Now to the unit tests -------------
-#include "aworx_unittests.hpp"
+#include "alib.unittests/aworx_unittests.hpp"
 #include "alib/strings/tokenizer.hpp"
 #include "alib/strings/numberformat.hpp"
 

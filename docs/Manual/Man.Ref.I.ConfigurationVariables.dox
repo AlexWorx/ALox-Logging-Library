@@ -21,14 +21,16 @@ Configuration Variable ALOX_CONSOLE_HAS_LIGHT_BACKGROUND;
 Configuration Variable ALOX_USE_SYSTEM_OUT_PRINT;
 Configuration Variable ALOX_CODE_PAGE;
 Configuration Variable ALOX_NO_IDE_LOGGER;
-Configuration Variable ALOX_LOGGERNAME_AUTO_SIZES;
 
 Configuration Variable ALOX_LOGGERNAME_FORMAT;
+Configuration Variable ALOX_LOGGERNAME_AUTO_SIZES;
+Configuration Variable ALOX_LOGGERNAME_MAX_ELAPSED_TIME;
 
 Configuration Variable ALOX_LOXNAME_DOMAIN_SUBSTITUTION;
 Configuration Variable ALOX_GLOBAL_SOURCE_PATH_TRIM_RULES;
 Configuration Variable ALOX_LOXNAME_SOURCE_PATH_TRIM_RULES;
 Configuration Variable ALOX_LOXNAME_LOGGERNAME_VERBOSITY;
+Configuration Variable ALOX_LOXNAME_PREFIXES;
 
 //##################################################################################################
 // GrpALoxConfigVars
@@ -72,7 +74,7 @@ documentation of namespace<br>
 Configuration variables are defined by a variable category and a variable name. For command
 line parameters and environment variables, the category and name are concatenated to a single
 word with an underscore character between. For other configuration plug-ins, this might be
-different. For example the provided ini-File parser class
+different. For example the provided INI file parser class
 <b>IniFile</b>
  ([C++] (@ref #aworx::lib::config::IniFile),
   [C#]  (@ref #cs::aworx::lib::config::IniFile),
@@ -237,10 +239,11 @@ Defines what type of console logger will be created by method
 Possible values are:
 <center>Value</center>   | <center>Effect</center>
 - - - - - - - - - - - - -| - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-   default | No influence, same as if variable was not set (auto detection mechanism applies).
-   plain   | Plain text \e Logger of type <b>ConsoleLogger</b> ([C++] (@ref #aworx::lox::loggers::ConsoleLogger), [C#]  (@ref #cs::aworx::lox::loggers::ConsoleLogger), [Java](@ref #com::aworx::lox::loggers::ConsoleLogger)) is created
-   ANSI    | A \e Logger of type \b AnsiLogger ([C++] (@ref #aworx::lox::loggers::AnsiLogger), [C#]  (@ref #cs::aworx::lox::loggers::AnsiLogger), [Java](@ref #com::aworx::lox::loggers::AnsiLogger)) is created
-   Windows | In C++, a \e Logger of type [WindowsConsoleLogger] (@ref #aworx::lox::loggers::WindowsConsoleLogger) is created.<br> In C#, a \e Logger of type [ColorConsoleLogger] (@ref #cs::aworx::lox::loggers::ColorConsoleLogger) is created.<br> (It is advisable to use this value when in Windows operating system, while using ANSI for colorful output under Linux/Mono.)<br> In Java, this value is not supported.<br>
+   default      | No influence, same as if variable was not set (auto detection mechanism applies).
+   plain        | Plain text \e Logger of type <b>ConsoleLogger</b> ([C++] (@ref #aworx::lox::loggers::ConsoleLogger), [C#]  (@ref #cs::aworx::lox::loggers::ConsoleLogger), [Java](@ref #com::aworx::lox::loggers::ConsoleLogger)) is created.
+   ANSI         | A \e Logger of type \b AnsiLogger ([C++] (@ref #aworx::lox::loggers::AnsiLogger), [C#]  (@ref #cs::aworx::lox::loggers::AnsiLogger), [Java](@ref #com::aworx::lox::loggers::AnsiLogger)) is created
+   Windows      | In C++, a \e Logger of type [WindowsConsoleLogger] (@ref #aworx::lox::loggers::WindowsConsoleLogger) is created.<br> In C#, a \e Logger of type [ColorConsoleLogger] (@ref #cs::aworx::lox::loggers::ColorConsoleLogger) is created.<br> (It is advisable to use this value when in Windows operating system, while using ANSI for colorful output under Linux/Mono.)<br> In Java, this value is not supported.<br>
+   NO_QT_CREATOR| Available only in C++: This variable suppresses actions taken by method \b %Lox::CreateConsoleLogger when QTCreator is detected. This should be used when QTCreator is used in combination with CMake because then, unfortunately, QTCreator does not support clickable output. See \ref cppsetup for more information.
 */
 
 
@@ -316,9 +319,50 @@ different \e %Loggers.
 There is no need to manually edit the values found in this variable and their values are not
 documented here. Consider this variable a 'cookie' that ALox uses to store tabulator width
 across sessions. Of-course the information is only stored (and successfully read back with
-the next run of a process) when a write-enabled configuration plug-in (e.g. an ini-File)
+the next run of a process) when a write-enabled configuration plug-in (e.g. an INI file)
 is available.
 */
+
+/**
+\var  ALOX_LOGGERNAME_MAX_ELAPSED_TIME
+This variable is used by \e Loggers of type
+<b>%TextLogger</b>
+ ([C++]      (@ref #aworx::lox::core::textlogger::TextLogger),
+  [C#]   (@ref #cs::aworx::lox::core::textlogger::TextLogger),
+  [Java](@ref #com::aworx::lox::core::textlogger::TextLogger)).
+It is read when a \b %TextLogger is registered with a \b %Lox and written back when it is
+removed.<br>
+The value stores the maximum elapsed time span of any <em>Log Statement</em> executed, measured
+in raw
+<b>%Ticks</b>
+ ([C++]      (@ref #aworx::lib::time::Ticks),
+  [C#]   (@ref #cs::aworx::lib::time::Ticks),
+  [Java](@ref #com::aworx::lib::time::Ticks)).
+In other words, in standard use case scenarios, this time span measures from the start of the
+application to the last log statement.
+
+The value is used to determine the number of 'digits' displayed in the meta information output
+of utility class
+<b>%MetaInfo</b>
+ ([C++]      (@ref #aworx::lox::core::textlogger::MetaInfo),
+  [C#]   (@ref #cs::aworx::lox::core::textlogger::MetaInfo),
+  [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo)) for format parameter \c "%TC".
+
+Note, that the portion <c>'LOGGERNAME'</c> in the variable name is replaced by ALox
+with the value of
+<b>%Logger.GetName</b>
+  ([C++]      (@ref #aworx::lox::core::Logger::GetName),
+   [C#]   (@ref #cs::aworx::lox::core::Logger::GetName),
+   [Java](@ref #com::aworx::lox::core::Logger::getName)). This allows to have different values for
+different \e %Loggers.
+
+The value never decreases. Therefore, if a process once ran quite long, e.g. an hour (a day), from all
+next runs, the meta info for the elapsed time will display hours (or days).
+edit your configuration files, or within your code, change the value \e after the \e %Logger was
+added to its \b %Lox.
+
+*/
+
 
 /**
 \var  ALOX_LOGGERNAME_FORMAT
@@ -327,12 +371,37 @@ This variable is used by \e Loggers of type
  ([C++]      (@ref #aworx::lox::core::textlogger::TextLogger),
   [C#]   (@ref #cs::aworx::lox::core::textlogger::TextLogger),
   [Java](@ref #com::aworx::lox::core::textlogger::TextLogger)).<br>
-It is read in the constructor and if found, field
-<b>%MetaInfo.Format</b>
- ([C++]      (@ref #aworx::lox::core::textlogger::MetaInfo.Format),
-  [C#]   (@ref #cs::aworx::lox::core::textlogger::MetaInfo.Format),
-  [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo.format)) is set according to the
-variables' content.<br>
+It is read in the constructor and if found, fields
+- <b>%MetaInfo.Format</b>
+  ([C++]      (@ref #aworx::lox::core::textlogger::MetaInfo.Format),
+   [C#]   (@ref #cs::aworx::lox::core::textlogger::MetaInfo.Format),
+   [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo.format))
+- <b>%MetaInfo.VerbosityError</b>
+  ([C++]      (@ref #aworx::lox::core::textlogger::MetaInfo.VerbosityError),
+   [C#]   (@ref #cs::aworx::lox::core::textlogger::MetaInfo.VerbosityError),
+   [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo.verbosityError))
+- <b>%MetaInfo.VerbosityWarning</b>
+  ([C++]      (@ref #aworx::lox::core::textlogger::MetaInfo.VerbosityWarning),
+   [C#]   (@ref #cs::aworx::lox::core::textlogger::MetaInfo.VerbosityWarning),
+   [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo.verbosityWarning))
+- <b>%MetaInfo.VerbosityInfo</b>
+  ([C++]      (@ref #aworx::lox::core::textlogger::MetaInfo.VerbosityInfo),
+   [C#]   (@ref #cs::aworx::lox::core::textlogger::MetaInfo.VerbosityInfo),
+   [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo.verbosityInfo))
+- <b>%MetaInfo.VerbosityVerbose</b>
+  ([C++]      (@ref #aworx::lox::core::textlogger::MetaInfo.VerbosityVerbose),
+   [C#]   (@ref #cs::aworx::lox::core::textlogger::MetaInfo.VerbosityVerbose),
+   [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo.verbosityVerbose))
+
+are (optionally) set according to the variables' content. The contents of the variable is specified
+as follows:
+
+Format: <c> ALOX_\<LOGGERNAME\>_FORMAT = ["]format["] [, Error [, Warning [, Info [, Verbose ]]]] </c>
+
+The value for the format field itself can be enclosed by quotation marks (<c>\"</c>).
+This allows to have leading or trailing spaces as well as comma characters (<c>,</c>) in the string.
+Optionally, values for the different \e Verbosity strings may be given. Those are assigned to
+the fields listed above (used for replacing variable <c>%%V</c> in the format string).
 
 
 Note, that the portion <c>'LOGGERNAME'</c> in the variable name is replaced by ALox as follows:
@@ -359,16 +428,16 @@ is set when such \e %Logger is constructed and no separate configuration for tha
 Note, that the default debug \e %Logger which is automatically created if no \e %Logger is
 attached to the debug \b %Lox singleton, is named \c "DEBUG_LOGGER".
 Therefore, by setting variable \c ALOX_DEBUG_LOGGER_FORMAT, this \e Logger is affected.
-Furthermore, in C++ and C# versions of ALox, when debugging, an second debug-\e Logger for
+Furthermore, in C++ and C# versions of ALox, when debugging, a second debug-\e Logger for
 the IDE might be created. Its' name is \c "IDE_LOGGER".
 */
 
 
 /**
 \var  ALOX_LOXNAME_DOMAIN_SUBSTITUTION
-This variable is used to define <em>Domain Substitution</em>Rs for a \b %Lox.
+This variable is used to define <em>Domain Substitution Rules</em> for a \b %Lox.
 The portion <c>'LOXNAME'</c> of the variable name has to be replaced by
-the names instance of class \b %Lox in question.
+the name of the instance of class \b %Lox in question.
 
 Format: <c> ALOX_\<LOXNAME\>_DOMAIN_SUBSTITUTION = [*]domainpath[*] -> replacement [ ; &hellip; ] </c>
 
@@ -380,7 +449,7 @@ Details are described in \ref man_domain_substitution_config "Substitution Rules
 \var  ALOX_GLOBAL_SOURCE_PATH_TRIM_RULES
 This variable is used to define global <em>Source Path Trim Rules</em>.
 
-Format: <c> ALOX_GLOBAL_SOURCE_PATH_TRIM_RULES = [*]domainpath [, inclusion, trimoffset, sensitivity] [ ; &hellip; ] </c>
+Format: <c> ALOX_GLOBAL_SOURCE_PATH_TRIM_RULES = [*]sourcepath [, inclusion, trimoffset, sensitivity, replacement] [ ; &hellip; ] </c>
 
 
 Details are described in \ref man_trim_source_path_set_config "External Configuration of Trim Rules".
@@ -392,9 +461,9 @@ Details are described in \ref man_trim_source_path_set_config "External Configur
 \var  ALOX_LOXNAME_SOURCE_PATH_TRIM_RULES
 This variable is used to define <b>%Lox</b>-specific <em>Source Path Trim Rules</em>.
 The portion <c>'LOXNAME'</c> of the variable name has to be replaced by
-the names instance of class \b %Lox in question.
+the name of the instance of class \b %Lox in question.
 
-Format: <c> ALOX_\<LOXNAME\>_SOURCE_PATH_TRIM_RULES = [*]domainpath [, inclusion, trimoffset, sensitivity] [ ; &hellip; ] </c>
+Format: <c> ALOX_\<LOXNAME\>_SOURCE_PATH_TRIM_RULES = [*]sourcepath [, inclusion, trimoffset, sensitivity, replacement] [ ; &hellip; ] </c>
 
 Details are described in \ref man_trim_source_path_set_config "External Configuration of Trim Rules".
 
@@ -411,7 +480,38 @@ Format: <c> ALOX_\<LOXNAME\>_\<LOGGERNAME\>_VERBOSITY = [*]domainpath[*] = verbo
 Details are described in \ref man_external_verbosity_configuration "External Verbosity Configuration".
 */
 
-man_trim_source_path_set_config
+/**
+\var  ALOX_LOXNAME_PREFIXES
+This variable is used to define <b>%Lox</b> and <em>Log Domain</em> specific <em>Prefix Logables</em> (strings only).
+The portion <c>'LOXNAME'</c> of the variable name has to be replaced by
+the name of the instance of class \b %Lox in question.
+
+Format: <c> ALOX_\<LOXNAME\>_PREFIXES = [*]domainpath[*] = prefixstring [, inclusion] [ ; &hellip; ] </c>
+
+The variable value may contain more than one definition, separated by semicolons \b ';'.
+Each definition contains of the following parameters:
+- \p domainpath<br>
+  An absolute or relative domain path. When using the optional asterisk characters \b '*',
+  a start of a domain path, the end of a domain path or
+  an arbitrary substring of a domain path can also be denoted.
+  This way, more than one <em>Log Domain</em> might be affected.
+- \p prefixstring<br>
+  The <em>Prefix Logable</em> to set. The string is trimmed from whitespaces, unless surrounded
+  by quotation marks, \b ". Outer quotation marks are trimmed as well.
+- \p inclusion<br>
+  Can evaluate to the terms <em>Include</em> or <em>Exclude</em>. Can be arbitrarily abbreviated
+  (i.e. \b "E" is enough) and is read in case insensitive way.
+  The meaning is the same as parameter \p otherPLs of method
+  <b>Log::SetPrefix</b>
+     ([C++] (@ref      #aworx::lox::Lox::SetPrefix(const void*,int,const TString&,lib::enums::Inclusion))
+      [C#]  (@ref  #cs::aworx::lox::Lox::SetPrefix(Object,String,Inclusion otherPLs, int,String,String))
+      [Java](@ref #com::aworx::lox::Lox::setPrefix(Object,String,Inclusion otherPLs)))
+
+
+
+
+*/
+
 
 /**  @}  */
 

@@ -15,37 +15,37 @@ namespace cs.aworx.lib.config  {
 
 
     /** ************************************************************************************************
-     *  Specialization of abstract interface class #ConfigurationPlugIn, which reads and writes
-     *  a simple configuration file consisting of key/value pairs.
+     * Specialization of abstract interface class #ConfigurationPlugIn, which reads and writes
+     * a simple configuration file consisting of key/value pairs.
      *
-     *  This class is provided for the case that no other configuration mechanism is available.
-     *  For example, software that uses QT should not use this class but rather implement a
-     *  #ConfigurationPlugIn which uses a QSettings object to read and store that data to.
+     * This class is provided for the case that no other configuration mechanism is available.
+     * For example, software that uses QT should not use this class but rather implement a
+     * #ConfigurationPlugIn which uses a QSettings object to read and store that data to.
      *
-     *  This class offers all internal fields for public access. However, in standard cases, only
-     *  the interface methods of this class should be used.
+     * This class offers all internal fields for public access. However, in standard cases, only
+     * the interface methods of this class should be used.
      *
-     *  Some remarks on the functionality and supported format:
-     *  - Comment lines at the beginning of the file are associated with the file and are written
-     *    back. Such comment block is stopped with a single blank line.
-     *  - Comment lines before sections and variables are associated with the respective objects
-     *    and are written back.
-     *  - Sections names are enclosed by brackets ('[' and ']).
-     *  - Section names can be repeated. In this case the corresponding section is continued.
-     *    When the file is written, the section are merged. Otherwise the order of sections and
-     *    the variables within the section is kept intact.
-     *  - Variable names and their values are separated by an equal sign ('=').
-     *  - Whitespace characters (' ', '\\t' ) are removed at the start and end of each line and before
-     *    and after the equal sign ('=').
-     *  - Lines that start (apart from whitespace) with either a double
-     *    slash "//", a sharp sign '#' or a semicolon ';' are comment lines.
-     *  - Comments can not reside in the same line together with section names or variables.
-     *  - Variables definitions are being continued (values are concatenated) if the line ends
-     *    with a backslash ('\'). Whitespaces in continued lines are ignored but can be 'escaped'.
-     *    Comment lines in-between continued lines are not recognized as such.
-     *  - Sequences of blank lines are reduced to one blank line, when writing the file.
-     *  - Commented variables receive a blank line before the comment.
-     *  - Commented Sections receive two blank lines before the comment. One if they are not commented.
+     * Some remarks on the functionality and supported format:
+     * - Comment lines at the beginning of the file are associated with the file and are written
+     *   back. Such comment block is stopped with a single blank line.
+     * - Comment lines before sections and variables are associated with the respective objects
+     *   and are written back.
+     * - Sections names are enclosed by brackets ('[' and ']).
+     * - Section names can be repeated. In this case the corresponding section is continued.
+     *   When the file is written, the section are merged. Otherwise the order of sections and
+     *   the variables within the section is kept intact.
+     * - Variable names and their values are separated by an equal sign ('=').
+     * - Whitespace characters (' ', '\\t' ) are removed at the start and end of each line and before
+     *   and after the equal sign ('=').
+     * - Lines that start (apart from whitespace) with either a double
+     *   slash "//", a sharp sign '#' or a semicolon ';' are comment lines.
+     * - Comments can not reside in the same line together with section names or variables.
+     * - Variables definitions are being continued (values are concatenated) if the line ends
+     *   with a backslash ('\'). Whitespaces in continued lines are ignored but can be 'escaped'.
+     *   Comment lines in-between continued lines are not recognized as such.
+     * - Sequences of blank lines are reduced to one blank line, when writing the file.
+     * - Commented variables receive a blank line before the comment.
+     * - Commented Sections receive two blank lines before the comment. One if they are not commented.
      **************************************************************************************************/
     public class IniFile : ConfigurationPlugIn
     {
@@ -73,7 +73,7 @@ namespace cs.aworx.lib.config  {
     // #############################################################################################
 
         /** ****************************************************************************************
-         *  A configuration section
+         * A configuration section
          ******************************************************************************************/
         public class Variable
         {
@@ -84,7 +84,7 @@ namespace cs.aworx.lib.config  {
         };
 
         /** ****************************************************************************************
-         *  A configuration section
+         * A configuration section
          ******************************************************************************************/
         public class Section
         {
@@ -92,28 +92,31 @@ namespace cs.aworx.lib.config  {
             public AString            Comments   = new AString();         ///< The comments of the section
             public List<Variable>     Variables  = new List<Variable>();  ///< The list of variables of the section
 
-            /** Constructs a Section
-             *  @param name    The name of the section.
-             *                 (AString compatible type expected.)
+            /**
+             * Constructs a Section
+             * @param name    The name of the section.
+             *                (AString compatible type expected.)
             */
             public              Section( Object name )         { this.Name._( name ); }
 
-            /** Searches a variable with the given name. The search is performed case insensitive
-             *  @param name    The name of the variable to be searched.
-             *                 (AString compatible type expected.)
-             *  @return The variable if found, else null. */
+            /**
+             * Searches a variable with the given name. The search is performed case insensitive
+             * @param name    The name of the variable to be searched.
+             *                (AString compatible type expected.)
+             * @return The variable if found, else null. */
             public Variable     Get    ( Object name )
             {
                 return Variables.Find( variable => variable.Name.Equals( name, Case.Ignore ) );
             }
 
-            /** Inserts a variable into the section. If the variable exists, the value will be
-             *  written. If the comments also exist, they will be preserved.
-             *  @param name      The name of the variable to be inserted or written.
-             *                   (AString compatible type expected.)
-             *  @param value     The value of the variable to be inserted or written.
-             *  @param comments  Comments that describe the variable (is written to INI-file.
-             *  @return The variable that was created or written. */
+            /**
+             * Inserts a variable into the section. If the variable exists, the value will be
+             * written. If the comments also exist, they will be preserved.
+             * @param name      The name of the variable to be inserted or written.
+             *                  (AString compatible type expected.)
+             * @param value     The value of the variable to be inserted or written.
+             * @param comments  Comments that describe the variable (is written to INI file.
+             * @return The variable that was created or written. */
             public Variable     Insert ( Object name, Object value, AString comments= null )
             {
                 // search
@@ -180,11 +183,12 @@ namespace cs.aworx.lib.config  {
         public List<String>                     EscapeSequences;
 
 
-        /** The prefix that is used for comment lines of sections or variables that have been
-         *  added 'programmatically', in other words, that have not been read from the file.
-         *  Comments that were read from the file preserve their prefix. Also, if comments including
-         *  one of the valid prefixes are added to a variable or section 'programmatically', such
-         *  prefix is preserved. */
+        /**
+         * The prefix that is used for comment lines of sections or variables that have been
+         * added 'programmatically', in other words, that have not been read from the file.
+         * Comments that were read from the file preserve their prefix. Also, if comments including
+         * one of the valid prefixes are added to a variable or section 'programmatically', such
+         * prefix is preserved. */
         public String                           DefaultCommentPrefix                        =  "# ";
 
     // #############################################################################################
@@ -197,17 +201,17 @@ namespace cs.aworx.lib.config  {
     // Constructor/destructor
     // #############################################################################################
         /** ****************************************************************************************
-         *  Constructs an instance of this class and reads the file.
-         *  If no file name is given, the file name set to the process name with extension
-         *  ".ini" while the file path is retrieved using
-         *  <em>Environment.GetFolderPath( Environment.SpecialFolder.ApplicationData )</em>.
+         * Constructs an instance of this class and reads the file.
+         * If no file name is given, the file name set to the process name with extension
+         * ".ini" while the file path is retrieved using
+         * <em>Environment.GetFolderPath( Environment.SpecialFolder.ApplicationData )</em>.
          *
-         *  If the given file name \p filePathAndName starts with '*', no file is read and field
-         *  #AutoSave is set to \c false.
+         * If the given file name \p filePathAndName starts with '*', no file is read and field
+         * #AutoSave is set to \c false.
          *
-         *  @param filePathAndName  The name (and path) of the file to read and write.
-         *                          Provide "*" to suppress reading a file.
-         *                          Defaults to \c null.
+         * @param filePathAndName  The name (and path) of the file to read and write.
+         *                         Provide "*" to suppress reading a file.
+         *                         Defaults to \c null.
          ******************************************************************************************/
         public IniFile( String filePathAndName=  null )
         {
@@ -253,13 +257,13 @@ namespace cs.aworx.lib.config  {
     // ConfigurationPlugIn interface implementation
     // #############################################################################################
         /** ****************************************************************************************
-         *  Retrieves the string value of a configuration setting.
-         *  @param category  The category of the  variable.
-         *                   (AString compatible type expected.)
-         *  @param name      The name of the configuration variable to be retrieved.
-         *                   (AString compatible type expected.)
-         *  @param target    A reference to an empty AString to take the result.
-         *  @return true if variable was found within this configuration source, false if not.
+         * Retrieves the string value of a configuration setting.
+         * @param category  The category of the  variable.
+         *                  (AString compatible type expected.)
+         * @param name      The name of the configuration variable to be retrieved.
+         *                  (AString compatible type expected.)
+         * @param target    A reference to an empty AString to take the result.
+         * @return true if variable was found within this configuration source, false if not.
          ******************************************************************************************/
         public override bool  Get( Object   category, Object name,
                                    AString  target                           )
@@ -278,20 +282,20 @@ namespace cs.aworx.lib.config  {
         }
 
         /** ****************************************************************************************
-         *  Writes a value to the configuration.
-         *  @param category  The category of the  variable.
-         *                   (AString compatible type expected.)
-         *  @param name      The name of the configuration variable to be retrieved.
-         *                   (AString compatible type expected.)
-         *  @param value     The value to write.
-         *  @param comments  The variable comments. Will be written above the variable.
-         *                   Defaults to null.
-         *  @param delim     This plug-in uses this character to identify variable values that
-         *                   are split into different lines within the INI file.
-         *                   Lines are continued by adding a backslash at the end.
-         *                   Defaults to ','.
+         * Writes a value to the configuration.
+         * @param category  The category of the  variable.
+         *                  (AString compatible type expected.)
+         * @param name      The name of the configuration variable to be retrieved.
+         *                  (AString compatible type expected.)
+         * @param value     The value to write.
+         * @param comments  The variable comments. Will be written above the variable.
+         *                  Defaults to null.
+         * @param delim     This plug-in uses this character to identify variable values that
+         *                  are split into different lines within the INI file.
+         *                  Lines are continued by adding a backslash at the end.
+         *                  Defaults to ','.
          *
-         *  @return true if the variable was written, false if not.
+         * @return true if the variable was written, false if not.
          ******************************************************************************************/
         public override bool  Save( Object  category,  Object  name,
                                     Object  value,     Object  comments= null,
@@ -335,7 +339,7 @@ namespace cs.aworx.lib.config  {
     // Interface
     // #############################################################################################
         /** ****************************************************************************************
-         *  Clears all configuration data.
+         * Clears all configuration data.
          ******************************************************************************************/
         public void            Clear()
         {
@@ -350,10 +354,10 @@ namespace cs.aworx.lib.config  {
 
 
         /** ****************************************************************************************
-         *  Searches the \ref cs::aworx::lib::config::IniFile::Section "Section" with the given name.
+         * Searches the \ref cs::aworx::lib::config::IniFile::Section "Section" with the given name.
          *
-         *  @param name      The name of the section to be retrieved.
-         *  @return Returns the section if it was found, \c null otherwise.
+         * @param name      The name of the section to be retrieved.
+         * @return Returns the section if it was found, \c null otherwise.
          ******************************************************************************************/
         public Section  SearchSectionX( Object name )
         {
@@ -361,13 +365,13 @@ namespace cs.aworx.lib.config  {
         }
 
         /** ****************************************************************************************
-         *  Searches the \ref cs::aworx::lib::config::IniFile::Section "Section" with the given name.
-         *  If the section was not found, it is created.
-         *  If the section is found and has no comments, then the provided comments are appended.
-         *  @param name      The name of the section to be retrieved.
-         *  @param comments  The comment lines for the section, in the case the section is not
-         *                   found. If this is null, no section is created.
-         *  @return Returns the section if it was found or created. \c null otherwise.
+         * Searches the \ref cs::aworx::lib::config::IniFile::Section "Section" with the given name.
+         * If the section was not found, it is created.
+         * If the section is found and has no comments, then the provided comments are appended.
+         * @param name      The name of the section to be retrieved.
+         * @param comments  The comment lines for the section, in the case the section is not
+         *                  found. If this is null, no section is created.
+         * @return Returns the section if it was found or created. \c null otherwise.
          ******************************************************************************************/
         public Section  SearchOrCreateSection( Object name, AString comments )
         {
@@ -385,10 +389,10 @@ namespace cs.aworx.lib.config  {
     // file IO
     // #############################################################################################
         /** ****************************************************************************************
-         *  Clears all configuration data and reads the file. It might happen that lines are
-         *  ignored or otherwise marked as faulty. All numbers of such lines get collected in
-         *  field LinesWithReadErrors.
-         *  @return Returns the #Status of the operation.
+         * Clears all configuration data and reads the file. It might happen that lines are
+         * ignored or otherwise marked as faulty. All numbers of such lines get collected in
+         * field LinesWithReadErrors.
+         * @return Returns the #Status of the operation.
          ******************************************************************************************/
         public IniFile.Status  ReadFile()
         {
@@ -530,8 +534,8 @@ namespace cs.aworx.lib.config  {
         }
 
         /** ****************************************************************************************
-         *  Write all configuration data into the file.
-         *  @return Returns the #Status of the operation.
+         * Write all configuration data into the file.
+         * @return Returns the #Status of the operation.
          ******************************************************************************************/
         public IniFile.Status  WriteFile()
         {
@@ -627,9 +631,9 @@ namespace cs.aworx.lib.config  {
         }
 
         /** ****************************************************************************************
-         *  Helper method used when reading file.
-         *  @param subs    A sub-string.
-         *  @return true if provided substring starts with comment character.
+         * Helper method used when reading file.
+         * @param subs    A sub-string.
+         * @return true if provided substring starts with comment character.
          ******************************************************************************************/
         protected bool startsWithCommentSymbol( Substring subs )
         {
@@ -639,10 +643,10 @@ namespace cs.aworx.lib.config  {
         }
 
         /** ****************************************************************************************
-         *  Writes a list of comments to the file. Comment lines are started with '#'.
-         *  @param os       The output stream to write to.
-         *  @param comments The comment lines for the section.
-         *  @param tok      A temporary tokenizer needed internally.
+         * Writes a list of comments to the file. Comment lines are started with '#'.
+         * @param os       The output stream to write to.
+         * @param comments The comment lines for the section.
+         * @param tok      A temporary tokenizer needed internally.
          ******************************************************************************************/
         protected void writeComments( TextWriter os, AString comments, Tokenizer tok )
         {
@@ -665,11 +669,11 @@ namespace cs.aworx.lib.config  {
         }
 
         /** ****************************************************************************************
-         *  Converts variable value data. Replaces certain characters by escape sequences.
-         *  @param os        The output stream to write to.
-         *  @param value     The value to write
-         *  @param temp      A temporary AString needed internally.
-         *  @return The difference of length written and given value length.
+         * Converts variable value data. Replaces certain characters by escape sequences.
+         * @param os        The output stream to write to.
+         * @param value     The value to write
+         * @param temp      A temporary AString needed internally.
+         * @return The difference of length written and given value length.
          ******************************************************************************************/
         protected int addEscapeSequences( TextWriter os, Substring value, AString temp )
         {
@@ -698,12 +702,12 @@ namespace cs.aworx.lib.config  {
         }
 
         /** ****************************************************************************************
-         *  Converts variable value data provided in the token and appends it to the target
-         *  variable.
-         *  Respects (and removes) quotation marks.
-         *  Replaces certain characters by escape sequences.
-         *  @param value     The input string.
-         *  @param target    The AString that gets the converted result appended.
+         * Converts variable value data provided in the token and appends it to the target
+         * variable.
+         * Respects (and removes) quotation marks.
+         * Replaces certain characters by escape sequences.
+         * @param value     The input string.
+         * @param target    The AString that gets the converted result appended.
          ******************************************************************************************/
         protected void removeEscapeSequences( Substring value, AString target )
         {

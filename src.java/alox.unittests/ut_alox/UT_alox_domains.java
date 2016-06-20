@@ -214,7 +214,7 @@ public class UT_alox_domains extends AUnitTest
     public void Log_DomainSubstitutions_IniFile()
     {
         UT_INIT();
-        // create ini file
+        // create INI file
         String iniFileContents=
              "[ALOX]\n"
             +"TESTMEMLOGGER_FORMAT= \"<%D>\"  \n"

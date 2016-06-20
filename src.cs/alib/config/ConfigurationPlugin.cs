@@ -13,77 +13,77 @@ using cs.aworx.lib.enums;
 namespace cs.aworx.lib.config  {
 
     /** ********************************************************************************************
-     *  Abstract class that represents a plug in for class
-     *  \ref cs::aworx::lib::config::Configuration "Configuration"
-     *  to provide configuration data from specific configuration data source.
+     * Abstract class that represents a plug in for class
+     * \ref cs::aworx::lib::config::Configuration "Configuration"
+     * to provide configuration data from specific configuration data source.
      *
-     *  Different attached plug-ins of type #ConfigurationPlugIn differentiate in their priority.
-     *  This way, certain configuration methods can 'overwrite' values from other sources. See
-     *  #cs::aworx::lib::config for more information on priorities.
+     * Different attached plug-ins of type #ConfigurationPlugIn differentiate in their priority.
+     * This way, certain configuration methods can 'overwrite' values from other sources. See
+     * #cs::aworx::lib::config for more information on priorities.
      *
-     *  The plug-in also may have the ability to write data. The default implementation for writing
-     *  configuration data returns constant false, indicating that this plug-in never writes
-     *  anything (e.g. command line parameter plug-in, environment variable plug-in).
+     * The plug-in also may have the ability to write data. The default implementation for writing
+     * configuration data returns constant false, indicating that this plug-in never writes
+     * anything (e.g. command line parameter plug-in, environment variable plug-in).
      *
-     *  Category and Variable names are character case insensitive for the built-in
-     *  ConfigurationPlugIn types
-     *  \ref cs::aworx::lib::config::EnvironmentPlugIn "EnvironmentPlugIn"
-     *  and
-     *  \ref cs::aworx::lib::config::CommandLinePlugIn "CommandLinePlugIn".
-     *  It is recommended to to ignore character case in custom specializations of class
-     *  \ref cs::aworx::lib::config::ConfigurationPlugIn "ConfigurationPlugIn"
-     *  as well.
+     * Category and Variable names are character case insensitive for the built-in
+     * ConfigurationPlugIn types
+     * \ref cs::aworx::lib::config::EnvironmentPlugIn "EnvironmentPlugIn"
+     * and
+     * \ref cs::aworx::lib::config::CommandLinePlugIn "CommandLinePlugIn".
+     * It is recommended to to ignore character case in custom specializations of class
+     * \ref cs::aworx::lib::config::ConfigurationPlugIn "ConfigurationPlugIn"
+     * as well.
      *
-     *  Variables belong to categories. The built-in ConfigurationPlugIns types
-     *  CommandLinePlugIn and EnvironmentPlugIn just concatenate
-     *  the category and the variable name with an underscore '_'. This means, if variable <em>IDE</em>
-     *  in category <em>ALIB</em> is accessed, those plug-ins would check command line parameter
-     *  <em>--ALIB_IDE=xyz</em> respectively environment variable <em>ALIB_IDE</em>
+     * Variables belong to categories. The built-in ConfigurationPlugIns types
+     * CommandLinePlugIn and EnvironmentPlugIn just concatenate
+     * the category and the variable name with an underscore '_'. This means, if variable <em>LOCALE</em>
+     * in category <em>ALIB</em> is accessed, those plug-ins would check command line parameter
+     * <em>--ALIB_LOCALE=xyz</em> respectively environment variable <em>ALIB_LOCALE</em>
      *
-     *  Some method of this class accept parameters of type <em>Object</em>. In this case, the
-     *  following string types are accepted:
-     *  - String
-     *  - char[]
-     *  - \ref cs::aworx::lib::strings::AString    "AString"
-     *  - \ref cs::aworx::lib::strings::Substring  "Substring"
+     * Some method of this class accept parameters of type <em>Object</em>. In this case, the
+     * following string types are accepted:
+     * - String
+     * - char[]
+     * - \ref cs::aworx::lib::strings::AString    "AString"
+     * - \ref cs::aworx::lib::strings::Substring  "Substring"
      **********************************************************************************************/
     public abstract class ConfigurationPlugIn
     {
         /** ****************************************************************************************
-         *  The configuration object we got attached to.
+         * The configuration object we got attached to.
          ******************************************************************************************/
         public Configuration         Parent                                                  =null;
 
         /** ****************************************************************************************
-         *  Constructor which is protected, as this is an abstract class.
+         * Constructor which is protected, as this is an abstract class.
          ******************************************************************************************/
         protected ConfigurationPlugIn() {}
 
 
         /** ****************************************************************************************
-         *  Abstract method that has to be overwritten by descendants.
-         *  Retrieves the string value of a configuration setting.
-         *  @param category  The category of the  variable.
-         *                   (AString compatible type expected.)
-         *  @param name      The name of the configuration variable to be retrieved.
-         *                   (AString compatible type expected.)
-         *  @param target    A reference to an empty AString to take the result.
-         *  @return true if variable was found within this configuration source, false if not.
+         * Abstract method that has to be overwritten by descendants.
+         * Retrieves the string value of a configuration setting.
+         * @param category  The category of the  variable.
+         *                  (AString compatible type expected.)
+         * @param name      The name of the configuration variable to be retrieved.
+         *                  (AString compatible type expected.)
+         * @param target    A reference to an empty AString to take the result.
+         * @return true if variable was found within this configuration source, false if not.
          ******************************************************************************************/
         public abstract bool  Get( Object category, Object name, AString target );
 
         /** ****************************************************************************************
-         *  Retrieves the int value of a configuration setting. This default implementation
-         *  invokes %Get(String , String , AString)
-         *  and converts the value to type integer.
-         *  Descendants might overwrite this method.
-         *  @param category  The category of the  variable.
-         *                   (AString compatible type expected.)
-         *  @param name      The name of the configuration variable to be retrieved.
-         *                   (AString compatible type expected.)
-         *  @param target    A reference to an integer variable to take the result.
-         *  @param temp      A buffer to temporarily store the value for parsing.
-         *  @return true if variable was found within this configuration source, false if not.
+         * Retrieves the int value of a configuration setting. This default implementation
+         * invokes %Get(String , String , AString)
+         * and converts the value to type integer.
+         * Descendants might overwrite this method.
+         * @param category  The category of the  variable.
+         *                  (AString compatible type expected.)
+         * @param name      The name of the configuration variable to be retrieved.
+         *                  (AString compatible type expected.)
+         * @param target    A reference to an integer variable to take the result.
+         * @param temp      A buffer to temporarily store the value for parsing.
+         * @return true if variable was found within this configuration source, false if not.
          ******************************************************************************************/
         public virtual bool  Get( Object category, Object name, out int target, AString temp )
         {
@@ -102,23 +102,23 @@ namespace cs.aworx.lib.config  {
 
 
         /** ****************************************************************************************
-         *  Retrieves the floating point value of a configuration setting.
-         *  This default implementation invokes the %Get(String , String , AString) and converts
-         *  the value to type double.
-         *  Descendants might overwrite this method.
+         * Retrieves the floating point value of a configuration setting.
+         * This default implementation invokes the %Get(String , String , AString) and converts
+         * the value to type double.
+         * Descendants might overwrite this method.
          *
-         *  \note The conversion to double ignores the current locale setting and expects either a
-         *        dot ('.') or a comma (',') as decimal operator. On the same token,the
-         *        corresponding method #Save(Object, Object, double, Object, AString)
-         *        writes always dots as separator characters, independent from local settings.
+         * \note The conversion to double ignores the current locale setting and expects either a
+         *       dot ('.') or a comma (',') as decimal operator. On the same token,the
+         *       corresponding method #Save(Object, Object, double, Object, AString)
+         *       writes always dots as separator characters, independent from local settings.
          *
-         *  @param category  The category of the  variable.
-         *                   (AString compatible type expected.)
-         *  @param name      The name of the configuration variable to be retrieved.
-         *                   (AString compatible type expected.)
-         *  @param target    A reference to an double variable to take the result.
-         *  @param temp      A buffer to temporarily store the value for parsing.
-         *  @return true if variable was found within this configuration source, false if not.
+         * @param category  The category of the  variable.
+         *                  (AString compatible type expected.)
+         * @param name      The name of the configuration variable to be retrieved.
+         *                  (AString compatible type expected.)
+         * @param target    A reference to an double variable to take the result.
+         * @param temp      A buffer to temporarily store the value for parsing.
+         * @return true if variable was found within this configuration source, false if not.
          ******************************************************************************************/
         public virtual bool  Get( Object category, Object name, out double target, AString temp  )
         {
@@ -136,23 +136,23 @@ namespace cs.aworx.lib.config  {
 
 
         /** ****************************************************************************************
-         *  Writes a string value to the configuration.
-         *  This default implementation just returns false. If this method is not overwritten
-         *  in descendants, those descendants are not designed to write data.
+         * Writes a string value to the configuration.
+         * This default implementation just returns false. If this method is not overwritten
+         * in descendants, those descendants are not designed to write data.
          *
-         *  @param category  The category of the  variable.
-         *                   (AString compatible type expected.)
-         *  @param name      The name of the configuration variable to be retrieved.
-         *                   (AString compatible type expected.)
-         *  @param value     The value to write.
-         *  @param comments  Comment lines that might be added in the configuration storage
-         *                   (plug-in implementation dependent).
-         *  @param delim     This parameter might be provided for variables that are
-         *                   supposed to get long values that represent a list of delimited fields.
-         *                   <br>The use of this character is specific to a plug-ins'
-         *                   implementation.
+         * @param category  The category of the  variable.
+         *                  (AString compatible type expected.)
+         * @param name      The name of the configuration variable to be retrieved.
+         *                  (AString compatible type expected.)
+         * @param value     The value to write.
+         * @param comments  Comment lines that might be added in the configuration storage
+         *                  (plug-in implementation dependent).
+         * @param delim     This parameter might be provided for variables that are
+         *                  supposed to get long values that represent a list of delimited fields.
+         *                  <br>The use of this character is specific to a plug-ins'
+         *                  implementation.
          *
-         *  @return true if the variable was written, false if not.
+         * @return true if the variable was written, false if not.
          ******************************************************************************************/
         public virtual bool Save( Object category,  Object   name,
                                   Object value,     Object   comments,
@@ -162,20 +162,20 @@ namespace cs.aworx.lib.config  {
         }
 
         /** ****************************************************************************************
-         *  Writes an integer variable to the configuration.
-         *  This default implementation converts the value to a string and invokes
-         *  the string version of method %Save().
+         * Writes an integer variable to the configuration.
+         * This default implementation converts the value to a string and invokes
+         * the string version of method %Save().
          *
-         *  @param category  The category of the  variable.
-         *                   (AString compatible type expected.)
-         *  @param name      The name of the configuration variable to be retrieved.
-         *                   (AString compatible type expected.)
-         *  @param value     The value to write.
-         *  @param comments  Comment lines that might be added in the configuration storage
-         *                   (plug-in implementation dependent).
-         *  @param temp      A buffer to temporarily store the value.
+         * @param category  The category of the  variable.
+         *                  (AString compatible type expected.)
+         * @param name      The name of the configuration variable to be retrieved.
+         *                  (AString compatible type expected.)
+         * @param value     The value to write.
+         * @param comments  Comment lines that might be added in the configuration storage
+         *                  (plug-in implementation dependent).
+         * @param temp      A buffer to temporarily store the value.
          *
-         *  @return true if the variable was written, false if not.
+         * @return true if the variable was written, false if not.
          ******************************************************************************************/
         public bool Save( Object category, Object name, int value, Object comments, AString temp  )
         {
@@ -186,25 +186,25 @@ namespace cs.aworx.lib.config  {
 
 
         /** ****************************************************************************************
-         *  Writes a floating point variable to the configuration.
-         *  This default implementation converts the value to a string and invokes
-         *  the string version of method %Save().
+         * Writes a floating point variable to the configuration.
+         * This default implementation converts the value to a string and invokes
+         * the string version of method %Save().
          *
-         *  \note The floating point to string conversion ignores the current locale setting and
-         *        writes a dot ('.') as decimal operator. On the same token, the corresponding
-         *        method #Get(Object, Object, out double, AString )
-         *        accepts both, a dot or a comma (',').
+         * \note The floating point to string conversion ignores the current locale setting and
+         *       writes a dot ('.') as decimal operator. On the same token, the corresponding
+         *       method #Get(Object, Object, out double, AString )
+         *       accepts both, a dot or a comma (',').
          *
-         *  @param category  The category of the  variable.
-         *                   (AString compatible type expected.)
-         *  @param name      The name of the configuration variable to be retrieved.
-         *                   (AString compatible type expected.)
-         *  @param value     The value to write.
-         *  @param comments  Comment lines that might be added in the configuration storage
-         *                   (plug-in implementation dependent).
-         *  @param temp      A buffer to temporarily store the value.
+         * @param category  The category of the  variable.
+         *                  (AString compatible type expected.)
+         * @param name      The name of the configuration variable to be retrieved.
+         *                  (AString compatible type expected.)
+         * @param value     The value to write.
+         * @param comments  Comment lines that might be added in the configuration storage
+         *                  (plug-in implementation dependent).
+         * @param temp      A buffer to temporarily store the value.
          *
-         *  @return true if the variable was written, false if not.
+         * @return true if the variable was written, false if not.
          ******************************************************************************************/
         public virtual bool  Save( Object category, Object name, double value, Object comments, AString temp  )
         {
@@ -216,18 +216,18 @@ namespace cs.aworx.lib.config  {
     };
 
     /** ********************************************************************************************
-     *  Specialization of abstract interface class #ConfigurationPlugIn, which takes all command
-     *  line parameters in the constructor and reads variable values from those parameters
-     *  on request. Its priority value is fixed to 10.
+     * Specialization of abstract interface class #ConfigurationPlugIn, which takes all command
+     * line parameters in the constructor and reads variable values from those parameters
+     * on request. Its priority value is fixed to 10.
      *
-     *  Variable categories are used as a prefix together with an underscore '_'.
-     *  This means, if variable <em>IDE</em> in category <em>ALIB</em> is accessed, the command
-     *  line parameter <em>--ALIB_IDE=xyz</em> is read.
+     * Variable categories are used as a prefix together with an underscore '_'.
+     * This means, if variable <em>LOCALE</em> in category <em>ALIB</em> is accessed, the command
+     * line parameter <em>--ALIB_LOCALE=xyz</em> is read.
      *
-     *  Command line variables may be passed with either one hyphen ('-') or two ('--').
-     *  Both are accepted.
+     * Command line variables may be passed with either one hyphen ('-') or two ('--').
+     * Both are accepted.
      *
-     *  Category and Variable names are insensitive in respect to character case.
+     * Category and Variable names are insensitive in respect to character case.
      **********************************************************************************************/
     public class CommandLinePlugIn : ConfigurationPlugIn
     {
@@ -236,19 +236,19 @@ namespace cs.aworx.lib.config  {
 
 
         /** ****************************************************************************************
-         *  Constructor which takes the standard C main() function parameters as arguments
-         *  @param args  The list of command line arguments.
+         * Constructor which takes the standard C main() function parameters as arguments
+         * @param args  The list of command line arguments.
          ******************************************************************************************/
         public CommandLinePlugIn( String[] args )   { this.args= args; }
 
         /** ****************************************************************************************
-         *  Retrieves the string value of a configuration setting.
-         *  @param category  The category of the  variable.
-         *                   (AString compatible type expected.)
-         *  @param name      The name of the configuration variable to be retrieved.
-         *                   (AString compatible type expected.)
-         *  @param target    A reference to an empty AString to take the result.
-         *  @return true if variable was found within this configuration source, false if not.
+         * Retrieves the string value of a configuration setting.
+         * @param category  The category of the  variable.
+         *                  (AString compatible type expected.)
+         * @param name      The name of the configuration variable to be retrieved.
+         *                  (AString compatible type expected.)
+         * @param target    A reference to an empty AString to take the result.
+         * @return true if variable was found within this configuration source, false if not.
          ******************************************************************************************/
        public override
         bool  Get( Object category, Object name, AString target )
@@ -294,32 +294,32 @@ namespace cs.aworx.lib.config  {
     };
 
     /** ********************************************************************************************
-     *  Specialization of abstract interface class #ConfigurationPlugIn, retrieves configuration
-     *  data from the system environment.
+     * Specialization of abstract interface class #ConfigurationPlugIn, retrieves configuration
+     * data from the system environment.
      *
-     *  This plug-ins' priority value is fixed to 10.
+     * This plug-ins' priority value is fixed to 10.
      *
-     *  Variable categories are used as a prefix together with an underscore '_'.
-     *  This means, if variable <em>IDE</em> in category <em>ALIB</em> is accessed, the
-     *  environment variable <em>ALIB_IDE</em> is read.
+     * Variable categories are used as a prefix together with an underscore '_'.
+     * This means, if variable <em>LOCALE</em> in category <em>ALIB</em> is accessed, the
+     * environment variable <em>ALIB_LOCALE</em> is read.
      *
-     *  Category and Variable names are insensitive in respect to character case.
+     * Category and Variable names are insensitive in respect to character case.
      **********************************************************************************************/
     public class EnvironmentPlugIn : ConfigurationPlugIn
     {
         /** ****************************************************************************************
-         *  Constructor.
+         * Constructor.
          ******************************************************************************************/
         public EnvironmentPlugIn() {}
 
         /** ****************************************************************************************
-         *  Retrieves the string value of a configuration setting.
-         *  @param category  The category of the  variable.
-         *                   (AString compatible type expected.)
-         *  @param name      The name of the configuration variable to be retrieved.
-         *                   (AString compatible type expected.)
-         *  @param target    A reference to an empty AString to take the result.
-         *  @return true if variable was found within this configuration source, false if not.
+         * Retrieves the string value of a configuration setting.
+         * @param category  The category of the  variable.
+         *                  (AString compatible type expected.)
+         * @param name      The name of the configuration variable to be retrieved.
+         *                  (AString compatible type expected.)
+         * @param target    A reference to an empty AString to take the result.
+         * @return true if variable was found within this configuration source, false if not.
          ******************************************************************************************/
 
         public override

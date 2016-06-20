@@ -8,34 +8,8 @@
 
 #include "alib/alib.hpp"
 
-#if !defined (HPP_ALIB_STRINGS_ASSUBSTRING)
-    #include "alib/strings/substring.hpp"
-#endif
-
-#if !defined (HPP_ALIB_STRINGS_NUMBERFORMAT)
-    #include "alib/strings/numberformat.hpp"
-#endif
-
-
-#if !defined (_GLIBCXX_CSTRING)  && !defined(_CSTRING_)
-    #include <cstring>
-#endif
-#if !defined (_STRING_H)         && !defined(_INC_STRING)
-    #include <string.h>
-#endif
-#if !defined (_GLIBCXX_CSTDLIB)  && !defined(_CSTDLIB_)
-    #include <cstdlib>
-#endif
-#if !defined (_MATH_H)           && !defined(_INC_MATH)
-    #include <math.h>
-#endif
-
-#if !defined (_GLIBCXX_IOSTREAM ) && !defined(_IOSTREAM_)
-    #include <iostream>
-#endif
 
 using namespace std;
-
 
 namespace aworx {
 namespace           lib {
@@ -100,14 +74,14 @@ namespace                   strings {
 // Allocation
 // ####################################################################################################
 
-void AString::SetBuffer( int newSize )
+void AString::SetBuffer( int newCapacity )
 {
     ALIB_STRING_DBG_CHK(this)
 
-    ALIB_ASSERT( newSize >= 0 );
+    ALIB_ASSERT( newCapacity >= 0 );
 
     // do nothing if life-cycle is managed by us and same size,
-    if ( capacity >= 0 && capacity == newSize )
+    if ( capacity >= 0 && capacity == newCapacity )
         return;
 
     #if defined(ALIB_DEBUG_STRINGS)
@@ -115,7 +89,7 @@ void AString::SetBuffer( int newSize )
     #endif
 
     // set uninitialized
-    if ( newSize == 0 )
+    if ( newCapacity == 0 )
     {
         if ( capacity > 0 )
             #if !defined(ALIB_DEBUG_STRINGS)
@@ -124,9 +98,9 @@ void AString::SetBuffer( int newSize )
                 delete[] (buffer - (debugBufferWithMagicBytePadding ? 16 : 0) );
             #endif
 
-        buffer=        nullptr;
         capacity=
-        length=         0;
+        length=     0;
+        buffer=     nullptr;
         return;
     }
 
@@ -136,27 +110,27 @@ void AString::SetBuffer( int newSize )
 
     // create new Buffer
     #if !defined(ALIB_DEBUG_STRINGS)
-        char* newBuffer=    new char[ newSize  + 1 ];
+        char* newBuffer=    new char[ newCapacity  + 1 ];
     #else
         // add 16 bytes of padding at start/end
         char* newBuffer=    new char[ newSize  + 1 + 32 ] + 16;
 
         // write 2 to start, 3 to end (0= termination byte, 1= untermination byte )
-        memset( newBuffer - 16,         (char) 2, 16 );
+        memset( newBuffer - 16,          (char) 2, 16 );
         memset( newBuffer + newSize + 1, (char) 3, 16 );
     #endif
 
     // if we had a buffer before
-    if ( buffer != nullptr)
+    if ( capacity != 0 )
     {
         // copy data and delete old buffer
-        memcpy( newBuffer, buffer, min( length + 1, newSize + 1) );
+        memcpy( newBuffer, buffer, min( length + 1, newCapacity + 1) );
         if ( capacity > 0 )
-        #if !defined(ALIB_DEBUG_STRINGS)
+          #if !defined(ALIB_DEBUG_STRINGS)
             delete[] buffer;
-        #else
+          #else
             delete[] (buffer - (debugBufferWithMagicBytePadding ? 16 : 0) );
-        #endif
+          #endif
     }
     else
     {
@@ -165,7 +139,7 @@ void AString::SetBuffer( int newSize )
 
     // set new Buffer and adjust length
     buffer=     newBuffer;
-    capacity=   newSize;
+    capacity=   newCapacity;
     if ( length > capacity )
         length= capacity;
 
@@ -227,12 +201,92 @@ void AString::SetBuffer( char* extBuffer, int extBufferSize, int extLength,
 }
 
 
-
-
-
 // #################################################################################################
-// _() - strings
+// Append wchar_t strings
 // #################################################################################################
+AString& AString::Append( const wchar_t* src, int srcLength )
+{
+    ALIB_STRING_DBG_CHK( this )
+
+    if ( src == nullptr ||  srcLength <= 0 )
+    {
+        if ( IsNull() )
+        {
+            // special treatment if currently nothing is allocated and a blank string ("") is added:
+            // we allocate, which means, we are not a null object anymore!
+            // (...also, in this case we check the src parameter)
+            SetBuffer( 15 );
+            ALIB_STRING_DBG_UNTERMINATE(*this, 0);
+        }
+
+        return *this;
+    }
+
+    //--------- __GLIBCXX__ Version ---------
+    #if defined (__GLIBCXX__)
+
+        int maxConversionSize= MB_CUR_MAX * srcLength;
+        mbstate_t ps;
+        EnsureRemainingCapacity( maxConversionSize );
+        memset( &ps, 0, sizeof(mbstate_t) );
+        const wchar_t* srcp= src;
+        size_t conversionSize= wcsnrtombs( vbuffer + length, &srcp, srcLength, maxConversionSize,  &ps);
+        if ( conversionSize == (size_t) -1 )
+        {
+            ALIB_WARNING( "Cannot convert WCS to MBCS." );
+            return *this;
+        }
+
+        if ( conversionSize < 1 )
+        {
+            ALIB_ERROR( "Error converting WCS to MBCS." );
+            return *this;
+        }
+
+        SetLength<false>( length + conversionSize );
+        return *this;
+
+    //--------- Windows Version ---------
+    #elif defined( _WIN32 )
+
+        // loop until reserved size is big enough
+        EnsureRemainingCapacity( srcLength * 2 );
+        for(;;)
+        {
+            int conversionSize= WideCharToMultiByte( CP_UTF8, NULL, src, srcLength,  vbuffer + length, Capacity() - length , NULL, NULL );
+            if ( conversionSize > 0 )
+            {
+                SetLength<false>( length + conversionSize );
+                return *this;
+            }
+
+            // not enough space?
+            int error= GetLastError();
+            if (error == ERROR_INSUFFICIENT_BUFFER )
+            {
+                EnsureRemainingCapacity( srcLength );
+                continue;
+            }
+
+            // quit on other errors
+            ALIB_WARNING_S512(
+                     "AString: Cannot convert wide character string to UTF-8. (Error: "
+                      << ( error == ERROR_INVALID_FLAGS          ? "ERROR_INVALID_FLAGS."
+                        :  error == ERROR_INVALID_PARAMETER      ? "ERROR_INVALID_PARAMETER"
+                        :  error == ERROR_NO_UNICODE_TRANSLATION ? "ERROR_NO_UNICODE_TRANSLATION"
+                                                                 : (String32()._( error )).ToCString())
+                    << ')'   )
+
+            return *this;
+        }
+
+    #else
+        #pragma message ("Unknown Platform in file: " __FILE__ )
+        return *this;
+    #endif
+}
+
+
 
 
 // #############################################################################################

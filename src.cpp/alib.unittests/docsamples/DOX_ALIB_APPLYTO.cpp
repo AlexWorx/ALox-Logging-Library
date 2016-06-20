@@ -8,9 +8,9 @@
 
 #define TESTCLASSNAME       CPP_ALib__Dox
 
-//---------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //--- DOCUMENTATION SAMPLEs
-//---------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 #include <iostream>
 #include <sstream>
 namespace std { stringstream applyto_os; }
@@ -75,7 +75,7 @@ cout << centered << endl;
 #undef cout
 
 //----------- Now to the unit tests -------------
-#include "aworx_unittests.hpp"
+#include "alib.unittests/aworx_unittests.hpp"
 #include "alib/strings/tokenizer.hpp"
 #include "alib/strings/numberformat.hpp"
 

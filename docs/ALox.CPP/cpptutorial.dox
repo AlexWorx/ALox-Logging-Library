@@ -895,7 +895,7 @@ important things not covered in the tutorial are:
   described in a [dedicated chapter](../man_debug_and_release_logging.html) of the manual
 - <b>External Configuration</b><br>
   Instead of setting \e Verbosities and other changeable configuration "from within the source"
-  (by adding ALox API invocations to your software), such data can also come from ini-Files,
+  (by adding ALox API invocations to your software), such data can also come from INI files,
   environment variables, command-line parameters or a any custom source that your application
   uses. This is especially important on larger projects, when working in teams.<br>
   A summary of all ALox configuration variables is found in reference chapter:

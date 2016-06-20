@@ -89,6 +89,19 @@ relative the normal evaluation of a resulting domain path taking <em>Scope Domai
 A third optional parameter allows to make the setting exclusive in respect to <em>Prefix Logables</em> which are
 set according to a \e Scope. By default, the exclusivity is not set.
 
+\note
+ Alternatively, <em>Prefix Logables</em> bound to a <em>Log Domain</em> can set using
+ configuration variable [ALOX_LOXNAME_PREFIXES](group__GrpALoxConfigVars.html).
+ Of-course, this allows only string-type-<em>Prefix Logables</em> to be set.<br>
+ For general information on ALox configuration variables consult \ref GrpALoxConfigVars.<br>
+ For information on how to pass configuration data from custom sources to ALox, refer to
+ namespace documentation
+ <b>%aworx::lib::config</b>
+    ([C++] (@ref      #aworx::lib::config),
+     [C#]  (@ref  #cs::aworx::lib::config),
+     [Java](@ref #com::aworx::lib::config)).
+
+
 
 \~Comment ####################################################################################### \~
 # 3. How ALox Processes Prefix Logables # {#man_prefix_logables_processing}

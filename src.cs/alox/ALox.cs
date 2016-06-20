@@ -58,6 +58,24 @@ public static class ALox
         }
 
         /** ****************************************************************************************
+         * Writes a string representation of the priority value into the given AString.
+         *
+         * @param priority  The priority of the \p verbosity setting.
+         * @param target    The target to write into.
+         * @returns \p target to allow concatenated calls.
+         ******************************************************************************************/
+        public static AString ToStringPriority( int priority, AString target )
+        {
+            if ( priority ==           Lox.PrioSource    )  return target._( "Source   " );
+            if ( priority ==           Lox.PrioProtected )  return target._( "Protected" );
+            if ( priority == Configuration.PrioCmdLine   )  return target._( "CmdLine  " );
+            if ( priority == Configuration.PrioEnvVars   )  return target._( "EnvVars  " );
+            if ( priority == Configuration.PrioIniFile   )  return target._( "IniFile  " );
+
+            return target.Field()._( priority ).Field( 9, Alignment.Left );
+        }
+
+        /** ****************************************************************************************
          * Writes a string representation of the \e Verbosity and priority into the given
          * AString.
          *
@@ -70,15 +88,8 @@ public static class ALox
         {
             target.Field()._( verbosity.ToString() ).Field( 8, Alignment.Left)
                   ._( '(' );
-
-                 if ( priority ==           Lox.PrioSource    )  target._( "Source)   " );
-            else if ( priority ==           Lox.PrioProtected )  target._( "Protected)" );
-            else if ( priority == Configuration.PrioCmdLine   )  target._( "CmdLine)  " );
-            else if ( priority == Configuration.PrioEnvVars   )  target._( "EnvVars)  " );
-            else if ( priority == Configuration.PrioIniFile   )  target._( "IniFile)  " );
-            else                                                 target._( priority )._( ')' );
-
-            return target;
+            return ToStringPriority( priority, target )
+                   .InsertAt( ")", target.LastIndexOfAny( CString.DefaultWhitespaces, Inclusion.Exclude )  + 1 );
         }
 
         /** ****************************************************************************************
@@ -121,7 +132,7 @@ public static class ALox
          * revision \e 0. Pure maintenance releases that do not change the interface of ALox
          * are holding the same #Version but an increased number in this field.
          */
-        public static readonly int                   Revision                                    =0;
+        public static readonly int                   Revision                                    =2;
 
         /**
          * The name of the configuration category of configuration variables used by ALox.<br>
@@ -145,7 +156,7 @@ public static class ALox
          *   Sub-Domain | Description
          *   - - - - - -| - - - - - - - - - - - - - - - - - - -
          *   LGR        | Used when \e %Loggers are registered, retrieved or removed from a \b %Lox and when the \e Verbosity of a <em>Log Domain</em> for a \e %Logger is changed.<br>In addition used with method \b %Lox.SetStartTime.
-         *   DMN        | Used when <em>Log Domains</em> are registered (on first use), when <em>Scope Domains</em> are set or removed and when <em>Domain Substitution</em>Rs are set.
+         *   DMN        | Used when <em>Log Domains</em> are registered (on first use), when <em>Scope Domains</em> are set or removed and when <em>Domain Substitution Rules</em> are set.
          *   PFX        | Used when <em>Prefix Logables</em> are set or removed.
          *   THR        | Used with method \b %Lox.MapThreadName.
          *   LGD        | Used with storing and retrieving <em>Log Data</em> objects.
@@ -379,9 +390,9 @@ public class    ALoxReportWriter : ReportWriter
      * Returns the domain used to write reports.
      * @return The report log domain.
      **********************************************************************************************/
-     public static String LogDomain() 
+     public static String LogDomain()
      {
-        return ALox.InternalDomains + "REPORT"; 
+        return ALox.InternalDomains + "REPORT";
      }
 }
 

@@ -18,7 +18,7 @@
 #include "alib/compatibility/std_iostream.hpp"
 #include "alib/compatibility/std_string.hpp"
 #include "alib/strings/substring.hpp"
-#include "aworx_unittests.hpp"
+#include "alib.unittests/aworx_unittests.hpp"
 
 using namespace std;
 using namespace aworx;

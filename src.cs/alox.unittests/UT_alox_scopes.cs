@@ -215,6 +215,13 @@ namespace ut_cs_aworx_lox
     /** ********************************************************************************************
      * Log_ScopeDomains
      **********************************************************************************************/
+    void LSD()      {  Log.SetDomain( "LSD",  Scope.Method );    Log.Info( "" );    }
+    void LSD_A()    {  Log.SetDomain( "A",    Scope.Method );    Log.Info( "" );    }
+    void LSD_A_B()  {  Log.SetDomain( "B",    Scope.Method );    Log.Info( "" );    }
+    void LSD2_A_B() {  Log.SetDomain( "B2",   Scope.Method );    Log.Info( "" );    }
+    void LSD2_A()   {  Log.SetDomain( "A2",   Scope.Method );    Log.Info( "" );    }
+    void LSD2()     {  Log.SetDomain( "LSD2", Scope.Method );    Log.Info( "" );    }
+
     void SDCHECK( String exp, MemoryLogger ml )
     {
         UT_EQ( exp  , ml.MemoryLog );
@@ -245,6 +252,17 @@ namespace ut_cs_aworx_lox
         ml.MetaInfo.Format._()._("@%D#");
         Log.SetVerbosity( ml, Verbosity.Verbose );
         Log.SetVerbosity(Log.DebugLogger, Verbosity.Verbose, ALox.InternalDomains );
+
+
+        // test methods with extending names
+        LSD();         UT_EQ( "@/LSD#",      ml.MemoryLog );   ml.MemoryLog._(); ml.AutoSizes.Reset();
+        LSD_A();       UT_EQ( "@/A#",        ml.MemoryLog );   ml.MemoryLog._(); ml.AutoSizes.Reset();
+        LSD_A_B();     UT_EQ( "@/B#",        ml.MemoryLog );   ml.MemoryLog._(); ml.AutoSizes.Reset();
+        LSD2_A_B();    UT_EQ( "@/B2#",       ml.MemoryLog );   ml.MemoryLog._(); ml.AutoSizes.Reset();
+        LSD2_A();      UT_EQ( "@/A2#",       ml.MemoryLog );   ml.MemoryLog._(); ml.AutoSizes.Reset();
+        LSD2();        UT_EQ( "@/LSD2#",     ml.MemoryLog );   ml.MemoryLog._(); ml.AutoSizes.Reset();
+
+        // scope global
         Log.SetDomain( "REPLACE",    Scope.Global    );  Log.Info( "" ); SDCHECK( "@/REPLACE#"                    ,ml );
         Log.SetDomain( "GLOBAL",     Scope.Global    );  Log.Info( "" ); SDCHECK( "@/GLOBAL#"                     ,ml );
 
@@ -328,6 +346,8 @@ namespace ut_cs_aworx_lox
             ALIB.SleepMillis(1);
                                UT_EQ( "@/OTHER_THREAD/DTT#", ml.MemoryLog );  ml.MemoryLog._(); ml.AutoSizes.Reset();
         Log.Info( "ME", "" );  UT_EQ( "@/THIS_THREAD/ME#"  , ml.MemoryLog );  ml.MemoryLog._(); ml.AutoSizes.Reset();
+
+        //Log.LogConfig( "", Verbosity.Info, "Configuration now is:" ); ml.MemoryLog._(); ml.AutoSizes.Reset();
     }
     #endif
 

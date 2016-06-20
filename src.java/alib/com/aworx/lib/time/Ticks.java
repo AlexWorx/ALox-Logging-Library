@@ -257,6 +257,18 @@ import java.util.GregorianCalendar;
             return    result;
         }
 
+        /** ****************************************************************************************
+         * Determines if this objects' age is higher than a given time span.
+         *
+         * @param waitTime  A \b %Ticks object representing a time span.
+         * @return  \c true if the given \b %Ticks object representing a time span is smaller
+         *          or equal than our age. \c false otherwise.
+         ******************************************************************************************/
+        public boolean   hasElapsed( Ticks waitTime )
+        {
+            return age().raw()  >=  waitTime.raw();
+        }
+
     // #############################################################################################
     // Conversion to/from time values (nanoseconds, milliseconds, microseconds, seconds)
     // #############################################################################################

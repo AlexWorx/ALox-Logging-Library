@@ -259,7 +259,8 @@ void ScopeStore<StoreT>::getPathMapNode( bool create )
     lazyLanguageNode= false;
 
     // key: path
-    String512 key( scopeInfo.GetTrimmedPath() );
+    String512 key;
+    scopeInfo.GetTrimmedPath( key );
 
     if ( actScope == Scope::Path )
     {
@@ -267,7 +268,7 @@ void ScopeStore<StoreT>::getPathMapNode( bool create )
         int pathLevel= actPathLevel;
         while ( pathLevel > 0 )
         {
-            int idx= key.LastIndexOf( aworx::PathSeparator );
+            int idx= key.LastIndexOf( aworx::DirectorySeparator );
             if (idx < 0 )
             {
                 key.SetLength<false>( 0 );
@@ -286,12 +287,16 @@ void ScopeStore<StoreT>::getPathMapNode( bool create )
         key._<false>( separators[1] );
 
     // key: filename
-    key._( scopeInfo.GetFileNameWithoutExtension() )
+    key._( '-' ) // we need a prefix to have all files share one start node which is not
+                 // a separator-node
+       ._( scopeInfo.GetFileNameWithoutExtension() )
        ._<false>( separators[0] );
 
     // key: method
     if ( actScope == Scope::Method )
-        key._( scopeInfo.GetMethod() )
+        key._( '-' ) // we need a prefix to have all methods share one start node which is not
+                     // a separator-node
+           ._( scopeInfo.GetMethod() )
            ._( separators[0] );
 
     actPathMapNode= languageStore->Get( key, create, separators );

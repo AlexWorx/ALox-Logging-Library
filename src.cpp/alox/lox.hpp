@@ -371,8 +371,12 @@ class Lox : public aworx::lib::threads::ThreadLock
          * within source paths. Otherwise, it is checked if a source path starts with the given
          * path.
          *
-         * Parameter \p includeString determines if the given path should be included in the
-         * resulting source path or not. In addition, parameter \p offsets, which can be negative
+         * Parameter \p trimReplacement optionally provides a replacement string for the trimmed
+         * path. This can be used for example to provide the right absolute path for an IDE
+         * to find source files of a library.
+         *
+         * Parameter \p includeString determines if the searched substring should be included in the
+         * resulting source path or not. In addition, parameter \p trimOffset, which can be negative
          * or positive, is added to the position of trimming. This can be used to increase the
          * length of the search path, and then cut only a portion of what was searched for.
          *
@@ -382,8 +386,9 @@ class Lox : public aworx::lib::threads::ThreadLock
          *
          * \note
          *   If the platform (compiler) specific path separator is <c>'/'</c>, then characters
-         *   <c>'\'</c> found in parameter \p path are replaced by <c>'\'</c> and vice versa.
-         *   This allows to specify paths and substrings thereof in a platform independent way.
+         *   <c>'\'</c> found in parameters \p path and \p trimReplacement are replaced by <c>'\'</c>
+         *   and vice versa. This allows to specify paths and substrings thereof in a platform
+         *   independent way.
          *
          * \attention
          *   Setting global rules (when parameter \p global equals \c Inclusion::Include) is not
@@ -391,27 +396,37 @@ class Lox : public aworx::lib::threads::ThreadLock
          *   to be either at bootstrap of a process, before threads are created, or such creation
          *   has to 'manually' be protected by locking all existing instances of this class!
          *
-         * @param path          The path to search for. If not starting with <c> '*'</c>, a prefix
-         *                      is searched.
-         * @param includeString Determines if \p path should be included in the trimmed path or not.
-         *                      Optional and defaults to \b %Inclusion::Exclude.
-         * @param trimOffset    Adjusts the portion of \p path that is trimmed.
-         *                      Optional and defaults to 0.
-         * @param sensitivity   Determines if the comparison of \p path with a source files' path
-         *                      is performed case sensitive or not.
-         *                      Optional and defaults to \b Case::Ignore.
-         * @param global        If Inclusion::Exclude, only this instance is affected. Otherwise
-         *                      the setting applies to all instances of class \b Lox.
-         *                      Optional and defaults to \b Inclusion::Include.
+         * @param path            The path to search for. If not starting with <c> '*'</c>,
+         *                        a prefix is searched.
+         * @param includeString   Determines if \p path should be included in the trimmed path or not.
+         *                        Optional and defaults to \b %Inclusion::Exclude.
+         * @param trimOffset      Adjusts the portion of \p path that is trimmed.
+         *                        Optional and defaults to 0.
+         * @param sensitivity     Determines if the comparison of \p path with a source files' path
+         *                        is performed case sensitive or not.
+         *                        Optional and defaults to \b Case::Ignore.
+         * @param global          If Inclusion::Exclude, only this instance is affected. Otherwise
+         *                        the setting applies to all instances of class \b Lox.
+         *                        Optional and defaults to \b Inclusion::Include.
+         * @param trimReplacement Replacement string for trimmed portion of the path.
+         *                        Optional and defaults to \b %NullString.
+         * @param priority        The priority of the setting. Defaults to #PrioSource, which is
+         *                        a lower priority than standard plug-ins of external configuration
+         *                        have.
          ******************************************************************************************/
         void      SetSourcePathTrimRule( const TString& path,
                                          Inclusion      includeString   = Inclusion::Exclude,
                                          int            trimOffset      = 0,
                                          Case           sensitivity     = Case::Ignore,
-                                         Inclusion      global          = Inclusion::Include )
+                                         Inclusion      global          = Inclusion::Include,
+                                         const String&  trimReplacement = NullString,
+                                         int            priority        = PrioSource             )
+
         {
-            scopeInfo.SetSourcePathTrimRule( path, includeString, trimOffset, sensitivity, global );
+            scopeInfo.SetSourcePathTrimRule( path, includeString, trimOffset, sensitivity,
+                                             global, trimReplacement, priority );
         }
+
 
         /** ****************************************************************************************
          * Removes all local trimming rules set with #SetSourcePathTrimRule.
@@ -434,7 +449,7 @@ class Lox : public aworx::lib::threads::ThreadLock
             scopeInfo.SetSourcePathTrimRule( nullptr, allowAutoRule ? Inclusion::Include
                                                                     : Inclusion::Exclude,
                                              999999, // code for clearing
-                                             Case::Ignore,  global  );
+                                             Case::Ignore,  global, NullString, -1  );
         }
 
         /** ************************************************************************************
@@ -654,7 +669,7 @@ class Lox : public aworx::lib::threads::ThreadLock
         }
 
         /** ****************************************************************************************
-         * Adds a <em>Domain Substitution</em>R.
+         * Adds a <em>Domain Substitution Rule</em>.
          * <em>Domain Substitution</em> is performed as a last step when evaluating the domain path of a <em>Log Statement</em>,
          * taking <em>Scope Domains</em> and the optional parameter \p domain of the statement into
          * account.<br>
@@ -697,7 +712,7 @@ class Lox : public aworx::lib::threads::ThreadLock
          * bound to the resulting domain.
          *
          * For \b %Lox objects that should be protected of external manipulation, it is advisable,
-         * to remove all <em>Domain Substitution</em>Rs right after the \b %Lox was created by invoking this method with
+         * to remove all <em>Domain Substitution Rules</em> right after the \b %Lox was created by invoking this method with
          * a nulled value for parameter \p domainPath. The reason is, that otherwise, through
          * configuration files or command line parameters, domains of the \b %Lox can be substituted
          * and then the resulting domains \e Verbosities be \e overwritten using further configuration
@@ -848,8 +863,10 @@ class Lox : public aworx::lib::threads::ThreadLock
         }
 
         /** ****************************************************************************************
-         * The given \p logable becomes a <em>Prefix Logable</em> associated to the given <em>Log Domain</em>.
-         * <em>Prefix Logables</em> associated with the <em>Log Domain</em> are added to the list of \e Logables right
+         * The given \p logable becomes a <em>Prefix Logable</em> associated to the given
+         * <em>Log Domain</em>.
+         * <em>Prefix Logables</em> associated with the <em>Log Domain</em> are added to the
+         * list of \e Logables right
          * before the main \e Logable of the <em>Log Statement</em> itself.
          * Multiple <em>Prefix Logables</em> can be added per <em>Log Domain</em>.
          *
@@ -1813,11 +1830,11 @@ class Lox : public aworx::lib::threads::ThreadLock
          * The resulting full domain string is assembled from inner to outer scope.
          * If \p domainPath, respectively as soon as any of the Scope Domains' paths
          * start with the character defined with
-         * \ref aworx::lox::core::Domain::PathSeparator "Domain::PathSeparator",
+         * \ref aworx::lox::core::Domain::Separator "Domain::Separator",
          * the evaluation is stopped (the path is interpreted as absolute).
          *
          * @param domainPath The domain path. If starting with the character defined with
-         *                   \ref aworx::lox::core::Domain::PathSeparator "Domain::PathSeparator",
+         *                   \ref aworx::lox::core::Domain::Separator "Domain::Separator",
          *                   no Scope Domains are applied.
          * @return The resulting \ref aworx::lox::core::Domain "Domain".
          ******************************************************************************************/
@@ -1985,7 +2002,7 @@ class Lox : public aworx::lib::threads::ThreadLock
         void      clear();
 
         /** ****************************************************************************************
-         * Reads the verbosity for the given logger and domain from ALib configuration system.
+         * Reads the verbosity for the given logger and domain from the ALib configuration system.
          * This internal method is used in two occasions:
          * - when a new logger is added: recursively for all existing domains (\p configStr is
          *   given)
@@ -2001,7 +2018,17 @@ class Lox : public aworx::lib::threads::ThreadLock
                                           TString*       cfgStr, int            cfgPriority );
 
         /** ****************************************************************************************
-         * Reads the verbosity for the given logger and domain from ALib configuration system.
+         * Reads a prefix string from the ALib configuration system.
+         * This internal method is used when a new domain is created,
+         *
+         * @param dom         The domain to set the verbosity for.
+         ******************************************************************************************/
+        ALOX_API
+        void      getDomainPrefixFromConfig( core::Domain*  dom );
+
+
+        /** ****************************************************************************************
+         * Reads the verbosity for the given logger and domain from the ALib configuration system.
          * This internal method is used when a new logger is added.
          * Walks recursively for all existing domains.
          *

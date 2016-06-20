@@ -20,7 +20,7 @@
 #include <string>
 
 #define TESTCLASSNAME       CPP_Dox_Tutorial
-#include "aworx_unittests.hpp"
+#include "alib.unittests/aworx_unittests.hpp"
 
 using namespace ut_aworx;
 

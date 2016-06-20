@@ -186,7 +186,7 @@ public static class Log
 
                 // add a default console logger
                 DebugLogger= Lox.CreateConsoleLogger("DEBUG_LOGGER");
-                
+
                 lox.SetVerbosity( DebugLogger, Verbosity.Verbose, "/"                 , Lox.PrioSource ,cln,csf,cmn );
                 lox.SetVerbosity( DebugLogger, Verbosity.Warning, ALox.InternalDomains, Lox.PrioSource ,cln,csf,cmn );
 
@@ -250,11 +250,11 @@ public static class Log
          * they are using release logging exclusively), should invoke this method on bootstrap
          * providing their (release) lox.
          * In this case, the \e Verbosity of the internal domain used by class
-         * \ref aworx::lox::ALoxReportWriter "ALoxReportWriter" has to be set for the
+         * \ref cs::aworx::lox::ALoxReportWriter "ALoxReportWriter" has to be set for the
          * the logger(s) in given \p lox in question.
          *
          * @param lox  The lox that the
-         *             \ref aworx::lox::ALoxReportWriter "ALoxReportWriter" created will be using.
+         *             \ref cs::aworx::lox::ALoxReportWriter "ALoxReportWriter" created will be using.
          *
          * @param cln (Optional) Caller info, compiler generated. Please omit.
          * @param csf (Optional) Caller info, compiler generated. Please omit.
@@ -266,7 +266,7 @@ public static class Log
         {
             #if ALOX_DBG_LOG
 
-                ALIB.ASSERT_WARNING( DebugReportWriter == null, 
+                ALIB.ASSERT_WARNING( DebugReportWriter == null,
                                      "Log.AddReportWriter(): ALoxReportWriter already created." );
 
                 // replace the ReportWriter
@@ -283,11 +283,11 @@ public static class Log
          * @param cmn (Optional) Caller info, compiler generated. Please omit.
          **************************************************************************************/
         [Conditional("ALOX_DBG_LOG")]
-        public static void RemoveALibReportWriter( 
+        public static void RemoveALibReportWriter(
         [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
         {
             #if ALOX_DBG_LOG
-                ALIB.ASSERT_WARNING( DebugReportWriter != null, 
+                ALIB.ASSERT_WARNING( DebugReportWriter != null,
                                      "Log.RemoveReportWriter(): No ALoxReportWriter to remove." );
                 // replace the report writer (if we replaced it before)
                 if( DebugReportWriter != null )
@@ -336,10 +336,14 @@ public static class Log
      * within source paths. Otherwise, it is checked if a source path starts with the given
      * path.
      *
-     * Parameter \p includeString determines if the given path should be included in the
-     * resulting source path or not. In addition, parameter \p offsets, which can be negative
+     * Parameter \p includeString determines if the searched substring should be included in the
+     * resulting source path or not. In addition, parameter \p trimOffset, which can be negative
      * or positive, is added to the position of trimming. This can be used to increase the
      * length of the search path, and then cut only a portion of what was searched for.
+     *
+     * Parameter \p trimReplacement optionally provides a replacement string for the trimmed
+     * path. This can be used for example to provide the right absolute path for an IDE
+     * to find source files of a library.
      *
      * Finally, parameter \p sensitivity determines whether the match is performed case
      * sensitive or not. It defaults to non-sensitive, for convenience and for the fact that
@@ -347,8 +351,9 @@ public static class Log
      *
      * \note
      *   If the platform (compiler) specific path separator is <c>'/'</c>, then characters
-     *   <c>'\'</c> found in parameter \p path are replaced by <c>'\'</c> and vice versa.
-     *   This allows to specify paths and substrings thereof in a platform independent way.
+     *   <c>'\'</c> found in parameters \p path and \p trimReplacement are replaced by <c>'\'</c>
+     *   and vice versa. This allows to specify paths and substrings thereof in a platform
+     *   independent way.
      *
      * \attention
      *   Setting global rules (when parameter \p global equals \c Inclusion::Include) is not
@@ -356,28 +361,39 @@ public static class Log
      *   to be either at bootstrap of a process, before threads are created, or such creation
      *   has to 'manually' be protected by locking all existing instances of this class!
      *
-     * @param path          The path to search for. If not starting with <c> '*'</c>, a prefix
-     *                      is searched.
-     * @param includeString Determines if \p path should be included in the trimmed path or not.
-     *                      Optional and defaults to \b %Inclusion.Exclude.
-     * @param trimOffset    Adjusts the portion of \p path that is trimmed.
-     *                      Optional and defaults to 0.
-     * @param sensitivity   Determines if the comparison of \p path with a source files' path
-     *                      is performed case sensitive or not.
-     *                      Optional and defaults to \b Case.Ignore.
-     * @param global        If Inclusion::Exclude, only this instance is affected. Otherwise
-     *                      the setting applies to all instances of class \b Lox.
-     *                      Optional and defaults to \b Inclusion.Include.
+     * @param path            The path to search for. If not starting with <c> '*'</c>,
+     *                        a prefix is searched.
+     * @param includeString   Determines if \p path should be included in the trimmed
+     *                        path or not.
+     *                        Optional and defaults to \b %Inclusion.Exclude.
+     * @param trimOffset      Adjusts the portion of \p path that is trimmed.
+     *                        Optional and defaults to 0.
+     * @param sensitivity     Determines if the comparison of \p path with a source
+     *                        files' path is performed case sensitive or not.
+     *                        Optional and defaults to \b Case.Ignore.
+     * @param global          If Inclusion.Exclude, only this instance is affected.
+     *                        Otherwise the setting applies to all instances of class
+     *                        \b Lox.
+     *                        Optional and defaults to \b Inclusion.Include.
+     * @param trimReplacement Replacement string for trimmed portion of the path.
+     *                        Optional and defaults to \b %NullString.
+     * @param priority        The priority of the setting. Defaults to
+     *                        \ref cs::aworx::lox::Lox::PrioSource "Lox.PrioSource",
+     *                        which is a lower priority than standard plug-ins of external
+     *                        configuration have.
      ******************************************************************************************/
     [Conditional("ALOX_DBG_LOG")]
     public static void      SetSourcePathTrimRule( String       path,
-                                                   Inclusion    includeString= Inclusion.Exclude,
-                                                   int          trimOffset= 0,
-                                                   Case         sensitivity= Case.Ignore,
-                                                   Inclusion    global= Inclusion.Include )
+                                                   Inclusion    includeString   = Inclusion.Exclude,
+                                                   int          trimOffset      = 0,
+                                                   Case         sensitivity     = Case.Ignore,
+                                                   Inclusion    global          = Inclusion.Include,
+                                                   String       trimReplacement = null ,
+                                                   int          priority        = Lox.PrioSource    )
     {
         #if ALOX_DBG_LOG
-            LOX.SetSourcePathTrimRule( path, includeString, trimOffset, sensitivity, global );
+            LOX.SetSourcePathTrimRule( path, includeString, trimOffset, sensitivity,
+                                       global, trimReplacement, priority );
         #endif
     }
 
@@ -721,7 +737,7 @@ public static class Log
     }
 
     /** ****************************************************************************************
-     * Adds a <em>Domain Substitution</em>R.
+     * Adds a <em>Domain Substitution Rule</em>.
      * <em>Domain Substitution</em> is performed as a last step when evaluating the domain path of a <em>Log Statement</em>,
      * taking <em>Scope Domains</em> and the optional parameter \p domain of the statement into
      * account.<br>
@@ -764,7 +780,7 @@ public static class Log
      * bound to the resulting domain.
      *
      * For \b %Lox objects that should be protected of external manipulation, it is advisable,
-     * to remove all <em>Domain Substitution</em>Rs right after the \b %Lox was created by invoking this method with
+     * to remove all <em>Domain Substitution Rules</em> right after the \b %Lox was created by invoking this method with
      * a nulled value for parameter \p domainPath. The reason is, that otherwise, through
      * configuration files or command line parameters, domains of the \b %Lox can be substituted
      * and then the resulting domains \e Verbosities be \e overwritten using further configuration

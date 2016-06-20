@@ -270,25 +270,30 @@ void  Lox::Reset()
 TextLogger* Lox::CreateConsoleLogger(const String& name)
 {
     //--- first: check configuration setting "CONSOLE_TYPE"  ---
+    bool cfgNoQTCreator= false;
     {
-        String64 consoleMode;
-        if( ALIB::Config.Get( ALox::ConfigCategoryName, "CONSOLE_TYPE", consoleMode ) != 0 )
+        String64 configValue;
+        if( ALIB::Config.Get( ALox::ConfigCategoryName, "CONSOLE_TYPE", configValue ) != 0 )
         {
-            if( consoleMode.Equals( "PLAIN", Case::Ignore ) ) return new ConsoleLogger    ( name );
-            if( consoleMode.Equals( "ANSI" , Case::Ignore ) ) return new AnsiConsoleLogger( name );
-
+            if( configValue.Equals( "PLAIN"         , Case::Ignore ) ) return new ConsoleLogger    ( name );
+            if( configValue.Equals( "ANSI"          , Case::Ignore ) ) return new AnsiConsoleLogger( name );
+            if( configValue.Equals( "NO_QT_CREATOR" , Case::Ignore ) ) {
+                                                                           cfgNoQTCreator= true;
+                                                                           goto DEFAULT;
+                                                                       }
             #if defined( _WIN32 )
-                if( consoleMode.Equals( "WINDOWS",  Case::Ignore ) ) goto STD_COL_CHECK;
+                if( configValue.Equals( "WINDOWS",  Case::Ignore ) ) goto STD_COL_CHECK;
             #endif
 
-            ALIB_ASSERT_WARNING_S512( consoleMode.Equals( "DEFAULT", Case::Ignore),
+            ALIB_ASSERT_WARNING_S512( configValue.Equals( "DEFAULT", Case::Ignore),
                                         "Unrecognized value in config variable: "
                                         << ALox::ConfigCategoryName
-                                        << "_CONSOLE_TYPE=" <<  consoleMode  )
+                                        << "_CONSOLE_TYPE=" <<  configValue  )
         }
     }
 
     //--- second: check debug environment
+    DEFAULT:
     switch( System::RTE() )
     {
         // no color/ESC support
@@ -298,8 +303,45 @@ TextLogger* Lox::CreateConsoleLogger(const String& name)
         // ANSI
         case System::RuntimeEnvironment::Shell:
         case System::RuntimeEnvironment::Desktop:
-        case System::RuntimeEnvironment::QTCreator:
         case System::RuntimeEnvironment::VStudio:       goto STD_COL_CHECK;
+
+        case System::RuntimeEnvironment::QTCreator:
+        {
+            if ( !cfgNoQTCreator )
+            {
+                // Does not support color! :-( But supports clickable output :-) ... but only for QMake projects
+                ConsoleLogger* cl= new aworx::lox::loggers::ConsoleLogger( name );
+                textlogger::MetaInfo* mi= cl->MetaInfo;
+
+                // replace all square brackets
+                AString* formatStrings[] =
+                {
+                    &mi->Format             ,
+                    &mi->VerbosityError     ,
+                    &mi->VerbosityWarning   ,
+                    &mi->VerbosityInfo      ,
+                    &mi->VerbosityVerbose   ,
+
+                };
+                for ( AString* fs : formatStrings )
+                {
+                    fs->SearchAndReplace( "][", " " );
+                    fs->SearchAndReplace( "[" , " " );
+                    fs->SearchAndReplace( "]" , " " );
+                }
+
+                // To have QTCreator recognize the location, it needs 3 spaces + "LOC: [...]"
+                mi->Format.SearchAndReplace( "%Sp/%SF(%SL):",
+                                             //"   Loc: [%SF(%SL)]:" );
+                                             "   Loc: [%Sp/%SF(%SL)]:" );
+
+                // replace square brackets in all log messages
+                cl->SetReplacement( "[", "{" );
+                cl->SetReplacement( "]", "}" );
+                return cl;
+            }
+        }
+        break;
 
         // plain
         case System::RuntimeEnvironment::MobileDevice:
@@ -314,7 +356,6 @@ TextLogger* Lox::CreateConsoleLogger(const String& name)
         return new AnsiConsoleLogger( name );
     #endif
 
-    //---------- GOTO labels -----------
 
     STD_COL_CHECK:
         // if there is no console window we do not do colors
@@ -468,7 +509,7 @@ void Lox::SetVerbosity( Logger* logger, Verbosity verbosity, const TString& doma
     }
 
     // do
-    Verbosity newVerbosity= dom->SetVerbosity( no, verbosity, priority );
+    dom->SetVerbosity( no, verbosity, priority );
 
     // log info on this
     if( isNewLogger )
@@ -485,12 +526,14 @@ void Lox::SetVerbosity( Logger* logger, Verbosity verbosity, const TString& doma
     }
 
     String128 msg;  msg._("Logger \"")._( logger )._NC( "\":")._(Format::Tab(11 + maxLoggerNameLength))
-                       ._('\"')._NC( dom->FullPath )._( "\" = Verbosity::" );
+                       ._('\'')._NC( dom->FullPath )._( "\' = Verbosity::" );
                     ToString( verbosity, priority, msg ).TrimEnd()._('.');
-    if( newVerbosity != verbosity )
+
+    Verbosity actVerbosity= dom->GetVerbosity( no );
+    if( actVerbosity != verbosity )
         msg << " Lower priority (" << priority
             << " < " << dom->GetPriority(no)
-            << "). Remains "  << ToStringX( newVerbosity ) << '.';
+            << "). Remains "  << ToStringX( actVerbosity ) << '.';
 
     logInternal( Verbosity::Info, "LGR", msg );
 }
@@ -531,16 +574,18 @@ void Lox::SetVerbosity( const String& loggerName, Verbosity verbosity, const TSt
     }
 
     // do
-    Verbosity newVerbosity= dom->SetVerbosity( no, verbosity, priority );
+    dom->SetVerbosity( no, verbosity, priority );
 
     // log info on this
     String128 msg;  msg._("Logger \"")._( dom->GetLogger(no) )._NC( "\":")._(Format::Tab(11 + maxLoggerNameLength))
-                          ._('\"')._NC( dom->FullPath )._( "\" = Verbosity::" );
-                        ToString( verbosity, priority, msg ).TrimEnd()._('.');
-    if( newVerbosity != verbosity )
+                       ._('\'')._NC( dom->FullPath )._( "\' = Verbosity::" );
+                       ToString( verbosity, priority, msg ).TrimEnd()._('.');
+
+    Verbosity actVerbosity= dom->GetVerbosity( no );
+    if( actVerbosity != verbosity )
         msg << " Lower priority (" << priority
             << " < " << dom->GetPriority(no)
-            << "). Remains "  << ToStringX( newVerbosity ) << '.';
+            << "). Remains "  << ToStringX( actVerbosity ) << '.';
 
     logInternal( Verbosity::Info, "LGR", msg );
 }
@@ -738,12 +783,12 @@ void Lox::setPrefixImpl(  const void*  logable, int   type,
     }
 
 
-    String256 intMsg( "Prefix ");
+    String256 intMsg( "Object ");
     Verbosity intMsgVerbosity= Verbosity::Info;
     if ( !isNullObject )
     {
         Logable( type, logable).ToString( intMsg );
-        intMsg << " set for "; ToString(scope, pathLevel, intMsg); intMsg  << '.' ;
+        intMsg << " added as prefix logable for "; ToString(scope, pathLevel, intMsg); intMsg  << '.' ;
 
         if ( previousLogable  != nullptr )
         {
@@ -767,12 +812,12 @@ void Lox::setPrefixImpl(  const void*  logable, int   type,
         if ( previousLogable  != nullptr )
         {
             previousLogable->ToString( intMsg );
-            intMsg << " removed from " ; ToString(scope, pathLevel, intMsg);
+            intMsg << " removed from list of prefix logables for " ; ToString(scope, pathLevel, intMsg);
             intMsg  << '.';
         }
         else
         {
-            intMsg  << "<nullptr> given but nothing to remove for ";
+            intMsg  << "<nullptr> given but no prefix logable to remove for ";
             ToString(scope, pathLevel, intMsg);
             intMsg  << '.';
 
@@ -801,12 +846,13 @@ void Lox::SetPrefix(  const void* logable, int type, const TString& domain, Incl
     bool isNullObject=       logable == nullptr
                         || ( type == 0 && ((const TString*) logable)->IsEmpty() );
 
-    String256 msg( "Prefix ");
+    String256 msg;
     Verbosity intLogVerbosity= Verbosity::Info;
 
     if ( !isNullObject )
     {
         // create logable: if TString* type, then copy the string. We are responsible, then.
+        msg._("Object ");
         Logable newLogable( type, logable );
         if ( type == 0 )
             newLogable.Object= new AString( (const TString*) logable );
@@ -824,8 +870,9 @@ void Lox::SetPrefix(  const void* logable, int type, const TString& domain, Incl
             Logable& removedLogable= dom->PrefixLogables[ qtyPLs - 1 ].first;
             dom->PrefixLogables.pop_back();
 
+            msg._("Object ");
             removedLogable.ToString( msg );
-            msg << " removed as prefix logable from";
+            msg << " removed from list of prefix logables for";
 
             // we have to delete strings
             if ( removedLogable.Type == 0 && removedLogable.Object != nullptr )
@@ -833,7 +880,7 @@ void Lox::SetPrefix(  const void* logable, int type, const TString& domain, Incl
         }
         else
         {
-            msg << "No prefix logable to remove from";
+            msg << "No prefix logables to remove for";
             intLogVerbosity= Verbosity::Warning;
         }
     }
@@ -1215,8 +1262,8 @@ void Lox::LogConfig( const String&    domain,
         {
             // choosel local or global list
             std::vector<ScopeInfo::SourcePathTrimRule>* trimInfoList=
-                       trimInfoNo == 0   ?  &scopeInfo.LocalSPTRs
-                                         : &ScopeInfo::GlobalSPTRs;
+                       trimInfoNo == 0   ? &ScopeInfo::GlobalSPTRs
+                                         : &scopeInfo.LocalSPTRs;
 
 
             // loop over trimInfo
@@ -1230,6 +1277,7 @@ void Lox::LogConfig( const String&    domain,
                 buf._NC( ti.IncludeString );
                 if ( ti.TrimOffset != 0 )
                     buf._NC( ti.Path )._NC( "\", Offset: " )._NC( ti.TrimOffset );
+                buf._NC( ", Priority: " ); ToStringPriority( ti.Priority, buf );
                 buf.NewLine();
             }
         }
@@ -1450,7 +1498,7 @@ Domain* Lox::evaluateResultDomain( const TString& domainPath )
         resDomain.InsertAt( nextDefault, 0 );
 
         // absolute path? That's it
-        if ( resDomain.CharAtStart() == Domain::PathSeparator() )
+        if ( resDomain.CharAtStart() == Domain::Separator() )
             break;
     }
 
@@ -1487,7 +1535,17 @@ void Lox::getVerbosityFromConfig( core::Logger* logger, core::Domain*  dom,
     {
         Tokenizer verbosityTok( verbositySettingStr, '=' );
 
-        Substring domainStr=    verbosityTok.Next();
+        Substring domainStr= verbosityTok.Next();
+        String128 domainStrBuf;
+        if ( domainStr.StartsWith( "INTERNAL_DOMAINS", DomainSensitivity ) )
+        {
+            domainStrBuf._( domainStr, 16 );
+            while ( domainStrBuf.CharAtStart() == '/' )
+                domainStrBuf.DeleteStart( 1 );
+            domainStrBuf.InsertAt( ALox::InternalDomains, 0 );
+            domainStr.Set( domainStrBuf );
+        }
+
         String    verbosityStr= verbosityTok.Next();
         if ( verbosityStr.IsEmpty() )
             continue;
@@ -1505,12 +1563,72 @@ void Lox::getVerbosityFromConfig( core::Logger* logger, core::Domain*  dom,
             dom->SetVerbosity( loggerNo, verbosity,  cfgPriority );
 
             // log info on this
-            String128 msg;  msg << "Verbosity set from configuration: \""
-                                << logger << "\": " << dom->FullPath
-                                << " = "; ToString( verbosity, dom->GetPriority( loggerNo), msg ).TrimEnd()
-                                << '.';
+            String128 msg;  msg._NC( "Logger \"" )._NC( logger ) ._NC( "\":" )._(Format::Tab(11 + maxLoggerNameLength))
+                               ._NC( '\'' )._NC( dom->FullPath )._( "\' = Verbosity::" );
+                               ToString( verbosity , dom->GetPriority( loggerNo ), msg ).TrimEnd()
+                               ._NC( '.' );
 
             logInternal( Verbosity::Info, "LGR", msg );
+        }
+    }
+}
+
+void Lox::getDomainPrefixFromConfig( core::Domain*  dom )
+{
+    String512 cfgStr;
+    String64  variableName; variableName._( scopeInfo.GetLoxName() )._( "_PREFIXES" );
+
+    if( ALIB::Config.Get( ALox::ConfigCategoryName, variableName, cfgStr ) == 0 )
+        return;
+
+
+    Tokenizer prefixesTok( cfgStr, ';' );
+    Substring prefixSettingStr;
+    while( (prefixSettingStr= prefixesTok.Next()).IsNotEmpty() )
+    {
+        Tokenizer prefixTok( prefixSettingStr, '=' );
+
+        Substring domainStr= prefixTok.Next();
+        String128 domainStrBuf;
+        if ( domainStr.StartsWith( "INTERNAL_DOMAINS", DomainSensitivity ) )
+        {
+            domainStrBuf._( domainStr, 16 );
+            while ( domainStrBuf.CharAtStart() == '/' )
+                domainStrBuf.DeleteStart( 1 );
+            domainStrBuf.InsertAt( ALox::InternalDomains, 0 );
+            domainStr.Set( domainStrBuf );
+        }
+
+        Tokenizer prefixTokInner( prefixTok.Next(), ',' );
+        Substring prefixStr= prefixTokInner.Next();
+        if ( prefixStr.IsEmpty() )
+            continue;
+        if ( prefixStr.Consume( '\"' ) )
+            prefixStr.ConsumeFromEnd( '\"' );
+
+        Inclusion otherPLs= Inclusion::Include;
+        prefixTokInner.Next();
+        if ( prefixTokInner.Actual.IsNotEmpty() )
+            otherPLs= lib::enums::ReadInclusion( prefixTokInner.Actual  );
+
+        int searchMode= 0;
+        if ( domainStr.Consume       ( '*' ) )    searchMode+= 2;
+        if ( domainStr.ConsumeFromEnd( '*' ) )    searchMode+= 1;
+        if(     ( searchMode == 0 && dom->FullPath.Equals          ( domainStr,    DomainSensitivity )     )
+            ||  ( searchMode == 1 && dom->FullPath.StartsWith      ( domainStr,    DomainSensitivity )     )
+            ||  ( searchMode == 2 && dom->FullPath.EndsWith        ( domainStr,    DomainSensitivity )     )
+            ||  ( searchMode == 3 && dom->FullPath.IndexOfSubstring( domainStr, 0, DomainSensitivity ) >=0 )
+            )
+        {
+            Logable newLogable( 0, new AString( prefixStr ) );
+            dom->PrefixLogables.emplace_back( newLogable, otherPLs );
+
+            // log info on this
+            String128 msg;  msg._NC( "String \"" )._NC( prefixStr )._NC ( "\" added as prefix logable for domain \'" )
+                               ._NC( dom->FullPath )
+                               ._NC( "\'. (Retrieved from configuration.)" );
+
+            logInternal( Verbosity::Info, "PFX", msg );
         }
     }
 }
@@ -1551,34 +1669,47 @@ Domain* Lox::findDomain( Domain& rootDomain, TString domainPath )
         {
             bool wasCreated;
             dom= rootDomain.Find( domainPath, DomainSensitivity, 1, &wasCreated );
-            if ( !wasCreated )
-                break;
+            if ( wasCreated )
+            {
+                // get maximum domain path length (for nicer LogConfig output only...)
+                if ( maxDomainPathLength < dom->FullPath.Length() )
+                     maxDomainPathLength=  dom->FullPath.Length();
 
-            // get maximum domain path length (for nicer LogConfig output only...)
-            if ( maxDomainPathLength < dom->FullPath.Length() )
-                 maxDomainPathLength=  dom->FullPath.Length();
-
-            // log info on new domain
-            logInternal( Verbosity::Info, "DMN", String256()
-                         ._('\'' )._( dom->FullPath )._("' registered.") );
+                // log info on new domain
+                logInternal( Verbosity::Info, "DMN", String256()
+                             ._('\'' )._( dom->FullPath )._("' registered.") );
+            }
 
             // read domain from Config
-            for ( int i= 0; i < dom->CountLoggers(); ++i )
-                getVerbosityFromConfig( dom->GetLogger(i), dom, nullptr, 0 );
-
-            if ( dom->CountLoggers() == 0 )
-                logInternal( Verbosity::Verbose, "DMN", "   No loggers set, yet." );
-            else
+            if ( !dom->ConfigurationRead )
             {
-                for ( int i= 0; i < dom->CountLoggers(); i++ )
+                dom->ConfigurationRead= true;
+
+                for ( int i= 0; i < dom->CountLoggers(); ++i )
+                    getVerbosityFromConfig( dom->GetLogger(i), dom, nullptr, 0 );
+
+                getDomainPrefixFromConfig( dom );
+
+            }
+
+            if ( wasCreated )
+            {
+                if ( dom->CountLoggers() == 0 )
+                    logInternal( Verbosity::Verbose, "DMN", "   No loggers set, yet." );
+                else
                 {
-                    String256 msg; msg._("  \"")._( dom->GetLogger(i) )._("\": ");
-                                   msg.InsertChars( ' ', maxLoggerNameLength  + 6 - msg.Length() );
-                                   msg._( dom->FullPath )._(" = " );
-                                      ToString( dom->GetVerbosity(i), dom->GetPriority(i), msg );
-                    logInternal( Verbosity::Verbose, "DMN", msg );
+                    for ( int i= 0; i < dom->CountLoggers(); i++ )
+                    {
+                        String256 msg; msg._("  \"")._( dom->GetLogger(i) )._("\": ");
+                                       msg.InsertChars( ' ', maxLoggerNameLength  + 6 - msg.Length() );
+                                       msg._( dom->FullPath )._(" = " );
+                                          ToString( dom->GetVerbosity(i), dom->GetPriority(i), msg );
+                        logInternal( Verbosity::Verbose, "DMN", msg );
+                    }
                 }
             }
+            else
+                break;
         }
 
         // apply domain substitutions
@@ -1712,16 +1843,14 @@ Domain* Lox::findDomain( Domain& rootDomain, TString domainPath )
         }
 
         return dom;
-
     }
 }
 
-
 bool Lox::checkScopeInformation( Scope scope, int pathLevel, const TString& internalDomain )
 {
-    if (     ( scope == Scope::Path     &&  scopeInfo.GetTrimmedPath().IsEmpty() )
-         ||  ( scope == Scope::Filename &&  scopeInfo.GetFileName()   .IsEmpty() )
-         ||  ( scope == Scope::Method   &&  scopeInfo.GetMethod()     .IsEmpty() ) )
+    if (     ( scope == Scope::Path     &&  scopeInfo.GetFullPath().IsEmpty() )
+         ||  ( scope == Scope::Filename &&  scopeInfo.GetFileName().IsEmpty() )
+         ||  ( scope == Scope::Method   &&  scopeInfo.GetMethod()  .IsEmpty() ) )
     {
         String256 msg;
             msg << "Missing scope information. Cant use ";
@@ -1732,10 +1861,6 @@ bool Lox::checkScopeInformation( Scope scope, int pathLevel, const TString& inte
     }
     return true;
 }
-
-
-
-
 
 bool Lox::isThreadReleatedScope( Scope scope )
 {
@@ -1768,47 +1893,44 @@ void Lox::log( core::Domain* dom, Verbosity verbosity, Logable& logable, Inclusi
             // lazily collect objects once
             if ( tmpLogables.size() == 0 )
             {
-                if ( prefixes == Inclusion::Include )
+                scopePrefixes.InitWalk( Scope::ThreadInner, &logable );
+                Logable* next;
+                while( (next= scopePrefixes.Walk() ) != nullptr )
                 {
-                    scopePrefixes.InitWalk( Scope::ThreadInner, &logable );
-                    Logable* next;
-                    while( (next= scopePrefixes.Walk() ) != nullptr )
-                    {
+                    // this is false for internal domains (only domain specific logables are added there)
+                    if ( prefixes == Inclusion::Include ||  next == &logable)
                         tmpLogables.insert( tmpLogables.begin(), next );
 
-                        // was this the actual? then insert domain-associated logables now
-                        bool excludeOthers= false;
-                        if( next == &logable )
+                    // was this the actual? then insert domain-associated logables now
+                    bool excludeOthers= false;
+                    if( next == &logable )
+                    {
+                        int qtyThreadInner= (int) tmpLogables.size() -1;
+                        Domain* pflDom= dom;
+                        while ( pflDom != nullptr )
                         {
-                            int qtyThreadInner= (int) tmpLogables.size() -1;
-                            Domain* pflDom= dom;
-                            while ( pflDom != nullptr )
+                            for( auto it= pflDom->PrefixLogables.rbegin() ; it != pflDom->PrefixLogables.rend() ; it++ )
                             {
-                                for( auto it= pflDom->PrefixLogables.rbegin() ; it != pflDom->PrefixLogables.rend() ; it++ )
+                                tmpLogables.insert( tmpLogables.begin(), &(it->first) );
+                                if ( it->second == Inclusion::Exclude )
                                 {
-                                    tmpLogables.insert( tmpLogables.begin(), &(it->first) );
-                                    if ( it->second == Inclusion::Exclude )
-                                    {
-                                        excludeOthers= true;
-                                        break;
-                                    }
+                                    excludeOthers= true;
+                                    break;
                                 }
-
-                                pflDom= excludeOthers ? nullptr :  pflDom->Parent;
                             }
 
-                            // found a stoppable one? remove those from thread inner and break
-                            if (excludeOthers)
-                            {
-                                for ( int ii= 0; ii < qtyThreadInner ; ii++ )
-                                    tmpLogables.pop_back();
-                                break;
-                            }
+                            pflDom= excludeOthers ? nullptr :  pflDom->Parent;
+                        }
+
+                        // found a stoppable one? remove those from thread inner and break
+                        if (excludeOthers)
+                        {
+                            for ( int ii= 0; ii < qtyThreadInner ; ii++ )
+                                tmpLogables.pop_back();
+                            break;
                         }
                     }
                 }
-                else
-                    tmpLogables.emplace_back( &logable );
             }
 
             Logger* logger= dom->GetLogger(i);

@@ -13,6 +13,7 @@ using cs.aworx;
 using cs.aworx.lib.strings;
 using cs.aworx.lib.enums;
 using cs.aworx.lox.core.textlogger;
+using cs.aworx.lib.config;
 
 namespace ALox_CS_Test_Perf  {
 
@@ -25,6 +26,9 @@ class AloxSamples
     {
         ALIB.Init( true, args );
 
+        // open and attach INI file
+        IniFile iniFile= new IniFile( null );
+        ALIB.Config.InsertPlugin( iniFile, Configuration.PrioIniFile );
 
         // create us
         AloxSamples samples= new AloxSamples();
@@ -213,8 +217,14 @@ class AloxSamples
     public void TextFileLogger()
     {
         Log.Info( "Creating a text file logger with file 'Test.log.txt'" );
-
         Log.SetDomain( "/TEXTFILE_TEST", Scope.Method );
+
+        #if ALOX_REL_LOG
+            TextFileLogger tfl= new TextFileLogger( "Test.log.txt" );
+            Log.SetVerbosity( tfl, Verbosity.Verbose );
+            Log.SetVerbosity( tfl, Verbosity.Error, ALox.InternalDomains );  
+        #endif
+
         Log.SetVerbosity( "TEXTFILE", Verbosity.Verbose, "" );
 
         Log.Verbose( "A verbose message (goes to textfile logger as well)" );

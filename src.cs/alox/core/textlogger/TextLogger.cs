@@ -98,12 +98,17 @@ public abstract class TextLogger : Logger
     public    MetaInfo                  MetaInfo                                    =new MetaInfo();
 
     /**
-     *  Holds a list of values for auto tab positions and field sizes.
-     *  For each requested value, a corresponding array field is created on the fly.
-     *  If the format string get's changed and different (new) auto values should be used, then
-     *  this field should be reset after setting the new format string.
-     *  The other way round, it is also possible to preset set minimum values for tabs and field
-     *  sizes and hence avoid the columns growing during the lifetime of the Logger.
+     * Holds a list of values for auto tab positions and field sizes.
+     * For each requested value, a corresponding array field is created on the fly.
+     * If the format string get's changed and different (new) auto values should be used, then
+     * this field should be reset after setting the new format string.
+     * The other way round, it is also possible to preset set minimum values for tabs and field
+     * sizes and hence avoid the columns growing during the lifetime of the Logger.
+     *
+     * This field will be read from the 
+     * configuration variable [ALOX_LOGGERNAME_AUTO_SIZES](../group__GrpALoxConfigVars.html)
+     * when the \b %TextLogger that we belong to is attached to a \b %Lox and written back 
+     * on removal.
      */
     public    AutoSizes                 AutoSizes                                = new AutoSizes();
 
@@ -186,7 +191,36 @@ public abstract class TextLogger : Logger
             }
 
             if( result.IsNotEmpty() )
-                MetaInfo.Format._()._( result );
+            {
+                MetaInfo.Format._();
+                Tokenizer tok= new Tokenizer();
+    
+                // check if the format string starts with a quotation mark and a second quotation exists.
+                int formatQuotationLeft=  result.IndexOf( '\"' );
+                int formatQuotationRight= formatQuotationLeft >=0 ? result.LastIndexOf( '\"' ) : -1;
+    
+                // quoted format string
+                if ( formatQuotationLeft < formatQuotationRight )
+                {
+                    MetaInfo.Format._( result, formatQuotationLeft + 1, formatQuotationRight - formatQuotationLeft - 1 );
+                    result.DeleteStart( formatQuotationRight + 1);
+                    tok.Set( result, ',' );
+                    tok.Next(); // consume format, which we already read
+                }
+    
+                // normal unquoted read
+                else
+                {
+                    tok.Set( result, ',' );
+                    MetaInfo.Format._( tok.Next() );
+                }
+    
+                // read other values
+                if( tok.HasNext() ) MetaInfo.VerbosityError  = tok.Next().ToString();
+                if( tok.HasNext() ) MetaInfo.VerbosityWarning= tok.Next().ToString();
+                if( tok.HasNext() ) MetaInfo.VerbosityInfo   = tok.Next().ToString();
+                if( tok.HasNext() ) MetaInfo.VerbosityVerbose= tok.Next().ToString();
+            }
         }
     }
 
@@ -214,12 +248,23 @@ public abstract class TextLogger : Logger
                     ALIB.StdOutputStreamsLock.AddAcquirer( this );
             }
 
+            AString variableName= new AString();
+            AString value=        new AString();
+
             // get auto sizes from last session
             {
-                AString autoSizes= new AString();
-                AString variableName= new AString(name); variableName._( "_AUTO_SIZES" );
-                if( ALIB.Config.Get( ALox.ConfigCategoryName, variableName, autoSizes ) != 0 )
-                    AutoSizes.Import( autoSizes );
+                variableName._(name)._( "_AUTO_SIZES" );
+                if( ALIB.Config.Get( ALox.ConfigCategoryName, variableName, value ) != 0 )
+                    AutoSizes.Import( value );
+            }
+
+            // import "max elapsed time" from configuration
+            {
+                // get auto sizes from last session
+                value.Clear();
+                variableName._()._( name )._( "_MAX_ELAPSED_TIME" );
+                if( ALIB.Config.Get( ALox.ConfigCategoryName, variableName, value ) != 0 )
+                    MetaInfo.MaxElapsedTime.SetRaw( value.ToLong() );
             }
 
             // call parents' implementation
@@ -245,13 +290,27 @@ public abstract class TextLogger : Logger
                     ALIB.StdOutputStreamsLock.RemoveAcquirer( this );
             }
 
+            AString variableName= new AString();
+            AString value=        new AString();
+            AString comment=      new AString();
+
             // export autosizes to configuration
             {
-                AString autoSizes= new AString();
-                AString variableName= new AString(name); variableName._( "_AUTO_SIZES" );
-                AutoSizes.Export( autoSizes );
-                ALIB.Config.Save( ALox.ConfigCategoryName, variableName, autoSizes,
-                                  "Auto size values of last run" );
+                variableName._()._(name)._( "_AUTO_SIZES" );
+                comment._( "Auto size values of last run of Logger '")._( name )._('\'');
+                AutoSizes.Export( value );
+                ALIB.Config.Save( ALox.ConfigCategoryName, variableName, value, comment );
+            }
+
+            // export "max elapsed time" to configuration
+            {
+                variableName._()._( name )._( "_MAX_ELAPSED_TIME" );
+                comment     ._()._( "Maximum elapsed time of all runs of Logger '")
+                            ._( name )
+                            ._("'\n(To reset elapsed time display width, set this to 0 manually)");
+        
+                value._()._( MetaInfo.MaxElapsedTime.Raw() );
+                ALIB.Config.Save( ALox.ConfigCategoryName, variableName, value, comment );
             }
 
             // call parents' implementation

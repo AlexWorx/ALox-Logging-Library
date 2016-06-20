@@ -1,4 +1,4 @@
-// #################################################################################################
+#// #################################################################################################
 //  ALib - A-Worx Utility Library
 //
 //  (c) 2013-2016 A-Worx GmbH, Germany
@@ -193,12 +193,14 @@ class Ticks
         /** ****************************************************************************************
          * Creates a Ticks instance representing the point in time when this constructor was invoked.
          ******************************************************************************************/
+        inline
         Ticks()                         { Set();    }
 
         /** ****************************************************************************************
          * Creates a Ticks instance representing a given point in time or time span in ticks.
          * @param ticks The value to copy into this.
          ******************************************************************************************/
+        inline
         Ticks( int_fast64_t ticks )     { this->ticks=    ticks;    }
 
         /** ****************************************************************************************
@@ -206,6 +208,7 @@ class Ticks
          * provided.
          * @param copy The instance to copy the ticks value from.
          ******************************************************************************************/
+        inline
         Ticks( const Ticks& copy )      { this->ticks=    copy.ticks; }
 
     // #############################################################################################
@@ -238,30 +241,35 @@ class Ticks
          *  represented by the given Ticks instance.
          *  @param other The Ticks object to copy.
          ******************************************************************************************/
+        inline
         void         Set( const Ticks& other )         { this->ticks=    other.ticks;    }
 
         /** ****************************************************************************************
          *  Sets this objects' value to the value specified in raw ticks.
          *  @param value The number of ticks this object should represent.
          ******************************************************************************************/
+        inline
         void         SetRaw( int_fast64_t value )      { this->ticks=    value;           }
 
         /** ****************************************************************************************
          *  Gets the internally stored system dependent time in raw ticks.
          *  @return  The internal value
          ******************************************************************************************/
+        inline
         int_fast64_t Raw()    const                    { return ticks;                    }
 
         /** ****************************************************************************************
          *  Adds time (span) represented by the given Ticks instance to this instance.
          *  @param other The Ticks object to add.
          ******************************************************************************************/
+        inline
         void         Add( const Ticks& other )         { this->ticks+=    other.ticks;   }
 
         /** ****************************************************************************************
          *  Adds time (span) represented by the given Ticks instance to this instance.
          *  @param ticks The ticks to add.
          ******************************************************************************************/
+        inline
         void         Add( int_fast64_t ticks )         { this->ticks+=    ticks;         }
 
         /** ****************************************************************************************
@@ -269,6 +277,7 @@ class Ticks
          *  this instance.
          *  @param other The Ticks object to subtract.
          ******************************************************************************************/
+        inline
         void         Sub( const Ticks& other )         { this->ticks-=    other.ticks;   }
 
         /** ****************************************************************************************
@@ -276,6 +285,7 @@ class Ticks
          *  this instance.
          *  @param ticks The ticks to subtract.
          ******************************************************************************************/
+        inline
         void         Sub( int_fast64_t ticks )         { this->ticks-=    ticks;         }
 
     // #############################################################################################
@@ -289,6 +299,7 @@ class Ticks
          *
          * @return  The age of this instance stored in a new Ticks.
          ******************************************************************************************/
+        inline
         Ticks    Age()
         {
             Ticks result;
@@ -305,11 +316,25 @@ class Ticks
          *
          * @return  The age of this instance stored in the given or created object.
          ******************************************************************************************/
+        inline
         Ticks    Since( const Ticks& olderTime )    const
         {
             Ticks result(ticks);
             result.Sub( olderTime );
             return result;
+        }
+
+        /** ****************************************************************************************
+         * Determines if this objects' age is higher than a given time span.
+         *
+         * @param waitTime  A \b %Ticks object representing a time span.
+         * @return  \c true if the given \b %Ticks object representing a time span is smaller
+         *          or equal than our age. \c false otherwise.
+         ******************************************************************************************/
+        inline
+        bool   HasElapsed( Ticks waitTime )
+        {
+            return Age().Raw()  >=  waitTime.Raw();
         }
 
     // #############################################################################################
@@ -321,6 +346,7 @@ class Ticks
          *  Converts the internal value to days.
          * @return  The internal value converted to days.
          ******************************************************************************************/
+        inline
         int           InDays()       const
         {
             #if defined (__GLIBCXX__)
@@ -337,6 +363,7 @@ class Ticks
          *  Converts the internal value to hours.
          * @return  The internal value converted to hours.
          ******************************************************************************************/
+        inline
         int           InHours()      const
         {
             #if defined (__GLIBCXX__)
@@ -352,6 +379,7 @@ class Ticks
          *  Converts the internal value to minutes.
          * @return  The internal value converted to minutes.
          ******************************************************************************************/
+        inline
         int           InMinutes()    const
         {
             #if defined (__GLIBCXX__)
@@ -367,6 +395,7 @@ class Ticks
          *  Converts the internal value to seconds.
          * @return  The internal value converted to seconds.
          ******************************************************************************************/
+        inline
         int           InSeconds()    const
         {
             #if defined (__GLIBCXX__)
@@ -382,6 +411,7 @@ class Ticks
          *  Converts the internal value to milliseconds.
          * @return  The internal value converted to milliseconds.
          ******************************************************************************************/
+        inline
         int_fast64_t  InMillis()    const
         {
             #if defined (__GLIBCXX__)
@@ -397,6 +427,7 @@ class Ticks
          *  Converts the internal value to microseconds.
          * @return  The internal value converted to microseconds.
          ******************************************************************************************/
+        inline
         int_fast64_t  InMicros()    const
         {
             #if defined (__GLIBCXX__)
@@ -412,6 +443,7 @@ class Ticks
          *  Converts the internal value to nanoseconds.
          * @return  The internal value converted to nanoseconds.
          ******************************************************************************************/
+        inline
         int_fast64_t  InNanos ()    const
         {
             #if defined (__GLIBCXX__)
@@ -437,8 +469,10 @@ class Ticks
         /** ****************************************************************************************
          *  Sets the internal value to a time span provided in seconds.
          * @param days  The time span to set in days.
+         * @return   \c *this to allow concatenated calls.
          ******************************************************************************************/
-        void         FromDays   ( int           days )
+        inline
+        Ticks&       FromDays   ( int           days )
         {
             #if defined (__GLIBCXX__)
                 ticks=                   days *    ALIB_NANOS_PER_DAY   ;
@@ -447,13 +481,16 @@ class Ticks
             #else
                 #pragma message ("Unknown Platform in file: " __FILE__ )
             #endif
+            return *this;
         }
 
         /** ****************************************************************************************
          *  Sets the internal value to a time span provided in seconds.
          * @param hours  The time span to set in hours.
+         * @return   \c *this to allow concatenated calls.
          ******************************************************************************************/
-        void         FromHours  ( int           hours )
+        inline
+        Ticks&       FromHours  ( int           hours )
         {
             #if defined (__GLIBCXX__)
                 ticks=                   hours *    ALIB_NANOS_PER_HOUR   ;
@@ -462,13 +499,16 @@ class Ticks
             #else
                 #pragma message ("Unknown Platform in file: " __FILE__ )
             #endif
+            return *this;
         }
 
         /** ****************************************************************************************
          *  Sets the internal value to a time span provided in seconds.
          * @param mins  The time span to set in minutes.
+         * @return   \c *this to allow concatenated calls.
          ******************************************************************************************/
-        void         FromMinutes( int           mins )
+        inline
+        Ticks&       FromMinutes( int           mins )
         {
             #if defined (__GLIBCXX__)
                 ticks=                   mins *    ALIB_NANOS_PER_MINUTE   ;
@@ -477,13 +517,16 @@ class Ticks
             #else
                 #pragma message ("Unknown Platform in file: " __FILE__ )
             #endif
+            return *this;
         }
 
         /** ****************************************************************************************
          *  Sets the internal value to a time span provided in seconds.
          * @param secs  The time span to set in seconds.
+         * @return   \c *this to allow concatenated calls.
          ******************************************************************************************/
-        void         FromSeconds( int           secs )
+        inline
+        Ticks&       FromSeconds( int           secs )
         {
             #if defined (__GLIBCXX__)
                 ticks=                   secs *    ALIB_NANOS_PER_SECOND   ;
@@ -492,13 +535,16 @@ class Ticks
             #else
                 #pragma message ("Unknown Platform in file: " __FILE__ )
             #endif
+            return *this;
         }
 
         /** ****************************************************************************************
          *  Sets the internal value to a time span provided in milliseconds.
          * @param millis    The time span to set in milliseconds.
+         * @return   \c *this to allow concatenated calls.
          ******************************************************************************************/
-        void         FromMillis ( int_fast64_t  millis )
+        inline
+        Ticks&       FromMillis ( int_fast64_t  millis )
         {
             #if defined (__GLIBCXX__)
                 ticks=                   millis *    ALIB_NANOS_PER_MILLISECOND   ;
@@ -507,13 +553,16 @@ class Ticks
             #else
                 #pragma message ("Unknown Platform in file: " __FILE__ )
             #endif
+            return *this;
         }
 
         /** ****************************************************************************************
          *  Sets the internal value to a time span provided in microseconds.
          * @param micros  The time span to set in microseconds.
+         * @return   \c *this to allow concatenated calls.
          ******************************************************************************************/
-        void         FromMicros ( int_fast64_t  micros )
+        inline
+        Ticks&       FromMicros ( int_fast64_t  micros )
         {
             #if defined (__GLIBCXX__)
                 ticks=                   micros *    ALIB_NANOS_PER_MICROSECOND ;
@@ -522,13 +571,16 @@ class Ticks
             #else
                 #pragma message ("Unknown Platform in file: " __FILE__ )
             #endif
+            return *this;
         }
 
         /** ****************************************************************************************
          *  Sets the internal value to a time span provided in nanoseconds.
          * @param nanos  The time span to set in nanoseconds.
+         * @return   \c *this to allow concatenated calls.
          ******************************************************************************************/
-        void         FromNanos  ( int_fast64_t  nanos )
+        inline
+        Ticks&     FromNanos  ( int_fast64_t  nanos )
         {
             #if defined (__GLIBCXX__)
                 ticks=                   nanos *    ALIB_NANOS_PER_NANOSECOND   ;
@@ -537,6 +589,7 @@ class Ticks
             #else
                 #pragma message ("Unknown Platform in file: " __FILE__ )
             #endif
+            return *this;
         }
 
         /** ****************************************************************************************
@@ -670,8 +723,8 @@ class TickWatch
         /** ****************************************************************************************
          *  Creates a started StopWatch.
          ******************************************************************************************/
-        TickWatch    ()
-        : startTime(),     sum(0)        {}
+        inline
+        TickWatch  () : startTime(),  sum(0)        {}
 
         /** ****************************************************************************************
          * Creates a StopWatch as a copy of another StopWatch.
@@ -693,6 +746,7 @@ class TickWatch
          * Returns the internally stored start time
          * @return    The start time
          ******************************************************************************************/
+        inline
         const Ticks&    GetStartTime()    const               { return startTime;                  }
 
         /** ****************************************************************************************
@@ -700,12 +754,14 @@ class TickWatch
          * This affects both, the reference value for the calculation of this StopWatch's age in
          * subsequent calls, as well as subsequent sample time spans.
          ******************************************************************************************/
+        inline
         void            Start()                               { startTime.Set();                   }
 
         /** ****************************************************************************************
          * Sets the start time to the given value.
          * @param startTime  A new start time for the stopwatch
          ******************************************************************************************/
+        inline
         void            SetStartTime( const Ticks startTime ) { this->startTime.Set( startTime );  }
 
 
@@ -713,6 +769,7 @@ class TickWatch
          *  Sets the internal value to current system time and clears existing sum and quantity of
          *  samples.
          ******************************************************************************************/
+        inline
         void            Reset()                          { sum.Set( 0L ); cntSamples= 0;  Start(); }
 
 
@@ -730,6 +787,7 @@ class TickWatch
          * @return The time difference between the current system time and the internal
          *         reference value.
          ******************************************************************************************/
+        inline
         const Ticks    Sample    ()
         {
             cntSamples++;
@@ -747,6 +805,7 @@ class TickWatch
          *  Returns the number of calls to #Sample since this instance was created or #Reset was invoked.
          * @return    The number of samples.
          ******************************************************************************************/
+        inline
         int      GetSampleCnt()             { return cntSamples; }
 
         /** ****************************************************************************************
@@ -756,6 +815,7 @@ class TickWatch
          *
          * @return  The cumulated measured time.
          ******************************************************************************************/
+        inline
         Ticks    GetCumulated()            { return sum; }
 
         /** ****************************************************************************************
@@ -764,6 +824,7 @@ class TickWatch
          *
          * @return  The cumulated measured time.
          ******************************************************************************************/
+        inline
         Ticks    GetAverage()
         {
             return Ticks ( cntSamples== 0 ? 0L     :    ( sum.Raw() / cntSamples) );
@@ -805,6 +866,7 @@ class TickSpan
     /** ********************************************************************************************
      *  Constructs the object to represent a time span of 0. (Sets all public fields to 0.)
      **********************************************************************************************/
+    inline
     TickSpan()                                             { Clear(); }
 
     /** ********************************************************************************************
@@ -812,6 +874,7 @@ class TickSpan
      *  After construction, the public fields are set properly
      *  @param ticks The Ticks object to use for setting the public fields
      **********************************************************************************************/
+    inline
     TickSpan( const Ticks& ticks )                         { Set( ticks.Raw() ); }
 
     /** ********************************************************************************************
@@ -819,6 +882,7 @@ class TickSpan
      *  After construction, the public fields are set properly
      *  @param ticks The value in ticks to use for setting the public fields
      **********************************************************************************************/
+    inline
     TickSpan( int_fast64_t ticks )                         { Set(ticks); }
 
     /** ********************************************************************************************
@@ -827,6 +891,7 @@ class TickSpan
      *  @param first   The Ticks object that marks the beginning of the time span
      *  @param second  The Ticks object that marks the end of the time span
      **********************************************************************************************/
+    inline
     TickSpan( const Ticks& first,  const Ticks& second )   { Set( first.Raw() - second.Raw() ); }
 
     /** ********************************************************************************************
@@ -835,6 +900,7 @@ class TickSpan
      *  parameter.
      *  @param ticks The Ticks object to use for setting the public fields
      **********************************************************************************************/
+    inline
              void              Set( const Ticks& ticks )   { Set( ticks.Raw() ); }
 
     /** ********************************************************************************************
@@ -905,6 +971,7 @@ class TicksCalendarTime
     /** ********************************************************************************************
      * Constructs the object to represent a time span of 0. (Sets all public fields to 0.)
      **********************************************************************************************/
+    inline
     TicksCalendarTime()
     {
         Clear();
@@ -917,6 +984,7 @@ class TicksCalendarTime
      *  @param timezone Denote if the time that is calculated should be local or UTC.
      *                  Defaults to \c TimeZone::Local.
      **********************************************************************************************/
+    inline
      TicksCalendarTime( const Ticks& ticks, enums::Timezone timezone =enums::Timezone::Local )
      {
         Set( ticks.Raw(), timezone );
@@ -929,6 +997,7 @@ class TicksCalendarTime
      *  @param timezone Denote if the time that is calculated should be local or UTC.
      *                  Defaults to \c TimeZone::Local.
      **********************************************************************************************/
+    inline
      TicksCalendarTime( int_fast64_t ticks, enums::Timezone timezone =enums::Timezone::Local )
      {
         Set(ticks, timezone);
@@ -941,6 +1010,7 @@ class TicksCalendarTime
      *  @param timezone Denote if the time that is calculated should be local or UTC.
      *                  Defaults to \c TimeZone::Local.
      **********************************************************************************************/
+    inline
     void         Set( const Ticks& ticks, enums::Timezone timezone =enums::Timezone::Local )
     {
         Set( ticks.Raw(), timezone );

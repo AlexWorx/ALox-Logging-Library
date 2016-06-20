@@ -97,6 +97,16 @@ ALOX_API
 const String ToStringX( Verbosity verbosity );
 
 /** ****************************************************************************************
+ * Writes a string representation of the priority value into the given AString.
+ *
+ * @param priority  The priority value
+ * @param target    The target to write into.
+ * @returns \p target to allow concatenated calls.
+ ******************************************************************************************/
+ALOX_API
+AString& ToStringPriority( int priority, AString& target );
+
+/** ****************************************************************************************
  * Writes a string representation of the \e Verbosity and priority into the given
  * AString.
  *

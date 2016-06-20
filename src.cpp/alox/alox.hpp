@@ -114,8 +114,7 @@ class ALox
          * revision \e 0. Pure maintenance releases that do not change the interface of ALox
          * are holding the same #Version but an increased number in this field.
          */
-        ALIB_API static
-        const int                               Revision;
+        ALIB_API static const int               Revision;
 
          /**
          * These flags are used internally to detect incompatibilities when linking ALox to
@@ -173,7 +172,7 @@ class ALox
          *   Sub-Domain | Description
          *   - - - - - -| - - - - - - - - - - - - - - - - - - -
          *   LGR        | Used when \e %Loggers are registered, retrieved or removed from a \b %Lox and when the \e Verbosity of a <em>Log Domain</em> for a \e %Logger is changed.<br>In addition used with method \b %Lox::SetStartTime.
-         *   DMN        | Used when <em>Log Domains</em> are registered (on first use), when <em>Scope Domains</em> are set or removed and when <em>Domain Substitution</em>Rs are set.
+         *   DMN        | Used when <em>Log Domains</em> are registered (on first use), when <em>Scope Domains</em> are set or removed and when <em>Domain Substitution Rules</em> are set.
          *   PFX        | Used when <em>Prefix Logables</em> are set or removed.
          *   THR        | Used with method \b %Lox::MapThreadName.
          *   LGD        | Used with storing and retrieving <em>Log Data</em> objects.

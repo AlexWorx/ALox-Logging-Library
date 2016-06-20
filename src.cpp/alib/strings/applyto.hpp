@@ -45,8 +45,9 @@
  * @{
  *
  * \def ALIB_STRINGS_APPLYTO_DECLARATION
- * Macro to declare method \b %ApplyTo (including template type \b %IsApplicable) for a custom
- * type. Parameter \p type has to exclude specifiers \c const and \c &.<br>
+ * Macro to declare method \b %ApplyTo (including template type \b %IsApplicable) for a custom type.
+ * Parameter \p type has to exclude reference symbol ampersand \c &, but include
+ * specifier \c const. The latter must not be given for enum types. <br>
  * This macro has to be positioned outside any namespace and the given type has to include
  * the its full namespace qualification.
  *
@@ -58,17 +59,18 @@
  *
  * @param TYPE The type to declare to be applicable to an instance of class AString.
  **************************************************************************************************/
-#define ALIB_STRINGS_APPLYTO_DECLARATION(TYPE)                                          \
-namespace aworx { namespace lib { namespace  strings {                                  \
-    template<>  struct       IsApplicable<const TYPE &> : public std::true_type {};     \
-    template<>  int ApplyTo( AString& target, const TYPE & );                           \
+#define ALIB_STRINGS_APPLYTO_DECLARATION(TYPE)                                    \
+namespace aworx { namespace lib { namespace  strings {                            \
+    template<>  struct       IsApplicable<TYPE &> : public std::true_type {};     \
+    template<>  int ApplyTo( AString& target, TYPE & );                           \
 }}}
 
 
 /** ************************************************************************************************
  * \def ALIB_STRINGS_APPLYTO_DEFINITION
  * Macro to implement method \b %ApplyTo for a custom type.
- * Parameter \p type has to exclude specifiers \c const and \c &.<br>
+ * Parameter \p type has to exclude reference symbol ampersand \c &, but include
+ * specifier \c const. The latter must not be given for enum types. <br>
  * This macro has to be positioned outside any namespace and the given type has to include
  * the its full namespace qualification.
  *
@@ -85,16 +87,17 @@ namespace aworx { namespace lib { namespace  strings {                          
  * @param TYPE           The type to implement method \b %ApplyTo for.
  * @param IMPLEMENTATION The implementation code.
  **************************************************************************************************/
-#define ALIB_STRINGS_APPLYTO_DEFINITION(TYPE, IMPLEMENTATION)                            \
-template<>  int aworx::lib::strings::ApplyTo( AString& target, const TYPE & src )        \
-{                                                                                        \
-    IMPLEMENTATION                                                                       \
+#define ALIB_STRINGS_APPLYTO_DEFINITION(TYPE, IMPLEMENTATION)                     \
+template<>  int aworx::lib::strings::ApplyTo( AString& target, TYPE & src )       \
+{                                                                                 \
+    IMPLEMENTATION                                                                \
 }
 
 /** ************************************************************************************************
  * \def ALIB_STRINGS_APPLYTO_INLINE
- * Macro to define method \b %ApplyTo (including template type \b %IsApplicable) for a custom
- * type. Parameter \p type has to exclude specifiers \c const and \c &.<br>
+ * Macro to define method \b %ApplyTo (including template type \b %IsApplicable) for a custom type.
+ * Parameter \p type has to exclude reference symbol ampersand \c &, but include
+ * specifier \c const. The latter must not be given for enum types. <br>
  * This macro has to be positioned outside any namespace and the given type has to include
  * the its full namespace qualification.
  *
@@ -112,13 +115,13 @@ template<>  int aworx::lib::strings::ApplyTo( AString& target, const TYPE & src 
  * @param TYPE           The type to declare to be applicable to an instance of class AString.
  * @param IMPLEMENTATION The implementation code.
  **************************************************************************************************/
-#define ALIB_STRINGS_APPLYTO_INLINE(TYPE, IMPLEMENTATION)                                       \
-namespace aworx { namespace lib { namespace  strings {                                          \
-    template<>  struct       IsApplicable<const TYPE &> : public std::true_type {};             \
-    template<>  inline   int ApplyTo( AString& target, const TYPE & src )                       \
-    {                                                                                           \
-        IMPLEMENTATION                                                                          \
-    }                                                                                           \
+#define ALIB_STRINGS_APPLYTO_INLINE(TYPE, IMPLEMENTATION)                         \
+namespace aworx { namespace lib { namespace  strings {                            \
+    template<>  struct       IsApplicable<TYPE &> : public std::true_type {};     \
+    template<>  inline   int ApplyTo( AString& target, TYPE & src )               \
+    {                                                                             \
+        IMPLEMENTATION                                                            \
+    }                                                                             \
 }}}
 
 /** @} */
@@ -327,12 +330,13 @@ namespace                   strings {
      * @param src    The wide character string to append to \p target.
      * @return The number of characters appended to target.
      **********************************************************************************************/
-    template<>  ALIB_API int ApplyTo( AString& target, const wchar_t* src);
+    template<>  inline int ApplyTo( AString& target, const wchar_t* src)
+    {
+        target.Append( src, src != nullptr ?  (int) wcslen( src ) : 0 );
+        return 0; // nullptr treatment already done
+    }
     #if !defined( IS_DOXYGEN_PARSER )
         template<>  struct       IsApplicable<const wchar_t*> : public std::true_type {};
-
-        template<>  inline   int   ApplyTo_NC( AString& target,  const wchar_t* value )
-        {  return  ApplyTo<const wchar_t*>( target,       value );  }
     #endif
 
     /** ********************************************************************************************
@@ -580,7 +584,7 @@ namespace                   strings {
      **********************************************************************************************/
     template<>  inline   int ApplyTo( AString& target, enums::Propagation& value )
     {
-        target._( value == enums::Propagation::None ? "None" : "ToDescendants" );
+        target._( value == enums::Propagation::Omit ? "Omit" : "ToDescendants" );
         return 1;
     }
 

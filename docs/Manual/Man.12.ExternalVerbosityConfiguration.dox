@@ -28,7 +28,7 @@ are interested in different information. Now, when the \e Verbosity is defined i
 (preferably the bootstrap section of a software), then these would be randomly changed when
 checking source files in and out of a source control system.
 Therefore, ALox supports to read \e Verbosity settings from the command line, from environment
-variables, from an ini-File or from any other custom data source. This way, all personal changes
+variables, from an INI file or from any other custom data source. This way, all personal changes
 are outside the code - good for your team spirit!
 
 But before we can explain how this is done, we first have to talk about <b>priorities of
@@ -134,7 +134,7 @@ features are:
 - Class \b %Configuration supports \b 'plug-ins' that read configuration data from different sources.
 
 - Default plug-ins are those for reading <b>command-line parameters</b> and
-  <b>environment variables</b>. In addition, a class to read (and write) ini-Files is provided
+  <b>environment variables</b>. In addition, a class to read (and write) INI files is provided
   and an instance of that class can easily be created and attached.
   \note
     But instead, ALib proposes to attach custom configuration file processing - use your own standard!
@@ -143,7 +143,7 @@ features are:
 
 - The different \b plug-ins are asked for configuration data in a sequence defined by their
   \b priority. For example, command-line parameters have a higher priority than variables
-  defined in an ini-File. This way, command-line parameters 'overwrite' ini-File entries.
+  defined in an INI file. This way, command-line parameters 'overwrite' INI file entries.
 
 
 As you see, the ALib configuration works with priorities the same as ALox \e Verbosity settings
@@ -223,7 +223,13 @@ In words: the variable contains pairs of parameters \p domainpath and \p verbosi
 - <b>Parameter domainpath</b><br>
   This denotes the path of the <em>Log Domain</em> whose \e Verbosity is to be set. Optionally the value may
   contain wildcard character <c>'*'</c> at the beginning or end of the string or at both
-  places.
+  places.<br>
+  To address the internal domain tree ( see \ref man_internal_domains), provide string
+  \b "INTERNAL_DOMAINS". This can also be used as a prefix e.g.
+
+        INTERNAL_DOMAINS/REPORT
+
+
 
 - <b>Parameter verbosity</b><br>
   The verbosity value as listed in enum class
@@ -270,7 +276,7 @@ variables from within the source code.
      ([C++] (@ref      #aworx::lib::config::IniFile),
       [C#]  (@ref  #cs::aworx::lib::config::IniFile),
       [Java](@ref #com::aworx::lib::config::IniFile)) which is not attached to a physical
-    file (it represents then a pure "in-memory" ini-File).
+    file (it represents then a pure "in-memory" INI file).
   - Use method
     <b>%IniFile.Save</b>
      ([C++] (@ref      #aworx::lib::config::IniFile::Save),
@@ -309,8 +315,8 @@ As a summary, these are the takeaways of this chapter:
 - The recommended way to set \e Verbosities - especially when working in a team - is to use
   external configuration variables.
 - It is possible to overwrite different data sources, e.g. use an environment variable to
-  overwrite what is given in an iniFile. Or to have two ini-Files, one local user dependent
-  and one general public instance. The user-dependent ini-File may modify (overwrite) settings
+  overwrite what is given in an iniFile. Or to have two INI files, one local user dependent
+  and one general public instance. The user-dependent INI file may modify (overwrite) settings
   of the general one.
 - In special situations it is recommended to protect certain <em>Log Domains</em> from being changed
   at run-time. This is done by explicitly providing
@@ -318,11 +324,11 @@ As a summary, these are the takeaways of this chapter:
     ([C++] (     @ref #aworx::lox::Lox::PrioProtected),
      [C#]  ( @ref #cs::aworx::lox::Lox::PrioProtected),
      [Java](@ref #com::aworx::lox::Lox::PRIO_PROTECTED)) to method \b %Lox.SetVerbosity.
-  A similar issue is described for <em>Domain Substitution</em>R
+  A similar issue is described for <em>Domain Substitution</em>
   \ref man_domain_substitution_config_prevent "here".
 - External setting of \e Verbosity has different (partly more, partly less) possibilities
   in comparison to "programatically" setting. A way to extend the programatical setting
-  to work the same as external configuration is by usin an in-memory ini-File.
+  to work the same as external configuration is by usin an in-memory INI file.
 
 
 

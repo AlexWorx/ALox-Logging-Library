@@ -18,9 +18,7 @@ This namespace of ALib provides classes that operate on character strings
 (following \ref aworx::lib "the principle design goals of ALib").
 As the given C#/Java StringBuilder/Buffer classes are either "sealed" and/or do not provide
 direct access to the internal buffer, to avoid conversion to new immutable strings in certain
-situations, ALib implements its own string class. More complex
-functions, like extended formatting operations are not supported and remain the domain of the
-language specific class libraries.
+situations, ALib implements its own string class.
 
 In contrast to the Java and C# versions of ALib, which  merely provide a central string class named
 \b %AString along with \b %Substring, things became a little more complex in ALib for C++.
@@ -28,9 +26,9 @@ The following feature overview illustrate the reasons for this:
 
 - Implicit conversion of external, user defined string types when passing data into ALib. This
   includes of-course compatibility with <em>std::string</em> and <em>cstrings</em> (<em>char*</em>),
-  but also 3rd party types like e.g. \e QString.
-- Conversion/construction through template meta programming, with minimum (almost no)
-  runtime overhead.
+  but also 3rd party types like e.g. \e QString<br>
+  The conversion/construction is implemented with template meta programming, resulting in
+  minimum (almost no) runtime overhead.
 - Support for user defined types that get 'applied' to strings. (Mostly concatenated, but also
   more complex string algorithms can be implemented without changing ALib sources.)
 - Stack allocated strings that avoid overhead of dynamic memory allocation, but in case of
@@ -38,12 +36,16 @@ The following feature overview illustrate the reasons for this:
 - Fast processing of C++ string literals and other string types whose length is known at compile
   time (no strlen(), for short types no memcpy() ).
 - Zero terminated and non-zero-terminated strings with mostly implicit termination.
-- 'Nullable' state that avoids nullptr checks and enables to work with references everywhere.
+- 'Nullable' state that on the one hand avoids nullptr checks by allowing to work with
+  references everywhere (even when a nulled state is required).
 - Conversion to and from wide character strings.
 - 'Non-checking' versions of many string methods are available to avoid redundant parameter checks.
 - Built-in debugging mechanics.
 - But still: as much as possible/reasonable compatibility with strings in ALib for JAVA/C#.
 
+ALib strings in C++ are single byte strings. Conversion to and from unicode strings are
+available. It is the users responsibility that any internal encoding (e.g. UTF8) is consistently
+applied when using ALib strings.
 
 # Classes overview # {#alib_namespace_strings_class_overview}
 To understand the rationale behind introducing different string types, it is easiest to
@@ -55,7 +57,7 @@ go quickly through them one by one. The classes are:
 - \ref aworx::lib::strings::StringLiteral "StringLiteral"
 - \ref aworx::lib::strings::Substring "Substring"
 
-\note As described in \ref CPP_AWORX_NS_SHORTCUTS "Type Shortcuts in the aworx Namespace",
+\note As described in \ref CPP_AWORX_NS_SHORTCUTS "Type Shortcuts of Namespace aworx",
       the type names of ALib are 'mirrored' into namespace \b aworx. As there is a limitation
       with template types, classes
       \ref  aworx::lib::strings::StringLiteral      "StringLiteral" and
@@ -318,7 +320,6 @@ Class \b %PreallocatedString provides a '<em>move constructor</em>' but no '<em>
 See the \ref aworx::lib::strings::PreallocatedString "classes reference documentation" for more information.
 
 
-
 ## Class Substring ##  {#alib_namespace_strings_class_overview_substring}
 Class \ref aworx::lib::strings::Substring "Substring" is derived directly from class \b %String.
 Conceptually, the difference to its parent class is that it is not constant. It was discussed
@@ -456,7 +457,16 @@ extensions are provided:
       \ref operator<<(std::ostream* os, const String& as) to write an object of type aworx::String
       into a \e std::ostream.
 
-\note Support for other Libraries to come...
+## QT Library ##
+- %String classes of the [QT library](https://www.qt.io) are
+  supported trough header file <em>"alib/compatibility/qt.hpp"</em>.
+
+  General information about the use of QT strings with ALox is given in documentation of method
+  \ref aworx::lib::strings::ApplyTo<const QString&>(AString&,const QString&) "ApplyTo<const QString&>".
+
+
+## Other Libraries ##
+\note Support for other Libraries to come... Feel free to send us your work!
 
 # Debugging ALib String Classes # {#alib_namespace_strings_debugging}
 In some situations during the development using ALib string classes, some additional debug

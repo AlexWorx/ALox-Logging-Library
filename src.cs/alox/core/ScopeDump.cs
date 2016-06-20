@@ -287,13 +287,13 @@ public class ScopeDump
             if ( methodEnd >= 0 )
             {
                 target._NC( "()\"" );
-                target.ReplaceSubstring( " Method=\"", targetStart + fileNameEnd, 1 );
+                target.ReplaceSubstring( " Method=\"", targetStart + fileNameEnd, 2 );
             }
 
             if ( fileNameEnd >= 0 )
             {
-                target.InsertAt( "\""            , targetStart + fileNameEnd   );
-                target.InsertAt( " Filename=\""  , targetStart + fileNameStart );
+                target.InsertAt        ( "\""            , targetStart + fileNameEnd      );
+                target.ReplaceSubstring( " Filename=\""  , targetStart + fileNameStart, 1 );
             }
 
             int pos= fileNameEnd > 0 ? fileNameStart : target.Length() - targetStart;

@@ -11,6 +11,6 @@ package com.aworx.lib.enums;
  ******************************************************************************************/
 public enum Propagation
 {
-    NONE,          ///< Do not propagate changes.
-    TO_DESCENDANTS ///< Propagate changes to descendants/childs/subcomponents.
+    OMIT,           ///< Do not propagate changes.
+    TO_DESCENDANTS  ///< Propagate changes to descendants/childs/subcomponents.
 }

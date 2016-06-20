@@ -104,7 +104,7 @@ void PerformanceTest()
     #endif
 
     #if !defined(ALIB_DEBUG_STRINGS)
-        int qtyLines=  100;
+        int qtyLines=  1000;
         int qtyLoops= 1000;
     #else
         int qtyLines=  100;

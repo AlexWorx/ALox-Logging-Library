@@ -28,7 +28,7 @@ public class Domain
     // #############################################################################################
 
     /** Domain separation character  */
-    public static readonly char             PathSeparator                                      ='/';
+    public static readonly char             Separator                                      ='/';
 
     /** ********************************************************************************************
      * Internal class that holds data stored per Logger
@@ -108,6 +108,9 @@ public class Domain
     /** A list of sub domains. */
     public          List<Domain>            SubDomains;
 
+    /** Flag to which is set when verbosity configuration data was read. */
+    public          bool                    ConfigurationRead                                =false;
+
     // #############################################################################################
     // Protected fields
     // #############################################################################################
@@ -116,10 +119,10 @@ public class Domain
     protected       AString                 tAString                                 =new AString();
 
     /** A reusable substring . */
-    public          Substring               tSubstring=                             new Substring();
+    protected       Substring               tSubstring=                             new Substring();
 
     /** A reusable substring . */
-    public          Substring               tSubstring2=                            new Substring();
+    protected       Substring               tSubstring2=                            new Substring();
 
     // #############################################################################################
     // Public interface
@@ -368,7 +371,7 @@ public class Domain
     /** ********************************************************************************************
      * Searches a domain. If not found, the domain is (or path of domains are) created in
      * the domain tree.
-     * If the path string starts with the character defined in #PathSeparator, then
+     * If the path string starts with the character defined in #Separator, then
      * the search (and creation) is done starting from the root domain of this domain and not
      * from this domain.
      *
@@ -391,7 +394,7 @@ public class Domain
         int lenBeforeTrim= domainPath.Length();
 
         // if string is empty (resp. contains only separator characters), return ourselves
-        while ( domainPath.Consume( PathSeparator ) )
+        while ( domainPath.Consume( Separator ) )
             ;
         if( domainPath.IsEmpty() )
         {
@@ -452,8 +455,8 @@ public class Domain
                                         int maxCreate, ref bool wasCreated          )
         {
             //--- get act sub-name and rest of path
-            domainPath.Consume( PathSeparator );
-            int endSubName= domainPath.IndexOf( PathSeparator );
+            domainPath.Consume( Separator );
+            int endSubName= domainPath.IndexOf( Separator );
 
             ALIB.ASSERT_ERROR( endSubName != 0, "Internal Error" );
 

@@ -46,12 +46,12 @@
 /**
  * @addtogroup GrpALibStringsMacros
  * @{ \def  ALIB_STRING_DBG_CHK
- *  Simple macro that just invokes method _dbgCheck(), which is defined for classes
- *  \ref aworx::lib::strings::String   "String",
- *  \ref aworx::lib::strings::TString  "TString" and
- *  \ref aworx::lib::strings::AString "AString".
- *  It is active only when compiler symbol \ref ALIB_DEBUG_STRINGS is set.
- *  The macro is placed in almost every method.
+ * Simple macro that just invokes method _dbgCheck(), which is defined for classes
+ * \ref aworx::lib::strings::String   "String",
+ * \ref aworx::lib::strings::TString  "TString" and
+ * \ref aworx::lib::strings::AString "AString".
+ * It is active only when compiler symbol \ref ALIB_DEBUG_STRINGS is set.
+ * The macro is placed in almost every method.
  * @}
  */
 
@@ -104,7 +104,7 @@ class NumberFormat;
     template<>  struct ToStringDefined<const std::string&> : public std::true_type {};
 \endverbatim
  * \see For more information and a sample refer to
- *  \ref aworx::lib::strings::ToString(const TString) "ToString".
+ *      \ref aworx::lib::strings::ToString(const TString) "ToString".
  * **********************************************************************************************/
 template<typename Type>  struct ToStringDefined     : public std::false_type{};
 
@@ -376,7 +376,7 @@ class String
          *  @param regionLength  The length of the region within the given %String.
          ******************************************************************************************/
         inline
-        String(  const String& src, int regionStart, int regionLength )
+        String(  const String& src, int regionStart, int regionLength= CString::MaxLen )
         {
             src.AdjustRegion( regionStart, regionLength );
             buffer= src.buffer + regionStart;
@@ -1237,13 +1237,13 @@ class String
                 {
                     while ( *b++ == *n++ )
                         if( n == nBufEnd )
-                            return (int) (buf - buffer);
+                            return (int) ( buf - buffer );
                 }
                 else
                 {
                     while ( tolower(*b++) == tolower(*n++) )
                         if( n == nBufEnd )
-                            return (int) (buf - buffer);
+                            return (int) ( buf - buffer );
                 }
                 buf++;
             }
