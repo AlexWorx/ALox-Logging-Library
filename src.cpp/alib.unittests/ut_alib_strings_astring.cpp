@@ -423,7 +423,7 @@ UT_METHOD( Append )
         ms= csEmpty;               UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNotNull() );
         ms= "assign";              UT_EQ  ( ms.Length(), 6     );
         ms= csNull;                UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
-        ms= "assign";             UT_EQ  ( ms.Length(), 6     );
+        ms= "assign";              UT_EQ  ( ms.Length(), 6     );
         ms= csNull;                UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
 
 
@@ -431,7 +431,7 @@ UT_METHOD( Append )
         ms._( csEmpty);            UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNotNull() );
         ms.SetNull();              UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
 
-        ms._("1234567");           UT_EQ  ( ms.Capacity(), 7   );  UT_EQ( "1234567",   ms );
+        ms._("1234567");           UT_EQ  ( ms.Capacity(), 16  );  UT_EQ( "1234567",   ms );
         ms._("89");                UT_TRUE( ms.Length()> 7     );  UT_EQ( "123456789", ms );
 
         const char* t= "0123456789";
@@ -459,7 +459,7 @@ UT_METHOD( Append )
         ms= csEmpty;               UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNotNull() );
         ms= "assign";              UT_EQ  ( ms.Length(), 6     );
         ms= csNull;                UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
-        ms= "assign";             UT_EQ  ( ms.Length(), 6     );
+        ms= "assign";              UT_EQ  ( ms.Length(), 6     );
         ms= csNull;                UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
 
 
@@ -467,7 +467,7 @@ UT_METHOD( Append )
         ms._( csEmpty);            UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNotNull() );
         ms.SetNull();              UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
 
-        ms._("1234567");           UT_EQ  ( ms.Capacity(), 7   );  UT_EQ( "1234567",   ms );
+        ms._("1234567");           UT_EQ  ( ms.Capacity(), 16  );  UT_EQ( "1234567",   ms );
         ms._("89");                UT_TRUE( ms.Length()> 7     );  UT_EQ( "123456789", ms );
 
         const char* t= "0123456789";
@@ -539,7 +539,7 @@ UT_METHOD( Append )
         ms._( ssNull );            UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
         ms._( ssEmpty);            UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNotNull() );
         ms.SetNull();              UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
-        ms._( t );                 UT_EQ  ( ms.Capacity(), 5 );    UT_EQ( "01234"     , ms );
+        ms._( t );                 UT_EQ  ( ms.Capacity(), 16  );    UT_EQ( "01234"     , ms );
         ms._( t );                 UT_TRUE( ms.Length()> 5     );  UT_EQ( "0123401234", ms );
 
         t.Consume();         ms.Clear()._( t );           UT_EQ( ms,  "1234"      );
@@ -562,7 +562,7 @@ UT_METHOD( Append )
 
         ms._( ssEmpty);            UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNotNull() );
         ms.SetNull();              UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
-        ms._( t );                 UT_EQ  ( ms.Capacity(), 3 );    UT_EQ( "012"   , ms );
+        ms._( t );                 UT_EQ  ( ms.Capacity(), 16  );    UT_EQ( "012"   , ms );
         ms._( t );                 UT_TRUE( ms.Length()> 3     );  UT_EQ( "012012", ms );
         t= "0123456789";
         ms.Clear()._( t, 5);            UT_EQ( ms, "56789"      );
@@ -1227,7 +1227,7 @@ UT_METHOD( SearchAndReplace )
 
     // ignore case
     {
-        AString ms( "Hallo A-Worx utilXXX" );
+        AString ms( "Hello A-Worx utilXXX" );
         ms.DeleteEnd(3);
         result= ms.IndexOfSubstring       ( "a-worx",   0, Case::Ignore ); UT_EQ( result,  6 );
         result= ms.IndexOfSubstring       ( "a-worx",   1, Case::Ignore ); UT_EQ( result,  6 );
@@ -1235,8 +1235,8 @@ UT_METHOD( SearchAndReplace )
         result= ms.IndexOfSubstring       ( "a-worx",   6, Case::Ignore ); UT_EQ( result,  6 );
         result= ms.IndexOfSubstring       ( "a-worx",   7, Case::Ignore ); UT_EQ( result, -1 );
         result= ms.IndexOfSubstring       ( "a-worx", 100, Case::Ignore ); UT_EQ( result, -1 );
-        result= ms.IndexOfSubstring       ( "hal",      0, Case::Ignore ); UT_EQ( result,  0 );
-        result= ms.IndexOfSubstring       ( "hal",      1, Case::Ignore ); UT_EQ( result, -1 );
+        result= ms.IndexOfSubstring       ( "hel",      0, Case::Ignore ); UT_EQ( result,  0 );
+        result= ms.IndexOfSubstring       ( "hel",      1, Case::Ignore ); UT_EQ( result, -1 );
         result= ms.IndexOfSubstring       ( "util",     1, Case::Ignore ); UT_EQ( result, 13 );
         result= ms.IndexOfSubstring       ( "UTIL",     5, Case::Ignore ); UT_EQ( result, 13 );
         result= ms.IndexOfSubstring       ( "UTIL",    13, Case::Ignore ); UT_EQ( result, 13 );
@@ -1245,8 +1245,8 @@ UT_METHOD( SearchAndReplace )
         result= ms.IndexOfSubstring<false>( "a-worx",   1, Case::Ignore ); UT_EQ( result,  6 );
         result= ms.IndexOfSubstring<false>( "a-worx",   6, Case::Ignore ); UT_EQ( result,  6 );
         result= ms.IndexOfSubstring<false>( "a-worx",   7, Case::Ignore ); UT_EQ( result, -1 );
-        result= ms.IndexOfSubstring<false>( "hal",      0, Case::Ignore ); UT_EQ( result,  0 );
-        result= ms.IndexOfSubstring<false>( "hal",      1, Case::Ignore ); UT_EQ( result, -1 );
+        result= ms.IndexOfSubstring<false>( "hel",      0, Case::Ignore ); UT_EQ( result,  0 );
+        result= ms.IndexOfSubstring<false>( "hel",      1, Case::Ignore ); UT_EQ( result, -1 );
         result= ms.IndexOfSubstring<false>( "util",     1, Case::Ignore ); UT_EQ( result, 13 );
         result= ms.IndexOfSubstring<false>( "UTIL",     5, Case::Ignore ); UT_EQ( result, 13 );
         result= ms.IndexOfSubstring<false>( "UTIL",    13, Case::Ignore ); UT_EQ( result, 13 );
@@ -1256,8 +1256,8 @@ UT_METHOD( SearchAndReplace )
         result= ms.IndexOf         ( "a-worx",   6, Case::Ignore ); UT_EQ( result,  6 );
         result= ms.IndexOf         ( "a-worx",   7, Case::Ignore ); UT_EQ( result, -1 );
         result= ms.IndexOf         ( "a-worx", 100, Case::Ignore ); UT_EQ( result, -1 );
-        result= ms.IndexOf         ( "hal",      0, Case::Ignore ); UT_EQ( result,  0 );
-        result= ms.IndexOf         ( "hal",      1, Case::Ignore ); UT_EQ( result, -1 );
+        result= ms.IndexOf         ( "hel",      0, Case::Ignore ); UT_EQ( result,  0 );
+        result= ms.IndexOf         ( "hel",      1, Case::Ignore ); UT_EQ( result, -1 );
         result= ms.IndexOf         ( "util",     1, Case::Ignore ); UT_EQ( result, 13 );
         result= ms.IndexOf         ( "UTIL",     5, Case::Ignore ); UT_EQ( result, 13 );
         result= ms.IndexOf         ( "UTIL",    13, Case::Ignore ); UT_EQ( result, 13 );
@@ -1266,8 +1266,8 @@ UT_METHOD( SearchAndReplace )
         result= ms.IndexOf  <false>( "a-worx",   1, Case::Ignore ); UT_EQ( result,  6 );
         result= ms.IndexOf  <false>( "a-worx",   6, Case::Ignore ); UT_EQ( result,  6 );
         result= ms.IndexOf  <false>( "a-worx",   7, Case::Ignore ); UT_EQ( result, -1 );
-        result= ms.IndexOf  <false>( "hal",      0, Case::Ignore ); UT_EQ( result,  0 );
-        result= ms.IndexOf  <false>( "hal",      1, Case::Ignore ); UT_EQ( result, -1 );
+        result= ms.IndexOf  <false>( "hel",      0, Case::Ignore ); UT_EQ( result,  0 );
+        result= ms.IndexOf  <false>( "hel",      1, Case::Ignore ); UT_EQ( result, -1 );
         result= ms.IndexOf  <false>( "util",     1, Case::Ignore ); UT_EQ( result, 13 );
         result= ms.IndexOf  <false>( "UTIL",     5, Case::Ignore ); UT_EQ( result, 13 );
         result= ms.IndexOf  <false>( "UTIL",    13, Case::Ignore ); UT_EQ( result, 13 );
@@ -1620,7 +1620,7 @@ UT_METHOD( ConvertCase )
 //--------------------------------------------------------------------------------------------------
 //--- Test ConvertCase
 //--------------------------------------------------------------------------------------------------
-void wCharRoundTrip( AString& astring, ALIBUnitTesting& ut, const wchar_t* wstring )
+void wCharRoundTrip( AString& astring, AWorxUnitTesting& ut, const wchar_t* wstring )
 {
     const char* msgPrefix=      "wchar string to AString: ";
     int         msgPrefixLen=   (int) strlen( msgPrefix );

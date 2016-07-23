@@ -267,7 +267,7 @@ public class AString implements CharSequence
             // first allocation? Go with given growth as size
             if (bufferLength == 0 )
             {
-                setBuffer( spaceNeeded );
+                setBuffer( spaceNeeded > 16 ? spaceNeeded : 16 );
                 return;
             }
 
@@ -291,7 +291,6 @@ public class AString implements CharSequence
 
         /** ****************************************************************************************
          * Invokes \ref setBuffer "setBuffer(0)" or #setNull.
-         * @return true if no buffer is allocated.
          ******************************************************************************************/
         public    void        setNull()           { setBuffer( 0 ); }
 
@@ -714,18 +713,23 @@ public class AString implements CharSequence
         }
 
         /** ****************************************************************************************
-         * All characters defined in given set that are at, left of and right of the given index
-         * are removed from the string.
+         * All characters defined in given set at, left of and right of the given index
+         * are removed from the string.<br>
+         * The method returns index of the first character of those characters that were behind the
+         * trimmed region. With legal \p index given, this value can only be smaller or equal to
+         * \p index. If \p index is out of bounds, the length of the string is returned.
          *
-         * @param index       The index to perform the trim operation at.
-         * @param trimChars   The set of characters to be omitted.
+         * @param index       The index to perform the trim operation at. Has to be between zero
+         *                    and <em>Length() -1</em>.
+         * @param trimChars   Pointer to a zero terminated set of characters to be omitted.
          *                    Defaults to \ref CString.DEFAULT_WHITESPACES.
-         * @return  \c this to allow concatenated calls.
+         * @return  The index of the first character of those characters that were behind the
+         *          trimmed region.
          ******************************************************************************************/
-        public AString trimAt( int index, char[] trimChars )
+        public int  trimAt( int index, char[] trimChars )
         {
             if ( index < 0 || index >= length)
-                 return this;
+                 return length;
 
             if ( trimChars == null )
                 trimChars= CString.DEFAULT_WHITESPACES;
@@ -737,18 +741,23 @@ public class AString implements CharSequence
 
             int regionLength= regionEnd - regionStart;
             if ( regionLength > 0 )
+            {
                 delete_NC( regionStart, regionLength );
-            return this;
+                return regionStart;
+            }
+            return index;
         }
 
         /** ****************************************************************************************
-         * All characters in \ref CString.DEFAULT_WHITESPACES that are at, left of and right
-         * of the given index are removed from the string.
+         * Overloaded method providing default \ref CString.DEFAULT_WHITESPACES value for 
+         * parameter \p trimChars.
          *
-         * @param index       The index to perform the trim operation at.
-         * @return  \c this to allow concatenated calls.
+         * @param index       The index to perform the trim operation at. Has to be between zero
+         *                    and <em>Length() -1</em>.
+         * @return  The index of the first character of those characters that were behind the
+         *          trimmed region.
          ******************************************************************************************/
-        public AString trimAt( int index )
+        public int  trimAt( int index )
         {
             return trimAt( index, CString.DEFAULT_WHITESPACES );
         }
@@ -764,7 +773,18 @@ public class AString implements CharSequence
          ******************************************************************************************/
         public AString trimStart( char[] trimChars )
         {
-            return trimAt( 0, trimChars );
+            if ( trimChars == null )
+                trimChars= CString.DEFAULT_WHITESPACES;
+            if (length == 0 || trimChars.length == 0 )
+                return this;
+
+            int idx= indexOfAny( trimChars, Inclusion.EXCLUDE);
+            if ( idx > 0 )
+                delete( 0, idx );
+            else if ( idx < 0 )
+                length= 0;
+
+            return this;
         }
 
         /** ****************************************************************************************
@@ -775,7 +795,8 @@ public class AString implements CharSequence
          ******************************************************************************************/
         public AString trimStart()
         {
-            return trimAt( 0, CString.DEFAULT_WHITESPACES );
+            trimAt( 0, CString.DEFAULT_WHITESPACES );
+            return this;
         }
 
         /** ****************************************************************************************
@@ -789,7 +810,10 @@ public class AString implements CharSequence
          ******************************************************************************************/
         public AString trimEnd( char[] trimChars )
         {
-            return trimAt( length - 1, trimChars );
+           if( length > 0 &&  trimChars.length > 0 )
+                length= lastIndexOfAny( trimChars, Inclusion.EXCLUDE, length - 1 ) + 1;
+
+            return this;
         }
 
         /** ****************************************************************************************
@@ -800,7 +824,8 @@ public class AString implements CharSequence
          ******************************************************************************************/
         public AString trimEnd()
         {
-            return trimAt( length - 1, CString.DEFAULT_WHITESPACES );
+            trimAt( length - 1, CString.DEFAULT_WHITESPACES );
+            return this;
         }
 
 
@@ -1018,7 +1043,7 @@ public class AString implements CharSequence
             if ( srcLength == 0 )
             {
                 // special treatment if currently nothing is allocated and a blank string ("") is added:
-                // we allocate, which means, we are not a null object anymore!
+                // we allocate, which means, we are not a nulled object anymore!
                 if ( buffer.length == 0 )
                     setBuffer( 16 );
                 return this;
@@ -1075,7 +1100,7 @@ public class AString implements CharSequence
             if ( srcLength == 0 )
             {
                 // special treatment if currently nothing is allocated and a blank string ("") is added:
-                // we allocate, which means, we are not a null object anymore!
+                // we allocate, which means, we are not a nulled object anymore!
                 if ( buffer.length == 0 )
                     setBuffer( 16 );
                 return this;
@@ -1141,7 +1166,7 @@ public class AString implements CharSequence
             if ( CString.adjustRegion( src.length(), regionStart, regionLength, _adjustedRegion ) )
             {
                 // special treatment if currently nothing is allocated and a blank string ("") is added:
-                // we allocate, which means, we are not a null object anymore!
+                // we allocate, which means, we are not a nulled object anymore!
                 if ( buffer.length == 0 )
                     setBuffer( 16 );
                 return this;
@@ -1209,7 +1234,7 @@ public class AString implements CharSequence
             if ( srcLength == 0 )
             {
                 // special treatment if currently nothing is allocated
-                // we allocate, which means, we are not a null object anymore!
+                // we allocate, which means, we are not a nulled object anymore!
                 if ( buffer.length == 0 )
                     setBuffer( 16 );
                 return this;
@@ -1256,7 +1281,7 @@ public class AString implements CharSequence
             if ( srcLength == 0 )
             {
                 // special treatment if currently nothing is allocated and a blank string ("") is added:
-                // we allocate, which means, we are not a null object anymore!
+                // we allocate, which means, we are not a nulled object anymore!
                 if ( buffer.length == 0 )
                     setBuffer( 16 );
                 return this;
@@ -1358,7 +1383,7 @@ public class AString implements CharSequence
             if ( srcLength == 0 )
             {
                 // special treatment if currently nothing is allocated
-                // we allocate, which means, we are not a null object anymore!
+                // we allocate, which means, we are not a nulled object anymore!
                 if ( buffer.length == 0 )
                     setBuffer( 16 );
                 return this;
@@ -1459,7 +1484,9 @@ public class AString implements CharSequence
          ******************************************************************************************/
         public AString _( Object object )
         {
-            return _( object.toString() );
+            return  object == null                 ? this :
+                    object instanceof CharSequence ? _( (CharSequence) object)
+                                                   : _(  object.toString()   );
         }
 
         /** ****************************************************************************************
@@ -2478,8 +2505,9 @@ public class AString implements CharSequence
          *
          * @return  The number of replacements that where performed.
          ******************************************************************************************/
+        @SuppressWarnings ("null")
         public int searchAndReplace( CharSequence searchStr, CharSequence newStr, int startIdx,
-                                 int maxReplacements, Case sensitivity )
+                                     int maxReplacements, Case sensitivity )
         {
 
             // check null arguments
@@ -2714,10 +2742,10 @@ public class AString implements CharSequence
             if (isNegative)
                 buffer[length++]= '-';
 
-            length= NumberFormat.global.integerToString(  isNegative  ? -((long) value)
-                                                                      :   (long) value,
-                                                          buffer, length,
-                                                          minDigits, maxDigits);
+            length= NumberFormat.integerToString(  isNegative  ? -((long) value)
+                                                               :   (long) value,
+                                                    buffer, length,
+                                                    minDigits, maxDigits);
 
 
             ALIB.ASSERT( length <= capacity() );
@@ -2780,7 +2808,7 @@ public class AString implements CharSequence
                 value= -value;
             }
 
-            length= NumberFormat.global.integerToString(  value, buffer, length, minDigits, maxDigits );
+            length= NumberFormat.integerToString(  value, buffer, length, minDigits, maxDigits );
 
             ALIB.ASSERT( length <= capacity() );
 
@@ -2955,7 +2983,7 @@ public class AString implements CharSequence
                 return 0;
 
             int idxWS= startIdx;
-            long retval=  NumberFormat.global.stringToInteger( buffer, startIdx, length-1, newIdx );
+            long retval=  NumberFormat.stringToInteger( buffer, startIdx, length-1, newIdx );
 
             if ( newIdx != null )
             {

@@ -73,6 +73,13 @@ namespace lox {
     #include <vector>
 #endif
 
+#if !defined(HPP_ALIB_CONFIG_CONFIGURATION)
+    #include "alib/config/configuration.hpp"
+#endif
+
+#if !defined(HPP_ALIB_STRINGS_TOKENIZER)
+    #include "alib/strings/tokenizer.hpp"
+#endif
 
 namespace aworx {
 namespace       lox {
@@ -146,10 +153,10 @@ class ALox
          *
          * This method should be called on bootstrap to detect if incompatible library types were
          * built. If several libraries that use ALib are linked together, each should invoke this
-         * test against separatedly. The macro \c ALIB_COMPATIBILITY_VERYFIER will provide the
+         * test against separately. The macro \c ALIB_COMPATIBILITY_VERYFIER will provide the
          * flags.
          *
-         * @param flags The flags externally grabed using macro \c ALIB_COMPATIBILITY_VERYFIER.
+         * @param flags The flags externally grabbed using macro \c ALIB_COMPATIBILITY_VERYFIER.
          *
          * @return \c true if compatible, \c false else.
          ******************************************************************************************/
@@ -205,8 +212,27 @@ class ALox
          * bootstrap code, before the invocation of #Init.<br>
          * See also \ref aworx::lib::ALIB::ConfigCategoryName "ALIB::ConfigCategoryName".
          */
-        ALIB_API static const String&        ConfigCategoryName;
+        ALIB_API static  String              ConfigCategoryName;
 
+        ALIB_API static  lib::config::VariableDefinition NO_IDE_LOGGER;                 ///< Configuration variable definition
+        ALIB_API static  lib::config::VariableDefinition CONSOLE_TYPE;                  ///< Configuration variable definition
+        ALIB_API static  lib::config::VariableDefinition AUTO_SIZES;                    ///< Configuration variable definition
+        ALIB_API static  lib::config::VariableDefinition MAX_ELAPSED_TIME;              ///< Configuration variable definition
+        ALIB_API static  lib::config::VariableDefinition DOMAIN_SUBSTITUTION;           ///< Configuration variable definition
+        ALIB_API static  lib::config::VariableDefinition VERBOSITY;                     ///< Configuration variable definition
+        ALIB_API static  lib::config::VariableDefinition PREFIXES;                      ///< Configuration variable definition
+        ALIB_API static  lib::config::VariableDefinition DUMP_STATE_ON_EXIT;            ///< Configuration variable definition
+        ALIB_API static  lib::config::VariableDefinition FORMAT;                        ///< Configuration variable definition
+        ALIB_API static  lib::config::VariableDefinition FORMAT_DATE_TIME;              ///< Configuration variable definition
+        ALIB_API static  lib::config::VariableDefinition FORMAT_TIME_DIFF;              ///< Configuration variable definition
+        ALIB_API static  lib::config::VariableDefinition FORMAT_MULTILINE;              ///< Configuration variable definition
+        ALIB_API static  lib::config::VariableDefinition CONSOLE_HAS_LIGHT_BACKGROUND;  ///< Configuration variable definition
+        ALIB_API static  lib::config::VariableDefinition SPTR_GLOBAL;                   ///< Configuration variable definition
+        ALIB_API static  lib::config::VariableDefinition SPTR_LOX;                      ///< Configuration variable definition
+
+        #if defined(_WIN32)
+        ALIB_API static  lib::config::VariableDefinition CODEPAGE;      ///< Configuration variable definition
+        #endif
 
     // #############################################################################################
     // Protected fields
@@ -225,23 +251,22 @@ class ALox
     // #############################################################################################
     public:
         /** ****************************************************************************************
-         * This method should be called prior to using the ALox library, e.g. at the beginning of
-         * the main() method of an application. It is OK, to call this method more than once, which
-         * allows independent code entities (e.g. libraries) to bootstrap ALox without having to
-         * rely on other code entities to do so.
-         * Nevertheless, the very first invocation should not be interrupted by a parallel invocation
-         * of a second thread. So, it has to be assured that this method is invoked once on the
-         * bootstrap of an application before other threads are active.
+         * This method must be called prior to using %ALox, e.g. at the beginning of
+         * the \c main() method of an application. It is OK, to call this method more than once, which
+         * allows independent code blocks (e.g. libraries) to bootstrap %ALox independently.
+         * However, only the first invocation is effective with the exclamation that if
+         * command line parameters are provided with a call, those are set.
+         * Also, the very first invocation should not be interrupted by a parallel invocation of a
+         * second thread. Consequently, it has to be assured that this method is invoked once on
+         * the real bootstrap an app.
          *
          * \note This method invokes
          *       \ref aworx::lib::ALIB::Init "ALIB::Init", hence no explicit initialization of
          *       underlying ALib is needed.
          *
          * If command line parameters should be used for configuring ALox, then the very first
-         * call to this method has to provide the argc and argv parameters. In addition, the
-         * first invocation decides if environment variables are used for the configuration
-         * of ALox as well (see parameter 'useEnv'). Subsequent calls to this method with different
-         * parameters do not change the setup.
+         * call to this method has to provide the argc and argv parameters.
+         * Subsequent calls to this method with different parameters do not change the setup.
          *
          * \note If other, custom configuration data sources should be used already with this method
          *       (to read the configuration variables as described in
@@ -260,48 +285,55 @@ class ALox
          * or when using them, e.g. Lox and Logger. Therefore, when using ALox, there is no need
          * to to call this method, unless aforementioned command line parameters should be passed.
          *
-         * \note ALox must not be used before all global/static variables are created. Hence, it
-         * is not allowed to initialize ALox within static variable initialization code. This
-         * restriction is wanted by design, because different platforms and compilers implement the
-         * bootstrap of static and global data differently and it is not considered a good
-         * programming style to rely on C++ bootstrap. Using ALox/ALIB within C++ bootstrap is
-         * undefined behavior. (This is true for any C++ library.)
+         * \note
+         *  ALox must not be used before all global/static variables are created. Hence, it
+         *  is not allowed to initialize ALox within static variable initialization code. This
+         *  restriction is wanted by design, because different platforms and compilers implement the
+         *  bootstrap of static and global data differently and it is not considered a good
+         *  programming style to rely on C++ bootstrap. Using ALox/ALIB within C++ bootstrap is
+         *  undefined behavior. (This is true for any C++ library.)
          *
-         *  @param environment  If \c Inclusion::Include (the default), an
-         *                    \ref aworx::lib::config::EnvironmentPlugIn "EnvironmentPlugIn"
-         *                    is attached to the
-         *                    \ref aworx::lib::ALIB::Config "ALIB::Config" singleton. Hence,
-         *                    environment variables are read and potentially do overwrite
-         *                    configuration variables in other configuration plug-ins.<br>
-         *                    Defaults to \c true.
-         *  @param argc       Parameter which in the standard case is taken from  C/C++ main()
-         *                    method (Provides the number of command line arguments in argv).
-         *                    If this greater than 0, a
-         *                    \ref aworx::lib::config::CommandLinePlugIn "CommandLinePlugIn"
-         *                    is attached to the
-         *                    \ref aworx::lib::ALIB::Config "ALIB::Config" singleton. Hence,
-         *                    environment variables are read and potentially overwrite
-         *                    configuration variables in other configuration plug-ins.<br>
-         *                    Defaults to 0.
-         *  @param argv       Parameter which in the standard case is taken from  C/C++ main()
-         *                    method (Provides a pointer to a list of command line arguments).
-         *                    Defaults to nullptr.
+         * \attention
+         *   If release logging is used, the explicit initialization of ALox by invoking
+         *   this method is mandatory. While debug logging 'automatically' invokes the method
+         *   hiddenly in the background, release logging does not.
+         *   If omitted, critical errors and undefined behavior in release builds might occur
+         *   in the moment when debug-logging is pruned!
          *
-         *  @param wArgs      If \c true, parameter argv is of type '<em>wchar_t **</em>', otherwise
-         *                    of type '<em>char **</em>'.
-         *                    Defaults to \c false.
-         *
+         *  @param argc    Parameter usually taken from <em>standard C</em> \c main() method
+         *                 (the number of arguments in \p argv).
+         *                 Defaults to 0.
+         *  @param argv    Parameter usually taken from <em>standard C</em> \c main() method
+         *                 (pointer to a list of command line arguments).
+         *                 Defaults to nullptr.
          * @returns Returns \c true if ALox was initialized before, \c false if not.
          ******************************************************************************************/
-         inline static
-         bool     Init( lib::enums::Inclusion environment =lib::enums::Inclusion::Include,
-                        int argc =0, void** argv =nullptr, bool wArgs =false )
+        inline static
+        bool     Init( int argc =0, char** argv =nullptr )
         {
-            if ( isInitialized )
-                return false;
+            if ( isInitialized )  return false;
+            ALox::checkLibraryVersions(); // this call has to stay in the header file
+            ALIB::Init( argc, argv );
+            isInitialized= true;
+            return true;
+        }
 
-            ALox::checkLibraryVersions();
-            return initInternal( environment, argc, argv, wArgs );
+        /** ****************************************************************************************
+         * Variant of method #Init, accepting command line arguments of type \c wchar_t.
+         *
+         * @param argc    Parameter usually taken from <em>standard C</em> \c main() method
+         *                (the number of arguments in \p argv).
+         * @param argv    The command line parameters as \c wchar_t.
+         * @returns Returns \c true if ALox was initialized before, \c false if not.
+         ******************************************************************************************/
+        inline static
+        bool     Init( int  argc, wchar_t **argv )
+        {
+            if ( isInitialized )  return false;
+            ALox::checkLibraryVersions(); // this call has to stay in the header file
+            ALIB::Init( argc, argv );
+            isInitialized= true;
+            return true;
         }
 
         /** ****************************************************************************************
@@ -353,7 +385,7 @@ class ALox
          * Therefore, to keep a \b Lox private, an optional parameter is available.
          *
          * @param lox       The \b %Lox to register.
-         * @param operation If \b %ContainerOp::Remove, the given \p Lox is unregistered.
+         * @param operation If \b %ContainerOp::Remove, the given \p Lox is deregistered.
          *                  Defaults to \b %ContainerOp::Insert.
          ******************************************************************************************/
         ALOX_API static
@@ -378,19 +410,6 @@ class ALox
     // Internals
     // #############################################################################################
     protected:
-        /** ****************************************************************************************
-         * Internal, main part of the Init function. (The method is split into two parts, because
-         * a portion of it has to be inlined. This allows to veryfy if the ALib/ALox library that
-         * a binary is linked to, has the same compilation flags set. This check may avoid a lot of
-         * unnecessary debugging trouble.
-         *  @param environment  Passed from method #Init
-         *  @param argc         Passed from method #Init
-         *  @param argv         Passed from method #Init
-         *  @param wArgs        Passed from method #Init
-         * @returns Returns \c true if ALox was initialized before, \c false if not.
-         ******************************************************************************************/
-        ALOX_API static
-        bool     initInternal( Inclusion environment, int argc, void** argv, bool wArgs );
 
         /** ****************************************************************************************
          * Checks if versions of ALib, ALox and the actual compilation unit share compatible
@@ -430,6 +449,11 @@ class    ALoxReportWriter : public aworx::lib::ReportWriter
      **********************************************************************************************/
      ALOX_API
      ALoxReportWriter ( Lox* lox );
+
+    /** ****************************************************************************************
+     * Virtual destructor
+     ******************************************************************************************/
+    virtual ~ALoxReportWriter()              {}
 
     /** ********************************************************************************************
      * Notify activation/deactivation

@@ -79,9 +79,8 @@ UT_METHOD( Constructor )
         }
         {
             Substring subs( "xy xz abc xy" );
-            subs.TrimStart( "xy " );
-            subs.TrimEnd( "xy " );
-            res= subs;
+            res= subs.TrimStart( "xy " )
+                     .TrimEnd( "xy " );
             UT_EQ( "z abc", res );
         }
     }
@@ -96,32 +95,27 @@ UT_METHOD( Constructor )
 
         {
             Substring subs( " const char* " );
-            subs.Trim();
-            res= subs;
+            res= subs.Trim();
             UT_EQ( "const char*", res );
         }
         {
             Substring subs( "const char* ", 0, 5);
-            subs.Trim();
-            res= subs;
+            res= subs.Trim();
             UT_EQ( "const", res );
         }
 
         {
             String64 astr( " astring ");
             Substring subs( astr);
-            subs.Trim();
-            res= subs;
+            res= subs.Trim();
             UT_EQ( "astring", res );
 
             Substring subs2( astr, 2, 3 );
-            subs2.Trim();
-            res= subs2;
+            res= subs2.Trim();
             UT_EQ( "str", res );
 
             Substring subs3( astr, 20, 3 );
-            subs3.Trim();
-            res= subs3;
+            res= subs3.Trim();
             UT_TRUE(  subs3.IsEmpty() );
             UT_TRUE( !subs3.IsNull()  );
         }
@@ -135,8 +129,7 @@ UT_METHOD( Operators )
 
     String32 as;
     Substring subs( " word   " );
-    subs.Trim();
-    as << subs << '@' << subs;
+    as << subs.Trim() << '@' << subs;
 
     UT_EQ( "word@word",          as );
     as << '@';
@@ -350,11 +343,11 @@ UT_METHOD( Consume )
         UT_EQ(  '1',       s.Consume       ( )         );
 
         UT_EQ(  false    , s.Consume       ('w'                         )   );
-        UT_EQ(  true     , s.Consume       ('w'     , Whitespaces::Trim )   );
-        UT_EQ(  true     , s.Consume       ('o'     , Whitespaces::Trim )   );
-        UT_EQ(  false    , s.Consume       ('o'     , Whitespaces::Trim )   );
-        UT_EQ(  true     , s.Consume       ('r'     , Whitespaces::Trim )   );
-        UT_EQ(  false    , s.Consume       ("D2"    , Whitespaces::Trim )   );
+        UT_EQ(  true     , s.Consume       ('w'     ,Case::Sensitive, Whitespaces::Trim )   );
+        UT_EQ(  true     , s.Consume       ('o'     ,Case::Sensitive, Whitespaces::Trim )   );
+        UT_EQ(  false    , s.Consume       ('o'     ,Case::Sensitive, Whitespaces::Trim )   );
+        UT_EQ(  true     , s.Consume       ('r'     ,Case::Sensitive, Whitespaces::Trim )   );
+        UT_EQ(  false    , s.Consume       ("D2"    ,Case::Sensitive, Whitespaces::Trim )   );
         UT_EQ(  false    , s.Consume       ("D2"                        )   );
         UT_EQ(  true     , s.Consume       ("d2"                        )   );
 
@@ -370,11 +363,11 @@ UT_METHOD( Consume )
         UT_EQ(  'w',       s.ConsumeFromEnd( )         );
 
         UT_EQ(  false    , s.ConsumeFromEnd('2'                         )   );
-        UT_EQ(  true     , s.ConsumeFromEnd('2'     , Whitespaces::Trim )   );
-        UT_EQ(  true     , s.ConsumeFromEnd('d'     , Whitespaces::Trim )   );
-        UT_EQ(  false    , s.ConsumeFromEnd('d'     , Whitespaces::Trim )   );
-        UT_EQ(  true     , s.ConsumeFromEnd('r'     , Whitespaces::Trim )   );
-        UT_EQ(  false    , s.ConsumeFromEnd("WO"    , Whitespaces::Trim )   );
+        UT_EQ(  true     , s.ConsumeFromEnd('2'     ,Case::Sensitive, Whitespaces::Trim )   );
+        UT_EQ(  true     , s.ConsumeFromEnd('d'     ,Case::Sensitive, Whitespaces::Trim )   );
+        UT_EQ(  false    , s.ConsumeFromEnd('d'     ,Case::Sensitive, Whitespaces::Trim )   );
+        UT_EQ(  true     , s.ConsumeFromEnd('r'     ,Case::Sensitive, Whitespaces::Trim )   );
+        UT_EQ(  false    , s.ConsumeFromEnd("WO"    ,Case::Sensitive, Whitespaces::Trim )   );
         UT_EQ(  false    , s.ConsumeFromEnd("WO"                        )   );
         UT_EQ(  true     , s.ConsumeFromEnd("wo"                        )   );
 

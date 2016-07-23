@@ -36,7 +36,7 @@ namespace ut_cs_aworx_lox
     #if ALIB_VSTUDIO
         [TestClass]
     #endif
-    public class CS_ALox_Documentation_Samples   : AUnitTest
+    public class CS_ALox_Documentation_Samples   : AWorxUnitTesting
     {
         // used with unit test Log_ScopeInfoCacheTest
         public static void ScopeInfoCacheTest() { Log.Info("Test method of CS_ALox_Documentation_Samples"); }

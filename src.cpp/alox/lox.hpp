@@ -27,6 +27,12 @@
 #if !defined (HPP_ALIB_THREADS_THREADLOCK)
     #include "alib/threads/threadlock.hpp"
 #endif
+#if !defined (HPP_ALIB_STRINGS_TOKENIZER)
+    #include "alib/strings/tokenizer.hpp"
+#endif
+#if !defined (HPP_ALIB_CONFIG_CONFIGURATION)
+    #include "alib/config/configuration.hpp"
+#endif
 #if !defined (HPP_ALOX_CORE_SCOPEINFO)
     #include "alox/core/scopeinfo.hpp"
 #endif
@@ -99,31 +105,29 @@ class Lox : public aworx::lib::threads::ThreadLock
         Case                                       DomainSensitivity                  =Case::Ignore;
 
         /**
-         * Constant providing default value for parameter \p priority of method #SetVerbosity.
-         * This value is defined in alignment with plug-in priority constants found in
-         * ALib class \b %Configuration, namely
-         * - \ref aworx::lib::config::Configuration::PrioCmdLine   "Configuration::PrioCmdLine"
-         *   with a value of of 400,
-         * - \ref aworx::lib::config::Configuration::PrioEnvVars   "Configuration::PrioEnvVars"
-         *   with a value of 300 and
-         * - \ref aworx::lib::config::Configuration::PrioIniFile   "Configuration::PrioIniFile"
-         *   with a value of 200.
-         *
-         * Having a value of 100, source code settings by default have lowest priority.
+         * Denotes flags used with methods #GetState and #State to select different parts
+         * of the state receive.
          */
-        static constexpr  int                      PrioSource                                 = 100;
+        enum
+        {
+           StateInfo_Basic                    = 1 <<  0, ///< Name and number of log calls
+           StateInfo_Version                  = 1 <<  1, ///< Library Version and thread safeness
+           StateInfo_Loggers                  = 1 <<  2, ///< Loggers
 
-        /**
-         * Constant providing the maximum value for parameter \p priority of method #SetVerbosity.
-         * A \e Verbosity set with this priority is immutable in respect to external configuration
-         * data.
-         */
-         #if defined( _MSC_VER )
-            constexpr   static      int            PrioProtected  = MAXINT;
-         #else
-            static constexpr  int                  PrioProtected  = std::numeric_limits<int>::max();
-         #endif
+           StateInfo_Domains                  = 1 <<  3, ///< Log domains currently registered
+           StateInfo_InternalDomains          = 1 <<  4, ///< Internal domains
+           StateInfo_ScopeDomains             = 1 <<  5, ///< Scope domains
+           StateInfo_DSR                      = 1 <<  6, ///< Domain substitution rules
+           StateInfo_PrefixLogables           = 1 <<  7, ///< Prefix logables
+           StateInfo_Once                     = 1 <<  8, ///< Log once counters
+           StateInfo_LogData                  = 1 <<  9, ///< Log data objects
+           StateInfo_ThreadMappings           = 1 << 10, ///< Named threads
 
+           StateInfo_SPTR                     = 1 << 20, ///< Source path trim rules
+           StateInfo_CompilationFlags         = 1 << 21, ///< ALib/ALox compilation flags
+
+           StateInfo_All                      = ~0L,
+        };
 
 
     // #############################################################################################
@@ -174,7 +178,6 @@ class Lox : public aworx::lib::threads::ThreadLock
 
         /** The list of collected log objects which is passed to the \e Loggers  */
         core::Logables                             tmpLogables;
-
 
         /**  Domain stubstitution rules.  */
         struct DomainSubstitutionRule
@@ -251,6 +254,9 @@ class Lox : public aworx::lib::threads::ThreadLock
         /**  Flag if a warning on circular rule detection was logged.  */
         bool                                       oneTimeWarningCircularDS                  =false;
 
+        /**  Flag used with configuration variable LOXNAME_DUMP_STATE_ON_EXIT.  */
+        bool                                       loggerAddedSinceLastDebugState            =false;
+
 
     // #############################################################################################
     // Constructors/destructor
@@ -270,9 +276,7 @@ class Lox : public aworx::lib::threads::ThreadLock
          * \ref aworx::lox::ALox::Get "ALox::Get". In some situations, such 'registration'
          * may not be wanted.
          *
-         * @param name       The name of the Lox. Can be logged out, e.g. by setting
-         *                   aworx::lox::textlogger::MetaInfo::Format "MetaInfo.Format" accordingly.
-         *                   Will be converted to upper case.
+         * @param name       The name of the Lox. Will be converted to upper case.
          * @param doRegister If \c true, this object is registered with static class
          *                   \ref aworx::lox::ALox "ALox".
          *                   Optional and defaults to \c true.
@@ -405,26 +409,25 @@ class Lox : public aworx::lib::threads::ThreadLock
          * @param sensitivity     Determines if the comparison of \p path with a source files' path
          *                        is performed case sensitive or not.
          *                        Optional and defaults to \b Case::Ignore.
-         * @param global          If Inclusion::Exclude, only this instance is affected. Otherwise
-         *                        the setting applies to all instances of class \b Lox.
-         *                        Optional and defaults to \b Inclusion::Include.
          * @param trimReplacement Replacement string for trimmed portion of the path.
          *                        Optional and defaults to \b %NullString.
-         * @param priority        The priority of the setting. Defaults to #PrioSource, which is
-         *                        a lower priority than standard plug-ins of external configuration
-         *                        have.
+         * @param reach           Denotes whether the rule is applied locally (to this \b %Lox only)
+         *                        or applies to all instances of class \b %Lox.
+         *                        Defaults to \b %Reach::Global.
+         * @param priority        The priority of the setting. Defaults to
+         *                        \ref aworx::lib::config::Configuration::PrioDefault "Configuration::PrioDefault".
          ******************************************************************************************/
         void      SetSourcePathTrimRule( const TString& path,
                                          Inclusion      includeString   = Inclusion::Exclude,
                                          int            trimOffset      = 0,
                                          Case           sensitivity     = Case::Ignore,
-                                         Inclusion      global          = Inclusion::Include,
                                          const String&  trimReplacement = NullString,
-                                         int            priority        = PrioSource             )
+                                         Reach          reach           = Reach::Global,
+                                         int            priority        = lib::config::Configuration::PrioDefault )
 
         {
             scopeInfo.SetSourcePathTrimRule( path, includeString, trimOffset, sensitivity,
-                                             global, trimReplacement, priority );
+                                             trimReplacement, reach, priority );
         }
 
 
@@ -438,18 +441,18 @@ class Lox : public aworx::lib::threads::ThreadLock
          *
          * \see ALox User Manual for more information.
          *
-         * @param global        If Inclusion::Exclude, only this instances' rules are cleared.
-         *                      Otherwise, the global rules are cleared as well.
+         * @param reach         Denotes whether only local rules are cleared or also global ones.
+         *                      Defaults to \b %Reach::Global.
          * @param allowAutoRule Determines if an auto rule should be tried to be detected next
          *                      no appropriate rule is found.
          ******************************************************************************************/
-        void      ClearSourcePathTrimRules( Inclusion   global          = Inclusion::Include,
+        void      ClearSourcePathTrimRules( Reach       reach           = Reach::Global,
                                             bool        allowAutoRule   = true                  )
         {
             scopeInfo.SetSourcePathTrimRule( nullptr, allowAutoRule ? Inclusion::Include
                                                                     : Inclusion::Exclude,
                                              999999, // code for clearing
-                                             Case::Ignore,  global, NullString, -1  );
+                                             Case::Ignore, NullString, reach, -1  );
         }
 
         /** ************************************************************************************
@@ -533,20 +536,21 @@ class Lox : public aworx::lib::threads::ThreadLock
          * for the evaluated sub-domain, the \e Verbosity for all domains is set to
          * \b %Verbosity::Off.
          *
-         * To unregister a \e Logger with a \b Lox, use method #RemoveLogger.
+         * To deregister a \e Logger with a \b Lox, use method #RemoveLogger.
          * To 'disable' a \e Logger, invoke this method with parameters \p verbosity equaling to
          * \b %Verbosity::Off and \p domain to \c "/".
          *
-         * Optional parameter \p priority defaults to #PrioSource, which is a lower priority
-         * than those of the standard plug-ins of external configuration data. Therefore, external
-         * configuration by default 'overwrite' settings made from 'within the source code', which
-         * simply means by invoking this method.<br>
+         * Optional parameter \p priority defaults to
+         * \ref aworx::lib::config::Configuration::PrioDefault "Configuration::PrioDefault",
+         * which is a lower priority than those of the standard plug-ins of external configuration
+         * data. Therefore, external configuration by default 'overwrite' settings made from
+         * 'within the source code', which simply means by invoking this method.<br>
          * The parameter can be provided for two main reasons:
          * - To 'lock' a verbosity setting against external manipulation.
          * - to 'break' the standard mechanism that an invocation of this method sets all
          *   sub-domains recursively. If a sub-domain was set with a higher priority
-         *   (e.g. <c>%PrioSource + 1</c>, then this sub-domain will not be affected by
-         *   future invocations of this method with standard-priority given.
+         *   (e.g. <c>%Configuration::PrioDefault + 1</c>, then this sub-domain will not be affected
+         *   by future invocations of this method with standard-priority given.
          *
          * For more information on how to use external configuration variables with priority and
          * on protecting verbosity settings, consult the [ALox user manual](../manual.html).
@@ -578,15 +582,14 @@ class Lox : public aworx::lib::threads::ThreadLock
          * @param domain     The parent (start) domain to be set. The use of absolute paths
          *                   starting with <c> '/'</c> are recommended.
          *                   Defaults to root domain \"/\".
-         * @param priority   The priority of the setting. Defaults to #PrioSource, which is
-         *                   a lower priority than standard plug-ins of external configuration
-         *                   have.
+         * @param priority   The priority of the setting. Defaults to
+         *                   \ref aworx::lib::config::Configuration::PrioDefault "Configuration::PrioDefault".
          ******************************************************************************************/
         ALOX_API
         void            SetVerbosity( core::Logger*    logger,
                                       Verbosity        verbosity,
                                       const TString&   domain        = TString("/"),
-                                      int              priority      = PrioSource             );
+                                      int              priority      = lib::config::Configuration::PrioDefault  );
 
         /** ****************************************************************************************
          * Same as \ref #SetVerbosity(core::Logger*,Verbosity,const TString&,int) "SetVerbosity"
@@ -600,15 +603,14 @@ class Lox : public aworx::lib::threads::ThreadLock
          * @param domain     The parent (start) domain to be set. The use of absolute paths
          *                   starting with <c> '/'</c> are recommended.
          *                   Defaults to root domain \"/\".
-         * @param priority   The priority of the setting. Defaults to #PrioSource, which is
-         *                   a lower priority than that of standard plug-ins of external
-         *                   configuration have.
+         * @param priority   The priority of the setting. Defaults to
+         *                   \ref aworx::lib::config::Configuration::PrioDefault "Configuration::PrioDefault".
          ******************************************************************************************/
         ALOX_API
         void            SetVerbosity( const String&    loggerName,
                                       Verbosity        verbosity,
                                       const TString&   domain        =  TString("/"),
-                                      int              priority      =  PrioSource          );
+                                      int              priority      =  lib::config::Configuration::PrioDefault );
 
         /** ****************************************************************************************
          * The given \p scopeDomain becomes the default domain path for given \p scope.
@@ -638,7 +640,7 @@ class Lox : public aworx::lib::threads::ThreadLock
          * @param scope       The scope that should the given \p domain be registered for.
          *                    Available Scope definitions are platform/language dependent.
          * @param pathLevel   Used only if parameter \p scope equals
-         *                    \ref aworx::lox::Scope::Path "Scope.Path"
+         *                    \ref aworx::lox::Scope::Path "Scope::Path"
          *                    to reference parent directories. Optional and defaults to \c 0.
          ******************************************************************************************/
         void        SetDomain( const TString& scopeDomain, Scope scope, int pathLevel = 0  )
@@ -788,7 +790,7 @@ class Lox : public aworx::lib::threads::ThreadLock
          * @param scope       The scope that should the given \p domain be registered for.
          *                    Available Scope definitions are platform/language dependent.
          * @param pathLevel   Used only if parameter \p scope equals
-         *                    \ref aworx::lox::Scope::Path "Scope.Path"
+         *                    \ref aworx::lox::Scope::Path "Scope::Path"
          *                    to reference parent directories. Optional and defaults to \c 0.
          ******************************************************************************************/
         void        SetPrefix( const void* logable, int type, Scope scope, int pathLevel = 0  )
@@ -831,7 +833,7 @@ class Lox : public aworx::lib::threads::ThreadLock
          * @param scope       The scope that should the given \p logable be registered for.
          *                    Available Scope definitions are platform/language dependent.
          * @param pathLevel   Used only if parameter \p scope equals
-         *                    \ref aworx::lox::Scope::Path "Scope.Path"
+         *                    \ref aworx::lox::Scope::Path "Scope::Path"
          *                    to reference parent directories. Optional and defaults to \c 0.
          ******************************************************************************************/
         void        SetPrefix( const TString& logable, Scope scope, int pathLevel = 0  )
@@ -1060,7 +1062,7 @@ class Lox : public aworx::lib::threads::ThreadLock
          * @return The \b LogData object, \c nullptr if nothing was found.
          ******************************************************************************************/
         ALOX_API
-        LogData*  Retrieve( const TString& key,
+        LogData*  Retrieve  ( const TString& key,
                               Scope scope= Scope::Global , int  pathLevel= 0 )
         {
             return retrieveImpl( key, scope, pathLevel );
@@ -1085,17 +1087,39 @@ class Lox : public aworx::lib::threads::ThreadLock
         }
 
         /** ****************************************************************************************
-         *  This method logs the configuration this Lox and it's encapsulated objects.
+         * This method logs the current configuration of this Lox and its encapsulated objects.
+         * It uses method #GetState to assemble the logable string.
+         *
+         * \note
+         *   As an alternative to (temporarily) adding an invocation of <b>%Lox.State</b> to
+         *   your code, ALox provides configuration variable
+         *   [ALOX_LOXNAME_DUMP_STATE_ON_EXIT](group__GrpALoxConfigVars.html).
+         *   This allows to enable an automatic invocation of this method using external
+         *   configuration data like command line parameters, environment variables or
+         *   INI files.
          *
          * @param domain        Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
          *                      set for the \e %Scope of invocation.
          * @param verbosity     The verbosity.
          * @param headLine      If given, a separated headline will be logged at first place.
+         * @param flags         Flag bits that define which state information is logged.
          ******************************************************************************************/
         ALOX_API
-        void        LogConfig( const String&       domain,
-                               Verbosity           verbosity,
-                               const String&       headLine );
+        void        State   ( const TString&       domain,
+                              Verbosity           verbosity,
+                              const String&       headLine,
+                              unsigned int        flags= StateInfo_All  );
+
+        /** ****************************************************************************************
+         * This method collects state information about this lox in a formated multi-line AString.
+         * Parameter \p flags is a bit field with bits defined in constants of class \b %Lox
+         * prefixed with \b "StateInfo_", e.g. \c %StateInfo_Loggers.
+         *
+         * @param buf        The target string.
+         * @param flags      Flag bits that define which state information is collected.
+         ******************************************************************************************/
+        ALOX_API
+        void        GetState( AString& buf, unsigned int flags= StateInfo_All   );
 
 
     // #############################################################################################
@@ -1454,7 +1478,7 @@ class Lox : public aworx::lib::threads::ThreadLock
          *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
          * @param scope     The \e %Scope that the group or counter is bound to.
          * @param pathLevel Used only if parameter \p scope equals
-         *                  \ref aworx::lox::Scope::Path "Scope.Path"
+         *                  \ref aworx::lox::Scope::Path "Scope::Path"
          *                  to reference parent directories. Optional and defaults to \c 0.
          * @param quantity  The number of logs to be performed. As the name of the method indicates,
          *                  this defaults to \c 1.
@@ -1482,7 +1506,7 @@ class Lox : public aworx::lib::threads::ThreadLock
          *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
          * @param scope     The \e %Scope that the group or counter is bound to.
          * @param pathLevel Used only if parameter \p scope equals
-         *                  \ref aworx::lox::Scope::Path "Scope.Path"
+         *                  \ref aworx::lox::Scope::Path "Scope::Path"
          *                  to reference parent directories. Optional and defaults to \c 0.
          * @param quantity  The number of logs to be performed. As the name of the method indicates,
          *                  this defaults to \c 1.
@@ -1548,7 +1572,7 @@ class Lox : public aworx::lib::threads::ThreadLock
          *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
          * @param scope     The \e %Scope that the group or counter is bound to.
          * @param pathLevel Used only if parameter \p scope equals
-         *                  \ref aworx::lox::Scope::Path "Scope.Path"
+         *                  \ref aworx::lox::Scope::Path "Scope::Path"
          *                  to reference parent directories. Optional and defaults to \c 0.
          * @param quantity  The number of logs to be performed. As the name of the method indicates,
          *                  this defaults to \c 1.
@@ -1572,7 +1596,7 @@ class Lox : public aworx::lib::threads::ThreadLock
          * @param msg       The string message to log.
          * @param scope     The \e %Scope that the group or counter is bound to.
          * @param pathLevel Used only if parameter \p scope equals
-         *                  \ref aworx::lox::Scope::Path "Scope.Path"
+         *                  \ref aworx::lox::Scope::Path "Scope::Path"
          *                  to reference parent directories. Optional and defaults to \c 0.
          * @param quantity  The number of logs to be performed. As the name of the method indicates,
          *                  this defaults to \c 1.
@@ -1593,7 +1617,7 @@ class Lox : public aworx::lib::threads::ThreadLock
          * @param msg       The string message to log.
          * @param scope     The \e %Scope that the group or counter is bound to.
          * @param pathLevel Used only if parameter \p scope equals
-         *                  \ref aworx::lox::Scope::Path "Scope.Path"
+         *                  \ref aworx::lox::Scope::Path "Scope::Path"
          *                  to reference parent directories. Optional and defaults to \c 0.
          * @param quantity  The number of logs to be performed. As the name of the method indicates,
          *                  this defaults to \c 1.
@@ -1613,7 +1637,7 @@ class Lox : public aworx::lib::threads::ThreadLock
          * @param msg       The string message to log.
          * @param scope     The \e %Scope that the group or counter is bound to.
          * @param pathLevel Used only if parameter \p scope equals
-         *                  \ref aworx::lox::Scope::Path "Scope.Path"
+         *                  \ref aworx::lox::Scope::Path "Scope::Path"
          *                  to reference parent directories. Optional and defaults to \c 0.
          * @param quantity  The number of logs to be performed. As the name of the method indicates,
          *                  this defaults to \c 1.
@@ -1879,22 +1903,13 @@ class Lox : public aworx::lib::threads::ThreadLock
         void            logInternal( Verbosity verbosity, const String& subDomain, const TString& msg );
 
         /** ****************************************************************************************
-         * Internal method used by LogConfig() to recursively log Domain instances.
-         * @param domain      The Domain instance to log out.
-         * @param buffer      The buffer to log to.
-         * @return The entry width (potentially increased).
-         ******************************************************************************************/
-        ALOX_API
-        void      logConfigDomainRecursive( core::Domain& domain, AString& buffer );
-
-        /** ****************************************************************************************
          * Implementation of the interface method fetching all possible parameters.
          *
          * @param scopeDomain The domain path to register.
          * @param scope       The scope that the given \p domain should be registered for.
          *                    Available Scope definitions are platform/language dependent.
          * @param pathLevel   Used only if parameter \p scope equals
-         *                    \ref aworx::lox::Scope::Path "Scope.Path"
+         *                    \ref aworx::lox::Scope::Path "Scope::Path"
          *                    to reference parent directories.
          * @param removeNTRSD Used to remove a named thread-related Scope Domain (and is true only when
          *                    invoked by interface method #RemoveThreadDomain.
@@ -1912,7 +1927,7 @@ class Lox : public aworx::lib::threads::ThreadLock
          * @param scope       The scope that the given \p logable should be registered for.
          *                    Available Scope definitions are platform/language dependent.
          * @param pathLevel   Used only if parameter \p scope equals
-         *                    \ref aworx::lox::Scope::Path "Scope.Path"
+         *                    \ref aworx::lox::Scope::Path "Scope::Path"
          *                    to reference parent directories.
          * @param thread      The thread to set/unset a thread-related <em>Prefix Logable</em> for.
          ******************************************************************************************/
@@ -1936,7 +1951,7 @@ class Lox : public aworx::lib::threads::ThreadLock
          *                  counter is associated exclusively with the single <em>Log Statement</em> itself.
          * @param scope     The \e %Scope that the group or counter is bound to.
          * @param pathLevel Used only if parameter \p scope equals
-         *                  \ref aworx::lox::Scope::Path "Scope.Path"
+         *                  \ref aworx::lox::Scope::Path "Scope::Path"
          *                  to reference parent directories. Optional and defaults to \c 0.
          * @param quantity  The number of logs to be performed. As the name of the method indicates,
          *                  this defaults to \c 1.
@@ -1987,7 +2002,7 @@ class Lox : public aworx::lib::threads::ThreadLock
          *
          * @param scope          The scope that is to be checked.
          * @param pathLevel      Used only if parameter \p scope equals
-         *                       \ref aworx::lox::Scope::Path "Scope.Path"
+         *                       \ref aworx::lox::Scope::Path "Scope::Path"
          *                       to reference parent directories.
          * @param internalDomain The internal sub-domain to log any error/warning into.
          * @return \c true if all is fine, \c false else.
@@ -2010,12 +2025,11 @@ class Lox : public aworx::lib::threads::ThreadLock
          *
          * @param logger      The logger to set the verbosity for.
          * @param dom         The domain to set the verbosity for.
-         * @param cfgStr      The configuration string. If not read yet, nullptr may be given.
-         * @param cfgPriority The priority of the configuration plug-in providing the variable.
+         * @param variable    The (already read) variable to set verbosities from.
          ******************************************************************************************/
         ALOX_API
-        void      getVerbosityFromConfig( core::Logger*  logger, core::Domain*  dom,
-                                          TString*       cfgStr, int            cfgPriority );
+        void      getVerbosityFromConfig( core::Logger*    logger, core::Domain*  dom,
+                                          Variable& variable );
 
         /** ****************************************************************************************
          * Reads a prefix string from the ALib configuration system.
@@ -2034,12 +2048,26 @@ class Lox : public aworx::lib::threads::ThreadLock
          *
          * @param logger      The logger to set the verbosity for.
          * @param dom         The domain to set the verbosity for.
-         * @param cfgStr      The configuration string. If not read yet, nullptr may be given.
-         * @param cfgPriority The priority of the configuration plug-in providing the variable.
+         * @param variable    The (already read) variable to set verbosities from.
          ******************************************************************************************/
         ALOX_API
         void      getAllVerbosities( core::Logger*  logger,   core::Domain*  dom,
-                                     TString*       cfgStr,   int            cfgPriority  );
+                                     Variable& variable  );
+
+        /** ****************************************************************************************
+         * Implements functionality for configuration variable \c LOXNAME_DUMP_STATE_ON_EXIT.
+         * Is called when a logger is removed.
+         ******************************************************************************************/
+        ALOX_API
+        void     dumpStateOnLoggerRemoval();
+
+        /** ****************************************************************************************
+         * Implements functionality for configuration variable \c LOXNAME_LOGGERNAME_VERBOSITY.
+         * Is called when a logger is removed.
+         * @param logger      The logger to write the verbosity for.
+         ******************************************************************************************/
+        ALOX_API
+        void     writeVerbositiesOnLoggerRemoval( Logger* logger );
 
 }; // class Lox
 

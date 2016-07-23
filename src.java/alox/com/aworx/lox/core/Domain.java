@@ -38,13 +38,13 @@ public class Domain
         public Logger               logger;
 
         /**  The verbosity of the \e Logger for this domain */
-        public Verbosity            loggerVerbosity    =Verbosity.OFF;
+        public Verbosity            loggerVerbosity         =Verbosity.OFF;
 
         /**  The priority value that was used to set the priority */
-        public int                  priority           = 0;
+        public int                  priority                = 0;
 
         /** the number of log calls on this domain for this logger */
-        public int                  cntLogCalls        =0;
+        public int                  logCallsPerDomain       =0;
 
         /**
          * Constructor
@@ -250,7 +250,7 @@ public class Domain
      ******************************************************************************************/
     public Logger  getLogger( int no )
     {
-        ALIB.ASSERT_ERROR( no >= 0 && no < (int) data.size(), "Internal error: Illegal Logger Number" );
+        ALIB.ASSERT_ERROR( no >= 0 && no < data.size(), "Internal error: Illegal Logger Number" );
         return data.get(no).logger;
     }
 
@@ -331,7 +331,7 @@ public class Domain
      ******************************************************************************************/
     public int          getCount( int loggerNo )
     {
-        return data.get( loggerNo ).cntLogCalls;
+        return data.get( loggerNo ).logCallsPerDomain;
     }
 
     /** ********************************************************************************************
@@ -361,7 +361,7 @@ public class Domain
                  ||   domain == Verbosity.VERBOSE )
           )
         {
-            data.get( loggerNo ).cntLogCalls++;
+            data.get( loggerNo ).logCallsPerDomain++;
             return true;
         }
         return false;
@@ -394,11 +394,10 @@ public class Domain
 
         // if string is empty (resp. contains only separator characters), return ourselves
         while( domainPath.consume( PATH_SEPARATOR ) )
-            ;
+        { /* eat separators */ }
+        
         if( domainPath.isEmpty() )
-        {
             return this;
-        }
 
         // Trailing domain separator found: call find on root domain
         Domain startDomain= this;
@@ -430,7 +429,7 @@ public class Domain
                 LoggerData ld= data.get( i );
                 tAString._(i!=0 ? ", " : "" )
                         ._('(')
-                            ._('[')._(ld.cntLogCalls,3)._( "], " );
+                            ._('[')._(ld.logCallsPerDomain,3)._( "], " );
                             ALox.toString( ld.loggerVerbosity, ld.priority, tAString )
                         ._(')');
             }
@@ -452,6 +451,7 @@ public class Domain
          *                            and hence created.
          * @return The domain found or created.
          ******************************************************************************************/
+        @SuppressWarnings ("null") 
         protected Domain findRecursive( Substring domainPath, Case sensitivity, int maxCreate,
                                         boolean[] wasCreated )
         {

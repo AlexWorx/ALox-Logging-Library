@@ -39,10 +39,6 @@
 // #################################################################################################
 #if defined(ALIB_FEAT_THREADS)
 
-    #if !defined (HPP_ALIB_STRINGS_ASPREALLOC)
-        #include "alib/strings/asprealloc.hpp"
-    #endif
-
     #if !defined (_GLIBCXX_MAP) && !defined(_MAP_)
         #include <map>
     #endif

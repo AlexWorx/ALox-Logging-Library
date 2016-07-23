@@ -7,18 +7,26 @@
 package ut_alox;
 import org.junit.Test;
 
-import ut_com_aworx_uttools.AUnitTest;
-
 import com.aworx.lib.ALIB;
+import com.aworx.lib.config.Variable;
+import com.aworx.lib.enums.Inclusion;
 import com.aworx.lib.enums.Safeness;
-import com.aworx.lox.*;
+import com.aworx.lox.ALox;
+import com.aworx.lox.ESC;
+import com.aworx.lox.Log;
+import com.aworx.lox.LogData;
+import com.aworx.lox.Lox;
+import com.aworx.lox.Scope;
+import com.aworx.lox.Verbosity;
 import com.aworx.lox.loggers.ConsoleLogger;
 import com.aworx.lox.loggers.MemoryLogger;
 
+import ut_com_aworx.AWorxUnitTesting;
 
 
 
-public class UT_alox_lox  extends AUnitTest
+
+public class UT_alox_lox  extends AWorxUnitTesting
 {
     /** ****************************************************************************************
      *  Lox_AddLogger.
@@ -177,7 +185,7 @@ public class UT_alox_lox  extends AUnitTest
 
         // test sub domains
         Log.setVerbosity( Log.debugLogger, Verbosity.VERBOSE, "/test" );
-        Log.logConfig( "/TEST",   Verbosity.INFO, "Dumping Log Configuration:" );
+        Log.state( "/TEST",   Verbosity.INFO, "Dumping Log Configuration:" );
 
         Log.setVerbosity( Log.debugLogger, Verbosity.INFO,   "/DFLT"      );
         Log.setVerbosity( Log.debugLogger, Verbosity.WARNING     ,   "/DFLT/WARN" );
@@ -187,7 +195,7 @@ public class UT_alox_lox  extends AUnitTest
         Log.setVerbosity( ml             , Verbosity.ERROR                  ,         "ERR"  );
 
 
-        Log.logConfig( "/TEST",  Verbosity.INFO, "Dumping Log Configuration:" );
+        Log.state( "/TEST",  Verbosity.INFO, "Dumping Log Configuration:" );
 
         // log with leading "/" on domain
         cntLL= ml.cntLogs;    Log.verbose    ( "/DFLT",        testERR );    UT_EQ ( 0, ml.cntLogs - cntLL );
@@ -317,6 +325,176 @@ public class UT_alox_lox  extends AUnitTest
                 ALIB.sleepMillis( 3 );
             }
         }
+    }
+
+    /** ****************************************************************************************
+     *     Log_GetState
+     ******************************************************************************************/
+    @Test
+    public void Log_GetState()
+    {
+        UT_INIT();
+    
+        Log.addDebugLogger();
+        MemoryLogger memLogger= new MemoryLogger();
+    
+        // reduce meta information to limit output width
+        Log.debugLogger.metaInfo.format._()._( "[%tN]%V[%D](%#): " );   
+        memLogger.metaInfo.format._()._(       "[%tN]%V[%D](%#): " );   
+        memLogger.multiLineMsgMode= 3; 
+        Log.setVerbosity( memLogger, Verbosity.VERBOSE );
+    
+        // OK, let's use ALox
+        Log.setDomain( "PNS"   ,   Scope.PACKAGE, 1 );
+        Log.setDomain( "PATH",     Scope.PACKAGE );
+        Log.setDomain( "FN",       Scope.CLASS );
+        Log.setDomain( "THREAD",   Scope.THREAD_OUTER );
+    
+        Log.setVerbosity( "MEMORY",        Verbosity.OFF      , "/CON"    );
+        Log.setVerbosity( "DEBUG_LOGGER" , Verbosity.VERBOSE              );
+        Log.setVerbosity( "DEBUG_LOGGER" , Verbosity.OFF      , "/MEM"    );
+        Log.setVerbosity( "DEBUG_LOGGER" , Verbosity.ERROR    , "/UI"     );
+        Log.setVerbosity( "DEBUG_LOGGER" , Verbosity.INFO     , "/UI/DLG" );
+    
+        Log.info( "This goes to both loggers" );
+        Log.info( "/MEM", "This goes only to the memory logger" );
+        Log.info( "/CON", "This goes only to the console logger" );
+    
+        Log.once( "Will we see this in the config?" );
+        Log.once( null, Verbosity.INFO, "Will we see this in the config?", "ONCEKEY", Scope.CLASS );
+    
+        Log.store( new LogData( "MyData 1" ), Scope.METHOD );
+        Log.store( new LogData( "MyData 2" ), "DataKey", Scope.METHOD );
+        Log.store( new LogData( 3          ), "DataKey", Scope.CLASS );
+        Log.store( new LogData( 4, this    ), "DataKey", Scope.THREAD_OUTER );
+    
+        Log.setPrefix( "TPre: "  , Scope.THREAD_OUTER );
+        Log.setPrefix( "MPre: "  , Scope.METHOD );
+        Log.setPrefix( "DomPre: " );
+        Log.setPrefix( "Mouse: ", "/UI/MOUSE" );
+        Log.setPrefix( ESC.RED,  "/ERRORS", Inclusion.EXCLUDE );
+    
+        Log.mapThreadName( "TUTORIAL" );
+    
+        // now, log the current config
+        Log.state( null, Verbosity.INFO, "State(ALL):" );
+    
+        Log.state( null, Verbosity.INFO, "State(Domains):", Lox.STATE_INFO_DOMAINS );
+        Log.state( null, Verbosity.INFO, "State(Loggers):", Lox.STATE_INFO_LOGGERS );
+    
+    
+        // cleanup
+        Log.removeDebugLogger();
+        Log.removeLogger( memLogger );
+    }
+    
+    /** ********************************************************************************************
+     * Log_DumpStateOnExit
+     **********************************************************************************************/
+    @Test
+    public void Log_DumpStateOnExit()
+    {
+        UT_INIT();
+    
+        Log.addDebugLogger();
+        MemoryLogger memLogger= new MemoryLogger();
+    
+    
+        Log.setVerbosity( memLogger, Verbosity.VERBOSE );
+        UT_TRUE( Log.debugLogger.cntLogs == 0 );
+        Log.removeLogger( memLogger );
+        UT_TRUE( Log.debugLogger.cntLogs == 0 );
+    
+        Variable var= new Variable( ALox.configCategoryName, Log.LOX.getName() + "_DUMP_STATE_ON_EXIT",  ',' );
+        int cntLogs;
+    
+    
+        var.store( "domain=/TEST, verbosity = e, domains, basic" );
+    
+        var.store("domain=/TEST, verbosity = e, sptr, basic" );
+        Log.setVerbosity( memLogger, Verbosity.VERBOSE );
+        cntLogs= Log.debugLogger.cntLogs;
+        Log.removeLogger( memLogger );
+        UT_TRUE( Log.debugLogger.cntLogs > cntLogs );
+    
+        var.store("verbosity = e, domains, basic" );
+        Log.setVerbosity( memLogger, Verbosity.VERBOSE );
+        cntLogs= Log.debugLogger.cntLogs;
+        Log.removeLogger( memLogger );
+        UT_TRUE( Log.debugLogger.cntLogs > cntLogs );
+    
+        var.store("domains, loggers" );
+        Log.setVerbosity( memLogger, Verbosity.VERBOSE );
+        cntLogs= Log.debugLogger.cntLogs;
+        Log.removeLogger( memLogger );
+        UT_TRUE( Log.debugLogger.cntLogs > cntLogs );
+    
+        var.store("" );
+        Log.setVerbosity( memLogger, Verbosity.VERBOSE );
+        cntLogs= Log.debugLogger.cntLogs;
+        Log.removeLogger( memLogger );
+        UT_TRUE( Log.debugLogger.cntLogs == cntLogs );
+    
+    
+        Log.removeDebugLogger();
+    }
+
+    /** ********************************************************************************************
+     * Log_WriteVerbosities
+     **********************************************************************************************/
+    @Test
+    public void Log_WriteVerbosities()
+    {
+        UT_INIT();
+    
+        Log.addDebugLogger();
+        MemoryLogger memLogger= new MemoryLogger( "MYLGGR" );
+    
+        Variable var= new Variable( ALox.configCategoryName, Log.LOX.getName() + "_MYLGGR_VERBOSITY",  ';' );
+        Variable varBack= new Variable();
+        
+        Log.setVerbosity( Log.debugLogger, Verbosity.VERBOSE, ALox.INTERNAL_DOMAINS);
+    
+        // test writing into other variable with variable name error
+        UT_PRINT( "An error message should follow (wrong variable format): " );
+        var.store("writeback MY_" );
+        Log.setVerbosity( memLogger, Verbosity.VERBOSE );
+        Log.removeLogger( memLogger );
+
+        // test writing into other variable
+        var.store("writeback MY_VAR" );
+        Log.setVerbosity( memLogger, Verbosity.VERBOSE );
+        Log.removeLogger( memLogger );
+        varBack.define( "MY",  "VAR" ).load();
+        UT_PRINT(  "Variable written: " + varBack.getString().toString() );
+        UT_TRUE( varBack.getString().length() > 0 );
+
+        // test writing into other variable without cat
+        var.store("writeback ANON" );
+        Log.setVerbosity( memLogger, Verbosity.VERBOSE );
+        Log.removeLogger( memLogger );
+        varBack.define( "",  "ANON" ).load();
+        UT_PRINT(  "Variable written: " + varBack.getString().toString() );
+        UT_TRUE( varBack.getString().length() > 0 );
+
+        // test writing into other variable without cat and with underscores in name
+        var.store("writeback _2ND_ANON" );
+        Log.setVerbosity( memLogger, Verbosity.VERBOSE );
+        Log.removeLogger( memLogger );
+        varBack.define( "",  "2ND_ANON" ).load();
+        UT_PRINT(  "Variable written: " + varBack.getString().toString() );
+        UT_TRUE( varBack.getString().length() > 0 );
+
+        // test writing into other the variable itself
+        var.store("writeback" );
+        Log.setVerbosity( memLogger, Verbosity.VERBOSE );
+        Log.removeLogger( memLogger );
+
+        ALIB.config.load( var );
+        UT_PRINT( "Variable written: " + var.getString().toString() );
+        UT_TRUE( var.getString().length() > 0 );
+    
+       Log.removeDebugLogger();
     }
 
 }

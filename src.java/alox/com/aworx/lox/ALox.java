@@ -10,6 +10,8 @@ import java.util.ArrayList;
 
 import com.aworx.lib.ALIB;
 import com.aworx.lib.config.Configuration;
+import com.aworx.lib.config.Variable;
+import com.aworx.lib.config.VariableDefinition;
 import com.aworx.lib.enums.Alignment;
 import com.aworx.lib.enums.ContainerOp;
 import com.aworx.lib.enums.Create;
@@ -64,10 +66,10 @@ public abstract class ALox
             target.field()._( verbosity.toString() ).field( 8, Alignment.LEFT)
                   ._( '(' );
 
-                 if ( priority ==           Lox.PRIO_SOURCE   )  target._( "SOURCE)   " );
-            else if ( priority ==           Lox.PRIO_PROTECTED)  target._( "PROTECTED)" );
+                 if ( priority == Configuration.PRIO_DEFAULT  )  target._( "DEFAULT)  " );
+            else if ( priority == Configuration.PRIO_PROTECTED)  target._( "PROTECTED)" );
             else if ( priority == Configuration.PRIO_CMD_LINE )  target._( "CMD_LINE) " );
-            else if ( priority == Configuration.PRIO_ENV_VARS )  target._( "ENV_VARS) " );
+            else if ( priority == Configuration.PRIO_ENVIRONMENT )  target._( "ENV_VARS) " );
             else if ( priority == Configuration.PRIO_INI_FILE )  target._( "INI_FILE) " );
             else                                                 target._( priority)._( ')' );
             return target;
@@ -106,14 +108,14 @@ public abstract class ALox
          * Besides this version number, field #revision indicates if this is a revised version
          * of a former release.
          */
-        public static final int         version                                               =1604;
+        public static final int         version                                               =1607;
 
         /**
          * The revision number of this release. Each ALox #version is initially released as
          * revision \e 0. Pure maintenance releases that do not change the interface of ALox
          * are holding the same #version but an increased number in this field.
          */
-        public static final int         revision                                                 =2;
+        public static final int         revision                                                 =0;
 
         /**
          * The name of the configuration category of configuration variables used by ALox.<br>
@@ -123,7 +125,144 @@ public abstract class ALox
          * bootstrap code, before the invocation of #init.<br>
          * See also \ref com::aworx::lib::ALIB::configCategoryName "ALIB.configCategoryName".
          */
-        public  static String           configCategoryName                                  ="ALOX";
+        public  static AString          configCategoryName                  = new AString( "ALOX" );
+
+        /** Configuration variable definition */
+        public static          VariableDefinition           CONSOLE_TYPE = new VariableDefinition(
+            configCategoryName,   null,             "CONSOLE_TYPE",
+            "default",
+            '\0', null, Variable.FORMAT_HINT_NONE,
+            "Influences the type of console logger to be created by method\n"         +
+            "Lox.CreateConsoleLogger which is also used by Log.AddDebugLogger\n"    +
+            "Possible values are: default, plain, ansi, windows, noqtcreator"
+            );
+
+        /** Configuration variable definition */
+        public static          VariableDefinition           AUTO_SIZES = new VariableDefinition(
+            configCategoryName,   null,     "%1_AUTO_SIZES",
+            null,
+            '\0', null, Variable.FORMAT_HINT_NONE,
+            "Auto size values of last run of Logger '%1' (generated and temporary values)."
+        );
+
+        /** Configuration variable definition */
+        public static          VariableDefinition           MAX_ELAPSED_TIME = new VariableDefinition(
+            configCategoryName,   null,     "%1_MAX_ELAPSED_TIME",
+            "0, limit=59",
+            ',', null, Variable.FORMAT_HINT_NONE,
+            "Maximum elapsed time of all runs of Logger '%1'. To reset elapsed time display\n" +
+            "width, set this to 0 manually. Generated and temporary value.)"
+        );
+
+        /** Configuration variable definition */
+        public static          VariableDefinition           DOMAIN_SUBSTITUTION = new VariableDefinition(
+            configCategoryName,   null,     "%1_DOMAIN_SUBSTITUTION",
+            null,
+            ';', "->", Variable.FORMAT_HINT_MULTILINE,
+            ""
+        );
+
+        /** Configuration variable definition */
+        public static          VariableDefinition           VERBOSITY = new VariableDefinition(
+            configCategoryName,   null,     "%1_%2_VERBOSITY",
+            "writeback;",
+            ';', "=", Variable.FORMAT_HINT_MULTILINE,
+            "The verbosities of logger \"%2\" in lox \"%1\". Use 'writeback [VAR_NAME] ;'\n" +
+            "to enable automatic writing on application exit."
+        );
+
+        /** Configuration variable definition */
+        public static          VariableDefinition           PREFIXES = new VariableDefinition(
+            configCategoryName,   null,     "%1_PREFIXES",
+            "",
+            ';', "=", Variable.FORMAT_HINT_MULTILINE,
+            "Prefix strings for log domains of lox \"%1\".\n"                           +
+            "   Format: [*]domainpath[*] = prefixstring [, inclusion] [ ; … ] "
+        );
+
+        /** Configuration variable definition */
+        public static          VariableDefinition           DUMP_STATE_ON_EXIT = new VariableDefinition(
+            configCategoryName,   null,     "%1_DUMP_STATE_ON_EXIT",
+            "none, verbosity=info, domain=/ALOX",
+            ',', null, Variable.FORMAT_HINT_NONE,
+            "Log information about lox \"%1\" on exit. Comma separated list of arguments define\n"    +
+            "verbosity, domain and content of output. Possible values content arguments are:\n"       +
+            "  All, Basic, Version, SPTR, Loggers, Domains, InternalDomains\n"   +
+            "  ScopeDomains, DSR, PrefixLogablesOnce, LogData, ThreadMappings,\n"   +
+            "  CompilationFlags. If NONE is given nothing is dumped"
+        );
+
+        /** Configuration variable definition */
+        public static          VariableDefinition           CONSOLE_HAS_LIGHT_BACKGROUND = new VariableDefinition(
+            configCategoryName,   null,     "CONSOLE_HAS_LIGHT_BACKGROUND",
+            "",
+            '\0', null, Variable.FORMAT_HINT_NONE,
+             "Evaluated by colorful loggers that dispose about light and dark colors. Those\n"        +
+             "adjust their foreground color accordingly. Defaults to false."
+        );
+
+        /** Configuration variable definition */
+        public static          VariableDefinition           USE_SYSTEM_OUT_PRINT = new VariableDefinition(
+            configCategoryName,   null,     "USE_SYSTEM_OUT_PRINT",
+            "false",
+
+            '\0', null, Variable.FORMAT_HINT_MULTILINE,
+            "ConsoleLogger uses System.console() to receive a console class object. If this fails or"+
+            "this variable is 'true' System.out.print() is used instead. (Java only)"
+        );
+
+        /** Configuration variable definition */
+        public static          VariableDefinition           FORMAT = new VariableDefinition(
+            configCategoryName,   null,     "%1_FORMAT",
+
+            null, // default value must stay null, because 2 variables are requested. If was given here,
+                  // the second is never tried!
+
+            ',', null, Variable.FORMAT_HINT_MULTILINE,
+             "Meta info format of text logger \"%1\", including signatures for verbosity strings.\n"       +
+             "   Format: [\"]format[\"] [, Error [, Warning [, Info [, Verbose ]]]]"
+        );
+
+        /** Configuration variable definition */
+        public static          VariableDefinition           FORMAT_DATE_TIME = new VariableDefinition(
+            configCategoryName,   null,     "%1_FORMAT_DATE_TIME",
+
+            null, // default value must stay null, because 2 variables are requested. If was given here,
+                  // the second is never tried!
+
+            ',', null, Variable.FORMAT_HINT_NONE,
+             "Meta info date and time format of text logger \"%1\".\n"              +
+             "   Format: DateFormat [, TimeOfDayFormat [, TimeElapsedDays ]]]"
+        );
+
+        /** Configuration variable definition */
+        public static          VariableDefinition           FORMAT_TIME_DIFF = new VariableDefinition(
+            configCategoryName,   null,     "%1_FORMAT_TIME_DIFF",
+
+            null, // default value must stay null, because 2 variables are requested. If was given here,
+                  // the second is never tried!
+
+            ',', null, Variable.FORMAT_HINT_NONE,
+             "Meta info time difference entities of text logger \"%1\".\n"                                        +
+             "   Format: TimeDiffMinimum [, TimeDiffNone [, TimeDiffNanos [, TimeDiffMicros [, TimeDiffMillis \n" +
+             "           [, TimeDiffSecs [, TimeDiffMins [, TimeDiffHours [,  TimeDiffDays  ]]]]]]]]"
+        );
+
+        /** Configuration variable definition */
+        public static          VariableDefinition           FORMAT_MULTILINE = new VariableDefinition(
+            configCategoryName,   null,     "%1_FORMAT_MULTILINE",
+
+            null, // default value must stay null, because 2 variables are requested. If was given here,
+                  // the second is never tried!
+
+            ',', null, Variable.FORMAT_HINT_NONE,
+             "Multi-line format of text logger \"%1\".\n"                                                           +
+             "   Format: MultiLineMsgMode [, FmtMultiLineMsgHeadline [, FmtMultiLinePrefix [, FmtMultiLineSuffix\n" +
+             "           [, MultiLineDelimiter [, MultiLineDelimiterRepl ]]]]]"
+        );
+
+
+
 
         /**
          * This is the path for logging to the internal domain. By manipulating this
@@ -161,41 +300,33 @@ public abstract class ALox
         protected static      boolean   isInitialized= false;
 
         /** ****************************************************************************************
-         * This method must (may) be called prior to using the ALox library, e.g. at the beginning
-         * of the main() method of an application. It is OK, to call this method more than once,
-         * which allows independent code blocks (e.g. libraries) to bootstrap ALox without
-         * interfering. But only the first call is effective and may be used to set the
-         * command line arguments as configuration plug-in.
+         * This method must be called prior to using %ALox, e.g. at the beginning of
+         * the \c main() method of an application. It is OK, to call this method more than once, which
+         * allows independent code blocks (e.g. libraries) to bootstrap %ALox independently.
+         * However, only the first invocation is effective with the exclamation that if
+         * command line parameters are provided with a call, those are set.
+         * Also, the very first invocation should not be interrupted by a parallel invocation of a
+         * second thread. Consequently, it has to be assured that this method is invoked once on
+         * the real bootstrap an app.
          *
-         * In the Java version of the AWorx library, the invocation of this method is optional.
-         * However, it is good practice to invoke this method in the main() method of a process
+         * In the Java version of the ALox Logging Library, not invoking this method will not lead to
+         * severe problems, however, some options might fail.
+         * It is good practice to invoke this method in the main() method of a process
          * and provide the command line arguments.
-         * See \ref com::aworx::lib::ALIB::init "ALIB.init"
-         * for more information on the configuration parameters.
+         * See also \ref com::aworx::lib::ALIB::init "ALIB.init" which is invoked by this method.
          *
-         * @param useEnv  If true, a
-         *                \ref com::aworx::lib::config::EnvironmentPlugIn "EnvironmentPlugIn"
-         *                is attached to the
-         *                \ref com::aworx::lib::ALIB::config "ALIB.config" singleton. Hence,
-         *                environment variables are read and potentially overwrite
-         *                configuration variables in other configuration plug-ins.<br>
-         * @param args    Parameter which in the standard case is taken from  C/C++ main()
-         *                method providing the command line arguments.
-         *                If arguments are provided, a
-         *                \ref com::aworx::lib::config::CommandLinePlugIn "CommandLinePlugIn"
-         *                is attached to the
-         *                \ref com::aworx::lib::ALIB::config "ALIB.config" singleton. Hence,
-         *                command line options are read and those potentially overwrite
-         *                configuration variables in other configuration plug-ins.<br>
+         * @param args  Parameters taken from <em>standard Java</em> method \c main()
+         *              (the list of command line arguments). Accepts \c null to ignore
+         *              command line parameters.
          *******************************************************************************************/
-        public static void     init(  boolean useEnv, String[] args )
+        public static void     init( String[] args )
         {
             if ( isInitialized )
                 return;
             isInitialized= true;
 
             // initialize ALIB
-            ALIB.init( useEnv, args );
+            ALIB.init( args );
         }
 
     // #############################################################################################
@@ -270,7 +401,7 @@ public abstract class ALox
          * Therefore, to keep a \b Lox private, an optional parameter is available.
          *
          * @param lox       The \b %Lox to register.
-         * @param operation If \b %ContainerOp.REMOVE, the given \p Lox is unregistered.
+         * @param operation If \b %ContainerOp.REMOVE, the given \p Lox is deregistered.
          *                  Defaults to \b %ContainerOp.INSERT.
          ******************************************************************************************/
         public static

@@ -106,8 +106,8 @@ AString& ScopeDump::storeThreadToScope( int threadID )
     auto it= threadDictionary.find( threadID );
     if ( it != threadDictionary.end() )
         return target._("[Thread=\"")._( it->second )._("\"]");
-    else
-        return target._("[ThreadID=")._( threadID )._(']');
+
+    return target._("[ThreadID=")._( threadID )._(']');
 }
 
 template<typename T>

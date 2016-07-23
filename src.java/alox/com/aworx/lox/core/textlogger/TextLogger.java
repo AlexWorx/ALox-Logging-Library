@@ -14,17 +14,19 @@ package com.aworx.lox.core.textlogger;
 import java.util.ArrayList;
 
 import com.aworx.lib.ALIB;
+import com.aworx.lib.config.Variable;
+import com.aworx.lib.enums.Case;
 import com.aworx.lib.enums.Phase;
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.CString;
-import com.aworx.lib.strings.Tokenizer;
+import com.aworx.lib.strings.Substring;
 import com.aworx.lib.threads.ThreadLock;
 import com.aworx.lox.ALox;
 import com.aworx.lox.ESC;
 import com.aworx.lox.Verbosity;
-import com.aworx.lox.core.ScopeInfo;
 import com.aworx.lox.core.Domain;
 import com.aworx.lox.core.Logger;
+import com.aworx.lox.core.ScopeInfo;
 
 /** ************************************************************************************************
  * This class is a still abstract implementation of class Logger which is used as the super class
@@ -97,9 +99,9 @@ public abstract class TextLogger extends Logger
          * The other way round, it is also possible to preset set minimum values for tabs and field
          * sizes and hence avoid the columns growing during the lifetime of the Logger.
          *
-         * This field will be read from the 
+         * This field will be read from the
          * configuration variable [ALOX_LOGGERNAME_AUTO_SIZES](../group__GrpALoxConfigVars.html)
-         * when the \b %TextLogger that we belong to is attached to a \b %Lox and written back 
+         * when the \b %TextLogger that we belong to is attached to a \b %Lox and written back
          * on removal.
          */
         public    AutoSizes                 autoSizes                   = new AutoSizes();
@@ -170,50 +172,6 @@ public abstract class TextLogger extends Logger
             super( name, typeName );
             this.usesStdStreams= usesStdStreams;
             objectConverters.add( new StringConverter() );
-
-            // evaluate config variable <name>_FORMAT / <typeName>_FORMAT
-            {
-                AString variableName= new AString( name ); variableName._( "_FORMAT" );
-                AString result= new AString();
-                if ( ALIB.config.get( ALox.configCategoryName, variableName, result ) == 0 )
-                {
-                    variableName._()._( typeName )._( "_FORMAT" );
-                    ALIB.config.get( ALox.configCategoryName, variableName, result );
-                }
-
-                if( result.isNotEmpty() )
-                {
-                    metaInfo.format._();
-                    Tokenizer tok= new Tokenizer();
-        
-                    // check if the format string starts with a quotation mark and a second quotation exists.
-                    int formatQuotationLeft=  result.indexOf( '\"' );
-                    int formatQuotationRight= formatQuotationLeft >=0 ? result.lastIndexOf( '\"' ) : -1;
-        
-                    // quoted format string
-                    if ( formatQuotationLeft < formatQuotationRight )
-                    {
-                        metaInfo.format._( result, formatQuotationLeft + 1, formatQuotationRight - formatQuotationLeft - 1 );
-                        result.deleteStart( formatQuotationRight + 1);
-                        tok.set( result, ',' );
-                        tok.next(); // consume format, which we already read
-                    }
-        
-                    // normal unquoted read
-                    else
-                    {
-                        tok.set( result, ',' );
-                        metaInfo.format._( tok.next() );
-                    }
-        
-                    // read other values
-                    if( tok.hasNext() ) metaInfo.verbosityError  = tok.next().toString();
-                    if( tok.hasNext() ) metaInfo.verbosityWarning= tok.next().toString();
-                    if( tok.hasNext() ) metaInfo.verbosityInfo   = tok.next().toString();
-                    if( tok.hasNext() ) metaInfo.verbosityVerbose= tok.next().toString();
-                }
-            }
-
         }
 
     // #############################################################################################
@@ -235,33 +193,136 @@ public abstract class TextLogger extends Logger
             if ( usesStdStreams )
             {
                 ALIB.lock.acquire();
-                    int  stdStreamLockRegistrationCounter= this.stdStreamLockRegistrationCounter++;
+                    int  registrationCounter= this.stdStreamLockRegistrationCounter++;
                 ALIB.lock.release();
 
-                if ( stdStreamLockRegistrationCounter == 0 )
+                if ( registrationCounter == 0 )
                     ALIB.stdOutputStreamsLock.addAcquirer( this );
             }
 
-            AString variableName= new AString();
-            AString value=        new AString();
+            Variable variable= new Variable();
 
-            // get auto sizes from last session
+            // import autosizes from configuration (last session)
+            if ( variable.define( ALox.AUTO_SIZES, getName() ).load() != 0 )
+                autoSizes.importValues( variable.getString() );
+
+            // import "max elapsed time" from configuration (last session)
+            if ( variable.define( ALox.MAX_ELAPSED_TIME, getName() ).load() != 0 )
             {
-                variableName._(name)._( "_AUTO_SIZES" );
-                if( ALIB.config.get( ALox.configCategoryName, variableName, value ) != 0 )
-                    autoSizes.importValues( value );
+                long maxInSecs= variable.getInteger();
+                Substring attrValue= new Substring();
+                if ( variable.getAttribute( "limit", attrValue ) )
+                {
+                    long maxMax= attrValue.toLong();
+                    if ( maxInSecs > maxMax )
+                        maxInSecs= maxMax;
+                }
+                metaInfo.maxElapsedTime.fromSeconds( maxInSecs );
             }
 
-            // import "max elapsed time" from configuration
+            // Variable  <name>_FORMAT / <typeName>_FORMAT:
+            ALIB.ASSERT_WARNING( ALox.FORMAT.defaultValue == null,
+                                 "Default value of variable FORMAT should be kept null" );
+            if(    0 ==  variable.define( ALox.FORMAT, getName()     ).load()
+                && 0 ==  variable.define( ALox.FORMAT, getTypeName() ).load() )
             {
-                // get auto sizes from last session
-                value.clear();
-                variableName._()._( name )._( "_MAX_ELAPSED_TIME" );
-                if( ALIB.config.get( ALox.configCategoryName, variableName, value ) != 0 )
-                    metaInfo.maxElapsedTime.setRaw( value.toLong() );
+                // no variable created, yet. Let's create a 'personal' one on our name
+                variable.define( ALox.FORMAT, getName() );
+                variable.addString( metaInfo.format            );
+                variable.addString( metaInfo.verbosityError    );
+                variable.addString( metaInfo.verbosityWarning  );
+                variable.addString( metaInfo.verbosityInfo     );
+                variable.addString( metaInfo.verbosityVerbose  );
+                variable.store();
             }
-
-            
+            else
+            {
+                                           metaInfo.format          ._()._( variable.getString(0) );
+                if( variable.size() >= 2 ) metaInfo.verbosityError  ._()._( variable.getString(1) );
+                if( variable.size() >= 3 ) metaInfo.verbosityWarning._()._( variable.getString(2) );
+                if( variable.size() >= 4 ) metaInfo.verbosityInfo   ._()._( variable.getString(3) );
+                if( variable.size() >= 5 ) metaInfo.verbosityVerbose._()._( variable.getString(4) );
+            }
+        
+            // Variable  <name>_FORMAT_DATE_TIME / <typeName>_FORMAT_DATE_TIME:
+            ALIB.ASSERT_WARNING( ALox.FORMAT_DATE_TIME.defaultValue == null,
+                                 "Default value of variable FORMAT_DATE_TIME should be kept null" );
+            if(    0 ==  variable.define( ALox.FORMAT_DATE_TIME, getName()     ).load()
+                && 0 ==  variable.define( ALox.FORMAT_DATE_TIME, getTypeName() ).load() )
+            {
+                // no variable created, yet. Let's create a 'personal' one on our name
+                variable.define( ALox.FORMAT_DATE_TIME, getName() );
+                variable.addString( metaInfo.dateFormat        );
+                variable.addString( metaInfo.timeOfDayFormat   );
+                variable.addString( metaInfo.timeElapsedDays   );
+                variable.store();
+            }
+            else
+            {
+                                           metaInfo.dateFormat      = variable.getString(0).toString();
+                if( variable.size() >= 2 ) metaInfo.timeOfDayFormat = variable.getString(1).toString();
+                if( variable.size() >= 3 ) metaInfo.timeElapsedDays = variable.getString(2).toString();
+            }
+        
+            // Variable  <name>FORMAT_TIME_DIFF / <typeName>FORMAT_TIME_DIFF:
+            ALIB.ASSERT_WARNING( ALox.FORMAT_TIME_DIFF.defaultValue == null,
+                                 "Default value of variable FORMAT_TIME_DIFF should be kept null" );
+            if(    0 ==  variable.define( ALox.FORMAT_TIME_DIFF, getName()     ).load()
+                && 0 ==  variable.define( ALox.FORMAT_TIME_DIFF, getTypeName() ).load() )
+            {
+                // no variable created, yet. Let's create a 'personal' one on our name
+                variable.define( ALox.FORMAT_TIME_DIFF, getName() );
+                variable.addInteger(metaInfo.timeDiffMinimum);
+                variable.addString( metaInfo.timeDiffNone   );
+                variable.addString( metaInfo.timeDiffNanos  );
+                variable.addString( metaInfo.timeDiffMicros );
+                variable.addString( metaInfo.timeDiffMillis );
+                variable.addString( metaInfo.timeDiffSecs   );
+                variable.addString( metaInfo.timeDiffMins   );
+                variable.addString( metaInfo.timeDiffHours  );
+                variable.addString( metaInfo.timeDiffDays   );
+                variable.store();
+            }
+            else
+            {
+                                           metaInfo.timeDiffMinimum= variable.getInteger   (0);
+                if( variable.size() >= 2 ) metaInfo.timeDiffNone   = variable.getString(1).toString();
+                if( variable.size() >= 3 ) metaInfo.timeDiffNanos  = variable.getString(2).toString();
+                if( variable.size() >= 4 ) metaInfo.timeDiffMicros = variable.getString(3).toString();
+                if( variable.size() >= 5 ) metaInfo.timeDiffMillis = variable.getString(4).toString();
+                if( variable.size() >= 6 ) metaInfo.timeDiffSecs   = variable.getString(5).toString();
+                if( variable.size() >= 7 ) metaInfo.timeDiffMins   = variable.getString(6).toString();
+                if( variable.size() >= 8 ) metaInfo.timeDiffHours  = variable.getString(7).toString();
+                if( variable.size() >= 9 ) metaInfo.timeDiffDays   = variable.getString(8).toString();
+            }
+        
+            // Variable  <name>FORMAT_MULTILINE / <typeName>FORMAT_MULTILINE:
+            ALIB.ASSERT_WARNING( ALox.FORMAT_MULTILINE.defaultValue == null,
+                                 "Default value of variable FORMAT_MULTILINE should be kept null" );
+            if(    0 ==  variable.define( ALox.FORMAT_MULTILINE, getName()     ).load()
+                && 0 ==  variable.define( ALox.FORMAT_MULTILINE, getTypeName() ).load() )
+            {
+                // no variable created, yet. Let's create a 'personal' one on our name
+                variable.define( ALox.FORMAT_MULTILINE, getName() );
+                variable.addInteger( multiLineMsgMode );
+                variable.addString ( fmtMultiLineMsgHeadline   );
+                variable.addString ( fmtMultiLinePrefix );
+                variable.addString ( fmtMultiLineSuffix );
+                variable.store();
+            }
+            else
+            {
+                                           multiLineMsgMode=        (int) variable.getInteger(0)  ;
+                if( variable.size() >= 2 ) fmtMultiLineMsgHeadline= variable.getString(1).toString();
+                if( variable.size() >= 3 ) fmtMultiLinePrefix     = variable.getString(2).toString();
+                if( variable.size() >= 4 ) fmtMultiLineSuffix     = variable.getString(3).toString();
+                if( variable.size() >= 5 ) { if (variable.getString(4).equals( "nulled" , Case.IGNORE ) )
+                                                multiLineDelimiter= null;
+                                             else
+                                                multiLineDelimiter= variable.getString(4).toString();
+                                           }
+                if( variable.size() >= 6 ) multiLineDelimiterRepl = variable.getString(5).toString();
+            }
 
             // call parents' implementation
             return super.addAcquirer( newAcquirer );
@@ -280,35 +341,26 @@ public abstract class TextLogger extends Logger
             if ( usesStdStreams )
             {
                 ALIB.lock.acquire();
-                    int  stdStreamLockRegistrationCounter= --this.stdStreamLockRegistrationCounter;
+                    int  counter= --this.stdStreamLockRegistrationCounter;
                 ALIB.lock.release();
 
-                if ( stdStreamLockRegistrationCounter == 0 )
+                if ( counter == 0 )
                     ALIB.stdOutputStreamsLock.removeAcquirer( this );
             }
 
-            AString variableName= new AString();
-            AString value=        new AString();
-            AString comment=      new AString();
+            Variable variable= new Variable();
 
             // export autosizes to configuration
-            {
-                variableName._()._(name)._( "_AUTO_SIZES" );
-                comment._( "Auto size values of last run of Logger '")._( name )._('\'');
-                autoSizes.exportValues( value );
-                ALIB.config.save( ALox.configCategoryName, variableName, value, comment );
-            }
+            variable.define( ALox.AUTO_SIZES, getName() );
+            autoSizes.exportValues( variable.addString() );
+            variable.store();
 
             // export "max elapsed time" to configuration
-            {
-                variableName._()._( name )._( "_MAX_ELAPSED_TIME" );
-                comment     ._()._( "Maximum elapsed time of all runs of Logger '")
-                            ._( name )
-                            ._("'\n(To reset elapsed time display width, set this to 0 manually)");
-        
-                value._()._( metaInfo.maxElapsedTime.raw() );
-                ALIB.config.save( ALox.configCategoryName, variableName, value, comment );
-            }
+            variable.define( ALox.MAX_ELAPSED_TIME, getName() );
+            AString destVal=  variable.load() != 0  ?  variable.getString()
+                                                    :  variable.addString();
+            destVal._()._( metaInfo.maxElapsedTime.inSeconds() );
+            variable.store();
 
             // call parents' implementation
             return super.removeAcquirer( acquirer );
@@ -341,12 +393,10 @@ public abstract class TextLogger extends Logger
                         replacements.set( i, replacement );
                         return;
                     }
-                    else
-                    {
-                        replacements.remove( i );
-                        replacements.remove( i );
-                        return;
-                    }
+
+                    replacements.remove( i );
+                    replacements.remove( i );
+                    return;
                 }
             }
 

@@ -7,21 +7,21 @@
 package ut_alib;
 import org.junit.Test;
 
-import ut_com_aworx_uttools.AUnitTest;
-
 import com.aworx.lib.enums.Case;
 import com.aworx.lib.enums.Whitespaces;
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.Substring;
 
+import ut_com_aworx.AWorxUnitTesting;
 
-public class UT_alib_strings_Substring extends AUnitTest
+
+public class UT_alib_strings_Substring extends AWorxUnitTesting
 {
 
     //--------------------------------------------------------------------------------------------------
     //--- Test Constructor
     //--------------------------------------------------------------------------------------------------
-    void constructorTest( String inputString, AString result, boolean trim )
+    static void constructorTest( String inputString, AString result, boolean trim )
     {
         Substring tok= new Substring( inputString );
         if ( trim )
@@ -57,16 +57,13 @@ public class UT_alib_strings_Substring extends AUnitTest
             {
                 astr.clear()._( "xy xz abc xy" );
                 Substring subs= new Substring();
-                subs.set(astr).trim("xy ".toCharArray());
-                subs.copyTo( res );
+                subs.set(astr).trim("xy ".toCharArray()).copyTo( res );
                 UT_EQ( "z abc",      res );
             }
 
             {
                 Substring subs= new Substring( "xy xz abc xy" );
-                subs.trimStart("xy ".toCharArray());
-                subs.trimEnd("xy ".toCharArray());
-                subs.copyTo( res );
+                subs.trimStart("xy ".toCharArray()).trimEnd("xy ".toCharArray()).copyTo( res );
                 UT_EQ( "z abc",      res );
             }
         }
@@ -291,11 +288,11 @@ public class UT_alib_strings_Substring extends AUnitTest
             UT_EQ(  '1',       s.consume       ( )         );
 
             UT_EQ(  false    , s.consume       ('w'                        )   );
-            UT_EQ(  true     , s.consume       ('w'     , Whitespaces.TRIM )   );
-            UT_EQ(  true     , s.consume       ('o'     , Whitespaces.TRIM )   );
-            UT_EQ(  false    , s.consume       ('o'     , Whitespaces.TRIM )   );
-            UT_EQ(  true     , s.consume       ('r'     , Whitespaces.TRIM )   );
-            UT_EQ(  false    , s.consume       ("D2"    , Whitespaces.TRIM )   );
+            UT_EQ(  true     , s.consume       ('w'     , Case.SENSITIVE, Whitespaces.TRIM )   );
+            UT_EQ(  true     , s.consume       ('o'     , Case.SENSITIVE, Whitespaces.TRIM )   );
+            UT_EQ(  false    , s.consume       ('o'     , Case.SENSITIVE, Whitespaces.TRIM )   );
+            UT_EQ(  true     , s.consume       ('r'     , Case.SENSITIVE, Whitespaces.TRIM )   );
+            UT_EQ(  false    , s.consume       ("D2"    , Case.SENSITIVE, Whitespaces.TRIM )   );
             UT_EQ(  false    , s.consume       ("D2"                       )   );
             UT_EQ(  true     , s.consume       ("d2"                       )   );
 
@@ -311,11 +308,11 @@ public class UT_alib_strings_Substring extends AUnitTest
             UT_EQ(  'w',       s.consumeFromEnd( )         );
 
             UT_EQ(  false    , s.consumeFromEnd('2'                        )   );
-            UT_EQ(  true     , s.consumeFromEnd('2'     , Whitespaces.TRIM )   );
-            UT_EQ(  true     , s.consumeFromEnd('d'     , Whitespaces.TRIM )   );
-            UT_EQ(  false    , s.consumeFromEnd('d'     , Whitespaces.TRIM )   );
-            UT_EQ(  true     , s.consumeFromEnd('r'     , Whitespaces.TRIM )   );
-            UT_EQ(  false    , s.consumeFromEnd("WO"    , Whitespaces.TRIM )   );
+            UT_EQ(  true     , s.consumeFromEnd('2'     , Case.SENSITIVE, Whitespaces.TRIM )   );
+            UT_EQ(  true     , s.consumeFromEnd('d'     , Case.SENSITIVE, Whitespaces.TRIM )   );
+            UT_EQ(  false    , s.consumeFromEnd('d'     , Case.SENSITIVE, Whitespaces.TRIM )   );
+            UT_EQ(  true     , s.consumeFromEnd('r'     , Case.SENSITIVE, Whitespaces.TRIM )   );
+            UT_EQ(  false    , s.consumeFromEnd("WO"    , Case.SENSITIVE, Whitespaces.TRIM )   );
             UT_EQ(  false    , s.consumeFromEnd("WO"                       )   );
             UT_EQ(  true     , s.consumeFromEnd("wo"                       )   );
 

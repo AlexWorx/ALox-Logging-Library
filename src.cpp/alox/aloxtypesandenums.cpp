@@ -24,7 +24,7 @@ namespace aworx { namespace lox {
 
 #define CASE_RETURN(enum,field)  { case enum::  field : return #field; }
 
-const String ToStringX( Verbosity verbosity )
+const String ToString( Verbosity verbosity )
 {
     switch( verbosity )
     {
@@ -38,7 +38,7 @@ const String ToStringX( Verbosity verbosity )
 
 AString& ToString( Verbosity verbosity, int priority, AString& target )
 {
-    target._( Format::Field( aworx::lox::ToStringX( verbosity ), 7, Alignment::Left) );
+    target._( Format::Field( aworx::lox::ToString( verbosity ), 7, Alignment::Left) );
     target._( '(' );
     ToStringPriority( priority, target );
     return target.InsertAt( ")", target.LastIndexOfAny( DefaultWhitespaces, Inclusion::Exclude )  + 1 );
@@ -46,10 +46,10 @@ AString& ToString( Verbosity verbosity, int priority, AString& target )
 
 AString& ToStringPriority( int priority, AString& target )
 {
-    if ( priority ==           Lox::PrioSource    )  return target._( "Source   " );
-    if ( priority ==           Lox::PrioProtected )  return target._( "Protected" );
+    if ( priority == Configuration::PrioDefault   )  return target._( "Default  " );
+    if ( priority == Configuration::PrioProtected )  return target._( "Protected" );
     if ( priority == Configuration::PrioCmdLine   )  return target._( "CmdLine  " );
-    if ( priority == Configuration::PrioEnvVars   )  return target._( "EnvVars  " );
+    if ( priority == Configuration::PrioEnvironment   )  return target._( "EnvVars  " );
     if ( priority == Configuration::PrioIniFile   )  return target._( "IniFile  " );
     String64 numStr;  numStr._( Format::Int32( priority, 1 ) );
     return target._( Format::Field( numStr, 9, Alignment::Left ) );

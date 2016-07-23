@@ -12,20 +12,18 @@ import java.io.FileWriter;
 
 import org.junit.Test;
 
-import ut_com_aworx_uttools.AUnitTest;
-import ut_com_aworx_uttools.UnitTestSampleWriter;
-
-
-
-
 import com.aworx.lib.enums.Inclusion;
+
 //! [Tut_using_statement]
 import com.aworx.lib.strings.*;
 import com.aworx.lox.*;
-import com.aworx.lox.loggers.*;
 import com.aworx.lox.core.textlogger.*;
-import com.aworx.lox.tools.LogTools;
+import com.aworx.lox.loggers.*;
+import com.aworx.lox.tools.*;
 //! [Tut_using_statement]
+
+import ut_com_aworx.AWorxUnitTesting;
+import ut_com_aworx.UTSampleWriter;
 
 
 // #################################################################################################
@@ -33,6 +31,7 @@ import com.aworx.lox.tools.LogTools;
 // #################################################################################################
 class TutScopeDom
 {
+    @SuppressWarnings ("static-method") 
     //! [Tut_ScopeDomains]
     public char[] Extract( String fileName, char[] buffer )
     {
@@ -51,15 +50,18 @@ class TutScopeDom
 //! [Tut_ScopeDomains_Zipper]
 class Zipper
 {
-    public Zipper()
+    String fileName;
+    public Zipper( String fileName )
     {
         Log.setDomain( "ZIP", Scope.CLASS ); // set Scope Domain path for this class
         //...
+        this.fileName= fileName;
+        
         Log.info( "Zipper created" ); // domain "ZIP"
         //...
     }
 
-    public char[] Compress( String fileName, char[] buffer )
+    public char[] Compress( char[] buffer )
     {
         Log.setDomain( "COMPRESS", Scope.METHOD ); // set Scope Domain path for this method
         //...
@@ -71,7 +73,7 @@ class Zipper
         return buffer;
     }
 
-    public char[] Extract( String fileName, char[] buffer )
+    public char[] Extract( char[] buffer )
     {
         Log.setDomain( "EXTRACT", Scope.METHOD ); // set Scope Domain path for this method
         //...
@@ -88,6 +90,7 @@ class Zipper
 // #################################################################################################
 // Tut_LogData
 // #################################################################################################
+@SuppressWarnings ("static-method") 
 //! [Tut_LogData]
 class FileIO
 {
@@ -108,17 +111,17 @@ class FileIO
         //...
         Log.info( "Success" );
     }
-};
+}
 //! [Tut_LogData]
 
 /** ************************************************************************************************
 *  Implements the tutorial code that with snippets markers for doxygen inclusion.
 **************************************************************************************************/
-public class UT_dox_tutorial  extends AUnitTest
+public class UT_dox_tutorial  extends AWorxUnitTesting
 {
 
 MemoryLogger    tutLog;
-String          outputPath=        UnitTestSampleWriter.getGeneratedSamplesDir();
+String          outputPath=        UTSampleWriter.getGeneratedSamplesDir();
 
 void SaveTutorialOutput( String fileName, AString log )
 {
@@ -140,7 +143,7 @@ void SaveTutorialOutput( String fileName, AString log )
     }
     finally
     {
-       try  { if ( writer != null ) writer.close(); }   catch (Exception e) {}
+       try  { if ( writer != null ) writer.close(); }   catch (@SuppressWarnings ("unused") Exception e) {/* void */}
     }
 }
 
@@ -149,7 +152,7 @@ public void Tut_Hello_ALox_Minimum()
 {
     UT_INIT();
 
-    (new HelloALox()).sayHello();
+    HelloALox.sayHello();
 }
 
 @Test
@@ -321,16 +324,16 @@ public void Tut_ScopeDomains()
 
     // do it once to set the tab positions of the meta info...
     {
-        Zipper zip= new Zipper();
-        zip.Compress( "myfile.zip", null );
-        zip.Extract( "myfile.zip", null );
+        Zipper zip= new Zipper( "myfile.zip" );
+        zip.Compress( null );
+        zip.Extract( null );
         tutLog.memoryLog.clear(); tutLog.cntLogs= 0;
     }
     // ...and again
     {
-        Zipper zip= new Zipper();
-        zip.Compress( "myfile.zip", null );
-        zip.Extract( "myfile.zip", null );
+        Zipper zip= new Zipper( "myfile.zip" );
+        zip.Compress(  null );
+        zip.Extract( null );
     }
 
     SaveTutorialOutput( "Tut_ScopeDomains_Zipper.txt", tutLog.memoryLog );
@@ -344,16 +347,16 @@ public void Tut_ScopeDomains()
     tutLog.memoryLog.clear(); tutLog.cntLogs= 0;
     // do it once to set the tab positions of the meta info...
     {
-        Zipper zip= new Zipper();
-        zip.Compress( "myfile.zip", null );
-        zip.Extract( "myfile.zip", null );
+        Zipper zip= new Zipper( "myfile.zip" );
+        zip.Compress( null );
+        zip.Extract( null );
         tutLog.memoryLog.clear(); tutLog.cntLogs= 0;
     }
     // ...and again
     {
-        Zipper zip= new Zipper();
-        zip.Compress( "myfile.zip", null );
-        zip.Extract( "myfile.zip", null );
+        Zipper zip= new Zipper( "myfile.zip" );
+        zip.Compress( null );
+        zip.Extract(  null );
     }
     SaveTutorialOutput( "Tut_ScopeDomains_Zipper_Path.txt", tutLog.memoryLog );
     tutLog.memoryLog.clear(); tutLog.cntLogs= 0;
@@ -456,7 +459,7 @@ public void Tut_ConditionalLogging()
     //! [Tut_ConditionalLoggingOnce]
 }
 
-private void process(@SuppressWarnings ("unused") int i) {}
+private void process(@SuppressWarnings ("unused") int i) {/* void */}
 
 @Test
 public void Tut_Instance()
@@ -543,11 +546,11 @@ public void Tut_Exception()
 
 
 @Test
-public void Tut_LogConfig()
+public void Tut_LogState()
 {
     UT_INIT();
 
-    //! [Tut_LogConfig]
+    //! [Tut_LogState]
     // create two different loggers
     Log.addDebugLogger();
     Log.setVerbosity( new MemoryLogger(),  Verbosity.VERBOSE );
@@ -590,11 +593,11 @@ public void Tut_LogConfig()
     Log.mapThreadName( "TUTORIAL" );
 
     // now, log the current config
-    Log.logConfig( null, Verbosity.INFO, "The current configuration of this Lox is:" );
-    //! [Tut_LogConfig]
+    Log.state( null, Verbosity.INFO, "The current configuration of this Lox is:" );
+    //! [Tut_LogState]
 
     //tutLog.memoryLog.Replace( "Tutlog", "CONSOLE" );
-    SaveTutorialOutput( "Tut_LogConfig.txt", ((MemoryLogger) Log.getLogger( "Memory" )).memoryLog );
+    SaveTutorialOutput( "Tut_LogState.txt", ((MemoryLogger) Log.getLogger( "Memory" )).memoryLog );
     Log.removeLogger( "Memory" );
 }
 
@@ -613,8 +616,8 @@ public void Tut_LogInternalDomains()
     ((MemoryLogger) Log.getLogger("MEMORY")).metaInfo.format._()._( "[%tN]%V[%D](%#): " );
 
     // ... with one difference: we are activating the internal domain
-    Log.setVerbosity( ((MemoryLogger) Log.getLogger("MEMORY")), Verbosity.VERBOSE, ALox.INTERNAL_DOMAINS );
-    Log.setVerbosity( Log.debugLogger,                          Verbosity.VERBOSE, ALox.INTERNAL_DOMAINS );
+    Log.setVerbosity( Log.getLogger("MEMORY"),     Verbosity.VERBOSE, ALox.INTERNAL_DOMAINS );
+    Log.setVerbosity( Log.debugLogger,             Verbosity.VERBOSE, ALox.INTERNAL_DOMAINS );
 
     Log.setDomain( "PNS"   ,   Scope.PACKAGE, 1 );
     Log.setDomain( "PATH",     Scope.PACKAGE );

@@ -7,8 +7,6 @@
 package ut_alib;
 import org.junit.Test;
 
-import ut_com_aworx_uttools.AUnitTest;
-
 import com.aworx.lib.ALIB;
 import com.aworx.lib.Report;
 import com.aworx.lib.enums.LockMode;
@@ -19,7 +17,9 @@ import com.aworx.lib.time.Ticks;
 import com.aworx.lox.Log;
 import com.aworx.lox.Scope;
 
-public class UT_alib_threads  extends AUnitTest
+import ut_com_aworx.AWorxUnitTesting;
+
+public class UT_alib_threads  extends AWorxUnitTesting
 {
     //--------------------------------------------------------------------------------------------------
     //--- Simple
@@ -29,6 +29,7 @@ public class UT_alib_threads  extends AUnitTest
     public void ThreadLock_Simple()
     {
         UT_INIT();
+        Report.getDefault().pushHaltFlags( false, false );
         
         Log.setDomain( "TL_Simple", Scope.METHOD );
         Log.info( "\n### ThreadLock_Simple ###" );
@@ -90,6 +91,7 @@ public class UT_alib_threads  extends AUnitTest
 
         Log.info("One warning should come now: ");
         aLock.release();                UT_TRUE (  aLock.toString().startsWith("Unlocked") );
+        Report.getDefault().popHaltFlags();
     }
 
     //--------------------------------------------------------------------------------------------------

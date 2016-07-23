@@ -21,11 +21,10 @@ import com.aworx.lox.LogData;
  * It was extracted from class \b %Lox to keep that class clean from this somehow 'cluttered' code.
  *
  * The current purpose of this class is to write information into an AString buffer. This is used
- * by method \ref com::aworx::lox::Lox::logConfig "Lox.logConfig". In the future, other export formats,
+ * by method \ref com::aworx::lox::Lox::state "Lox.state". In the future, other export formats,
  * like JSON might be implemented here.
  *
  * \note As this is a pure internal helper class. Documentation may be limited.
- * @param <T>
  **************************************************************************************************/
 public class ScopeDump
 {
@@ -265,11 +264,11 @@ public class ScopeDump
         protected AString storeThreadToScope( Thread thread  )
         {
             long id= thread.getId();
-            String threadName= threadDictionary.get( id );
+            String threadName= threadDictionary.get( new Long( id ) );
             if ( threadName != null )
                 return target._("[Thread=\"")._(threadName)._("\"]");
-            else
-                return target._("[ThreadID=")._(id)._(']');
+                
+            return target._("[ThreadID=")._(id)._(']');
         }
 
         /** ****************************************************************************************
@@ -277,10 +276,10 @@ public class ScopeDump
          * @param map  The PathMap node to get scope information for.
          * @return The target to allow concatenated calls.
          ******************************************************************************************/
-        protected AString storeKeyToScope( PathMap map  )
+        protected AString storeKeyToScope( PathMap<?> map  )
         {
             key._();
-            PathMap node= map;
+            PathMap<?> node= map;
             while( node != null )
             {
                 key.insertAt( node.path, 0 );

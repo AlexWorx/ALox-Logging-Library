@@ -13,4 +13,4 @@ public enum Whitespaces
 {
     TRIM,       ///< Trim whitespaces away.
     KEEP        ///< Keep whitespaces in string.
-};
+}

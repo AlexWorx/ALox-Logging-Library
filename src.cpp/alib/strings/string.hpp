@@ -253,7 +253,7 @@ template<typename TString, typename TReturn>   inline TReturn ToString( const TS
  * <b>Null-State</b><br> \anchor CPP_STRINGS_AS_NULLSTATE
  * Objects of this class can be \e nulled which means that it is a difference whether they are
  * representing an empty string or a null pointer. As objects are immutable, this is decided
- * on construction: once an %String is null, it will remain null.
+ * on construction: once a %String is nulled, it will remain nulled.
  * In other words, it makes a difference if an %String is constructed using
  * - <em>%String()</em>, which creates a \e nulled object, method #IsNull will give \c true, or
  * - <em>%String("")</em>, which creates an empty object. Method #IsNull will give \c false while
@@ -786,7 +786,7 @@ class String
         const
         {
             // check null arguments
-            if (TCheck &&     IsNull() )  return  needle.IsNull() ? 0 : -1;
+            if (TCheck &&        IsNull() )  return  needle.IsNull() ? 0 : -1;
             if (TCheck && needle.IsNull() )  return  +1;
 
             // zero length ?

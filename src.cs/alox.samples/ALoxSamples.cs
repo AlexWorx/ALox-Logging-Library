@@ -1,4 +1,10 @@
-﻿using System;
+﻿// #################################################################################################
+//  ALox Samples
+//
+//  (c) 2013-2016 A-Worx GmbH, Germany
+//  Published under MIT License (Open Source License, see LICENSE.txt)
+// #################################################################################################
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,54 +28,86 @@ class AloxSamples
     // #############################################################################################
     // static entrance (Main)
     // #############################################################################################
+//! [DOXYGEN_CREATE_INIFILE]
     static void Main( string[] args )
     {
-        ALIB.Init( true, args );
-
-        // open and attach INI file
-        IniFile iniFile= new IniFile( null );
+        // first attach INI file to config system...
+        IniFile iniFile= new IniFile();
         ALIB.Config.InsertPlugin( iniFile, Configuration.PrioIniFile );
 
-        // create us
-        AloxSamples samples= new AloxSamples();
+        // .. then initialize ALox Logging Library
+        ALox.Init( args );
+
+        //...
+//! [DOXYGEN_CREATE_INIFILE]
+
+        if ( iniFile.FileComments.IsEmpty() )
+        {
+            iniFile.FileComments._(
+            "##################################################################################################\n" +
+            "# ALox Samples INI file (created when running ALox Samples)\n"                                        +
+            "#\n"                                                                                                  +
+            "# (c) 2013-2016 A-Worx GmbH, Germany\n"                                                               +
+            "# Published under MIT License (Open Source License, see LICENSE.txt)\n"                               +
+            "##################################################################################################\n"
+            );
+        }
+
+        // Suppress setting "writeback" as default verbosities. We need to do this as this main()
+        // method invokes a list of independent samples. Those would now read from the INI file wrong
+        // values written in other sample methods and thus the samples would not work any more
+        // (because INI file settings overrules settings in the code)
+        Variable var= new Variable();
+        var.Define( "ALOX", "LOG_DEBUG_LOGGER_VERBOSITY"  ).Store( "" );
+        var.Define( "ALOX", "RELEASELOX_CONSOLE_VERBOSITY").Store( "" );
+        var.Define( "ALOX", "LOG_MEMORY_VERBOSITY"        ).Store( "" );
+        var.Define( "ALOX", "RELEASELOX_MEMORY_VERBOSITY" ).Store( "" );
+        var.Define( "ALOX", "LOG_TEXTFILE_VERBOSITY"      ).Store( "" );
 
         // do some release logging tests.
         Console.WriteLine( "PRINT: Debug logging:" );
-            samples.DebugLogging();
+            AloxSamples.DebugLogging();
         ALoxSampleReset();
 
         // do some release logging tests.
         Console.WriteLine( "PRINT: Release logging:" );
-            samples.ReleaseLogging();
+            AloxSamples.ReleaseLogging();
         ALoxSampleReset();
 
         // do some performance tests.
         Console.WriteLine( "PRINT: Performance test (debug logging):" );
-           samples.PerformanceTest();
+           AloxSamples.PerformanceTest();
         ALoxSampleReset();
 
         // do some performance tests.
         Console.WriteLine( "PRINT: Performance test (release logging):" );
-           samples.PerformanceTestRL();
+           AloxSamples.PerformanceTestRL();
         ALoxSampleReset();
 
         // test class TextFileLogger
         Console.WriteLine( "PRINT: test class TextFileLogger:" );
-            samples.TextFileLogger();
+            AloxSamples.TextFileLogger();
         ALoxSampleReset();
 
         // test class terminal test (colors and styles)
         Console.WriteLine( "PRINT: Colors (depending on detected terminal):" );
-            samples.ColorTest();
+            AloxSamples.ColorTest();
         ALoxSampleReset();
 
         Console.WriteLine( "PRINT: Thats it!" );
 
         // sample ALib report facility through ALox
-        samples.SampleALibReport();
+        AloxSamples.SampleALibReport();
+
+//! [DOXYGEN_REMOVE_INIFILE]
+        //...
+        ALIB.Config.RemovePlugin( iniFile );
+        ALIB.Config.FetchFromDefault( iniFile );
+        iniFile.WriteFile();
 
         ALIB.TerminationCleanUp();
     }
+//! [DOXYGEN_REMOVE_INIFILE]
 
     static void ALoxSampleReset()
     {
@@ -77,12 +115,12 @@ class AloxSamples
         Log.SetSourcePathTrimRule( "*/src.cs/", Inclusion.Include );
     }
 
-    public void DebugLogging()
+    public static void DebugLogging()
     {
         Log.Info( "Hello ALox" );
     }
 
-    public void ReleaseLogging()
+    public static void ReleaseLogging()
     {
         // create a lox for release logging
         Lox lox= new Lox( "ReleaseLox" );
@@ -92,7 +130,7 @@ class AloxSamples
 
         // In debug compilations, we still install a report writer.
         Log.AddALibReportWriter( lox );
-        #if ALOX_DBG_LOG 
+        #if ALOX_DBG_LOG
             lox.SetVerbosity( releaseLogger, Verbosity.Verbose, ALoxReportWriter.LogDomain() );
         #endif
 
@@ -109,7 +147,7 @@ class AloxSamples
         lox.RemoveLogger( releaseLogger );
     }
 
-    void PerformanceTest()
+    public static void PerformanceTest()
     {
         Log.AddDebugLogger();
         MemoryLogger ml= new MemoryLogger();
@@ -124,7 +162,7 @@ class AloxSamples
         long     fastest= long.MaxValue;
         Ticks    timer=     new Ticks();
         int      qtyLines=    100;
-        int      qtyLoops=  10000;
+        int      qtyLoops=   1000;
         if( System.Diagnostics.Debugger.IsAttached )
             qtyLines= qtyLoops= 10;
 
@@ -159,7 +197,7 @@ class AloxSamples
         Log.RemoveDebugLogger();
     }
 
-    void PerformanceTestRL()
+    public static void PerformanceTestRL()
     {
         // create a lox for release logging
         Lox lox= new Lox( "ReleaseLox" );
@@ -176,8 +214,8 @@ class AloxSamples
         AString  msgBuf=  new AString( );
         long     fastest= long.MaxValue;
         Ticks    timer=     new Ticks();
-        int      qtyLines=  1000;
-        int      qtyLoops=  2000; //1000
+        int      qtyLines=   100;
+        int      qtyLoops=  1000;
         if( System.Diagnostics.Debugger.IsAttached )
             qtyLines= qtyLoops= 10;
 
@@ -214,7 +252,7 @@ class AloxSamples
         lox.RemoveLogger( relLogger );
     }
 
-    public void TextFileLogger()
+    public static void TextFileLogger()
     {
         Log.Info( "Creating a text file logger with file 'Test.log.txt'" );
         Log.SetDomain( "/TEXTFILE_TEST", Scope.Method );
@@ -222,7 +260,7 @@ class AloxSamples
         #if ALOX_REL_LOG
             TextFileLogger tfl= new TextFileLogger( "Test.log.txt" );
             Log.SetVerbosity( tfl, Verbosity.Verbose );
-            Log.SetVerbosity( tfl, Verbosity.Error, ALox.InternalDomains );  
+            Log.SetVerbosity( tfl, Verbosity.Error, ALox.InternalDomains );
         #endif
 
         Log.SetVerbosity( "TEXTFILE", Verbosity.Verbose, "" );
@@ -234,7 +272,7 @@ class AloxSamples
         Log.Info   ( "Multiline part 1...\n....part 2" );
     }
 
-    void ColorTest()
+    public static void ColorTest()
     {
         Log.AddDebugLogger();
         Log.SetDomain( "/COLORS", Scope.Method );
@@ -373,15 +411,15 @@ class AloxSamples
 
     }
 
-    void SampleALibReport()
+    public static void SampleALibReport()
     {
         Console.WriteLine( "Sample: ALib Report via using ALox" );
 
         Log.AddDebugLogger();
         Log.SetDomain( "/SAMPLE", Scope.Filename);
         Log.SetVerbosity( Log.DebugLogger, Verbosity.Info, "" );
-        Log.Info(   "Method \"Log.AddDebugLogger()\" by default creates a replacement for ALibs'\n"
-                  + "error/warning reporter. If this is a debug compiliation, let's have a try and\n"
+        Log.Info(   "Method \"Log.AddDebugLogger()\" by default creates a replacement for the\n"
+                  + "standard ALib report writer. If this is a debug compiliation, let's have a try and\n"
                   + "create 3 Messages:"  );
 
             Report.GetDefault().PushHaltFlags( false, false );

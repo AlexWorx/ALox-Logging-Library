@@ -4,10 +4,10 @@
 .private
 
 
-build/ide.java.eclipse.luna/ALox-Java-1.6-Test/bin.pruned
-build/ide.java.eclipse.luna/ALox-Java-Android-Test-Release-Log/proguard
-build/ide.java.eclipse.luna/ALox-Java-Android-Test-Release-Log/gen
-build/ide.java.eclipse.luna/ALox-Java-1.6-Test/unittest_testiniFile.cfg*
+build/ide.java.eclipse/ALox-Java-1.6-Test/bin.pruned
+build/ide.java.eclipse/ALox-Java-Android-Test-Release-Log/proguard
+build/ide.java.eclipse/ALox-Java-Android-Test-Release-Log/gen
+build/ide.java.eclipse/ALox-Java-1.6-Test/unittest_testiniFile.cfg*
 docs/ALox.JAVA/generated/
 docs/ALox.CPP/generated/
 docs/ALox.CS/generated/

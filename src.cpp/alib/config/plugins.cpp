@@ -6,7 +6,6 @@
 // #################################################################################################
 #include "alib/stdafx_alib.h"
 #include "alib/config/configuration.hpp"
-#include "alib/strings/substring.hpp"
 #include "alib/system/system.hpp"
 
 
@@ -21,68 +20,148 @@ namespace           lib {
 namespace                   config {
 
 // #################################################################################################
-// ConfigurationPlugIn
+// XTernalizer
 // #################################################################################################
-
-bool  ConfigurationPlugIn::Get( const String& category, const String& name,  int32_t& target )
+void XTernalizer::InternalizeValue( Substring& src, AString& dest )
 {
-    target= 0;
-    String64 value;
-    if ( !Get( category, name, value ) )
-        return false;
+    src.Trim();
+    bool inUnquoted=   true;
+    bool inQuote=      false;
+    bool lastWasSlash= false;
 
-    target= value.ToInt( );
-    return true;
+    while( src.IsNotEmpty() )
+    {
+        char c= src.Consume<false>();
+
+        if( lastWasSlash )
+        {
+            lastWasSlash= false;
+            char escChr= c == '\\' ? '\\' :
+                         c == 'n'  ? '\n' :
+                         c == 'r'  ? '\r' :
+                         c == 't'  ? '\t' :
+                         c == '"'  ? '"'  : c;
+
+            dest._<false>(escChr);
+            continue;
+        }
+
+        if( c== '\\' )
+        {
+            lastWasSlash= true;
+            continue;
+        }
+
+        if( c== '"' )
+        {
+            inQuote= !inQuote;
+            inUnquoted= false;
+            continue;
+        }
+
+        if( inQuote || inUnquoted )
+        {
+            dest._<false>(c);
+            continue;
+        }
+
+        if( DefaultWhitespaces.IndexOf(c) >= 0 )
+            continue;
+        inUnquoted= true;
+
+        dest._<false>(c);
+    }
 }
 
-bool  ConfigurationPlugIn::Get( const String& category, const String& name,  double& target )
+void XTernalizer::ExternalizeValue( Substring& src, AString& dest, char delim )
 {
-    target= 0.0;
-    String64 value;
-    if ( !Get( category, name, value ) )
-        return false;
+    bool needsQuotes=       src.CharAtStart() == ' '
+                        ||  src.CharAtEnd()   == ' '
+                        ||  src.IndexOf( delim ) >= 0;
+    if ( needsQuotes )
+        dest._<false>('"');
 
-    target= value.ToFloat( 0, nullptr, Parent != nullptr ? &Parent->NumberFormat : &NumberFormat::Global );
-    return true;
+    while( src.IsNotEmpty() )
+    {
+        char c= src.Consume();
+
+        switch(c)
+        {
+            case '\\' : dest._<false>("\\\\"); break;
+            case '\r' : dest._<false>("\\r" ); break;
+            case '\n' : dest._<false>("\\n" ); break;
+            case '\t' : dest._<false>("\\t" ); break;
+            case '"'  : dest._<false>("\\\""); break;
+            default   : dest._<false>(c);      break;
+        }
+    }
+
+    if ( needsQuotes )
+        dest._('"');
 }
 
-
-bool  ConfigurationPlugIn::Save( const String& category, const String& name,
-                                 int            value,    const String& comments  )
+void XTernalizer::LoadFromString( Variable& variable, const String& value )
 {
-    String32 valueString;
-    valueString._( value );
-    return Save( category, name, valueString, comments, '\0' );
+    variable.ClearValues();
+    AString* varValue= &variable.AddString();
+    Substring src( value );
+
+    if( variable.Delim == '\0' )
+    {
+        InternalizeValue( src, *varValue );
+        return;
+    }
+
+    // tokenize
+    bool inQuote=      false;
+    bool lastWasSlash= false;
+    int  idx=          0;
+    while( idx < src.Length()  )
+    {
+        char c= src.CharAt<false>( idx++ );
+
+        if( lastWasSlash )
+        {
+            lastWasSlash= false;
+            continue;
+        }
+
+        if( c== '\\' )
+        {
+            lastWasSlash= true;
+            continue;
+        }
+
+        if( c== '"' )
+        {
+            inQuote= !inQuote;
+            continue;
+        }
+
+        if( !inQuote && c == variable.Delim )
+        {
+            Substring tok( src, 0, idx - 1 );
+            InternalizeValue( tok, *varValue );
+            varValue= &variable.AddString();
+            src.Consume( idx );
+            src.TrimStart();
+            idx= 0;
+        }
+    }
+    if ( src.IsNotEmpty() )
+    {
+        InternalizeValue( src, *varValue );
+    }
 }
 
-bool  ConfigurationPlugIn::Save( const String& category, const String& name,
-                                 double         value,    const String& comments  )
-{
-    String64 valueString;
-    valueString._( Format::Double(value, Parent != nullptr ? &Parent->NumberFormat : &NumberFormat::Global)  );
-    return Save( category, name, valueString, comments, '\0' );
-}
 
 
 // #################################################################################################
-// CommandLinePlugIn
+// CommandLinePlugin
 // #################################################################################################
-CommandLinePlugIn::CommandLinePlugIn( int argc, void **argv, bool wArgs )
-: ConfigurationPlugIn()
-{
-    this->argc=     argc;
-    this->argv=     argv;
-    this->wArgs=    wArgs;
-}
-
-bool  CommandLinePlugIn::Get( const String& category, const String& name, AString& target )
+bool  CommandLinePlugin::Load( Variable& variable, bool searchOnly )  const
 {
     // assemble option name as CATEGORY_NAME
-    String128 category_name;
-    if ( category.IsNotEmpty() )
-        category_name._( category )._( '_' );
-    category_name._( name );
-
     String4K   wcharConverter;
 
     for ( int i= 1; i < argc ; i++ )
@@ -102,14 +181,20 @@ bool  CommandLinePlugIn::Get( const String& category, const String& name, AStrin
         if ( !actVar.Consume('-') )
             continue;
         actVar.Consume('-');
-
-        if ( actVar.StartsWith( category_name, enums::Case::Ignore ) )
+        if ( actVar.StartsWith( variable.Fullname, enums::Case::Ignore ) )
         {
-            actVar.Consume<false>( category_name.Length() );
+            actVar.Consume<false>( variable.Fullname.Length() );
+            if ( actVar.IsEmpty() )
+            {
+                if ( !searchOnly )
+                    variable.AddString();
+                return true;
+            }
+
             if ( actVar.Consume( Whitespaces::Trim ) == '='  )
             {
-                actVar.Trim();
-                target= actVar;
+                if ( !searchOnly )
+                    StringConverter->LoadFromString( variable, actVar.Trim() );
                 return true;
             }
          }
@@ -119,22 +204,24 @@ bool  CommandLinePlugIn::Get( const String& category, const String& name, AStrin
 }
 
 // #################################################################################################
-// EnvironmentPlugIn
+// EnvironmentPlugin
 // #################################################################################################
-EnvironmentPlugIn::EnvironmentPlugIn()
-: ConfigurationPlugIn()
+EnvironmentPlugin::EnvironmentPlugin()
+: ConfigurationPlugin()
 {
 }
 
-bool  EnvironmentPlugIn::Get( const String& category, const String& name, AString& target )
+bool  EnvironmentPlugin::Load( Variable& variable, bool searchOnly )  const
 {
-    String128 category_name;
-    if ( category.IsNotEmpty() )
-        category_name._( category )._( '_' );
-    category_name._( name );
+    String256 value;
+    ALIB_WARN_ONCE_PER_INSTANCE_DISABLE( value,  ReplaceExternalBuffer );
+    System::GetVariable( variable.Fullname, value, enums::CurrentData::Keep );
+    if ( value.IsEmpty() )
+        return false;
 
-    System::GetVariable( category_name, target );
-    return target.Trim().Length() > 0;
+    if( !searchOnly )
+        StringConverter->LoadFromString( variable, value );
+    return true;
 }
 
 

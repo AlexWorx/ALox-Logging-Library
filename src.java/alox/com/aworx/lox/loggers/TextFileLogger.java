@@ -6,7 +6,8 @@
 // #################################################################################################
 package com.aworx.lox.loggers;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 
 import com.aworx.lib.enums.Phase;
 import com.aworx.lib.strings.AString;
@@ -128,6 +129,7 @@ public class TextFileLogger extends PlainTextLogger
      * @param phase  Indicates the beginning or end of a log operation.
      * @return The IO status (\c true if OK).
      **********************************************************************************************/
+    @Override 
     protected boolean notifyLogOp( Phase phase )
     {
         // write new line
@@ -165,6 +167,7 @@ public class TextFileLogger extends PlainTextLogger
      * @param length   The length of the portion in \p buffer to write out.
      * @return The IO status (\c true if OK).
      **********************************************************************************************/
+    @Override 
     protected boolean logSubstring( AString buffer, int start, int length )
     {
         try

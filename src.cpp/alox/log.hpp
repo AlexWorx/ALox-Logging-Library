@@ -85,7 +85,7 @@ class Log
          *   \ref aworx::lox::Lox::CreateConsoleLogger "Lox::CreateConsoleLogger"
          *   to create the best compatible console logger for the
          *   running platform
-         * - this logger will be added to the debug Lox object with specifiying
+         * - this logger will be added to the debug Lox object with specifying
          *   \c Verbosity::Error for internal domains.
          * - If under windows, a Visual Studio debug session is running, adds a
          *   \ref aworx::lox::loggers::VStudioLogger "VStudioLogger"
@@ -117,7 +117,7 @@ class Log
 
         /** ****************************************************************************************
          * In the case that the original ALib ConsoleReportWriter is still in place,
-         * \ref aworx::lib::Report::PushWriter "Report.PushWriter" is invoked to provide a
+         * \ref aworx::lib::Report::PushWriter "Report::PushWriter" is invoked to provide a
          * ReportWriter of type
          * \ref aworx::lox::ALoxReportWriter "ALoxReportWriter".
          *

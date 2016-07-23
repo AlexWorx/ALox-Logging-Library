@@ -47,7 +47,7 @@ namespace                   strings {
  *   allocations)
  *
  * As an example, when writing float data into a configuration file, class
- * \ref aworx::lib::config::ConfigurationPlugIn "ConfigurationPlugIn" ignores the systems locale
+ * \ref aworx::lib::config::ConfigurationPlugin "ConfigurationPlugin" ignores the systems locale
  * setting and writes all data using '.' as decimal separator. When reading values, both ' . '
  * and ' , ' are accepted. While loosing the possibility to read configuration data that
  * uses a "thousand separator" which is generally the opposite of the decimal separator

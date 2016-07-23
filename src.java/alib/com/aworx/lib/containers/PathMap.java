@@ -111,7 +111,6 @@ public class PathMap<StoreT> implements Iterable<PathMap<StoreT>>
 
         /** ****************************************************************************************
          * Enumerator using a DFS strategy.
-         * @return <b>Yield returns</b> the list of nodes.
          ******************************************************************************************/
         class MyIterator implements Iterator<PathMap<StoreT>>
         {
@@ -130,7 +129,7 @@ public class PathMap<StoreT> implements Iterable<PathMap<StoreT>>
                     this.node=      node;
                     this.childNo=   childNo;
                 }
-            };
+            }
     
 
             /** A stack holding the recursive list of child maps and the  idx of their current child */
@@ -164,8 +163,7 @@ public class PathMap<StoreT> implements Iterable<PathMap<StoreT>>
                  return returnValue;
             }
 
-            /** Implementation of iterator interface
-             * @return \c The next element */
+            /** Implementation of iterator interface. */
             void forward() 
             {
                 while(nodesAndChilds.size() > 0 )
@@ -194,7 +192,7 @@ public class PathMap<StoreT> implements Iterable<PathMap<StoreT>>
             {
                 throw new UnsupportedOperationException();
             }
-        };
+        }
 
         /** ****************************************************************************************
          * Enumerator using a DFS strategy.

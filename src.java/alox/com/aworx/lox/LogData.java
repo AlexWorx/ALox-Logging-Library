@@ -82,6 +82,7 @@ public class LogData
      * E.g. this enables the \e Eclipse IDE to display object descriptions in the debugger.
      * @returns A human readable string representation of this object.
      ******************************************************************************************/
+    @Override 
     public String toString()
     {
         return toString(new AString()).toString();

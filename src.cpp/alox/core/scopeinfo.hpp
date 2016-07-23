@@ -247,9 +247,10 @@ class ScopeInfo
          * @param trimOffset      Adjusts the portion of \p path that is trimmed. 999999 to clear!
          * @param sensitivity     Determines if the comparison of \p path with a source files' path
          *                        is performed case sensitive or not.
-         * @param global          If Inclusion::Exclude, only this instance is affected. Otherwise
-         *                        the setting applies to all instances of class \b Lox.
          * @param trimReplacement Replacement string for trimmed portion of the path.
+         * @param reach           Denotes whether the rule is applied locally (to this \b %Lox only)
+         *                        or applies to all instances of class \b %Lox.
+         *                        Defaults to \b %Reach::Global.
          * @param priority        The priority of the setting.
         ******************************************************************************************/
         ALIB_API
@@ -257,8 +258,8 @@ class ScopeInfo
                                          Inclusion      includeString,
                                          int            trimOffset,
                                          Case           sensitivity,
-                                         Inclusion      global,
                                          const String&  trimReplacement,
+                                         Reach          reach,
                                          int            priority                );
 
         /** ****************************************************************************************

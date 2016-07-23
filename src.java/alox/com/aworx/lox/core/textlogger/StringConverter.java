@@ -31,6 +31,7 @@ public class StringConverter implements ObjectConverter
      * @param target    An AString that takes the result.
      * @return \c true, if the object was converted successfully, \c false otherwise.
      **********************************************************************************************/
+    @Override 
     public boolean convertObject( Object o, AString target )
     {
              if ( o == null )                    target._( fmtNullObject       );

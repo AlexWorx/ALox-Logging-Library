@@ -16,7 +16,6 @@ using System;
 namespace cs.aworx.lib.containers  {
 
 
-
 /** ************************************************************************************************
  * This class implements a map suitable for keys that are hierarchically organized.
  * While the class works with any type of keys, it is efficient only if keys are rather

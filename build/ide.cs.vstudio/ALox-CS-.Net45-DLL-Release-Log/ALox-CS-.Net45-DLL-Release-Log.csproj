@@ -54,6 +54,12 @@
     <Compile Include="..\..\..\src.cs\alib\config\IniFile.cs">
       <Link>ALib\config\IniFile.cs</Link>
     </Compile>
+    <Compile Include="..\..\..\src.cs\alib\config\InMemoryPlugin.cs">
+      <Link>ALib\config\InMemoryPlugin.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\src.cs\alib\config\Variable.cs">
+      <Link>ALib\config\Variable.cs</Link>
+    </Compile>
     <Compile Include="..\..\..\src.cs\alib\containers\PathMap.cs">
       <Link>ALib\containers\PathMap.cs</Link>
     </Compile>

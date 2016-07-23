@@ -10,14 +10,16 @@ import java.util.LinkedList;
 
 import org.junit.Test;
 
-import ut_com_aworx_uttools.AUnitTest;
-
-import com.aworx.lox.*;
+import com.aworx.lox.Log;
+import com.aworx.lox.Scope;
+import com.aworx.lox.Verbosity;
 import com.aworx.lox.tools.LogTools;
 
+import ut_com_aworx.AWorxUnitTesting;
 
 
-public class UT_alox_logtools  extends AUnitTest
+
+public class UT_alox_logtools  extends AWorxUnitTesting
 {
     /** ****************************************************************************************
      *     Log_Exception.
@@ -62,7 +64,7 @@ public class UT_alox_logtools  extends AUnitTest
 
         // simple type double
         {
-            double o= 3.14;
+            Double o= new Double( 3.14 );
 
             LogTools.instance( Verbosity.INFO, o, 2, "Logging an object of type 'Double':" );
         }
@@ -151,7 +153,7 @@ public class UT_alox_logtools  extends AUnitTest
             Object[] o= new Object[10];
             int i= 0;
             o[i++]= "Entry 0";
-            o[i++]= 3.14;
+            o[i++]= new Double( 3.14 );
             o[i++]= "next is array itself!";
             o[i++]= o;
             o[i++]= "next is console logger";

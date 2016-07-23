@@ -7,7 +7,7 @@
 #include "alib/stdafx_alib.h"
 
 
-#if !defined (HPP_ALIB_STRINGS_ASSUBSTRING)
+#if !defined (HPP_ALIB_STRINGS_SUBSTRING)
     #include "alib/strings/substring.hpp"
 #endif
 

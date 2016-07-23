@@ -8,6 +8,44 @@
 /**
 \page manual    User Manual
 
+
+# Contents #
+
+### Using ALox ###
+
+\ref man_intro                            <br>
+\ref man_features_and_limitations         <br>
+\ref man_alox_terminology                 <br>
+\ref man_logdomains                       <br>
+\ref man_scopes                           <br>
+\ref man_log_once                         <br>
+\ref man_prefix_logables                  <br>
+\ref man_log_data                         <br>
+\ref man_multi_threaded                   <br>
+\ref man_debug_and_release_logging        <br>
+\ref man_internal_domains                 <br>
+\ref man_external_configuration           <br>
+\ref man_external_verbosity_configuration <br>
+\ref man_trim_source_path                 <br>
+\ref man_domain_substitution              <br>
+\ref man_colorful_loggers                 <br>
+
+### Reference Appendix ###
+\ref GrpALoxConfigVars                    <br>
+\ref man_apdx_auto_config                 <br>
+
+### Extending ALox ###
+\ref man_ext_namespaces                   <br>
+\ref man_ext_loggers                      <br>
+
+
+
+<p>
+<br>
+<p>
+
+# Notes #
+
 This is the manual of the ALox Logging Ecosystem. This manual applies to all platforms and
 programming languages that ALox supports. By nature, the different implementations of ALox
 written in different programming languages, differ. Sometimes in details, sometimes differences
@@ -57,35 +95,56 @@ user manual, but we have just decided not to hint to this fact all of the time.
 
 Wherever reasonable, language specific differences are named and briefly explained.
 
-<p>
+<b>Documentation of ALib</b>:<br>
+Underlying class library <b>ALib</b> does not provide a user manual. Instead, important information
+about the relationship of classes and their general use is found in the reference documentation
+of the different namespaces (Java: packages). Those are:
 
-# Contents #
+- <b>[com::|cs::]%aworx::lib</b>
+ ([C++] (@ref      #aworx::lib),
+  [C#]  (@ref  #cs::aworx::lib),
+  [Java](@ref #com::aworx::lib))
+- <b>[com::|cs::]%aworx::lib::config</b>
+ ([C++] (@ref      #aworx::lib::config),
+  [C#]  (@ref  #cs::aworx::lib::config),
+  [Java](@ref #com::aworx::lib::config))
+- <b>[com::|cs::]%aworx::lib::containers</b>
+ ([C++] (@ref      #aworx::lib::containers),
+  [C#]  (@ref  #cs::aworx::lib::containers),
+  [Java](@ref #com::aworx::lib::containers))
+- <b>[com::|cs::]%aworx::lib::enums</b>
+ ([C++] (@ref      #aworx::lib::enums),
+  [C#]  (@ref  #cs::aworx::lib::enums),
+  [Java](@ref #com::aworx::lib::enums))
+- <b>[com::|cs::]%aworx::lib::strings</b>
+ ([C++] (@ref      #aworx::lib::strings),
+  [C#]  (@ref  #cs::aworx::lib::strings),
+  [Java](@ref #com::aworx::lib::strings))
+- <b>[com::|cs::]%aworx::lib::system</b>
+ ([C++] (@ref      #aworx::lib::system))
+- <b>[com::|cs::]%aworx::lib::threads</b>
+ ([C++] (@ref      #aworx::lib::threads),
+  [C#]  (@ref  #cs::aworx::lib::threads),
+  [Java](@ref #com::aworx::lib::threads))
+- <b>[com::|cs::]%aworx::lib::time</b>
+ ([C++] (@ref      #aworx::lib::time),
+  [C#]  (@ref  #cs::aworx::lib::time),
+  [Java](@ref #com::aworx::lib::time))
 
-### Using ALox ###
 
-\ref man_intro                            <br>
-\ref man_features_and_limitations         <br>
-\ref man_alox_terminology                 <br>
-\ref man_logdomains                       <br>
-\ref man_scopes                           <br>
-\ref man_log_once                         <br>
-\ref man_prefix_logables                  <br>
-\ref man_log_data                         <br>
-\ref man_multi_threaded                 <br>
-\ref man_debug_and_release_logging        <br>
-\ref man_internal_domains                 <br>
-\ref man_external_verbosity_configuration <br>
-\ref man_trim_source_path                 <br>
-\ref man_domain_substitution              <br>
-\ref man_colorful_loggers                 <br>
+For advanced users of ALox, reading and understanding concepts described in
+<b>[com::|cs::]%aworx::lib::config</b>
+    ([C++] (@ref      #aworx::lib::config),
+     [C#]  (@ref  #cs::aworx::lib::config),
+     [Java](@ref #com::aworx::lib::config)) and
+<b>[com::|cs::]%aworx::lib::strings</b>
+    ([C++] (@ref      #aworx::lib::strings),
+     [C#]  (@ref  #cs::aworx::lib::strings),
+     [Java](@ref #com::aworx::lib::strings))
+is very recommended.
 
-### Reference Appendix ###
-\ref GrpALoxConfigVars                    <br>
-\ref man_apdx_auto_config                 <br>
 
-### Extending ALox ###
-\ref man_ext_namespaces                   <br>
-\ref man_ext_loggers                      <br>
+
 
 
 */

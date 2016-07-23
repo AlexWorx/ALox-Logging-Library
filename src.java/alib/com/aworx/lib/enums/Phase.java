@@ -13,4 +13,4 @@ public enum Phase
 {
     BEGIN,    ///< The start of a transaction.
     END       ///< The end of a transaction.
-};
+}

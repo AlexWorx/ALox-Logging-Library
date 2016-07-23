@@ -5,7 +5,10 @@
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
 #include "alib/stdafx_alib.h"
-#include "alib/config/configuration.hpp"
+
+#if !defined (HPP_ALIB_CONFIG_CONFIGURATION)
+    #include "alib/config/configuration.hpp"
+#endif
 
 #include <algorithm>
 
@@ -16,7 +19,12 @@ namespace           lib {
 namespace                   config {
 
 
+// #################################################################################################
+// Configuration
+// #################################################################################################
+
 Configuration::Configuration()
+: ThreadLock()
 {
     // set default true values
     TrueValues.emplace_back( "1"    );
@@ -26,55 +34,32 @@ Configuration::Configuration()
     TrueValues.emplace_back( "y"    );
     TrueValues.emplace_back( "on"   );
     TrueValues.emplace_back( "ok"   );
+
+    insertPlugin( &DefaultValues  , Configuration::PrioDefault        );
+    insertPlugin( &Environment    , Configuration::PrioEnvironment    );
+    insertPlugin( &CmdLine        , Configuration::PrioCmdLine        );
+    insertPlugin( &ProtectedValues, Configuration::PrioProtected      );
 }
 
-Configuration::~Configuration()
+
+void Configuration::insertPlugin( ConfigurationPlugin* plugin, int priority )
 {
-    if ( cmdLineCP != nullptr ) delete cmdLineCP;
-    if (     envCP != nullptr ) delete     envCP;
-}
-
-void Configuration::AddStandardPlugIns( Inclusion environment, int argc, void **argv, bool wArgs )
-{
-    // create command line plug-in
-    cmdLineCP=  nullptr;
-    if ( argc != 0 && argv != nullptr )
-    {
-        cmdLineCP= new CommandLinePlugIn ( argc, argv, wArgs );
-        InsertPlugin( cmdLineCP, Configuration::PrioCmdLine );
-    }
-
-    // environment config plug-in
-    envCP=  nullptr;
-    if ( environment == Inclusion::Include )
-    {
-        envCP= new EnvironmentPlugIn();
-        InsertPlugin( envCP,     Configuration::PrioEnvVars );
-    }
-}
-
-void Configuration::InsertPlugin( ConfigurationPlugIn* plugin, int priority )
-{
-    OWN(*this);
-
     plugins.insert(
          std::find_if(  plugins.begin(),  plugins.end(),
-                        [priority]( PluginAndPrio& pairPrioPlug)
+                        [priority]( PluginAndPrio& ppp)
                         {
-                            ALIB_ASSERT_ERROR( pairPrioPlug.first != priority,
+                            ALIB_ASSERT_ERROR( ppp.first != priority,
                                 "Configuration::InsertPlugin(): Plug-in with same priority exists" );
 
-                            return pairPrioPlug.first < priority;
+                            return ppp.first < priority;
                         }
                      ),
 
-        std::pair<int, ConfigurationPlugIn*>(priority, plugin)
+        std::pair<int, ConfigurationPlugin*>(priority, plugin)
    );
-
-   plugin->Parent= this;
 }
 
-bool Configuration::RemovePlugin( ConfigurationPlugIn* plugin )
+bool Configuration::RemovePlugin( ConfigurationPlugin* plugin )
 {
     OWN(*this);
 
@@ -85,68 +70,31 @@ bool Configuration::RemovePlugin( ConfigurationPlugIn* plugin )
 
     ALIB_ASSERT_WARNING( plugins.size() != qty, "Configuration::RemovePlugin(): No Plug-in was removed " )
 
-    plugin->Parent= nullptr;
     return  plugins.size() < qty;
 }
 
-
-int  Configuration::Get( const String& category, const String& name, AString& target )
+int Configuration::FetchFromDefault( ConfigurationPlugin& dest )
 {
     OWN(*this);
 
-    target.Clear();
+    int cntCopied= 0;
+    Variable variable;
+    for( size_t sNo= 0; sNo < DefaultValues.Sections.size() ; sNo++ )
+    {
+        InMemoryPlugin::Section* section= DefaultValues.Sections[sNo];
+        for( size_t vNo= 0; vNo < section->Entries.size() ; vNo++ )
+        {
+            InMemoryPlugin::Entry* entry= section->Entries[vNo];
+            if( !dest.Load( variable.Define( section->Name, entry->Name ), true ) )
+            {
+                DefaultValues.Load  ( variable );
+                dest.Store( variable );
+                cntCopied++;
+            }
+        }
+    }
 
-    if ( !name.IsEmpty() )
-        for ( auto& pairPrioPlug : plugins )
-            if ( pairPrioPlug.second->Get( category, name, target ) )
-                return pairPrioPlug.first;
-
-    return 0;
-}
-
-int  Configuration::Get( const String& category, const String& name, int32_t& target )
-{
-    OWN(*this);
-
-    target= 0;
-
-    if ( !name.IsEmpty() )
-        for ( auto& pairPrioPlug : plugins )
-            if ( pairPrioPlug.second->Get( category, name, target ) )
-                return pairPrioPlug.first;
-
-    return 0;
-}
-
-
-int  Configuration::Get( const String& category, const String& name, double& target )
-{
-    OWN(*this);
-
-    target= 0.0;
-
-    if ( !name.IsEmpty() )
-        for ( auto& pairPrioPlug : plugins )
-            if ( pairPrioPlug.second->Get( category, name, target ) )
-                return pairPrioPlug.first;
-
-    return 0;
-}
-
-bool Configuration::IsTrue( const String& category, const String& name, int* pluginPriority )
-{
-    OWN(*this);
-
-    String64 value;
-    int  localIntDummy;
-    if ( pluginPriority == nullptr )
-        pluginPriority= &localIntDummy;
-
-
-    if( (*pluginPriority= Get( category, name, value )) != 0 )
-        return IsTrue( value );
-
-    return false;
+    return  cntCopied;
 }
 
 bool Configuration::IsTrue( const String& value )
@@ -158,42 +106,209 @@ bool Configuration::IsTrue( const String& value )
     return false;
 }
 
-int Configuration::Save( const String& category, const String& name, const String& value,
-                         const String& comments,  char        delim )
+
+
+// #############################################################################################
+// Load/Store
+// #############################################################################################
+int Configuration::Load( Variable& variable )
 {
     OWN(*this);
 
-    if ( !name.IsEmpty() )
-        for ( auto& pairPrioPlug : plugins )
-            if ( pairPrioPlug.second->Save( category, name, value, comments, delim ) )
-                return pairPrioPlug.first;
-    return 0;
+    variable.Config=    this;
+    variable.Priority=  loadImpl( variable, true );
+
+    if ( variable.Priority == 0 && variable.DefaultValue.IsNotNull() )
+        Store( variable, variable.DefaultValue );
+
+    return variable.Priority;
 }
 
-
-int Configuration::Save( const String& category, const String& name, int value,
-                         const String& comments )
+int Configuration::Store( Variable& variable, const String& externalizedValue )
 {
     OWN(*this);
 
-    if ( !name.IsEmpty() )
-        for ( auto& pairPrioPlug : plugins )
-            if ( pairPrioPlug.second->Save( category, name, value, comments ) )
-                return pairPrioPlug.first;
-    return 0;
+    // checks
+    if( externalizedValue.IsNull() )
+    {
+        if ( variable.Name.IsEmpty())
+        {
+            ALIB_ERROR( "Trying to store an undefined variable."  );
+            return 0;
+        }
+
+        if ( variable.Size() > 1 && variable.Delim == '\0' )
+        {
+            ALIB_ERROR_S512(    "Trying to store variable \"" << variable.Fullname
+                             << "\" which has multiple values set but no delimiter defined."  );
+            return 0;
+        }
+    }
+
+    // store us as config
+    variable.Config= this;
+
+    // detect?
+    bool detected= variable.Priority < 0;
+    if ( detected )
+    {
+        variable.Priority= 0;
+        for ( auto& ppp : plugins )
+            if ( ppp.second->Load( variable, true ) )
+            {
+                variable.Priority= ppp.first;
+                break;
+            }
+    }
+
+    // new variables go to default
+    if ( variable.Priority == 0 )
+        variable.Priority= Configuration::PrioDefault;
+
+    // we do not store if detected priority is protected
+    else if( detected && variable.Priority == Configuration::PrioProtected )
+        return (variable.Priority= 0);
+
+    // store
+    for ( auto& ppp : plugins )
+        if (    ppp.first <= variable.Priority
+             && ppp.second->Store( variable, externalizedValue ) )
+            {
+                return (variable.Priority= ppp.first);
+            }
+
+    return (variable.Priority= 0);
 }
 
-int Configuration::Save( const String& category, const String& name, double value,
-                         const String& comments )
+
+
+
+// #############################################################################################
+// internals
+// #############################################################################################
+
+int  Configuration::loadImpl( Variable& variable, bool substitute )
 {
-    OWN(*this);
+    variable.ClearValues();
+    if ( variable.Name.IsEmpty() )
+    {
+        ALIB_WARNING( "Empty variable name given" );
+        return 0;
+    }
 
-    if ( !name.IsEmpty() )
-        for ( auto& pairPrioPlug : plugins )
-            if ( pairPrioPlug.second->Save( category, name, value, comments ) )
-                return pairPrioPlug.first;
-    return 0;
+    // search variable
+    int priority= 0;
+    for ( auto& ppp : plugins )
+        if ( ppp.second->Load( variable ) )
+        {
+            priority= ppp.first;
+            break;
+        }
+
+    // not found?
+    if ( !substitute || priority == 0 )
+        return 0;
+
+    // substitution in all values of variable
+    for ( int valueNo= 0; valueNo < variable.Size(); valueNo++ )
+    {
+        int searchStartIdx=  0;
+        int maxReplacements = 50;
+        do
+        {
+            AString& value= *variable.GetString( valueNo );
+
+            // search start
+            int repStart= value.IndexOf( SubstitutionVariableStart, searchStartIdx );
+            if ( repStart < 0 )
+                break;
+            searchStartIdx= repStart;
+            int varStart= repStart + SubstitutionVariableStart.Length();
+
+            Variable replVar;
+            int repLen;
+            int varLen;
+
+            // search end in two different ways depending on setting of public field "SubstitutionVariableEnd"
+            if ( SubstitutionVariableEnd.IsEmpty() )
+            {
+                int idx=   value.IndexOfAny( SubstitutionVariableDelimiters, Inclusion::Include, varStart );
+                if ( idx < 0 )
+                    idx= value.Length();
+
+                varLen= idx - varStart;
+                repLen= idx - repStart;
+            }
+            else
+            {
+                int idx=   value.IndexOf   ( SubstitutionVariableEnd, varStart );
+                if (idx < 0 )
+                {
+                    ALIB_WARNING_S512(     "End of substitution variable not found (while start was found). Variable name: "
+                                        << variable.Fullname
+                                        << " Value: \"" << variable.GetString() << "\"." );
+                    break;
+                }
+
+                varLen= idx - varStart;
+                repLen= idx + SubstitutionVariableEnd.Length() - repStart;
+            }
+
+            // get variable name string
+            Substring    replVarCategory;
+            Substring    replVarName( value, varStart, varLen );
+            if ( replVarName.IsEmpty() )
+            {
+                searchStartIdx+=   SubstitutionVariableStart.Length()
+                                 + SubstitutionVariableEnd.Length();
+                continue;
+            }
+
+            // parse category from name
+            int catSeparatorIdx= replVarName.IndexOf( '_' );
+            if (catSeparatorIdx >= 0 )
+            {
+                replVarCategory.Set( replVarName, 0                   , catSeparatorIdx );
+                replVarName    .Set( replVarName, catSeparatorIdx + 1);
+            }
+
+            // load replacement variable
+            if ( replVarName.IsNotEmpty() )
+            {
+                replVar.Define( replVarCategory, replVarName, variable.Delim );
+                loadImpl( replVar, false );
+            }
+            else
+                replVar.ClearValues();
+
+            // do the replacement (even if no variable was found)
+            if ( replVar.Size() == 1 )
+                value.ReplaceSubstring( replVar.GetString(), repStart, repLen );
+
+            else if ( replVar.Size() > 1 )
+            {
+                variable.ReplaceValue( valueNo, replVar );
+
+                // repeat replacements in current value, as current value changed
+                valueNo--;
+                break;
+            }
+
+            else
+                value.ReplaceSubstring( "",                 repStart, repLen );
+
+        }
+        while( --maxReplacements );
+
+        // warn if max replacements
+        if( maxReplacements <= 0 )
+            ALIB_WARNING_S512(     "Too many substitutions in variable " << variable.Fullname
+                                << ". Probably a recursive variable definition was made. ");
+    }
+    return priority;
 }
+
+
 
 
 }}}// namespace aworx::lib::config

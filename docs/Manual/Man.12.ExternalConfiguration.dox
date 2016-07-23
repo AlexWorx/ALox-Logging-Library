@@ -1,0 +1,299 @@
+// #################################################################################################
+//  Documentation - ALox Logging Library
+//
+//  (c) 2013-2016 A-Worx GmbH, Germany
+//  Published under MIT License (Open Source License, see LICENSE.txt)
+// #################################################################################################
+
+/**
+\page man_external_configuration  12 - External Configuration
+
+\tableofcontents
+
+\~Comment ####################################################################################### \~
+# 1. Introduction # {#man_external_configuration_intro}
+
+With the term <em>"external configuration"</em>, we are addressing any type of configuration
+data that an application might have access to. The most common types of such configuration data
+are:
+- Command line parameters
+- Environment variables and
+- Configuration files, e.g. "INI files"
+
+For reading such configuration data, ALox relies on the facilities provided by underlying utility
+library ALib. Configuration mechanics of ALib are gathered in namespace
+<b>[com::|cs::]%aworx::lib::config</b>. It is advisable to read the
+<b>reference documentation</b>
+ ([C++] (@ref      #aworx::lib::config),
+  [C#]  (@ref  #cs::aworx::lib::config),
+  [Java](@ref #com::aworx::lib::config)) of that namespace and its few classes.
+
+<b>In short, the features of the ALib configuration system are:</b>
+
+- A public static singleton of class
+  <b>%Configuration</b>
+   ([C++] (@ref      #aworx::lib::config::Configuration),
+    [C#]  (@ref  #cs::aworx::lib::config::Configuration),
+    [Java](@ref #com::aworx::lib::config::Configuration)) is found in field
+  <b>%ALIB.Config</b>
+   ([C++] (@ref      #aworx::lib::ALIB::Config),
+    [C#]  (@ref  #cs::aworx::lib::ALIB::Config),
+    [Java](@ref #com::aworx::lib::ALIB::config)).
+
+- This singleton is the main interface into external configuration data.
+
+- Class \b %Configuration supports \b 'plug-ins' that read configuration data from different sources.
+
+- Default plug-ins are those for reading <b>command-line parameters</b> and
+  <b>environment variables</b>. In addition, a class to read (and write) INI files is provided
+  and an instance of that class can easily be created and attached.
+  \note
+    But instead, ALib proposes to attach custom configuration file processing - use your own standard!
+    What is need to be done is to write a small plug-in that translates requests to read (and
+    if possible, also write) variables into your custom configuration system.
+
+- The different \b plug-ins are asked for configuration data in a sequence defined by their
+  \b priority. For example, command-line parameters have a higher priority than variables
+  defined in an INI file. This way, command-line parameters 'overwrite' INI file entries.
+
+- Variables can contain references to other variables. This concept named <b> variable substitution</b>,
+  allows even more flexible configuration possibilities .
+
+\~Comment ####################################################################################### \~
+# 2. Relationship of ALox, Applications and Configuration Data # {#man_external_configuration_relationship}
+
+It may be very obvious to the reader, but lets spend a minute and think about the relationship
+of ALox and applications using it.
+
+- ALox is embedded as a library in applications, they live in one process.
+- ALox longs to read external configuration data
+- The application itself probably does this as well and probably disposes of a system to maintain and read such
+  data already
+- ALox may want to write default values into the configuration (if a variable was not found)
+
+
+In most use cases, the goal now is to enable ALox to access (read and write) the configuration that is
+already in place with the application. The huge benefit of this approach is, that no second configuration file or
+database is needed. And this is exactly what ALib - and therewith ALox - allows to achieve.
+
+Then, other use cases and variants are:
+- Having separated configuration systems for the application and ALox.
+- Have \b no configuration system for %ALox: The most obvious reason why this might be wanted is that a
+  developer of an %ALox enabled software might not want to allow the end user to reconfigure ALox (i.e. switching
+  a \e Logger off that collects telemetric data).
+- A mixed approach: Some ALox features should be configurable (from either configuration system) while
+  other features should not be configurable from outside.
+- Similar to this, some default values (that ALox creates on the fly) should automatically appear and be saved in
+  the configuration. The benefit of this is that the user gets a fully filled configuration with maybe
+  automatically commented entries that hints him/her to what is adjustable - all without reading manuals.
+  Other of such ALox options probably should not automatically be saved. If not saved, these are regenerated as
+  default values on the next run and again not be saved. A simple reason to disallow saving default values
+  might be to avoid that the external configuration is being 'bloated' with ALox options that the user of an application is not
+  interested in.
+
+Finally, as ALox is a library, there might be more than one ALox enabled softwares running on the
+same systems. Now, for configuration sources like INI files and command line parameters, this is
+not problematic. In the case of environment variables, it might become a problem: A variable
+setting here could influence more than one application if variables are not renamed on a per
+application basis.
+
+
+\~Comment ####################################################################################### \~
+# 3. How ALox Uses the ALib Configuration System  # {#man_external_configuration_alox}
+
+Well, as ALib and ALox are developed by the same team, of-course ALox uses the configuration system
+of ALib exactly as the ALib developers expect their users to do! While (apart from the 
+
+<b>reference documentation</b>
+    ([C++](@ref      #aworx::lib::config),
+    [C#]  (@ref  #cs::aworx::lib::config),
+    [Java](@ref #com::aworx::lib::config)) provided with ALib)
+ ALib is missing a user manual, we do the effort here to describe what is going on.
+
+First of all, ALox does not install any own plug-ins in singleton \b %ALIB.Config.
+It remains fully up to the software using ALox to do so.
+Then, ALox also leaves field
+  <b>%ALIB::ConfigCategoryName</b>
+    ([C++](@ref      #aworx::lib::ALIB::ConfigCategoryName),
+    [C#]  (@ref  #cs::aworx::lib::ALIB::ConfigCategoryName),
+    [Java](@ref #com::aworx::lib::ALIB::configCategoryName)) untouched (remains default "ALIB")
+while exposing an own, similar field
+  <b>%ALox::ConfigCategoryName</b>
+    ([C++](@ref      #aworx::lox::ALox::ConfigCategoryName),
+    [C#]  (@ref  #cs::aworx::lox::ALox::ConfigCategoryName),
+    [Java](@ref #com::aworx::lox::ALox::configCategoryName)) which defaults to "ALOX".
+
+All configuration variables are defined in one place (static initializations of object of type class (struct)
+<b>%VariableDefinition</b>
+   ([C++] (@ref      #aworx::lib::config::VariableDefinition),
+    [C#]  (@ref  #cs::aworx::lib::config::VariableDefinition),
+    [Java](@ref #com::aworx::lib::config::VariableDefinition))
+
+When using interface method
+<b>%Configuration::Store</b>
+   ([C++] (@ref      #aworx::lib::config::Configuration::Store),
+    [C#]  (@ref  #cs::aworx::lib::config::Configuration::Store),
+    [Java](@ref #com::aworx::lib::config::Configuration::store))
+to write configuration data, new variables are exclusively created within in-memory plug-in
+<b>%Configuration.DefaultValues</b>
+ ([C++] (@ref      #aworx::lib::config::Configuration::DefaultValues),
+  [C#]  (@ref  #cs::aworx::lib::config::Configuration::DefaultValues),
+  [Java](@ref #com::aworx::lib::config::Configuration::defaultValues)).  
+
+Finally, ALox even 'imports' the flexibility that the ALib configuration system brings.
+This is for example done by exposing parameter \p priority in methods
+<b>%Lox.SetVerbosity</b>
+([C++] (@ref      #aworx::lox::Lox::SetVerbosity),
+ [C#]  (@ref  #cs::aworx::lox::Lox::SetVerbosity),
+ [Java](@ref #com::aworx::lox::Lox::setVerbosity)) and
+<b>%Lox.SetSourcePathTrimRule</b>
+([C++] (@ref      #aworx::lox::Lox::SetSourcePathTrimRule),
+ [C#]  (@ref  #cs::aworx::lox::Lox::SetSourcePathTrimRule)).
+On the one hand, these methods are fully aligned with the configuration system, as 
+parameter \p priority defaults to
+<b>%Configuration.PrioDefault</b>
+    ([C++] (@ref      #aworx::lib::config::Configuration::PrioDefault),
+     [C#]  (@ref  #cs::aworx::lib::config::Configuration::PrioDefault),
+     [Java](@ref #com::aworx::lib::config::Configuration::PRIO_DEFAULT)). This way, what is
+set 'in code' is (by default) overruled by any type of external configuration.
+On the other hand, a programmer my specify a different priority and this way either allow only certain,
+higher prioritized external sources to overwrite, or just disallow it.
+\note
+  Of-course, with standard ALib plug-in
+  <b>%Configuration.ProtectedValues</b>
+    ([C++](@ref      #aworx::lib::config::Configuration::ProtectedValues),
+    [C#]  (@ref  #cs::aworx::lib::config::Configuration::ProtectedValues),
+    [Java](@ref #com::aworx::lib::config::Configuration::protectedValues)) such protection could be reached
+  as well, but exposing the parameter with the methods, an alternative, maybe more natural and less error prone
+  way of implementing such protection is offered.
+
+<b>For the user of ALox, the benefits of the approach ALox takes are:</b>
+
+- ALox does not impose new requirements to the ALib configuration system. In respect to the
+  plug-ins installed, everything remains untouched
+- ALib allows to have its external variables modified in the following respect
+  - Variable names can be changed
+  - Category can be changed: either for a subset of the variables or for all. Even different
+    category names can be chosen 
+  - Default values of ALox variables can be changed 
+  - Variable comments can be changed. Especially, those may come from a pool of externalized strings.
+- Single ALox variables (or all) can be excluded from the possibility to be modified from outside.   
+- ALox will not bloat an applications' external configuration system with own variables, unless
+  explicitly demanded. An application may also choose to expose only selected variables to the 
+  outside.
+- A custom configuration plug-in will not only work in respect to prioritizing values of external
+  variables, but also in respect to consistency with ALox verbosity settings.
+  
+
+
+\~Comment ####################################################################################### \~
+# 4. Concrete Steps on Integrating ALox Configuration in your Software# {#man_external_configuration_concrete}
+
+After the discussion of the previous sections it should be quite straigtforward to understand how ALox is to be
+integrated to your software in respect to external configuration data. Here are some hints:
+
+- Create a custom plug-in (using your custom config system) and attach it to singleton 
+  <b>%ALIB.Config</b>
+   ([C++] (@ref      #aworx::lib::ALIB::Config),
+    [C#]  (@ref  #cs::aworx::lib::ALIB::Config),
+    [Java](@ref #com::aworx::lib::ALIB::config)):
+    
+    - Create a class that has access to your config system
+    - implement the interface ConfigurationPlugin within this class
+    - Plug it in
+
+- Alternatively: create an instance of 
+    <b>IniFile</b>
+      ([C++](@ref      #aworx::lib::config::IniFile),
+      [C#]  (@ref  #cs::aworx::lib::config::IniFile),
+      [Java](@ref #com::aworx::lib::config::IniFile)) and attach this instead.
+
+      The following code samples this in C#:
+      \snippet "../alox.samples/ALoxSamples.cs"        DOXYGEN_CREATE_INIFILE
+      \snippet "../alox.samples/ALoxSamples.cs"        DOXYGEN_REMOVE_INIFILE
+      
+    
+- Set ALib::ConfigCategory and ALox::ConfigCategory to preferred values, e.g. your own 
+  application name (to avoid clashing of environment variables when two ALib enabled 
+  applications exist.
+
+- If wanted, change the definitions of the various configuration variables, like:
+  - <b>%ALIB.RTE</b>
+    ([C++] (@ref      #aworx::lib::ALIB::RTE))
+  - <b>%ALIB.LOCALE</b>
+    ([C++] (@ref      #aworx::lib::ALIB::LOCALE))
+  - <b>%ALIB.WAIT_FOR_KEY_PRESS</b>
+    ([C++] (@ref      #aworx::lib::ALIB::WAIT_FOR_KEY_PRESS),
+     [C#]  (@ref  #cs::aworx::lib::ALIB::WAIT_FOR_KEY_PRESS))
+  - <b>%ALIB.HAS_CONSOLE_WINDOW</b>
+    ([C++] (@ref      #aworx::lib::ALIB::HAS_CONSOLE_WINDOW))
+  - <b>%ALox.CONSOLE_TYPE</b>
+    ([C++] (@ref      #aworx::lox::ALox::CONSOLE_TYPE),
+     [C#]  (@ref  #cs::aworx::lox::ALox::CONSOLE_TYPE),
+     [Java](@ref #com::aworx::lox::ALox::CONSOLE_TYPE))
+  - <b>%ALox.VERBOSITY</b>
+    ([C++] (@ref      #aworx::lox::ALox::VERBOSITY),
+     [C#]  (@ref  #cs::aworx::lox::ALox::VERBOSITY),
+     [Java](@ref #com::aworx::lox::ALox::VERBOSITY))
+  - <b>%ALox.PREFIXES</b>
+    ([C++] (@ref      #aworx::lox::ALox::PREFIXES),
+     [C#]  (@ref  #cs::aworx::lox::ALox::PREFIXES),
+     [Java](@ref #com::aworx::lox::ALox::PREFIXES))
+  - <b>%ALox.FORMAT</b>
+    ([C++] (@ref      #aworx::lox::ALox::FORMAT),
+     [C#]  (@ref  #cs::aworx::lox::ALox::FORMAT),
+     [Java](@ref #com::aworx::lox::ALox::FORMAT))
+  - ...
+
+- Set values that result from own application logic.
+  A simple sample is command line parameter \-\-verbose which might lead to 
+  'programatically' changes in the domains' verbosities.
+
+- Protect values that must not be changed from outside by storing a fixed value in 
+  <b>%Configuration::ProtectedValues</b>
+   ([C++] (@ref      #aworx::lib::config::Configuration::ProtectedValues),
+    [C#]  (@ref  #cs::aworx::lib::config::Configuration::ProtectedValues),
+    [Java](@ref #com::aworx::lib::config::Configuration::protectedValues)). 
+
+- Apply the previous two steps to one variable to redefine configuration behavior. 
+  Let's stick to the sample of having the \-\-verbose switch. Imagine this option 
+  should get three possible values: 'silent', 'normal' and 'verbose'. The approach to take
+  is the following:
+  - Programmatically add three new custom variables stored as protected values. 
+    Their names might be <c>MYAPP_VERBOSITY_1[2|3]</c> .
+    These custom variables contain the verbosity settings for all <em>Log Domains</em>
+    for each of the three switchable verbosities
+  - Depending on the command line switch, set the value of variable 
+    <b>%ALox.VERBOSITY</b>
+    ([C++] (@ref      #aworx::lox::ALox::VERBOSITY),
+     [C#]  (@ref  #cs::aworx::lox::ALox::VERBOSITY),
+     [Java](@ref #com::aworx::lox::ALox::VERBOSITY)) to <c>"$MYAPP_VERBOSITY_1[2|3]"</c>,
+    also in protected mode. The \c '$' sign here substitutes the variables' value with 
+    the contents of named variable.
+    
+  What is achieved here, is that there are custom 'presets' defined for the verbosities
+  and those are all that the end-user can set! <br>
+  
+  Furthermore, if the substitution would be set to
+  <c>"$MYAPP_UNDOCUMENTED_SWITCH ; $MYAPP_VERBOSITY_1[2|3]"</c> then, in addition, a 
+  hidden new configuration variable is exposed. This might be used in "the field" when 
+  something goes wrong with a deployed application and more logging is wanted, because 
+  with this new undocumented variable each <em>Log Domain</em> is switchable again.  
+     
+- Finally, before the termination of a process, copy those auto-generated ALox variables 
+  that you are interested in to your write-enabled configuration plug-in.
+  This way, the user sees variables with comments and learns how to leverage those.
+  The sample above uses method  
+  <b>%Configuration.FetchFromDefault</b>
+   ([C++] (@ref      #aworx::lib::config::Configuration::FetchFromDefault),
+    [C#]  (@ref  #cs::aworx::lib::config::Configuration::FetchFromDefault),
+    [Java](@ref #com::aworx::lib::config::Configuration::fetchFromDefault)) to do so. This method
+  copies all vallues not found in the given plug-in from the default values plug-in.
+  Instead of using this simple method, a selective approach can be taken to copy 
+  exactly the values wanted. 
+  
+
+--------------------------------------------------------------------
+<center>Next chapter: \ref man_external_verbosity_configuration </center> <center> \ref manual "Back to index" </center>
+
+*/

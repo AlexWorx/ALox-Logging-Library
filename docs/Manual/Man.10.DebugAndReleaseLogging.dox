@@ -127,6 +127,14 @@ identify how release logging differs and derive a guideline on how to implement 
    In Java, it is a good advice to obfuscate release software to make reverse engineering much harder this way.
    For security reasons and to protect a companies or programmers intellectual property.
 
+\attention
+  If release logging is used, the explicit initialization of ALox by invoking
+  <b>%ALox.Init</b>
+    ([C++](@ref      aworx::lox::ALox::Init),
+    [C#]  (@ref  cs::aworx::lox::ALox::Init),
+    [Java](@ref com::aworx::lox::ALox::init))) is \b mandatory and failure
+  to do so might lead to critical errors and undefined behavior in release builds
+  when debug-logging is pruned!
 
 <p>
 ## Further Thoughts ##

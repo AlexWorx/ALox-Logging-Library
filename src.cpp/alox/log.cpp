@@ -65,15 +65,18 @@ namespace aworx {
 
         // add a VStudio logger if this a VStudio debug session
         #if defined(ALIB_VSTUDIO) &&  defined(ALIB_DEBUG)
-            if(      System::IsDebuggerPresent()
-                 && !ALIB::Config.IsTrue( ALox::ConfigCategoryName, "NO_IDE_LOGGER" ))
+            if( System::IsDebuggerPresent() )
             {
-                IDELogger= new VStudioLogger("IDE_LOGGER");
+                Variable variable( ALox::NO_IDE_LOGGER );
+                if( variable.Load() == 0 || ! variable.IsTrue() )
+                {
+                    IDELogger= new VStudioLogger("IDE_LOGGER");
 
-                // add logger
-                lox->SetVerbosity( IDELogger, Verbosity::Verbose              , "/"                  );
-                lox->SetVerbosity( IDELogger, Verbosity::Warning, ALox::InternalDomains );
-            }
+                    // add logger
+                    lox->SetVerbosity( IDELogger, Verbosity::Verbose              , "/"                  );
+                    lox->SetVerbosity( IDELogger, Verbosity::Warning, ALox::InternalDomains );
+                }
+           }
         #endif
 
         // add a default console logger
@@ -133,8 +136,6 @@ namespace aworx {
 
     void Log::RemoveALibReportWriter()
     {
-        ALIB_ASSERT_WARNING( DebugReportWriter != nullptr, "Log::RemoveReportWriter(): No ALoxReportWriter to remove." );
-
         // replace the report writer (if we replaced it before)
         if ( DebugReportWriter != nullptr )
         {

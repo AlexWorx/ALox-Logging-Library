@@ -80,8 +80,8 @@ void LSD2()     {  Log_SetDomain( "LSD2", Scope::Method );    Log_Info( "" );   
     class StoreDataTestThread : public Thread
     {
         public:
-        ALIBUnitTesting& ut;
-        StoreDataTestThread( ALIBUnitTesting& ut ) :ut(ut) {}
+        AWorxUnitTesting& ut;
+        StoreDataTestThread( AWorxUnitTesting& ut ) :ut(ut) {}
         virtual void Run()
         {
 
@@ -220,7 +220,7 @@ UT_METHOD(Log_Prefix)
     UT_INIT();
 
     // we have to clear  all trim rules and set a new one to have a longer path
-    Log_ClearSourcePathTrimRules(Inclusion::Include, false );
+    Log_ClearSourcePathTrimRules(Reach::Global, false );
     Log_SetSourcePathTrimRule( "*/alox/src.cpp/", Inclusion::Exclude );
 
 
@@ -335,8 +335,8 @@ UT_METHOD(Log_ScopeDomains)
     UT_INIT();
 
     // we have tell alox to include more directories in the scope path
-    Log_ClearSourcePathTrimRules( Inclusion::Include, false );
-    Log_SetSourcePathTrimRule( "*/src.cpp/", Inclusion::Exclude, 0, Case::Ignore, Inclusion::Include, "/test/test2/test3" );
+    Log_ClearSourcePathTrimRules( Reach::Global, false );
+    Log_SetSourcePathTrimRule( "*/src.cpp/", Inclusion::Exclude, 0, Case::Ignore, "/test/test2/test3", Reach::Global );
 
     Log_AddDebugLogger();
     MemoryLogger ml;
@@ -454,7 +454,7 @@ UT_METHOD(Log_ScopeDomains)
                            UT_EQ( "@/OTHER_THREAD/DTT#", ml.MemoryLog );  ml.MemoryLog._(); ml.AutoSizes.Reset();
     Log_Info( "ME", "" );  UT_EQ( "@/THIS_THREAD/ME#"  , ml.MemoryLog );  ml.MemoryLog._(); ml.AutoSizes.Reset();
 
-    //Log_LogConfig( "", Verbosity::Info, "Configuration now is:" ); ml.MemoryLog._(); ml.AutoSizes.Reset();
+    //Log_LogState( "", Verbosity::Info, "Configuration now is:" ); ml.MemoryLog._(); ml.AutoSizes.Reset();
 
     Log_RemoveLogger( &ml );
 }
@@ -480,8 +480,8 @@ UT_METHOD(Lox_ScopeDomains)
     Lox lox("ReleaseLox");
 
     // we have to tell alox to include more directories in the scope path
-    Log_ClearSourcePathTrimRules( Inclusion::Include, false );
-    Log_SetSourcePathTrimRule( "*/src.cpp/", Inclusion::Exclude, 0, Case::Ignore, Inclusion::Include, "/test/test2/test3" );
+    Lox_ClearSourcePathTrimRules( Reach::Global, false );
+    Lox_SetSourcePathTrimRule( "*/src.cpp/", Inclusion::Exclude, 0, Case::Ignore, "/test/test2/test3" );
 
     aworx::TextLogger* consoleLogger= Lox::CreateConsoleLogger();
     MemoryLogger ml;
@@ -530,7 +530,7 @@ UT_METHOD(Lox_ScopeDomains)
                                                                    DDCHECK_RL( "","@/GLOBAL/PO2/PO1/PATH/FILE/METHOD#"  , ml );
     #endif
 
-    //Lox_LogConfig( "", Verbosity::Info, "Configuration now is:" ); ml.MemoryLog._(); ml.AutoSizes.Reset();
+    //Lox_LogState( "", Verbosity::Info, "Configuration now is:" ); ml.MemoryLog._(); ml.AutoSizes.Reset();
 
     // remove all previous scope domains
     Lox_SetDomain( "",     Scope::Global      );
@@ -553,7 +553,7 @@ UT_METHOD(Lox_ScopeDomains)
     Lox_SetDomain( "/T_O3",Scope::ThreadOuter );  CICHECK_RL( ""   ,"@/T_O3/MET/T_I/T_I2#"   ,ml );
     Lox_SetDomain( "/T_I3",Scope::ThreadInner );  DDCHECK_RL( ""   ,"@/T_I3#"                ,ml );
 
-    //Lox_LogConfig( "", Verbosity::Info, "Configuration now is:" ); ml.MemoryLog._(); ml.AutoSizes.Reset();
+    //Lox_LogState( "", Verbosity::Info, "Configuration now is:" ); ml.MemoryLog._(); ml.AutoSizes.Reset();
 
     Lox_SetDomain( "",     Scope::Method      );  DDCHECK_RL( ""   ,"@/T_I3#"                ,ml );
 
@@ -735,7 +735,7 @@ UT_METHOD(Log_Once_Test)
         UT_EQ( 4, ml.CntLogs ); ml.CntLogs= 0;
     #endif
 
-    //Log_LogConfig( "", Verbosity::Info, "Configuration now is:" ); ml.MemoryLog._(); ml.AutoSizes.Reset();
+    //Log_LogState( "", Verbosity::Info, "Configuration now is:" ); ml.MemoryLog._(); ml.AutoSizes.Reset();
 
     Log_RemoveLogger( &ml );
 }
@@ -846,7 +846,7 @@ UT_METHOD(Log_Store_Test)
     { Log_Retrieve( data,           Scope::ThreadOuter ); UT_EQ( "Main Thread Data"         , data->StringValue ); }
     { Log_Retrieve( data,  "mykey", Scope::ThreadOuter ); UT_EQ( "Main Thread Data, keyed"  , data->StringValue ); }
 
-    //Log_LogConfig( "", Verbosity::Info, "Configuration now is:" );
+    //Log_LogState( "", Verbosity::Info, "Configuration now is:" );
 
     // test if everything gets deleted nicely
     Log_Prune( LOG_LOX.Reset() );

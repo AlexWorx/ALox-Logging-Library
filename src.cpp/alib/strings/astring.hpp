@@ -702,7 +702,7 @@ class AString : public TString
             // first allocation? Go with given growth as size
             if (capacity == 0 )
             {
-                SetBuffer( minimumGrowth );
+                SetBuffer( minimumGrowth > 16 ? minimumGrowth : 16 );
                 return;
             }
 
@@ -1220,16 +1220,20 @@ class AString : public TString
 
         /** ****************************************************************************************
          * All characters defined in given set at, left of and right of the given index
-         * are removed from the string.
+         * are removed from the string.<br>
+         * The method returns index of the first character of those characters that were behind the
+         * trimmed region. With legal \p index given, this value can only be smaller or equal to
+         * \p index. If \p index is out of bounds, the length of the string is returned.
          *
          * @param index       The index to perform the trim operation at. Has to be between zero
-         *                    and <em>length -1</em>.
+         *                    and <em>Length() -1</em>.
          * @param trimChars   Pointer to a zero terminated set of characters to be omitted.
          *                    Defaults to \ref DefaultWhitespaces.
-         * @return  \c *this to allow concatenated calls.
+         * @return  The index of the first character of those characters that were behind the
+         *          trimmed region.
          ******************************************************************************************/
         ALIB_API
-        AString& TrimAt( int index, const TString& trimChars= DefaultWhitespaces );
+        int  TrimAt( int index, const TString& trimChars= DefaultWhitespaces );
 
         /** ****************************************************************************************
          * All characters defined in given set are removed at the beginning of this string.
@@ -1243,7 +1247,17 @@ class AString : public TString
         inline
         AString& TrimStart( const TString& trimChars= DefaultWhitespaces )
         {
-            return TrimAt( 0, trimChars );
+            if (length == 0 || trimChars.IsEmpty() )
+                return *this;
+
+            int idx= IndexOfAny<false>( trimChars, Inclusion::Exclude);
+            if ( idx > 0 )
+                Delete<false>( 0, idx );
+            else if ( idx < 0 )
+                length= 0;
+
+            ALIB_STRING_DBG_UNTERMINATE(*this, 0)
+            return *this;
         }
 
         /** ****************************************************************************************
@@ -1258,7 +1272,12 @@ class AString : public TString
         inline
         AString& TrimEnd( const TString& trimChars= DefaultWhitespaces )
         {
-            return TrimAt( length - 1, trimChars );
+            if( length > 0 &&  trimChars.IsNotEmpty() )
+            {
+                length= LastIndexOfAny<false>( trimChars, Inclusion::Exclude, length - 1 ) + 1;
+                ALIB_STRING_DBG_UNTERMINATE(*this, 0)
+            }
+            return *this;
         }
 
     /** ############################################################################################
@@ -1594,7 +1613,7 @@ class AString : public TString
             if ( TCheck && result == 0 && IsNull() )
             {
                 // special treatment if currently nothing is allocated and a blank string ("") is added:
-                // we allocate, which means, we are not a null object anymore!
+                // we allocate, which means, we are not a nulled object anymore!
                 // (...also, in this case we check the src parameter)
                 SetBuffer( 15 );
             }
@@ -1651,7 +1670,7 @@ class AString : public TString
                 if ( src.AdjustRegion( regionStart, regionLength ) )
                 {
                     // special treatment if currently nothing is allocated and a blank string ("") is added:
-                    // we allocate, which means, we are not a null object anymore!
+                    // we allocate, which means, we are not a nulled object anymore!
                     // (...also, in this case we check the src parameter)
                     if ( IsNull() )
                         SetBuffer( 15 );
@@ -1662,7 +1681,7 @@ class AString : public TString
             {
                 //---- non-checking version ----
                 ALIB_ASSERT_ERROR(    regionStart >= 0 && regionLength >= 0
-                                   && regionLength != CString::MaxLen // has to be separatedly checked!
+                                   && regionLength != CString::MaxLen // has to be separately checked!
                                    && regionStart +  regionLength  <= src.Length(),
                                    "NC: Invalid region given" )
             }

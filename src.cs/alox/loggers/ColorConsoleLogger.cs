@@ -20,6 +20,7 @@ using cs.aworx.lib.strings;
  **************************************************************************************************/
 using cs.aworx.lox.core;
 using cs.aworx.lib.enums;
+using cs.aworx.lib.config;
 
 
 namespace cs.aworx.lox.loggers    {
@@ -129,10 +130,10 @@ public class ColorConsoleLogger : TextLogger
         ConsoleColor fgCol= Console.ForegroundColor;
 
         // evaluate environment variable "ALOX_CONSOLE_HAS_LIGHT_BACKGROUND"
-        int  configVarSet;
-        bool configVarTrue= ALIB.Config.IsTrue( ALox.ConfigCategoryName, "CONSOLE_HAS_LIGHT_BACKGROUND", out configVarSet );
-        if( configVarSet != 0 )
-            IsBackgroundLight=  configVarTrue;
+        Variable variable= new Variable( ALox.CONSOLE_HAS_LIGHT_BACKGROUND );
+        variable.Load();
+        if ( variable.Size() > 0 )
+            IsBackgroundLight=  variable.IsTrue();
         else
         {
             IsBackgroundLight=      fgCol == ConsoleColor.Black

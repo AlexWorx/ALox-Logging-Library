@@ -20,30 +20,29 @@ using namespace aworx;
 
 int main( int argc, char **argv )
 {
-    ::testing::InitGoogleTest(&argc, argv);
+    ::testing::InitGoogleTest( &argc, argv);
 
-    aworx::lox::ALox::Init( aworx::lib::enums::Inclusion::Include, argc, (void**) argv );
+    aworx::lox::ALox::Init( argc, argv );
+
     //aworx::lib::Report::GetDefault().HaltOnWarning= true;
 
 //    ::testing::GTEST_FLAG(filter) = "CPP_Strings_AString*:CPP_Ticks*:CPP_Thread*:CPP_ALox*:CPP_Tutorial*";
 
-//  ::testing::GTEST_FLAG(filter) = "CPP_Conf*";
 
-//    ::testing::GTEST_FLAG(filter) = "CPP_Strings_AString.*";
-//    ::testing::GTEST_FLAG(filter) = "CPP_Strings_AString.WCharConversion";
-//    ::testing::GTEST_FLAG(filter) = "CPP_SubstringAndTokenizer.*";
-//    ::testing::GTEST_FLAG(filter) = "CPP_Strings_AS.*";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Strings_AString.*";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Strings_Substring.*";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_StringsTokenizer.*";
 
-//    ::testing::GTEST_FLAG(filter) = "CPP_Strings_ASBasic.Append*";
-//    ::testing::GTEST_FLAG(filter) = "CPP_Strings_ASBasic*";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Time*";
 
-//    ::testing::GTEST_FLAG(filter) = "CPP_Ticks*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Threads*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Threads.ThreadSimple";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Threads.SmartLock";
 
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_System.Dir*";
-//    ::testing::GTEST_FLAG(filter) = "CPP_Config.IniFiles";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Config.IniFiles";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Config.ConfigDefaultAndProtected";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Config.ConfigReplacementVariables";
 
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Tutorial*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Tutorial.Hello*";
@@ -51,9 +50,13 @@ int main( int argc, char **argv )
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Logger.*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Logger.Log_TestMultiline*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Lox*";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Lox.Log_GetState";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Lox.Log_DumpStateOnExit";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Lox.Log_WriteVerbosities";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Lox.Log_TestThreads*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Lox.Log_SetSourcePathTrimRule";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Lox.Log_ScopeInfoCacheTest";
+//    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Lox.Log_GetState*";
 
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Lox_Release.Lox_LoggerInTwoLoxes*";
 
@@ -71,6 +74,7 @@ int main( int argc, char **argv )
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Logger.Log_TextLogger_RegisterStreamLocks*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Logger.Log_TextLogger_ObjectConverter*";
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALox_Logger.Log_TextLogger_FormatConfig*";
+
 
 //    ::testing::GTEST_FLAG(filter) = "CPP_ALib_Compatiblity_QT.*";
 

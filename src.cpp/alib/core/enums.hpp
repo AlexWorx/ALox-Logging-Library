@@ -39,7 +39,7 @@ namespace                   enums {
 
 
 /** ************************************************************************************************
- * Denotes if sth. is switched on or off
+ * Denotes if sth. is switched on or off.
  **************************************************************************************************/
 enum class Switch
 {
@@ -77,6 +77,14 @@ enum class Inclusion
     Exclude,  ///<  Chooses exclusion.
 };
 
+/** ************************************************************************************************
+ * Denotes the reach of something.
+ **************************************************************************************************/
+enum class Reach
+{
+    Global,    ///< Denotes global reach.
+    Local      ///< Denotes local reach.
+};
 
 /** ************************************************************************************************
  * Denotes if current, existing data should be cleared or if new data should be
@@ -223,6 +231,9 @@ using     Alignment=        aworx::lib::enums::Alignment;
 
 /** Type alias name in namespace #aworx. */
 using     Inclusion=        aworx::lib::enums::Inclusion;
+
+/** Type alias name in namespace #aworx. */
+using     Reach=            aworx::lib::enums::Reach;
 
 /** Type alias name in namespace #aworx. */
 using     CurrentData=      aworx::lib::enums::CurrentData;

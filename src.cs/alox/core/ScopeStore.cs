@@ -25,7 +25,7 @@ public class ScopeStore<T>
 {
     // #############################################################################################
     // Public fields
-    // These fields are public, but publicly accessed only for LogConfig and Reset()
+    // These fields are public, but publicly accessed only for State and Reset()
     // (bauhaus code style, omitting getters. For library users this is still invisible, as
     // the stores are protected in class Lox)
     // #############################################################################################
@@ -316,8 +316,8 @@ public class ScopeStore<T>
                 actPathMapNode= languageStore.Get( languageKeySubstr.Set(languageKey), create, separators );
                 return;
             }
-            else
-                languageKey._( separators[1] );
+            
+            languageKey._( separators[1] );
 
             // key: filename
             languageKey._( '-' ) // we need a prefix to have all classes share one start node which is not
@@ -455,8 +455,6 @@ public class ScopeStore<T>
                     else if ( cmd == 1 ) // remove
                         languageStore.Remove( actPathMapNode );
                 }
-                else
-                    oldValue= default(T);
 
                 return oldValue;
             }

@@ -1,10 +1,13 @@
 // #################################################################################################
-//  Unit Tests - AWorx Library
+//  ut_com_aworx - AWorx Unit Test Support using ALib and ALox
 //
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
+//
+//  Relies on ALox logging library, which in turn relies on ALib. Hence, ALibs' unit
+//  tests can only be compiled if ALox library is present.
 // #################################################################################################
-package ut_com_aworx_uttools;
+package ut_com_aworx;
 
 
 import com.aworx.lib.Report;
@@ -30,7 +33,7 @@ public class UTWriter implements ReportWriter
     public UTWriter()
     {
         lox= new Lox( "UTLox" );
-        lox.omittablePackagePrefixes.add( "ut_com_aworx_uttools" );
+        lox.omittablePackagePrefixes.add( "ut_com_aworx" );
             
         logger= Lox.createConsoleLogger( "UT ALib ReportWriter" );
 
@@ -53,6 +56,7 @@ public class UTWriter implements ReportWriter
     @Override
     public void NotifyActivation( Phase phase )
     {
+        /* nothing to do here */
     }
 
     /** ************************************************************************************

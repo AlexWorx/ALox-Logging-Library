@@ -67,27 +67,28 @@ public static class ALIB
          * Besides this version number, field #Revision indicates if this is a revised version
          * of a former release.
          */
-        public static readonly  int                    Version                                =1604;
+        public static readonly  int                    Version                                =1607;
 
         /**
          * The revision number of this release. Each ALib #Version is initially released as
          * revision \e 0. Pure bug-fix releases that do not change the interface of ALib
          * are holding the same #Version but an increased number in this field.
          */
-        public static readonly  int                    Revision                                  =2;
+        public static readonly  int                    Revision                                  =0;
 
         /**
          * This is the configuration singleton for ALib.
          * In method #Init(), this configuration is optionally filled with the default
          * configuration plug-ins
-         * \ref cs::aworx::lib::config::EnvironmentPlugIn "EnvironmentPlugIn"
+         * \ref cs::aworx::lib::config::EnvironmentPlugin "EnvironmentPlugin"
          * and
-         * \ref cs::aworx::lib::config::CommandLinePlugIn "CommandLinePlugIn".
+         * \ref cs::aworx::lib::config::CommandLinePlugin "CommandLinePlugin".
          * Further, custom plug-ins may be attached.
          *
          * For more information, see \ref cs::aworx::lib::config.
          */
         public static       Configuration           Config                     =new Configuration();
+
 
         /**
          * The name of the configuration category of configuration variables used by the AWorx
@@ -98,7 +99,17 @@ public static class ALIB
          * bootstrap code, before the invocation of #Init.
          */
 
-        public  static      String                  ConfigCategoryName                      ="ALIB";
+        public  static      AString                 ConfigCategoryName      = new AString( "ALIB" );
+
+        /** Configuration variable definition */
+        public static       VariableDefinition      WAIT_FOR_KEY_PRESS = new VariableDefinition(
+
+            ALIB.ConfigCategoryName,   null,     "WAIT_FOR_KEY_PRESS",
+            "",
+            '\0', null, Variable.FormatHint.None,
+            "If true, the process waits for a key stroke on termination. If empty, under Windows \n"
+          + "behavior is detected, under other OSes, defaults to false." );
+
 
         /**
         * If true, within #TerminationCleanUp, it is waited for a key press in the console
@@ -106,7 +117,7 @@ public static class ALIB
         * By default, this flag is enabled when debugging a console application under Visual
         * Studio.<br>
         * This default behavior can be overruled by setting configuration variable
-        * [ALIB_WAIT_FOR_KEY_PRESS_ON_TERMINATION](../group__GrpALoxConfigVars.html).<br>
+        * [ALIB_WAIT_FOR_KEY_PRESS](../group__GrpALoxConfigVars.html).<br>
         * In addition, this public flag may be modified at runtime.
         */
         public static       bool                    WaitForKeyPressOnTermination;
@@ -146,7 +157,7 @@ public static class ALIB
          * multiple threads, an alternative to registering each writing entity, is to
          * invoke \b AddAcquirer just two times in a row with \c null at the start of a process
          * and then never do this again (and never de-register). This way, no thread needs
-         * to register/unregister but threads may still \b Acquire and \b Release the lock without
+         * to register/deregister but threads may still \b Acquire and \b Release the lock without
          * being registered. In other words, once a smart lock is enabled, subsequent registrations
          * are just used to count and identify the de-registration.
          *
@@ -197,96 +208,58 @@ public static class ALIB
         private static      bool                    isInitialized= false;
 
         /** ****************************************************************************************
-         * This method must (may) be called prior to using the AWorx library, e.g. at the beginning of
-         * the main() method of an application. It is OK, to call this method more than once, which
-         * allows independent code blocks (e.g. libraries) to bootstrap ALIB without interfering.
-         * Only the first invocation is effective.
+         * This method must be called prior to using ALib, e.g. at the beginning of
+         * the \c main() method of an application. It is OK, to call this method more than once, which
+         * allows independent code blocks (e.g. libraries) to bootstrap %ALIB independently.
+         * However, only the first invocation is effective with the exclamation that if
+         * command line parameters are provided with a call, those are set.
+         * Also, the very first invocation should not be interrupted by a parallel invocation of a
+         * second thread. Consequently, it has to be assured that this method is invoked once on
+         * the real bootstrap an app.
          *
          * In the C# version of the AWorx library, the invocation of this method is optional.
          * However, it is good practice to invoke this method in the main() method of a process
          * and provide the command line arguments. If no invocation is performed, no
          * configuration plug-ins are set.
          *
-         * If the configuration should <em>not</em> take
-         * command line arguments and/or environment variables into account, then the parameters
-         * can be set accordingly. If other, custom configuration data sources should be used
-         * already with this method (in the current implementation, the only configuration variable
-         * read with this method is \c WAIT_FOR_KEY_PRESS_ON_TERMINATION), then such plug-in(s)
-         * have to be added to public, static field #Config prior to invoking this method.
+         * \note
+         *   If other, custom configuration data sources should be used already with this method
+         *   (in the current implementation, the only configuration variable read with this method
+         *   is \c WAIT_FOR_KEY_PRESS), then such plug-in(s) have to be added to
+         *   public, static field #Config prior to invoking this method.
          *
-         * @param useEnv        If true, a
-         *                      \ref cs::aworx::lib::config::EnvironmentPlugIn "EnvironmentPlugIn"
-         *                      is attached to the
-         *                      \ref cs::aworx::lib::ALIB::Config "ALIB.Config" singleton. Hence,
-         *                      environment variables are read and potentially overwrite
-         *                      configuration variables in other configuration plug-ins.<br>
-         *                      Defaults to true.
-         * @param args          Parameter which in the standard case is taken from  C/C++ main()
-         *                      method providing the command line arguments.
-         *                      If arguments are provided, a
-         *                      \ref cs::aworx::lib::config::CommandLinePlugIn "CommandLinePlugIn"
-         *                      is attached to the
-         *                      \ref cs::aworx::lib::ALIB::Config "ALIB.Config" singleton. Hence,
-         *                      command line options are read and those potentially overwrite
-         *                      configuration variables in other configuration plug-ins.<br>
-         *                      Defaults to null.
+         * @param args    Parameters taken from <em>standard C#</em> method \c main()
+         *                (the list of command line arguments).
+         *                Defaults to null.
          ******************************************************************************************/
-        public static void     Init(  bool useEnv= true, String[] args= null)
+        public static void     Init( String[] args= null )
         {
+            Config.SetCommandLineArgs( args );
+
             if ( isInitialized )
                 return;
             isInitialized= true;
 
+
             // set the system's locale as the default for our static default number format
             NumberFormat.Global.SetFromLocale();
 
-            lock( Config )
-            {
-                // remove or insert environment plug-in
-                if ( useEnv && Config.EnvCP == null )
-                {
-                    Config.EnvCP= new EnvironmentPlugIn();
-                    Config.InsertPlugin( Config.EnvCP,    Configuration.PrioEnvVars );
-                }
-
-                if ( !useEnv && Config.EnvCP != null )
-                {
-                    Config.RemovePlugin( Config.EnvCP );
-                    Config.EnvCP= null;
-                }
-
-                // insert command line plug-in
-                bool useArgs= ( args != null && args.Length > 0 );
-                if ( useArgs && Config.CmdLineCP == null )
-                {
-                    Config.CmdLineCP= new CommandLinePlugIn ( args );
-                    Config.InsertPlugin( Config.CmdLineCP, Configuration.PrioCmdLine );
-                }
-            }
-
             // --- determine if we want to wait for a keypress upon termination ---
             {
-                // read configuration
-                int found= 0;
-                bool configValue=   Config.IsTrue( ALIB.ConfigCategoryName, "WAIT_FOR_KEY_PRESS_ON_TERMINATION", out found );
-                if ( found != 0 )
-                    WaitForKeyPressOnTermination= configValue;
+                Variable variable= new Variable( ALIB.WAIT_FOR_KEY_PRESS );
+                variable.Load();
+                if ( variable.Size() > 0 )
+                    WaitForKeyPressOnTermination= variable.IsTrue();
                 else
                 {
                     #if ALIB_VSTUDIO
-
                         WaitForKeyPressOnTermination=  ALIB.SysInfo_HasConsoleWindow && System.Diagnostics.Debugger.IsAttached;
-
                     #else
-
                         WaitForKeyPressOnTermination=  false;
-
                     #endif // WIN32
                 }
             }
-
-
-        }
+         }
 
         /** ****************************************************************************************
          * Got nothing to do in C#.

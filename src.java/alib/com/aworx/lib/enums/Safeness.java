@@ -13,4 +13,4 @@ public enum Safeness
 {
     SAFE,    ///<  Do it or treat it with safety.
     UNSAFE,  ///<  Omit checks or perform unsafe operations.
-};
+}

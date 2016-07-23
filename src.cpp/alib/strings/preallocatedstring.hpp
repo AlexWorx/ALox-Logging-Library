@@ -7,7 +7,7 @@
 /**@file*///<- needed for Doxygen include of the using statements at the end of the file
 
 // to preserve the right order, we are not includable directly from outside.
-#if !defined(FROM_HPP_ALIB) || defined(HPP_ALIB_STRINGS_ASPREALLOC)
+#if !defined(FROM_HPP_ALIB) || defined(HPP_ALIB_STRINGS_PREALLOCATEDSTRING)
     #error "include alib/alib.hpp instead of this header"
 #endif
 
@@ -18,8 +18,8 @@
 #endif
 
 // then, set include guard
-#ifndef HPP_ALIB_STRINGS_ASPREALLOC
-#define HPP_ALIB_STRINGS_ASPREALLOC 1
+#ifndef HPP_ALIB_STRINGS_PREALLOCATEDSTRING
+#define HPP_ALIB_STRINGS_PREALLOCATEDSTRING 1
 
 
 // #################################################################################################
@@ -287,4 +287,4 @@ using String4K =  aworx::lib::strings::PreallocatedString<4096>;
 
 } // namespace aworx
 
-#endif // HPP_ALIB_STRINGS_ASPREALLOC
+#endif // HPP_ALIB_STRINGS_PREALLOCATEDSTRING

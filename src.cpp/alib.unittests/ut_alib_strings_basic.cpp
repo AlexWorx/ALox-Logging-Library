@@ -82,7 +82,7 @@ namespace ut_aworx {
 
 UT_CLASS()
 
-void testParam            ( ALIBUnitTesting& ut, const char* exp, const String&         as )
+void testParam            ( AWorxUnitTesting& ut, const char* exp, const String&         as )
 {
     #if defined(ALIB_DEBUG_STRINGS)
         ALIB_STRING_DBG_CHK(&as);
@@ -92,18 +92,7 @@ void testParam            ( ALIBUnitTesting& ut, const char* exp, const String& 
     UT_EQ( exp, asTemp  );
     UT_TRUE( as.Equals(exp) );
 }
-void testParamTerminatable( ALIBUnitTesting& ut, const char* exp, const TString& as )
-{
-    #if defined(ALIB_DEBUG_STRINGS)
-        ALIB_STRING_DBG_CHK(&as);
-    #endif
-    String32 asTemp;
-    asTemp._(as);
-    UT_EQ( exp, asTemp  );
-    UT_TRUE( as.Equals(exp) );
-}
-
-void testParamPreallocatedString( ALIBUnitTesting& ut, const char* exp, const String64& as )
+void testParamTerminatable( AWorxUnitTesting& ut, const char* exp, const TString& as )
 {
     #if defined(ALIB_DEBUG_STRINGS)
         ALIB_STRING_DBG_CHK(&as);
@@ -114,7 +103,18 @@ void testParamPreallocatedString( ALIBUnitTesting& ut, const char* exp, const St
     UT_TRUE( as.Equals(exp) );
 }
 
-void testParamSubstring( ALIBUnitTesting& ut, const char* exp, const Substring& as )
+void testParamPreallocatedString( AWorxUnitTesting& ut, const char* exp, const String64& as )
+{
+    #if defined(ALIB_DEBUG_STRINGS)
+        ALIB_STRING_DBG_CHK(&as);
+    #endif
+    String32 asTemp;
+    asTemp._(as);
+    UT_EQ( exp, asTemp  );
+    UT_TRUE( as.Equals(exp) );
+}
+
+void testParamSubstring( AWorxUnitTesting& ut, const char* exp, const Substring& as )
 {
     #if defined(ALIB_DEBUG_STRINGS)
         ALIB_STRING_DBG_CHK(&as);

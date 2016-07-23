@@ -38,10 +38,11 @@
  */
 package com.aworx.lib;
 
-import com.aworx.lib.config.*;
+import com.aworx.lib.config.Configuration;
 import com.aworx.lib.enums.Case;
 import com.aworx.lib.enums.Inclusion;
 import com.aworx.lib.enums.LockMode;
+import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.CString;
 import com.aworx.lib.strings.NumberFormat;
 import com.aworx.lib.strings.Substring;
@@ -70,28 +71,28 @@ public final class ALIB
          * Besides this version number, field #revision indicates if this is a revised version
          * of a former release.
          */
-        public static final int         version                                               =1604;
+        public static final int         version                                               =1607;
 
         /**
          * The revision number of this release. Each ALib #version is initially released as
          * revision \e 0. Pure maintenance releases that do not change the interface of ALox
          * are holding the same #version but an increased number in this field.
          */
-        public static final int         revision                                                 =2;
+        public static final int         revision                                                 =0;
 
 
         /**
          *  This is the configuration singleton for ALib.
          *  In method #init(), this configuration is optionally filled with the default
          *  configuration plug-ins
-         *  \ref com::aworx::lib::config::EnvironmentPlugIn "EnvironmentPlugIn"
+         *  \ref com::aworx::lib::config::EnvironmentPlugin "EnvironmentPlugin"
          *  and
-         *  \ref com::aworx::lib::config::CommandLinePlugIn "CommandLinePlugIn".
+         *  \ref com::aworx::lib::config::CommandLinePlugin "CommandLinePlugin".
          *  Further, custom plug-ins may be attached.
          *
          *  For more information, see namespace \ref com::aworx::lib::config.
          */
-        public static  Configuration    config                    = new Configuration( true, null );
+        public static  Configuration    config                    = new Configuration();
 
         /**
          * The name of the configuration category of configuration variables used by the AWorx
@@ -101,7 +102,7 @@ public final class ALIB
          * respect to environment variable settings). Changes should be placed at very initial
          * bootstrap code, before the invocation of #init.
          */
-        public  static String           configCategoryName                                 ="ALIB";
+        public  static AString          configCategoryName                  = new AString( "ALIB" );
 
         /**
          * This is a general mutex that is used by ALib internally but also may be used from outside
@@ -138,7 +139,7 @@ public final class ALIB
          * multiple threads, an alternative to registering each writing entity, is to
          * invoke \b AddAcquirer just two times in a row with \c null at the start of a process
          * and then never do this again (and never de-register). This way, no thread needs
-         * to register/unregister but threads may still \b Acquire and \b Release the lock without
+         * to register/deregister but threads may still \b Acquire and \b Release the lock without
          * being registered. In other words, once a smart lock is enabled, subsequent registrations
          * are just used to count and identify the de-registration.
          *
@@ -165,43 +166,35 @@ public final class ALIB
         protected static      boolean   isInitialized= false;
 
         /** ****************************************************************************************
-         * This method must (may) be called prior to using the AWorx library, e.g. at the beginning of
-         * the main() method of an application. It is OK, to call this method more than once, which
-         * allows independent code blocks (e.g. libraries) to bootstrap ALIB without interfering.
+         * This method must be called prior to using ALib, e.g. at the beginning of
+         * the \c main() method of an application. It is OK, to call this method more than once, which
+         * allows independent code blocks (e.g. libraries) to bootstrap %ALIB independently.
+         * However, only the first invocation is effective with the exclamation that if
+         * command line parameters are provided with a call, those are set.
+         * Also, the very first invocation should not be interrupted by a parallel invocation of a
+         * second thread. Consequently, it has to be assured that this method is invoked once on
+         * the real bootstrap an app.
          *
-         * In the C# version of the AWorx library, the invocation of this method is optional.
+         * In the Java version of the AWorx Library (ALib), the invocation of this method is optional.
          * However, it is good practice to invoke this method in the main() method of a process
          * and provide the command line arguments. If no invocation is performed, no
          * configuration plug-ins are set.
          *
-         * If the configuration should <em>not</em> take
-         * command line  arguments and/or environment variables into account, then the parameters
-         * can be set accordingly. If other, custom configuration data sources should be used
-         * already with this method (however, in the current implementation, no configuration variable
-         * are read), then such plug-in(s)
-         * have to be added to public, static field #config prior to invoking this method.
+         * If other, custom configuration data sources should be used already with this method
+         * (however, in the current Java implementation, no configuration variables are read),
+         * then such plug-in(s) have to be added to public, static field #config prior to invoking
+         * this method.
          * In other words, currently it is irrelevant whether custom plug-ins are added prior
          * or after invoking this method. But in future versions this may change and in other
          * language versions of ALib, some variables are read. Therefore, it is good practice
          * to add custom plug-ins prior to invoking this method.
          *
-         *  @param useEnv  If true, a
-         *                 \ref com::aworx::lib::config::EnvironmentPlugIn "EnvironmentPlugIn"
-         *                 is attached to the
-         *                 \ref com::aworx::lib::ALIB::config "ALIB.config" singleton. Hence,
-         *                 environment variables are read and potentially overwrite
-         *                 configuration variables in other configuration plug-ins.
-         *  @param args    Parameter which in the standard case is taken from  C/C++ main()
-         *                 method providing the command line arguments.
-         *                 If arguments are provided, a
-         *                 \ref com::aworx::lib::config::CommandLinePlugIn "CommandLinePlugIn"
-         *                 is attached to the
-         *                 \ref com::aworx::lib::ALIB::config "ALIB.config" singleton. Hence,
-         *                 command line options are read and those potentially overwrite
-         *                 configuration variables in other configuration plug-ins.
+         * @param args    Parameters taken from <em>standard Java</em> method \c main()
+         *                (the list of command line arguments). Accepts \c null to ignore
+         *                command line parameters.
          ******************************************************************************************/
         synchronized
-        public static void     init(  boolean useEnv, String[] args )
+        public static void     init( String[] args )
         {
             if ( isInitialized )
                 return;
@@ -210,29 +203,8 @@ public final class ALIB
             // set the system's locale as the default for our static default number format
             NumberFormat.global.setFromLocale();
 
-            synchronized (config)
-            {
-                // remove or insert environment plug-in
-                if ( useEnv && config.envCP == null )
-                {
-                    config.envCP= new EnvironmentPlugIn();
-                    config.insertPlugin( config.envCP,    Configuration.PRIO_ENV_VARS );
-                }
 
-                if ( !useEnv && config.envCP != null )
-                {
-                    config.removePlugin( config.envCP );
-                    config.envCP= null;
-                }
-
-                // insert command line plug-in
-                boolean useArgs= ( args != null && args.length > 0 );
-                if ( useArgs && config.cmdLineCP == null )
-                {
-                    config.cmdLineCP= new CommandLinePlugIn ( args );
-                    config.insertPlugin( config.cmdLineCP, Configuration.PRIO_CMD_LINE );
-                }
-            }
+            config.setCommandLineArgs( args );
         }
 
         /** ****************************************************************************************
@@ -240,6 +212,7 @@ public final class ALIB
          ******************************************************************************************/
         public static void     terminationCleanUp()
         {
+            /* Got nothing to do in current Java version of ALib */
         }
 
     // #############################################################################################
@@ -347,7 +320,7 @@ public final class ALIB
                 Class.forName("android.app.Activity");
                 return true;
             }
-            catch (ClassNotFoundException e) {}
+            catch (@SuppressWarnings ("unused") ClassNotFoundException e) { /* void */}
             return false;
         }
 
@@ -407,7 +380,7 @@ public final class ALIB
                 long millisecs= sleepTime / 1000000L;
                 int  nanos=     (int) ( sleepTime % 1000000L );
 
-                try { Thread.sleep( millisecs, nanos ); } catch( InterruptedException e ) {}
+                try { Thread.sleep( millisecs, nanos ); } catch( @SuppressWarnings ("unused") InterruptedException e ) {/* void */}
                 time=  System.nanoTime();
             }
             while( time < targetTime );

@@ -15,6 +15,7 @@ using cs.aworx.lib.threads;
 using System.IO;
 using System.Diagnostics;
 using System.Threading;
+using cs.aworx.lib.config;
 
 namespace cs.aworx.lox.core {
 /** ************************************************************************************************
@@ -35,7 +36,7 @@ public class ScopeInfo
         protected        String                    loxName;
 
         /** The dictionary for thread names (a copy of that from our Lox)  */
-        protected Dictionary<int, String>          threadDictionary;
+        protected        Dictionary<int, String>   threadDictionary;
 
 
         /**  Line number within the source file (given by the diagnostics)  **/
@@ -174,16 +175,14 @@ public class ScopeInfo
             // read trim rules from config
             // do 2 times, 0== local list, 1== global list
             List<SourcePathTrimRule> trimInfoList;
-            AString rules       = new AString();
-            AString variableName= new AString();
             for( int trimInfoNo= 0; trimInfoNo < 2 ; trimInfoNo++ )
             {
                 // check if done... or set list
-                variableName._();
+                Variable variable= new Variable();
                 if ( trimInfoNo == 0 )
                 {
                     trimInfoList= LocalSPTRs;
-                    variableName._( loxName );
+                    variable.Define(ALox.SPTR_LOX, loxName).Load();
                 }
                 else
                 {
@@ -191,25 +190,18 @@ public class ScopeInfo
                         continue;
                     GlobalSPTRsReadFromConfig= true;
                     trimInfoList= GlobalSPTRs;
-                    variableName._( "GLOBAL" );
+                    variable.Define(ALox.SPTR_GLOBAL).Load();
                 }
-                variableName._( "_SOURCE_PATH_TRIM_RULES" );
 
-                // get auto sizes from last session
-                rules._();
-                int priority= ALIB.Config.Get( ALox.ConfigCategoryName, variableName, rules );
-                if( priority != 0 )
+                if( variable.Priority != 0 )
                 {
-                    Tokenizer rulesTok= new Tokenizer();
                     Tokenizer ruleTok = new Tokenizer();
-                    rulesTok.Set( rules, ';' );
-                    Substring ruleStr;
-                    while( (ruleStr= rulesTok.Next()).IsNotEmpty() )
+                    for( int ruleNo= 0; ruleNo< variable.Size(); ruleNo++ )
                     {
                         try {
-                            ruleTok.Set( ruleStr, ',' );
+                            ruleTok.Set( variable.GetString( ruleNo ), ',' );
                             SourcePathTrimRule rule= new SourcePathTrimRule();
-                            rule.Priority= priority;
+                            rule.Priority= variable.Priority;
                             rule.Path= new AString();
                             ruleTok.Next();
                             if( ! ( rule.IsPrefix= !ruleTok.Actual.StartsWith( "*" ) ) )
@@ -241,14 +233,11 @@ public class ScopeInfo
                         catch( Exception )
                         {
                             ALIB.ERROR( "Error reading source path trim rule from configuration. Invalid String: "
-                                        + ruleStr.ToString() );
+                                        + variable.GetString( ruleNo ).ToString() );
                         }
                     }
-
                 }
-
             }
-
         }
 
         /** ****************************************************************************************
@@ -343,17 +332,17 @@ public class ScopeInfo
          * @param trimOffset      Adjusts the portion of \p path that is trimmed. 999999 to clear!
          * @param sensitivity     Determines if the comparison of \p path with a source files' path
          *                        is performed case sensitive or not.
-         * @param global          If Inclusion.Exclude, only this instance is affected. Otherwise
-         *                        the setting applies to all instances of class \b Lox.
          * @param trimReplacement Replacement string for trimmed portion of the path.
+         * @param reach           Denotes whether the rule is applied locally (to this \b %Lox only)
+         *                        or applies to all instances of class \b %Lox.
          * @param priority        The priority of the setting.
          ******************************************************************************************/
         public void   SetSourcePathTrimRule( String     path,
                                              Inclusion  includeString,
                                              int        trimOffset,
                                              Case       sensitivity,
-                                             Inclusion  global,
                                              String     trimReplacement,
+                                             Reach      reach,
                                              int        priority            )
         {
             // unset current origFile to have lazy variables reset with the next invocation
@@ -364,7 +353,7 @@ public class ScopeInfo
             if ( trimOffset == 999999 )
             {
                 LocalSPTRs.Clear();
-                if ( global == Inclusion.Include )
+                if ( reach == Reach.Global )
                     GlobalSPTRs.Clear();
                 AutoDetectTrimableSourcePath=  (includeString == Inclusion.Include);
 
@@ -375,8 +364,8 @@ public class ScopeInfo
             }
 
             // choosel local or global list
-            List<SourcePathTrimRule> trimInfoList = global == Inclusion.Include  ? GlobalSPTRs
-                                                                                 : LocalSPTRs;
+            List<SourcePathTrimRule> trimInfoList = reach == Reach.Global  ? GlobalSPTRs
+                                                                           : LocalSPTRs;
 
             // add new entry
             SourcePathTrimRule rule= new SourcePathTrimRule();
@@ -525,8 +514,8 @@ public class ScopeInfo
                 if ( i > 1 )
                 {
                     String origFile= actual.origFile;
-                        SetSourcePathTrimRule( currentDir.Substring( 0, i ), Inclusion.Include, 0, Case.Ignore, Inclusion.Exclude, "",
-                                               Lox.PrioSource - 1 );
+                    SetSourcePathTrimRule( currentDir.Substring( 0, i ), Inclusion.Include, 0, Case.Ignore,  "", Reach.Local,
+                                           Configuration.PrioDefault - 1 );
 
                     actual.origFile= origFile;
 

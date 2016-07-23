@@ -103,7 +103,7 @@ bool ParseLine( Line& fileLine )
     Substring line(fileLine.original);
 
     // Ignore lines not starting with "Node"
-    if ( !line.Consume( "Node", Whitespaces::Trim ) )
+    if ( !line.Consume( "Node", Case::Sensitive, Whitespaces::Trim ) )
         return true;
 
     // From now on, unknown means error (stop processing file)
@@ -115,7 +115,7 @@ bool ParseLine( Line& fileLine )
     }
 
     //------------- read node definition lines -------------
-    if( line.Consume( "[label=\"", Whitespaces::Trim ) )
+    if( line.Consume( "[label=\"", Case::Sensitive, Whitespaces::Trim ) )
     {
         int idx= line.IndexOf( '\"' );
         if (idx < 0 )
@@ -148,20 +148,21 @@ bool ParseLine( Line& fileLine )
         line.ConsumeFromEnd('\\');
 
         node->IsIntInstance=     line.ConsumeInteger( node->TInstantiationNum )
-                             &&  line.Trim();
+                             &&  line.Trim().IsEmpty();
 
 
         // save if original name
         if ( !node->IsIntInstance )
         {
-            line.Trim();
-            if ( line.IndexOfAny(", &", Inclusion::Include) < 0  && isupper( node->TClassName.CharAtStart() ) )
+            if ( line.Trim().IndexOfAny(", &", Inclusion::Include) < 0  && isupper( node->TClassName.CharAtStart() ) )
             {
                 node->TParamName= line;
                 dotFile.TClasses.emplace_back( node );
 
                 Log_Info( String256() << "  Saveing param name: class \"" << node->TClassName << "\"= \"" << node->TParamName << "\"" );
-                Inifile->Save( nullptr, String64() << "TCLASS_" << node->TClassName, node->TParamName, "auto generated", '\0' );
+                Variable var( nullptr, String64() << "TCLASS_" << node->TClassName, '\0', "auto generated" );
+                var.AddString( node->TParamName );
+                Inifile->Store( var );
             }
             else
             {
@@ -178,7 +179,7 @@ bool ParseLine( Line& fileLine )
     }
 
     //------------- read link lines -------------
-    if( line.Consume( "-> Node", Whitespaces::Trim ) )
+    if( line.Consume( "-> Node", Case::Ignore, Whitespaces::Trim ) )
     {
         Link* link= new Link();
         fileLine.content=   link;
@@ -282,16 +283,18 @@ bool Build()
 
         if( cntNodes == 1 )
         {
-            IniFile::Section* ifSection= Inifile->Sections[0];
+            InMemoryPlugin::Section* ifSection= Inifile->Sections[0];
 
-            for( IniFile::Variable* var : ifSection->Variables )
+            for( InMemoryPlugin::Entry* entry : ifSection->Entries )
             {
-                if( var->Name.StartsWith( "TCLASS_" ) )
+                if( entry->Name.StartsWith( "TCLASS_" ) )
                 {
-                    String32 className( var->Name, 7 );
+                    String32 className( entry->Name, 7 );
                     if( theTNode->original.IndexOf( className ) > 0 )
                     {
-                        if( theTNode->original.IndexOf( var->Value ) < 0 )
+                        Variable var( nullptr, entry->Name );
+                        Inifile->Load( var );
+                        if( theTNode->original.IndexOf( var.GetString() ) < 0 )
                         {
                             //Log_Warning( String512() << "Deleting inherit file (single node): " << theTNode->original );
                             theTNode->original= "";
@@ -340,8 +343,12 @@ bool Build()
             // make this one the main node!
             actNode->IsIntInstance= false;
 
-            if (!Inifile->Get( nullptr, String64() << "TCLASS_" << actNode->TClassName, actNode->TParamName ) )
+            Variable var( nullptr, String64() << "TCLASS_" << actNode->TClassName );
+            if ( Inifile->Load( var ) )
+                actNode->TParamName._()._( var.GetString() );
+            else
                 actNode->TParamName= "T";
+
 
             Log_Info( String512() <<  "  No general TClass found for this node. Using this node as target for all: "
                                   <<  actNode->TClassName << "<" << actNode->TInstantiationNum << ">"
@@ -547,7 +554,7 @@ int main(int argc, char *argv[])
     DebugMode= argc==1;
 
     // init ALib/ALox
-    ALox::Init( Inclusion::Exclude, argc, (void**) argv);
+    ALox::Init( argc, argv);
     Log_AddDebugLogger();
     Log_SetDomain( "DOXGRAPH", Scope::Filename  );
     Log_SetVerbosity( "DEBUG_LOGGER", DebugMode || System::IsDebuggerPresent()
@@ -599,7 +606,7 @@ int main(int argc, char *argv[])
      "--------------------------------------------------------------------------------------" "\n" \
      "This cfg-file is auto generated."                                                       "\n" \
      "Template parameter names detected across invocations are stored here."                  "\n" \
-     "--------------------------------------------------------------------------------------" "\n" \
+     "--------------------------------------------------------------------------------------"
      ;
 
     // do it
@@ -621,7 +628,6 @@ int main(int argc, char *argv[])
                 delete static_cast<Node*>( line.content );
         }
 
-//    Inifile->WriteFile();
     delete Inifile;
     FileName.SetNull();
     ALox::TerminationCleanUp();

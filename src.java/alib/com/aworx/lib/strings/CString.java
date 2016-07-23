@@ -119,7 +119,7 @@ public class CString
             int cmpEnd= haystackPos + needleLength;
             if ( haystackPos < 0 || cmpEnd > haystackLimit  || needle == null )
                 return false;
-            if ( needle == null || needleLength <= 0 )
+            if ( needleLength <= 0 )
                 return true;
 
             // the compare loop
@@ -369,9 +369,10 @@ public class CString
                                      Case sensitivity )
     {
         // checks
-        int needleLength=  needle != null ?  needle.length() : 0;
         if ( haystackStart <  0 )  haystackStart= 0;
-        if ( needleLength  == 0 )  return  haystackStart;
+        int needleLength;
+        if ( needle == null || (needleLength= needle.length()) == 0 )
+            return  haystackStart;
 
         // case sensitive
         int hayStackEnd= haystackStart + haystackLength;

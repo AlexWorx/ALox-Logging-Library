@@ -112,10 +112,10 @@ source plug-ins ( see namespace
   ([C++](@ref      aworx::lib::config),
   [C#]  (@ref  cs::aworx::lib::config),
   [Java](@ref com::aworx::lib::config)) and
-<b>%ConfigurationPlugIn</b>
-  ([C++](@ref      aworx::lib::config::ConfigurationPlugIn),
-  [C#]  (@ref  cs::aworx::lib::config::ConfigurationPlugIn),
-  [Java](@ref com::aworx::lib::config::ConfigurationPlugIn))) have to be added to public
+<b>%ConfigurationPlugin</b>
+  ([C++](@ref      aworx::lib::config::ConfigurationPlugin),
+  [C#]  (@ref  cs::aworx::lib::config::ConfigurationPlugin),
+  [Java](@ref com::aworx::lib::config::ConfigurationPlugin))) have to be added to public
 static field
 <b>%ALIB.Config</b>
   ([C++](@ref      aworx::lib::ALIB::Config),

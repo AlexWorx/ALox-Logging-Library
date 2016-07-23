@@ -9,12 +9,20 @@ package com.aworx.lox.loggers;
 
 import java.io.PrintStream;
 
-import com.aworx.lib.*;
-import com.aworx.lib.enums.*;
-import com.aworx.lib.strings.*;
-import com.aworx.lox.*;
-import com.aworx.lox.core.*;
-import com.aworx.lox.core.textlogger.*;
+import com.aworx.lib.ALIB;
+import com.aworx.lib.Util;
+import com.aworx.lib.config.Variable;
+import com.aworx.lib.enums.Phase;
+import com.aworx.lib.enums.Whitespaces;
+import com.aworx.lib.strings.AString;
+import com.aworx.lib.strings.Substring;
+import com.aworx.lib.strings.Tokenizer;
+import com.aworx.lox.ALox;
+import com.aworx.lox.ESC;
+import com.aworx.lox.Verbosity;
+import com.aworx.lox.core.Domain;
+import com.aworx.lox.core.ScopeInfo;
+import com.aworx.lox.core.textlogger.TextLogger;
 
 /** ************************************************************************************************
  *  A logger that logs all messages to the <em>PrintStream</em> instance provided in the constructor.
@@ -176,7 +184,7 @@ public class AnsiLogger extends TextLogger
         super( name, typeName, usesStdStreams );
         construct( out );
     }
-    
+
     /** ********************************************************************************************
      * Creates an AnsiLogger with the given PrintStream and name.
      * @param out            A java.io.PrintStream to write the log data to.
@@ -204,17 +212,17 @@ public class AnsiLogger extends TextLogger
 
     /** ********************************************************************************************
      * Helper method used by the constructors.
-     * @param out   A java.io.PrintStream to write the log data to.
+     * @param ps   A java.io.PrintStream to write the log data to.
      **********************************************************************************************/
-    protected void construct( PrintStream  out )
+    protected void construct( PrintStream  ps )
     {
-        this.out= out;
+        this.out= ps;
 
         // evaluate environment variable "ALOX_CONSOLE_HAS_LIGHT_BACKGROUND"
-        int[]  configVarSet= {0};
-        boolean configVarTrue= ALIB.config.isTrue( ALox.configCategoryName, "CONSOLE_HAS_LIGHT_BACKGROUND",  configVarSet );
-        if( configVarSet[0] != 0 )
-            isBackgroundLight=  configVarTrue;
+        Variable variable= new Variable( ALox.CONSOLE_HAS_LIGHT_BACKGROUND );
+        variable.load();
+        if ( variable.size() > 0 )
+            isBackgroundLight=  variable.isTrue();
         else
         {
             // on ANSI terminals we can only guess. Our guess is: console windows have dark background :-)
@@ -298,14 +306,12 @@ public class AnsiLogger extends TextLogger
 
                 continue;
             }
-            else
+
+            if ( actual.isNotEmpty() )
             {
-                if ( actual.isNotEmpty() )
-                {
-                    for (int i= actual.start; i <= actual.end; i++ )
-                        out.print( buf[i] );
-                    column+= actual.length();
-               }
+                for (int i= actual.start; i <= actual.end; i++ )
+                    out.print( buf[i] );
+                column+= actual.length();
             }
 
             // end of loop?
@@ -353,8 +359,8 @@ public class AnsiLogger extends TextLogger
             {
                 boolean endOfMeta= c == 'A';
                 c=  rest.consume();
-                int extraSpace=  c >= '0' && c <= '9' ? (int)  ( c - '0' )
-                                                      : (int)  ( c - 'A' ) + 10;
+                int extraSpace=  c >= '0' && c <= '9' ? ( c - '0' )
+                                                      : ( c - 'A' ) + 10;
 
                 int tabStop= autoSizes.next( column, extraSpace );
                 Util.writeSpaces( out, tabStop - column );
@@ -402,6 +408,7 @@ public class AnsiLogger extends TextLogger
      **********************************************************************************************/
     @Override protected void notifyMultiLineOp (Phase phase)
     {
+        /* nothing to do here */
     }
 
 } // class AnsiLogger

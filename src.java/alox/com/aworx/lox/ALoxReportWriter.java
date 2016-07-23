@@ -25,7 +25,11 @@ public class ALoxReportWriter implements ReportWriter
      * Constructs an \b %ALoxReportWriter.
      * @param lox    The \b Lox to report to.
      **********************************************************************************************/
-    public ALoxReportWriter ( Lox lox ) { this.lox= lox; }
+    public ALoxReportWriter ( Lox lox ) 
+    {
+        this.lox= lox; 
+        lox.verbose( ALoxReportWriter.logDomain(), "ALoxReportWriter set" );
+    }
 
     /** ********************************************************************************************
      * Notify activation/deactivation
@@ -34,6 +38,7 @@ public class ALoxReportWriter implements ReportWriter
     @Override
     public void NotifyActivation( Phase phase )
     {
+       /* nothing to do here */
     }
 
     /** ********************************************************************************************

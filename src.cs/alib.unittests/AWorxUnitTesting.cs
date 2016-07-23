@@ -1,8 +1,11 @@
 ﻿// #################################################################################################
-//  cs.aworx.unittests - AWorx Util
+//  ut_cs_aworx - AWorx Unit Test Support using ALib and ALox
 //
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
+//
+//  Relies on ALox logging library, which in turn relies on ALib. Hence, ALibs' unit
+//  tests can only be compiled if ALox library is present.
 // #################################################################################################
 using System;
 using System.IO;
@@ -13,6 +16,7 @@ using cs.aworx.lib.enums;
 using cs.aworx.lox;
 using cs.aworx.lox.loggers;
 using cs.aworx.lox.core.textlogger;
+using cs.aworx.lib.config;
 
 
 #if ALIB_MONO_DEVELOP
@@ -29,14 +33,14 @@ namespace ut_cs_aworx  {
  *  All aworx unit test class are derived from this class.
  *  Ensures alignment and maximum compatibility of unit test methods between C++, C# and Java
  ***************************************************************************************************/
-public class AUnitTest
+public class AWorxUnitTesting
 {
     #if ALOX_DBG_LOG 
         static AString lastAutoSizes= new AString();
     #endif 
     public static UTWriter utWriter=  null;
 
-    public AUnitTest()
+    public AWorxUnitTesting()
     {
         // create UTWriter (once) 
         if ( utWriter == null )
@@ -67,6 +71,11 @@ public class AUnitTest
                 UT_EQ( 1,  ALIB.StdOutputStreamsLock.CntAcquirers() );
             UT_EQ( 0,  ALIB.StdOutputStreamsLock.DbgCountAcquirements(null) );
 
+            ALIB.Config= new Configuration();
+            
+            #if ALIB_MONO_DEVELOP
+                (new Variable( "ALOX", "CONSOLE_TYPE" )).Store( "plain" );
+            #endif
             ALox.Reset();
             Log.SetSourcePathTrimRule( "*/src.cs/", Inclusion.Include );
             Log.MapThreadName( "UT" );
@@ -80,7 +89,7 @@ public class AUnitTest
     }
 
     private AString     ASS= new AString();
-    private void        ASM(String csf,int cln,String cmn,  AString msg )  
+    private static void ASM(String csf,int cln,String cmn,  AString msg )  
     {
         msg.InsertAt( "UT Failure: Expected: ", 0 );
         utWriter.Print(csf,cln,cmn, Verbosity.Error, msg );   
@@ -92,11 +101,11 @@ public class AUnitTest
     public void UT_EQ( String  exp,       AString s , [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="")   {  if (!s.Equals(exp))                 ASM(csf,cln,cmn,ASS.Clear()._("\"")._(exp)        ._("\", Given: \"")._(s)        ._("\".") ); Assert.AreEqual( exp            , s.ToString()  );   }
     public void UT_EQ( AString exp,       AString s , [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="")   {  if (!exp.Equals(s))                 ASM(csf,cln,cmn,ASS.Clear()._("\"")._(exp)        ._("\", Given: \"")._(s)        ._("\".") ); Assert.AreEqual( exp.ToString() , s.ToString()  );   }
 
-    public void UT_EQ( bool    exp,     bool    b   , [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="")   {  if (b!=exp)                         ASM(csf,cln,cmn,ASS.Clear()._("\"")._(exp?"T":"F")._("\", Given: \"")._(b?"T":"F")._("\".") ); Assert.AreEqual( exp            , b             );   }
+    public void UT_EQ( bool    exp,     bool    b   , [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="")   {  if (b!=exp)                         ASM(csf,cln,cmn,ASS.Clear()._("\"")._(exp?"T":"F")._("\", Given: \"")._(b?"T":"F")._("\".") ); Assert.IsTrue  ( exp           == b             );   }
     public void UT_EQ( int     exp,     int     i   , [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="")   {  if (i!=exp)                         ASM(csf,cln,cmn,ASS.Clear()._("\"")._(exp)        ._("\", Given: \"")._(i)        ._("\".") ); Assert.AreEqual( exp            , i             );   }
     public void UT_EQ( long    exp,     long    l   , [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="")   {  if (l!=exp)                         ASM(csf,cln,cmn,ASS.Clear()._("\"")._(exp)        ._("\", Given: \"")._(l)        ._("\".") ); Assert.AreEqual( exp            , l             );   }
 
-    public void UT_EQ( double  exp,     double  d   , [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="")   {  if (d!=exp)                         ASM(csf,cln,cmn,ASS.Clear()._("\"")._(exp)        ._("\", Given: \"")._(d)        ._("\".") ); Assert.AreEqual( exp            , d             );   }
+    public void UT_EQ( double  exp,     double  d   , [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="")   {  if (d!=exp)                         ASM(csf,cln,cmn,ASS.Clear()._("\"")._(exp)        ._("\", Given: \"")._(d)        ._("\".") ); Assert.IsTrue  ( exp           == d             );   }
     public void UT_EQ( double exp,double d,double p , [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="")   {  if ((d < exp ? exp-d : d-exp) > p)  ASM(csf,cln,cmn,ASS.Clear()._("\"")._(exp)        ._("\", Given: \"")._(d)        ._("\".") ); Assert.AreEqual( exp            , d,   p        );   }
 
     public void UT_TRUE ( bool    cond              , [CallerFilePath] String csf="",[CallerLineNumber] int cln= 0,[CallerMemberName] String cmn="")   {  if (!cond)                          ASM(csf,cln,cmn,ASS.Clear()._("true, but false given.") );                                                         Assert.IsTrue  ( cond                           );   }
@@ -118,11 +127,11 @@ public class UTWriter : ReportWriter
     public UTWriter()
     {
         lox= new Lox( "UTLox" );
-        // This does not work/make sense with MonoDevelop. 
-        //if( System.Diagnostics.Debugger.IsAttached )
-        //    logger= new CLRDebuggerLogger();
-        //else
+        #if ALIB_MONO_DEVELOP
+            logger= new ConsoleLogger( "UT ALib ReportWriter" );
+        #else
             logger= Lox.CreateConsoleLogger( "UT ALib ReportWriter" );
+        #endif
 
         lox.SetVerbosity( logger, Verbosity.Verbose, "UT" );
         lox.SetVerbosity( logger, Verbosity.Verbose, ALox.InternalDomains);
@@ -164,7 +173,7 @@ public class UTWriter : ReportWriter
 /** ************************************************************************************************
  *  Writes sample output of a unit test to a file used as input source for doxygen
  ***************************************************************************************************/
-public class UnitTestSampleWriter
+public class UTSampleWriter
 {
     protected System.IO.TextWriter      origOut;
     protected System.IO.StreamWriter    utWriter;
@@ -199,7 +208,7 @@ public class UnitTestSampleWriter
         return GeneratedSamplesDir;
     }
 
-    public UnitTestSampleWriter(String filename)
+    public UTSampleWriter(String filename)
     {
         if ( GetGeneratedSamplesDir().Length == 0 )
             return;

@@ -12,7 +12,7 @@ import java.util.HashMap;
 import com.aworx.lib.containers.PathMap;
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.Substring;
-import com.aworx.lox.*;
+import com.aworx.lox.Scope;
 
 /** ************************************************************************************************
  * This class is responsible for scope-related functionality of class Lox.
@@ -22,7 +22,7 @@ public class ScopeStore<T>
 {
     // #############################################################################################
     // Public fields
-    // These fields are public, but publicly accessed only for LogConfig and Reset()
+    // These fields are public, but publicly accessed only for State and Reset()
     // (bauhaus code style, omitting getters. For library users this is still invisible, as
     // the stores are protected in class Lox)
     // #############################################################################################
@@ -178,7 +178,7 @@ public class ScopeStore<T>
                         walkNextThreadIdx= -1;
                         if ( threadInnerStore.size() != 0 )
                         {
-                            walkThreadValues= threadInnerStore.get( scopeInfo.thread );
+                            walkThreadValues= threadInnerStore.get( scopeInfo.getThread() );
                             if ( walkThreadValues != null )
                                 walkNextThreadIdx=   walkThreadValues.size();
                         }
@@ -228,7 +228,7 @@ public class ScopeStore<T>
                     {
                         if ( threadOuterStore.size() != 0 )
                         {
-                            walkThreadValues= threadOuterStore.get( scopeInfo.thread );
+                            walkThreadValues= threadOuterStore.get( scopeInfo.getThread() );
                             if ( walkThreadValues != null )
                             {
                                 walkNextThreadIdx=   walkThreadValues.size();
@@ -275,7 +275,7 @@ public class ScopeStore<T>
         actThread=          thread;
         lazyLanguageNode=   true;
     }
-
+    
     // #############################################################################################
     // Internals
     // #############################################################################################
@@ -290,7 +290,7 @@ public class ScopeStore<T>
             lazyLanguageNode= false;
 
             // key: package
-            languageKey._()._( scopeInfo.packageName );
+            languageKey._()._( scopeInfo.getPackageName() );
 
             // key: package
             if ( actScope == Scope.PACKAGE )
@@ -313,21 +313,21 @@ public class ScopeStore<T>
                 actPathMapNode= languageStore.Get( languageKeySubstr.set(languageKey), create, separators );
                 return;
             }
-            else
-                languageKey._( separators.charAt_NC(1) );
+            
+            languageKey._( separators.charAt_NC(1) );
 
 
             // key: class
             languageKey._( '-' ) // we need a prefix to have all methods share one start node which is not
                                  // a separator-node
-                       ._( scopeInfo.className )
+                       ._( scopeInfo.getClassName() )
                        ._( separators.charAt_NC(0) );
 
             // key: method
             if ( actScope == Scope.METHOD )
                 languageKey._( '-' ) // we need a prefix to have all methods share one start node which is not
                                      // a separator-node
-                           ._( scopeInfo.methodName )
+                           ._( scopeInfo.getMethodName() )
                            ._( separators.charAt_NC(0) );
 
             actPathMapNode= languageStore.Get( languageKeySubstr.set(languageKey), create, separators );
@@ -370,7 +370,7 @@ public class ScopeStore<T>
 
                 // thread given?
                 if ( actThread == null )
-                    actThread= scopeInfo.thread;
+                    actThread= scopeInfo.getThread();
 
                 // find (create) the vector of values
                 ArrayList<T>  values= threadStore.get( actThread );
@@ -451,8 +451,6 @@ public class ScopeStore<T>
                     else if ( cmd == 1 ) // remove
                         languageStore.Remove( actPathMapNode );
                 }
-                else
-                    oldValue= null;
 
                 return oldValue;
             }

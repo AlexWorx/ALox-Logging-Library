@@ -258,8 +258,8 @@
 /** Invokes \ref aworx::lox::Lox::MapThreadName "Lox::MapThreadName" on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
 #define Log_MapThreadName( threadName )         { Log_Prune( LOG_ACQUIRE LOG_LOX.MapThreadName( threadName );             LOG_RELEASE ) }
 
-/** Invokes \ref aworx::lox::Lox::LogConfig "Lox::LogConfig" on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
-#define Log_LogConfig(...)                      { Log_Prune( LOG_ACQUIRE LOG_LOX.LogConfig    ( __VA_ARGS__ );            LOG_RELEASE ) }
+/** Invokes \ref aworx::lox::Lox::State "Lox::State" on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
+#define Log_LogState(...)                      { Log_Prune( LOG_ACQUIRE LOG_LOX.State    ( __VA_ARGS__ );            LOG_RELEASE ) }
 
 /** Invokes \ref aworx::lox::Lox::Verbose "Lox::Verbose" on the debug singleton of class Lox defined in macro \ref LOG_LOX. */
 #define Log_Verbose(...)                        { Log_Prune( LOG_ACQUIRE LOG_LOX.Verbose      ( __VA_ARGS__ );            LOG_RELEASE ) }
@@ -409,8 +409,8 @@
 /** Invokes \ref aworx::lox::Lox::MapThreadName "Lox::MapThreadName" on the object of type Lox defined in macro \ref LOX_LOX. */
 #define Lox_MapThreadName( threadName )     { Lox_Prune( LOX_ACQUIRE LOX_LOX.MapThreadName( threadName );       LOX_RELEASE ) }
 
-/** Invokes \ref aworx::lox::Lox::LogConfig "Lox::LogConfig" on the object of type Lox defined in macro \ref LOX_LOX. */
-#define Lox_LogConfig(...)                  { Lox_Prune( LOX_ACQUIRE LOX_LOX.LogConfig    ( __VA_ARGS__ );      LOX_RELEASE ) }
+/** Invokes \ref aworx::lox::Lox::State "Lox::State" on the object of type Lox defined in macro \ref LOX_LOX. */
+#define Lox_LogState(...)                  { Lox_Prune( LOX_ACQUIRE LOX_LOX.State    ( __VA_ARGS__ );      LOX_RELEASE ) }
 
 /** Invokes \ref aworx::lox::Lox::Verbose "Lox::Verbose" on the object of type Lox defined in macro \ref LOX_LOX. */
 #define Lox_Verbose(...)                    { Lox_Prune( LOX_ACQUIRE LOX_LOX.Verbose      ( __VA_ARGS__ );      LOX_RELEASE ) }

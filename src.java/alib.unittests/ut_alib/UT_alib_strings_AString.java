@@ -7,8 +7,6 @@
 package ut_alib;
 import org.junit.Test;
 
-import ut_com_aworx_uttools.AUnitTest;
-
 import com.aworx.lib.enums.Alignment;
 import com.aworx.lib.enums.Case;
 import com.aworx.lib.strings.AString;
@@ -18,8 +16,10 @@ import com.aworx.lib.strings.Substring;
 import com.aworx.lox.Log;
 import com.aworx.lox.Scope;
 
+import ut_com_aworx.AWorxUnitTesting;
 
-public class UT_alib_strings_AString extends AUnitTest
+
+public class UT_alib_strings_AString extends AWorxUnitTesting
 {
 
     //--------------------------------------------------------------------------------------------------
@@ -365,10 +365,10 @@ public class UT_alib_strings_AString extends AUnitTest
             AString ms= new AString();  char[] csNull= null;  char[] csEmpty= "".toCharArray();
 
 
-            ms._( csNull );            UT_EQ  ( ms.length(), 0     );  UT_TRUE( ms.isNull()    );
-            ms._( csEmpty);            UT_EQ  ( ms.length(), 0     );  UT_TRUE( ms.isNotNull() );
+            ms._( csNull );                 UT_EQ  ( ms.length(), 0     );  UT_TRUE( ms.isNull()    );
+            ms._( csEmpty);                 UT_EQ  ( ms.length(), 0     );  UT_TRUE( ms.isNotNull() );
             ms.setNull();                   UT_EQ  ( ms.length(), 0     );  UT_TRUE( ms.isNull()    );
-            ms._("1234567".toCharArray());  UT_EQ  ( ms.capacity(), 7 );  UT_EQ( "1234567",   ms );
+            ms._("1234567".toCharArray());  UT_EQ  ( ms.capacity(), 16  );  UT_EQ( "1234567",   ms );
             ms._("89"     .toCharArray());  UT_TRUE( ms.length()> 7     );  UT_EQ( "123456789", ms );
 
             char[] t= "0123456789".toCharArray();
@@ -392,8 +392,8 @@ public class UT_alib_strings_AString extends AUnitTest
             AString ms= new AString();  AString asNull= null; AString asEmpty= new AString(""); AString t= new AString( "012" );
             ms._( asNull );            UT_EQ  ( ms.length(), 0     );  UT_TRUE( ms.isNull()   );
             ms._( asEmpty);            UT_EQ  ( ms.length(), 0     );  UT_TRUE( ms.isNotNull() );
-            ms.setNull();                   UT_EQ  ( ms.length(), 0     );  UT_TRUE( ms.isNull()    );
-            ms._( t );                 UT_EQ  ( ms.capacity(), 3 );  UT_EQ( "012"   , ms );
+            ms.setNull();              UT_EQ  ( ms.length(), 0     );  UT_TRUE( ms.isNull()    );
+            ms._( t );                 UT_EQ  ( ms.capacity(), 16  );  UT_EQ( "012"   , ms );
             ms._( t );                 UT_TRUE( ms.length()> 3     );  UT_EQ( "012012", ms );
             t._()._( "0123456789" );
             ms._()._   ( t, 5);                     UT_EQ( ms, "56789"      );
@@ -423,8 +423,8 @@ public class UT_alib_strings_AString extends AUnitTest
             AString ms= new AString();  Substring ssNull= null; Substring ssEmpty= new Substring( "" ); Substring t= new Substring( "01234" );
             ms._( ssNull );            UT_EQ  ( ms.length(), 0     );  UT_TRUE( ms.isNull()    );
             ms._( ssEmpty);            UT_EQ  ( ms.length(), 0     );  UT_TRUE( ms.isNotNull() );
-            ms.setNull();                   UT_EQ  ( ms.length(), 0     );  UT_TRUE( ms.isNull()    );
-            ms._( t );                 UT_EQ  ( ms.capacity(), 5 );  UT_EQ( "01234"     , ms );
+            ms.setNull();              UT_EQ  ( ms.length(), 0     );  UT_TRUE( ms.isNull()    );
+            ms._( t );                 UT_EQ  ( ms.capacity(), 16  );  UT_EQ( "01234"     , ms );
             ms._( t );                 UT_TRUE( ms.length()> 5     );  UT_EQ( "0123401234", ms );
 
             t.consume();      ms._()._( t );           UT_EQ( ms,  "1234"      );
@@ -441,8 +441,8 @@ public class UT_alib_strings_AString extends AUnitTest
         {
             AString ms= new AString();   String sEmpty= ""; String t= "012";
             ms._(  sEmpty);            UT_EQ  ( ms.length(), 0     );  UT_TRUE( ms.isNotNull() );
-            ms.setNull();                   UT_EQ  ( ms.length(), 0     );  UT_TRUE( ms.isNull()    );
-            ms._( t );                 UT_EQ  ( ms.capacity(), 3 );  UT_EQ( "012"   , ms );
+            ms.setNull();              UT_EQ  ( ms.length(), 0     );  UT_TRUE( ms.isNull()    );
+            ms._( t );                 UT_EQ  ( ms.capacity(), 16  );  UT_EQ( "012"   , ms );
             ms._( t );                 UT_TRUE( ms.length()> 3     );  UT_EQ( "012012", ms );
             t= "0123456789";
             ms._()._( t, 5);                     UT_EQ( ms, "56789"      );
@@ -465,7 +465,7 @@ public class UT_alib_strings_AString extends AUnitTest
         // append StringBuffer
         {
             AString ms= new AString();   StringBuffer t= new StringBuffer( "012");
-            ms._( t );                 UT_EQ  ( ms.capacity(), 3 );  UT_EQ( "012"   , ms );
+            ms._( t );                 UT_EQ  ( ms.capacity(), 16  );  UT_EQ( "012"   , ms );
             ms._( t );                 UT_TRUE( ms.length()> 3     );  UT_EQ( "012012", ms );
             t.setLength( 0 ); t.append("0123456789");
             ms._()._( t, 5);                     UT_EQ( ms, "56789"      );
@@ -1032,7 +1032,7 @@ public class UT_alib_strings_AString extends AUnitTest
                     java.text.NumberFormat jnf = java.text.NumberFormat.getInstance();
                     dSystem= jnf.parse( ms.toString() ).doubleValue();
                 }
-                catch( Exception e )
+                catch( @SuppressWarnings ("unused") Exception e )
                 {
                     UT_TRUE( digitsAfterDot == 0 ); // this is not really allowed in Java when parsing
                     dSystem= d;

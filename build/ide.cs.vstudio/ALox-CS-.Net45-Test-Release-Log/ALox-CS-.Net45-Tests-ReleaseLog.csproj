@@ -44,8 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\src.cs\alib.unittests\UnitTests.cs">
-      <Link>ut.ALib\UnitTests.cs</Link>
+    <Compile Include="..\..\..\src.cs\alib.unittests\AWorxUnitTesting.cs">
+      <Link>ut.ALib\AWorxUnitTesting.cs</Link>
     </Compile>
     <Compile Include="..\..\..\src.cs\alib.unittests\UT_alib_config.cs">
       <Link>ut.ALib\UT_alib_config.cs</Link>

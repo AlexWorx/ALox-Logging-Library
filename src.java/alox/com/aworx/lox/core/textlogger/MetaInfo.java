@@ -23,8 +23,8 @@ import com.aworx.lib.strings.Tokenizer;
 import com.aworx.lib.time.TickSpan;
 import com.aworx.lib.time.Ticks;
 import com.aworx.lox.Verbosity;
-import com.aworx.lox.core.ScopeInfo;
 import com.aworx.lox.core.Domain;
+import com.aworx.lox.core.ScopeInfo;
 
 
 /** ************************************************************************************************
@@ -79,20 +79,19 @@ public class MetaInfo
          *
          */
         public    AString               format
-            =  new AString( "(%SF:%SL) %SM():%A5[%TC +%TL][%tN]%V[%D]%A1(%#): ");
-
+             =  new AString( "(%SF:%SL) %SM():%A5[%TC +%TL][%tN]%V[%D]%A1(%#): ");
 
         /** The replacement for variable \c %%V in field #format if \e Verbosity is \c ERROR */
-        public    String                verbosityError           = "[ERR]";
+        public    AString               verbosityError           = new AString( "[ERR]" );
 
         /** The replacement for variable \c %%V in field #format if \e Verbosity is \c WARNING */
-        public    String                verbosityWarning         = "[WRN]";
+        public    AString               verbosityWarning         = new AString( "[WRN]" );
 
         /** The replacement for variable \c %%V in field #format if \e Verbosity is \c INFO */
-        public    String                verbosityInfo            = "     ";
+        public    AString               verbosityInfo            = new AString( "     " );
 
         /** The replacement for variable \c %%V in field #format if \e Verbosity is \c VERBOSE */
-        public    String                verbosityVerbose         = "[***]";
+        public    AString               verbosityVerbose         = new AString( "[***]" );
 
         /** Format string for the output of the log date.
             For more information about possible, see class java.text.SimpleDateFormat  */
@@ -279,12 +278,12 @@ public class MetaInfo
                 // read sub command
                 char s= variable.consume();
                 if ( s == 'L' )
-                    dest._( scope.lineNumber );
+                    dest._( scope.getLineNumber() );
                 else
-                    dest._NC( s == 'F' ?    scope.fileName      :
-                              s == 'P' ?    scope.packageName   :
-                              s == 'C' ?    scope.className     :
-                              s == 'M' ?    scope.methodName    : new AString("#ERROR") );
+                    dest._NC( s == 'F' ?    scope.getFileName()      :
+                              s == 'P' ?    scope.getPackageName()   :
+                              s == 'C' ?    scope.getClassName()     :
+                              s == 'M' ?    scope.getMethodName()    : new AString("#ERROR") );
             }
             return 0;
 
@@ -377,9 +376,9 @@ public class MetaInfo
                     elapsed.set( elapsedTime );
     
                     if ( maxElapsedSecs >= 60*60*24 )  dest._( elapsed.days  )._NC( timeElapsedDays );
-                    if ( maxElapsedSecs >= 60*60    )  dest._( elapsed.hours  ,  maxElapsedSecs >= 60*60*10 ?  2 : 1 )._NC( ':' );
-                    if ( maxElapsedSecs >= 60       )  dest._( elapsed.minutes,  maxElapsedSecs >= 10*60    ?  2 : 1 )._NC( ':' );
-                    dest._( elapsed.seconds,  maxElapsedSecs > 9 ? 2 : 1          )._NC( '.' );
+                    if ( maxElapsedSecs >= 60*60    )  dest._( elapsed.hours  ,  maxElapsedSecs >= 60*60*10 ?  2 : 1 )._( ':' );
+                    if ( maxElapsedSecs >= 60       )  dest._( elapsed.minutes,  maxElapsedSecs >= 10*60    ?  2 : 1 )._( ':' );
+                    dest._( elapsed.seconds,  maxElapsedSecs > 9 ? 2 : 1          )._( '.' );
                     dest._( elapsed.milliseconds,  3 );
                 }
 
@@ -405,13 +404,14 @@ public class MetaInfo
                 c2= variable.consume();
                 if ( c2 == 'N' )
                 {
+                    AString threadName= scope.getThreadName();
                     dest.field()
-                         ._( scope.threadName )
-                       .field( logger.autoSizes.next( scope.threadName.length(), 0 ), Alignment.CENTER );
+                         ._( threadName )
+                       .field( logger.autoSizes.next( threadName.length(), 0 ), Alignment.CENTER );
                 }
                 else if ( c2 == 'I' )
                 {
-                    tmpAString._()._( scope.threadID );
+                    tmpAString._()._( scope.getThreadID() );
                     dest.field()
                          ._( tmpAString )
                        .field( logger.autoSizes.next( tmpAString.length()      , 0 ), Alignment.CENTER );

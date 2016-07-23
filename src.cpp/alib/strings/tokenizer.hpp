@@ -23,7 +23,7 @@
 // #################################################################################################
 // includes
 // #################################################################################################
-#if !defined (HPP_ALIB_STRINGS_ASSUBSTRING)
+#if !defined (HPP_ALIB_STRINGS_SUBSTRING)
     #include "alib/strings/substring.hpp"
 #endif
 
@@ -169,7 +169,7 @@ class Tokenizer
          *                   Defaults to \c Whitespaces.Trim.
          *  @param newDelim  The delimiter separates the tokens. Defaults to 0, which keeps the
          *                   current delimiter intact.
-         *                   However, it a new delimiter can be provided for every next token.
+         *                   A new delimiter can be provided for every next token.
          * @return \c true if a next token was available, \c false if not.
          ******************************************************************************************/
         ALIB_API
@@ -188,9 +188,9 @@ class Tokenizer
         {
             // set start, end and end of tokenizer
             Actual=  Rest;
+            Rest.SetNull();
             if ( trimming == enums::Whitespaces::Trim )
                 Actual.Trim( Whitespaces );
-            Rest.SetNull();
             return Actual;
         }
 

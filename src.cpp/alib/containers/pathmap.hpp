@@ -25,7 +25,7 @@
 // #################################################################################################
 // includes
 // #################################################################################################
-#if !defined (HPP_ALIB_STRINGS_ASSUBSTRING)
+#if !defined (HPP_ALIB_STRINGS_SUBSTRING)
     #include "alib/strings/substring.hpp"
 #endif
 #if !defined (_GLIBCXX_VECTOR) && !defined(_VECTOR_)

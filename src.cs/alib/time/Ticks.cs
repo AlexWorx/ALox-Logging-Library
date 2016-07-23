@@ -343,7 +343,7 @@ public class Ticks
                 return 0.0;
 
             // calc hertz
-            double hz= ((double) 10000000d) / ticks;
+            double hz= 10000000d / ticks;
 
             // no rounding? that's it
             if ( nDigitsPrec < 0 )

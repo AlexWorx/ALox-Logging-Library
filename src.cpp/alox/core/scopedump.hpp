@@ -35,7 +35,7 @@ namespace           core{
  * It was extracted from class \b %Lox to keep that class clean from this somehow 'cluttered' code.
  *
  * The current purpose of this class is to write information into an AString buffer. This is used
- * by method \ref aworx::lox::Lox::LogConfig "Lox::LogConfig". In the future, other export formats,
+ * by method \ref aworx::lox::Lox::State "Lox::State". In the future, other export formats,
  * like JSON might be implemented here.
  *
  * \note As this is a pure internal helper class. Documentation may be limited.

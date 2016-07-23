@@ -69,21 +69,21 @@ There are just a few fields in class
 \~Comment ####################################################################################### \~
 ### 1.1.1 Name and TypeName ### {#man_loggers_logger_fields_name}
 class \b %Logger has two members,
-<b>name</b>
-  ([C++] (@ref #aworx::lox::core::Logger::name),
-   [C#]  (@ref #cs::aworx::lox::core::Logger::name),
+<b>Name</b>
+  ([C++] (@ref      #aworx::lox::core::Logger::Name),
+   [C#]  (@ref  #cs::aworx::lox::core::Logger::Name),
    [Java](@ref #com::aworx::lox::core::Logger::name)) and
-<b>typeName</b>
-  ([C++] (@ref #aworx::lox::core::Logger::typeName),
-   [C#]  (@ref #cs::aworx::lox::core::Logger::typeName),
+<b>TypeName</b>
+  ([C++] (@ref      #aworx::lox::core::Logger::TypeName),
+   [C#]  (@ref  #cs::aworx::lox::core::Logger::TypeName),
    [Java](@ref #com::aworx::lox::core::Logger::typeName)) that can be read using.
 <b>GetName</b>
-  ([C++] (@ref #aworx::lox::core::Logger::GetName),
-   [C#]  (@ref #cs::aworx::lox::core::Logger::GetName),
+  ([C++] (@ref      #aworx::lox::core::Logger::GetName),
+   [C#]  (@ref  #cs::aworx::lox::core::Logger::GetName),
    [Java](@ref #com::aworx::lox::core::Logger::getName)) and
 <b>GetTypNamee</b>
-  ([C++] (@ref #aworx::lox::core::Logger::GetTypeName),
-   [C#]  (@ref #cs::aworx::lox::core::Logger::GetTypeName),
+  ([C++] (@ref      #aworx::lox::core::Logger::GetTypeName),
+   [C#]  (@ref  #cs::aworx::lox::core::Logger::GetTypeName),
    [Java](@ref #com::aworx::lox::core::Logger::getTypeName)).
 
 Field \b name is defined by the user and provided with the constructor. Field \b typeName is
@@ -298,7 +298,7 @@ The set of these format variables available are:
        [Java](@ref #com::aworx::lox::core::textlogger::MetaInfo::format)).
 <p>
 \note Class \b TextLogger prepends the meta information to the decoded log object
-      and therefore, the message itself is not provided as a format string variable.
+      and therefore, the message itself is not provided as a formated string variable.
       This restriction is a mandatory for the multi-line features of TextLogger (see below).
 
 Changing the format string

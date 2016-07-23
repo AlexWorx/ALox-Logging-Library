@@ -46,13 +46,13 @@ namespace ut_cs_aworx_lox
                 result._( "MyObjectConverter: null" );
                 return true;
             }
-    
+
             if ( o.GetType() == typeof(MyType) )
             {
                 result._( "my type" );
                 return true;
             }
-    
+
             return false;
         }
     }
@@ -64,7 +64,7 @@ namespace ut_cs_aworx_lox
     #if ALIB_VSTUDIO
         [TestClass]
     #endif
-    public class CS_ALox_Logger  : AUnitTest
+    public class CS_ALox_Logger  : AWorxUnitTesting
     {
     public static void ScopeInfoCacheTest() { Log.Info("Test method of CS_ALox_Logger"); }
 
@@ -84,14 +84,14 @@ namespace ut_cs_aworx_lox
     public void Log_ObjectConverter()
     {
         UT_INIT();
-    
+
         Log.AddDebugLogger();
-    
+
         Log.SetDomain( "OBJECT_CONV",       Scope.Method );
         MemoryLogger ml= new MemoryLogger();
         ml.MetaInfo.Format._();
         Log.SetVerbosity( ml, Verbosity.Verbose );
-    
+
         StringConverter mainConverter= (StringConverter) ml.ObjectConverters[0];
         // test without my converter
         MyType mytype= new MyType();
@@ -99,14 +99,14 @@ namespace ut_cs_aworx_lox
         Log.Info( null   ); UT_TRUE( ml.MemoryLog.IndexOf( mainConverter.FmtNullObject ) >= 0 );   ml.MemoryLog._();
         Log.Info( mytype ); UT_EQ  ( mytype.ToString(), ml.MemoryLog );                            ml.MemoryLog._();
         Log.Info( null   ); UT_EQ  ( mainConverter.FmtNullObject,  ml.MemoryLog );                 ml.MemoryLog._();
-    
+
         // test without my converter
                      ml.ObjectConverters.Add( new MyObjectConverter() );
         Log.DebugLogger.ObjectConverters.Add( new MyObjectConverter() );
         Log.Info( "Test" ); UT_TRUE( ml.MemoryLog.IndexOf( "Test" ) >= 0 );                        ml.MemoryLog._();
         Log.Info( null   ); UT_EQ  ( "MyObjectConverter: null" , ml.MemoryLog );                   ml.MemoryLog._();
         Log.Info( mytype   ); UT_EQ( "my type"                 , ml.MemoryLog );                   ml.MemoryLog._();
-    
+
         // cleanup
         Log.RemoveLogger( ml );
         Log.RemoveDebugLogger();
@@ -130,7 +130,7 @@ namespace ut_cs_aworx_lox
 
         Log.AddDebugLogger();
         Log.SetDomain( "COLORS", Scope.Method );
-        #if ALOX_DBG_LOG 
+        #if ALOX_DBG_LOG
             MemoryLogger ml= new MemoryLogger();
             Log.SetVerbosity( ml, Verbosity.Verbose, "/" );
         #endif
@@ -144,7 +144,7 @@ namespace ut_cs_aworx_lox
         Log.Warning( "A warning message" );
         Log.Error  ( "An error message" );
 
-        #if ALOX_DBG_LOG 
+        #if ALOX_DBG_LOG
             int mlPos= ml.MemoryLog.IndexOf("/COLORS" );
             UT_TRUE( mlPos > 0 );
             mlPos+= 8;
@@ -162,7 +162,7 @@ namespace ut_cs_aworx_lox
                                     + ">>>" + ESC.BLACK   + "BLACK"      + ESC.FG_RESET + "<<<"
                                     );
 
-        #if ALOX_DBG_LOG 
+        #if ALOX_DBG_LOG
             UT_TRUE( ml.MemoryLog.IndexOf("\x1B") < 0 ); ml.MemoryLog.Clear();
         #endif
         Log.Info( "BG Colors:  "
@@ -177,7 +177,7 @@ namespace ut_cs_aworx_lox
                                     + ">>>" + ESC.BG_BLACK   + "BLACK"      + ESC.BG_RESET + "<<<"
                                     );
 
-        #if ALOX_DBG_LOG 
+        #if ALOX_DBG_LOG
             UT_TRUE( ml.MemoryLog.IndexOf("\x1B") < 0 ); ml.MemoryLog.Clear();
         #endif
         Log.Info( "FG/BG same: "
@@ -216,7 +216,7 @@ namespace ut_cs_aworx_lox
             if ( ccl!=null )        ccl.IsBackgroundLight= !ccl.IsBackgroundLight;
         #endif
 
-        #if ALOX_DBG_LOG 
+        #if ALOX_DBG_LOG
             Log.Verbose( ml.MemoryLog.ToString( mlPos ) );
             UT_TRUE( ml.MemoryLog.IndexOf("\x1B") < 0 ); ml.MemoryLog.Clear();
         #endif
@@ -226,7 +226,7 @@ namespace ut_cs_aworx_lox
                                     + ESC.FG_RESET   + "FG Reset"
                                     + ESC.BG_RESET   + "BG Reset"
                                     );
-        #if ALOX_DBG_LOG 
+        #if ALOX_DBG_LOG
             Log.Verbose( ml.MemoryLog.ToString( mlPos ) );
             UT_TRUE( ml.MemoryLog.IndexOf("\x1B") < 0 ); ml.MemoryLog.Clear();
         #endif
@@ -237,7 +237,7 @@ namespace ut_cs_aworx_lox
                                     + ESC.BG_RESET   + "BG Reset"
                                     + ESC.FG_RESET   + "FG Reset"
                                     );
-        #if ALOX_DBG_LOG 
+        #if ALOX_DBG_LOG
             Log.Verbose( ml.MemoryLog.ToString( mlPos ) );
             UT_TRUE( ml.MemoryLog.IndexOf("\x1B") < 0 ); ml.MemoryLog.Clear();
         #endif
@@ -247,7 +247,7 @@ namespace ut_cs_aworx_lox
                                     + ESC.GREEN      + "FG REEN"
                                     + ESC.RESET      + "All Reset"
                                     );
-        #if ALOX_DBG_LOG 
+        #if ALOX_DBG_LOG
             Log.Verbose( ml.MemoryLog.ToString( mlPos ) );
             UT_TRUE( ml.MemoryLog.IndexOf("\x1B") < 0 ); ml.MemoryLog.Clear();
         #endif
@@ -259,7 +259,7 @@ namespace ut_cs_aworx_lox
                                     + ">>>" + ESC.ITALICS  + "Bold/Italics"   + ESC.STYLE_RESET  + "+<  Styles do not work in Windows consoles"
                                     );
 
-        #if ALOX_DBG_LOG 
+        #if ALOX_DBG_LOG
             Log.Verbose( ml.MemoryLog.ToString( mlPos ) );
             UT_TRUE( ml.MemoryLog.IndexOf("\x1B") < 0 ); ml.MemoryLog.Clear();
         #endif
@@ -272,7 +272,7 @@ namespace ut_cs_aworx_lox
                                     + ESC.FG_RESET    + "FG Reset"
                                     + ESC.STYLE_RESET + "Style Reset"
                                     );
-        #if ALOX_DBG_LOG 
+        #if ALOX_DBG_LOG
             Log.Verbose( ml.MemoryLog.ToString( mlPos ) );
             UT_TRUE( ml.MemoryLog.IndexOf("\x1B") < 0 ); ml.MemoryLog.Clear();
         #endif
@@ -284,7 +284,7 @@ namespace ut_cs_aworx_lox
                                     + ESC.RESET       + "Reset All"
                                     );
 
-        #if ALOX_DBG_LOG 
+        #if ALOX_DBG_LOG
             Log.Verbose( ml.MemoryLog.ToString( mlPos ) );
             UT_TRUE( ml.MemoryLog.IndexOf("\x1B") < 0 ); ml.MemoryLog.Clear();
         #endif
@@ -299,7 +299,7 @@ namespace ut_cs_aworx_lox
                                     + "   +< This does not work on ANSI terminals: Styl reset, resets ALL here"
                                     );
 
-        #if ALOX_DBG_LOG 
+        #if ALOX_DBG_LOG
             Log.Verbose( ml.MemoryLog.ToString( mlPos ) );
             UT_TRUE( ml.MemoryLog.IndexOf("\x1B") < 0 ); ml.MemoryLog.Clear();
         #endif
@@ -309,7 +309,7 @@ namespace ut_cs_aworx_lox
                                     + ESC.URL_END     + ", your resource for happyness!"
                                     );
 
-        #if ALOX_DBG_LOG 
+        #if ALOX_DBG_LOG
             Log.Verbose( ml.MemoryLog.ToString( mlPos ) );
             UT_TRUE( ml.MemoryLog.IndexOf("\x1B") < 0 ); ml.MemoryLog.Clear();
         #endif
@@ -326,21 +326,23 @@ namespace ut_cs_aworx_lox
                            String expFmtVerbose  = null
                          )
     {
-        IniFile iniFile= new IniFile("*"); // don't read
-        iniFile.Save( ALox.ConfigCategoryName, "TESTML_FORMAT", testFormat   );
-        ALIB.Config.InsertPlugin( iniFile, Configuration.PrioIniFile );
-        MemoryLogger ml= new MemoryLogger("TESTML");
+        Variable var= new Variable();
+        var.Define(ALox.ConfigCategoryName, "TESTML_FORMAT", ',').Store( testFormat  );
     
-                                     UT_EQ( expFmt, ml.MetaInfo.Format );
+        Lox lox= new Lox("TEST");   
+        MemoryLogger ml= new MemoryLogger("TESTML");
+        lox.SetVerbosity( ml, Verbosity.Info );
+        lox.RemoveLogger( ml );
+        ALox.Register( lox, ContainerOp.Remove );
+    
+                                     UT_EQ( expFmt       , ml.MetaInfo.Format );
         if( expFmtError  != null ) { UT_EQ( expFmtError  , ml.MetaInfo.VerbosityError   ); }
         if( expFmtWarning!= null ) { UT_EQ( expFmtWarning, ml.MetaInfo.VerbosityWarning ); }
         if( expFmtInfo   != null ) { UT_EQ( expFmtInfo   , ml.MetaInfo.VerbosityInfo    ); }
         if( expFmtVerbose!= null ) { UT_EQ( expFmtVerbose, ml.MetaInfo.VerbosityVerbose ); }
-    
-        ALIB.Config.RemovePlugin( iniFile );
     }
-    
-    
+
+
     #if ALIB_MONO_DEVELOP
         [Test ()]
     #endif
@@ -353,17 +355,17 @@ namespace ut_cs_aworx_lox
     public void Log_TextLogger_FormatConfig()
     {
         UT_INIT();
-    
+
         testFormatConfig( "Test"                                , "Test"                     );
-        testFormatConfig( "\"Test"                              , "\"Test"                   );
+        testFormatConfig( "\"Test"                              , "Test"                     );
         testFormatConfig( "\"Test\""                            , "Test"                     );
-        testFormatConfig( "  \" Test  \"  s"                    , " Test  "                  );
-    
+        testFormatConfig( "  \" Test  \"  s"                    , " Test  s"                 );
+
         testFormatConfig( " Test , a ,b, c,d  "                 , "Test", "a","b","c","d"    );
-        testFormatConfig( "\" Test, a ,b, c,d  "                , "\" Test", "a","b","c","d" );
-        testFormatConfig( "\" Test \", a ,b, c,d  "             , " Test ", "a","b","c","d"  );
+        testFormatConfig( "\" Test, a\" ,b, \"c\",d  "          , " Test, a","b","c", "d"    );
+        testFormatConfig( "\" Test, a\" ,b, \"c,d\"  "          , " Test, a","b","c,d"       );
     }
-    
+
     /** ********************************************************************************************
      * Log.TestVerbositySetting
      **********************************************************************************************/
@@ -637,7 +639,7 @@ namespace ut_cs_aworx_lox
 
         Log.DebugLogger.MetaInfo.Format._()._( "%P" );
                  testML.MetaInfo.Format._()._( "%P" );
-        testML.MemoryLog.Clear(); testML.AutoSizes.Reset(); Log.Info("");  UT_TRUE(    testML.MemoryLog.IndexOf( ".Net45-NUnit"    ) >= 0 
+        testML.MemoryLog.Clear(); testML.AutoSizes.Reset(); Log.Info("");  UT_TRUE(    testML.MemoryLog.IndexOf( ".Net45-NUnit"    ) >= 0
                                                                                     || testML.MemoryLog.IndexOf( "UnitTestAdapter" ) >= 0   );
 
         Log.DebugLogger.MetaInfo.Format._()._( "%LX" );
@@ -681,39 +683,39 @@ namespace ut_cs_aworx_lox
             Log.DebugLogger.MultiLineMsgMode= 0;
             Log.Info( "" );
             Log.Info( "-------- ML Mode = 0 (single line) --------" );
-            Log.LogConfig( "MLine", Verbosity.Info, "Our Log configuration is:" );
+            Log.State( "MLine", Verbosity.Info, "Our Log configuration is:" );
 
             Log.DebugLogger.MultiLineMsgMode= 0;
             Log.DebugLogger.MultiLineDelimiterRepl= "~|~";
             Log.Info( "" );
             Log.Info( "-------- ML Mode = 0 (single line) with delimiter replacement set to ~|~ --------" );
-            Log.LogConfig( "MLine", Verbosity.Info, "Our Log configuration is:" );
+            Log.State( "MLine", Verbosity.Info, "Our Log configuration is:" );
 
             Log.DebugLogger.MultiLineMsgMode= 0;
             Log.DebugLogger.MultiLineDelimiter= "";
             Log.Info( "" );
             Log.Info( "-------- ML Mode = 0 (single line) with delimiter set to \"\" (stops multi line processing) --------" );
-            Log.LogConfig( "MLine", Verbosity.Info, "Our Log configuration is:" );
+            Log.State( "MLine", Verbosity.Info, "Our Log configuration is:" );
 
             Log.DebugLogger.MultiLineMsgMode= 1;
             Log.Info( "" );
             Log.Info( "-------- ML Mode = 1 (multi line, all meta info per line) --------" );
-            Log.LogConfig( "MLine", Verbosity.Info, "Our Log configuration is:" );
+            Log.State( "MLine", Verbosity.Info, "Our Log configuration is:" );
 
             Log.DebugLogger.MultiLineMsgMode= 2;
             Log.Info( "" );
             Log.Info( "-------- ML Mode = 2 (multi line, meta info blanked) --------" );
-            Log.LogConfig( "MLine", Verbosity.Info, "Our Log configuration is:" );
+            Log.State( "MLine", Verbosity.Info, "Our Log configuration is:" );
 
             Log.DebugLogger.MultiLineMsgMode= 3;
             Log.Info( "" );
             Log.Info( "-------- ML Mode = 3 (multi line, print headline with info, text starts at pos 0) --------" );
-            Log.LogConfig( "MLine", Verbosity.Info, "Our Log configuration is:" );
+            Log.State( "MLine", Verbosity.Info, "Our Log configuration is:" );
 
             Log.DebugLogger.MultiLineMsgMode= 4;
             Log.Info( "" );
             Log.Info( "-------- ML Mode = 4 (pure multi line, no meta info, no headline, starts at pos 0)) --------" );
-            Log.LogConfig( "MLine", Verbosity.Info, "Our Log configuration is:" );
+            Log.State( "MLine", Verbosity.Info, "Our Log configuration is:" );
         #endif
     }
 

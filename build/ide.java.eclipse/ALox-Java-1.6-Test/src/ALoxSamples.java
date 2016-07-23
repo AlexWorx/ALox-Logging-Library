@@ -1,19 +1,25 @@
 // #################################################################################################
-//  Simple Tests - ALox Logging Library
+//  ALox Samples
 //
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
 
 
-
 import com.aworx.lib.ALIB;
 import com.aworx.lib.Report;
 import com.aworx.lib.config.Configuration;
 import com.aworx.lib.config.IniFile;
+import com.aworx.lib.config.Variable;
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.time.Ticks;
-import com.aworx.lox.*;
+import com.aworx.lox.ALox;
+import com.aworx.lox.ALoxReportWriter;
+import com.aworx.lox.ESC;
+import com.aworx.lox.Log;
+import com.aworx.lox.Lox;
+import com.aworx.lox.Scope;
+import com.aworx.lox.Verbosity;
 import com.aworx.lox.core.textlogger.TextLogger;
 import com.aworx.lox.loggers.AnsiConsoleLogger;
 import com.aworx.lox.loggers.MemoryLogger;
@@ -22,12 +28,12 @@ import com.aworx.lox.loggers.TextFileLogger;
 public class ALoxSamples
 {
 
-    public void debugLogging()
+    public static void debugLogging()
     {
         Log.info( "Hello ALox" );
     }
 
-    public void releaseLogging()
+    public static void releaseLogging()
     {
         // create a lox for release logging
         Lox lox= new Lox( "ReleaseLox" );
@@ -47,23 +53,22 @@ public class ALoxSamples
 
         // cleanup
         Log.removeALibReportWriter();
-        lox.removeLogger( releaseLogger );        
+        lox.removeLogger( releaseLogger );
     }
-
 
     // #############################################################################################
     // Test functions
     // #############################################################################################
-    void sampleALibReport()
+    static void sampleALibReport()
     {
-        System.out.println( "Sample: ALib Report via using ALox" );
+        System.out.println( "Sample: ALib Report Writer" );
         Log.setDomain( "SAMPLE", Scope.METHOD);
 
         Log.addDebugLogger();
         Log.setVerbosity(  Log.debugLogger,  Verbosity.INFO, "/"  );
 
-        Log.info(   "Method \"Log.AddDebugLogger()\" by default creates a replacement for ALib\n"
-                  + "error/warning reporter. If this is a debug compiliation, let's have a try and\n"
+        Log.info(   "Method \"Log.addDebugLogger()\" by default creates a replacement for the\n"
+                  + "standard ALib report writer. If this is a debug compiliation, let's have a try and\n"
                   + "create 3 Messages:"  );
 
         Report.getDefault().pushHaltFlags(false, false);
@@ -86,7 +91,7 @@ public class ALoxSamples
         Log.removeDebugLogger();
     }
 
-    void performanceTest()
+    static void performanceTest()
     {
         Log.addDebugLogger();
         MemoryLogger  ml= new MemoryLogger( "Memory");
@@ -130,7 +135,7 @@ public class ALoxSamples
        Log.removeLogger( ml );
     }
 
-    void performanceTestRL()
+    static void performanceTestRL()
     {
         Lox lox= new Lox( "ReleaseLox" );
 
@@ -177,7 +182,7 @@ public class ALoxSamples
     }
 
 
-    public void uniCodeOutput()
+    public static void uniCodeOutput()
     {
         Log.addDebugLogger();
 
@@ -191,7 +196,7 @@ public class ALoxSamples
         Log.removeDebugLogger( null );
     }
 
-    public void colorsAndStyles()
+    public static void colorsAndStyles()
     {
         Log.addDebugLogger();
 
@@ -324,15 +329,15 @@ public class ALoxSamples
         Log.removeDebugLogger( null );
     }
 
-    public void textFileLogger()
+    public static void textFileLogger()
     {
         Log.setDomain( "TEXTFILE_TEST", Scope.METHOD    );
         Log.info( "Creating a text file logger with file 'Test.log.txt'" );
-        
+
         TextFileLogger tfl= new TextFileLogger( "Test.log.txt" );
         Log.setVerbosity( tfl, Verbosity.VERBOSE );
-        Log.setVerbosity( tfl, Verbosity.ERROR, ALox.INTERNAL_DOMAINS );  
-        
+        Log.setVerbosity( tfl, Verbosity.ERROR, ALox.INTERNAL_DOMAINS );
+
         Log.verbose( "A verbose message (goes to textfile logger as well)" );
         Log.info   ( "An info message  (goes to textfile logger as well)" );
         Log.warning( "A warning message  (goes to textfile logger as well)" );
@@ -340,7 +345,7 @@ public class ALoxSamples
         Log.info   ( "Multiline part 1...\n....part 2" );
     }
 
-    void aworxLibraryDebugCodePruning()
+    static void aworxLibraryDebugCodePruning()
     {
         Report.getDefault().pushHaltFlags(false, false);
             Log.addDebugLogger();
@@ -374,68 +379,96 @@ public class ALoxSamples
      */
     public static void main(String[] args)
     {
-        ALox.init( true, args );
+        // first attach INI file to config system...
+        IniFile iniFile= new IniFile();
+        if ( iniFile.fileComments.isEmpty() )
+        {
+            iniFile.fileComments._(
+            "##################################################################################################\n" +
+            "# ALox Samples INI file (created when running ALox Samples)\n"                                        +
+            "#\n"                                                                                                  +
+            "# (c) 2013-2016 A-Worx GmbH, Germany\n"                                                               +
+            "# Published under MIT License (Open Source License, see LICENSE.txt)\n"                               +
+            "##################################################################################################\n"
+            );
+        }
 
-        // open and attach INI file
-        IniFile iniFile= new IniFile( null );
+
+
+
+
         ALIB.config.insertPlugin( iniFile, Configuration.PRIO_INI_FILE );
 
-        // create us
-        ALoxSamples test= new ALoxSamples();
+        // .. then initialize ALox Logging Library
+        ALox.init( args );
 
+        // Suppress setting "writeback" as default verbosities. We need to do this as this main()
+        // method invokes a list of independent samples. Those would now read from the INI file wrong
+        // values written in other sample methods and thus the samples would not work any more
+        // (because INI file settings overrules settings in the code)
+        Variable var= new Variable();
+        var.define( "ALOX", "LOG_DEBUG_LOGGER_VERBOSITY"  ).store( "" );
+        var.define( "ALOX", "RELEASELOX_CONSOLE_VERBOSITY").store( "" );
+        var.define( "ALOX", "LOG_MEMORY_VERBOSITY"        ).store( "" );
+        var.define( "ALOX", "RELEASELOX_MEMORY_VERBOSITY" ).store( "" );
+        var.define( "ALOX", "LOG_TEXTFILE_VERBOSITY"      ).store( "" );
 
         System.out.println( "PRINT: Hello world debug logging" );
-            test.debugLogging();
+            ALoxSamples.debugLogging();
         ALox.reset();
         System.out.println();
 
         // do some release logging tests.
         System.out.println( "PRINT: Release logging test:" );
-            test.releaseLogging();
+            ALoxSamples.releaseLogging();
         ALox.reset();
         System.out.println();
 
         // do some performance tests.
         System.out.println( "PRINT: Performance test (debug logging):" );
-            test.performanceTest();
+            ALoxSamples.performanceTest();
         ALox.reset();
         System.out.println();
 
         // do some performance tests.
         System.out.println( "PRINT: Performance test (release logging):" );
-            test.performanceTestRL();
+            ALoxSamples.performanceTestRL();
         ALox.reset();
         System.out.println();
 
         // have a try on colors and styles
         System.out.println( "PRINT: Colors and Styles:" );
-            test.colorsAndStyles();
+            ALoxSamples.colorsAndStyles();
         ALox.reset();
         System.out.println();
 
         // text file logger
         System.out.println( "PRINT: TextFile Logger" );
-            test.textFileLogger();
+            ALoxSamples.textFileLogger();
         ALox.reset();
         System.out.println();
 
-        test.uniCodeOutput();
+        ALoxSamples.uniCodeOutput();
         ALox.reset();
 
         // test pruning of ALIB debug messages and assertions
         System.out.println();
         System.out.println( "PRINT: AWorx Library debug code pruning test (errors displayed are just for testing!):" );
-            test.aworxLibraryDebugCodePruning();
+            ALoxSamples.aworxLibraryDebugCodePruning();
         ALox.reset();
         System.out.println();
 
 
         System.out.println();
         System.out.println( "PRINT: Sample ALib report:" );
-            test.sampleALibReport();
+            ALoxSamples.sampleALibReport();
         System.out.println();
 
         System.out.println( "PRINT: Thats it!" );
+
+        ALIB.config.removePlugin( iniFile );
+        ALIB.config.fetchFromDefault( iniFile );
+        iniFile.writeFile();
 
         ALIB.terminationCleanUp();
     }

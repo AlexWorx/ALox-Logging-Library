@@ -9,6 +9,7 @@ using ut_cs_aworx;
 using System;
 using cs.aworx.lib.strings;
 using System.Collections.Generic;
+using cs.aworx.lib.config;
 
 #if ALIB_MONO_DEVELOP
     using NUnit.Framework;
@@ -420,10 +421,10 @@ Log.Info( ALox.InternalDomains + "MYDOM", "Hello, this logs 'on' internal domain
 // ### Create manual sample output
 // #################################################################################################
 
-public class CS_Manual   : AUnitTest
+public class CS_Manual   : AWorxUnitTesting
 {
     static MemoryLogger    memLog;
-    static String          outputPath= UnitTestSampleWriter.GetGeneratedSamplesDir();
+    static String          outputPath= UTSampleWriter.GetGeneratedSamplesDir();
 
     static CS_Manual()
     {
@@ -548,7 +549,7 @@ public class CS_Manual   : AUnitTest
 
 
 //! [Man_ExtVerbosityConfig___1]
-Log.SetVerbosity( "DEBUG_LOGGER", Verbosity.Info, "/MYDOM", Lox.PrioSource + 1 );
+Log.SetVerbosity( "DEBUG_LOGGER", Verbosity.Info, "/MYDOM", Configuration.PrioDefault + 1 );
 Log.Info( "MYDOM", "This line will be logged" );
 
 Log.SetVerbosity( "DEBUG_LOGGER", Verbosity.Off, "/MYDOM" );
@@ -559,7 +560,7 @@ memLog.MemoryLog.Clear();
 
 // Log.SetVerbosity( "DEBUG_LOGGER", Verbosity.Verbose, "$/" );
 
-    Log.SetVerbosity( memLog, Verbosity.Info, "/MYDOM", Lox.PrioSource + 1 );
+    Log.SetVerbosity( memLog, Verbosity.Info, "/MYDOM", Configuration.PrioDefault + 1 );
     Log.Info( "MYDOM", "This line will be logged" );
     
     Log.SetVerbosity( memLog, Verbosity.Off, "/MYDOM" );
@@ -578,18 +579,18 @@ Log.SetVerbosity( "DEBUG_LOGGER", Verbosity.Verbose, ALox.InternalDomains );
     memLog.MemoryLog.Clear();
     Log.SetVerbosity( memLog, Verbosity.Verbose, ALox.InternalDomains );
 
-    Log.SetVerbosity( memLog, Verbosity.Info, "/MYDOM", Lox.PrioSource + 1 );
+    Log.SetVerbosity( memLog, Verbosity.Info, "/MYDOM", Configuration.PrioDefault + 1 );
     Log.Info( "MYDOM", "This line will be logged" );
 
     Log.SetVerbosity( memLog, Verbosity.Off, "/MYDOM" );
     Log.Info( "MYDOM", "This line will still be logged" );
 
-    memLog.MemoryLog.SearchAndReplaceAll( "\"MEMORY\"", "\"DEBUG_LOGGER\"" );
+    memLog.MemoryLog.SearchAndReplaceAll( "\"MEMORY\":      ", "\"DEBUG_LOGGER\":" );
     SaveOutput( "Man_ExtVerbosityConfig_2.txt" );
 
 //! [Man_ExtVerbosityConfig___3]
-Log.SetVerbosity( "DEBUG_LOGGER", Verbosity.Verbose, "/UI/MOUSE"        , Lox.PrioSource + 1 );
-Log.SetVerbosity( "DEBUG_LOGGER", Verbosity.Verbose, "/UI/DIALOGS/MOUSE", Lox.PrioSource + 1 );
+Log.SetVerbosity( "DEBUG_LOGGER", Verbosity.Verbose, "/UI/MOUSE"        , Configuration.PrioDefault + 1 );
+Log.SetVerbosity( "DEBUG_LOGGER", Verbosity.Verbose, "/UI/DIALOGS/MOUSE", Configuration.PrioDefault + 1 );
 //! [Man_ExtVerbosityConfig___3]
 
     }

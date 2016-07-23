@@ -38,8 +38,9 @@ release executable, same as your source comments.
 On the other end of the list, ALox  enables **release logging** for productive applications
 to collect mission critical **metrics from the field**.
 
-This is **Version 1604**, which is a result of heavy refactoring version 1602 :-).
-In other versioning schemes, this would have been version \b 2.0.
+This is **Version 1607**, which primliminarily extends ALib and ALox in the area of external configuration
+variables.
+In other versioning schemes, this would have been version \b 2.1.
 We are optimistic that the simple [Bauhaus Style](\ref faq_bauhaus) architecture of the library allows you
 to easily use it and even to extend it with logging features you need.
 

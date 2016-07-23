@@ -45,21 +45,20 @@ namespace                    system {
 bool System::HasConsoleWindow()
 {
     // read configuration
-    {
-        int found= false;
-        bool configValue=   ALIB::Config.IsTrue( ALIB::ConfigCategoryName, "HAS_CONSOLE_WINDOW", &found );
-        if ( found != 0 )
-            return configValue;
-    }
+    bool returnValue;
+    Variable variable( ALIB::HAS_CONSOLE_WINDOW );
+    ALIB::Config.Load( variable );
+    if ( variable.Size() > 0 )
+        returnValue=  variable.IsTrue();
+    else
 
     #if defined(_WIN32)
-    {
         // determine if we have a console window
-        return GetConsoleWindow() != NULL;
-    }
+        returnValue= GetConsoleWindow() != NULL;
     #else
-        return true;
+        returnValue= true;
     #endif
+    return returnValue;
 }
 
 bool System::IsDebuggerPresent()
@@ -94,9 +93,9 @@ System::RuntimeEnvironment   System::RTE()
 
     // lets allow the config system to overwrite the RTE
     {
-        String128 convRTE;
-        ALIB::Config.Get( ALIB::ConfigCategoryName, "RTE", convRTE );
-        if ( convRTE.IsNotEmpty() && !convRTE.Equals( "auto", Case::Ignore ))
+        Variable variable( ALIB::RTE );
+        ALIB::Config.Load( variable );
+        if ( variable.Size() && !variable.GetString()->Equals( "auto", Case::Ignore ))
         {
             std::pair<String, RuntimeEnvironment> values[]=
             {
@@ -112,11 +111,12 @@ System::RuntimeEnvironment   System::RTE()
             };
 
             for(std::pair<String, RuntimeEnvironment> *v= values; v->first != nullptr ; v++)
-                if( convRTE.Equals( v->first, Case::Ignore ) )
+                if( variable.GetString()->Equals( v->first, Case::Ignore ) )
                     return v->second;
 
             ALIB_WARNING_S512(    "Unknown value specified in variable "
-                             << ALIB::ConfigCategoryName << "_RTE: \""  << convRTE << '\"' )
+                               << variable.Fullname << ": \""
+                               << variable.GetString() << '\"' )
         }
     }
 

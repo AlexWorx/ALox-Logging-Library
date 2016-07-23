@@ -275,7 +275,7 @@ public class ThreadLock
 
                     }
                 }
-                catch(Exception e) {} // ignore spurious wakeups
+                catch(@SuppressWarnings ("unused") Exception e) {/* void */} // ignore spurious wakeups
             }
 
 

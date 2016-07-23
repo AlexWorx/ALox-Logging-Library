@@ -213,7 +213,7 @@ AString& AString::Append( const wchar_t* src, int srcLength )
         if ( IsNull() )
         {
             // special treatment if currently nothing is allocated and a blank string ("") is added:
-            // we allocate, which means, we are not a null object anymore!
+            // we allocate, which means, we are not a nulled object anymore!
             // (...also, in this case we check the src parameter)
             SetBuffer( 15 );
             ALIB_STRING_DBG_UNTERMINATE(*this, 0);
@@ -293,20 +293,23 @@ AString& AString::Append( const wchar_t* src, int srcLength )
 // Trim
 // #############################################################################################
 
-AString& AString::TrimAt( int index, const TString& trimChars )
+int AString::TrimAt( int index, const TString& trimChars )
 {
     if ( index < 0 || index >= length || trimChars.IsEmpty() )
-         return *this;
+         return length;
 
     int regionStart= LastIndexOfAny<false>( trimChars, Inclusion::Exclude, index ) + 1;
-    int idx=         IndexOfAny<false>        ( trimChars, Inclusion::Exclude, index );
+    int idx=         IndexOfAny    <false>( trimChars, Inclusion::Exclude, index );
     int regionEnd=   idx >=0 ? idx
                              : length;
     int regionLength= regionEnd - regionStart;
     if ( regionLength > 0 )
+    {
         Delete<false>( regionStart, regionLength );
+        return regionStart;
+    }
 
-    return *this;
+    return index;
 }
 
 AString& AString::Trim( const TString& trimChars )
@@ -324,8 +327,6 @@ AString& AString::Trim( const TString& trimChars )
         if ( idx > 0 )
             Delete<false>( 0, idx );
     }
-    else
-        length= 0;
 
     ALIB_STRING_DBG_UNTERMINATE(*this, 0)
     return *this;

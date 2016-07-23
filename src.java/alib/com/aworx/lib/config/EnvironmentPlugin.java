@@ -10,7 +10,7 @@ package com.aworx.lib.config;
 import com.aworx.lib.strings.AString;
 
 /** ************************************************************************************************
- * Specialization of abstract interface class #ConfigurationPlugIn, retrieves configuration
+ * Specialization of abstract interface class #ConfigurationPlugin, retrieves configuration
  * data from the system environment.
  *
  * This plug-ins' priority value is fixed to 10.
@@ -21,40 +21,36 @@ import com.aworx.lib.strings.AString;
  *
  * Category and Variable names are insensitive in respect to character case.
  **************************************************************************************************/
-public class EnvironmentPlugIn extends ConfigurationPlugIn
+public class EnvironmentPlugin extends ConfigurationPlugin
 {
+    protected  AString    tmpAS= new AString();    ///< A temporary string to reuse.
+    
     /** ****************************************************************************************
      * Constructor.
      ******************************************************************************************/
-    public EnvironmentPlugIn() {}
+    public EnvironmentPlugin() {}
 
     /** ****************************************************************************************
-     * Retrieves the string value of a configuration setting.
-     * @param category  The category of the  variable.
-     *                  (AString compatible type expected.)
-     * @param name      The name of the configuration variable to be retrieved.
-     *                  (AString compatible type expected.)
-     * @param target    A reference to an empty AString to take the result.
-     * @return true if variable was found within this configuration source, false if not.
+     * Searches the variable in the environment.
+     *
+     * @param variable      The variable to retrieve.
+     * @param searchOnly    If \c true, the variable is not set. Defaults to \c false.
+     * @return \c true if variable was found, \c false if not.
      ******************************************************************************************/
-
     @Override
-    public boolean  get( CharSequence category, CharSequence name, AString target )
+    public boolean  load( Variable variable, boolean searchOnly )
     {
-        target.clear()._( category );
-        if ( target.isNotEmpty() )
-            target._( '_' );
-        target._( name );
+        tmpAS._()._( variable.fullname ).toUpper();
 
-        target.toUpper();
+        String env= System.getenv( tmpAS.toString() );
 
-        String env= System.getenv( target.toString() );
-
-        target.clear()._( env );
-        target.trim();
-        return target.isNotEmpty();
-    }
-};
+        if ( env == null )
+            return false;
+        if ( !searchOnly )
+            stringConverter.loadFromString( variable, env );
+        return true;
+   }
+}
 
 
 

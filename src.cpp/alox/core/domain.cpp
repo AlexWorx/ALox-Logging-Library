@@ -7,7 +7,7 @@
 #include "alib/stdafx_alib.h"
 #include "domain.hpp"
 
-#if !defined (HPP_ALIB_STRINGS_ASSUBSTRING)
+#if !defined (HPP_ALIB_STRINGS_SUBSTRING)
     #include "alib/strings/substring.hpp"
 #endif
 
@@ -210,7 +210,7 @@ void Domain::ToString( AString& tAString )
             LoggerData& ld= Data[i];
             tAString._(i!=0 ? ", " : "" )
                     ._('(')
-                        ._('[')._( Format::Int32(ld.CntLogCalls, 3) )._( "], " );
+                        ._('[')._( Format::Int32(ld.LogCallsPerDomain, 3) )._( "], " );
                         aworx::lox::ToString( ld.LoggerVerbosity, ld.Priority, tAString )
                     ._( ')' );
         }

@@ -15,6 +15,7 @@ using cs.aworx.lox.core.textlogger;
 using cs.aworx.lib.strings;
 using cs.aworx.lib.enums;
 using System.Threading;
+using cs.aworx.lib.config;
 
 namespace cs.aworx.lox {
 
@@ -174,21 +175,25 @@ public static class Log
                 ALIB.ASSERT_ERROR( DebugLogger == null, "Illeagal repeated invocation." );
 
                 // add a CLR logger if this a debug session
-                if(     System.Diagnostics.Debugger.IsAttached
-                    &&  !ALIB.Config.IsTrue( ALox.ConfigCategoryName, "NO_IDE_LOGGER" ))
+                if( System.Diagnostics.Debugger.IsAttached )
                 {
-                    IDELogger= new CLRDebuggerLogger( "IDE_LOGGER" );
+                    Variable variable= new Variable(ALox.NO_IDE_LOGGER);
+                    variable.Load();
+                    if( !variable.IsTrue() )
+                    {
+                        IDELogger= new CLRDebuggerLogger( "IDE_LOGGER" );
 
-                    // add logger
-                    lox.SetVerbosity( IDELogger  , Verbosity.Verbose, "/"                 , Lox.PrioSource ,cln,csf,cmn );
-                    lox.SetVerbosity( IDELogger  , Verbosity.Warning, ALox.InternalDomains, Lox.PrioSource ,cln,csf,cmn );
+                        // add logger
+                        lox.SetVerbosity( IDELogger  , Verbosity.Verbose, "/"                 , Configuration.PrioDefault ,cln,csf,cmn );
+                        lox.SetVerbosity( IDELogger  , Verbosity.Warning, ALox.InternalDomains, Configuration.PrioDefault ,cln,csf,cmn );
+                    }
                 }
 
                 // add a default console logger
                 DebugLogger= Lox.CreateConsoleLogger("DEBUG_LOGGER");
 
-                lox.SetVerbosity( DebugLogger, Verbosity.Verbose, "/"                 , Lox.PrioSource ,cln,csf,cmn );
-                lox.SetVerbosity( DebugLogger, Verbosity.Warning, ALox.InternalDomains, Lox.PrioSource ,cln,csf,cmn );
+                lox.SetVerbosity( DebugLogger, Verbosity.Verbose, "/"                 , Configuration.PrioDefault ,cln,csf,cmn );
+                lox.SetVerbosity( DebugLogger, Verbosity.Warning, ALox.InternalDomains, Configuration.PrioDefault ,cln,csf,cmn );
 
                 // replace the ReportWriter
                 Log.AddALibReportWriter( lox );
@@ -287,8 +292,6 @@ public static class Log
         [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
         {
             #if ALOX_DBG_LOG
-                ALIB.ASSERT_WARNING( DebugReportWriter != null,
-                                     "Log.RemoveReportWriter(): No ALoxReportWriter to remove." );
                 // replace the report writer (if we replaced it before)
                 if( DebugReportWriter != null )
                 {
@@ -371,29 +374,26 @@ public static class Log
      * @param sensitivity     Determines if the comparison of \p path with a source
      *                        files' path is performed case sensitive or not.
      *                        Optional and defaults to \b Case.Ignore.
-     * @param global          If Inclusion.Exclude, only this instance is affected.
-     *                        Otherwise the setting applies to all instances of class
-     *                        \b Lox.
-     *                        Optional and defaults to \b Inclusion.Include.
+     * @param reach           Denotes whether the rule is applied locally (to this \b %Lox only)
+     *                        or applies to all instances of class \b %Lox.
+     *                        Defaults to \b %Reach.Global.
      * @param trimReplacement Replacement string for trimmed portion of the path.
      *                        Optional and defaults to \b %NullString.
      * @param priority        The priority of the setting. Defaults to
-     *                        \ref cs::aworx::lox::Lox::PrioSource "Lox.PrioSource",
-     *                        which is a lower priority than standard plug-ins of external
-     *                        configuration have.
+     *                        \ref cs::aworx::lib::config::Configuration::PrioDefault "Configuration.PrioDefault".
      ******************************************************************************************/
     [Conditional("ALOX_DBG_LOG")]
     public static void      SetSourcePathTrimRule( String       path,
                                                    Inclusion    includeString   = Inclusion.Exclude,
                                                    int          trimOffset      = 0,
                                                    Case         sensitivity     = Case.Ignore,
-                                                   Inclusion    global          = Inclusion.Include,
+                                                   Reach        reach           = Reach.Global,
                                                    String       trimReplacement = null ,
-                                                   int          priority        = Lox.PrioSource    )
+                                                   int          priority        = Configuration.PrioDefault    )
     {
         #if ALOX_DBG_LOG
             LOX.SetSourcePathTrimRule( path, includeString, trimOffset, sensitivity,
-                                       global, trimReplacement, priority );
+                                       trimReplacement, reach, priority );
         #endif
     }
 
@@ -407,16 +407,16 @@ public static class Log
      *
      * \see ALox User Manual for more information.
      *
-     * @param global        If Inclusion.Exclude, only this instances' rules are cleared.
-     *                      Otherwise, the global rules are cleared as well.
+     * @param reach         Denotes whether only local rules are cleared or also global ones.
+     *                      Defaults to \b %Reach.Global.
      * @param allowAutoRule Determines if an auto rule should be tried to be detected next
      *                      no appropriate rule is found.
      ******************************************************************************************/
     [Conditional("ALOX_DBG_LOG")]
-    public static  void  ClearSourcePathTrimRules( Inclusion global= Inclusion.Include, bool allowAutoRule= true )
+    public static  void  ClearSourcePathTrimRules( Reach reach= Reach.Global, bool allowAutoRule= true )
     {
         #if ALOX_DBG_LOG
-            LOX.ClearSourcePathTrimRules( global, allowAutoRule );
+            LOX.ClearSourcePathTrimRules( reach, allowAutoRule );
         #endif
     }
 
@@ -434,10 +434,10 @@ public static class Log
             if ( Log.LOX != null )
                 ALox.Register( Log.LOX, ContainerOp.Remove );
             Log.LOX= new Lox("Log", true );
-            Log.ClearSourcePathTrimRules( Inclusion.Include, true );
+            Log.ClearSourcePathTrimRules( Reach.Global, true );
             Log.DebugLogger= null;
             Log.IDELogger  = null;
-            ALox.ConfigCategoryName= "ALOX";
+            ALox.ConfigCategoryName._()._( "ALOX" );
         #endif
     }
 
@@ -450,20 +450,20 @@ public static class Log
      * for the evaluated sub-domain, the \e Verbosity for all domains is set to
      * \b %Verbosity.Off.
      *
-     * To unregister a \e Logger with a \b Lox, use method #RemoveLogger.
+     * To deregister a \e Logger with a \b Lox, use method #RemoveLogger.
      * To 'disable' a \e Logger, invoke this method with parameters \p verbosity equaling to
      * \b %Verbosity.Off and \p domain to \c "/".
      *
      * Optional parameter \p priority defaults to
-     * \ref cs::aworx::lox::Lox::PrioSource "Lox.PrioSource", which is a lower priority
-     * than those of the standard plug-ins of external configuration data. Therefore, external
-     * configuration by default 'overwrite' settings made from 'within the source code', which
-     * simply means by invoking this method.<br>
+     * \ref cs::aworx::lib::config::Configuration::PrioDefault "Configuration.PrioDefault", which
+     * is a lower priority than those of the standard plug-ins of external configuration data.
+     * Therefore, external configuration by default 'overwrite' settings made from
+     * 'within the source code', which simply means by invoking this method.<br>
      * The parameter can be provided for two main reasons:
      * - To 'lock' a verbosity setting against external manipulation.
      * - to 'break' the standard mechanism that an invocation of this method sets all
      *   sub-domains recursively. If a sub-domain was set with a higher priority
-     *   (e.g. <c>%PrioSource + 1</c>, then this sub-domain will not be affected by
+     *   (e.g. <c>%Configuration.PrioDefault + 1</c>, then this sub-domain will not be affected by
      *   future invocations of this method with standard-priority given.
      *
      * \attention
@@ -492,9 +492,7 @@ public static class Log
      *                   Defaults to root domain \"/\".
      * @param verbosity  The 'level of verboseness' to be set.
      * @param priority   The priority of the setting. Defaults to
-     *                   \ref cs::aworx::lox::Lox::PrioSource "Lox.PrioSource",
-     *                   which is a lower priority than standard plug-ins of external
-     *                   configuration have.
+     *                   \ref cs::aworx::lib::config::Configuration::PrioDefault "Configuration.PrioDefault".
      *
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
@@ -502,7 +500,7 @@ public static class Log
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG")]
     public static  void        SetVerbosity( Logger logger, Verbosity verbosity, String domain= "/",
-                                             int priority = Lox.PrioSource,
+                                             int priority = Configuration.PrioDefault,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG
@@ -522,9 +520,7 @@ public static class Log
      *                   Defaults to root domain \"/\".
      * @param verbosity  The 'level of verboseness' to be set.
      * @param priority   The priority of the setting. Defaults to
-     *                   \ref cs::aworx::lox::Lox::PrioSource "Lox.PrioSource",
-     *                   which is a lower priority than standard plug-ins of external
-     *                   configuration have.
+     *                   \ref cs::aworx::lib::config::Configuration::PrioDefault "Configuration.PrioDefault".
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
@@ -533,7 +529,7 @@ public static class Log
     public static   void SetVerbosity( String       loggerName,
                                        Verbosity    verbosity,
                                        String       domain        = "/",
-                                       int          priority      = Lox.PrioSource,
+                                       int          priority      = Configuration.PrioDefault,
     [CallerLineNumber] int cln=0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG
@@ -1084,24 +1080,58 @@ public static class Log
     }
 
     /** ********************************************************************************************
-     * This method logs the configuration the Lox encapsulated in this static Log interface.
+     * This method logs the current configuration of this Lox and its encapsulated objects.
+     * It uses method #GetState to assemble the logable string.
+     *
+     * \note
+     *   As an alternative to (temporarily) adding an invocation of <b>%Lox.State</b> to
+     *   your code, ALox provides configuration variable
+     *   [ALOX_LOXNAME_DUMP_STATE_ON_EXIT](group__GrpALoxConfigVars.html).
+     *   This allows to enable an automatic invocation of this method using external
+     *   configuration data like command line parameters, environment variables or
+     *   INI files.
+     *
      *
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
      * @param verbosity The verbosity.
-     * @param headLine   If given, a separated headline will be logged at first place.
+     * @param headLine  If given, a separated headline will be logged at first place.
+     * @param flags     Flag bits that define which state information is logged.
+     *
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG")]
-    public static void LogConfig(   String            domain,
-                                    Verbosity     verbosity,
-                                    String            headLine,
+    public static void State(   String          domain,
+                                    Verbosity       verbosity,
+                                    String          headLine,
+                                    Lox.StateInfo  flags    = Lox.StateInfo.All,
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG
-            LOX.LogConfig( domain, verbosity, headLine, cln,csf,cmn );
+            LOX.State( domain, verbosity, headLine, flags, cln,csf,cmn );
+        #endif
+    }
+
+    /** ********************************************************************************************
+     * This method collects state information about this lox in a formated multi-line AString.
+     * Parameter \p flags is a bit field with bits defined in enum
+     * \ref cs::aworx::lox::Lox::StateInfo "Lox.StateInfo".
+     *
+     * @param buf       The target string.
+     * @param flags     Flag bits that define which state information is collected.
+     *
+     * @param cln (Optional) Caller info, compiler generated. Please omit.
+     * @param csf (Optional) Caller info, compiler generated. Please omit.
+     * @param cmn (Optional) Caller info, compiler generated. Please omit.
+     **********************************************************************************************/
+    [Conditional("ALOX_DBG_LOG")]
+    public static void GetState( AString buf,  Lox.StateInfo flags,
+    [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
+    {
+        #if ALOX_DBG_LOG
+            LOX.GetState( buf, flags, cln,csf,cmn );
         #endif
     }
 
@@ -1150,7 +1180,7 @@ public static class Log
     }
 
     /** ********************************************************************************************
-     * Logs a \e Logable using \ref Verbosity::Verbose.
+     * Logs a \e Logable using \ref Verbosity.Verbose.
      *
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
@@ -1186,7 +1216,7 @@ public static class Log
     }
 
     /** ********************************************************************************************
-     * Logs a \e Logable using \ref Verbosity::Info.
+     * Logs a \e Logable using \ref Verbosity.Info.
      *
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
@@ -1222,7 +1252,7 @@ public static class Log
     }
 
     /** ********************************************************************************************
-     * Logs a \e Logable using \ref Verbosity::Warning.
+     * Logs a \e Logable using \ref Verbosity.Warning.
      *
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.

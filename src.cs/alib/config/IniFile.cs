@@ -14,41 +14,76 @@ using cs.aworx.lib.enums;
 namespace cs.aworx.lib.config  {
 
 
-    /** ************************************************************************************************
-     * Specialization of abstract interface class #ConfigurationPlugIn, which reads and writes
-     * a simple configuration file consisting of key/value pairs.
-     *
-     * This class is provided for the case that no other configuration mechanism is available.
-     * For example, software that uses QT should not use this class but rather implement a
-     * #ConfigurationPlugIn which uses a QSettings object to read and store that data to.
-     *
-     * This class offers all internal fields for public access. However, in standard cases, only
-     * the interface methods of this class should be used.
-     *
-     * Some remarks on the functionality and supported format:
-     * - Comment lines at the beginning of the file are associated with the file and are written
-     *   back. Such comment block is stopped with a single blank line.
-     * - Comment lines before sections and variables are associated with the respective objects
-     *   and are written back.
-     * - Sections names are enclosed by brackets ('[' and ']).
-     * - Section names can be repeated. In this case the corresponding section is continued.
-     *   When the file is written, the section are merged. Otherwise the order of sections and
-     *   the variables within the section is kept intact.
-     * - Variable names and their values are separated by an equal sign ('=').
-     * - Whitespace characters (' ', '\\t' ) are removed at the start and end of each line and before
-     *   and after the equal sign ('=').
-     * - Lines that start (apart from whitespace) with either a double
-     *   slash "//", a sharp sign '#' or a semicolon ';' are comment lines.
-     * - Comments can not reside in the same line together with section names or variables.
-     * - Variables definitions are being continued (values are concatenated) if the line ends
-     *   with a backslash ('\'). Whitespaces in continued lines are ignored but can be 'escaped'.
-     *   Comment lines in-between continued lines are not recognized as such.
-     * - Sequences of blank lines are reduced to one blank line, when writing the file.
-     * - Commented variables receive a blank line before the comment.
-     * - Commented Sections receive two blank lines before the comment. One if they are not commented.
-     **************************************************************************************************/
-    public class IniFile : ConfigurationPlugIn
-    {
+/** ************************************************************************************************
+ * Specialization of class #InMemoryPlugin, which reads and writes a simple configuration file
+ * consisting of sections containing key/value pairs.
+ *
+ * This class is provided for the case that no other configuration mechanism is available.
+ * In general, application specific configuration mechanisms already exist in other libraries
+ * used. Those should be adopted by creating a lean interface plug-in for ALib.
+ *
+ * Some remarks on the functionality and supported format:
+ * - Comments
+ *   - Comment lines at the beginning of the file are associated with the file and are written
+ *     back. Such comment block is stopped with a single blank line.
+ *   - Lines that start (apart from whitespace) with either a double
+ *     slash \c "//", a sharp sign \c '#' or a semicolon <c>';'</c> are comment lines.
+ *   - Comment lines that are added to variables in the software are using the symbol defined in
+ *     filed #DefaultCommentPrefix, which defaults to \c '#'. If this is changed in the file,
+ *     such changes are preserved.
+ *   - Comment lines before sections and variables are associated with the respective objects
+ *     and are not overwritten by comments set in the code. However, variables without
+ *     comments which are overwritten in code including comments, get such comment appended.
+ *   - Comments can not reside in the same line together with section names or variables.
+ *   - Commented variables receive a blank line before the comment.
+ *   - Commented Sections receive two blank lines before the comment. One if they are not commented.
+ *
+ * - Sections:
+ *   - Sections names are enclosed by brackets \c '[' and \c ']'.
+ *   - Section names can be repeated. In this case the corresponding section is continued.
+ *     When the file is written, the sections are merged. Otherwise the order of sections and
+ *     the variables within the section is kept intact on writing.
+ *
+ * - Variables
+ *   - Variable names and their values are separated by an equal sign \c '='.
+ *   - New variables inserted are formatted according to other variables found. E.g. the
+ *     equal sign of all variables within a section are aligned on the same column.
+ *   - Formats of variables added or changed by the user are kept intact, as long as the
+ *     software does not store a value.
+ *
+ * - Continued Lines:
+ *   - Variables definition are being continued (values are concatenated) if the line ends
+ *     with a backslash \c '\\'.
+ *   - Comment lines in-between continued lines are recognized as such. To continue a variable
+ *     after a 'continued' comment line, the comment line needs to end with a backslash \c '\\'.
+ *   - Variables with multiple values created (or modified) in the software, are written
+ *     in continued lines, with each line showing one value, ending with the variables'
+ *     delimiter character and a trailing \c '\\'.
+ *   - Comment lines within Variables defined in multiple lines are removed when a variable
+ *     is written back.
+ *
+ * - Escaping values
+ *   - Spaces \c ' ' and tabulators \c '\\t' are ignored at the start and end of each line and before
+ *     and after the equal sign \c '='.
+ *   - Consequently, whitespaces at the start or end of a value either need to be escaped
+ *     using <c>'\\ '</c> or the whole value has to be surrounded by double quotes \c ".
+ *   - Values added or modified by the software that contain spaces at the start or end
+ *     are surrounded by double quotes (instead of escaping them)
+ *   - Double quotes in values are always escaped when writing values and have to be escaped
+ *     when editing the file.
+ *   - Values may consist of a list of double quoted values. Whitespaces between such
+ *     values are ignored. Consequently, long strings may be enclosed in double quotes
+ *     and continued in the next line when the line ends with a backslash \c '\\'.
+ *   - Almost any character can be escaped. E.g \c "\\a" is read as \c 'a'.
+ *   - On writing only non-printable characters and double quotation marks are escaped.
+ *
+ * - Other remarks
+ *   - Sequences of blank lines are reduced to one blank line, when writing the file.
+ *   - Errorneous lines are ignored and not written back. Line numbers with errorneous lines
+ *     are collected in field #LinesWithReadErrors.
+ **************************************************************************************************/
+public class IniFile : InMemoryPlugin
+{
     // #############################################################################################
     // Public enums
     // #############################################################################################
@@ -67,135 +102,189 @@ namespace cs.aworx.lib.config  {
             ERROR_WRITING_FILE
         }
 
-
     // #############################################################################################
     // inner classes
     // #############################################################################################
 
         /** ****************************************************************************************
-         * A configuration section
+         * A configuration sections' entry
          ******************************************************************************************/
-        public class Variable
+        public new class Entry : InMemoryPlugin.Entry
         {
-            public AString      Name        = new AString();  ///< The name of the section
-            public AString      Comments    = new AString();  ///< The comments of the section
-            public AString      Value       = new AString();  ///< The list of variables of the section
-            public char         Delim       = '\0';           ///< The delimiter if splitting to multiple lines is wanted
-        };
+            /** The raw string as read from the INI file. Ready to be written back when
+             * variable is untouched. */
+            public AString       RawValue   = new AString();
+
+            /**
+             * Constructs an Entry
+             * @param name    The name of the section.
+             */
+            public Entry( Object name ) : base(name)
+            {
+            }
+
+            /**
+             * Overrides default method. If we have not parsed the INI file text value, yet,
+             * we do this now.
+             *
+             * @param parent    The plug-in we belong to.
+             * @param variable  The variable to fill with our values.
+             */
+            public override void ToVariable( InMemoryPlugin parent, Variable variable )
+            {
+                // if we are still raw, then parse the INI file content
+                if ( Values.Count == 0  )
+                {
+                    ALIB.ASSERT( Delim == '\0' );
+                    Delim= variable.Delim;
+                    variable.Comments._()._( Comments );
+
+                    //-----  remove INI-File specific from raw value -----
+                    AString raw= new AString();
+                    raw._( RawValue );
+
+                    // remove '='
+                    raw.TrimStart();
+                    if ( raw.CharAtStart() != '=' )
+                    {
+                        ALIB.WARNING( "No equal sign in variable \"" + variable.Fullname + "\" of INI file." );
+                    }
+                    else
+                        raw.DeleteStart(1).TrimStart();
+
+
+                    // remove "\\n"
+                    int startIdx= 0;
+                    while ( (startIdx= raw.IndexOf( '\n', startIdx )) >= 0 )
+                    {
+                        // find \\n and trim around this location
+                        int delLen= 2;
+                        if ( raw.CharAt( --startIdx) == '\r' )
+                        {
+                            delLen= 3;
+                            --startIdx;
+                        }
+                        ALIB.ASSERT( raw.CharAt(startIdx) == '\\' );
+                        raw.Delete( startIdx, delLen );
+
+                        startIdx= raw.TrimAt( startIdx );
+
+                        // if now the next value is starting with a comment symbol, we remove to the next \n
+                        for(;;)
+                        {
+                            char c= raw.CharAt( startIdx );
+                            if (     c != '#'
+                                &&   c != ';'
+                                && ( c != '/' || raw.CharAt( startIdx + 1 ) != '/' ) )
+                                break;
+
+                            int idx= raw.IndexOf( '\n' );
+                            if (idx < 0 ) idx= raw.Length();
+                            raw.Delete( startIdx, idx - startIdx + 1 );
+                            if( startIdx >= raw.Length() )
+                                break;
+                            startIdx= raw.TrimAt( startIdx );
+                        }
+                    }
+
+                    // now convert
+                    parent.StringConverter.LoadFromString( variable, raw );
+
+                    // copy the parsed values back to our entry and store the delimiter
+                    for( int i= 0; i < variable.Size() ; i++ )
+                        Values.Add( new AString( variable.GetString( i ) ) );
+                }
+
+                // otherwise, use base method
+                else
+                    base.ToVariable( parent, variable );
+            }
+
+            /**
+             * Overrides default method. Clears the raw value, and calls base method.
+             *
+             * @param parent    The plug-in we belong to.
+             * @param variable  The variable to fill with our values.
+             */
+            public override void FromVariable( InMemoryPlugin parent, Variable variable )
+            {
+                RawValue._();
+                base.FromVariable( parent, variable );
+            }
+        }
 
         /** ****************************************************************************************
          * A configuration section
          ******************************************************************************************/
-        public class Section
+        public new class Section : InMemoryPlugin.Section
         {
-            public AString            Name       = new AString();         ///< The name of the section
-            public AString            Comments   = new AString();         ///< The comments of the section
-            public List<Variable>     Variables  = new List<Variable>();  ///< The list of variables of the section
-
             /**
              * Constructs a Section
              * @param name    The name of the section.
              *                (AString compatible type expected.)
-            */
-            public              Section( Object name )         { this.Name._( name ); }
+             */
+            public  Section( Object name ) :base(name) {}
 
             /**
-             * Searches a variable with the given name. The search is performed case insensitive
-             * @param name    The name of the variable to be searched.
-             *                (AString compatible type expected.)
-             * @return The variable if found, else null. */
-            public Variable     Get    ( Object name )
+             * Overrides base classes method to create an entry of our type.
+             * @param name    The name of the entry.
+             * @return An object of type \ref Entry "IniFile.Entry".
+             */
+            protected override InMemoryPlugin.Entry  createEntry( Object name )
             {
-                return Variables.Find( variable => variable.Name.Equals( name, Case.Ignore ) );
+                return new IniFile.Entry( name );
             }
-
-            /**
-             * Inserts a variable into the section. If the variable exists, the value will be
-             * written. If the comments also exist, they will be preserved.
-             * @param name      The name of the variable to be inserted or written.
-             *                  (AString compatible type expected.)
-             * @param value     The value of the variable to be inserted or written.
-             * @param comments  Comments that describe the variable (is written to INI file.
-             * @return The variable that was created or written. */
-            public Variable     Insert ( Object name, Object value, AString comments= null )
-            {
-                // search
-                Variable v= Variables.Find( variable => variable.Name.Equals( name, Case.Ignore ) );
-
-                // not found?
-                if( v == null )
-                {
-                    Variables.Add( v= new Variable() );
-                    v.Name._( name );
-                }
-
-                v.Value.Clear()._( value );
-
-                // do not overwrite comments
-                if ( v.Comments.IsEmpty() )
-                    v.Comments._( comments );
-
-                return v;
-            }
-        };
+        }
 
     // #############################################################################################
     // Public fields
     // #############################################################################################
 
         /** If this is set to true, any variable change will lead to writing the file immediately
-            by invoking #WriteFile */
-        public bool                             AutoSave                     = true;
+            by invoking #WriteFile. Defaults to false */
+        public bool                             AutoSave                                    = false;
 
         /** The file name. This might include a path or not. Should be set properly before
             the file is read. */
-        public AString                          FileName                     = new AString();
+        public AString                          FileName                            = new AString();
 
         /** The standard file extension used for ALib configuration files. Defaults to ".ini" */
-        public static String                    DefaultFileExtension         = ".ini";
+        public static String                    DefaultFileExtension                       = ".ini";
 
         /** The file header which will be written out as a comment lines with "# " prefixes */
-        public AString                          FileComments                 = new AString();
-
-        /** The list of sections. */
-        public List<Section>                    Sections                     = new List<Section>();
+        public AString                          FileComments                        = new AString();
 
         /** The status. */
-        public  Status                          LastStatus                   = Status.OK;
+        public  Status                          LastStatus                              = Status.OK;
 
         /** Is cleared and filled with faulty line numbers when reading the file. (E.g. when a
             line is no section and no comment but still has no equal sign ('=').  */
-        public List<int>                        LinesWithReadErrors          = new List<int>();
-
-        /** Pairs of conversion strings. The first value, is what appears in the file (e.g. >\\<)
-            and the second string defines what the replacement character would be (e.g. >\<).
-
-            The vector defaults to have replacements for
-            - "\n" A new line character
-            - "\r" A carriage return character
-            - "\t" A tabulator character
-            - "\\" A backslash
-            - "\/" To allow the forward slash to be at the start of a line
-            - "\#" To allow the "sharp" sign to be at the start of a line
-            - "\;" To allow the ";" to be at the start of a line
-          */
-
-        public List<String>                     EscapeSequences;
-
+        public List<int>                        LinesWithReadErrors               = new List<int>();
 
         /**
          * The prefix that is used for comment lines of sections or variables that have been
-         * added 'programmatically', in other words, that have not been read from the file.
-         * Comments that were read from the file preserve their prefix. Also, if comments including
-         * one of the valid prefixes are added to a variable or section 'programmatically', such
-         * prefix is preserved. */
+         * added 'in code' (variables that have not been read from the file).
+         * Comments that were read from the file preserve their prefix.
+         * If comments including one of the valid prefixes are added to a variable or section
+         * 'in code', such prefix is preserved. */
         public String                           DefaultCommentPrefix                        =  "# ";
+
+        /** Denotes if a space should be written before a delimiter. */
+        public bool                             FormatSpaceBeforeDelim                      = false;
+
+        /** Denotes if a space should be written after a delimiter. (Applies only to single
+            line mode of writing attributes.)  */
+        public bool                             FormatSpaceAfterDelim                       =  true;
+
+        /** Denotes whether the spaces that are inserted when aligning attributes are
+         *  located before or behind the delimiter. */
+        public bool                             FormatIncludeDelimInAttrAlignment           = false;
 
     // #############################################################################################
     // Protected fields
     // #############################################################################################
         /** Characters that start a comment */
-        protected   AString commentChars                                    =  new AString( "#;/" );
+        protected   AString                     commentChars                =  new AString( "#;/" );
 
     // #############################################################################################
     // Constructor/destructor
@@ -214,18 +303,8 @@ namespace cs.aworx.lib.config  {
          *                         Defaults to \c null.
          ******************************************************************************************/
         public IniFile( String filePathAndName=  null )
+        : base()
         {
-            EscapeSequences=  new List<String>
-                              {
-                                     "\\\\",  "\\",
-                                     "\\n",   "\n",
-                                     "\\r",   "\r",
-                                     "\\t",   "\t",
-                                     "\\#",   "#",
-                                     "\\;",   ";"
-                               };
-
-
             if ( filePathAndName != null )
             {
                 // dont read anything
@@ -254,83 +333,21 @@ namespace cs.aworx.lib.config  {
 
 
     // #############################################################################################
-    // ConfigurationPlugIn interface implementation
+    // ConfigurationPlugin interface implementation
     // #############################################################################################
         /** ****************************************************************************************
-         * Retrieves the string value of a configuration setting.
-         * @param category  The category of the  variable.
-         *                  (AString compatible type expected.)
-         * @param name      The name of the configuration variable to be retrieved.
-         *                  (AString compatible type expected.)
-         * @param target    A reference to an empty AString to take the result.
-         * @return true if variable was found within this configuration source, false if not.
-         ******************************************************************************************/
-        public override bool  Get( Object   category, Object name,
-                                   AString  target                           )
-        {
-            target.Clear();
-            Section section= SearchSectionX( category );
-            if ( section == null )
-                return false;
-
-            Variable var=  section.Get( name );
-            if ( var == null )
-                return false;
-
-            target._( var.Value );
-            return true;
-        }
-
-        /** ****************************************************************************************
-         * Writes a value to the configuration.
-         * @param category  The category of the  variable.
-         *                  (AString compatible type expected.)
-         * @param name      The name of the configuration variable to be retrieved.
-         *                  (AString compatible type expected.)
-         * @param value     The value to write.
-         * @param comments  The variable comments. Will be written above the variable.
-         *                  Defaults to null.
-         * @param delim     This plug-in uses this character to identify variable values that
-         *                  are split into different lines within the INI file.
-         *                  Lines are continued by adding a backslash at the end.
-         *                  Defaults to ','.
+         * Creates or replaces existing variable in our storage. If #AutoSave is set, the file
+         * is written
          *
-         * @return true if the variable was written, false if not.
+         * @param variable  The variable to retrieve.
+         * @return \c true if the variable was written, \c false if not. The latter might only
+         *         happen if the variable given was illegal, e.g. empty name.
          ******************************************************************************************/
-        public override bool  Save( Object  category,  Object  name,
-                                    Object  value,     Object  comments= null,
-                                    char    delim= ','                       )
+        public override bool  Store( Variable variable )
         {
-            // find or create section
-            Section     section= SearchOrCreateSection( category, null );
-            Variable    var=     section.Get( name );
-            bool        changed=    false;
-
-            if ( var == null )
-            {
-                var= section.Insert( name, value );
-                var.Delim= delim;
-                changed= true;
-            }
-            else
-            {
-                if ( !var.Value.Equals( value ) )
-                {
-                    var.Value.Clear()._( value );
-                    changed= true;
-                }
-            }
-
-            if ( var.Comments.IsEmpty() && comments != null )
-            {
-                var.Comments._( comments );
-                changed= true;
-            }
-
-            // save file
-            if ( changed && AutoSave )
+            base.Store( variable );
+            if ( AutoSave )
                 WriteFile();
-
             return true;
         }
 
@@ -341,53 +358,18 @@ namespace cs.aworx.lib.config  {
         /** ****************************************************************************************
          * Clears all configuration data.
          ******************************************************************************************/
-        public void            Clear()
+        public override void            Reset()
         {
+            base.Reset();
             FileComments.Clear();
-            Sections.Clear();
             LinesWithReadErrors.Clear();
             LastStatus= Status.OK;
-
-            // insert default section without a name as first entry
-            Sections.Add( new Section("") );
-        }
-
-
-        /** ****************************************************************************************
-         * Searches the \ref cs::aworx::lib::config::IniFile::Section "Section" with the given name.
-         *
-         * @param name      The name of the section to be retrieved.
-         * @return Returns the section if it was found, \c null otherwise.
-         ******************************************************************************************/
-        public Section  SearchSectionX( Object name )
-        {
-            return Sections.Find( x => x.Name.Equals( name, Case.Ignore ) );
-        }
-
-        /** ****************************************************************************************
-         * Searches the \ref cs::aworx::lib::config::IniFile::Section "Section" with the given name.
-         * If the section was not found, it is created.
-         * If the section is found and has no comments, then the provided comments are appended.
-         * @param name      The name of the section to be retrieved.
-         * @param comments  The comment lines for the section, in the case the section is not
-         *                  found. If this is null, no section is created.
-         * @return Returns the section if it was found or created. \c null otherwise.
-         ******************************************************************************************/
-        public Section  SearchOrCreateSection( Object name, AString comments )
-        {
-            Section s= SearchSectionX( name );
-            if ( s == null )
-                Sections.Add( s= new Section( name ) );
-
-            if ( s.Comments.IsEmpty() )
-                s.Comments._( comments );
-
-            return s;
         }
 
     // #############################################################################################
     // file IO
     // #############################################################################################
+
         /** ****************************************************************************************
          * Clears all configuration data and reads the file. It might happen that lines are
          * ignored or otherwise marked as faulty. All numbers of such lines get collected in
@@ -396,7 +378,7 @@ namespace cs.aworx.lib.config  {
          ******************************************************************************************/
         public IniFile.Status  ReadFile()
         {
-            Clear();
+            Reset();
             LastStatus= Status.OK;
 
             // read all variables
@@ -414,49 +396,44 @@ namespace cs.aworx.lib.config  {
             AString     name=       new AString();
             AString     value=      new AString();
             AString     comments=   new AString();
-            Section     actSection= Sections[0];
+            Section     actSection= (IniFile.Section) Sections[0];
             Substring   line=       new Substring();
-            Tokenizer   tn=         new Tokenizer();
 
             int         lineNo= 0;
             bool        fileHeaderRead= false;
 
-            LinesWithReadErrors.Clear();
+            char[]      separatorCharacters= value._( "=" )._( CString.DefaultWhitespaces )
+                                                  .ToString().ToCharArray();
 
+            LinesWithReadErrors.Clear();
             while ( (lineS= file.ReadLine()) != null )
             {
-                lineNo= 0;
-                //  place in AString
-                line.Set( lineS ).Trim();
+                lineNo++;
 
-                // empty line?
-                if ( line.IsEmpty() )
+                bool isEmpty=       line.Set( lineS ).Trim().IsEmpty();
+                bool isCommentLine= startsWithCommentSymbol( line );
+
+                if ( isCommentLine )
                 {
-                    // already collecting a comment?
                     if ( comments.IsNotEmpty() )
-                    {
-                        // first empty line in file found?
-                        if ( !fileHeaderRead )
-                        {
-                            //store comments belonging to file
-                            fileHeaderRead= true;
-                            FileComments=   comments;
-                            comments=       new AString();
-                            continue;
-                        }
-
                         comments.NewLine();
-                    }
+                    comments._(line);
                     continue;
                 }
 
-                // comments line: find comment character '#', ';' or //
-                if ( startsWithCommentSymbol( line ) )
+                // still processing file header?
+                if ( !fileHeaderRead )
                 {
-                    //gather in comments string
-                    if (comments.IsNotEmpty() )
+                    fileHeaderRead= true;
+                    FileComments._()._( comments );
+                    comments.Clear();
+                }
+
+                // empty line?
+                if ( isEmpty )
+                {
+                    if ( comments.IsNotEmpty() )
                         comments.NewLine();
-                    line.CopyTo( comments, true );
                     continue;
                 }
 
@@ -471,66 +448,80 @@ namespace cs.aworx.lib.config  {
 
                     // search the section in our section list (if section existed already, new comments
                     // are dropped)
-                    actSection= SearchOrCreateSection( line, comments);
+                    actSection= (IniFile.Section) SearchOrCreateSection( line, comments);
                     comments.Clear();
 
                     continue;
                 }
 
-                // variable line? If not, we just drop the line!
-                tn.Set( line, '=' );
-                tn.Next();
-                if ( !tn.HasNext() )
-                {
-                    LinesWithReadErrors.Add( lineNo );
-                    continue;
-                }
-
-                tn.Actual.CopyTo( name );
-                if ( tn.GetRest().IsEmpty() )
-                {
-                    LinesWithReadErrors.Add( lineNo );
-                    continue;
-                }
-
+                // variable line?
                 value.Clear();
-                Substring valueRead= tn.Actual;
+                int idx= line.IndexOfAny( separatorCharacters, Inclusion.Include );
+                if( idx < 0 )
+                {
+                    name._()._( line );
+                    line.Clear();
+                }
+                else
+                {
+                    name._()._( line.Buf, line.Start, idx );
+                    line.Consume( idx );
+                    value._(line);
+                }
 
                 // read continues as long as lines end with '\' (must not be '\\')
-                char delim= '\0';
-                while (     valueRead.CharAtEnd()  == '\\'
-                        &&  valueRead.CharAtEnd(1) != '\\' )
+                while (     line.CharAtEnd()  == '\\'
+                        &&  line.CharAtEnd(1) != '\\' )
                 {
-                    // search end before '\'. The first of all broken lines determines the delimiter
-                    valueRead.End--;
-                    valueRead.TrimEnd();
+                    value.NewLine();
 
-                    if (delim == 0)
-                    {
-                        delim= valueRead.CharAtEnd();
-                        if (  delim == '\"' ||  char.IsLetterOrDigit( delim ) )
-                            delim= '\0';
-                    }
-
-                    removeEscapeSequences ( valueRead, value );
                     if ( (lineS= file.ReadLine()) == null  )
                     {
                         // last line of the file ended with '\' !
-                        valueRead.Clear();
+                        line.Clear();
                         break;
                     }
-
-                    valueRead.Set( lineS ).Trim();
+                    line.Set( lineS ).TrimEnd();
+                    value._( line );
                 }
-                removeEscapeSequences ( valueRead, value );
 
-                actSection.Insert( name, value, comments ).Delim= delim;
+                // insert entry with raw value
+                {
+                    IniFile.Entry entry= (IniFile.Entry) actSection.GetEntry( name, true );
+                    entry.Values  .Clear();
+                    entry.Comments._()._( comments );
+                    entry.RawValue._()._( value );
+
+                    // if there is just no raw value, we add an empty string to the entries' values
+                    if ( value.IsEmpty() )
+                        entry.Values.Add( new AString() );
+                }
+
                 comments.Clear();
 
             }
             file.Close();
 
             return LastStatus;
+        }
+
+
+        /** ****************************************************************************************
+         * Helper method for formatting attributes
+         * @param value              The value to check
+         * @param alignmentSeparator The string defining the separator.
+         * @return Returns the position of the first '=' or ':' character
+         ******************************************************************************************/
+        protected static int getAssignmentPos( AString value, String alignmentSeparator )
+        {
+            int idx= value.IndexOf( alignmentSeparator );
+            if( idx > 0 )
+            {
+                int idxQuote= value.IndexOf( '"' );
+                if ( idxQuote < 0  || idxQuote > idx )
+                    return idx;
+            }
+            return -1;
         }
 
         /** ****************************************************************************************
@@ -552,22 +543,25 @@ namespace cs.aworx.lib.config  {
                 return LastStatus= Status.ERROR_OPENING_FILE;
             }
 
-            Tokenizer tok=      new Tokenizer();
-            AString   tempAS=   new AString();
+            Tokenizer tknzr=               new Tokenizer();
+            AString   externalizedValue=   new AString();
 
-            // write header
+            // write file header
             if ( FileComments.IsNotEmpty() )
             {
-                writeComments( file, FileComments, tok );
+                writeComments( file, FileComments, tknzr );
                 file.WriteLine();
             }
 
             // loop over all sections
+            int cntVars= 0;
             foreach ( Section section in Sections )
             {
-                file.WriteLine();
-                writeComments( file, section.Comments, tok );
+                if ( cntVars > 0 )
+                    file.WriteLine();
 
+                // write section comments and name
+                writeComments( file, section.Comments, tknzr );
                 if ( section.Name.IsNotEmpty() )
                 {
                     file.Write('[');
@@ -575,52 +569,154 @@ namespace cs.aworx.lib.config  {
                     file.WriteLine(']');
                 }
 
+                // variables
                 int maxVarLength= 0;
-                foreach ( Variable variable in section.Variables )
-                    maxVarLength= Math.Max( maxVarLength, variable.Name.Length() );
+                foreach ( Entry entry in section.Entries )
+                    maxVarLength= Math.Max( maxVarLength, entry.Name.Length() );
 
-                foreach ( Variable variable in section.Variables )
+                bool previousVarHasComments= true;
+                foreach ( Entry entry in section.Entries )
                 {
-                    if( variable.Comments.IsNotEmpty() )
+                    cntVars++;
+
+                    // write comments
+                    if( entry.Comments.IsNotEmpty() )
                     {
-                        file.WriteLine();
-                        writeComments( file, variable.Comments, tok );
+                        // we make an extra empty line if previous var had no comments
+                        if( !previousVarHasComments)
+                            file.WriteLine();
+                        writeComments( file, entry.Comments, tknzr );
                     }
-                    file.Write( variable.Name.Buffer(), 0, variable.Name.Length() );
-                    file.Write( '=' );
-                    Util.WriteSpaces( file, maxVarLength - variable.Name.Length() + 1 );
 
-                    tok.Set( variable.Value, variable.Delim );
-                    int      backSlashPos= 0;
-                    int      lastLineLen=  0;
-                    while( tok.HasNext() )
+                    // write name =
+                    file.Write( entry.Name.Buffer(), 0, entry.Name.Length() );
+
+                    // either write raw value (if it was not used by the application)
+                    IniFile.Entry ifEntry= (IniFile.Entry) entry;
+                    if ( ifEntry.RawValue.IsNotEmpty() )
                     {
-                        // write backslash of previous line and spaces of actual line
-                        if (tok.Actual.IsNotNull() )
+                        file.Write( ifEntry.RawValue.Buffer(), 0, ifEntry.RawValue.Length() );
+                    }
+
+                    // or write the values parsed by the software
+                    else
+                    {
+                        file.Write( '=' );
+                        Util.WriteSpaces( file, maxVarLength - entry.Name.Length() + 1 );
+
+                        bool     isFirst=      true;
+
+                        //-------- write as single-line ----------
+                        if ( 0 == ( entry.FormatHints & Variable.FormatHint.MultLine  ) )
                         {
-                            if ( backSlashPos < lastLineLen + 1  )
-                                 backSlashPos=  lastLineLen + 8;
+                            bool delimSpaces=  (0 == ( entry.FormatHints & Variable.FormatHint.NoDelimSpaces ) );
+                            foreach( AString value in entry.Values )
+                            {
+                                // write delim and backslash of previous line, newline and then spaces of actual line
+                                if ( !isFirst )
+                                {
+                                    ALIB.ASSERT_ERROR( entry.Delim != 0,
+                                                       "No delimiter given for multi-value variable \""
+                                                       + entry.Name + "\"." );
 
-                            Util.WriteSpaces( file, backSlashPos - lastLineLen );
+                                    if( delimSpaces && FormatSpaceBeforeDelim)
+                                        file.Write( ' ' );
 
-                            file.WriteLine( '\\' );
+                                    file.Write( entry.Delim );
 
-                            Util.WriteSpaces( file, maxVarLength + 2 ); // 2 for "= "
+                                    if( delimSpaces && FormatSpaceAfterDelim)
+                                        file.Write( ' ' );
+                                }
+
+                                // externalize value
+                                externalizedValue._();
+                                StringConverter.ExternalizeValue( value, externalizedValue, entry.Delim );
+                                file.Write( externalizedValue.Buffer(), 0, externalizedValue.Length() );
+                                isFirst= false;
+                            }
                         }
 
-                        // write value
-                        tok.Next( Whitespaces.Keep );
-                        lastLineLen=  maxVarLength + 2  + tok.Actual.Length();
-                        lastLineLen+= addEscapeSequences( file, tok.Actual, tempAS );
-
-                        // write delim
-                        if ( tok.HasNext() )
+                        // ---------- write as multi-line ----------
+                        else
                         {
-                            file.Write( variable.Delim );
-                            lastLineLen++;
+                            int      backSlashPos= 0;
+                            int      lastLineLen=  0;
+
+                            // Get maximum position of attribute assignment char '=' or ':' (if exists)
+                            int maxAttributeAssignPos= 0;
+                            bool allAttrHavePrecedingBlanks= true;
+                            if (entry.FormatAttrAlignment != null )
+                            {
+                                foreach( AString value in entry.Values )
+                                {
+                                    int attributeAssignPos= getAssignmentPos( value, entry.FormatAttrAlignment );
+                                    if ( attributeAssignPos > 0 )
+                                    {
+                                        if ( maxAttributeAssignPos < attributeAssignPos )
+                                            maxAttributeAssignPos= attributeAssignPos;
+                                        allAttrHavePrecedingBlanks&= value.CharAt( attributeAssignPos - 1 ) == ' ';
+                                    }
+                                }
+                                if ( !allAttrHavePrecedingBlanks )
+                                    maxAttributeAssignPos += 1;
+                            }
+
+                            // loop over values of entry
+                            foreach( AString value in entry.Values )
+                            {
+
+                                // write delim and backslash of previous line, newline and then spaces of actual line
+                                if ( !isFirst )
+                                {
+                                    ALIB.ASSERT_ERROR( entry.Delim != 0,
+                                                       "No delimiter given for multi-value variable \""
+                                                       + entry.Name + "\"." );
+
+                                    file.Write( entry.Delim );
+
+                                    if ( backSlashPos < lastLineLen + 1  )
+                                         backSlashPos=  lastLineLen + 4;
+
+                                    Util.WriteSpaces( file, backSlashPos - lastLineLen );
+
+                                    file.WriteLine( '\\' );
+
+                                    Util.WriteSpaces( file, maxVarLength + 2 ); // 2 for "= "
+                                }
+
+                                // externalize value
+                                externalizedValue._();
+                                StringConverter.ExternalizeValue( value, externalizedValue, entry.Delim );
+
+                                // if first character is a INI comment char, then escape it
+                                char firstChar= externalizedValue.CharAt(0);
+                                if( !isFirst && (firstChar == '#' || firstChar == ';' ) )
+                                    externalizedValue.InsertAt("\\", 0 );
+
+                                // if assignment, insert spaces to align assignments
+                                if (entry.FormatAttrAlignment != null )
+                                {
+                                    int attributeAssignPos= getAssignmentPos( externalizedValue, entry.FormatAttrAlignment );
+                                    if ( attributeAssignPos > 0 && attributeAssignPos < maxAttributeAssignPos )
+                                        externalizedValue.InsertChars( ' ',
+                                                                       maxAttributeAssignPos-attributeAssignPos,
+                                                                       attributeAssignPos + (FormatIncludeDelimInAttrAlignment ?
+                                                                                              0 : entry.FormatAttrAlignment.Length )
+                                                                      );
+                                }
+
+                                file.Write( externalizedValue.Buffer(), 0, externalizedValue.Length() );
+
+                                lastLineLen=  maxVarLength + 2  + externalizedValue.Length();
+                                isFirst= false;
+                            }
                         }
                     }
                     file.WriteLine();
+
+                    // add an empty line if we have comments
+                    if( (previousVarHasComments= entry.Comments.IsNotEmpty() ) == true )
+                        file.WriteLine();
                 }
             }
 
@@ -628,6 +724,21 @@ namespace cs.aworx.lib.config  {
             file.Close();
 
             return LastStatus;
+        }
+
+    // #############################################################################################
+    // Protected methods
+    // #############################################################################################
+
+        /** ****************************************************************************************
+         * Overrides base classes method to create a section of our type.
+         *
+         * @param name    The name of the section.
+         * @return An object of type \ref Section "IniFile.Section".
+         ******************************************************************************************/
+        protected override InMemoryPlugin.Section  createSection( Object name )
+        {
+            return new IniFile.Section( name );
         }
 
         /** ****************************************************************************************
@@ -646,90 +757,29 @@ namespace cs.aworx.lib.config  {
          * Writes a list of comments to the file. Comment lines are started with '#'.
          * @param os       The output stream to write to.
          * @param comments The comment lines for the section.
-         * @param tok      A temporary tokenizer needed internally.
+         * @param tknzr    A temporary tokenizer needed internally.
          ******************************************************************************************/
-        protected void writeComments( TextWriter os, AString comments, Tokenizer tok )
+        protected void writeComments( TextWriter os, AString comments, Tokenizer tknzr )
         {
-            // is empty when trimmed?
-            if ( tok.Actual.Set( comments ).Trim().IsEmpty() )
+            // is empty when trimmed? (we are lenting tokeinizers field 'actual' to test)
+            if ( tknzr.Actual.Set( comments ).Trim().IsEmpty() )
                 return;
 
             // tokenize by NEWLINE character
-            tok.Set( comments, '\n' );
-            char[] oldWhiteSpaces= tok.Whitespaces;
-            tok.Whitespaces=  " \r\t".ToCharArray(); // \n is not a whitespace
+            tknzr.Set( comments, '\n' );
+            char[] oldWhiteSpaces= tknzr.Whitespaces;
+            tknzr.Whitespaces=  " \r\t".ToCharArray(); // \n is not a whitespace
 
-            while( tok.HasNext() )
+            while( tknzr.Next(Whitespaces.Keep).IsNotNull() )
             {
-                if ( !startsWithCommentSymbol( tok.Next() ) )
+                if ( !startsWithCommentSymbol( tknzr.Actual ) )
                     os.Write( DefaultCommentPrefix );
-                os.WriteLine( tok.Actual.Buf, tok.Actual.Start, tok.Actual.Length() );
+                os.WriteLine( tknzr.Actual.Buf, tknzr.Actual.Start, tknzr.Actual.Length() );
             }
-            tok.Whitespaces= oldWhiteSpaces;
+            tknzr.Whitespaces= oldWhiteSpaces;
         }
 
-        /** ****************************************************************************************
-         * Converts variable value data. Replaces certain characters by escape sequences.
-         * @param os        The output stream to write to.
-         * @param value     The value to write
-         * @param temp      A temporary AString needed internally.
-         * @return The difference of length written and given value length.
-         ******************************************************************************************/
-        protected int addEscapeSequences( TextWriter os, Substring value, AString temp )
-        {
-            int sizeDiff= 0;
-            temp.Clear();
-
-            if(     char.IsWhiteSpace( value.CharAtStart() )
-                ||  char.IsWhiteSpace( value.CharAtEnd  () ) )
-            {
-                temp._('\"')._( value )._('\"');
-                sizeDiff= 2;
-            }
-            else
-                temp._( value );
-
-
-            for( int i= 0 ; i < EscapeSequences.Count;  )
-            {
-                String replacement= EscapeSequences[i++];
-                String needle=      EscapeSequences[i++];
-                sizeDiff+= temp.SearchAndReplace( needle, replacement, 0 ) * (replacement.Length - needle.Length );
-            }
-
-            os.Write( temp.Buffer(), 0, temp.Length() );
-            return sizeDiff;
-        }
-
-        /** ****************************************************************************************
-         * Converts variable value data provided in the token and appends it to the target
-         * variable.
-         * Respects (and removes) quotation marks.
-         * Replaces certain characters by escape sequences.
-         * @param value     The input string.
-         * @param target    The AString that gets the converted result appended.
-         ******************************************************************************************/
-        protected void removeEscapeSequences( Substring value, AString target )
-        {
-            // remove quotation markes
-            if(     value.CharAtStart() == '\"'
-                &&  value.CharAtEnd  () == '\"' )
-            {
-                value.Start++;
-                value.End--;
-            }
-
-            int regionStart= target.Length();
-            value.CopyTo( target, true );
-
-            for( int i= 0 ; i < EscapeSequences.Count;  )
-            {
-                String needle=      EscapeSequences[i++];
-                String replacement= EscapeSequences[i++];
-                target.SearchAndReplace( needle, replacement, regionStart );
-            }
-        }
-    } // class
+} // class
 
 }// namespace
 

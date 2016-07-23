@@ -406,17 +406,21 @@ public class Substring
          * character is cut from this object.
          *
          * @param consumable        The consumable character
+         * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
          *                          consume operation. Defaults to \c Whitespaces.Keep.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut by one.
          ******************************************************************************************/
-        public bool        Consume( char consumable, Whitespaces trimBeforeConsume= Whitespaces.Keep )
+        public bool        Consume( char         consumable,  
+                                    Case         sensitivity         = Case.Sensitive, 
+                                    Whitespaces  trimBeforeConsume   = Whitespaces.Keep )
         {
             if ( trimBeforeConsume == Whitespaces.Trim )
                 TrimStart();
 
-            if ( CharAtStart() != consumable )
+            if (    ( sensitivity == Case.Sensitive &&              CharAtStart()  !=              consumable  )
+                 || ( sensitivity == Case.Ignore    && Char.ToUpper(CharAtStart()) != Char.ToUpper(consumable) ) )
                 return false;
             Start++;
             hash= 0;
@@ -428,17 +432,21 @@ public class Substring
          * character is cut from the end of object.
          *
          * @param consumable The consumable character
+         * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (right-) trimmed before the
          *                          consume operation. Defaults to \c Whitespaces.Keep.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut by one.
          ******************************************************************************************/
-        public bool        ConsumeFromEnd( char consumable, Whitespaces trimBeforeConsume= Whitespaces.Keep )
+        public bool        ConsumeFromEnd( char         consumable, 
+                                           Case         sensitivity         = Case.Sensitive, 
+                                           Whitespaces  trimBeforeConsume   = Whitespaces.Keep )
         {
             if ( trimBeforeConsume == Whitespaces.Trim )
                 TrimEnd();
 
-            if ( CharAtEnd() != consumable )
+            if (    ( sensitivity == Case.Sensitive &&              CharAtEnd()  !=              consumable  )
+                 || ( sensitivity == Case.Ignore    && Char.ToUpper(CharAtEnd()) != Char.ToUpper(consumable) ) )
                 return false;
             End--;
             hash= 0;
@@ -450,17 +458,20 @@ public class Substring
          * string is cut from this object.
          *
          * @param consumable        The consumable string
+         * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
          *                          consume operation. Defaults to \c Whitespaces.Keep.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut.
          ******************************************************************************************/
-        public bool        Consume( String consumable, Whitespaces trimBeforeConsume= Whitespaces.Keep )
+        public bool        Consume( String       consumable,
+                                    Case         sensitivity         = Case.Sensitive, 
+                                    Whitespaces  trimBeforeConsume   = Whitespaces.Keep )
         {
             if ( trimBeforeConsume == Whitespaces.Trim )
                 TrimStart();
 
-            if ( !StartsWith( consumable ) )
+            if ( !StartsWith( consumable, sensitivity) )
                 return false;
 
             Consume( consumable.Length );
@@ -473,17 +484,20 @@ public class Substring
          * string is cut from this object.
          *
          * @param consumable        The consumable string
+         * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
          *                          consume operation. Defaults to \c Whitespaces.Keep.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut.
          ******************************************************************************************/
-        public bool        Consume( AString consumable, Whitespaces trimBeforeConsume= Whitespaces.Keep )
+        public bool        Consume( AString      consumable,  
+                                    Case         sensitivity         = Case.Sensitive, 
+                                    Whitespaces  trimBeforeConsume   = Whitespaces.Keep )
         {
             if ( trimBeforeConsume == Whitespaces.Trim )
                 TrimStart();
 
-            if ( !StartsWith( consumable ) )
+            if ( !StartsWith( consumable, sensitivity ) )
                 return false;
 
             Consume( consumable.Length() );
@@ -496,17 +510,20 @@ public class Substring
          * string is cut from this object.
          *
          * @param consumable        The consumable string
+         * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
          *                          consume operation. Defaults to \c Whitespaces.Keep.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut.
          ******************************************************************************************/
-        public bool        Consume( Substring consumable, Whitespaces trimBeforeConsume= Whitespaces.Keep )
+        public bool        Consume( Substring    consumable,
+                                    Case         sensitivity         = Case.Sensitive, 
+                                    Whitespaces  trimBeforeConsume   = Whitespaces.Keep )
         {
             if ( trimBeforeConsume == Whitespaces.Trim )
                 TrimStart();
 
-            if ( !StartsWith( consumable ) )
+            if ( !StartsWith( consumable, sensitivity ) )
                 return false;
 
             Consume( consumable.Length() );
@@ -519,17 +536,20 @@ public class Substring
          * string is cut from the end of object.
          *
          * @param consumable        The consumable string
+         * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (right-) trimmed before the
          *                          consume operation. Defaults to \c Whitespaces.Keep.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut.
          ******************************************************************************************/
-        public bool        ConsumeFromEnd( String consumable, Whitespaces trimBeforeConsume= Whitespaces.Keep )
+        public bool        ConsumeFromEnd( String       consumable,  
+                                           Case         sensitivity         = Case.Sensitive, 
+                                           Whitespaces  trimBeforeConsume   = Whitespaces.Keep )
         {
             if ( trimBeforeConsume == Whitespaces.Trim )
                 TrimEnd();
 
-            if ( !EndsWith( consumable ) )
+            if ( !EndsWith( consumable, sensitivity ) )
                 return false;
             ConsumeFromEnd( consumable.Length );
             return true;
@@ -540,17 +560,20 @@ public class Substring
          * string is cut from the end of object.
          *
          * @param consumable        The consumable string
+         * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (right-) trimmed before the
          *                          consume operation. Defaults to \c Whitespaces.Keep.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut.
          ******************************************************************************************/
-        public bool        ConsumeFromEnd( AString consumable, Whitespaces trimBeforeConsume= Whitespaces.Keep )
+        public bool        ConsumeFromEnd( AString      consumable,  
+                                           Case         sensitivity         = Case.Sensitive, 
+                                           Whitespaces  trimBeforeConsume   = Whitespaces.Keep )
         {
             if ( trimBeforeConsume == Whitespaces.Trim )
                 TrimEnd();
 
-            if ( !EndsWith( consumable ) )
+            if ( !EndsWith( consumable, sensitivity ) )
                 return false;
             ConsumeFromEnd( consumable.Length() );
             return true;
@@ -561,17 +584,20 @@ public class Substring
          * string is cut from the end of object.
          *
          * @param consumable        The consumable string
+         * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (right-) trimmed before the
          *                          consume operation. Defaults to \c Whitespaces.Keep.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut.
          ******************************************************************************************/
-        public bool        ConsumeFromEnd( Substring consumable, Whitespaces trimBeforeConsume= Whitespaces.Keep )
+        public bool        ConsumeFromEnd( Substring    consumable,  
+                                           Case         sensitivity         = Case.Sensitive, 
+                                           Whitespaces  trimBeforeConsume   = Whitespaces.Keep )
         {
             if ( trimBeforeConsume == Whitespaces.Trim )
                 TrimEnd();
 
-            if ( !EndsWith( consumable ) )
+            if ( !EndsWith( consumable, sensitivity ) )
                 return false;
             ConsumeFromEnd( consumable.Length() );
             return true;
@@ -1372,9 +1398,9 @@ public class Substring
          * Moves the start marker to the first character not found in parameter \p whiteSpaces.
          * @param whiteSpaces  The characters used for trimming. Defaults to
          *                     \ref cs::aworx::lib::strings::CString::DefaultWhitespaces "CString.DefaultWhitespaces".
-         * @return true if empty after the operation.
+         * @return \c this to allow concatenated calls.
          ******************************************************************************************/
-        public bool   TrimStart( char[] whiteSpaces )
+        public Substring TrimStart( char[] whiteSpaces )
         {
             if ( End - Start >= 0 )
             {
@@ -1388,15 +1414,15 @@ public class Substring
                 }
 
             }
-            return IsEmpty();
+            return this;
         }
 
         /** ****************************************************************************************
          * Invokes #TrimStart(char[]) providing default parameter
          * \ref cs::aworx::lib::strings::CString::DefaultWhitespaces "CString.DefaultWhitespaces".
-         * @return true if empty after the operation.
+         * @return \c this to allow concatenated calls.
          ******************************************************************************************/
-        public bool   TrimStart()
+        public Substring TrimStart()
         {
             return TrimStart( CString.DefaultWhitespaces );
         }
@@ -1405,9 +1431,9 @@ public class Substring
          * Moves the start marker to the first character not found in parameter \p whiteSpaces.
          * @param whiteSpaces  The characters used for trimming. Defaults to
          *                     \ref cs::aworx::lib::strings::CString::DefaultWhitespaces "CString.DefaultWhitespaces".
-         * @return true if empty after the operation.
+         * @return \c this to allow concatenated calls.
          ******************************************************************************************/
-        public bool   TrimEnd( char[] whiteSpaces )
+        public Substring TrimEnd( char[] whiteSpaces )
         {
             if ( End - Start >= 0 )
             {
@@ -1415,15 +1441,15 @@ public class Substring
                 hash= 0;
             }
 
-            return IsEmpty();
+            return this;
         }
 
         /** ****************************************************************************************
          * Invokes #TrimEnd(char[]) providing default parameter
          * \ref cs::aworx::lib::strings::CString::DefaultWhitespaces "CString.DefaultWhitespaces".
-         * @return true if empty after the operation.
+         * @return \c this to allow concatenated calls.
          ******************************************************************************************/
-        public bool   TrimEnd()
+        public Substring   TrimEnd()
         {
             return TrimEnd( CString.DefaultWhitespaces );
         }
@@ -1436,9 +1462,7 @@ public class Substring
          ******************************************************************************************/
         public Substring   Trim( char[] whiteSpaces )
         {
-            if ( !TrimStart(whiteSpaces) )
-                TrimEnd(whiteSpaces);
-            return this;
+            return TrimEnd(whiteSpaces).TrimStart(whiteSpaces);
         }
 
         /** ****************************************************************************************

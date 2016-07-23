@@ -6,6 +6,9 @@
 // #################################################################################################
 #include "alib/stdafx_alib.h"
 
+#if !defined (HPP_ALIB_CONFIG_CONFIGURATION)
+    #include "alib/config/configuration.hpp"
+#endif
 #if !defined (HPP_ALIB_CONFIG_INI_FILE)
     #include "alib/config/inifile.hpp"
 #endif
@@ -50,20 +53,92 @@ String                IniFile::DefaultFileExtension                             
 #endif
 
 // #################################################################################################
+// class InMemoryPlugin::Entry
+// #################################################################################################
+void IniFile::Entry::ToVariable( const InMemoryPlugin* parent, Variable& variable )
+{
+    // if we are still raw, then parse the INI file content
+    if ( Values.size() == 0 )
+    {
+        ALIB_ASSERT( Delim == '\0' );
+        Delim= variable.Delim;
+        variable.Comments._()._( Comments );
+
+        //-----  remove INI-File specific from raw value -----
+        String512 raw;
+        ALIB_WARN_ONCE_PER_INSTANCE_DISABLE( raw,  ReplaceExternalBuffer);
+        raw._( RawValue );
+
+        // remove '='
+        raw.TrimStart();
+        if ( raw.CharAtStart() != '=' )
+        {
+            ALIB_WARNING_S512( "No equal sign in variable \"" << variable.Fullname << "\" of INI file." );
+        }
+        else
+            raw.DeleteStart(1).TrimStart();
+
+
+        // remove "\\n"
+        int startIdx= 0;
+        while ( (startIdx= raw.IndexOf( '\n', startIdx )) >= 0 )
+        {
+            // find \\n and trim around this location
+            int delLen= 2;
+            if ( raw.CharAt( --startIdx) == '\r' )
+            {
+                delLen= 3;
+                --startIdx;
+            }
+            ALIB_ASSERT( raw.CharAt(startIdx) == '\\' );
+            raw.Delete( startIdx, delLen );
+
+            startIdx= raw.TrimAt( startIdx );
+
+            // if now the next value is starting with a comment symbol, we remove to the next \n
+            for(;;)
+            {
+                char c= raw.CharAt( startIdx );
+                if (     c != '#'
+                    &&   c != ';'
+                    && ( c != '/' || raw.CharAt( startIdx + 1 ) != '/' ) )
+                    break;
+
+                int idx= raw.IndexOf( '\n', startIdx );
+                if (idx < 0 ) idx= raw.Length();
+                raw.Delete( startIdx, idx - startIdx + 1 );
+                if( startIdx >= raw.Length() )
+                    break;
+                startIdx= raw.TrimAt( startIdx );
+            }
+        }
+
+        // now convert
+        parent->StringConverter->LoadFromString( variable, raw );
+
+        // copy the parsed values back to our entry and store the delimiter
+        for( int i= 0; i < variable.Size() ; i++ )
+            Values.emplace_back( AString( variable.GetString( i ) ) );
+    }
+
+    // otherwise, use base method
+    else
+        InMemoryPlugin::Entry::ToVariable( parent, variable );
+}
+
+void IniFile::Entry::FromVariable( const InMemoryPlugin* parent, Variable& variable )
+{
+    RawValue._();
+    InMemoryPlugin::Entry::FromVariable( parent, variable );
+}
+
+
+// #################################################################################################
 // Constructor/Destructor
 // #################################################################################################
 IniFile::IniFile( const String& fileName )
-: ConfigurationPlugIn()
+: InMemoryPlugin()
 {
-    EscapeSequences=   {
-                             "\\\\",  "\\",
-                             "\\n",   "\n",
-                             "\\r",   "\r",
-                             "\\t",   "\t",
-                             "\\#",   "#",
-                             "\\;",   ";"
-                       };
-
     if ( fileName.IsNotEmpty() )
     {
         // don't read anything
@@ -93,160 +168,14 @@ IniFile::IniFile( const String& fileName )
     ReadFile();
 }
 
-// #################################################################################################
-// interface
-// #################################################################################################
-
-void  IniFile::Clear()
+void  IniFile::Reset()
 {
+    InMemoryPlugin::Reset();
     FileComments.Clear();
-    for ( Section* section : Sections )
-        delete section;
-    Sections.clear();
     LinesWithReadErrors.clear();
     LastStatus= Status::Ok;
 }
 
-IniFile::Section* IniFile::SearchSection( const String& name )
-{
-    // search
-    auto sIt= find_if( Sections.begin(), Sections.end(),
-                       [& name](IniFile::Section* section)
-                       {
-                          return section->Name.Equals( name, Case::Ignore );
-                       }
-                      );
-
-    return  sIt != Sections.end()   ? *sIt
-                                    : nullptr;
-}
-
-IniFile::Section* IniFile::SearchOrCreateSection( const String& name, const String& comments )
-{
-    Section* s= SearchSection( name );
-    if ( s == nullptr )
-        Sections.insert( Sections.end(), s= new Section( name ) );
-
-    if ( s->Comments.IsEmpty() )
-        s->Comments._( comments );
-
-    return s;
-}
-
-
-IniFile::Variable* IniFile::Section::Insert( const String& name, const String& value, const String& comments )
-{
-    // search
-    auto vIt= find_if( Variables.begin(), Variables.end(),
-                       [& name](IniFile::Variable* variable)
-                       {
-                          return variable->Name.Equals( name, Case::Ignore );
-                       }
-                      );
-    // found?
-    Variable* var;
-    if ( vIt != Variables.end() )
-        var=  *vIt;
-    else
-    {
-        // create variable
-        Variables.insert( Variables.end(), new Variable() );
-        var= Variables.back();
-        var->Name= name;
-    }
-
-    var->Value=     value;
-
-    // do not overwrite comments
-    if ( var->Comments.IsEmpty() )
-        var->Comments._( comments );
-    return var;
-}
-
-IniFile::Variable* IniFile::Section::Get( const String& name )
-{
-    // search
-    auto vIt= find_if( Variables.begin(), Variables.end(),
-                       [& name](IniFile::Variable* variable)
-                       {
-                          return variable->Name.Equals( name, Case::Ignore );
-                       }
-                      );
-    return  vIt != Variables.end() ?  *vIt
-                                   :  nullptr;
-}
-
-
-// #################################################################################################
-// Configuration plug-in interface implementation
-// #################################################################################################
-
-bool  IniFile::Get( const String& pcategory, const String& name, AString& target )
-{
-    // check
-    if ( name.IsEmpty() )
-    {
-        ALIB_WARNING( "Empty name given" );
-        return false;
-    }
-    String category= pcategory.IsNotNull() ? pcategory
-                                           : "";
-
-    target.Clear();
-    Section*    section;
-    Variable*   var= nullptr;
-    if (    (section= SearchSection( category )) != nullptr
-         && (var=     section->Get ( name )    ) != nullptr
-       )
-        target._( var->Value );
-
-    return var != nullptr;
-}
-
-bool  IniFile::Save( const String& pcategory,  const String& name, const String& value,
-                     const String& comments,   char           delim                     )
-{
-    // check
-    if ( name.IsEmpty() )
-    {
-        ALIB_WARNING( "Empty name given" );
-        return false;
-    }
-    String category= pcategory.IsNotNull() ? pcategory
-                                           : "";
-
-    // find or create section (create triggered by provided section comments, although empty)
-    Section*    section=    SearchOrCreateSection( category, nullptr );
-    Variable*   var=        section->Get( name );
-    bool        changed=    false;
-
-    if ( var == nullptr )
-    {
-        var= section->Insert( name, value );
-        var->Delim= delim;
-        changed= true;
-    }
-    else
-    {
-        if ( !var->Value.Equals( value ) )
-        {
-            var->Value= value;
-            changed= true;
-        }
-    }
-
-    if ( var->Comments.IsEmpty() && !comments.IsEmpty() )
-    {
-        var->Comments._( comments );
-        changed= true;
-    }
-
-    // save file
-    if ( changed && AutoSave )
-        WriteFile();
-
-    return true;
-}
 
 // #################################################################################################
 // Read/Write files
@@ -263,7 +192,7 @@ bool startsWithCommentSymbol( Substring& subs )
 
 IniFile::Status  IniFile::ReadFile()
 {
-    Clear();
+    Reset();
     LastStatus= Status::Ok;
 
     // open file
@@ -275,8 +204,7 @@ IniFile::Status  IniFile::ReadFile()
     String128   name;
     AString     value;
     AString     comments;
-    Section*    actSection;
-    Sections.insert( Sections.end(), actSection= new Section( nullptr ) );
+    Section*    actSection= (IniFile::Section*) Sections[0];
 
     int         lineNo= 0;
     bool        fileHeaderRead= false;
@@ -285,43 +213,39 @@ IniFile::Status  IniFile::ReadFile()
 
     lib::strings::ReadLineFromIStream readOp= lib::strings::ReadLineFromIStream( file );
 
+    String16 separatorCharacters( '=' );
+    separatorCharacters._( DefaultWhitespaces );
+
     while( !readOp.IsEOF )
     {
         lineAS << readOp;
-
-        lineNo= 0;
-
-        //  place in a substring
+        lineNo++;
         Substring line( lineAS );
 
-        // empty line?
-        if ( line.Trim() )
-        {
-            // already collecting a comment?
-            if ( comments.IsNotEmpty() )
-            {
-                // first empty line in file found?
-                if ( !fileHeaderRead )
-                {
-                    //store comments belonging to file
-                    fileHeaderRead= true;
-                    FileComments=   comments;
-                    comments.Clear();
-                    continue;
-                }
+        bool isEmpty=       line.Trim().IsEmpty();
+        bool isCommentLine= startsWithCommentSymbol( line );
 
+        if ( isCommentLine )
+        {
+            if ( comments.IsNotEmpty() )
                 comments.NewLine();
-            }
+            comments._(line);
             continue;
         }
 
-        // comments line: find comment character '#', ';' or //
-        if ( startsWithCommentSymbol( line ) )
+        // still processing file header?
+        if ( !fileHeaderRead )
         {
-            //gather in comments string
+            fileHeaderRead= true;
+            FileComments=   comments;
+            comments.Clear();
+        }
+
+        // empty line?
+        if ( isEmpty )
+        {
             if ( comments.IsNotEmpty() )
                 comments.NewLine();
-            comments._( line );
             continue;
         }
 
@@ -337,61 +261,57 @@ IniFile::Status  IniFile::ReadFile()
 
             // search the section in our section list (if section existed already, new comments
             // are dropped)
-            actSection= SearchOrCreateSection( String256( line ), comments );
+            actSection= (IniFile::Section*) SearchOrCreateSection( line, comments );
             comments.Clear();
 
             continue;
         }
 
-        // variable line? If not, we just drop the line!
-        Tokenizer tn( line, '=' );
-        tn.Next();
-        if ( !tn.HasNext() )
-        {
-            LinesWithReadErrors.insert( LinesWithReadErrors.end(), lineNo );
-            continue;
-        }
-
-        name= tn.Actual;
-        if ( tn.GetRest().IsEmpty() )
-        {
-            LinesWithReadErrors.insert( LinesWithReadErrors.end(), lineNo );
-            continue;
-        }
-
+        // Variable line
         value.Clear();
-        Substring& valueRead= tn.Actual;
+        int idx= line.IndexOfAny( separatorCharacters, enums::Inclusion::Include );
+        if( idx < 0 )
+        {
+            name._()._( line );
+            line.Clear();
+        }
+        else
+        {
+            name._()._( line, 0, idx );
+            line.Consume( idx );
+            value._(line);
+        }
 
         // read continues as long as lines end with '\' (must not be '\\')
-        char delim= 0;
-        while (     valueRead.CharAtEnd() == '\\'
-                && (valueRead.Length() == 1 || valueRead.CharAt<false>( valueRead.Length() -2 ) != '\\' ) )
+        while (    line.CharAtEnd()  == '\\'
+                && (line.Length() == 1 || line.CharAt<false>( line.Length() -2 ) != '\\' ) )
         {
-            // search end before '\'. The first of all broken lines determines the delimiter
-            valueRead.ConsumeFromEnd();
-            valueRead.TrimEnd();
-
-            if (delim == 0)
-            {
-                delim= valueRead.CharAtEnd();
-                if (  delim == '\"' ||  isalnum( delim ) )
-                    delim= 0;
-            }
-
-            removeEscapeSequences ( valueRead, value );
+            value.NewLine();
             lineAS << readOp;
             if ( readOp.IsEOF )
             {
                 // last line of the file ended with '\' !
-                valueRead.Clear();
+                line.Clear();
                 break;
             }
+            lineAS.TrimEnd();
+            line= lineAS;
 
-            (valueRead= lineAS).Trim();
+            value._( lineAS );
         }
-        removeEscapeSequences ( valueRead, value );
 
-        actSection->Insert( name, value, comments )->Delim= delim;
+        // insert entry with raw value
+        {
+            IniFile::Entry* entry= (IniFile::Entry*) actSection->GetEntry( name, true );
+            entry->Values  .clear();
+            entry->Comments._()._( comments );
+            entry->RawValue._()._( value );
+
+            // if there is just no raw value, we add an empty string to the entries' values
+            if ( value.IsEmpty() )
+                entry->Values.insert( entry->Values.end(), AString() );
+        }
+
         comments.Clear();
 
     }
@@ -403,67 +323,36 @@ IniFile::Status  IniFile::ReadFile()
 void  IniFile::writeComments( ostream& os, const AString& comments )
 {
     // is empty when trimmed?
-    if ( Substring(comments).Trim() )
+    if ( Substring(comments).Trim().IsEmpty() )
         return;
 
     // tokenize by NEWLINE character
-    Tokenizer tok( comments, '\n' );
-    tok.Whitespaces= " \r\t"; // \n is not a whitespace
+    Tokenizer tknzr( comments, '\n' );
+    tknzr.Whitespaces= " \r\t"; // \n is not a whitespace
 
-    while( tok.HasNext() )
+    while( tknzr.Next(enums::Whitespaces::Keep).IsNotNull() )
     {
-        if ( !startsWithCommentSymbol( tok.Next() ) )
+        if ( !startsWithCommentSymbol( tknzr.Actual ) )
             os << DefaultCommentPrefix;
-        os << tok.Actual << endl;
+        os << tknzr.Actual << endl;
     }
 
-    tok.Whitespaces=  DefaultWhitespaces;
+    tknzr.Whitespaces=  DefaultWhitespaces;
 }
 
-
-int IniFile::addEscapeSequences( std::ostream& os, const Substring& value )
+#if !defined( IS_DOXYGEN_PARSER)
+int getAssignmentPos( const AString& value, const String& alignmentSeparator )
 {
-    int sizeDiff= 0;
-    String256 val;
-    ALIB_WARN_ONCE_PER_INSTANCE_DISABLE( val,  ReplaceExternalBuffer);
-
-    if(    std::isblank( value.CharAtStart() )
-        || std::isblank( value.CharAtEnd()  ) )
+    int idx= value.IndexOf( alignmentSeparator );
+    if( idx > 0 )
     {
-        val._('\"')._( value )._('\"');
-        sizeDiff= 2;
+        int idxQuote= value.IndexOf( '"' );
+        if ( idxQuote < 0  || idxQuote > idx )
+            return idx;
     }
-    else
-        val._( value );
-
-
-    for( auto it= EscapeSequences.begin(); it != EscapeSequences.end(); )
-    {
-        TString& replacement= *it++;
-        TString& needle=      *it++;
-        sizeDiff+= val.SearchAndReplace( needle, replacement, 0 ) * (replacement.Length() - needle.Length() );
-    }
-
-    os.write( val.Buffer(), val.Length() );
-    return sizeDiff;
+    return -1;
 }
-
-void IniFile::removeEscapeSequences( Substring& val, AString& target )
-{
-    // remove quotation marks
-    if( val.CharAtStart() == '\"' &&  val.ConsumeFromEnd( '\"') )
-        val.Consume();
-
-    int regionStart= target.Length();
-    target._( val );
-
-    for( auto it= EscapeSequences.begin(); it != EscapeSequences.end();  )
-    {
-        TString& needle=      *it++;
-        TString& replacement= *it++;
-        target.SearchAndReplace( needle, replacement, regionStart );
-    }
-}
+#endif
 
 IniFile::Status  IniFile::WriteFile()
 {
@@ -474,7 +363,7 @@ IniFile::Status  IniFile::WriteFile()
     if ( !file.is_open() )
         return LastStatus= Status::ErrorOpeningFile;
 
-    // write header
+    // write file header
     if ( FileComments.IsNotEmpty() )
     {
         writeComments( file, FileComments );
@@ -482,65 +371,169 @@ IniFile::Status  IniFile::WriteFile()
     }
 
     // loop over all sections
-    for ( Section* section : Sections )
+    int cntVars= 0;
+    for ( InMemoryPlugin::Section* section : Sections )
     {
         // comments, name
-        file << endl;
-        writeComments( file, section->Comments );
+        if ( cntVars > 0 )
+            file << endl;
 
+        // write section comments and name
+        writeComments( file, section->Comments );
         if ( section->Name.IsNotEmpty() )
             file << '[' << section->Name << ']' << endl;
 
         // variables
         int maxVarLength= 0;
-        for ( Variable* variable : section->Variables )
-            maxVarLength= max( maxVarLength, variable->Name.Length() );
+        for ( InMemoryPlugin::Entry* entry : section->Entries )
+            maxVarLength= max( maxVarLength, entry->Name.Length() );
 
-        for ( Variable* variable : section->Variables )
+        bool previousVarHasComments= true;
+        for ( InMemoryPlugin::Entry* entry : section->Entries )
         {
-            if( variable->Comments.IsNotEmpty() )
+            cntVars++;
+
+            // write comments
+            if( entry->Comments.IsNotEmpty() )
             {
-                file << endl;
-                writeComments( file, variable->Comments );
+                // we make an extra empty line if previous var had no comments
+                if( !previousVarHasComments)
+                    file << endl;
+
+                writeComments( file, entry->Comments );
             }
-            file << variable->Name << '=';
 
-            Util::WriteSpaces( file, maxVarLength - variable->Name.Length() + 1 );
+            // write name =
+            file << entry->Name;
 
-            Tokenizer tok( variable->Value, variable->Delim );
-            int      backSlashPos= 0;
-            int      lastLineLen= 0;
-            while( tok.HasNext() )
+            // either write raw value (if it was not used by the application)
+            if (((IniFile::Entry*) entry)->RawValue.IsNotEmpty() )
             {
-                // write backslash of previous line and spaces of actual line
-                if (tok.Actual.IsNotNull() )
+                file << ((IniFile::Entry*) entry)->RawValue;
+            }
+
+            // or write the values parsed by the software
+            else
+            {
+                file << '=';
+                Util::WriteSpaces( file, maxVarLength - entry->Name.Length() + 1 );
+
+                bool     isFirst=      true;
+                String128 externalizedValue;
+
+                //-------- write as single-line ----------
+                if ( 0 == ( entry->FormatHints & Variable::FormatHint_MultLine  ) )
                 {
-                    if ( backSlashPos < lastLineLen + 1 )
-                         backSlashPos=  lastLineLen + 8;
+                    bool delimSpaces=  (0 == ( entry->FormatHints & Variable::FormatHint_NoDelimSpaces ) );
+                    for( AString& value : entry->Values )
+                    {
+                        // write delim and backslash of previous line, newline and then spaces of actual line
+                        if ( !isFirst )
+                        {
+                            ALIB_ASSERT_ERROR_S512( entry->Delim != 0,
+                                                    "No delimiter given for multi-value variable \""
+                                                    << entry->Name << "\"." );
 
-                    Util::WriteSpaces( file, backSlashPos - lastLineLen );
+                            if( delimSpaces && FormatSpaceBeforeDelim)
+                                file << ' ';
 
-                    file << '\\' << endl;
+                            file << entry->Delim;
 
-                    Util::WriteSpaces( file, maxVarLength + 2 ); // 2 for "= "
+                            if( delimSpaces && FormatSpaceAfterDelim)
+                                file << ' ';
+                        }
+
+                        // externalize value
+                        Substring src( value );
+                        externalizedValue._();
+                        StringConverter->ExternalizeValue( src, externalizedValue, entry->Delim );
+                        file << externalizedValue;
+                        isFirst= false;
+                    }
                 }
 
-                // next value
-                tok.Next( Whitespaces::Keep );
-
-                // write value
-                lastLineLen=  maxVarLength + 2  + tok.Actual.Length();
-                lastLineLen+= addEscapeSequences( file, tok.Actual );
-
-                // write delim if a next line is coming
-                if ( tok.HasNext() )
+                // ---------- write as multi-line ----------
+                else
                 {
-                    file << variable->Delim;
-                    lastLineLen++;
-                }
+                    int      backSlashPos= 0;
+                    ALIB_WARN_ONCE_PER_INSTANCE_DISABLE( externalizedValue,  ReplaceExternalBuffer);
+                    int      lastLineLen=  0;
 
+                    // Get maximum position of attribute assignment char '=' or ':' (if exists)
+                    int maxAttributeAssignPos= 0;
+                    bool allAttrHavePrecedingBlanks= true;
+                    if (entry->FormatAttrAlignment.IsNotEmpty() )
+                    {
+                        for( AString& value : entry->Values )
+                        {
+                            int attributeAssignPos= getAssignmentPos( value, entry->FormatAttrAlignment );
+                            if ( attributeAssignPos > 0 )
+                            {
+                                if ( maxAttributeAssignPos < attributeAssignPos )
+                                    maxAttributeAssignPos= attributeAssignPos;
+                                allAttrHavePrecedingBlanks&= value.CharAt( attributeAssignPos - 1 ) == ' ';
+                            }
+                        }
+                        if ( !allAttrHavePrecedingBlanks )
+                            maxAttributeAssignPos += 1;
+                    }
+
+                    // loop over values of entry
+                    for( AString& value : entry->Values )
+                    {
+
+                        // write delim and backslash of previous line, newline and then spaces of actual line
+                        if ( !isFirst )
+                        {
+                            ALIB_ASSERT_ERROR_S512( entry->Delim != 0,
+                                                    "No delimiter given for multi-value variable \""
+                                                    << entry->Name << "\"." );
+                            file << entry->Delim;
+                            lastLineLen++;
+
+                            if ( backSlashPos < lastLineLen + 1 )
+                                 backSlashPos=  lastLineLen + 4;
+
+                            Util::WriteSpaces( file, backSlashPos - lastLineLen );
+
+                            file << '\\' << endl;
+
+                            Util::WriteSpaces( file, maxVarLength + 2 ); // 2 for "= "
+                        }
+
+                        // externalize value
+                        Substring src( value );
+                        externalizedValue._();
+                        StringConverter->ExternalizeValue( src, externalizedValue, entry->Delim );
+
+                        // if first character is a INI comment char, then escape it
+                        char firstChar= externalizedValue.CharAt(0);
+                        if( !isFirst && (firstChar == '#' || firstChar == ';' ) )
+                            externalizedValue.InsertAt("\\", 0 );
+
+                        // if assignment, insert spaces to align assignments
+                        if (entry->FormatAttrAlignment.IsNotEmpty() )
+                        {
+                            int attributeAssignPos= getAssignmentPos( externalizedValue, entry->FormatAttrAlignment );
+                            if ( attributeAssignPos > 0 && attributeAssignPos < maxAttributeAssignPos )
+                                externalizedValue.InsertChars( ' ',
+                                                               maxAttributeAssignPos-attributeAssignPos,
+                                                               attributeAssignPos + (FormatIncludeDelimInAttrAlignment ?
+                                                                                      0 : entry->FormatAttrAlignment.Length() )
+                                                              );
+                        }
+                        file << externalizedValue;
+
+                        lastLineLen=  maxVarLength + 2  + externalizedValue.Length();
+                        isFirst= false;
+                    }
+                }
             }
             file << endl;
+
+            // add an empty line if we have comments
+            if( (previousVarHasComments= entry->Comments.IsNotEmpty() ) == true )
+                file << endl;
         }
     }
 

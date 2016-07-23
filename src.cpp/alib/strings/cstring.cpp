@@ -54,7 +54,7 @@ int  CString::LengthWhenConvertedToWChar( const char* cs, int  csLength )
         #if defined( ALIB_DEBUG )
             if ( conversionSize == 0 )
             {
-                // not enaugh space?
+                // not enough space?
                 int error= GetLastError();
 
                 String128 msg( "AString: Conversion to wide character string failed (Error: " );

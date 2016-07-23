@@ -51,7 +51,7 @@ class Domain
 
 
         /** the number of log calls on this domain for this logger */
-        int                   CntLogCalls           =0;
+        int                   LogCallsPerDomain     =0;
 
         /**
          * Constructor
@@ -301,7 +301,7 @@ class Domain
         inline
         int       GetCount( int loggerNo )
         {
-            return Data[loggerNo].CntLogCalls;
+            return Data[loggerNo].LogCallsPerDomain;
         }
 
         /** ****************************************************************************************
@@ -332,7 +332,7 @@ class Domain
                      ||   domain == Verbosity::Verbose )
               )
             {
-                Data[loggerNo].CntLogCalls++;
+                Data[loggerNo].LogCallsPerDomain++;
                 return true;
             }
 

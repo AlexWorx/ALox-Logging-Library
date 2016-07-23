@@ -7,16 +7,16 @@
 package ut_alib;
 import org.junit.Test;
 
-import ut_com_aworx_uttools.AUnitTest;
-
 import com.aworx.lib.enums.Case;
 import com.aworx.lib.enums.Inclusion;
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.strings.CString;
 import com.aworx.lib.strings.Substring;
 
+import ut_com_aworx.AWorxUnitTesting;
 
-public class UT_alib_strings_AStringAndSubstring extends AUnitTest
+
+public class UT_alib_strings_AStringAndSubstring extends AWorxUnitTesting
 {
     AString     haystackAString  = new AString();
     Substring   haystackSubstring= new Substring();
@@ -204,7 +204,7 @@ public class UT_alib_strings_AStringAndSubstring extends AUnitTest
     public void Compare()
     {
         UT_INIT();
-        
+
         // startsWith/EndswequalsnsAt
         tStartsWith( "ABCDEF"     , "ABC",    true,  true  );
         tStartsWith( "ABCDEF"     , "abc",    false, true  );
@@ -279,7 +279,7 @@ public class UT_alib_strings_AStringAndSubstring extends AUnitTest
     public void IndexOfChar()
     {
         UT_INIT();
-        
+
         {
             tIndexOfChar( "ABCD",  'X',  0,     -1 );
             tIndexOfChar( "ABCD",  'A',  0,      0 );
@@ -366,7 +366,7 @@ public class UT_alib_strings_AStringAndSubstring extends AUnitTest
     public void IndexOfString()
     {
         UT_INIT();
-        
+
         // search null, empty string
         {
             tIndexOfString(  "abcd abcd",  null     ,     0  , Case.SENSITIVE,   0  );
@@ -392,18 +392,18 @@ public class UT_alib_strings_AStringAndSubstring extends AUnitTest
 
         // ignore case
         {
-            tIndexOfString(  "Hallo A-Worx util", "a-worx",   0,  Case.IGNORE,  6 );
-            tIndexOfString(  "Hallo A-Worx util", "a-worx",   1,  Case.IGNORE,  6 );
-            tIndexOfString(  "Hallo A-Worx util", "a-worx", -10,  Case.IGNORE,  6 );
-            tIndexOfString(  "Hallo A-Worx util", "a-worx",   6,  Case.IGNORE,  6 );
-            tIndexOfString(  "Hallo A-Worx util", "a-worx",   7,  Case.IGNORE, -1 );
-            tIndexOfString(  "Hallo A-Worx util", "a-worx", 100,  Case.IGNORE, -1 );
-            tIndexOfString(  "Hallo A-Worx util", "hal"   ,   0,  Case.IGNORE,  0 );
-            tIndexOfString(  "Hallo A-Worx util", "hal"   ,   1,  Case.IGNORE, -1 );
-            tIndexOfString(  "Hallo A-Worx util", "util"  ,   1,  Case.IGNORE, 13 );
-            tIndexOfString(  "Hallo A-Worx util", "UTIL"  ,   5,  Case.IGNORE, 13 );
-            tIndexOfString(  "Hallo A-Worx util", "UTIL"  ,  13,  Case.IGNORE, 13 );
-            tIndexOfString(  "Hallo A-Worx util", "UTIL"  ,  14,  Case.IGNORE, -1 );
+            tIndexOfString(  "Hello A-Worx util", "a-worx",   0,  Case.IGNORE,  6 );
+            tIndexOfString(  "Hello A-Worx util", "a-worx",   1,  Case.IGNORE,  6 );
+            tIndexOfString(  "Hello A-Worx util", "a-worx", -10,  Case.IGNORE,  6 );
+            tIndexOfString(  "Hello A-Worx util", "a-worx",   6,  Case.IGNORE,  6 );
+            tIndexOfString(  "Hello A-Worx util", "a-worx",   7,  Case.IGNORE, -1 );
+            tIndexOfString(  "Hello A-Worx util", "a-worx", 100,  Case.IGNORE, -1 );
+            tIndexOfString(  "Hello A-Worx util", "hel"   ,   0,  Case.IGNORE,  0 );
+            tIndexOfString(  "Hello A-Worx util", "hel"   ,   1,  Case.IGNORE, -1 );
+            tIndexOfString(  "Hello A-Worx util", "util"  ,   1,  Case.IGNORE, 13 );
+            tIndexOfString(  "Hello A-Worx util", "UTIL"  ,   5,  Case.IGNORE, 13 );
+            tIndexOfString(  "Hello A-Worx util", "UTIL"  ,  13,  Case.IGNORE, 13 );
+            tIndexOfString(  "Hello A-Worx util", "UTIL"  ,  14,  Case.IGNORE, -1 );
         }
     }
 
@@ -457,7 +457,7 @@ public class UT_alib_strings_AStringAndSubstring extends AUnitTest
     public void IndexOfAny()
     {
         UT_INIT();
-        
+
         // ------------------ search one of several characters ------------------
         String s= "abcd abcde";
         int l= s.length();

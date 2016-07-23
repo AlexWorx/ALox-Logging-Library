@@ -43,14 +43,14 @@ We call this folder the *ALOX_LIB_PATH*. Within the folder you should find at le
 
 To incorporate ALox into Eclipse, you will find the following ready to use projects in *ALOX_LIB_PATH*:
 
-- Eclipse V.4.4 (Luna) project, standard (Desktop) Java with Java compiler 1.6
+- Eclipse V.4.x (Luna, Mars, Neon) project, standard (Desktop) Java with Java compiler 1.6
 
-        ALOXLIBPATH/build/ide.java.eclipse.luna/ALox-Java-1.6
+        ALOXLIBPATH/build/ide.java.eclipse/ALox-Java-1.6
 
 
-- Eclipse V.4.4 (Luna) project for Android development
+- Eclipse V.4.x (Luna, Mars, Neon) project for Android development
 
-        ALOXLIBPATH/build/ide.java.eclipse.luna/ALox-Java-Android
+        ALOXLIBPATH/build/ide.java.eclipse/ALox-Java-Android
 
 
 If there is no appropriate predefined project available for you, skip the next section and continue reading
@@ -96,7 +96,7 @@ separate the ALox code from your code. It should be fairly easy. The Java source
 need to be compiled into your project.<br>
 \note
 It is a good idea, to not copy the code, but to add the sources as links to their original place
-where you unpacked ALox. In Eclipse (Luna), linking source folders is found under "Project Properties",
+where you unpacked ALox. In Eclipse (Luna,Mars,Neon), linking source folders is found under "Project Properties",
 "Java Build Path", tab "Source" and then button "Link Source".
 The advantage of linking the source folders is that updating the source (e.g. with Git) updates
 them in your projects as well. Furthermore, if you might want to push your fixes or improvements to
@@ -208,7 +208,7 @@ Depending on your Java target platform, choose one of the following subchapters 
 
 In the distribution folder of ALox, you will find a sample project in subfolder:
 
-        ALOX_LIB_PATH/build/ide.java.eclipse.luna/ALox-Java-1.6-Test
+        ALOX_LIB_PATH/build/ide.java.eclipse/ALox-Java-1.6-Test
 
 
 Within this folder, you will find the different *ProGuard* sample configuration files:
@@ -223,7 +223,7 @@ Within this folder, you will find the different *ProGuard* sample configuration 
 
 Both files have the same start:
 
-\snippet "../build/ide.java.eclipse.luna/ALox-Java-1.6-Test/proguard-prune-alox-debug.pro"        DOXYGEN_PROGUARD_CONFIG
+\snippet "../build/ide.java.eclipse/ALox-Java-1.6-Test/proguard-prune-alox-debug.pro"        DOXYGEN_PROGUARD_CONFIG
 
 
 For your own projects, you have to modify the first lines starting with
@@ -234,11 +234,11 @@ to include your project code and library projects
 Then, the configuration that only prunes debug logging but leaves release logging in,
 continues as follows:
 
-\snippet "../build/ide.java.eclipse.luna/ALox-Java-1.6-Test/proguard-prune-alox-debug.pro"        DOXYGEN_PROGUARD_CONFIG_DBG
+\snippet "../build/ide.java.eclipse/ALox-Java-1.6-Test/proguard-prune-alox-debug.pro"        DOXYGEN_PROGUARD_CONFIG_DBG
 
 The other configuration file, that prunes just all ALox stuff continues like this:
 
-\snippet "../build/ide.java.eclipse.luna/ALox-Java-1.6-Test/proguard-prune-alox-all.pro"        DOXYGEN_PROGUARD_CONFIG_ALL
+\snippet "../build/ide.java.eclipse/ALox-Java-1.6-Test/proguard-prune-alox-all.pro"        DOXYGEN_PROGUARD_CONFIG_ALL
 
 Both files then continue with other default *ProGuard* configuration code.
 
@@ -257,8 +257,8 @@ The test project distributed with ALox can be easily used to see what is happeni
 using *ProGuard*. Go ahead as follows:
 - Add the following two projects to Eclipse (or compile them with your favorite IDE):
 
-        ALOX_LIB_PATH/build/ide.java.eclipse.luna/ALox-Java-1.6_ (if not done, yet)
-        ALOX_LIB_PATH/build/ide.java.eclipse.luna/ALox-Java-1.6-Test
+        ALOX_LIB_PATH/build/ide.java.eclipse/ALox-Java-1.6_ (if not done, yet)
+        ALOX_LIB_PATH/build/ide.java.eclipse/ALox-Java-1.6-Test
 
 - Make sure you have *ProGuard* installed (if you have Android SDK installed, you have *ProGuard*!)<br>
   It may be necessary to set the \c PROGUARD_HOME environment variable to the *ProGuard* path, e.g.
@@ -273,7 +273,7 @@ using *ProGuard*. Go ahead as follows:
 
 - cd into:
 
-        ALOX_LIB_PATH/build/ide.java.eclipse.luna/ALox-Java-1.6-Test
+        ALOX_LIB_PATH/build/ide.java.eclipse/ALox-Java-1.6-Test
 
 
 - Launch
@@ -354,8 +354,8 @@ by *ProGuard* and the Android SDK build process.
 ALox provides a preconfigured sample project for Android:
 
 Add the two following two projects to Eclipse (or compile them with your favorite IDE):
-  - _ALOX_LIB_PATH/build/ide.java.eclipse.luna/ALox-Java-Android (if not done, yet)
-  - _ALOX_LIB_PATH/build/ide.java.eclipse.luna/ALox-Java-Android-Test-Release-Log
+  - _ALOX_LIB_PATH/build/ide.java.eclipse/ALox-Java-Android (if not done, yet)
+  - _ALOX_LIB_PATH/build/ide.java.eclipse/ALox-Java-Android-Test-Release-Log
 
 You can *export* the APK file of the latter project in two variants: with release
 logging enabled or disabled. Modify \c proguard-project.txt accordingly and see
@@ -364,7 +364,7 @@ what happens when you launch the APK on your device.
 Also, you might want to have a quick look this projects sample code found in:
 
 \code
-    ALOX_LIB_PATH/build/ide.java.eclipse.luna/ALox-Java-Android-Test-Release-Log/src/com/aworx/alox_java_android_test_release_log/ALoxJavaAndroidTestReleaseLog.java
+    ALOX_LIB_PATH/build/ide.java.eclipse/ALox-Java-Android-Test-Release-Log/src/com/aworx/alox_java_android_test_release_log/ALoxJavaAndroidTestReleaseLog.java
 \endcode
 
 to get a first understanding of ALox release logging.

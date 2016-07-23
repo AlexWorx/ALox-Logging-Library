@@ -14,7 +14,7 @@ package com.aworx.lox.loggers;
 
 import java.io.PrintWriter;
 
-import com.aworx.lib.ALIB;
+import com.aworx.lib.config.Variable;
 import com.aworx.lib.enums.Phase;
 import com.aworx.lib.strings.AString;
 import com.aworx.lox.ALox;
@@ -69,10 +69,10 @@ public class ConsoleLogger extends PlainTextLogger
         // different character encoding (typically on Windows machines). */
 
         // checks a config variable to suppress using the system console instead of system.out
-        writer=  (    !ALIB.config.isTrue( ALox.configCategoryName, "USE_SYSTEM_OUT_PRINT" )
-                   && System.console() !=null )
-                        ?  System.console().writer()
-                        :  null;
+        Variable variable= new Variable( ALox.USE_SYSTEM_OUT_PRINT );
+        variable.load();
+        writer=  !variable.isTrue() && System.console() != null  ?  System.console().writer()
+                                                                 :  null;
     }
 
     /** ********************************************************************************************
@@ -81,6 +81,7 @@ public class ConsoleLogger extends PlainTextLogger
      * @param phase  Indicates the beginning or end of a log operation.
      * @return Always returns true.
      **********************************************************************************************/
+    @Override
     protected boolean notifyLogOp( Phase phase )
     {
         if ( phase == Phase.END  )
@@ -101,6 +102,7 @@ public class ConsoleLogger extends PlainTextLogger
      * @param length   The length of the portion in \p buffer to write out.
      * @return Always returns true.
      **********************************************************************************************/
+    @Override
     protected boolean logSubstring( AString buffer, int start, int length )
     {
         char[]  buf=        buffer.buffer();
@@ -125,6 +127,7 @@ public class ConsoleLogger extends PlainTextLogger
     @Override
     protected void notifyMultiLineOp (Phase phase)
     {
+        /* nothing to do here */
     }
 
 } // class ConsoleLogger

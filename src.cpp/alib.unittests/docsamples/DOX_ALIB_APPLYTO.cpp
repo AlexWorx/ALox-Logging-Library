@@ -76,8 +76,6 @@ cout << centered << endl;
 
 //----------- Now to the unit tests -------------
 #include "alib.unittests/aworx_unittests.hpp"
-#include "alib/strings/tokenizer.hpp"
-#include "alib/strings/numberformat.hpp"
 
 
 namespace ut_aworx {

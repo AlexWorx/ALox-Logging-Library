@@ -8,24 +8,30 @@ package ut_alox.scopeP1.scopeP2;
 
 import org.junit.Test;
 
-import ut_com_aworx_uttools.AUnitTest;
-
 import com.aworx.lib.ALIB;
 import com.aworx.lib.enums.Inclusion;
 import com.aworx.lib.strings.AString;
-import com.aworx.lox.*;
+import com.aworx.lox.ALox;
+import com.aworx.lox.Log;
+import com.aworx.lox.LogData;
+import com.aworx.lox.Scope;
+import com.aworx.lox.Verbosity;
 import com.aworx.lox.loggers.MemoryLogger;
+
+import ut_com_aworx.AWorxUnitTesting;
 
 class DomainTestThread extends Thread
 {
+    @Override 
     public void run()
     {
         Log.info( "DTT", "" );
     }
-};
+}
 
 class LogOnceTestThread extends Thread
 {
+    @Override 
     public void run()
     {
         Log.once( "", Verbosity.INFO, "Once(Scope.THREAD_OUTER) 2x - 2nd thread", Scope.THREAD_OUTER, 0, 2 );
@@ -33,13 +39,14 @@ class LogOnceTestThread extends Thread
         Log.once( "", Verbosity.INFO, "Once(Scope.THREAD_OUTER) 2x - 2nd thread", Scope.THREAD_OUTER, 0, 2 );
         Log.once( "", Verbosity.INFO, "Once(Scope.THREAD_OUTER) 2x - 2nd thread", Scope.THREAD_OUTER, 0, 2 );
     }
-};
+}
 
 class StoreDataTestThreadThread extends Thread
 {
-    AUnitTest ut;
-    StoreDataTestThreadThread(AUnitTest ut) { this.ut= ut; }
+    AWorxUnitTesting ut;
+    StoreDataTestThreadThread(AWorxUnitTesting ut) { this.ut= ut; }
 
+    @Override 
     public void run()
     {
         LogData data= null;
@@ -50,14 +57,14 @@ class StoreDataTestThreadThread extends Thread
         data= Log.retrieve(          Scope.THREAD_OUTER ); ut.UT_EQ( "2nd Thread Data"        , data.stringValue );
         data= Log.retrieve( "mykey", Scope.THREAD_OUTER ); ut.UT_EQ( "2nd Thread Data, keyed" , data.stringValue );
     }
-};
+}
 
 class CustomPrefix
 {
-    public String toString() { return "CUSTOM:"; };
+    @Override public String toString() { return "CUSTOM:"; }
 }
 
-public class UT_alox_scopes extends AUnitTest
+public class UT_alox_scopes extends AWorxUnitTesting
 {
    /** ********************************************************************************************
      * Log_Prefix
@@ -171,19 +178,19 @@ public class UT_alox_scopes extends AUnitTest
 
         Log.removeLogger( ml );
 
-        //Log.logConfig( "", Verbosity.INFO, "Configuration now is:" );
+        //Log.state( "", Verbosity.INFO, "Configuration now is:" );
     }
 
 
     /** ********************************************************************************************
      * Log.DomainsDefault
      **********************************************************************************************/
-    void LSD()      {  Log.setDomain( "LSD",  Scope.METHOD );    Log.info( "" );    }
-    void LSD_A()    {  Log.setDomain( "A",    Scope.METHOD );    Log.info( "" );    }
-    void LSD_A_B()  {  Log.setDomain( "B",    Scope.METHOD );    Log.info( "" );    }
-    void LSD2_A_B() {  Log.setDomain( "B2",   Scope.METHOD );    Log.info( "" );    }
-    void LSD2_A()   {  Log.setDomain( "A2",   Scope.METHOD );    Log.info( "" );    }
-    void LSD2()     {  Log.setDomain( "LSD2", Scope.METHOD );    Log.info( "" );    }
+    static void LSD()      {  Log.setDomain( "LSD",  Scope.METHOD );    Log.info( "" );    }
+    static void LSD_A()    {  Log.setDomain( "A",    Scope.METHOD );    Log.info( "" );    }
+    static void LSD_A_B()  {  Log.setDomain( "B",    Scope.METHOD );    Log.info( "" );    }
+    static void LSD2_A_B() {  Log.setDomain( "B2",   Scope.METHOD );    Log.info( "" );    }
+    static void LSD2_A()   {  Log.setDomain( "A2",   Scope.METHOD );    Log.info( "" );    }
+    static void LSD2()     {  Log.setDomain( "LSD2", Scope.METHOD );    Log.info( "" );    }
 
     void SDCHECK( String exp, MemoryLogger ml )
     {
@@ -297,13 +304,13 @@ public class UT_alox_scopes extends AUnitTest
                                UT_EQ( "@/OTHER_THREAD/DTT#", ml.memoryLog );  ml.memoryLog._(); ml.autoSizes.reset();
         Log.info( "ME", "" );  UT_EQ( "@/THIS_THREAD/ME#"  , ml.memoryLog );  ml.memoryLog._(); ml.autoSizes.reset();
 
-        //Log.logConfig( "", Verbosity.INFO, "Configuration now is:" );
+        //Log.state( "", Verbosity.INFO, "Configuration now is:" );
     }
 
     /** ****************************************************************************************
      *     Log_Once
      ******************************************************************************************/
-    void logOnceMethod()
+    static void logOnceMethod()
     {
         Log.once( "", Verbosity.INFO, "Once(Scope package) 4x -from other method", Scope.PACKAGE, 0, 4 );
     }
@@ -342,7 +349,7 @@ public class UT_alox_scopes extends AUnitTest
         UT_EQ( 1, ml.cntLogs ); ml.cntLogs= 0;
         LogOnceTestThread thread= new LogOnceTestThread();
         thread.start();
-        while( thread.isAlive() );
+        while( thread.isAlive() )
             ALIB.sleepMicros(1);
         UT_EQ( 2, ml.cntLogs ); ml.cntLogs= 0;
         Log.once( "", Verbosity.INFO, "Once(Scope.THREAD_OUTER) 2x - main thread", Scope.THREAD_OUTER, 0, 2 );
@@ -430,7 +437,7 @@ public class UT_alox_scopes extends AUnitTest
 
 
 
-        //Log.logConfig( "", Verbosity.INFO, "Configuration now is:" );
+        //Log.state( "", Verbosity.INFO, "Configuration now is:" );
     }
 
     /** ****************************************************************************************
@@ -519,12 +526,12 @@ public class UT_alox_scopes extends AUnitTest
 
         Thread thread= new StoreDataTestThreadThread( this );
         thread.start();
-        while( thread.isAlive() );
+        while( thread.isAlive() )
             ALIB.sleepMicros(1);
 
         data= Log.retrieve(          Scope.THREAD_OUTER ); UT_EQ( "Main Thread Data"         , data.stringValue );
         data= Log.retrieve( "mykey", Scope.THREAD_OUTER ); UT_EQ( "Main Thread Data, keyed"  , data.stringValue );
 
-        //Log.logConfig( "", Verbosity.INFO, "Configuration now is:" );
+        //Log.state( "", Verbosity.INFO, "Configuration now is:" );
     }
 }

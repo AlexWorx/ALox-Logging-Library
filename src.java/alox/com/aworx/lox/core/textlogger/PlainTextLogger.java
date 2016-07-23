@@ -11,9 +11,8 @@ import com.aworx.lib.Util;
 import com.aworx.lib.enums.Phase;
 import com.aworx.lib.strings.AString;
 import com.aworx.lox.Verbosity;
-import com.aworx.lox.core.ScopeInfo;
 import com.aworx.lox.core.Domain;
-import com.aworx.lox.core.textlogger.TextLogger;
+import com.aworx.lox.core.ScopeInfo;
 
 
 /** ************************************************************************************************
@@ -130,8 +129,8 @@ public abstract class PlainTextLogger extends TextLogger
                     {
                         end++;
                         c=  msg.buffer()[end++];
-                        int extraSpace=  c >= '0' && c <= '9' ? (int)  ( c - '0' )
-                                                              : (int)  ( c - 'A' ) + 10;
+                        int extraSpace=  c >= '0' && c <= '9' ? ( c - '0' )
+                                                              : ( c - 'A' ) + 10;
 
                         int tabStop= autoSizes.next( column, extraSpace );
 

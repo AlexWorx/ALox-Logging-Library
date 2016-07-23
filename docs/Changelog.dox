@@ -15,6 +15,233 @@ The first released version was Version 1.0.1 in **May 2013**.
 
 This change log is sorted reversely in respect to chronology.
 
+\~Comment ####################################################################################### \~
+\~Comment #############################       V. 1607        #################################### \~
+\~Comment ####################################################################################### \~
+## Version 1607, Revision 0, released July 23rd, 2016 ##
+
+<b>Changes in Preconfigured Projects:</b><br>
+- Eclipse Neon (4.6) support for ALox for Java. The project folder
+  was renamed from
+
+        ./build/ide.java.eclipse.luna
+
+  to
+
+        ./build/ide.java.eclipse
+
+  (The Eclipse versions Luna, Mars and Neon should be compatible with the same
+  project files.)
+
+  When doing this, all compiler warnings have been switched to be even more strict
+  than before. As a consequence several \c \@SuppressWarnings tags had to be added
+  to the code. Make sure to have your IDE setup to not warn on unnecessary
+  \c \@SuppressWarnings tags in the case your preference on warnings are less
+  strict.
+
+<b>Changes in ALib:</b>
+- Various changes and extensions in namespace <b>[com::|cs::] %aworx::lib::config</b>.
+  For a complete reference of the new version see namespace
+  <b>documentation</b>.
+    ([C++] (@ref      aworx::lib::config),
+     [C#]  (@ref  cs::aworx::lib::config),
+     [Java](@ref com::aworx::lib::config)). Some highlights are:
+
+  - Extracted new class
+    <b>InMemoryPlugin</b>
+      ([C++](@ref      #aworx::lib::config::InMemoryPlugin),
+      [C#]  (@ref  #cs::aworx::lib::config::InMemoryPlugin),
+      [Java](@ref #com::aworx::lib::config::InMemoryPlugin)) from class
+    <b>IniFile</b>
+      ([C++](@ref      #aworx::lib::config::IniFile),
+      [C#]  (@ref  #cs::aworx::lib::config::IniFile),
+      [Java](@ref #com::aworx::lib::config::IniFile)) which now is a descendent.
+    \b %InMemoryPlugin is a configuration variable container which exclusively 'lives' in memory.
+  - Added two instances of new class
+    <b>InMemoryPlugin</b>
+      ([C++](@ref      #aworx::lib::config::InMemoryPlugin),
+      [C#]  (@ref  #cs::aworx::lib::config::InMemoryPlugin),
+      [Java](@ref #com::aworx::lib::config::InMemoryPlugin)) to class
+    <b>Configuration</b>
+      ([C++](@ref      #aworx::lib::config::Configuration),
+      [C#]  (@ref  #cs::aworx::lib::config::Configuration),
+      [Java](@ref #com::aworx::lib::config::Configuration)) with new plug-in priority constants
+    <b>%PrioDefault</b>
+    ([C++] (@ref      #aworx::lib::config::Configuration::PrioDefault),
+     [C#]  (@ref  #cs::aworx::lib::config::Configuration::PrioDefault),
+     [Java](@ref #com::aworx::lib::config::Configuration::PRIO_DEFAULT)) and
+    <b>%PrioProtected</b>
+    ([C++] (@ref      #aworx::lib::config::Configuration::PrioProtected),
+     [C#]  (@ref  #cs::aworx::lib::config::Configuration::PrioProtected),
+     [Java](@ref #com::aworx::lib::config::Configuration::PRIO_PROTECTED)) allowing to easily set
+    default values for external configuration and on the other end to protect variables from
+    external changes.
+  - <b>Variable substitution</b>: It is now possible to substitute external variables within other
+    external variables. This brings a lot of general flexibility to any feature using external
+    configuration (as seen in ALox changes below).
+  - New class 
+    <b>%Variable</b>
+      ([C++](@ref      #aworx::lib::config::Variable),
+      [C#]  (@ref  #cs::aworx::lib::config::Variable),
+      [Java](@ref #com::aworx::lib::config::Variable)) provides a much more convenient interface
+      to loading and storing configuration variables as well to accessing their values or lists of values (parsing
+      several values is now done already here, respectively in the plug-ins and not in the user code).
+  - New class 
+    <b>%VariableDefinition</b>
+      ([C++](@ref      #aworx::lib::config::VariableDefinition),
+      [C#]  (@ref  #cs::aworx::lib::config::VariableDefinition),
+      [Java](@ref #com::aworx::lib::config::VariableDefinition)) allows to locate declarations of an applications' variables, 
+      including their category, name, comments, default value and default value delimiter in one place. 
+      
+  - Field
+    <b>%IniFile.AutoSave</b>
+      ([C++](@ref      #aworx::lib::config::IniFile::AutoSave),
+      [C#]  (@ref  #cs::aworx::lib::config::IniFile::AutoSave),
+      [Java](@ref #com::aworx::lib::config::IniFile::autoSave)) now defaults to \b false.
+
+- Changed signature of method
+  <b>%ALIB.Init</b>
+    ([C++](@ref      #aworx::lib::ALIB::Init),
+    [C#]  (@ref  #cs::aworx::lib::ALIB::Init),
+    [Java](@ref #com::aworx::lib::ALIB::init)) and various methods in class
+  <b>%Configuration</b>
+    ([C++](@ref      #aworx::lib::config::Configuration),
+    [C#]  (@ref  #cs::aworx::lib::config::Configuration),
+    [Java](@ref #com::aworx::lib::config::Configuration)) to simplify its use.
+  All types of configuration plug-ins are now created by default. Should this not be wanted, they can
+  easily be removed right after the initialization call.
+
+- Changed return value of methods
+  <b>%Substring.Trim</b>
+    ([C++](@ref      #aworx::lib::strings::Substring::Trim),
+    [C#]  (@ref  #cs::aworx::lib::strings::Substring::Trim),
+    [Java](@ref #com::aworx::lib::strings::Substring::trim)),
+  <b>%Substring.TrimStart</b>
+    ([C++](@ref      #aworx::lib::strings::Substring::TrimStart),
+    [C#]  (@ref  #cs::aworx::lib::strings::Substring::TrimStart),
+    [Java](@ref #com::aworx::lib::strings::Substring::trimStart)) and
+  <b>%Substring.TrimEnd</b>
+    ([C++](@ref      #aworx::lib::strings::Substring::TrimEnd),
+    [C#]  (@ref  #cs::aworx::lib::strings::Substring::TrimEnd),
+    [Java](@ref #com::aworx::lib::strings::Substring::trimEnd)) to return \c this instead of \b %Substring.IsEmpty().
+  This behavior just fits better to the majority of use cases.
+  
+- Changed return value of method
+  <b>%AString.TrimAt</b>
+    ([C++](@ref      #aworx::lib::strings::AString::TrimAt),
+    [C#]  (@ref  #cs::aworx::lib::strings::AString::TrimAt),
+    [Java](@ref #com::aworx::lib::strings::AString::trimAt)) to return the new index of the first untrimmed
+    character. On the same token fine-tuned methods \b %TrimStart and \b %TrimEnd in respect of performance.    
+
+- Added optional parameter \p sensitivity to character and string version of  'consume'-methods of class
+  <b>%Substring</b>
+    ([C++](@ref      #aworx::lib::strings::Substring),
+    [C#]  (@ref  #cs::aworx::lib::strings::Substring),
+    [Java](@ref #com::aworx::lib::strings::Substring)),
+
+- Class \b %AString now always allocates at least 16 bytes when first characters are added.
+
+- Java Version: Fixed method \ref com::aworx::lib::strings::AString::_(Object) "AString._(Object)" which 
+  unecessarily created temporary strings for various types of parameter \p object.
+
+- Further small alignments of unit testing class \b %AWorxUnitTesting of the three
+  languages currently supported.
+
+
+<b>Changes in ALox:</b>
+- Changed signature of method
+  <b>%ALox.Init</b>
+    ([C++](@ref      #aworx::lox::ALox::Init),
+    [C#]  (@ref  #cs::aworx::lox::ALox::Init),
+    [Java](@ref #com::aworx::lox::ALox::init))  (see \b %ALIB::Init above).
+
+- Renamed method \b Lox.LogConfig to
+  <b>%Lox.State</b>
+    ([C++](@ref      #aworx::lox::Lox::State),
+    [C#]  (@ref  #cs::aworx::lox::Lox::State),
+    [Java](@ref #com::aworx::lox::Lox::state)) and added optional parameter \p flags
+  which allows to select only a subset of all state information. On the same token, separated the
+  collection of the state data into public method
+  <b>%Lox.GetState</b>
+    ([C++](@ref      #aworx::lox::Lox::GetState),
+    [C#]  (@ref  #cs::aworx::lox::Lox::GetState),
+    [Java](@ref #com::aworx::lox::Lox::getState)).
+
+- The new features introduced in ALib namespace
+  <b>[com::|cs::] %aworx::lib::config</b>.
+    ([C++] (@ref      aworx::lib::config),
+     [C#]  (@ref  cs::aworx::lib::config),
+     [Java](@ref com::aworx::lib::config)) in combination with the already
+  existing and the newly introduced [configuration variables](group__GrpALoxConfigVars.html),
+  let new flexiblity and features emerge for ALox.
+  Two new manual chapters address the possibilities:
+  \ref man_external_configuration and
+  \ref man_external_verbosity_configuration_variable_writeback.
+
+- Introduced configuration variable [ALOX_LOXNAME_DUMP_STATE_ON_EXIT](group__GrpALoxConfigVars.html)
+  which enables to dump the state of a \b %Lox when removing a \e %Logger.
+
+- Introduced new option \p writeback for configuration variable
+  [ALOX_LOXNAME_LOGGERNAME_VERBOSITY](group__GrpALoxConfigVars.html)
+  which allows to write the \e Verbosity values of all <em>Log Domains</em>
+  of a \e %Logger back to the configuration. The writing can be performed
+  back to the \b ALOX_LOXNAME_LOGGERNAME_VERBOSITY variable
+  itself or alternatively into a user-defined variable.
+  (In the latter case, this variable can then be a substitute when configuring
+  this or a different logger at the next run.)
+
+- Introduced configuration variables
+  - [ALOX_LOGGERNAME_FORMAT_DATE_TIME](group__GrpALoxConfigVars.html),
+  - [ALOX_LOGGERNAME_FORMAT_TIME_DIFF](group__GrpALoxConfigVars.html) and
+  - [ALOX_LOGGERNAME_FORMAT_MULTILINE](group__GrpALoxConfigVars.html),
+  which enable to manipulate various formatting options of standard text loggers.
+
+- C++/C# Versions: 
+  - Capitalized names of fields 
+    <b>Logger.Name</b>
+      ([C++] (@ref      #aworx::lox::core::Logger::Name),
+       [C#]  (@ref  #cs::aworx::lox::core::Logger::Name)) and
+    <b>Logger.TypeName</b>
+      ([C++] (@ref      #aworx::lox::core::Logger::TypeName),
+       [C#]  (@ref  #cs::aworx::lox::core::Logger::TypeName)).
+   
+  - Changed signature of methods
+    <b>%Lox.SetSourcePathTrimRule</b>
+      ([C++](@ref      #aworx::lox::Lox::SetSourcePathTrimRule),
+      [C#]  (@ref  #cs::aworx::lox::Lox::SetSourcePathTrimRule))) and
+    <b>%Lox.ClearSourcePathTrimRules</b>
+      ([C++](@ref      #aworx::lox::Lox::ClearSourcePathTrimRules),
+      [C#]  (@ref  #cs::aworx::lox::Lox::ClearSourcePathTrimRules)) by introducing new enum 
+    <b>%Reach</b>
+      ([C++] (@ref      #aworx::lib::enums::Reach),
+       [C#]  (@ref  #cs::aworx::lib::enums::Reach), 
+       [JAVA](@ref #com::aworx::lib::enums::Reach)) and slightly changeing order of parameters. 
+      (Functionality and format of external configuration variable remains the same.) 
+
+- Method
+  <b>%Log.RemoveALibReportWriter</b>
+    ([C++](@ref      #aworx::lox::Log::RemoveALibReportWriter),
+    [C#]  (@ref  #cs::aworx::lox::Log::RemoveALibReportWriter),
+    [Java](@ref #com::aworx::lox::Log::removeALibReportWriter)) stopped complaining if
+  invoked without prior invocation of
+  <b>%Log.AddALibReportWriter</b>
+    ([C++](@ref      #aworx::lox::Log::AddALibReportWriter),
+    [C#]  (@ref  #cs::aworx::lox::Log::AddALibReportWriter),
+    [Java](@ref #com::aworx::lox::Log::addALibReportWriter)).
+  Furthermore,  C++ version of class
+  <b>%ALoxReportWriter</b>
+    ([C++](@ref      #aworx::lox::ALoxReportWriter),
+    [C#]  (@ref  #cs::aworx::lox::ALoxReportWriter),
+    [Java](@ref #com::aworx::lox::ALoxReportWriter)) now uses the right
+  internal domain path for reporting about its existence. The other language
+  version do the same report when constructing an object of this class, now.
+
+- Java version: Stack trace and thread information is now retrieved lazily. This speeds up
+  log lines which do not use such information drastically. 
+
+- Internal logging, when overwriting a <em>Scope Domain</em> with the same value as previously set, are now 
+  attributed \e Verbose instead \e Warning. 
+
 
 \~Comment ####################################################################################### \~
 \~Comment #############################  V. 1604  Revision 2 #################################### \~
@@ -143,7 +370,7 @@ This change log is sorted reversely in respect to chronology.
       see \ref cppsetup_qtcreator_clickable.
 
 - C# and Java Version:
-    - Added the use of an INI-file in sample application.
+    - Added the use of an INI file in sample application.
 
 
 \~Comment ####################################################################################### \~
@@ -441,10 +668,7 @@ With these goals in mind, the changes in design and log interface are:
     [Java](@ref #com::aworx::lox::Lox::setVerbosity)).
 
 - Added a counter for the number of <em>Log Statements</em> per domain/logger which is exposed with
-  <b>Lox.LogConfig</b>
-   ([C++] (@ref      #aworx::lox::Lox::LogConfig),
-    [C#]  (@ref  #cs::aworx::lox::Lox::LogConfig),
-    [Java](@ref #com::aworx::lox::Lox::logConfig)).
+  <b>%Lox.LogConfig</b>.
 
 - Added field
   <b>Lox.DomainSensitivity</b>
@@ -780,10 +1004,10 @@ More important general changes are:
    [C#]  (@ref #cs::aworx::lox::Log::AddDebugLogger),
    [Java](@ref #com::aworx::lox::Log::addDebugLogger)),
   are stored in the configuration (as soon as a
-  <b>ConfigurationPlugIn</b>
-    ([C++](@ref #aworx::lib::config::ConfigurationPlugIn),
-    [C#]  (@ref #cs::aworx::lib::config::ConfigurationPlugIn),
-    [Java](@ref #com::aworx::lib::config::ConfigurationPlugIn)) is provided that is capable of
+  <b>ConfigurationPlugin</b>
+    ([C++](@ref #aworx::lib::config::ConfigurationPlugin),
+    [C#]  (@ref #cs::aworx::lib::config::ConfigurationPlugin),
+    [Java](@ref #com::aworx::lib::config::ConfigurationPlugin)) is provided that is capable of
   storing configuration data, e.g. one of type class
   <b>IniFile</b>
     ([C++](@ref #aworx::lib::config::IniFile),
@@ -803,7 +1027,7 @@ More important general changes are:
 - Renamed method \b Lox.RegDomain to \b Lox.SetDomain (which existed before, therefore these are now
   overloaded methods).<br> Background: with increasing \e tolerance of ALox against non- or
   partly-configured logging, the concept of "registering" a domain becomes an internal thing.
-  On the same token, logging to an unregistered domain is now an internal log message on
+  On the same token, logging to a deregistered domain is now an internal log message on
   \e Verbosity.Info, not \e Verbosity.Warning.
 
 - Added public interface to class \b %Logger to set a log level, independent from using a \b Lox.
@@ -1053,7 +1277,7 @@ More important general changes are:
 
 - Some improvements in formatted output of class [LogTools](@ref #cs::aworx::lox::tools::LogTools)
 
-- Improvements in formatted output of method [Log.LogConfig()](@ref #cs::aworx::lox::Log::LogConfig)
+- Improvements in formatted output of method \b Log.LogConfig.
 
 - Added more options to manipulate multi line message logging with [TextLogger](@ref #cs::aworx::lox::core::textlogger::TextLogger)
 

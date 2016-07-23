@@ -97,7 +97,7 @@ public class Util
                     qty-= size;
                 }
             }
-            catch(IOException e)
+            catch(@SuppressWarnings ("unused") IOException e)
             {
                 ALIB.ERROR( "IOException" );
             }

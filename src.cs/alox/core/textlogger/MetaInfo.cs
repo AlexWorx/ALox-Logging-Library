@@ -67,28 +67,27 @@ public class MetaInfo
          *        Setting this to a higher value avoids too many adjustments at the beginning of a log session.
          * - %LG: The name of the \e Logger. This might be useful if multiple loggers write to the same
          *        output stream (e.g. Console).
-         * - %LX: The name of the \e Lox. 
+         * - %LX: The name of the \e Lox.
          * - %P:  The name of the process / application.
          *
          * Defaults to
          * \code "%Sp/%SF(%SL):%A5%SM() %A5[%TC +%TL][%tN]%V[%D]%A1(%#): " \endcode
          *
          */
-        public AString
-        Format = new AString( "%Sp/%SF(%SL):%A5%SM() %A5[%TC +%TL][%tN]%V[%D]%A1(%#): " );
-
+        public            AString           Format 
+                        = new AString( "%Sp/%SF(%SL):%A5%SM() %A5[%TC +%TL][%tN]%V[%D]%A1(%#): " );
 
         /** The replacement for variable \c %%V in field #Format if \e Verbosity is \c Error */
-        public            String            VerbosityError                               = "[ERR]";
+        public            String            VerbosityError                              = "[ERR]";
 
         /** The replacement for variable \c %%V in field #Format if \e Verbosity is \c Warning */
-        public            String            VerbosityWarning                             = "[WRN]";
+        public            String            VerbosityWarning                            = "[WRN]";
 
         /** The replacement for variable \c %%V in field #Format if \e Verbosity is \c  Info */
-        public            String            VerbosityInfo                                = "     ";
+        public            String            VerbosityInfo                               = "     ";
 
         /** The replacement for variable \c %%V in field #Format if \e Verbosity is \c Verbose */
-        public            String            VerbosityVerbose                             = "[***]";
+        public            String            VerbosityVerbose                            = "[***]";
 
         /// Format string for the output of the log date. For more information, see
         ///  "Standard Date and Time Format Strings" in .NET StringBuilder.AppendFormat()
@@ -140,9 +139,9 @@ public class MetaInfo
          * The maximum time elapsed. Used to determine the width of the output when writing
          * the elapsed time.
          *
-         * This field will be read from the 
+         * This field will be read from the
          * configuration variable [ALOX_LOGGERNAME_MAX_ELAPSED_TIME](../group__GrpALoxConfigVars.html)
-         * when the \b %TextLogger that this object belongs to is attached to a \b %Lox 
+         * when the \b %TextLogger that this object belongs to is attached to a \b %Lox
          * and written back on removal.
          */
         public            Ticks             MaxElapsedTime                           = new Ticks(0);
@@ -399,16 +398,16 @@ public class MetaInfo
                 {
                     elapsedTime.Set( scope.GetTimeStamp()  );
                     elapsedTime.Sub( logger.TimeOfCreation );
-    
+
                     if( MaxElapsedTime.Raw() < elapsedTime.Raw() )
                         MaxElapsedTime.Set( elapsedTime );
-    
+
                     long      maxElapsedSecs= MaxElapsedTime.InSeconds();
                     TimeSpan  elapsed= new TimeSpan( elapsedTime.Raw() );
-    
+
                     if ( maxElapsedSecs >= 60*60*24 )  dest._( elapsed.Days  )._NC( TimeElapsedDays );
-                    if ( maxElapsedSecs >= 60*60    )  dest._( elapsed.Hours  ,  maxElapsedSecs >= 60*60*10 ?  2 : 1 )._NC( ':' );
-                    if ( maxElapsedSecs >= 60       )  dest._( elapsed.Minutes,  maxElapsedSecs >= 10*60    ?  2 : 1 )._NC( ':' );
+                    if ( maxElapsedSecs >= 60*60    )  dest._( elapsed.Hours  ,  maxElapsedSecs >= 60*60*10 ?  2 : 1 )._( ':' );
+                    if ( maxElapsedSecs >= 60       )  dest._( elapsed.Minutes,  maxElapsedSecs >= 10*60    ?  2 : 1 )._( ':' );
                     dest._( elapsed.Seconds,  maxElapsedSecs > 9 ? 2 : 1          )._NC( '.' );
                     dest._( elapsed.Milliseconds,  3 );
                 }

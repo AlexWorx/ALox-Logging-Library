@@ -6,7 +6,7 @@
 // #################################################################################################
 
 /**
-\page man_trim_source_path  13 - Trimming Source File Paths and Clickable IDE Output
+\page man_trim_source_path  14 - Trimming Source File Paths and Clickable IDE Output
 
 
 \tableofcontents
@@ -85,7 +85,7 @@ Before we learn how we can configure ALox to trim the path like this, let us fir
   And even worse: if no match was found with that first file, no second try is performed.
 
 - More precisely, ALox does its one-time detection exactly in the moment a first source file is
-  using a \b Lox and the path of this file was \e not processed by a manually provided
+  using a \b Lox and the path of this file was \e not processed by an explicitly provided
   <em>Source Path Trim Rule</em>.
 
 - If ALox finds a rule, such rule is stored in the list dedicated to the \b Lox that found it,
@@ -95,26 +95,27 @@ Before we learn how we can configure ALox to trim the path like this, let us fir
 As you see, this auto-detection works nicely on small projects with source files kept local
 and the executable in a 'related' place.
 
-When things become more complex, it is advisable to add <em>Source Path Trim Rule</em> manually.
+When things become more complex, it is advisable to add <em>Source Path Trim Rule</em> explicitly.
 
 
 \~Comment ####################################################################################### \~
-## 1.2 Manual Provision of Trim Rules ##  {#man_trim_source_path_set_manual}
+## 1.2 Programmatical Provision of Trim Rules ##  {#man_trim_source_path_set_programmatical}
 A user of ALox may use method
 <b>%Lox.SetSourcePathTrimRule</b>
 ([C++] (@ref      #aworx::lox::Lox::SetSourcePathTrimRule),
- [C#]  (@ref  #cs::aworx::lox::Lox::SetSourcePathTrimRule)), to add <em>Source Path Trim Rules</em>.
+ [C#]  (@ref  #cs::aworx::lox::Lox::SetSourcePathTrimRule)), to add <em>Source Path Trim Rules</em>
+explicitly.
 
 \note
   For all details, please see the reference documentation corresponding to the programming
   version you are using as linked above.
 
-When you reconsider the sample above, manual setting leads to better results even in simple
+When you reconsider the sample above, explicit setting leads to better results even in simple
 project. The sample used source file:
 
         /home/lisa/dev/myapp/src/ui/dialog.cpp
 
-Now, for a manual setting, Lisa invokes
+Now, for a programmatically setting, Lisa invokes
 
 \snippet "UT_dox_manual.cs"        Man_TRIM_SOURCE_PATH
 
@@ -130,7 +131,7 @@ Now the trimmed source path leads to
 
         ui/dialog.cpp
 
-which is probably what is wanted. As we see, the huge advantages of manually setting <em>Source Path Trim Rules</em> is that they
+which is probably what is wanted. As we see, the huge advantages of explicitly setting <em>Source Path Trim Rules</em> is that they
 do a better job, are independently applied regardless of 'where' the executable is located
 and that any random behavior of trimming is eliminated.
 
@@ -164,7 +165,7 @@ Only one rule per source path is executed. In other words, as soon as a rule mat
 a source path, no further attempts for trimming are performed.
 
 \~Comment ####################################################################################### \~
-## 1.3 External Configuration of Trim Rules ## {#man_trim_source_path_set_config}
+## 1.3 Trim Rules Provided by External Configuration Variables## {#man_trim_source_path_set_config}
 
 Setting <em>Source Path Trim Rules</em> <em>'from within the source code'</em> is easy and straightforward. However, when
 working in a team such changes might not be appreciated by other team members. In this and
@@ -228,31 +229,44 @@ as follows:
 Different trim rules might be redundant or even contradict each other. Therefore the rules
 are equipped with a priority. Rules with higher priority are applied first.
 Once a rule matches, no further rule is applied.
-The priority is an integer value and is set as follows:
+The priority is an integer value and is lent from the ALib system for external configuration
+variables. It is are set as follows:
 - In the case that a rule is read from an external configuration
   variable, the priority value is set to the priority value of the configuration plug-in that
   provided the variable.
-- In the case that the the rule is set from within the source code, the priority is taken from
+- In the case that the rule is set from within the source code, the priority is taken from
   optional parameter \p priority of method
   <b>%Lox.SetSourcePathTrimRule</b>
     ([C++] (@ref      #aworx::lox::Lox::SetSourcePathTrimRule),
      [C#]  (@ref  #cs::aworx::lox::Lox::SetSourcePathTrimRule)) which defaults to
-  <b>%Lox.PrioSource</b>
-    ([C++] (@ref      #aworx::lox::Lox::PrioSource),
-     [C#]  (@ref  #cs::aworx::lox::Lox::PrioSource)).
-- Rules that are automatically detected have a priority of <c>%Lox.PrioSource - 1</c>.
+  <b>%Configuration.PrioDefault</b>
+    ([C++] (@ref      #aworx::lib::config::Configuration::PrioDefault),
+     [C#]  (@ref  #cs::aworx::lib::config::Configuration::PrioDefault)).
+- Rules that are automatically detected have a priority of
+  <b>%Configuration.PrioAutodetect</b>
+    ([C++] (@ref      #aworx::lib::config::Configuration::PrioAutodetect),
+     [C#]  (@ref  #cs::aworx::lib::config::Configuration::PrioAutodetect)).
 
-
-\b %Lox.PrioSource is a lower priority than (the default) priorities of the configuration plug-ins.
+\b %Configuration.PrioDefault is a lower priority than (the default) priorities of the configuration plug-ins.
 Therefore, the configuration variables by default \b overrule what is hard-coded as a
 <em>Source Path Trim Rule</em>.<br>
 To change this behavior, any other priority may be specified in the source code, especially
 the pre-defined value of:
-  <b>%Lox.PrioProtected</b>
-    ([C++] (@ref      #aworx::lox::Lox::PrioProtected),
-     [C#]  (@ref  #cs::aworx::lox::Lox::PrioProtected)) may be used. It allows the user to give the
-rule set in the source code the highest priority.
+  <b>%Configuration.PrioProtected</b>
+    ([C++] (@ref      #aworx::lib::config::Configuration::PrioProtected),
+     [C#]  (@ref  #cs::aworx::lib::config::Configuration::PrioProtected)) may be used.
+It allows the user to give the rule set in the source code the highest priority and this way
+to protect the rule from external manipulation.
 
+\note
+    For general information about accessing external configuration data with ALib see documentation
+    of namespace
+    <b>[cs.]%aworx.lib.config</b>
+      ([C++] (@ref      #aworx::lib::config),
+       [C#]  (@ref  #cs::aworx::lib::config)).
+
+
+<p>
 \note The priority scheme used here is similar to what is described for \e Verbosity settings in
       chapter \ref man_external_verbosity_configuration.
 
@@ -265,11 +279,17 @@ With most methods invoked on class \b Lox, internal log messages are provided
 here is, that in most cases no \e %Logger is attached to the \b %Lox attached, yet. If something
 goes wrong with source path trimming, e.g. when you are not sure if a rule was read from
 external configuration variables, you can use method
-<b>%Lox.LogConfig</b>
-([C++] (@ref      #aworx::lox::Lox::LogConfig),
- [C#]  (@ref  #cs::aworx::lox::Lox::LogConfig)) to dump out the current state of a \b %Lox.
-Besides rules set manually or using configuration variables, if exists, also the auto-generated
+<b>%Lox.State</b>
+([C++] (@ref      #aworx::lox::Lox::State),
+ [C#]  (@ref  #cs::aworx::lox::Lox::State)) to dump out the current state of a \b %Lox.
+Besides rules set programmatically or using configuration variables, if exists, also the auto-generated
 rule is displayed.
+\note
+    As an alternative to (temporarily) adding an invocation of <b>%Lox.State</b> to your code,
+    ALox provides configuration variable [ALOX_LOXNAME_DUMP_STATE_ON_EXIT](group__GrpALoxConfigVars.html).
+    This allows to enable an automatic dump of the state using a command line parameter or
+    other external configuration sources.
+
 
 
 \~Comment ####################################################################################### \~
@@ -292,9 +312,9 @@ The benefits of having ALox using reduced length source file paths in considerat
 is in respect to performance. All data associated with language-related \e Scopes is stored and
 retrieved in hash-tables with keys containing the source path.<br>
 Furthermore, the output of method
-<b>%Lox.LogConfig</b>
-([C++] (@ref      #aworx::lox::Lox::LogConfig),
- [C#]  (@ref  #cs::aworx::lox::Lox::LogConfig)), might be better readable with these shorter
+<b>%Lox.State</b>
+([C++] (@ref      #aworx::lox::Lox::State),
+ [C#]  (@ref  #cs::aworx::lox::Lox::State)), might be better readable with these shorter
 paths.
 
 It is also important to consider that when using \e Scope.Path, especially in combination with
@@ -327,8 +347,8 @@ For the source path, two format parameters exists:
 - <b>%SP</b>: Provides the full path name
 - <b>%Sp</b>: Provides the trimmed path name
 
-By default, the trimmed name is used. Directly from the log-output you can observer how trimming
-is performed by ALox and whether there is the need to add a trimming rule manually.
+By default, the trimmed name is used. Directly from the log-output you can observe how trimming
+is performed by ALox and whether there is the need to add a trimming rule explicitly.
 
 However, those IDEs which recognize certain patterns and allow to automatically link these patterns
 with the source file in their editor, normally need to see the full path name.

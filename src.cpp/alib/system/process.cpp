@@ -76,12 +76,12 @@ const ProcessInfo&    ProcessInfo::Current()
     bool ProcessInfo::getStatField( int fieldNo, AString& result )
     {
         result.Clear();
-        Tokenizer tok( Stat, ' ');
+        Tokenizer tknzr( Stat, ' ');
         bool retval= true;
-        while ( --fieldNo >= 0 && (retval= tok.HasNext()) )
-            tok.Next();
+        while ( --fieldNo >= 0 && (retval= tknzr.HasNext()) )
+            tknzr.Next();
 
-        result._( tok.Next() );
+        result._( tknzr.Next() );
         return retval;
     }
 

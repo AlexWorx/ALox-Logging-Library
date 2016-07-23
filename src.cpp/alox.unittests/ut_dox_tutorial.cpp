@@ -609,13 +609,13 @@ void notCompiledConditionalLogging()
 #define ALIB_SRC_INFO_PARAMS     __FILE__, __LINE__, aworxTestName
 
 // #################################################################################################
-// Tut_LogConfig
+// Tut_LogState
 // #################################################################################################
-UT_METHOD(Tut_LogConfig)
+UT_METHOD(Tut_LogState)
 {
     UT_INIT();
 
-    //! [Tut_LogConfig]
+    //! [Tut_LogState]
     // create two different loggers
     Log_AddDebugLogger();
     Log_Prune( MemoryLogger memLogger;  )
@@ -659,10 +659,10 @@ UT_METHOD(Tut_LogConfig)
     Log_MapThreadName( "TUTORIAL" );
 
     // now, log the current config
-    Log_LogConfig( nullptr, Verbosity::Info, "The current configuration of this Lox is:" );
-    //! [Tut_LogConfig]
+    Log_LogState( nullptr, Verbosity::Info, "The current configuration of this Lox is:" );
+    //! [Tut_LogState]
 
-    Log_Prune( ut.WriteResultFile( "Tut_LogConfig.txt", memLogger.MemoryLog, "" ); )
+    Log_Prune( ut.WriteResultFile( "Tut_LogState.txt", memLogger.MemoryLog, "" ); )
     Log_RemoveDebugLogger();
     Log_RemoveLogger( &memLogger );
 }

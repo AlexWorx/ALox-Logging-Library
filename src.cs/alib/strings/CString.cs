@@ -350,9 +350,10 @@ public class CString
                                       Case          sensitivity                 )
     {
         // checks
-        int needleLength=  needle != null ?  needle.Length : 0;
         if ( haystackStart <  0 )   haystackStart= 0;
-        if ( needleLength     == 0 )   return  haystackStart;
+        int needleLength;
+        if( needle == null || (needleLength= needle.Length) == 0 )
+            return  haystackStart;
 
         // case sensitive
         int hayStackEnd= haystackStart + haystackLength;

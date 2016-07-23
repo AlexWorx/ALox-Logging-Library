@@ -26,7 +26,7 @@ UT_CLASS()
 // SAMPLE code of class documentation
 //##################################################################################################
 
-void documentationSampleTokenizer(ALIBUnitTesting& ut)
+void documentationSampleTokenizer(AWorxUnitTesting& ut)
 {
     stringstream testOutputStream;
     #define cout testOutputStream
@@ -36,27 +36,27 @@ void documentationSampleTokenizer(ALIBUnitTesting& ut)
     aworx::String data=  "test;  abc ; 1,2 , 3 ; xyz ; including;separator";
 
     // create tokenizer on data with ';' as delimiter
-    aworx::Tokenizer tokens( data, ';' );
+    aworx::Tokenizer tknzr( data, ';' );
 
     // read tokens
-    cout << tokens.Next() << endl; // will print "test"
-    cout << tokens.Next() << endl; // will print "abc"
-    cout << tokens.Next() << endl; // will print "1,2 , 3"
+    cout << tknzr.Next() << endl; // will print "test"
+    cout << tknzr.Next() << endl; // will print "abc"
+    cout << tknzr.Next() << endl; // will print "1,2 , 3"
 
     // tokenize actual (third) token (nested tokenizer)
-    aworx::Tokenizer subTokens( tokens.Actual,  ',');
-    cout << subTokens.Next();
+    aworx::Tokenizer subTknzr( tknzr.Actual,  ',');
+    cout << subTknzr.Next();
 
-    while( subTokens.HasNext() )
-        cout << '~' << subTokens.Next();
+    while( subTknzr.HasNext() )
+        cout << '~' << subTknzr.Next();
 
     cout << endl;
 
     // continue with the main tokenizer
-    cout << tokens.Next() << endl; // will print "xyz"
+    cout << tknzr.Next() << endl; // will print "xyz"
 
     // grab the rest, as we know that the last token might include our separator character
-    cout << tokens.GetRest()      << endl; // will print "including;separator"
+    cout << tknzr.GetRest()      << endl; // will print "including;separator"
 //! [DOX_ALIB_TOKENIZER]
 
     #undef cout

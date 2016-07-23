@@ -22,7 +22,7 @@
 
 #if !defined( IS_DOXYGEN_PARSER )
 
-#define     ALIB_VERSION_VERYFIER              1604
+#define     ALIB_VERSION_VERYFIER              1607
 
 #define ALIB_DEBUG_VFYBIT                  (1 << 0)
 #if defined(ALIB_DEBUG)

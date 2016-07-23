@@ -833,14 +833,14 @@ The same applies when working in a team.
 
 
 Let us create a sample, do some ALox configuration and then invoke method
-\ref aworx::lox::Lox::LogConfig "Lox::LogConfig":
+\ref aworx::lox::Lox::State "Lox::State":
 
-\snippet ut_dox_tutorial.cpp        Tut_LogConfig
+\snippet ut_dox_tutorial.cpp        Tut_LogState
 
-\b %Lox.LogConfig gathers internal configuration information and logs it out.
+\b %Lox.State gathers internal configuration information and logs it out.
 The output is quite self explanatory:
 
-\verbinclude ALox.CPP/generated/Tut_LogConfig.txt
+\verbinclude ALox.CPP/generated/Tut_LogState.txt
 
 Besides this, there is a <b>second option</b> to inspect what happens internally in class *Lox*.
 ALox is equipped with an internal <em>Log Domain</em>. This domain is used by ALox to
@@ -857,7 +857,7 @@ This way, you can exactly observe what is going on inside ALox.
 
 To summarize: We have to ways to look into ALox:
 
-1. Method [Lox::LogConfig()](@ref #aworx::lox::Lox::LogConfig) logs a "snapshot" of the current states. The advantage of this is,
+1. Method [Lox::State()](@ref #aworx::lox::Lox::State) logs a "snapshot" of the current states. The advantage of this is,
    that it is all logged sequentially in one place and does not clutter your log output.
 2. By setting the *Verbosity* of the internal <em>Log Domain</em>
    \ref aworx::lox::ALox::InternalDomains "ALox::InternalDomains"

@@ -10,7 +10,7 @@
 #if !defined (HPP_ALIB)
     #error "include \"alib/alib.hpp\" before including this header"
 #endif
-#if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_ALIB_STRINGS_ASSUBSTRING)
+#if defined(HPP_COM_ALIB_TEST_INCLUDES) && defined(HPP_ALIB_STRINGS_SUBSTRING)
     #error "Header already included"
 #endif
 
@@ -21,9 +21,9 @@
 #endif
 
 // then, set include guard
-#ifndef HPP_ALIB_STRINGS_ASSUBSTRING
+#ifndef HPP_ALIB_STRINGS_SUBSTRING
 #if !defined( IS_DOXYGEN_PARSER)
-    #define HPP_ALIB_STRINGS_ASSUBSTRING 1
+    #define HPP_ALIB_STRINGS_SUBSTRING 1
 #endif
 
 // conditional expression is constant for using our constant template parameters to select
@@ -127,7 +127,7 @@ class Substring : public String
             {
                 //---- non-checking version ----
                 ALIB_ASSERT_ERROR(    regionStart >= 0 && regionLength >= 0
-                                   && regionLength != CString::MaxLen // has to be separatedly checked!
+                                   && regionLength != CString::MaxLen // has to be separately checked!
                                    && regionStart +  regionLength  <= src.Length(),
                                    "NC: Invalid region given" )
             }
@@ -208,10 +208,10 @@ class Substring : public String
          *
          * @param whiteSpaces  The characters used for trimming.
          *                     Defaults to  \ref aworx::DefaultWhitespaces
-         * @return \c true if empty after the operation.
+         * @return \c *this to allow concatenated calls.
          ******************************************************************************************/
         inline
-        bool        TrimStart( const TString& whiteSpaces = DefaultWhitespaces )
+        Substring&  TrimStart( const TString& whiteSpaces = DefaultWhitespaces )
         {
             if ( length > 0 )
             {
@@ -226,7 +226,7 @@ class Substring : public String
                 buffer+= idx;
                 length-= idx;
             }
-            return IsEmpty();
+            return *this;
         }
 
         /** ****************************************************************************************
@@ -234,18 +234,21 @@ class Substring : public String
          *
          * @param whiteSpaces  The characters used for trimming.
          *                     Defaults to  \ref aworx::DefaultWhitespaces
-         * @return \c true if empty after the operation.
+         * @return \c *this to allow concatenated calls.
          ******************************************************************************************/
         inline
-        bool        TrimEnd( const TString& whiteSpaces = DefaultWhitespaces )
+        Substring&  TrimEnd( const TString& whiteSpaces = DefaultWhitespaces )
         {
-            length= CString::LastIndexOfAny(                 buffer,
-                                                             length - 1,
-                                                 whiteSpaces.Buffer(),
-                                                 whiteSpaces.Length(),
-                                                 enums::Inclusion::Exclude
-                                                ) + 1;
-            return ( length == 0 );
+            if ( length > 0 )
+            {
+                length= CString::LastIndexOfAny(                 buffer,
+                                                                 length - 1,
+                                                     whiteSpaces.Buffer(),
+                                                     whiteSpaces.Length(),
+                                                     enums::Inclusion::Exclude
+                                                    ) + 1;
+            }
+            return *this;
         }
 
 
@@ -254,13 +257,13 @@ class Substring : public String
          *
          * @param whiteSpaces  The characters used for trimming.
          *                     Defaults to  \ref aworx::DefaultWhitespaces
-         * @return \c true if empty after the operation.
+         * @return \c *this to allow concatenated calls.
          ******************************************************************************************/
-        bool  Trim( const TString& whiteSpaces = DefaultWhitespaces )
+        inline
+        Substring&  Trim( const TString& whiteSpaces = DefaultWhitespaces )
         {
-            if ( TrimStart( whiteSpaces ) )
-                return true;
-            return TrimEnd( whiteSpaces );
+            return   TrimEnd  ( whiteSpaces )
+                    .TrimStart( whiteSpaces );
         }
 
 
@@ -286,7 +289,9 @@ class Substring : public String
         {
             if ( TCheck )
             {
-                if ( trimBeforeConsume == enums::Whitespaces::Trim ? TrimStart() : IsEmpty() )
+                if ( trimBeforeConsume == enums::Whitespaces::Trim )
+                    TrimStart();
+                if( IsEmpty() )
                     return '\0';
             }
             else
@@ -318,7 +323,9 @@ class Substring : public String
         {
             if ( TCheck )
             {
-                if ( trimBeforeConsume == enums::Whitespaces::Trim ? TrimEnd() : IsEmpty() )
+                if ( trimBeforeConsume == enums::Whitespaces::Trim )
+                    TrimEnd();
+                if( IsEmpty() )
                     return '\0';
             }
             else
@@ -535,19 +542,22 @@ class Substring : public String
          * Checks if this object starts with the given string \p consumable. If it does, this
          * string is cut from this object.
          *
-         * @param consumable        The consumable string
+         * @param consumable        The consumable string.
+         * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
          *                          consume operation. Defaults to \c Whitespaces::Keep.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut.
          ******************************************************************************************/
         inline
-        bool        Consume( const String& consumable, enums::Whitespaces trimBeforeConsume= enums::Whitespaces::Keep )
+        bool        Consume( const String&      consumable,
+                             enums::Case        sensitivity=       enums::Case::Sensitive,
+                             enums::Whitespaces trimBeforeConsume= enums::Whitespaces::Keep )
         {
             if ( trimBeforeConsume == enums::Whitespaces::Trim )
                 TrimStart();
 
-            if ( !StartsWith( consumable ) )
+            if ( !StartsWith( consumable, sensitivity ) )
                 return false;
 
             Consume<false>( consumable.Length() );
@@ -561,18 +571,21 @@ class Substring : public String
          * string is cut from the end of object.
          *
          * @param consumable        The consumable string
+         * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
          *                          consume operation. Defaults to \c Whitespaces::Keep.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut.
          ******************************************************************************************/
         inline
-        bool        ConsumeFromEnd( const String& consumable, enums::Whitespaces trimBeforeConsume= enums::Whitespaces::Keep )
+        bool        ConsumeFromEnd( const String&      consumable,
+                                    enums::Case        sensitivity=       enums::Case::Sensitive,
+                                    enums::Whitespaces trimBeforeConsume= enums::Whitespaces::Keep )
         {
             if ( trimBeforeConsume == enums::Whitespaces::Trim )
                 TrimEnd();
 
-            if ( !EndsWith( consumable ) )
+            if ( !EndsWith( consumable, sensitivity ) )
                 return false;
             ConsumeFromEnd<false>( consumable.Length() );
             return true;
@@ -583,18 +596,23 @@ class Substring : public String
          * character is cut from this object.
          *
          * @param consumable        The consumable character
+         * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
          *                          consume operation. Defaults to \c Whitespaces::Keep.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut by one.
          ******************************************************************************************/
         inline
-        bool        Consume( char consumable, enums::Whitespaces trimBeforeConsume= enums::Whitespaces::Keep )
+        bool        Consume( char               consumable,
+                             enums::Case        sensitivity=       enums::Case::Sensitive,
+                             enums::Whitespaces trimBeforeConsume= enums::Whitespaces::Keep )
+
         {
             if ( trimBeforeConsume == enums::Whitespaces::Trim )
                 TrimStart();
 
-            if ( CharAtStart() != consumable )
+            if (    ( sensitivity == enums::Case::Sensitive &&         CharAtStart()  !=         consumable  )
+                 || ( sensitivity == enums::Case::Ignore    && toupper(CharAtStart()) != toupper(consumable) ) )
                 return false;
             buffer++;
             length--;
@@ -606,18 +624,22 @@ class Substring : public String
          * character is cut from the end of object.
          *
          * @param consumable        The consumable character
+         * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
          *                          consume operation. Defaults to \c Whitespaces::Keep.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut by one.
          ******************************************************************************************/
         inline
-        bool        ConsumeFromEnd( char consumable, enums::Whitespaces trimBeforeConsume= enums::Whitespaces::Keep )
+        bool        ConsumeFromEnd( char               consumable,
+                                    enums::Case        sensitivity=       enums::Case::Sensitive,
+                                    enums::Whitespaces trimBeforeConsume= enums::Whitespaces::Keep )
         {
             if ( trimBeforeConsume == enums::Whitespaces::Trim )
                 TrimEnd();
 
-            if ( CharAtEnd() != consumable )
+            if (    ( sensitivity == enums::Case::Sensitive &&         CharAtEnd()  !=         consumable  )
+                 || ( sensitivity == enums::Case::Ignore    && toupper(CharAtEnd()) != toupper(consumable) ) )
                 return false;
             length--;
             return true;
@@ -759,8 +781,8 @@ class Substring : public String
             length= position;
             if( trim )
             {
-                this ->Trim();
                 target.Trim();
+                this ->Trim();
             }
             return *this;
         }
@@ -777,7 +799,7 @@ using     Substring =    lib::strings::Substring;
 #if defined(_MSC_VER)
     #pragma warning( pop )
 #endif
-#endif // HPP_ALIB_STRINGS_ASSUBSTRING
+#endif // HPP_ALIB_STRINGS_SUBSTRING
 
 
 

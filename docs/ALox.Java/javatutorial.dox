@@ -817,14 +817,14 @@ are using ALox as well (defining their own domains) then you might not know exac
 The same applies when working in a team.
 
 Let us create a sample, do some ALox configuration and then invoke method
-\ref com::aworx::lox::Lox::logConfig "Lox.logConfig":
+\ref com::aworx::lox::Lox::state "Lox.state":
 
-\snippet UT_dox_tutorial.java        Tut_LogConfig
+\snippet UT_dox_tutorial.java        Tut_LogState
 
-\b %Lox.logConfig gathers internal configuration information and logs it out.
+\b %Lox.state gathers internal configuration information and logs it out.
 The output is quite self explanatory:
 
-\verbinclude ALox.Java/generated/Tut_LogConfig.txt
+\verbinclude ALox.Java/generated/Tut_LogState.txt
 
 Besides this, there is a <b>second option</b> to inspect what happens internally in class *Lox*.
 ALox is equipped with an internal <em>Log Domain</em>. This domain is used by ALox to
@@ -841,7 +841,7 @@ This way, you can exactly observe what is going on inside ALox.
 
 To summarize: We have to ways to look into ALox:
 
-1. Method [Log.logConfig()](@ref #com.aworx.lox.Log.logConfig) logs a "snapshot" of the current states. The advantage of this is,
+1. Method [Log.state()](@ref #com.aworx.lox.Log.state) logs a "snapshot" of the current states. The advantage of this is,
    that it is all logged sequentially in one place and does not clutter your log output.
 2. By setting the \e Verbosity of the internal <em>Log Domain</em>
    \ref com::aworx::lox::ALox::INTERNAL_DOMAINS "ALox.INTERNAL_DOMAINS"

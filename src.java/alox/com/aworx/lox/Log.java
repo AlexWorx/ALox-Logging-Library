@@ -11,8 +11,10 @@ import java.util.Date;
 import com.aworx.lib.ALIB;
 import com.aworx.lib.ConsoleReportWriter;
 import com.aworx.lib.Report;
+import com.aworx.lib.config.Configuration;
 import com.aworx.lib.enums.ContainerOp;
 import com.aworx.lib.enums.Inclusion;
+import com.aworx.lib.strings.AString;
 import com.aworx.lib.threads.ThreadLock;
 import com.aworx.lox.core.Logger;
 import com.aworx.lox.core.textlogger.TextLogger;
@@ -151,8 +153,6 @@ public abstract class Log
          **************************************************************************************/
         public static void removeALibReportWriter()
         {
-            ALIB.ASSERT_WARNING( debugReportWriter != null,
-                                 "Log.removeReportWriter(): No ALoxReportWriter to remove." );
             // replace the report writer (if we replaced it before)
             if( debugReportWriter != null )
             {
@@ -261,7 +261,7 @@ public abstract class Log
         Log.logBuf=             new LogBuf();
         Log.logBufLock=         new ThreadLock();
         Log.logBufLock.recursionWarningThreshold= 1;
-        ALox.configCategoryName= "ALOX";
+        ALox.configCategoryName._()._( "ALOX" );
     }
 
 
@@ -303,12 +303,12 @@ public abstract class Log
      * for the evaluated sub-domain, the \e Verbosity for all domains is set to
      * \b %Verbosity.Off.
      *
-     * To unregister a \e Logger with a \b Lox, use method #removeLogger.
+     * To deregister a \e Logger with a \b Lox, use method #removeLogger.
      * To 'disable' a \e Logger, invoke this method with parameters \p verbosity equaling to
      * \b %Verbosity.Off and \p domain to \c "/".
      *
      * Optional parameter \p priority defaults to
-     * \ref com::aworx::lox::Lox::PRIO_SOURCE "Lox.PRIO_SOURCE", which is a lower priority
+     * \ref com::aworx::lox::Configuration::PRIO_DEFAULT "Configuration.PRIO_DEFAULT", which is a lower priority
      * than those of the standard plug-ins of external configuration data. Therefore, external
      * configuration by default 'overwrite' settings made from 'within the source code', which
      * simply means by invoking this method.<br>
@@ -347,7 +347,7 @@ public abstract class Log
      *                   starting with <c> '/'</c> are recommended.
      *                   Defaults to root domain \"/\".
      * @param priority   The priority of the setting. Defaults to
-     *                   \ref com::aworx::lox::Lox::PRIO_SOURCE "Lox.PRIO_SOURCE",
+     *                   \ref com::aworx::lox::Configuration::PRIO_DEFAULT "Configuration.PRIO_DEFAULT",
      *                   which is a lower priority than standard plug-ins of external
      *                   configuration have.
      **********************************************************************************************/
@@ -368,7 +368,7 @@ public abstract class Log
      **********************************************************************************************/
     public static  void setVerbosity( Logger logger, Verbosity verbosity, String domain)
     {
-        LOX.setVerbosity( logger, verbosity, domain, Lox.PRIO_SOURCE );
+        LOX.setVerbosity( logger, verbosity, domain, Configuration.PRIO_DEFAULT );
     }
 
     /** ********************************************************************************************
@@ -381,7 +381,7 @@ public abstract class Log
      **********************************************************************************************/
     public static  void setVerbosity( Logger logger, Verbosity verbosity)
     {
-        LOX.setVerbosity( logger, verbosity, "/", Lox.PRIO_SOURCE );
+        LOX.setVerbosity( logger, verbosity, "/", Configuration.PRIO_DEFAULT );
     }
 
     /** ********************************************************************************************
@@ -397,7 +397,7 @@ public abstract class Log
      *                   starting with <c> '/'</c> are recommended.
      *                   Defaults to root domain \"/\".
      * @param priority   The priority of the setting. Defaults to
-     *                   \ref com::aworx::lox::Lox::PRIO_SOURCE "Lox.PRIO_SOURCE",
+     *                   \ref com::aworx::lox::Configuration::PRIO_DEFAULT "Configuration.PRIO_DEFAULT",
      *                   which is a lower priority than standard plug-ins of external
      *                   configuration have.
      **********************************************************************************************/
@@ -419,7 +419,7 @@ public abstract class Log
      **********************************************************************************************/
     public static  void setVerbosity( String loggerName, Verbosity verbosity, String domain)
     {
-        LOX.setVerbosity( loggerName, verbosity, domain, Lox.PRIO_SOURCE );
+        LOX.setVerbosity( loggerName, verbosity, domain, Configuration.PRIO_DEFAULT );
     }
 
     /** ********************************************************************************************
@@ -433,7 +433,7 @@ public abstract class Log
      **********************************************************************************************/
     public static  void setVerbosity( String loggerName, Verbosity verbosity)
     {
-        LOX.setVerbosity( loggerName, verbosity, "/", Lox.PRIO_SOURCE );
+        LOX.setVerbosity( loggerName, verbosity, "/", Configuration.PRIO_DEFAULT );
     }
 
     /** ********************************************************************************************
@@ -984,18 +984,54 @@ public abstract class Log
 
 
     /** ********************************************************************************************
-     * This method logs the configuration the Lox encapsulated in this static Log interface.
+     * This method logs the current configuration of this Lox and its encapsulated objects.
+     * It uses method #getState to assemble the logable string.
+     *
+     * \note
+     *   As an alternative to (temporarily) adding an invocation of <b>%Lox.State</b> to 
+     *   your code, ALox provides configuration variable 
+     *   [ALOX_LOXNAME_DUMP_STATE_ON_EXIT](group__GrpALoxConfigVars.html). 
+     *   This allows to enable an automatic invocation of this method using external 
+     *   configuration data like command line parameters, environment variables or 
+     *   INI files.
+     *     
+     * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
+     *                  set for the \e %Scope of invocation.
+     * @param verbosity The verbosity.
+     * @param headLine  If given, a separated headline will be logged at first place.
+     * @param flags     Flag bits that define which state information is logged.
+     **********************************************************************************************/
+    public static void state( String domain, Verbosity verbosity, String headLine, int flags )
+    {
+        LOX.state( domain, verbosity, headLine, flags );
+    }
+
+    /** ********************************************************************************************
+     * Overloaded version of #state providing default value \c STATE_INFO_ALL for parameter \p flags.
      *
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
      * @param verbosity The verbosity.
      * @param headLine  If given, a separated headline will be logged at first place.
      **********************************************************************************************/
-    public static void logConfig(String domain, Verbosity verbosity, String headLine)
+    public static void state( String domain, Verbosity verbosity, String headLine )
     {
-        LOX.logConfig( domain, verbosity, headLine );
+        LOX.state( domain, verbosity, headLine, Lox.STATE_INFO_ALL );
     }
 
+    /** ********************************************************************************************
+     * This method collects state information about this lox in a formated multi-line AString.
+     * Parameter \p flags is a bit field with bits defined in constants of class \b %Lox
+     * prefixed with \b "STATE_INFO_", e.g. \c %STATE_INFO_LOGGERS.
+     *
+     * @param buf       The target string.
+     * @param flags     Flag bits that define which state information is collected.
+     **********************************************************************************************/
+    public static void getState( AString buf, int flags )
+    {
+        LOX.getState( buf, flags );
+    }
+    
     // #############################################################################################
     // Main logging methods
     // #############################################################################################

@@ -32,7 +32,7 @@ import com.aworx.lib.ALIB;
  *   allocations)
  *
  * As an example, when writing float data into a configuration file, class
- * \ref com::aworx::lib::config::ConfigurationPlugIn "ConfigurationPlugIn" ignores the systems locale
+ * \ref com::aworx::lib::config::ConfigurationPlugin "ConfigurationPlugin" ignores the systems locale
  * setting and writes all data using '.' as decimal separator. When reading values, both ' . '
  * and ' , ' are accepted. While loosing the possibility to read configuration data that
  * uses a "thousand separator" which is generally the opposite of the decimal separator
@@ -47,7 +47,7 @@ import com.aworx.lib.ALIB;
  *
  * \note The method interface of this class is quite rudimentary. Therefore, it is advisable to
  *       use more user friendly classes as
- *       \ref com::aworx::lib::strings::AString         "AString" or
+ *       \ref com::aworx::lib::strings::AString   "AString" or
  *       \ref com::aworx::lib::strings::Substring "Substring",
  *       which provide methods that accept a configured instance of this class as parameter and do
  *       the conversion internally.
@@ -213,7 +213,7 @@ public class NumberFormat
      * @return  The parsed value. In addition, the output parameter newIdx is set to point
      *          to the first character behind any found integer number.
      ******************************************************************************************/
-    public long stringToInteger( char[] buffer, int idx, int maxIdx, int[] newIdx )
+    public static long stringToInteger( char[] buffer, int idx, int maxIdx, int[] newIdx )
     {
         // check
         if( idx > maxIdx )
@@ -239,7 +239,7 @@ public class NumberFormat
             if ( c < '0' || c > '9' )
                 break;
 
-            retVal= ( retVal * 10 ) + ( (int) ( c - '0' ) );
+            retVal= ( retVal * 10 ) + ( c - '0' );
             idx++;
         }
 
@@ -277,7 +277,7 @@ public class NumberFormat
      *
      * @return  The index of the new new end of the buffer.
      ******************************************************************************************/
-    public int integerToString( long value, char[] buffer, int idx, int minDigits, int sizeHint )
+    public static int integerToString( long value, char[] buffer, int idx, int minDigits, int sizeHint )
     {
         ALIB.ASSERT_ERROR( value >= 0, "Only positive values are allowed" );
 
@@ -375,9 +375,8 @@ public class NumberFormat
                                     &&  ( exp10 > 6 || exp10 <= -5 )
                                   )    );
 
-        int minIntegralDigits= Math.min( this.minIntegralDigits, 15 );
-        int fractionalDigits=  Math.min( this.fractionalDigits,  15 );
-
+        @SuppressWarnings ("hiding") int minIntegralDigits= Math.min( this.minIntegralDigits, 15 );
+        @SuppressWarnings ("hiding") int fractionalDigits=  Math.min( this.fractionalDigits,  15 );
 
 
         // result variables used for output
@@ -564,7 +563,7 @@ public class NumberFormat
                 buffer[idx++]= '-';
             else if ( writeExponentPlusSign )
                 buffer[idx++]= '+';
-            idx= integerToString( (long) ( exp10 >= 0 ? exp10 : -exp10), buffer, idx, 2, 3 );
+            idx= integerToString( ( exp10 >= 0 ? exp10 : -exp10), buffer, idx, 2, 3 );
         }
 
         return idx;
@@ -670,7 +669,7 @@ public class NumberFormat
                 while (     pos < decimalExponentSeparator.length
                         &&  decimalExponentSeparator[pos] == buffer[idx+pos] )
                     pos++;
-                if ( eSepFound= ( pos == decimalExponentSeparator.length ) )
+                if ( (eSepFound= ( pos == decimalExponentSeparator.length ))  == true )
                     idx+= pos;
             }
 

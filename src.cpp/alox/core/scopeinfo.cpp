@@ -55,41 +55,36 @@ ScopeInfo::ScopeInfo( const TString& name, const std::map<int, String32>&  threa
     std::vector<SourcePathTrimRule>* trimInfoList;
     for( int trimInfoNo= 0; trimInfoNo < 2 ; trimInfoNo++ )
     {
-        String64 variableName;;
         // check if done... or set list
+        Variable variable;
         if ( trimInfoNo == 0 )
         {
             trimInfoList= &LocalSPTRs;
-            variableName._( loxName );
+            variable.Define( ALox::SPTR_LOX, loxName ).Load();
         }
         else
         {
             if ( GlobalSPTRsReadFromConfig )
                 continue;
             GlobalSPTRsReadFromConfig= true;
-            trimInfoList= &GlobalSPTRs;
-            variableName._( "GLOBAL" );
-        }
-        variableName._( "_SOURCE_PATH_TRIM_RULES" );
 
-        // get auto sizes from last session
-        String512 rules;
-        int priority= ALIB::Config.Get( ALox::ConfigCategoryName, variableName, rules );
-        if( priority != 0 )
+            trimInfoList= &GlobalSPTRs;
+            variable.Define( ALox::SPTR_GLOBAL ).Load();
+        }
+
+        if( variable.Priority != 0 )
         {
-            Tokenizer rulesTok( rules, ';' );
-            Substring ruleStr;
-            while( (ruleStr= rulesTok.Next()).IsNotEmpty() )
+            for( int ruleNo= 0; ruleNo< variable.Size(); ruleNo++ )
             {
-                Tokenizer ruleTok( ruleStr, ',' );
+                Tokenizer ruleTknzr( variable.GetString( ruleNo ), ',' );
                 trimInfoList->emplace_back();
                 SourcePathTrimRule& rule=trimInfoList->back();
-                rule.Priority=          priority;
+                rule.Priority=  variable.Priority;
 
-                ruleTok.Next();
-                if( ( rule.IsPrefix= !ruleTok.Actual.StartsWith( "*" ) ) == false )
-                    ruleTok.Actual.Consume(1);
-                rule.Path._( ruleTok.Actual );
+                ruleTknzr.Next();
+                if( ( rule.IsPrefix= !ruleTknzr.Actual.StartsWith( "*" ) ) == false )
+                    ruleTknzr.Actual.Consume(1);
+                rule.Path._( ruleTknzr.Actual );
                 if ( rule.Path.CharAtEnd() == '*' )
                     rule.Path.DeleteEnd( 1 );
 
@@ -104,10 +99,10 @@ ScopeInfo::ScopeInfo( const TString& name, const std::map<int, String32>&  threa
                 else
                     rule.Path.SearchAndReplaceAll( "/" , "\\" );
 
-                rule.IncludeString =    lib::enums::ReadInclusion( ruleTok.Next() );
-                ruleTok.Next().ConsumeInteger( rule.TrimOffset );
-                rule.Sensitivity=       lib::enums::ReadCase( ruleTok.Next() );
-                rule.TrimReplacement=   ruleTok.Next();
+                rule.IncludeString =    lib::enums::ReadInclusion( ruleTknzr.Next() );
+                ruleTknzr.Next().ConsumeInteger( rule.TrimOffset );
+                rule.Sensitivity=       lib::enums::ReadCase( ruleTknzr.Next() );
+                rule.TrimReplacement=   ruleTknzr.Next();
             }
         }
     }
@@ -165,8 +160,8 @@ void  ScopeInfo::SetSourcePathTrimRule( const TString&  path,
                                         Inclusion       includeString,
                                         int             trimOffset,
                                         Case            sensitivity,
-                                        Inclusion       global,
                                         const String&   trimReplacement,
+                                        Reach           reach,
                                         int             priority )
 {
     // clear cache to have lazy variables reset with the next invocation
@@ -177,7 +172,7 @@ void  ScopeInfo::SetSourcePathTrimRule( const TString&  path,
     if ( trimOffset == 999999 )
     {
         LocalSPTRs.clear();
-        if ( global == Inclusion::Include )
+        if ( reach == Reach::Global )
             GlobalSPTRs.clear();
         AutoDetectTrimableSourcePath=  (includeString == Inclusion::Include);
 
@@ -188,8 +183,8 @@ void  ScopeInfo::SetSourcePathTrimRule( const TString&  path,
 
     // choosel local or global list
     std::vector<SourcePathTrimRule>* trimInfoList=
-                   global == Inclusion::Include  ? &GlobalSPTRs
-                                                 : &LocalSPTRs;
+                   reach == Reach::Global  ? &GlobalSPTRs
+                                           : &LocalSPTRs;
 
     // insert sorted by priority
     auto it= trimInfoList->begin();
@@ -294,8 +289,8 @@ void ScopeInfo::trimPath()
         {
             currentDir.SetLength<false>( i );
             TString origFile= actual->origFile;
-                SetSourcePathTrimRule( currentDir, Inclusion::Include, 0, Case::Ignore,
-                                       Inclusion::Exclude, NullString, Lox::PrioSource - 1 );
+                SetSourcePathTrimRule( currentDir, Inclusion::Include, 0, Case::Ignore, NullString,
+                                       Reach::Local, Configuration::PrioAutodetect );
             actual->origFile= origFile;
             trimPath(); // one recursive call
         }

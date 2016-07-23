@@ -25,6 +25,7 @@ using System.Collections.Generic;
  * Developed by A-Worx GmbH and published under the MIT license.
  **************************************************************************************************/
 namespace cs.aworx.lox.core {
+
 /** ************************************************************************************************
  * This is central class of the ALox logging implementation. It is **not** recommended to use this
  * class directly for logging. Instead, use the simple and convenient static interface class
@@ -43,15 +44,15 @@ public abstract class Logger : SmartLock
         /**
          * The name of the \e Logger. Used as a reference to a logger. All loggers attached to a
          * \b %Lox have to differ in their names.
-         * If no name is specified with the constructor, the name will by the same as #typeName.
+         * If no name is specified with the constructor, the name will by the same as #TypeName.
          */
-        protected    String          name;
+        protected    String          Name;
 
         /**
          *  The type name of the \e Logger. This is set by the derived class similar to the class
          *  name.
          */
-        protected    String          typeName;
+        protected    String          TypeName;
 
     // #############################################################################################
     // public fields
@@ -106,8 +107,8 @@ public abstract class Logger : SmartLock
         protected Logger( String name, String typeName )
         {
             // save parameters
-            this.typeName=  typeName.ToUpper();
-            this.name=      !String.IsNullOrEmpty( name ) ? name.ToUpper() : this.typeName;
+            this.TypeName=  typeName.ToUpper();
+            this.Name=      !String.IsNullOrEmpty( name ) ? name.ToUpper() : this.TypeName;
         }
 
     // #############################################################################################
@@ -119,14 +120,14 @@ public abstract class Logger : SmartLock
          * to a \b %Lox.
          * @return The loggers name.
          ******************************************************************************************/
-        public String GetName()      {     return name;      }
+        public String GetName()      {     return Name;      }
 
         /** ****************************************************************************************
          * Returns the constant type name of this logger. The type name is defined by the class
          * and hence provides a sort of run-time type information.
          * @return The loggers type name.
          ******************************************************************************************/
-        public String GetTypeName()  {     return typeName;  }
+        public String GetTypeName()  {     return TypeName;  }
 
         /** ****************************************************************************************
          * This is for debugging purposes. E.g. this enables the \e Monodevelop IDE to display
@@ -135,9 +136,9 @@ public abstract class Logger : SmartLock
          ******************************************************************************************/
         public override String ToString()
         {
-            String result= name;
-            if (!name.Equals(typeName))
-                result+= " (" + typeName + ')';
+            String result= Name;
+            if (!Name.Equals(TypeName))
+                result+= " (" + TypeName + ')';
             return result;
         }
 

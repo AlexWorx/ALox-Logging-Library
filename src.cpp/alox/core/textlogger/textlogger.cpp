@@ -574,48 +574,6 @@ TextLogger::TextLogger( const String& name, const String& typeName, bool  usesSt
 {
     ObjectConverters.emplace_back(  new textlogger::StringConverter() );
     MetaInfo=        new textlogger::MetaInfo();
-
-    // evaluate config variable <name>_FORMAT / <typeName>_FORMAT
-    {
-        String64    variableName( name ); variableName._( "_FORMAT" );
-        String256   result;
-        if ( ALIB::Config.Get( ALox::ConfigCategoryName, variableName, result ) == 0 )
-        {
-            variableName._()._( typeName )._( "_FORMAT" );
-            ALIB::Config.Get( ALox::ConfigCategoryName, variableName, result );
-        }
-
-        if( result.IsNotEmpty() )
-        {
-            MetaInfo->Format._();
-            Tokenizer tok;
-
-            // check if the format string starts with a quotation mark and a second quotation exists.
-            int formatQuotationLeft=  result.IndexOf( '\"' );
-            int formatQuotationRight= formatQuotationLeft >=0 ? result.LastIndexOf( '\"' ) : -1;
-
-            // quoted format string
-            if ( formatQuotationLeft < formatQuotationRight )
-            {
-                MetaInfo->Format._( result, formatQuotationLeft + 1, formatQuotationRight - formatQuotationLeft - 1 );
-                tok.Set( String( result, formatQuotationRight + 1 ), ',' );
-                tok.Next(); // consume format, which we already read
-            }
-
-            // normal unquoted read
-            else
-            {
-                tok.Set( result, ',' );
-                MetaInfo->Format._( tok.Next() );
-            }
-
-            // read other values
-            if( tok.HasNext() ) MetaInfo->VerbosityError  ._()._( tok.Next() );
-            if( tok.HasNext() ) MetaInfo->VerbosityWarning._()._( tok.Next() );
-            if( tok.HasNext() ) MetaInfo->VerbosityInfo   ._()._( tok.Next() );
-            if( tok.HasNext() ) MetaInfo->VerbosityVerbose._()._( tok.Next() );
-        }
-    }
 }
 
 TextLogger::~TextLogger()
@@ -639,22 +597,128 @@ int   TextLogger::AddAcquirer( ThreadLock* newAcquirer )
              ALIB::StdOutputStreamsLock.AddAcquirer( this );
     }
 
-    // import autosizes from configuration
+    // Variable AUTO_SIZES: use last sessions' values
+    Variable variable;
+    if ( variable.Define( ALox::AUTO_SIZES   , GetName() ).Load() != 0 )
+        AutoSizes.Import( Substring(variable.GetString()) );
+
+    // Variable MAX_ELAPSED_TIME: use last sessions' values
+    if ( variable.Define( ALox::MAX_ELAPSED_TIME, GetName()).Load() != 0 )
     {
-        // get auto sizes from last session
-        String64 autoSizes;
-        String64 variableName( name ); variableName._( "_AUTO_SIZES" );
-        if( ALIB::Config.Get( ALox::ConfigCategoryName, variableName, autoSizes ) != 0 )
-            AutoSizes.Import( Substring(autoSizes) );
+        int maxInSecs= variable.GetInteger();
+        Substring attrValue;
+        if ( variable.GetAttribute( "limit", attrValue ) )
+        {
+            int64_t maxMax;
+            attrValue.ConsumeLong( maxMax );
+            if ( maxInSecs > maxMax )
+                maxInSecs= (int) maxMax;
+        }
+        MetaInfo->MaxElapsedTime.FromSeconds( maxInSecs );
     }
 
-    // import "max elapsed time" from configuration
+    // Variable  <name>_FORMAT / <typeName>_FORMAT:
+    ALIB_ASSERT_WARNING( ALox::FORMAT.DefaultValue.IsNull(),
+                         "Default value of variable FORMAT should be kept null" );
+    if(    0 ==  variable.Define( ALox::FORMAT, GetName()     ).Load()
+        && 0 ==  variable.Define( ALox::FORMAT, GetTypeName() ).Load() )
     {
-        // get auto sizes from last session
-        String64 maxElapsedStr;
-        String64 variableName( name ); variableName._( "_MAX_ELAPSED_TIME" );
-        if( ALIB::Config.Get( ALox::ConfigCategoryName, variableName, maxElapsedStr ) != 0 )
-            MetaInfo->MaxElapsedTime.SetRaw( maxElapsedStr.ToLong() );
+        // no variable created, yet. Let's create a 'personal' one on our name
+        variable.Define( ALox::FORMAT, GetName() );
+        variable.AddString( MetaInfo->Format            );
+        variable.AddString( MetaInfo->VerbosityError    );
+        variable.AddString( MetaInfo->VerbosityWarning  );
+        variable.AddString( MetaInfo->VerbosityInfo     );
+        variable.AddString( MetaInfo->VerbosityVerbose  );
+        variable.Store();
+    }
+    else
+    {
+                                   MetaInfo->Format          ._()._( variable.GetString(0) );
+        if( variable.Size() >= 2 ) MetaInfo->VerbosityError  ._()._( variable.GetString(1) );
+        if( variable.Size() >= 3 ) MetaInfo->VerbosityWarning._()._( variable.GetString(2) );
+        if( variable.Size() >= 4 ) MetaInfo->VerbosityInfo   ._()._( variable.GetString(3) );
+        if( variable.Size() >= 5 ) MetaInfo->VerbosityVerbose._()._( variable.GetString(4) );
+    }
+
+    // Variable  <name>_FORMAT_DATE_TIME / <typeName>_FORMAT_DATE_TIME:
+    ALIB_ASSERT_WARNING( ALox::FORMAT_DATE_TIME.DefaultValue.IsNull(),
+                         "Default value of variable FORMAT_DATE_TIME should be kept null" );
+    if(    0 ==  variable.Define( ALox::FORMAT_DATE_TIME, GetName()     ).Load()
+        && 0 ==  variable.Define( ALox::FORMAT_DATE_TIME, GetTypeName() ).Load() )
+    {
+        // no variable created, yet. Let's create a 'personal' one on our name
+        variable.Define( ALox::FORMAT_DATE_TIME, GetName() );
+        variable.AddString( MetaInfo->DateFormat        );
+        variable.AddString( MetaInfo->TimeOfDayFormat   );
+        variable.AddString( MetaInfo->TimeElapsedDays   );
+        variable.Store();
+    }
+    else
+    {
+                                   MetaInfo->DateFormat      ._()._( variable.GetString(0) );
+        if( variable.Size() >= 2 ) MetaInfo->TimeOfDayFormat ._()._( variable.GetString(1) );
+        if( variable.Size() >= 3 ) MetaInfo->TimeElapsedDays ._()._( variable.GetString(2) );
+    }
+
+    // Variable  <name>FORMAT_TIME_DIFF / <typeName>FORMAT_TIME_DIFF:
+    ALIB_ASSERT_WARNING( ALox::FORMAT_TIME_DIFF.DefaultValue.IsNull(),
+                         "Default value of variable FORMAT_TIME_DIFF should be kept null" );
+    if(    0 ==  variable.Define( ALox::FORMAT_TIME_DIFF, GetName()     ).Load()
+        && 0 ==  variable.Define( ALox::FORMAT_TIME_DIFF, GetTypeName() ).Load() )
+    {
+        // no variable created, yet. Let's create a 'personal' one on our name
+        variable.Define( ALox::FORMAT_TIME_DIFF, GetName() );
+        variable.AddInteger   ( MetaInfo->TimeDiffMinimum);
+        variable.AddString( MetaInfo->TimeDiffNone   );
+        variable.AddString( MetaInfo->TimeDiffNanos  );
+        variable.AddString( MetaInfo->TimeDiffMicros );
+        variable.AddString( MetaInfo->TimeDiffMillis );
+        variable.AddString( MetaInfo->TimeDiffSecs   );
+        variable.AddString( MetaInfo->TimeDiffMins   );
+        variable.AddString( MetaInfo->TimeDiffHours  );
+        variable.AddString( MetaInfo->TimeDiffDays   );
+        variable.Store();
+    }
+    else
+    {
+                                   MetaInfo->TimeDiffMinimum=       variable.GetInteger   (0)  ;
+        if( variable.Size() >= 2 ) MetaInfo->TimeDiffNone   ._()._( variable.GetString(1) );
+        if( variable.Size() >= 3 ) MetaInfo->TimeDiffNanos  ._()._( variable.GetString(2) );
+        if( variable.Size() >= 4 ) MetaInfo->TimeDiffMicros ._()._( variable.GetString(3) );
+        if( variable.Size() >= 5 ) MetaInfo->TimeDiffMillis ._()._( variable.GetString(4) );
+        if( variable.Size() >= 6 ) MetaInfo->TimeDiffSecs   ._()._( variable.GetString(5) );
+        if( variable.Size() >= 7 ) MetaInfo->TimeDiffMins   ._()._( variable.GetString(6) );
+        if( variable.Size() >= 8 ) MetaInfo->TimeDiffHours  ._()._( variable.GetString(7) );
+        if( variable.Size() >= 9 ) MetaInfo->TimeDiffDays   ._()._( variable.GetString(8) );
+    }
+
+    // Variable  <name>FORMAT_MULTILINE / <typeName>FORMAT_MULTILINE:
+    ALIB_ASSERT_WARNING( ALox::FORMAT_MULTILINE.DefaultValue.IsNull(),
+                         "Default value of variable FORMAT_MULTILINE should be kept null" );
+    if(    0 ==  variable.Define( ALox::FORMAT_MULTILINE, GetName()     ).Load()
+        && 0 ==  variable.Define( ALox::FORMAT_MULTILINE, GetTypeName() ).Load() )
+    {
+        // no variable created, yet. Let's create a 'personal' one on our name
+        variable.Define( ALox::FORMAT_MULTILINE, GetName() );
+        variable.AddInteger( MultiLineMsgMode );
+        variable.AddString ( FmtMultiLineMsgHeadline   );
+        variable.AddString ( FmtMultiLinePrefix  );
+        variable.AddString ( FmtMultiLineSuffix );
+        variable.Store();
+    }
+    else
+    {
+                                   MultiLineMsgMode=              variable.GetInteger(0)  ;
+        if( variable.Size() >= 2 ) FmtMultiLineMsgHeadline._()._( variable.GetString(1) );
+        if( variable.Size() >= 3 ) FmtMultiLinePrefix     ._()._( variable.GetString(2) );
+        if( variable.Size() >= 4 ) FmtMultiLineSuffix     ._()._( variable.GetString(3) );
+        if( variable.Size() >= 5 ) { if (variable.GetString(4)->Equals( "nulled" , Case::Ignore ) )
+                                        MultiLineDelimiter.SetNull();
+                                     else
+                                        MultiLineDelimiter._()._( variable.GetString(4) );
+                                   }
+        if( variable.Size() >= 6 ) MultiLineDelimiterRepl ._()._( variable.GetString(5) );
     }
 
     // call parents' implementation
@@ -677,25 +741,18 @@ int   TextLogger::RemoveAcquirer( ThreadLock* acquirer )
     }
 
     // export autosizes to configuration
-    {
-        String64 autoSizes;
-        String64 variableName( name ); variableName._( "_AUTO_SIZES" );
-        String128 comment( "Auto size values of last run of Logger '"); comment._( name )._('\'');
-        AutoSizes.Export( autoSizes );
-        ALIB::Config.Save( ALox::ConfigCategoryName, variableName, autoSizes, comment   );
-    }
+    Variable variable( ALox::AUTO_SIZES, Name );
+    AutoSizes.Export( variable.AddString() );
+    variable.Store();
 
     // export "max elapsed time" to configuration
-    {
-        String64 maxElapsedStr;
-        String64 variableName( name ); variableName._( "_MAX_ELAPSED_TIME" );
-        String128 comment( "Maximum elapsed time of all runs of Logger '");
-                  comment._( name )._("'\n(To reset elapsed time display width, set this to 0 manually)");
+    variable.Define( ALox::MAX_ELAPSED_TIME, Name );
+    AString* destVal=  variable.Load() != 0  ?   variable.GetString()
+                                             :  &variable.AddString();
 
-        maxElapsedStr._( MetaInfo->MaxElapsedTime.Raw() );
-        ALIB::Config.Save( ALox::ConfigCategoryName, variableName, maxElapsedStr, comment );
-    }
+    destVal->_()._( MetaInfo->MaxElapsedTime.InSeconds() );
 
+    variable.Store();
 
     // call parents' implementation
     return Logger::RemoveAcquirer( acquirer );
@@ -714,12 +771,10 @@ void TextLogger::SetReplacement( const String& searched, const String& replaceme
                 *it= replacement;
                 return;
             }
-            else
-            {
-                replacements.erase( it );
-                replacements.erase( it );
-                return;
-            }
+
+            replacements.erase( it );
+            replacements.erase( it );
+            return;
         }
 
     // append at the end

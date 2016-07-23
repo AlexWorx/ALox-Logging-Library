@@ -231,12 +231,15 @@ class ThreadLock : public Ownable
          */
         long                          WaitWarningTimeLimitInMillis                           =1000L;
 
-        /**
-         * Limit of recursions. If limit is reached or a multiple of it, an error is is passed to
-         * \ref aworx::lib::ReportWriter "ReportWriter". Defaults is 10.
-         */
-        int                           RecursionWarningThreshold                                 =10;
-
+        #if ALIB_DEBUG
+            /**
+             * Limit of recursions. If limit is reached or a multiple of it, an error is is passed to
+             * \ref aworx::lib::ReportWriter "ReportWriter". Defaults is \c 10 in case of recursive
+             * instances, to \c 1 otherwise.
+             * Available only in debug versions of ALib.
+             */
+            int                       RecursionWarningThreshold                                 =10;
+        #endif
     // #############################################################################################
     // Protected fields
     // #############################################################################################
@@ -299,6 +302,13 @@ class ThreadLock : public Ownable
          * suspended until ownership can be gained.
          * Multiple (nested) calls to this method are counted and the object is only released when
          * the same number of Release() calls have been made.
+         *
+         * \note
+         *   In the debug-compilation of an application, this method accepts the parameters,
+         *   providing informatin about the caller. In the releae version these paramters do not
+         *   exist. Therefore use macro #ALIB_DBG_SRC_INFO_PARAMS to provide the paramters:
+         *
+         *          sample.Acquire( ALIB_DBG_SRC_INFO_PARAMS );
          *
          * @param file  Caller information. Available only in debug compilations.
          * @param line  Caller information. Available only in debug compilations.

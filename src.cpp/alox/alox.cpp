@@ -14,13 +14,6 @@
 #include <iomanip>
 
 
-// check compiler symbols, give warning once (therefore not in HPP)
-#if !defined( ALOX_DBG_LOG ) && defined( ALOX_DBG_LOG_CI_ON )
-    #warning "ALox compiler symbol mismatch: ALOX_DBG_LOG_CI_ON given while ALOX_DBG_LOG is undefined"
-#endif
-#if !defined( ALOX_REL_LOG ) && defined( ALOX_REL_LOG_CI_ON )
-    #warning "ALox compiler symbol mismatch: ALOX_REL_LOG_CI_ON given while ALOX_REL_LOG is undefined"
-#endif
 
 
 using namespace std;
@@ -32,7 +25,7 @@ namespace aworx { namespace lox {
 // Version and check flags
 // #################################################################################################
 const int            ALox::Version=                                           ALIB_VERSION_VERYFIER;
-const int            ALox::Revision=                                                              1;
+const int            ALox::Revision=                                                              0;
 const uint32_t       ALox::CompilationFlags=                            ALOX_COMPATIBILITY_VERYFIER;
 const uint32_t       ALox::ALibCompilationFlags=                        ALIB_COMPATIBILITY_VERYFIER;
 std::pair <const char*, uint32_t> ALox::CompilationFlagMeanings[]=
@@ -44,61 +37,187 @@ std::pair <const char*, uint32_t> ALox::CompilationFlagMeanings[]=
 };
 
 // #################################################################################################
-// ALoxReportWriter
+// Configuration variables
 // #################################################################################################
-
-ALoxReportWriter::ALoxReportWriter ( Lox* lox )
+lib::config::VariableDefinition ALox::CONSOLE_TYPE =
 {
-    this->lox= lox;
+    &ALox::ConfigCategoryName,   nullptr,     "CONSOLE_TYPE",
+    "default",
+    '\0', nullptr, Variable::FormatHint_None,
+    "Influences the type of console logger to be created by method"         "\n"
+    "Lox::CreateConsoleLogger which is also used by Log::AddDebugLogger"    "\n"
+    "Possible values are: default, plain, ansi, windows, noqtcreator"
+};
 
-    #if defined( ALIB_DEBUG )
-        lox->Acquire( ALIB_DBG_SRC_INFO_PARAMS );
-
-            lox->Verbose( ALox::InternalDomains, "ALoxReportWriter set" );
-
-        lox->Release ();
-    #else
-
-    #endif
-}
-
-void ALoxReportWriter::Report( const lib::Report::Message& report )
+lib::config::VariableDefinition ALox::NO_IDE_LOGGER =
 {
-    #if defined( ALIB_DEBUG )
-        lox->Acquire( report.File, report.Line, report.Func );
+    &ALox::ConfigCategoryName,   nullptr,     "NO_IDE_LOGGER",
+    "false",
+    '\0', nullptr, Variable::FormatHint_None,
+    "If true, the creation of an additional, ide-specific debug logger is suppressed." "\n"
+    "(In particular suppresses VebugLogger (C#) and VStudioLogger (C++))"
+};
 
-            lox->Entry( ALoxReportWriter::LogDomain(),
-                        report.Type == 0 ? Verbosity::Error   :
-                        report.Type == 1 ? Verbosity::Warning :
-                        report.Type == 2 ? Verbosity::Info    :
-                                           Verbosity::Verbose,
-                        &report.Contents, 0 );
+lib::config::VariableDefinition ALox::AUTO_SIZES =
+{
+    &ALox::ConfigCategoryName,   nullptr,     "%1_AUTO_SIZES",
+    nullptr,
+    '\0', nullptr, Variable::FormatHint_None,
+    "Auto size values of last run of Logger '%1' (generated and temporary values)."
+};
 
-        lox->Release ();
-    #else
-        (void) report;
-    #endif
-}
+lib::config::VariableDefinition ALox::MAX_ELAPSED_TIME =
+{
+    &ALox::ConfigCategoryName,   nullptr,     "%1_MAX_ELAPSED_TIME",
+    "0, limit=59",
+    ',', nullptr, Variable::FormatHint_None,
+    "Maximum elapsed time of all runs of Logger '%1'. To reset elapsed time display\n"
+    "width, set this to 0 manually. Generated and temporary value.)"
+};
 
-#if defined(_MSC_VER)
-    #pragma warning( push )
-    #pragma warning( disable : 4592 )
+
+lib::config::VariableDefinition ALox::DOMAIN_SUBSTITUTION =
+{
+    &ALox::ConfigCategoryName,   nullptr,     "%1_DOMAIN_SUBSTITUTION",
+    nullptr,
+    ';', "->", Variable::FormatHint_MultLine,
+    ""
+};
+
+lib::config::VariableDefinition ALox::VERBOSITY =
+{
+    &ALox::ConfigCategoryName,   nullptr,     "%1_%2_VERBOSITY",
+    "writeback",
+    ';', "=", Variable::FormatHint_MultLine,
+    "The verbosities of logger \"%2\" in lox \"%1\". Use 'writeback [VAR_NAME] ;'\n"
+    "to enable automatic writing on application exit."
+};
+
+lib::config::VariableDefinition ALox::PREFIXES =
+{
+    &ALox::ConfigCategoryName,   nullptr,     "%1_PREFIXES",
+    "",
+    ';', "=", Variable::FormatHint_MultLine,
+    "Prefix strings for log domains of lox \"%1\".\n"
+    "   Format: [*]domainpath[*] = prefixstring [, inclusion] [ ; … ] "
+};
+
+lib::config::VariableDefinition ALox::DUMP_STATE_ON_EXIT =
+{
+    &ALox::ConfigCategoryName,   nullptr,     "%1_DUMP_STATE_ON_EXIT",
+    "none, verbosity=info, domain=/ALOX",
+    ',', nullptr, Variable::FormatHint_None,
+    "Log information about lox \"%1\" on exit. Comma separated list of arguments define"       "\n"
+    "verbosity, domain and content of output. Possible values content arguments are:"          "\n"
+    "  " "All, " "Basic, " "Version, " "SPTR, " "Loggers, " "Domains, " "InternalDomains"      "\n"
+    "  " "ScopeDomains, " "DSR, " "PrefixLogables" "Once, " "LogData, " "ThreadMappings, "     "\n"
+    "  " "CompilationFlags." " If NONE is given nothing is dumped."
+};
+
+
+
+lib::config::VariableDefinition ALox::SPTR_GLOBAL =
+{
+    &ALox::ConfigCategoryName,   nullptr,     "GLOBAL_SOURCE_PATH_TRIM_RULES",
+    "",
+    ';', "=", Variable::FormatHint_MultLine,
+     "Defines global source path trim rules (applicable for all Lox instances)."   "\n"
+     "   Format: [*]sourcepath [, inclusion, trimoffset, sensitivity, replacement] [ ; … ]"
+};
+
+lib::config::VariableDefinition ALox::SPTR_LOX =
+{
+    &ALox::ConfigCategoryName,   nullptr,     "%1_SOURCE_PATH_TRIM_RULES",
+    "",
+    ';', "=", Variable::FormatHint_MultLine,
+     "Defines global source path trim rules for Lox \"%1\". "           "\n"
+     "   Format: [*]sourcepath [, inclusion, trimoffset, sensitivity, replacement] [ ; … ]"
+};
+
+#if defined(_WIN32)
+lib::config::VariableDefinition ALox::CODEPAGE =
+{
+    &ALox::ConfigCategoryName,   nullptr,     "CODEPAGE",
+    "65001",
+    '\0', nullptr, Variable::FormatHint_None,
+     "Code page used by class WindowsConsoleLogger. Defaults to 65001."           "\n"
+     "(Only used on Windows OS)"
+};
 #endif
-String16 ALoxReportWriter::reportDomain;
-#if defined(_MSC_VER)
-    #pragma warning( pop )
-#endif
 
-String& ALoxReportWriter::LogDomain()
+lib::config::VariableDefinition ALox::CONSOLE_HAS_LIGHT_BACKGROUND =
 {
-    if( reportDomain.IsEmpty() )
-        reportDomain << ALox::InternalDomains << "REPORT";
-    return reportDomain;
-}
+    &ALox::ConfigCategoryName,   nullptr,     "CONSOLE_HAS_LIGHT_BACKGROUND",
+    "",
+    '\0', nullptr, Variable::FormatHint_None,
+     "Evaluated by colorful loggers that dispose about light and dark colors. Those"        "\n"
+     "adjust their foreground color accordingly. If not given, under Windows OS the right"  "\n"
+     "value is detected. Otherwise the value defaults to false. In some occasions, the"     "\n"
+     "(detected or set) runtime environment might also indicate a default value."
+};
+
+
+lib::config::VariableDefinition ALox::FORMAT =
+{
+    &ALox::ConfigCategoryName,   nullptr,     "%1_FORMAT",
+    nullptr, // default value must stay nullptr, because 2 variables are requested. If was given here,
+             // the second is never tried!
+    ',', nullptr, Variable::FormatHint_MultLine,
+     "Meta info format of text logger \"%1\", including signatures for verbosity strings."       "\n"
+     "   Format: format [, Error [, Warning [, Info [, Verbose ]]]]"
+};
+
+
+lib::config::VariableDefinition ALox::FORMAT_DATE_TIME =
+{
+    &ALox::ConfigCategoryName,   nullptr,     "%1_FORMAT_DATE_TIME",
+    nullptr, // default value must stay nullptr, because 2 variables are requested. If was given here,
+             // the second is never tried!
+    ',', nullptr, Variable::FormatHint_None,
+     "Meta info date and time format of text logger \"%1\"."       "\n"
+     "   Format: DateFormat [, TimeOfDayFormat [, TimeElapsedDays ]]]"
+};
+
+lib::config::VariableDefinition ALox::FORMAT_TIME_DIFF =
+{
+    &ALox::ConfigCategoryName,   nullptr,     "%1_FORMAT_TIME_DIFF",
+
+    nullptr, // default value must stay nullptr, because 2 variables are requested. If was given here,
+             // the second is never tried!
+
+    ',', nullptr, Variable::FormatHint_None,
+     "Meta info time difference entities of text logger \"%1\"."       "\n"
+     "   Format: TimeDiffMinimum [, TimeDiffNone [, TimeDiffNanos [, TimeDiffMicros [, TimeDiffMillis \n"
+     "           [, TimeDiffSecs [, TimeDiffMins [, TimeDiffHours [,  TimeDiffDays  ]]]]]]]]"
+};
+
+lib::config::VariableDefinition ALox::FORMAT_MULTILINE=
+{
+    &ALox::ConfigCategoryName,   nullptr,     "%1_FORMAT_MULTILINE",
+
+    nullptr, // default value must stay nullptr, because 2 variables are requested. If was given here,
+             // the second is never tried!
+
+    ',', nullptr, Variable::FormatHint_None,
+     "Multi-line format of text logger \"%1\"."       "\n"
+     "   Format: MultiLineMsgMode [, FmtMultiLineMsgHeadline [, FmtMultiLinePrefix [, FmtMultiLineSuffix\n"
+     "           [, MultiLineDelimiter [, MultiLineDelimiterRepl ]]]]]"
+};
+
 
 // #################################################################################################
 // Compilation Flags
 // #################################################################################################
+
+// check compiler symbols, give warning once (therefore not in HPP)
+#if !defined( ALOX_DBG_LOG ) && defined( ALOX_DBG_LOG_CI_ON )
+    #warning "ALox compiler symbol mismatch: ALOX_DBG_LOG_CI_ON given while ALOX_DBG_LOG is undefined"
+#endif
+#if !defined( ALOX_REL_LOG ) && defined( ALOX_REL_LOG_CI_ON )
+    #warning "ALox compiler symbol mismatch: ALOX_REL_LOG_CI_ON given while ALOX_REL_LOG is undefined"
+#endif
+
+
 bool ALox::VerifyCompilationFlags( uint32_t flags )
 {
     if ( flags == ALox::CompilationFlags )
@@ -162,19 +281,7 @@ void ALox::checkLibraryVersions( int alibVersion, int aloxVersion, uint32_t flag
 // ALox library initialization
 // #################################################################################################
 bool            ALox::isInitialized                                                      =false;
-const String&   ALox::ConfigCategoryName                                                 ="ALOX";
-
-bool ALox::initInternal( Inclusion environment, int argc, void** argv, bool wArgs )
-{
-    //---  initialize ---
-    isInitialized= true;
-
-    // initialize ALIB
-    ALIB::Init( environment, argc, argv, wArgs );
-
-    // that's it
-    return true;
-}
+String          ALox::ConfigCategoryName                                                 ="ALOX";
 
 void ALox::TerminationCleanUp()
 {
@@ -283,5 +390,56 @@ void        ALox::Reset()
     loxes.clear();
 }
 
+// #################################################################################################
+// ALoxReportWriter
+// #################################################################################################
+ALoxReportWriter::ALoxReportWriter ( Lox* lox )
+{
+    this->lox= lox;
+
+    #if defined( ALIB_DEBUG )
+        lox->Acquire( ALIB_DBG_SRC_INFO_PARAMS );
+
+            lox->Verbose( ALoxReportWriter::LogDomain(), "ALoxReportWriter set" );
+
+        lox->Release ();
+    #else
+
+    #endif
+}
+
+void ALoxReportWriter::Report( const lib::Report::Message& report )
+{
+    #if defined( ALIB_DEBUG )
+        lox->Acquire( report.File, report.Line, report.Func );
+
+            lox->Entry( ALoxReportWriter::LogDomain(),
+                        report.Type == 0 ? Verbosity::Error   :
+                        report.Type == 1 ? Verbosity::Warning :
+                        report.Type == 2 ? Verbosity::Info    :
+                                           Verbosity::Verbose,
+                        &report.Contents, 0 );
+
+        lox->Release ();
+    #else
+        (void) report;
+    #endif
+}
+
+#if defined(_MSC_VER)
+    #pragma warning( push )
+    #pragma warning( disable : 4592 )
+#endif
+String16 ALoxReportWriter::reportDomain;
+#if defined(_MSC_VER)
+    #pragma warning( pop )
+#endif
+
+String& ALoxReportWriter::LogDomain()
+{
+    if( reportDomain.IsEmpty() )
+        reportDomain << ALox::InternalDomains << "REPORT";
+    return reportDomain;
+}
 
 }} //namespace aworx::lox

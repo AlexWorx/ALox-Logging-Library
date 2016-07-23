@@ -47,7 +47,9 @@ SOURCES += ../../../../src.cpp/alib/core/alib.cpp                           \
            ../../../../src.cpp/alib/strings/tokenizer.cpp                   \
            ../../../../src.cpp/alib/strings/tstring.cpp                     \
            ../../../../src.cpp/alib/config/configuration.cpp                \
+           ../../../../src.cpp/alib/config/variable.cpp                     \
            ../../../../src.cpp/alib/config/plugins.cpp                      \
+           ../../../../src.cpp/alib/config/inmemoryplugin.cpp               \
            ../../../../src.cpp/alib/config/inifile.cpp                      \
            ../../../../src.cpp/alib/compatibility/std_iostream.cpp          \
                                                                             \
@@ -56,6 +58,7 @@ SOURCES += ../../../../src.cpp/alib/core/alib.cpp                           \
            ../../../../src.cpp/alox/aloxtypesandenums.cpp                   \
            ../../../../src.cpp/alox/log.cpp                                 \
            ../../../../src.cpp/alox/lox.cpp                                 \
+           ../../../../src.cpp/alox/lox_getstate.cpp                        \
            ../../../../src.cpp/alox/core/domain.cpp                         \
            ../../../../src.cpp/alox/core/scopedump.cpp                      \
            ../../../../src.cpp/alox/core/scopeinfo.cpp                      \
@@ -97,7 +100,9 @@ HEADERS += ../../../../src.cpp/alib/alib.hpp                                \
            ../../../../src.cpp/alib/strings/tokenizer.hpp                   \
            ../../../../src.cpp/alib/strings/tstring.hpp                     \
            ../../../../src.cpp/alib/config/configuration.hpp                \
+           ../../../../src.cpp/alib/config/variable.hpp                     \
            ../../../../src.cpp/alib/config/plugins.hpp                      \
+           ../../../../src.cpp/alib/config/inmemoryplugin.hpp               \
            ../../../../src.cpp/alib/config/inifile.hpp                      \
            ../../../../src.cpp/alib/compatibility/std_iostream.hpp          \
            ../../../../src.cpp/alib/compatibility/std_string.hpp            \

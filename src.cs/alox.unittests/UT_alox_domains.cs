@@ -41,7 +41,7 @@ namespace ut_cs_aworx_lox
     #if ALIB_VSTUDIO
         [TestClass]
     #endif
-    public class CS_ALox_domains  : AUnitTest
+    public class CS_ALox_domains  : AWorxUnitTesting
     {
         // used with unit test Log_ScopeInfoCacheTest
         public static void ScopeInfoCacheTest() { Log.Info("Test method of CS_ALox_domains"); }
@@ -231,7 +231,7 @@ namespace ut_cs_aworx_lox
         Log.SetDomainSubstitutionRule( "/S*"        , "/R"       );   LOG_CHECK( "/R"   , "</R>"                   , ml,Log.LOX);
         Log.SetDomainSubstitutionRule( "/S*"        , "/T"       );   LOG_CHECK( "/R"   , "</T>"                   , ml,Log.LOX);
 
-        //Log.LogConfig( "", Verbosity.Info, "Configuration now is:" );
+        //Log.State( "", Verbosity.Info, "Configuration now is:" );
 
         // substring rule
         Log.SetDomainSubstitutionRule( "*B*"        , "X"        );   LOG_CHECK( "ABC"  , "</AXC>"                 , ml,Log.LOX);
@@ -248,7 +248,7 @@ namespace ut_cs_aworx_lox
                                                              LOG_CHECK( "Q"     , "</Q>"                  , ml,Log.LOX);
                                                              LOG_CHECK( "ABC"   , "</ABC>"                , ml,Log.LOX);
 
-        //Log.LogConfig( "", Verbosity.Info, "Configuration now is:" );
+        //Log.State( "", Verbosity.Info, "Configuration now is:" );
 
         Log.RemoveLogger( ml );
     }
@@ -323,7 +323,7 @@ myLox.SetDomainSubstitutionRule( null, null );  // clear rules eventually read i
         LOG_CHECK( "A_DOM"  , "</BETTER_NAME>"      , ml,myLox);
         LOG_CHECK( "UI"     , "</LIBS/UI>"          , ml,myLox);
 
-        //Log.LogConfig( "", Verbosity.Info, "Configuration now is:" );
+        //Log.State( "", Verbosity.Info, "Configuration now is:" );
 
         ALIB.Config.RemovePlugin( iniFile );
         myLox.RemoveLogger( ml );
@@ -354,19 +354,20 @@ myLox.SetDomainSubstitutionRule( null, null );  // clear rules eventually read i
         {
             // create iniFile
             IniFile iniFile= new IniFile("*"); // don't read
-            iniFile.Save( ALox.ConfigCategoryName, "TESTML_FORMAT","%Sp"   );
-            iniFile.Save( ALox.ConfigCategoryName, "T_LOX_TESTML_VERBOSITY",
+            Variable var= new Variable();
+            iniFile.Store( var.Define( ALox.ConfigCategoryName, "TESTML_FORMAT"),  "%Sp" );
+            iniFile.Store( var.Define( ALox.ConfigCategoryName, "T_LOX_TESTML_VERBOSITY",';'),
                              "/DOM_VERB  = VerboseXX  ;" // xx is allowed!
-                           + "/DOM_INFO  = Info       ;"
-                           + "/DOM_WARN  = WARNING    ;"
-                           + "/DOM_ERR   = erRor      ;"
-                           + "/DOM_OFF   = off        ;"
-                           + "/DOM_OFF2  = xxx        ;"
-                           + "/ATSTART*  = Info       ;"
-                           + "*ATEND     = Info       ;"
-                           + "*SUBSTR*   = Info       ;"
-                           + "/OVERWRITE = Info       ;"
-                    );
+                          +  "/DOM_INFO  = Info       ;"
+                          +  "/DOM_WARN  = WARNING    ;"
+                          +  "/DOM_ERR   = erRor      ;"
+                          +  "/DOM_OFF   = off        ;"
+                          +  "/DOM_OFF2  = xxx        ;"
+                          +  "/ATSTART*  = Info       ;"
+                          +  "*ATEND     = Info       ;"
+                          +  "*SUBSTR*   = Info       ;"
+                          +  "/OVERWRITE = Info       ;"
+                        );
             ALIB.Config.InsertPlugin( iniFile, Configuration.PrioIniFile );
 
 
@@ -381,7 +382,6 @@ myLox.SetDomainSubstitutionRule( null, null );  // clear rules eventually read i
 
             MemoryLogger ml= new MemoryLogger("TESTML");
             lox.SetVerbosity( ml, Verbosity.Off );
-
             lox.Info   (                  "test" );    UT_EQ(  0, ml.CntLogs ); ml.CntLogs= 0;
             lox.Error  ( "NOSETTING"    , "test" );    UT_EQ(  0, ml.CntLogs ); ml.CntLogs= 0;
 
@@ -444,15 +444,15 @@ myLox.SetDomainSubstitutionRule( null, null );  // clear rules eventually read i
             lox.Error  ( "/A/B"         , "test" );    UT_EQ(  0, ml.CntLogs ); ml.CntLogs= 0;
             lox.Error  ( "/A/C"         , "test" );    UT_EQ(  0, ml.CntLogs ); ml.CntLogs= 0;
 
-            lox.SetVerbosity( ml , Verbosity.Info, "/A/B", Lox.PrioSource -1 ); // does not overwrite
+            lox.SetVerbosity( ml , Verbosity.Info, "/A/B", Configuration.PrioDefault -1 ); // does not overwrite
             lox.Verbose( "/A/B"         , "test" );    UT_EQ(  0, ml.CntLogs ); ml.CntLogs= 0;
             lox.Info   ( "/A/B"         , "test" );    UT_EQ(  0, ml.CntLogs ); ml.CntLogs= 0;
 
-            lox.SetVerbosity( ml , Verbosity.Info, "/A/B", Lox.PrioSource ); // does overwrite
+            lox.SetVerbosity( ml , Verbosity.Info, "/A/B", Configuration.PrioDefault ); // does overwrite
             lox.Verbose( "/A/B"         , "test" );    UT_EQ(  0, ml.CntLogs ); ml.CntLogs= 0;
             lox.Info   ( "/A/B"         , "test" );    UT_EQ(  1, ml.CntLogs ); ml.CntLogs= 0;
 
-            lox.SetVerbosity( ml , Verbosity.Info, "/A/B", Lox.PrioSource + 1 ); // one higher
+            lox.SetVerbosity( ml , Verbosity.Info, "/A/B", Configuration.PrioDefault + 1 ); // one higher
             lox.Verbose( "/A/B"         , "test" );    UT_EQ(  0, ml.CntLogs ); ml.CntLogs= 0;
             lox.Info   ( "/A/B"         , "test" );    UT_EQ(  1, ml.CntLogs ); ml.CntLogs= 0;
 
@@ -462,7 +462,7 @@ myLox.SetDomainSubstitutionRule( null, null );  // clear rules eventually read i
             lox.Info   ( "/A/B"         , "test" );    UT_EQ(  1, ml.CntLogs ); ml.CntLogs= 0;
             lox.Verbose( "/A/C"         , "test" );    UT_EQ(  1, ml.CntLogs ); ml.CntLogs= 0;
 
-            //lox.LogConfig( "", Verbosity.Info, "Configuration now is:" ); ml.MemoryLog._(); ml.AutoSizes.Reset();
+            //lox.State( "", Verbosity.Info, "Configuration now is:" ); ml.MemoryLog._(); ml.AutoSizes.Reset();
 
             ALIB.Config.RemovePlugin( iniFile );
             lox.RemoveLogger( ml );

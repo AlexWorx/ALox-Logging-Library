@@ -125,15 +125,15 @@ class Logger : public aworx::SmartLock
         /**
          * The name of the \e Logger. Used as a reference to a logger. All loggers attached to a
          * \b %Lox have to differ in their names.
-         * If no name is specified with the constructor, the name will by the same as #typeName.
+         * If no name is specified with the constructor, the name will by the same as #TypeName.
          */
-        String32                    name;
+        String32                    Name;
 
         /**
          *  The type name of the \e Logger. This is set by the derived class similar to the class
          *  name.
          */
-        String32                    typeName;
+        String32                    TypeName;
 
     // #############################################################################################
     // public fields
@@ -189,15 +189,15 @@ class Logger : public aworx::SmartLock
         inline
         Logger( const String& name, const String& typeName )
                                      : _apiInitializer( ALox::Init() )
-                                     , name(name)
-                                     , typeName(typeName)
+                                     , Name(name)
+                                     , TypeName(typeName)
                                      , TimeOfCreation ()
                                      , TimeOfLastLog  ()
         {
-            if ( this->name.IsEmpty() )
-                this->name << typeName;
-            this->name    .ToUpper();
-            this->typeName.ToUpper();
+            if ( this->Name.IsEmpty() )
+                this->Name << typeName;
+            this->Name    .ToUpper();
+            this->TypeName.ToUpper();
         }
 
         /** ****************************************************************************************
@@ -216,7 +216,7 @@ class Logger : public aworx::SmartLock
          * @return The loggers name.
          ******************************************************************************************/
         inline
-        const TString& GetName()      const  {     return name;      }
+        const TString& GetName()      const  { return Name;      }
 
         /** ****************************************************************************************
          * Returns the constant type name of this logger. The type name is defined by the class
@@ -224,7 +224,7 @@ class Logger : public aworx::SmartLock
          * @return The loggers type name.
          ******************************************************************************************/
         inline
-        const TString& GetTypeName()  const  {     return typeName;  }
+        const TString& GetTypeName()  const  { return TypeName;  }
 
 
 }; // class Logger

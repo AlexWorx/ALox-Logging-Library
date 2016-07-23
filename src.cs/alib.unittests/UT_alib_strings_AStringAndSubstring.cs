@@ -32,7 +32,7 @@ namespace ut_cs_aworx_lib
     #if ALIB_VSTUDIO
         [TestClass]
     #endif
-    public class CS_Strings_AStringAndSubstring  : AUnitTest
+    public class CS_Strings_AStringAndSubstring  : AWorxUnitTesting
     {
     //--------------------------------------------------------------------------------------------------
     //--- Test Compare
@@ -414,18 +414,18 @@ namespace ut_cs_aworx_lib
 
         // ignore case
         {
-            tIndexOfString(  "Hallo A-Worx util", "a-worx",   0,  Case.Ignore,  6 );
-            tIndexOfString(  "Hallo A-Worx util", "a-worx",   1,  Case.Ignore,  6 );
-            tIndexOfString(  "Hallo A-Worx util", "a-worx", -10,  Case.Ignore,  6 );
-            tIndexOfString(  "Hallo A-Worx util", "a-worx",   6,  Case.Ignore,  6 );
-            tIndexOfString(  "Hallo A-Worx util", "a-worx",   7,  Case.Ignore, -1 );
-            tIndexOfString(  "Hallo A-Worx util", "a-worx", 100,  Case.Ignore, -1 );
-            tIndexOfString(  "Hallo A-Worx util", "hal"   ,   0,  Case.Ignore,  0 );
-            tIndexOfString(  "Hallo A-Worx util", "hal"   ,   1,  Case.Ignore, -1 );
-            tIndexOfString(  "Hallo A-Worx util", "util"  ,   1,  Case.Ignore, 13 );
-            tIndexOfString(  "Hallo A-Worx util", "UTIL"  ,   5,  Case.Ignore, 13 );
-            tIndexOfString(  "Hallo A-Worx util", "UTIL"  ,  13,  Case.Ignore, 13 );
-            tIndexOfString(  "Hallo A-Worx util", "UTIL"  ,  14,  Case.Ignore, -1 );
+            tIndexOfString(  "Hello A-Worx util", "a-worx",   0,  Case.Ignore,  6 );
+            tIndexOfString(  "Hello A-Worx util", "a-worx",   1,  Case.Ignore,  6 );
+            tIndexOfString(  "Hello A-Worx util", "a-worx", -10,  Case.Ignore,  6 );
+            tIndexOfString(  "Hello A-Worx util", "a-worx",   6,  Case.Ignore,  6 );
+            tIndexOfString(  "Hello A-Worx util", "a-worx",   7,  Case.Ignore, -1 );
+            tIndexOfString(  "Hello A-Worx util", "a-worx", 100,  Case.Ignore, -1 );
+            tIndexOfString(  "Hello A-Worx util", "hel"   ,   0,  Case.Ignore,  0 );
+            tIndexOfString(  "Hello A-Worx util", "hel"   ,   1,  Case.Ignore, -1 );
+            tIndexOfString(  "Hello A-Worx util", "util"  ,   1,  Case.Ignore, 13 );
+            tIndexOfString(  "Hello A-Worx util", "UTIL"  ,   5,  Case.Ignore, 13 );
+            tIndexOfString(  "Hello A-Worx util", "UTIL"  ,  13,  Case.Ignore, 13 );
+            tIndexOfString(  "Hello A-Worx util", "UTIL"  ,  14,  Case.Ignore, -1 );
         }
     }
 

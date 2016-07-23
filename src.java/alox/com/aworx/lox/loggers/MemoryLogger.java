@@ -62,6 +62,7 @@ public class MemoryLogger extends PlainTextLogger
      * @param phase  Indicates the beginning or end of a log operation.
      * @return Always returns true.
      **********************************************************************************************/
+    @Override 
     protected boolean notifyLogOp( Phase phase )
     {
         // append new line if buffer has already lines stored
@@ -78,6 +79,7 @@ public class MemoryLogger extends PlainTextLogger
      * @param length   The length of the portion in \p buffer to write out.
      * @return Always returns true.
      **********************************************************************************************/
+    @Override 
     protected boolean logSubstring( AString buffer, int start, int length )
     {
         memoryLog._NC( buffer, start, length );
@@ -91,6 +93,7 @@ public class MemoryLogger extends PlainTextLogger
     @Override
     protected void notifyMultiLineOp (Phase phase)
     {
+        /* nothing to do here */
     }
 
 

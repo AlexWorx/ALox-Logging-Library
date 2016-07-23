@@ -272,7 +272,7 @@ public class AString
             // first allocation? Go with given growth as size
             if (bufferLength == 0 )
             {
-                SetBuffer( spaceNeeded );
+                SetBuffer( spaceNeeded > 16 ? spaceNeeded : 16 );
                 return;
             }
 
@@ -840,19 +840,23 @@ public class AString
         }
 
         /** ****************************************************************************************
-         * All characters defined in given set that are at, left of and right of the given index
-         * are removed from the string.
+         * All characters defined in given set at, left of and right of the given index
+         * are removed from the string.<br>
+         * The method returns index of the first character of those characters that were behind the
+         * trimmed region. With legal \p index given, this value can only be smaller or equal to
+         * \p index. If \p index is out of bounds, the length of the string is returned.
          *
-         * @param index       The index to perform the trim operation at.
-         * @param trimChars   The set of characters to be omitted.
-         *                    Defaults to null which causes this method to use
-         *                    \ref CString.DefaultWhitespaces.
-         * @return  \c this to allow concatenated calls.
+         * @param index       The index to perform the trim operation at. Has to be between zero
+         *                    and <em>Length() -1</em>.
+         * @param trimChars   Pointer to a zero terminated set of characters to be omitted.
+         *                    Defaults to \ref CString.DefaultWhitespaces.
+         * @return  The index of the first character of those characters that were behind the
+         *          trimmed region.
          ******************************************************************************************/
-        public AString TrimAt( int index, char[] trimChars= null )
+        public int  TrimAt( int index, char[] trimChars= null )
         {
             if ( index < 0 || index >= length)
-                 return this;
+                 return length;
 
             if ( trimChars == null )
                 trimChars= CString.DefaultWhitespaces;
@@ -864,8 +868,11 @@ public class AString
 
             int regionLength= regionEnd - regionStart;
             if ( regionLength > 0 )
+            {
                 Delete_NC( regionStart, regionLength );
-            return this;
+                return regionStart;
+            }
+            return index;
         }
 
         /** ****************************************************************************************
@@ -879,7 +886,18 @@ public class AString
          ******************************************************************************************/
         public AString TrimStart( char[] trimChars= null )
         {
-            return TrimAt( 0, trimChars );
+            if ( trimChars == null )
+                trimChars= CString.DefaultWhitespaces;
+            if (length == 0 || trimChars.Length == 0 )
+                return this;
+
+            int idx= IndexOfAny( trimChars, Inclusion.Exclude);
+            if ( idx > 0 )
+                Delete( 0, idx );
+            else if ( idx < 0 )
+                length= 0;
+
+            return this;
         }
 
         /** ****************************************************************************************
@@ -893,7 +911,11 @@ public class AString
          ******************************************************************************************/
         public AString TrimEnd( char[] trimChars= null )
         {
-            return TrimAt( length - 1, trimChars );
+            if ( trimChars == null )
+                trimChars= CString.DefaultWhitespaces;
+            if( length > 0 &&  trimChars.Length > 0 )
+                length= LastIndexOfAny( trimChars, Inclusion.Exclude, length - 1 ) + 1;
+            return this;
         }
 
 
@@ -1102,7 +1124,7 @@ public class AString
             if ( src.length == 0 )
             {
                 // special treatment if currently nothing is allocated
-                // we allocate, which means, we are not a null object anymore!
+                // we allocate, which means, we are not a nulled object anymore!
                 if ( buffer.Length == 0 )
                     SetBuffer( 16 );
                 return this;
@@ -1142,7 +1164,7 @@ public class AString
             if ( CString.AdjustRegion( src.length, ref regionStart, ref regionLength ) )
             {
                 // special treatment if currently nothing is allocated
-                // we allocate, which means, we are not a null object anymore!
+                // we allocate, which means, we are not a nulled object anymore!
                 if ( buffer.Length == 0 )
                     SetBuffer( 16 );
                 return this;
@@ -1229,7 +1251,7 @@ public class AString
             if ( srcLength == 0 )
             {
                 // special treatment if currently nothing is allocated
-                // we allocate, which means, we are not a null object anymore!
+                // we allocate, which means, we are not a nulled object anymore!
                 if ( buffer.Length == 0 )
                     SetBuffer( 16 );
                 return this;
@@ -1270,7 +1292,7 @@ public class AString
             if ( CString.AdjustRegion( src.Length, ref regionStart, ref regionLength ) )
             {
                 // special treatment if currently nothing is allocated
-                // we allocate, which means, we are not a null object anymore!
+                // we allocate, which means, we are not a nulled object anymore!
                 if ( buffer.Length == 0 )
                     SetBuffer( 16 );
                 return this;
@@ -1338,7 +1360,7 @@ public class AString
             if ( srcLength == 0 )
             {
                 // special treatment if currently nothing is allocated
-                // we allocate, which means, we are not a null object anymore!
+                // we allocate, which means, we are not a nulled object anymore!
                 if ( buffer.Length == 0 )
                     SetBuffer( 16 );
                 return this;
@@ -1378,7 +1400,7 @@ public class AString
             if ( CString.AdjustRegion( src.Length, ref regionStart, ref regionLength ) )
             {
                 // special treatment if currently nothing is allocated
-                // we allocate, which means, we are not a null object anymore!
+                // we allocate, which means, we are not a nulled object anymore!
                 if ( buffer.Length == 0 )
                     SetBuffer( 16 );
                 return this;
@@ -1466,7 +1488,7 @@ public class AString
             if ( srcLength == 0 )
             {
                 // special treatment if currently nothing is allocated
-                // we allocate, which means, we are not a null object anymore!
+                // we allocate, which means, we are not a nulled object anymore!
                 if ( buffer.Length == 0 )
                     SetBuffer( 16 );
                 return this;
@@ -1511,7 +1533,7 @@ public class AString
             if ( CString.AdjustRegion( src.Length, ref regionStart, ref regionLength ) )
             {
                 // special treatment if currently nothing is allocated
-                // we allocate, which means, we are not a null object anymore!
+                // we allocate, which means, we are not a nulled object anymore!
                 if ( buffer.Length == 0 )
                     SetBuffer( 16 );
                 return this;
@@ -3015,12 +3037,33 @@ public class AString
     // public statics
     // #############################################################################################
         /** ****************************************************************************************
-         * Static method to test if an AString is null or has a length of 0.
+         * Static method to test if an AString is \c null or has a length of \c 0.
          * @param ms The AString to test.
          *
-         * @return True if given AString is null or has a length of 0.
+         * @return \c true if given AString is \c null or has a length of \c 0.
          ******************************************************************************************/
-        public static bool IsNullOrEmpty( AString ms )        {    return ms == null || ms.length==0;    }
+        public static bool IsNullOrEmpty( AString ms ) 
+        {
+            return     ms        == null 
+                    || ms.length == 0    ;    
+        }
+
+        /** ****************************************************************************************
+         * Static method to test if an arbitrary object is \c null. In case of type \b %AString or
+         * \b %Substring \c null is returned when they are \e nulled.
+         *
+         * @param o The object to test
+         *
+         * @return \c true if given object is null or a nulled ALib string type.
+         ******************************************************************************************/
+        public static bool IsNull ( Object o )
+        {
+            return  (    ( o is AString   && ( (AString)   o ).IsNull() ) 
+                      || ( o is Substring && ( (Substring) o ).IsNull() ) 
+                      || o == null
+                    );
+        }        
+
 
     // #############################################################################################
     // protected internals

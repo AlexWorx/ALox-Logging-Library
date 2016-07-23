@@ -25,7 +25,7 @@
 // #################################################################################################
 // includes
 // #################################################################################################
-#if !defined (HPP_ALIB_STRINGS_ASSUBSTRING)
+#if !defined (HPP_ALIB_STRINGS_SUBSTRING)
     #include "alib/strings/substring.hpp"
 #endif
 #if !defined (_GLIBCXX_CTIME) && !defined(_CTIME_)
@@ -61,7 +61,7 @@ namespace                     time {
  *  this class and classes
  *  \ref aworx::lib::time::TickWatch "TickWatch",
  *  \ref aworx::lib::time::TickSpan "TickSpan" and
- *  \ref aworx::lib::time::TicksCalendarTime "TicksCalendarTime.".
+ *  \ref aworx::lib::time::TicksCalendarTime "TicksCalendarTime".
  *
  *  The resolution and accuracy of the values is platform dependent. Especially nanoseconds are
  *  deemed to be not accurate and above 100 ns (this was written and fact in 2013).

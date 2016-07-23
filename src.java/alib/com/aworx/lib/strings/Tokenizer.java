@@ -281,7 +281,7 @@ public class Tokenizer
          *                   Defaults to \c Whitespaces.TRIM.
          *  @param newDelim  The delimiter separates the tokens. Defaults to 0, which keeps the
          *                   current delimiter intact.
-         *                   However, it a new delimiter can be provided for every next token.
+         *                   A new delimiter can be provided for every next token.
          * @return true if a next token was available, false if not.
          ******************************************************************************************/
         public Substring  next( Whitespaces trimming, char newDelim )
@@ -317,10 +317,7 @@ public class Tokenizer
     
                 // trim
                 if ( trimming == Whitespaces.TRIM )
-                {
-                    actual.trimStart( whitespaces );
-                    actual.trimEnd( whitespaces );
-                }
+                    actual.trim( whitespaces );
             }
             while( skipEmptyTokens && actual.isEmpty() && rest.isNotNull() );
             

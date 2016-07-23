@@ -10,12 +10,21 @@
     #include "alib/alib.hpp"
 #endif
 
-#include "alib/config/configuration.hpp"
-#include "alib/strings/tokenizer.hpp"
-#include "alox/loggers/ansilogger.hpp"
-#include "alib/compatibility/std_iostream.hpp"
-#include "alib/system/system.hpp"
-#include "alib/core/util.hpp"
+#if !defined(HPP_ALIB_CONFIG_CONFIGURATION)
+    #include "alib/config/configuration.hpp"
+#endif
+#if !defined(HPP_ALOX_CORE_TEXTLOGGER_TEXTLOGGER)
+    #include "alox/loggers/ansilogger.hpp"
+#endif
+#if !defined(HPP_ALIB_COMPATIBILITY_STD_IOSTREAM)
+    #include "alib/compatibility/std_iostream.hpp"
+#endif
+#if !defined(HPP_ALIB_SYSTEM_SYSTEM)
+    #include "alib/system/system.hpp"
+#endif
+#if !defined(HPP_ALIB_UTIL)
+    #include "alib/core/util.hpp"
+#endif
 
 using namespace std;
 using namespace aworx::lox::core;
@@ -133,10 +142,10 @@ AnsiLogger::AnsiLogger( std::basic_ostream<char>* oStream, bool usesStdStreams,
 ,    oStream( oStream )
 {
     // evaluate environment variable "ALOX_CONSOLE_HAS_LIGHT_BACKGROUND"
-    int  configVarSet;
-    bool configVarTrue= ALIB::Config.IsTrue( ALox::ConfigCategoryName, "CONSOLE_HAS_LIGHT_BACKGROUND", &configVarSet );
-    if( configVarSet != 0 )
-        IsBackgroundLight=  configVarTrue;
+    Variable variable( ALox::CONSOLE_HAS_LIGHT_BACKGROUND );
+    variable.Load();
+    if ( variable.Size() > 0 )
+        IsBackgroundLight=  variable.IsTrue();
     else
     {
         // default: dark background
@@ -230,13 +239,11 @@ void AnsiLogger::logText( core::Domain&      ,    Verbosity  verbosity,
 
             continue;
         }
-        else
+
+        if ( actual.IsNotEmpty() )
         {
-            if ( actual.IsNotEmpty() )
-            {
-                oStream->write( actual.Buffer(), actual.Length() );
-                column+= lib::strings::CString::LengthWhenConvertedToWChar( actual.Buffer(), actual.Length() );
-            }
+            oStream->write( actual.Buffer(), actual.Length() );
+            column+= lib::strings::CString::LengthWhenConvertedToWChar( actual.Buffer(), actual.Length() );
         }
 
         // end of loop?

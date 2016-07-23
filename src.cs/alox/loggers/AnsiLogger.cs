@@ -12,6 +12,7 @@ using cs.aworx.lib;
 using cs.aworx.lib.strings;
 using cs.aworx.lox.core;
 using cs.aworx.lib.enums;
+using cs.aworx.lib.config;
 
 
 namespace cs.aworx.lox.loggers    {
@@ -181,17 +182,17 @@ public class AnsiLogger : TextLogger
          *                       parameter \p typeName.
          * @param typeName       The type of the \e Logger, defaults to "ANSI".
          ******************************************************************************************/
-        public AnsiLogger( System.IO.TextWriter textWriter, bool usesStdStreams, 
+        public AnsiLogger( System.IO.TextWriter textWriter, bool usesStdStreams,
                            String name= null, String typeName= "ANSI" )
             : base( name, typeName, usesStdStreams )
         {
             this.textWriter= textWriter;
 
             // evaluate environment variable "ALOX_CONSOLE_HAS_LIGHT_BACKGROUND"
-            int  configVarSet;
-            bool configVarTrue= ALIB.Config.IsTrue( lox.ALox.ConfigCategoryName, "CONSOLE_HAS_LIGHT_BACKGROUND", out configVarSet );
-            if( configVarSet != 0 )
-                IsBackgroundLight=  configVarTrue;
+            Variable variable= new Variable( ALox.CONSOLE_HAS_LIGHT_BACKGROUND );
+            variable.Load();
+            if ( variable.Size() > 0 )
+                IsBackgroundLight=  variable.IsTrue();
             else
             {
                 // on ANSI terminals we can only guess. Our guess is: console windows have dark background
@@ -270,13 +271,11 @@ public class AnsiLogger : TextLogger
 
                 continue;
             }
-            else
+
+            if ( actual.IsNotEmpty() )
             {
-                if ( actual.IsNotEmpty() )
-                {
-                    textWriter.Write( actual.Buf, actual.Start, actual.Length() );
-                    column+= actual.Length();
-               }
+                textWriter.Write( actual.Buf, actual.Start, actual.Length() );
+                column+= actual.Length();
             }
 
             // end of loop?
@@ -422,10 +421,10 @@ public class AnsiConsoleLogger : AnsiLogger
     : base( Console.Out, true, name, "ANSI_CONSOLE" )
     {
         // evaluate environment variable "ALOX_CONSOLE_HAS_LIGHT_BACKGROUND"
-        int  configVarSet;
-        bool configVarTrue= ALIB.Config.IsTrue( ALox.ConfigCategoryName, "CONSOLE_HAS_LIGHT_BACKGROUND", out configVarSet );
-        if( configVarSet != 0 )
-            IsBackgroundLight=  configVarTrue;
+        Variable variable= new Variable( ALox.CONSOLE_HAS_LIGHT_BACKGROUND );
+        variable.Load();
+        if ( variable.Size() > 0 )
+            IsBackgroundLight=  variable.IsTrue();
         else
         {
             ConsoleColor fgCol= Console.ForegroundColor;
@@ -439,8 +438,6 @@ public class AnsiConsoleLogger : AnsiLogger
                                 ||  fgCol == ConsoleColor.DarkYellow   ;
         }
     }
-
-
 
     #endif // ALOX_DBG_LOG || ALOX_REL_LOG
 } // class AnsiConsoleLogger

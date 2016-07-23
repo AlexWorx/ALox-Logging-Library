@@ -155,7 +155,7 @@ UT_METHOD( ConvertIntegers )
 //--------------------------------------------------------------------------------------------------
 //--- Test ConvertFloats
 //--------------------------------------------------------------------------------------------------
-void floatTest( ALIBUnitTesting& ut, double d, char decimalPoint, int minDigitsBeforeDot, int digitsAfterDot, const char* expectedString, bool forceScientifc= false )
+void floatTest( AWorxUnitTesting& ut, double d, char decimalPoint, int minDigitsBeforeDot, int digitsAfterDot, const char* expectedString, bool forceScientifc= false )
 {
     String64 ms;
     NumberFormat nf;

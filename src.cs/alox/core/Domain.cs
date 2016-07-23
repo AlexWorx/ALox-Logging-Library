@@ -45,7 +45,7 @@ public class Domain
         public int              Priority                     = 0;
 
         /** the number of log calls on this domain for this logger */
-        public int              CntLogCalls                  =0;
+        public int              LogCallsPerDomain            =0;
 
         /**
          * Constructor
@@ -332,7 +332,7 @@ public class Domain
      ******************************************************************************************/
     public int                GetCount( int loggerNo )
     {
-        return Data[loggerNo].CntLogCalls;
+        return Data[loggerNo].LogCallsPerDomain;
     }
 
     /** ********************************************************************************************
@@ -362,7 +362,7 @@ public class Domain
                  ||   domain == Verbosity.Verbose )
           )
         {
-            Data[loggerNo].CntLogCalls++;
+            Data[loggerNo].LogCallsPerDomain++;
             return true;
         }
         return false;
@@ -430,7 +430,7 @@ public class Domain
                 LoggerData ld= Data[i];
                 tAString._(i!=0 ? ", " : "" )
                         ._('(')
-                            ._('[')._(ld.CntLogCalls,3)._( "], " );
+                            ._('[')._(ld.LogCallsPerDomain,3)._( "], " );
                             ALox.ToString( ld.LoggerVerbosity, ld.Priority, tAString )
                         ._( ')' );
             }

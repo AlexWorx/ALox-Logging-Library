@@ -29,7 +29,7 @@
 #if defined(HPP_ALIB_STRINGS_TOKENIZER)
     #error "ALib Include order error"
 #endif
-#if defined(HPP_ALIB_STRINGS_ASSUBSTRING)
+#if defined(HPP_ALIB_STRINGS_SUBSTRING)
     #error "ALib Include order error"
 #endif
 

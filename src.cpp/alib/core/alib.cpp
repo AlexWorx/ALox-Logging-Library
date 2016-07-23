@@ -30,22 +30,22 @@ namespace           lib {
 // static fields
 // #################################################################################################
 const uint32_t       ALIB::CompilationFlags=                            ALIB_COMPATIBILITY_VERYFIER;
-const int            ALIB::Version=                                     ALIB_VERSION_VERYFIER;
-const int            ALIB::Revision=                                    2;
+const int            ALIB::Version=                                           ALIB_VERSION_VERYFIER;
+const int            ALIB::Revision=                                                              0;
 
 
-bool                 ALIB::initialized                                                     =false;
+bool                 ALIB::initialized                                                       =false;
 #if defined(_MSC_VER)
     #pragma warning( push )
     #pragma warning( disable : 4592 )
 #endif
-String               ALIB::ConfigCategoryName                                              ="ALIB";
+String               ALIB::ConfigCategoryName                                               ="ALIB";
 #if defined(_MSC_VER)
     #pragma warning( pop )
 #endif
 Configuration        ALIB::Config;
 
-bool                 ALIB::WaitForKeyPressOnTermination                                    =false;
+bool                 ALIB::WaitForKeyPressOnTermination                                      =false;
 ThreadLockNR         ALIB::Lock;
 
 SmartLock            ALIB::StdOutputStreamsLock;
@@ -88,11 +88,50 @@ bool ALIB::VerifyCompilationFlags( uint32_t flags )
     return false;
 }
 
+
+config::VariableDefinition ALIB::RTE =
+{
+    &ALIB::ConfigCategoryName,   nullptr,     "RTE",
+    "auto",
+    '\0', nullptr, Variable::FormatHint_None,
+    "Defines runtime environment. Defaults to 'auto' which enables detection. Other"         "\n"
+    "allowed values are: eclipse, " "qtcreator, " "vstudio, " "shell, " "desktop, " "device, "
+};
+
+config::VariableDefinition ALIB::LOCALE =
+{
+    &ALIB::ConfigCategoryName,   nullptr,     "LOCALE",
+    "",
+    '\0', nullptr, Variable::FormatHint_None,
+    "Defines the locale of the application. If empty or not set, the systems' locale is used."
+};
+
+config::VariableDefinition ALIB::WAIT_FOR_KEY_PRESS =
+{
+    &ALIB::ConfigCategoryName,   nullptr,     "WAIT_FOR_KEY_PRESS",
+    "",
+    '\0', nullptr, Variable::FormatHint_None,
+    "If true, the process waits for a key stroke on termination. If empty, under Windows"  "\n"
+    "behavior is detected, under other OSes, defaults to false."
+};
+
+config::VariableDefinition ALIB::HAS_CONSOLE_WINDOW =
+{
+    &ALIB::ConfigCategoryName,   nullptr,     "HAS_CONSOLE_WINDOW",
+    "",
+    '\0', nullptr, Variable::FormatHint_None,
+    "Boolean value that denotes what its name indicates. If empty, under Windows value is "  "\n"
+    "detected, under other OSes, defaults to true."
+};
+
+
 // #################################################################################################
 // Init/ TerminationCleanUp()
 // #################################################################################################
 
-void ALIB::Init( Inclusion environment, int argc, void **argv, bool wArgs )
+void ALIB::Init( int argc, char    **argv ) { Config.SetCommandLineArgs( argc, argv ); init(); }
+void ALIB::Init( int argc, wchar_t **argv ) { Config.SetCommandLineArgs( argc, argv ); init(); }
+void ALIB::init()
 {
     // check for double initialization (this is explicitly allowed, see docs)
     if ( initialized )
@@ -104,18 +143,26 @@ void ALIB::Init( Inclusion environment, int argc, void **argv, bool wArgs )
 
     //############### create singletons ###############
     Report::GetDefault();
-    Config.AddStandardPlugIns( environment, argc, argv, wArgs );
+
 
     initialized= true;
+
+    Variable variable;
 
     //############### set locale ###############
     #if defined (__GLIBCXX__)
     {
-        String64  locale;
         int receivedFrom= 0;
-             if ( Config.Get( ConfigCategoryName, "LOCALE"    ,locale ) != 0 )        receivedFrom= 1;
-        else if ( System::GetVariable(             "LANG"      ,locale )      )        receivedFrom= 2;
-        else if ( System::GetVariable(             "LANGUAGE"  ,locale )      )        receivedFrom= 3;
+        variable.Define( ALIB::LOCALE );
+        AString locale;
+        if (     variable.Load() != 0
+             &&  variable.GetString()->IsNotEmpty()        )
+        {
+            receivedFrom= 1;
+            locale._( variable.GetString() );
+        }
+        else if ( System::GetVariable( "LANG"      ,locale ) )        receivedFrom= 2;
+        else if ( System::GetVariable( "LANGUAGE"  ,locale ) )        receivedFrom= 3;
 
         if( receivedFrom > 0 && !locale.Equals( "none", Case::Ignore ) )
         {
@@ -151,21 +198,16 @@ void ALIB::Init( Inclusion environment, int argc, void **argv, bool wArgs )
 
     // --- determine if we want to wait for a keypress upon termination ---
     {
-        // read configuration
-        int found;
-        bool configValue=   Config.IsTrue( ALIB::ConfigCategoryName, "WAIT_FOR_KEY_PRESS_ON_TERMINATION", &found );
-        if ( found != 0 )
-            WaitForKeyPressOnTermination= configValue;
+        variable.Define( ALIB::WAIT_FOR_KEY_PRESS );
+        ALIB::Config.Load( variable );
+        if ( variable.Size() > 0 )
+            WaitForKeyPressOnTermination= variable.IsTrue();
         else
         {
             #if defined(ALIB_VSTUDIO) && defined(ALIB_DEBUG)
-
                 WaitForKeyPressOnTermination=  System::HasConsoleWindow() && System::IsDebuggerPresent();
-
             #else
-
                 WaitForKeyPressOnTermination=  false;
-
             #endif
         }
     }

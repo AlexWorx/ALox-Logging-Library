@@ -8,7 +8,7 @@
 
 #include "alib/alib.hpp"
 
-#if !defined (HPP_ALIB_STRINGS_ASSUBSTRING)
+#if !defined (HPP_ALIB_STRINGS_SUBSTRING)
     #include "alib/strings/substring.hpp"
 #endif
 
@@ -144,7 +144,7 @@ const
         #if defined( ALIB_DEBUG )
             if ( conversionSize == 0 )
             {
-                // not enaugh space?
+                // not enough space?
                 int error= GetLastError();
 
                 ALIB_WARNING(

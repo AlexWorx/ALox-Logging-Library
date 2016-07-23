@@ -1,6 +1,6 @@
 // #################################################################################################
-//  aworx - Unit Tests
-//  Private, not published in git ( I hope! )
+//  ALox Samples
+//
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
 // #################################################################################################
@@ -104,8 +104,8 @@ void PerformanceTest()
     #endif
 
     #if !defined(ALIB_DEBUG_STRINGS)
-        int qtyLines=  1000;
-        int qtyLoops= 1000;
+        int qtyLines=   100;
+        int qtyLoops=   100;
     #else
         int qtyLines=  100;
         int qtyLoops=   10;
@@ -184,7 +184,7 @@ void PerformanceTestRL()
     #endif
     #if !defined(ALIB_DEBUG_STRINGS)
         int qtyLines=   100;
-        int qtyLoops= 10000;
+        int qtyLoops=   100;
     #else
         int qtyLines=  100;
         int qtyLoops=   10;
@@ -292,7 +292,7 @@ void WCharTest()
 
     Log_SetDomain( "WCHAR", Scope::Method );
 
-    String128 ms;
+    String256 ms;
     ms.Clear() << "ASCII String as wide: " <<  L"AString";                          Log_Info( ms );
 
 
@@ -349,9 +349,9 @@ void SampleALibReport()
     // use this till the end
     Log_Prune( Log::DebugLogger->AutoSizes.Import( Substring(autoSizes), CurrentData::Keep );  )
 
-    Log_Info( "Sample: ALib Report via using ALox\n"
-              "Method \"Log::AddDebugLogger()\" by default creates a replacement for ALib\n"
-              "error/warning reporter. If this is a debug compiliation, let's have a try and\n"
+    Log_Info( "Sample: ALib Report Writer\n"
+              "Method \"Log::AddDebugLogger()\" by default creates a replacement for the\n"
+              "standard ALib report writer. If this is a debug compiliation, let's have a try and\n"
               "create an 3 Messages:"  );
 
     // must be done only in debug compiles
@@ -396,12 +396,38 @@ void ALoxSampleReset()
 
 int main( int argc, char *argv[] )
 {
-    ALox::Init( Inclusion::Include, argc, (void**) argv );
+    // first attach INI file to config system...
     IniFile iniFile;
+    if ( iniFile.FileComments.IsEmpty() )
+    {
+        iniFile.FileComments._(
+        "##################################################################################################\n"
+        "# ALox Samples INI file (created when running ALox Samples)\n"
+        "#\n"
+        "# (c) 2013-2016 A-Worx GmbH, Germany\n"
+        "# Published under MIT License (Open Source License, see LICENSE.txt)\n"
+        "##################################################################################################\n"
+        );
+    }
+
+
     ALIB::Config.InsertPlugin( &iniFile, Configuration::PrioIniFile );
+
+    //... and then initialize ALox Logging Library
+    ALox::Init( argc, argv );
 
     Log_SetSourcePathTrimRule( "*/src.cpp/", Inclusion::Include );
 
+    // Suppress setting "writeback" as default verbosities. We need to do this as this main()
+    // method invokes a list of independent samples. Those would now read from the INI file wrong
+    // values written in other sample methods and thus the samples would not work any more
+    // (because INI file settings overrules settings in the code)
+    Variable var;
+    var.Define( "ALOX", "LOG_DEBUG_LOGGER_VERBOSITY"  ).Store( "" );
+    var.Define( "ALOX", "RELEASELOX_CONSOLE_VERBOSITY").Store( "" );
+    var.Define( "ALOX", "LOG_MEMORY_VERBOSITY"        ).Store( "" );
+    var.Define( "ALOX", "RELEASELOX_MEMORY_VERBOSITY" ).Store( "" );
+    var.Define( "ALOX", "LOG_TEXTFILE_VERBOSITY"      ).Store( "" );
 
     DebugLog();                 ALoxSampleReset();
     ReleaseLog();               ALoxSampleReset();
@@ -414,6 +440,9 @@ int main( int argc, char *argv[] )
 
     // cleanup resources to make Valgrind happy
     ALIB::Config.RemovePlugin( &iniFile );
+    ALIB::Config.FetchFromDefault( iniFile );
+    iniFile.WriteFile();
+
     ALox::TerminationCleanUp();
     cout << "ALox Samples finished" << endl;
     return 0;

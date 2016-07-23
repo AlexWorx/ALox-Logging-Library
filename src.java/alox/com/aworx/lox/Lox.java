@@ -20,13 +20,27 @@ import java.util.Locale;
 import java.util.Vector;
 
 import com.aworx.lib.ALIB;
-import com.aworx.lib.enums.*;
-import com.aworx.lib.strings.*;
+import com.aworx.lib.config.Configuration;
+import com.aworx.lib.config.Variable;
+import com.aworx.lib.enums.Alignment;
+import com.aworx.lib.enums.Case;
+import com.aworx.lib.enums.ContainerOp;
+import com.aworx.lib.enums.Inclusion;
+import com.aworx.lib.enums.Whitespaces;
+import com.aworx.lib.strings.AString;
+import com.aworx.lib.strings.CString;
+import com.aworx.lib.strings.Substring;
+import com.aworx.lib.strings.Tokenizer;
 import com.aworx.lib.threads.ThreadLock;
 import com.aworx.lib.time.Ticks;
-import com.aworx.lox.core.*;
+import com.aworx.lox.core.Domain;
+import com.aworx.lox.core.Logger;
+import com.aworx.lox.core.ScopeDump;
+import com.aworx.lox.core.ScopeInfo;
+import com.aworx.lox.core.ScopeStore;
 import com.aworx.lox.core.textlogger.TextLogger;
-import com.aworx.lox.loggers.*;
+import com.aworx.lox.loggers.AnsiConsoleLogger;
+import com.aworx.lox.loggers.ConsoleLogger;
 
 /** ************************************************************************************************
  * This class acts as a container for Loggers and provides a convenient interface to logging.
@@ -59,28 +73,20 @@ public class Lox extends ThreadLock
          */
         public Case                 domainSensitivity                                 = Case.IGNORE;
 
-        /**
-         * Constant providing default value for parameter \p priority of method #setVerbosity.
-         * This value is defined in alignment with plug-in priority constants found in
-         * ALib class \b %Configuration, namely
-         * - \ref com::aworx::lib::config::Configuration::PRIO_CMD_LINE "Configuration.PRIO_CMD_LINE"
-         *   with a value of of 400,
-         * - \ref com::aworx::lib::config::Configuration::PRIO_ENV_VARS "Configuration.PRIO_ENV_VARS"
-         *   with a value of 300 and
-         * - \ref com::aworx::lib::config::Configuration::PRIO_INI_FILE "Configuration.PRIO_INI_FILE"
-         *   with a value of 200.
-         *
-         * Having a value of 100, source code settings by default have lowest priority.
-         */
-        public static final   int   PRIO_SOURCE                                               = 100;
+        public final static int STATE_INFO_BASIC             = 1 <<  0; ///< Name and number of log calls
+        public final static int STATE_INFO_VERSION           = 1 <<  1; ///< Library Version and thread safeness
+        public final static int STATE_INFO_LOGGERS           = 1 <<  2; ///< Loggers
 
-        /**
-         * Constant providing the maximum value for parameter \p priority of method #setVerbosity.
-         * A \e Verbosity set with this priority is immutable in respect to external configuration
-         * data.
-         */
-        public static final   int   PRIO_PROTECTED                              = Integer.MAX_VALUE;
+        public final static int STATE_INFO_DOMAINS           = 1 <<  3; ///< Domains currently registered
+        public final static int STATE_INFO_INTERNAL_DOMAINS  = 1 <<  4; ///< Internal domains
+        public final static int STATE_INFO_SCOPE_DOMAINS     = 1 <<  5; ///< Scope domains
+        public final static int STATE_INFO_DSR               = 1 <<  6; ///< Domain substitution rules
+        public final static int STATE_INFO_PREFIX_LOGABLES   = 1 <<  7; ///< Prefix logables
+        public final static int STATE_INFO_ONCE              = 1 <<  8; ///< Log once counters
+        public final static int STATE_INFO_LOG_DATA          = 1 <<  9; ///< Log data objects
+        public final static int STATE_INFO_THREAD_MAPPINGS   = 1 << 10; ///< Named threads
 
+        public final static int STATE_INFO_ALL               = ~0;      ///< All information available
 
     // #############################################################################################
     // Private/protected fields
@@ -131,14 +137,17 @@ public class Lox extends ThreadLock
     /** A locker for the log buffer singleton */
     protected ThreadLock            logBufLock                                   = new ThreadLock();
 
-    /**  A temporary AString, following the "create once and reuse" design pattern. */
+    /** A temporary AString, following the "create once and reuse" design pattern. */
     protected AString               intMsg                                     = new AString( 256 );
 
     /** A temporary AString  */
     protected AString               tmpAS                                       = new AString( 64 );
 
     /** A temporary AString  */
-    protected AString               tmpConfigValue                                  = new AString();
+    protected AString               tmpComments                                = new AString( 128 );
+
+    /**  Flag used with configuration variable LOXNAME_DUMP_STATE_ON_EXIT.  */
+    protected boolean               loggerAddedSinceLastDebugState                           =false;
 
     /**  A temporary object following the "create once and reuse" design pattern. */
     protected boolean[]             booleanOutputParam                             = new boolean[1];
@@ -217,10 +226,13 @@ public class Lox extends ThreadLock
 
             replacement._(r);
         }
-    };
+    }
 
     /**  The list of domain substitution rules.  */
     protected ArrayList<DomainSubstitutionRule> domainSubstitutions= new ArrayList<DomainSubstitutionRule>();
+
+    /**  Flag if a warning on circular rule detection was logged.  */
+    protected boolean               oneTimeWarningCircularDS                                 =false;
 
     /**  Temporary string used with domain substitutions.  */
     protected AString               tmpSubstitutionPath                         = new AString( 64 );
@@ -228,8 +240,6 @@ public class Lox extends ThreadLock
     /**  Temporary string used with domain substitutions.  */
     protected AString               tmpSubstitutionPathInternalDomains          = new AString( 64 );
 
-    /**  Flag if a warning on circular rule detection was logged.  */
-    protected boolean               oneTimeWarningCircularDS                                 =false;
 
     // #############################################################################################
     // Constructors
@@ -247,10 +257,7 @@ public class Lox extends ThreadLock
      * \ref com::aworx::lox::ALox::get "ALox.get". In some situations, such 'registration'
      * may not be wanted.
      *
-     * @param name       The name of the Lox. Can be logged out, e.g. by setting
-     *                   com::aworx::lox::textlogger::MetaInfo::Format "MetaInfo.Format"
-     *                   accordingly.
-     *                   Will be converted to upper case. 
+     * @param name       The name of the Lox. Will be converted to upper case.
      * @param doRegister If \c true, this object is registered with static class
      *                   \ref com::aworx::lox::ALox "ALox".
      *                   Optional and defaults to \c true.
@@ -262,9 +269,7 @@ public class Lox extends ThreadLock
 
     /** ****************************************************************************************
      * Overloaded constructor providing value \c true for parameter \p doRegister.
-     * @param name       The name of the Lox. Can be logged out, e.g. by setting
-     *                   com::aworx::lox::textlogger::MetaInfo::Format "MetaInfo.Format"
-     *                   accordingly.
+     * @param name       The name of the Lox. Will be converted to upper case.
      ******************************************************************************************/
     public Lox( String name )
     {
@@ -273,9 +278,7 @@ public class Lox extends ThreadLock
 
     /** ****************************************************************************************
      * Protected constructor helper method
-     * @param name       The name of the Lox. Can be logged out, e.g. by setting
-     *                   com::aworx::lox::textlogger::MetaInfo::Format "MetaInfo.Format"
-     *                   accordingly.
+     * @param name       The name of the Lox. Will be converted to upper case.
      * @param doRegister If \c true, this object is registered with static class
      *                   \ref com::aworx::lox::ALox "ALox".
      *                   Optional and defaults to \c true.
@@ -310,7 +313,7 @@ public class Lox extends ThreadLock
                                                   ALox.INTERNAL_DOMAINS.length() - 1 )  );
 
         // create internal sub-domains
-        String[] internalDomainList= {"LGR", "DMN", "PFX", "THR", "LGD" };
+        String[] internalDomainList= {"LGR", "DMN", "PFX", "THR", "LGD", "VAR"  };
         for ( String it : internalDomainList )
         {
             resDomainInternal._()._( it );
@@ -323,28 +326,26 @@ public class Lox extends ThreadLock
             ALox.register( this, ContainerOp.INSERT );
 
         // read domain substitution rules from configuration
+        Variable variable= new Variable( ALox.DOMAIN_SUBSTITUTION, getName() );
+        if ( variable.load() != 0 )
         {
-            tmpAS._()._( getName() )._( "_DOMAIN_SUBSTITUTION" );
-            tmpConfigValue._();
-            if ( ALIB.config.get( ALox.configCategoryName, tmpAS, tmpConfigValue ) != 0 )
+            for( int ruleNo= 0; ruleNo< variable.size(); ruleNo++ )
             {
-                Tokenizer tok= new Tokenizer();
-                tok.set( tmpConfigValue, ';' );
-                Substring rule;
-                while( (rule= tok.next()).isNotEmpty() )
+                AString rule= variable.getString( ruleNo );
+                int idx= rule.indexOf( "->" );
+                if ( idx > 0 )
                 {
-                    int idx= rule.indexOf( "->" );
-                    if ( idx > 0 )
-                    {
-                        String domainPath=  rule.toString( 0, idx ).trim();
-                        String replacement= rule.toString( idx + 2 ).trim();
-                        setDomainSubstitutionRule( domainPath, replacement );
-                    }
+                    String domainPath=  rule.toString( 0, idx ).trim();
+                    String replacement= rule.toString( idx + 2 ).trim();
+                    setDomainSubstitutionRule( domainPath, replacement );
+                }
+                else
+                {
+                    // using alib warning here as we can't do internal logging in the constructor
+                    ALIB.WARNING( "Syntax error in variable \"" + variable.fullname + "\"." );
                 }
             }
-
         }
-
     }
 
     // #############################################################################################
@@ -417,21 +418,17 @@ public class Lox extends ThreadLock
     public static TextLogger createConsoleLogger(String name)
     {
         //--- check environment "ALOX_CONSOLE_TYPE". They have precedence ---
-        AString consoleMode= new AString();
-        if (ALIB.config.get( ALox.configCategoryName, "CONSOLE_TYPE", consoleMode ) != 0)
-        {
-            if (consoleMode.equals( "PLAIN", Case.IGNORE )) return new ConsoleLogger( name );
-            if (consoleMode.equals( "ANSI", Case.IGNORE ))
-                return new AnsiConsoleLogger( name );
+        Variable variable= new Variable(ALox.CONSOLE_TYPE);
+        variable.load();
+        AString val= variable.getString().trim();
 
-            else if (consoleMode.equals( "DEFAULT", Case.IGNORE ))
-            {
-            }
-            else
-            {
-                ALIB.WARNING( "Unrecognized value in config variable: ALOX_CONSOLE_TYPE =" + consoleMode );
-            }
-        }
+        if (    val.isEmpty()
+             || val.equals( "DEFAULT", Case.IGNORE )
+             || val.equals( "PLAIN",   Case.IGNORE ) ) return new ConsoleLogger    ( name );
+        if (    val.equals( "ANSI" ,   Case.IGNORE ) ) return new AnsiConsoleLogger( name );
+
+        ALIB.WARNING( "Unrecognized value in config variable \"" + variable.fullname
+                       + "\"= " + variable.getString() );
 
         //--- in JAVA, we currently have no detection.
         return new ConsoleLogger( name );
@@ -470,6 +467,185 @@ public class Lox extends ThreadLock
         } finally { release(); }
     }
 
+    /** ****************************************************************************************
+     * Helper method of #dumpStateOnLoggerRemoval to recursively collect domain settings.
+     * @param domain    The actual domain.
+     * @param loggerNo  The number of the logger
+     * @param variable  The AString to collect the information.
+     ******************************************************************************************/
+    protected void verbositySettingToVariable( Domain domain, int loggerNo, Variable variable )
+    {
+        variable.addString()._( domain.fullPath )
+                            ._('=')
+                            ._( domain.getVerbosity( loggerNo ).toString() );
+
+        // loop over all sub domains (recursion)
+        for( Domain subDomain : domain.subDomains )
+            verbositySettingToVariable( subDomain, loggerNo, variable );
+    }
+
+    /** ****************************************************************************************
+     * Implements functionality for configuration variable \c LOXNAME_LOGGERNAME_VERBOSITY.
+     * Is called when a logger is removed.
+     * @param logger      The logger to write the verbosity for.
+     ******************************************************************************************/
+    protected void  writeVerbositiesOnLoggerRemoval( Logger logger )
+    {
+        // When writing back we will use this priority as the maximum to write. This way, if this was
+        // an automatic default value, we will not write back into the user's variable store.
+        // As always, only if the app fetches new variables on termination, this is entry is copied.
+        Variable variable= new Variable( ALox.VERBOSITY, getName(), logger.getName() );
+        variable.load();
+
+        // first token is "writeback" ?
+        if ( variable.size() == 0 )
+            return;
+        Substring firstArg= new Substring( variable.getString() );
+        if ( !firstArg.consume( "writeback", Case.IGNORE, Whitespaces.TRIM ) )
+            return;
+
+        // optionally read a destination variable name
+        Substring destVarCategory = new Substring();
+        Substring destVarName     = new Substring();
+        if( firstArg.trim().isNotEmpty() )
+        {
+            // separate category from variable name
+            int catSeparatorIdx= firstArg.indexOf( '_' );
+            if (catSeparatorIdx >= 0 )
+            {
+                destVarCategory.set( firstArg, 0                   , catSeparatorIdx );
+                destVarName    .set( firstArg, catSeparatorIdx + 1);
+            }
+            else
+                destVarName    .set( firstArg );
+
+            if ( destVarName.isEmpty() )
+            {
+                logInternal( Verbosity.ERROR, "VAR", intMsg._()
+                             ._( "Argument 'writeback' in variable " )
+                             ._( variable.fullname )
+                             ._( "\n  Error:    Wrong destination variable name format\"" )
+                             ._( firstArg )._( "\"" )  );
+                return;
+            }
+        }
+
+        // either write directly into LOX_LOGGER_VERBOSITY variable...
+        Variable destVar= null;
+        if( destVarName.isEmpty() )
+        {
+            variable.clearValues( 1 );
+            destVar= variable;
+        }
+        // ...or into a new given variable
+        else
+        {
+            destVar= new Variable( destVarCategory, destVarName, ALox.VERBOSITY.delim );
+            destVar.formatHints=         variable.formatHints;
+            destVar.formatAttrAlignment= variable.formatAttrAlignment;
+            destVar.comments._("Created at runtime through config option 'writeback' in variable \"")._( variable.fullname )._("\".");
+        }
+
+        // collect verbosities
+        {
+            int loggerNoMainDom= domains        .getLoggerNo( logger );
+            int loggerNoIntDom=  internalDomains.getLoggerNo( logger );
+
+            if ( loggerNoMainDom >= 0 ) verbositySettingToVariable( domains        , loggerNoMainDom, destVar );
+            if ( loggerNoIntDom  >= 0 ) verbositySettingToVariable( internalDomains, loggerNoIntDom , destVar );
+        }
+
+        // now store using the same plug-in as original variable has
+        destVar.priority= variable.priority;
+        destVar.store();
+
+        // internal logging
+        intMsg._()._( "Argument 'writeback' in variable " )._( variable.fullname )
+                  ._( ":\n  Verbosities for logger \"" )   ._( logger.getName() )
+                  ._( "\" written " );
+
+        if( destVarName.isEmpty() )
+            intMsg._( "(to source variable)." );
+        else
+            intMsg._( "to variable \"" )  ._( destVar.fullname ) ._("\".") ;
+        logInternal( Verbosity.INFO, "VAR", intMsg._( destVarName )._( "\"." ) );
+
+
+        // verbose logging of the value written
+        intMsg._()._("  Value:");
+        for( int i= 0; i< destVar.size() ; i++ )
+            intMsg._( "\n    " )._( destVar.getString(i) );
+        logInternal( Verbosity.VERBOSE, "VAR", intMsg );
+    }
+
+    /** ****************************************************************************************
+     * Implements functionality for configuration variable \c LOXNAME_DUMP_STATE_ON_EXIT.
+     * Is called when a logger is removed.
+     ******************************************************************************************/
+    protected void dumpStateOnLoggerRemoval()
+    {
+        if( !loggerAddedSinceLastDebugState )
+            return;
+        loggerAddedSinceLastDebugState= false;
+
+        Variable variable= new Variable( ALox.DUMP_STATE_ON_EXIT, getName() );
+        variable.load();
+
+        String      domain=         null;
+        Verbosity   verbosity=      Verbosity.INFO;
+
+        Substring tok= new Substring();
+        int flags= 0;
+        for( int tokNo= 0; tokNo< variable.size(); tokNo++ )
+        {
+            tok.set( variable.getString( tokNo ) );
+            if( tok.isEmpty() )
+                continue;
+
+            // state flags
+                 if( tok.equals( "NONE"            , Case.IGNORE ) )  { flags= 0; break; }
+            else if( tok.equals( "Basic"           , Case.IGNORE ) )  flags|=  Lox.STATE_INFO_BASIC           ;
+            else if( tok.equals( "Version"         , Case.IGNORE ) )  flags|=  Lox.STATE_INFO_VERSION         ;
+            else if( tok.equals( "Loggers"         , Case.IGNORE ) )  flags|=  Lox.STATE_INFO_LOGGERS         ;
+
+            else if( tok.equals( "Domains"         , Case.IGNORE ) )  flags|=  Lox.STATE_INFO_DOMAINS         ;
+            else if( tok.equals( "InternalDomains" , Case.IGNORE ) )  flags|=  Lox.STATE_INFO_INTERNAL_DOMAINS;
+            else if( tok.equals( "ScopeDomains"    , Case.IGNORE ) )  flags|=  Lox.STATE_INFO_SCOPE_DOMAINS   ;
+            else if( tok.equals( "DSR"             , Case.IGNORE ) )  flags|=  Lox.STATE_INFO_DSR             ;
+            else if( tok.equals( "PrefixLogables"  , Case.IGNORE ) )  flags|=  Lox.STATE_INFO_PREFIX_LOGABLES ;
+            else if( tok.equals( "Once"            , Case.IGNORE ) )  flags|=  Lox.STATE_INFO_ONCE            ;
+            else if( tok.equals( "LogData"         , Case.IGNORE ) )  flags|=  Lox.STATE_INFO_LOG_DATA        ;
+            else if( tok.equals( "ThreadMappings"  , Case.IGNORE ) )  flags|=  Lox.STATE_INFO_THREAD_MAPPINGS ;
+
+            else if( tok.equals( "All"             , Case.IGNORE ) )  flags|=  Lox.STATE_INFO_ALL             ;
+
+            // domain and verbosity
+            else if( tok.consume( "domain", Case.IGNORE, Whitespaces.TRIM ) )
+            {
+                if( tok.consume( '=', Case.SENSITIVE, Whitespaces.TRIM ) )
+                    domain= tok.trim().toString();
+            }
+            else if( tok.consume( "verbosity", Case.IGNORE, Whitespaces.TRIM ) )
+            {
+                if( tok.consume( '=', Case.SENSITIVE, Whitespaces.TRIM ) )
+                    verbosity= ALox.readVerbosity( tok.trim() );
+            }
+
+            // unknown argument
+            else
+            {
+                logInternal( Verbosity.ERROR, "VAR", intMsg._()
+                             ._( "Unknown argument '" )._(tok)
+                             ._( "' in variable " )._(variable.fullname)._( " = \"")._(variable.getString())._('\"') );
+            }
+        }
+
+        if ( flags != 0 )
+        {
+            state( domain, verbosity, "Auto dump state on exit requested: ", flags );
+        }
+    }
+
     /** ********************************************************************************************
      * Removes a logger from this container.
      * \note To (temporarily) disable a logger without removing it, a call to
@@ -483,27 +659,31 @@ public class Lox extends ThreadLock
     {
         try { acquire();
 
-            boolean found= false;
-            int no;
-            if ((no= domains.getLoggerNo( logger )) >= 0)
+
+            int noMainDom=  domains        .getLoggerNo( logger );
+            int noIntDom=   internalDomains.getLoggerNo( logger );
+
+            if( noMainDom >= 0 || noIntDom >= 0 )
             {
-                found= true;
-                domains.removeLogger( no );
-            }
-            if ((no= internalDomains.getLoggerNo( logger )) >= 0)
-            {
-                found= true;
-                internalDomains.removeLogger( no );
+                dumpStateOnLoggerRemoval();
+                writeVerbositiesOnLoggerRemoval( logger );
+
+                if( noMainDom >= 0 )
+                    domains.removeLogger( noMainDom );
+
+                if( noIntDom >= 0 )
+                    internalDomains.removeLogger( noIntDom );
+
+                logger.removeAcquirer( this );
+
+                return true;
             }
 
-            if (found)
-                logger.removeAcquirer( this );
-            else
-            {
-                logInternal( Verbosity.WARNING, "LGR",
-                        intMsg._()._( "Logger \"" )._( logger )._( "\" not found. Nothing removed." ) );
-            }
-            return found;
+            // not found
+            logInternal( Verbosity.WARNING, "LGR",
+                    intMsg._()._( "Logger \"" )._( logger )._( "\" not found. Nothing removed." ) );
+
+            return false;
         }
         finally { release(); }
     }
@@ -518,38 +698,43 @@ public class Lox extends ThreadLock
      * @param loggerName  The name of the \e Logger(s) to be removed (case insensitive).
      * @returns The logger that was removed, \c null if not found.
      **********************************************************************************************/
-    public Logger removeLogger(String loggerName)
+    @SuppressWarnings ("null")
+    public Logger removeLogger( String loggerName )
     {
         try
         { acquire();
 
             scopeInfo.set( owner );
 
-            Logger logger= null;
-            int no;
+            int noMainDom=  domains        .getLoggerNo( loggerName );
+            int noIntDom=   internalDomains.getLoggerNo( loggerName );
 
-            if ((no= domains.getLoggerNo( loggerName )) >= 0)
+            if( noMainDom >= 0 || noIntDom >= 0 )
             {
-                logger= domains.getLogger( no );
-                domains.removeLogger( no );
-            }
+                Logger                  logger=         domains.getLogger( noMainDom );
+                if ( logger == null )   logger= internalDomains.getLogger( noIntDom );
 
-            if ((no= internalDomains.getLoggerNo( loggerName )) >= 0)
-            {
-                logger= internalDomains.getLogger( no );
-                internalDomains.removeLogger( no );
-            }
+                dumpStateOnLoggerRemoval();
+                writeVerbositiesOnLoggerRemoval( logger );
 
-            if (logger != null)
-            {
+                if( noMainDom >= 0 )
+                    domains.removeLogger( noMainDom );
+
+                if( noIntDom >= 0 )
+                    internalDomains.removeLogger( noIntDom );
+
                 logger.removeAcquirer( this );
 
                 logInternal( Verbosity.INFO, "LGR", intMsg._()._( "Logger \"" )._( logger )._( "\" removed." ) );
+
+                return logger;
             }
-            else
-                logInternal( Verbosity.WARNING, "LGR", intMsg._()._( "Logger \"" )._( loggerName )
+
+            // not found
+
+            logInternal( Verbosity.WARNING, "LGR", intMsg._()._( "Logger \"" )._( loggerName )
                                                              ._( "\" not found. Nothing removed." ) );
-            return logger;
+            return null;
         }
         finally { release(); }
     }
@@ -563,19 +748,20 @@ public class Lox extends ThreadLock
      * for the evaluated sub-domain, the \e Verbosity for all domains is set to
      * \b %Verbosity.Off.
      *
-     * To unregister a \e Logger with a \b Lox, use method #removeLogger.
+     * To deregister a \e Logger with a \b Lox, use method #removeLogger.
      * To 'disable' a \e Logger, invoke this method with parameters \p verbosity equaling to
      * \b %Verbosity.Off and \p domain to \c "/".
      *
-     * Optional parameter \p priority defaults to #PRIO_SOURCE, which is a lower priority
-     * than those of the standard plug-ins of external configuration data. Therefore, external
+     * Optional parameter \p priority defaults to
+     * \ref com::aworx::lib::config::Configuration::PRIO_DEFAULT "Configuration.PRIO_DEFAULT",
+     * which is a lower priority than those of the standard plug-ins of external configuration data. Therefore, external
      * configuration by default 'overwrite' settings made from 'within the source code', which
      * simply means by invoking this method.<br>
      * The parameter can be provided for two main reasons:
      * - To 'lock' a verbosity setting against external manipulation.
      * - to 'break' the standard mechanism that an invocation of this method sets all
      *   sub-domains recursively. If a sub-domain was set with a higher priority
-     *   (e.g. <c>%PRIO_SOURCE + 1</c>, then this sub-domain will not be affected by
+     *   (e.g. <c>%PRIO_DEFAULT + 1</c>, then this sub-domain will not be affected by
      *   future invocations of this method with standard-priority given.
      *
      * For more information on how to use external configuration variables with priority and
@@ -607,9 +793,8 @@ public class Lox extends ThreadLock
      * @param domain     The parent (start) domain to be set. The use of absolute paths
      *                   starting with <c> '/'</c> are recommended.
      *                   Defaults to root domain \"/\".
-     * @param priority   The priority of the setting. Defaults to #PRIO_SOURCE, which is
-     *                   a lower priority than standard plug-ins of external configuration
-     *                   have.
+     * @param priority   The priority of the setting. Defaults to
+     *                   \ref com::aworx::lib::config::Configuration::PRIO_DEFAULT "Configuration.PRIO_DEFAULT".
      **********************************************************************************************/
     public void setVerbosity(Logger logger, Verbosity verbosity, String domain, int priority )
     {
@@ -647,7 +832,7 @@ public class Lox extends ThreadLock
                               ._NC( "  Request was: setVerbosity( \"")._(logger)._NC("\", \"")
                               ._(dom.fullPath)  ._NC("\", Verbosity.")
                               ._NC(verbosity)   ._NC(", ")
-                              ._NC(priority)    ._NC(" )" )    );
+                              ._(priority)      ._NC(" )" )    );
 
                     Logger existingLogger= dom.getLogger( logger.getName() );
                     logInternal( Verbosity.VERBOSE, "LGR", intMsg._()._( "  Existing Logger: \"" )._( existingLogger )
@@ -663,17 +848,22 @@ public class Lox extends ThreadLock
                     logger.addAcquirer( this );
 
                 // store size of name to support tabular internal log output
-                String loggerName= logger.toString();
-                if (maxLoggerNameLength < loggerName.length()) maxLoggerNameLength= loggerName.length();
+                String loggerName= logger.getName();
+                if (maxLoggerNameLength < loggerName.length())
+                    maxLoggerNameLength=  loggerName.length();
 
                 // for internal log
                 isNewLogger= true;
+
+                // remember that a logger was set after the last removal
+                // (for variable LOXNAME_DUMP_STATE_ON_EXIT)
+                loggerAddedSinceLastDebugState= true;
             }
 
             // do
             dom.setVerbosity( no, verbosity, priority );
 
-            // log info on this
+            // get verbosities from configuration
             if (isNewLogger)
             {
                 logInternal(
@@ -684,15 +874,21 @@ public class Lox extends ThreadLock
                                         "\" added for internal log messages." : "\" added." ) );
 
                 // we have to get all verbosities of already existing domains
-                getAllVerbosities( logger, domains         , null, 0 );
-                getAllVerbosities( logger, internalDomains , null, 0 );
+                Variable variable= new Variable( ALox.VERBOSITY, getName(), logger.getName() );
+                if( 0 != variable.load() )
+                {
+                    getAllVerbosities( logger, domains         , variable );
+                    getAllVerbosities( logger, internalDomains , variable );
+                }
             }
 
-            intMsg._()._("Logger \"")._( logger )._NC( "\":").tab(11 + maxLoggerNameLength)
-                      ._('\'')._NC( dom.fullPath )._( "\' = Verbosity." );
+            intMsg._()._("Logger \"")._( logger.getName() )._NC( "\":").tab(11 + maxLoggerNameLength)
+                      ._('\'')._NC( dom.fullPath )
+                      ._( '\'' ).insertChars(' ', maxDomainPathLength - dom.fullPath.length() + 1 )
+                      ._( "= Verbosity." );
                       ALox.toString( verbosity, priority, intMsg ).trimEnd()._('.');
-                      
-            Verbosity actVerbosity= dom.getVerbosity( no );                      
+
+            Verbosity actVerbosity= dom.getVerbosity( no );
             if( actVerbosity != verbosity )
                 intMsg._( " Lower priority (")._( priority )
                       ._(" < ")._(dom.getPriority(no))
@@ -714,7 +910,7 @@ public class Lox extends ThreadLock
      **********************************************************************************************/
     public void setVerbosity(Logger logger, Verbosity verbosity, String domain)
     {
-        setVerbosity( logger, verbosity, domain, PRIO_SOURCE );
+        setVerbosity( logger, verbosity, domain, Configuration.PRIO_DEFAULT );
     }
 
     /** ********************************************************************************************
@@ -727,7 +923,7 @@ public class Lox extends ThreadLock
      **********************************************************************************************/
     public void setVerbosity(Logger logger, Verbosity verbosity)
     {
-        setVerbosity( logger, verbosity, "/" , PRIO_SOURCE );
+        setVerbosity( logger, verbosity, "/" , Configuration.PRIO_DEFAULT );
     }
 
     /** ********************************************************************************************
@@ -742,9 +938,8 @@ public class Lox extends ThreadLock
      * @param domain     The parent (start) domain to be set. The use of absolute paths
      *                   starting with <c> '/'</c> are recommended.
      *                   Defaults to root domain \"/\".
-     * @param priority   The priority of the setting. Defaults to #PRIO_SOURCE, which is
-     *                   a lower priority than standard plug-ins of external configuration
-     *                   have.
+     * @param priority   The priority of the setting. Defaults to
+     *                   \ref com::aworx::lib::config::Configuration::PRIO_DEFAULT "Configuration.PRIO_DEFAULT".
      **********************************************************************************************/
     public void setVerbosity(String loggerName, Verbosity verbosity, String domain, int priority)
     {
@@ -767,7 +962,7 @@ public class Lox extends ThreadLock
                 if ( no >= 0 )
                 {
                     setVerbosity( otherTree.getLogger( no ),      Verbosity.OFF,
-                                  actualTree.fullPath.toString(), Lox.PRIO_SOURCE      );
+                                  actualTree.fullPath.toString(), Configuration.PRIO_DEFAULT      );
                     no= dom.getLoggerNo( loggerName );
                     ALIB.ASSERT( no >= 0 );
                 }
@@ -776,7 +971,7 @@ public class Lox extends ThreadLock
                     intMsg._()._NC( "Logger not found. Request was: setVerbosity( \"")._(loggerName)._NC("\", \"")
                               ._(dom.fullPath)  ._NC("\", ")
                               ._NC(verbosity)   ._NC(", Verbosity.")
-                              ._NC(priority)    ._NC(" )." );
+                              ._(priority)      ._NC(" )." );
                     logInternal( Verbosity.WARNING, "LGR", intMsg );
                     return;
                 }
@@ -786,10 +981,12 @@ public class Lox extends ThreadLock
             dom.setVerbosity( no, verbosity, priority );
 
             // log info on this
-            intMsg._()._("Logger \"")._( dom.getLogger( no ) )._NC( "\":").tab(11 + maxLoggerNameLength)
-                      ._('\'')._NC( dom.fullPath )._( "\' = Verbosity." );
+            intMsg._()._("Logger \"")._( dom.getLogger( no ).getName() )._NC( "\":").tab(11 + maxLoggerNameLength)
+                      ._('\'')._NC( dom.fullPath )
+                      ._( '\'' ).insertChars(' ', maxDomainPathLength - dom.fullPath.length() + 1 )
+                      ._( "= Verbosity." );
                       ALox.toString( verbosity, priority, intMsg ).trimEnd()._('.');
-            Verbosity actVerbosity= dom.getVerbosity( no );                      
+            Verbosity actVerbosity= dom.getVerbosity( no );
             if( actVerbosity != verbosity )
                 intMsg._( " Lower priority (")._( priority )
                       ._(" < ")._(dom.getPriority(no))
@@ -812,7 +1009,7 @@ public class Lox extends ThreadLock
      **********************************************************************************************/
     public void setVerbosity(String loggerName, Verbosity verbosity, String domain)
     {
-        setVerbosity( loggerName, verbosity, domain, PRIO_SOURCE );
+        setVerbosity( loggerName, verbosity, domain, Configuration.PRIO_DEFAULT );
     }
 
 
@@ -827,7 +1024,7 @@ public class Lox extends ThreadLock
      **********************************************************************************************/
     public void setVerbosity(String loggerName, Verbosity verbosity)
     {
-        setVerbosity( loggerName, verbosity, "/", PRIO_SOURCE );
+        setVerbosity( loggerName, verbosity, "/", Configuration.PRIO_DEFAULT );
     }
 
     /** ********************************************************************************************
@@ -1023,7 +1220,7 @@ public class Lox extends ThreadLock
             {
                 oneTimeWarningCircularDS= false;
                 domainSubstitutions.clear();
-                intMsg._( "Domain substituion rules removed." );
+                intMsg._( "Domain substitution rules removed." );
                 logInternal( Verbosity.INFO, "DMN", intMsg );
                 return;
             }
@@ -1051,12 +1248,12 @@ public class Lox extends ThreadLock
             {
                 if ( it == domainSubstitutions.size() )
                 {
-                    intMsg._( "Domain substituion rule \"")._( domainPath)._( "\" not found. Nothing to remove." );
+                    intMsg._( "Domain substitution rule \"")._( domainPath)._( "\" not found. Nothing to remove." );
                     logInternal( Verbosity.WARNING, "DMN", intMsg );
                     return;
                 }
 
-                intMsg._( "Domain substituion rule \"")._( domainPath      )._( "\" -> \"" )
+                intMsg._( "Domain substitution rule \"")._( domainPath      )._( "\" -> \"" )
                                                     ._( domainSubstitutions.get(it).replacement  )._( "\" removed." );
                 domainSubstitutions.remove( it );
                 logInternal( Verbosity.INFO, "DMN", intMsg );
@@ -1064,7 +1261,7 @@ public class Lox extends ThreadLock
             }
 
 
-            intMsg._( "Domain substituion rule \"")._( domainPath          )._( "\" -> \"" )
+            intMsg._( "Domain substitution rule \"")._( domainPath          )._( "\" -> \"" )
                                                 ._( newRule.replacement )._( "\" set." );
 
             // change of rule
@@ -1298,6 +1495,7 @@ public class Lox extends ThreadLock
         } finally { release(); }
     }
 
+
     /** ********************************************************************************************
      * Overloaded version of #setStartTime( Date, String ) providing default value \c null
      * for parameter \p loggerName.
@@ -1342,7 +1540,7 @@ public class Lox extends ThreadLock
             }
 
             // add entry
-            threadDictionary.put( id, threadName );
+            threadDictionary.put( new Long( id ), threadName );
 
             // log info on this
             scopeInfo.set( owner );
@@ -1402,22 +1600,23 @@ public class Lox extends ThreadLock
             // associated exclusively with scope
             AString aKey= new AString(key);
             boolean keyWasEmtpy;
-            if ( (keyWasEmtpy= aKey.isEmpty()) )
+            if ( (keyWasEmtpy= aKey.isEmpty()) == true )
                 aKey._( noKeyHashKey );
 
             // get the store
             scopeLogData.InitAccess( scope, pkgLevel, null );
             HashMap<AString, LogData> map= scopeLogData.get();
-            if( map == null && data != null )
-            {
-                map= new HashMap<AString, LogData>();
-                scopeLogData.store( map );
-            }
 
             // create map entry
-            LogData previous= map != null ? map.get( aKey ) : null;
             if ( data != null )
             {
+                if( map == null )
+                {
+                    map= new HashMap<AString, LogData>();
+                    scopeLogData.store( map );
+                }
+                LogData previous= map.get( aKey );
+
                 map.put( aKey, data );
 
                 // log info if this was the last time
@@ -1434,7 +1633,7 @@ public class Lox extends ThreadLock
             }
             else
             {
-                if ( previous != null )
+                if( map != null &&  map.get( aKey ) != null )
                 {
                     map.remove( aKey );
                     if ( map.size() == 0 )
@@ -1561,9 +1760,9 @@ public class Lox extends ThreadLock
                 // We need a key. If none is given, we use a constant one indicating that storage is
                 // associated exclusively with scope
                 tmpAS._()._(key);
-                if ( (keyWasEmtpy= tmpAS.isEmpty()) )
+                if ( (keyWasEmtpy= tmpAS.isEmpty()) == true )
                     tmpAS._( noKeyHashKey );
-                    
+
                 HashMap<AString, LogData> map= scopeLogData.get();
                 if( map != null )
                     returnValue= map.get( tmpAS );
@@ -1654,109 +1853,172 @@ public class Lox extends ThreadLock
     }
 
     /** ********************************************************************************************
-     * This method logs the configuration this Lox and its encapsulated objects.
+     * This method logs the current configuration of this Lox and its encapsulated objects.
+     * It uses method #getState to assemble the logable string.
+     *
+     * \note
+     *   As an alternative to (temporarily) adding an invocation of <b>%Lox.State</b> to
+     *   your code, ALox provides configuration variable
+     *   [ALOX_LOXNAME_DUMP_STATE_ON_EXIT](group__GrpALoxConfigVars.html).
+     *   This allows to enable an automatic invocation of this method using external
+     *   configuration data like command line parameters, environment variables or
+     *   INI files.
+     *
+     *
+     * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
+     *                  set for the \e %Scope of invocation.
+     * @param verbosity The verbosity.
+     * @param headLine  If given, a separated headline will be logged at first place.
+     * @param flags     Flag bits that define which state information is logged.
+     **********************************************************************************************/
+    public void state( String domain, Verbosity verbosity, String headLine, int flags )
+    {
+        try { acquire();
+
+            AString buf= new AString( 2048 );
+            if (!CString.isNullOrEmpty( headLine ))
+                buf._( headLine ).newLine();
+            getState( buf, flags );
+            entry( domain, verbosity, buf );
+
+        } finally { release(); }
+    }
+
+    /** ********************************************************************************************
+     * Overloaded version of #state providing default value \c STATE_INFO_ALL for parameter \p flags.
      *
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
      * @param verbosity The verbosity.
      * @param headLine  If given, a separated headline will be logged at first place.
      **********************************************************************************************/
-    public void logConfig(String domain, Verbosity verbosity, String headLine)
+    public void state( String domain, Verbosity verbosity, String headLine)
+    {
+        state( domain, verbosity, headLine,STATE_INFO_ALL );
+    }
+
+    /** ********************************************************************************************
+     * This method collects state information about this lox in a formated multi-line AString.
+     * Parameter \p flags is a bit field with bits defined in constants of class \b %Lox
+     * prefixed with \b "STATE_INFO_", e.g. \c %STATE_INFO_LOGGERS.
+     *
+     * @param buf       The target string.
+     * @param flags     Flag bits that define which state information is collected.
+     **********************************************************************************************/
+    public void getState( AString buf, int flags )
     {
         try { acquire();
 
-            // note: scope info is set later when entry() is invoked
-            // we write log all into a Buffer first
-            AString buf= new AString( 2048 );
-
             ScopeDump scopeDump= new ScopeDump( threadDictionary, noKeyHashKey, buf );
 
-            // log a headline?
-            if (!CString.isNullOrEmpty( headLine )) buf._( headLine ).newLine();
-
             // basic lox info
-            buf._NC( "Name:            \"" )._( scopeInfo.getLoxName() )._('\"').newLine();
-            buf._NC( "Version:         " )._( ALox.version )._NC( " (Rev. " )._( ALox.revision )._( ')' ).newLine();
-            buf._NC( "Thread-Safe:     " )._NC( getSafeness() ).newLine();
-            buf._NC( "#Log Calls:      " )._( cntLogCalls ).newLine();
-            buf.newLine();
+            if( (flags & Lox.STATE_INFO_BASIC) != 0 )
+                buf._NC( "Name:            \"" )._( scopeInfo.getLoxName() )._('\"').newLine();
+            if( (flags & Lox.STATE_INFO_VERSION) != 0 )
+            {
+                buf._NC( "Version:         " )._( ALox.version )._NC( " (Rev. " )._( ALox.revision )._( ')' ).newLine();
+                buf._NC( "Thread-Safe:     " )._NC( getSafeness() ).newLine();
+            }
+            if( (flags & Lox.STATE_INFO_BASIC) != 0 )
+                buf._NC( "#Log Calls:      " )._( cntLogCalls ).newLine();
+            if( (flags & Lox.STATE_INFO_BASIC ) != 0 || (flags & Lox.STATE_INFO_VERSION ) != 0 )
+                buf.newLine();
 
             //  domain substitutions
-            buf._NC( "Domain Substitution Rules: " ).newLine();
-            if( domainSubstitutions.size() > 0 )
+            if( (flags & Lox.STATE_INFO_DSR) != 0 )
             {
-                // get size
-                int maxWidth= 0;
-                for ( DomainSubstitutionRule it : domainSubstitutions )
-                    if ( maxWidth < it.search.length() )
-                         maxWidth = it.search.length();
-                maxWidth+= 2;
-
-                // write
-                for ( DomainSubstitutionRule it : domainSubstitutions )
+                buf._NC( "Domain Substitution Rules: " ).newLine();
+                if( domainSubstitutions.size() > 0 )
                 {
-                    buf._NC( "  " );
-                    if (    it.type == DSRType.ENDS_WIDTH
-                         || it.type == DSRType.SUBSTRING )
-                        buf._NC( '*' );
+                    // get size
+                    int maxWidth= 0;
+                    for ( DomainSubstitutionRule it : domainSubstitutions )
+                        if ( maxWidth < it.search.length() )
+                             maxWidth = it.search.length();
+                    maxWidth+= 2;
 
-                    buf._NC( it.search );
+                    // write
+                    for ( DomainSubstitutionRule it : domainSubstitutions )
+                    {
+                        buf._NC( "  " );
+                        if (    it.type == DSRType.ENDS_WIDTH
+                             || it.type == DSRType.SUBSTRING )
+                            buf._( '*' );
 
-                    if (    it.type == DSRType.STARTS_WITH
-                         || it.type == DSRType.SUBSTRING )
-                        buf._NC( '*' );
+                        buf._NC( it.search );
 
-                    buf.tab( maxWidth, 0 )
-                       ._NC( " -> " )
-                       ._NC( it.replacement );
-                    buf.newLine();
+                        if (    it.type == DSRType.STARTS_WITH
+                             || it.type == DSRType.SUBSTRING )
+                            buf._( '*' );
+
+                        buf.tab( maxWidth, 0 )
+                           ._NC( " -> " )
+                           ._NC( it.replacement );
+                        buf.newLine();
+                    }
                 }
+                else
+                    buf._NC("  <no rules set>" ).newLine();
+                buf.newLine();
             }
-            else
-                buf._NC("  <no rules set>" ).newLine();
-            buf.newLine();
 
             // Log Once Counters
-            buf._NC( "Once() Counters: " ).newLine();
-            if ( scopeDump.writeMap( scopeLogOnce ) == 0 )
-                buf._NC("  <no Once() counters set>" ).newLine();
-            buf.newLine();
+            if( (flags & Lox.STATE_INFO_ONCE) != 0 )
+            {
+                buf._NC( "Once() Counters: " ).newLine();
+                if ( scopeDump.writeMap( scopeLogOnce ) == 0 )
+                    buf._NC("  <no Once() counters set>" ).newLine();
+                buf.newLine();
+            }
 
             // Log Data
-            buf._NC( "Log Data: " ).newLine();
-            if ( scopeDump.writeMap( scopeLogData ) == 0 )
-                buf._NC("  <no data objects stored>" ).newLine();
-            buf.newLine();
+            if( (flags & Lox.STATE_INFO_LOG_DATA) != 0 )
+            {
+                buf._NC( "Log Data: " ).newLine();
+                if ( scopeDump.writeMap( scopeLogData ) == 0 )
+                    buf._NC("  <no data objects stored>" ).newLine();
+                buf.newLine();
+            }
 
             // Prefix Logables
-            buf._NC( "Prefix Logables: " ).newLine();
-            int oldLength= buf.length();
-            scopeDump.writePrefixes( scopePrefixes, 2 );
-            logConfigCollectPrefixes( domains, 2, buf );
-            if ( oldLength == buf.length() )
-                buf._NC("  <no prefix logables set>" ).newLine();
-            buf.newLine();
+            if( (flags & Lox.STATE_INFO_PREFIX_LOGABLES) != 0 )
+            {
+                buf._NC( "Prefix Logables: " ).newLine();
+                int oldLength= buf.length();
+                scopeDump.writePrefixes( scopePrefixes, 2 );
+                logStateCollectPrefixes( domains, 2, buf );
+                if ( oldLength == buf.length() )
+                    buf._NC("  <no prefix logables set>" ).newLine();
+                buf.newLine();
+            }
 
             // thread mappings
-            buf._NC( "Named Threads:   " ).newLine();
-            if (threadDictionary.size() == 0)
-                buf._NC( "  No thread name mappings" ).newLine();
-            else
-                for (long key : threadDictionary.keySet())
-                {
-                    buf._NC( "  " ).field()._( '(' )._( key )._( "):" ).field( 7, Alignment.LEFT )._( '\"' )
-                            ._( threadDictionary.get( key ) )._( '\"' );
-                    buf.newLine();
-                }
-            buf.newLine();
+            if( (flags & Lox.STATE_INFO_THREAD_MAPPINGS) != 0 )
+            {
+                buf._NC( "Named Threads:   " ).newLine();
+                if (threadDictionary.size() == 0)
+                    buf._NC( "  No thread name mappings" ).newLine();
+                else
+                    for (long key : threadDictionary.keySet())
+                    {
+                        buf._NC( "  " ).field()._( '(' )._( key )._( "):" ).field( 7, Alignment.LEFT )._( '\"' )
+                                ._( threadDictionary.get( new Long( key ) ) )._( '\"' );
+                        buf.newLine();
+                    }
+                buf.newLine();
+            }
 
             // Scope Domains
-            buf._NC( "Scope Domains: " ).newLine();
-            if ( scopeDump.writeDomains( scopeDomains, 2 ) == 0 )
-                buf._NC("  <no scope domains set>" ).newLine();
-            buf.newLine();
+            if( (flags & Lox.STATE_INFO_SCOPE_DOMAINS) != 0 )
+            {
+                buf._NC( "Scope Domains: " ).newLine();
+                if ( scopeDump.writeDomains( scopeDomains, 2 ) == 0 )
+                    buf._NC("  <no scope domains set>" ).newLine();
+                buf.newLine();
+            }
 
             // Loggers (and their domains)
+            if( (flags & Lox.STATE_INFO_LOGGERS) != 0 )
             {
                 ArrayList<Domain> domsWithDiffVerb= new ArrayList<Domain>();
                 StringBuffer tempSB= new StringBuffer();
@@ -1794,7 +2056,7 @@ public class Lox extends ThreadLock
                            .newLine();
 
                         domsWithDiffVerb.clear();
-                        logConfigDomsWithDiffVerb( domTree, loggerNo, domsWithDiffVerb);
+                        logStateDomsWithDiffVerb( domTree, loggerNo, domsWithDiffVerb);
                         for ( Domain dom : domsWithDiffVerb )
                         {
                             buf._NC( "    " )
@@ -1819,28 +2081,30 @@ public class Lox extends ThreadLock
             }
 
             // Domains
-            buf._NC( "Internal Domains:" ).newLine();
-            logConfigDomainRecursive( internalDomains, buf );
-            buf.newLine();
+            if( (flags & Lox.STATE_INFO_INTERNAL_DOMAINS) != 0 )
+            {
+                buf._NC( "Internal Domains:" ).newLine();
+                logStateDomainRecursive( internalDomains, buf );
+                buf.newLine();
+            }
 
             // Domains
-            buf._NC( "Domains:" ).newLine();
-            logConfigDomainRecursive( domains, buf );
-            buf.newLine();
-
-            // now, log it out
-            entry( domain, verbosity, buf );
-
+            if( (flags & Lox.STATE_INFO_DOMAINS) != 0 )
+            {
+                buf._NC( "Domains:" ).newLine();
+                logStateDomainRecursive( domains, buf );
+                buf.newLine();
+            }
         } finally { release(); }
     }
 
     /** ********************************************************************************************
-     * Internal method used by LogConfig() to recursively log Domain instances.
+     * Internal method used by State() to recursively log Domain instances.
      *
      * @param domain      The Domain instance to log out.
      * @param buf         The buffer to log to.
      **********************************************************************************************/
-    protected void logConfigDomainRecursive(Domain domain, AString buf)
+    protected void logStateDomainRecursive(Domain domain, AString buf)
     {
         int reference= buf.length();
         buf._( "  " )._( domain );
@@ -1850,18 +2114,18 @@ public class Lox extends ThreadLock
 
         // loop over all sub domains (recursion)
         for (Domain subDomain : domain.subDomains)
-            logConfigDomainRecursive( subDomain, buf );
+            logStateDomainRecursive( subDomain, buf );
     }
 
     /** ********************************************************************************************
-     * Internal method used by LogConfig() to recursively (DFS) log <em>Prefix Logables</em> bound to
+     * Internal method used by State() to recursively (DFS) log <em>Prefix Logables</em> bound to
      * <em>Log Domains</em>
      *
      * @param domain        The actual domain to check.
      * @param indentSpaces  The number of spaces to write before each line.
      * @param target        The target string.
      **********************************************************************************************/
-    protected void logConfigCollectPrefixes( Domain domain, int indentSpaces, AString target )
+    protected void logStateCollectPrefixes( Domain domain, int indentSpaces, AString target )
     {
         for ( Domain.PL pfl : domain.prefixLogables )
         {
@@ -1879,25 +2143,25 @@ public class Lox extends ThreadLock
         }
 
         for( Domain it : domain.subDomains )
-            logConfigCollectPrefixes( it, indentSpaces, target );
+            logStateCollectPrefixes( it, indentSpaces, target );
     }
 
     /** ********************************************************************************************
-     * Internal method used by LogConfig() to recursively (DFS) collect Domains of Logger that have
+     * Internal method used by State() to recursively (DFS) collect Domains of Logger that have
      * a different verbosity than their parent.
      *
      * @param domain      The actual domain to check.
      * @param loggerNo    The logger to collect domains for.
      * @param results     The result list.
      **********************************************************************************************/
-    protected void logConfigDomsWithDiffVerb( Domain domain, int loggerNo, ArrayList<Domain> results )
+    protected void logStateDomsWithDiffVerb( Domain domain, int loggerNo, ArrayList<Domain> results )
     {
         if (    domain.parent == null
             ||  domain.parent.getVerbosity(loggerNo) != domain.getVerbosity(loggerNo) )
             results.add( domain );
 
         for( Domain it : domain.subDomains )
-            logConfigDomsWithDiffVerb( it, loggerNo, results );
+            logStateDomsWithDiffVerb( it, loggerNo, results );
     }
 
 
@@ -1918,7 +2182,7 @@ public class Lox extends ThreadLock
         try { acquire();
 
             // auto-initialization of ALox
-            ALox.init( true, null );
+            ALox.init( null );
 
             // auto-initialization of debug loggers
             if (domains.countLoggers() == 0 && this == Log.LOX) Log.addDebugLogger( this );
@@ -2138,13 +2402,13 @@ public class Lox extends ThreadLock
             // We need a group. If none is given, there are two options:
             tmpAS._()._( group );
             boolean groupWasEmtpy;
-            if ((groupWasEmtpy= tmpAS.isEmpty()))
+            if ( (groupWasEmtpy= tmpAS.isEmpty()) == true )
             {
                 // GLOBAL scope: exact code line match match
                 if (scope == Scope.GLOBAL)
                 {
                     scope= Scope.METHOD;
-                    tmpAS._( '#' )._( scopeInfo.lineNumber );
+                    tmpAS._( '#' )._( scopeInfo.getLineNumber() );
                 }
 
                 // not GOBAL scope: Unique tempAS per Scope
@@ -2596,6 +2860,7 @@ public class Lox extends ThreadLock
      * @param domainPath   The domain path.
      * @return The resulting \ref com::aworx::lox::core::Domain "Domain".
      ******************************************************************************************/
+    @SuppressWarnings ("null")
     Domain findDomain(Domain domainSystem, AString domainPath)
     {
         AString substPath= domainSystem == domains ? tmpSubstitutionPath
@@ -2605,34 +2870,40 @@ public class Lox extends ThreadLock
         for(;;)
         {
             // loop for creating domains, one by one
+            @SuppressWarnings ("null")
             Domain dom= null;
             for(;;)
             {
                 dom= domainSystem.find( domainPath, domainSensitivity, 1, booleanOutputParam );
-                boolean wasCreated= booleanOutputParam[0]; 
+                boolean wasCreated= booleanOutputParam[0];
                 if ( wasCreated )
                 {
-                    // get maximum domain path length (for nicer LogConfig output only...)
+                    // get maximum domain path length (for nicer State output only...)
                     if (maxDomainPathLength < dom.fullPath.length())
                         maxDomainPathLength=  dom.fullPath.length();
-    
+
                     // log info on new domain
                     intMsg._()._( '\'' )._( dom.fullPath )._( "' registered." );
                     logInternal( Verbosity.INFO, "DMN", intMsg );
                 }
-                
+
                 // read domain from Config
                 if ( !dom.configurationRead )
                 {
                     dom.configurationRead= true;
-                    
+
+                    Variable variable= new Variable();
                     for ( int i= 0; i < dom.countLoggers(); ++i )
-                        getVerbosityFromConfig( dom.getLogger(i), dom, null, 0 );
-                        
+                    {
+                        Logger logger= dom.getLogger(i);
+                        if ( 0 != variable.define( ALox.VERBOSITY, getName(), logger.getName() ).load() )
+                            getVerbosityFromConfig( logger, dom, variable );
+                    }
+
                     getDomainPrefixFromConfig( dom );
-                        
+
                 }
-                
+
                 if ( wasCreated )
                 {
                     // log inherited setting for each logger
@@ -2642,7 +2913,7 @@ public class Lox extends ThreadLock
                     {
                         for (int i= 0 ; i < domainSystem.countLoggers() ; i++)
                         {
-                            intMsg._()._( "  \"" )._( dom.getLogger( i ) )._( "\": " );
+                            intMsg._()._( "  \"" )._( dom.getLogger( i ).getName() )._( "\": " );
                             intMsg.insertChars( ' ', maxLoggerNameLength  + 6 - intMsg.length() );
                             intMsg._( dom.fullPath )
                                   ._NC( " = " ); ALox.toString( dom.getVerbosity( i ), dom.getPriority(i), intMsg );
@@ -2731,6 +3002,7 @@ public class Lox extends ThreadLock
                                     }
                                 }
                             break;
+
 
                             case EXACT:
                             {
@@ -2928,8 +3200,16 @@ public class Lox extends ThreadLock
                     logInternal( Verbosity.INFO, "DMN", intMsg );
                 else
                 {
-                    intMsg._( " Replacing previous default '" )._( previousScopeDomain )._( '\'' );
-                    logInternal( Verbosity.WARNING, "DMN", intMsg );
+                    if ( previousScopeDomain.equals( scopeDomain ) )
+                    {
+                        intMsg._( " (Was already set.)" );
+                        logInternal(  Verbosity.VERBOSE,  "DMN", intMsg );
+                    }
+                    else
+                    {
+                        intMsg._NC( " Replacing previous default '" )._NC( previousScopeDomain )._('\'');
+                        logInternal(  Verbosity.WARNING,  "DMN", intMsg );
+                    }
                 }
             }
             else
@@ -3053,41 +3333,23 @@ public class Lox extends ThreadLock
      *
      * @param logger      The logger to set the verbosity for.
      * @param dom         The domain to set the verbosity for.
-     * @param cfgStr      The configuration string. If not read yet, null may be given.
-     * @param cfgPriority The priority of the configuration plug-in providing the variable.
+     * @param variable    The (already read) variable to set verbosities from.
      ******************************************************************************************/
-    protected void  getVerbosityFromConfig( Logger  logger, Domain  dom,
-                                            AString cfgStr, int     cfgPriority )
+    protected void  getVerbosityFromConfig( Logger  logger, Domain  dom, Variable variable )
     {
         // get logger number. It may happen that the logger is not existent in this domain tree.
         int loggerNo= dom.getLoggerNo( logger ) ;
         if ( loggerNo < 0 )
             return;
 
-        // check priority
-        int priority= dom.getPriority( loggerNo );
-        if ( priority == Lox.PRIO_PROTECTED )
-            return;
-
-        if ( cfgStr == null )
-        {
-            tmpAS._()._( scopeInfo.getLoxName() )._( '_' )._( logger.getName() )._( "_VERBOSITY" );
-            cfgStr= tmpConfigValue._();
-            cfgPriority= ALIB.config.get( ALox.configCategoryName, tmpAS, cfgStr );
-            if( cfgPriority == 0  || cfgPriority < priority )
-                return;
-        }
-
-        Tokenizer verbositiesTok= new Tokenizer( cfgStr, ';' );
-        Tokenizer verbosityTok=   new Tokenizer();
+        Tokenizer verbosityTknzr=   new Tokenizer();
         Substring domainStr=      new Substring();
         AString   domainStrBuf=   new AString();
-        Substring verbositySettingStr;
-        while( (verbositySettingStr= verbositiesTok.next()).isNotEmpty() )
+        for( int varNo= 0; varNo< variable.size(); varNo++ )
         {
-            verbosityTok.set( verbositySettingStr, '=' );
+            verbosityTknzr.set( variable.getString( varNo ), '=' );
 
-            domainStr.set( verbosityTok.next() );
+            domainStr.set( verbosityTknzr.next() );
             if ( domainStr.startsWith( "INTERNAL_DOMAINS", domainSensitivity ) )
             {
                 domainStrBuf._()._( domainStr.buf, domainStr.start + 16, domainStr.length() -16 );
@@ -3096,8 +3358,8 @@ public class Lox extends ThreadLock
                 domainStrBuf.insertAt( ALox.INTERNAL_DOMAINS, 0 );
                 domainStr.set( domainStrBuf );
             }
-            
-            Substring verbosityStr=  verbosityTok.next();
+
+            Substring verbosityStr=  verbosityTknzr.next();
             if ( verbosityStr.isEmpty() )
                 continue;
 
@@ -3111,11 +3373,13 @@ public class Lox extends ThreadLock
                 )
             {
                 Verbosity verbosity= ALox.readVerbosity( verbosityStr );
-                dom.setVerbosity( loggerNo, verbosity, cfgPriority );
+                dom.setVerbosity( loggerNo, verbosity, variable.priority );
 
                 // log info on this
-                intMsg._()._NC( "Logger \"" )._NC( logger ) ._NC( "\":" ).tab(11 + maxLoggerNameLength)
-                          ._NC( '\'' )._NC( dom.fullPath )._( "\' = Verbosity." );
+                intMsg._()._NC( "Logger \"" )._NC( logger.getName() ) ._NC( "\":" ).tab(11 + maxLoggerNameLength)
+                          ._( '\'' )._NC( dom.fullPath )
+                          ._( '\'' ).insertChars(' ', maxDomainPathLength - dom.fullPath.length() + 1 )
+                          ._( "= Verbosity." );
                           ALox.toString( verbosity, dom.getPriority( loggerNo), intMsg ).trimEnd()
                           ._('.');
                 logInternal( Verbosity.INFO, "LGR", intMsg );
@@ -3131,20 +3395,18 @@ public class Lox extends ThreadLock
      ******************************************************************************************/
     protected void  getDomainPrefixFromConfig( Domain  dom )
     {
-        AString cfgStr= new AString();
-        tmpAS._()._( scopeInfo.getLoxName() )._( "_PREFIXES" );
-        if( ALIB.config.get( ALox.configCategoryName, tmpAS, cfgStr ) == 0 )
+        Variable variable= new Variable( ALox.PREFIXES, getName());
+        if( 0 == variable.load() )
             return;
 
-        Tokenizer prefixesTok=      new Tokenizer( cfgStr, ';' );
         Tokenizer prefixTok=        new Tokenizer();
         Tokenizer prefixTokInner=   new Tokenizer();
         Substring domainStr=        new Substring();
         AString   domainStrBuf=     new AString();
         Substring prefixStr=        new Substring();
-        while( (prefixStr= prefixesTok.next()).isNotEmpty() )
+        for( int varNo= 0; varNo< variable.size(); varNo++ )
         {
-            prefixTok.set( prefixStr, '=' );
+            prefixTok.set( variable.getString( varNo ), '=' );
 
             domainStr.set( prefixTok.next() );
             if ( domainStr.startsWith( "INTERNAL_DOMAINS", domainSensitivity ) )
@@ -3155,7 +3417,7 @@ public class Lox extends ThreadLock
                 domainStrBuf.insertAt( ALox.INTERNAL_DOMAINS, 0 );
                 domainStr.set( domainStrBuf );
             }
-            
+
             prefixTokInner.set( prefixTok.next(), ',' );
             prefixStr.set( prefixTokInner.next() );
             if ( prefixStr.isEmpty() )
@@ -3167,7 +3429,7 @@ public class Lox extends ThreadLock
             prefixTokInner.next();
             if ( prefixTokInner.actual.isNotEmpty() )
                 otherPLs= ALIB.readInclusion( prefixTokInner.actual  );
-    
+
             int searchMode= 0;
             if ( domainStr.consume       ( '*' ) )    searchMode+= 2;
             if ( domainStr.consumeFromEnd( '*' ) )    searchMode+= 1;
@@ -3182,7 +3444,8 @@ public class Lox extends ThreadLock
                 // log info on this
                 intMsg._()._NC( "String \"" )._NC( prefixStr )._NC ( "\" added as prefix logable for domain \'" )
                           ._NC( dom.fullPath )
-                          ._NC( "\'. (Retrieved from configuration.)" );
+                          ._NC( "\'. (Retrieved from variable" )
+                          ._NC( variable.fullname )._( ".)" );
                 logInternal( Verbosity.INFO, "PFX", intMsg );
             }
         }
@@ -3196,28 +3459,15 @@ public class Lox extends ThreadLock
      *
      * @param logger      The logger to set the verbosity for.
      * @param dom         The domain to set the verbosity for.
-     * @param cfgStr      The configuration string. If not read yet, null may be given.
-     * @param cfgPriority The priority of the configuration plug-in providing the variable.
+     * @param cfgResult   The result of the search for the variable to set verbosities from.
      ******************************************************************************************/
-    protected void getAllVerbosities      ( Logger  logger,  Domain  dom,
-                                            AString cfgStr,  int     cfgPriority )
+    protected void getAllVerbosities      ( Logger  logger,  Domain  dom,  Variable cfgResult )
     {
-        // get config string once
-        if ( cfgStr == null )
-        {
-            tmpAS._()._( scopeInfo.getLoxName() )._( '_' )._( logger.getName() )._( "_VERBOSITY" );
-            cfgStr= tmpConfigValue._();
-            cfgPriority= ALIB.config.get( ALox.configCategoryName, tmpAS, cfgStr );
-            if( cfgPriority == 0 )
-                return;
-         }
-
         // get verbosity for us
-        getVerbosityFromConfig( logger, dom, cfgStr, cfgPriority );
+        getVerbosityFromConfig( logger, dom, cfgResult );
 
         // loop over all sub domains (recursion)
         for ( Domain subDomain : dom.subDomains )
-            getAllVerbosities( logger, subDomain, cfgStr, cfgPriority );
+            getAllVerbosities( logger, subDomain, cfgResult );
     }
-
 }

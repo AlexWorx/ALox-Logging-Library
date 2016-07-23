@@ -18,7 +18,7 @@
 #endif
 
 
-#define TESTCLASSNAME       CPP_ALib_Ticks
+#define TESTCLASSNAME       CPP_ALib_Time
 #include "aworx_unittests.hpp"
 
 using namespace std;
@@ -37,7 +37,7 @@ UT_CLASS()
 //--- MeasureIncreasingDoublingLoop
 //--------------------------------------------------------------------------------------------------
 
-void dateFormatCheck( ALIBUnitTesting& ut, TicksCalendarTime& ct,  const char * fmt, const char * expected )
+void dateFormatCheck( AWorxUnitTesting& ut, TicksCalendarTime& ct,  const char * fmt, const char * expected )
 {
     String32 res;
     ct.Format( fmt, res );

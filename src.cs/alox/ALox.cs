@@ -66,10 +66,10 @@ public static class ALox
          ******************************************************************************************/
         public static AString ToStringPriority( int priority, AString target )
         {
-            if ( priority ==           Lox.PrioSource    )  return target._( "Source   " );
-            if ( priority ==           Lox.PrioProtected )  return target._( "Protected" );
+            if ( priority == Configuration.PrioDefault   )  return target._( "Default  " );
+            if ( priority == Configuration.PrioProtected )  return target._( "Protected" );
             if ( priority == Configuration.PrioCmdLine   )  return target._( "CmdLine  " );
-            if ( priority == Configuration.PrioEnvVars   )  return target._( "EnvVars  " );
+            if ( priority == Configuration.PrioEnvironment   )  return target._( "EnvVars  " );
             if ( priority == Configuration.PrioIniFile   )  return target._( "IniFile  " );
 
             return target.Field()._( priority ).Field( 9, Alignment.Left );
@@ -125,14 +125,14 @@ public static class ALox
          * Besides this version number, field #Revision indicates if this is a revised version
          * of a former release.
          */
-        public static readonly int                   Version                                  =1604;
+        public static readonly int                   Version                                  =1607;
 
         /**
          * The revision number of this release. Each ALox #Version is initially released as
          * revision \e 0. Pure maintenance releases that do not change the interface of ALox
          * are holding the same #Version but an increased number in this field.
          */
-        public static readonly int                   Revision                                    =2;
+        public static readonly int                   Revision                                    =0;
 
         /**
          * The name of the configuration category of configuration variables used by ALox.<br>
@@ -142,7 +142,175 @@ public static class ALox
          * bootstrap code, before the invocation of #Init.<br>
          * See also \ref cs::aworx::lib::ALIB::ConfigCategoryName "ALIB.ConfigCategoryName".
          */
-        public  static         String                ConfigCategoryName                     ="ALOX";
+        public  static         AString               ConfigCategoryName      = new AString("ALOX" );
+
+        /** Configuration variable definition */
+        public static          VariableDefinition           CONSOLE_TYPE = new VariableDefinition(
+            ConfigCategoryName,   null,             "CONSOLE_TYPE",
+            "default",
+            '\0', null, Variable.FormatHint.None,
+            "Influences the type of console logger to be created by method\n"         +
+            "Lox.CreateConsoleLogger which is also used by Log.AddDebugLogger\n"    +
+            "Possible values are: default, plain, ansi, windows, noqtcreator"
+            );
+
+        /** Configuration variable definition */
+        public static          VariableDefinition           NO_IDE_LOGGER = new VariableDefinition(
+            ConfigCategoryName,   null,     "NO_IDE_LOGGER",
+
+            "false",
+            '\0', null, Variable.FormatHint.None,
+             "If true, the creation of an additional, ide-specific debug logger is suppressed." +
+             "(In particular suppresses CLRDebugLogger (C#) and VStudioLogger (C++))"
+        );
+
+        /** Configuration variable definition */
+        public static          VariableDefinition           AUTO_SIZES = new VariableDefinition(
+            ConfigCategoryName,   null,     "%1_AUTO_SIZES",
+            null,
+            '\0', null, Variable.FormatHint.None,
+            "Auto size values of last run of Logger '%1' (generated and temporary values)."
+        );
+
+        /** Configuration variable definition */
+        public static          VariableDefinition           MAX_ELAPSED_TIME = new VariableDefinition(
+            ConfigCategoryName,   null,     "%1_MAX_ELAPSED_TIME",
+            "0, limit=59",
+            ',', null, Variable.FormatHint.None,
+            "Maximum elapsed time of all runs of Logger '%1'. To reset elapsed time display\n" +
+            "width, set this to 0 manually. Generated and temporary value.)"
+        );
+
+
+        /** Configuration variable definition */
+        public static          VariableDefinition           DOMAIN_SUBSTITUTION = new VariableDefinition(
+            ConfigCategoryName,   null,     "%1_DOMAIN_SUBSTITUTION",
+            null,
+            ';', "->", Variable.FormatHint.MultLine,
+            ""
+        );
+
+        /** Configuration variable definition */
+        public static          VariableDefinition           VERBOSITY = new VariableDefinition(
+            ConfigCategoryName,   null,     "%1_%2_VERBOSITY",
+            "writeback;",
+            ';', "=", Variable.FormatHint.MultLine,
+            "The verbosities of logger \"%2\" in lox \"%1\". Use 'writeback [VAR_NAME] ;'\n" +
+            "to enable automatic writing on application exit."
+        );
+
+        /** Configuration variable definition */
+        public static          VariableDefinition           PREFIXES = new VariableDefinition(
+            ConfigCategoryName,   null,     "%1_PREFIXES",
+            "",
+            ';', "=", Variable.FormatHint.MultLine,
+            "Prefix strings for log domains of lox \"%1\".\n"                           +
+            "   Format: [*]domainpath[*] = prefixstring [, inclusion] [ ; … ] "
+        );
+
+        /** Configuration variable definition */
+        public static          VariableDefinition           DUMP_STATE_ON_EXIT = new VariableDefinition(
+            ConfigCategoryName,   null,     "%1_DUMP_STATE_ON_EXIT",
+            "none, verbosity=info, domain=/ALOX",
+            ',', null, Variable.FormatHint.None,
+            "Log information about lox \"%1\" on exit. Comma separated list of arguments define\n"    +
+            "verbosity, domain and content of output. Possible values content arguments are:\n"       +
+            "  All, Basic, Version, SPTR, Loggers, Domains, InternalDomains\n"   +
+            "  ScopeDomains, DSR, PrefixLogablesOnce, LogData, ThreadMappings,\n"   +
+            "  CompilationFlags. If NONE is given nothing is dumped."
+        );
+
+        /** Configuration variable definition */
+        public static          VariableDefinition           SPTR_GLOBAL = new VariableDefinition(
+            ConfigCategoryName,   null,     "GLOBAL_SOURCE_PATH_TRIM_RULES",
+            "",
+            ';', "=", Variable.FormatHint.MultLine,
+             "Defines global source path trim rules (applicable for all Lox instances).\n"   +
+             "   Format: [*]sourcepath [, inclusion, trimoffset, sensitivity, replacement] [ ; … ]"
+        );
+
+        /** Configuration variable definition */
+        public static          VariableDefinition           SPTR_LOX = new VariableDefinition(
+            ConfigCategoryName,   null,     "%1_SOURCE_PATH_TRIM_RULES",
+
+            "",
+
+            ';', "=", Variable.FormatHint.MultLine,
+             "Defines global source path trim rules for Lox \"%1\".\n"           +
+             "   Format: [*]sourcepath [, inclusion, trimoffset, sensitivity, replacement] [ ; … ]"
+        );
+
+        /** Configuration variable definition */
+        public static          VariableDefinition           CODEPAGE = new VariableDefinition(
+            ConfigCategoryName,   null,     "CODEPAGE",
+            "65001",
+            '\0', null, Variable.FormatHint.None,
+             "Code page used by class WindowsConsoleLogger. Defaults to 65001.\n"           +
+             "(Only used on Windows OS)"
+        );
+
+        /** Configuration variable definition */
+        public static          VariableDefinition           CONSOLE_HAS_LIGHT_BACKGROUND = new VariableDefinition(
+            ConfigCategoryName,   null,     "CONSOLE_HAS_LIGHT_BACKGROUND",
+            "",
+            '\0', null, Variable.FormatHint.None,
+             "Evaluated by colorful loggers that dispose about light and dark colors. Those\n"        +
+             "adjust their foreground color accordingly. If not given, under Windows OS the right\n"  +
+             "value is detected. Otherwise the value defaults to false. In some occasions, the\n"     +
+             "(detected or set) runtime environment might also indicate a default value."
+        );
+
+
+        /** Configuration variable definition */
+        public static          VariableDefinition           FORMAT = new VariableDefinition(
+            ConfigCategoryName,   null,     "%1_FORMAT",
+
+            null, // default value must stay null, because 2 variables are requested. If was given here,
+                  // the second is never tried!
+
+            ',', null, Variable.FormatHint.None,
+             "Meta info format of text logger \"%1\", including signatures for verbosity strings.\n"       +
+             "   Format: ALOX_<LOGGERNAME>_FORMAT = [\"]format[\"] [, Error [, Warning [, Info [, Verbose ]]]]"
+        );
+
+        /** Configuration variable definition */
+        public static          VariableDefinition           FORMAT_DATE_TIME = new VariableDefinition(
+            ConfigCategoryName,   null,     "%1_FORMAT_DATE_TIME",
+
+            null, // default value must stay null, because 2 variables are requested. If was given here,
+                  // the second is never tried!
+
+            ',', null, Variable.FormatHint.None,
+             "Meta info date and time format of text logger \"%1\".\n"              +
+             "   Format: DateFormat [, TimeOfDayFormat [, TimeElapsedDays ]]]"
+        );
+
+        /** Configuration variable definition */
+        public static          VariableDefinition           FORMAT_TIME_DIFF = new VariableDefinition(
+            ConfigCategoryName,   null,     "%1_FORMAT_TIME_DIFF",
+
+            null, // default value must stay null, because 2 variables are requested. If was given here,
+                  // the second is never tried!
+
+            ',', null, Variable.FormatHint.None,
+             "Meta info time difference entities of text logger \"%1\".\n"                                        +
+             "   Format: TimeDiffMinimum [, TimeDiffNone [, TimeDiffNanos [, TimeDiffMicros [, TimeDiffMillis \n" +
+             "           [, TimeDiffSecs [, TimeDiffMins [, TimeDiffHours [,  TimeDiffDays  ]]]]]]]]"
+        );
+
+        /** Configuration variable definition */
+        public static          VariableDefinition           FORMAT_MULTILINE = new VariableDefinition(
+            ConfigCategoryName,   null,     "%1_FORMAT_MULTILINE",
+
+            null, // default value must stay null, because 2 variables are requested. If was given here,
+                  // the second is never tried!
+
+            ',', null, Variable.FormatHint.None,
+             "Multi-line format of text logger \"%1\".\n"                                                           +
+             "   Format: MultiLineMsgMode [, FmtMultiLineMsgHeadline [, FmtMultiLinePrefix [, FmtMultiLineSuffix\n" +
+             "           [, MultiLineDelimiter [, MultiLineDelimiterRepl ]]]]]"
+        );
+
 
         /**
          * This is the path for logging to the internal domain. By manipulating this
@@ -180,42 +348,34 @@ public static class ALox
         private static bool           isInitialized= false;
 
         /** ****************************************************************************************
-         * This method must (may) be called prior to using the ALox library, e.g. at the beginning of
-         * the main() method of an application. It is OK, to call this method more than once, which
-         * allows independent code blocks (e.g. libraries) to bootstrap ALox without interfering.
-         * But only the first call is effective and may be used to set the command line arguments
-         * as configuration plug-in.
+         * This method must be called prior to using %ALox, e.g. at the beginning of
+         * the \c main() method of an application. It is OK, to call this method more than once, which
+         * allows independent code blocks (e.g. libraries) to bootstrap %ALox independently.
+         * However, only the first invocation is effective with the exclamation that if
+         * command line parameters are provided with a call, those are set.
+         * Also, the very first invocation should not be interrupted by a parallel invocation of a
+         * second thread. Consequently, it has to be assured that this method is invoked once on
+         * the real bootstrap an app.
          *
-         * In the C# version of the AWorx library, the invocation of this method is optional.
-         * However, it is good practice to invoke this method in the main() method of a process
-         * and provide the command line arguments. See \ref cs::aworx::lib::ALIB::Init "ALIB.Init"
-         * for more information on the configuration parameters.
+         * In the C# version of the ALox Logging Library, not invoking this method will not lead to
+         * severe problems, however, some options might fail.
+         * It is good practice to invoke this method in the main() method of a process
+         * and provide the command line arguments.
          *
-         *  @param useEnv  If true, a
-         *                 \ref cs::aworx::lib::config::EnvironmentPlugIn "EnvironmentPlugIn"
-         *                 is attached to the
-         *                 \ref cs::aworx::lib::ALIB::Config "ALIB.Config" singleton. Hence,
-         *                 environment variables are read and potentially overwrite
-         *                 configuration variables in other configuration plug-ins.<br>
-         *                 Defaults to true.
-         *  @param args    Parameter which in the standard case is taken from  C/C++ main()
-         *                 method providing the command line arguments.
-         *                 If arguments are provided, a
-         *                 \ref cs::aworx::lib::config::CommandLinePlugIn "CommandLinePlugIn"
-         *                 is attached to the
-         *                 \ref cs::aworx::lib::ALIB::Config "ALIB.Config" singleton. Hence,
-         *                 command line options are read and those potentially overwrite
-         *                 configuration variables in other configuration plug-ins.<br>
-         *                 Defaults to null.
+         * See also \ref cs::aworx::lib::ALIB::Init "ALIB.Init" which is invoked by this method.
+         *
+         * @param args    Parameters taken from <em>standard C#</em> method \c main()
+         *                (the list of command line arguments).
+         *                Defaults to null.
          ******************************************************************************************/
-        public static void     Init(  bool useEnv= true, String[] args= null )
+        public static void     Init(  String[] args= null )
         {
             if ( isInitialized )
                 return;
             isInitialized= true;
 
             // initialize ALIB
-            ALIB.Init( useEnv, args );
+            ALIB.Init( args );
         }
 
     // #############################################################################################
@@ -278,7 +438,7 @@ public static class ALox
          * Therefore, to keep a \b Lox private, an optional parameter is available.
          *
          * @param lox       The \b %Lox to register.
-         * @param operation If \b %ContainerOp.Remove, the given \p Lox is unregistered.
+         * @param operation If \b %ContainerOp.Remove, the given \p Lox is deregistered.
          *                  Defaults to \b %ContainerOp.Insert.
          ******************************************************************************************/
         public static
@@ -361,7 +521,11 @@ public class    ALoxReportWriter : ReportWriter
      * Constructs an \b %ALoxReportWriter.
      * @param lox    The \b Lox to report to.
      **************************************************************************************/
-    public ALoxReportWriter ( Lox lox )                 { this.lox= lox; }
+    public ALoxReportWriter ( Lox lox )
+    {
+        this.lox= lox;
+        lox.Verbose( ALoxReportWriter.LogDomain(), "ALoxReportWriter set" );
+    }
 
     /** ****************************************************************************************
      * Notify activation/deactivation

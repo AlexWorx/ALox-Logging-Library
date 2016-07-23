@@ -9,25 +9,24 @@ using System.Runtime.CompilerServices;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using cs.aworx.lib;
-using cs.aworx.lib.enums;
-using cs.aworx.lox.core;
-using cs.aworx.lox.loggers;
-using cs.aworx.lib.threads;
-using cs.aworx.lib.time;
-using cs.aworx.lib.strings;
-using cs.aworx.lox.core.textlogger;
 using System.Diagnostics;
 using System.Globalization;
-
 using System.Threading;
+using cs.aworx.lib;
+using cs.aworx.lib.enums;
+using cs.aworx.lib.config;
+using cs.aworx.lib.time;
+using cs.aworx.lib.strings;
+using cs.aworx.lib.threads;
+using cs.aworx.lox.core;
+using cs.aworx.lox.loggers;
+using cs.aworx.lox.core.textlogger;
 
 /** ************************************************************************************************
  * This is the C++ namespace for code of the <em>%ALox Logging Library</em>.
  * Developed by A-Worx GmbH and published under the MIT license.
  **************************************************************************************************/
 namespace cs.aworx.lox {
-
 
 /** ************************************************************************************************
  * This class acts as a container for Loggers and provides a convenient interface to logging.
@@ -54,31 +53,31 @@ public class Lox : ThreadLock
          */
         public    Case                          DomainSensitivity                      =Case.Ignore;
 
-        #endif
 
         /**
-         * Constant providing default value for parameter \p priority of method #SetVerbosity.
-         * This value is defined in alignment with plug-in priority constants found in
-         * ALib class \b %Configuration, namely
-         * - \ref cs::aworx::lib::config::Configuration::PrioCmdLine "Configuration.PrioCmdLine"
-         *   with a value of of 400,
-         * - \ref cs::aworx::lib::config::Configuration::PrioEnvVars "Configuration.PrioEnvVars"
-         *   with a value of 300 and
-         * - \ref cs::aworx::lib::config::Configuration::PrioIniFile "Configuration.PrioIniFile"
-         *   with a value of 200.
-         *
-         * Having a value of 100, source code settings by default have lowest priority.
+         * Denotes flags used with methods #GetState and #State to select different parts
+         * of the state receive.
          */
-        public const int                        PrioSource                                    = 100;
+        public enum StateInfo
+        {
 
-        /**
-         * Constant providing the maximum value for parameter \p priority of method #SetVerbosity.
-         * A \e Verbosity set with this priority is immutable in respect to external configuration
-         * data.
-         */
-        public const int                        PrioProtected                        = int.MaxValue;
+            Basic                    = 1 <<  0, ///< Name and number of log calls
+            Version                  = 1 <<  1, ///< Library Version and thread safeness
+            Loggers                  = 1 <<  2, ///< Loggers
 
-        #if ALOX_DBG_LOG || ALOX_REL_LOG
+            Domains                  = 1 <<  3, ///< Log domains currently registered
+            InternalDomains          = 1 <<  4, ///< Internal domains
+            ScopeDomains             = 1 <<  5, ///< Scope domains
+            DSR                      = 1 <<  6, ///< Domain substitution rules
+            PrefixLogables           = 1 <<  7, ///< Prefix logables
+            Once                     = 1 <<  8, ///< Log once counters
+            LogData                  = 1 <<  9, ///< Log data objects
+            ThreadMappings           = 1 << 10, ///< Named threads
+
+            SPTR                     = 1 << 20, ///< Source path trim rules
+
+            All                      = ~0,
+        };
 
     // #############################################################################################
     // Private/protected fields
@@ -123,16 +122,6 @@ public class Lox : ThreadLock
         /** A locker for the log buffer singleton */
         protected ThreadLock                    logBufLock                       = new ThreadLock();
 
-        /** A temporary AString, following the "create once and reuse" design pattern. */
-        protected AString                       intMsg                         = new AString( 256 );
-
-        /** A temporary AString  */
-        protected AString                       tmpAS                           = new AString( 64 );
-
-        /** A temporary AString  */
-        protected AString                       tmpConfigValue                      = new AString();
-
-
         /** Used for tabular output of logger lists */
         protected int                           maxLoggerNameLength                             = 0;
 
@@ -148,6 +137,18 @@ public class Lox : ThreadLock
 
         /** The list of collected log objects which is passed to the \e Loggers  */
         protected List<Object>                  logObjects                     = new List<Object>();
+
+        /** A temporary AString, following the "create once and reuse" design pattern. */
+        protected AString                       intMsg                         = new AString( 256 );
+
+        /**  Flag used with configuration variable LOXNAME_DUMP_STATE_ON_EXIT.  */
+        protected bool                          loggerAddedSinceLastDebugState               =false;
+
+        /** A temporary AString  */
+        protected AString                       tmpAS                           = new AString( 64 );
+
+        /** A temporary AString  */
+        protected AString                       tmpComments                    = new AString( 128 );
 
         /**  Domain substitution rules.  */
         public class DomainSubstitutionRule
@@ -219,15 +220,20 @@ public class Lox : ThreadLock
         /**  The list of domain substitution rules.  */
         protected List<DomainSubstitutionRule> domainSubstitutions =new List<DomainSubstitutionRule>();
 
-        /**  Temporary string used with domain substitutions.  */
-        protected AString                       tmpSubstitutionPath                = new AString( 64 );
-
-        /**  Temporary string used with domain substitutions.  */
-        protected AString                       tmpSubstitutionPathInternalDomains = new AString( 64 );
-
         /**  Flag if a warning on circular rule detection was logged.  */
         protected bool                          oneTimeWarningCircularDS                     =false;
 
+        /**  Temporary string used with domain substitutions.  */
+        protected AString                       tmpSubstitutionPath                =new AString(64);
+
+        /**  Temporary string used with domain substitutions.  */
+        protected AString                       tmpSubstitutionPathInternalDomains =new AString(64);
+
+    #else
+        public enum StateInfo 
+        {
+              All   = ~0
+        }
     #endif //ALOX_DBG_LOG || ALOX_REL_LOG
 
 
@@ -247,10 +253,7 @@ public class Lox : ThreadLock
          * retrievable with static method
          * \ref cs::aworx::lox::ALox::Get "ALox.Get". In some situations, such 'registration'
          * may not be wanted.
-         * @param name       The name of the Lox. Can be logged out, e.g. by setting
-         *                   cs::aworx::lox::textlogger::MetaInfo::Format "MetaInfo.Format"
-         *                   accordingly.
-         *                   Will be converted to upper case.
+         * @param name       The name of the Lox. Will be converted to upper case.
          * @param doRegister If \c true, this object is registered with static class
          *                   \ref cs::aworx::lox::ALox "ALox".
          *                   Optional and defaults to \c true.
@@ -276,7 +279,7 @@ public class Lox : ThreadLock
 
                 // create internal sub-domains
                 bool wasCreated= false;
-                String[] internalDomainList= {"LGR", "DMN", "PFX", "THR", "LGD" };
+                String[] internalDomainList= {"LGR", "DMN", "PFX", "THR", "LGD", "VAR"  };
                 foreach ( String it in internalDomainList )
                 {
                     resDomainInternal._()._NC( it );
@@ -290,23 +293,23 @@ public class Lox : ThreadLock
                     ALox.Register( this, ContainerOp.Insert );
 
                 // read domain substitution rules from configuration
+                Variable variable= new Variable( ALox.DOMAIN_SUBSTITUTION, GetName() );
+                if ( variable.Load() != 0 )
                 {
-                    tmpAS._()._( GetName() )._( "_DOMAIN_SUBSTITUTION" );
-                    tmpConfigValue._();
-                    if ( ALIB.Config.Get( ALox.ConfigCategoryName, tmpAS, tmpConfigValue ) != 0 )
+                    for( int ruleNo= 0; ruleNo< variable.Size(); ruleNo++ )
                     {
-                        Tokenizer tok= new Tokenizer();
-                        tok.Set( tmpConfigValue, ';' );
-                        Substring rule;
-                        while( (rule= tok.Next()).IsNotEmpty() )
+                        AString rule= variable.GetString( ruleNo );
+                        int idx= rule.IndexOf( "->" );
+                        if ( idx > 0 )
                         {
-                            int idx= rule.IndexOf( "->" );
-                            if ( idx > 0 )
-                            {
-                                String domainPath=  rule.ToString( 0,  idx ).Trim();
-                                String replacement= rule.ToString( idx + 2 ).Trim();
-                                SetDomainSubstitutionRule( domainPath, replacement );
-                            }
+                            String domainPath=  rule.ToString( 0,  idx ).Trim();
+                            String replacement= rule.ToString( idx + 2 ).Trim();
+                            SetDomainSubstitutionRule( domainPath, replacement );
+                        }
+                        else
+                        {
+                            // using alib warning here as we can't do internal logging in the constructor
+                            ALIB.WARNING( "Syntax error in variable \"" + variable.Fullname + "\"." );
                         }
                     }
                 }
@@ -439,30 +442,30 @@ public class Lox : ThreadLock
      * @param sensitivity     Determines if the comparison of \p path with a source
      *                        files' path is performed case sensitive or not.
      *                        Optional and defaults to \b Case.Ignore.
-     * @param global          If Inclusion.Exclude, only this instance is affected.
-     *                        Otherwise the setting applies to all instances of class
-     *                        \b Lox.
-     *                        Optional and defaults to \b Inclusion.Include.
      * @param trimReplacement Replacement string for trimmed portion of the path.
      *                        Optional and defaults to \b %NullString.
-     * @param priority        The priority of the setting. Defaults to #PrioSource, which is
-     *                        a lower priority than standard plug-ins of external configuration
-     *                        have.
+     * @param reach           Denotes whether the rule is applied locally (to this \b %Lox only)
+     *                        or applies to all instances of class \b %Lox.
+     *                        Defaults to \b %Reach.Global.
+     * @param priority        The priority of the setting. Defaults to
+     *                        \ref cs::aworx::lib::config::Configuration::PrioDefault "Configuration.PrioDefault",
+     *                        which is a lower priority than standard plug-ins of external
+     *                        configuration have.
      ******************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
     public void      SetSourcePathTrimRule( String    path,
                                             Inclusion includeString     = Inclusion.Exclude,
                                             int       trimOffset        = 0,
                                             Case      sensitivity       = Case.Ignore,
-                                            Inclusion global            = Inclusion.Include,
                                             String    trimReplacement   = null,
-                                            int       priority          = Lox.PrioSource    )
+                                            Reach     reach             = Reach.Global,
+                                            int       priority          = Configuration.PrioDefault    )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
         try { Acquire();
 
-            scopeInfo.SetSourcePathTrimRule( path, includeString, trimOffset, sensitivity, 
-                                             global, trimReplacement, priority );
+            scopeInfo.SetSourcePathTrimRule( path, includeString, trimOffset, sensitivity,
+                                             trimReplacement, reach, priority );
 
         } finally { Release(); }
         #endif
@@ -478,20 +481,20 @@ public class Lox : ThreadLock
      *
      * \see ALox User Manual for more information.
      *
-     * @param global        If Inclusion.Exclude, only this instances' rules are cleared.
-     *                      Otherwise, the global rules are cleared as well.
+     * @param reach         Denotes whether only local rules are cleared or also global ones.
+     *                      Defaults to \b %Reach.Global.
      * @param allowAutoRule Determines if an auto rule should be tried to be detected next
      *                      no appropriate rule is found.
      ******************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public void   ClearSourcePathTrimRules( Inclusion global= Inclusion.Include, bool allowAutoRule= true )
+    public void   ClearSourcePathTrimRules( Reach reach= Reach.Global, bool allowAutoRule= true )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
         try { Acquire();
             scopeInfo.SetSourcePathTrimRule( null, allowAutoRule ? Inclusion.Include
                                                                  : Inclusion.Exclude,
                                              999999, // code for clearing
-                                             Case.Ignore,  global, null, -1  );
+                                             Case.Ignore, null,  reach, -1  );
         } finally { Release(); }
         #endif
     }
@@ -529,18 +532,20 @@ public class Lox : ThreadLock
     public static TextLogger CreateConsoleLogger( String name= null )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
-        //--- first: check environment "ALOX_DBG_CONSOLE_TYPE". They have precedence ---
-        {
-            AString consoleMode= new AString();
-            if( ALIB.Config.Get( ALox.ConfigCategoryName, "CONSOLE_TYPE", consoleMode ) != 0 )
-            {
-                if( consoleMode.Equals( "PLAIN",    Case.Ignore ) )   { return new ConsoleLogger     ( name ); }
-                if( consoleMode.Equals( "ANSI",     Case.Ignore ) )   { return new AnsiConsoleLogger ( name ); }
-                if( consoleMode.Equals( "WINDOWS",  Case.Ignore ) )   { return new ColorConsoleLogger( name ); }
 
-                ALIB.WARNING( "Unrecognized value in config variable: ALOX_CONSOLE_TYPE =" + consoleMode );
-            }
-        }
+        //--- first: check environment "ALOX_DBG_CONSOLE_TYPE". They have precedence ---
+        Variable variable= new Variable(ALox.CONSOLE_TYPE);
+        variable.Load();
+        AString val= variable.GetString().Trim();
+
+        if (    val.IsEmpty()
+             || val.Equals( "DEFAULT",  Case.Ignore )
+             || val.Equals( "PLAIN",    Case.Ignore ) )   return new ConsoleLogger     ( name );
+        if(     val.Equals( "ANSI",     Case.Ignore ) )   return new AnsiConsoleLogger ( name );
+        if(     val.Equals( "WINDOWS",  Case.Ignore ) )   return new ColorConsoleLogger( name );
+
+        ALIB.WARNING( "Unrecognized value in config variable \"" + variable.Fullname
+                       + "\"= " + variable.GetString() );
 
         //--- second: check debug environment
         // .... this is not implemented in C#, yet ...
@@ -593,6 +598,192 @@ public class Lox : ThreadLock
         #endif
     }
 
+    /** ****************************************************************************************
+     * Helper method of #dumpStateOnLoggerRemoval to recursively collect domain settings.
+     * @param domain    The actual domain.
+     * @param loggerNo  The number of the logger
+     * @param variable  The AString to collect the information.
+     ******************************************************************************************/
+    #if ALOX_DBG_LOG || ALOX_REL_LOG
+    protected void verbositySettingToVariable( Domain domain, int loggerNo, Variable variable )
+    {
+        variable.AddString()._( domain.FullPath )
+                            ._('=')
+                            ._( domain.GetVerbosity( loggerNo ).ToString() );
+
+        // loop over all sub domains (recursion)
+        foreach( Domain subDomain in domain.SubDomains )
+            verbositySettingToVariable( subDomain, loggerNo, variable );
+    }
+
+
+    /** ****************************************************************************************
+     * Implements functionality for configuration variable \c LOXNAME_LOGGERNAME_VERBOSITY.
+     * Is called when a logger is removed.
+     * @param logger      The logger to write the verbosity for.
+     ******************************************************************************************/
+    protected void  writeVerbositiesOnLoggerRemoval( Logger logger )
+    {
+        // When writing back we will use this priority as the maximum to write. This way, if this was
+        // an automatic default value, we will not write back into the user's variable store.
+        // As always, only if the app fetches new variables on termination, this is entry is copied.
+        Variable variable= new Variable( ALox.VERBOSITY, GetName(), logger.GetName() );
+        variable.Load();
+
+        // first token is "writeback" ?
+        if ( variable.Size() == 0 )
+            return;
+        Substring firstArg= new Substring( variable.GetString() );
+        if ( !firstArg.Consume( "writeback", Case.Ignore, Whitespaces.Trim ) )
+            return;
+
+        // optionally read a destination variable name
+        Substring destVarCategory = new Substring();
+        Substring destVarName     = new Substring();
+        if( firstArg.Trim().IsNotEmpty() )
+        {
+            // separate category from variable name
+            int catSeparatorIdx= firstArg.IndexOf( '_' );
+            if (catSeparatorIdx >= 0 )
+            {
+                destVarCategory.Set( firstArg, 0                   , catSeparatorIdx );
+                destVarName    .Set( firstArg, catSeparatorIdx + 1);
+            }
+            else
+                destVarName.Set( firstArg );
+
+            if ( destVarName.IsEmpty() )
+            {
+                logInternal( Verbosity.Error, "VAR", intMsg._()
+                             ._( "Argument 'writeback' in variable " )
+                             ._( variable.Fullname)
+                             ._( "\n  Error:    Wrong destination variable name format\"" )
+                             ._( firstArg )._( "\"" )  );
+                return;
+            }
+        }
+
+        // either write directly into LOX_LOGGER_VERBOSITY variable...
+        Variable destVar= null;
+        if( destVarName.IsEmpty() )
+        {
+            variable.ClearValues( 1 );
+            destVar= variable;
+        }
+        // ...or into a new given variable
+        else
+        {
+            destVar= new Variable( destVarCategory, destVarName, ALox.VERBOSITY.Delim );
+            destVar.FormatHints=         variable.FormatHints;
+            destVar.FormatAttrAlignment= variable.FormatAttrAlignment;
+            destVar.Comments._("Created at runtime through config option 'writeback' in variable \"")._( variable.Fullname )._("\".");
+        }
+
+        // collect verbosities
+        {
+            int loggerNoMainDom= domains        .GetLoggerNo( logger );
+            int loggerNoIntDom=  internalDomains.GetLoggerNo( logger );
+
+            if ( loggerNoMainDom >= 0 ) verbositySettingToVariable( domains        , loggerNoMainDom, destVar );
+            if ( loggerNoIntDom  >= 0 ) verbositySettingToVariable( internalDomains, loggerNoIntDom , destVar );
+        }
+
+        // now store using the same plug-in as original variable has
+        destVar.Priority= variable.Priority;
+        destVar.Store();
+
+        // internal logging
+        intMsg._()._( "Argument 'writeback' in variable " )._( variable.Fullname )
+                  ._( ":\n  Verbosities for logger \"" )   ._( logger.GetName() )
+                  ._( "\" written " );
+
+        if( destVarName.IsEmpty() )
+            intMsg._( "(to source variable)." );
+        else
+            intMsg._( "to variable \"" )  ._( destVar.Fullname ) ._("\".") ;
+        logInternal( Verbosity.Info, "VAR", intMsg._( destVarName )._( "\"." ) );
+
+
+        // verbose logging of the value written
+        intMsg._()._("  Value:");
+        for( int i= 0; i< destVar.Size() ; i++ )
+            intMsg._( "\n    " )._( destVar.GetString(i) );
+        logInternal( Verbosity.Verbose, "VAR", intMsg );
+    }
+
+    /** ****************************************************************************************
+     * Implements functionality for configuration variable \c LOXNAME_DUMP_STATE_ON_EXIT.
+     * Is called when a logger is removed.
+     ******************************************************************************************/
+    protected void dumpStateOnLoggerRemoval()
+    {
+        if( !loggerAddedSinceLastDebugState )
+            return;
+        loggerAddedSinceLastDebugState= false;
+
+        Variable variable= new Variable( ALox.DUMP_STATE_ON_EXIT, GetName() );
+        variable.Load();
+
+        String      domain=         null;
+        Verbosity   verbosity=      Verbosity.Info;
+
+        Substring tok= new Substring();
+        int flags= 0;
+        for( int tokNo= 0; tokNo< variable.Size(); tokNo++ )
+        {
+            tok.Set( variable.GetString( tokNo ) );
+            if( tok.IsEmpty() )
+                continue;
+
+            // state flags
+                 if( tok.Equals( "NONE"            , Case.Ignore ) )  { flags= 0; break; }
+            else if( tok.Equals( "Basic"           , Case.Ignore ) )  flags|= (int) Lox.StateInfo.Basic           ;
+            else if( tok.Equals( "Version"         , Case.Ignore ) )  flags|= (int) Lox.StateInfo.Version         ;
+            else if( tok.Equals( "Loggers"         , Case.Ignore ) )  flags|= (int) Lox.StateInfo.Loggers         ;
+
+            else if( tok.Equals( "Domains"         , Case.Ignore ) )  flags|= (int) Lox.StateInfo.Domains         ;
+            else if( tok.Equals( "InternalDomains" , Case.Ignore ) )  flags|= (int) Lox.StateInfo.InternalDomains ;
+            else if( tok.Equals( "ScopeDomains"    , Case.Ignore ) )  flags|= (int) Lox.StateInfo.ScopeDomains    ;
+            else if( tok.Equals( "DSR"             , Case.Ignore ) )  flags|= (int) Lox.StateInfo.DSR             ;
+            else if( tok.Equals( "PrefixLogables"  , Case.Ignore ) )  flags|= (int) Lox.StateInfo.PrefixLogables  ;
+            else if( tok.Equals( "Once"            , Case.Ignore ) )  flags|= (int) Lox.StateInfo.Once            ;
+            else if( tok.Equals( "LogData"         , Case.Ignore ) )  flags|= (int) Lox.StateInfo.LogData         ;
+            else if( tok.Equals( "ThreadMappings"  , Case.Ignore ) )  flags|= (int) Lox.StateInfo.ThreadMappings  ;
+
+            else if( tok.Equals( "SPTR"            , Case.Ignore ) )  flags|= (int) Lox.StateInfo.SPTR            ;
+
+
+            else if( tok.Equals( "All"             , Case.Ignore ) )  flags|= (int) Lox.StateInfo.All             ;
+
+            // domain and verbosity
+            else if( tok.Consume( "domain", Case.Ignore, Whitespaces.Trim ) )
+            {
+                if( tok.Consume( '=', Case.Sensitive, Whitespaces.Trim ) )
+                    domain= tok.Trim().ToString();
+            }
+            else if( tok.Consume( "verbosity", Case.Ignore, Whitespaces.Trim ) )
+            {
+                if( tok.Consume( '=', Case.Sensitive, Whitespaces.Trim ) )
+                    verbosity= ALox.ReadVerbosity( tok.Trim() );
+            }
+
+            // unknown argument
+            else
+            {
+                logInternal( Verbosity.Error, "VAR", intMsg._()
+                             ._( "Unknown argument '" )._(tok)
+                             ._( "' in variable " )._(variable.Fullname)._( " = \"")._(variable.GetString())._('\"') );
+            }
+        }
+
+        if ( flags != 0 )
+        {
+            State( domain, verbosity, "Auto dump state on exit requested: ", (Lox.StateInfo) flags );
+        }
+    }
+    #endif // #if ALOX_DBG_LOG || ALOX_REL_LOG
+
+
     /** ********************************************************************************************
      * Removes a logger from this container.
      * \note To (temporarily) disable a logger without removing it, a call to
@@ -636,29 +827,31 @@ public class Lox : ThreadLock
         #if ALOX_DBG_LOG || ALOX_REL_LOG
             try { Acquire();
 
-                wasFound= false;
-                int no;
-                if ( (no= domains        .GetLoggerNo( logger )) >= 0 )
-                {
-                    wasFound= true;
-                    domains.RemoveLogger( no );
-                }
+                int noMainDom=  domains        .GetLoggerNo( logger );
+                int noIntDom=   internalDomains.GetLoggerNo( logger );
 
-                if ( (no= internalDomains.GetLoggerNo( logger )) >= 0 )
+                if( noMainDom >= 0 || noIntDom >= 0 )
                 {
-                    wasFound= true;
-                    internalDomains.RemoveLogger( no );
-                }
+                    dumpStateOnLoggerRemoval();
+                    writeVerbositiesOnLoggerRemoval( logger );
 
-                if ( wasFound )
+                    if( noMainDom >= 0 )
+                        domains.RemoveLogger( noMainDom );
+
+                    if( noIntDom >= 0 )
+                        internalDomains.RemoveLogger( noIntDom );
+
                     logger.RemoveAcquirer( this );
-                else
-                {
-                    scopeInfo.Set( cln,csf,cmn, owner );
 
-                    logInternal( Verbosity.Warning, "LGR", intMsg._()
-                        ._("Logger \"")._( logger)._NC("\" not found. Nothing removed."));
+                    return;
                 }
+
+                // not found
+                scopeInfo.Set( cln,csf,cmn, owner );
+
+                logInternal( Verbosity.Warning, "LGR", intMsg._()
+                    ._("Logger \"")._( logger)._NC("\" not found. Nothing removed."));
+
             } finally { Release(); }
 
         #endif
@@ -710,31 +903,35 @@ public class Lox : ThreadLock
             try { Acquire();
                 scopeInfo.Set( cln,csf,cmn, owner );
 
-                logger= null;
-                int no;
 
-                if( (no= domains        .GetLoggerNo( loggerName )) >= 0 )
-                {
-                    logger= domains.GetLogger( no );
-                    domains.RemoveLogger( no );
-                }
+                int noMainDom=  domains        .GetLoggerNo( loggerName );
+                int noIntDom=   internalDomains.GetLoggerNo( loggerName );
 
-                if( (no= internalDomains.GetLoggerNo( loggerName )) >= 0 )
+                if( noMainDom >= 0 || noIntDom >= 0 )
                 {
-                    logger= internalDomains.GetLogger( no );
-                    internalDomains.RemoveLogger( no );
-                }
+                                            logger=         domains.GetLogger( noMainDom );
+                    if ( logger == null )   logger= internalDomains.GetLogger( noIntDom );
 
-                if ( logger != null )
-                {
+                    dumpStateOnLoggerRemoval();
+                    writeVerbositiesOnLoggerRemoval( logger );
+
+                    if( noMainDom >= 0 )
+                        domains.RemoveLogger( noMainDom );
+
+                    if( noIntDom >= 0 )
+                        internalDomains.RemoveLogger( noIntDom );
+
                     logger.RemoveAcquirer( this );
 
                     logInternal( Verbosity.Info, "LGR", intMsg._()
                         ._("Logger \"")._NC(logger)._NC("\" removed."));
+
+                    return;
                 }
-                else
-                    logInternal( Verbosity.Warning, "LGR", intMsg._()
-                            ._("Logger \"")._NC(loggerName)._NC("\" not found. Nothing removed."));
+
+                // not found
+                logInternal( Verbosity.Warning, "LGR", intMsg._()
+                        ._("Logger \"")._NC(loggerName)._NC("\" not found. Nothing removed."));
 
             } finally { Release(); }
         #endif
@@ -749,19 +946,20 @@ public class Lox : ThreadLock
      * for the evaluated sub-domain, the \e Verbosity for all domains is set to
      * \b %Verbosity.Off.
      *
-     * To unregister a \e Logger with a \b Lox, use method #RemoveLogger.
+     * To deregister a \e Logger with a \b Lox, use method #RemoveLogger.
      * To 'disable' a \e Logger, invoke this method with parameters \p verbosity equaling to
      * \b %Verbosity.Off and \p domain to \c "/".
      *
-     * Optional parameter \p priority defaults to #PrioSource, which is a lower priority
-     * than those of the standard plug-ins of external configuration data. Therefore, external
-     * configuration by default 'overwrite' settings made from 'within the source code', which
-     * simply means by invoking this method.<br>
+     * Optional parameter \p priority defaults to
+     * \ref cs::aworx::lib::config::Configuration::PrioDefault "Configuration.PrioDefault",
+     * which is a lower priority than those of the standard plug-ins of external configuration data.
+     * Therefore, external configuration by default 'overwrite' settings made from 'within the
+     * source code', which simply means by invoking this method.<br>
      * The parameter can be provided for two main reasons:
      * - To 'lock' a verbosity setting against external manipulation.
      * - to 'break' the standard mechanism that an invocation of this method sets all
      *   sub-domains recursively. If a sub-domain was set with a higher priority
-     *   (e.g. <c>%PrioSource + 1</c>, then this sub-domain will not be affected by
+     *   (e.g. <c>%Configuration.PrioDefault + 1</c>, then this sub-domain will not be affected by
      *   future invocations of this method with standard-priority given.
      *
      * \attention
@@ -790,9 +988,8 @@ public class Lox : ThreadLock
      * @param domain     The parent (start) domain to be set. The use of absolute paths
      *                   starting with <c> '/'</c> are recommended.
      *                   Defaults to root domain \"/\".
-     * @param priority   The priority of the setting. Defaults to #PrioSource, which is
-     *                   a lower priority than standard plug-ins of external configuration
-     *                   have.
+     * @param priority   The priority of the setting. Defaults to
+     *                   \ref cs::aworx::lib::config::Configuration::PrioDefault "Configuration.PrioDefault".
      *
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
@@ -800,7 +997,7 @@ public class Lox : ThreadLock
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
     public void        SetVerbosity( Logger logger, Verbosity verbosity, String domain = "/",
-                                     int priority = Lox.PrioSource,
+                                     int priority = Configuration.PrioDefault,
     [CallerLineNumber] int cln=0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
@@ -839,7 +1036,7 @@ public class Lox : ThreadLock
                               ._NC( "  Request was: SetVerbosity( \"")._(logger)._NC("\", \"")
                               ._(domain)        ._NC("\", Verbosity.")
                               ._NC(verbosity)   ._NC("\", ")
-                              ._NC(priority)    ._NC(" )." ));
+                              ._(priority)      ._NC(" )." ));
 
                     Logger existingLogger= dom.GetLogger( logger.GetName() );
                     logInternal( Verbosity.Verbose, "LGR", intMsg._()
@@ -855,18 +1052,22 @@ public class Lox : ThreadLock
                     logger.AddAcquirer( this );
 
                 // store size of name to support tabular internal log output
-                String loggerName= logger.ToString();
+                String loggerName= logger.GetName();
                 if ( maxLoggerNameLength < loggerName.Length )
                     maxLoggerNameLength=   loggerName.Length;
 
                 // for internal log
                 isNewLogger= true;
+
+                // remember that a logger was set after the last removal
+                // (for variable LOXNAME_DUMP_STATE_ON_EXIT)
+                loggerAddedSinceLastDebugState= true;
             }
 
             // do
             dom.SetVerbosity( no, verbosity, priority );
 
-            // log info on this
+            // get verbosities from configuration
             if( isNewLogger )
             {
                 logInternal( Verbosity.Info, "LGR",  intMsg._()
@@ -875,13 +1076,19 @@ public class Lox : ThreadLock
                             "\" added for internal log messages." : "\" added." ) );
 
                 // we have to get all verbosities of already existing domains
-                getAllVerbosities( logger, domains         , null, 0 );
-                getAllVerbosities( logger, internalDomains , null, 0 );
+                Variable variable= new Variable( ALox.VERBOSITY, GetName(), logger.GetName() );
+                if( 0 != variable.Load() )
+                {
+                    getAllVerbosities( logger, domains         , variable );
+                    getAllVerbosities( logger, internalDomains , variable );
+                }
             }
 
-            intMsg._()._("Logger \"")._( logger )._NC( "\":").Tab(11 + maxLoggerNameLength)
-                          ._('\'')._NC( dom.FullPath )._( "\' = Verbosity." );
-                  ALox.ToString( verbosity, priority, intMsg ).TrimEnd()._('.');
+            intMsg._()._("Logger \"")._( logger.GetName() )._NC( "\":").Tab(11 + maxLoggerNameLength)
+                          ._('\'')._NC( dom.FullPath )
+                          ._( '\'' ).InsertChars(' ', maxDomainPathLength - dom.FullPath.Length() + 1 )
+                          ._( "= Verbosity." );
+                          ALox.ToString( verbosity, priority, intMsg ).TrimEnd()._('.');
 
             Verbosity actVerbosity= dom.GetVerbosity( no );
             if( actVerbosity != verbosity )
@@ -906,9 +1113,8 @@ public class Lox : ThreadLock
      * @param domain     The parent (start) domain to be set. The use of absolute paths
      *                   starting with <c> '/'</c> are recommended.
      *                   Defaults to root domain \"/\".
-     * @param priority   The priority of the setting. Defaults to #PrioSource, which is
-     *                   a lower priority than standard plug-ins of external configuration
-     *                   have.
+     * @param priority   The priority of the setting. Defaults to
+     *                   \ref cs::aworx::lib::config::Configuration::PrioDefault "Configuration.PrioDefault".
      *
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
@@ -918,7 +1124,7 @@ public class Lox : ThreadLock
     public  void SetVerbosity(  String     loggerName,
                                 Verbosity  verbosity,
                                 String     domain        ="/",
-                                int        priority      = Lox.PrioSource,
+                                int        priority      = Configuration.PrioDefault,
     [CallerLineNumber] int cln=0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
@@ -941,7 +1147,7 @@ public class Lox : ThreadLock
                 if ( no >= 0 )
                 {
                     SetVerbosity( otherTree.GetLogger( no ), Verbosity.Off,
-                                  actualTree.FullPath.ToString(), Lox.PrioSource    ,cln,csf,cmn );
+                                  actualTree.FullPath.ToString(), Configuration.PrioDefault    ,cln,csf,cmn );
                     no= dom.GetLoggerNo( loggerName );
                     ALIB.ASSERT( no >= 0 );
                 }
@@ -950,7 +1156,7 @@ public class Lox : ThreadLock
                     intMsg._()._NC( "Logger not found. Request was: SetVerbosity( \"")._(loggerName)._NC("\", \"")
                               ._(dom.FullPath)  ._NC("\", Verbosity.")
                               ._NC(verbosity)   ._NC(", ")
-                              ._NC(priority)    ._NC(" )." );
+                              ._(priority)      ._NC(" )." );
 
                     logInternal( Verbosity.Warning, "LGR", intMsg );
                     return;
@@ -961,8 +1167,10 @@ public class Lox : ThreadLock
             dom.SetVerbosity( no, verbosity, priority );
 
             // log info on this
-            intMsg._()._("Logger \"")._( dom.GetLogger( no ) )._NC( "\":").Tab(11 + maxLoggerNameLength)
-                      ._('\'')._NC( dom.FullPath )._( "\' = Verbosity." );
+            intMsg._()._("Logger \"")._( dom.GetLogger( no ).GetName() )._NC( "\":").Tab(11 + maxLoggerNameLength)
+                      ._('\'')._NC( dom.FullPath )
+                      ._( '\'' ).InsertChars(' ', maxDomainPathLength - dom.FullPath.Length() + 1 )
+                      ._( "= Verbosity." );
                       ALox.ToString( verbosity, priority, intMsg ).TrimEnd()._('.');
             Verbosity actVerbosity= dom.GetVerbosity( no );
             if( actVerbosity != verbosity )
@@ -1178,7 +1386,7 @@ public class Lox : ThreadLock
             {
                 oneTimeWarningCircularDS= false;
                 domainSubstitutions.Clear();
-                intMsg._( "Domain substituion rules removed." );
+                intMsg._( "Domain substitution rules removed." );
                 logInternal( Verbosity.Info, "DMN", intMsg );
                 return;
             }
@@ -1205,12 +1413,12 @@ public class Lox : ThreadLock
             {
                 if ( it == domainSubstitutions.Count )
                 {
-                    intMsg._( "Domain substituion rule \"")._( domainPath)._( "\" not found. Nothing to remove." );
+                    intMsg._( "Domain substitution rule \"")._( domainPath)._( "\" not found. Nothing to remove." );
                     logInternal( Verbosity.Warning, "DMN", intMsg );
                     return;
                 }
 
-                intMsg._( "Domain substituion rule \"")._( domainPath      )._( "\" -> \"" )
+                intMsg._( "Domain substitution rule \"")._( domainPath      )._( "\" -> \"" )
                                                     ._( domainSubstitutions[it].Replacement  )._( "\" removed." );
                 domainSubstitutions.RemoveAt( it );
                 logInternal( Verbosity.Info, "DMN", intMsg );
@@ -1218,7 +1426,7 @@ public class Lox : ThreadLock
             }
 
 
-            intMsg._( "Domain substituion rule \"")._( domainPath          )._( "\" -> \"" )
+            intMsg._( "Domain substitution rule \"")._( domainPath          )._( "\" -> \"" )
                                                 ._( newRule.Replacement )._( "\" set." );
 
             // change of rule
@@ -1726,47 +1934,88 @@ public class Lox : ThreadLock
     }
 
     /** ********************************************************************************************
-     *  This method logs the configuration this Lox and it's encapsulated objects.
+     * This method logs the current configuration of this Lox and its encapsulated objects.
+     * It uses method #GetState to assemble the logable string.
+     *
+     * \note
+     *   As an alternative to (temporarily) adding an invocation of <b>%Lox.State</b> to
+     *   your code, ALox provides configuration variable
+     *   [ALOX_LOXNAME_DUMP_STATE_ON_EXIT](group__GrpALoxConfigVars.html).
+     *   This allows to enable an automatic invocation of this method using external
+     *   configuration data like command line parameters, environment variables or
+     *   INI files.
+     *
      *
      * @param domain    Optional <em>Log Domain</em> which is combined with <em>%Scope Domains</em>
      *                  set for the \e %Scope of invocation.
      * @param verbosity The verbosity.
      * @param headLine  If given, a separated headline will be logged at first place.
+     * @param flags     Flag bits that define which state information is logged.
+     *
      * @param cln (Optional) Caller info, compiler generated. Please omit.
      * @param csf (Optional) Caller info, compiler generated. Please omit.
      * @param cmn (Optional) Caller info, compiler generated. Please omit.
      **********************************************************************************************/
     [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
-    public  void LogConfig( String            domain,
-                            Verbosity     verbosity,
-                            String            headLine,
+    public  void State( String        domain,
+                        Verbosity     verbosity,
+                        String        headLine,
+                        StateInfo     flags,
+
     [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
     {
         #if ALOX_DBG_LOG || ALOX_REL_LOG
             try { Acquire();
 
-                // store scope info
                 scopeInfo.Set( cln,csf,cmn, owner );
-
-                // we write log all into a Buffer first
                 AString buf=        new AString( 2048 );
+                if ( !String.IsNullOrEmpty(headLine) )
+                    buf._NC( headLine ).NewLine();
+                GetState( buf, flags );
+                Entry( domain, verbosity, buf, cln,csf,cmn );
+
+            } finally { Release(); }
+        #endif
+    }
+
+    /** ********************************************************************************************
+     *  This method collects state information about this lox.
+     *
+     * @param buf       The target string.
+     * @param flags     Flag bits that define which state information is collected.
+     *
+     * @param cln (Optional) Caller info, compiler generated. Please omit.
+     * @param csf (Optional) Caller info, compiler generated. Please omit.
+     * @param cmn (Optional) Caller info, compiler generated. Please omit.
+     **********************************************************************************************/
+    [Conditional("ALOX_DBG_LOG"), Conditional("ALOX_REL_LOG")]
+    public  void GetState( AString   buf,  Lox.StateInfo flags,
+    [CallerLineNumber] int cln= 0,[CallerFilePath] String csf="",[CallerMemberName] String cmn="" )
+    {
+        #if ALOX_DBG_LOG || ALOX_REL_LOG
+            try { Acquire();
 
                 ScopeDump scopeDump= new ScopeDump( threadDictionary, noKeyHashKey, buf );
 
-                // log a headline?
-                if ( !String.IsNullOrEmpty(headLine) )
-                    buf._NC( headLine ).NewLine();
 
                 // basic lox info
-                buf._NC( "Name:            \"" )._NC( scopeInfo.GetLoxName() )._('\"').NewLine();
-                buf._NC( "Version:         " )._NC( ALox.Version )._NC(" (Rev. ")._NC( ALox.Revision)._(')').NewLine();
-                buf._NC( "Thread-Safeness: " )._NC( GetSafeness() ).NewLine();
-                buf._NC( "#Log Calls:      " )._  ( CntLogCalls                   ).NewLine();
-                buf.NewLine();
+                if( (flags & Lox.StateInfo.Basic) != 0 )
+                    buf._NC( "Name:            \"" )._NC( scopeInfo.GetLoxName() )._('\"').NewLine();
+                if( (flags & Lox.StateInfo.Version) != 0 )
+                {
+                    buf._NC( "Version:         " )._NC( ALox.Version )._NC(" (Rev. ")._NC( ALox.Revision)._(')').NewLine();
+                    buf._NC( "Thread-Safeness: " )._NC( GetSafeness() ).NewLine();
+                }
+                if( (flags & Lox.StateInfo.Basic) != 0 )
+                    buf._NC( "#Log Calls:      " )._  ( CntLogCalls                   ).NewLine();
+                if( (flags & Lox.StateInfo.Basic ) != 0 || (flags & Lox.StateInfo.Version ) != 0 )
+                    buf.NewLine();
 
                 //  source path trim info
-                buf._NC( "Source Path Trimming Rules: " ).NewLine();
+                if( (flags & Lox.StateInfo.SPTR ) != 0 )
                 {
+                    buf._NC( "Source Path Trimming Rules: " ).NewLine();
+
                     int cnt= 0;
                     // do 2 times, 0== global list, 1 == local list
                     for( int trimRuleNo= 0; trimRuleNo < 2 ; trimRuleNo++ )
@@ -1799,81 +2048,100 @@ public class Lox : ThreadLock
                 }
 
                 //  domain substitutions
-                buf._NC( "Domain Substitution Rules: " ).NewLine();
-                if( domainSubstitutions.Count > 0 )
+                if( (flags & Lox.StateInfo.DSR ) != 0 )
                 {
-                    // get size
-                    int maxWidth= 0;
-                    foreach ( DomainSubstitutionRule it in domainSubstitutions )
-                        if ( maxWidth < it.Search.Length() )
-                             maxWidth = it.Search.Length();
-                    maxWidth+= 2;
-
-                    // write
-                    foreach ( DomainSubstitutionRule it in domainSubstitutions )
+                    buf._NC( "Domain Substitution Rules: " ).NewLine();
+                    if( domainSubstitutions.Count > 0 )
                     {
-                        buf._NC( "  " );
-                        if (    it.type == DomainSubstitutionRule.Type.EndsWith
-                             || it.type == DomainSubstitutionRule.Type.Substring )
-                            buf._NC( '*' );
+                        // get size
+                        int maxWidth= 0;
+                        foreach ( DomainSubstitutionRule it in domainSubstitutions )
+                            if ( maxWidth < it.Search.Length() )
+                                 maxWidth = it.Search.Length();
+                        maxWidth+= 2;
 
-                        buf._NC( it.Search );
+                        // write
+                        foreach ( DomainSubstitutionRule it in domainSubstitutions )
+                        {
+                            buf._NC( "  " );
+                            if (    it.type == DomainSubstitutionRule.Type.EndsWith
+                                 || it.type == DomainSubstitutionRule.Type.Substring )
+                                buf._( '*' );
 
-                        if (    it.type == DomainSubstitutionRule.Type.StartsWith
-                             || it.type == DomainSubstitutionRule.Type.Substring )
-                            buf._NC( '*' );
+                            buf._NC( it.Search );
 
-                        buf.Tab( maxWidth, 0 )
-                           ._NC( " -> " )
-                           ._NC( it.Replacement );
-                        buf.NewLine();
+                            if (    it.type == DomainSubstitutionRule.Type.StartsWith
+                                 || it.type == DomainSubstitutionRule.Type.Substring )
+                                buf._( '*' );
+
+                            buf.Tab( maxWidth, 0 )
+                               ._NC( " -> " )
+                               ._NC( it.Replacement );
+                            buf.NewLine();
+                        }
                     }
+                    else
+                        buf._NC("  <no rules set>" ).NewLine();
+                    buf.NewLine();
                 }
-                else
-                    buf._NC("  <no rules set>" ).NewLine();
-                buf.NewLine();
 
                 // Log Once Counters
-                buf._NC( "Once() Counters: " ).NewLine();
-                if ( scopeDump.writeStoreMap( scopeLogOnce ) == 0 )
-                    buf._NC("  <no Once() counters set>" ).NewLine();
-                buf.NewLine();
+                if( (flags & Lox.StateInfo.Once ) != 0 )
+                {
+                    buf._NC( "Once() Counters: " ).NewLine();
+                    if ( scopeDump.writeStoreMap( scopeLogOnce ) == 0 )
+                        buf._NC("  <no Once() counters set>" ).NewLine();
+                    buf.NewLine();
+                }
 
                 // Log Data
-                buf._NC( "Log Data: " ).NewLine();
-                if ( scopeDump.writeStoreMap( scopeLogData ) == 0 )
-                    buf._NC("  <no data objects stored>" ).NewLine();
-                buf.NewLine();
+                if( (flags & Lox.StateInfo.LogData ) != 0 )
+                {
+                    buf._NC( "Log Data: " ).NewLine();
+                    if ( scopeDump.writeStoreMap( scopeLogData ) == 0 )
+                        buf._NC("  <no data objects stored>" ).NewLine();
+                    buf.NewLine();
+                }
 
                 // Prefix Logables
-                buf._NC( "Prefix Logables: " ).NewLine();
-                int oldLength= buf.Length();
-                scopeDump.writeScopePrefixes( scopePrefixes, 2 );
-                logConfigCollectPrefixes( domains, 2, buf );
-                if ( oldLength == buf.Length() )
-                    buf._NC("  <no prefix logables set>" ).NewLine();
-                buf.NewLine();
+                if( (flags & Lox.StateInfo.PrefixLogables ) != 0 )
+                {
+                    buf._NC( "Prefix Logables: " ).NewLine();
+                    int oldLength= buf.Length();
+                    scopeDump.writeScopePrefixes( scopePrefixes, 2 );
+                    logStateCollectPrefixes( domains, 2, buf );
+                    if ( oldLength == buf.Length() )
+                        buf._NC("  <no prefix logables set>" ).NewLine();
+                    buf.NewLine();
+                }
 
                 // thread mappings
-                buf._NC( "Named Threads:   " ).NewLine();
-                if ( threadDictionary.Count == 0 )
-                    buf._NC("  No thread name mappings" ).NewLine();
-                else
-                    foreach ( int key in threadDictionary.Keys )
-                    {
-                        buf._NC( "  " ).Field()._('(')._(key)._NC( "):").Field( 7, Alignment.Left )
-                                       ._('\"')._NC( threadDictionary[key] ) ._('\"');
-                        buf.NewLine();
-                    }
-                buf.NewLine();
+                if( (flags & Lox.StateInfo.ThreadMappings ) != 0 )
+                {
+                    buf._NC( "Named Threads:   " ).NewLine();
+                    if ( threadDictionary.Count == 0 )
+                        buf._NC("  No thread name mappings" ).NewLine();
+                    else
+                        foreach ( int key in threadDictionary.Keys )
+                        {
+                            buf._NC( "  " ).Field()._('(')._(key)._NC( "):").Field( 7, Alignment.Left )
+                                           ._('\"')._NC( threadDictionary[key] ) ._('\"');
+                            buf.NewLine();
+                        }
+                    buf.NewLine();
+                }
 
                 // Scope Domains
-                buf._NC( "Scope Domains: " ).NewLine();
-                if ( scopeDump.writeScopeDomains( scopeDomains, 2 ) == 0 )
-                    buf._NC("  <no scope domains set>" ).NewLine();
-                buf.NewLine();
+                if( (flags & Lox.StateInfo.ScopeDomains ) != 0 )
+                {
+                    buf._NC( "Scope Domains: " ).NewLine();
+                    if ( scopeDump.writeScopeDomains( scopeDomains, 2 ) == 0 )
+                        buf._NC("  <no scope domains set>" ).NewLine();
+                    buf.NewLine();
+                }
 
                 // Loggers (and their domains)
+                if( (flags & Lox.StateInfo.Loggers ) != 0 )
                 {
                     List<Domain> domsWithDiffVerb= new List<Domain>();
                     StringBuilder tSB= new StringBuilder();
@@ -1908,7 +2176,7 @@ public class Lox : ThreadLock
                             buf._NC( "    Last log time: "     )._NC(  tSB ).NewLine();
 
                             domsWithDiffVerb.Clear();
-                            logConfigDomsWithDiffVerb( domTree, loggerNo, domsWithDiffVerb);
+                            logStateDomsWithDiffVerb( domTree, loggerNo, domsWithDiffVerb);
                             foreach ( Domain dom in domsWithDiffVerb )
                             {
                                 buf._NC( "    " )
@@ -1932,18 +2200,20 @@ public class Lox : ThreadLock
 
 
                 // internal domains
-                buf._NC( "Internal Domains:" ).NewLine();
-                logConfigDomainRecursive( internalDomains, buf );
-                buf.NewLine();
+                if( (flags & Lox.StateInfo.InternalDomains ) != 0 )
+                {
+                    buf._NC( "Internal Domains:" ).NewLine();
+                    logStateDomainRecursive( internalDomains, buf );
+                    buf.NewLine();
+                }
 
                 // main domains
-                buf._NC( "Domains:" ).NewLine();
-                logConfigDomainRecursive( domains,         buf );
-                buf.NewLine();
-
-                // now, log it out
-                Entry( domain, verbosity, buf, cln,csf,cmn );
-
+                if( (flags & Lox.StateInfo.Domains ) != 0 )
+                {
+                    buf._NC( "Domains:" ).NewLine();
+                    logStateDomainRecursive( domains,         buf );
+                    buf.NewLine();
+                }
             } finally { Release(); }
         #endif
     }
@@ -1951,12 +2221,12 @@ public class Lox : ThreadLock
 
     #if ALOX_DBG_LOG || ALOX_REL_LOG
     /** ********************************************************************************************
-     * Internal method used by LogConfig() to recursively log Domain instances.
+     * Internal method used by State() to recursively log Domain instances.
      *
      * @param domain      The Domain instance to log out.
      * @param buf         The buffer to log to.
      **********************************************************************************************/
-    protected  void logConfigDomainRecursive( Domain domain, AString buf )
+    protected  void logStateDomainRecursive( Domain domain, AString buf )
     {
         int reference= buf.Length();
         buf._NC("  ")  ._NC( domain );
@@ -1966,19 +2236,19 @@ public class Lox : ThreadLock
 
         // loop over all sub domains (recursion)
         foreach ( Domain subDomain in domain.SubDomains )
-            logConfigDomainRecursive( subDomain, buf);
+            logStateDomainRecursive( subDomain, buf);
     }
 
 
     /** ********************************************************************************************
-     * Internal method used by LogConfig() to recursively (DFS) log <em>Prefix Logables</em> bound to
+     * Internal method used by State() to recursively (DFS) log <em>Prefix Logables</em> bound to
      * <em>Log Domains</em>
      *
      * @param domain        The actual domain to check.
      * @param indentSpaces  The number of spaces to write before each line.
      * @param target        The target string.
      **********************************************************************************************/
-    protected void logConfigCollectPrefixes( Domain domain, int indentSpaces, AString target )
+    protected void logStateCollectPrefixes( Domain domain, int indentSpaces, AString target )
     {
         foreach ( Domain.PL pfl in domain.PrefixLogables )
         {
@@ -1997,25 +2267,25 @@ public class Lox : ThreadLock
         }
 
         foreach( Domain it in domain.SubDomains )
-            logConfigCollectPrefixes( it, indentSpaces, target );
+            logStateCollectPrefixes( it, indentSpaces, target );
     }
 
     /** ********************************************************************************************
-     * Internal method used by LogConfig() to recursively (DFS) collect Domains of Logger that have
+     * Internal method used by State() to recursively (DFS) collect Domains of Logger that have
      * a different verbosity than their parent.
      *
      * @param domain      The actual domain to check.
      * @param loggerNo    The logger to collect domains for.
      * @param results     The result list.
      **********************************************************************************************/
-    protected void logConfigDomsWithDiffVerb( Domain domain, int loggerNo, List<Domain> results )
+    protected void logStateDomsWithDiffVerb( Domain domain, int loggerNo, List<Domain> results )
     {
         if (    domain.Parent == null
             ||  domain.Parent.GetVerbosity(loggerNo) != domain.GetVerbosity(loggerNo) )
             results.Add( domain );
 
         foreach( Domain it in domain.SubDomains )
-            logConfigDomsWithDiffVerb( it, loggerNo, results );
+            logStateDomsWithDiffVerb( it, loggerNo, results );
     }
     #endif
 
@@ -3028,7 +3298,7 @@ public class Lox : ThreadLock
 
                     if ( wasCreated )
                     {
-                        // get maximum domain path length (for nicer LogConfig output only...)
+                        // get maximum domain path length (for nicer State output only...)
                         if ( maxDomainPathLength < dom.FullPath.Length() )
                             maxDomainPathLength=   dom.FullPath.Length();
 
@@ -3042,8 +3312,13 @@ public class Lox : ThreadLock
                     {
                         dom.ConfigurationRead= true;
 
+                        Variable variable= new Variable();
                         for ( int i= 0; i < dom.CountLoggers(); ++i )
-                            getVerbosityFromConfig( dom.GetLogger(i), dom, null, 0 );
+                        {
+                            Logger logger= dom.GetLogger(i);
+                            if ( 0 != variable.Define( ALox.VERBOSITY, GetName(), logger.GetName() ).Load() )
+                                getVerbosityFromConfig( logger, dom, variable );
+                        }
 
                         getDomainPrefixFromConfig( dom );
                     }
@@ -3056,7 +3331,7 @@ public class Lox : ThreadLock
                         else
                             for ( int i= 0; i < domainSystem.CountLoggers(); i++ )
                             {
-                                intMsg._()._("  \"")._( dom.GetLogger(i) )._NC("\": ");
+                                intMsg._()._("  \"")._( dom.GetLogger(i).GetName() )._NC("\":");
                                 intMsg.InsertChars( ' ', maxLoggerNameLength  + 6 - intMsg.Length() );
                                 intMsg._NC( dom.FullPath )
                                       ._NC( " = " ); ALox.ToString( dom.GetVerbosity( i ), dom.GetPriority( i), intMsg );
@@ -3352,8 +3627,17 @@ public class Lox : ThreadLock
                     logInternal(  Verbosity.Info,     "DMN", intMsg );
                 else
                 {
-                    intMsg._NC( " Replacing previous default '" )._NC( previousScopeDomain )._('\'');
-                    logInternal(  Verbosity.Warning,  "DMN", intMsg );
+                    if ( previousScopeDomain.Equals( scopeDomain ) )
+                    {
+                        intMsg._( " (Was already set.)" );
+                        logInternal(  Verbosity.Verbose,  "DMN", intMsg );
+                    }
+                    else
+                    {
+                        intMsg._NC( " Replacing previous default '" )._NC( previousScopeDomain )._('\'');
+                        logInternal(  Verbosity.Warning,  "DMN", intMsg );
+                    }
+
                 }
             }
             else
@@ -3644,41 +3928,23 @@ public class Lox : ThreadLock
      *
      * @param logger      The logger to set the verbosity for.
      * @param dom         The domain to set the verbosity for.
-     * @param cfgStr      The configuration string. If not read yet, null may be given.
-     * @param cfgPriority The priority of the configuration plug-in providing the variable.
+     * @param variable    The (already read) variable to set verbosities from.
      ******************************************************************************************/
-    protected void  getVerbosityFromConfig( Logger  logger,  Domain  dom,
-                                            AString cfgStr,  int     cfgPriority )
+    protected void  getVerbosityFromConfig( Logger  logger,  Domain  dom, Variable variable  )
     {
         // get logger number. It may happen that the logger is not existent in this domain tree.
         int loggerNo= dom.GetLoggerNo( logger ) ;
         if ( loggerNo < 0 )
             return;
 
-        // check priority
-        int priority= dom.GetPriority( loggerNo );
-        if ( priority == Lox.PrioProtected )
-            return;
-
-        if ( cfgStr == null )
-        {
-            tmpAS._()._( scopeInfo.GetLoxName() )._( '_' )._( logger.GetName() )._( "_VERBOSITY" );
-            cfgStr= tmpConfigValue._();
-            cfgPriority= ALIB.Config.Get( ALox.ConfigCategoryName, tmpAS, cfgStr );
-            if( cfgPriority == 0  || cfgPriority < priority )
-                return;
-        }
-
-        Tokenizer verbositiesTok= new Tokenizer( cfgStr, ';' );
-        Tokenizer verbosityTok=   new Tokenizer();
+        Tokenizer verbosityTknzr=   new Tokenizer();
         Substring domainStr=      new Substring();
         AString   domainStrBuf=   new AString();
-        Substring verbositySettingStr;
-        while( (verbositySettingStr= verbositiesTok.Next()).IsNotEmpty() )
+        for( int varNo= 0; varNo< variable.Size(); varNo++ )
         {
-            verbosityTok.Set( verbositySettingStr, '=' );
+            verbosityTknzr.Set( variable.GetString( varNo ), '=' );
 
-            domainStr.Set( verbosityTok.Next() );
+            domainStr.Set( verbosityTknzr.Next() );
             if ( domainStr.StartsWith( "INTERNAL_DOMAINS", DomainSensitivity ) )
             {
                 domainStrBuf._()._( domainStr.Buf, domainStr.Start + 16, domainStr.Length() -16 );
@@ -3688,7 +3954,7 @@ public class Lox : ThreadLock
                 domainStr.Set( domainStrBuf );
             }
 
-            Substring verbosityStr=  verbosityTok.Next();
+            Substring verbosityStr=  verbosityTknzr.Next();
             if ( verbosityStr.IsEmpty() )
                 continue;
 
@@ -3702,11 +3968,13 @@ public class Lox : ThreadLock
                 )
             {
                 Verbosity verbosity= ALox.ReadVerbosity( verbosityStr);
-                dom.SetVerbosity( loggerNo, verbosity, cfgPriority );
+                dom.SetVerbosity( loggerNo, verbosity, variable.Priority );
 
                 // log info on this
-                intMsg._()._NC( "Logger \"" )._NC( logger ) ._NC( "\":" ).Tab(11 + maxLoggerNameLength)
-                          ._NC( '\'' )._NC( dom.FullPath )._( "\' = Verbosity." );
+                intMsg._()._NC( "Logger \"" )._NC( logger.GetName() ) ._NC( "\":" ).Tab(11 + maxLoggerNameLength)
+                          ._( '\'' )._NC( dom.FullPath )
+                          ._( '\'' ).InsertChars(' ', maxDomainPathLength - dom.FullPath.Length() + 1 )
+                          ._("= Verbosity." );
                           ALox.ToString( verbosity, dom.GetPriority(loggerNo), intMsg ).TrimEnd()
                           ._('.');
                 logInternal( Verbosity.Info, "LGR", intMsg );
@@ -3722,20 +3990,18 @@ public class Lox : ThreadLock
      ******************************************************************************************/
     protected void  getDomainPrefixFromConfig( Domain  dom )
     {
-        AString cfgStr= new AString();
-        tmpAS._()._( scopeInfo.GetLoxName() )._( "_PREFIXES" );
-        if( ALIB.Config.Get( ALox.ConfigCategoryName, tmpAS, cfgStr ) == 0 )
+        Variable variable= new Variable( ALox.PREFIXES, GetName() );
+        if( 0 == variable.Load() )
             return;
 
-        Tokenizer prefixesTok=      new Tokenizer( cfgStr, ';' );
         Tokenizer prefixTok=        new Tokenizer();
         Tokenizer prefixTokInner=   new Tokenizer();
         Substring domainStr=        new Substring();
         AString   domainStrBuf=     new AString();
         Substring prefixStr=        new Substring();
-        while( (prefixStr= prefixesTok.Next()).IsNotEmpty() )
+        for( int varNo= 0; varNo< variable.Size(); varNo++ )
         {
-            prefixTok.Set( prefixStr, '=' );
+            prefixTok.Set( variable.GetString( varNo ), '=' );
 
             domainStr.Set( prefixTok.Next() );
             if ( domainStr.StartsWith( "INTERNAL_DOMAINS", DomainSensitivity ) )
@@ -3773,7 +4039,8 @@ public class Lox : ThreadLock
                 // log info on this
                 intMsg._()._NC( "String \"" )._NC( prefixStr )._NC ( "\" added as prefix logable for domain \'" )
                           ._NC( dom.FullPath )
-                          ._NC( "\'. (Retrieved from configuration.)" );
+                          ._NC( "\'. (Retrieved from variable" )
+                          ._NC( variable.Fullname )._( ".)" );
                 logInternal( Verbosity.Info, "PFX", intMsg );
             }
         }
@@ -3787,31 +4054,17 @@ public class Lox : ThreadLock
      *
      * @param logger      The logger to set the verbosity for.
      * @param dom         The domain to set the verbosity for.
-     * @param cfgStr      The configuration string. If not read yet, null may be given.
-     * @param cfgPriority The priority of the configuration plug-in providing the variable.
+     * @param cfgResult   The result of the search for the variable to set verbosities from.
      ******************************************************************************************/
-    protected void getAllVerbosities      ( Logger  logger,  Domain  dom,
-                                            AString cfgStr,  int     cfgPriority )
+    protected void getAllVerbosities      ( Logger  logger,  Domain  dom,  Variable cfgResult )
     {
-        // get config string once
-        if ( cfgStr == null )
-        {
-            tmpAS._()._( scopeInfo.GetLoxName() )._( '_' )._( logger.GetName() )._( "_VERBOSITY" );
-            cfgStr= tmpConfigValue._();
-            cfgPriority= ALIB.Config.Get( ALox.ConfigCategoryName, tmpAS, cfgStr );
-            if( cfgPriority == 0 )
-                return;
-         }
-
         // get verbosity for us
-        getVerbosityFromConfig( logger, dom, cfgStr, cfgPriority );
+        getVerbosityFromConfig( logger, dom, cfgResult );
 
         // loop over all sub domains (recursion)
         foreach ( Domain subDomain in dom.SubDomains )
-            getAllVerbosities( logger, subDomain, cfgStr, cfgPriority );
+            getAllVerbosities( logger, subDomain, cfgResult );
     }
-
-
 
     #endif // ALOX_DBG_LOG || ALOX_REL_LOG
 }

@@ -35,7 +35,7 @@
     #set( ALOX_DBG_LOG                   "Off" )
     #set( ALOX_DBG_LOG_CI                "Off" )
     #set( ALOX_REL_LOG                   "Off" )
-    #set( ALOX_REL_LOG_CI                "On"  )
+    set( ALOX_REL_LOG_CI                "On"  )
 
     set ( ALOX_BASE_DIR   "../../.."  )
     include( ${ALOX_BASE_DIR}/build/cmake.cpp/ALox_Base.cmake )

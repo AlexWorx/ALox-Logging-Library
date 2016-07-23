@@ -23,8 +23,7 @@ ALox attempts to make logging as easy and lightweight as possible. We want you t
 
 On the other end of the list, ALox  enables **release logging** for productive applications to collect mission critical **metrics from the field**.
 
-This is **Version 1604**, which is a result of heavy refactoring version 1602!
-In other versioning schemes, this would have been version **2.0**.
+This is **Version 1607**. In other versioning schemes, this would probably have been version **2.1**.
 
 ##Features##
 
@@ -37,19 +36,21 @@ In other versioning schemes, this would have been version **2.0**.
 
 * Log lines **'clickable' in IDE** to jump to the corresponding source code line (depending on IDE).
 
-* Automatic collection of **meta information** like time stamp, time-difference to previous log, executing thread or executing source scope information (platform/language dependend).
+* Automatic collection of **meta information** like time stamp, time-difference to previous log, executing thread or executing source scope information (platform/language dependent).
+
+* Use of external configuration (INI-files, command line parameters, environment variables, etc.) which allows developer specific local settings and greatly supports working in teams.
 
 * **Hierarchical 'Log-Domains'**, (like for example "MYAPP/UI", "MYAPP/DATABASE" that allow the classification of different log statements into user defined topics. Verbosity is controlled per domain to allow the programmer to concentrate on the area of current interest.
 
 * Defaulting 'Log-Domains' for **source scopes**, like *file*, *class* or *method*, which allows to omit the log-domain parameter from the log statements (again: leads to short, clean and readable log statements).
 
-* Defaulting 'Log-Domains' for **thread scopes**, which allows to control the verbosity of the log output on a per thread basis. 
+* Defaulting 'Log-Domains' for **thread scopes**, which allows to control the verbosity of the log output on a per thread basis.
 
 * Support for **CMake**, **Eclipse**, **Visual Studio**, **QT Creator**, **Mono Develop** in combination with **GNU/Linux**, **Windows**, **Windows Phone** and **Android**. (Windows Phone in current versions not tested any more). Porting to other platforms should be easy.
 
-* Very **fast** to minimize runtime overhead of logging (We just broke our former record and did **one million log lines in a second**, including meta information. This was of-course the C++ version doing release logging on release executable).
+* Very **fast** to minimize run-time overhead of logging (We just broke our former record and did **one million log lines in a second**, including meta information. This was of-course the C++ version doing release logging on release executable).
 
-* Automatic removal, aka **'pruning'**,  of *debug-log* statements from release code mostly without the need of preprocessor if/endif code  cluttering. Optionally also automatic pruning of *release-log* statements. (In Java: implemented using [Proguard](http://proguard.sourceforge.net), with provision of ready to use configuration files.
+* Automatic removal, aka **'pruning'**,  of *debug-log* statements from release code mostly without the need of pre-processor if/endif code  cluttering. Optionally also automatic pruning of *release-log* statements. (In Java: implemented using [Proguard](http://proguard.sourceforge.net), with provision of ready to use configuration files.
 
 * Multiple **parallel log streams** with different *filters* and verbosity levels, e.g. for logging to the console and in parallel into a file.
 
@@ -72,7 +73,7 @@ In other versioning schemes, this would have been version **2.0**.
     * Logging **XML trees**
 
 * C++ version accepts arbitrary **3rd party string types**. This goal was reached by underlying A-Worx utility library *ALib* (open source, MIT License) which greatly [solved that problem](http://alexworx.github.io/ALox-Logging-Library/cpp_ref/namespaceaworx_1_1lib_1_1strings.html) using some *template meta programming* to relieve us from the (disastrous) string mix in the C++ world.
-  On the same token, conversion of **user defined types** to loggable (string) objects is supported. After implementing the conversion once, you can just throw your custom types into ALox log statements, even as a part of a concatenated log message.
+  On the same token, conversion of **user defined types** to logable (string) objects is supported. After implementing the conversion once, you can just throw your custom types into ALox log statements, even as a part of a concatenated log message.
 
 * and finally: ALox is under **continuous development**. You're invited to contribute!
 

@@ -13,6 +13,9 @@
 #if !defined (HPP_ALIB_CONFIG_INI_FILE)
     #include "alib/config/inifile.hpp"
 #endif
+#if !defined (HPP_ALIB_CONFIG_CONFIGURATION)
+    #include "alib/config/configuration.hpp"
+#endif
 
 
 #include <iostream>
@@ -151,40 +154,40 @@ UT_METHOD(Log_Multiline)
     Log::DebugLogger->MultiLineMsgMode= 0;
     Log_Info( "" );
     Log_Info( "-------- ML Mode = 0 (single line) --------" );
-    Log_LogConfig( "MLine", Verbosity::Info, "Our Log configuration is:" );
+    Log_LogState( "MLine", Verbosity::Info, "Our Log configuration is:" );
 
     Log::DebugLogger->MultiLineMsgMode= 0;
     Log::DebugLogger->MultiLineDelimiterRepl= "~|~";
     Log_Info( "" );
     Log_Info( "-------- ML Mode = 0 (single line) with delimiter replacement set to ~|~ --------" );
-    Log_LogConfig( "MLine", Verbosity::Info, "Our Log configuration is:" );
+    Log_LogState( "MLine", Verbosity::Info, "Our Log configuration is:" );
 
     Log::DebugLogger->MultiLineMsgMode= 0;
     Log::DebugLogger->MultiLineDelimiter= "";
     Log_Info( "" );
     Log_Info( "-------- ML Mode = 0 (single line) with delimiter set to \"\" (stops multi line processing) --------" );
-    Log_LogConfig( "MLine", Verbosity::Info, "Our Log configuration is:" );
+    Log_LogState( "MLine", Verbosity::Info, "Our Log configuration is:" );
     Log::DebugLogger->MultiLineDelimiter= (const char*) nullptr; // reset
 
     Log::DebugLogger->MultiLineMsgMode= 1;
     Log_Info( "" );
     Log_Info( "-------- ML Mode = 1 (multi line, all meta info per line) --------" );
-    Log_LogConfig( "MLine", Verbosity::Info, "Our Log configuration is:" );
+    Log_LogState( "MLine", Verbosity::Info, "Our Log configuration is:" );
 
     Log::DebugLogger->MultiLineMsgMode= 2;
     Log_Info( "" );
     Log_Info( "-------- ML Mode = 2 (multi line, meta info blanked) --------" );
-    Log_LogConfig( "MLine", Verbosity::Info, "Our Log configuration is:" );
+    Log_LogState( "MLine", Verbosity::Info, "Our Log configuration is:" );
 
     Log::DebugLogger->MultiLineMsgMode= 3;
     Log_Info( "" );
     Log_Info( "-------- ML Mode = 3 (multi line, print headline with info, text starts at pos 0) --------" );
-    Log_LogConfig( "MLine", Verbosity::Info, "Our Log configuration is:" );
+    Log_LogState( "MLine", Verbosity::Info, "Our Log configuration is:" );
 
     Log::DebugLogger->MultiLineMsgMode= 4;
     Log_Info( "" );
     Log_Info( "-------- ML Mode = 4 (pure multi line, no meta info, no headline, starts at pos 0)) --------" );
-    Log_LogConfig( "MLine", Verbosity::Info, "Our Log configuration is:" );
+    Log_LogState( "MLine", Verbosity::Info, "Our Log configuration is:" );
 }
 
 
@@ -407,7 +410,7 @@ UT_METHOD(Log_TextLogger_RegisterStdStreamLocks)
 /** ********************************************************************************************
 * Log_TextLogger_FormatConfig
 **********************************************************************************************/
-void testFormatConfig( ALIBUnitTesting& ut, const String& testFormat,
+void testFormatConfig( AWorxUnitTesting& ut, const String& testFormat,
                        const String& expFmt,
                        const String& expFmtError    = NullString,
                        const String& expFmtWarning  = NullString,
@@ -415,33 +418,36 @@ void testFormatConfig( ALIBUnitTesting& ut, const String& testFormat,
                        const String& expFmtVerbose  = NullString
                      )
 {
-    IniFile iniFile("*"); // don't read
-    iniFile.Save( ALox::ConfigCategoryName, "TESTML_FORMAT", testFormat   );
-    ALIB::Config.InsertPlugin( &iniFile, Configuration::PrioIniFile );
+    Variable var;
+    var.Define(ALox::ConfigCategoryName, "TESTML_FORMAT", ',').Store( testFormat  );
     MemoryLogger ml("TESTML");
 
-                                      UT_EQ( expFmt, ml.MetaInfo->Format );
+    Lox lox("T", false );
+    lox.SetScopeInfo( "ut_alox_logger.cpp", 425, "testFormatConfig" );
+    lox.SetVerbosity( &ml, Verbosity::Info );
+
+                                      UT_EQ( expFmt       , ml.MetaInfo->Format );
     if( expFmtError  .IsNotNull() ) { UT_EQ( expFmtError  , ml.MetaInfo->VerbosityError   ); }
     if( expFmtWarning.IsNotNull() ) { UT_EQ( expFmtWarning, ml.MetaInfo->VerbosityWarning ); }
     if( expFmtInfo   .IsNotNull() ) { UT_EQ( expFmtInfo   , ml.MetaInfo->VerbosityInfo    ); }
     if( expFmtVerbose.IsNotNull() ) { UT_EQ( expFmtVerbose, ml.MetaInfo->VerbosityVerbose ); }
 
-    ALIB::Config.RemovePlugin( &iniFile );
+    lox.RemoveLogger(&ml);
+    lox.Release();
+
 }
 
 
 UT_METHOD(Log_TextLogger_FormatConfig)
 {
     UT_INIT();
-
     testFormatConfig( ut, "Test"                                , "Test"                     );
-    testFormatConfig( ut, "\"Test"                              , "\"Test"                   );
+    testFormatConfig( ut, "\"Test"                              , "Test"                     );
+    testFormatConfig( ut, "\\\"Test"                            , "\"Test"                   );
     testFormatConfig( ut, "\"Test\""                            , "Test"                     );
-    testFormatConfig( ut, "  \" Test  \"  s"                    , " Test  "                  );
+    testFormatConfig( ut, "  \" Test \"        X"               , " Test X"                  );
 
-    testFormatConfig( ut, " Test , a ,b, c,d  "                 , "Test", "a","b","c","d"    );
-    testFormatConfig( ut, "\" Test, a ,b, c,d  "                , "\" Test", "a","b","c","d" );
-    testFormatConfig( ut, "\" Test \", a ,b, c,d  "             , " Test ", "a","b","c","d"  );
+    testFormatConfig( ut, " Test , a ,b,   c,d  "               , "Test", "a","b","c","d"    );
 }
 
 /** ********************************************************************************************

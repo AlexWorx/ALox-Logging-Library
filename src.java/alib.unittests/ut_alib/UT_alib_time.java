@@ -9,8 +9,6 @@ import java.util.*;
 
 import org.junit.Test;
 
-import ut_com_aworx_uttools.AUnitTest;
-
 import com.aworx.lib.ALIB;
 import com.aworx.lib.strings.AString;
 import com.aworx.lib.time.TickSpan;
@@ -18,8 +16,10 @@ import com.aworx.lib.time.TickWatch;
 import com.aworx.lib.time.Ticks;
 import com.aworx.lox.*;
 
+import ut_com_aworx.AWorxUnitTesting;
 
-public class UT_alib_time  extends AUnitTest
+
+public class UT_alib_time  extends AWorxUnitTesting
 {
     @SuppressWarnings("static-method")
     @Test

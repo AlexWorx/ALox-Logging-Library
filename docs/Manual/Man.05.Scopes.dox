@@ -351,10 +351,10 @@ As a rule of thumb (to avoid double definitions), it is advised to put the regis
 the most central (important) class of such package.
 
 A snapshot of all current settings can be logged using
-<b>%Lox.LogConfig</b>
-([C++] (@ref      #aworx::lox::Lox::LogConfig),
- [C#]  (@ref  #cs::aworx::lox::Lox::LogConfig),
- [Java](@ref #com::aworx::lox::Lox::logConfig)) to investigate which settings have been performed.
+<b>%Lox.State</b>
+([C++] (@ref      #aworx::lox::Lox::State),
+ [C#]  (@ref  #cs::aworx::lox::Lox::State),
+ [Java](@ref #com::aworx::lox::Lox::state)) to investigate which settings have been performed.
 Alternatively, if the snapshot is not enough to understand what is set, overwritten and used where,
 a live log of ALox' internal messages can be activated to identify exactly what the code is doing
 in respect to <em>Scope Domains</em>.
@@ -559,10 +559,10 @@ hence the current thread, is used.
 
 
 When things get more complicated, same as with language related scopes, a snapshot of all current
-settings can be logged using <b>%Lox.LogConfig</b>
-([C++] (@ref      #aworx::lox::Lox::LogConfig),
- [C#]  (@ref  #cs::aworx::lox::Lox::LogConfig),
- [Java](@ref #com::aworx::lox::Lox::logConfig)) to investigate which settings have been performed.
+settings can be logged using <b>%Lox.State</b>
+([C++] (@ref      #aworx::lox::Lox::State),
+ [C#]  (@ref  #cs::aworx::lox::Lox::State),
+ [Java](@ref #com::aworx::lox::Lox::state)) to investigate which settings have been performed.
 
 Alternatively, if the snapshot is not enough to understand what is set, removed and used where,
 a live log of ALox' internal messages can be activated to identify exactly what the code is doing
@@ -596,7 +596,7 @@ We want to summarize the takeaways of this chapter:
   recently added <em>Scope Domains</em>. Therefore, if out-of-order removals are needed, method
   \b Lox.RemoveThreadDomain is to be used for removal.
 - To investigate into settings of a \b %Lox, two options exist. Either by creating a snapshot
-  of the current setting (using method \b Lox.LogConfig) or by activating internal log messages
+  of the current setting (using method \b Lox.State) or by activating internal log messages
   and observing which setting is made at which position in the source code and which point in time
   when running a process.
 

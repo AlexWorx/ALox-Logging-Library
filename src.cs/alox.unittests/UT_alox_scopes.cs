@@ -32,6 +32,8 @@ using System.Collections.Generic;
     using cs.aworx.lox.tools.json;
 #endif
 
+#if ALOX_DBG_LOG
+
 namespace ut_cs_aworx_lox
 {
     class CustomPrefix
@@ -47,7 +49,7 @@ namespace ut_cs_aworx_lox
     #if ALIB_VSTUDIO
         [TestClass]
     #endif
-    public class CS_ALox_scopes  : AUnitTest
+    public class CS_ALox_scopes  : AWorxUnitTesting
     {
         // used with unit test Log_ScopeInfoCacheTest
         public static void ScopeInfoCacheTest() { Log.Info("Test method of CS_ALox_scopes"); }
@@ -110,7 +112,7 @@ namespace ut_cs_aworx_lox
         UT_INIT();
 
         // we have tell alox to include more directories in the scope path
-        Log.ClearSourcePathTrimRules( Inclusion.Include, false );
+        Log.ClearSourcePathTrimRules( Reach.Global, false );
         Log.SetSourcePathTrimRule( "*/alox/src.cs/", Inclusion.Exclude );
 
         CustomPrefix custom1= new CustomPrefix();
@@ -244,7 +246,7 @@ namespace ut_cs_aworx_lox
         UT_INIT();
 
         // we have tell alox to include more directories in the scope path
-        Log.ClearSourcePathTrimRules( Inclusion.Include, false );
+        Log.ClearSourcePathTrimRules( Reach.Global, false);
         Log.SetSourcePathTrimRule( "*/alox/src.cs/", Inclusion.Exclude );
 
         Log.AddDebugLogger();
@@ -298,7 +300,7 @@ namespace ut_cs_aworx_lox
                                                                  CS_ALox_domains_helper.help(); SDCHECK( "@/GLOBAL/PO50/PO2/PO1/PATH/HFILE/HMETHOD#", ml );
                                                                          Log.Info( "" );        SDCHECK( "@/GLOBAL/PO50/PO2/PO1/PATH/FILE/METHOD#"  , ml );
 
-        //Log.LogConfig( "", Verbosity.Info, "Configuration now is:" ); ml.MemoryLog._(); ml.AutoSizes.Reset();
+        //Log.State( "", Verbosity.Info, "Configuration now is:" ); ml.MemoryLog._(); ml.AutoSizes.Reset();
 
         // remove all previous scope domains
         Log.SetDomain( "",     Scope.Global      );
@@ -347,7 +349,7 @@ namespace ut_cs_aworx_lox
                                UT_EQ( "@/OTHER_THREAD/DTT#", ml.MemoryLog );  ml.MemoryLog._(); ml.AutoSizes.Reset();
         Log.Info( "ME", "" );  UT_EQ( "@/THIS_THREAD/ME#"  , ml.MemoryLog );  ml.MemoryLog._(); ml.AutoSizes.Reset();
 
-        //Log.LogConfig( "", Verbosity.Info, "Configuration now is:" ); ml.MemoryLog._(); ml.AutoSizes.Reset();
+        //Log.State( "", Verbosity.Info, "Configuration now is:" ); ml.MemoryLog._(); ml.AutoSizes.Reset();
     }
     #endif
 
@@ -367,6 +369,7 @@ namespace ut_cs_aworx_lox
         ml.AutoSizes.Reset();
     }
 
+    #if ALOX_DBG_LOG
     #if ALIB_MONO_DEVELOP
         [Test ()]
     #endif
@@ -381,7 +384,7 @@ namespace ut_cs_aworx_lox
         UT_INIT();
 
         // we have tell alox to include more directories in the scope path
-        Log.ClearSourcePathTrimRules( Inclusion.Include, false );
+        Log.ClearSourcePathTrimRules( Reach.Global, false);
         Log.SetSourcePathTrimRule( "*/alox/src.cs/", Inclusion.Exclude );
 
         Lox lox= new Lox( "ReleaseLox" );
@@ -476,6 +479,7 @@ namespace ut_cs_aworx_lox
         lox.RemoveLogger( consoleLogger );
         lox.RemoveLogger( ml );
     }
+    #endif
 
     /** ********************************************************************************************
      * Log.Once
@@ -485,7 +489,6 @@ namespace ut_cs_aworx_lox
         Log.Once( Verbosity.Info, "Once(Scope filename) 4x -from other method", Scope.Filename, 0, 4 );
     }
 
-    #if ALOX_DBG_LOG
     #if ALIB_MONO_DEVELOP
         [Test ()]
     #endif
@@ -528,7 +531,7 @@ namespace ut_cs_aworx_lox
         UT_EQ( 1, ml.CntLogs ); ml.CntLogs= 0;
         Thread thread= new Thread( new ThreadStart( LogOnceTestThreadRun ) );
         thread.Start();
-        while( thread.IsAlive );
+        while( thread.IsAlive )
             ALIB.SleepMicros(1);
         UT_EQ( 2, ml.CntLogs ); ml.CntLogs= 0;
         Log.Once( Verbosity.Info, "Once(Scope.ThreadOuter) 2x - main thread", Scope.ThreadOuter, 0, 2 );
@@ -619,12 +622,10 @@ namespace ut_cs_aworx_lox
 
         UT_EQ( 4, ml.CntLogs ); ml.CntLogs= 0;
     }
-    #endif
 
     /** ********************************************************************************************
      * Log_Data
      **********************************************************************************************/
-    #if ALOX_DBG_LOG
     #if ALIB_MONO_DEVELOP
         [Test ()]
     #endif
@@ -717,16 +718,15 @@ namespace ut_cs_aworx_lox
 
         Thread thread= new Thread( new ThreadStart( StoreDataTestThreadRun ) );
         thread.Start();
-        while( thread.IsAlive );
+        while( thread.IsAlive )
             ALIB.SleepMicros(1);
 
         data= Log.Retrieve(          Scope.ThreadOuter ); UT_EQ( "Main Thread Data"         , data.StringValue );
         data= Log.Retrieve( "mykey", Scope.ThreadOuter ); UT_EQ( "Main Thread Data, keyed"  , data.StringValue );
 
     }
-    #endif
-
 
     } // class
 
 } // namespace
+#endif

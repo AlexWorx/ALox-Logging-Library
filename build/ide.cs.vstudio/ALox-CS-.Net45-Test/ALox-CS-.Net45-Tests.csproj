@@ -59,8 +59,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\src.cs\alib.unittests\UnitTests.cs">
-      <Link>ut.AWorx.Lib\UnitTests.cs</Link>
+    <Compile Include="..\..\..\src.cs\alib.unittests\AWorxUnitTesting.cs">
+      <Link>ut.AWorx.Lib\AWorxUnitTesting.cs</Link>
     </Compile>
     <Compile Include="..\..\..\src.cs\alib.unittests\UT_alib_config.cs">
       <Link>ut.AWorx.Lib\UT_alib_config.cs</Link>

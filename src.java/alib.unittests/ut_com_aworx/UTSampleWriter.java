@@ -1,14 +1,21 @@
 // #################################################################################################
-//  Unit Tests - AWorx Library
+//  ut_com_aworx - AWorx Unit Test Support using ALib and ALox
 //
 //  (c) 2013-2016 A-Worx GmbH, Germany
 //  Published under MIT License (Open Source License, see LICENSE.txt)
+//
+//  Relies on ALox logging library, which in turn relies on ALib. Hence, ALibs' unit
+//  tests can only be compiled if ALox library is present.
 // #################################################################################################
-package ut_com_aworx_uttools;
+package ut_com_aworx;
 
-import java.io.*;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 
-public class UnitTestSampleWriter
+public class UTSampleWriter
 {
     protected PrintStream      origOut;
     protected PrintStream      utWriter;
@@ -34,7 +41,7 @@ public class UnitTestSampleWriter
                     generatedSamplesDir= testDir + "/generated";
                     File dir = new File(generatedSamplesDir);                
                     if (!dir.exists()) 
-                        try{ dir.mkdir();  }   catch(SecurityException se) { }        
+                        try{ dir.mkdir();  }   catch(@SuppressWarnings ("unused") SecurityException se) { /* void */}        
                     generatedSamplesDir= generatedSamplesDir + "/";
 
                     break;
@@ -45,7 +52,7 @@ public class UnitTestSampleWriter
         return generatedSamplesDir;
     }
     
-    public UnitTestSampleWriter(String filename)
+    public UTSampleWriter(String filename)
     {
         if ( getGeneratedSamplesDir().length() == 0 )
             return;

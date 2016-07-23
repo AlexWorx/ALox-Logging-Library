@@ -11,15 +11,20 @@ import java.io.FileWriter;
 
 import org.junit.Test;
 
-import ut_com_aworx_uttools.AUnitTest;
-
 import com.aworx.lib.ALIB;
 import com.aworx.lib.config.Configuration;
 import com.aworx.lib.config.IniFile;
-import com.aworx.lox.*;
+import com.aworx.lib.config.Variable;
+import com.aworx.lox.ALox;
+import com.aworx.lox.Log;
+import com.aworx.lox.Lox;
+import com.aworx.lox.Scope;
+import com.aworx.lox.Verbosity;
 import com.aworx.lox.loggers.MemoryLogger;
 
-public class UT_alox_domains extends AUnitTest
+import ut_com_aworx.AWorxUnitTesting;
+
+public class UT_alox_domains extends AWorxUnitTesting
 {
     void LOG_CHECK( String dom, String exp, MemoryLogger ml, Lox lox )
     {
@@ -122,13 +127,13 @@ public class UT_alox_domains extends AUnitTest
 
         // wrong rule
         Log.setVerbosity(Log.debugLogger, Verbosity.WARNING, ALox.INTERNAL_DOMAINS );  int cntLogs= Log.debugLogger.cntLogs;
-        Log.setDomainSubstitutionRule( "LOC"        , "X"       );   ;                      UT_TRUE( cntLogs + 1 == Log.debugLogger.cntLogs );
-        Log.setDomainSubstitutionRule( "*LOC/"      , "X"       );   ;                      UT_TRUE( cntLogs + 2 == Log.debugLogger.cntLogs );
-        Log.setDomainSubstitutionRule( "LOC/*"      , "X"       );   ;                      UT_TRUE( cntLogs + 3 == Log.debugLogger.cntLogs );
-        Log.setDomainSubstitutionRule( "LOC*"       , "X"       );   ;                      UT_TRUE( cntLogs + 4 == Log.debugLogger.cntLogs );
-        Log.setDomainSubstitutionRule( "*LOC*"      , "X"       );   ;                      UT_TRUE( cntLogs + 4 == Log.debugLogger.cntLogs );
-        Log.setDomainSubstitutionRule( "*/LOC*"     , "X"       );   ;                      UT_TRUE( cntLogs + 4 == Log.debugLogger.cntLogs );
-        Log.setDomainSubstitutionRule( "*/LOC/*"    , "X"       );   ;                      UT_TRUE( cntLogs + 4 == Log.debugLogger.cntLogs );
+        Log.setDomainSubstitutionRule( "LOC"        , "X"       );              UT_TRUE( cntLogs + 1 == Log.debugLogger.cntLogs );
+        Log.setDomainSubstitutionRule( "*LOC/"      , "X"       );              UT_TRUE( cntLogs + 2 == Log.debugLogger.cntLogs );
+        Log.setDomainSubstitutionRule( "LOC/*"      , "X"       );              UT_TRUE( cntLogs + 3 == Log.debugLogger.cntLogs );
+        Log.setDomainSubstitutionRule( "LOC*"       , "X"       );              UT_TRUE( cntLogs + 4 == Log.debugLogger.cntLogs );
+        Log.setDomainSubstitutionRule( "*LOC*"      , "X"       );              UT_TRUE( cntLogs + 4 == Log.debugLogger.cntLogs );
+        Log.setDomainSubstitutionRule( "*/LOC*"     , "X"       );              UT_TRUE( cntLogs + 4 == Log.debugLogger.cntLogs );
+        Log.setDomainSubstitutionRule( "*/LOC/*"    , "X"       );              UT_TRUE( cntLogs + 4 == Log.debugLogger.cntLogs );
 
 
         Log.setDomainSubstitutionRule( null        , null       );   // delete rules
@@ -182,7 +187,7 @@ public class UT_alox_domains extends AUnitTest
         Log.setDomainSubstitutionRule( "/S*"        , "/R"       );   LOG_CHECK( "/R"   , "</R>"                   , ml,Log.LOX);
         Log.setDomainSubstitutionRule( "/S*"        , "/T"       );   LOG_CHECK( "/R"   , "</T>"                   , ml,Log.LOX);
 
-        //Log.logConfig( "", Verbosity.INFO, "Configuration now is:" );
+        //Log.state( "", Verbosity.INFO, "Configuration now is:" );
 
         // substring rule
         Log.setDomainSubstitutionRule( "*B*"        , "X"        );   LOG_CHECK( "ABC"  , "</AXC>"                 , ml,Log.LOX);
@@ -201,7 +206,7 @@ public class UT_alox_domains extends AUnitTest
                                                                      LOG_CHECK( "Q"     , "</Q>"                  , ml,Log.LOX);
                                                                      LOG_CHECK( "ABC"   , "</ABC>"                , ml,Log.LOX);
 
-        //Log.logConfig( "", Verbosity.INFO, "Configuration now is:" );
+        //Log.state( "", Verbosity.INFO, "Configuration now is:" );
 
         Log.removeLogger( ml );
     }
@@ -231,7 +236,7 @@ public class UT_alox_domains extends AUnitTest
             file.write( iniFileContents );
             file.close();
         }
-        catch(Exception e)
+        catch(@SuppressWarnings ("unused") Exception e)
         {
             UT_TRUE( false );
         }
@@ -254,7 +259,7 @@ public class UT_alox_domains extends AUnitTest
         LOG_CHECK( "A_DOM"  , "</BETTER_NAME>"      , ml,myLox);
         LOG_CHECK( "UI"     , "</LIBS/UI>"          , ml,myLox);
 
-        //Log.logConfig( "", Verbosity.INFO, "Configuration now is:" );
+        //Log.state( "", Verbosity.INFO, "Configuration now is:" );
 
         ALIB.config.removePlugin( iniFile );
         myLox.removeLogger( ml );
@@ -274,19 +279,20 @@ public class UT_alox_domains extends AUnitTest
         {
             // create iniFile
             IniFile iniFile= new IniFile("*"); // don't read
-            iniFile.save( ALox.configCategoryName, "TESTML_FORMAT","%Sp"   );
-            iniFile.save( ALox.configCategoryName, "T_LOX_TESTML_VERBOSITY",
+            Variable var= new Variable();
+            iniFile.store( var.define( ALox.configCategoryName, "TESTML_FORMAT"),  "%Sp" );
+            iniFile.store( var.define( ALox.configCategoryName, "T_LOX_TESTML_VERBOSITY",';'),
                              "/DOM_VERB  = VerboseXX  ;" // xx is allowed!
-                           + "/DOM_INFO  = Info       ;"
-                           + "/DOM_WARN  = WARNING    ;"
-                           + "/DOM_ERR   = erRor      ;"
-                           + "/DOM_OFF   = off        ;"
-                           + "/DOM_OFF2  = xxx        ;"
-                           + "/ATSTART*  = Info       ;"
-                           + "*ATEND     = Info       ;"
-                           + "*SUBSTR*   = Info       ;"
-                           + "/OVERWRITE = Info       ;"
-                    );
+                          +  "/DOM_INFO  = Info       ;"
+                          +  "/DOM_WARN  = WARNING    ;"
+                          +  "/DOM_ERR   = erRor      ;"
+                          +  "/DOM_OFF   = off        ;"
+                          +  "/DOM_OFF2  = xxx        ;"
+                          +  "/ATSTART*  = Info       ;"
+                          +  "*ATEND     = Info       ;"
+                          +  "*SUBSTR*   = Info       ;"
+                          +  "/OVERWRITE = Info       ;"
+                        );
             ALIB.config.insertPlugin( iniFile, Configuration.PRIO_INI_FILE );
 
 
@@ -364,15 +370,15 @@ public class UT_alox_domains extends AUnitTest
             lox.error  ( "/A/B"         , "test" );    UT_EQ(  0, ml.cntLogs ); ml.cntLogs= 0;
             lox.error  ( "/A/C"         , "test" );    UT_EQ(  0, ml.cntLogs ); ml.cntLogs= 0;
 
-            lox.setVerbosity( ml , Verbosity.INFO, "/A/B", Lox.PRIO_SOURCE -1 ); // does not overwrite
+            lox.setVerbosity( ml , Verbosity.INFO, "/A/B", Configuration.PRIO_DEFAULT -1 ); // does not overwrite
             lox.verbose( "/A/B"         , "test" );    UT_EQ(  0, ml.cntLogs ); ml.cntLogs= 0;
             lox.info   ( "/A/B"         , "test" );    UT_EQ(  0, ml.cntLogs ); ml.cntLogs= 0;
 
-            lox.setVerbosity( ml , Verbosity.INFO, "/A/B", Lox.PRIO_SOURCE ); // does overwrite
+            lox.setVerbosity( ml , Verbosity.INFO, "/A/B", Configuration.PRIO_DEFAULT ); // does overwrite
             lox.verbose( "/A/B"         , "test" );    UT_EQ(  0, ml.cntLogs ); ml.cntLogs= 0;
             lox.info   ( "/A/B"         , "test" );    UT_EQ(  1, ml.cntLogs ); ml.cntLogs= 0;
 
-            lox.setVerbosity( ml , Verbosity.INFO, "/A/B", Lox.PRIO_SOURCE+ 1 ); // one higher
+            lox.setVerbosity( ml , Verbosity.INFO, "/A/B", Configuration.PRIO_DEFAULT+ 1 ); // one higher
             lox.verbose( "/A/B"         , "test" );    UT_EQ(  0, ml.cntLogs ); ml.cntLogs= 0;
             lox.info   ( "/A/B"         , "test" );    UT_EQ(  1, ml.cntLogs ); ml.cntLogs= 0;
 
@@ -382,7 +388,7 @@ public class UT_alox_domains extends AUnitTest
             lox.info   ( "/A/B"         , "test" );    UT_EQ(  1, ml.cntLogs ); ml.cntLogs= 0;
             lox.verbose( "/A/C"         , "test" );    UT_EQ(  1, ml.cntLogs ); ml.cntLogs= 0;
 
-            //lox.logConfig( "", Verbosity.INFO, "Configuration now is:" );
+            //lox.state( "", Verbosity.INFO, "Configuration now is:" );
 
             ALIB.config.removePlugin( iniFile );
             lox.removeLogger( ml );

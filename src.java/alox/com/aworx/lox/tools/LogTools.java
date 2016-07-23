@@ -650,7 +650,7 @@ public abstract class LogTools
             return;
         }
         // mark object as being logged
-        instObject2LineNumber.put( inst, instLineNumber );
+        instObject2LineNumber.put( inst, new Integer( instLineNumber ) );
 
         // ### Arrays ###
         if ( type.isArray() )
@@ -731,7 +731,7 @@ public abstract class LogTools
                 memberInfo.setAccessible( true );
 
                 Object value=    null;
-                try { value= memberInfo.get( inst ); }    catch( Exception e)  {    value= FmtInstNoAccessToValue; }
+                try { value= memberInfo.get( inst ); }    catch( @SuppressWarnings ("unused") Exception e)  {    value= FmtInstNoAccessToValue; }
 
                 // begin line and log name
                 instBeginLine( indent );

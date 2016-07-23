@@ -170,7 +170,9 @@
     <ClInclude Include="..\..\..\src.cpp\alib\compatibility\std_string.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\config\configuration.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\config\inifile.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\config\inmemoryplugin.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\config\plugins.hpp" />
+    <ClInclude Include="..\..\..\src.cpp\alib\config\variable.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\containers\pathmap.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\core\enums.hpp" />
     <ClInclude Include="..\..\..\src.cpp\alib\core\macros.hpp" />
@@ -224,7 +226,9 @@
     <ClCompile Include="..\..\..\src.cpp\alib\compatibility\std_iostream.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\config\configuration.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\config\inifile.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\config\inmemoryplugin.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\config\plugins.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alib\config\variable.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\core\alib.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\core\enums.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alib\core\report.cpp" />
@@ -258,6 +262,7 @@
     <ClCompile Include="..\..\..\src.cpp\alox\loggers\vstudiologger.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alox\loggers\windowsconsolelogger.cpp" />
     <ClCompile Include="..\..\..\src.cpp\alox\lox.cpp" />
+    <ClCompile Include="..\..\..\src.cpp\alox\lox_getstate.cpp" />
     <ClCompile Include="ALox-CPP-DLL.cpp" />
     <ClCompile Include="dllmain.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>

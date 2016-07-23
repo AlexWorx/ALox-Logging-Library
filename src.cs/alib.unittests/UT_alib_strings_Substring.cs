@@ -32,7 +32,7 @@ namespace ut_cs_aworx_lib
     #if ALIB_VSTUDIO
         [TestClass]
     #endif
-    public class CS_Strings_Substring  : AUnitTest
+    public class CS_Strings_Substring  : AWorxUnitTesting
     {
 
 
@@ -81,8 +81,7 @@ public void SubstringConstructor()
         {
             astr.Clear()._( "xy xz abc xy" );
             Substring subs= new Substring();
-            subs.Set(astr).Trim("xy ".ToCharArray());
-            subs.CopyTo( res );
+            subs.Set(astr).Trim("xy ".ToCharArray()).CopyTo( res );
             UT_EQ( "z abc",      res );
         }
 
@@ -107,8 +106,8 @@ public void SubstringConstructor()
         UT_FALSE(          (new Substring( astr, 20, 3 )).IsNull()   );
 
 
-        Substring s2= new Substring( astr); s2.Trim();
-        UT_EQ( "astring",  new Substring( s2.ToString() ).ToString() );
+        Substring s2= new Substring( astr);
+        UT_EQ( "astring",  new Substring( s2.Trim().ToString() ).ToString() );
         UT_EQ( "str",      (new Substring( (new Substring( astr, 2,3  )))).ToString() );
     }
 
@@ -325,11 +324,11 @@ public void FrontEnd()
             UT_EQ(  '1',       s.Consume       ( )         );
 
             UT_EQ(  false    , s.Consume       ('w'                        )   );
-            UT_EQ(  true     , s.Consume       ('w'     , Whitespaces.Trim )   );
-            UT_EQ(  true     , s.Consume       ('o'     , Whitespaces.Trim )   );
-            UT_EQ(  false    , s.Consume       ('o'     , Whitespaces.Trim )   );
-            UT_EQ(  true     , s.Consume       ('r'     , Whitespaces.Trim )   );
-            UT_EQ(  false    , s.Consume       ("D2"    , Whitespaces.Trim )   );
+            UT_EQ(  true     , s.Consume       ('w'     , Case.Sensitive, Whitespaces.Trim )   );
+            UT_EQ(  true     , s.Consume       ('o'     , Case.Sensitive, Whitespaces.Trim )   );
+            UT_EQ(  false    , s.Consume       ('o'     , Case.Sensitive, Whitespaces.Trim )   );
+            UT_EQ(  true     , s.Consume       ('r'     , Case.Sensitive, Whitespaces.Trim )   );
+            UT_EQ(  false    , s.Consume       ("D2"    , Case.Sensitive, Whitespaces.Trim )   );
             UT_EQ(  false    , s.Consume       ("D2"                       )   );
             UT_EQ(  true     , s.Consume       ("d2"                       )   );
 
@@ -345,11 +344,11 @@ public void FrontEnd()
             UT_EQ(  'w',       s.ConsumeFromEnd( )         );
 
             UT_EQ(  false    , s.ConsumeFromEnd('2'                        )   );
-            UT_EQ(  true     , s.ConsumeFromEnd('2'     , Whitespaces.Trim )   );
-            UT_EQ(  true     , s.ConsumeFromEnd('d'     , Whitespaces.Trim )   );
-            UT_EQ(  false    , s.ConsumeFromEnd('d'     , Whitespaces.Trim )   );
-            UT_EQ(  true     , s.ConsumeFromEnd('r'     , Whitespaces.Trim )   );
-            UT_EQ(  false    , s.ConsumeFromEnd("WO"    , Whitespaces.Trim )   );
+            UT_EQ(  true     , s.ConsumeFromEnd('2'     , Case.Sensitive, Whitespaces.Trim )   );
+            UT_EQ(  true     , s.ConsumeFromEnd('d'     , Case.Sensitive, Whitespaces.Trim )   );
+            UT_EQ(  false    , s.ConsumeFromEnd('d'     , Case.Sensitive, Whitespaces.Trim )   );
+            UT_EQ(  true     , s.ConsumeFromEnd('r'     , Case.Sensitive, Whitespaces.Trim )   );
+            UT_EQ(  false    , s.ConsumeFromEnd("WO"    , Case.Sensitive, Whitespaces.Trim )   );
             UT_EQ(  false    , s.ConsumeFromEnd("WO"                       )   );
             UT_EQ(  true     , s.ConsumeFromEnd("wo"                       )   );
 
@@ -367,7 +366,7 @@ public void FrontEnd()
             UT_EQ(  false,     s.Consume       ( sConsume )  );
             UT_EQ(  '1',       s.Consume       ( )           );
             UT_EQ(  false,     s.Consume       ( sConsume )  );
-            UT_EQ(  true,      s.Consume       ( sConsume, Whitespaces.Trim ) );
+            UT_EQ(  true,      s.Consume       ( sConsume, Case.Sensitive, Whitespaces.Trim ) );
             UT_EQ(  '2',       s.Consume       ( )           );
             UT_EQ(  ' ',       s.Consume       ( )           );
 
@@ -375,7 +374,7 @@ public void FrontEnd()
             UT_EQ(  false,     s.Consume       ( aConsume )  );
             UT_EQ(  '3',       s.Consume       ( )           );
             UT_EQ(  false,     s.Consume       ( aConsume )  );
-            UT_EQ(  true,      s.Consume       ( aConsume, Whitespaces.Trim ) );
+            UT_EQ(  true,      s.Consume       ( aConsume, Case.Sensitive, Whitespaces.Trim ) );
 
                       s.Set("1word  2word 3word  4word");
 
@@ -383,7 +382,7 @@ public void FrontEnd()
             UT_EQ(  false,     s.ConsumeFromEnd( sConsume )  );
             UT_EQ(  '4',       s.ConsumeFromEnd( )           );
             UT_EQ(  false,     s.ConsumeFromEnd( sConsume )  );
-            UT_EQ(  true,      s.ConsumeFromEnd( sConsume, Whitespaces.Trim ) );
+            UT_EQ(  true,      s.ConsumeFromEnd( sConsume, Case.Sensitive, Whitespaces.Trim ) );
             UT_EQ(  '3',       s.ConsumeFromEnd( )           );
             UT_EQ(  ' ',       s.ConsumeFromEnd( )           );
 
@@ -391,7 +390,7 @@ public void FrontEnd()
             UT_EQ(  false,     s.ConsumeFromEnd( aConsume )  );
             UT_EQ(  '2',       s.ConsumeFromEnd( )           );
             UT_EQ(  false,     s.ConsumeFromEnd( aConsume )  );
-            UT_EQ(  true,      s.ConsumeFromEnd( aConsume, Whitespaces.Trim ) );
+            UT_EQ(  true,      s.ConsumeFromEnd( aConsume, Case.Sensitive, Whitespaces.Trim ) );
         }
     }
 
@@ -487,7 +486,7 @@ public void FrontEnd()
         }
 
         // ignore case
-        String t= "Hallo A-Worx util";
+        String t= "Hello A-Worx util";
         subs.Set( "abc@" +   t + "abc@de", 4, t.Length );
         {
             UT_EQ(  6 ,  subs.IndexOf( "a-worx",   0    ,Case.Ignore ) );
@@ -496,8 +495,8 @@ public void FrontEnd()
             UT_EQ(  6 ,  subs.IndexOf( "a-worx",   6    ,Case.Ignore ) );
             UT_EQ(  -1,  subs.IndexOf( "a-worx",   7    ,Case.Ignore ) );
             UT_EQ(  -1,  subs.IndexOf( "a-worx", 100    ,Case.Ignore ) );
-            UT_EQ(   0,  subs.IndexOf( "hal",      0    ,Case.Ignore ) );
-            UT_EQ(  -1,  subs.IndexOf( "hal",      1    ,Case.Ignore ) );
+            UT_EQ(   0,  subs.IndexOf( "hel",      0    ,Case.Ignore ) );
+            UT_EQ(  -1,  subs.IndexOf( "hel",      1    ,Case.Ignore ) );
             UT_EQ(  13,  subs.IndexOf( "util",     1    ,Case.Ignore ) );
             UT_EQ(  13,  subs.IndexOf( "UTIL",     5    ,Case.Ignore ) );
             UT_EQ(  13,  subs.IndexOf( "UTIL",    13    ,Case.Ignore ) );

@@ -32,7 +32,7 @@ namespace ut_cs_aworx_lib
     #if ALIB_VSTUDIO
         [TestClass]
     #endif
-    public class CS_Strings_Tokenizer  : AUnitTest
+    public class CS_Strings_Tokenizer  : AWorxUnitTesting
     {
 
 
@@ -42,7 +42,7 @@ namespace ut_cs_aworx_lib
 
 void documentationSampleTokenizer()
 {
-    UnitTestSampleWriter utsw= new UnitTestSampleWriter("DOC_SAMPLES_ALIB_LIB_STRING_TOKEN.txt");
+    UTSampleWriter utsw= new UTSampleWriter("DOC_SAMPLES_ALIB_LIB_STRING_TOKEN.txt");
 
 
 //! [DOC_SAMPLES_ALIB_LIB_STRING_TOKEN]
@@ -50,28 +50,28 @@ void documentationSampleTokenizer()
     AString data= new AString( "test;  abc ; 1,2 , 3 ; xyz ; including;separator" );
 
     // create tokenizer on data with ';' as delimiter
-    Tokenizer tokens= new Tokenizer( data, ';' );
+    Tokenizer tknzr= new Tokenizer( data, ';' );
 
     // read tokens
 
-    System.Console.WriteLine( tokens.Next() ); // will print "test"
-    System.Console.WriteLine( tokens.Next() ); // will print "abc"
-    System.Console.WriteLine( tokens.Next() ); // will print "1,2 , 3"
+    System.Console.WriteLine( tknzr.Next() ); // will print "test"
+    System.Console.WriteLine( tknzr.Next() ); // will print "abc"
+    System.Console.WriteLine( tknzr.Next() ); // will print "1,2 , 3"
 
     // tokenize actual (third) token (nested tokenizer)
-    Tokenizer subTokens= new Tokenizer( tokens.Actual,  ',');
-    System.Console.Write( subTokens.Next().ToString() );
+    Tokenizer subTknzr= new Tokenizer( tknzr.Actual,  ',');
+    System.Console.Write( subTknzr.Next().ToString() );
 
-    while( subTokens.HasNext() )
-        System.Console.Write( "~" + subTokens.Next().ToString() );
+    while( subTknzr.HasNext() )
+        System.Console.Write( "~" + subTknzr.Next().ToString() );
 
     System.Console.WriteLine();
 
     // continue with the main tokenizer
-    System.Console.WriteLine( tokens.Next().ToString() ); // will print "xyz"
+    System.Console.WriteLine( tknzr.Next().ToString() ); // will print "xyz"
 
     // grab the rest, as we know that the last token might include our separator character
-    System.Console.WriteLine( tokens.GetRest().ToString() ); // will print "including;separator"
+    System.Console.WriteLine( tknzr.GetRest().ToString() ); // will print "including;separator"
 //! [DOC_SAMPLES_ALIB_LIB_STRING_TOKEN]
 
     utsw.FlushAndResetConsole();
@@ -106,11 +106,11 @@ void tokenizerTest( string inputString, AString res, char delim, char newDelim,
     if ( inpEnd   >= 0 ) inp.End=   inpEnd;
     res.Clear();
 
-    Tokenizer tok= new Tokenizer( inp, delim );
+    Tokenizer tknzr= new Tokenizer( inp, delim );
 
-    while( tok.HasNext() )
+    while( tknzr.HasNext() )
     {
-        tok.Next(trim).CopyTo( res, true );
+        tknzr.Next(trim).CopyTo( res, true );
         res._( newDelim );
     }
 
@@ -134,16 +134,16 @@ public void Tokenize()
     astr.Clear()._( "" );
     res.Clear();
     {
-        Tokenizer tok= new Tokenizer( astr, ',' );   UT_EQ( true,  tok.HasNext() );
-        tok.Next().CopyTo( res, true );              UT_EQ( "", res );
+        Tokenizer tknzr= new Tokenizer( astr, ',' );   UT_EQ( true,  tknzr.HasNext() );
+        tknzr.Next().CopyTo( res, true );              UT_EQ( "", res );
     }
 
     // tokenizing no delim
     astr.Clear()._( "abc" );
     res.Clear();
     {
-        Tokenizer tok= new Tokenizer( astr, ',' );                UT_EQ( true,  tok.HasNext() );
-        tok.Next().CopyTo( res, true );     UT_EQ( "abc", res );
+        Tokenizer tknzr= new Tokenizer( astr, ',' );                UT_EQ( true,  tknzr.HasNext() );
+        tknzr.Next().CopyTo( res, true );     UT_EQ( "abc", res );
     }
 
     // tokenizing
@@ -195,48 +195,48 @@ public void Tokenize()
     // tokenizing with different delimiters
     {
         astr.Clear()._( "1,5;3@4" );
-        Tokenizer tok= new Tokenizer(astr, ',');
-        tok.Next()                       .CopyTo( res );    UT_EQ ( "1",   res );  UT_EQ( true,  tok.HasNext() );
-        tok.Next( Whitespaces.Trim, ';' ).CopyTo( res );    UT_EQ ( "5",   res );  UT_EQ( true,  tok.HasNext() );
-        tok.Next( Whitespaces.Trim, '@' ).CopyTo( res );    UT_EQ ( "3",   res );  UT_EQ( true,  tok.HasNext() );
-        tok.Next( Whitespaces.Trim, '-' ).CopyTo( res );    UT_EQ ( "4",   res );  UT_EQ( false, tok.HasNext() );
+        Tokenizer tknzr= new Tokenizer(astr, ',');
+        tknzr.Next()                       .CopyTo( res );    UT_EQ ( "1",   res );  UT_EQ( true,  tknzr.HasNext() );
+        tknzr.Next( Whitespaces.Trim, ';' ).CopyTo( res );    UT_EQ ( "5",   res );  UT_EQ( true,  tknzr.HasNext() );
+        tknzr.Next( Whitespaces.Trim, '@' ).CopyTo( res );    UT_EQ ( "3",   res );  UT_EQ( true,  tknzr.HasNext() );
+        tknzr.Next( Whitespaces.Trim, '-' ).CopyTo( res );    UT_EQ ( "4",   res );  UT_EQ( false, tknzr.HasNext() );
     }
 
     // tokenizing with different delimiters
     {
         astr.Clear()._( "abc, 5;\t3;;; 4  " );
-        Tokenizer tok= new Tokenizer(astr,',');
-        tok.Next()                       .CopyTo( res );    UT_EQ ( "abc", res );  UT_EQ( true,  tok.HasNext() );
-        tok.Next( Whitespaces.Trim, ';' ).CopyTo( res );    UT_EQ ( "5",   res );  UT_EQ( true,  tok.HasNext() );
-        tok.Next()                       .CopyTo( res );    UT_EQ ( "3",   res );  UT_EQ( true,  tok.HasNext() );
-        tok.Next()                       .CopyTo( res );    UT_EQ ( "",    res );  UT_EQ( true,  tok.HasNext() );
-        tok.GetRest()                    .CopyTo( res );    UT_EQ ( "; 4", res );  UT_EQ( false, tok.HasNext() );
+        Tokenizer tknzr= new Tokenizer(astr,',');
+        tknzr.Next()                       .CopyTo( res );    UT_EQ ( "abc", res );  UT_EQ( true,  tknzr.HasNext() );
+        tknzr.Next( Whitespaces.Trim, ';' ).CopyTo( res );    UT_EQ ( "5",   res );  UT_EQ( true,  tknzr.HasNext() );
+        tknzr.Next()                       .CopyTo( res );    UT_EQ ( "3",   res );  UT_EQ( true,  tknzr.HasNext() );
+        tknzr.Next()                       .CopyTo( res );    UT_EQ ( "",    res );  UT_EQ( true,  tknzr.HasNext() );
+        tknzr.GetRest()                    .CopyTo( res );    UT_EQ ( "; 4", res );  UT_EQ( false, tknzr.HasNext() );
     }
 
     // sub-tokens
     {
         astr.Clear()._( "1,2;3 , 4;5,;," );
-        Tokenizer tok= new Tokenizer(astr, ';');
+        Tokenizer tknzr= new Tokenizer(astr, ';');
 
-        Tokenizer tok2= new Tokenizer( tok.Next(), ',');
-        tok2.Next().CopyTo( res ); UT_EQ ( "1", res );  UT_TRUE(  tok2.HasNext() );
-        tok2.Next().CopyTo( res ); UT_EQ ( "2", res );  UT_TRUE( !tok2.HasNext() );
-        UT_TRUE( tok.HasNext() );
+        Tokenizer tknzr2= new Tokenizer( tknzr.Next(), ',');
+        tknzr2.Next().CopyTo( res ); UT_EQ ( "1", res );  UT_TRUE(  tknzr2.HasNext() );
+        tknzr2.Next().CopyTo( res ); UT_EQ ( "2", res );  UT_TRUE( !tknzr2.HasNext() );
+        UT_TRUE( tknzr.HasNext() );
 
-        tok2.Set( tok.Next(), ',');
-        tok2.Next().CopyTo( res ); UT_EQ ( "3", res );  UT_TRUE(  tok2.HasNext() );
-        tok2.Next().CopyTo( res ); UT_EQ ( "4", res );  UT_TRUE( !tok2.HasNext() );
-        UT_TRUE( tok.HasNext() );
+        tknzr2.Set( tknzr.Next(), ',');
+        tknzr2.Next().CopyTo( res ); UT_EQ ( "3", res );  UT_TRUE(  tknzr2.HasNext() );
+        tknzr2.Next().CopyTo( res ); UT_EQ ( "4", res );  UT_TRUE( !tknzr2.HasNext() );
+        UT_TRUE( tknzr.HasNext() );
 
-        tok2.Set( tok.Next(), ',');
-        tok2.Next().CopyTo( res ); UT_EQ ( "5", res );  UT_TRUE(  tok2.HasNext() );
-        tok2.Next().CopyTo( res ); UT_EQ ( "",  res );  UT_TRUE( !tok2.HasNext() );
-        UT_TRUE( tok.HasNext() );
+        tknzr2.Set( tknzr.Next(), ',');
+        tknzr2.Next().CopyTo( res ); UT_EQ ( "5", res );  UT_TRUE(  tknzr2.HasNext() );
+        tknzr2.Next().CopyTo( res ); UT_EQ ( "",  res );  UT_TRUE( !tknzr2.HasNext() );
+        UT_TRUE( tknzr.HasNext() );
 
-        tok2.Set( tok.Next(), ',');
-        tok2.Next().CopyTo( res ); UT_EQ ( "", res );  UT_TRUE(  tok2.HasNext() );
-        tok2.Next().CopyTo( res ); UT_EQ ( "", res );  UT_TRUE( !tok2.HasNext() );
-        UT_TRUE( !tok.HasNext() );
+        tknzr2.Set( tknzr.Next(), ',');
+        tknzr2.Next().CopyTo( res ); UT_EQ ( "", res );  UT_TRUE(  tknzr2.HasNext() );
+        tknzr2.Next().CopyTo( res ); UT_EQ ( "", res );  UT_TRUE( !tknzr2.HasNext() );
+        UT_TRUE( !tknzr.HasNext() );
     }
 }
 

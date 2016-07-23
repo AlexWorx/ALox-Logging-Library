@@ -21,7 +21,7 @@ namespace cs.aworx.lox.core {
  * It was extracted from class \b %Lox to keep that class clean from this somehow 'cluttered' code.
  *
  * The current purpose of this class is to write information into an AString buffer. This is used
- * by method \ref cs::aworx::lox::Lox::LogConfig "Lox.LogConfig". In the future, other export formats,
+ * by method \ref cs::aworx::lox::Lox::State "Lox.State". In the future, other export formats,
  * like JSON might be implemented here.
  *
  * \note As this is a pure internal helper class. Documentation may be limited.
@@ -247,8 +247,7 @@ public class ScopeDump
             threadDictionary.TryGetValue( id, out threadName );
             if ( threadName != null )
                 return target._("[Thread=\"")._(threadName)._("\"]");
-            else
-                return target._("[ThreadID=")._(id)._(']');
+            return target._("[ThreadID=")._(id)._(']');
         }
 
         /** ****************************************************************************************

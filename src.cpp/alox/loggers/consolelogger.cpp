@@ -11,9 +11,15 @@
 #endif
 
 #include "alib/config/configuration.hpp"
-#include "alib/strings/tokenizer.hpp"
-#include "alib/compatibility/std_iostream.hpp"
-#include "alox/loggers/consolelogger.hpp"
+#if !defined(HPP_ALIB_STRINGS_TOKENIZER)
+    #include "alib/con.hpp"
+#endif
+#if !defined(HPP_ALIB_COMPATIBILITY_STD_IOSTREAM)
+    #include "alib/compatibility/std_iostream.hpp"
+#endif
+#if !defined(HPP_ALOX_CONSOLE_LOGGER)
+    #include "alox/loggers/consolelogger.hpp"
+#endif
 
 
 using namespace std;

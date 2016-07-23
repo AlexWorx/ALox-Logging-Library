@@ -94,7 +94,7 @@ enum class Verbosity
  * @returns A string representation of the provided Verbosity value.
  ******************************************************************************************/
 ALOX_API
-const String ToStringX( Verbosity verbosity );
+const String ToString( Verbosity verbosity );
 
 /** ****************************************************************************************
  * Writes a string representation of the priority value into the given AString.

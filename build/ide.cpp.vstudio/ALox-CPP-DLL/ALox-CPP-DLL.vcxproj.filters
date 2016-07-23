@@ -211,6 +211,12 @@
     <ClInclude Include="..\..\..\src.cpp\alib\containers\pathmap.hpp">
       <Filter>alib\containers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\config\variable.hpp">
+      <Filter>alib\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src.cpp\alib\config\inmemoryplugin.hpp">
+      <Filter>alib\config</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ALox-CPP-DLL.cpp">
@@ -332,6 +338,15 @@
     </ClCompile>
     <ClCompile Include="..\..\..\src.cpp\alib\core\enums.cpp">
       <Filter>alib\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\config\variable.cpp">
+      <Filter>alib\config</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alib\config\inmemoryplugin.cpp">
+      <Filter>alib\config</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src.cpp\alox\lox_getstate.cpp">
+      <Filter>alox</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

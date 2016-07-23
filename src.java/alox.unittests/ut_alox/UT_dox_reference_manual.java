@@ -8,15 +8,16 @@ package ut_alox;
 
 import org.junit.Test;
 
-import ut_com_aworx_uttools.AUnitTest;
+import com.aworx.lox.ESC;
+import com.aworx.lox.Log;
 
-import com.aworx.lox.*;
+import ut_com_aworx.AWorxUnitTesting;
 
 
-public class UT_dox_reference_manual extends AUnitTest
+public class UT_dox_reference_manual extends AWorxUnitTesting
 {
 
-void docSampleESC()
+static void docSampleESC()
 {
 //! [DOC_SAMPLES_ALOX_ESC]
 Log.info( "The result is " + ESC.RED + "42" );

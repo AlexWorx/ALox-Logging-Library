@@ -45,7 +45,7 @@ class Test_ThreadLock_SharedInt
 
 class Test_ThreadLock_TestThread : public Thread
 {
-    public:        ALIBUnitTesting* pUT;
+    public:        AWorxUnitTesting* pUT;
     public:        ThreadLock*      mutex;
     public:        int              holdTime;
     public:        int              repeats;
@@ -53,7 +53,7 @@ class Test_ThreadLock_TestThread : public Thread
     public:        int              result= 1;
     public:        Test_ThreadLock_SharedInt* shared;
 
-    public:        Test_ThreadLock_TestThread( ALIBUnitTesting* pUT, const String& name, ThreadLock* lock, int holdTime, int repeats, bool verbose, Test_ThreadLock_SharedInt* shared )
+    public:        Test_ThreadLock_TestThread( AWorxUnitTesting* pUT, const String& name, ThreadLock* lock, int holdTime, int repeats, bool verbose, Test_ThreadLock_SharedInt* shared )
     :Thread( name )
     {
         this->pUT=        pUT;
@@ -66,7 +66,7 @@ class Test_ThreadLock_TestThread : public Thread
 
     public: void Run()
     {
-        ALIBUnitTesting &ut= *pUT;
+        AWorxUnitTesting &ut= *pUT;
         UT_EQ( GetId(), Thread::CurrentThread()->GetId() );
 
         for ( int i= 0; i < repeats ; i++ )
@@ -120,12 +120,12 @@ UT_METHOD( ThreadSimple )
     class runner: public Runnable
     {
         public:
-        ALIBUnitTesting *pUT;
+        AWorxUnitTesting *pUT;
         int a= 0;
-        runner(ALIBUnitTesting *pUT) { this->pUT= pUT; }
+        runner(AWorxUnitTesting *pUT) { this->pUT= pUT; }
         virtual void Run()
         {
-            ALIBUnitTesting& ut= *pUT;
+            AWorxUnitTesting& ut= *pUT;
             UT_PRINT( "Runnable running in thread " << Thread::CurrentThread()->GetId() );  ALIB::SleepMillis(1); a++;
         }
     };

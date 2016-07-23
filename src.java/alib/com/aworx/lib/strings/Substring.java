@@ -576,27 +576,45 @@ public class Substring implements CharSequence
          * character is cut from this object.
          *
          * @param consumable        The consumable character
+         * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
          *                          consume operation. Defaults to \c Whitespaces.KEEP.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut by one.
          ******************************************************************************************/
-        public boolean     consume( char consumable, Whitespaces trimBeforeConsume )
+        public boolean     consume( char        consumable, 
+                                    Case        sensitivity,
+                                    Whitespaces trimBeforeConsume )
         {
             if ( trimBeforeConsume == Whitespaces.TRIM )
                 trimStart();
 
-            if ( charAtStart() != consumable )
+            if (    ( sensitivity == Case.SENSITIVE &&                       charAtStart()  !=                       consumable  )
+                 || ( sensitivity == Case.IGNORE    && Character.toUpperCase(charAtStart()) != Character.toUpperCase(consumable) ) )
                 return false;
+                
             start++;
             return true;
         }
 
         /** ****************************************************************************************
-         * Checks if this object starts with the given character \p consumable. If it does, this
-         * character is cut from this object.<br>
-         * (Overloaded method implementing default parameter \p trimBeforeConsume with value
-         * \c Whitespaces.KEEP.)
+         * Overloaded version of original method 
+         * providing default parameter \p trimBeforeConsume with value \c Whitespaces.KEEP.
+         *
+         * @param consumable        The consumable character
+         * @param sensitivity       The sensitivity of the comparison.
+         * @return \c true, if this object was starting with \p consumable and consequently the
+         *         string was cut by one.
+         ******************************************************************************************/
+        public boolean     consume( char consumable, Case sensitivity )
+        {
+            return consume( consumable, sensitivity, Whitespaces.KEEP );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of original method 
+         * providing default parameter \p trimBeforeConsume with value \c Whitespaces.KEEP
+         * and default parameter \p sensitivity with value \c Case.SENSITIVE. 
          *
          * @param consumable        The consumable character
          * @return \c true, if this object was starting with \p consumable and consequently the
@@ -604,35 +622,54 @@ public class Substring implements CharSequence
          ******************************************************************************************/
         public boolean     consume( char consumable  )
         {
-            return consume( consumable, Whitespaces.KEEP );
+            return consume( consumable, Case.SENSITIVE, Whitespaces.KEEP );
         }
+
 
         /** ****************************************************************************************
          * Checks if this object ends with the given character \p consumable. If it does, this
          * character is cut from the end of object.
          *
          * @param consumable The consumable character
+         * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (right-) trimmed before the
          *                          consume operation. Defaults to \c Whitespaces.KEEP.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut by one.
          ******************************************************************************************/
-        public boolean     consumeFromEnd( char consumable, Whitespaces trimBeforeConsume )
+        public boolean     consumeFromEnd( char        consumable,  
+                                           Case        sensitivity,
+                                           Whitespaces trimBeforeConsume )
         {
             if ( trimBeforeConsume == Whitespaces.TRIM )
                 trimEnd();
 
-            if ( charAtEnd() != consumable )
+            if (    ( sensitivity == Case.SENSITIVE &&                       charAtEnd()  !=                       consumable  )
+                 || ( sensitivity == Case.IGNORE    && Character.toUpperCase(charAtEnd()) != Character.toUpperCase(consumable) ) )
                 return false;
+
             end--;
             return true;
         }
 
         /** ****************************************************************************************
-         * Checks if this object ends with the given character \p consumable. If it does, this
-         * character is cut from the end of object.<br>
-         * (Overloaded method implementing default parameter \p trimBeforeConsume with value
-         * \c Whitespaces.KEEP.)
+         * Overloaded version of original method 
+         * providing default parameter \p trimBeforeConsume with value \c Whitespaces.KEEP.
+         *
+         * @param consumable    The consumable character
+         * @param sensitivity   The sensitivity of the comparison.
+         * @return \c true, if this object was starting with \p consumable and consequently the
+         *         string was cut by one.
+         ******************************************************************************************/
+        public boolean     consumeFromEnd( char consumable, Case sensitivity ) 
+        {
+            return consumeFromEnd( consumable, sensitivity, Whitespaces.KEEP );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of original method 
+         * providing default parameter \p trimBeforeConsume with value \c Whitespaces.KEEP
+         * and default parameter \p sensitivity with value \c Case.SENSITIVE. 
          *
          * @param consumable The consumable character
          * @return \c true, if this object was starting with \p consumable and consequently the
@@ -640,7 +677,7 @@ public class Substring implements CharSequence
          ******************************************************************************************/
         public boolean     consumeFromEnd( char consumable )
         {
-            return consumeFromEnd( consumable, Whitespaces.KEEP );
+            return consumeFromEnd( consumable, Case.SENSITIVE, Whitespaces.KEEP );
         }
 
         /** ****************************************************************************************
@@ -648,12 +685,15 @@ public class Substring implements CharSequence
          * string is cut from this object.
          *
          * @param consumable        The consumable string
+         * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (left-) trimmed before the
          *                          consume operation. Defaults to \c Whitespaces.KEEP.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut.
          ******************************************************************************************/
-        public boolean     consume( String consumable, Whitespaces trimBeforeConsume )
+        public boolean     consume( CharSequence consumable, 
+                                    Case        sensitivity,
+                                    Whitespaces trimBeforeConsume )
         {
             if ( trimBeforeConsume == Whitespaces.TRIM )
                 trimStart();
@@ -666,18 +706,31 @@ public class Substring implements CharSequence
             return true;
         }
         /** ****************************************************************************************
-         * Checks if this object starts with the given string \p consumable. If it does, this
-         * string is cut from this object.<br>
-         * (Overloaded method implementing default parameter \p trimBeforeConsume with value
-         * \c Whitespaces.KEEP.)
+         * Overloaded version of original method 
+         * providing default parameter \p trimBeforeConsume with value \c Whitespaces.KEEP.
+         *
+         * @param consumable        The consumable string
+         * @param sensitivity       The sensitivity of the comparison.
+         * @return \c true, if this object was starting with \p consumable and consequently the
+         *         string was cut.
+         ******************************************************************************************/
+        public boolean     consume( CharSequence consumable, Case sensitivity )
+        {
+            return consume( consumable, sensitivity, Whitespaces.KEEP );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of original method 
+         * providing default parameter \p trimBeforeConsume with value \c Whitespaces.KEEP
+         * and default parameter \p sensitivity with value \c Case.SENSITIVE. 
          *
          * @param consumable        The consumable string
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut.
          ******************************************************************************************/
-        public boolean     consume( String consumable )
+        public boolean     consume( CharSequence consumable )
         {
-            return consume( consumable, Whitespaces.KEEP );
+            return consume( consumable, Case.SENSITIVE, Whitespaces.KEEP );
         }
 
         /** ****************************************************************************************
@@ -685,12 +738,15 @@ public class Substring implements CharSequence
          * string is cut from the end of object.
          *
          * @param consumable        The consumable string
+         * @param sensitivity       The sensitivity of the comparison.
          * @param trimBeforeConsume Determines if the string should be (right-) trimmed before the
          *                          consume operation. Defaults to \c Whitespaces.KEEP.
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut.
          ******************************************************************************************/
-        public boolean     consumeFromEnd( String consumable, Whitespaces trimBeforeConsume )
+        public boolean     consumeFromEnd( CharSequence consumable, 
+                                           Case         sensitivity,
+                                           Whitespaces  trimBeforeConsume )
         {
             if ( trimBeforeConsume == Whitespaces.TRIM )
                 trimEnd();
@@ -701,18 +757,31 @@ public class Substring implements CharSequence
             return true;
         }
         /** ****************************************************************************************
-         * Checks if this object ends with the given string \p consumable. If it does, this
-         * string is cut from the end of object.<br>
-         * (Overloaded method implementing default parameter \p trimBeforeConsume with value
-         * \c Whitespaces.KEEP.)
+         * Overloaded version of original method 
+         * providing default parameter \p trimBeforeConsume with value \c Whitespaces.KEEP.
+         *
+         * @param consumable        The consumable string
+         * @param sensitivity       The sensitivity of the comparison.
+         * @return \c true, if this object was starting with \p consumable and consequently the
+         *         string was cut.
+         ******************************************************************************************/
+        public boolean     consumeFromEnd( CharSequence consumable, Case sensitivity )
+        {
+            return consumeFromEnd( consumable, sensitivity, Whitespaces.KEEP );
+        }
+
+        /** ****************************************************************************************
+         * Overloaded version of original method 
+         * providing default parameter \p trimBeforeConsume with value \c Whitespaces.KEEP
+         * and default parameter \p sensitivity with value \c Case.SENSITIVE. 
          *
          * @param consumable        The consumable string
          * @return \c true, if this object was starting with \p consumable and consequently the
          *         string was cut.
          ******************************************************************************************/
-        public boolean     consumeFromEnd( String consumable )
+        public boolean     consumeFromEnd( CharSequence consumable )
         {
-            return consumeFromEnd( consumable, Whitespaces.KEEP );
+            return consumeFromEnd( consumable, Case.SENSITIVE, Whitespaces.KEEP );
         }
 
         /** ****************************************************************************************
@@ -1412,9 +1481,9 @@ public class Substring implements CharSequence
             return -1;
         }
         /** ****************************************************************************************
-         * @return Searches the given character.
+         * Searches the given character.
          * @param  c The character to search.
-         * @return  The index of the character within this substring, -1 if the character is not
+         * @return  The index of the character within this substring, \c -1 if the character is not
          *          found.
          ******************************************************************************************/
         public int  indexOf( char c )
@@ -1533,9 +1602,9 @@ public class Substring implements CharSequence
          * Moves the start marker to the first character not found in parameter \p whiteSpaces.
          * @param whiteSpaces  The characters used for trimming. Defaults to
          *                     \ref com::aworx::lib::strings::CString::DEFAULT_WHITESPACES "CString.DEFAULT_WHITESPACES".
-         * @return true if empty after the operation.
+         * @return \c this to allow concatenated calls.
          ******************************************************************************************/
-        public boolean trimStart( char[] whiteSpaces )
+        public Substring trimStart( char[] whiteSpaces )
         {
             if ( end - start >= 0 )
             {
@@ -1546,15 +1615,15 @@ public class Substring implements CharSequence
                     start= idx;
 
             }
-            return isEmpty();
+            return this;
         }
 
         /** ****************************************************************************************
          * Invokes #trimStart(char[]) providing default parameter
          * \ref com::aworx::lib::strings::CString::DEFAULT_WHITESPACES "CString.DEFAULT_WHITESPACES".
-         * @return true if empty after the operation.
+         * @return \c this to allow concatenated calls.
          ******************************************************************************************/
-        public boolean trimStart()
+        public Substring trimStart()
         {
             return trimStart( CString.DEFAULT_WHITESPACES);
         }
@@ -1563,21 +1632,21 @@ public class Substring implements CharSequence
          * Moves the start marker to the first character not found in parameter \p whiteSpaces.
          * @param whiteSpaces  The characters used for trimming. Defaults to
          *                     \ref com::aworx::lib::strings::CString::DEFAULT_WHITESPACES "CString.DEFAULT_WHITESPACES".
-         * @return true if empty after the operation.
+         * @return \c this to allow concatenated calls.
          ******************************************************************************************/
-        public boolean trimEnd( char[] whiteSpaces )
+        public Substring trimEnd( char[] whiteSpaces )
         {
             if ( end - start >= 0 )
                 end=  CString.lastIndexOfAny( buf, start,  length(), whiteSpaces, Inclusion.EXCLUDE );
-            return isEmpty();
+            return this;
         }
 
         /** ****************************************************************************************
          * Invokes #trimEnd(char[]) providing default parameter
          * \ref com::aworx::lib::strings::CString::DEFAULT_WHITESPACES "CString.DEFAULT_WHITESPACES".
-         * @return true if empty after the operation.
+         * @return \c this to allow concatenated calls.
          ******************************************************************************************/
-        public boolean trimEnd()
+        public Substring trimEnd()
         {
             return trimEnd( CString.DEFAULT_WHITESPACES);
         }
@@ -1590,9 +1659,7 @@ public class Substring implements CharSequence
          ******************************************************************************************/
         public Substring   trim( char[] whiteSpaces )
         {
-            if ( !trimStart(whiteSpaces) )
-                trimEnd(whiteSpaces);
-            return this;
+            return trimEnd( whiteSpaces ).trimStart( whiteSpaces );
         }
 
         /** ****************************************************************************************
@@ -1706,7 +1773,7 @@ public class Substring implements CharSequence
              int  origStart= start;
              trimStart(whiteSpaces);
              int  trimStart= start;
-             long result=   NumberFormat.global.stringToInteger( buf, trimStart, end, _adjustedRegion );
+             long result=   NumberFormat.stringToInteger( buf, trimStart, end, _adjustedRegion );
 
              start= _adjustedRegion[0] == trimStart ? origStart
                                                     : _adjustedRegion[0];
@@ -1877,6 +1944,17 @@ public class Substring implements CharSequence
             // this function should never be used
             ALIB.ERROR( "Substring.subSequence() called. This is not supported" );
             return null;
+        }
+
+        /** ****************************************************************************************
+         * Standard Java Object hashCode method. 
+         *
+         * @return  Result of parents' \b %hashCode.
+         ******************************************************************************************/
+        @Override 
+        public int hashCode()
+        {
+            return super.hashCode();
         }
 
 } // class Substring

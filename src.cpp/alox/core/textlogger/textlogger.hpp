@@ -258,6 +258,7 @@ class MetaInfo
          * \code "[%TC +%TL][%tN]%V[%D]%A1(%#): " \endcode
          */
 
+
         #if defined(ALOX_DBG_LOG_CI) || defined(ALOX_REL_LOG_CI)
             #if !defined(_WIN32)
                 AString Format { "%Sp/%SF(%SL):%A5%SM() %A5[%TC +%TL][%tN]%V[%D]%A1(%#): "};
@@ -302,47 +303,47 @@ class MetaInfo
 
         /** Format string for the output of the log date. For more information, see
              "Standard Date and Time Format Strings" in .NET StringBuilder.AppendFormat() */
-        TString    DateFormat               ="yyyy-MM-dd";
+        String32    DateFormat               ="yyyy-MM-dd";
 
         /** Format string for the output of the time of day. For more information, see
              "Standard Date and Time Format Strings" in .NET StringBuilder.AppendFormat() */
-        TString    TimeOfDayFormat          ="HH:mm:ss";
+        String16   TimeOfDayFormat          ="HH:mm:ss";
 
         /** The word "Days" the out put of time elapsed (if longer than a day). */
-        TString    TimeElapsedDays          =" Days ";
+        String16   TimeElapsedDays          =" Days ";
 
         /** Minimum time difference to log in nanoseconds.  Below that #TimeDiffNone is written. */
         long       TimeDiffMinimum          =1000L;
 
         /** Output for time difference if below reasonable (measurable) minimum defined in #TimeDiffMinimum. */
-        TString    TimeDiffNone             ="---   ";
+        String16   TimeDiffNone             ="---   ";
 
         /** Entity nanoseconds for time difference outputs below 1000 microsecond. */
-        TString    TimeDiffNanos            =" ns";
+        String16   TimeDiffNanos            =" ns";
 
         /** Entity microseconds for time difference outputs below 1000 microseconds. */
-        TString    TimeDiffMicros           =" \xC2\xB5s"; // UTF-8 encoding of the greek 'm' letter;
+        String16   TimeDiffMicros           =" \xC2\xB5s"; // UTF-8 encoding of the greek 'm' letter;
 
         /** Entity milliseconds for time difference outputs below 1000 milliseconds. */
-        TString    TimeDiffMillis           =" ms";
+        String16   TimeDiffMillis           =" ms";
 
         /** Format for time difference outputs between 10s and 99.9s. */
-        TString    TimeDiffSecs             =" s";
+        String16   TimeDiffSecs             =" s";
 
         /** Format for time difference outputs between 100s and 60 min. */
-        TString    TimeDiffMins             =" m";
+        String16   TimeDiffMins             =" m";
 
         /** Format for time difference outputs between 1h and 24h. */
-        TString    TimeDiffHours            =" h";
+        String16   TimeDiffHours            =" h";
 
         /** Format for time difference outputs of more than a day. */
-        TString    TimeDiffDays             =" days";
+        String16   TimeDiffDays             =" days";
 
         /** Replacement string if no source info is available. */
-        TString    NoSourceFileInfo         ="---";
+        String16   NoSourceFileInfo         ="---";
 
         /** Replacement string if no source info is available. */
-        TString    NoMethodInfo             ="---";
+        String16   NoMethodInfo             ="---";
 
         /** The minimum digits to write for the log number (if used in format string). */
         int        LogNumberMinDigits       = 3;
@@ -560,13 +561,13 @@ class TextLogger : public Logger
          * single line (#MultiLineMsgMode==0).
          * Defaults to "\\r".
          */
-        TString                         MultiLineDelimiterRepl                               ="\\r";
+        String16                        MultiLineDelimiterRepl                               ="\\r";
 
         /**
          * Headline for multi line messages (depending on #MultiLineMsgMode)  .
          * Defaults to "ALox: Multi line message follows: "
          */
-        TString                         FmtMultiLineMsgHeadline="ALox: Multi line message follows: ";
+        String64                        FmtMultiLineMsgHeadline="ALox: Multi line message follows: ";
 
         /**
          * Prefix for multi line messages. This is also used if multi line messages logging is
@@ -574,7 +575,7 @@ class TextLogger : public Logger
          * place.
          * Defaults to ">> ".
          */
-        TString                         FmtMultiLinePrefix                                   =">> ";
+        String16                        FmtMultiLinePrefix                                   =">> ";
 
         /**
          *  Suffix for multi line messages. This is also used if multi line messages logging is
@@ -582,7 +583,7 @@ class TextLogger : public Logger
          *  takes place.
          * Defaults to "".
          */
-        TString                         FmtMultiLineSuffix                                      ="";
+        String16                        FmtMultiLineSuffix                                      ="";
 
         /** Used to return an error message in the case the object could not be converted. */
         TString                         FmtUnknownObject                 ="<unknown object type %>";

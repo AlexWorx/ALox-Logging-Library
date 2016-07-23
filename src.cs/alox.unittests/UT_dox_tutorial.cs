@@ -130,14 +130,14 @@ class FileIO
     [TestClass]
 #endif
 
-public class CS_Tutorial   : AUnitTest
+public class CS_Tutorial   : AWorxUnitTesting
 {
     // used with unit test Log_ScopeInfoCacheTest
     public static void ScopeInfoCacheTest() { Log.Info("Test method of CS_Tutorial"); }
 
 
     MemoryLogger    tutLog;
-    String          outputPath=        UnitTestSampleWriter.GetGeneratedSamplesDir();
+    String          outputPath=        UTSampleWriter.GetGeneratedSamplesDir();
 
     void SaveTutorialOutput( string fileName, AString log )
     {
@@ -667,12 +667,12 @@ public void Tut_XML()
         [TestCategory("CS_Tutorial")]
     #endif
 #endif
-public void Tut_LogConfig()
+public void Tut_LogState()
 {
 #if ALOX_DBG_LOG || ALOX_REL_LOG
     UT_INIT();
 
-    //! [Tut_LogConfig]
+    //! [Tut_LogState]
     // create two different loggers
     Log.AddDebugLogger();
     Log.SetVerbosity( new MemoryLogger(),  Verbosity.Verbose );
@@ -716,12 +716,12 @@ public void Tut_LogConfig()
     Log.MapThreadName( "TUTORIAL" );
 
     // now, log the current config
-    Log.LogConfig( null, Verbosity.Info, "The current configuration of this Lox is:" );
-    //! [Tut_LogConfig]
+    Log.State( null, Verbosity.Info, "The current configuration of this Lox is:" );
+    //! [Tut_LogState]
 
     //tutLog.MemoryLog.Replace( "Tutlog", "CONSOLE" );
     #if ALOX_DBG_LOG
-        SaveTutorialOutput( "Tut_LogConfig.txt", ((MemoryLogger) Log.GetLogger( "Memory" )).MemoryLog );
+        SaveTutorialOutput( "Tut_LogState.txt", ((MemoryLogger) Log.GetLogger( "Memory" )).MemoryLog );
     #endif
 #endif
 }
@@ -752,8 +752,8 @@ public void Tut_LogInternalDomains()
     #endif
 
     // ... with one difference: we are activating the internal domain
-    Log.SetVerbosity( ((MemoryLogger) Log.GetLogger("MEMORY")), Verbosity.Verbose, ALox.InternalDomains );
-    Log.SetVerbosity( Log.DebugLogger,                          Verbosity.Verbose, ALox.InternalDomains );
+    Log.SetVerbosity( Log.GetLogger("MEMORY"), Verbosity.Verbose, ALox.InternalDomains );
+    Log.SetVerbosity( Log.DebugLogger,         Verbosity.Verbose, ALox.InternalDomains );
 
     Log.SetDomain( "PNS"   ,   Scope.Path, 1 );
     Log.SetDomain( "PATH",     Scope.Path );
@@ -909,7 +909,7 @@ public void Tut_LogData()
 
 }// class  CS_Tutorial
 
-#endif 
+#endif
 
 }// namespace
 

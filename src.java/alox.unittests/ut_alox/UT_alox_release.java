@@ -7,13 +7,13 @@
 package ut_alox;
 import org.junit.Test;
 
-import ut_com_aworx_uttools.AUnitTest;
-
 import com.aworx.lox.*;
 import com.aworx.lox.core.textlogger.TextLogger;
 
+import ut_com_aworx.AWorxUnitTesting;
 
-public class UT_alox_release extends AUnitTest
+
+public class UT_alox_release extends AWorxUnitTesting
 {
     /** ********************************************************************************************
      *     Log_LogLevelSetting

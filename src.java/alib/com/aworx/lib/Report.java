@@ -83,7 +83,7 @@ public class Report
             this.type=     type;
             this.contents= msg;
         }
-    };
+    }
 
     // #############################################################################################
     // Internal fields

@@ -101,7 +101,7 @@ int ThreadLock::DbgCountAcquirements( Thread* thread )
         {
             // we are still increasing the cntAcquirements
             cntAcquirements=  lockMode== LockMode::Recursive  ? cntAcquirements + 1
-                                                      : 1;
+                                                              : 1;
             // reached warning limit?
             ALIB_ASSERT_WARNING_S512( cntAcquirements > 0  && cntAcquirements % RecursionWarningThreshold != 0,
                     "Recursion depth " << cntAcquirements

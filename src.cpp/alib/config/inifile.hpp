@@ -24,16 +24,8 @@
 // #################################################################################################
 // includes
 // #################################################################################################
-#if !defined (HPP_ALIB_STRINGS_ASSUBSTRING)
-    #include "alib/strings/substring.hpp"
-#endif
-#if !defined (HPP_ALIB_CONFIG_CONFIGURATION)
-    #include "alib/config/configuration.hpp"
-#endif
-
-
-#if !defined (_GLIBCXX_VECTOR ) && !defined(_VECTOR_)
-    #include <vector>
+#if !defined (HPP_ALIB_CONFIG_INMEMORY_PLUGIN)
+    #include "alib/config/inmemoryplugin.hpp"
 #endif
 
 
@@ -48,39 +40,74 @@ namespace           lib {
 namespace                   config {
 
 /** ************************************************************************************************
- * Specialization of abstract interface class #ConfigurationPlugIn, which reads and writes
- * a simple configuration file consisting of key/value pairs.
+ * Specialization of class #InMemoryPlugin, which reads and writes a simple configuration file
+ * consisting of sections containing key/value pairs.
  *
  * This class is provided for the case that no other configuration mechanism is available.
- * For example, software that uses QT should not use this class but rather implement a
- * #ConfigurationPlugIn which uses a QSettings object to read and store that data to.
- *
- * This class offers all internal fields for public access. However, in standard cases, only
- * the interface methods of this class should be used.
+ * In general, application specific configuration mechanisms already exist in other libraries
+ * used. Those should be adopted by creating a lean interface plug-in for ALib.
  *
  * Some remarks on the functionality and supported format:
- * - Comment lines at the beginning of the file are associated with the file and are written
- *   back. Such comment block is stopped with a single blank line.
- * - Comment lines before sections and variables are associated with the respective objects
- *   and are written back.
- * - Sections names are enclosed by brackets ('[' and ']).
- * - Section names can be repeated. In this case the corresponding section is continued.
- *   When the file is written, the section are merged. Otherwise the order of sections and
- *   the variables within the section is kept intact.
- * - Variable names and their values are separated by an equal sign ('=').
- * - Whitespace characters (' ', '\\t' ) are removed at the start and end of each line and before
- *   and after the equal sign ('=').
- * - Lines that start (apart from whitespace) with either a double
- *   slash "//", a sharp sign '#' or a semicolon ';' are comment lines.
- * - Comments can not reside in the same line together with section names or variables.
- * - Variables definitions are being continued (values are concatenated) if the line ends
- *   with a backslash ('\'). Whitespaces in continued lines are ignored but can be 'escaped'.
- *   Comment lines in-between continued lines are not recognized as such.
- * - Sequences of blank lines are reduced to one blank line, when writing the file.
- * - Commented variables receive a blank line before the comment.
- * - Commented Sections receive two blank lines before the comment. One if they are not commented.
+ * - Comments
+ *   - Comment lines at the beginning of the file are associated with the file and are written
+ *     back. Such comment block is stopped with a single blank line.
+ *   - Lines that start (apart from whitespace) with either a double
+ *     slash \c "//", a sharp sign \c '#' or a semicolon <c>';'</c> are comment lines.
+ *   - Comment lines that are added to variables in the software are using the symbol defined in
+ *     filed #DefaultCommentPrefix, which defaults to \c '#'. If this is changed in the file,
+ *     such changes are preserved.
+ *   - Comment lines before sections and variables are associated with the respective objects
+ *     and are not overwritten by comments set in the code. However, variables without
+ *     comments which are overwritten in code including comments, get such comment appended.
+ *   - Comments can not reside in the same line together with section names or variables.
+ *   - Commented variables receive a blank line before the comment.
+ *   - Commented Sections receive two blank lines before the comment. One if they are not commented.
+ *
+ * - Sections:
+ *   - Sections names are enclosed by brackets \c '[' and \c ']'.
+ *   - Section names can be repeated. In this case the corresponding section is continued.
+ *     When the file is written, the sections are merged. Otherwise the order of sections and
+ *     the variables within the section is kept intact on writing.
+ *
+ * - Variables
+ *   - Variable names and their values are separated by an equal sign \c '='.
+ *   - New variables inserted are formatted according to other variables found. E.g. the
+ *     equal sign of all variables within a section are aligned on the same column.
+ *   - Formats of variables added or changed by the user are kept intact, as long as the
+ *     software does not store a value.
+ *
+ * - Continued Lines:
+ *   - Variables definition are being continued (values are concatenated) if the line ends
+ *     with a backslash \c '\\'.
+ *   - Comment lines in-between continued lines are recognized as such. To continue a variable
+ *     after a 'continued' comment line, the comment line needs to end with a backslash \c '\\'.
+ *   - Variables with multiple values created (or modified) in the software, are written
+ *     in continued lines, with each line showing one value, ending with the variables'
+ *     delimiter character and a trailing \c '\\'.
+ *   - Comment lines within Variables defined in multiple lines are removed when a variable
+ *     is written back.
+ *
+ * - Escaping values
+ *   - Spaces \c ' ' and tabulators \c '\\t' are ignored at the start and end of each line and before
+ *     and after the equal sign \c '='.
+ *   - Consequently, whitespaces at the start or end of a value either need to be escaped
+ *     using <c>'\\ '</c> or the whole value has to be surrounded by double quotes \c ".
+ *   - Values added or modified by the software that contain spaces at the start or end
+ *     are surrounded by double quotes (instead of escaping them)
+ *   - Double quotes in values are always escaped when writing values and have to be escaped
+ *     when editing the file.
+ *   - Values may consist of a list of double quoted values. Whitespaces between such
+ *     values are ignored. Consequently, long strings may be enclosed in double quotes
+ *     and continued in the next line when the line ends with a backslash \c '\\'.
+ *   - Almost any character can be escaped. E.g \c "\\a" is read as \c 'a'.
+ *   - On writing only non-printable characters and double quotation marks are escaped.
+ *
+ * - Other remarks
+ *   - Sequences of blank lines are reduced to one blank line, when writing the file.
+ *   - Errorneous lines are ignored and not written back. Line numbers with errorneous lines
+ *     are collected in field #LinesWithReadErrors.
  **************************************************************************************************/
- class IniFile : public ConfigurationPlugIn
+ class IniFile : public InMemoryPlugin
 {
     // #############################################################################################
     // Public enums
@@ -101,85 +128,78 @@ namespace                   config {
             ErorWritingFile
         };
 
-
-    // #############################################################################################
-    // inner classes
-    // #############################################################################################
-    public:
-        /** ****************************************************************************************
-         * A configuration section
-         ******************************************************************************************/
-        class Variable
-        {
-            public:
-                String32  Name;          ///< The name of the section
-                String32  Value;         ///< The list of variables of the section
-                AString   Comments;      ///< The comments of the section
-                char      Delim = '\0';  ///< The delimiter (for splitting output into to multiple lines)
-
-                Variable()
-                {
-                    ALIB_WARN_ONCE_PER_INSTANCE_DISABLE( Name,  ReplaceExternalBuffer );
-                    ALIB_WARN_ONCE_PER_INSTANCE_DISABLE( Value, ReplaceExternalBuffer );
-                }
-        };
-
-        /** ****************************************************************************************
-         * A configuration section
-         ******************************************************************************************/
-        class Section
-        {
-            public:
-
-                String32     Name;                  ///< The name of the section
-                AString      Comments;              ///< The comments of the section
-
-                std::vector<Variable*> Variables;   ///< The list of variables of the section
-
-            /**
-             * Constructs a Section
-             * @param name    The name of the section.
-             */
-            Section( const String& name )
-            : Name( name )
-            {
-                ALIB_WARN_ONCE_PER_INSTANCE_DISABLE( Name,  ReplaceExternalBuffer);
-            }
-
-            /**
-             * Destructs a Section
-             */
-            ~Section()
-            {
-                for ( Variable* var : Variables )
-                    delete var;
-            }
-
-            /**
-             * Searches a variable with the given name. The search is performed case insensitive
-             * @param name The name of the variable to be searched.
-             * @return The variable if found, else nullptr.
-             */
-            Variable*     Get    ( const String& name );
-
-            /**
-             * Inserts a variable into the section. If the variable exists, the value will be
-             * written. If the comments also exist, they will be preserved.
-             * @param name      The name of the variable to be inserted or written.
-             * @param value     The value of the variable to be inserted or written.
-             * @param comments  Comments that describe the variable (is written to INI file.
-             * @return The variable that was created or written.
-             */
-            Variable*     Insert ( const String& name, const String& value, const String& comments= "" );
-        };
-
     // #############################################################################################
     // Public fields
     // #############################################################################################
     public:
-        /** If this is set to \c true, any variable change will lead to writing the file immedeately
-            by invoking #WriteFile */
-        bool                             AutoSave                                           = true;
+        /** ****************************************************************************************
+         * A configuration section entry (a variable)
+         ******************************************************************************************/
+        class Entry : public InMemoryPlugin::Entry
+        {
+            public:
+                /** The raw string as read from the INI file. Ready to be written back when
+                 * variable is untouched. */
+                AString             RawValue;
+
+                /**
+                 * Constructs an Entry
+                 * @param name    The name of the section.
+                 */
+                Entry( const String& name ) : InMemoryPlugin::Entry( name ) {}
+
+                /** Destructor */
+                virtual ~Entry() {}
+
+                /**
+                 * Overrides default method. If we have not parsed the INI file text value, yet,
+                 * we do this now.
+                 *
+                 * @param parent    The plug-in we belong to.
+                 * @param variable  The variable to fill with our values.
+                 */
+                ALIB_API
+                virtual void ToVariable( const InMemoryPlugin* parent, Variable& variable );
+
+                /**
+                 * Overrides default method. Clears the raw value, and calls base method.
+                 *
+                 * @param parent    The plug-in we belong to.
+                 * @param variable  The variable to fill with our values.
+                 */
+                ALIB_API
+                virtual void FromVariable( const InMemoryPlugin* parent, Variable& variable );
+        };
+
+        /** ****************************************************************************************
+         * A configuration section entry (a variable)
+         ******************************************************************************************/
+        class Section: public InMemoryPlugin::Section
+        {
+            /**
+             * Constructs a Section
+             * @param name    The name of the section.
+             */
+            public :
+            Section( const String& name ) : InMemoryPlugin::Section( name ) {}
+            /**
+             * Overrides base classes method to create an entry of our type.
+             * @param name    The name of the entry.
+             * @return An object of type \ref Entry "IniFile::Entry".
+             */
+            protected:
+            inline
+            virtual Entry*  createEntry(const String& name )
+            {
+                return new IniFile::Entry( name );
+            }
+
+        };
+
+
+        /** If this is set to \c true, any variable change will lead to writing the file immediately
+            by invoking #WriteFile. Defaults to false */
+        bool                             AutoSave                                           = false;
 
         /** The standard file extension used for ALib configuration files. Defaults to ".ini" */
         static String                    DefaultFileExtension;
@@ -191,9 +211,6 @@ namespace                   config {
         /** The file header which will be written out as a comment lines with "# " prefixes */
         AString                          FileComments;
 
-        /** The list of sections. */
-        std::vector<Section*>            Sections;
-
         /** The status. */
         Status                           LastStatus;
 
@@ -201,29 +218,25 @@ namespace                   config {
             line is no section and no comment but still has no equal sign ('=').  */
         std::vector<int>                 LinesWithReadErrors;
 
-        /** Pairs of conversion strings. The first value, is what appears in the file (e.g. >\\<)
-            and the second string defines what the replacement character would be (e.g. >\<).
-
-            The vector defaults to have replacements for
-            - "\n" A new line character
-            - "\r" A carriage return character
-            - "\t" A tabulator character
-            - "\\" A backslash
-            - "\/" To allow the forward slash to be at the start of a line
-            - "\#" To allow the "sharp" sign to be at the start of a line
-            - "\;" To allow the ";" to be at the start of a line
-          */
-
-        std::vector<TString>             EscapeSequences;
-
 
         /**
          * The prefix that is used for comment lines of sections or variables that have been
-         * added 'programmatically', in other words, that have not been read from the file.
-         * Comments that were read from the file preserve their prefix. Also, if comments including
-         * one of the valid prefixes are added to a variable or section 'programmatically', such
-         * prefix is preserved. */
+         * added 'in code' (variables that have not been read from the file).
+         * Comments that were read from the file preserve their prefix.
+         * If comments including one of the valid prefixes are added to a variable or section
+         * 'in code', such prefix is preserved. */
         String                           DefaultCommentPrefix                               =  "# ";
+
+        /** Denotes if a space should be written before a delimiter. */
+        bool                             FormatSpaceBeforeDelim                             = false;
+
+        /** Denotes if a space should be written after a delimiter. (Applies only to single
+            line mode of writing attributes.)  */
+        bool                             FormatSpaceAfterDelim                              =  true;
+
+        /** Denotes whether the spaces that are inserted when aligning attributes are
+         *  located before or behind the delimiter. */
+        bool                             FormatIncludeDelimInAttrAlignment                  = false;
 
     // #############################################################################################
     // Constructor/destructor
@@ -247,10 +260,7 @@ namespace                   config {
         /** ****************************************************************************************
          * Virtual Destructor.
          ******************************************************************************************/
-        virtual      ~IniFile()
-        {
-            Clear();
-        }
+        virtual      ~IniFile()   {}
 
     // #############################################################################################
     // Interface
@@ -259,133 +269,8 @@ namespace                   config {
          * Clears all configuration data.
          ******************************************************************************************/
         ALIB_API
-        void          Clear();
+        virtual void        Reset();
 
-        /** ****************************************************************************************
-         * Searches the \ref aworx::lib::config::IniFile::Section "Section" with the given name.
-         *
-         * @param name      The name of the section to be retrieved.
-         * @return Returns the section if it was found, nullptr otherwise.
-         ******************************************************************************************/
-        ALIB_API
-        Section*      SearchSection( const String& name);
-
-        /** ****************************************************************************************
-         * Searches the \ref aworx::lib::config::IniFile::Section "Section" with the given name.
-         * If the section was not found, it is created.
-         * If the section is found and has no comments, then the provided comments are appended.
-         * @param name      The name of the section to be retrieved.
-         * @param comments  The comment lines for the section, in the case the section is not
-         *                  found. If this is null, no section is created.
-         * @return Returns the section if it was found or created. nullptr otherwise.
-         ******************************************************************************************/
-        ALIB_API
-        Section*      SearchOrCreateSection( const String& name, const String& comments );
-
-    // #############################################################################################
-    // ConfigurationPlugIn interface implementation
-    // #############################################################################################
-    public:
-
-        /** ****************************************************************************************
-         * Retrieves the string value of a configuration setting.
-         * @param category  The category of the  variable.
-         * @param name      The name of the configuration variable to be retrieved.
-         * @param target    A reference to an empty AString to take the result.
-         * @return \c true if variable was found within this configuration source, \c false if not.
-         ******************************************************************************************/
-        ALIB_API
-        virtual bool  Get( const String& category, const String& name, AString& target );
-
-        /** ****************************************************************************************
-         * Returns the int value of a configuration setting.
-         * This method invokes the default implementation
-         * \ref aworx::lib::config::ConfigurationPlugIn::Get(const String&, const String&, int32_t&) "ConfigurationPlugIn::Get".
-         *
-         * @param category  The category of the  variable.
-         * @param name      The name of the configuration variable to be retrieved.
-         * @param target    A reference to an integer variable to take the result.
-         * @return \c true if variable was found within this configuration source, \c false if not.
-         ******************************************************************************************/
-        virtual bool  Get( const String& category, const String& name, int32_t& target )
-        {
-            return ConfigurationPlugIn::Get( category, name, target );
-        }
-
-        /** ****************************************************************************************
-         * Returns the floating point value of a configuration setting.
-         * This method invokes the default implementation
-         * \ref aworx::lib::config::ConfigurationPlugIn::Get(const String&, const String&, double&) "ConfigurationPlugIn::Get".
-         *
-         * @param category  The category of the  variable.
-         * @param name      The name of the configuration variable to be retrieved.
-         * @param target    A reference to an double variable to take the result.
-         * @return \c true if variable was found within this configuration source, \c false if not.
-         ******************************************************************************************/
-        virtual bool  Get( const String& category, const String& name, double& target )
-        {
-            return ConfigurationPlugIn::Get( category, name, target );
-        }
-
-        /** ****************************************************************************************
-         * Writes a variable of type string to the configuration.
-         * @param category  The category of the  variable.
-         * @param name      The name of the configuration variable to be retrieved.
-         * @param value     The value to write.
-         * @param comments  The variable comments. Will be written above the variable.
-         *                  Defaults to NullString.
-         * @param delim     This plug-in uses this character to identify variable values that
-         *                  are split into different lines within the INI file.
-         *                  Lines are continued by adding a backslash at the end.
-         *                  Defaults to ','.
-         *
-         * @return \c true if the variable was written, \c false if not.
-         ******************************************************************************************/
-        ALIB_API
-        virtual bool  Save( const String& category,  const String& name,
-                            const String& value,     const String& comments = NullString,
-                            char          delim= ',' );
-
-        /** ****************************************************************************************
-         * Writes a variable of type integer to the configuration.
-         * This method invokes the default implementation
-         * \ref aworx::lib::config::ConfigurationPlugIn::Save(const String&, const String&, int, const String& ) "ConfigurationPlugIn::Save".
-         *
-         * @param category  The category of the  variable.
-         * @param name      The name of the configuration variable to be retrieved.
-         * @param value     The value to write.
-         * @param comments  The variable comments. Will be written above the variable.
-         *                  Defaults to NullString.
-         * @return \c true if the variable was written, \c false if not.
-         ******************************************************************************************/
-        virtual bool  Save( const String& category, const String& name,
-                            int           value,    const String& comments = NullString )
-        {
-            return ConfigurationPlugIn::Save( category, name, value, comments );
-        }
-
-        /** ****************************************************************************************
-         * Writes a variable of type double to the configuration.
-         * This method invokes the default implementation
-         * \ref aworx::lib::config::ConfigurationPlugIn::Save(const String&, const String&, double, const String& ) "ConfigurationPlugIn::Save".
-         * @param category  The category of the  variable.
-         * @param name      The name of the configuration variable to be retrieved.
-         * @param value     The value to write.
-         * @param comments  The variable comments. Will be written above the variable.
-         *                  Defaults to NullString.
-         * @return \c true if the variable was written, \c false if not.
-         ******************************************************************************************/
-        virtual bool  Save( const String& category, const String& name,
-                            double        value,    const String& comments = NullString )
-        {
-            return ConfigurationPlugIn::Save( category, name, value, comments );
-        }
-
-
-    // #############################################################################################
-    // File IO
-    // #############################################################################################
-    public:
         /** ****************************************************************************************
          * Clears all configuration data and reads the file. It might happen that lines are
          * ignored or otherwise marked as faulty. All numbers of such lines get collected in
@@ -393,16 +278,55 @@ namespace                   config {
          * @return Returns the #Status of the operation.
          ******************************************************************************************/
         ALIB_API
-        IniFile::Status  ReadFile();
+        IniFile::Status     ReadFile();
 
         /** ****************************************************************************************
          * Write all configuration data into the file.
          * @return Returns the #Status of the operation.
          ******************************************************************************************/
         ALIB_API
-        IniFile::Status  WriteFile();
+        IniFile::Status     WriteFile();
 
+    // #############################################################################################
+    // ConfigurationPlugin interface implementation
+    // #############################################################################################
+    public:
+        using InMemoryPlugin::Load;
+        using InMemoryPlugin::Store;
+
+        /** ****************************************************************************************
+         * Creates or replaces existing variable in our storage. If #AutoSave is set, the file
+         * is written
+         *
+         * @param variable  The variable to retrieve.
+         * @return \c true if the variable was written, \c false if not. The latter might only
+         *         happen if the variable given was illegal, e.g. empty name.
+         ******************************************************************************************/
+        inline
+        virtual bool  Store( Variable& variable )
+        {
+            InMemoryPlugin::Store( variable );
+            if ( AutoSave )
+                WriteFile();
+            return true;
+        }
+
+    // #############################################################################################
+    // Protected methods
+    // #############################################################################################
     protected:
+
+        /** ****************************************************************************************
+         * Overrides base classes method to create a section of our type.
+         *
+         * @param name    The name of the section.
+         * @return An object of type \ref Section "IniFile::Section".
+         ******************************************************************************************/
+        inline
+        virtual Section*  createSection(const String& name )
+        {
+            return new IniFile::Section( name );
+        }
 
         /** ****************************************************************************************
          * Writes a list of comments to the file. Comment lines are started with '#'.
@@ -411,26 +335,6 @@ namespace                   config {
          ******************************************************************************************/
         ALIB_API
         void writeComments( std::ostream& os, const AString& comments );
-
-        /** ****************************************************************************************
-         * Converts variable value data. Replaces certain characters by escape sequences.
-         * @param os        The output stream to write to.
-         * @param value     The value to write
-         * @return The difference of length written and given value length.
-         ******************************************************************************************/
-        ALIB_API
-        int addEscapeSequences  ( std::ostream& os, const Substring& value );
-
-        /** ****************************************************************************************
-         * Converts variable value data provided in the token and appends it to the target
-         * variable.
-         * Respects (and removes) quotation marks.
-         * Replaces certain characters by escape sequences.
-         * @param value     The input token.
-         * @param target    The AString that gets the converted result appended.
-         ******************************************************************************************/
-        ALIB_API
-        void removeEscapeSequences( strings::Substring& value, AString& target );
 
 };
 

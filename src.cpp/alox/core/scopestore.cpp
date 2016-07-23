@@ -283,8 +283,8 @@ void ScopeStore<StoreT>::getPathMapNode( bool create )
         actPathMapNode= languageStore->Get( key, create, separators );
         return;
     }
-    else
-        key._<false>( separators[1] );
+
+    key._<false>( separators[1] );
 
     // key: filename
     key._( '-' ) // we need a prefix to have all files share one start node which is not
@@ -431,8 +431,6 @@ StoreT ScopeStore<StoreT>::access(  int cmd, StoreT value  )
             else if ( cmd == CMD_REMOVE )
                 languageStore->Remove( actPathMapNode );
         }
-        else
-            oldValue = ScopeStoreType<StoreT>::NullValue();
 
         return oldValue;
     }

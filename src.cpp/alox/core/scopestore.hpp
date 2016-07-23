@@ -71,7 +71,7 @@ class ScopeStore
 {
     // #############################################################################################
     // Public fields
-    // These fields are public, but publicly accessed only for LogConfig and Reset()
+    // These fields are public, but publicly accessed only for State and Reset()
     // (bauhaus code style, omitting getters. For library users this is still invisible, as
     // the stores are protected in class Lox)
     // #############################################################################################
@@ -160,7 +160,7 @@ class ScopeStore
          * using them
          * @param scope      Scope to use.
          * @param pathLevel  Used only if parameter \p scope equals
-         *                   \ref aworx::lox::Scope::Path "Scope.Path"
+         *                   \ref aworx::lox::Scope::Path "Scope::Path"
          *                   to reference parent directories. Optional and defaults to \c 0.
          * @param threadID   ID of the associated thread (for thread-related scopes only).
          *                   If Thread::NullThreadId is given, the ID from \p scopeInfo is used.

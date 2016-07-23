@@ -158,7 +158,7 @@ UT_METHOD(Lox_TestVerbositySetting)
         // test sub domains
         Lox_SetVerbosity( cl, Verbosity::Verbose, ALox::InternalDomains );
 
-        // Lox_LogConfig ( "/TEST",      Verbosity::Info, "Dumping Log Configuration:" );
+        // Lox_LogState ( "/TEST",      Verbosity::Info, "Dumping Log Configuration:" );
 
         Lox_SetVerbosity( cl,  Verbosity::Info, "/DFLT"      );
         Lox_SetVerbosity( cl,  Verbosity::Warning    , "/DFLT/WARN" );
@@ -167,7 +167,7 @@ UT_METHOD(Lox_TestVerbositySetting)
         Lox_SetVerbosity( &ml, Verbosity::Warning    , "/DFLT/WARN" );
         Lox_SetVerbosity( &ml, Verbosity::Error               ,       "ERR"  );
 
-        //Lox_LogConfig ( "/TEST",      Verbosity::Info, "Dumping Log Configuration:" );
+        //Lox_LogState ( "/TEST",      Verbosity::Info, "Dumping Log Configuration:" );
 
         // log with leading "/" on domain
         cntLL= ml.CntLogs;    Lox_Verbose ( "/DFLT",        testERR );    UT_EQ( 0, ml.CntLogs - cntLL );

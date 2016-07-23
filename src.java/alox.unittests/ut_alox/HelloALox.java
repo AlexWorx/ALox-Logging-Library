@@ -14,7 +14,7 @@ import com.aworx.lox.Log;
 
 class HelloALox
 {
-    public void sayHello()
+    public static void sayHello()
     {
         Log.info ( "Hello ALox!" );
     }

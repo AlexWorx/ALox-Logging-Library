@@ -210,7 +210,7 @@ public class Tokenizer
          *                   Defaults to \c Whitespaces.Trim.
          *  @param newDelim  The delimiter separates the tokens. Defaults to 0, which keeps the
          *                   current delimiter intact.
-         *                   However, it a new delimiter can be provided for every next token.
+         *                   A new delimiter can be provided for every next token.
          * @return true if a next token was available, false if not.
          ******************************************************************************************/
         public Substring    Next( Whitespaces trimming= enums.Whitespaces.Trim, char newDelim= '\0' )
@@ -246,10 +246,7 @@ public class Tokenizer
     
                 // trim
                 if ( trimming == enums.Whitespaces.Trim )
-                {
-                    Actual.TrimStart(Whitespaces);
-                    Actual.TrimEnd(Whitespaces);
-                }
+                    Actual.Trim(Whitespaces);
             }
             while( skipEmptyTokens && Actual.IsEmpty() && Rest.IsNotNull() );
 

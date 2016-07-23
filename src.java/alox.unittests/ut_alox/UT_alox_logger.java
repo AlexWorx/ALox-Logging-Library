@@ -8,21 +8,25 @@ package ut_alox;
 
 import org.junit.Test;
 
-import ut_com_aworx_uttools.AUnitTest;
-
-import com.aworx.lib.ALIB;
-import com.aworx.lib.config.Configuration;
-import com.aworx.lib.config.IniFile;
+import com.aworx.lib.config.Variable;
+import com.aworx.lib.enums.ContainerOp;
 import com.aworx.lib.strings.AString;
-import com.aworx.lox.*;
+import com.aworx.lox.ALox;
+import com.aworx.lox.ESC;
+import com.aworx.lox.Log;
+import com.aworx.lox.Lox;
+import com.aworx.lox.Scope;
+import com.aworx.lox.Verbosity;
 import com.aworx.lox.core.textlogger.MetaInfo;
 import com.aworx.lox.core.textlogger.StringConverter;
 import com.aworx.lox.loggers.AnsiConsoleLogger;
 import com.aworx.lox.loggers.MemoryLogger;
 
+import ut_com_aworx.AWorxUnitTesting;
+
 
 class MyType
-{}
+{/* empty type */}
 
 class MyObjectConverter implements com.aworx.lox.core.textlogger.ObjectConverter
 {
@@ -44,7 +48,7 @@ class MyObjectConverter implements com.aworx.lox.core.textlogger.ObjectConverter
         return false;
     }
 }
-public class UT_alox_logger extends AUnitTest
+public class UT_alox_logger extends AWorxUnitTesting
 {
 
     /** ********************************************************************************************
@@ -273,18 +277,19 @@ public class UT_alox_logger extends AUnitTest
                            String expFmtVerbose 
                          )
     {
-        IniFile iniFile= new IniFile("*"); // don't read
-        iniFile.save( ALox.configCategoryName, "TESTML_FORMAT", testFormat   );
-        ALIB.config.insertPlugin( iniFile, Configuration.PRIO_INI_FILE );
+        Variable var= new Variable();
+        var.define(ALox.configCategoryName, "TESTML_FORMAT", ',').store( testFormat  );
+        Lox lox= new Lox("TEST");   
         MemoryLogger ml= new MemoryLogger("TESTML");
+        lox.setVerbosity( ml, Verbosity.INFO );
+        lox.removeLogger( ml );
+        ALox.register( lox, ContainerOp.REMOVE );
     
-                                     UT_EQ( expFmt, ml.metaInfo.format );
+                                     UT_EQ( expFmt       , ml.metaInfo.format );
         if( expFmtError  != null ) { UT_EQ( expFmtError  , ml.metaInfo.verbosityError   ); }
         if( expFmtWarning!= null ) { UT_EQ( expFmtWarning, ml.metaInfo.verbosityWarning ); }
         if( expFmtInfo   != null ) { UT_EQ( expFmtInfo   , ml.metaInfo.verbosityInfo    ); }
         if( expFmtVerbose!= null ) { UT_EQ( expFmtVerbose, ml.metaInfo.verbosityVerbose ); }
-    
-        ALIB.config.removePlugin( iniFile );
     }
     
     
@@ -293,15 +298,15 @@ public class UT_alox_logger extends AUnitTest
     public void Log_TextLogger_FormatConfig()
     {
         UT_INIT();
-    
-        testFormatConfig( "Test"                                , "Test"    ,null,null,null,null   );
-        testFormatConfig( "\"Test"                              , "\"Test"  ,null,null,null,null   );
-        testFormatConfig( "\"Test\""                            , "Test"    ,null,null,null,null   );
-        testFormatConfig( "  \" Test  \"  s"                    , " Test  " ,null,null,null,null   );
-    
-        testFormatConfig( " Test , a ,b, c,d  "                 , "Test", "a","b","c","d"    );
-        testFormatConfig( "\" Test, a ,b, c,d  "                , "\" Test", "a","b","c","d" );
-        testFormatConfig( "\" Test \", a ,b, c,d  "             , " Test ", "a","b","c","d"  );
+        
+        testFormatConfig( "Test"                                , "Test", null,null,null,null     );
+        testFormatConfig( "\"Test"                              , "Test", null,null,null,null     );
+        testFormatConfig( "\"Test\""                            , "Test", null,null,null,null     );
+        testFormatConfig( "  \" Test  \"  s"                    , " Test  s",null,null,null,null  );
+
+        testFormatConfig( " Test , a ,b, c,d  "                 , "Test", "a","b","c","d"         );
+        testFormatConfig( "\" Test, a\" ,b, \"c\",d  "          , " Test, a","b","c", "d",null    );
+        testFormatConfig( "\" Test, a\" ,b, \"c,d\"  "          , " Test, a","b","c,d",null,null  );
     }
     
     
@@ -497,39 +502,39 @@ public class UT_alox_logger extends AUnitTest
         Log.debugLogger.multiLineMsgMode= 0;
         Log.info( "" );
         Log.info( "-------- ML Mode = 0 (single line) --------" );
-        Log.logConfig( "MLine", Verbosity.INFO, "Our Log configuration is:" );
+        Log.state( "MLine", Verbosity.INFO, "Our Log configuration is:" );
 
         Log.debugLogger.multiLineMsgMode= 0;
         Log.debugLogger.multiLineDelimiterRepl= "~|~";
         Log.info( "" );
         Log.info( "-------- ML Mode = 0 (single line) with delimiter replacement set to ~|~ --------" );
-        Log.logConfig( "MLine", Verbosity.INFO, "Our Log configuration is:" );
+        Log.state( "MLine", Verbosity.INFO, "Our Log configuration is:" );
 
         Log.debugLogger.multiLineMsgMode= 0;
         Log.debugLogger.multiLineDelimiter= "";
         Log.info( "" );
         Log.info( "-------- ML Mode = 0 (single line) with delimiter set to \"\" (stops multi line processing) --------" );
-        Log.logConfig( "MLine", Verbosity.INFO, "Our Log configuration is:" );
+        Log.state( "MLine", Verbosity.INFO, "Our Log configuration is:" );
 
         Log.debugLogger.multiLineMsgMode= 1;
         Log.info( "" );
         Log.info( "-------- ML Mode = 1 (multi line, all meta info per line) --------" );
-        Log.logConfig( "MLine", Verbosity.INFO, "Our Log configuration is:" );
+        Log.state( "MLine", Verbosity.INFO, "Our Log configuration is:" );
 
         Log.debugLogger.multiLineMsgMode= 2;
         Log.info( "" );
         Log.info( "-------- ML Mode = 2 (multi line, meta info blanked) --------" );
-        Log.logConfig( "MLine", Verbosity.INFO, "Our Log configuration is:" );
+        Log.state( "MLine", Verbosity.INFO, "Our Log configuration is:" );
 
         Log.debugLogger.multiLineMsgMode= 3;
         Log.info( "" );
         Log.info( "-------- ML Mode = 3 (multi line, print headline with info, text starts at pos 0) --------" );
-        Log.logConfig( "MLine", Verbosity.INFO, "Our Log configuration is:" );
+        Log.state( "MLine", Verbosity.INFO, "Our Log configuration is:" );
 
         Log.debugLogger.multiLineMsgMode= 4;
         Log.info( "" );
         Log.info( "-------- ML Mode = 4 (pure multi line, no meta info, no headline, starts at pos 0)) --------" );
-        Log.logConfig( "MLine", Verbosity.INFO, "Our Log configuration is:" );
+        Log.state( "MLine", Verbosity.INFO, "Our Log configuration is:" );
     }
 
 }

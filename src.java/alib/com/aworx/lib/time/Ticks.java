@@ -332,7 +332,7 @@ import java.util.GregorianCalendar;
                 return 0.0;
 
             // to hertz
-            double hz= ((double) 1000000000d) / ticks;
+            double hz= 1000000000d / ticks;
 
             // no rounding? that's it
             if ( nDigitsPrec < 0 )

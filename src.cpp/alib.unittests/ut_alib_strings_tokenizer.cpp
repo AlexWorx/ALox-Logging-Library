@@ -9,7 +9,7 @@
 #include "alib/strings/tokenizer.hpp"
 #include "alib/compatibility/std_iostream.hpp"
 
-#define TESTCLASSNAME       CPP_ALib_Strings
+#define TESTCLASSNAME       CPP_ALib_StringsTokenizer
 #include "aworx_unittests.hpp"
 
 #include <iostream>
@@ -39,11 +39,11 @@ void tokenizerTest( const char* inputString, AString& res, char delim, char newD
 
     res.Clear();
 
-    Tokenizer tok( inp, delim );
+    Tokenizer tknzr( inp, delim );
 
-    while( tok.HasNext() )
+    while( tknzr.HasNext() )
     {
-        res._( tok.Next(trim) );
+        res._( tknzr.Next(trim) );
         res._( newDelim );
     }
 
@@ -60,16 +60,16 @@ UT_METHOD( Tokenize )
     as.Clear()._( "" );
     res.Clear();
     {
-        Tokenizer tok( as, ',' );  UT_EQ( true,  tok.HasNext() );
-        res._( tok.Next() );                UT_EQ( "", res );
+        Tokenizer tknzr( as, ',' );  UT_EQ( true,  tknzr.HasNext() );
+        res._( tknzr.Next() );                UT_EQ( "", res );
     }
 
     // tokenizing no delim
     as.Clear()._( "abc" );
     res.Clear();
     {
-        Tokenizer tok( as, ',' );           UT_EQ( true,  tok.HasNext() );
-        res._( tok.Next() );                UT_EQ( "abc", res );
+        Tokenizer tknzr( as, ',' );           UT_EQ( true,  tknzr.HasNext() );
+        res._( tknzr.Next() );                UT_EQ( "abc", res );
     }
 
     // tokenizing
@@ -86,55 +86,55 @@ UT_METHOD( Tokenize )
         tokenizerTest( "123567",                res, ',', '@',   Whitespaces::Trim,   2,   1 );   UT_EQ( res, "@"                   );
         tokenizerTest( "  abc , def , ghe ",    res, ',', '@',   Whitespaces::Trim,  -1,  -1 );   UT_EQ( res, "abc@def@ghe@"        );
         tokenizerTest( "abc , def,ghe,",        res, ',', '@',   Whitespaces::Trim,  -1,  -1 );   UT_EQ( res, "abc@def@ghe@@"       );
-        tokenizerTest( "  abc , def , ghe ",    res, ',', '@',   Whitespaces::Keep, -1,  -1 );   UT_EQ( res, "  abc @ def @ ghe @" );
-        tokenizerTest( "abc , def,ghe,",        res, ',', '@',   Whitespaces::Keep, -1,  -1 );   UT_EQ( res, "abc @ def@ghe@@"     );
+        tokenizerTest( "  abc , def , ghe ",    res, ',', '@',   Whitespaces::Keep,  -1,  -1 );   UT_EQ( res, "  abc @ def @ ghe @" );
+        tokenizerTest( "abc , def,ghe,",        res, ',', '@',   Whitespaces::Keep,  -1,  -1 );   UT_EQ( res, "abc @ def@ghe@@"     );
     }
 
     // tokenizing with different delimiters
     {
         as.Clear()._( "1,5;3@4" );
-        Tokenizer tok(as, ',');
-        res= tok.Next();                            UT_EQ( "1",   res );  UT_EQ( true,  tok.HasNext() );
-        res= tok.Next( Whitespaces::Trim, ';' );    UT_EQ( "5",   res );  UT_EQ( true,  tok.HasNext() );
-        res= tok.Next( Whitespaces::Trim, '@' );    UT_EQ( "3",   res );  UT_EQ( true,  tok.HasNext() );
-        res= tok.Next( Whitespaces::Trim, '-' );    UT_EQ( "4",   res );  UT_EQ( false, tok.HasNext() );
+        Tokenizer tknzr(as, ',');
+        res= tknzr.Next();                            UT_EQ( "1",   res );  UT_EQ( true,  tknzr.HasNext() );
+        res= tknzr.Next( Whitespaces::Trim, ';' );    UT_EQ( "5",   res );  UT_EQ( true,  tknzr.HasNext() );
+        res= tknzr.Next( Whitespaces::Trim, '@' );    UT_EQ( "3",   res );  UT_EQ( true,  tknzr.HasNext() );
+        res= tknzr.Next( Whitespaces::Trim, '-' );    UT_EQ( "4",   res );  UT_EQ( false, tknzr.HasNext() );
     }
 
     // tokenizing with different delimiters
     {
         as.Clear()._( "abc, 5;\t3;;; 4  " );
-        Tokenizer tok(as,',');
-        res= tok.Next();                          UT_EQ( "abc", res );  UT_EQ( true,  tok.HasNext() );
-        res= tok.Next( Whitespaces::Trim, ';' );  UT_EQ( "5",   res );  UT_EQ( true,  tok.HasNext() );
-        res= tok.Next();                          UT_EQ( "3",   res );  UT_EQ( true,  tok.HasNext() );
-        res= tok.Next();                          UT_EQ( "",    res );  UT_EQ( true,  tok.HasNext() );
-        res= tok.GetRest();                       UT_EQ( "; 4", res );  UT_EQ( false, tok.HasNext() );
+        Tokenizer tknzr(as,',');
+        res= tknzr.Next();                          UT_EQ( "abc", res );  UT_EQ( true,  tknzr.HasNext() );
+        res= tknzr.Next( Whitespaces::Trim, ';' );  UT_EQ( "5",   res );  UT_EQ( true,  tknzr.HasNext() );
+        res= tknzr.Next();                          UT_EQ( "3",   res );  UT_EQ( true,  tknzr.HasNext() );
+        res= tknzr.Next();                          UT_EQ( "",    res );  UT_EQ( true,  tknzr.HasNext() );
+        res= tknzr.GetRest();                       UT_EQ( "; 4", res );  UT_EQ( false, tknzr.HasNext() );
     }
 
     // sub-tokens
     {
         as.Clear()._( "1,2;3 , 4;5,;," );
-        Tokenizer tok(as, ';');
+        Tokenizer tknzr(as, ';');
 
-        Tokenizer tok2( tok.Next(), ',');
-        res= tok2.Next(); UT_EQ( "1", res );  UT_TRUE(  tok2.HasNext() );
-        res= tok2.Next(); UT_EQ( "2", res );  UT_TRUE( !tok2.HasNext() );
-        UT_TRUE( tok.HasNext() );
+        Tokenizer tknzr2( tknzr.Next(), ',');
+        res= tknzr2.Next(); UT_EQ( "1", res );  UT_TRUE(  tknzr2.HasNext() );
+        res= tknzr2.Next(); UT_EQ( "2", res );  UT_TRUE( !tknzr2.HasNext() );
+        UT_TRUE( tknzr.HasNext() );
 
-        tok2.Set( tok.Next(), ',');
-        res= tok2.Next(); UT_EQ( "3", res );  UT_TRUE(  tok2.HasNext() );
-        res= tok2.Next(); UT_EQ( "4", res );  UT_TRUE( !tok2.HasNext() );
-        UT_TRUE( tok.HasNext() );
+        tknzr2.Set( tknzr.Next(), ',');
+        res= tknzr2.Next(); UT_EQ( "3", res );  UT_TRUE(  tknzr2.HasNext() );
+        res= tknzr2.Next(); UT_EQ( "4", res );  UT_TRUE( !tknzr2.HasNext() );
+        UT_TRUE( tknzr.HasNext() );
 
-        tok2.Set( tok.Next(), ',');
-        res= tok2.Next(); UT_EQ( "5", res );  UT_TRUE(  tok2.HasNext() );
-        res= tok2.Next(); UT_EQ( "",  res );  UT_TRUE( !tok2.HasNext() );
-        UT_TRUE( tok.HasNext() );
+        tknzr2.Set( tknzr.Next(), ',');
+        res= tknzr2.Next(); UT_EQ( "5", res );  UT_TRUE(  tknzr2.HasNext() );
+        res= tknzr2.Next(); UT_EQ( "",  res );  UT_TRUE( !tknzr2.HasNext() );
+        UT_TRUE( tknzr.HasNext() );
 
-        tok2.Set( tok.Next(), ',');
-        res= tok2.Next(); UT_EQ( "", res );  UT_TRUE(  tok2.HasNext() );
-        res= tok2.Next(); UT_EQ( "", res );  UT_TRUE( !tok2.HasNext() );
-        UT_TRUE( !tok.HasNext() );
+        tknzr2.Set( tknzr.Next(), ',');
+        res= tknzr2.Next(); UT_EQ( "", res );  UT_TRUE(  tknzr2.HasNext() );
+        res= tknzr2.Next(); UT_EQ( "", res );  UT_TRUE( !tknzr2.HasNext() );
+        UT_TRUE( !tknzr.HasNext() );
     }
 }
 

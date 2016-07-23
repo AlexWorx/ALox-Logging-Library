@@ -31,7 +31,7 @@ namespace ut_cs_aworx_lib
     #if ALIB_VSTUDIO
         [TestClass]
     #endif
-    public class CS_ThreadLock    : AUnitTest
+    public class CS_ThreadLock    : AWorxUnitTesting
     {
         #if ALIB_MONO_DEVELOP
             [Test ()]
@@ -42,7 +42,7 @@ namespace ut_cs_aworx_lib
                 [TestCategory("CS_ThreadLock")]
             #endif
         #endif
-        public void ThreadLock_SimpleTests()
+        public void ThreadLock_Simple()
         {
             UT_INIT();
             Report.GetDefault().PushHaltFlags( false, false );

@@ -149,7 +149,7 @@ public class SmartLock extends  ThreadLock
         {
             int     count= 0;
             boolean errNotFound=    true;
-            boolean errWasAcquired= false;;
+            boolean errWasAcquired= false;
 
             try { ALIB.lock.acquire();
 

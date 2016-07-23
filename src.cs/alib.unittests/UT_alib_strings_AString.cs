@@ -32,7 +32,7 @@ namespace ut_cs_aworx_lib
     #if ALIB_VSTUDIO
         [TestClass]
     #endif
-    public class CS_Strings_AString    : AUnitTest
+    public class CS_Strings_AString    : AWorxUnitTesting
     {
         //--------------------------------------------------------------------------------------------------
         //--- Test Constructors
@@ -444,9 +444,9 @@ namespace ut_cs_aworx_lib
 
                 ms._( csNull );            UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
                 ms._( csEmpty);            UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNotNull() );
-                ms.SetNull();                   UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
+                ms.SetNull();              UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
 
-                ms._("1234567".ToCharArray());  UT_EQ  ( ms.Capacity(), 7 );  UT_EQ( "1234567",   ms );
+                ms._("1234567".ToCharArray());  UT_EQ  ( ms.Capacity(), 16  );  UT_EQ( "1234567",   ms );
                 ms._("89"     .ToCharArray());  UT_TRUE( ms.Length()> 7     );  UT_EQ( "123456789", ms );
 
                 char[] t= "0123456789".ToCharArray();
@@ -461,8 +461,8 @@ namespace ut_cs_aworx_lib
 
                 // _NC
                 ms.SetNull();                  UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
-                ms._NC( csEmpty,0,0);    UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()   );
-                ms.Clear()._NC( t, 5,3);                   UT_EQ( ms, "567"      );
+                ms._NC( csEmpty,0,0);          UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()   );
+                ms.Clear()._NC( t, 5,3);       UT_EQ( ms, "567"      );
             }
 
             // append AString
@@ -470,8 +470,8 @@ namespace ut_cs_aworx_lib
                 AString ms= new AString();  AString asNull= null; AString asEmpty= new AString(""); AString t= new AString( "012" );
                 ms._( asNull );            UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()   );
                 ms._( asEmpty);            UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNotNull() );
-                ms.SetNull();                   UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
-                ms._( t );                 UT_EQ  ( ms.Capacity(), 3 );  UT_EQ( "012"   , ms );
+                ms.SetNull();              UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
+                ms._( t );                 UT_EQ  ( ms.Capacity(), 16  );  UT_EQ( "012"   , ms );
                 ms._( t );                 UT_TRUE( ms.Length()> 3     );  UT_EQ( "012012", ms );
                 t.Clear()._( "0123456789" );
                 ms.Clear()._   ( t, 5);                     UT_EQ( ms, "56789"      );
@@ -501,8 +501,8 @@ namespace ut_cs_aworx_lib
                 AString ms= new AString();  Substring ssNull= null; Substring ssEmpty= new Substring( "" ); Substring t= new Substring( "01234" );
                 ms._( ssNull );            UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
                 ms._( ssEmpty);            UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNotNull() );
-                ms.SetNull();                   UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
-                ms._( t );                 UT_EQ  ( ms.Capacity(), 5 );  UT_EQ( "01234"     , ms );
+                ms.SetNull();              UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
+                ms._( t );                 UT_EQ  ( ms.Capacity(), 16  );  UT_EQ( "01234"     , ms );
                 ms._( t );                 UT_TRUE( ms.Length()> 5     );  UT_EQ( "0123401234", ms );
 
                 t.Consume();      ms.Clear()._( t );           UT_EQ( ms,  "1234"      );
@@ -519,8 +519,8 @@ namespace ut_cs_aworx_lib
             {
                 AString ms= new AString();   String sEmpty= "";  String t= "012";
                 ms._( sEmpty);             UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNotNull() );
-                ms.SetNull();                   UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
-                ms._( t );                 UT_EQ  ( ms.Capacity(), 3 );  UT_EQ( "012"   , ms );
+                ms.SetNull();              UT_EQ  ( ms.Length(), 0     );  UT_TRUE( ms.IsNull()    );
+                ms._( t );                 UT_EQ  ( ms.Capacity(), 16  );  UT_EQ( "012"   , ms );
                 ms._( t );                 UT_TRUE( ms.Length()> 3     );  UT_EQ( "012012", ms );
                 t= "0123456789";
                 ms.Clear()._( t, 5);                     UT_EQ( ms, "56789"      );
@@ -542,7 +542,7 @@ namespace ut_cs_aworx_lib
             // append String Builders
             {
                 AString ms= new AString();   StringBuilder t= new StringBuilder( "012");
-                ms._( t );                 UT_EQ  ( ms.Capacity(), 3 );  UT_EQ( "012"   , ms );
+                ms._( t );                 UT_EQ  ( ms.Capacity(), 16  );  UT_EQ( "012"   , ms );
                 ms._( t );                 UT_TRUE( ms.Length()> 3     );  UT_EQ( "012012", ms );
                 t.Clear().Append("0123456789");
                 ms.Clear()._( t, 5);                     UT_EQ( ms, "56789"      );

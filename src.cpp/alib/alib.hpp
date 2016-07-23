@@ -214,10 +214,11 @@ namespace           lib {
 // #################################################################################################
 // forwards
 // #################################################################################################
-namespace config  { class Configuration;    }
-namespace threads { class ThreadLockNR;     }
-namespace threads { class SmartLock;        }
-namespace time    { class Ticks;            }
+namespace config  { class  Configuration;
+                    struct VariableDefinition;   }
+namespace threads { class  ThreadLockNR;         }
+namespace threads { class  SmartLock;            }
+namespace time    { class  Ticks;                }
 
 
 // #################################################################################################
@@ -293,9 +294,9 @@ class ALIB
          * This is the configuration singleton for ALib.
          * In method #Init(), this configuration is optionally filled with the default
          * configuration plug-ins
-         * \ref aworx::lib::config::EnvironmentPlugIn "EnvironmentPlugIn"
+         * \ref aworx::lib::config::EnvironmentPlugin "EnvironmentPlugin"
          * and
-         * \ref aworx::lib::config::CommandLinePlugIn "CommandLinePlugIn".
+         * \ref aworx::lib::config::CommandLinePlugin "CommandLinePlugin".
          * Further, custom plug-ins may be attached by the software entity using ALib classes.
          *
          * For more information, see #aworx::lib::config.
@@ -309,14 +310,19 @@ class ALIB
          * respect to environment variable settings). Changes should be placed at very initial
          * bootstrap code, before the invocation of #Init.
          */
-        ALIB_API static    strings::String                ConfigCategoryName;
+        ALIB_API static    strings::String               ConfigCategoryName;
+
+        ALIB_API static    config::VariableDefinition RTE;                    ///< Configuration variable definition
+        ALIB_API static    config::VariableDefinition LOCALE;                 ///< Configuration variable definition
+        ALIB_API static    config::VariableDefinition WAIT_FOR_KEY_PRESS;     ///< Configuration variable definition
+        ALIB_API static    config::VariableDefinition HAS_CONSOLE_WINDOW;     ///< Configuration variable definition
 
         /**
         * If \c true, within #TerminationCleanUp, it is waited for a key press in the console
         * window.<br>
         * By default, this flag is enabled when debugging a console application under Visual Studio.<br>
         * This default behavior can be overruled by setting configuration variable
-        * [ALIB_WAIT_FOR_KEY_PRESS_ON_TERMINATION](../group__GrpALoxConfigVars.html).<br>
+        * [ALIB_WAIT_FOR_KEY_PRESS](../group__GrpALoxConfigVars.html).<br>
         * In addition, this public flag may be modified at runtime (after method #Init was invoked).
         */
         ALIB_API static    bool                            WaitForKeyPressOnTermination;
@@ -348,7 +354,7 @@ class ALIB
          * multiple threads, an alternative to registering each writing entity, is to
          * invoke \b AddAcquirer just two times in a row with \c nullptr at the start of a process
          * and then never do this again (and never de-register). This way, no thread needs
-         * to register/unregister but threads may still \b Acquire and \b Release the lock without
+         * to register/deregister but threads may still \b Acquire and \b Release the lock without
          * being registered. In other words, once a smart lock is enabled, subsequent registrations
          * are just used to count and identify the de-registration.
          *
@@ -375,12 +381,13 @@ class ALIB
     public:
         /** ****************************************************************************************
          * This method must be called prior to using ALib, e.g. at the beginning of
-         * the main() method of an application. It is OK, to call this method more than once, which
-         * allows independent code blocks (e.g. libraries) to bootstrap %ALIB without interfering.
-         * However, only the first invocation is effective in respect to the provided variables.
+         * the \c main() method of an application. It is OK, to call this method more than once, which
+         * allows independent code blocks (e.g. libraries) to bootstrap %ALIB independently.
+         * However, only the first invocation is effective with the exclamation that if
+         * command line parameters are provided with a call, those are set.
          * Also, the very first invocation should not be interrupted by a parallel invocation of a
-         * second thread. So, it has to be assured that this method is invoked once on the real
-         * bootstrap an app.
+         * second thread. Consequently, it has to be assured that this method is invoked once on
+         * the real bootstrap an app.
          *
          * The following actions are performed:
          * - The configuration object is created
@@ -391,7 +398,7 @@ class ALIB
          *   <em>LANG</em> and <em>LANGUAGE</em>
          *   and depending on ALib configuration variable
          *   [ALIB_LOCALE](../group__GrpALoxConfigVars.html).
-         * - Config variable [WAIT_FOR_KEY_PRESS_ON_TERMINATION](../group__GrpALoxConfigVars.html)
+         * - Config variable [WAIT_FOR_KEY_PRESS](../group__GrpALoxConfigVars.html)
          *   is read and field #WaitForKeyPressOnTermination set accordingly
          *
          * \note If other, custom configuration data sources should be used already with this method
@@ -415,55 +422,52 @@ class ALIB
          *       character binaries. These variables a can be used if this method is invoked
          *       outside of the <em>main()</em> method.
          *
-         *  @param environment  If \c Inclusion::Include (the default), an
-         *                 \ref aworx::lib::config::EnvironmentPlugIn "EnvironmentPlugIn"
-         *                 is attached to the
-         *                 \ref aworx::lib::ALIB::Config "ALIB::Config" singleton. Hence,
-         *                 environment variables are read and potentially do overwrite
-         *                 configuration variables in other configuration plug-ins.<br>
-         *  @param argc    Parameter which in the standard case is taken from  C/C++ main()
-         *                 method (Provides the number of command line arguments in argv).
-         *                 If this greater than 0, a
-         *                 \ref aworx::lib::config::CommandLinePlugIn "CommandLinePlugIn"
-         *                 is attached to the
-         *                 \ref aworx::lib::ALIB::Config "ALIB::Config" singleton. Hence,
-         *                 command line options are read and those potentially overwrite
-         *                 configuration variables in other configuration plug-ins.<br>
-         *                 Defaults to 0.
-         *  @param argv    Parameter which in the standard case is taken from  C/C++ main()
-         *                 method (Provides a pointer to a list of command line arguments).
-         *                 Defaults to nullptr.
-         *  @param wArgs   If \c true, parameter argv is of type '<em>wchar_t **</em>', otherwise
-         *                 of type '<em>char **</em>'.
-         *                 Defaults to \c false.
+         * @param argc    Parameter usually taken from <em>standard C</em> \c main() method
+         *                (the number of arguments in \p argv).
+         *                Defaults to 0.
+         * @param argv    Parameter usually taken from <em>standard C</em> \c main() method
+         *                (pointer to a list of command line arguments).
+         *                Defaults to nullptr.
          ******************************************************************************************/
-        ALIB_API static void     Init(  enums::Inclusion environment= enums::Inclusion::Include,
-                                        int  argc=    0, void **argv= nullptr, bool wArgs= false );
+        ALIB_API  
+        static void     Init( int argc =0,  char **argv =nullptr );
+
+        /** ****************************************************************************************
+         * Variant of method #Init, accepting command line arguments of type \c wchar_t.
+         *
+         * @param argc    Parameter usually taken from <em>standard C</em> \c main() method
+         *                (the number of arguments in \p argv).
+         * @param argv    The command line parameters as \c wchar_t.
+         ******************************************************************************************/
+        ALIB_API  
+        static void     Init( int  argc,    wchar_t **argv );
 
         /** ****************************************************************************************
          * Cleans up memory on termination. This method is useful if using memory analysis tools
          * (such as Valgrind) to remove any internal allocations before a program terminates.
          ******************************************************************************************/
-        ALIB_API  static void    TerminationCleanUp();
+        ALIB_API  
+        static void     TerminationCleanUp();
 
 
         /** ****************************************************************************************
          * Verifies a given sets of ALib compilation flags with the internal set
          * \ref ALIB::CompilationFlags. In case they are different in a way
-         * that alib gets incompatible (e.g. different class sizes, which results in errors that are
+         * that ALib gets incompatible (e.g. different class sizes, which results in errors that are
          * very hard to debug), the flags are written to \e cout for comparison and \c false is
          * returned.
          *
          * This method should be called on bootstrap to detect if incompatible library types were
          * built. If several libraries that use ALib are linked together, each should invoke this
-         * test against separatedly. The macro \c ALIB_COMPATIBILITY_VERYFIER will provide the
+         * test against separately. The macro \c ALIB_COMPATIBILITY_VERYFIER will provide the
          * flags.
          *
-         * @param flags The flags externally grabed using macro \c ALIB_COMPATIBILITY_VERYFIER.
+         * @param flags The flags externally grabbed using macro \c ALIB_COMPATIBILITY_VERYFIER.
          *
          * @return \c true if compatible, \c false else.
          ******************************************************************************************/
-        ALIB_API  static bool    VerifyCompilationFlags( uint32_t flags );
+        ALIB_API  
+        static bool    VerifyCompilationFlags( uint32_t flags );
 
     // #############################################################################################
     // Other static interface methods
@@ -504,6 +508,16 @@ class ALIB
          * @param nanosecs    Sleep time in nanoseconds.
          ******************************************************************************************/
         ALIB_API  static void SleepNanos( int nanosecs );
+
+
+    // #############################################################################################
+    // Internal methods
+    // #############################################################################################
+    protected:
+        /** ****************************************************************************************
+         * Implements public methods #Init.
+         ******************************************************************************************/
+        static void           init();
 
 };// class ALIB
 

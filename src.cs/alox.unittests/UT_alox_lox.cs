@@ -39,7 +39,7 @@ namespace ut_cs_aworx_lox
     #if ALIB_VSTUDIO
         [TestClass]
     #endif
-    public class CS_ALox_Lox   : AUnitTest
+    public class CS_ALox_Lox   : AWorxUnitTesting
     {
         // used with unit test Log_ScopeInfoCacheTest
         public static void ScopeInfoCacheTest() { Log.Info("Test method of CS_ALox_Lox"); }
@@ -142,7 +142,7 @@ namespace ut_cs_aworx_lox
         memLogger.MetaInfo.Format._()._( "%Sp@" );
         Log.SetVerbosity( memLogger, Verbosity.Verbose );
 
-        Log.ClearSourcePathTrimRules( Inclusion.Include, false );
+        Log.ClearSourcePathTrimRules( Reach.Global, false);
 
         if( Path.DirectorySeparatorChar == '/' )
             check_MemLogStartsWith( "/home"               , memLogger );
@@ -158,37 +158,37 @@ namespace ut_cs_aworx_lox
         Log.SetSourcePathTrimRule( "*/src.cs/" , Inclusion.Include     );  check_MemLogStartsWith( "alox.unittests@"     , memLogger );
         Log.SetSourcePathTrimRule( "*"         , Inclusion.Include     );  // illegal rule, not stored (debug into)
         Log.SetSourcePathTrimRule( "**"        , Inclusion.Include     );  // illegal rule, not stored (debug into)
-        Log.ClearSourcePathTrimRules( Inclusion.Include, false );
+        Log.ClearSourcePathTrimRules( Reach.Global, false);
         Log.SetSourcePathTrimRule( "*/src.cs/" , Inclusion.Include, -3 );  check_MemLogStartsWith( "cs/alox.unittests@"  , memLogger );
-        Log.ClearSourcePathTrimRules( Inclusion.Include, false );
+        Log.ClearSourcePathTrimRules( Reach.Global, false);
         Log.SetSourcePathTrimRule( "*/src.cs/" , Inclusion.Include, 2  );  check_MemLogStartsWith( "ox.unittests@"       , memLogger );
 
-        Log.ClearSourcePathTrimRules( Inclusion.Include, false );
+        Log.ClearSourcePathTrimRules( Reach.Global, false);
         Log.SetSourcePathTrimRule( "*/src.cs/" , Inclusion.Exclude     );  check_MemLogStartsWith( "/src.cs"             , memLogger );
 
-        Log.ClearSourcePathTrimRules( Inclusion.Include, false );
+        Log.ClearSourcePathTrimRules( Reach.Global, false);
         Log.SetSourcePathTrimRule( "*/src.cs/" , Inclusion.Exclude, -3 );  check_MemLogStartsWith( "lox/src.cs"          , memLogger );
 
-        Log.ClearSourcePathTrimRules( Inclusion.Include, false );
+        Log.ClearSourcePathTrimRules( Reach.Global, false);
         Log.SetSourcePathTrimRule( "*/src.cs/*", Inclusion.Exclude, -3 );  check_MemLogStartsWith( "lox/src.cs"          , memLogger );
 
         // clear only local rule. (the above rule was global)
-        Log.ClearSourcePathTrimRules( Inclusion.Exclude, false );
+        Log.ClearSourcePathTrimRules( Reach.Local, false );
                                                                             check_MemLogStartsWith( "lox/src.cs"         , memLogger );
 
         // set local rules
-        Log.ClearSourcePathTrimRules( Inclusion.Include, false );
-        Log.SetSourcePathTrimRule( "*/src.cs/" , Inclusion.Exclude, 0, Case.Ignore, Inclusion.Exclude );  check_MemLogStartsWith( "/src.cs"         , memLogger );
+        Log.ClearSourcePathTrimRules( Reach.Global, false);
+        Log.SetSourcePathTrimRule( "*/src.cs/" , Inclusion.Exclude, 0, Case.Ignore, Reach.Local );  check_MemLogStartsWith( "/src.cs"         , memLogger );
 
-        Log.ClearSourcePathTrimRules( Inclusion.Include, false );
-        Log.SetSourcePathTrimRule( "*/src.cs/" , Inclusion.Exclude, 0, Case.Ignore, Inclusion.Exclude );  check_MemLogStartsWith( "/src.cs"         , memLogger );
+        Log.ClearSourcePathTrimRules( Reach.Global, false);
+        Log.SetSourcePathTrimRule( "*/src.cs/" , Inclusion.Exclude, 0, Case.Ignore, Reach.Local );  check_MemLogStartsWith( "/src.cs"         , memLogger );
 
         // check non ignore case
-        Log.ClearSourcePathTrimRules( Inclusion.Include, false );
-        Log.SetSourcePathTrimRule( "*/src.cs/" , Inclusion.Exclude, 0, Case.Ignore, Inclusion.Exclude );   check_MemLogStartsWith( "/src.cs"         , memLogger );
+        Log.ClearSourcePathTrimRules( Reach.Global, false);
+        Log.SetSourcePathTrimRule( "*/src.cs/" , Inclusion.Exclude, 0, Case.Ignore, Reach.Local );   check_MemLogStartsWith( "/src.cs"         , memLogger );
 
-        Log.ClearSourcePathTrimRules( Inclusion.Include, false );
-        Log.SetSourcePathTrimRule( "*/SRC.CS/" , Inclusion.Exclude, 0, Case.Sensitive, Inclusion.Exclude );
+        Log.ClearSourcePathTrimRules( Reach.Global, false);
+        Log.SetSourcePathTrimRule( "*/SRC.CS/" , Inclusion.Exclude, 0, Case.Sensitive, Reach.Local );
         if( Path.DirectorySeparatorChar == '/' )
              check_MemLogStartsWith( "/home"               , memLogger );
         else
@@ -205,6 +205,7 @@ namespace ut_cs_aworx_lox
     /** ********************************************************************************************
      * Log_SetSourcePathTrimRuleExternal
      **********************************************************************************************/
+    #if ALOX_DBG_LOG
     #if ALIB_MONO_DEVELOP
         [Test ()]
     #endif
@@ -223,7 +224,7 @@ namespace ut_cs_aworx_lox
         Lox clearLox= new Lox("ClearingRules");
 
         // global rule
-        clearLox.ClearSourcePathTrimRules( Inclusion.Include, false );
+        clearLox.ClearSourcePathTrimRules( Reach.Global, false);
         {
             // create iniFile
             String iniFileContents=
@@ -259,6 +260,7 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
             lox.SetVerbosity( "CONSOLE"                          , Verbosity.Verbose, ALox.InternalDomains );
 
             MemoryLogger ml= new MemoryLogger("TESTML");
+
             lox.SetVerbosity(ml, Verbosity.Verbose );
 
             lox.Info( "" );  UT_EQ("alox.unittests", ml.MemoryLog ); ml.MemoryLog._(); ml.AutoSizes.Reset();
@@ -269,18 +271,17 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
         }
 
         // local rule
-        clearLox.ClearSourcePathTrimRules( Inclusion.Include, false );
+        clearLox.ClearSourcePathTrimRules( Reach.Global, false);
+        ALIB.Config.DefaultValues.Reset();
         {
-            // create iniFile
-            IniFile iniFile= new IniFile("*"); // don't read
-            iniFile.Save( ALox.ConfigCategoryName, "TESTML_FORMAT","%Sp"   );
-            iniFile.Save( ALox.ConfigCategoryName, "T_LOX_SOURCE_PATH_TRIM_RULES",
-                             "*;**;*alox.u*, incl ;*;**"   // default values, 0, ignore"
-                                                           // the * will be removed
-                                                           // two illegal rules before and after
-                    );
-            ALIB.Config.InsertPlugin( iniFile, Configuration.PrioIniFile );
-
+            // store default values
+            Variable var= new Variable();
+            var.Define( ALox.ConfigCategoryName, "TESTML_FORMAT" ).Store( "%Sp" );
+            var.Define( ALox.ConfigCategoryName, "T_LOX_SOURCE_PATH_TRIM_RULES",';')
+            .Store( "*;**; *alox.u*, include ;*;**" // default values, 0, ignore"
+                                                    // the * will be removed
+                                                    // two illegal rules before and after
+                                 );
 
             // test
             Lox lox= new Lox("T_LOX", false );
@@ -289,23 +290,25 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
             lox.SetVerbosity( "CONSOLE"                          , Verbosity.Verbose, ALox.InternalDomains );
 
             MemoryLogger ml= new MemoryLogger("TESTML");
+
             lox.SetVerbosity(ml, Verbosity.Verbose );
 
             lox.Info( "" ); UT_EQ( "nittests"  , ml.MemoryLog ); ml.MemoryLog._(); ml.AutoSizes.Reset();
 
-            ALIB.Config.RemovePlugin( iniFile );
             lox.RemoveLogger( ml );
             lox.RemoveLogger( "CONSOLE" );
         }
 
-        clearLox.ClearSourcePathTrimRules( Inclusion.Include, false );
+        clearLox.ClearSourcePathTrimRules( Reach.Global, false);
+        ALIB.Config.DefaultValues.Reset();
         {
             // create iniFile
             IniFile iniFile= new IniFile("*"); // don't read
-            iniFile.Save( ALox.ConfigCategoryName, "TESTML_FORMAT","%Sp"   );
-            iniFile.Save( ALox.ConfigCategoryName, "T_LOX_SOURCE_PATH_TRIM_RULES",
-                             "*alox.u, excl, 2, sens"
-                    );
+            Variable var= new Variable();
+            iniFile.Store( var.Define( ALox.ConfigCategoryName, "TESTML_FORMAT" ),  "%Sp" );
+            iniFile.Store( var.Define( ALox.ConfigCategoryName, "T_LOX_SOURCE_PATH_TRIM_RULES",';'),
+                           "*alox.u, excl, 2, sens" );
+
             ALIB.Config.InsertPlugin( iniFile, Configuration.PrioIniFile );
 
 
@@ -316,14 +319,15 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
             lox.SetVerbosity( "CONSOLE"                          , Verbosity.Verbose, ALox.InternalDomains );
 
             MemoryLogger ml= new MemoryLogger("TESTML");
+
             lox.SetVerbosity(ml, Verbosity.Verbose );
 
             lox.Info( "" ); UT_EQ( "ox.unittests"  , ml.MemoryLog ); ml.MemoryLog._(); ml.AutoSizes.Reset();
 
             // overwrite with source priority
-            lox.SetSourcePathTrimRule( "*alox.u", Inclusion.Exclude, 0, Case.Ignore, Inclusion.Exclude, "REPLACE_1/" );
+            lox.SetSourcePathTrimRule( "*alox.u", Inclusion.Exclude, 0, Case.Ignore, "REPLACE_1/", Reach.Local );
             lox.Info( "" ); UT_EQ( "ox.unittests"  , ml.MemoryLog ); ml.MemoryLog._(); ml.AutoSizes.Reset();
-            lox.SetSourcePathTrimRule( "*alox.u", Inclusion.Exclude, 0, Case.Ignore, Inclusion.Exclude, "REPLACE_2/", Lox.PrioProtected );
+            lox.SetSourcePathTrimRule( "*alox.u", Inclusion.Exclude, 0, Case.Ignore, "REPLACE_2/", Reach.Local, Configuration.PrioProtected );
             lox.Info( "" ); UT_TRUE( ml.MemoryLog.StartsWith( "REPLACE_2/" ) ); ml.MemoryLog._(); ml.AutoSizes.Reset();
 
             ALIB.Config.RemovePlugin( iniFile );
@@ -332,15 +336,14 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
         }
 
         // ignore case
-        clearLox.ClearSourcePathTrimRules( Inclusion.Include, false );
+        clearLox.ClearSourcePathTrimRules( Reach.Global, false);
+        ALIB.Config.DefaultValues.Reset();
         {
-            // create iniFile
-            IniFile iniFile= new IniFile("*"); // don't read
-            iniFile.Save( ALox.ConfigCategoryName, "TESTML_FORMAT","%Sp"   );
-            iniFile.Save( ALox.ConfigCategoryName, "T_LOX_SOURCE_PATH_TRIM_RULES",
-                             "*aLOX.U, exc, 2, ign"
-                    );
-            ALIB.Config.InsertPlugin( iniFile, Configuration.PrioIniFile );
+            // store default values
+            Variable var= new Variable();
+            var.Define( ALox.ConfigCategoryName, "TESTML_FORMAT" ).Store( "%Sp" );
+            var.Define( ALox.ConfigCategoryName, "T_LOX_SOURCE_PATH_TRIM_RULES",';')
+               .Store( "*aLOX.U, exc, 2, ign"   );
 
 
             // test
@@ -350,24 +353,24 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
             lox.SetVerbosity( "CONSOLE"                          , Verbosity.Verbose, ALox.InternalDomains );
 
             MemoryLogger ml= new MemoryLogger("TESTML");
+
             lox.SetVerbosity(ml, Verbosity.Verbose );
 
             lox.Info( "" ); UT_EQ( "ox.unittests"  , ml.MemoryLog ); ml.MemoryLog._(); ml.AutoSizes.Reset();
 
-            ALIB.Config.RemovePlugin( iniFile );
             lox.RemoveLogger( ml );
             lox.RemoveLogger( "CONSOLE" );
         }
 
-        clearLox.ClearSourcePathTrimRules( Inclusion.Include, false );
+        clearLox.ClearSourcePathTrimRules( Reach.Global, false);
+        ALIB.Config.DefaultValues.Reset();
         {
-            // create iniFile
-            IniFile iniFile= new IniFile("*"); // don't read
-            iniFile.Save( ALox.ConfigCategoryName, "TESTML_FORMAT","%Sp"   );
-            iniFile.Save( ALox.ConfigCategoryName, "T_LOX_SOURCE_PATH_TRIM_RULES",
-                             "*aLOX.U, excl, 2, sens"
-                    );
-            ALIB.Config.InsertPlugin( iniFile, Configuration.PrioIniFile );
+            // store default values
+            Variable var= new Variable();
+            var.Define( ALox.ConfigCategoryName, "TESTML_FORMAT" ).Store( "%Sp" );
+            var.Define( ALox.ConfigCategoryName, "T_LOX_SOURCE_PATH_TRIM_RULES",';')
+               .Store( "*aLOX.U, excl, 2, sens"  );
+
 
 
             // test
@@ -377,6 +380,7 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
             lox.SetVerbosity( "CONSOLE"                          , Verbosity.Verbose, ALox.InternalDomains );
 
             MemoryLogger ml= new MemoryLogger("TESTML");
+
             lox.SetVerbosity(ml, Verbosity.Verbose );
 
             lox.Info( "" );
@@ -386,11 +390,11 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
                 UT_EQ( "src.cs\\alox.unittests"  , ml.MemoryLog );
 
             ml.MemoryLog._(); ml.AutoSizes.Reset();
-            ALIB.Config.RemovePlugin( iniFile );
             lox.RemoveLogger( ml );
             lox.RemoveLogger( "CONSOLE" );
         }
     }
+    #endif
 
     /** ********************************************************************************************
      * Log_ScopeInfoCacheTest
@@ -499,7 +503,7 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
 
         // test sub domains
         Log.SetVerbosity( Log.DebugLogger, Verbosity.Verbose, "/test" );
-        Log.LogConfig( "/TEST",      Verbosity.Info, "Dumping Log Configuration:" );
+        Log.State( "/TEST",      Verbosity.Info, "Dumping Log Configuration:" );
 
         Log.SetVerbosity( ml, Verbosity.Info , "/DFLT"      );
         Log.SetVerbosity( ml, Verbosity.Warning     , "/DFLT/WARN" );
@@ -508,7 +512,7 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
         Log.SetVerbosity( Log.DebugLogger, Verbosity.Warning     , "/DFLT/WARN" );
         Log.SetVerbosity( Log.DebugLogger, Verbosity.Error                ,       "ERR"  );
 
-        Log.LogConfig( "/TEST",      Verbosity.Info, "Dumping Log Configuration:" );
+        Log.State( "/TEST",      Verbosity.Info, "Dumping Log Configuration:" );
 
         // log with leading "/" on domain
         cntLL= ml.CntLogs;    Log.Verbose( "/DFLT",        testERR );    UT_EQ ( (uint) 0, ml.CntLogs - cntLL );
@@ -656,5 +660,203 @@ GLOBAL_SOURCE_PATH_TRIM_RULES= *src.cs/                  , true                ;
         }
     }
 
-    } // class
+    /** ********************************************************************************************
+     * Log.Threads
+     **********************************************************************************************/
+    #if ALOX_DBG_LOG
+    #if ALIB_MONO_DEVELOP
+        [Test ()]
+    #endif
+    #if ALIB_VSTUDIO
+        [TestMethod]
+        #if !WINDOWS_PHONE
+            [TestCategory("CS_ALox")]
+        #endif
+    #endif
+    public void Log_GetState()
+    {
+        UT_INIT();
+
+        Log.AddDebugLogger();
+        MemoryLogger memLogger= new MemoryLogger();
+
+        // reduce meta information to limit output width
+        Log.DebugLogger.MetaInfo.Format._()._( "[%tN]%V[%D](%#): " );
+        memLogger.MetaInfo.Format._()._(       "[%tN]%V[%D](%#): " );
+        memLogger.MultiLineMsgMode= 3;
+        Log.SetVerbosity( memLogger, Verbosity.Verbose );
+
+        // OK, let's use ALox
+        Log.SetDomain( "PNS"   ,   Scope.Path, 1 );
+        Log.SetDomain( "PATH",     Scope.Path );
+        Log.SetDomain( "FN",       Scope.Filename );
+        Log.SetDomain( "THREAD",   Scope.ThreadOuter );
+
+        Log.SetVerbosity( "MEMORY",        Verbosity.Off      , "/CON"    );
+        Log.SetVerbosity( "DEBUG_LOGGER" , Verbosity.Verbose              );
+        Log.SetVerbosity( "DEBUG_LOGGER" , Verbosity.Off      , "/MEM"    );
+        Log.SetVerbosity( "DEBUG_LOGGER" , Verbosity.Error    , "/UI"     );
+        Log.SetVerbosity( "DEBUG_LOGGER" , Verbosity.Info     , "/UI/DLG" );
+
+        Log.Info( "This goes to both loggers" );
+        Log.Info( "/MEM", "This goes only to the memory logger" );
+        Log.Info( "/CON", "This goes only to the console logger" );
+
+        Log.Once( "Will we see this in the config?" );
+        Log.Once( "Will we see this in the config?", "ONCEKEY", Scope.Filename );
+
+        Log.Store( new LogData( "MyData 1" ), Scope.Method );
+        Log.Store( new LogData( "MyData 2" ), "DataKey", Scope.Method );
+        Log.Store( new LogData( 3          ), "DataKey", Scope.Filename );
+        Log.Store( new LogData( 4, this    ), "DataKey", Scope.ThreadOuter );
+
+        Log.SetPrefix( "TPre: "  , Scope.ThreadOuter );
+        Log.SetPrefix( "MPre: "  , Scope.Method );
+        Log.SetPrefix( "DomPre: " );
+        Log.SetPrefix( "Mouse: ", "/UI/MOUSE" );
+        Log.SetPrefix( ESC.RED,  "/ERRORS", Inclusion.Exclude );
+
+        Log.MapThreadName( "TUTORIAL" );
+
+        // now, log the current config
+        Log.State( null, Verbosity.Info, "State(ALL):" );
+
+        Log.State( null, Verbosity.Info, "State(Domains):", Lox.StateInfo.Domains );
+        Log.State( null, Verbosity.Info, "State(Loggers):", Lox.StateInfo.Loggers );
+
+
+        // cleanup
+        Log.RemoveDebugLogger();
+        Log.RemoveLogger( memLogger );
+    }
+    #endif
+
+    /** ********************************************************************************************
+     * Log_DumpStateOnExit
+     **********************************************************************************************/
+    #if ALOX_DBG_LOG
+    #if ALIB_MONO_DEVELOP
+        [Test ()]
+    #endif
+    #if ALIB_VSTUDIO
+        [TestMethod]
+        #if !WINDOWS_PHONE
+            [TestCategory("CS_ALox")]
+        #endif
+    #endif
+    public void Log_DumpStateOnExit()
+    {
+        UT_INIT();
+
+        Log.AddDebugLogger();
+        MemoryLogger memLogger= new MemoryLogger();
+
+
+        Log.SetVerbosity( memLogger, Verbosity.Verbose );
+        UT_TRUE( Log.DebugLogger.CntLogs == 0 );
+        Log.RemoveLogger( memLogger );
+        UT_TRUE( Log.DebugLogger.CntLogs == 0 );
+
+        Variable var= new Variable( ALox.ConfigCategoryName, Log.LOX.GetName() + "_DUMP_STATE_ON_EXIT",  ',' );
+
+        var.Store( "domain=/TEST, verbosity = e, domains, basic" );
+        int cntLogs;
+
+        var.Store( "domain=/TEST, verbosity = e, sptr, basic" );
+        Log.SetVerbosity( memLogger, Verbosity.Verbose );
+        cntLogs= Log.DebugLogger.CntLogs;
+        Log.RemoveLogger( memLogger );
+        UT_TRUE( Log.DebugLogger.CntLogs > cntLogs );
+
+        var.Store( "verbosity = e, domains, basic" );
+        Log.SetVerbosity( memLogger, Verbosity.Verbose );
+        cntLogs= Log.DebugLogger.CntLogs;
+        Log.RemoveLogger( memLogger );
+        UT_TRUE( Log.DebugLogger.CntLogs > cntLogs );
+
+        var.Store( "domains, loggers" );
+        Log.SetVerbosity( memLogger, Verbosity.Verbose );
+        cntLogs= Log.DebugLogger.CntLogs;
+        Log.RemoveLogger( memLogger );
+        UT_TRUE( Log.DebugLogger.CntLogs > cntLogs );
+
+        var.Store( "" );
+        Log.SetVerbosity( memLogger, Verbosity.Verbose );
+        cntLogs= Log.DebugLogger.CntLogs;
+        Log.RemoveLogger( memLogger );
+        UT_TRUE( Log.DebugLogger.CntLogs == cntLogs );
+
+        Log.RemoveDebugLogger();
+    }
+    #endif
+                                                     
+    /** ********************************************************************************************
+     * Log_WriteVerbosities
+     **********************************************************************************************/
+    #if ALOX_DBG_LOG
+    #if ALIB_MONO_DEVELOP
+        [Test ()]
+    #endif
+    #if ALIB_VSTUDIO
+        [TestMethod]
+        #if !WINDOWS_PHONE
+            [TestCategory("CS_ALox")]
+        #endif
+    #endif
+    public void Log_WriteVerbosities()
+    {
+        UT_INIT();
+
+        Log.AddDebugLogger();
+        MemoryLogger memLogger= new MemoryLogger("MYLGGR");
+        Log.SetVerbosity( Log.DebugLogger, Verbosity.Verbose, ALox.InternalDomains );
+
+        Variable var= new Variable( ALox.ConfigCategoryName, Log.LOX.GetName() + "_MYLGGR_VERBOSITY",  ';' );
+        Variable varBack= new Variable();
+
+        // test writing into other variable with variable name error
+        UT_PRINT( "An error message should follow (wrong variable format): " );
+        var.Store(  "writeback MY_" );
+        Log.SetVerbosity( memLogger, Verbosity.Verbose );
+        Log.RemoveLogger( memLogger );
+
+        // test writing into other variable
+        var.Store(  "writeback MY_VAR" );
+        Log.SetVerbosity( memLogger, Verbosity.Verbose );
+        Log.RemoveLogger( memLogger );
+        varBack.Define( "MY",  "VAR" ).Load();
+        UT_PRINT(  "Variable written: " + varBack.GetString().ToString() );
+        UT_TRUE( varBack.GetString().Length() > 0 );
+
+        // test writing into other variable without cat
+        var.Store(  "writeback ANON" );
+        Log.SetVerbosity( memLogger, Verbosity.Verbose );
+        Log.RemoveLogger( memLogger );
+        varBack.Define( "",  "ANON" ).Load();
+        UT_PRINT(  "Variable written: " + varBack.GetString().ToString() );
+        UT_TRUE( varBack.GetString().Length() > 0 );
+
+        // test writing into other variable without cat and with underscores in name
+        var.Store(  "writeback _2ND_ANON" );
+        Log.SetVerbosity( memLogger, Verbosity.Verbose );
+        Log.RemoveLogger( memLogger );
+        varBack.Define( "",  "2ND_ANON" ).Load();
+        UT_PRINT(  "Variable written: " + varBack.GetString().ToString() );
+        UT_TRUE( varBack.GetString().Length() > 0 );
+
+        // test writing into other the variable itself
+        var.Store(  "writeback" );
+        Log.SetVerbosity( memLogger, Verbosity.Verbose );
+        Log.RemoveLogger( memLogger );
+
+        ALIB.Config.Load( var);
+        UT_PRINT( "Variable written: " + var.GetString().ToString() );
+        UT_TRUE( var.GetString().Length() > 0 );
+
+       Log.RemoveDebugLogger();
+    }
+    #endif
+
+
+} // class
 } // namespace

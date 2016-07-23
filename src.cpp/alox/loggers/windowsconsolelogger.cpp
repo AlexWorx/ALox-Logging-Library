@@ -86,12 +86,11 @@ WindowsConsoleLogger::WindowsConsoleLogger( const String&  name )
         originalConsoleAttributes= actualAttributes;
     }
 
+    Variable variable;
     // evaluate environment variable "ALOX_CONSOLE_HAS_LIGHT_BACKGROUND"
     {
-        int  configVarSet;
-        bool configVarTrue= ALIB::Config.IsTrue( ALox::ConfigCategoryName, "CONSOLE_HAS_LIGHT_BACKGROUND", &configVarSet );
-        if( configVarSet != 0 )
-            IsBackgroundLight=  configVarTrue;
+        if ( variable.Define( ALox::CONSOLE_HAS_LIGHT_BACKGROUND).Load() != 0 )
+            IsBackgroundLight=  variable.IsTrue();
         else
             IsBackgroundLight=   ( originalConsoleAttributes & ~W32C_FOREGROUND_MASK )        < 7;
     }
@@ -111,13 +110,8 @@ WindowsConsoleLogger::WindowsConsoleLogger( const String&  name )
     }
 
     // evaluate config variable CODE_PAGE
-    {
-        int32_t configCodePage;
-
-        if ( ALIB::Config.Get( ALox::ConfigCategoryName, "CODE_PAGE", configCodePage ) != 0 )
-            CodePage= (UINT) configCodePage;
-    }
-
+    if ( variable.Define( ALox::CODEPAGE ).Load() != 0 )
+        CodePage= (UINT) variable.GetInteger();
 }
 
 WindowsConsoleLogger::~WindowsConsoleLogger()

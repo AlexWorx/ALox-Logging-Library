@@ -121,7 +121,7 @@ public class AndroidLogCatLogger extends TextLogger
      *
      * @param phase  Indicates the beginning or end of a multi-line operation.
      **********************************************************************************************/
-    @Override protected void notifyMultiLineOp ( Phase phase )  {}
+    @Override protected void notifyMultiLineOp ( Phase phase )  {/* void */}
 
 
 
